@@ -139,7 +139,7 @@ data:
     } // namespace suisen
 
 
-    #endif'
+    #endif // SUISEN_TYPE_TRITS'
   dependsOn: []
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
@@ -149,7 +149,7 @@ data:
   - library/template.cpp
   - library/tree/HeavyLightDecomposition.hpp
   - library/algorithm/sliding_window_minimum.hpp
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/type_traits/type_traits.hpp

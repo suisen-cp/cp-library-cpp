@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/algorithm/sliding_window_minimum.hpp\"\n#include\
+  bundledCode: "#line 1 \"library/algorithm/sliding_window_minimum.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <vector>\n#include <queue>\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -25,7 +25,7 @@ data:
     constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
     template <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool\
     \ value = bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 8 \"\
     library/algorithm/sliding_window_minimum.hpp\"\n\nnamespace suisen {\nnamespace\
     \ prioritizing_mode {\n    template <typename T>\n    using left_most_min  = std::greater<T>;\n\
     \    template <typename T>\n    using right_most_min = std::greater_equal<T>;\n\
@@ -50,8 +50,10 @@ data:
     \        int get_right() const {\n            return _r;\n        }\n        int\
     \ get_window_size() const {\n            return _r - _l;\n        }\n    private:\n\
     \        const int _n;\n        int _l = 0, _r = 0;\n        std::vector<T> _a;\n\
-    \        std::deque<int> _dq;\n        Comparator _cmp;\n};\n} // namespace suisen\n"
-  code: "#include <cassert>\n#include <vector>\n#include <queue>\n#include \"library/type_traits/type_traits.hpp\"\
+    \        std::deque<int> _dq;\n        Comparator _cmp;\n};\n} // namespace suisen\n\
+    \n\n"
+  code: "#ifndef SUISEN_SLIDING_WINDOW_MINIMUM\n#define SUISEN_SLIDING_WINDOW_MINIMUM\n\
+    \n#include <cassert>\n#include <vector>\n#include <queue>\n#include \"library/type_traits/type_traits.hpp\"\
     \n\nnamespace suisen {\nnamespace prioritizing_mode {\n    template <typename\
     \ T>\n    using left_most_min  = std::greater<T>;\n    template <typename T>\n\
     \    using right_most_min = std::greater_equal<T>;\n    template <typename T>\n\
@@ -76,13 +78,14 @@ data:
     \        int get_right() const {\n            return _r;\n        }\n        int\
     \ get_window_size() const {\n            return _r - _l;\n        }\n    private:\n\
     \        const int _n;\n        int _l = 0, _r = 0;\n        std::vector<T> _a;\n\
-    \        std::deque<int> _dq;\n        Comparator _cmp;\n};\n} // namespace suisen"
+    \        std::deque<int> _dq;\n        Comparator _cmp;\n};\n} // namespace suisen\n\
+    \n#endif // SUISEN_SLIDING_WINDOW_MINIMUM\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/algorithm/sliding_window_minimum.hpp
   requiredBy: []
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/algorithm/sliding_window_minimum.hpp

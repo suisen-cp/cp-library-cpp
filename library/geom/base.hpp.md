@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/geom/base.hpp\"\n#include <complex>\n\nnamespace\
+  bundledCode: "#line 1 \"library/geom/base.hpp\"\n\n\n\n#include <complex>\n\nnamespace\
     \ suisen {\nnamespace geometry {\n    // relations between three points X, Y,\
     \ Z.\n    enum class ISP : int {\n        L_CURVE = +1, // +---------------+ Z\
     \ is in 'a' => ISP = +1\n        R_CURVE = -1, // |aaaaaaaaaaaaaaa| Z is in 'b'\
@@ -133,16 +133,17 @@ data:
     \ l.b), z) and domain_x(Ray<T>(l.b, l.a), z);\n            }\n            static\
     \ constexpr bool domain_y(const Segment<T> &l, const std::complex<T> &z) {\n \
     \               return domain_y(Ray<T>(l.a, l.b), z) and domain_y(Ray<T>(l.b,\
-    \ l.a), z);\n            }\n    };\n}\n} // namespace suisen\n"
-  code: "#include <complex>\n\nnamespace suisen {\nnamespace geometry {\n    // relations\
-    \ between three points X, Y, Z.\n    enum class ISP : int {\n        L_CURVE =\
-    \ +1, // +---------------+ Z is in 'a' => ISP = +1\n        R_CURVE = -1, // |aaaaaaaaaaaaaaa|\
-    \ Z is in 'b' => ISP = -1\n        FRONT   = +2, // |ddd X eee Y ccc| Z is in\
-    \ 'c' => ISP = +2\n        BACK    = -2, // |bbbbbbbbbbbbbbb| Z is in 'd' => ISP\
-    \ = -2\n        MIDDLE  =  0, // +---------------+ Z is in 'e' => ISP =  0\n \
-    \   };\n\n    enum class SIGN : int {\n        NEGATIVE = -1,\n        ZERO =\
-    \ 0,\n        POSITIVE = +1\n    };\n\n    template <typename T>\n    class Base\
-    \ {\n        public:\n            static constexpr std::complex<T> ZERO = std::complex<T>(0,\
+    \ l.a), z);\n            }\n    };\n}\n} // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_GEOMETRY_BASE\n#define SUISEN_GEOMETRY_BASE\n\n#include <complex>\n\
+    \nnamespace suisen {\nnamespace geometry {\n    // relations between three points\
+    \ X, Y, Z.\n    enum class ISP : int {\n        L_CURVE = +1, // +---------------+\
+    \ Z is in 'a' => ISP = +1\n        R_CURVE = -1, // |aaaaaaaaaaaaaaa| Z is in\
+    \ 'b' => ISP = -1\n        FRONT   = +2, // |ddd X eee Y ccc| Z is in 'c' => ISP\
+    \ = +2\n        BACK    = -2, // |bbbbbbbbbbbbbbb| Z is in 'd' => ISP = -2\n \
+    \       MIDDLE  =  0, // +---------------+ Z is in 'e' => ISP =  0\n    };\n\n\
+    \    enum class SIGN : int {\n        NEGATIVE = -1,\n        ZERO = 0,\n    \
+    \    POSITIVE = +1\n    };\n\n    template <typename T>\n    class Base {\n  \
+    \      public:\n            static constexpr std::complex<T> ZERO = std::complex<T>(0,\
     \ 0);\n            static constexpr std::complex<T> ONE  = std::complex<T>(1,\
     \ 0);\n            static constexpr std::complex<T> I    = std::complex<T>(0,\
     \ 1);\n            static constexpr T EPS = 1e-9;\n            static constexpr\
@@ -258,12 +259,12 @@ data:
     \ l.b), z) and domain_x(Ray<T>(l.b, l.a), z);\n            }\n            static\
     \ constexpr bool domain_y(const Segment<T> &l, const std::complex<T> &z) {\n \
     \               return domain_y(Ray<T>(l.a, l.b), z) and domain_y(Ray<T>(l.b,\
-    \ l.a), z);\n            }\n    };\n}\n} // namespace suisen"
+    \ l.a), z);\n            }\n    };\n}\n} // namespace suisen\n\n#endif // SUISEN_GEOMETRY_BASE\n"
   dependsOn: []
   isVerificationFile: false
   path: library/geom/base.hpp
   requiredBy: []
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/geom/base.hpp

@@ -8,10 +8,10 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/tree/EulerTour.hpp\"\n#include <limits>\n#include\
-    \ <vector>\n\nnamespace suisen {\n/**\n * ImplicitGraph g : (int u, auto f) ->\
-    \ { for (int v : adjacent(u)) f(v); }\n */\nclass EulerTour {\n    public:\n \
-    \       template <typename ImplicitGraph>\n        EulerTour(const ImplicitGraph\
+  bundledCode: "#line 1 \"library/tree/EulerTour.hpp\"\n\n\n\n#include <limits>\n\
+    #include <vector>\n\nnamespace suisen {\n/**\n * ImplicitGraph g : (int u, auto\
+    \ f) -> { for (int v : adjacent(u)) f(v); }\n */\nclass EulerTour {\n    public:\n\
+    \        template <typename ImplicitGraph>\n        EulerTour(const ImplicitGraph\
     \ g, int n, int root = 0) : n(n), m(ceil_pow2(2 * n)) {\n            dep.resize(n\
     \ + 1), visit.resize(n), leave.resize(n);\n            seg.assign(2 * m, n);\n\
     \            dfs(g, root);\n            for (int k = m - 1; k > 0; --k) seg[k]\
@@ -41,15 +41,16 @@ data:
     \            };\n            f(f, root, n);\n        }\n        inline int argmin(int\
     \ u, int v) const { return dep[u] < dep[v] ? u : v; }\n        static int ceil_pow2(const\
     \ int n) {\n            int k = 1;\n            while (k < n) k <<= 1;\n     \
-    \       return k;\n        }\n};\n} // namespace suisen\n"
-  code: "#include <limits>\n#include <vector>\n\nnamespace suisen {\n/**\n * ImplicitGraph\
-    \ g : (int u, auto f) -> { for (int v : adjacent(u)) f(v); }\n */\nclass EulerTour\
-    \ {\n    public:\n        template <typename ImplicitGraph>\n        EulerTour(const\
-    \ ImplicitGraph g, int n, int root = 0) : n(n), m(ceil_pow2(2 * n)) {\n      \
-    \      dep.resize(n + 1), visit.resize(n), leave.resize(n);\n            seg.assign(2\
-    \ * m, n);\n            dfs(g, root);\n            for (int k = m - 1; k > 0;\
-    \ --k) seg[k] = argmin(seg[(k << 1) | 0], seg[(k << 1) | 1]);\n        }\n   \
-    \     template <typename Edge, typename EdgeToNode>\n        EulerTour(const std::vector<std::vector<Edge>>\
+    \       return k;\n        }\n};\n} // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_EULER_TOUR\n#define SUISEN_EULER_TOUR\n\n#include <limits>\n\
+    #include <vector>\n\nnamespace suisen {\n/**\n * ImplicitGraph g : (int u, auto\
+    \ f) -> { for (int v : adjacent(u)) f(v); }\n */\nclass EulerTour {\n    public:\n\
+    \        template <typename ImplicitGraph>\n        EulerTour(const ImplicitGraph\
+    \ g, int n, int root = 0) : n(n), m(ceil_pow2(2 * n)) {\n            dep.resize(n\
+    \ + 1), visit.resize(n), leave.resize(n);\n            seg.assign(2 * m, n);\n\
+    \            dfs(g, root);\n            for (int k = m - 1; k > 0; --k) seg[k]\
+    \ = argmin(seg[(k << 1) | 0], seg[(k << 1) | 1]);\n        }\n        template\
+    \ <typename Edge, typename EdgeToNode>\n        EulerTour(const std::vector<std::vector<Edge>>\
     \ &g, const EdgeToNode eton, int root = 0) :\n            EulerTour([&](int u,\
     \ auto f) { for (const Edge &e : g[u]) f(eton(e)); }, g.size(), root) {}\n   \
     \     EulerTour(const std::vector<std::vector<int>> &g, int root = 0) :\n    \
@@ -74,12 +75,12 @@ data:
     \            };\n            f(f, root, n);\n        }\n        inline int argmin(int\
     \ u, int v) const { return dep[u] < dep[v] ? u : v; }\n        static int ceil_pow2(const\
     \ int n) {\n            int k = 1;\n            while (k < n) k <<= 1;\n     \
-    \       return k;\n        }\n};\n} // namespace suisen"
+    \       return k;\n        }\n};\n} // namespace suisen\n\n#endif // SUISEN_EULER_TOUR"
   dependsOn: []
   isVerificationFile: false
   path: library/tree/EulerTour.hpp
   requiredBy: []
-  timestamp: '2021-07-17 00:18:15+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/tree/EulerTour.hpp

@@ -12,8 +12,8 @@ data:
     path: library/math/fps.hpp
     title: library/math/fps.hpp
   - icon: ':warning:'
-    path: library/math/lagrange_interpolation.hpp
-    title: library/math/lagrange_interpolation.hpp
+    path: library/math/interpolation.hpp
+    title: library/math/interpolation.hpp
   - icon: ':warning:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
@@ -50,7 +50,7 @@ data:
     \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
     \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
     \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
-    }\n\n#endif\n"
+    }\n\n#endif // SUISEN_INV_MOD\n"
   dependsOn: []
   isVerificationFile: false
   path: library/math/inv_mods.hpp
@@ -59,10 +59,10 @@ data:
   - library/math/common_sequences.hpp
   - library/math/subset_sum.hpp
   - library/math/fps.hpp
+  - library/math/interpolation.hpp
   - library/math/polynomial_taylor_shift.hpp
-  - library/math/lagrange_interpolation.hpp
   - library/math/BostanMori.hpp
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/inv_mods.hpp

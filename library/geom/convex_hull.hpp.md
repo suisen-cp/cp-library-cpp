@@ -8,9 +8,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/geom/convex_hull.hpp\"\n#include <algorithm>\n#include\
-    \ <complex>\n#include <numeric>\n#include <vector>\n\nnamespace suisen {\nnamespace\
-    \ geometry {\n    template <typename T>\n    std::vector<int> convex_hull(const\
+  bundledCode: "#line 1 \"library/geom/convex_hull.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <complex>\n#include <numeric>\n#include <vector>\n\nnamespace suisen\
+    \ {\nnamespace geometry {\n    template <typename T>\n    std::vector<int> convex_hull(const\
     \ std::vector<std::complex<T>> &points) {\n        const int n = points.size();\n\
     \        std::vector<int> sorted(n);\n        std::iota(sorted.begin(), sorted.end(),\
     \ 0);\n        std::sort(sorted.begin(), sorted.end(), [&points](int i, int j)\
@@ -52,17 +52,18 @@ data:
     \                if (isp_pos(ab_x, ab_y, bc_x, bc_y)) break;\n               \
     \ res.pop_back(), used[j] = false;\n            }\n            if (not used[k])\
     \ res.push_back(k);\n            used[k] = true;\n        }\n        return res;\n\
-    \    }\n}\n} // namespace suisen\n"
-  code: "#include <algorithm>\n#include <complex>\n#include <numeric>\n#include <vector>\n\
-    \nnamespace suisen {\nnamespace geometry {\n    template <typename T>\n    std::vector<int>\
-    \ convex_hull(const std::vector<std::complex<T>> &points) {\n        const int\
-    \ n = points.size();\n        std::vector<int> sorted(n);\n        std::iota(sorted.begin(),\
-    \ sorted.end(), 0);\n        std::sort(sorted.begin(), sorted.end(), [&points](int\
-    \ i, int j) {\n            auto &a = points[i], &b = points[j];\n            return\
-    \ a.real() == b.real() ? a.imag() < b.imag() : a.real() < b.real();\n        });\n\
-    \        std::vector<char> used(n, false);\n        sorted.resize(2 * n - 1);\n\
-    \        std::copy(sorted.rbegin() + n, sorted.rend(), sorted.begin() + n);\n\
-    \        std::vector<int> res;\n        res.reserve(n);\n        int first = sorted[0],\
+    \    }\n}\n} // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_CONVEX_HULL\n#define SUISEN_CONVEX_HULL\n\n#include <algorithm>\n\
+    #include <complex>\n#include <numeric>\n#include <vector>\n\nnamespace suisen\
+    \ {\nnamespace geometry {\n    template <typename T>\n    std::vector<int> convex_hull(const\
+    \ std::vector<std::complex<T>> &points) {\n        const int n = points.size();\n\
+    \        std::vector<int> sorted(n);\n        std::iota(sorted.begin(), sorted.end(),\
+    \ 0);\n        std::sort(sorted.begin(), sorted.end(), [&points](int i, int j)\
+    \ {\n            auto &a = points[i], &b = points[j];\n            return a.real()\
+    \ == b.real() ? a.imag() < b.imag() : a.real() < b.real();\n        });\n    \
+    \    std::vector<char> used(n, false);\n        sorted.resize(2 * n - 1);\n  \
+    \      std::copy(sorted.rbegin() + n, sorted.rend(), sorted.begin() + n);\n  \
+    \      std::vector<int> res;\n        res.reserve(n);\n        int first = sorted[0],\
     \ last = sorted[n - 1];\n        const T eps = 1e-9;\n        auto sgn = [&eps](T\
     \ x) -> int {\n            return x <= -eps ? -1 : x >= eps ? 1 : 0;\n       \
     \ };\n        auto isp_pos = [&sgn](T x1, T y1, T x2, T y2) -> bool {\n      \
@@ -96,12 +97,12 @@ data:
     \                if (isp_pos(ab_x, ab_y, bc_x, bc_y)) break;\n               \
     \ res.pop_back(), used[j] = false;\n            }\n            if (not used[k])\
     \ res.push_back(k);\n            used[k] = true;\n        }\n        return res;\n\
-    \    }\n}\n} // namespace suisen\n"
+    \    }\n}\n} // namespace suisen\n\n#endif // SUISEN_CONVEX_HULL\n"
   dependsOn: []
   isVerificationFile: false
   path: library/geom/convex_hull.hpp
   requiredBy: []
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/geom/convex_hull.hpp

@@ -8,26 +8,26 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/util/iter_util.hpp\"\n#include <algorithm>\n#include\
-    \ <array>\n#include <initializer_list>\n#include <numeric>\n#include <limits>\n\
-    \nnamespace suisen {\nnamespace internal {\n\ntemplate <typename T>\nconst auto\
-    \ true_pred = [](const T){ return true; };\n\ntemplate <typename Container, bool\
-    \ ascending, bool (*f)(typename Container::iterator, typename Container::iterator)>\n\
-    class internal_permutations {\n    private:\n        struct permutations_iterator\
-    \ {\n            Container p;\n            bool next;\n            permutations_iterator(const\
-    \ Container &&container) : p(std::move(container)), next(p.size()) { next = p.size();\
-    \ }\n            permutations_iterator() {\n                if (ascending) std::iota(p.\
-    \ begin(), p. end(), 0);\n                else           std::iota(p.rbegin(),\
-    \ p.rend(), 0);\n                next = p.size();\n            }\n           \
-    \ Container operator*() const {\n                return p;\n            }\n  \
-    \          bool operator!=(const permutations_iterator) const {\n            \
-    \    return next;\n            }\n            permutations_iterator& operator++()\
-    \ {\n                next = f(p.begin(), p.end());\n                return *this;\n\
-    \            }\n        };\n        Container container;\n        bool init;\n\
-    \    public:\n        internal_permutations() : container(), init(false) {}\n\
-    \        internal_permutations(const Container  &container) : container(container),\
-    \ init(true) {}\n        internal_permutations(const Container &&container) :\
-    \ container(std::move(container)), init(true) {}\n        permutations_iterator\
+  bundledCode: "#line 1 \"library/util/iter_util.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <array>\n#include <initializer_list>\n#include <numeric>\n#include <limits>\n\
+    #include <vector>\n\nnamespace suisen {\nnamespace internal {\n\ntemplate <typename\
+    \ T>\nconst auto true_pred = [](const T){ return true; };\n\ntemplate <typename\
+    \ Container, bool ascending, bool (*f)(typename Container::iterator, typename\
+    \ Container::iterator)>\nclass internal_permutations {\n    private:\n       \
+    \ struct permutations_iterator {\n            Container p;\n            bool next;\n\
+    \            permutations_iterator(const Container &&container) : p(std::move(container)),\
+    \ next(p.size()) { next = p.size(); }\n            permutations_iterator() {\n\
+    \                if (ascending) std::iota(p. begin(), p. end(), 0);\n        \
+    \        else           std::iota(p.rbegin(), p.rend(), 0);\n                next\
+    \ = p.size();\n            }\n            Container operator*() const {\n    \
+    \            return p;\n            }\n            bool operator!=(const permutations_iterator)\
+    \ const {\n                return next;\n            }\n            permutations_iterator&\
+    \ operator++() {\n                next = f(p.begin(), p.end());\n            \
+    \    return *this;\n            }\n        };\n        Container container;\n\
+    \        bool init;\n    public:\n        internal_permutations() : container(),\
+    \ init(false) {}\n        internal_permutations(const Container  &container) :\
+    \ container(container), init(true) {}\n        internal_permutations(const Container\
+    \ &&container) : container(std::move(container)), init(true) {}\n        permutations_iterator\
     \ begin() const { return init ? permutations_iterator(std::move(container)) :\
     \ end(); }\n        permutations_iterator end()   const { return permutations_iterator{};\
     \ }\n};\n\ntemplate <int n>\nusing permutations      = internal_permutations<std::array<int,\
@@ -88,28 +88,29 @@ data:
     \ p.rend(), 0);\n    return internal::vec_permutations_desc(std::move(p));\n}\n\
     auto all_permutations_desc(const std::vector<int>  &p) { return internal::vec_permutations_desc(p);\
     \ }\nauto all_permutations_desc(const std::vector<int> &&p) { return internal::vec_permutations_desc(std::move(p));\
-    \ }\n\n} // namespace suisen\n"
-  code: "#include <algorithm>\n#include <array>\n#include <initializer_list>\n#include\
-    \ <numeric>\n#include <limits>\n\nnamespace suisen {\nnamespace internal {\n\n\
-    template <typename T>\nconst auto true_pred = [](const T){ return true; };\n\n\
-    template <typename Container, bool ascending, bool (*f)(typename Container::iterator,\
-    \ typename Container::iterator)>\nclass internal_permutations {\n    private:\n\
-    \        struct permutations_iterator {\n            Container p;\n          \
-    \  bool next;\n            permutations_iterator(const Container &&container)\
-    \ : p(std::move(container)), next(p.size()) { next = p.size(); }\n           \
-    \ permutations_iterator() {\n                if (ascending) std::iota(p. begin(),\
-    \ p. end(), 0);\n                else           std::iota(p.rbegin(), p.rend(),\
-    \ 0);\n                next = p.size();\n            }\n            Container\
-    \ operator*() const {\n                return p;\n            }\n            bool\
-    \ operator!=(const permutations_iterator) const {\n                return next;\n\
-    \            }\n            permutations_iterator& operator++() {\n          \
-    \      next = f(p.begin(), p.end());\n                return *this;\n        \
-    \    }\n        };\n        Container container;\n        bool init;\n    public:\n\
-    \        internal_permutations() : container(), init(false) {}\n        internal_permutations(const\
-    \ Container  &container) : container(container), init(true) {}\n        internal_permutations(const\
-    \ Container &&container) : container(std::move(container)), init(true) {}\n  \
-    \      permutations_iterator begin() const { return init ? permutations_iterator(std::move(container))\
-    \ : end(); }\n        permutations_iterator end()   const { return permutations_iterator{};\
+    \ }\n\n} // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_ITER_UTILS\n#define SUISEN_ITER_UTILS\n\n#include <algorithm>\n\
+    #include <array>\n#include <initializer_list>\n#include <numeric>\n#include <limits>\n\
+    #include <vector>\n\nnamespace suisen {\nnamespace internal {\n\ntemplate <typename\
+    \ T>\nconst auto true_pred = [](const T){ return true; };\n\ntemplate <typename\
+    \ Container, bool ascending, bool (*f)(typename Container::iterator, typename\
+    \ Container::iterator)>\nclass internal_permutations {\n    private:\n       \
+    \ struct permutations_iterator {\n            Container p;\n            bool next;\n\
+    \            permutations_iterator(const Container &&container) : p(std::move(container)),\
+    \ next(p.size()) { next = p.size(); }\n            permutations_iterator() {\n\
+    \                if (ascending) std::iota(p. begin(), p. end(), 0);\n        \
+    \        else           std::iota(p.rbegin(), p.rend(), 0);\n                next\
+    \ = p.size();\n            }\n            Container operator*() const {\n    \
+    \            return p;\n            }\n            bool operator!=(const permutations_iterator)\
+    \ const {\n                return next;\n            }\n            permutations_iterator&\
+    \ operator++() {\n                next = f(p.begin(), p.end());\n            \
+    \    return *this;\n            }\n        };\n        Container container;\n\
+    \        bool init;\n    public:\n        internal_permutations() : container(),\
+    \ init(false) {}\n        internal_permutations(const Container  &container) :\
+    \ container(container), init(true) {}\n        internal_permutations(const Container\
+    \ &&container) : container(std::move(container)), init(true) {}\n        permutations_iterator\
+    \ begin() const { return init ? permutations_iterator(std::move(container)) :\
+    \ end(); }\n        permutations_iterator end()   const { return permutations_iterator{};\
     \ }\n};\n\ntemplate <int n>\nusing permutations      = internal_permutations<std::array<int,\
     \ n>, true,  std::next_permutation<typename std::array<int, n>::iterator>>;\n\
     template <int n>\nusing permutations_desc = internal_permutations<std::array<int,\
@@ -168,12 +169,12 @@ data:
     \ p.rend(), 0);\n    return internal::vec_permutations_desc(std::move(p));\n}\n\
     auto all_permutations_desc(const std::vector<int>  &p) { return internal::vec_permutations_desc(p);\
     \ }\nauto all_permutations_desc(const std::vector<int> &&p) { return internal::vec_permutations_desc(std::move(p));\
-    \ }\n\n} // namespace suisen"
+    \ }\n\n} // namespace suisen\n\n#endif // SUISEN_ITER_UTILS\n"
   dependsOn: []
   isVerificationFile: false
   path: library/util/iter_util.hpp
   requiredBy: []
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/util/iter_util.hpp

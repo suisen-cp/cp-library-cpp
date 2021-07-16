@@ -39,8 +39,8 @@ data:
       path: library/graph/dijkstra.hpp
       title: library/graph/dijkstra.hpp
     - icon: ':warning:'
-      path: library/graph/mst.hpp
-      title: library/graph/mst.hpp
+      path: library/graph/kruscal.hpp
+      title: library/graph/kruscal.hpp
     - icon: ':warning:'
       path: library/graph/topological_sort.hpp
       title: library/graph/topological_sort.hpp
@@ -59,20 +59,17 @@ data:
       path: library/math/factorial.hpp
       title: library/math/factorial.hpp
     - icon: ':warning:'
-      path: library/math/fmt.hpp
-      title: library/math/fmt.hpp
-    - icon: ':warning:'
       path: library/math/fps.hpp
       title: library/math/fps.hpp
     - icon: ':warning:'
-      path: library/math/fzt.hpp
-      title: library/math/fzt.hpp
+      path: library/math/fzt_fmt.hpp
+      title: library/math/fzt_fmt.hpp
+    - icon: ':warning:'
+      path: library/math/interpolation.hpp
+      title: library/math/interpolation.hpp
     - icon: ':warning:'
       path: library/math/inv_mods.hpp
       title: library/math/inv_mods.hpp
-    - icon: ':warning:'
-      path: library/math/lagrange_interpolation.hpp
-      title: library/math/lagrange_interpolation.hpp
     - icon: ':warning:'
       path: library/math/matrix.hpp
       title: library/math/matrix.hpp
@@ -132,11 +129,11 @@ data:
       path: library/util/coordinate_compressor.hpp
       title: library/util/coordinate_compressor.hpp
     - icon: ':warning:'
+      path: library/util/default_vector.hpp
+      title: library/util/default_vector.hpp
+    - icon: ':warning:'
       path: library/util/dynamic_bitset.hpp
       title: library/util/dynamic_bitset.hpp
-    - icon: ':warning:'
-      path: library/util/dynamic_vector.hpp
-      title: library/util/dynamic_vector.hpp
     - icon: ':warning:'
       path: library/util/iter_util.hpp
       title: library/util/iter_util.hpp
@@ -149,6 +146,14 @@ data:
     - icon: ':warning:'
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
+  - name: scripts
+    pages:
+    - icon: ':warning:'
+      path: scripts/expander.py
+      title: scripts/expander.py
+    - icon: ':warning:'
+      path: scripts/generate_test_files.py
+      title: scripts/generate_test_files.py
   - name: test/src/tree/HeavyLightDecomposition
     pages:
     - icon: ':warning:'

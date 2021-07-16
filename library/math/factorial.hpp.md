@@ -53,14 +53,14 @@ data:
     \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
     \ _fac_inv[i] * i;\n        }\n};\ntemplate <typename T, typename U>\nstd::vector<T>\
     \ factorial<T, U>::_fac {1};\ntemplate <typename T, typename U>\nstd::vector<U>\
-    \ factorial<T, U>::_fac_inv {1};\n} // namespace suisen\n\n#endif\n"
+    \ factorial<T, U>::_fac_inv {1};\n} // namespace suisen\n\n#endif // SUISEN_FACTORIAL\n"
   dependsOn: []
   isVerificationFile: false
   path: library/math/factorial.hpp
   requiredBy:
   - library/math/common_sequences.hpp
   - library/math/polynomial_taylor_shift.hpp
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/factorial.hpp

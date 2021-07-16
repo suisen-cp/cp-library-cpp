@@ -14,27 +14,13 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/template.hpp\"\n#include <bits/stdc++.h>\n#line\
-    \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\
-    \n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ nullptr_t>;\n\n// ! function\ntemplate <typename ReturnType, typename Callable,\
-    \ typename ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
-    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
-    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
-    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
-    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
-    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
-    template <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool\
-    \ value = bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 3 \"\
-    library/template.hpp\"\n\n#pragma region\n\n// ! type aliases\nusing int128 =\
-    \ __int128_t;\nusing uint128 = __uint128_t;\nusing ll = long long;\nusing uint\
-    \ = unsigned int;\nusing ull  = unsigned long long;\n\ntemplate <typename T> using\
-    \ vec  = std::vector<T>;\ntemplate <typename T> using vec2 = vec<vec <T>>;\ntemplate\
-    \ <typename T> using vec3 = vec<vec2<T>>;\ntemplate <typename T> using vec4 =\
-    \ vec<vec3<T>>;\n\ntemplate <typename T>\nusing pq_greater = std::priority_queue<T,\
+  bundledCode: "#line 1 \"library/template.hpp\"\n#include <bits/stdc++.h>\n#include\
+    \ <library/type_traits/type_traits.hpp>\n\n#pragma region\n\n// ! type aliases\n\
+    using int128 = __int128_t;\nusing uint128 = __uint128_t;\nusing ll = long long;\n\
+    using uint = unsigned int;\nusing ull  = unsigned long long;\n\ntemplate <typename\
+    \ T> using vec  = std::vector<T>;\ntemplate <typename T> using vec2 = vec<vec\
+    \ <T>>;\ntemplate <typename T> using vec3 = vec<vec2<T>>;\ntemplate <typename\
+    \ T> using vec4 = vec<vec3<T>>;\n\ntemplate <typename T>\nusing pq_greater = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\ntemplate <typename T, typename U>\nusing\
     \ umap = std::unordered_map<T, U>;\n\n// ! macros\n#define OVERLOAD2(_1,_2,name,...)\
     \ name\n#define OVERLOAD3(_1,_2,_3,name,...) name\n#define OVERLOAD4(_1,_2,_3,_4,name,...)\
@@ -105,8 +91,8 @@ data:
     \ <typename Iterable>\nauto isize(const Iterable &iterable) -> decltype(int(iterable.size()))\
     \ { return iterable.size(); }\n\nnamespace suisen {}\nusing namespace suisen;\n\
     using namespace std;\n\n#pragma endregion\n"
-  code: "#include <bits/stdc++.h>\n#include \"library/type_traits/type_traits.hpp\"\
-    \n\n#pragma region\n\n// ! type aliases\nusing int128 = __int128_t;\nusing uint128\
+  code: "#include <bits/stdc++.h>\n#include <library/type_traits/type_traits.hpp>\n\
+    \n#pragma region\n\n// ! type aliases\nusing int128 = __int128_t;\nusing uint128\
     \ = __uint128_t;\nusing ll = long long;\nusing uint = unsigned int;\nusing ull\
     \  = unsigned long long;\n\ntemplate <typename T> using vec  = std::vector<T>;\n\
     template <typename T> using vec2 = vec<vec <T>>;\ntemplate <typename T> using\
@@ -188,7 +174,7 @@ data:
   path: library/template.hpp
   requiredBy:
   - library/template.cpp
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.hpp

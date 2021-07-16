@@ -8,9 +8,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/math/GaussJordan.hpp\"\n#include <cmath>\n#include\
-    \ <optional>\n#include <vector>\n\nnamespace suisen {\nnamespace internal {\n\
-    \    namespace gauss_jordan {\n        template <typename T>\n        std::pair<unsigned\
+  bundledCode: "#line 1 \"library/math/GaussJordan.hpp\"\n\n\n\n#include <cmath>\n\
+    #include <optional>\n#include <vector>\n\nnamespace suisen {\nnamespace internal\
+    \ {\n    namespace gauss_jordan {\n        template <typename T>\n        std::pair<unsigned\
     \ int, unsigned int> pivoting(const std::vector<std::vector<T>> &Ab, const T &zero,\
     \ const unsigned int i) {\n            const unsigned int n = Ab.size(), m = Ab[0].size()\
     \ - 1;\n            unsigned int mse = m, pivot = n;\n            for (unsigned\
@@ -95,38 +95,38 @@ data:
     \ internal::gauss_jordan::mul_inv_fp_f2>;\ntemplate <typename T>\nusing GaussJordanArithmetic\
     \ = GaussJordan<\n    T,\n    internal::gauss_jordan::add_fp_arithmetic, internal::gauss_jordan::add_inv_fp_arithmetic,\n\
     \    internal::gauss_jordan::mul_fp_arithmetic, internal::gauss_jordan::mul_inv_fp_arithmetic>;\n\
-    } // namespace suisen\n"
-  code: "#include <cmath>\n#include <optional>\n#include <vector>\n\nnamespace suisen\
-    \ {\nnamespace internal {\n    namespace gauss_jordan {\n        template <typename\
-    \ T>\n        std::pair<unsigned int, unsigned int> pivoting(const std::vector<std::vector<T>>\
-    \ &Ab, const T &zero, const unsigned int i) {\n            const unsigned int\
-    \ n = Ab.size(), m = Ab[0].size() - 1;\n            unsigned int mse = m, pivot\
-    \ = n;\n            for (unsigned int row = i; row < n; ++row) {\n           \
-    \     for (unsigned int col = 0; col < mse; ++col) {\n                    if (Ab[row][col]\
-    \ != zero) {\n                        mse = col, pivot = row;\n              \
-    \          break;\n                    }\n                }\n            }\n \
-    \           return {mse, pivot};\n        }\n        // Gauss pivoting\n     \
-    \   template <>\n        std::pair<unsigned int, unsigned int> pivoting<long double>(const\
-    \ std::vector<std::vector<long double>> &Ab, const long double &zero, const unsigned\
-    \ int i) {\n            const unsigned int n = Ab.size(), m = Ab[0].size() - 1;\n\
-    \            unsigned int mse = m, pivot = n;\n            long double max_val\
-    \ = 0;\n            for (unsigned int row = i; row < n; ++row) {\n           \
-    \     if (mse < m and std::abs(Ab[row][mse]) > max_val) {\n                  \
-    \  pivot = row;\n                    max_val = std::abs(Ab[row][mse]);\n     \
-    \           }\n                for (unsigned int col = 0; col < mse; ++col) {\n\
-    \                    if (Ab[row][col] != zero) {\n                        mse\
-    \ = col, pivot = row, max_val = std::abs(Ab[row][col]);\n                    \
-    \    break;\n                    }\n                }\n            }\n       \
-    \     return {mse, pivot};\n        }\n\n        template <typename T> constexpr\
-    \ T add_fp_f2(T x, T y) { return x ^ y; }\n        template <typename T> constexpr\
-    \ T add_inv_fp_f2(T x)  { return x; }\n        template <typename T> constexpr\
-    \ T mul_fp_f2(T x, T y) { return x & y; }\n        template <typename T> constexpr\
-    \ T mul_inv_fp_f2(T x)  { return x; }\n\n        template <typename T> constexpr\
-    \ T add_fp_arithmetic(T x, T y) { return x + y; }\n        template <typename\
-    \ T> constexpr T add_inv_fp_arithmetic(T x)  { return 0 - x; }\n        template\
-    \ <typename T> constexpr T mul_fp_arithmetic(T x, T y) { return x * y; }\n   \
-    \     template <typename T> constexpr T mul_inv_fp_arithmetic(T x)  { return 1\
-    \ / x; }\n    }\n}\n\ntemplate <typename T, T(*add_fp)(T, T), T(*add_inv_fp)(T),\
+    } // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_GAUSS_JORDAN\n#define SUISEN_GAUSS_JORDAN\n\n#include <cmath>\n\
+    #include <optional>\n#include <vector>\n\nnamespace suisen {\nnamespace internal\
+    \ {\n    namespace gauss_jordan {\n        template <typename T>\n        std::pair<unsigned\
+    \ int, unsigned int> pivoting(const std::vector<std::vector<T>> &Ab, const T &zero,\
+    \ const unsigned int i) {\n            const unsigned int n = Ab.size(), m = Ab[0].size()\
+    \ - 1;\n            unsigned int mse = m, pivot = n;\n            for (unsigned\
+    \ int row = i; row < n; ++row) {\n                for (unsigned int col = 0; col\
+    \ < mse; ++col) {\n                    if (Ab[row][col] != zero) {\n         \
+    \               mse = col, pivot = row;\n                        break;\n    \
+    \                }\n                }\n            }\n            return {mse,\
+    \ pivot};\n        }\n        // Gauss pivoting\n        template <>\n       \
+    \ std::pair<unsigned int, unsigned int> pivoting<long double>(const std::vector<std::vector<long\
+    \ double>> &Ab, const long double &zero, const unsigned int i) {\n           \
+    \ const unsigned int n = Ab.size(), m = Ab[0].size() - 1;\n            unsigned\
+    \ int mse = m, pivot = n;\n            long double max_val = 0;\n            for\
+    \ (unsigned int row = i; row < n; ++row) {\n                if (mse < m and std::abs(Ab[row][mse])\
+    \ > max_val) {\n                    pivot = row;\n                    max_val\
+    \ = std::abs(Ab[row][mse]);\n                }\n                for (unsigned\
+    \ int col = 0; col < mse; ++col) {\n                    if (Ab[row][col] != zero)\
+    \ {\n                        mse = col, pivot = row, max_val = std::abs(Ab[row][col]);\n\
+    \                        break;\n                    }\n                }\n  \
+    \          }\n            return {mse, pivot};\n        }\n\n        template\
+    \ <typename T> constexpr T add_fp_f2(T x, T y) { return x ^ y; }\n        template\
+    \ <typename T> constexpr T add_inv_fp_f2(T x)  { return x; }\n        template\
+    \ <typename T> constexpr T mul_fp_f2(T x, T y) { return x & y; }\n        template\
+    \ <typename T> constexpr T mul_inv_fp_f2(T x)  { return x; }\n\n        template\
+    \ <typename T> constexpr T add_fp_arithmetic(T x, T y) { return x + y; }\n   \
+    \     template <typename T> constexpr T add_inv_fp_arithmetic(T x)  { return 0\
+    \ - x; }\n        template <typename T> constexpr T mul_fp_arithmetic(T x, T y)\
+    \ { return x * y; }\n        template <typename T> constexpr T mul_inv_fp_arithmetic(T\
+    \ x)  { return 1 / x; }\n    }\n}\n\ntemplate <typename T, T(*add_fp)(T, T), T(*add_inv_fp)(T),\
     \ T(*mul_fp)(T, T), T(*mul_inv_fp)(T)>\nclass GaussJordan {\n    public:\n   \
     \     GaussJordan(std::vector<std::vector<T>> &A, std::vector<T> &b, const T zero,\
     \ const T one) {\n            unsigned int n = A.size();\n            for (unsigned\
@@ -183,12 +183,12 @@ data:
     \ internal::gauss_jordan::mul_inv_fp_f2>;\ntemplate <typename T>\nusing GaussJordanArithmetic\
     \ = GaussJordan<\n    T,\n    internal::gauss_jordan::add_fp_arithmetic, internal::gauss_jordan::add_inv_fp_arithmetic,\n\
     \    internal::gauss_jordan::mul_fp_arithmetic, internal::gauss_jordan::mul_inv_fp_arithmetic>;\n\
-    } // namespace suisen"
+    } // namespace suisen\n\n#endif // SUISEN_GAUSS_JORDAN"
   dependsOn: []
   isVerificationFile: false
   path: library/math/GaussJordan.hpp
   requiredBy: []
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/GaussJordan.hpp

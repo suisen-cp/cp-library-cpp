@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/util/dynamic_bitset.hpp\"\n#include <iostream>\n\
+  bundledCode: "#line 1 \"library/util/dynamic_bitset.hpp\"\n\n\n\n#include <iostream>\n\
     #include <limits>\n#include <vector>\n\nnamespace suisen {\nclass dynamic_bitset\
     \ {\n    public:\n        explicit dynamic_bitset() {}\n        explicit dynamic_bitset(const\
     \ unsigned int n) {\n            _bits.assign(outer_index(n) + 1, 0ULL);\n   \
@@ -101,33 +101,34 @@ data:
     \ 0 ? n : n - 1) + 1;\n            if (new_size > old_size) {\n              \
     \  _bits.resize(new_size, 0ULL);\n            }\n        }\n        void cut_leading_zeros()\
     \ {\n            while (_bits.size() and _bits.back() == 0ULL) _bits.pop_back();\n\
-    \        }\n};\n} // namespace suisen\n"
-  code: "#include <iostream>\n#include <limits>\n#include <vector>\n\nnamespace suisen\
-    \ {\nclass dynamic_bitset {\n    public:\n        explicit dynamic_bitset() {}\n\
-    \        explicit dynamic_bitset(const unsigned int n) {\n            _bits.assign(outer_index(n)\
-    \ + 1, 0ULL);\n        }\n        inline int size() const {\n            return\
-    \ _bits.size() * BLOCK_SIZE;\n        }\n        dynamic_bitset& operator|=(const\
-    \ dynamic_bitset& other) {\n            ensure_size(other.size());\n         \
-    \   int siz = other._bits.size();\n            for (int i = 0; i < siz; ++i) {\n\
-    \                _bits[i] |= other._bits[i];\n            }\n            cut_leading_zeros();\n\
-    \            return *this;\n        }\n        dynamic_bitset& operator&=(const\
-    \ dynamic_bitset& other) {\n            ensure_size(other.size());\n         \
-    \   int siz = other._bits.size();\n            for (int i = 0; i < siz; ++i) {\n\
-    \                _bits[i] &= other._bits[i];\n            }\n            _bits.erase(_bits.begin()\
-    \ + siz, _bits.end());\n            cut_leading_zeros();\n            return *this;\n\
-    \        }\n        dynamic_bitset& operator^=(const dynamic_bitset& other) {\n\
-    \            ensure_size(other.size());\n            int siz = other._bits.size();\n\
-    \            for (int i = 0; i < siz; ++i) {\n                _bits[i] ^= other._bits[i];\n\
+    \        }\n};\n} // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_DYN_BITSET\n#define SUISEN_DYN_BITSET\n\n#include <iostream>\n\
+    #include <limits>\n#include <vector>\n\nnamespace suisen {\nclass dynamic_bitset\
+    \ {\n    public:\n        explicit dynamic_bitset() {}\n        explicit dynamic_bitset(const\
+    \ unsigned int n) {\n            _bits.assign(outer_index(n) + 1, 0ULL);\n   \
+    \     }\n        inline int size() const {\n            return _bits.size() *\
+    \ BLOCK_SIZE;\n        }\n        dynamic_bitset& operator|=(const dynamic_bitset&\
+    \ other) {\n            ensure_size(other.size());\n            int siz = other._bits.size();\n\
+    \            for (int i = 0; i < siz; ++i) {\n                _bits[i] |= other._bits[i];\n\
     \            }\n            cut_leading_zeros();\n            return *this;\n\
-    \        }\n        dynamic_bitset& operator<<=(const unsigned int shamt) {\n\
-    \            if (size() == 0) return *this;\n            int ishamt = outer_index(shamt);\n\
-    \            int lshamt = inner_index(shamt);\n            if (lshamt) {\n   \
-    \             ensure_size(size() + shamt);\n                int rshamt = BLOCK_SIZE\
-    \ - lshamt;\n                int siz = _bits.size();\n                for (int\
-    \ i = siz - 1; i > ishamt; --i) {\n                    _bits[i] = (_bits[i - ishamt]\
-    \ << lshamt) | (_bits[i - ishamt - 1] >> rshamt);\n                }\n       \
-    \         _bits[ishamt] = _bits[0] << lshamt;\n                std::fill(_bits.begin(),\
-    \ _bits.begin() + ishamt, 0ULL);\n            } else {\n                _bits.insert(_bits.begin(),\
+    \        }\n        dynamic_bitset& operator&=(const dynamic_bitset& other) {\n\
+    \            ensure_size(other.size());\n            int siz = other._bits.size();\n\
+    \            for (int i = 0; i < siz; ++i) {\n                _bits[i] &= other._bits[i];\n\
+    \            }\n            _bits.erase(_bits.begin() + siz, _bits.end());\n \
+    \           cut_leading_zeros();\n            return *this;\n        }\n     \
+    \   dynamic_bitset& operator^=(const dynamic_bitset& other) {\n            ensure_size(other.size());\n\
+    \            int siz = other._bits.size();\n            for (int i = 0; i < siz;\
+    \ ++i) {\n                _bits[i] ^= other._bits[i];\n            }\n       \
+    \     cut_leading_zeros();\n            return *this;\n        }\n        dynamic_bitset&\
+    \ operator<<=(const unsigned int shamt) {\n            if (size() == 0) return\
+    \ *this;\n            int ishamt = outer_index(shamt);\n            int lshamt\
+    \ = inner_index(shamt);\n            if (lshamt) {\n                ensure_size(size()\
+    \ + shamt);\n                int rshamt = BLOCK_SIZE - lshamt;\n             \
+    \   int siz = _bits.size();\n                for (int i = siz - 1; i > ishamt;\
+    \ --i) {\n                    _bits[i] = (_bits[i - ishamt] << lshamt) | (_bits[i\
+    \ - ishamt - 1] >> rshamt);\n                }\n                _bits[ishamt]\
+    \ = _bits[0] << lshamt;\n                std::fill(_bits.begin(), _bits.begin()\
+    \ + ishamt, 0ULL);\n            } else {\n                _bits.insert(_bits.begin(),\
     \ ishamt, 0ULL);\n            }\n            cut_leading_zeros();\n          \
     \  return *this;\n        }\n        dynamic_bitset& operator>>=(const unsigned\
     \ int shamt) {\n            int ishamt = outer_index(shamt);\n            if (ishamt\
@@ -194,12 +195,12 @@ data:
     \ 0 ? n : n - 1) + 1;\n            if (new_size > old_size) {\n              \
     \  _bits.resize(new_size, 0ULL);\n            }\n        }\n        void cut_leading_zeros()\
     \ {\n            while (_bits.size() and _bits.back() == 0ULL) _bits.pop_back();\n\
-    \        }\n};\n} // namespace suisen"
+    \        }\n};\n} // namespace suisen\n\n#endif // SUISEN_DYN_BITSET"
   dependsOn: []
   isVerificationFile: false
   path: library/util/dynamic_bitset.hpp
   requiredBy: []
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/util/dynamic_bitset.hpp

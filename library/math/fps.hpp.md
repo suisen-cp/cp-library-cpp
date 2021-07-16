@@ -12,8 +12,8 @@ data:
     path: library/math/common_sequences.hpp
     title: library/math/common_sequences.hpp
   - icon: ':warning:'
-    path: library/math/lagrange_interpolation.hpp
-    title: library/math/lagrange_interpolation.hpp
+    path: library/math/interpolation.hpp
+    title: library/math/interpolation.hpp
   - icon: ':warning:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
@@ -30,28 +30,17 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/fps.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <atcoder/convolution>\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include\
-    \ <vector>\n\nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n\
-    \    public:\n        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n\
-    \        const mint& operator[](int i) const {\n            ensure(i);\n     \
-    \       return invs[i];\n        }\n        static void ensure(int n) {\n    \
-    \        int sz = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n\
-    \            if (sz < n + 1) {\n                invs.resize(n + 1);\n        \
-    \        for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod\
-    \ % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
-    \ invs;\n        static constexpr int mod = mint::mod();\n};\ntemplate <typename\
-    \ mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 8 \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nclass FPS : public std::vector<mint>\
-    \ {\n    public:\n        using std::vector<mint>::vector;\n\n        FPS(const\
-    \ std::initializer_list<mint> l) : std::vector<mint>::vector(l) {}\n\n       \
-    \ inline FPS& operator=(const std::vector<mint> &&f) & noexcept {\n          \
-    \  std::vector<mint>::operator=(std::move(f));\n            return *this;\n  \
-    \      }\n        inline FPS& operator=(const std::vector<mint>  &f) & {\n   \
-    \         std::vector<mint>::operator=(f);\n            return *this;\n      \
-    \  }\n\n        inline const mint  operator[](int n) const noexcept { return n\
-    \ <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int n)\
-    \       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline int\
-    \ size() const noexcept { return std::vector<mint>::size(); }\n        inline\
+    \ <atcoder/convolution>\n\n#include <library/math/inv_mods.hpp>\n\nnamespace suisen\
+    \ {\ntemplate <typename mint>\nclass FPS : public std::vector<mint> {\n    public:\n\
+    \        using std::vector<mint>::vector;\n\n        FPS(const std::initializer_list<mint>\
+    \ l) : std::vector<mint>::vector(l) {}\n\n        inline FPS& operator=(const\
+    \ std::vector<mint> &&f) & noexcept {\n            std::vector<mint>::operator=(std::move(f));\n\
+    \            return *this;\n        }\n        inline FPS& operator=(const std::vector<mint>\
+    \  &f) & {\n            std::vector<mint>::operator=(f);\n            return *this;\n\
+    \        }\n\n        inline const mint  operator[](int n) const noexcept { return\
+    \ n <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int\
+    \ n)       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline\
+    \ int size() const noexcept { return std::vector<mint>::size(); }\n        inline\
     \ int deg()  const noexcept { return size() - 1; }\n        inline int normalize()\
     \ {\n            while (this->size() and this->back() == 0) this->pop_back();\n\
     \            return deg();\n        }\n        inline FPS& pre_inplace(int max_deg)\
@@ -152,7 +141,7 @@ data:
     \ -= div * g.unsafe_get(j);\n            }\n            return {q, pre_inplace(gd\
     \ - 1)};\n        }\n};\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_FPS\n#define SUISEN_FPS\n\n#include <cassert>\n#include <atcoder/convolution>\n\
-    \n#include \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\ntemplate <typename\
+    \n#include <library/math/inv_mods.hpp>\n\nnamespace suisen {\ntemplate <typename\
     \ mint>\nclass FPS : public std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
     \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
     \ {}\n\n        inline FPS& operator=(const std::vector<mint> &&f) & noexcept\
@@ -261,7 +250,7 @@ data:
     \           mint div = this->unsafe_get(i + gd) * head_inv;\n                q.unsafe_get(i)\
     \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
     \ -= div * g.unsafe_get(j);\n            }\n            return {q, pre_inplace(gd\
-    \ - 1)};\n        }\n};\n} // namespace suisen\n\n#endif\n"
+    \ - 1)};\n        }\n};\n} // namespace suisen\n\n#endif // SUISEN_FPS\n"
   dependsOn:
   - library/math/inv_mods.hpp
   isVerificationFile: false
@@ -270,10 +259,10 @@ data:
   - library/math/multi_point_eval.hpp
   - library/math/common_sequences.hpp
   - library/math/subset_sum.hpp
+  - library/math/interpolation.hpp
   - library/math/polynomial_taylor_shift.hpp
-  - library/math/lagrange_interpolation.hpp
   - library/math/BostanMori.hpp
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/fps.hpp

@@ -10,6 +10,9 @@ data:
     links: []
   bundledCode: '#line 1 "library/util/bit_utils.hpp"
 
+
+
+
     #include <limits>
 
     #include <type_traits>
@@ -73,8 +76,15 @@ data:
 
     } // namespace suisen
 
+
+
     '
-  code: '#include <limits>
+  code: '#ifndef SUISEN_BIT_UTILS
+
+    #define SUISEN_BIT_UTILS
+
+
+    #include <limits>
 
     #include <type_traits>
 
@@ -135,12 +145,15 @@ data:
     constexpr int kth_bit(const T x, const unsigned int k) { return (x >> k) & 1;
     }
 
-    } // namespace suisen'
+    } // namespace suisen
+
+
+    #endif // SUISEN_BIT_UTILS'
   dependsOn: []
   isVerificationFile: false
   path: library/util/bit_utils.hpp
   requiredBy: []
-  timestamp: '2021-07-16 04:04:10+09:00'
+  timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/util/bit_utils.hpp
