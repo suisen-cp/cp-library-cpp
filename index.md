@@ -109,15 +109,15 @@ data:
       title: library/template.hpp
   - name: library/tree
     pages:
-    - icon: ':x:'
+    - icon: ':warning:'
+      path: library/tree/EulerTour.hpp
+      title: library/tree/EulerTour.hpp
+    - icon: ':warning:'
       path: library/tree/HeavyLightDecomposition.hpp
       title: library/tree/HeavyLightDecomposition.hpp
-    - icon: ':warning:'
-      path: library/tree/euler_tour.hpp
-      title: library/tree/euler_tour.hpp
   - name: library/type_traits
     pages:
-    - icon: ':x:'
+    - icon: ':warning:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
@@ -149,16 +149,16 @@ data:
     - icon: ':warning:'
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
-  - name: test/math
+  - name: test/src/tree/HeavyLightDecomposition
     pages:
     - icon: ':warning:'
-      path: test/math/fzt_fmt_test.cpp
-      title: test/math/fzt_fmt_test.cpp
+      path: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+      title: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
   verificationCategories:
-  - name: test/tree/HeavyLightDecomposition
+  - name: test/generated/tree/HeavyLightDecomposition
     pages:
     - icon: ':x:'
-      path: test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
-      title: test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+      path: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+      title: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
 layout: toppage
 ---

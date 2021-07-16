@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/math/fzt_fmt_test.cpp
-    title: test/math/fzt_fmt_test.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -34,8 +31,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/math/fzt.hpp
-  requiredBy:
-  - test/math/fzt_fmt_test.cpp
+  requiredBy: []
   timestamp: '2021-07-16 04:04:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
