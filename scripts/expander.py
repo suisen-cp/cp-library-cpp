@@ -43,10 +43,10 @@ def dfs(f: str, is_acl: bool) -> List[str]:
             result.extend(dfs(acl_matcher.group(1), True))
             continue
 
-        lib_matcher = lib_include.match(line)
-        if lib_matcher:
-            result.extend(dfs(lib_matcher.group(1), False))
-            continue
+        # lib_matcher = lib_include.match(line)
+        # if lib_matcher:
+        #     result.extend(dfs(lib_matcher.group(1), False))
+        #     continue
 
         result.append(line)
     return result
@@ -76,10 +76,10 @@ if __name__ == "__main__":
         if acl_matcher:
             result.extend(dfs(acl_matcher.group(1), True))
             continue
-        lib_matcher = lib_include.match(line)
-        if lib_matcher:
-            result.extend(dfs(lib_matcher.group(1), False))
-            continue
+        # lib_matcher = lib_include.match(line)
+        # if lib_matcher:
+        #     result.extend(dfs(lib_matcher.group(1), False))
+        #     continue
         result.append(line)
 
     output = '\n'.join(result) + '\n'
