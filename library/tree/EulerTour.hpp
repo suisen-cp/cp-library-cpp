@@ -5,20 +5,20 @@ namespace suisen {
 /**
  * ImplicitGraph g : (int u, auto f) -> { for (int v : adjacent(u)) f(v); }
  */
-class euler_tour {
+class EulerTour {
     public:
         template <typename ImplicitGraph>
-        euler_tour(const ImplicitGraph g, int n, int root = 0) : n(n), m(ceil_pow2(2 * n)) {
+        EulerTour(const ImplicitGraph g, int n, int root = 0) : n(n), m(ceil_pow2(2 * n)) {
             dep.resize(n + 1), visit.resize(n), leave.resize(n);
             seg.assign(2 * m, n);
             dfs(g, root);
             for (int k = m - 1; k > 0; --k) seg[k] = argmin(seg[(k << 1) | 0], seg[(k << 1) | 1]);
         }
         template <typename Edge, typename EdgeToNode>
-        euler_tour(const std::vector<std::vector<Edge>> &g, const EdgeToNode eton, int root = 0) :
-            euler_tour([&](int u, auto f) { for (const Edge &e : g[u]) f(eton(e)); }, g.size(), root) {}
-        euler_tour(const std::vector<std::vector<int>> &g, int root = 0) :
-            euler_tour([&](int u, auto f) { for (int v : g[u]) f(v); }, g.size(), root) {}
+        EulerTour(const std::vector<std::vector<Edge>> &g, const EdgeToNode eton, int root = 0) :
+            EulerTour([&](int u, auto f) { for (const Edge &e : g[u]) f(eton(e)); }, g.size(), root) {}
+        EulerTour(const std::vector<std::vector<int>> &g, int root = 0) :
+            EulerTour([&](int u, auto f) { for (int v : g[u]) f(v); }, g.size(), root) {}
         int lca(int u, int v) const {
             if (visit[u] > visit[v]) return lca(v, u);
             int res = n;
