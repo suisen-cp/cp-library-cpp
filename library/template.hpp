@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "library/type_traits/type_traits.hpp"
+#include <library/type_traits/type_traits.hpp>
 
 #pragma region
 

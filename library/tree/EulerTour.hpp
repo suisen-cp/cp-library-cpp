@@ -1,3 +1,6 @@
+#ifndef SUISEN_EULER_TOUR
+#define SUISEN_EULER_TOUR
+
 #include <limits>
 #include <vector>
 
@@ -58,3 +61,5 @@ class EulerTour {
         }
 };
 } // namespace suisen
+
+#endif // SUISEN_EULER_TOUR

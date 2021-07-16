@@ -1,9 +1,8 @@
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450"
+
+#include <iostream>
 
 #include <algorithm>
-#include <cassert>
-#include <iostream>
-#include <vector>
-
 
 #ifdef _MSC_VER
 #include <intrin.h>
@@ -13,12 +12,16 @@ namespace atcoder {
 
 namespace internal {
 
+// @param n `0 <= n`
+// @return minimum non-negative `x` s.t. `n <= 2**x`
 int ceil_pow2(int n) {
     int x = 0;
     while ((1U << x) < (unsigned int)(n)) x++;
     return x;
 }
 
+// @param n `1 <= n`
+// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`
 int bsf(unsigned int n) {
 #ifdef _MSC_VER
     unsigned long index;
@@ -33,7 +36,9 @@ int bsf(unsigned int n) {
 
 }  // namespace atcoder
 
-
+#include <cassert>
+#include <iostream>
+#include <vector>
 namespace atcoder {
 
 template <class S,
@@ -46,8 +51,8 @@ template <class S,
 struct lazy_segtree {
   public:
     lazy_segtree() : lazy_segtree(0) {}
-    explicit lazy_segtree(int n) : lazy_segtree(std::vector<S>(n, e())) {}
-    explicit lazy_segtree(const std::vector<S>& v) : _n(int(v.size())) {
+    lazy_segtree(int n) : lazy_segtree(std::vector<S>(n, e())) {}
+    lazy_segtree(const std::vector<S>& v) : _n(int(v.size())) {
         log = internal::ceil_pow2(_n);
         size = 1 << log;
         d = std::vector<S>(2 * size, e());
@@ -82,7 +87,7 @@ struct lazy_segtree {
 
         for (int i = log; i >= 1; i--) {
             if (((l >> i) << i) != l) push(l >> i);
-            if (((r >> i) << i) != r) push((r - 1) >> i);
+            if (((r >> i) << i) != r) push(r >> i);
         }
 
         S sml = e(), smr = e();
@@ -212,15 +217,10 @@ struct lazy_segtree {
 
 }  // namespace atcoder
 
-#include <iostream>
+
+
 #include <limits>
 #include <type_traits>
-#include <vector>
-#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450"
-
-#ifndef SUISEN_TYPE_TRITS
-#define SUISEN_TYPE_TRITS
-
 
 namespace suisen {
 // ! utility
@@ -247,7 +247,8 @@ template <typename T, unsigned int n>
 static constexpr bool is_nbit_v = is_nbit<T, n>::value;
 } // namespace suisen
 
-#endif
+#include <vector>
+
 namespace suisen {
 class HeavyLightDecomposition {
     public:
@@ -366,6 +367,8 @@ class HeavyLightDecomposition {
         }
 };
 } // namespace suisen
+
+
 struct S {
     int len;
     long long pref, max, suff, sum;

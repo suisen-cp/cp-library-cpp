@@ -1,3 +1,6 @@
+#ifndef SUISEN_DIJKSTRA
+#define SUISEN_DIJKSTRA
+
 #include <algorithm>
 #include <limits>
 #include <queue>
@@ -44,3 +47,5 @@ class dijkstra {
         std::vector<unsigned int> _par;
 };
 } // namespace suisen
+
+#endif // SUISEN_DIJKSTRA

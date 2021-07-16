@@ -1,3 +1,6 @@
+#ifndef SUISEN_BIT_UTILS
+#define SUISEN_BIT_UTILS
+
 #include <limits>
 #include <type_traits>
 
@@ -25,3 +28,5 @@ constexpr int ceil_log2(const T x)  { return floor_log2(x) + ((x & -x) != x); }
 template <typename T>
 constexpr int kth_bit(const T x, const unsigned int k) { return (x >> k) & 1; }
 } // namespace suisen
+
+#endif // SUISEN_BIT_UTILS

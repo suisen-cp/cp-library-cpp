@@ -1,3 +1,6 @@
+#ifndef SUISEN_GAUSS_JORDAN
+#define SUISEN_GAUSS_JORDAN
+
 #include <cmath>
 #include <optional>
 #include <vector>
@@ -154,3 +157,5 @@ using GaussJordanArithmetic = GaussJordan<
     internal::gauss_jordan::add_fp_arithmetic, internal::gauss_jordan::add_inv_fp_arithmetic,
     internal::gauss_jordan::mul_fp_arithmetic, internal::gauss_jordan::mul_inv_fp_arithmetic>;
 } // namespace suisen
+
+#endif // SUISEN_GAUSS_JORDAN

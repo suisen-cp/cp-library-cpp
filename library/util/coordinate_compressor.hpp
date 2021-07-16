@@ -1,3 +1,6 @@
+#ifndef SUISEN_COORDINATE_COMPRESSOR
+#define SUISEN_COORDINATE_COMPRESSOR
+
 #include <algorithm>
 #include <cassert>
 #include <vector>
@@ -66,3 +69,5 @@ class coordinate_compressor {
         bool _built = true;
 };
 } // namespace suisen
+
+#endif // SUISEN_COORDINATE_COMPRESSOR

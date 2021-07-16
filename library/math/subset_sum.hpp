@@ -27,4 +27,4 @@ std::vector<mint> subset_sum(const int n, const std::vector<int> &items) {
 }
 } // namespace suisen
 
-#endif
+#endif // SUISEN_SUBSET_SUM

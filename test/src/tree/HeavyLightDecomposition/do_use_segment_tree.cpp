@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <atcoder/lazysegtree>
-#include "library/tree/HeavyLightDecomposition.hpp"
+#include <library/tree/HeavyLightDecomposition.hpp>
 
 struct S {
     int len;

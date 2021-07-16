@@ -1,8 +1,8 @@
 #ifndef SUISEN_COMMON_SEQ
 #define SUISEN_COMMON_SEQ
 
-#include "library/math/fps.hpp"
-#include "library/math/factorial.hpp"
+#include <library/math/fps.hpp>
+#include <library/math/factorial.hpp>
 
 namespace suisen {
 /**
@@ -126,4 +126,4 @@ std::vector<mint> partition_number(int n) {
 }
 } // namespace suisen
 
-#endif
+#endif // SUISEN_COMMON_SEQ

@@ -1,3 +1,6 @@
+#ifndef SUISEN_EXT_GCD
+#define SUISEN_EXT_GCD
+
 #include <cassert>
 #include <tuple>
 #include <utility>
@@ -36,3 +39,5 @@ long long inv_mod(long long a, long long mod) {
     return safe_mod(inv, mod);
 }
 } // namespace suisen
+
+#endif // SUISEN_EXT_GCD

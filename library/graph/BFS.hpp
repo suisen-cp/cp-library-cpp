@@ -1,3 +1,6 @@
+#ifndef SUISEN_BFS
+#define SUISEN_BFS
+
 #include <limits>
 #include <map>
 #include <queue>
@@ -61,3 +64,5 @@ class BFS<Cost, Node, std::map<Node, Cost>> : public BFS_base<Cost, Node, std::m
         inline Cost get_dist(const Node &node) const override { return this->_dist.count(node) ? this->_dist.at(node) : this->INF; }
 };
 } // namespace suisen
+
+#endif // SUISEN_BFS

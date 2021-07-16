@@ -1,5 +1,8 @@
+#ifndef SUISEN_INTERPOLATION
+#define SUISEN_INTERPOLATION
+
 #include <vector>
-#include "library/math/fps.hpp"
+#include <library/math/fps.hpp>
 
 namespace suisen {
 template <typename T>
@@ -53,3 +56,6 @@ FPS<mint> polynomial_interpolation(const std::vector<mint> &xs, const std::vecto
     return g[1];
 }
 } // namespace suisen
+
+#endif // SUISEN_INTERPOLATION
+

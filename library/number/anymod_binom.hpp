@@ -1,4 +1,7 @@
-#include "linear_sieve.hpp"
+#ifndef SUISEN_ANY_MOD_BINOM
+#define SUISEN_ANY_MOD_BINOM
+
+#include <library/number/linear_sieve.hpp>
 
 namespace suisen {
 /**
@@ -78,3 +81,5 @@ class ArbitraryModBinomialCoefficients {
         }
 };
 } // namespace suisen
+
+#endif // SUISEN_ANY_MOD_BINOM

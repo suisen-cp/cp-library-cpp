@@ -1,3 +1,6 @@
+#ifndef SUISEN_GEOMETRY_BASE
+#define SUISEN_GEOMETRY_BASE
+
 #include <complex>
 
 namespace suisen {
@@ -192,3 +195,5 @@ namespace geometry {
     };
 }
 } // namespace suisen
+
+#endif // SUISEN_GEOMETRY_BASE

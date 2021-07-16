@@ -1,3 +1,6 @@
+#ifndef SUISEN_RUN_LENGTH_ENCODER
+#define SUISEN_RUN_LENGTH_ENCODER
+
 #include <vector>
 
 namespace suisen {
@@ -87,3 +90,5 @@ class run_length_encoder {
         std::vector<value_type> comp;
 };
 } // namespace suisen
+
+#endif // SUISEN_RUN_LENGTH_ENCODER

@@ -29,4 +29,4 @@ template <typename mint>
 std::vector<mint> inv_mods<mint>::invs{};
 }
 
-#endif
+#endif // SUISEN_INV_MOD

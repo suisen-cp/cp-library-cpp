@@ -1,3 +1,6 @@
+#ifndef SUISEN_BINARY_TRIE
+#define SUISEN_BINARY_TRIE
+
 #include <limits>
 #include <optional>
 #include <string>
@@ -163,3 +166,5 @@ class BinaryTrie {
         }
 };
 } // namespace suisen
+
+#endif // SUISEN_BINARY_TRIE

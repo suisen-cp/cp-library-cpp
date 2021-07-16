@@ -1,4 +1,7 @@
-#include "library/type_traits/type_traits.hpp"
+#ifndef SUISEN_HLD
+#define SUISEN_HLD
+
+#include <library/type_traits/type_traits.hpp>
 #include <vector>
 
 namespace suisen {
@@ -119,3 +122,5 @@ class HeavyLightDecomposition {
         }
 };
 } // namespace suisen
+
+#endif // SUISEN_HLD

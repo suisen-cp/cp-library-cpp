@@ -1,3 +1,6 @@
+#ifndef SUISEN_LINEAR_SIEVE
+#define SUISEN_LINEAR_SIEVE
+
 #include <numeric>
 #include <vector>
 
@@ -26,3 +29,5 @@ class LinearSieve {
         std::vector<unsigned int> prime_list;
 };
 } // namespace suisen
+
+#endif // SUISEN_LINEAR_SIEVE

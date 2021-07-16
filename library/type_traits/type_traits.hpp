@@ -29,4 +29,4 @@ template <typename T, unsigned int n>
 static constexpr bool is_nbit_v = is_nbit<T, n>::value;
 } // namespace suisen
 
-#endif
+#endif // SUISEN_TYPE_TRITS

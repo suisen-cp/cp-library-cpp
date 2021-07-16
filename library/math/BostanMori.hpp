@@ -1,7 +1,8 @@
 #ifndef SUISEN_BOSTAN_MORI
 #define SUISEN_BOSTAN_MORI
 
-#include "library/math/fps.hpp"
+#include <library/math/fps.hpp>
+
 namespace suisen {
 template <typename mint>
 mint bostan_mori(const FPS<mint> &P, const FPS<mint> &Q, const long long n) {
@@ -16,4 +17,4 @@ mint bostan_mori(const FPS<mint> &P, const FPS<mint> &Q, const long long n) {
 }
 } // namespace suisen
 
-#endif
+#endif // SUISEN_BOSTAN_MORI

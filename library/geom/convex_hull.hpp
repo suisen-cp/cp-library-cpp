@@ -1,3 +1,6 @@
+#ifndef SUISEN_CONVEX_HULL
+#define SUISEN_CONVEX_HULL
+
 #include <algorithm>
 #include <complex>
 #include <numeric>
@@ -78,3 +81,5 @@ namespace geometry {
     }
 }
 } // namespace suisen
+
+#endif // SUISEN_CONVEX_HULL

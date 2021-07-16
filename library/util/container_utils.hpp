@@ -1,3 +1,6 @@
+#ifndef SUISEN_CONTAINER_UTILS
+#define SUISEN_CONTAINER_UTILS
+
 #include <vector>
 #include <optional>
 
@@ -106,3 +109,5 @@ std::optional<T> max_lt(const std::vector<T> &v, const T &key) {
     return it == v.begin() ? std::nullopt : std::make_optional(*--it);
 }
 } // namespace suisen
+
+#endif // SUISEN_CONTAINER_UTILS

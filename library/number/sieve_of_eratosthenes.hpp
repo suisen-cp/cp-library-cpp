@@ -1,3 +1,6 @@
+#ifndef SUISEN_ERATOSTHENES
+#define SUISEN_ERATOSTHENES
+
 #include <vector>
 
 namespace suisen {
@@ -49,3 +52,5 @@ class sieve_of_eratosthenes {
         std::vector<int> pf;
 };
 } // namespace suisen
+
+#endif // SUISEN_ERATOSTHENES

@@ -21,4 +21,4 @@ std::vector<mint> multi_point_eval(const FPS<mint> &f, const std::vector<mint> &
 }
 } // namespace suisen
 
-#endif
+#endif // SUISEN_MULTI_POINT_EVALUATION

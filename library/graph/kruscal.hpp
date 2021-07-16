@@ -1,3 +1,6 @@
+#ifndef SUISEN_KRUSCAL
+#define SUISEN_KRUSCAL
+
 #include <queue>
 #include <atcoder/dsu>
 
@@ -70,3 +73,5 @@ class minimum_spanning_tree {
         Cost _weight_sum;
 };
 } // namespace suisen
+
+#endif // SUISEN_KRUSCAL

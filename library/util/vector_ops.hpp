@@ -1,3 +1,6 @@
+#ifndef SUISEN_VECTOR_OPS
+#define SUISEN_VECTOR_OPS
+
 #include <vector>
 
 namespace suisen {
@@ -40,3 +43,5 @@ std::vector<T> operator*(std::vector<T> &a, const int repeat) {
     std::vector<T> c = a; return c *= repeat;
 }
 } // namespace suisen
+
+#endif // SUISEN_VECTOR_OPS

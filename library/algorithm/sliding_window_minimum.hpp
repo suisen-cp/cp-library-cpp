@@ -1,3 +1,6 @@
+#ifndef SUISEN_SLIDING_WINDOW_MINIMUM
+#define SUISEN_SLIDING_WINDOW_MINIMUM
+
 #include <cassert>
 #include <vector>
 #include <queue>
@@ -67,3 +70,5 @@ class sliding_window_minimum {
         Comparator _cmp;
 };
 } // namespace suisen
+
+#endif // SUISEN_SLIDING_WINDOW_MINIMUM

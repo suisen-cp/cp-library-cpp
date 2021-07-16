@@ -24,4 +24,4 @@ FPS<mint> translate(const FPS<mint> &f, const mint c) {
 }
 } // namespace suisen
 
-#endif
+#endif // SUISEN_POLYNOMIAL_TAYLOR_SHIFT

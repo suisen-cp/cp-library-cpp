@@ -1,3 +1,6 @@
+#ifndef SUISEN_DYN_BITSET
+#define SUISEN_DYN_BITSET
+
 #include <iostream>
 #include <limits>
 #include <vector>
@@ -185,3 +188,5 @@ class dynamic_bitset {
         }
 };
 } // namespace suisen
+
+#endif // SUISEN_DYN_BITSET

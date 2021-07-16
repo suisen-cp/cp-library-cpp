@@ -1,3 +1,6 @@
+#ifndef SUISEN_COUNT_LATTICE_POINT
+#define SUISEN_COUNT_LATTICE_POINT
+
 #include <cmath>
 #include <numeric>
 #include <vector>
@@ -18,3 +21,5 @@ namespace geometry {
     }
 }
 } // namespace suisen
+
+#endif // SUISEN_COUNT_LATTICE_POINT

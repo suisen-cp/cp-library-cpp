@@ -1,15 +1,18 @@
+#ifndef SUISEN_DEFAULT_VECTOR
+#define SUISEN_DEFAULT_VECTOR
+
 #include <iostream>
 #include <initializer_list>
 #include <vector>
 
 namespace suisen {
 template <typename T>
-class dynamic_vector {
+class default_vector {
     public:
-        dynamic_vector() {}
-        explicit dynamic_vector(const T default_value) : _default_value(default_value) {}
-        explicit dynamic_vector(const T default_value, int n) : _default_value(default_value), _data(n, default_value) {}
-        explicit dynamic_vector(const T default_value, const std::initializer_list<T> list) : _default_value(default_value), _data(list) {}
+        default_vector() {}
+        explicit default_vector(const T default_value) : _default_value(default_value) {}
+        explicit default_vector(const T default_value, int n) : _default_value(default_value), _data(n, default_value) {}
+        explicit default_vector(const T default_value, const std::initializer_list<T> list) : _default_value(default_value), _data(list) {}
 
         int size() const {
             return _data.size();
@@ -77,14 +80,14 @@ class dynamic_vector {
             _data.insert(position, first, last);
         }
 
-        void swap(dynamic_vector<T> &other) {
+        void swap(default_vector<T> &other) {
             _data.swap(other._data);
         }
 
-        friend std::istream& operator>>(std::ostream& in, const dynamic_vector<T> &a) {
+        friend std::istream& operator>>(std::ostream& in, const default_vector<T> &a) {
             return in >> a._data;
         }
-        friend std::ostream& operator<<(std::ostream& out, const dynamic_vector<T> &a) {
+        friend std::ostream& operator<<(std::ostream& out, const default_vector<T> &a) {
             return out << a._data;
         }
     private:
@@ -97,3 +100,5 @@ class dynamic_vector {
         }
 };
 } // namespace suisen
+
+#endif // SUISEN_DEFAULT_VECTOR

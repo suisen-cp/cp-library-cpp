@@ -1,3 +1,6 @@
+#ifndef SUISEN_PAIR_OPS
+#define SUISEN_PAIR_OPS
+
 #include <utility>
 
 namespace suisen {
@@ -29,3 +32,5 @@ std::pair<T, U> operator*(std::pair<T, U> &p, const V m) {
     return {p.first * m, p.second * m};
 }
 } // namespace suisen
+
+#endif // SUISEN_PAIR_OPS

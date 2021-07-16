@@ -1,8 +1,12 @@
+#ifndef SUISEN_ITER_UTILS
+#define SUISEN_ITER_UTILS
+
 #include <algorithm>
 #include <array>
 #include <initializer_list>
 #include <numeric>
 #include <limits>
+#include <vector>
 
 namespace suisen {
 namespace internal {
@@ -153,3 +157,5 @@ auto all_permutations_desc(const std::vector<int>  &p) { return internal::vec_pe
 auto all_permutations_desc(const std::vector<int> &&p) { return internal::vec_permutations_desc(std::move(p)); }
 
 } // namespace suisen
+
+#endif // SUISEN_ITER_UTILS

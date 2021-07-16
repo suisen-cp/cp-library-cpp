@@ -41,4 +41,4 @@ template <typename T, typename U>
 std::vector<U> factorial<T, U>::_fac_inv {1};
 } // namespace suisen
 
-#endif
+#endif // SUISEN_FACTORIAL

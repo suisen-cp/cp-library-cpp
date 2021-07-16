@@ -1,3 +1,6 @@
+#ifndef SUISEN_TOPOLOGICAL_SORT
+#define SUISEN_TOPOLOGICAL_SORT
+
 #include <queue>
 #include <vector>
 
@@ -31,3 +34,5 @@ class topological_sort {
         }
 };
 } // namespace suisen
+
+#endif // SUISEN_TOPOLOGICAL_SORT

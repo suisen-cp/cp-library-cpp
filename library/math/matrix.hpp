@@ -1,3 +1,6 @@
+#ifndef SUISEN_MATRIX
+#define SUISEN_MATRIX
+
 #include <cassert>
 #include <vector>
 
@@ -59,3 +62,5 @@ class matrix_ops {
         T _zero = 0, _one = 1;
 };
 } // namespace suisen
+
+#endif // SUISEN_MATRIX
