@@ -117,8 +117,9 @@ data:
   verifiedWith: []
 documentation_of: library/math/common_sequences.hpp
 layout: document
-redirect_from:
-- /library/library/math/common_sequences.hpp
-- /library/library/math/common_sequences.hpp.html
-title: library/math/common_sequences.hpp
+title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
 ---
+
+### stirling_number1_reversed
+
+$A_i:=\mathrm{S1}\begin{vmatrix}N\\ N-i\end{vmatrix}$ を $O(N\log N)$ で計算します．

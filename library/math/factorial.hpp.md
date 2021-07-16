@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/math/common_sequences.hpp
-    title: library/math/common_sequences.hpp
+    title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':warning:'
     path: library/math/polynomial_taylor_shift.hpp
     title: library/math/polynomial_taylor_shift.hpp
