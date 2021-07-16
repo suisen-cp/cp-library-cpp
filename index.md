@@ -109,7 +109,7 @@ data:
       title: library/template.hpp
   - name: library/tree
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/tree/HeavyLightDecomposition.hpp
       title: library/tree/HeavyLightDecomposition.hpp
     - icon: ':warning:'
@@ -117,7 +117,7 @@ data:
       title: library/tree/euler_tour.hpp
   - name: library/type_traits
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
@@ -154,11 +154,11 @@ data:
     - icon: ':warning:'
       path: test/math/fzt_fmt_test.cpp
       title: test/math/fzt_fmt_test.cpp
+  verificationCategories:
   - name: test/tree/HeavyLightDecomposition
     pages:
-    - icon: ':warning:'
-      path: test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-      title: test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-  verificationCategories: []
+    - icon: ':x:'
+      path: test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+      title: test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
 layout: toppage
 ---

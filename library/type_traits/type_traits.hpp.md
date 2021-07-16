@@ -11,16 +11,16 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: library/template.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/tree/HeavyLightDecomposition.hpp
     title: library/tree/HeavyLightDecomposition.hpp
-  - icon: ':warning:'
-    path: test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-    title: test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+    title: test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: '#line 1 "library/type_traits/type_traits.hpp"
@@ -144,14 +144,14 @@ data:
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
   requiredBy:
-  - test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
   - library/template.hpp
   - library/template.cpp
   - library/tree/HeavyLightDecomposition.hpp
   - library/algorithm/sliding_window_minimum.hpp
   timestamp: '2021-07-16 04:04:10+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 redirect_from:

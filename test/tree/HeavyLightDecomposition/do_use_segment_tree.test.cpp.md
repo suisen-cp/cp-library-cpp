@@ -1,21 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/tree/HeavyLightDecomposition.hpp
     title: library/tree/HeavyLightDecomposition.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
-  attributes:
-    links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450
-  bundledCode: "#line 1 \"test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp\"\
+  _verificationStatusIcon: ':x:'
+  attributes: {}
+  bundledCode: "#line 1 \"test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp\"\
     \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450\"\
     \n\n#include <iostream>\n#include <atcoder/lazysegtree>\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
@@ -97,7 +95,7 @@ data:
     \ time, ord[time] = u, ++time;\n            head[u] = p >= 0 and g[p].front()\
     \ == u ? head[p] : u;\n            for (int v : g[u]) {\n                if (v\
     \ != p) hld(g, v, u, time);\n            }\n            leave[u] = time;\n   \
-    \     }\n};\n} // namespace suisen\n#line 6 \"test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp\"\
+    \     }\n};\n} // namespace suisen\n#line 6 \"test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp\"\
     \n\nstruct S {\n    int len;\n    long long pref, max, suff, sum;\n    S(int len,\
     \ long long pref, long long max, long long suff, long long sum) : len(len), pref(pref),\
     \ max(max), suff(suff), sum(sum) {}\n};\n\nconstexpr long long INF = std::numeric_limits<int>::max();\n\
@@ -163,16 +161,16 @@ data:
   dependsOn:
   - library/tree/HeavyLightDecomposition.hpp
   - library/type_traits/type_traits.hpp
-  isVerificationFile: false
-  path: test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+  isVerificationFile: true
+  path: test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-07-16 22:39:49+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2021-07-16 23:07:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+documentation_of: test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
 layout: document
 redirect_from:
-- /library/test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-- /library/test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp.html
-title: test/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+- /verify/test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+- /verify/test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp.html
+title: test/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
 ---
