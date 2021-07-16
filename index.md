@@ -157,7 +157,7 @@ data:
   verificationCategories:
   - name: test/generated/tree/HeavyLightDecomposition
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
       title: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
 layout: toppage

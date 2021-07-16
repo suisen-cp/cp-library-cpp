@@ -3,9 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450
@@ -378,7 +378,7 @@ data:
   path: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
   requiredBy: []
   timestamp: '2021-07-17 00:18:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
 layout: document
