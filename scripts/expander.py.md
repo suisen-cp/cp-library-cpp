@@ -27,11 +27,11 @@ data:
     \        if acl_include_guard.match(line) or lib_include_guard.match(line):\n\
     \            continue\n\n        acl_matcher = acl_include.match(line)\n     \
     \   if acl_matcher:\n            result.extend(dfs(acl_matcher.group(1), True))\n\
-    \            continue\n\n        lib_matcher = lib_include.match(line)\n     \
-    \   if lib_matcher:\n            result.extend(dfs(lib_matcher.group(1), False))\n\
-    \            continue\n\n        result.append(line)\n    return result\n\n\n\
-    if __name__ == \"__main__\":\n    basicConfig(\n        format=\"%(asctime)s [%(levelname)s]\
-    \ %(message)s\",\n        datefmt=\"%H:%M:%S\",\n        level=getenv('LOG_LEVEL',\
+    \            continue\n\n        # lib_matcher = lib_include.match(line)\n   \
+    \     # if lib_matcher:\n        #     result.extend(dfs(lib_matcher.group(1),\
+    \ False))\n        #     continue\n\n        result.append(line)\n    return result\n\
+    \n\nif __name__ == \"__main__\":\n    basicConfig(\n        format=\"%(asctime)s\
+    \ [%(levelname)s] %(message)s\",\n        datefmt=\"%H:%M:%S\",\n        level=getenv('LOG_LEVEL',\
     \ 'INFO'),\n    )\n    parser = argparse.ArgumentParser(description='Expander')\n\
     \    parser.add_argument('source', help='Source File')\n    parser.add_argument('--acl',\
     \ help='Path to AtCoder Library')\n    parser.add_argument('--lib', help='Path\
@@ -40,10 +40,10 @@ data:
     \n    s = open(opts.source).read()\n\n    result = []\n    for line in s.splitlines():\n\
     \        acl_matcher = acl_include.match(line)\n        if acl_matcher:\n    \
     \        result.extend(dfs(acl_matcher.group(1), True))\n            continue\n\
-    \        lib_matcher = lib_include.match(line)\n        if lib_matcher:\n    \
-    \        result.extend(dfs(lib_matcher.group(1), False))\n            continue\n\
-    \        result.append(line)\n\n    output = '\\n'.join(result) + '\\n'\n    with\
-    \ open(opts.out, 'w') as f:\n        f.write(output)\n"
+    \        # lib_matcher = lib_include.match(line)\n        # if lib_matcher:\n\
+    \        #     result.extend(dfs(lib_matcher.group(1), False))\n        #    \
+    \ continue\n        result.append(line)\n\n    output = '\\n'.join(result) + '\\\
+    n'\n    with open(opts.out, 'w') as f:\n        f.write(output)\n"
   dependsOn: []
   isVerificationFile: false
   path: scripts/expander.py

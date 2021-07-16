@@ -11,16 +11,19 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: library/template.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/HeavyLightDecomposition.hpp
     title: library/tree/HeavyLightDecomposition.hpp
   - icon: ':warning:'
     path: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
     title: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+    title: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: '#line 1 "library/type_traits/type_traits.hpp"
@@ -150,8 +153,9 @@ data:
   - library/tree/HeavyLightDecomposition.hpp
   - library/algorithm/sliding_window_minimum.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 redirect_from:

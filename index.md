@@ -109,12 +109,12 @@ data:
     - icon: ':warning:'
       path: library/tree/EulerTour.hpp
       title: library/tree/EulerTour.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/HeavyLightDecomposition.hpp
       title: library/tree/HeavyLightDecomposition.hpp
   - name: library/type_traits
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
