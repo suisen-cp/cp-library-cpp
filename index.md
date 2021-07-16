@@ -106,7 +106,7 @@ data:
       title: library/template.hpp
   - name: library/tree
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/EulerTour.hpp
       title: library/tree/EulerTour.hpp
     - icon: ':heavy_check_mark:'
@@ -154,12 +154,22 @@ data:
     - icon: ':warning:'
       path: scripts/generate_test_files.py
       title: scripts/generate_test_files.py
+  - name: test/src/tree/EulerTour
+    pages:
+    - icon: ':warning:'
+      path: test/src/tree/EulerTour/lowest_common_ancestor.cpp
+      title: test/src/tree/EulerTour/lowest_common_ancestor.cpp
   - name: test/src/tree/HeavyLightDecomposition
     pages:
     - icon: ':warning:'
       path: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
       title: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
   verificationCategories:
+  - name: test/generated/tree/EulerTour
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
+      title: test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
   - name: test/generated/tree/HeavyLightDecomposition
     pages:
     - icon: ':heavy_check_mark:'

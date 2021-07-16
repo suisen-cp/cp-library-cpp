@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/src/tree/EulerTour/lowest_common_ancestor.cpp
+    title: test/src/tree/EulerTour/lowest_common_ancestor.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
+    title: test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/EulerTour.hpp\"\n\n\n\n#include <limits>\n\
@@ -79,10 +85,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/tree/EulerTour.hpp
-  requiredBy: []
+  requiredBy:
+  - test/src/tree/EulerTour/lowest_common_ancestor.cpp
   timestamp: '2021-07-17 02:33:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
 documentation_of: library/tree/EulerTour.hpp
 layout: document
 redirect_from:

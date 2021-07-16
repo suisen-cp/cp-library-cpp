@@ -15,20 +15,21 @@ data:
   code: "#!/usr/bin/env python3\n\nimport re\nimport sys\nimport argparse\nfrom logging\
     \ import Logger, basicConfig, getLogger\nfrom os import getenv, environ\nfrom\
     \ pathlib import Path\nfrom typing import List\n\nlogger = getLogger(__name__)\
-    \  # type: Logger\n\nacl_include = re.compile('#include\\s*[\"<](atcoder/.*)[\"\
-    >]\\s*')\nlib_include = re.compile('#include\\s*[\"<](library/.*)[\">]\\s*')\n\
-    \nacl_include_guard = re.compile('#.*ATCODER_.*')\nlib_include_guard = re.compile('#.*SUISEN_.*')\n\
-    \ndefined = set()\n\ndef dfs(f: str, is_acl: bool) -> List[str]:\n    print(f'expanding\
-    \ : {f}\\ntype : {\"ACL\" if is_acl else \"LIB\"}')\n    global defined\n    if\
-    \ f in defined:\n        logger.info('already included {}, skip'.format(f))\n\
-    \        return []\n    defined.add(f)\n\n    logger.info('include {}'.format(f))\n\
-    \n    if is_acl:\n        s = open(str(acl_path / f)).read()\n    else:\n    \
-    \    s = open(str(lib_path / f)).read()\n\n    result = []\n    for line in s.splitlines():\n\
-    \        if acl_include_guard.match(line) or lib_include_guard.match(line):\n\
-    \            continue\n\n        acl_matcher = acl_include.match(line)\n     \
-    \   if acl_matcher:\n            result.extend(dfs(acl_matcher.group(1), True))\n\
-    \            continue\n\n        # lib_matcher = lib_include.match(line)\n   \
-    \     # if lib_matcher:\n        #     result.extend(dfs(lib_matcher.group(1),\
+    \  # type: Logger\n\nproblem_def = re.compile('#define\\s*PROBLEM\\s.*')\n\nacl_include\
+    \ = re.compile('#include\\s*[\"<](atcoder/.*)[\">]\\s*')\nlib_include = re.compile('#include\\\
+    s*[\"<](library/.*)[\">]\\s*')\n\nacl_include_guard = re.compile('#.*ATCODER_.*')\n\
+    lib_include_guard = re.compile('#.*SUISEN_.*')\n\ndefined = set()\n\ndef dfs(f:\
+    \ str, is_acl: bool) -> List[str]:\n    print(f'expanding : {f}\\ntype : {\"ACL\"\
+    \ if is_acl else \"LIB\"}')\n    global defined\n    if f in defined:\n      \
+    \  logger.info('already included {}, skip'.format(f))\n        return []\n   \
+    \ defined.add(f)\n\n    logger.info('include {}'.format(f))\n\n    if is_acl:\n\
+    \        s = open(str(acl_path / f)).read()\n    else:\n        s = open(str(lib_path\
+    \ / f)).read()\n\n    result = []\n    for line in s.splitlines():\n        if\
+    \ acl_include_guard.match(line) or lib_include_guard.match(line):\n          \
+    \  continue\n        \n        if not acl_enabled:\n            acl_matcher =\
+    \ acl_include.match(line)\n            if acl_matcher:\n                result.extend(dfs(acl_matcher.group(1),\
+    \ True))\n                continue\n\n        # lib_matcher = lib_include.match(line)\n\
+    \        # if lib_matcher:\n        #     result.extend(dfs(lib_matcher.group(1),\
     \ False))\n        #     continue\n\n        result.append(line)\n    return result\n\
     \n\nif __name__ == \"__main__\":\n    basicConfig(\n        format=\"%(asctime)s\
     \ [%(levelname)s] %(message)s\",\n        datefmt=\"%H:%M:%S\",\n        level=getenv('LOG_LEVEL',\
@@ -37,13 +38,15 @@ data:
     \ help='Path to AtCoder Library')\n    parser.add_argument('--lib', help='Path\
     \ to My Library')\n    parser.add_argument('--out', help='Output File')\n    opts\
     \ = parser.parse_args()\n\n    lib_path = Path(opts.lib)\n    acl_path = Path(opts.acl)\n\
-    \n    s = open(opts.source).read()\n\n    result = []\n    for line in s.splitlines():\n\
-    \        acl_matcher = acl_include.match(line)\n        if acl_matcher:\n    \
-    \        result.extend(dfs(acl_matcher.group(1), True))\n            continue\n\
-    \        # lib_matcher = lib_include.match(line)\n        # if lib_matcher:\n\
-    \        #     result.extend(dfs(lib_matcher.group(1), False))\n        #    \
-    \ continue\n        result.append(line)\n\n    output = '\\n'.join(result) + '\\\
-    n'\n    with open(opts.out, 'w') as f:\n        f.write(output)\n"
+    \n    acl_enabled = False\n\n    s = open(opts.source).read()\n\n    result =\
+    \ []\n    for line in s.splitlines():\n        problem_matcher = problem_def.match(line)\n\
+    \        if problem_matcher:\n            acl_enabled |= \"atcoder\" in line or\
+    \ \"yosupo\" in line\n\n        if not acl_enabled:\n            acl_matcher =\
+    \ acl_include.match(line)\n            if acl_matcher:\n                result.extend(dfs(acl_matcher.group(1),\
+    \ True))\n                continue\n        # lib_matcher = lib_include.match(line)\n\
+    \        # if lib_matcher:\n        #     result.extend(dfs(lib_matcher.group(1),\
+    \ False))\n        #     continue\n        result.append(line)\n\n    output =\
+    \ '\\n'.join(result) + '\\n'\n    with open(opts.out, 'w') as f:\n        f.write(output)\n"
   dependsOn: []
   isVerificationFile: false
   path: scripts/expander.py
