@@ -7,15 +7,18 @@ data:
   - icon: ':x:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
+  - icon: ':x:'
+    path: library/math/multi_point_eval.hpp
+    title: library/math/multi_point_eval.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes: {}
-  bundledCode: "#line 1 \"test/generated/math/fps/pow_of_fps.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\n\n#include <iostream>\n\
-    #include <vector>\n\n\n\n#include <utility>\n\nnamespace atcoder {\n\nnamespace\
+  bundledCode: "#line 1 \"test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\n\n\
+    #include <iostream>\n\n\n\n#include <utility>\n\nnamespace atcoder {\n\nnamespace\
     \ internal {\n\n// @param m `1 <= m`\n// @return x mod m\nconstexpr long long\
     \ safe_mod(long long x, long long m) {\n    x %= m;\n    if (x < 0) x += m;\n\
     \    return x;\n}\n\n// Fast moduler by barrett reduction\n// Reference: https://en.wikipedia.org/wiki/Barrett_reduction\n\
@@ -118,7 +121,7 @@ data:
     template <class T>\nusing is_signed_int_t = std::enable_if_t<is_signed_int<T>::value>;\n\
     \ntemplate <class T>\nusing is_unsigned_int_t = std::enable_if_t<is_unsigned_int<T>::value>;\n\
     \ntemplate <class T> using to_unsigned_t = typename to_unsigned<T>::type;\n\n\
-    }  // namespace internal\n\n}  // namespace atcoder\n\n#line 282 \"test/generated/math/fps/pow_of_fps.test.cpp\"\
+    }  // namespace internal\n\n}  // namespace atcoder\n\n#line 281 \"test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp\"\
     \n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace atcoder {\n\nnamespace\
     \ internal {\n\nstruct modint_base {};\nstruct static_modint_base : modint_base\
     \ {};\n\ntemplate <class T> using is_modint = std::is_base_of<modint_base, T>;\n\
@@ -208,19 +211,19 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#line 5 \"library/math/fps.hpp\"\n#include <atcoder/convolution>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n\
-    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
-    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
-    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
-    \ = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n           \
-    \ if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
-    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
-    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
-    \        static constexpr int mod = mint::mod();\n};\ntemplate <typename mint>\n\
-    std::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 8 \"library/math/fps.hpp\"\
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 1 \"library/math/multi_point_eval.hpp\"\
+    \n\n\n\n#line 1 \"library/math/fps.hpp\"\n\n\n\n#line 5 \"library/math/fps.hpp\"\
+    \n#include <atcoder/convolution>\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\
+    \n#include <vector>\n\nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods\
+    \ {\n    public:\n        inv_mods() {}\n        inv_mods(int n) { ensure(n);\
+    \ }\n        const mint& operator[](int i) const {\n            ensure(i);\n \
+    \           return invs[i];\n        }\n        static void ensure(int n) {\n\
+    \            int sz = invs.size();\n            if (sz < 2) invs = {0, 1}, sz\
+    \ = 2;\n            if (sz < n + 1) {\n                invs.resize(n + 1);\n \
+    \               for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) *\
+    \ invs[mod % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
+    \ invs;\n        static constexpr int mod = mint::mod();\n};\ntemplate <typename\
+    \ mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 8 \"library/math/fps.hpp\"\
     \n\nnamespace suisen {\ntemplate <typename mint>\nclass FPS : public std::vector<mint>\
     \ {\n    public:\n        using std::vector<mint>::vector;\n\n        FPS(const\
     \ std::initializer_list<mint> l) : std::vector<mint>::vector(l) {}\n\n       \
@@ -330,42 +333,51 @@ data:
     \           mint div = this->unsafe_get(i + gd) * head_inv;\n                q.unsafe_get(i)\
     \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
     \ -= div * g.unsafe_get(j);\n            }\n            return {q, pre_inplace(gd\
-    \ - 1)};\n        }\n};\n} // namespace suisen\n\n\n#line 551 \"test/generated/math/fps/pow_of_fps.test.cpp\"\
+    \ - 1)};\n        }\n};\n} // namespace suisen\n\n\n#line 5 \"library/math/multi_point_eval.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename mint>\nstd::vector<mint> multi_point_eval(const\
+    \ FPS<mint> &f, const std::vector<mint> &xs) {\n    int m = xs.size();\n    int\
+    \ k = 1;\n    while (k < m) k <<= 1;\n    std::vector<FPS<mint>> seg(2 * k);\n\
+    \    for (int i = 0; i < m; ++i) seg[k + i] = FPS<mint> {-xs[i], 1};\n    for\
+    \ (int i = m; i < k; ++i) seg[k + i] = FPS<mint> {1};\n    for (int i = k - 1;\
+    \ i> 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n    seg[1] = f % seg[1];\n\
+    \    for (int i = 2; i < k + m; ++i) seg[i] = seg[i / 2] % seg[i];\n    std::vector<mint>\
+    \ ys(m);\n    for (int i = 0; i < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n\
+    }\n} // namespace suisen\n\n\n#line 550 \"test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n, m;\n  \
     \  std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int i = 0; i < n;\
     \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
-    \    }\n    auto g = f.pow(m, n - 1);\n    for (int i = 0; i < n; ++i) {\n   \
-    \     std::cout << g[i].val() << \" \\n\"[i == n - 1];\n    }\n    return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
-    \n\n#include <iostream>\n#include <vector>\n\n\n\n#include <utility>\n\nnamespace\
-    \ atcoder {\n\nnamespace internal {\n\n// @param m `1 <= m`\n// @return x mod\
-    \ m\nconstexpr long long safe_mod(long long x, long long m) {\n    x %= m;\n \
-    \   if (x < 0) x += m;\n    return x;\n}\n\n// Fast moduler by barrett reduction\n\
-    // Reference: https://en.wikipedia.org/wiki/Barrett_reduction\n// NOTE: reconsider\
-    \ after Ice Lake\nstruct barrett {\n    unsigned int _m;\n    unsigned long long\
-    \ im;\n\n    // @param m `1 <= m`\n    barrett(unsigned int m) : _m(m), im((unsigned\
-    \ long long)(-1) / m + 1) {}\n\n    // @return m\n    unsigned int umod() const\
-    \ { return _m; }\n\n    // @param a `0 <= a < m`\n    // @param b `0 <= b < m`\n\
-    \    // @return `a * b % m`\n    unsigned int mul(unsigned int a, unsigned int\
-    \ b) const {\n        // [1] m = 1\n        // a = b = im = 0, so okay\n\n   \
-    \     // [2] m >= 2\n        // im = ceil(2^64 / m)\n        // -> im * m = 2^64\
-    \ + r (0 <= r < m)\n        // let z = a*b = c*m + d (0 <= c, d < m)\n       \
-    \ // a*b * im = (c*m + d) * im = c*(im*m) + d*im = c*2^64 + c*r + d*im\n     \
-    \   // c*r + d*im < m * m + m * im < m * m + 2^64 + m <= 2^64 + m * (m + 1) <\
-    \ 2^64 * 2\n        // ((ab * im) >> 64) == c or c + 1\n        unsigned long\
-    \ long z = a;\n        z *= b;\n#ifdef _MSC_VER\n        unsigned long long x;\n\
-    \        _umul128(z, im, &x);\n#else\n        unsigned long long x =\n       \
-    \     (unsigned long long)(((unsigned __int128)(z)*im) >> 64);\n#endif\n     \
-    \   unsigned int v = (unsigned int)(z - x * _m);\n        if (_m <= v) v += _m;\n\
-    \        return v;\n    }\n};\n\n// @param n `0 <= n`\n// @param m `1 <= m`\n\
-    // @return `(x ** n) % m`\nconstexpr long long pow_mod_constexpr(long long x,\
-    \ long long n, int m) {\n    if (m == 1) return 0;\n    unsigned int _m = (unsigned\
-    \ int)(m);\n    unsigned long long r = 1;\n    unsigned long long y = safe_mod(x,\
-    \ m);\n    while (n) {\n        if (n & 1) r = (r * y) % _m;\n        y = (y *\
-    \ y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n// Reference:\n// M.\
-    \ Forisek and J. Jancina,\n// Fast Primality Testing for Integers That Fit into\
-    \ a Machine Word\n// @param n `0 <= n`\nconstexpr bool is_prime_constexpr(int\
+    \    }\n    std::vector<mint> xs(m);\n    for (int i = 0; i < m; ++i) {\n    \
+    \    int x;\n        std::cin >> x;\n        xs[i] = x;\n    }\n    auto ys =\
+    \ suisen::multi_point_eval(f, xs);\n    for (int i = 0; i < m; ++i) {\n      \
+    \  std::cout << ys[i].val() << \" \\n\"[i == m - 1];\n    }\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\
+    \n\n#include <iostream>\n\n\n\n#include <utility>\n\nnamespace atcoder {\n\nnamespace\
+    \ internal {\n\n// @param m `1 <= m`\n// @return x mod m\nconstexpr long long\
+    \ safe_mod(long long x, long long m) {\n    x %= m;\n    if (x < 0) x += m;\n\
+    \    return x;\n}\n\n// Fast moduler by barrett reduction\n// Reference: https://en.wikipedia.org/wiki/Barrett_reduction\n\
+    // NOTE: reconsider after Ice Lake\nstruct barrett {\n    unsigned int _m;\n \
+    \   unsigned long long im;\n\n    // @param m `1 <= m`\n    barrett(unsigned int\
+    \ m) : _m(m), im((unsigned long long)(-1) / m + 1) {}\n\n    // @return m\n  \
+    \  unsigned int umod() const { return _m; }\n\n    // @param a `0 <= a < m`\n\
+    \    // @param b `0 <= b < m`\n    // @return `a * b % m`\n    unsigned int mul(unsigned\
+    \ int a, unsigned int b) const {\n        // [1] m = 1\n        // a = b = im\
+    \ = 0, so okay\n\n        // [2] m >= 2\n        // im = ceil(2^64 / m)\n    \
+    \    // -> im * m = 2^64 + r (0 <= r < m)\n        // let z = a*b = c*m + d (0\
+    \ <= c, d < m)\n        // a*b * im = (c*m + d) * im = c*(im*m) + d*im = c*2^64\
+    \ + c*r + d*im\n        // c*r + d*im < m * m + m * im < m * m + 2^64 + m <= 2^64\
+    \ + m * (m + 1) < 2^64 * 2\n        // ((ab * im) >> 64) == c or c + 1\n     \
+    \   unsigned long long z = a;\n        z *= b;\n#ifdef _MSC_VER\n        unsigned\
+    \ long long x;\n        _umul128(z, im, &x);\n#else\n        unsigned long long\
+    \ x =\n            (unsigned long long)(((unsigned __int128)(z)*im) >> 64);\n\
+    #endif\n        unsigned int v = (unsigned int)(z - x * _m);\n        if (_m <=\
+    \ v) v += _m;\n        return v;\n    }\n};\n\n// @param n `0 <= n`\n// @param\
+    \ m `1 <= m`\n// @return `(x ** n) % m`\nconstexpr long long pow_mod_constexpr(long\
+    \ long x, long long n, int m) {\n    if (m == 1) return 0;\n    unsigned int _m\
+    \ = (unsigned int)(m);\n    unsigned long long r = 1;\n    unsigned long long\
+    \ y = safe_mod(x, m);\n    while (n) {\n        if (n & 1) r = (r * y) % _m;\n\
+    \        y = (y * y) % _m;\n        n >>= 1;\n    }\n    return r;\n}\n\n// Reference:\n\
+    // M. Forisek and J. Jancina,\n// Fast Primality Testing for Integers That Fit\
+    \ into a Machine Word\n// @param n `0 <= n`\nconstexpr bool is_prime_constexpr(int\
     \ n) {\n    if (n <= 1) return false;\n    if (n == 2 || n == 7 || n == 61) return\
     \ true;\n    if (n % 2 == 0) return false;\n    long long d = n - 1;\n    while\
     \ (d % 2 == 0) d /= 2;\n    for (long long a : {2, 7, 61}) {\n        long long\
@@ -532,26 +544,28 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#include \"library/math/fps.hpp\"\
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#include \"library/math/multi_point_eval.hpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n, m;\n  \
     \  std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int i = 0; i < n;\
     \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
-    \    }\n    auto g = f.pow(m, n - 1);\n    for (int i = 0; i < n; ++i) {\n   \
-    \     std::cout << g[i].val() << \" \\n\"[i == n - 1];\n    }\n    return 0;\n\
-    }\n"
+    \    }\n    std::vector<mint> xs(m);\n    for (int i = 0; i < m; ++i) {\n    \
+    \    int x;\n        std::cin >> x;\n        xs[i] = x;\n    }\n    auto ys =\
+    \ suisen::multi_point_eval(f, xs);\n    for (int i = 0; i < m; ++i) {\n      \
+    \  std::cout << ys[i].val() << \" \\n\"[i == m - 1];\n    }\n    return 0;\n}\n"
   dependsOn:
+  - library/math/multi_point_eval.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
   isVerificationFile: true
-  path: test/generated/math/fps/pow_of_fps.test.cpp
+  path: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
   requiredBy: []
   timestamp: '2021-07-18 17:07:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/generated/math/fps/pow_of_fps.test.cpp
+documentation_of: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
 layout: document
 redirect_from:
-- /verify/test/generated/math/fps/pow_of_fps.test.cpp
-- /verify/test/generated/math/fps/pow_of_fps.test.cpp.html
-title: test/generated/math/fps/pow_of_fps.test.cpp
+- /verify/test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
+- /verify/test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp.html
+title: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
 ---

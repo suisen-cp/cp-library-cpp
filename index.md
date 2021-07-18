@@ -73,7 +73,7 @@ data:
     - icon: ':warning:'
       path: library/math/matrix.hpp
       title: library/math/matrix.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/math/multi_point_eval.hpp
       title: library/math/multi_point_eval.hpp
     - icon: ':warning:'
@@ -161,6 +161,11 @@ data:
     - icon: ':x:'
       path: test/generated/math/fps/pow_of_fps.test.cpp
       title: test/generated/math/fps/pow_of_fps.test.cpp
+  - name: test/generated/math/multi_point_eval
+    pages:
+    - icon: ':x:'
+      path: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
+      title: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
   - name: test/generated/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
