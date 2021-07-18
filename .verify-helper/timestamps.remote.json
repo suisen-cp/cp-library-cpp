@@ -3,6 +3,7 @@
 "test/generated/math/fps/inv_of_fps.test.cpp": "2021-07-18 18:22:10 +0900",
 "test/generated/math/fps/log_of_fps.test.cpp": "2021-07-18 18:22:10 +0900",
 "test/generated/math/fps/pow_of_fps.test.cpp": "2021-07-18 18:22:10 +0900",
+"test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp": "2021-07-18 19:00:56 +0900",
 "test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp": "2021-07-18 16:55:52 +0900",
 "test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp": "2021-07-18 16:55:52 +0900"
 }
