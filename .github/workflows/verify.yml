@@ -16,8 +16,11 @@ jobs:
       run: pip3 install -U online-judge-verify-helper
     
     # ! dependents on other library
-    - name: Add AtCoder Library as Submodule
-      run: git submodule add https://github.com/atcoder/ac-library.git ac-library
+    # - name: Add AtCoder Library as Submodule
+    #   run: git submodule add https://github.com/atcoder/ac-library.git ac-library
+    
+    - name: Update ACL
+      run: git submodule update ac-library
 
     # ! required only if you want to verify Haskell code
     # - name: Install dependencies (Haskell)
@@ -76,6 +79,3 @@ jobs:
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
       run: oj-verify all
-
-    - name: Remove AtCoder Library
-      run: git submodule deinit ac-library && git rm -f ac-library
