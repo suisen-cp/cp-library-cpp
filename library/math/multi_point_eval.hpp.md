@@ -71,24 +71,24 @@ data:
     \ this->erase(this->begin(), this->begin() + shamt);\n            return *this;\n\
     \        }\n\n        inline FPS operator+(FPS &&g) const { return FPS(*this)\
     \ += std::move(g); }\n        inline FPS operator-(FPS &&g) const { return FPS(*this)\
-    \ -= std::move(g); }\n        inline FPS operator*(FPS &&g) const { return atcoder::convolution(std::move(*this),\
-    \ std::move(g)); }\n        inline FPS operator/(FPS &&g) const { return FPS(*this)\
+    \ -= std::move(g); }\n        inline FPS operator*(FPS &&g) const { return FPS(*this)\
+    \ *= std::move(g); }\n        inline FPS operator/(FPS &&g) const { return FPS(*this)\
     \ /= std::move(g); }\n        inline FPS operator%(FPS &&g) const { return FPS(*this)\
     \ %= std::move(g); }\n        inline FPS operator+(const FPS &g) const { return\
     \ FPS(*this) += g; }\n        inline FPS operator+(const mint x) const { return\
     \ FPS(*this) += x; }\n        inline FPS operator-(const FPS &g) const { return\
     \ FPS(*this) -= g; }\n        inline FPS operator-(const mint x) const { return\
     \ FPS(*this) -= x; }\n        inline FPS operator*(const FPS &g) const { return\
-    \ atcoder::convolution(*this, g); }\n        inline FPS operator*(const mint x)\
-    \ const { return FPS(*this) *= x; }\n        inline FPS operator/(const FPS &g)\
-    \ const { return FPS(*this) /= g; }\n        inline FPS operator%(const FPS &g)\
-    \ const { return FPS(*this) %= g; }\n        inline friend FPS operator*(const\
-    \ mint x, const FPS  &f) { return f * x; }\n        inline friend FPS operator*(const\
-    \ mint x,       FPS &&f) { return f *= x; }\n        inline FPS operator<<(const\
-    \ int shamt) { return FPS(*this) <<= shamt; }\n        inline FPS operator>>(const\
-    \ int shamt) { return FPS(*this) >>= shamt; }\n\n        FPS& diff_inplace() {\n\
-    \            if (this->size() == 0) return *this;\n            for (int i = 1;\
-    \ i <= deg(); ++i) unsafe_get(i - 1) = unsafe_get(i) * i;\n            this->pop_back();\n\
+    \ FPS(*this) *= g; }\n        inline FPS operator*(const mint x) const { return\
+    \ FPS(*this) *= x; }\n        inline FPS operator/(const FPS &g) const { return\
+    \ FPS(*this) /= g; }\n        inline FPS operator%(const FPS &g) const { return\
+    \ FPS(*this) %= g; }\n        inline friend FPS operator*(const mint x, const\
+    \ FPS  &f) { return f * x; }\n        inline friend FPS operator*(const mint x,\
+    \       FPS &&f) { return f *= x; }\n        inline FPS operator<<(const int shamt)\
+    \ { return FPS(*this) <<= shamt; }\n        inline FPS operator>>(const int shamt)\
+    \ { return FPS(*this) >>= shamt; }\n\n        FPS& diff_inplace() {\n        \
+    \    if (this->size() == 0) return *this;\n            for (int i = 1; i <= deg();\
+    \ ++i) unsafe_get(i - 1) = unsafe_get(i) * i;\n            this->pop_back();\n\
     \            return *this;\n        }\n        FPS& intg_inplace() {\n       \
     \     int d = deg();\n            ensure_deg(d + 1);\n            for (int i =\
     \ d; i >= 0; --i) unsafe_get(i + 1) = unsafe_get(i) * invs[i + 1];\n         \
@@ -152,7 +152,7 @@ data:
   isVerificationFile: false
   path: library/math/multi_point_eval.hpp
   requiredBy: []
-  timestamp: '2021-07-17 02:33:12+09:00'
+  timestamp: '2021-07-18 16:47:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/multi_point_eval.hpp

@@ -36,7 +36,7 @@ data:
   isVerificationFile: false
   path: library/math/bostan_mori.hpp
   requiredBy: []
-  timestamp: '2021-07-18 15:28:09+09:00'
+  timestamp: '2021-07-18 16:47:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/bostan_mori.hpp
