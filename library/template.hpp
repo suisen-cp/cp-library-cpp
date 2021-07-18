@@ -1,11 +1,10 @@
 #include <bits/stdc++.h>
+
 #include <library/type_traits/type_traits.hpp>
 
-#pragma region
-
 // ! type aliases
-using int128 = __int128_t;
-using uint128 = __uint128_t;
+using i128 = __int128_t;
+using u128 = __uint128_t;
 using ll = long long;
 using uint = unsigned int;
 using ull  = unsigned long long;
@@ -75,10 +74,9 @@ inline void print(const Head& head, const Tail&... tails) {
 }
 template <typename Iterable>
 void print_iterable(const Iterable& v, const std::string sep = " ", const std::string end = "\n") {
-    int n = v.size();
-    rep(i, n) {
-        std::cout << v[i];
-        if (i < n - 1) std::cout << sep;
+    for (auto it = v.begin(); it != v.end();) {
+        std::cout << *it;
+        if (++it != a.end()) std::cout << ' ';
     }
     std::cout << end;
 }
@@ -167,5 +165,3 @@ auto isize(const Iterable &iterable) -> decltype(int(iterable.size())) { return 
 namespace suisen {}
 using namespace suisen;
 using namespace std;
-
-#pragma endregion

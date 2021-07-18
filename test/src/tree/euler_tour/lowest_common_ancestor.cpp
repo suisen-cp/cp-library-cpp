@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include <library/tree/EulerTour.hpp>
+#include <library/tree/euler_tour.hpp>
 
 int main() {
     std::ios::sync_with_stdio(false);

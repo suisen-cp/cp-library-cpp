@@ -1,10 +1,10 @@
-#include "library/template.hpp"
+#include <library/template.hpp>
 
 // ! code from here
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
 
     return 0;
 }

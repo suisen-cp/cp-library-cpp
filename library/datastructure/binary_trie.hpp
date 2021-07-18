@@ -55,15 +55,18 @@ class BinaryTrie {
         inline int size() const noexcept { return Node::size(root); }
         inline bool empty() const noexcept { return size() == 0; }
 
-        void insert(const U val) noexcept {
+        int insert(const U val, const int num = 1) noexcept {
+            if (num == 0) return;
             Node *cur = root;
-            ++cur->siz;
-            for (unsigned int i = bit_length; i --> 0;) {
+            cur->siz += num;
+            for (int i = bit_length; i --> 0;) {
                 cur = cur->get_or_create(bit(val, i));
-                ++cur->siz;
+                cur->siz += num;
             }
+            return cur->siz;
         }
         int erase(const U val, const int num = 1) noexcept {
+            if (num == 0) return;
             return erase(root, bit_length - 1, val, num);
         }
         int erase_all(const U val) noexcept {
@@ -71,7 +74,7 @@ class BinaryTrie {
         }
         int prefix_count(const U val, const unsigned int l) const noexcept {
             Node *cur = root;
-            for (unsigned int i = bit_length; i --> l;) {
+            for (int i = bit_length; i --> l;) {
                 if (cur == nullptr) return 0;
                 cur = (*cur)[bit(val, i)];
             }
@@ -103,21 +106,21 @@ class BinaryTrie {
         inline int xor_count_leq(const U x, const U val) const noexcept { return xor_count_lt(x, val) + count(val); }
         inline int xor_count_gt (const U x, const U val) const noexcept { return size() - xor_count_leq(x, val);    }
         inline int xor_count_geq(const U x, const U val) const noexcept { return size() - xor_count_lt(x, val);     }
-        inline std::optional<U> xor_lower(const U x, const U val) const noexcept {
+        inline U xor_lower(const U x, const U val, const U default_value = ~U(0)) const noexcept {
             int k = size() - xor_count_geq(x, val) - 1;
-            return k < 0 ? std::nullopt : std::make_optional(unchecked_xor_kth_min(x, k));
+            return k < 0 ? default_value : unchecked_xor_kth_min(x, k);
         }
-        inline std::optional<U> xor_floor(const U x, const U val) const noexcept {
+        inline U xor_floor(const U x, const U val, const U default_value = ~U(0)) const noexcept {
             int k = size() - xor_count_gt(x, val) - 1;
-            return k < 0 ? std::nullopt : std::make_optional(unchecked_xor_kth_min(x, k));
+            return k < 0 ? default_value : unchecked_xor_kth_min(x, k);
         }
-        inline std::optional<U> xor_higher(const U x, const U val) const noexcept {
+        inline U xor_higher(const U x, const U val, const U default_value = ~U(0)) const noexcept {
             int k = xor_count_leq(x, val);
-            return k == size() ? std::nullopt : std::make_optional(unchecked_xor_kth_min(x, k));
+            return k == size() ? default_value : unchecked_xor_kth_min(x, k);
         }
-        inline std::optional<U> xor_ceil(const U x, const U val) const noexcept {
+        inline U xor_ceil(const U x, const U val, const U default_value = ~U(0)) const noexcept {
             int k = xor_count_lt(x, val);
-            return k == size() ? std::nullopt : std::make_optional(unchecked_xor_kth_min(x, k));
+            return k == size() ? default_value : unchecked_xor_kth_min(x, k);
         }
 
         inline U kth_min(const int k) const { return xor_kth_min(0, k); }
@@ -127,10 +130,10 @@ class BinaryTrie {
         inline int count_leq(const U val) const noexcept { return xor_count_leq(0, val); }
         inline int count_gt (const U val) const noexcept { return xor_count_gt(0, val);  }
         inline int count_geq(const U val) const noexcept { return xor_count_geq(0, val); }
-        inline std::optional<U> lower (const U val) const noexcept { return xor_lower(0, val);  }
-        inline std::optional<U> floor (const U val) const noexcept { return xor_floor(0, val);  }
-        inline std::optional<U> higher(const U val) const noexcept { return xor_higher(0, val); }
-        inline std::optional<U> ceil  (const U val) const noexcept { return xor_ceil(0, val);   }
+        inline U lower (const U val, const U default_value = ~U(0)) const noexcept { return xor_lower (0, val, default_value); }
+        inline U floor (const U val, const U default_value = ~U(0)) const noexcept { return xor_floor (0, val, default_value); }
+        inline U higher(const U val, const U default_value = ~U(0)) const noexcept { return xor_higher(0, val, default_value); }
+        inline U ceil  (const U val, const U default_value = ~U(0)) const noexcept { return xor_ceil  (0, val, default_value); }
 
         inline std::string to_string() const noexcept { return root->to_string(); }
         friend std::ostream& operator<<(std::ostream& out, const BinaryTrie &bt) { return out << bt.to_string(); }
