@@ -1,10 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/src/tree/euler_tour/lowest_common_ancestor.cpp
-    title: test/src/tree/euler_tour/lowest_common_ancestor.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
@@ -85,8 +82,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/tree/euler_tour.hpp
-  requiredBy:
-  - test/src/tree/euler_tour/lowest_common_ancestor.cpp
+  requiredBy: []
   timestamp: '2021-07-18 15:28:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

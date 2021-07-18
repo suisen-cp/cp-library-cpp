@@ -146,24 +146,6 @@ data:
     - icon: ':warning:'
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
-  - name: scripts
-    pages:
-    - icon: ':warning:'
-      path: scripts/expander.py
-      title: scripts/expander.py
-    - icon: ':warning:'
-      path: scripts/generate_test_files.py
-      title: scripts/generate_test_files.py
-  - name: test/src/tree/euler_tour
-    pages:
-    - icon: ':warning:'
-      path: test/src/tree/euler_tour/lowest_common_ancestor.cpp
-      title: test/src/tree/euler_tour/lowest_common_ancestor.cpp
-  - name: test/src/tree/heavy_light_decomposition
-    pages:
-    - icon: ':warning:'
-      path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
-      title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
   verificationCategories:
   - name: test/generated/tree/euler_tour
     pages:

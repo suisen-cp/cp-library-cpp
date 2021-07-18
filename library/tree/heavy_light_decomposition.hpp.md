@@ -4,10 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
-    title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
@@ -156,8 +153,7 @@ data:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/tree/heavy_light_decomposition.hpp
-  requiredBy:
-  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
+  requiredBy: []
   timestamp: '2021-07-18 15:28:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
