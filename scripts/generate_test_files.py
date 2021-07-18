@@ -23,7 +23,7 @@ def generate(path):
     subprocess.call(args)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Expander')
+    parser = argparse.ArgumentParser(description='Generate Test Files')
     parser.add_argument('test_source', help='Source Directory')
     parser.add_argument('test_dest', help='Destination Directory')
     parser.add_argument('--acl', help='AtCoder Library Directory')
