@@ -14,8 +14,22 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n#include\
-    \ <library/type_traits/type_traits.hpp>\n#include <vector>\n\nnamespace suisen\
+  bundledCode: "#line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n#line\
+    \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include\
+    \ <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\n\
+    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, nullptr_t>;\n\
+    \n// ! function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
+    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
+    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
+    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
+    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
+    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
+    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
+    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
+    library/tree/heavy_light_decomposition.hpp\"\n#include <vector>\n\nnamespace suisen\
     \ {\nclass HeavyLightDecomposition {\n    public:\n        template <typename\
     \ Q>\n        using is_point_update_query = std::is_invocable<Q, int>;\n     \
     \   template <typename Q>\n        using is_range_update_query = std::is_invocable<Q,\
@@ -82,9 +96,9 @@ data:
     \ == u ? head[p] : u;\n            for (int v : g[u]) {\n                if (v\
     \ != p) hld(g, v, u, time);\n            }\n            leave[u] = time;\n   \
     \     }\n};\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_HLD\n#define SUISEN_HLD\n\n#include <library/type_traits/type_traits.hpp>\n\
-    #include <vector>\n\nnamespace suisen {\nclass HeavyLightDecomposition {\n   \
-    \ public:\n        template <typename Q>\n        using is_point_update_query\
+  code: "#ifndef SUISEN_HLD\n#define SUISEN_HLD\n\n#include \"library/type_traits/type_traits.hpp\"\
+    \n#include <vector>\n\nnamespace suisen {\nclass HeavyLightDecomposition {\n \
+    \   public:\n        template <typename Q>\n        using is_point_update_query\
     \ = std::is_invocable<Q, int>;\n        template <typename Q>\n        using is_range_update_query\
     \ = std::is_invocable<Q, int, int>;\n        template <typename Q, typename T>\n\
     \        using is_point_get_query  = std::is_same<std::invoke_result_t<Q, int>,\
@@ -154,7 +168,7 @@ data:
   isVerificationFile: false
   path: library/tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2021-07-18 15:28:09+09:00'
+  timestamp: '2021-07-18 16:55:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp

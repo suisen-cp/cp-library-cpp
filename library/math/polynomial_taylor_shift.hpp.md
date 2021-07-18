@@ -19,7 +19,17 @@ data:
     links: []
   bundledCode: "#line 1 \"library/math/polynomial_taylor_shift.hpp\"\n\n\n\n#line\
     \ 1 \"library/math/fps.hpp\"\n\n\n\n#include <cassert>\n#include <atcoder/convolution>\n\
-    \n#include <library/math/inv_mods.hpp>\n\nnamespace suisen {\ntemplate <typename\
+    \n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
+    \ suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
+    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
+    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
+    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
+    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
+    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
+    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
+    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
+    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
+    }\n\n\n#line 8 \"library/math/fps.hpp\"\n\nnamespace suisen {\ntemplate <typename\
     \ mint>\nclass FPS : public std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
     \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
     \ {}\n\n        inline FPS& operator=(const std::vector<mint> &&f) & noexcept\
@@ -129,26 +139,25 @@ data:
     \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
     \ -= div * g.unsafe_get(j);\n            }\n            return {q, pre_inplace(gd\
     \ - 1)};\n        }\n};\n} // namespace suisen\n\n\n#line 1 \"library/math/factorial.hpp\"\
-    \n\n\n\n#line 5 \"library/math/factorial.hpp\"\n#include <vector>\n\nnamespace\
-    \ suisen {\ntemplate <typename T, typename U = T>\nclass factorial {\n    public:\n\
-    \        factorial() {}\n        factorial(int n) { ensure(n); }\n        inline\
-    \ const T& fac(const int i) { ensure(i); return _fac[i]; }\n        inline const\
-    \ U& fac_inv(const int i) { ensure(i); return _fac_inv[i]; }\n        inline U\
-    \ binom(const int n, const int r) {\n            if (n < 0 or r < 0 or n < r)\
-    \ return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[r]\
-    \ * _fac_inv[n - r];\n        }\n        inline U perm(const int n, const int\
-    \ r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
-    \            return _fac[n] * _fac_inv[n - r];\n        }\n    private:\n    \
-    \    static std::vector<T> _fac;\n        static std::vector<U> _fac_inv;\n  \
-    \      static void ensure(const int n) {\n            int sz = _fac.size();\n\
-    \            if (n + 1 <= sz) return;\n            int new_size = std::max(n +\
-    \ 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
-    \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
-    \            _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n           \
-    \ for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n\
-    \        }\n};\ntemplate <typename T, typename U>\nstd::vector<T> factorial<T,\
-    \ U>::_fac {1};\ntemplate <typename T, typename U>\nstd::vector<U> factorial<T,\
-    \ U>::_fac_inv {1};\n} // namespace suisen\n\n\n#line 6 \"library/math/polynomial_taylor_shift.hpp\"\
+    \n\n\n\n#line 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\ntemplate\
+    \ <typename T, typename U = T>\nclass factorial {\n    public:\n        factorial()\
+    \ {}\n        factorial(int n) { ensure(n); }\n        inline const T& fac(const\
+    \ int i) { ensure(i); return _fac[i]; }\n        inline const U& fac_inv(const\
+    \ int i) { ensure(i); return _fac_inv[i]; }\n        inline U binom(const int\
+    \ n, const int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n    \
+    \        ensure(n);\n            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n\
+    \        }\n        inline U perm(const int n, const int r) {\n            if\
+    \ (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n            return\
+    \ _fac[n] * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T>\
+    \ _fac;\n        static std::vector<U> _fac_inv;\n        static void ensure(const\
+    \ int n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
+    \            int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
+    \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
+    \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
+    \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
+    \ _fac_inv[i] * i;\n        }\n};\ntemplate <typename T, typename U>\nstd::vector<T>\
+    \ factorial<T, U>::_fac {1};\ntemplate <typename T, typename U>\nstd::vector<U>\
+    \ factorial<T, U>::_fac_inv {1};\n} // namespace suisen\n\n\n#line 6 \"library/math/polynomial_taylor_shift.hpp\"\
     \n\nnamespace suisen {\n// return f(x + c) \ntemplate <typename mint>\nFPS<mint>\
     \ translate(const FPS<mint> &f, const mint c) {\n    int d = f.deg();\n    if\
     \ (d < 0) return FPS<mint> {0};\n    factorial<mint> fac(d);\n    FPS<mint> expc(d\
@@ -174,7 +183,7 @@ data:
   isVerificationFile: false
   path: library/math/polynomial_taylor_shift.hpp
   requiredBy: []
-  timestamp: '2021-07-18 16:47:54+09:00'
+  timestamp: '2021-07-18 16:55:52+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/polynomial_taylor_shift.hpp
