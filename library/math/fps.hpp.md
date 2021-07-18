@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy:
@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
   - icon: ':heavy_check_mark:'
@@ -42,15 +42,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/fps/pow_of_fps.test.cpp
     title: test/src/math/fps/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/interpolation/polynomial_interpolation.test.cpp
     title: test/src/math/interpolation/polynomial_interpolation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -311,7 +311,7 @@ data:
   - library/math/polynomial_taylor_shift.hpp
   - library/math/bostan_mori.hpp
   timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp

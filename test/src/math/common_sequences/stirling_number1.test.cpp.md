@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: library/math/factorial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
@@ -18,7 +18,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
+    links:
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
   bundledCode: "#line 1 \"test/src/math/common_sequences/stirling_number1.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
     \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/interpolation/polynomial_interpolation.test.cpp
     title: test/src/math/interpolation/polynomial_interpolation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/interpolation.hpp\"\n\n\n\n#include <vector>\n\
@@ -199,7 +199,7 @@ data:
   path: library/math/interpolation.hpp
   requiredBy: []
   timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/interpolation/polynomial_interpolation.test.cpp
 documentation_of: library/math/interpolation.hpp

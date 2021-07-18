@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
@@ -12,7 +12,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
+    links:
+    - https://judge.yosupo.jp/problem/exp_of_formal_power_series
   bundledCode: "#line 1 \"test/src/math/fps/exp_of_fps.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\n\n#include <iostream>\n\
     #include <vector>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\

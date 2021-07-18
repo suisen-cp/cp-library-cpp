@@ -1,21 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/polynomial_interpolation
+    links:
+    - https://judge.yosupo.jp/problem/polynomial_interpolation
   bundledCode: "#line 1 \"test/src/math/interpolation/polynomial_interpolation.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation\"\
     \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
@@ -198,7 +202,7 @@ data:
   path: test/src/math/interpolation/polynomial_interpolation.test.cpp
   requiredBy: []
   timestamp: '2021-07-18 20:42:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/interpolation/polynomial_interpolation.test.cpp
 layout: document
