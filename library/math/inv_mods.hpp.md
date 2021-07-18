@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
   - icon: ':warning:'
@@ -23,10 +23,22 @@ data:
   - icon: ':warning:'
     path: library/math/subset_sum.hpp
     title: library/math/subset_sum.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/generated/math/fps/exp_of_fps.test.cpp
+    title: test/generated/math/fps/exp_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/generated/math/fps/inv_of_fps.test.cpp
+    title: test/generated/math/fps/inv_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/generated/math/fps/log_of_fps.test.cpp
+    title: test/generated/math/fps/log_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/generated/math/fps/pow_of_fps.test.cpp
+    title: test/generated/math/fps/pow_of_fps.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\n\
@@ -63,8 +75,12 @@ data:
   - library/math/polynomial_taylor_shift.hpp
   - library/math/bostan_mori.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/generated/math/fps/inv_of_fps.test.cpp
+  - test/generated/math/fps/log_of_fps.test.cpp
+  - test/generated/math/fps/exp_of_fps.test.cpp
+  - test/generated/math/fps/pow_of_fps.test.cpp
 documentation_of: library/math/inv_mods.hpp
 layout: document
 redirect_from:

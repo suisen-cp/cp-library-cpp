@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy:
@@ -23,10 +23,22 @@ data:
   - icon: ':warning:'
     path: library/math/subset_sum.hpp
     title: library/math/subset_sum.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/generated/math/fps/exp_of_fps.test.cpp
+    title: test/generated/math/fps/exp_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/generated/math/fps/inv_of_fps.test.cpp
+    title: test/generated/math/fps/inv_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/generated/math/fps/log_of_fps.test.cpp
+    title: test/generated/math/fps/log_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/generated/math/fps/pow_of_fps.test.cpp
+    title: test/generated/math/fps/pow_of_fps.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/fps.hpp\"\n\n\n\n#include <cassert>\n#include\
@@ -263,8 +275,12 @@ data:
   - library/math/polynomial_taylor_shift.hpp
   - library/math/bostan_mori.hpp
   timestamp: '2021-07-18 16:47:54+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/generated/math/fps/inv_of_fps.test.cpp
+  - test/generated/math/fps/log_of_fps.test.cpp
+  - test/generated/math/fps/exp_of_fps.test.cpp
+  - test/generated/math/fps/pow_of_fps.test.cpp
 documentation_of: library/math/fps.hpp
 layout: document
 redirect_from:

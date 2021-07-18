@@ -55,7 +55,7 @@ data:
     - icon: ':warning:'
       path: library/math/factorial.hpp
       title: library/math/factorial.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/math/fps.hpp
       title: library/math/fps.hpp
     - icon: ':warning:'
@@ -67,7 +67,7 @@ data:
     - icon: ':warning:'
       path: library/math/interpolation.hpp
       title: library/math/interpolation.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/math/inv_mods.hpp
       title: library/math/inv_mods.hpp
     - icon: ':warning:'
@@ -147,6 +147,20 @@ data:
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
   verificationCategories:
+  - name: test/generated/math/fps
+    pages:
+    - icon: ':x:'
+      path: test/generated/math/fps/exp_of_fps.test.cpp
+      title: test/generated/math/fps/exp_of_fps.test.cpp
+    - icon: ':x:'
+      path: test/generated/math/fps/inv_of_fps.test.cpp
+      title: test/generated/math/fps/inv_of_fps.test.cpp
+    - icon: ':x:'
+      path: test/generated/math/fps/log_of_fps.test.cpp
+      title: test/generated/math/fps/log_of_fps.test.cpp
+    - icon: ':x:'
+      path: test/generated/math/fps/pow_of_fps.test.cpp
+      title: test/generated/math/fps/pow_of_fps.test.cpp
   - name: test/generated/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
