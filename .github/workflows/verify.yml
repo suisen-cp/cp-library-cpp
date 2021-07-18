@@ -20,7 +20,7 @@ jobs:
       run: git submodule add https://github.com/atcoder/ac-library.git ac-library
     
     - name: Add AtCoder Library as Submodule
-      run: git submodule deinit ac-library && git rm ac-library
+      run: git submodule deinit ac-library && git rm -f ac-library
 
     # ! required only if you want to verify Haskell code
     # - name: Install dependencies (Haskell)
