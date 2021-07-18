@@ -2,21 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: ac-library/atcoder/convolution.hpp
-    title: ac-library/atcoder/convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: ac-library/atcoder/internal_bit.hpp
-    title: ac-library/atcoder/internal_bit.hpp
-  - icon: ':heavy_check_mark:'
-    path: ac-library/atcoder/internal_math.hpp
-    title: ac-library/atcoder/internal_math.hpp
-  - icon: ':heavy_check_mark:'
-    path: ac-library/atcoder/internal_type_traits.hpp
-    title: ac-library/atcoder/internal_type_traits.hpp
-  - icon: ':heavy_check_mark:'
-    path: ac-library/atcoder/modint.hpp
-    title: ac-library/atcoder/modint.hpp
-  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
   - icon: ':heavy_check_mark:'
@@ -197,11 +182,6 @@ data:
     \ suisen::multi_point_eval(f, xs);\n    for (int i = 0; i < m; ++i) {\n      \
     \  std::cout << ys[i].val() << \" \\n\"[i == m - 1];\n    }\n    return 0;\n}"
   dependsOn:
-  - ac-library/atcoder/modint.hpp
-  - ac-library/atcoder/internal_math.hpp
-  - ac-library/atcoder/internal_type_traits.hpp
-  - ac-library/atcoder/convolution.hpp
-  - ac-library/atcoder/internal_bit.hpp
   - library/math/multi_point_eval.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
