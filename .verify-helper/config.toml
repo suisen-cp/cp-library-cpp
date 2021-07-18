@@ -1,2 +1,3 @@
 [[languages.cpp.environments]]
 CXX = "g++"
+CXXFLAGS = ["-I", "$HOME/ac-library", "-std=gnu++17", "-Wall", "-Wextra", "-O2"
