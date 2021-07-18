@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
   - icon: ':warning:'
@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/generated/math/fps/pow_of_fps.test.cpp
     title: test/generated/math/fps/pow_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
+    title: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -77,6 +80,7 @@ data:
   timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
   - test/generated/math/fps/inv_of_fps.test.cpp
   - test/generated/math/fps/log_of_fps.test.cpp
   - test/generated/math/fps/exp_of_fps.test.cpp
