@@ -16,8 +16,11 @@ jobs:
       run: pip3 install -U online-judge-verify-helper
     
     # ! additional
-    - name: Clone AtCoder Library
-      run: cd /home/runner/work/cp-library-cpp/cp-library-cpp/ && git clone https://github.com/atcoder/ac-library.git
+    - name: Add AtCoder Library as Submodule
+      run: git submodule add https://github.com/atcoder/ac-library.git ac-library
+    
+    - name: Remove Cache
+      run: git rm --cached ac-library
 
     # ! required only if you want to verify Haskell code
     # - name: Install dependencies (Haskell)
