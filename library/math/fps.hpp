@@ -104,14 +104,14 @@ class FPS : public std::vector<mint> {
 
         inline FPS operator+(FPS &&g) const { return FPS(*this) += std::move(g); }
         inline FPS operator-(FPS &&g) const { return FPS(*this) -= std::move(g); }
-        inline FPS operator*(FPS &&g) const { return atcoder::convolution(std::move(*this), std::move(g)); }
+        inline FPS operator*(FPS &&g) const { return FPS(*this) *= std::move(g); }
         inline FPS operator/(FPS &&g) const { return FPS(*this) /= std::move(g); }
         inline FPS operator%(FPS &&g) const { return FPS(*this) %= std::move(g); }
         inline FPS operator+(const FPS &g) const { return FPS(*this) += g; }
         inline FPS operator+(const mint x) const { return FPS(*this) += x; }
         inline FPS operator-(const FPS &g) const { return FPS(*this) -= g; }
         inline FPS operator-(const mint x) const { return FPS(*this) -= x; }
-        inline FPS operator*(const FPS &g) const { return atcoder::convolution(*this, g); }
+        inline FPS operator*(const FPS &g) const { return FPS(*this) *= g; }
         inline FPS operator*(const mint x) const { return FPS(*this) *= x; }
         inline FPS operator/(const FPS &g) const { return FPS(*this) /= g; }
         inline FPS operator%(const FPS &g) const { return FPS(*this) %= g; }
