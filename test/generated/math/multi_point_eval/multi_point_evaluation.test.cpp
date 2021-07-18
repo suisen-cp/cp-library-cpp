@@ -1,7 +1,6 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/pow_of_formal_power_series"
+#define PROBLEM "https://judge.yosupo.jp/problem/multipoint_evaluation"
 
 #include <iostream>
-#include <vector>
 
 
 
@@ -547,7 +546,7 @@ using is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;
 }  // namespace atcoder
 
 
-#include "library/math/fps.hpp"
+#include "library/math/multi_point_eval.hpp"
 
 using mint = atcoder::modint998244353;
 
@@ -560,9 +559,15 @@ int main() {
         std::cin >> coef;
         f[i] = coef;
     }
-    auto g = f.pow(m, n - 1);
-    for (int i = 0; i < n; ++i) {
-        std::cout << g[i].val() << " \n"[i == n - 1];
+    std::vector<mint> xs(m);
+    for (int i = 0; i < m; ++i) {
+        int x;
+        std::cin >> x;
+        xs[i] = x;
+    }
+    auto ys = suisen::multi_point_eval(f, xs);
+    for (int i = 0; i < m; ++i) {
+        std::cout << ys[i].val() << " \n"[i == m - 1];
     }
     return 0;
 }

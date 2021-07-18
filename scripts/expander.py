@@ -10,8 +10,6 @@ from typing import List
 
 logger = getLogger(__name__)  # type: Logger
 
-problem_def = re.compile('#define\s*PROBLEM\s.*')
-
 acl_include = re.compile('#include\s*["<](atcoder/.*)[">]\s*')
 lib_include = re.compile('#include\s*["<](library/.*)[">]\s*')
 
@@ -40,11 +38,10 @@ def dfs(f: str, is_acl: bool) -> List[str]:
         if acl_include_guard.match(line) or lib_include_guard.match(line):
             continue
         
-        if not acl_enabled:
-            acl_matcher = acl_include.match(line)
-            if acl_matcher:
-                result.extend(dfs(acl_matcher.group(1), True))
-                continue
+        acl_matcher = acl_include.match(line)
+        if acl_matcher:
+            result.extend(dfs(acl_matcher.group(1), True))
+            continue
 
         # lib_matcher = lib_include.match(line)
         # if lib_matcher:
@@ -77,15 +74,10 @@ if __name__ == "__main__":
 
     result = []
     for line in s.splitlines():
-        problem_matcher = problem_def.match(line)
-        if problem_matcher:
-            acl_enabled |= "atcoder" in line or "yosupo" in line
-
-        if not acl_enabled:
-            acl_matcher = acl_include.match(line)
-            if acl_matcher:
-                result.extend(dfs(acl_matcher.group(1), True))
-                continue
+        acl_matcher = acl_include.match(line)
+        if acl_matcher:
+            result.extend(dfs(acl_matcher.group(1), True))
+            continue
         # lib_matcher = lib_include.match(line)
         # if lib_matcher:
         #     result.extend(dfs(lib_matcher.group(1), False))
