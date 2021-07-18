@@ -15,12 +15,9 @@ jobs:
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
     
-    # ! additional
+    # ! dependents on other libraryies
     - name: Add AtCoder Library as Submodule
       run: git submodule add https://github.com/atcoder/ac-library.git ac-library
-    
-    - name: Update AtCoder Library
-      run: git submodule update
 
     # ! required only if you want to verify Haskell code
     # - name: Install dependencies (Haskell)
