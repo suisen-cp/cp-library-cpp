@@ -17,9 +17,6 @@ jobs:
     
     # ! dependents on other library
     - name: Add AtCoder Library as Submodule
-      run: git submodule deinit ac-library && git rm ac-library
-
-    - name: Add AtCoder Library as Submodule
       run: git submodule add https://github.com/atcoder/ac-library.git ac-library
     
     - name: Add AtCoder Library as Submodule
