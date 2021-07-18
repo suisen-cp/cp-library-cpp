@@ -6,18 +6,18 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-    title: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+    path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
+    title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
-    title: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+    path: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+    title: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/tree/HeavyLightDecomposition.hpp\"\n\n\n\n#include\
+  bundledCode: "#line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n#include\
     \ <library/type_traits/type_traits.hpp>\n#include <vector>\n\nnamespace suisen\
     \ {\nclass HeavyLightDecomposition {\n    public:\n        template <typename\
     \ Q>\n        using is_point_update_query = std::is_invocable<Q, int>;\n     \
@@ -155,17 +155,17 @@ data:
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
-  path: library/tree/HeavyLightDecomposition.hpp
+  path: library/tree/heavy_light_decomposition.hpp
   requiredBy:
-  - test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-  timestamp: '2021-07-17 02:33:12+09:00'
+  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
+  timestamp: '2021-07-18 15:28:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
-documentation_of: library/tree/HeavyLightDecomposition.hpp
+  - test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+documentation_of: library/tree/heavy_light_decomposition.hpp
 layout: document
 redirect_from:
-- /library/library/tree/HeavyLightDecomposition.hpp
-- /library/library/tree/HeavyLightDecomposition.hpp.html
-title: library/tree/HeavyLightDecomposition.hpp
+- /library/library/tree/heavy_light_decomposition.hpp
+- /library/library/tree/heavy_light_decomposition.hpp.html
+title: library/tree/heavy_light_decomposition.hpp
 ---

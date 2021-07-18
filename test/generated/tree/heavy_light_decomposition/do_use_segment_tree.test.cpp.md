@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/tree/HeavyLightDecomposition.hpp
-    title: library/tree/HeavyLightDecomposition.hpp
+    path: library/tree/heavy_light_decomposition.hpp
+    title: library/tree/heavy_light_decomposition.hpp
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
@@ -17,7 +17,7 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450
-  bundledCode: "#line 1 \"test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp\"\
+  bundledCode: "#line 1 \"test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp\"\
     \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450\"\
     \n\n#include <iostream>\n\n#include <algorithm>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n\
     #endif\n\nnamespace atcoder {\n\nnamespace internal {\n\n// @param n `0 <= n`\n\
@@ -27,7 +27,7 @@ data:
     \ x)) != 0`\nint bsf(unsigned int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n\
     \    _BitScanForward(&index, n);\n    return index;\n#else\n    return __builtin_ctz(n);\n\
     #endif\n}\n\n}  // namespace internal\n\n}  // namespace atcoder\n\n#include <cassert>\n\
-    #line 41 \"test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp\"\
+    #line 41 \"test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp\"\
     \n#include <vector>\nnamespace atcoder {\n\ntemplate <class S,\n          S (*op)(S,\
     \ S),\n          S (*e)(),\n          class F,\n          S (*mapping)(F, S),\n\
     \          F (*composition)(F, F),\n          F (*id)()>\nstruct lazy_segtree\
@@ -90,7 +90,7 @@ data:
     \ all_apply(int k, F f) {\n        d[k] = mapping(f, d[k]);\n        if (k < size)\
     \ lz[k] = composition(f, lz[k]);\n    }\n    void push(int k) {\n        all_apply(2\
     \ * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n        lz[k] = id();\n\
-    \    }\n};\n\n}  // namespace atcoder\n\n#include <library/tree/HeavyLightDecomposition.hpp>\n\
+    \    }\n};\n\n}  // namespace atcoder\n\n#include <library/tree/heavy_light_decomposition.hpp>\n\
     \nstruct S {\n    int len;\n    long long pref, max, suff, sum;\n    S(int len,\
     \ long long pref, long long max, long long suff, long long sum) : len(len), pref(pref),\
     \ max(max), suff(suff), sum(sum) {}\n};\n\nconstexpr long long INF = std::numeric_limits<int>::max();\n\
@@ -192,7 +192,7 @@ data:
     \ * k + 1]); }\n    void all_apply(int k, F f) {\n        d[k] = mapping(f, d[k]);\n\
     \        if (k < size) lz[k] = composition(f, lz[k]);\n    }\n    void push(int\
     \ k) {\n        all_apply(2 * k, lz[k]);\n        all_apply(2 * k + 1, lz[k]);\n\
-    \        lz[k] = id();\n    }\n};\n\n}  // namespace atcoder\n\n#include <library/tree/HeavyLightDecomposition.hpp>\n\
+    \        lz[k] = id();\n    }\n};\n\n}  // namespace atcoder\n\n#include <library/tree/heavy_light_decomposition.hpp>\n\
     \nstruct S {\n    int len;\n    long long pref, max, suff, sum;\n    S(int len,\
     \ long long pref, long long max, long long suff, long long sum) : len(len), pref(pref),\
     \ max(max), suff(suff), sum(sum) {}\n};\n\nconstexpr long long INF = std::numeric_limits<int>::max();\n\
@@ -224,18 +224,18 @@ data:
     \ r); },\n                [&](int l, int r) { return seg2.prod(l, r); }\n    \
     \        ).max << '\\n';\n        }\n    }\n    return 0;\n}\n"
   dependsOn:
-  - library/tree/HeavyLightDecomposition.hpp
+  - library/tree/heavy_light_decomposition.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
-  path: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+  path: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-07-17 02:41:06+09:00'
+  timestamp: '2021-07-18 15:28:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+documentation_of: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
-- /verify/test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp.html
-title: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+- /verify/test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+- /verify/test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp.html
+title: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
 ---

@@ -6,8 +6,8 @@ data:
     title: library/math/inv_mods.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: library/math/BostanMori.hpp
-    title: library/math/BostanMori.hpp
+    path: library/math/bostan_mori.hpp
+    title: library/math/bostan_mori.hpp
   - icon: ':warning:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
@@ -261,7 +261,7 @@ data:
   - library/math/subset_sum.hpp
   - library/math/interpolation.hpp
   - library/math/polynomial_taylor_shift.hpp
-  - library/math/BostanMori.hpp
+  - library/math/bostan_mori.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

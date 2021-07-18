@@ -47,11 +47,8 @@ data:
   - name: library/math
     pages:
     - icon: ':warning:'
-      path: library/math/BostanMori.hpp
-      title: library/math/BostanMori.hpp
-    - icon: ':warning:'
-      path: library/math/GaussJordan.hpp
-      title: library/math/GaussJordan.hpp
+      path: library/math/bostan_mori.hpp
+      title: library/math/bostan_mori.hpp
     - icon: ':warning:'
       path: library/math/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
@@ -64,6 +61,9 @@ data:
     - icon: ':warning:'
       path: library/math/fzt_fmt.hpp
       title: library/math/fzt_fmt.hpp
+    - icon: ':warning:'
+      path: library/math/gauss_jordan.hpp
+      title: library/math/gauss_jordan.hpp
     - icon: ':warning:'
       path: library/math/interpolation.hpp
       title: library/math/interpolation.hpp
@@ -107,11 +107,11 @@ data:
   - name: library/tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: library/tree/EulerTour.hpp
-      title: library/tree/EulerTour.hpp
+      path: library/tree/euler_tour.hpp
+      title: library/tree/euler_tour.hpp
     - icon: ':heavy_check_mark:'
-      path: library/tree/HeavyLightDecomposition.hpp
-      title: library/tree/HeavyLightDecomposition.hpp
+      path: library/tree/heavy_light_decomposition.hpp
+      title: library/tree/heavy_light_decomposition.hpp
   - name: library/type_traits
     pages:
     - icon: ':heavy_check_mark:'
@@ -154,26 +154,26 @@ data:
     - icon: ':warning:'
       path: scripts/generate_test_files.py
       title: scripts/generate_test_files.py
-  - name: test/src/tree/EulerTour
+  - name: test/src/tree/euler_tour
     pages:
     - icon: ':warning:'
-      path: test/src/tree/EulerTour/lowest_common_ancestor.cpp
-      title: test/src/tree/EulerTour/lowest_common_ancestor.cpp
-  - name: test/src/tree/HeavyLightDecomposition
+      path: test/src/tree/euler_tour/lowest_common_ancestor.cpp
+      title: test/src/tree/euler_tour/lowest_common_ancestor.cpp
+  - name: test/src/tree/heavy_light_decomposition
     pages:
     - icon: ':warning:'
-      path: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-      title: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+      path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
+      title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
   verificationCategories:
-  - name: test/generated/tree/EulerTour
+  - name: test/generated/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
-      title: test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
-  - name: test/generated/tree/HeavyLightDecomposition
+      path: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
+      title: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
+  - name: test/generated/tree/heavy_light_decomposition
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
-      title: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+      path: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+      title: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
 layout: toppage
 ---

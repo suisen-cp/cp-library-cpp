@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: test/src/tree/EulerTour/lowest_common_ancestor.cpp
-    title: test/src/tree/EulerTour/lowest_common_ancestor.cpp
+    path: test/src/tree/euler_tour/lowest_common_ancestor.cpp
+    title: test/src/tree/euler_tour/lowest_common_ancestor.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
-    title: test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
+    path: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
+    title: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/tree/EulerTour.hpp\"\n\n\n\n#include <limits>\n\
+  bundledCode: "#line 1 \"library/tree/euler_tour.hpp\"\n\n\n\n#include <limits>\n\
     #include <vector>\n\nnamespace suisen {\n/**\n * ImplicitGraph g : (int u, auto\
     \ f) -> { for (int v : adjacent(u)) f(v); }\n */\nclass EulerTour {\n    public:\n\
     \        template <typename ImplicitGraph>\n        EulerTour(const ImplicitGraph\
@@ -84,17 +84,17 @@ data:
     \       return k;\n        }\n};\n} // namespace suisen\n\n#endif // SUISEN_EULER_TOUR"
   dependsOn: []
   isVerificationFile: false
-  path: library/tree/EulerTour.hpp
+  path: library/tree/euler_tour.hpp
   requiredBy:
-  - test/src/tree/EulerTour/lowest_common_ancestor.cpp
-  timestamp: '2021-07-17 02:33:12+09:00'
+  - test/src/tree/euler_tour/lowest_common_ancestor.cpp
+  timestamp: '2021-07-18 15:28:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/generated/tree/EulerTour/lowest_common_ancestor.test.cpp
-documentation_of: library/tree/EulerTour.hpp
+  - test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
+documentation_of: library/tree/euler_tour.hpp
 layout: document
 redirect_from:
-- /library/library/tree/EulerTour.hpp
-- /library/library/tree/EulerTour.hpp.html
-title: library/tree/EulerTour.hpp
+- /library/library/tree/euler_tour.hpp
+- /library/library/tree/euler_tour.hpp.html
+title: library/tree/euler_tour.hpp
 ---

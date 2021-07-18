@@ -14,7 +14,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/math/BostanMori.hpp\"\n\n\n\n#include <library/math/fps.hpp>\n\
+  bundledCode: "#line 1 \"library/math/bostan_mori.hpp\"\n\n\n\n#include <library/math/fps.hpp>\n\
     \nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(const FPS<mint>\
     \ &P, const FPS<mint> &Q, const long long n) {\n    if (n == 0) return P[0];\n\
     \    FPS mQ(Q);\n    for (int i = 0; i <= Q.deg(); i += 2) mQ[i] = -mQ[i];\n \
@@ -34,15 +34,15 @@ data:
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
   isVerificationFile: false
-  path: library/math/BostanMori.hpp
+  path: library/math/bostan_mori.hpp
   requiredBy: []
-  timestamp: '2021-07-17 02:33:12+09:00'
+  timestamp: '2021-07-18 15:28:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: library/math/BostanMori.hpp
+documentation_of: library/math/bostan_mori.hpp
 layout: document
 redirect_from:
-- /library/library/math/BostanMori.hpp
-- /library/library/math/BostanMori.hpp.html
-title: library/math/BostanMori.hpp
+- /library/library/math/bostan_mori.hpp
+- /library/library/math/bostan_mori.hpp.html
+title: library/math/bostan_mori.hpp
 ---

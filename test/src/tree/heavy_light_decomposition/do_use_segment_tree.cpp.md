@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/tree/HeavyLightDecomposition.hpp
-    title: library/tree/HeavyLightDecomposition.hpp
+    path: library/tree/heavy_light_decomposition.hpp
+    title: library/tree/heavy_light_decomposition.hpp
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
@@ -15,9 +15,9 @@ data:
   attributes:
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450
-  bundledCode: "#line 1 \"test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp\"\
+  bundledCode: "#line 1 \"test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp\"\
     \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450\"\
-    \n\n#include <iostream>\n#include <atcoder/lazysegtree>\n#include <library/tree/HeavyLightDecomposition.hpp>\n\
+    \n\n#include <iostream>\n#include <atcoder/lazysegtree>\n#include <library/tree/heavy_light_decomposition.hpp>\n\
     \nstruct S {\n    int len;\n    long long pref, max, suff, sum;\n    S(int len,\
     \ long long pref, long long max, long long suff, long long sum) : len(len), pref(pref),\
     \ max(max), suff(suff), sum(sum) {}\n};\n\nconstexpr long long INF = std::numeric_limits<int>::max();\n\
@@ -49,7 +49,7 @@ data:
     \ r); },\n                [&](int l, int r) { return seg2.prod(l, r); }\n    \
     \        ).max << '\\n';\n        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450\"\
-    \n\n#include <iostream>\n#include <atcoder/lazysegtree>\n#include <library/tree/HeavyLightDecomposition.hpp>\n\
+    \n\n#include <iostream>\n#include <atcoder/lazysegtree>\n#include <library/tree/heavy_light_decomposition.hpp>\n\
     \nstruct S {\n    int len;\n    long long pref, max, suff, sum;\n    S(int len,\
     \ long long pref, long long max, long long suff, long long sum) : len(len), pref(pref),\
     \ max(max), suff(suff), sum(sum) {}\n};\n\nconstexpr long long INF = std::numeric_limits<int>::max();\n\
@@ -81,18 +81,18 @@ data:
     \ r); },\n                [&](int l, int r) { return seg2.prod(l, r); }\n    \
     \        ).max << '\\n';\n        }\n    }\n    return 0;\n}"
   dependsOn:
-  - library/tree/HeavyLightDecomposition.hpp
+  - library/tree/heavy_light_decomposition.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
-  path: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+  path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
   requiredBy: []
-  timestamp: '2021-07-17 02:33:12+09:00'
+  timestamp: '2021-07-18 15:28:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+documentation_of: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
 layout: document
 redirect_from:
-- /library/test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-- /library/test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp.html
-title: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+- /library/test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
+- /library/test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp.html
+title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
 ---

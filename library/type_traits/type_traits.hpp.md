@@ -12,15 +12,15 @@ data:
     path: library/template.hpp
     title: library/template.hpp
   - icon: ':heavy_check_mark:'
-    path: library/tree/HeavyLightDecomposition.hpp
-    title: library/tree/HeavyLightDecomposition.hpp
+    path: library/tree/heavy_light_decomposition.hpp
+    title: library/tree/heavy_light_decomposition.hpp
   - icon: ':warning:'
-    path: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
-    title: test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+    path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
+    title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
-    title: test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+    path: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+    title: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -147,15 +147,15 @@ data:
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
   requiredBy:
-  - test/src/tree/HeavyLightDecomposition/do_use_segment_tree.cpp
+  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.cpp
   - library/template.hpp
   - library/template.cpp
-  - library/tree/HeavyLightDecomposition.hpp
+  - library/tree/heavy_light_decomposition.hpp
   - library/algorithm/sliding_window_minimum.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/generated/tree/HeavyLightDecomposition/do_use_segment_tree.test.cpp
+  - test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 redirect_from:

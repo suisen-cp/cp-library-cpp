@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/math/GaussJordan.hpp\"\n\n\n\n#include <cmath>\n\
+  bundledCode: "#line 1 \"library/math/gauss_jordan.hpp\"\n\n\n\n#include <cmath>\n\
     #include <optional>\n#include <vector>\n\nnamespace suisen {\nnamespace internal\
     \ {\n    namespace gauss_jordan {\n        template <typename T>\n        std::pair<unsigned\
     \ int, unsigned int> pivoting(const std::vector<std::vector<T>> &Ab, const T &zero,\
@@ -186,15 +186,15 @@ data:
     } // namespace suisen\n\n#endif // SUISEN_GAUSS_JORDAN"
   dependsOn: []
   isVerificationFile: false
-  path: library/math/GaussJordan.hpp
+  path: library/math/gauss_jordan.hpp
   requiredBy: []
-  timestamp: '2021-07-17 02:33:12+09:00'
+  timestamp: '2021-07-18 15:28:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: library/math/GaussJordan.hpp
+documentation_of: library/math/gauss_jordan.hpp
 layout: document
 redirect_from:
-- /library/library/math/GaussJordan.hpp
-- /library/library/math/GaussJordan.hpp.html
-title: library/math/GaussJordan.hpp
+- /library/library/math/gauss_jordan.hpp
+- /library/library/math/gauss_jordan.hpp.html
+title: library/math/gauss_jordan.hpp
 ---
