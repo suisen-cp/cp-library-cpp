@@ -1,1 +1,1 @@
-exclude: [scripts/, test/src/]
+exclude: [scripts/, test/src/, ac-library/]
