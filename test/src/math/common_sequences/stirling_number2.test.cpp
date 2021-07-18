@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind"
+#define PROBLEM "https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind"
 
 #include <iostream>
 #include <atcoder/modint>
@@ -13,9 +13,9 @@ int main() {
 
     int n;
     std::cin >> n;
-    auto ans = suisen::stirling_number1<mint>(n);
+    auto ans = suisen::stirling_number2<mint>(n);
     for (int i = 0; i <= n; ++i) {
-        std::cout << ((n - i) & 1 ? -ans[i] : ans[i]).val() << " \n"[i == n];
+        std::cout << ans[i].val() << " \n"[i == n];
     }
     return 0;
 }
