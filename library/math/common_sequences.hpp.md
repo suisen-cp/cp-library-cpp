@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: library/math/factorial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/stirling_number1.test.cpp
     title: test/src/math/common_sequences/stirling_number1.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/common_sequences/stirling_number2.test.cpp
+    title: test/src/math/common_sequences/stirling_number2.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/common_sequences.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
@@ -263,8 +266,9 @@ data:
   path: library/math/common_sequences.hpp
   requiredBy: []
   timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
 documentation_of: library/math/common_sequences.hpp
 layout: document

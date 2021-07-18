@@ -1,28 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: library/math/factorial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
+    links:
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
   bundledCode: "#line 1 \"test/src/math/common_sequences/stirling_number1.test.cpp\"\
-    \n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
     \n#line 1 \"library/math/common_sequences.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/math/fps.hpp\"\
     \n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
@@ -213,13 +216,14 @@ data:
     \        else ++inv[k];\n    }\n    for (int i = 1, k = 2; k <= n; k += 3 * i\
     \ + 2, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
     \   inv.inv_inplace(n), inv.resize(n + 1);\n    return inv;\n}\n} // namespace\
-    \ suisen\n\n\n#line 6 \"test/src/math/common_sequences/stirling_number1.test.cpp\"\
+    \ suisen\n\n\n#line 8 \"test/src/math/common_sequences/stirling_number1.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
     \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
     \ n;\n    std::cin >> n;\n    auto ans = suisen::stirling_number1<mint>(n);\n\
     \    for (int i = 0; i <= n; ++i) {\n        std::cout << ((n - i) & 1 ? -ans[i]\
     \ : ans[i]).val() << \" \\n\"[i == n];\n    }\n    return 0;\n}\n"
-  code: "#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
     \n#include \"library/math/common_sequences.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
     \nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a, const\
     \ auto &b) { return atcoder::convolution(a, b); });\n\n    int n;\n    std::cin\
@@ -234,8 +238,8 @@ data:
   isVerificationFile: true
   path: test/src/math/common_sequences/stirling_number1.test.cpp
   requiredBy: []
-  timestamp: '2021-07-18 19:52:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-07-18 20:01:05+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/common_sequences/stirling_number1.test.cpp
 layout: document
