@@ -17,7 +17,7 @@ jobs:
     
     # ! additional
     - name: Clone AtCoder Library
-      run: cd /home/runner/work/ && git clone https://github.com/atcoder/ac-library.git && cd ac-library && ls -a
+      run: cd /home/runner/work/cp-library-cpp && git clone https://github.com/atcoder/ac-library.git
 
     # ! required only if you want to verify Haskell code
     # - name: Install dependencies (Haskell)
