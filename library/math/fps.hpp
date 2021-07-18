@@ -1,18 +1,27 @@
 #ifndef SUISEN_FPS
 #define SUISEN_FPS
 
+#include <algorithm>
 #include <cassert>
-#include <atcoder/convolution>
+#include <iostream>
 
 #include "library/math/inv_mods.hpp"
 
 namespace suisen {
+
+template <typename mint>
+using convolution_t = std::vector<mint> (*)(const std::vector<mint> &, const std::vector<mint> &);
+
 template <typename mint>
 class FPS : public std::vector<mint> {
     public:
         using std::vector<mint>::vector;
 
         FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l) {}
+
+        static void set_multiplication(convolution_t<mint> multiplication) {
+            FPS<mint>::mult = multiplication;
+        }
 
         inline FPS& operator=(const std::vector<mint> &&f) & noexcept {
             std::vector<mint>::operator=(std::move(f));
@@ -58,8 +67,8 @@ class FPS : public std::vector<mint> {
             for (int i = 0; i <= g.deg(); ++i) unsafe_get(i) -= g.unsafe_get(i);
             return *this;
         }
-        inline FPS& operator*=(const FPS  &g) { return *this = atcoder::convolution(*this, g); }
-        inline FPS& operator*=(      FPS &&g) { return *this = atcoder::convolution(std::move(*this), std::move(g)); }
+        inline FPS& operator*=(const FPS  &g) { return *this = FPS<mint>::mult(*this, g); }
+        inline FPS& operator*=(      FPS &&g) { return *this = FPS<mint>::mult(*this, g); }
         inline FPS& operator*=(const mint x) {
             for (auto &e : *this) e *= x;
             return *this;
@@ -169,6 +178,7 @@ class FPS : public std::vector<mint> {
 
     private:
         static inv_mods<mint> invs;
+        static convolution_t<mint> mult;
         inline void ensure_deg(int d) { if (deg() < d) this->resize(d + 1, 0); }
         inline const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i); }
         inline       mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }
@@ -185,6 +195,14 @@ class FPS : public std::vector<mint> {
             return {q, pre_inplace(gd - 1)};
         }
 };
+
+template <typename mint>
+convolution_t<mint> FPS<mint>::mult = [](const auto &, const auto &) {
+    std::cerr << "convolution function is not available." << std::endl;
+    assert(false);
+    return std::vector<mint>{};
+};
+
 } // namespace suisen
 
 #endif // SUISEN_FPS

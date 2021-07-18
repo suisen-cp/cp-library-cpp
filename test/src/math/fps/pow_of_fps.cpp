@@ -4,12 +4,15 @@
 #include <vector>
 
 #include <atcoder/modint>
+#include <atcoder/convolution>
 
 #include "library/math/fps.hpp"
 
 using mint = atcoder::modint998244353;
 
 int main() {
+    suisen::FPS<mint>::set_multiplication([](const auto &a, const auto &b) { return atcoder::convolution(a, b); });
+
     int n, m;
     std::cin >> n >> m;
     suisen::FPS<mint> f(n);
