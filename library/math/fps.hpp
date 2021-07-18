@@ -4,7 +4,7 @@
 #include <cassert>
 #include <atcoder/convolution>
 
-#include <library/math/inv_mods.hpp>
+#include "library/math/inv_mods.hpp"
 
 namespace suisen {
 template <typename mint>

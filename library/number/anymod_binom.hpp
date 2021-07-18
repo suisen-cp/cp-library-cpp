@@ -1,7 +1,7 @@
 #ifndef SUISEN_ANY_MOD_BINOM
 #define SUISEN_ANY_MOD_BINOM
 
-#include <library/number/linear_sieve.hpp>
+#include "library/number/linear_sieve.hpp"
 
 namespace suisen {
 /**

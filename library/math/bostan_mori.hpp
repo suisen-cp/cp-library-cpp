@@ -1,7 +1,7 @@
 #ifndef SUISEN_BOSTAN_MORI
 #define SUISEN_BOSTAN_MORI
 
-#include <library/math/fps.hpp>
+#include "library/math/fps.hpp"
 
 namespace suisen {
 template <typename mint>
