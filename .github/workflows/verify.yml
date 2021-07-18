@@ -18,9 +18,6 @@ jobs:
     # ! dependents on other library
     # - name: Add AtCoder Library as Submodule
     #   run: git submodule add https://github.com/atcoder/ac-library.git ac-library
-    
-    - name: Update ACL
-      run: git submodule update ac-library
 
     # ! required only if you want to verify Haskell code
     # - name: Install dependencies (Haskell)
