@@ -147,34 +147,34 @@ data:
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
   verificationCategories:
-  - name: test/generated/math/fps
+  - name: test/src/math/fps
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/generated/math/fps/exp_of_fps.test.cpp
-      title: test/generated/math/fps/exp_of_fps.test.cpp
+      path: test/src/math/fps/exp_of_fps.test.cpp
+      title: test/src/math/fps/exp_of_fps.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/generated/math/fps/inv_of_fps.test.cpp
-      title: test/generated/math/fps/inv_of_fps.test.cpp
+      path: test/src/math/fps/inv_of_fps.test.cpp
+      title: test/src/math/fps/inv_of_fps.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/generated/math/fps/log_of_fps.test.cpp
-      title: test/generated/math/fps/log_of_fps.test.cpp
+      path: test/src/math/fps/log_of_fps.test.cpp
+      title: test/src/math/fps/log_of_fps.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/generated/math/fps/pow_of_fps.test.cpp
-      title: test/generated/math/fps/pow_of_fps.test.cpp
-  - name: test/generated/math/multi_point_eval
+      path: test/src/math/fps/pow_of_fps.test.cpp
+      title: test/src/math/fps/pow_of_fps.test.cpp
+  - name: test/src/math/multi_point_eval
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
-      title: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - name: test/generated/tree/euler_tour
+      path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+      title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+  - name: test/src/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
-      title: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
-  - name: test/generated/tree/heavy_light_decomposition
+      path: test/src/tree/euler_tour/lowest_common_ancestor.test.cpp
+      title: test/src/tree/euler_tour/lowest_common_ancestor.test.cpp
+  - name: test/src/tree/heavy_light_decomposition
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-      title: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+      path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+      title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
 layout: toppage
 ---

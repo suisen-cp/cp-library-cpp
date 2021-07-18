@@ -7,20 +7,26 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-    title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+    path: library/math/multi_point_eval.hpp
+    title: library/math/multi_point_eval.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
-    \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation
+    links:
+    - https://judge.yosupo.jp/problem/multipoint_evaluation
+  bundledCode: "#line 1 \"test/src/math/multi_point_eval/multi_point_evaluation.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\n\n\
+    #include <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/math/fps.hpp\"\
+    \n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
+    \ suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
     \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
     \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
     \        static void ensure(int n) {\n            int sz = invs.size();\n    \
@@ -154,32 +160,41 @@ data:
     \ i> 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n    seg[1] = f % seg[1];\n\
     \    for (int i = 2; i < k + m; ++i) seg[i] = seg[i / 2] % seg[i];\n    std::vector<mint>\
     \ ys(m);\n    for (int i = 0; i < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n\
-    }\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_MULTI_POINT_EVALUATION\n#define SUISEN_MULTI_POINT_EVALUATION\n\
-    \n#include \"library/math/fps.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ mint>\nstd::vector<mint> multi_point_eval(const FPS<mint> &f, const std::vector<mint>\
-    \ &xs) {\n    int m = xs.size();\n    int k = 1;\n    while (k < m) k <<= 1;\n\
-    \    std::vector<FPS<mint>> seg(2 * k);\n    for (int i = 0; i < m; ++i) seg[k\
-    \ + i] = FPS<mint> {-xs[i], 1};\n    for (int i = m; i < k; ++i) seg[k + i] =\
-    \ FPS<mint> {1};\n    for (int i = k - 1; i> 0; --i) seg[i] = seg[i * 2] * seg[i\
-    \ * 2 + 1];\n    seg[1] = f % seg[1];\n    for (int i = 2; i < k + m; ++i) seg[i]\
-    \ = seg[i / 2] % seg[i];\n    std::vector<mint> ys(m);\n    for (int i = 0; i\
-    \ < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n}\n} // namespace suisen\n\
-    \n#endif // SUISEN_MULTI_POINT_EVALUATION"
+    }\n} // namespace suisen\n\n\n#line 9 \"test/src/math/multi_point_eval/multi_point_evaluation.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n    \n   \
+    \ int n, m;\n    std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int\
+    \ i = 0; i < n; ++i) {\n        int coef;\n        std::cin >> coef;\n       \
+    \ f[i] = coef;\n    }\n    std::vector<mint> xs(m);\n    for (int i = 0; i < m;\
+    \ ++i) {\n        int x;\n        std::cin >> x;\n        xs[i] = x;\n    }\n\
+    \    auto ys = suisen::multi_point_eval(f, xs);\n    for (int i = 0; i < m; ++i)\
+    \ {\n        std::cout << ys[i].val() << \" \\n\"[i == m - 1];\n    }\n    return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\
+    \n\n#include <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#include \"library/math/multi_point_eval.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    \nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a, const\
+    \ auto &b) { return atcoder::convolution(a, b); });\n    \n    int n, m;\n   \
+    \ std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int i = 0; i < n;\
+    \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
+    \    }\n    std::vector<mint> xs(m);\n    for (int i = 0; i < m; ++i) {\n    \
+    \    int x;\n        std::cin >> x;\n        xs[i] = x;\n    }\n    auto ys =\
+    \ suisen::multi_point_eval(f, xs);\n    for (int i = 0; i < m; ++i) {\n      \
+    \  std::cout << ys[i].val() << \" \\n\"[i == m - 1];\n    }\n    return 0;\n}"
   dependsOn:
+  - library/math/multi_point_eval.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: false
-  path: library/math/multi_point_eval.hpp
+  isVerificationFile: true
+  path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-documentation_of: library/math/multi_point_eval.hpp
+  timestamp: '2021-07-18 19:28:54+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
 layout: document
 redirect_from:
-- /library/library/math/multi_point_eval.hpp
-- /library/library/math/multi_point_eval.hpp.html
-title: library/math/multi_point_eval.hpp
+- /verify/test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+- /verify/test/src/math/multi_point_eval/multi_point_evaluation.test.cpp.html
+title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
 ---

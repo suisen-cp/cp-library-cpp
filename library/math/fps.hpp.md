@@ -25,20 +25,20 @@ data:
     title: library/math/subset_sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/generated/math/fps/exp_of_fps.test.cpp
-    title: test/generated/math/fps/exp_of_fps.test.cpp
+    path: test/src/math/fps/exp_of_fps.test.cpp
+    title: test/src/math/fps/exp_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/generated/math/fps/inv_of_fps.test.cpp
-    title: test/generated/math/fps/inv_of_fps.test.cpp
+    path: test/src/math/fps/inv_of_fps.test.cpp
+    title: test/src/math/fps/inv_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/generated/math/fps/log_of_fps.test.cpp
-    title: test/generated/math/fps/log_of_fps.test.cpp
+    path: test/src/math/fps/log_of_fps.test.cpp
+    title: test/src/math/fps/log_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/generated/math/fps/pow_of_fps.test.cpp
-    title: test/generated/math/fps/pow_of_fps.test.cpp
+    path: test/src/math/fps/pow_of_fps.test.cpp
+    title: test/src/math/fps/pow_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
-    title: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
+    path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+    title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -304,11 +304,11 @@ data:
   timestamp: '2021-07-18 18:22:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/generated/math/fps/inv_of_fps.test.cpp
-  - test/generated/math/fps/log_of_fps.test.cpp
-  - test/generated/math/fps/exp_of_fps.test.cpp
-  - test/generated/math/fps/pow_of_fps.test.cpp
+  - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/math/fps/inv_of_fps.test.cpp
+  - test/src/math/fps/log_of_fps.test.cpp
+  - test/src/math/fps/exp_of_fps.test.cpp
+  - test/src/math/fps/pow_of_fps.test.cpp
 documentation_of: library/math/fps.hpp
 layout: document
 redirect_from:

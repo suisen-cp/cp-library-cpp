@@ -8,38 +8,41 @@ data:
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-    title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
-    \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
-    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
-    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
-    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
-    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
-    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
-    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
-    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
-    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
-    }\n\n\n#line 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ mint>\nusing convolution_t = std::vector<mint> (*)(const std::vector<mint> &,\
-    \ const std::vector<mint> &);\n\ntemplate <typename mint>\nclass FPS : public\
-    \ std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
-    \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
-    \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
-    \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        inline\
-    \ FPS& operator=(const std::vector<mint> &&f) & noexcept {\n            std::vector<mint>::operator=(std::move(f));\n\
-    \            return *this;\n        }\n        inline FPS& operator=(const std::vector<mint>\
-    \  &f) & {\n            std::vector<mint>::operator=(f);\n            return *this;\n\
-    \        }\n\n        inline const mint  operator[](int n) const noexcept { return\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
+    links:
+    - https://judge.yosupo.jp/problem/pow_of_formal_power_series
+  bundledCode: "#line 1 \"test/src/math/fps/pow_of_fps.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\n\n#include <iostream>\n\
+    #include <vector>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#line 1 \"library/math/fps.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
+    #line 7 \"library/math/fps.hpp\"\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\
+    \n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\ntemplate <typename\
+    \ mint>\nclass inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
+    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
+    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
+    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = {0,\
+    \ 1}, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
+    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
+    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
+    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n};\n\
+    template <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line\
+    \ 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename mint>\n\
+    using convolution_t = std::vector<mint> (*)(const std::vector<mint> &, const std::vector<mint>\
+    \ &);\n\ntemplate <typename mint>\nclass FPS : public std::vector<mint> {\n  \
+    \  public:\n        using std::vector<mint>::vector;\n\n        FPS(const std::initializer_list<mint>\
+    \ l) : std::vector<mint>::vector(l) {}\n\n        static void set_multiplication(convolution_t<mint>\
+    \ multiplication) {\n            FPS<mint>::mult = multiplication;\n        }\n\
+    \n        inline FPS& operator=(const std::vector<mint> &&f) & noexcept {\n  \
+    \          std::vector<mint>::operator=(std::move(f));\n            return *this;\n\
+    \        }\n        inline FPS& operator=(const std::vector<mint>  &f) & {\n \
+    \           std::vector<mint>::operator=(f);\n            return *this;\n    \
+    \    }\n\n        inline const mint  operator[](int n) const noexcept { return\
     \ n <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int\
     \ n)       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline\
     \ int size() const noexcept { return std::vector<mint>::size(); }\n        inline\
@@ -145,41 +148,36 @@ data:
     \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
     \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
     \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n\n#line 5 \"library/math/multi_point_eval.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nstd::vector<mint> multi_point_eval(const\
-    \ FPS<mint> &f, const std::vector<mint> &xs) {\n    int m = xs.size();\n    int\
-    \ k = 1;\n    while (k < m) k <<= 1;\n    std::vector<FPS<mint>> seg(2 * k);\n\
-    \    for (int i = 0; i < m; ++i) seg[k + i] = FPS<mint> {-xs[i], 1};\n    for\
-    \ (int i = m; i < k; ++i) seg[k + i] = FPS<mint> {1};\n    for (int i = k - 1;\
-    \ i> 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n    seg[1] = f % seg[1];\n\
-    \    for (int i = 2; i < k + m; ++i) seg[i] = seg[i / 2] % seg[i];\n    std::vector<mint>\
-    \ ys(m);\n    for (int i = 0; i < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n\
-    }\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_MULTI_POINT_EVALUATION\n#define SUISEN_MULTI_POINT_EVALUATION\n\
-    \n#include \"library/math/fps.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ mint>\nstd::vector<mint> multi_point_eval(const FPS<mint> &f, const std::vector<mint>\
-    \ &xs) {\n    int m = xs.size();\n    int k = 1;\n    while (k < m) k <<= 1;\n\
-    \    std::vector<FPS<mint>> seg(2 * k);\n    for (int i = 0; i < m; ++i) seg[k\
-    \ + i] = FPS<mint> {-xs[i], 1};\n    for (int i = m; i < k; ++i) seg[k + i] =\
-    \ FPS<mint> {1};\n    for (int i = k - 1; i> 0; --i) seg[i] = seg[i * 2] * seg[i\
-    \ * 2 + 1];\n    seg[1] = f % seg[1];\n    for (int i = 2; i < k + m; ++i) seg[i]\
-    \ = seg[i / 2] % seg[i];\n    std::vector<mint> ys(m);\n    for (int i = 0; i\
-    \ < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n}\n} // namespace suisen\n\
-    \n#endif // SUISEN_MULTI_POINT_EVALUATION"
+    };\n\n} // namespace suisen\n\n\n#line 10 \"test/src/math/fps/pow_of_fps.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
+    \ n, m;\n    std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int i\
+    \ = 0; i < n; ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i]\
+    \ = coef;\n    }\n    auto g = f.pow(m, n - 1);\n    for (int i = 0; i < n; ++i)\
+    \ {\n        std::cout << g[i].val() << \" \\n\"[i == n - 1];\n    }\n    return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
+    \n\n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
+    \ <atcoder/convolution>\n\n#include \"library/math/fps.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    \nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a, const\
+    \ auto &b) { return atcoder::convolution(a, b); });\n\n    int n, m;\n    std::cin\
+    \ >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int i = 0; i < n; ++i) {\n\
+    \        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n    }\n \
+    \   auto g = f.pow(m, n - 1);\n    for (int i = 0; i < n; ++i) {\n        std::cout\
+    \ << g[i].val() << \" \\n\"[i == n - 1];\n    }\n    return 0;\n}"
   dependsOn:
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: false
-  path: library/math/multi_point_eval.hpp
+  isVerificationFile: true
+  path: test/src/math/fps/pow_of_fps.test.cpp
   requiredBy: []
-  timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-documentation_of: library/math/multi_point_eval.hpp
+  timestamp: '2021-07-18 19:28:54+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/math/fps/pow_of_fps.test.cpp
 layout: document
 redirect_from:
-- /library/library/math/multi_point_eval.hpp
-- /library/library/math/multi_point_eval.hpp.html
-title: library/math/multi_point_eval.hpp
+- /verify/test/src/math/fps/pow_of_fps.test.cpp
+- /verify/test/src/math/fps/pow_of_fps.test.cpp.html
+title: test/src/math/fps/pow_of_fps.test.cpp
 ---

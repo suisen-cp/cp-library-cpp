@@ -14,7 +14,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
     - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/tree/euler_tour/lowest_common_ancestor.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include <iostream>\n\
     #include <vector>\n#line 1 \"library/tree/euler_tour.hpp\"\n\n\n\n#include <limits>\n\
     #line 6 \"library/tree/euler_tour.hpp\"\n\nnamespace suisen {\n/**\n * ImplicitGraph\
@@ -49,7 +49,7 @@ data:
     \            };\n            f(f, root, n);\n        }\n        inline int argmin(int\
     \ u, int v) const { return dep[u] < dep[v] ? u : v; }\n        static int ceil_pow2(const\
     \ int n) {\n            int k = 1;\n            while (k < n) k <<= 1;\n     \
-    \       return k;\n        }\n};\n} // namespace suisen\n\n\n#line 6 \"test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp\"\
+    \       return k;\n        }\n};\n} // namespace suisen\n\n\n#line 6 \"test/src/tree/euler_tour/lowest_common_ancestor.test.cpp\"\
     \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    int n, q;\n    std::cin >> n >> q;\n    std::vector<std::vector<int>> g(n);\n\
     \    for (int i = 1; i < n; ++i) {\n        int p;\n        std::cin >> p;\n \
@@ -65,19 +65,19 @@ data:
     \     g[i].push_back(p);\n        g[p].push_back(i);\n    }\n    suisen::EulerTour\
     \ et(g);\n    for (int i = 0; i < q; ++i) {\n        int u, v;\n        std::cin\
     \ >> u >> v;\n        std::cout << et.lca(u, v) << '\\n';\n    }\n    return 0;\n\
-    }\n"
+    }"
   dependsOn:
   - library/tree/euler_tour.hpp
   isVerificationFile: true
-  path: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
+  path: test/src/tree/euler_tour/lowest_common_ancestor.test.cpp
   requiredBy: []
-  timestamp: '2021-07-18 16:55:52+09:00'
+  timestamp: '2021-07-18 19:28:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
+documentation_of: test/src/tree/euler_tour/lowest_common_ancestor.test.cpp
 layout: document
 redirect_from:
-- /verify/test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
-- /verify/test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp.html
-title: test/generated/tree/euler_tour/lowest_common_ancestor.test.cpp
+- /verify/test/src/tree/euler_tour/lowest_common_ancestor.test.cpp
+- /verify/test/src/tree/euler_tour/lowest_common_ancestor.test.cpp.html
+title: test/src/tree/euler_tour/lowest_common_ancestor.test.cpp
 ---

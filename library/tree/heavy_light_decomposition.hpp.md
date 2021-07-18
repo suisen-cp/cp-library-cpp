@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-    title: test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+    path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+    title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -171,7 +171,7 @@ data:
   timestamp: '2021-07-18 16:55:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/generated/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
 documentation_of: library/tree/heavy_light_decomposition.hpp
 layout: document
 redirect_from:
