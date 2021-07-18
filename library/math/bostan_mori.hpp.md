@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
@@ -15,28 +15,31 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/bostan_mori.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <atcoder/convolution>\n\n#line 1 \"library/math/inv_mods.hpp\"\
-    \n\n\n\n#include <vector>\n\nnamespace suisen {\ntemplate <typename mint>\nclass\
-    \ inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int n) { ensure(n);\
-    \ }\n        const mint& operator[](int i) const {\n            ensure(i);\n \
-    \           return invs[i];\n        }\n        static void ensure(int n) {\n\
-    \            int sz = invs.size();\n            if (sz < 2) invs = {0, 1}, sz\
-    \ = 2;\n            if (sz < n + 1) {\n                invs.resize(n + 1);\n \
-    \               for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) *\
-    \ invs[mod % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
-    \ invs;\n        static constexpr int mod = mint::mod();\n};\ntemplate <typename\
-    \ mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 8 \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nclass FPS : public std::vector<mint>\
-    \ {\n    public:\n        using std::vector<mint>::vector;\n\n        FPS(const\
-    \ std::initializer_list<mint> l) : std::vector<mint>::vector(l) {}\n\n       \
-    \ inline FPS& operator=(const std::vector<mint> &&f) & noexcept {\n          \
-    \  std::vector<mint>::operator=(std::move(f));\n            return *this;\n  \
-    \      }\n        inline FPS& operator=(const std::vector<mint>  &f) & {\n   \
-    \         std::vector<mint>::operator=(f);\n            return *this;\n      \
-    \  }\n\n        inline const mint  operator[](int n) const noexcept { return n\
-    \ <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int n)\
-    \       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline int\
-    \ size() const noexcept { return std::vector<mint>::size(); }\n        inline\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
+    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
+    \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
+    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
+    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
+    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
+    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
+    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
+    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
+    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
+    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
+    }\n\n\n#line 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
+    \ mint>\nusing convolution_t = std::vector<mint> (*)(const std::vector<mint> &,\
+    \ const std::vector<mint> &);\n\ntemplate <typename mint>\nclass FPS : public\
+    \ std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
+    \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
+    \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
+    \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        inline\
+    \ FPS& operator=(const std::vector<mint> &&f) & noexcept {\n            std::vector<mint>::operator=(std::move(f));\n\
+    \            return *this;\n        }\n        inline FPS& operator=(const std::vector<mint>\
+    \  &f) & {\n            std::vector<mint>::operator=(f);\n            return *this;\n\
+    \        }\n\n        inline const mint  operator[](int n) const noexcept { return\
+    \ n <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int\
+    \ n)       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline\
+    \ int size() const noexcept { return std::vector<mint>::size(); }\n        inline\
     \ int deg()  const noexcept { return size() - 1; }\n        inline int normalize()\
     \ {\n            while (this->size() and this->back() == 0) this->pop_back();\n\
     \            return deg();\n        }\n        inline FPS& pre_inplace(int max_deg)\
@@ -54,15 +57,15 @@ data:
     \            return *this;\n        }\n        FPS& operator-=(const FPS &g) {\n\
     \            ensure_deg(g.deg());\n            for (int i = 0; i <= g.deg(); ++i)\
     \ unsafe_get(i) -= g.unsafe_get(i);\n            return *this;\n        }\n  \
-    \      inline FPS& operator*=(const FPS  &g) { return *this = atcoder::convolution(*this,\
-    \ g); }\n        inline FPS& operator*=(      FPS &&g) { return *this = atcoder::convolution(std::move(*this),\
-    \ std::move(g)); }\n        inline FPS& operator*=(const mint x) {\n         \
-    \   for (auto &e : *this) e *= x;\n            return *this;\n        }\n    \
-    \    FPS& operator/=(FPS &&g) {\n            const int fd = normalize(), gd =\
-    \ g.normalize();\n            assert(gd >= 0);\n            if (fd < gd) { this->clear();\
-    \ return *this; }\n            if (gd == 0) return *this *= g.unsafe_get(0).inv();\n\
-    \            static constexpr int THRESHOLD_NAIVE_POLY_QUOTIENT = 256;\n     \
-    \       if (gd <= THRESHOLD_NAIVE_POLY_QUOTIENT) {\n                *this = std::move(naive_div_inplace(std::move(g),\
+    \      inline FPS& operator*=(const FPS  &g) { return *this = FPS<mint>::mult(*this,\
+    \ g); }\n        inline FPS& operator*=(      FPS &&g) { return *this = FPS<mint>::mult(*this,\
+    \ g); }\n        inline FPS& operator*=(const mint x) {\n            for (auto\
+    \ &e : *this) e *= x;\n            return *this;\n        }\n        FPS& operator/=(FPS\
+    \ &&g) {\n            const int fd = normalize(), gd = g.normalize();\n      \
+    \      assert(gd >= 0);\n            if (fd < gd) { this->clear(); return *this;\
+    \ }\n            if (gd == 0) return *this *= g.unsafe_get(0).inv();\n       \
+    \     static constexpr int THRESHOLD_NAIVE_POLY_QUOTIENT = 256;\n            if\
+    \ (gd <= THRESHOLD_NAIVE_POLY_QUOTIENT) {\n                *this = std::move(naive_div_inplace(std::move(g),\
     \ gd).first);\n                return *this;\n            }\n            std::reverse(this->begin(),\
     \ this->end()), std::reverse(g.begin(), g.end());\n            const int k = fd\
     \ - gd;\n            *this *= g.inv_inplace(k), this->resize(k + 1);\n       \
@@ -126,17 +129,21 @@ data:
     \ }\n        inline FPS exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg);\
     \ }\n        inline FPS pow(const long long k, const int max_deg) const { return\
     \ FPS(*this).pow_inplace(k, max_deg); }\n\n    private:\n        static inv_mods<mint>\
-    \ invs;\n        inline void ensure_deg(int d) { if (deg() < d) this->resize(d\
-    \ + 1, 0); }\n        inline const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i);\
-    \ }\n        inline       mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i);\
-    \ }\n\n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n\
-    \            const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
+    \ invs;\n        static convolution_t<mint> mult;\n        inline void ensure_deg(int\
+    \ d) { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
+    \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
+    \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
+    \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
+    \          const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
     \            FPS q(k + 1);\n            for (int i = k; i >= 0; --i) {\n     \
     \           mint div = this->unsafe_get(i + gd) * head_inv;\n                q.unsafe_get(i)\
     \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
     \ -= div * g.unsafe_get(j);\n            }\n            return {q, pre_inplace(gd\
-    \ - 1)};\n        }\n};\n} // namespace suisen\n\n\n#line 5 \"library/math/bostan_mori.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(const FPS<mint>\
+    \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
+    \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
+    \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
+    };\n\n} // namespace suisen\n\n\n#line 5 \"library/math/bostan_mori.hpp\"\n\n\
+    namespace suisen {\ntemplate <typename mint>\nmint bostan_mori(const FPS<mint>\
     \ &P, const FPS<mint> &Q, const long long n) {\n    if (n == 0) return P[0];\n\
     \    FPS mQ(Q);\n    for (int i = 0; i <= Q.deg(); i += 2) mQ[i] = -mQ[i];\n \
     \   P *= mQ, Q *= mQ;\n    FPS nP((P.deg() + 1) / 2), nQ((Q.deg() + 1) / 2);\n\
@@ -157,7 +164,7 @@ data:
   isVerificationFile: false
   path: library/math/bostan_mori.hpp
   requiredBy: []
-  timestamp: '2021-07-18 16:55:52+09:00'
+  timestamp: '2021-07-18 18:22:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/bostan_mori.hpp

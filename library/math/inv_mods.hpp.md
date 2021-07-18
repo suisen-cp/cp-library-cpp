@@ -8,13 +8,13 @@ data:
   - icon: ':warning:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
   - icon: ':warning:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
   - icon: ':warning:'
@@ -24,24 +24,24 @@ data:
     path: library/math/subset_sum.hpp
     title: library/math/subset_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/generated/math/fps/exp_of_fps.test.cpp
     title: test/generated/math/fps/exp_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/generated/math/fps/inv_of_fps.test.cpp
     title: test/generated/math/fps/inv_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/generated/math/fps/log_of_fps.test.cpp
     title: test/generated/math/fps/log_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/generated/math/fps/pow_of_fps.test.cpp
     title: test/generated/math/fps/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\n\
@@ -78,7 +78,7 @@ data:
   - library/math/polynomial_taylor_shift.hpp
   - library/math/bostan_mori.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
   - test/generated/math/fps/inv_of_fps.test.cpp

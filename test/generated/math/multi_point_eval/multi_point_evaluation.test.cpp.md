@@ -1,21 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation
+    links:
+    - https://en.wikipedia.org/wiki/Barrett_reduction
+    - https://judge.yosupo.jp/problem/multipoint_evaluation
   bundledCode: "#line 1 \"test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\n\n\
     #include <iostream>\n\n\n\n#include <utility>\n\nnamespace atcoder {\n\nnamespace\
@@ -211,30 +216,131 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#line 1 \"library/math/multi_point_eval.hpp\"\
-    \n\n\n\n#line 1 \"library/math/fps.hpp\"\n\n\n\n#line 5 \"library/math/fps.hpp\"\
-    \n#include <atcoder/convolution>\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\
-    \n#include <vector>\n\nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods\
-    \ {\n    public:\n        inv_mods() {}\n        inv_mods(int n) { ensure(n);\
-    \ }\n        const mint& operator[](int i) const {\n            ensure(i);\n \
-    \           return invs[i];\n        }\n        static void ensure(int n) {\n\
-    \            int sz = invs.size();\n            if (sz < 2) invs = {0, 1}, sz\
-    \ = 2;\n            if (sz < n + 1) {\n                invs.resize(n + 1);\n \
-    \               for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) *\
-    \ invs[mod % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
-    \ invs;\n        static constexpr int mod = mint::mod();\n};\ntemplate <typename\
-    \ mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 8 \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nclass FPS : public std::vector<mint>\
-    \ {\n    public:\n        using std::vector<mint>::vector;\n\n        FPS(const\
-    \ std::initializer_list<mint> l) : std::vector<mint>::vector(l) {}\n\n       \
-    \ inline FPS& operator=(const std::vector<mint> &&f) & noexcept {\n          \
-    \  std::vector<mint>::operator=(std::move(f));\n            return *this;\n  \
-    \      }\n        inline FPS& operator=(const std::vector<mint>  &f) & {\n   \
-    \         std::vector<mint>::operator=(f);\n            return *this;\n      \
-    \  }\n\n        inline const mint  operator[](int n) const noexcept { return n\
-    \ <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int n)\
-    \       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline int\
-    \ size() const noexcept { return std::vector<mint>::size(); }\n        inline\
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#include <algorithm>\n\
+    #include <array>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace\
+    \ atcoder {\n\nnamespace internal {\n\n// @param n `0 <= n`\n// @return minimum\
+    \ non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n    int x = 0;\n\
+    \    while ((1U << x) < (unsigned int)(n)) x++;\n    return x;\n}\n\n// @param\
+    \ n `1 <= n`\n// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\n\
+    int bsf(unsigned int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n    _BitScanForward(&index,\
+    \ n);\n    return index;\n#else\n    return __builtin_ctz(n);\n#endif\n}\n\n}\
+    \  // namespace internal\n\n}  // namespace atcoder\n\n#line 586 \"test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp\"\
+    \n#include <vector>\n\nnamespace atcoder {\n\nnamespace internal {\n\ntemplate\
+    \ <class mint, internal::is_static_modint_t<mint>* = nullptr>\nvoid butterfly(std::vector<mint>&\
+    \ a) {\n    static constexpr int g = internal::primitive_root<mint::mod()>;\n\
+    \    int n = int(a.size());\n    int h = internal::ceil_pow2(n);\n\n    static\
+    \ bool first = true;\n    static mint sum_e[30];  // sum_e[i] = ies[0] * ... *\
+    \ ies[i - 1] * es[i]\n    if (first) {\n        first = false;\n        mint es[30],\
+    \ ies[30];  // es[i]^(2^(2+i)) == 1\n        int cnt2 = bsf(mint::mod() - 1);\n\
+    \        mint e = mint(g).pow((mint::mod() - 1) >> cnt2), ie = e.inv();\n    \
+    \    for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n        \
+    \    es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n     \
+    \       ie *= ie;\n        }\n        mint now = 1;\n        for (int i = 0; i\
+    \ < cnt2 - 2; i++) {\n            sum_e[i] = es[i] * now;\n            now *=\
+    \ ies[i];\n        }\n    }\n    for (int ph = 1; ph <= h; ph++) {\n        int\
+    \ w = 1 << (ph - 1), p = 1 << (h - ph);\n        mint now = 1;\n        for (int\
+    \ s = 0; s < w; s++) {\n            int offset = s << (h - ph + 1);\n        \
+    \    for (int i = 0; i < p; i++) {\n                auto l = a[i + offset];\n\
+    \                auto r = a[i + offset + p] * now;\n                a[i + offset]\
+    \ = l + r;\n                a[i + offset + p] = l - r;\n            }\n      \
+    \      now *= sum_e[bsf(~(unsigned int)(s))];\n        }\n    }\n}\n\ntemplate\
+    \ <class mint, internal::is_static_modint_t<mint>* = nullptr>\nvoid butterfly_inv(std::vector<mint>&\
+    \ a) {\n    static constexpr int g = internal::primitive_root<mint::mod()>;\n\
+    \    int n = int(a.size());\n    int h = internal::ceil_pow2(n);\n\n    static\
+    \ bool first = true;\n    static mint sum_ie[30];  // sum_ie[i] = es[0] * ...\
+    \ * es[i - 1] * ies[i]\n    if (first) {\n        first = false;\n        mint\
+    \ es[30], ies[30];  // es[i]^(2^(2+i)) == 1\n        int cnt2 = bsf(mint::mod()\
+    \ - 1);\n        mint e = mint(g).pow((mint::mod() - 1) >> cnt2), ie = e.inv();\n\
+    \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n    \
+    \        es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n \
+    \           ie *= ie;\n        }\n        mint now = 1;\n        for (int i =\
+    \ 0; i < cnt2 - 2; i++) {\n            sum_ie[i] = ies[i] * now;\n           \
+    \ now *= es[i];\n        }\n    }\n\n    for (int ph = h; ph >= 1; ph--) {\n \
+    \       int w = 1 << (ph - 1), p = 1 << (h - ph);\n        mint inow = 1;\n  \
+    \      for (int s = 0; s < w; s++) {\n            int offset = s << (h - ph +\
+    \ 1);\n            for (int i = 0; i < p; i++) {\n                auto l = a[i\
+    \ + offset];\n                auto r = a[i + offset + p];\n                a[i\
+    \ + offset] = l + r;\n                a[i + offset + p] =\n                  \
+    \  (unsigned long long)(mint::mod() + l.val() - r.val()) *\n                 \
+    \   inow.val();\n            }\n            inow *= sum_ie[bsf(~(unsigned int)(s))];\n\
+    \        }\n    }\n}\n\n}  // namespace internal\n\ntemplate <class mint, internal::is_static_modint_t<mint>*\
+    \ = nullptr>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
+    \ b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return\
+    \ {};\n    if (std::min(n, m) <= 60) {\n        if (n < m) {\n            std::swap(n,\
+    \ m);\n            std::swap(a, b);\n        }\n        std::vector<mint> ans(n\
+    \ + m - 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0;\
+    \ j < m; j++) {\n                ans[i + j] += a[i] * b[j];\n            }\n \
+    \       }\n        return ans;\n    }\n    int z = 1 << internal::ceil_pow2(n\
+    \ + m - 1);\n    a.resize(z);\n    internal::butterfly(a);\n    b.resize(z);\n\
+    \    internal::butterfly(b);\n    for (int i = 0; i < z; i++) {\n        a[i]\
+    \ *= b[i];\n    }\n    internal::butterfly_inv(a);\n    a.resize(n + m - 1);\n\
+    \    mint iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1; i++) a[i] *=\
+    \ iz;\n    return a;\n}\n\ntemplate <unsigned int mod = 998244353,\n         \
+    \ class T,\n          std::enable_if_t<internal::is_integral<T>::value>* = nullptr>\n\
+    std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {\n\
+    \    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n\
+    \n    using mint = static_modint<mod>;\n    std::vector<mint> a2(n), b2(m);\n\
+    \    for (int i = 0; i < n; i++) {\n        a2[i] = mint(a[i]);\n    }\n    for\
+    \ (int i = 0; i < m; i++) {\n        b2[i] = mint(b[i]);\n    }\n    auto c2 =\
+    \ convolution(move(a2), move(b2));\n    std::vector<T> c(n + m - 1);\n    for\
+    \ (int i = 0; i < n + m - 1; i++) {\n        c[i] = c2[i].val();\n    }\n    return\
+    \ c;\n}\n\nstd::vector<long long> convolution_ll(const std::vector<long long>&\
+    \ a,\n                                      const std::vector<long long>& b) {\n\
+    \    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n\
+    \n    static constexpr unsigned long long MOD1 = 754974721;  // 2^24\n    static\
+    \ constexpr unsigned long long MOD2 = 167772161;  // 2^25\n    static constexpr\
+    \ unsigned long long MOD3 = 469762049;  // 2^26\n    static constexpr unsigned\
+    \ long long M2M3 = MOD2 * MOD3;\n    static constexpr unsigned long long M1M3\
+    \ = MOD1 * MOD3;\n    static constexpr unsigned long long M1M2 = MOD1 * MOD2;\n\
+    \    static constexpr unsigned long long M1M2M3 = MOD1 * MOD2 * MOD3;\n\n    static\
+    \ constexpr unsigned long long i1 =\n        internal::inv_gcd(MOD2 * MOD3, MOD1).second;\n\
+    \    static constexpr unsigned long long i2 =\n        internal::inv_gcd(MOD1\
+    \ * MOD3, MOD2).second;\n    static constexpr unsigned long long i3 =\n      \
+    \  internal::inv_gcd(MOD1 * MOD2, MOD3).second;\n\n    auto c1 = convolution<MOD1>(a,\
+    \ b);\n    auto c2 = convolution<MOD2>(a, b);\n    auto c3 = convolution<MOD3>(a,\
+    \ b);\n\n    std::vector<long long> c(n + m - 1);\n    for (int i = 0; i < n +\
+    \ m - 1; i++) {\n        unsigned long long x = 0;\n        x += (c1[i] * i1)\
+    \ % MOD1 * M2M3;\n        x += (c2[i] * i2) % MOD2 * M1M3;\n        x += (c3[i]\
+    \ * i3) % MOD3 * M1M2;\n        // B = 2^63, -B <= x, r(real value) < B\n    \
+    \    // (x, x - M, x - 2M, or x - 3M) = r (mod 2B)\n        // r = c1[i] (mod\
+    \ MOD1)\n        // focus on MOD1\n        // r = x, x - M', x - 2M', x - 3M'\
+    \ (M' = M % 2^64) (mod 2B)\n        // r = x,\n        //     x - M' + (0 or 2B),\n\
+    \        //     x - 2M' + (0, 2B or 4B),\n        //     x - 3M' + (0, 2B, 4B\
+    \ or 6B) (without mod!)\n        // (r - x) = 0, (0)\n        //           - M'\
+    \ + (0 or 2B), (1)\n        //           -2M' + (0 or 2B or 4B), (2)\n       \
+    \ //           -3M' + (0 or 2B or 4B or 6B) (3) (mod MOD1)\n        // we checked\
+    \ that\n        //   ((1) mod MOD1) mod 5 = 2\n        //   ((2) mod MOD1) mod\
+    \ 5 = 3\n        //   ((3) mod MOD1) mod 5 = 4\n        long long diff =\n   \
+    \         c1[i] - internal::safe_mod((long long)(x), (long long)(MOD1));\n   \
+    \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
+    \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
+    \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n\n}  //\
+    \ namespace atcoder\n\n\n#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n\
+    #line 1 \"library/math/fps.hpp\"\n\n\n\n#line 7 \"library/math/fps.hpp\"\n\n#line\
+    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n\
+    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
+    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
+    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
+    \ = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n           \
+    \ if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
+    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
+    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
+    \        static constexpr int mod = mint::mod();\n};\ntemplate <typename mint>\n\
+    std::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 9 \"library/math/fps.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename mint>\nusing convolution_t = std::vector<mint>\
+    \ (*)(const std::vector<mint> &, const std::vector<mint> &);\n\ntemplate <typename\
+    \ mint>\nclass FPS : public std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
+    \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
+    \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
+    \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        inline\
+    \ FPS& operator=(const std::vector<mint> &&f) & noexcept {\n            std::vector<mint>::operator=(std::move(f));\n\
+    \            return *this;\n        }\n        inline FPS& operator=(const std::vector<mint>\
+    \  &f) & {\n            std::vector<mint>::operator=(f);\n            return *this;\n\
+    \        }\n\n        inline const mint  operator[](int n) const noexcept { return\
+    \ n <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int\
+    \ n)       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline\
+    \ int size() const noexcept { return std::vector<mint>::size(); }\n        inline\
     \ int deg()  const noexcept { return size() - 1; }\n        inline int normalize()\
     \ {\n            while (this->size() and this->back() == 0) this->pop_back();\n\
     \            return deg();\n        }\n        inline FPS& pre_inplace(int max_deg)\
@@ -252,15 +358,15 @@ data:
     \            return *this;\n        }\n        FPS& operator-=(const FPS &g) {\n\
     \            ensure_deg(g.deg());\n            for (int i = 0; i <= g.deg(); ++i)\
     \ unsafe_get(i) -= g.unsafe_get(i);\n            return *this;\n        }\n  \
-    \      inline FPS& operator*=(const FPS  &g) { return *this = atcoder::convolution(*this,\
-    \ g); }\n        inline FPS& operator*=(      FPS &&g) { return *this = atcoder::convolution(std::move(*this),\
-    \ std::move(g)); }\n        inline FPS& operator*=(const mint x) {\n         \
-    \   for (auto &e : *this) e *= x;\n            return *this;\n        }\n    \
-    \    FPS& operator/=(FPS &&g) {\n            const int fd = normalize(), gd =\
-    \ g.normalize();\n            assert(gd >= 0);\n            if (fd < gd) { this->clear();\
-    \ return *this; }\n            if (gd == 0) return *this *= g.unsafe_get(0).inv();\n\
-    \            static constexpr int THRESHOLD_NAIVE_POLY_QUOTIENT = 256;\n     \
-    \       if (gd <= THRESHOLD_NAIVE_POLY_QUOTIENT) {\n                *this = std::move(naive_div_inplace(std::move(g),\
+    \      inline FPS& operator*=(const FPS  &g) { return *this = FPS<mint>::mult(*this,\
+    \ g); }\n        inline FPS& operator*=(      FPS &&g) { return *this = FPS<mint>::mult(*this,\
+    \ g); }\n        inline FPS& operator*=(const mint x) {\n            for (auto\
+    \ &e : *this) e *= x;\n            return *this;\n        }\n        FPS& operator/=(FPS\
+    \ &&g) {\n            const int fd = normalize(), gd = g.normalize();\n      \
+    \      assert(gd >= 0);\n            if (fd < gd) { this->clear(); return *this;\
+    \ }\n            if (gd == 0) return *this *= g.unsafe_get(0).inv();\n       \
+    \     static constexpr int THRESHOLD_NAIVE_POLY_QUOTIENT = 256;\n            if\
+    \ (gd <= THRESHOLD_NAIVE_POLY_QUOTIENT) {\n                *this = std::move(naive_div_inplace(std::move(g),\
     \ gd).first);\n                return *this;\n            }\n            std::reverse(this->begin(),\
     \ this->end()), std::reverse(g.begin(), g.end());\n            const int k = fd\
     \ - gd;\n            *this *= g.inv_inplace(k), this->resize(k + 1);\n       \
@@ -324,16 +430,20 @@ data:
     \ }\n        inline FPS exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg);\
     \ }\n        inline FPS pow(const long long k, const int max_deg) const { return\
     \ FPS(*this).pow_inplace(k, max_deg); }\n\n    private:\n        static inv_mods<mint>\
-    \ invs;\n        inline void ensure_deg(int d) { if (deg() < d) this->resize(d\
-    \ + 1, 0); }\n        inline const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i);\
-    \ }\n        inline       mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i);\
-    \ }\n\n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n\
-    \            const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
+    \ invs;\n        static convolution_t<mint> mult;\n        inline void ensure_deg(int\
+    \ d) { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
+    \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
+    \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
+    \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
+    \          const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
     \            FPS q(k + 1);\n            for (int i = k; i >= 0; --i) {\n     \
     \           mint div = this->unsafe_get(i + gd) * head_inv;\n                q.unsafe_get(i)\
     \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
     \ -= div * g.unsafe_get(j);\n            }\n            return {q, pre_inplace(gd\
-    \ - 1)};\n        }\n};\n} // namespace suisen\n\n\n#line 5 \"library/math/multi_point_eval.hpp\"\
+    \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
+    \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
+    \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
+    };\n\n} // namespace suisen\n\n\n#line 5 \"library/math/multi_point_eval.hpp\"\
     \n\nnamespace suisen {\ntemplate <typename mint>\nstd::vector<mint> multi_point_eval(const\
     \ FPS<mint> &f, const std::vector<mint> &xs) {\n    int m = xs.size();\n    int\
     \ k = 1;\n    while (k < m) k <<= 1;\n    std::vector<FPS<mint>> seg(2 * k);\n\
@@ -342,14 +452,16 @@ data:
     \ i> 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n    seg[1] = f % seg[1];\n\
     \    for (int i = 2; i < k + m; ++i) seg[i] = seg[i / 2] % seg[i];\n    std::vector<mint>\
     \ ys(m);\n    for (int i = 0; i < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n\
-    }\n} // namespace suisen\n\n\n#line 550 \"test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n, m;\n  \
-    \  std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int i = 0; i < n;\
-    \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
-    \    }\n    std::vector<mint> xs(m);\n    for (int i = 0; i < m; ++i) {\n    \
-    \    int x;\n        std::cin >> x;\n        xs[i] = x;\n    }\n    auto ys =\
-    \ suisen::multi_point_eval(f, xs);\n    for (int i = 0; i < m; ++i) {\n      \
-    \  std::cout << ys[i].val() << \" \\n\"[i == m - 1];\n    }\n    return 0;\n}\n"
+    }\n} // namespace suisen\n\n\n#line 799 \"test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n    \n   \
+    \ int n, m;\n    std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int\
+    \ i = 0; i < n; ++i) {\n        int coef;\n        std::cin >> coef;\n       \
+    \ f[i] = coef;\n    }\n    std::vector<mint> xs(m);\n    for (int i = 0; i < m;\
+    \ ++i) {\n        int x;\n        std::cin >> x;\n        xs[i] = x;\n    }\n\
+    \    auto ys = suisen::multi_point_eval(f, xs);\n    for (int i = 0; i < m; ++i)\
+    \ {\n        std::cout << ys[i].val() << \" \\n\"[i == m - 1];\n    }\n    return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation\"\
     \n\n#include <iostream>\n\n\n\n#include <utility>\n\nnamespace atcoder {\n\nnamespace\
     \ internal {\n\n// @param m `1 <= m`\n// @return x mod m\nconstexpr long long\
@@ -544,14 +656,115 @@ data:
     \ntemplate <class> struct is_dynamic_modint : public std::false_type {};\ntemplate\
     \ <int id>\nstruct is_dynamic_modint<dynamic_modint<id>> : public std::true_type\
     \ {};\n\ntemplate <class T>\nusing is_dynamic_modint_t = std::enable_if_t<is_dynamic_modint<T>::value>;\n\
-    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#include \"library/math/multi_point_eval.hpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n, m;\n  \
-    \  std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int i = 0; i < n;\
-    \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
-    \    }\n    std::vector<mint> xs(m);\n    for (int i = 0; i < m; ++i) {\n    \
-    \    int x;\n        std::cin >> x;\n        xs[i] = x;\n    }\n    auto ys =\
-    \ suisen::multi_point_eval(f, xs);\n    for (int i = 0; i < m; ++i) {\n      \
-    \  std::cout << ys[i].val() << \" \\n\"[i == m - 1];\n    }\n    return 0;\n}\n"
+    \n}  // namespace internal\n\n}  // namespace atcoder\n\n\n#include <algorithm>\n\
+    #include <array>\n\n#ifdef _MSC_VER\n#include <intrin.h>\n#endif\n\nnamespace\
+    \ atcoder {\n\nnamespace internal {\n\n// @param n `0 <= n`\n// @return minimum\
+    \ non-negative `x` s.t. `n <= 2**x`\nint ceil_pow2(int n) {\n    int x = 0;\n\
+    \    while ((1U << x) < (unsigned int)(n)) x++;\n    return x;\n}\n\n// @param\
+    \ n `1 <= n`\n// @return minimum non-negative `x` s.t. `(n & (1 << x)) != 0`\n\
+    int bsf(unsigned int n) {\n#ifdef _MSC_VER\n    unsigned long index;\n    _BitScanForward(&index,\
+    \ n);\n    return index;\n#else\n    return __builtin_ctz(n);\n#endif\n}\n\n}\
+    \  // namespace internal\n\n}  // namespace atcoder\n\n#include <cassert>\n#include\
+    \ <type_traits>\n#include <vector>\n\nnamespace atcoder {\n\nnamespace internal\
+    \ {\n\ntemplate <class mint, internal::is_static_modint_t<mint>* = nullptr>\n\
+    void butterfly(std::vector<mint>& a) {\n    static constexpr int g = internal::primitive_root<mint::mod()>;\n\
+    \    int n = int(a.size());\n    int h = internal::ceil_pow2(n);\n\n    static\
+    \ bool first = true;\n    static mint sum_e[30];  // sum_e[i] = ies[0] * ... *\
+    \ ies[i - 1] * es[i]\n    if (first) {\n        first = false;\n        mint es[30],\
+    \ ies[30];  // es[i]^(2^(2+i)) == 1\n        int cnt2 = bsf(mint::mod() - 1);\n\
+    \        mint e = mint(g).pow((mint::mod() - 1) >> cnt2), ie = e.inv();\n    \
+    \    for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n        \
+    \    es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n     \
+    \       ie *= ie;\n        }\n        mint now = 1;\n        for (int i = 0; i\
+    \ < cnt2 - 2; i++) {\n            sum_e[i] = es[i] * now;\n            now *=\
+    \ ies[i];\n        }\n    }\n    for (int ph = 1; ph <= h; ph++) {\n        int\
+    \ w = 1 << (ph - 1), p = 1 << (h - ph);\n        mint now = 1;\n        for (int\
+    \ s = 0; s < w; s++) {\n            int offset = s << (h - ph + 1);\n        \
+    \    for (int i = 0; i < p; i++) {\n                auto l = a[i + offset];\n\
+    \                auto r = a[i + offset + p] * now;\n                a[i + offset]\
+    \ = l + r;\n                a[i + offset + p] = l - r;\n            }\n      \
+    \      now *= sum_e[bsf(~(unsigned int)(s))];\n        }\n    }\n}\n\ntemplate\
+    \ <class mint, internal::is_static_modint_t<mint>* = nullptr>\nvoid butterfly_inv(std::vector<mint>&\
+    \ a) {\n    static constexpr int g = internal::primitive_root<mint::mod()>;\n\
+    \    int n = int(a.size());\n    int h = internal::ceil_pow2(n);\n\n    static\
+    \ bool first = true;\n    static mint sum_ie[30];  // sum_ie[i] = es[0] * ...\
+    \ * es[i - 1] * ies[i]\n    if (first) {\n        first = false;\n        mint\
+    \ es[30], ies[30];  // es[i]^(2^(2+i)) == 1\n        int cnt2 = bsf(mint::mod()\
+    \ - 1);\n        mint e = mint(g).pow((mint::mod() - 1) >> cnt2), ie = e.inv();\n\
+    \        for (int i = cnt2; i >= 2; i--) {\n            // e^(2^i) == 1\n    \
+    \        es[i - 2] = e;\n            ies[i - 2] = ie;\n            e *= e;\n \
+    \           ie *= ie;\n        }\n        mint now = 1;\n        for (int i =\
+    \ 0; i < cnt2 - 2; i++) {\n            sum_ie[i] = ies[i] * now;\n           \
+    \ now *= es[i];\n        }\n    }\n\n    for (int ph = h; ph >= 1; ph--) {\n \
+    \       int w = 1 << (ph - 1), p = 1 << (h - ph);\n        mint inow = 1;\n  \
+    \      for (int s = 0; s < w; s++) {\n            int offset = s << (h - ph +\
+    \ 1);\n            for (int i = 0; i < p; i++) {\n                auto l = a[i\
+    \ + offset];\n                auto r = a[i + offset + p];\n                a[i\
+    \ + offset] = l + r;\n                a[i + offset + p] =\n                  \
+    \  (unsigned long long)(mint::mod() + l.val() - r.val()) *\n                 \
+    \   inow.val();\n            }\n            inow *= sum_ie[bsf(~(unsigned int)(s))];\n\
+    \        }\n    }\n}\n\n}  // namespace internal\n\ntemplate <class mint, internal::is_static_modint_t<mint>*\
+    \ = nullptr>\nstd::vector<mint> convolution(std::vector<mint> a, std::vector<mint>\
+    \ b) {\n    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return\
+    \ {};\n    if (std::min(n, m) <= 60) {\n        if (n < m) {\n            std::swap(n,\
+    \ m);\n            std::swap(a, b);\n        }\n        std::vector<mint> ans(n\
+    \ + m - 1);\n        for (int i = 0; i < n; i++) {\n            for (int j = 0;\
+    \ j < m; j++) {\n                ans[i + j] += a[i] * b[j];\n            }\n \
+    \       }\n        return ans;\n    }\n    int z = 1 << internal::ceil_pow2(n\
+    \ + m - 1);\n    a.resize(z);\n    internal::butterfly(a);\n    b.resize(z);\n\
+    \    internal::butterfly(b);\n    for (int i = 0; i < z; i++) {\n        a[i]\
+    \ *= b[i];\n    }\n    internal::butterfly_inv(a);\n    a.resize(n + m - 1);\n\
+    \    mint iz = mint(z).inv();\n    for (int i = 0; i < n + m - 1; i++) a[i] *=\
+    \ iz;\n    return a;\n}\n\ntemplate <unsigned int mod = 998244353,\n         \
+    \ class T,\n          std::enable_if_t<internal::is_integral<T>::value>* = nullptr>\n\
+    std::vector<T> convolution(const std::vector<T>& a, const std::vector<T>& b) {\n\
+    \    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n\
+    \n    using mint = static_modint<mod>;\n    std::vector<mint> a2(n), b2(m);\n\
+    \    for (int i = 0; i < n; i++) {\n        a2[i] = mint(a[i]);\n    }\n    for\
+    \ (int i = 0; i < m; i++) {\n        b2[i] = mint(b[i]);\n    }\n    auto c2 =\
+    \ convolution(move(a2), move(b2));\n    std::vector<T> c(n + m - 1);\n    for\
+    \ (int i = 0; i < n + m - 1; i++) {\n        c[i] = c2[i].val();\n    }\n    return\
+    \ c;\n}\n\nstd::vector<long long> convolution_ll(const std::vector<long long>&\
+    \ a,\n                                      const std::vector<long long>& b) {\n\
+    \    int n = int(a.size()), m = int(b.size());\n    if (!n || !m) return {};\n\
+    \n    static constexpr unsigned long long MOD1 = 754974721;  // 2^24\n    static\
+    \ constexpr unsigned long long MOD2 = 167772161;  // 2^25\n    static constexpr\
+    \ unsigned long long MOD3 = 469762049;  // 2^26\n    static constexpr unsigned\
+    \ long long M2M3 = MOD2 * MOD3;\n    static constexpr unsigned long long M1M3\
+    \ = MOD1 * MOD3;\n    static constexpr unsigned long long M1M2 = MOD1 * MOD2;\n\
+    \    static constexpr unsigned long long M1M2M3 = MOD1 * MOD2 * MOD3;\n\n    static\
+    \ constexpr unsigned long long i1 =\n        internal::inv_gcd(MOD2 * MOD3, MOD1).second;\n\
+    \    static constexpr unsigned long long i2 =\n        internal::inv_gcd(MOD1\
+    \ * MOD3, MOD2).second;\n    static constexpr unsigned long long i3 =\n      \
+    \  internal::inv_gcd(MOD1 * MOD2, MOD3).second;\n\n    auto c1 = convolution<MOD1>(a,\
+    \ b);\n    auto c2 = convolution<MOD2>(a, b);\n    auto c3 = convolution<MOD3>(a,\
+    \ b);\n\n    std::vector<long long> c(n + m - 1);\n    for (int i = 0; i < n +\
+    \ m - 1; i++) {\n        unsigned long long x = 0;\n        x += (c1[i] * i1)\
+    \ % MOD1 * M2M3;\n        x += (c2[i] * i2) % MOD2 * M1M3;\n        x += (c3[i]\
+    \ * i3) % MOD3 * M1M2;\n        // B = 2^63, -B <= x, r(real value) < B\n    \
+    \    // (x, x - M, x - 2M, or x - 3M) = r (mod 2B)\n        // r = c1[i] (mod\
+    \ MOD1)\n        // focus on MOD1\n        // r = x, x - M', x - 2M', x - 3M'\
+    \ (M' = M % 2^64) (mod 2B)\n        // r = x,\n        //     x - M' + (0 or 2B),\n\
+    \        //     x - 2M' + (0, 2B or 4B),\n        //     x - 3M' + (0, 2B, 4B\
+    \ or 6B) (without mod!)\n        // (r - x) = 0, (0)\n        //           - M'\
+    \ + (0 or 2B), (1)\n        //           -2M' + (0 or 2B or 4B), (2)\n       \
+    \ //           -3M' + (0 or 2B or 4B or 6B) (3) (mod MOD1)\n        // we checked\
+    \ that\n        //   ((1) mod MOD1) mod 5 = 2\n        //   ((2) mod MOD1) mod\
+    \ 5 = 3\n        //   ((3) mod MOD1) mod 5 = 4\n        long long diff =\n   \
+    \         c1[i] - internal::safe_mod((long long)(x), (long long)(MOD1));\n   \
+    \     if (diff < 0) diff += MOD1;\n        static constexpr unsigned long long\
+    \ offset[5] = {\n            0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};\n        x\
+    \ -= offset[diff % 5];\n        c[i] = x;\n    }\n\n    return c;\n}\n\n}  //\
+    \ namespace atcoder\n\n\n#include \"library/math/multi_point_eval.hpp\"\n\nusing\
+    \ mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n    \n   \
+    \ int n, m;\n    std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int\
+    \ i = 0; i < n; ++i) {\n        int coef;\n        std::cin >> coef;\n       \
+    \ f[i] = coef;\n    }\n    std::vector<mint> xs(m);\n    for (int i = 0; i < m;\
+    \ ++i) {\n        int x;\n        std::cin >> x;\n        xs[i] = x;\n    }\n\
+    \    auto ys = suisen::multi_point_eval(f, xs);\n    for (int i = 0; i < m; ++i)\
+    \ {\n        std::cout << ys[i].val() << \" \\n\"[i == m - 1];\n    }\n    return\
+    \ 0;\n}\n"
   dependsOn:
   - library/math/multi_point_eval.hpp
   - library/math/fps.hpp
@@ -559,8 +772,8 @@ data:
   isVerificationFile: true
   path: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2021-07-18 17:07:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-07-18 18:22:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/generated/math/multi_point_eval/multi_point_evaluation.test.cpp
 layout: document
