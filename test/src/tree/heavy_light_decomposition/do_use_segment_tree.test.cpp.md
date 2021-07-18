@@ -12,7 +12,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450
   bundledCode: "#line 1 \"test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp\"\
     \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2450\"\
     \n\n#include <iostream>\n#include <atcoder/lazysegtree>\n#line 1 \"library/tree/heavy_light_decomposition.hpp\"\

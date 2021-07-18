@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: library/math/factorial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []

@@ -49,13 +49,13 @@ data:
     - icon: ':warning:'
       path: library/math/bostan_mori.hpp
       title: library/math/bostan_mori.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/math/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/math/factorial.hpp
       title: library/math/factorial.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/fps.hpp
       title: library/math/fps.hpp
     - icon: ':warning:'
@@ -67,7 +67,7 @@ data:
     - icon: ':warning:'
       path: library/math/interpolation.hpp
       title: library/math/interpolation.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv_mods.hpp
       title: library/math/inv_mods.hpp
     - icon: ':warning:'
@@ -147,6 +147,11 @@ data:
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
   verificationCategories:
+  - name: test/src/math/common_sequences
+    pages:
+    - icon: ':x:'
+      path: test/src/math/common_sequences/stirling_number1.test.cpp
+      title: test/src/math/common_sequences/stirling_number1.test.cpp
   - name: test/src/math/fps
     pages:
     - icon: ':heavy_check_mark:'
