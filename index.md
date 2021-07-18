@@ -55,7 +55,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: library/math/factorial.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/fps.hpp
       title: library/math/fps.hpp
     - icon: ':warning:'
@@ -64,10 +64,10 @@ data:
     - icon: ':warning:'
       path: library/math/gauss_jordan.hpp
       title: library/math/gauss_jordan.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/math/interpolation.hpp
       title: library/math/interpolation.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv_mods.hpp
       title: library/math/inv_mods.hpp
     - icon: ':warning:'
@@ -169,6 +169,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/fps/pow_of_fps.test.cpp
       title: test/src/math/fps/pow_of_fps.test.cpp
+  - name: test/src/math/interpolation
+    pages:
+    - icon: ':x:'
+      path: test/src/math/interpolation/polynomial_interpolation.test.cpp
+      title: test/src/math/interpolation/polynomial_interpolation.test.cpp
   - name: test/src/math/multi_point_eval
     pages:
     - icon: ':heavy_check_mark:'

@@ -4,39 +4,45 @@ data:
   - icon: ':question:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
+  - icon: ':x:'
+    path: library/math/interpolation.hpp
+    title: library/math/interpolation.hpp
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
-  attributes:
-    links: []
-  bundledCode: "#line 1 \"library/math/bostan_mori.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
-    \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
-    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
-    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
-    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
-    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
-    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
-    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
-    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
-    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
-    }\n\n\n#line 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ mint>\nusing convolution_t = std::vector<mint> (*)(const std::vector<mint> &,\
-    \ const std::vector<mint> &);\n\ntemplate <typename mint>\nclass FPS : public\
-    \ std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
-    \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
-    \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
-    \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        inline\
-    \ FPS& operator=(const std::vector<mint> &&f) & noexcept {\n            std::vector<mint>::operator=(std::move(f));\n\
-    \            return *this;\n        }\n        inline FPS& operator=(const std::vector<mint>\
-    \  &f) & {\n            std::vector<mint>::operator=(f);\n            return *this;\n\
-    \        }\n\n        inline const mint  operator[](int n) const noexcept { return\
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
+  attributes: {}
+  bundledCode: "#line 1 \"test/src/math/interpolation/polynomial_interpolation.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#line 1 \"library/math/interpolation.hpp\"\n\n\n\n#include <vector>\n#line 1\
+    \ \"library/math/fps.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n#line\
+    \ 7 \"library/math/fps.hpp\"\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n\
+    #line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\ntemplate <typename\
+    \ mint>\nclass inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
+    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
+    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
+    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = {0,\
+    \ 1}, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
+    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
+    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
+    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n};\n\
+    template <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line\
+    \ 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename mint>\n\
+    using convolution_t = std::vector<mint> (*)(const std::vector<mint> &, const std::vector<mint>\
+    \ &);\n\ntemplate <typename mint>\nclass FPS : public std::vector<mint> {\n  \
+    \  public:\n        using std::vector<mint>::vector;\n\n        FPS(const std::initializer_list<mint>\
+    \ l) : std::vector<mint>::vector(l) {}\n\n        static void set_multiplication(convolution_t<mint>\
+    \ multiplication) {\n            FPS<mint>::mult = multiplication;\n        }\n\
+    \n        inline FPS& operator=(const std::vector<mint> &&f) & noexcept {\n  \
+    \          std::vector<mint>::operator=(std::move(f));\n            return *this;\n\
+    \        }\n        inline FPS& operator=(const std::vector<mint>  &f) & {\n \
+    \           std::vector<mint>::operator=(f);\n            return *this;\n    \
+    \    }\n\n        inline const mint  operator[](int n) const noexcept { return\
     \ n <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int\
     \ n)       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline\
     \ int size() const noexcept { return std::vector<mint>::size(); }\n        inline\
@@ -142,35 +148,62 @@ data:
     \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
     \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
     \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n\n#line 5 \"library/math/bostan_mori.hpp\"\n\n\
-    namespace suisen {\ntemplate <typename mint>\nmint bostan_mori(const FPS<mint>\
-    \ &P, const FPS<mint> &Q, const long long n) {\n    if (n == 0) return P[0];\n\
-    \    FPS mQ(Q);\n    for (int i = 0; i <= Q.deg(); i += 2) mQ[i] = -mQ[i];\n \
-    \   P *= mQ, Q *= mQ;\n    FPS nP((P.deg() + 1) / 2), nQ((Q.deg() + 1) / 2);\n\
-    \    for (int i = 0    ; i <= Q.deg(); i += 2) nQ[i >> 1] = Q[i];\n    for (int\
-    \ i = n & 1; i <= P.deg(); i += 2) nP[i >> 1] = P[i];\n    return bostan_mori(nP,\
-    \ nQ, n / 2);\n}\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_BOSTAN_MORI\n#define SUISEN_BOSTAN_MORI\n\n#include \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(const FPS<mint>\
-    \ &P, const FPS<mint> &Q, const long long n) {\n    if (n == 0) return P[0];\n\
-    \    FPS mQ(Q);\n    for (int i = 0; i <= Q.deg(); i += 2) mQ[i] = -mQ[i];\n \
-    \   P *= mQ, Q *= mQ;\n    FPS nP((P.deg() + 1) / 2), nQ((Q.deg() + 1) / 2);\n\
-    \    for (int i = 0    ; i <= Q.deg(); i += 2) nQ[i >> 1] = Q[i];\n    for (int\
-    \ i = n & 1; i <= P.deg(); i += 2) nP[i >> 1] = P[i];\n    return bostan_mori(nP,\
-    \ nQ, n / 2);\n}\n} // namespace suisen\n\n#endif // SUISEN_BOSTAN_MORI"
+    };\n\n} // namespace suisen\n\n\n#line 6 \"library/math/interpolation.hpp\"\n\n\
+    namespace suisen {\ntemplate <typename T>\nT lagrange_interpolation(const std::vector<T>\
+    \ &ys, const T t) {\n    const int n = ys.size();\n    T fac = 1;\n    for (int\
+    \ i = 1; i < n; ++i) fac *= i;\n    std::vector<T> fci(n), suf(n);\n    fci[n\
+    \ - 1] = T(1) / fac;\n    suf[n - 1] = 1;\n    for (int i = n - 1; i > 0; --i)\
+    \ {\n        fci[i - 1] = fci[i] * i;\n        suf[i - 1] = suf[i] * (t - i);\n\
+    \    }\n    T prf = 1, res = 0;\n    for (int i = 0; i < n; ++i) {\n        T\
+    \ val = ys[i] * prf * suf[i] * fci[i] * fci[n - i - 1];\n        if ((n - 1 -\
+    \ i) & 1) {\n            res -= val;\n        } else {\n            res += val;\n\
+    \        }\n        prf *= t - i;\n    }\n    return res;\n}\n\ntemplate <typename\
+    \ mint>\nFPS<mint> polynomial_interpolation(const std::vector<mint> &xs, const\
+    \ std::vector<mint> &ys) {\n    assert(xs.size() == ys.size());\n    int n = xs.size();\n\
+    \    int k = 1;\n    while (k < n) k <<= 1;\n    std::vector<FPS<mint>> seg(k\
+    \ << 1), g(k << 1);\n    for (int i = 0; i < n; ++i) seg[k + i] = FPS<mint> {-xs[i],\
+    \ 1};\n    for (int i = n; i < k; ++i) seg[k + i] = FPS<mint> {1};\n    for (int\
+    \ i = k - 1; i > 0; --i) {\n        seg[i] = seg[i * 2] * seg[i * 2 + 1];\n  \
+    \  }\n    g[1] = std::move(seg[1].diff_inplace());\n    for (int i = 1; i < k;\
+    \ ++i) {\n        int l = 2 * i, r = l + 1;\n        g[l] = g[i] % seg[l], g[r]\
+    \ = g[i] % seg[r];\n    }\n    for (int i = 0; i < n; ++i) g[k + i] = FPS<mint>\
+    \ {ys[i] / g[k + i][0]};\n    for (int i = n; i < k; ++i) g[k + i] = FPS<mint>\
+    \ {0};\n    for (int i = k - 1; i > 0; --i) {\n        int l = 2 * i, r = l +\
+    \ 1;\n        g[i] = g[l] * seg[r] + g[r] * seg[l];\n    }\n    return g[1];\n\
+    }\n} // namespace suisen\n\n\n\n#line 8 \"test/src/math/interpolation/polynomial_interpolation.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n    int n;\n\
+    \    std::cin >> n;\n    std::vector<mint> x(n), y(n);\n    for (int i = 0; i\
+    \ < n; ++i) {\n        int xi;\n        std::cin >> xi;\n        x[i] = xi;\n\
+    \    }\n    for (int i = 0; i < n; ++i) {\n        int yi;\n        std::cin >>\
+    \ yi;\n        y[i] = yi;\n    }\n    auto f = suisen::polynomial_interpolation(x,\
+    \ y);\n    for (int i = 0; i < n; ++i) {\n        std::cout << f[i].val() << \"\
+    \ \\n\"[i == n - 1];\n    }\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#include \"library/math/interpolation.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    \nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a, const\
+    \ auto &b) { return atcoder::convolution(a, b); });\n    int n;\n    std::cin\
+    \ >> n;\n    std::vector<mint> x(n), y(n);\n    for (int i = 0; i < n; ++i) {\n\
+    \        int xi;\n        std::cin >> xi;\n        x[i] = xi;\n    }\n    for\
+    \ (int i = 0; i < n; ++i) {\n        int yi;\n        std::cin >> yi;\n      \
+    \  y[i] = yi;\n    }\n    auto f = suisen::polynomial_interpolation(x, y);\n \
+    \   for (int i = 0; i < n; ++i) {\n        std::cout << f[i].val() << \" \\n\"\
+    [i == n - 1];\n    }\n    return 0;\n}"
   dependsOn:
+  - library/math/interpolation.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: false
-  path: library/math/bostan_mori.hpp
+  isVerificationFile: true
+  path: test/src/math/interpolation/polynomial_interpolation.test.cpp
   requiredBy: []
-  timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2021-07-18 20:42:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: library/math/bostan_mori.hpp
+documentation_of: test/src/math/interpolation/polynomial_interpolation.test.cpp
 layout: document
 redirect_from:
-- /library/library/math/bostan_mori.hpp
-- /library/library/math/bostan_mori.hpp.html
-title: library/math/bostan_mori.hpp
+- /verify/test/src/math/interpolation/polynomial_interpolation.test.cpp
+- /verify/test/src/math/interpolation/polynomial_interpolation.test.cpp.html
+title: test/src/math/interpolation/polynomial_interpolation.test.cpp
 ---

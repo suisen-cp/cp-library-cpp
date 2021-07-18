@@ -8,10 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
   - icon: ':heavy_check_mark:'
@@ -42,12 +42,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/fps/pow_of_fps.test.cpp
     title: test/src/math/fps/pow_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/src/math/interpolation/polynomial_interpolation.test.cpp
+    title: test/src/math/interpolation/polynomial_interpolation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\n\
@@ -84,10 +87,11 @@ data:
   - library/math/polynomial_taylor_shift.hpp
   - library/math/bostan_mori.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
+  - test/src/math/interpolation/polynomial_interpolation.test.cpp
   - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/math/fps/inv_of_fps.test.cpp
   - test/src/math/fps/log_of_fps.test.cpp
