@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/algorithm/slope_trick.hpp
     title: library/algorithm/slope_trick.hpp
   _extendedRequiredBy: []

@@ -6,7 +6,7 @@ data:
     - icon: ':warning:'
       path: library/algorithm/sliding_window_minimum.hpp
       title: library/algorithm/sliding_window_minimum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/algorithm/slope_trick.hpp
       title: library/algorithm/slope_trick.hpp
   - name: library/datastructure
@@ -152,7 +152,7 @@ data:
   verificationCategories:
   - name: test/src/algorithm/slope_trick
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/algorithm/slope_trick/absolute_minima.test.cpp
       title: test/src/algorithm/slope_trick/absolute_minima.test.cpp
     - icon: ':x:'
