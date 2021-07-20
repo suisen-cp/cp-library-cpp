@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: library/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: library/tree/heavy_light_decomposition.hpp
   _extendedVerifiedWith:
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - icon: ':heavy_check_mark:'

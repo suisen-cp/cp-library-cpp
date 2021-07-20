@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: library/tree/heavy_light_decomposition.hpp
   - icon: ':question:'
@@ -9,17 +9,17 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_ad
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
     links:
-    - https://judge.yosupo.jp/problem/vertex_ad
+    - https://judge.yosupo.jp/problem/vertex_add_path_sum
   bundledCode: "#line 1 \"test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_ad\"\n\n#include <iostream>\n\
-    #include <atcoder/segtree>\n\n#line 1 \"library/tree/heavy_light_decomposition.hpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n\
+    #include <iostream>\n#include <atcoder/segtree>\n\n#line 1 \"library/tree/heavy_light_decomposition.hpp\"\
     \n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
     #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
     \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -117,8 +117,8 @@ data:
     \ >> u >> v;\n            std::cout << hld.fold_path(u, v, 0LL, op, [&](int l,\
     \ int r) { return seg.prod(l, r); }) << '\\n';\n        }\n    }\n    return 0;\n\
     }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_ad\"\n\n#include\
-    \ <iostream>\n#include <atcoder/segtree>\n\n#include \"library/tree/heavy_light_decomposition.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
+    \n#include <iostream>\n#include <atcoder/segtree>\n\n#include \"library/tree/heavy_light_decomposition.hpp\"\
     \nusing suisen::HeavyLightDecomposition;\n\nconstexpr long long op(long long x,\
     \ long long y) { return x + y; }\nconstexpr long long e() { return 0LL; }\n\n\
     int main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
@@ -141,8 +141,8 @@ data:
   isVerificationFile: true
   path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 20:44:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-07-20 20:50:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
 layout: document
