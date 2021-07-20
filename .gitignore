@@ -1,2 +1,3 @@
 .vscode/*
 /**/combined.cpp
+.verify-helper/_config.toml
