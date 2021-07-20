@@ -4,7 +4,7 @@
 
 #include "library/algorithm/slope_trick.hpp"
 
-constexpr long long inf = std::numeric_limits<long long>::max();
+constexpr long long inf = std::numeric_limits<long long>::max() / 2;
 
 long long solve() {
     int n;
