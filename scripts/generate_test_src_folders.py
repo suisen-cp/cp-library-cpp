@@ -11,13 +11,12 @@ def generate(path):
         print("generate:", dir_path)
         os.makedirs(dir_path)
     gitignore = Path(dir_path) / Path(".gitignore")
-    if not os.path.exists(gitignore):
-        print("generate:", gitignore)
-        with open(gitignore, mode='w') as f:
-            f.write("/*\n")
-            f.write("!.gitignore\n")
-            f.write("!*.cpp\n")
-            f.write("!*.md")
+    with open(gitignore, mode='w') as f:
+        f.write("/*\n")
+        f.write("!.gitignore\n")
+        f.write("!*.cpp\n")
+        f.write("combined.cpp\n")
+        f.write("!*.md\n")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate Test Source Folders for All Libraries')
