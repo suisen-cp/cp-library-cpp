@@ -6,18 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/slope_trick/absolute_minima.test.cpp
     title: test/src/algorithm/slope_trick/absolute_minima.test.cpp
-  - icon: ':x:'
-    path: test/src/algorithm/slope_trick/hanabi.test.cpp
-    title: test/src/algorithm/slope_trick/hanabi.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
     title: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
     title: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/algorithm/slope_trick.hpp\"\n\n\n\n#include <cassert>\n\
@@ -93,12 +90,11 @@ data:
   path: library/algorithm/slope_trick.hpp
   requiredBy: []
   timestamp: '2021-07-20 16:59:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
   - test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
   - test/src/algorithm/slope_trick/absolute_minima.test.cpp
-  - test/src/algorithm/slope_trick/hanabi.test.cpp
 documentation_of: library/algorithm/slope_trick.hpp
 layout: document
 redirect_from:

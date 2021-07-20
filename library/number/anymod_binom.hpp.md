@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/number/linear_sieve.hpp
     title: library/number/linear_sieve.hpp
   _extendedRequiredBy: []
