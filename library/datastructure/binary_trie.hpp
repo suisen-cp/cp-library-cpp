@@ -1,6 +1,7 @@
 #ifndef SUISEN_BINARY_TRIE
 #define SUISEN_BINARY_TRIE
 
+#include <cassert>
 #include <limits>
 #include <optional>
 #include <string>
@@ -56,7 +57,7 @@ class BinaryTrie {
         inline bool empty() const noexcept { return size() == 0; }
 
         int insert(const U val, const int num = 1) noexcept {
-            if (num == 0) return;
+            if (num == 0) return 0;
             Node *cur = root;
             cur->siz += num;
             for (int i = bit_length; i --> 0;) {
@@ -66,7 +67,7 @@ class BinaryTrie {
             return cur->siz;
         }
         int erase(const U val, const int num = 1) noexcept {
-            if (num == 0) return;
+            if (num == 0) return 0;
             return erase(root, bit_length - 1, val, num);
         }
         int erase_all(const U val) noexcept {
