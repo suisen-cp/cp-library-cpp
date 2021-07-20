@@ -1,5 +1,5 @@
-#ifndef SUISEN_GAUSS_JORDAN
-#define SUISEN_GAUSS_JORDAN
+#ifndef SUISEN_GAUSSIAN_ELIMINATION
+#define SUISEN_GAUSSIAN_ELIMINATION
 
 #include <cmath>
 #include <optional>
@@ -56,14 +56,14 @@ namespace internal {
 }
 
 template <typename T, T(*add_fp)(T, T), T(*add_inv_fp)(T), T(*mul_fp)(T, T), T(*mul_inv_fp)(T)>
-class GaussJordan {
+class GaussianElimination {
     public:
-        GaussJordan(std::vector<std::vector<T>> &A, std::vector<T> &b, const T zero, const T one) {
+        GaussianElimination(std::vector<std::vector<T>> &A, std::vector<T> &b, const T zero, const T one) {
             unsigned int n = A.size();
             for (unsigned int i = 0; i < n; ++i) A[i].push_back(b[i]);
             solve(zero, one, A);
         }
-        GaussJordan(std::vector<std::vector<T>> &A, std::vector<T> &b) {
+        GaussianElimination(std::vector<std::vector<T>> &A, std::vector<T> &b) {
             unsigned int n = A.size();
             for (unsigned int i = 0; i < n; ++i) A[i].push_back(b[i]);
             solve(T(0), T(1), A);
@@ -147,15 +147,15 @@ class GaussJordan {
 };
 
 template <typename T>
-using GaussJordanF2 = GaussJordan<
+using GaussianEliminationF2 = GaussianElimination<
     T,
     internal::gauss_jordan::add_fp_f2, internal::gauss_jordan::add_inv_fp_f2,
     internal::gauss_jordan::mul_fp_f2, internal::gauss_jordan::mul_inv_fp_f2>;
 template <typename T>
-using GaussJordanArithmetic = GaussJordan<
+using GaussianEliminationArithmetic = GaussianElimination<
     T,
     internal::gauss_jordan::add_fp_arithmetic, internal::gauss_jordan::add_inv_fp_arithmetic,
     internal::gauss_jordan::mul_fp_arithmetic, internal::gauss_jordan::mul_inv_fp_arithmetic>;
 } // namespace suisen
 
-#endif // SUISEN_GAUSS_JORDAN
+#endif // SUISEN_GAUSSIAN_ELIMINATION
