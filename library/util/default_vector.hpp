@@ -14,6 +14,10 @@ class default_vector {
         explicit default_vector(const T default_value, int n) : _default_value(default_value), _data(n, default_value) {}
         explicit default_vector(const T default_value, const std::initializer_list<T> list) : _default_value(default_value), _data(list) {}
 
+        void set_default_value(const T val) {
+            _default_value = val;
+        }
+
         int size() const {
             return _data.size();
         }
@@ -91,7 +95,7 @@ class default_vector {
             return out << a._data;
         }
     private:
-        const T _default_value;
+        T _default_value;
         std::vector<T> _data;
         void ensure_size(int n) {
             if (int(_data.size()) < n + 1) {
