@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: library/tree/heavy_light_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []

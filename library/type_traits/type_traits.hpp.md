@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
   - icon: ':warning:'
@@ -15,12 +15,15 @@ data:
     path: library/tree/heavy_light_decomposition.hpp
     title: library/tree/heavy_light_decomposition.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+    title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: '#line 1 "library/type_traits/type_traits.hpp"
@@ -149,9 +152,10 @@ data:
   - library/tree/heavy_light_decomposition.hpp
   - library/algorithm/sliding_window_minimum.hpp
   timestamp: '2021-07-20 14:25:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+  - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 redirect_from:

@@ -1,21 +1,26 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: library/algorithm/sliding_window_minimum.hpp
+    title: library/algorithm/sliding_window_minimum.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
-    title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/algorithm/sliding_window_minimum.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#include <vector>\n#include <queue>\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/typical90/tasks/typical90_f
+    links:
+    - https://atcoder.jp/contests/typical90/tasks/typical90_f
+  bundledCode: "#line 1 \"test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp\"\
+    \n#define PROBLEM \"https://atcoder.jp/contests/typical90/tasks/typical90_f\"\n\
+    \n#include <iostream>\n#include <string>\n\n#line 1 \"library/algorithm/sliding_window_minimum.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <vector>\n#include <queue>\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\n\n// ! function\ntemplate <typename ReturnType, typename Callable,\
@@ -54,48 +59,34 @@ data:
     \ get_window_size() const {\n            return _r - _l;\n        }\n    private:\n\
     \        const int _n;\n        int _l = 0, _r = 0;\n        std::vector<T> _a;\n\
     \        std::deque<int> _dq;\n        Comparator _cmp;\n};\n} // namespace suisen\n\
-    \n\n"
-  code: "#ifndef SUISEN_SLIDING_WINDOW_MINIMUM\n#define SUISEN_SLIDING_WINDOW_MINIMUM\n\
-    \n#include <cassert>\n#include <vector>\n#include <queue>\n#include \"library/type_traits/type_traits.hpp\"\
-    \n\nnamespace suisen {\nnamespace prioritizing_mode {\n    template <typename\
-    \ T>\n    using left_most_min  = std::greater<T>;\n    template <typename T>\n\
-    \    using right_most_min = std::greater_equal<T>;\n    template <typename T>\n\
-    \    using left_most_max  = std::less<T>;\n    template <typename T>\n    using\
-    \ right_most_max = std::less_equal<T>;\n}\n\ntemplate <typename T, typename Comparator\
-    \ = prioritizing_mode::left_most_min<T>, constraints_t<is_comparator<Comparator,\
-    \ T>> = nullptr>\nclass sliding_window_minimum {\n    public:\n        template\
-    \ <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>\n\
-    \        sliding_window_minimum(int n, Gen gen) : _n(n), _a(n) {\n           \
-    \ for (int i = 0; i < _n; ++i) _a[i] = gen(i);\n        }\n        void proc_right()\
-    \ {\n            assert(_r < _n);\n            T v = _a[_r];\n            while\
-    \ (not _dq.empty() and _cmp(_a[_dq.back()], v)) _dq.pop_back();\n            _dq.push_back(_r++);\n\
-    \        }\n        void proc_right(int to_index) {\n            while (_r < to_index)\
-    \ proc_right();\n        }\n        void proc_left() {\n            assert(_l\
-    \ < _r);\n            if (_dq.front() == _l) _dq.pop_front();\n            ++_l;\n\
-    \        }\n        void proc_left(int to_index) {\n            while (_l < to_index)\
-    \ proc_left();\n        }\n        void proc(int new_l, int new_r) {\n       \
-    \     proc_right(new_r), proc_left(new_l);\n        }\n        int arg_query()\
-    \ const {\n            assert(_l < _r);\n            return _dq.front();\n   \
-    \     }\n        T query() const {\n            return _a[arg_query()];\n    \
-    \    }\n\n        int get_left() const {\n            return _l;\n        }\n\
-    \        int get_right() const {\n            return _r;\n        }\n        int\
-    \ get_window_size() const {\n            return _r - _l;\n        }\n    private:\n\
-    \        const int _n;\n        int _l = 0, _r = 0;\n        std::vector<T> _a;\n\
-    \        std::deque<int> _dq;\n        Comparator _cmp;\n};\n} // namespace suisen\n\
-    \n#endif // SUISEN_SLIDING_WINDOW_MINIMUM\n"
+    \n\n#line 7 \"test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp\"\n\
+    using namespace suisen;\n\nint main() {\n    int n, k;\n    std::cin >> n >> k;\n\
+    \    std::string s;\n    std::cin >> s;\n    sliding_window_minimum<char, prioritizing_mode::left_most_min<char>>\
+    \ swm(n, [&](int i) { return s[i]; });\n    std::string ans;\n    for (int rest\
+    \ = k - 1, l = 0; rest >= 0; --rest, ++l) {\n        swm.proc(l, n - rest);\n\
+    \        l = swm.arg_query();\n        ans += s[l];\n    }\n    std::cout << ans\
+    \ << '\\n';\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/typical90/tasks/typical90_f\"\
+    \n\n#include <iostream>\n#include <string>\n\n#include \"library/algorithm/sliding_window_minimum.hpp\"\
+    \nusing namespace suisen;\n\nint main() {\n    int n, k;\n    std::cin >> n >>\
+    \ k;\n    std::string s;\n    std::cin >> s;\n    sliding_window_minimum<char,\
+    \ prioritizing_mode::left_most_min<char>> swm(n, [&](int i) { return s[i]; });\n\
+    \    std::string ans;\n    for (int rest = k - 1, l = 0; rest >= 0; --rest, ++l)\
+    \ {\n        swm.proc(l, n - rest);\n        l = swm.arg_query();\n        ans\
+    \ += s[l];\n    }\n    std::cout << ans << '\\n';\n    return 0;\n}"
   dependsOn:
+  - library/algorithm/sliding_window_minimum.hpp
   - library/type_traits/type_traits.hpp
-  isVerificationFile: false
-  path: library/algorithm/sliding_window_minimum.hpp
+  isVerificationFile: true
+  path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 14:25:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
-documentation_of: library/algorithm/sliding_window_minimum.hpp
+  timestamp: '2021-07-20 20:05:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
 layout: document
 redirect_from:
-- /library/library/algorithm/sliding_window_minimum.hpp
-- /library/library/algorithm/sliding_window_minimum.hpp.html
-title: library/algorithm/sliding_window_minimum.hpp
+- /verify/test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+- /verify/test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp.html
+title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
 ---

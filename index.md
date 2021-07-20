@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/algorithm
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/algorithm/sliding_window_minimum.hpp
       title: library/algorithm/sliding_window_minimum.hpp
     - icon: ':heavy_check_mark:'
@@ -117,7 +117,7 @@ data:
       title: library/tree/heavy_light_decomposition.hpp
   - name: library/type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
@@ -150,6 +150,11 @@ data:
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
   verificationCategories:
+  - name: test/src/algorithm/sliding_window_minimum
+    pages:
+    - icon: ':x:'
+      path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+      title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
   - name: test/src/algorithm/slope_trick
     pages:
     - icon: ':heavy_check_mark:'
