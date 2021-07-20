@@ -10,32 +10,39 @@ data:
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-    title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+    path: library/math/polynomial_taylor_shift.hpp
+    title: library/math/polynomial_taylor_shift.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/math/polynomial_taylor_shift.hpp\"\n\n\n\n#line\
-    \ 1 \"library/math/fps.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
-    #include <iostream>\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\
-    \nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n\
-    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
-    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
-    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
-    \ = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n           \
-    \ if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
-    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
-    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
-    \        static constexpr int mod = mint::mod();\n};\ntemplate <typename mint>\n\
-    std::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 9 \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\n\ntemplate <typename mint>\nusing convolution_t = std::vector<mint>\
-    \ (*)(const std::vector<mint> &, const std::vector<mint> &);\n\ntemplate <typename\
-    \ mint>\nclass FPS : public std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
+    links:
+    - https://judge.yosupo.jp/problem/polynomial_taylor_shift
+  bundledCode: "#line 1 \"test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\n\
+    \n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
+    \ <atcoder/convolution>\n\n#line 1 \"library/math/polynomial_taylor_shift.hpp\"\
+    \n\n\n\n#line 1 \"library/math/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <cassert>\n#line 7 \"library/math/fps.hpp\"\n\n#line 1 \"library/math/inv_mods.hpp\"\
+    \n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\ntemplate\
+    \ <typename mint>\nclass inv_mods {\n    public:\n        inv_mods() {}\n    \
+    \    inv_mods(int n) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return invs[i];\n        }\n        static\
+    \ void ensure(int n) {\n            int sz = invs.size();\n            if (sz\
+    \ < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n               \
+    \ invs.resize(n + 1);\n                for (int i = sz; i <= n; ++i) invs[i] =\
+    \ mint(mod - mod / i) * invs[mod % i];\n            }\n        }\n    private:\n\
+    \        static std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n\
+    };\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\
+    \n#line 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
+    \ mint>\nusing convolution_t = std::vector<mint> (*)(const std::vector<mint> &,\
+    \ const std::vector<mint> &);\n\ntemplate <typename mint>\nclass FPS : public\
+    \ std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
     \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
     \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
     \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        inline\
@@ -175,32 +182,39 @@ data:
     \        expc[i] = p * fac.fac_inv(i);\n        g[d - i] = f[i] * fac.fac(i);\n\
     \    }\n    g *= expc, g.resize(d + 1);\n    for (int i = 0; i <= d; ++i) g[i]\
     \ *= fac.fac_inv(d - i);\n    std::reverse(g.begin(), g.end());\n    return g;\n\
-    }\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_POLYNOMIAL_TAYLOR_SHIFT\n#define SUISEN_POLYNOMIAL_TAYLOR_SHIFT\n\
-    \n#include \"library/math/fps.hpp\"\n#include \"library/math/factorial.hpp\"\n\
-    \nnamespace suisen {\n// return f(x + c) \ntemplate <typename mint>\nFPS<mint>\
-    \ translate(const FPS<mint> &f, const mint c) {\n    int d = f.deg();\n    if\
-    \ (d < 0) return FPS<mint> {0};\n    factorial<mint> fac(d);\n    FPS<mint> expc(d\
-    \ + 1), g(d + 1);\n    mint p = 1;\n    for (int i = 0; i <= d; ++i, p *= c) {\n\
-    \        expc[i] = p * fac.fac_inv(i);\n        g[d - i] = f[i] * fac.fac(i);\n\
-    \    }\n    g *= expc, g.resize(d + 1);\n    for (int i = 0; i <= d; ++i) g[i]\
-    \ *= fac.fac_inv(d - i);\n    std::reverse(g.begin(), g.end());\n    return g;\n\
-    }\n} // namespace suisen\n\n#endif // SUISEN_POLYNOMIAL_TAYLOR_SHIFT\n"
+    }\n} // namespace suisen\n\n\n#line 10 \"test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
+    \ n, c;\n    std::cin >> n >> c;\n    suisen::FPS<mint> f(n);\n    for (int i\
+    \ = 0; i < n; ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i]\
+    \ = coef;\n    }\n    auto g = suisen::translate(f, mint(c));\n    for (int i\
+    \ = 0; i < n; ++i) {\n        std::cout << g[i].val() << \" \\n\"[i == n - 1];\n\
+    \    }\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\
+    \n\n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
+    \ <atcoder/convolution>\n\n#include \"library/math/polynomial_taylor_shift.hpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
+    \ n, c;\n    std::cin >> n >> c;\n    suisen::FPS<mint> f(n);\n    for (int i\
+    \ = 0; i < n; ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i]\
+    \ = coef;\n    }\n    auto g = suisen::translate(f, mint(c));\n    for (int i\
+    \ = 0; i < n; ++i) {\n        std::cout << g[i].val() << \" \\n\"[i == n - 1];\n\
+    \    }\n    return 0;\n}"
   dependsOn:
+  - library/math/polynomial_taylor_shift.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
   - library/math/factorial.hpp
-  isVerificationFile: false
-  path: library/math/polynomial_taylor_shift.hpp
+  isVerificationFile: true
+  path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-documentation_of: library/math/polynomial_taylor_shift.hpp
+  timestamp: '2021-07-20 20:26:53+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 layout: document
 redirect_from:
-- /library/library/math/polynomial_taylor_shift.hpp
-- /library/library/math/polynomial_taylor_shift.hpp.html
-title: library/math/polynomial_taylor_shift.hpp
+- /verify/test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+- /verify/test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp.html
+title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 ---

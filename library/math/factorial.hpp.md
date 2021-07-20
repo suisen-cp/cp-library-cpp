@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: library/math/polynomial_taylor_shift.hpp
   _extendedVerifiedWith:
@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/stirling_number2.test.cpp
     title: test/src/math/common_sequences/stirling_number2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+    title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -71,6 +74,7 @@ data:
   verifiedWith:
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
+  - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document
 redirect_from:

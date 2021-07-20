@@ -79,7 +79,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/multi_point_eval.hpp
       title: library/math/multi_point_eval.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/math/polynomial_taylor_shift.hpp
       title: library/math/polynomial_taylor_shift.hpp
     - icon: ':warning:'
@@ -225,6 +225,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+  - name: test/src/math/polynomial_taylor_shift
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+      title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - name: test/src/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
