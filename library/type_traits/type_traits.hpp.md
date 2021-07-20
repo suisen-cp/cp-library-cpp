@@ -39,7 +39,7 @@ data:
 
     template <typename ...Types>
 
-    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, nullptr_t>;
+    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;
 
 
     // ! function
@@ -98,7 +98,7 @@ data:
 
     template <typename ...Types>
 
-    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, nullptr_t>;
+    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;
 
 
     // ! function
@@ -148,7 +148,7 @@ data:
   - library/template.cpp
   - library/tree/heavy_light_decomposition.hpp
   - library/algorithm/sliding_window_minimum.hpp
-  timestamp: '2021-07-17 02:33:12+09:00'
+  timestamp: '2021-07-20 14:25:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp

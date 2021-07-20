@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n#line\
     \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include\
     \ <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\n\
-    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, nullptr_t>;\n\
+    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\n\
     \n// ! function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
     using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
     \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
@@ -168,7 +168,7 @@ data:
   isVerificationFile: false
   path: library/tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2021-07-18 16:55:52+09:00'
+  timestamp: '2021-07-20 14:25:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp

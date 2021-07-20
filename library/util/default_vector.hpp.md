@@ -15,11 +15,12 @@ data:
     \ {}\n        explicit default_vector(const T default_value, int n) : _default_value(default_value),\
     \ _data(n, default_value) {}\n        explicit default_vector(const T default_value,\
     \ const std::initializer_list<T> list) : _default_value(default_value), _data(list)\
-    \ {}\n\n        int size() const {\n            return _data.size();\n       \
-    \ }\n        void reserve(int n) {\n            _data.reserve(n);\n        }\n\
-    \        const T& operator[](int i) const {\n            ensure_size(i);\n   \
-    \         return _data[i];\n        }\n        T& operator[](int i) {\n      \
-    \      ensure_size(i);\n            return _data[i];\n        }\n        const\
+    \ {}\n\n        void set_default_value(const T val) {\n            _default_value\
+    \ = val;\n        }\n\n        int size() const {\n            return _data.size();\n\
+    \        }\n        void reserve(int n) {\n            _data.reserve(n);\n   \
+    \     }\n        const T& operator[](int i) const {\n            ensure_size(i);\n\
+    \            return _data[i];\n        }\n        T& operator[](int i) {\n   \
+    \         ensure_size(i);\n            return _data[i];\n        }\n        const\
     \ T& front() const { return _data.front(); }\n        T& front()             {\
     \ return _data.front(); }\n        const T& back() const  { return _data.back();\
     \ }\n        T& back()              { return _data.back(); }\n    \n        auto\
@@ -51,7 +52,7 @@ data:
     \ default_vector<T> &a) {\n            return in >> a._data;\n        }\n    \
     \    friend std::ostream& operator<<(std::ostream& out, const default_vector<T>\
     \ &a) {\n            return out << a._data;\n        }\n    private:\n       \
-    \ const T _default_value;\n        std::vector<T> _data;\n        void ensure_size(int\
+    \ T _default_value;\n        std::vector<T> _data;\n        void ensure_size(int\
     \ n) {\n            if (int(_data.size()) < n + 1) {\n                _data.resize(n\
     \ + 1, _default_value);\n            }\n        }\n};\n} // namespace suisen\n\
     \n\n"
@@ -62,11 +63,12 @@ data:
     \ {}\n        explicit default_vector(const T default_value, int n) : _default_value(default_value),\
     \ _data(n, default_value) {}\n        explicit default_vector(const T default_value,\
     \ const std::initializer_list<T> list) : _default_value(default_value), _data(list)\
-    \ {}\n\n        int size() const {\n            return _data.size();\n       \
-    \ }\n        void reserve(int n) {\n            _data.reserve(n);\n        }\n\
-    \        const T& operator[](int i) const {\n            ensure_size(i);\n   \
-    \         return _data[i];\n        }\n        T& operator[](int i) {\n      \
-    \      ensure_size(i);\n            return _data[i];\n        }\n        const\
+    \ {}\n\n        void set_default_value(const T val) {\n            _default_value\
+    \ = val;\n        }\n\n        int size() const {\n            return _data.size();\n\
+    \        }\n        void reserve(int n) {\n            _data.reserve(n);\n   \
+    \     }\n        const T& operator[](int i) const {\n            ensure_size(i);\n\
+    \            return _data[i];\n        }\n        T& operator[](int i) {\n   \
+    \         ensure_size(i);\n            return _data[i];\n        }\n        const\
     \ T& front() const { return _data.front(); }\n        T& front()             {\
     \ return _data.front(); }\n        const T& back() const  { return _data.back();\
     \ }\n        T& back()              { return _data.back(); }\n    \n        auto\
@@ -98,7 +100,7 @@ data:
     \ default_vector<T> &a) {\n            return in >> a._data;\n        }\n    \
     \    friend std::ostream& operator<<(std::ostream& out, const default_vector<T>\
     \ &a) {\n            return out << a._data;\n        }\n    private:\n       \
-    \ const T _default_value;\n        std::vector<T> _data;\n        void ensure_size(int\
+    \ T _default_value;\n        std::vector<T> _data;\n        void ensure_size(int\
     \ n) {\n            if (int(_data.size()) < n + 1) {\n                _data.resize(n\
     \ + 1, _default_value);\n            }\n        }\n};\n} // namespace suisen\n\
     \n#endif // SUISEN_DEFAULT_VECTOR"
@@ -106,7 +108,7 @@ data:
   isVerificationFile: false
   path: library/util/default_vector.hpp
   requiredBy: []
-  timestamp: '2021-07-17 02:33:12+09:00'
+  timestamp: '2021-07-20 14:25:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/util/default_vector.hpp

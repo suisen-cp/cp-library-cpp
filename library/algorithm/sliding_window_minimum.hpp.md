@@ -15,7 +15,7 @@ data:
     \ <cassert>\n#include <vector>\n#include <queue>\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ nullptr_t>;\n\n// ! function\ntemplate <typename ReturnType, typename Callable,\
+    \ std::nullptr_t>;\n\n// ! function\ntemplate <typename ReturnType, typename Callable,\
     \ typename ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
     \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
     \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
@@ -85,7 +85,7 @@ data:
   isVerificationFile: false
   path: library/algorithm/sliding_window_minimum.hpp
   requiredBy: []
-  timestamp: '2021-07-17 02:33:12+09:00'
+  timestamp: '2021-07-20 14:25:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/algorithm/sliding_window_minimum.hpp

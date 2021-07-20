@@ -18,7 +18,7 @@ data:
     \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\
     \n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
     \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ nullptr_t>;\n\n// ! function\ntemplate <typename ReturnType, typename Callable,\
+    \ std::nullptr_t>;\n\n// ! function\ntemplate <typename ReturnType, typename Callable,\
     \ typename ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
     \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
     \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
@@ -65,7 +65,7 @@ data:
     \ head;\n    if (sizeof...(tails)) std::cout << ' ';\n    print(tails...);\n}\n\
     template <typename Iterable>\nvoid print_iterable(const Iterable& v, const std::string\
     \ sep = \" \", const std::string end = \"\\n\") {\n    for (auto it = v.begin();\
-    \ it != v.end();) {\n        std::cout << *it;\n        if (++it != a.end()) std::cout\
+    \ it != v.end();) {\n        std::cout << *it;\n        if (++it != v.end()) std::cout\
     \ << ' ';\n    }\n    std::cout << end;\n}\n\ntemplate <typename T, typename U>\n\
     std::istream& operator>>(std::istream& in, std::pair<T, U> &a) { return in >>\
     \ a.first >> a.second; }\ntemplate <typename T>\nstd::istream& operator>>(std::istream&\
@@ -116,7 +116,7 @@ data:
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2021-07-18 16:55:52+09:00'
+  timestamp: '2021-07-20 14:25:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp

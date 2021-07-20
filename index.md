@@ -6,6 +6,9 @@ data:
     - icon: ':warning:'
       path: library/algorithm/sliding_window_minimum.hpp
       title: library/algorithm/sliding_window_minimum.hpp
+    - icon: ':x:'
+      path: library/algorithm/slope_trick.hpp
+      title: library/algorithm/slope_trick.hpp
   - name: library/datastructure
     pages:
     - icon: ':warning:'
@@ -147,6 +150,14 @@ data:
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
   verificationCategories:
+  - name: test/src/algorithm/slope_trick
+    pages:
+    - icon: ':x:'
+      path: test/src/algorithm/slope_trick/absolute_minima.test.cpp
+      title: test/src/algorithm/slope_trick/absolute_minima.test.cpp
+    - icon: ':x:'
+      path: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
+      title: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'
