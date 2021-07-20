@@ -1,3 +1,5 @@
+#define IGNORE "testcases are not available."
+
 #define PROBLEM "https://atcoder.jp/contests/dwango2016-prelims/tasks/dwango2016qual_e"
 
 #include <iostream>
