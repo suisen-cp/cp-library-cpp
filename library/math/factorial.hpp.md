@@ -10,6 +10,12 @@ data:
     title: library/math/polynomial_taylor_shift.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/math/common_sequences/bernoulli_number.test.cpp
+    title: test/src/math/common_sequences/bernoulli_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/common_sequences/partition_function.test.cpp
+    title: test/src/math/common_sequences/partition_function.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/stirling_number1.test.cpp
     title: test/src/math/common_sequences/stirling_number1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,8 +78,10 @@ data:
   timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/math/common_sequences/partition_function.test.cpp
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
+  - test/src/math/common_sequences/bernoulli_number.test.cpp
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document

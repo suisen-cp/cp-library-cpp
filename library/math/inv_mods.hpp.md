@@ -20,10 +20,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: library/math/polynomial_taylor_shift.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/math/subset_sum.hpp
     title: library/math/subset_sum.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/common_sequences/bernoulli_number.test.cpp
+    title: test/src/math/common_sequences/bernoulli_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/common_sequences/partition_function.test.cpp
+    title: test/src/math/common_sequences/partition_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/stirling_number1.test.cpp
     title: test/src/math/common_sequences/stirling_number1.test.cpp
@@ -54,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/subset_sum/p_subset_sum.test.cpp
+    title: test/src/math/subset_sum/p_subset_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -95,12 +104,15 @@ data:
   timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/math/common_sequences/partition_function.test.cpp
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
+  - test/src/math/common_sequences/bernoulli_number.test.cpp
   - test/src/math/interpolation/polynomial_interpolation.test.cpp
   - test/src/math/interpolation/cumulative_sum.test.cpp
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/math/subset_sum/p_subset_sum.test.cpp
   - test/src/math/fps/inv_of_fps.test.cpp
   - test/src/math/fps/log_of_fps.test.cpp
   - test/src/math/fps/exp_of_fps.test.cpp

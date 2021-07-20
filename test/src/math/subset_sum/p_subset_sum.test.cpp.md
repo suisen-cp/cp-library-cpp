@@ -7,32 +7,38 @@ data:
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/math/subset_sum/p_subset_sum.test.cpp
-    title: test/src/math/subset_sum/p_subset_sum.test.cpp
+    path: library/math/subset_sum.hpp
+    title: library/math/subset_sum.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/math/subset_sum.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
-    \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
-    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
-    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
-    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
-    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
-    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
-    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
-    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
-    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
-    }\n\n\n#line 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ mint>\nusing convolution_t = std::vector<mint> (*)(const std::vector<mint> &,\
-    \ const std::vector<mint> &);\n\ntemplate <typename mint>\nclass FPS : public\
-    \ std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
+    links:
+    - https://judge.yosupo.jp/problem/sharp_p_subset_sum
+  bundledCode: "#line 1 \"test/src/math/subset_sum/p_subset_sum.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\n\n#include <iostream>\n\
+    #include <vector>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#line 1 \"library/math/subset_sum.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/math/fps.hpp\"\
+    \n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n\
+    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
+    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
+    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
+    \ = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n           \
+    \ if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
+    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
+    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
+    \        static constexpr int mod = mint::mod();\n};\ntemplate <typename mint>\n\
+    std::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 9 \"library/math/fps.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename mint>\nusing convolution_t = std::vector<mint>\
+    \ (*)(const std::vector<mint> &, const std::vector<mint> &);\n\ntemplate <typename\
+    \ mint>\nclass FPS : public std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
     \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
     \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
     \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        inline\
@@ -154,31 +160,36 @@ data:
     \ i * j <= n; ++j) {\n            if (j & 1) log[i * j] += invs[j] * a[i];\n \
     \           else       log[i * j] -= invs[j] * a[i];\n        }\n    }\n    log.exp_inplace(n),\
     \ log.resize(n + 1);\n    mint p = mint(2).pow(a[0]);\n    for (mint &e : log)\
-    \ e *= p;\n    return log;\n}\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_SUBSET_SUM\n#define SUISEN_SUBSET_SUM\n\n#include \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nstd::vector<mint> subset_sum(const\
-    \ int n, const std::vector<int> &items) {\n    std::vector<int> a(n + 1, 0);\n\
-    \    for (int e : items) {\n        assert(e >= 0);\n        if (e <= n) ++a[e];\n\
-    \    }\n    inv_mods<mint> invs(n);\n    FPS<mint> log(n + 1);\n    for (int i\
-    \ = 1; i <= n; ++i) {\n        if (a[i] == 0) continue;\n        for (int j =\
-    \ 1; i * j <= n; ++j) {\n            if (j & 1) log[i * j] += invs[j] * a[i];\n\
-    \            else       log[i * j] -= invs[j] * a[i];\n        }\n    }\n    log.exp_inplace(n),\
-    \ log.resize(n + 1);\n    mint p = mint(2).pow(a[0]);\n    for (mint &e : log)\
-    \ e *= p;\n    return log;\n}\n} // namespace suisen\n\n#endif // SUISEN_SUBSET_SUM\n"
+    \ e *= p;\n    return log;\n}\n} // namespace suisen\n\n\n#line 10 \"test/src/math/subset_sum/p_subset_sum.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
+    \ n, t;\n    std::cin >> n >> t;\n    std::vector<int> items(n);\n    for (int\
+    \ &e : items) std::cin >> e;\n    auto f = suisen::subset_sum<mint>(t, items);\n\
+    \    for (int i = 1; i <= t; ++i) {\n        std::cout << f[i].val() << \" \\\
+    n\"[i == t];\n    }\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\n\n\
+    #include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
+    \ <atcoder/convolution>\n\n#include \"library/math/subset_sum.hpp\"\n\nusing mint\
+    \ = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
+    \ n, t;\n    std::cin >> n >> t;\n    std::vector<int> items(n);\n    for (int\
+    \ &e : items) std::cin >> e;\n    auto f = suisen::subset_sum<mint>(t, items);\n\
+    \    for (int i = 1; i <= t; ++i) {\n        std::cout << f[i].val() << \" \\\
+    n\"[i == t];\n    }\n    return 0;\n}"
   dependsOn:
+  - library/math/subset_sum.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: false
-  path: library/math/subset_sum.hpp
+  isVerificationFile: true
+  path: test/src/math/subset_sum/p_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/math/subset_sum/p_subset_sum.test.cpp
-documentation_of: library/math/subset_sum.hpp
+  timestamp: '2021-07-20 20:30:11+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/math/subset_sum/p_subset_sum.test.cpp
 layout: document
 redirect_from:
-- /library/library/math/subset_sum.hpp
-- /library/library/math/subset_sum.hpp.html
-title: library/math/subset_sum.hpp
+- /verify/test/src/math/subset_sum/p_subset_sum.test.cpp
+- /verify/test/src/math/subset_sum/p_subset_sum.test.cpp.html
+title: test/src/math/subset_sum/p_subset_sum.test.cpp
 ---

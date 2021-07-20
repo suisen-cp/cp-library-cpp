@@ -82,7 +82,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/polynomial_taylor_shift.hpp
       title: library/math/polynomial_taylor_shift.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/math/subset_sum.hpp
       title: library/math/subset_sum.hpp
   - name: library/number
@@ -177,6 +177,12 @@ data:
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/src/math/common_sequences/bernoulli_number.test.cpp
+      title: test/src/math/common_sequences/bernoulli_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/common_sequences/partition_function.test.cpp
+      title: test/src/math/common_sequences/partition_function.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/src/math/common_sequences/stirling_number1.test.cpp
       title: test/src/math/common_sequences/stirling_number1.test.cpp
     - icon: ':heavy_check_mark:'
@@ -230,6 +236,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
       title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - name: test/src/math/subset_sum
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/subset_sum/p_subset_sum.test.cpp
+      title: test/src/math/subset_sum/p_subset_sum.test.cpp
   - name: test/src/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'

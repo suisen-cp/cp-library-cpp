@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: library/math/common_sequences.hpp
+    title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: library/math/factorial.hpp
   - icon: ':question:'
@@ -11,28 +14,22 @@ data:
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/common_sequences/bernoulli_number.test.cpp
-    title: test/src/math/common_sequences/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/common_sequences/partition_function.test.cpp
-    title: test/src/math/common_sequences/partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/common_sequences/stirling_number1.test.cpp
-    title: test/src/math/common_sequences/stirling_number1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/common_sequences/stirling_number2.test.cpp
-    title: test/src/math/common_sequences/stirling_number2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/math/common_sequences.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
-    \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/partition_function
+    links:
+    - https://judge.yosupo.jp/problem/partition_function
+  bundledCode: "#line 1 \"test/src/math/common_sequences/partition_function.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/partition_function\"\n\n#include\
+    \ <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\n\
+    #line 1 \"library/math/common_sequences.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/math/fps.hpp\"\
+    \n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace\
+    \ suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
     \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
     \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
     \        static void ensure(int n) {\n            int sz = invs.size();\n    \
@@ -219,86 +216,35 @@ data:
     \        else ++inv[k];\n    }\n    for (int i = 1, k = 2; k <= n; k += 3 * i\
     \ + 2, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
     \   inv.inv_inplace(n), inv.resize(n + 1);\n    return inv;\n}\n} // namespace\
-    \ suisen\n\n\n"
-  code: "#ifndef SUISEN_COMMON_SEQ\n#define SUISEN_COMMON_SEQ\n\n#include \"library/math/fps.hpp\"\
-    \n#include \"library/math/factorial.hpp\"\n\nnamespace suisen {\n/**\n * return:\n\
-    \ *   vector<mint> v s.t. v[i] = S1[n,n-i] for i=0,...,k (unsigned)\n * constraints:\n\
-    \ *   0 <= n <= 10^6\n */\ntemplate <typename mint>\nstd::vector<mint> stirling_number1_reversed(int\
-    \ n) {\n    factorial<mint> fac(n);\n    int l = 0;\n    while ((n >> l) != 0)\
-    \ ++l;\n    FPS<mint> a {1};\n    int m = 0;\n    while (l --> 0) {\n        FPS<mint>\
-    \ f(m + 1), g(m + 1);\n        mint powm = 1;\n        for (int i = 0; i <= m;\
-    \ ++i, powm *= m) {\n            f[i] = powm * fac.fac_inv(i);\n            g[i]\
-    \ = a[i] * fac.fac(m - i);\n        }\n        f *= g, f.pre_inplace(m);\n   \
-    \     for (int i = 0; i <= m; ++i) f[i] *= fac.fac_inv(m - i);\n        a *= f,\
-    \ m *= 2, a.pre_inplace(m);\n        if ((n >> l) & 1) {\n            a.push_back(0);\n\
-    \            for (int i = m; i > 0; --i) a[i] += m * a[i - 1];\n            ++m;\n\
-    \        }\n    }\n    return a;\n}\ntemplate <typename mint>\nstd::vector<mint>\
-    \ stirling_number1(int n) {\n    auto a(stirling_number1_reversed<mint>(n));\n\
-    \    std::reverse(a.begin(), a.end());\n    return a;\n}\n/**\n * return:\n *\
-    \   vector<mint> v s.t. v[i] = S1[n,n-i] for i=0,...,k, where S1 is the stirling\
-    \ number of the first kind (unsigned).\n * constraints:\n * - 0 <= n <= 10^18\n\
-    \ * - 0 <= k <= 5000\n * - k < mod\n */\ntemplate <typename mint>\nstd::vector<mint>\
-    \ stirling_number1_reversed(const long long n, const int k) {\n    inv_mods<mint>\
-    \ invs(k + 1);\n    std::vector<mint> a(k + 1, 0);\n    a[0] = 1;\n    int l =\
-    \ 0;\n    while (n >> l) ++l;\n    mint m = 0;\n    while (l --> 0) {\n      \
-    \  std::vector<mint> b(k + 1, 0);\n        for (int j = 0; j <= k; ++j) {\n  \
-    \          mint tmp = 1;\n            for (int i = j; i <= k; ++i) {\n       \
-    \         b[i] += a[j] * tmp;\n                tmp *= (m - i) * invs[i - j + 1]\
-    \ * m;\n            }\n        }\n        for (int i = k + 1; i --> 0;) {\n  \
-    \          mint sum = 0;\n            for (int j = 0; j <= i; ++j) sum += a[j]\
-    \ * b[i - j];\n            a[i] = sum;\n        }\n        m *= 2;\n        if\
-    \ ((n >> l) & 1) {\n            for (int i = k; i > 0; --i) a[i] += m * a[i -\
-    \ 1];\n            ++m;\n        }\n    }\n    return a;\n}\n\n/**\n * return:\n\
-    \ *   vector<mint> v s.t. v[i] = S2[n,i] for i=0,...,k\n * constraints:\n *  \
-    \ 0 <= n <= 10^6\n */\ntemplate <typename mint>\nstd::vector<mint> stirling_number2(int\
-    \ n) {\n    factorial<mint> fac(n);\n    FPS<mint> a(n + 1), b(n + 1);\n    for\
-    \ (int i = 0; i <= n; ++i) {\n        a[i] = mint(i).pow(n) * fac.fac_inv(i);\n\
-    \        b[i] = i & 1 ? -fac.fac_inv(i) : fac.fac_inv(i);\n    }\n    a *= b,\
-    \ a.pre_inplace(n);\n    return a;\n}\n\ntemplate <typename mint>\nstd::vector<mint>\
-    \ bernoulli_number(int n) {\n    factorial<mint> fac(n);\n    FPS<mint> a(n +\
-    \ 1);\n    for (int i = 0; i <= n; ++i) a[i] = fac.fac_inv(i + 1);\n    a.inv_inplace(n),\
-    \ a.resize(n + 1);\n    for (int i = 2; i <= n; ++i) a[i] *= fac.fac(i);\n   \
-    \ return a;\n}\n\ntemplate <typename mint>\nstd::vector<mint> partition_number(int\
-    \ n) {\n    FPS<mint> inv(n + 1);\n    inv[0] = 1;\n    for (int i = 1, k = 1;\
-    \ k <= n; k += 3 * i + 1, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n\
-    \    }\n    for (int i = 1, k = 2; k <= n; k += 3 * i + 2, i++) {\n        if\
-    \ (i & 1) --inv[k];\n        else ++inv[k];\n    }\n    inv.inv_inplace(n), inv.resize(n\
-    \ + 1);\n    return inv;\n}\n} // namespace suisen\n\n#endif // SUISEN_COMMON_SEQ\n"
+    \ suisen\n\n\n#line 9 \"test/src/math/common_sequences/partition_function.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
+    \ n;\n    std::cin >> n;\n    auto f = suisen::partition_number<mint>(n);\n  \
+    \  for (int i = 0; i <= n; ++i) {\n        std::cout << f[i].val() << \" \\n\"\
+    [i == n];\n    }\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/partition_function\"\n\n\
+    #include <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#include \"library/math/common_sequences.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    \nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a, const\
+    \ auto &b) { return atcoder::convolution(a, b); });\n\n    int n;\n    std::cin\
+    \ >> n;\n    auto f = suisen::partition_number<mint>(n);\n    for (int i = 0;\
+    \ i <= n; ++i) {\n        std::cout << f[i].val() << \" \\n\"[i == n];\n    }\n\
+    \    return 0;\n}"
   dependsOn:
+  - library/math/common_sequences.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
   - library/math/factorial.hpp
-  isVerificationFile: false
-  path: library/math/common_sequences.hpp
+  isVerificationFile: true
+  path: test/src/math/common_sequences/partition_function.test.cpp
   requiredBy: []
-  timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/math/common_sequences/partition_function.test.cpp
-  - test/src/math/common_sequences/stirling_number2.test.cpp
-  - test/src/math/common_sequences/stirling_number1.test.cpp
-  - test/src/math/common_sequences/bernoulli_number.test.cpp
-documentation_of: library/math/common_sequences.hpp
+  timestamp: '2021-07-20 20:33:09+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/math/common_sequences/partition_function.test.cpp
 layout: document
-title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
+redirect_from:
+- /verify/test/src/math/common_sequences/partition_function.test.cpp
+- /verify/test/src/math/common_sequences/partition_function.test.cpp.html
+title: test/src/math/common_sequences/partition_function.test.cpp
 ---
-
-### stirling_number1_reversed
-
-```cpp
-template <typename mint>
-std::vector<mint> stirling_number1_reversed(int n) 
-```
-
-(符号なし) 第一種スターリング数 $\mathrm{S1}(N,\cdot)$ を逆順に並べた列を $O(N\log N)$ で計算します．つまり，返り値の `vector` の $k$ 番目の要素を $A_k$ とすると，$A_k$ は集合 $\{0,\ldots,N-1\}$ から $k$ 個の要素を選んで積を取ったものの総和となります．数式で書けば，次が成り立ちます．
-
-$$
-A_k=\sum_{\overset{\scriptstyle S\subset\{0,\ldots,N-1\},}{|S|=k}}\prod_{v\in S} v
-$$
-
-```cpp
-template <typename mint>
-std::vector<mint> stirling_number1_reversed(const long long n, const int k)
-```
-
-(符号なし) 第一種スターリング数 $\mathrm{S1}(N,\cdot)$ を逆順に並べた列の前から $K+1$ 項を $O(K^2\log N)$ で計算します．
