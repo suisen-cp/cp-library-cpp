@@ -1,6 +1,7 @@
 {
-"test/src/algorithm/slope_trick/absolute_minima.test.cpp": "2021-07-20 14:25:40 +0900",
-"test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp": "2021-07-20 14:38:13 +0900",
+"test/src/algorithm/slope_trick/absolute_minima.test.cpp": "2021-07-20 16:59:23 +0900",
+"test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp": "2021-07-20 16:59:23 +0900",
+"test/src/algorithm/slope_trick/narrow_rectangles.test.cpp": "2021-07-20 17:04:50 +0900",
 "test/src/math/common_sequences/stirling_number1.test.cpp": "2021-07-18 20:01:05 +0900",
 "test/src/math/common_sequences/stirling_number2.test.cpp": "2021-07-18 20:01:05 +0900",
 "test/src/math/fps/exp_of_fps.test.cpp": "2021-07-18 19:28:54 +0900",
