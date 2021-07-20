@@ -64,16 +64,16 @@ data:
     - icon: ':warning:'
       path: library/math/fzt_fmt.hpp
       title: library/math/fzt_fmt.hpp
-    - icon: ':warning:'
-      path: library/math/gauss_jordan.hpp
-      title: library/math/gauss_jordan.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/math/gaussian_elimination.hpp
+      title: library/math/gaussian_elimination.hpp
     - icon: ':question:'
       path: library/math/interpolation.hpp
       title: library/math/interpolation.hpp
     - icon: ':question:'
       path: library/math/inv_mods.hpp
       title: library/math/inv_mods.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/math/matrix.hpp
       title: library/math/matrix.hpp
     - icon: ':heavy_check_mark:'
@@ -183,6 +183,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/fps/pow_of_fps.test.cpp
       title: test/src/math/fps/pow_of_fps.test.cpp
+  - name: test/src/math/gaussian_elimination
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
+      title: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
   - name: test/src/math/interpolation
     pages:
     - icon: ':x:'
@@ -191,6 +196,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/interpolation/polynomial_interpolation.test.cpp
       title: test/src/math/interpolation/polynomial_interpolation.test.cpp
+  - name: test/src/math/matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/matrix/determinant_of_matrix.test.cpp
+      title: test/src/math/matrix/determinant_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/matrix/inverse_matrix.test.cpp
+      title: test/src/math/matrix/inverse_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/matrix/matrix_product.test.cpp
+      title: test/src/math/matrix/matrix_product.test.cpp
   - name: test/src/math/multi_point_eval
     pages:
     - icon: ':heavy_check_mark:'
