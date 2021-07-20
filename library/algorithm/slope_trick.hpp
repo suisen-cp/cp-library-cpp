@@ -11,7 +11,7 @@ class SlopeTrick {
     using pq_dsc = std::priority_queue<T>;
     using pq_asc = std::priority_queue<T, std::vector<T>, std::greater<T>>;
     public:
-        SlopeTrick() {
+        SlopeTrick() : base(0), add_l(0), add_r(0) {
             l.push(-inf), r.push(+inf);
         }
         T min() const {
@@ -75,10 +75,9 @@ class SlopeTrick {
         }
     private:
         static constexpr T inf = std::numeric_limits<T>::max() / 2;
-        T base = T(0);
+        T base, add_l, add_r;
         pq_dsc l;
         pq_asc r;
-        T add_l = T(0), add_r = T(0);
 };
 } // namespace suisen
 
