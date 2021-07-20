@@ -1,6 +1,7 @@
 #ifndef SUISEN_SLOPE_TRICK
 #define SUISEN_SLOPE_TRICK
 
+#include <cassert>
 #include <limits>
 #include <queue>
 
