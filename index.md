@@ -6,7 +6,7 @@ data:
     - icon: ':warning:'
       path: library/algorithm/sliding_window_minimum.hpp
       title: library/algorithm/sliding_window_minimum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/algorithm/slope_trick.hpp
       title: library/algorithm/slope_trick.hpp
   - name: library/datastructure
@@ -155,9 +155,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/slope_trick/absolute_minima.test.cpp
       title: test/src/algorithm/slope_trick/absolute_minima.test.cpp
+    - icon: ':x:'
+      path: test/src/algorithm/slope_trick/hanabi.test.cpp
+      title: test/src/algorithm/slope_trick/hanabi.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
       title: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
+      title: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'

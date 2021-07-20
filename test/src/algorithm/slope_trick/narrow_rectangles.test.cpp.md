@@ -11,11 +11,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/arc123/tasks/arc123_d
+    PROBLEM: https://atcoder.jp/contests/arc070/tasks/arc070_e
     links:
-    - https://atcoder.jp/contests/arc123/tasks/arc123_d
-  bundledCode: "#line 1 \"test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/arc123/tasks/arc123_d\"\n\n#include\
+    - https://atcoder.jp/contests/arc070/tasks/arc070_e
+  bundledCode: "#line 1 \"test/src/algorithm/slope_trick/narrow_rectangles.test.cpp\"\
+    \n#define PROBLEM \"https://atcoder.jp/contests/arc070/tasks/arc070_e\"\n\n#include\
     \ <iostream>\n\n#line 1 \"library/algorithm/slope_trick.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <limits>\n#include <queue>\n\nnamespace suisen {\ntemplate\
     \ <typename T>\nclass SlopeTrick {\n    using pq_dsc = std::priority_queue<T>;\n\
@@ -49,35 +49,33 @@ data:
     \            add_l += a, add_r += b;\n            return *this;\n        }\n \
     \   private:\n        static constexpr T inf = std::numeric_limits<T>::max() /\
     \ 2;\n        T base, add_l, add_r;\n        pq_dsc l;\n        pq_asc r;\n};\n\
-    } // namespace suisen\n\n\n#line 6 \"test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp\"\
-    \n\nconstexpr long long inf = std::numeric_limits<long long>::max() / 2;\n\nlong\
+    } // namespace suisen\n\n\n#line 6 \"test/src/algorithm/slope_trick/narrow_rectangles.test.cpp\"\
+    \n\nlong long solve() {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long\
+    \ long> f;\n    for (long long prev = 0, curr; n --> 0; prev = curr) {\n     \
+    \   long long l, r;\n        std::cin >> l >> r;\n        curr = r - l;\n    \
+    \    f.sliding_window_minimum(-curr, prev).add_abs(l);\n    }\n    return f.min();\n\
+    }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    std::cout << solve() << '\\n';\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/arc070/tasks/arc070_e\"\n\n\
+    #include <iostream>\n\n#include \"library/algorithm/slope_trick.hpp\"\n\nlong\
     \ long solve() {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long\
-    \ long> f;\n    for (long long prev = inf, curr; n --> 0; prev = curr) {\n   \
-    \     std::cin >> curr;\n        f.translate(std::max(0LL, curr - prev)).cumulative_min_left().add_abs(0).add_abs(curr);\n\
-    \    }\n    return f.min();\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    std::cout << solve() << '\\n';\n    return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/arc123/tasks/arc123_d\"\n\n\
-    #include <iostream>\n\n#include \"library/algorithm/slope_trick.hpp\"\n\nconstexpr\
-    \ long long inf = std::numeric_limits<long long>::max() / 2;\n\nlong long solve()\
-    \ {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long long> f;\n  \
-    \  for (long long prev = inf, curr; n --> 0; prev = curr) {\n        std::cin\
-    \ >> curr;\n        f.translate(std::max(0LL, curr - prev)).cumulative_min_left().add_abs(0).add_abs(curr);\n\
-    \    }\n    return f.min();\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    std::cout << solve() << '\\n';\n    return 0;\n\
-    }"
+    \ long> f;\n    for (long long prev = 0, curr; n --> 0; prev = curr) {\n     \
+    \   long long l, r;\n        std::cin >> l >> r;\n        curr = r - l;\n    \
+    \    f.sliding_window_minimum(-curr, prev).add_abs(l);\n    }\n    return f.min();\n\
+    }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    std::cout << solve() << '\\n';\n    return 0;\n}"
   dependsOn:
   - library/algorithm/slope_trick.hpp
   isVerificationFile: true
-  path: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
+  path: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 16:59:23+09:00'
+  timestamp: '2021-07-20 17:04:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
+documentation_of: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
-- /verify/test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp.html
-title: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
+- /verify/test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
+- /verify/test/src/algorithm/slope_trick/narrow_rectangles.test.cpp.html
+title: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
 ---
