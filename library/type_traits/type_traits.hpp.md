@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: library/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/tree/heavy_light_decomposition.hpp
     title: library/tree/heavy_light_decomposition.hpp
   _extendedVerifiedWith:
@@ -21,6 +21,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+    title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+    title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+  - icon: ':x:'
+    path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
+    title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
+    title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -154,7 +166,11 @@ data:
   timestamp: '2021-07-20 14:25:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
+  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document

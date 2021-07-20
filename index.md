@@ -112,7 +112,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: library/tree/euler_tour.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/tree/heavy_light_decomposition.hpp
       title: library/tree/heavy_light_decomposition.hpp
   - name: library/type_traits
@@ -251,5 +251,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+      title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+      title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+    - icon: ':x:'
+      path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
+      title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
+      title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
 layout: toppage
 ---
