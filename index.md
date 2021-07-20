@@ -11,7 +11,7 @@ data:
       title: library/algorithm/slope_trick.hpp
   - name: library/datastructure
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/binary_trie.hpp
       title: library/datastructure/binary_trie.hpp
   - name: library/debug
@@ -166,6 +166,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
       title: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
+  - name: test/src/datastructure/binary_trie
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/binary_trie/set_xor_min.test.cpp
+      title: test/src/datastructure/binary_trie/set_xor_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/binary_trie/xor_game.test.cpp
+      title: test/src/datastructure/binary_trie/xor_game.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'

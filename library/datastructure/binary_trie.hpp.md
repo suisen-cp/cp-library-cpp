@@ -2,15 +2,21 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/binary_trie/set_xor_min.test.cpp
+    title: test/src/datastructure/binary_trie/set_xor_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/binary_trie/xor_game.test.cpp
+    title: test/src/datastructure/binary_trie/xor_game.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/binary_trie.hpp\"\n\n\n\n#include\
-    \ <limits>\n#include <optional>\n#include <string>\n#include <vector>\n\nnamespace\
-    \ suisen {\ntemplate <typename T, int bit_length = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
+    \ <cassert>\n#include <limits>\n#include <optional>\n#include <string>\n#include\
+    \ <vector>\n\nnamespace suisen {\ntemplate <typename T, int bit_length = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
     class BinaryTrie {\n    using U = std::make_unsigned_t<T>;\n    struct Node {\n\
     \        int siz;\n        Node *ch[2] {nullptr, nullptr};\n        Node() : siz(0)\
     \ {}\n        ~Node() {\n            delete ch[0];\n            delete ch[1];\n\
@@ -39,16 +45,16 @@ data:
     \ }\n\n        inline int size() const noexcept { return Node::size(root); }\n\
     \        inline bool empty() const noexcept { return size() == 0; }\n\n      \
     \  int insert(const U val, const int num = 1) noexcept {\n            if (num\
-    \ == 0) return;\n            Node *cur = root;\n            cur->siz += num;\n\
+    \ == 0) return 0;\n            Node *cur = root;\n            cur->siz += num;\n\
     \            for (int i = bit_length; i --> 0;) {\n                cur = cur->get_or_create(bit(val,\
     \ i));\n                cur->siz += num;\n            }\n            return cur->siz;\n\
     \        }\n        int erase(const U val, const int num = 1) noexcept {\n   \
-    \         if (num == 0) return;\n            return erase(root, bit_length - 1,\
-    \ val, num);\n        }\n        int erase_all(const U val) noexcept {\n     \
-    \       return erase(val, std::numeric_limits<int>::max());\n        }\n     \
-    \   int prefix_count(const U val, const unsigned int l) const noexcept {\n   \
-    \         Node *cur = root;\n            for (int i = bit_length; i --> l;) {\n\
-    \                if (cur == nullptr) return 0;\n                cur = (*cur)[bit(val,\
+    \         if (num == 0) return 0;\n            return erase(root, bit_length -\
+    \ 1, val, num);\n        }\n        int erase_all(const U val) noexcept {\n  \
+    \          return erase(val, std::numeric_limits<int>::max());\n        }\n  \
+    \      int prefix_count(const U val, const unsigned int l) const noexcept {\n\
+    \            Node *cur = root;\n            for (int i = bit_length; i --> l;)\
+    \ {\n                if (cur == nullptr) return 0;\n                cur = (*cur)[bit(val,\
     \ i)];\n            }\n            return Node::size(cur);\n        }\n      \
     \  inline int count(const U val) const noexcept { return prefix_count(val, 0);\
     \ }\n        inline bool contains(const U val) const noexcept { return count(val)\
@@ -111,9 +117,9 @@ data:
     \ b;\n                res |= U(b) << i;\n                cur = (*cur)[b];\n  \
     \          }\n            return x ^ res;\n        }\n};\n} // namespace suisen\n\
     \n\n"
-  code: "#ifndef SUISEN_BINARY_TRIE\n#define SUISEN_BINARY_TRIE\n\n#include <limits>\n\
-    #include <optional>\n#include <string>\n#include <vector>\n\nnamespace suisen\
-    \ {\ntemplate <typename T, int bit_length = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
+  code: "#ifndef SUISEN_BINARY_TRIE\n#define SUISEN_BINARY_TRIE\n\n#include <cassert>\n\
+    #include <limits>\n#include <optional>\n#include <string>\n#include <vector>\n\
+    \nnamespace suisen {\ntemplate <typename T, int bit_length = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
     class BinaryTrie {\n    using U = std::make_unsigned_t<T>;\n    struct Node {\n\
     \        int siz;\n        Node *ch[2] {nullptr, nullptr};\n        Node() : siz(0)\
     \ {}\n        ~Node() {\n            delete ch[0];\n            delete ch[1];\n\
@@ -142,16 +148,16 @@ data:
     \ }\n\n        inline int size() const noexcept { return Node::size(root); }\n\
     \        inline bool empty() const noexcept { return size() == 0; }\n\n      \
     \  int insert(const U val, const int num = 1) noexcept {\n            if (num\
-    \ == 0) return;\n            Node *cur = root;\n            cur->siz += num;\n\
+    \ == 0) return 0;\n            Node *cur = root;\n            cur->siz += num;\n\
     \            for (int i = bit_length; i --> 0;) {\n                cur = cur->get_or_create(bit(val,\
     \ i));\n                cur->siz += num;\n            }\n            return cur->siz;\n\
     \        }\n        int erase(const U val, const int num = 1) noexcept {\n   \
-    \         if (num == 0) return;\n            return erase(root, bit_length - 1,\
-    \ val, num);\n        }\n        int erase_all(const U val) noexcept {\n     \
-    \       return erase(val, std::numeric_limits<int>::max());\n        }\n     \
-    \   int prefix_count(const U val, const unsigned int l) const noexcept {\n   \
-    \         Node *cur = root;\n            for (int i = bit_length; i --> l;) {\n\
-    \                if (cur == nullptr) return 0;\n                cur = (*cur)[bit(val,\
+    \         if (num == 0) return 0;\n            return erase(root, bit_length -\
+    \ 1, val, num);\n        }\n        int erase_all(const U val) noexcept {\n  \
+    \          return erase(val, std::numeric_limits<int>::max());\n        }\n  \
+    \      int prefix_count(const U val, const unsigned int l) const noexcept {\n\
+    \            Node *cur = root;\n            for (int i = bit_length; i --> l;)\
+    \ {\n                if (cur == nullptr) return 0;\n                cur = (*cur)[bit(val,\
     \ i)];\n            }\n            return Node::size(cur);\n        }\n      \
     \  inline int count(const U val) const noexcept { return prefix_count(val, 0);\
     \ }\n        inline bool contains(const U val) const noexcept { return count(val)\
@@ -218,9 +224,11 @@ data:
   isVerificationFile: false
   path: library/datastructure/binary_trie.hpp
   requiredBy: []
-  timestamp: '2021-07-18 15:28:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-07-20 20:17:05+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/datastructure/binary_trie/xor_game.test.cpp
+  - test/src/datastructure/binary_trie/set_xor_min.test.cpp
 documentation_of: library/datastructure/binary_trie.hpp
 layout: document
 redirect_from:
