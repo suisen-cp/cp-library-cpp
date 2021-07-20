@@ -7,7 +7,7 @@
 namespace suisen {
 // ! utility
 template <typename ...Types>
-using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, nullptr_t>;
+using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;
 
 // ! function
 template <typename ReturnType, typename Callable, typename ...Args>

@@ -76,7 +76,7 @@ template <typename Iterable>
 void print_iterable(const Iterable& v, const std::string sep = " ", const std::string end = "\n") {
     for (auto it = v.begin(); it != v.end();) {
         std::cout << *it;
-        if (++it != a.end()) std::cout << ' ';
+        if (++it != v.end()) std::cout << ' ';
     }
     std::cout << end;
 }
