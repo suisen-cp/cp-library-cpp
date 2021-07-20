@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/slope_trick/absolute_minima.test.cpp
     title: test/src/algorithm/slope_trick/absolute_minima.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
     title: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/algorithm/slope_trick.hpp\"\n\n\n\n#include <limits>\n\
@@ -85,7 +85,7 @@ data:
   path: library/algorithm/slope_trick.hpp
   requiredBy: []
   timestamp: '2021-07-20 14:25:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
   - test/src/algorithm/slope_trick/absolute_minima.test.cpp

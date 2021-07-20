@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/slope_trick.hpp
     title: library/algorithm/slope_trick.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc123/tasks/arc123_d
@@ -50,16 +50,16 @@ data:
     \ T inf = std::numeric_limits<T>::max() / 2;\n        T base = T(0);\n       \
     \ pq_dsc l;\n        pq_asc r;\n        T add_l = T(0), add_r = T(0);\n};\n} //\
     \ namespace suisen\n\n\n#line 6 \"test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp\"\
-    \n\nconstexpr long long inf = std::numeric_limits<long long>::max();\n\nlong long\
-    \ solve() {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long long>\
-    \ f;\n    for (long long prev = inf, curr; n --> 0; prev = curr) {\n        std::cin\
-    \ >> curr;\n        f.translate(std::max(0LL, curr - prev)).cumulative_min_left().add_abs(0).add_abs(curr);\n\
+    \n\nconstexpr long long inf = std::numeric_limits<long long>::max() / 2;\n\nlong\
+    \ long solve() {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long\
+    \ long> f;\n    for (long long prev = inf, curr; n --> 0; prev = curr) {\n   \
+    \     std::cin >> curr;\n        f.translate(std::max(0LL, curr - prev)).cumulative_min_left().add_abs(0).add_abs(curr);\n\
     \    }\n    return f.min();\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n    std::cout << solve() << '\\n';\n    return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc123/tasks/arc123_d\"\n\n\
     #include <iostream>\n\n#include \"library/algorithm/slope_trick.hpp\"\n\nconstexpr\
-    \ long long inf = std::numeric_limits<long long>::max();\n\nlong long solve()\
+    \ long long inf = std::numeric_limits<long long>::max() / 2;\n\nlong long solve()\
     \ {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long long> f;\n  \
     \  for (long long prev = inf, curr; n --> 0; prev = curr) {\n        std::cin\
     \ >> curr;\n        f.translate(std::max(0LL, curr - prev)).cumulative_min_left().add_abs(0).add_abs(curr);\n\
@@ -71,8 +71,8 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 14:25:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-07-20 14:38:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
 layout: document
