@@ -101,7 +101,7 @@ documentation_of: //library/tree/heavy_light_decomposition.hpp
   - $0\leq u,v\lt n$
   - $(T,F)$ は可換モノイド
   - $\mathrm{identity}$ は可換モノイド $(T, F)$ の単位元
-  - 任意の $0\leq l\leq r\leq n$ に対して，$\displaystyle \mathrm{fold\\\_query}(l,r)=\bigoplus_{i=l}^{r-1}t_i$．ここで $\oplus$ は二項演算であり，$t_i$ は置換後の添字 $i$ に対応する要素．
+  - 任意の $0\leq l\leq r\leq n$ に対して，$\displaystyle \mathrm{fold\\\_ query}(l,r)=\bigoplus_{i=l}^{r-1}t_i$．ここで $\oplus$ は二項演算であり，$t_i$ は置換後の添字 $i$ に対応する要素．
 
 - 時間計算量
 
@@ -132,8 +132,8 @@ documentation_of: //library/tree/heavy_light_decomposition.hpp
   - $0\leq u,v\lt n$
   - $(T,F)$ はモノイド (非可換でもよい)
   - $\mathrm{identity}$ はモノイド $(T, F)$ の単位元
-  - 任意の $0\leq l\leq r\leq n$ に対して，$\displaystyle \mathrm{fold\\\_query}(l,r)=t_l\oplus t_{l+1}\oplus\cdots\oplus t_{r-1}$．
-  - 任意の $0\leq l\leq r\leq n$ に対して，$\displaystyle \mathrm{fold\\\_query\\\_rev}(l,r)=t_{r-1}\oplus\cdots\oplus t_{l+1}\oplus t_l$．
+  - 任意の $0\leq l\leq r\leq n$ に対して，$\displaystyle \mathrm{fold\\\_ query}(l,r)=t_l\oplus t_{l+1}\oplus\cdots\oplus t_{r-1}$．
+  - 任意の $0\leq l\leq r\leq n$ に対して，$\displaystyle \mathrm{fold\\\_ query\\\_ rev}(l,r)=t_{r-1}\oplus\cdots\oplus t_{l+1}\oplus t_l$．
 
 - 時間計算量
 
