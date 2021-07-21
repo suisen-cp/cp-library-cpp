@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
-    title: library/tree/heavy_light_decomposition.hpp
+    title: Heavy Light Decomposition (HLD)
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
@@ -80,26 +80,28 @@ data:
     \                update_query(visit[head[v]], visit[v] + 1);\n            }\n\
     \            update_query(visit[u] + is_edge_query, visit[v] + 1);\n        }\n\
     \        template <typename T, typename Q, constraints_t<is_range_fold_query<Q,\
-    \ T>> = nullptr>\n        T fold_subtree(int u, Q fold_query) {\n            return\
-    \ fold_query(visit[u], leave[u]);\n        }\n        template <typename Q, constraints_t<is_range_update_query<Q>>\
-    \ = nullptr>\n        void update_subtree(int u, Q update_query) {\n         \
-    \   update_query(visit[u], leave[u]);\n        }\n        template <typename T,\
-    \ typename Q, constraints_t<is_point_get_query<Q, T>> = nullptr>\n        T get_point(int\
-    \ u, Q get_query) {\n            return get_query(visit[u]);\n        }\n    \
-    \    template <typename Q, constraints_t<is_point_update_query<Q>> = nullptr>\n\
-    \        void update_point(int u, Q update_query) {\n            update_query(visit[u]);\n\
-    \        }\n    private:\n        const int n, root;\n        std::vector<int>\
-    \ visit, leave, head, ord, siz, par;\n        int dfs(Graph &g, int u, int p)\
-    \ {\n            par[u] = p;\n            siz[u] = 1;\n            int max_size\
-    \ = 0;\n            for (int &v : g[u]) {\n                if (v == p) continue;\n\
-    \                siz[u] += dfs(g, v, u);\n                if (max_size < siz[v])\
-    \ {\n                    max_size = siz[v];\n                    std::swap(g[u].front(),\
-    \ v);\n                }\n            }\n            return siz[u];\n        }\n\
-    \        void hld(Graph &g, int u, int p, int &time) {\n            visit[u] =\
-    \ time, ord[time] = u, ++time;\n            head[u] = p >= 0 and g[p].front()\
-    \ == u ? head[p] : u;\n            for (int v : g[u]) {\n                if (v\
-    \ != p) hld(g, v, u, time);\n            }\n            leave[u] = time;\n   \
-    \     }\n};\n} // namespace suisen\n\n\n#line 6 \"test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp\"\
+    \ T>> = nullptr>\n        T fold_subtree(int u, Q fold_query, bool is_edge_query\
+    \ = false) {\n            return fold_query(visit[u] + is_edge_query, leave[u]);\n\
+    \        }\n        template <typename Q, constraints_t<is_range_update_query<Q>>\
+    \ = nullptr>\n        void update_subtree(int u, Q update_query, bool is_edge_query\
+    \ = false) {\n            update_query(visit[u] + is_edge_query, leave[u]);\n\
+    \        }\n        template <typename T, typename Q, constraints_t<is_point_get_query<Q,\
+    \ T>> = nullptr>\n        T get_point(int u, Q get_query) {\n            return\
+    \ get_query(visit[u]);\n        }\n        template <typename Q, constraints_t<is_point_update_query<Q>>\
+    \ = nullptr>\n        void update_point(int u, Q update_query) {\n           \
+    \ update_query(visit[u]);\n        }\n    private:\n        const int n, root;\n\
+    \        std::vector<int> visit, leave, head, ord, siz, par;\n        int dfs(Graph\
+    \ &g, int u, int p) {\n            par[u] = p;\n            siz[u] = 1;\n    \
+    \        int max_size = 0;\n            for (int &v : g[u]) {\n              \
+    \  if (v == p) continue;\n                siz[u] += dfs(g, v, u);\n          \
+    \      if (max_size < siz[v]) {\n                    max_size = siz[v];\n    \
+    \                std::swap(g[u].front(), v);\n                }\n            }\n\
+    \            return siz[u];\n        }\n        void hld(Graph &g, int u, int\
+    \ p, int &time) {\n            visit[u] = time, ord[time] = u, ++time;\n     \
+    \       head[u] = p >= 0 and g[p].front() == u ? head[p] : u;\n            for\
+    \ (int v : g[u]) {\n                if (v != p) hld(g, v, u, time);\n        \
+    \    }\n            leave[u] = time;\n        }\n};\n} // namespace suisen\n\n\
+    \n#line 6 \"test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp\"\
     \nusing suisen::HeavyLightDecomposition;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<std::vector<int>>\
     \ g(n);\n    for (int i = 1; i < n; ++i) {\n        int p;\n        std::cin >>\
@@ -122,7 +124,7 @@ data:
   isVerificationFile: true
   path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 20:44:23+09:00'
+  timestamp: '2021-07-21 22:29:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp

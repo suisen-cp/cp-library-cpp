@@ -114,7 +114,7 @@ data:
       title: library/tree/euler_tour.hpp
     - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
-      title: library/tree/heavy_light_decomposition.hpp
+      title: Heavy Light Decomposition (HLD)
   - name: library/type_traits
     pages:
     - icon: ':question:'

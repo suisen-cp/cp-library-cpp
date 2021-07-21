@@ -13,7 +13,7 @@ data:
     title: library/template.hpp
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
-    title: library/tree/heavy_light_decomposition.hpp
+    title: Heavy Light Decomposition (HLD)
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
