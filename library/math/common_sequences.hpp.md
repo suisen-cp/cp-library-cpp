@@ -298,9 +298,9 @@ title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   
   (符号なし) 第一種スターリング数 $\mathrm{S1}(n,\cdot)$ を逆順に並べた列 $A=(\mathrm{S1}(n,n),\mathrm{S1}(n,n-1),\ldots)$ を計算します．つまり，$A_i$ は集合 $\\\{0,\ldots,n-1\\\}$ から $i$ 個の要素を選んで積を取ったものの総和となります．形式的には，以下が成り立ちます．
 
-  $$
-  A_i=\sum_{\overset{\scriptstyle S\subset\{0,\ldots,n-1\},}{|S|=i}}\prod_{j\in S} j
-  $$
+  $$A_i=\sum_{\overset{\scriptstyle S\subset\{0,\ldots,n-1\},}{|S|=i}}\prod_{j\in S} j$$
+
+  組合せ的には，$\mathrm{S1}(n,i)$ はラベル付けされた $n$ 個の玉を $i$ 個の円環 (巡回列) に分割する方法の個数と一致します．
 
 - テンプレート引数
 
@@ -327,6 +327,7 @@ title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
 
 - 参考
 
+  - [スターリング数 - Wikipedia](https://ja.wikipedia.org/wiki/%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E6%95%B0)
   - [第一種スターリング数の末尾項を計算する](https://suisen-kyopro.hatenablog.com/entry/2021/06/02/225932)
 
 ### stirling_number1
@@ -353,7 +354,7 @@ title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
 
 - 概要
 
-  第二種スターリング数 $\\\{\mathrm{S2}(n,i)\\\} _ {i=0} ^ n$ を計算します．
+  第二種スターリング数 $\\\{\mathrm{S2}(n,i)\\\} _ {i=0} ^ n$ を計算します．$\mathrm{S1}(n,i)$ は，ラベル付けされた $n$ 個の玉を $i$ 個のグループに分割する方法の数と一致します．ここで，$\\\{\\\{1,2\\\},\\\{3,4\\\}\\\}$ と $\\\{\\\{3,4\\\},\\\{1,2\\\}\\\}$ のような分け方は区別しません．
 
 - テンプレート引数
   
@@ -373,6 +374,7 @@ title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
 
 - 参考
   
+  - [スターリング数 - Wikipedia](https://ja.wikipedia.org/wiki/%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E6%95%B0)
   - [FFT (NTT) 関連](https://min-25.hatenablog.com/entry/2015/04/07/160154)
 
 ### bernoulli_number
