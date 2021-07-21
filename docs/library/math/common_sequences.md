@@ -16,7 +16,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 概要
   
-  (符号なし) 第一種スターリング数 $\mathrm{S1}(n,\cdot)$ を逆順に並べた列 $A=(\mathrm{S1}(n,n),\mathrm{S1}(n,n-1),\ldots)$ を計算します．つまり，$A_i$ は集合 $\\{0,\ldots,n-1\\}$ から $i$ 個の要素を選んで積を取ったものの総和となります．形式的には，以下が成り立ちます．
+  (符号なし) 第一種スターリング数 $\mathrm{S1}(n,\cdot)$ を逆順に並べた列 $A=(\mathrm{S1}(n,n),\mathrm{S1}(n,n-1),\ldots)$ を計算します．つまり，$A_i$ は集合 $\\\$10,\ldots,n-1\\\$1$ から $i$ 個の要素を選んで積を取ったものの総和となります．形式的には，以下が成り立ちます．
 
   $$
   A_i=\sum_{\overset{\scriptstyle S\subset\{0,\ldots,n-1\},}{|S|=i}}\prod_{j\in S} j
@@ -28,8 +28,8 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 返り値
 
-  1. $\\{A_i\\}_{i=0}^n=\\{\mathrm{S1}(n,n-i)\\}_{i=0}^{n}$
-  2. $\\{A_i\\}_{i=0}^k=\\{\mathrm{S1}(n,n-i)\\}_{i=0}^{k}$
+  1. $\\\$1A_i\\\$1_{i=0}^n=\\\$1\mathrm{S1}(n,n-i)\\\$1_{i=0}^{n}$
+  2. $\\\$1A_i\\\$1_{i=0}^k=\\\$1\mathrm{S1}(n,n-i)\\\$1_{i=0}^{k}$
 
       Note. $k>n$ の場合は $A_{n+1}=\cdots=A_{k}=0$ が保証される．
 
@@ -60,7 +60,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 概要
   
-  [stirling_number1_reversed](###stirling_number1_reversed) (1) の列を逆順にしたもの，つまり (符号なし) 第一種スターリング数の列 $\\{\mathrm{S1}(n,i)\\}_{i=0}^n$ を計算します．
+  [stirling_number1_reversed](###stirling_number1_reversed) (1) の列を逆順にしたもの，つまり (符号なし) 第一種スターリング数の列 $\\\$1\mathrm{S1}(n,i)\\\$1_{i=0}^n$ を計算します．
 
 ### stirling_number2
 
@@ -73,7 +73,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 概要
 
-  第二種スターリング数 $\\{\mathrm{S2}(n,i)\\}_{i=0}^n$ を計算します．
+  第二種スターリング数 $\\\$1\mathrm{S2}(n,i)\\\$1_{i=0}^n$ を計算します．
 
 - テンプレート引数
   
@@ -81,7 +81,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 返り値
 
-  第二種スターリング数 $\\{\mathrm{S2}(n,i)\\}_{i=0}^n$
+  第二種スターリング数 $\\\$1\mathrm{S2}(n,i)\\\$1_{i=0}^n$
 
 - 制約
 
@@ -122,7 +122,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 返り値
 
-  ベルヌーイ数 $\\{B_i\\}_{i=0}^N$
+  ベルヌーイ数 $\\\$1B_i\\\$1_{i=0}^N$
 
 - 制約
 
@@ -166,7 +166,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 返り値
 
-  分割数 $\\{P_i\\}_{i=0}^N$
+  分割数 $\\\$1P_i\\\$1_{i=0}^N$
 
 - 制約
 
