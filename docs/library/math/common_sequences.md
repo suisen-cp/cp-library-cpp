@@ -3,7 +3,7 @@ title: 有名な数列たち
 documentation_of: //library/math/common_sequences.hpp
 ---
 
-### stirling number1 reversed
+### stirling_number1_reversed
 
 - シグネチャ
 
@@ -49,7 +49,7 @@ documentation_of: //library/math/common_sequences.hpp
 
   - [第一種スターリング数の末尾項を計算する](https://suisen-kyopro.hatenablog.com/entry/2021/06/02/225932)
 
-### stirling number1
+### stirling_number1
 
 - シグネチャ
   
@@ -60,7 +60,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 概要
   
-  [stirling number1 reversed](#stirling-number1-reversed) (1) の列を逆順にしたもの，つまり (符号なし) 第一種スターリング数の列 $\\\{\mathrm{S1}(n,i)\\\} _ {i=0} ^ n$ を計算します．
+  [stirling number1 reversed](#stirlingnumber1reversed) (1) の列を逆順にしたもの，つまり (符号なし) 第一種スターリング数の列 $\\\{\mathrm{S1}(n,i)\\\} _ {i=0} ^ n$ を計算します．
 
 ### stirling_number2
 
