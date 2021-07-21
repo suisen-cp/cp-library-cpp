@@ -80,12 +80,12 @@ class HeavyLightDecomposition {
             update_query(visit[u] + is_edge_query, visit[v] + 1);
         }
         template <typename T, typename Q, constraints_t<is_range_fold_query<Q, T>> = nullptr>
-        T fold_subtree(int u, Q fold_query) {
-            return fold_query(visit[u], leave[u]);
+        T fold_subtree(int u, Q fold_query, bool is_edge_query = false) {
+            return fold_query(visit[u] + is_edge_query, leave[u]);
         }
         template <typename Q, constraints_t<is_range_update_query<Q>> = nullptr>
-        void update_subtree(int u, Q update_query) {
-            update_query(visit[u], leave[u]);
+        void update_subtree(int u, Q update_query, bool is_edge_query = false) {
+            update_query(visit[u] + is_edge_query, leave[u]);
         }
         template <typename T, typename Q, constraints_t<is_point_get_query<Q, T>> = nullptr>
         T get_point(int u, Q get_query) {
