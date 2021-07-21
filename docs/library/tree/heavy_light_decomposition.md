@@ -43,7 +43,7 @@ documentation_of: //library/tree/heavy_light_decomposition.hpp
 
 - 制約
 
-  - $0\lt u,v\lt n$
+  - $0\leq u,v\lt n$
 
 - 時間計算量
 
