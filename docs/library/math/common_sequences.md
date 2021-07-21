@@ -3,7 +3,7 @@ title: 有名な数列たち
 documentation_of: //library/math/common_sequences.hpp
 ---
 
-### stirling_number1_reversed
+### stirling number1 reversed
 
 - シグネチャ
 
@@ -28,28 +28,28 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 返り値
 
-  1. $\\\{A_i\\\}_{i=0}^n=\\\{\mathrm{S1}(n,n-i)\\\}_{i=0}^{n}$
-  2. $\\\{A_i\\\}_{i=0}^k=\\\{\mathrm{S1}(n,n-i)\\\}_{i=0}^{k}$
+  1. $\\\{A_i\\\} _ {i=0} ^ n=\\\{\mathrm{S1}(n,n-i)\\\} _ {i=0} ^ {n}$
+  2. $\\\{A_i\\\} _ {i=0} ^ k=\\\{\mathrm{S1}(n,n-i)\\\} _ {i=0} ^ {k}$
 
       Note. $k>n$ の場合は $A_{n+1}=\cdots=A_{k}=0$ が保証される．
 
 - 制約
 
-  1. - $0\leq n\leq 10^6$
-  2. - $0\leq n\leq 10^{18}$
+  1. - $0\leq n\leq 10 ^ 6$
+  2. - $0\leq n\leq 10 ^ {18}$
      - $0\leq k\leq 5000$
      - $k\lt \mathrm{mod}$
 
 - 時間計算量
 
   1. $O(n\log n)$
-  2. $O(k^2\log n)$
+  2. $O(k ^ 2\log n)$
 
 - 参考
 
   - [第一種スターリング数の末尾項を計算する](https://suisen-kyopro.hatenablog.com/entry/2021/06/02/225932)
 
-### stirling_number1
+### stirling number1
 
 - シグネチャ
   
@@ -60,7 +60,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 概要
   
-  [stirling_number1_reversed](###stirling_number1_reversed) (1) の列を逆順にしたもの，つまり (符号なし) 第一種スターリング数の列 $\\\{\mathrm{S1}(n,i)\\\}_{i=0}^n$ を計算します．
+  [stirling number1 reversed](#stirling-number1-reversed) (1) の列を逆順にしたもの，つまり (符号なし) 第一種スターリング数の列 $\\\{\mathrm{S1}(n,i)\\\} _ {i=0} ^ n$ を計算します．
 
 ### stirling_number2
 
@@ -73,7 +73,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 概要
 
-  第二種スターリング数 $\\\{\mathrm{S2}(n,i)\\\}_{i=0}^n$ を計算します．
+  第二種スターリング数 $\\\{\mathrm{S2}(n,i)\\\} _ {i=0} ^ n$ を計算します．
 
 - テンプレート引数
   
@@ -81,11 +81,11 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 返り値
 
-  第二種スターリング数 $\\\{\mathrm{S2}(n,i)\\\}_{i=0}^n$
+  第二種スターリング数 $\\\{\mathrm{S2}(n,i)\\\} _ {i=0} ^ n$
 
 - 制約
 
-  - $0\leq n\leq 10^6$
+  - $0\leq n\leq 10 ^ 6$
 
 - 時間計算量
 
@@ -108,11 +108,11 @@ documentation_of: //library/math/common_sequences.hpp
 
   ベルヌーイ数 $B_0,\ldots,B_N$ を計算します．
 
-  $$\sum_{i=0}^\infty\dfrac{B_i}{i!}x^i=\dfrac{x}{e^x-1}$$
+  $$\sum_{i=0} ^ \infty\dfrac{B_i}{i!}x ^ i=\dfrac{x}{e ^ x-1}$$
 
   より，
 
-  $$B_i=i!\cdot [x^i]\left(\sum_{i=0}^\infty \dfrac{x^i}{(i+1)!}\right)^{-1}$$
+  $$B_i=i!\cdot [x ^ i]\left(\sum_{i=0} ^ \infty \dfrac{x ^ i}{(i+1)!}\right) ^ {-1}$$
 
   に従って計算します．
 
@@ -122,11 +122,11 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 返り値
 
-  ベルヌーイ数 $\\\{B_i\\\}_{i=0}^N$
+  ベルヌーイ数 $\\\{B_i\\\} _ {i=0} ^ N$
 
 - 制約
 
-  - $0\leq n\leq 10^6$
+  - $0\leq n\leq 10 ^ 6$
 
 - 時間計算量
 
@@ -145,16 +145,16 @@ documentation_of: //library/math/common_sequences.hpp
 
   分割数 $P_0,\ldots,P_N$ を計算します．ここで，$P_i$ は，正整数を要素とする多重集合であって，総和が $i$ であるようなものの個数と一致します．
 
-  母関数は $\displaystyle \sum_{i=0}^\infty P_i x^i=\prod_{k=1}^\infty \dfrac{1}{1-x^k}$ で表され，オイラーの五角数定理 :
+  母関数は $\displaystyle \sum_{i=0} ^ \infty P_i x ^ i=\prod_{k=1} ^ \infty \dfrac{1}{1-x ^ k}$ で表され，オイラーの五角数定理 :
 
-  $$\prod_{k=1}^\infty(1-x^k)=\sum_{k=-\infty}^\infty(-1)^k x^{k(3k-1)/2}$$
+  $$\prod_{k=1} ^ \infty(1-x ^ k)=\sum_{k=-\infty} ^ \infty(-1) ^ k x ^ {k(3k-1)/2}$$
 
   を用いることで，
 
   $$
   \begin{aligned}
-  \sum_{i=0}^n P_i x^i
-  &=\left(1+\sum_{k=1}^n (-1)^k \Bigl(x^{k(3k-1)/2}+x^{k(3k+1)/2}\Bigr)\right)^{-1}\bmod x^{n+1}
+  \sum_{i=0} ^ n P_i x ^ i
+  &=\left(1+\sum_{k=1} ^ n (-1) ^ k \Bigl(x ^ {k(3k-1)/2}+x ^ {k(3k+1)/2}\Bigr)\right) ^ {-1}\bmod x ^ {n+1}
   \end{aligned}
   $$
 
@@ -166,11 +166,11 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 返り値
 
-  分割数 $\\\{P_i\\\}_{i=0}^N$
+  分割数 $\\\{P_i\\\} _ {i=0} ^ N$
 
 - 制約
 
-  - $0\leq n\leq 10^6$
+  - $0\leq n\leq 10 ^ 6$
 
 - 時間計算量
 
