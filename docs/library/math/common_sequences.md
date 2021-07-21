@@ -61,7 +61,7 @@ documentation_of: //library/math/common_sequences.hpp
 
 - 概要
   
-  [stirling number1 reversed](#stirlingnumber1reversed) (1) の列を逆順にしたもの，つまり (符号なし) 第一種スターリング数の列 $\\\{\mathrm{S1}(n,i)\\\} _ {i=0} ^ n$ を計算します．
+  [stirling number1 reversed](#stirling_number1_reversed) (1) の列を逆順にしたもの，つまり (符号なし) 第一種スターリング数の列 $\\\{\mathrm{S1}(n,i)\\\} _ {i=0} ^ n$ を計算します．
 
 ### stirling_number2
 
