@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: library/number/sieve_of_eratosthenes.hpp
   - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes_constexpr.hpp
     title: library/number/sieve_of_eratosthenes_constexpr.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+    title: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
+    title: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
     title: test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
@@ -93,6 +99,8 @@ data:
   verifiedWith:
   - test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
   - test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
+  - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
+  - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
 documentation_of: library/number/internal_eratosthenes.hpp
 layout: document
 redirect_from:

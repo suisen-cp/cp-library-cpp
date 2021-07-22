@@ -99,7 +99,7 @@ data:
     - icon: ':x:'
       path: library/number/linear_sieve.hpp
       title: library/number/linear_sieve.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: library/number/sieve_of_eratosthenes.hpp
     - icon: ':heavy_check_mark:'
@@ -247,6 +247,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/subset_sum/p_subset_sum.test.cpp
       title: test/src/math/subset_sum/p_subset_sum.test.cpp
+  - name: test/src/number/sieve_of_eratosthenes
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+      title: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
+      title: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - name: test/src/number/sieve_of_eratosthenes_constexpr
     pages:
     - icon: ':heavy_check_mark:'

@@ -100,9 +100,15 @@ data:
     \ RM[1]: case RM[2]: case RM[3]: case RM[4]: case RM[5]: case RM[6]: case RM[7]:\
     \ return pf[p] == 0;\n                        default: return false;\n       \
     \             }\n            }\n        }\n        constexpr int prime_factor(const\
-    \ unsigned int p) const {\n            return p % 2 == 0 ? 2 : p % 3 == 0 ? 3\
-    \ : p % 5 == 0 ? 5 : pf[p] ? pf[p] : p;\n        }\n};\n} // namespace suisen\n\
-    \n\n#line 10 \"test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp\"\
+    \ unsigned int p) const {\n            using namespace internal::sieve;\n    \
+    \        switch (p % PROD) {\n                case RM[0]: case RM[1]: case RM[2]:\
+    \ case RM[3]:\n                case RM[4]: case RM[5]: case RM[6]: case RM[7]:\
+    \ return pf[p] ? pf[p] : p;\n                case  0: case  2: case  4: case \
+    \ 6: case  8:\n                case 10: case 12: case 14: case 16: case 18:\n\
+    \                case 20: case 22: case 24: case 26: case 28: return 2;\n    \
+    \            case  3: case  9: case 15: case 21: case 27: return 3;\n        \
+    \        case  5: case 25: return 5;\n                default: assert(false);\n\
+    \            }\n        }\n};\n} // namespace suisen\n\n\n#line 10 \"test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp\"\
     \n\nconstexpr suisen::SieveConstexpr<suisen::CONSTEXPR_SIEVE_MAX> sieve;\n\ntemplate\
     \ <typename T>\nvoid chmax(T &x, const T &y) {\n    if (x < y) x = y;\n}\n\nusing\
     \ mint = atcoder::modint1000000007;\n\nint main() {\n    int n;\n    std::cin\
@@ -133,7 +139,7 @@ data:
   isVerificationFile: true
   path: test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
   requiredBy: []
-  timestamp: '2021-07-22 12:50:06+09:00'
+  timestamp: '2021-07-22 12:59:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
