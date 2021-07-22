@@ -93,12 +93,18 @@ data:
     - icon: ':warning:'
       path: library/number/ext_gcd.hpp
       title: library/number/ext_gcd.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/number/internal_eratosthenes.hpp
+      title: library/number/internal_eratosthenes.hpp
     - icon: ':x:'
       path: library/number/linear_sieve.hpp
       title: library/number/linear_sieve.hpp
     - icon: ':warning:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: library/number/sieve_of_eratosthenes.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/number/sieve_of_eratosthenes_constexpr.hpp
+      title: library/number/sieve_of_eratosthenes_constexpr.hpp
   - name: library
     pages:
     - icon: ':warning:'
@@ -241,6 +247,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/subset_sum/p_subset_sum.test.cpp
       title: test/src/math/subset_sum/p_subset_sum.test.cpp
+  - name: test/src/number/sieve_of_eratosthenes_constexpr
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
+      title: test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
+      title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
   - name: test/src/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
