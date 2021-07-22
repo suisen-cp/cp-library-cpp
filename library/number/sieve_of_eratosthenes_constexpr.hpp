@@ -55,22 +55,23 @@ constexpr unsigned int CONSTEXPR_SIEVE_MAX = 1200000;
 template <unsigned int N = CONSTEXPR_SIEVE_MAX>
 class SieveConstexpr {
     private:
-        unsigned int pf[N + internal::sieve::PROD];
+        static constexpr unsigned int base_max = (N + 1) * internal::sieve::K / internal::sieve::PROD;
+        unsigned int pf[base_max + internal::sieve::K];
     public:
         constexpr SieveConstexpr() : pf() {
-            using namespace internal::sieve;
             static_assert(N <= CONSTEXPR_SIEVE_MAX, "compile-time operation limit");
-            pf[1] = 1;
+            using namespace internal::sieve;
+            pf[0] = 1;
             unsigned int k_max = ((unsigned int) std::sqrt(N + 1) - 1) / PROD;
             for (unsigned int kp = 0; kp <= k_max; ++kp) {
-                const int base_i = kp * 30;
+                const int base_i = kp * K, base_act_i = kp * PROD;
                 for (int mp = 0; mp < K; ++mp) {
-                    const int m = RM[mp], i = base_i + m;
+                    const int m = RM[mp], i = base_i + mp;
                     if (pf[i] == 0) {
-                        unsigned int base_j = (kp * (PROD * kp + 2 * m) + m * m / PROD) * PROD;
-                        for (std::uint8_t mq = mp; base_j < N; base_j += kp * DRP[mq] + DFP[mp][mq], ++mq &= 7) {
-                            int j = base_j + OFFSET[mp][mq];
-                            pf[j] = i;
+                        unsigned int act_i = base_act_i + m;
+                        unsigned int base_k = (kp * (PROD * kp + 2 * m) + m * m / PROD) * K;
+                        for (std::uint8_t mq = mp; base_k <= base_max; base_k += kp * DRP[mq] + DFP[mp][mq], ++mq &= 7) {
+                            pf[base_k + OFFSET[mp][mq]] = act_i;
                         }
                     }
                 }
@@ -82,7 +83,14 @@ class SieveConstexpr {
                 case 2: case 3: case 5: return true;
                 default:
                     switch (p % PROD) {
-                        case RM[0]: case RM[1]: case RM[2]: case RM[3]: case RM[4]: case RM[5]: case RM[6]: case RM[7]: return pf[p] == 0;
+                        case RM[0]: return pf[p / PROD * K + 0] == 0;
+                        case RM[1]: return pf[p / PROD * K + 1] == 0;
+                        case RM[2]: return pf[p / PROD * K + 2] == 0;
+                        case RM[3]: return pf[p / PROD * K + 3] == 0;
+                        case RM[4]: return pf[p / PROD * K + 4] == 0;
+                        case RM[5]: return pf[p / PROD * K + 5] == 0;
+                        case RM[6]: return pf[p / PROD * K + 6] == 0;
+                        case RM[7]: return pf[p / PROD * K + 7] == 0;
                         default: return false;
                     }
             }
@@ -90,13 +98,19 @@ class SieveConstexpr {
         constexpr int prime_factor(const unsigned int p) const {
             using namespace internal::sieve;
             switch (p % PROD) {
-                case RM[0]: case RM[1]: case RM[2]: case RM[3]:
-                case RM[4]: case RM[5]: case RM[6]: case RM[7]: return pf[p] ? pf[p] : p;
                 case  0: case  2: case  4: case  6: case  8:
                 case 10: case 12: case 14: case 16: case 18:
                 case 20: case 22: case 24: case 26: case 28: return 2;
                 case  3: case  9: case 15: case 21: case 27: return 3;
                 case  5: case 25: return 5;
+                case RM[0]: return pf[p / PROD * K + 0] ? pf[p / PROD * K + 0] : p;
+                case RM[1]: return pf[p / PROD * K + 1] ? pf[p / PROD * K + 1] : p;
+                case RM[2]: return pf[p / PROD * K + 2] ? pf[p / PROD * K + 2] : p;
+                case RM[3]: return pf[p / PROD * K + 3] ? pf[p / PROD * K + 3] : p;
+                case RM[4]: return pf[p / PROD * K + 4] ? pf[p / PROD * K + 4] : p;
+                case RM[5]: return pf[p / PROD * K + 5] ? pf[p / PROD * K + 5] : p;
+                case RM[6]: return pf[p / PROD * K + 6] ? pf[p / PROD * K + 6] : p;
+                case RM[7]: return pf[p / PROD * K + 7] ? pf[p / PROD * K + 7] : p;
                 default: assert(false);
             }
         }
