@@ -26,31 +26,30 @@ data:
     \ = {\n    { 0, 0, 0, 0, 0, 0, 0, 1 }, { 1, 1, 1, 0, 1, 1, 1, 1 },\n    { 2, 2,\
     \ 0, 2, 0, 2, 2, 1 }, { 3, 1, 1, 2, 1, 1, 3, 1 },\n    { 3, 3, 1, 2, 1, 3, 3,\
     \ 1 }, { 4, 2, 2, 2, 2, 2, 4, 1 },\n    { 5, 3, 1, 4, 1, 3, 5, 1 }, { 6, 4, 2,\
-    \ 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t DRP[K] = { 180, 120,  60, 120,\
-    \  60, 120, 180,  60 };\nconstexpr std::uint8_t DFP[K][K] = {\n    {   0,   0,\
-    \   0,   0,   0,   0,   0,  30 }, {  30,  30,  30,   0,  30,  30,  30,  30 },\n\
-    \    {  60,  60,   0,  60,   0,  60,  60,  30 }, {  90,  30,  30,  60,  30,  30,\
-    \  90,  30 },\n    {  90,  90,  30,  60,  30,  90,  90,  30 }, { 120,  60,  60,\
-    \  60,  60,  60, 120,  30 },\n    { 150,  90,  30, 120,  30,  90, 150,  30 },\
-    \ { 180, 120,  60, 120,  60, 120, 180,  30 },\n};\n\nconstexpr std::uint8_t MASK[K][K]\
-    \ = {\n    { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02, 0x20, 0x10,\
-    \ 0x01, 0x80, 0x08, 0x04, 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02, 0x80, 0x08,\
-    \ 0x20 }, { 0x08, 0x01, 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n    { 0x10, 0x80,\
-    \ 0x02, 0x04, 0x20, 0x40, 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02, 0x40, 0x01,\
-    \ 0x10, 0x04 },\n    { 0x40, 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02 }, { 0x80,\
-    \ 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t OFFSET[K][K]\
-    \ = {\n    {  1,  7, 11, 13, 17, 19, 23, 29 }, {  7, 19, 17,  1, 29, 13, 11, 23\
-    \ },\n    { 11, 17,  1, 23,  7, 29, 13, 19 }, { 13,  1, 23, 19, 11,  7, 29, 17\
-    \ },\n    { 17, 29,  7, 11, 19, 23,  1, 13 }, { 19, 13, 29,  7, 23,  1, 17, 11\
-    \ },\n    { 23, 11, 13, 29,  1, 17, 19,  7 }, { 29, 23, 19, 17, 13, 11,  7,  1\
-    \ },\n};\n\nconstexpr std::uint8_t mask_to_index(const std::uint8_t bits) {\n\
-    \    switch (bits) {\n        case 1 << 0: return 0;\n        case 1 << 1: return\
-    \ 1;\n        case 1 << 2: return 2;\n        case 1 << 3: return 3;\n       \
-    \ case 1 << 4: return 4;\n        case 1 << 5: return 5;\n        case 1 << 6:\
-    \ return 6;\n        case 1 << 7: return 7;\n        default: assert(false);\n\
-    \    }\n}\n} // namespace suisen::internal::sieve\n\n\n#line 7 \"library/number/sieve_of_eratosthenes_constexpr.hpp\"\
-    \n\nnamespace suisen {\n\nconstexpr unsigned int CONSTEXPR_SIMPLE_SIEVE_MAX =\
-    \ 1200000;\n\ntemplate <unsigned int N = CONSTEXPR_SIMPLE_SIEVE_MAX>\nclass SimpleSieveConstexpr\
+    \ 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t DRP[K] = { 48, 32, 16, 32, 16,\
+    \ 32, 48, 16 };\nconstexpr std::uint8_t DFP[K][K] = {\n    {  0,  0,  0,  0, \
+    \ 0,  0,  0,  8 }, {  8,  8,  8,  0,  8,  8,  8,  8 },\n    { 16, 16,  0, 16,\
+    \  0, 16, 16,  8 }, { 24,  8,  8, 16,  8,  8, 24,  8 },\n    { 24, 24,  8, 16,\
+    \  8, 24, 24,  8 }, { 32, 16, 16, 16, 16, 16, 32,  8 },\n    { 40, 24,  8, 32,\
+    \  8, 24, 40,  8 }, { 48, 32, 16, 32, 16, 32, 48,  8 },\n};\n\nconstexpr std::uint8_t\
+    \ MASK[K][K] = {\n    { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02,\
+    \ 0x20, 0x10, 0x01, 0x80, 0x08, 0x04, 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02,\
+    \ 0x80, 0x08, 0x20 }, { 0x08, 0x01, 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n  \
+    \  { 0x10, 0x80, 0x02, 0x04, 0x20, 0x40, 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02,\
+    \ 0x40, 0x01, 0x10, 0x04 },\n    { 0x40, 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02\
+    \ }, { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t\
+    \ OFFSET[K][K] = {\n    { 0, 1, 2, 3, 4, 5, 6, 7, },\n    { 1, 5, 4, 0, 7, 3,\
+    \ 2, 6, },\n    { 2, 4, 0, 6, 1, 7, 3, 5, },\n    { 3, 0, 6, 5, 2, 1, 7, 4, },\n\
+    \    { 4, 7, 1, 2, 5, 6, 0, 3, },\n    { 5, 3, 7, 1, 6, 0, 4, 2, },\n    { 6,\
+    \ 2, 3, 7, 0, 4, 5, 1, },\n    { 7, 6, 5, 4, 3, 2, 1, 0, },\n};\n\nconstexpr std::uint8_t\
+    \ mask_to_index(const std::uint8_t bits) {\n    switch (bits) {\n        case\
+    \ 1 << 0: return 0;\n        case 1 << 1: return 1;\n        case 1 << 2: return\
+    \ 2;\n        case 1 << 3: return 3;\n        case 1 << 4: return 4;\n       \
+    \ case 1 << 5: return 5;\n        case 1 << 6: return 6;\n        case 1 << 7:\
+    \ return 7;\n        default: assert(false);\n    }\n}\n} // namespace suisen::internal::sieve\n\
+    \n\n#line 7 \"library/number/sieve_of_eratosthenes_constexpr.hpp\"\n\nnamespace\
+    \ suisen {\n\nconstexpr unsigned int CONSTEXPR_SIMPLE_SIEVE_MAX = 1200000;\n\n\
+    template <unsigned int N = CONSTEXPR_SIMPLE_SIEVE_MAX>\nclass SimpleSieveConstexpr\
     \ {\n    private:\n        static constexpr unsigned int siz = N / internal::sieve::PROD\
     \ + 1;\n        std::uint8_t flag[siz];\n    public:\n        static_assert(N\
     \ <= CONSTEXPR_SIMPLE_SIEVE_MAX, \"compile-time operation limit\");\n        constexpr\
@@ -77,35 +76,50 @@ data:
     \ ((flag[p / PROD] >> 7) & 1) == 0;\n                        default: return false;\n\
     \                    }\n            }\n        }\n};\n\nconstexpr unsigned int\
     \ CONSTEXPR_SIEVE_MAX = 1200000;\n\ntemplate <unsigned int N = CONSTEXPR_SIEVE_MAX>\n\
-    class SieveConstexpr {\n    private:\n        unsigned int pf[N + internal::sieve::PROD];\n\
-    \    public:\n        constexpr SieveConstexpr() : pf() {\n            using namespace\
-    \ internal::sieve;\n            static_assert(N <= CONSTEXPR_SIEVE_MAX, \"compile-time\
-    \ operation limit\");\n            pf[1] = 1;\n            unsigned int k_max\
-    \ = ((unsigned int) std::sqrt(N + 1) - 1) / PROD;\n            for (unsigned int\
-    \ kp = 0; kp <= k_max; ++kp) {\n                const int base_i = kp * 30;\n\
-    \                for (int mp = 0; mp < K; ++mp) {\n                    const int\
-    \ m = RM[mp], i = base_i + m;\n                    if (pf[i] == 0) {\n       \
-    \                 unsigned int base_j = (kp * (PROD * kp + 2 * m) + m * m / PROD)\
-    \ * PROD;\n                        for (std::uint8_t mq = mp; base_j < N; base_j\
-    \ += kp * DRP[mq] + DFP[mp][mq], ++mq &= 7) {\n                            int\
-    \ j = base_j + OFFSET[mp][mq];\n                            pf[j] = i;\n     \
-    \                   }\n                    }\n                }\n            }\n\
-    \        }\n        constexpr bool is_prime(const unsigned int p) const {\n  \
-    \          using namespace internal::sieve;\n            switch (p) {\n      \
-    \          case 2: case 3: case 5: return true;\n                default:\n  \
-    \                  switch (p % PROD) {\n                        case RM[0]: case\
-    \ RM[1]: case RM[2]: case RM[3]: case RM[4]: case RM[5]: case RM[6]: case RM[7]:\
-    \ return pf[p] == 0;\n                        default: return false;\n       \
-    \             }\n            }\n        }\n        constexpr int prime_factor(const\
+    class SieveConstexpr {\n    private:\n        static constexpr unsigned int base_max\
+    \ = (N + 1) * internal::sieve::K / internal::sieve::PROD;\n        unsigned int\
+    \ pf[base_max + internal::sieve::K];\n    public:\n        constexpr SieveConstexpr()\
+    \ : pf() {\n            static_assert(N <= CONSTEXPR_SIEVE_MAX, \"compile-time\
+    \ operation limit\");\n            using namespace internal::sieve;\n        \
+    \    pf[0] = 1;\n            unsigned int k_max = ((unsigned int) std::sqrt(N\
+    \ + 1) - 1) / PROD;\n            for (unsigned int kp = 0; kp <= k_max; ++kp)\
+    \ {\n                const int base_i = kp * K, base_act_i = kp * PROD;\n    \
+    \            for (int mp = 0; mp < K; ++mp) {\n                    const int m\
+    \ = RM[mp], i = base_i + mp;\n                    if (pf[i] == 0) {\n        \
+    \                unsigned int act_i = base_act_i + m;\n                      \
+    \  unsigned int base_k = (kp * (PROD * kp + 2 * m) + m * m / PROD) * K;\n    \
+    \                    for (std::uint8_t mq = mp; base_k <= base_max; base_k +=\
+    \ kp * DRP[mq] + DFP[mp][mq], ++mq &= 7) {\n                            pf[base_k\
+    \ + OFFSET[mp][mq]] = act_i;\n                        }\n                    }\n\
+    \                }\n            }\n        }\n        constexpr bool is_prime(const\
     \ unsigned int p) const {\n            using namespace internal::sieve;\n    \
-    \        switch (p % PROD) {\n                case RM[0]: case RM[1]: case RM[2]:\
-    \ case RM[3]:\n                case RM[4]: case RM[5]: case RM[6]: case RM[7]:\
-    \ return pf[p] ? pf[p] : p;\n                case  0: case  2: case  4: case \
-    \ 6: case  8:\n                case 10: case 12: case 14: case 16: case 18:\n\
+    \        switch (p) {\n                case 2: case 3: case 5: return true;\n\
+    \                default:\n                    switch (p % PROD) {\n         \
+    \               case RM[0]: return pf[p / PROD * K + 0] == 0;\n              \
+    \          case RM[1]: return pf[p / PROD * K + 1] == 0;\n                   \
+    \     case RM[2]: return pf[p / PROD * K + 2] == 0;\n                        case\
+    \ RM[3]: return pf[p / PROD * K + 3] == 0;\n                        case RM[4]:\
+    \ return pf[p / PROD * K + 4] == 0;\n                        case RM[5]: return\
+    \ pf[p / PROD * K + 5] == 0;\n                        case RM[6]: return pf[p\
+    \ / PROD * K + 6] == 0;\n                        case RM[7]: return pf[p / PROD\
+    \ * K + 7] == 0;\n                        default: return false;\n           \
+    \         }\n            }\n        }\n        constexpr int prime_factor(const\
+    \ unsigned int p) const {\n            using namespace internal::sieve;\n    \
+    \        switch (p % PROD) {\n                case  0: case  2: case  4: case\
+    \  6: case  8:\n                case 10: case 12: case 14: case 16: case 18:\n\
     \                case 20: case 22: case 24: case 26: case 28: return 2;\n    \
     \            case  3: case  9: case 15: case 21: case 27: return 3;\n        \
-    \        case  5: case 25: return 5;\n                default: assert(false);\n\
-    \            }\n        }\n};\n} // namespace suisen\n\n\n"
+    \        case  5: case 25: return 5;\n                case RM[0]: return pf[p\
+    \ / PROD * K + 0] ? pf[p / PROD * K + 0] : p;\n                case RM[1]: return\
+    \ pf[p / PROD * K + 1] ? pf[p / PROD * K + 1] : p;\n                case RM[2]:\
+    \ return pf[p / PROD * K + 2] ? pf[p / PROD * K + 2] : p;\n                case\
+    \ RM[3]: return pf[p / PROD * K + 3] ? pf[p / PROD * K + 3] : p;\n           \
+    \     case RM[4]: return pf[p / PROD * K + 4] ? pf[p / PROD * K + 4] : p;\n  \
+    \              case RM[5]: return pf[p / PROD * K + 5] ? pf[p / PROD * K + 5]\
+    \ : p;\n                case RM[6]: return pf[p / PROD * K + 6] ? pf[p / PROD\
+    \ * K + 6] : p;\n                case RM[7]: return pf[p / PROD * K + 7] ? pf[p\
+    \ / PROD * K + 7] : p;\n                default: assert(false);\n            }\n\
+    \        }\n};\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_SIEVE_OF_ERATOSTHENES_CONSTEXPR\n#define SUISEN_SIEVE_OF_ERATOSTHENES_CONSTEXPR\n\
     \n#include <cmath>\n\n#include \"library/number/internal_eratosthenes.hpp\"\n\n\
     namespace suisen {\n\nconstexpr unsigned int CONSTEXPR_SIMPLE_SIEVE_MAX = 1200000;\n\
@@ -136,41 +150,56 @@ data:
     \ ((flag[p / PROD] >> 7) & 1) == 0;\n                        default: return false;\n\
     \                    }\n            }\n        }\n};\n\nconstexpr unsigned int\
     \ CONSTEXPR_SIEVE_MAX = 1200000;\n\ntemplate <unsigned int N = CONSTEXPR_SIEVE_MAX>\n\
-    class SieveConstexpr {\n    private:\n        unsigned int pf[N + internal::sieve::PROD];\n\
-    \    public:\n        constexpr SieveConstexpr() : pf() {\n            using namespace\
-    \ internal::sieve;\n            static_assert(N <= CONSTEXPR_SIEVE_MAX, \"compile-time\
-    \ operation limit\");\n            pf[1] = 1;\n            unsigned int k_max\
-    \ = ((unsigned int) std::sqrt(N + 1) - 1) / PROD;\n            for (unsigned int\
-    \ kp = 0; kp <= k_max; ++kp) {\n                const int base_i = kp * 30;\n\
-    \                for (int mp = 0; mp < K; ++mp) {\n                    const int\
-    \ m = RM[mp], i = base_i + m;\n                    if (pf[i] == 0) {\n       \
-    \                 unsigned int base_j = (kp * (PROD * kp + 2 * m) + m * m / PROD)\
-    \ * PROD;\n                        for (std::uint8_t mq = mp; base_j < N; base_j\
-    \ += kp * DRP[mq] + DFP[mp][mq], ++mq &= 7) {\n                            int\
-    \ j = base_j + OFFSET[mp][mq];\n                            pf[j] = i;\n     \
-    \                   }\n                    }\n                }\n            }\n\
-    \        }\n        constexpr bool is_prime(const unsigned int p) const {\n  \
-    \          using namespace internal::sieve;\n            switch (p) {\n      \
-    \          case 2: case 3: case 5: return true;\n                default:\n  \
-    \                  switch (p % PROD) {\n                        case RM[0]: case\
-    \ RM[1]: case RM[2]: case RM[3]: case RM[4]: case RM[5]: case RM[6]: case RM[7]:\
-    \ return pf[p] == 0;\n                        default: return false;\n       \
-    \             }\n            }\n        }\n        constexpr int prime_factor(const\
+    class SieveConstexpr {\n    private:\n        static constexpr unsigned int base_max\
+    \ = (N + 1) * internal::sieve::K / internal::sieve::PROD;\n        unsigned int\
+    \ pf[base_max + internal::sieve::K];\n    public:\n        constexpr SieveConstexpr()\
+    \ : pf() {\n            static_assert(N <= CONSTEXPR_SIEVE_MAX, \"compile-time\
+    \ operation limit\");\n            using namespace internal::sieve;\n        \
+    \    pf[0] = 1;\n            unsigned int k_max = ((unsigned int) std::sqrt(N\
+    \ + 1) - 1) / PROD;\n            for (unsigned int kp = 0; kp <= k_max; ++kp)\
+    \ {\n                const int base_i = kp * K, base_act_i = kp * PROD;\n    \
+    \            for (int mp = 0; mp < K; ++mp) {\n                    const int m\
+    \ = RM[mp], i = base_i + mp;\n                    if (pf[i] == 0) {\n        \
+    \                unsigned int act_i = base_act_i + m;\n                      \
+    \  unsigned int base_k = (kp * (PROD * kp + 2 * m) + m * m / PROD) * K;\n    \
+    \                    for (std::uint8_t mq = mp; base_k <= base_max; base_k +=\
+    \ kp * DRP[mq] + DFP[mp][mq], ++mq &= 7) {\n                            pf[base_k\
+    \ + OFFSET[mp][mq]] = act_i;\n                        }\n                    }\n\
+    \                }\n            }\n        }\n        constexpr bool is_prime(const\
     \ unsigned int p) const {\n            using namespace internal::sieve;\n    \
-    \        switch (p % PROD) {\n                case RM[0]: case RM[1]: case RM[2]:\
-    \ case RM[3]:\n                case RM[4]: case RM[5]: case RM[6]: case RM[7]:\
-    \ return pf[p] ? pf[p] : p;\n                case  0: case  2: case  4: case \
-    \ 6: case  8:\n                case 10: case 12: case 14: case 16: case 18:\n\
+    \        switch (p) {\n                case 2: case 3: case 5: return true;\n\
+    \                default:\n                    switch (p % PROD) {\n         \
+    \               case RM[0]: return pf[p / PROD * K + 0] == 0;\n              \
+    \          case RM[1]: return pf[p / PROD * K + 1] == 0;\n                   \
+    \     case RM[2]: return pf[p / PROD * K + 2] == 0;\n                        case\
+    \ RM[3]: return pf[p / PROD * K + 3] == 0;\n                        case RM[4]:\
+    \ return pf[p / PROD * K + 4] == 0;\n                        case RM[5]: return\
+    \ pf[p / PROD * K + 5] == 0;\n                        case RM[6]: return pf[p\
+    \ / PROD * K + 6] == 0;\n                        case RM[7]: return pf[p / PROD\
+    \ * K + 7] == 0;\n                        default: return false;\n           \
+    \         }\n            }\n        }\n        constexpr int prime_factor(const\
+    \ unsigned int p) const {\n            using namespace internal::sieve;\n    \
+    \        switch (p % PROD) {\n                case  0: case  2: case  4: case\
+    \  6: case  8:\n                case 10: case 12: case 14: case 16: case 18:\n\
     \                case 20: case 22: case 24: case 26: case 28: return 2;\n    \
     \            case  3: case  9: case 15: case 21: case 27: return 3;\n        \
-    \        case  5: case 25: return 5;\n                default: assert(false);\n\
-    \            }\n        }\n};\n} // namespace suisen\n\n#endif // SUISEN_SIEVE_OF_ERATOSTHENES_CONSTEXPR\n"
+    \        case  5: case 25: return 5;\n                case RM[0]: return pf[p\
+    \ / PROD * K + 0] ? pf[p / PROD * K + 0] : p;\n                case RM[1]: return\
+    \ pf[p / PROD * K + 1] ? pf[p / PROD * K + 1] : p;\n                case RM[2]:\
+    \ return pf[p / PROD * K + 2] ? pf[p / PROD * K + 2] : p;\n                case\
+    \ RM[3]: return pf[p / PROD * K + 3] ? pf[p / PROD * K + 3] : p;\n           \
+    \     case RM[4]: return pf[p / PROD * K + 4] ? pf[p / PROD * K + 4] : p;\n  \
+    \              case RM[5]: return pf[p / PROD * K + 5] ? pf[p / PROD * K + 5]\
+    \ : p;\n                case RM[6]: return pf[p / PROD * K + 6] ? pf[p / PROD\
+    \ * K + 6] : p;\n                case RM[7]: return pf[p / PROD * K + 7] ? pf[p\
+    \ / PROD * K + 7] : p;\n                default: assert(false);\n            }\n\
+    \        }\n};\n} // namespace suisen\n\n#endif // SUISEN_SIEVE_OF_ERATOSTHENES_CONSTEXPR\n"
   dependsOn:
   - library/number/internal_eratosthenes.hpp
   isVerificationFile: false
   path: library/number/sieve_of_eratosthenes_constexpr.hpp
   requiredBy: []
-  timestamp: '2021-07-22 12:59:36+09:00'
+  timestamp: '2021-07-22 14:46:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
