@@ -88,7 +88,17 @@ class SieveConstexpr {
             }
         }
         constexpr int prime_factor(const unsigned int p) const {
-            return p % 2 == 0 ? 2 : p % 3 == 0 ? 3 : p % 5 == 0 ? 5 : pf[p] ? pf[p] : p;
+            using namespace internal::sieve;
+            switch (p % PROD) {
+                case RM[0]: case RM[1]: case RM[2]: case RM[3]:
+                case RM[4]: case RM[5]: case RM[6]: case RM[7]: return pf[p] ? pf[p] : p;
+                case  0: case  2: case  4: case  6: case  8:
+                case 10: case 12: case 14: case 16: case 18:
+                case 20: case 22: case 24: case 26: case 28: return 2;
+                case  3: case  9: case 15: case 21: case 27: return 3;
+                case  5: case 25: return 5;
+                default: assert(false);
+            }
         }
 };
 } // namespace suisen
