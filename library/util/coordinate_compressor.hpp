@@ -39,10 +39,9 @@ class coordinate_compressor {
             assert(_built);
             return _xs.size();
         }
-        inline int comp(const T e) const {
+        inline int comp(const T e, int default_value = -1) const {
             const int res = lower_bound(e);
-            assert(res < int(_xs.size()) and _xs[res] == e);
-            return res;
+            return res < int(_xs.size()) and _xs[res] == e ? res : default_value;
         }
         inline T decomp(const int compressed) const {
             assert(_built);
