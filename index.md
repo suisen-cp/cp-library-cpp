@@ -14,6 +14,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/binary_trie.hpp
       title: library/datastructure/binary_trie.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/bit_vector.hpp
+      title: library/datastructure/bit_vector.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/compressed_wavelet_matrix.hpp
+      title: library/datastructure/compressed_wavelet_matrix.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/wavelet_matrix.hpp
+      title: library/datastructure/wavelet_matrix.hpp
   - name: library/debug
     pages:
     - icon: ':warning:'
@@ -134,7 +143,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: library/util/container_utils.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
       title: library/util/coordinate_compressor.hpp
     - icon: ':warning:'
@@ -180,6 +189,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/binary_trie/xor_game.test.cpp
       title: test/src/datastructure/binary_trie/xor_game.test.cpp
+  - name: test/src/datastructure/compressed_wavelet_matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+      title: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+      title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - name: test/src/datastructure/wavelet_matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+      title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+      title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'

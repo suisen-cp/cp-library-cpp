@@ -5,6 +5,15 @@ data:
   - icon: ':x:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/bit_vector.hpp
+    title: library/datastructure/bit_vector.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/compressed_wavelet_matrix.hpp
+    title: library/datastructure/compressed_wavelet_matrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/wavelet_matrix.hpp
+    title: library/datastructure/wavelet_matrix.hpp
   - icon: ':warning:'
     path: library/template.cpp
     title: library/template.cpp
@@ -18,6 +27,18 @@ data:
   - icon: ':x:'
     path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
     title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+    title: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+    title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+    title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+    title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
@@ -159,6 +180,9 @@ data:
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
   requiredBy:
+  - library/datastructure/compressed_wavelet_matrix.hpp
+  - library/datastructure/bit_vector.hpp
+  - library/datastructure/wavelet_matrix.hpp
   - library/template.hpp
   - library/template.cpp
   - library/tree/heavy_light_decomposition.hpp
@@ -166,6 +190,10 @@ data:
   timestamp: '2021-07-20 14:25:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
