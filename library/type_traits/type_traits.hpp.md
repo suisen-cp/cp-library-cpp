@@ -15,6 +15,9 @@ data:
     path: library/datastructure/fenwick_tree.hpp
     title: library/datastructure/fenwick_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree.hpp
+    title: library/datastructure/segment_tree.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: library/datastructure/wavelet_matrix.hpp
   - icon: ':warning:'
@@ -39,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
+    title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
@@ -190,6 +196,7 @@ data:
   - library/datastructure/bit_vector.hpp
   - library/datastructure/fenwick_tree.hpp
   - library/datastructure/wavelet_matrix.hpp
+  - library/datastructure/segment_tree.hpp
   - library/template.hpp
   - library/template.cpp
   - library/tree/heavy_light_decomposition.hpp
@@ -201,6 +208,7 @@ data:
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
