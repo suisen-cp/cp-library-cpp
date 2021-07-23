@@ -28,7 +28,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         CompressedWaveletMatrix(const std::vector<U> &a) : CompressedWaveletMatrix(a.size(), [&a](int i) { return T(a[i]); }) {}
 
         // returns WaveletMatrix[i]
-        T operator[](int i) const {
+        inline T operator[](int i) const {
             return comp.decomp(WaveletMatrix<int, log_max_len>::operator[](i));
         }
         // returns WaveletMatrix[i]
@@ -36,55 +36,55 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
             return (*this)[i];
         }
         // returns the number of `val` in WaveletMatrix[0, i).
-        int rank(T val, int i) const {
+        inline int rank(T val, int i) const {
             int x = comp.comp(val, -1);
             if (x == -1) return 0; 
-            return WaveletMatrix<int, log_max_len>::rank(x);
+            return WaveletMatrix<int, log_max_len>::rank(x, i);
         }
         // returns the k'th smallest value in WaveletMatrix[l, r) (k : 0-indexed)
-        T range_kth_smallest(int l, int r, int k, T default_value = T(-1)) const {
+        inline T range_kth_smallest(int l, int r, int k, T default_value = T(-1)) const {
             int x = WaveletMatrix<int, log_max_len>::range_kth_smallest(l, r, k, -1);
             return x == -1 ? default_value : comp.decomp(x);
         }
         // returns the k'th largest value in WaveletMatrix[l, r) (k : 0-indexed)
-        T range_kth_largest(int l, int r, int k, T default_value = T(-1)) const {
+        inline T range_kth_largest(int l, int r, int k, T default_value = T(-1)) const {
             int x = WaveletMatrix<int, log_max_len>::range_kth_largest(l, r, k, -1);
             return x == -1 ? default_value : comp.decomp(x);
         }
         // returns the minimum value in WaveletMatrix[l, r)
-        T range_min(int l, int r) const {
+        inline T range_min(int l, int r) const {
             return comp.decomp(WaveletMatrix<int, log_max_len>::range_min(l, r));
         }
         // returns the maximum value in WaveletMatrix[l, r)
-        T range_max(int l, int r) const {
+        inline T range_max(int l, int r) const {
             return comp.decomp(WaveletMatrix<int, log_max_len>::range_max(l, r));
         }
         // returns the number of v in WaveletMatrix[l, r) s.t. v < upper
-        int range_freq(int l, int r, T upper) const {
+        inline int range_freq(int l, int r, T upper) const {
             return WaveletMatrix<int, log_max_len>::range_freq(l, r, comp.lower_bound(upper));
         }
         // returns the number of v in WaveletMatrix[l, r) s.t. lower <= v < upper
-        int range_freq(int l, int r, T lower, T upper) const {
+        inline int range_freq(int l, int r, T lower, T upper) const {
             return range_freq(l, r, upper) - range_freq(l, r, lower);
         }
         // returns the minimum value v in WaveletMatrix[l, r) s.t. lower <= v
-        T range_min_geq(int l, int r, T lower, T default_value = T(-1)) const {
+        inline T range_min_geq(int l, int r, T lower, T default_value = T(-1)) const {
             int x = WaveletMatrix<int, log_max_len>::range_min_geq(l, r, comp.lower_bound(lower), -1);
             return x == -1 ? default_value : comp.decomp(x);
         }
         // returns the minimum value v in WaveletMatrix[l, r) s.t. lower < v
-        T range_min_gt(int l, int r, T lower, T default_value = T(-1)) const {
+        inline T range_min_gt(int l, int r, T lower, T default_value = T(-1)) const {
             return lower == std::numeric_limits<T>::max() ? default_value : range_min_geq(l, r, lower + 1, default_value);
         }
         // returns the maximum value v in WaveletMatrix[l, r) s.t. v < upper
-        T range_max_lt(int l, int r, T upper, T default_value = T(-1)) const {
+        inline T range_max_lt(int l, int r, T upper, T default_value = T(-1)) const {
             int x = WaveletMatrix<int, log_max_len>::range_max_lt(l, r, comp.lower_bound(upper), -1);
             return x == -1 ? default_value : comp.decomp(x);
         }
         // returns the maximum value v in WaveletMatrix[l, r) s.t. v <= upper
-        T range_max_leq(int l, int r, T upper, T default_value = T(-1)) const {
+        inline T range_max_leq(int l, int r, T upper, T default_value = T(-1)) const {
             if (r >= l) return default_value;
-            return upper == std::numeric_limits<T>::max() ? range_max(l, r) : range_max_lt(l, r, upper + 1);
+            return upper == std::numeric_limits<T>::max() ? range_max(l, r) : range_max_lt(l, r, upper + 1, default_value);
         }
     private:
         coordinate_compressor<T> comp;

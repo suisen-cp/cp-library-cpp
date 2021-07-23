@@ -74,16 +74,16 @@ class WaveletMatrix {
             return res;
         }
         // returns the k'th largest value in WaveletMatrix[l, r) (k : 0-indexed)
-        T range_kth_largest(int l, int r, int k, T default_value = T(-1)) const {
+        inline T range_kth_largest(int l, int r, int k, T default_value = T(-1)) const {
             return range_kth_smallest(l, r, r - l - 1 - k, default_value);
         }
         // returns the minimum value in WaveletMatrix[l, r)
-        T range_min(int l, int r) const {
+        inline T range_min(int l, int r) const {
             assert(l < r);
             return range_kth_smallest(l, r, 0);
         }
         // returns the maximum value in WaveletMatrix[l, r)
-        T range_max(int l, int r) const {
+        inline T range_max(int l, int r) const {
             assert(l < r);
             return range_kth_largest(l, r, 0);
         }
@@ -100,25 +100,25 @@ class WaveletMatrix {
             return res;
         }
         // returns the number of v in WaveletMatrix[l, r) s.t. lower <= v < upper
-        int range_freq(int l, int r, T lower, T upper) const {
+        inline int range_freq(int l, int r, T lower, T upper) const {
             return range_freq(l, r, upper) - range_freq(l, r, lower);
         }
         // returns the minimum value v in WaveletMatrix[l, r) s.t. lower <= v
-        T range_min_geq(int l, int r, T lower, T default_value = T(-1)) const {
+        inline T range_min_geq(int l, int r, T lower, T default_value = T(-1)) const {
             int cnt = range_freq(l, r, lower);
             return cnt >= r - l ? default_value : range_kth_smallest(l, r, cnt);
         }
         // returns the minimum value v in WaveletMatrix[l, r) s.t. lower < v
-        T range_min_gt(int l, int r, T lower, T default_value = T(-1)) const {
+        inline T range_min_gt(int l, int r, T lower, T default_value = T(-1)) const {
             return lower == MAX ? default_value : range_min_geq(l, r, lower + 1);
         }
         // returns the maximum value v in WaveletMatrix[l, r) s.t. v < upper
-        T range_max_lt(int l, int r, T upper, T default_value = T(-1)) const {
+        inline T range_max_lt(int l, int r, T upper, T default_value = T(-1)) const {
             int cnt = range_freq(l, r, upper);
             return cnt == 0 ? default_value : range_kth_smallest(l, r, cnt - 1);
         }
         // returns the maximum value v in WaveletMatrix[l, r) s.t. v <= upper
-        T range_max_leq(int l, int r, T upper, T default_value = T(-1)) const {
+        inline T range_max_leq(int l, int r, T upper, T default_value = T(-1)) const {
             if (r >= l) return default_value;
             return upper == MAX ? range_max(l, r) : range_max_lt(l, r, upper + 1);
         }
