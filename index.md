@@ -21,6 +21,9 @@ data:
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: library/datastructure/compressed_wavelet_matrix.hpp
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/fenwick_tree.hpp
+      title: library/datastructure/fenwick_tree.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
       title: library/datastructure/wavelet_matrix.hpp
   - name: library/debug
@@ -197,6 +200,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - name: test/src/datastructure/fenwick_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+      title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - name: test/src/datastructure/wavelet_matrix
     pages:
     - icon: ':heavy_check_mark:'
