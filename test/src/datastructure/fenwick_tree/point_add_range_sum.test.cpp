@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
+
 #include <iostream>
 
 #include "library/datastructure/fenwick_tree.hpp"
