@@ -125,46 +125,47 @@ data:
     \ bit = k >= cnt_0;\n                succ(l, r, bit, log);\n                res\
     \ |= T(bit) << log;\n                k -= bit * cnt_0;\n            }\n      \
     \      return res;\n        }\n        // returns the k'th largest value in WaveletMatrix[l,\
-    \ r) (k : 0-indexed)\n        T range_kth_largest(int l, int r, int k, T default_value\
-    \ = T(-1)) const {\n            return range_kth_smallest(l, r, r - l - 1 - k,\
-    \ default_value);\n        }\n        // returns the minimum value in WaveletMatrix[l,\
-    \ r)\n        T range_min(int l, int r) const {\n            assert(l < r);\n\
-    \            return range_kth_smallest(l, r, 0);\n        }\n        // returns\
-    \ the maximum value in WaveletMatrix[l, r)\n        T range_max(int l, int r)\
-    \ const {\n            assert(l < r);\n            return range_kth_largest(l,\
-    \ r, 0);\n        }\n        // returns the number of v in WaveletMatrix[l, r)\
-    \ s.t. v < upper\n        int range_freq(int l, int r, T upper) const {\n    \
-    \        if (r <= l) return 0;\n            check_value_bounds(upper);\n     \
-    \       int res = 0;\n            for (int log = bit_num - 1; log >= 0; --log)\
+    \ r) (k : 0-indexed)\n        inline T range_kth_largest(int l, int r, int k,\
+    \ T default_value = T(-1)) const {\n            return range_kth_smallest(l, r,\
+    \ r - l - 1 - k, default_value);\n        }\n        // returns the minimum value\
+    \ in WaveletMatrix[l, r)\n        inline T range_min(int l, int r) const {\n \
+    \           assert(l < r);\n            return range_kth_smallest(l, r, 0);\n\
+    \        }\n        // returns the maximum value in WaveletMatrix[l, r)\n    \
+    \    inline T range_max(int l, int r) const {\n            assert(l < r);\n  \
+    \          return range_kth_largest(l, r, 0);\n        }\n        // returns the\
+    \ number of v in WaveletMatrix[l, r) s.t. v < upper\n        int range_freq(int\
+    \ l, int r, T upper) const {\n            if (r <= l) return 0;\n            check_value_bounds(upper);\n\
+    \            int res = 0;\n            for (int log = bit_num - 1; log >= 0; --log)\
     \ {\n                bool b = (upper >> log) & 1;\n                if (b) res\
     \ += bv[log].rank(false, l, r);\n                succ(l, r, b, log);\n       \
     \     }\n            return res;\n        }\n        // returns the number of\
-    \ v in WaveletMatrix[l, r) s.t. lower <= v < upper\n        int range_freq(int\
+    \ v in WaveletMatrix[l, r) s.t. lower <= v < upper\n        inline int range_freq(int\
     \ l, int r, T lower, T upper) const {\n            return range_freq(l, r, upper)\
     \ - range_freq(l, r, lower);\n        }\n        // returns the minimum value\
-    \ v in WaveletMatrix[l, r) s.t. lower <= v\n        T range_min_geq(int l, int\
-    \ r, T lower, T default_value = T(-1)) const {\n            int cnt = range_freq(l,\
+    \ v in WaveletMatrix[l, r) s.t. lower <= v\n        inline T range_min_geq(int\
+    \ l, int r, T lower, T default_value = T(-1)) const {\n            int cnt = range_freq(l,\
     \ r, lower);\n            return cnt >= r - l ? default_value : range_kth_smallest(l,\
     \ r, cnt);\n        }\n        // returns the minimum value v in WaveletMatrix[l,\
-    \ r) s.t. lower < v\n        T range_min_gt(int l, int r, T lower, T default_value\
+    \ r) s.t. lower < v\n        inline T range_min_gt(int l, int r, T lower, T default_value\
     \ = T(-1)) const {\n            return lower == MAX ? default_value : range_min_geq(l,\
     \ r, lower + 1);\n        }\n        // returns the maximum value v in WaveletMatrix[l,\
-    \ r) s.t. v < upper\n        T range_max_lt(int l, int r, T upper, T default_value\
+    \ r) s.t. v < upper\n        inline T range_max_lt(int l, int r, T upper, T default_value\
     \ = T(-1)) const {\n            int cnt = range_freq(l, r, upper);\n         \
     \   return cnt == 0 ? default_value : range_kth_smallest(l, r, cnt - 1);\n   \
     \     }\n        // returns the maximum value v in WaveletMatrix[l, r) s.t. v\
-    \ <= upper\n        T range_max_leq(int l, int r, T upper, T default_value = T(-1))\
-    \ const {\n            if (r >= l) return default_value;\n            return upper\
-    \ == MAX ? range_max(l, r) : range_max_lt(l, r, upper + 1);\n        }\n    protected:\n\
-    \        WaveletMatrix(int n) noexcept : n(n) {}\n    private:\n        static_assert(bit_num\
-    \ > 0);\n        static constexpr T MAX = bit_num == std::numeric_limits<T>::digits\
-    \ ? std::numeric_limits<T>::max() : (T(1) << bit_num) - 1;\n\n        const int\
-    \ n;\n        std::array<BitVector, bit_num> bv;\n        std::array<int, bit_num>\
-    \ mid;\n\n        inline void succ(int &l, int &r, const bool b, const int log)\
-    \ const {\n            l = b * mid[log] + bv[log].rank(b, l);\n            r =\
-    \ b * mid[log] + bv[log].rank(b, r);\n        }\n\n        static constexpr void\
-    \ check_value_bounds(T val) {\n            assert((val >> bit_num) == 0);\n  \
-    \      }\n};\n\n\n} // namespace suisen\n\n\n"
+    \ <= upper\n        inline T range_max_leq(int l, int r, T upper, T default_value\
+    \ = T(-1)) const {\n            if (r >= l) return default_value;\n          \
+    \  return upper == MAX ? range_max(l, r) : range_max_lt(l, r, upper + 1);\n  \
+    \      }\n    protected:\n        WaveletMatrix(int n) noexcept : n(n) {}\n  \
+    \  private:\n        static_assert(bit_num > 0);\n        static constexpr T MAX\
+    \ = bit_num == std::numeric_limits<T>::digits ? std::numeric_limits<T>::max()\
+    \ : (T(1) << bit_num) - 1;\n\n        const int n;\n        std::array<BitVector,\
+    \ bit_num> bv;\n        std::array<int, bit_num> mid;\n\n        inline void succ(int\
+    \ &l, int &r, const bool b, const int log) const {\n            l = b * mid[log]\
+    \ + bv[log].rank(b, l);\n            r = b * mid[log] + bv[log].rank(b, r);\n\
+    \        }\n\n        static constexpr void check_value_bounds(T val) {\n    \
+    \        assert((val >> bit_num) == 0);\n        }\n};\n\n\n} // namespace suisen\n\
+    \n\n"
   code: "#ifndef SUISEN_WAVELET_MATRIX\n#define SUISEN_WAVELET_MATRIX\n\n#include\
     \ <cassert>\n#include <array>\n#include <type_traits>\n#include <limits>\n\n#include\
     \ \"library/datastructure/bit_vector.hpp\"\n\nnamespace suisen {\ntemplate <typename\
@@ -204,46 +205,47 @@ data:
     \ bit = k >= cnt_0;\n                succ(l, r, bit, log);\n                res\
     \ |= T(bit) << log;\n                k -= bit * cnt_0;\n            }\n      \
     \      return res;\n        }\n        // returns the k'th largest value in WaveletMatrix[l,\
-    \ r) (k : 0-indexed)\n        T range_kth_largest(int l, int r, int k, T default_value\
-    \ = T(-1)) const {\n            return range_kth_smallest(l, r, r - l - 1 - k,\
-    \ default_value);\n        }\n        // returns the minimum value in WaveletMatrix[l,\
-    \ r)\n        T range_min(int l, int r) const {\n            assert(l < r);\n\
-    \            return range_kth_smallest(l, r, 0);\n        }\n        // returns\
-    \ the maximum value in WaveletMatrix[l, r)\n        T range_max(int l, int r)\
-    \ const {\n            assert(l < r);\n            return range_kth_largest(l,\
-    \ r, 0);\n        }\n        // returns the number of v in WaveletMatrix[l, r)\
-    \ s.t. v < upper\n        int range_freq(int l, int r, T upper) const {\n    \
-    \        if (r <= l) return 0;\n            check_value_bounds(upper);\n     \
-    \       int res = 0;\n            for (int log = bit_num - 1; log >= 0; --log)\
+    \ r) (k : 0-indexed)\n        inline T range_kth_largest(int l, int r, int k,\
+    \ T default_value = T(-1)) const {\n            return range_kth_smallest(l, r,\
+    \ r - l - 1 - k, default_value);\n        }\n        // returns the minimum value\
+    \ in WaveletMatrix[l, r)\n        inline T range_min(int l, int r) const {\n \
+    \           assert(l < r);\n            return range_kth_smallest(l, r, 0);\n\
+    \        }\n        // returns the maximum value in WaveletMatrix[l, r)\n    \
+    \    inline T range_max(int l, int r) const {\n            assert(l < r);\n  \
+    \          return range_kth_largest(l, r, 0);\n        }\n        // returns the\
+    \ number of v in WaveletMatrix[l, r) s.t. v < upper\n        int range_freq(int\
+    \ l, int r, T upper) const {\n            if (r <= l) return 0;\n            check_value_bounds(upper);\n\
+    \            int res = 0;\n            for (int log = bit_num - 1; log >= 0; --log)\
     \ {\n                bool b = (upper >> log) & 1;\n                if (b) res\
     \ += bv[log].rank(false, l, r);\n                succ(l, r, b, log);\n       \
     \     }\n            return res;\n        }\n        // returns the number of\
-    \ v in WaveletMatrix[l, r) s.t. lower <= v < upper\n        int range_freq(int\
+    \ v in WaveletMatrix[l, r) s.t. lower <= v < upper\n        inline int range_freq(int\
     \ l, int r, T lower, T upper) const {\n            return range_freq(l, r, upper)\
     \ - range_freq(l, r, lower);\n        }\n        // returns the minimum value\
-    \ v in WaveletMatrix[l, r) s.t. lower <= v\n        T range_min_geq(int l, int\
-    \ r, T lower, T default_value = T(-1)) const {\n            int cnt = range_freq(l,\
+    \ v in WaveletMatrix[l, r) s.t. lower <= v\n        inline T range_min_geq(int\
+    \ l, int r, T lower, T default_value = T(-1)) const {\n            int cnt = range_freq(l,\
     \ r, lower);\n            return cnt >= r - l ? default_value : range_kth_smallest(l,\
     \ r, cnt);\n        }\n        // returns the minimum value v in WaveletMatrix[l,\
-    \ r) s.t. lower < v\n        T range_min_gt(int l, int r, T lower, T default_value\
+    \ r) s.t. lower < v\n        inline T range_min_gt(int l, int r, T lower, T default_value\
     \ = T(-1)) const {\n            return lower == MAX ? default_value : range_min_geq(l,\
     \ r, lower + 1);\n        }\n        // returns the maximum value v in WaveletMatrix[l,\
-    \ r) s.t. v < upper\n        T range_max_lt(int l, int r, T upper, T default_value\
+    \ r) s.t. v < upper\n        inline T range_max_lt(int l, int r, T upper, T default_value\
     \ = T(-1)) const {\n            int cnt = range_freq(l, r, upper);\n         \
     \   return cnt == 0 ? default_value : range_kth_smallest(l, r, cnt - 1);\n   \
     \     }\n        // returns the maximum value v in WaveletMatrix[l, r) s.t. v\
-    \ <= upper\n        T range_max_leq(int l, int r, T upper, T default_value = T(-1))\
-    \ const {\n            if (r >= l) return default_value;\n            return upper\
-    \ == MAX ? range_max(l, r) : range_max_lt(l, r, upper + 1);\n        }\n    protected:\n\
-    \        WaveletMatrix(int n) noexcept : n(n) {}\n    private:\n        static_assert(bit_num\
-    \ > 0);\n        static constexpr T MAX = bit_num == std::numeric_limits<T>::digits\
-    \ ? std::numeric_limits<T>::max() : (T(1) << bit_num) - 1;\n\n        const int\
-    \ n;\n        std::array<BitVector, bit_num> bv;\n        std::array<int, bit_num>\
-    \ mid;\n\n        inline void succ(int &l, int &r, const bool b, const int log)\
-    \ const {\n            l = b * mid[log] + bv[log].rank(b, l);\n            r =\
-    \ b * mid[log] + bv[log].rank(b, r);\n        }\n\n        static constexpr void\
-    \ check_value_bounds(T val) {\n            assert((val >> bit_num) == 0);\n  \
-    \      }\n};\n\n\n} // namespace suisen\n\n#endif // SUISEN_WAVELET_MATRIX\n"
+    \ <= upper\n        inline T range_max_leq(int l, int r, T upper, T default_value\
+    \ = T(-1)) const {\n            if (r >= l) return default_value;\n          \
+    \  return upper == MAX ? range_max(l, r) : range_max_lt(l, r, upper + 1);\n  \
+    \      }\n    protected:\n        WaveletMatrix(int n) noexcept : n(n) {}\n  \
+    \  private:\n        static_assert(bit_num > 0);\n        static constexpr T MAX\
+    \ = bit_num == std::numeric_limits<T>::digits ? std::numeric_limits<T>::max()\
+    \ : (T(1) << bit_num) - 1;\n\n        const int n;\n        std::array<BitVector,\
+    \ bit_num> bv;\n        std::array<int, bit_num> mid;\n\n        inline void succ(int\
+    \ &l, int &r, const bool b, const int log) const {\n            l = b * mid[log]\
+    \ + bv[log].rank(b, l);\n            r = b * mid[log] + bv[log].rank(b, r);\n\
+    \        }\n\n        static constexpr void check_value_bounds(T val) {\n    \
+    \        assert((val >> bit_num) == 0);\n        }\n};\n\n\n} // namespace suisen\n\
+    \n#endif // SUISEN_WAVELET_MATRIX\n"
   dependsOn:
   - library/datastructure/bit_vector.hpp
   - library/type_traits/type_traits.hpp
@@ -251,7 +253,7 @@ data:
   path: library/datastructure/wavelet_matrix.hpp
   requiredBy:
   - library/datastructure/compressed_wavelet_matrix.hpp
-  timestamp: '2021-07-23 21:54:39+09:00'
+  timestamp: '2021-07-23 22:01:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
