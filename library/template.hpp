@@ -44,7 +44,6 @@ using umap = std::unordered_map<T, U>;
 #define loop(n) for (std::remove_reference_t<std::remove_const_t<decltype(n)>> UNIQVAR(loop_variable) = n; UNIQVAR(loop_variable) --> 0;)
 
 #define all(iterable) (iterable).begin(), (iterable).end()
-#define range_iter(iterable, l, r) ((iterable).begin() + (l)), ((iterable).begin() + (r))
 #define input(type, ...) type __VA_ARGS__; read(__VA_ARGS__)
 
 // ! constants
@@ -67,16 +66,16 @@ std::ostream& operator<<(std::ostream& out, const std::vector<T> &a) {
 }
 inline void print() { std::cout << '\n'; }
 template <typename Head, typename... Tail>
-inline void print(const Head& head, const Tail&... tails) {
+inline void print(const Head &head, const Tail &...tails) {
     std::cout << head;
     if (sizeof...(tails)) std::cout << ' ';
     print(tails...);
 }
 template <typename Iterable>
-void print_iterable(const Iterable& v, const std::string sep = " ", const std::string end = "\n") {
+auto print_all(const Iterable& v, std::string sep = " ", std::string end = "\n") -> decltype(std::cout << *v.begin(), void()) {
     for (auto it = v.begin(); it != v.end();) {
         std::cout << *it;
-        if (++it != v.end()) std::cout << ' ';
+        if (++it != v.end()) std::cout << sep;
     }
     std::cout << end;
 }
@@ -90,7 +89,7 @@ std::istream& operator>>(std::istream& in, std::vector<T> &a) {
 }
 constexpr void read() {}
 template <typename Head, typename... Tail>
-inline void read(Head& head, Tail& ...tails) {
+void read(Head &head, Tail &...tails) {
     std::cin >> head;
     read(tails...);
 }
@@ -104,19 +103,7 @@ bool chmin(T &x, const T &y) {
     return true;
 }
 template <typename T>
-bool chmin(T &x, const T &&y) {
-    if (y >= x) return false;
-    x = y;
-    return true;
-}
-template <typename T>
 bool chmax(T &x, const T &y) {
-    if (y <= x) return false;
-    x = y;
-    return true;
-}
-template <typename T>
-bool chmax(T &x, const T &&y) {
     if (y <= x) return false;
     x = y;
     return true;
@@ -161,6 +148,13 @@ auto priqueue_comp(const Comparator comparator) {
 
 template <typename Iterable>
 auto isize(const Iterable &iterable) -> decltype(int(iterable.size())) { return iterable.size(); }
+
+template <typename T, typename Gen, suisen::constraints_t<suisen::is_same_as_invoke_result<T, Gen, int>> = nullptr>
+auto generate_vector(int n, Gen generator) {
+    std::vector<T> v(n);
+    for (int i = 0; i < n; ++i) v[i] = generator(i);
+    return v;
+}
 
 namespace suisen {}
 using namespace suisen;
