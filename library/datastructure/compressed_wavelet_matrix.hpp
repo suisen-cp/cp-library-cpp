@@ -17,10 +17,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         CompressedWaveletMatrix() noexcept : WaveletMatrix<int, log_max_len>(0) {}
         // builds WaveletMatrix from generating function typed as (int) -> T
         template <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>
-        CompressedWaveletMatrix(int n, Gen generator) : WaveletMatrix<int, log_max_len>(n) {
-            comp.reserve(n);
-            for (int i = 0; i < n; ++i) comp.push(generator(i));
-            comp.build();
+        CompressedWaveletMatrix(int n, Gen generator) : WaveletMatrix<int, log_max_len>(n), comp(CoordinateCompressorBuilder<T>::build(n, generator)) {
             this->build([this, &generator](int i) { return comp[generator(i)]; });
         }
         // builds WaveletMatrix from vector
@@ -61,7 +58,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         }
         // returns the number of v in WaveletMatrix[l, r) s.t. v < upper
         inline int range_freq(int l, int r, T upper) const {
-            return WaveletMatrix<int, log_max_len>::range_freq(l, r, comp.lower_bound(upper));
+            return WaveletMatrix<int, log_max_len>::range_freq(l, r, comp.min_geq_index(upper));
         }
         // returns the number of v in WaveletMatrix[l, r) s.t. lower <= v < upper
         inline int range_freq(int l, int r, T lower, T upper) const {
@@ -69,7 +66,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         }
         // returns the minimum value v in WaveletMatrix[l, r) s.t. lower <= v
         inline T range_min_geq(int l, int r, T lower, T default_value = T(-1)) const {
-            int x = WaveletMatrix<int, log_max_len>::range_min_geq(l, r, comp.lower_bound(lower), -1);
+            int x = WaveletMatrix<int, log_max_len>::range_min_geq(l, r, comp.min_geq_index(lower), -1);
             return x == -1 ? default_value : comp.decomp(x);
         }
         // returns the minimum value v in WaveletMatrix[l, r) s.t. lower < v
@@ -78,7 +75,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         }
         // returns the maximum value v in WaveletMatrix[l, r) s.t. v < upper
         inline T range_max_lt(int l, int r, T upper, T default_value = T(-1)) const {
-            int x = WaveletMatrix<int, log_max_len>::range_max_lt(l, r, comp.lower_bound(upper), -1);
+            int x = WaveletMatrix<int, log_max_len>::range_max_lt(l, r, comp.min_geq_index(upper), -1);
             return x == -1 ? default_value : comp.decomp(x);
         }
         // returns the maximum value v in WaveletMatrix[l, r) s.t. v <= upper
@@ -87,7 +84,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
             return upper == std::numeric_limits<T>::max() ? range_max(l, r) : range_max_lt(l, r, upper + 1, default_value);
         }
     private:
-        coordinate_compressor<T> comp;
+        typename CoordinateCompressorBuilder<T>::Compressor comp;
 };
 } // namespace suisen
 
