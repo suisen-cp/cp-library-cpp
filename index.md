@@ -20,6 +20,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: library/datastructure/compressed_wavelet_matrix.hpp
+    - icon: ':x:'
+      path: library/datastructure/dual_segment_tree.hpp
+      title: library/datastructure/dual_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
       title: library/datastructure/fenwick_tree.hpp
@@ -170,6 +173,11 @@ data:
     - icon: ':warning:'
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
+  - name: test/src/datastructure/dual_segment_tree
+    pages:
+    - icon: ':warning:'
+      path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
+      title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
   verificationCategories:
   - name: test/src/algorithm/sliding_window_minimum
     pages:
@@ -203,6 +211,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - name: test/src/datastructure/dual_segment_tree
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
+      title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - name: test/src/datastructure/fenwick_tree
     pages:
     - icon: ':heavy_check_mark:'
