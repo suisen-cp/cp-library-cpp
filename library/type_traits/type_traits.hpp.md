@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
+  - icon: ':heavy_check_mark:'
+    path: library/util/coordinate_compressor.hpp
+    title: library/util/coordinate_compressor.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
@@ -199,6 +202,7 @@ data:
   - library/datastructure/segment_tree.hpp
   - library/template.hpp
   - library/template.cpp
+  - library/util/coordinate_compressor.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/algorithm/sliding_window_minimum.hpp
   timestamp: '2021-07-20 14:25:15+09:00'
