@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
-    title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
+  - icon: ':x:'
+    path: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
+    title: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -129,11 +129,11 @@ data:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/datastructure/dual_segment_tree.hpp
-  requiredBy:
-  - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
+  requiredBy: []
   timestamp: '2021-07-25 00:33:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
   - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
 documentation_of: library/datastructure/dual_segment_tree.hpp
 layout: document

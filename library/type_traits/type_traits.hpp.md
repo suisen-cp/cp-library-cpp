@@ -35,9 +35,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
-  - icon: ':warning:'
-    path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
-    title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
@@ -51,6 +48,9 @@ data:
   - icon: ':x:'
     path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
+  - icon: ':x:'
+    path: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
+    title: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
@@ -204,7 +204,6 @@ data:
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
   requiredBy:
-  - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/bit_vector.hpp
   - library/datastructure/fenwick_tree.hpp
@@ -219,6 +218,7 @@ data:
   timestamp: '2021-07-20 14:25:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
   - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp

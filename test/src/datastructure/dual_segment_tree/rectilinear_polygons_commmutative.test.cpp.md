@@ -9,13 +9,15 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/abc211/tasks/abc211_f
     links:
     - https://atcoder.jp/contests/abc211/tasks/abc211_f
-  bundledCode: "#line 1 \"test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp\"\
+  bundledCode: "#line 1 \"test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/abc211/tasks/abc211_f\"\n\n#include\
     \ <algorithm>\n#include <iostream>\n#include <tuple>\n\n#line 1 \"library/datastructure/dual_segment_tree.hpp\"\
     \n\n\n\n#include <cassert>\n#include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\
@@ -77,7 +79,7 @@ data:
     \ T, F, Mapping, Composition) -> DualSegmentTree<T, F, Mapping, Composition>;\n\
     \ntemplate <typename T, typename F, typename Mapping, typename Composition>\n\
     DualSegmentTree(std::vector<T>, F, Mapping, Composition) -> DualSegmentTree<T,\
-    \ F, Mapping, Composition>;\n\n} // namespace suisen\n\n\n\n#line 8 \"test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp\"\
+    \ F, Mapping, Composition>;\n\n} // namespace suisen\n\n\n\n#line 8 \"test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp\"\
     \nusing suisen::CommutativeDualSegmentTree;\n\nconstexpr int M = 100010;\n\nint\
     \ main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    int n;\n    std::cin >> n;\n    std::vector<std::vector<std::tuple<int, int,\
@@ -129,16 +131,16 @@ data:
   dependsOn:
   - library/datastructure/dual_segment_tree.hpp
   - library/type_traits/type_traits.hpp
-  isVerificationFile: false
-  path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
+  isVerificationFile: true
+  path: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
   requiredBy: []
-  timestamp: '2021-07-25 00:33:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2021-07-25 00:38:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
+documentation_of: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
 layout: document
 redirect_from:
-- /library/test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
-- /library/test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp.html
-title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
+- /verify/test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
+- /verify/test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp.html
+title: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
 ---

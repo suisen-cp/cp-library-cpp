@@ -173,11 +173,6 @@ data:
     - icon: ':warning:'
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
-  - name: test/src/datastructure/dual_segment_tree
-    pages:
-    - icon: ':warning:'
-      path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
-      title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test_commmutative.cpp
   verificationCategories:
   - name: test/src/algorithm/sliding_window_minimum
     pages:
@@ -216,6 +211,9 @@ data:
     - icon: ':x:'
       path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
       title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
+    - icon: ':x:'
+      path: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
+      title: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
   - name: test/src/datastructure/fenwick_tree
     pages:
     - icon: ':heavy_check_mark:'
