@@ -4,7 +4,7 @@
 #include <iostream>
 #include <tuple>
 
-#include "library/datastructure/dual_segment_tree.hpp"
+#include "library/datastructure/commutative_dual_segment_tree.hpp"
 using suisen::CommutativeDualSegmentTree;
 
 constexpr int M = 100010;
