@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: library/algorithm
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/algorithm/sliding_window_minimum.hpp
       title: library/algorithm/sliding_window_minimum.hpp
     - icon: ':heavy_check_mark:'
@@ -17,21 +17,33 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bit_vector.hpp
       title: library/datastructure/bit_vector.hpp
+    - icon: ':question:'
+      path: library/datastructure/commutative_dual_segment_tree.hpp
+      title: library/datastructure/commutative_dual_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: library/datastructure/compressed_wavelet_matrix.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/dual_segment_tree.hpp
       title: library/datastructure/dual_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
       title: library/datastructure/fenwick_tree.hpp
+    - icon: ':warning:'
+      path: library/datastructure/linked_union_find.hpp
+      title: library/datastructure/linked_union_find.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree.hpp
       title: library/datastructure/segment_tree.hpp
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/union_find.hpp
+      title: library/datastructure/union_find.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
       title: library/datastructure/wavelet_matrix.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/weighted_union_find.hpp
+      title: library/datastructure/weighted_union_find.hpp
   - name: library/debug
     pages:
     - icon: ':warning:'
@@ -176,6 +188,9 @@ data:
   verificationCategories:
   - name: test/src/algorithm/sliding_window_minimum
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
+      title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
     - icon: ':x:'
       path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
       title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
@@ -198,6 +213,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/binary_trie/xor_game.test.cpp
       title: test/src/datastructure/binary_trie/xor_game.test.cpp
+  - name: test/src/datastructure/commutative_dual_segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
+      title: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
+    - icon: ':x:'
+      path: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+      title: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - name: test/src/datastructure/compressed_wavelet_matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -208,22 +231,39 @@ data:
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - name: test/src/datastructure/dual_segment_tree
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
+      title: test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
+      title: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
     - icon: ':x:'
       path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
       title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
-    - icon: ':x:'
-      path: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
-      title: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
   - name: test/src/datastructure/fenwick_tree
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+      title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - name: test/src/datastructure/segment_tree
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
+      title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
+      title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
+  - name: test/src/datastructure/union_find
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/union_find/DSL_1_A.test.cpp
+      title: test/src/datastructure/union_find/DSL_1_A.test.cpp
   - name: test/src/datastructure/wavelet_matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -232,6 +272,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+  - name: test/src/datastructure/weighted_union_find
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
+      title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'

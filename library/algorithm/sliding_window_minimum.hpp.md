@@ -6,12 +6,15 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
+    title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - icon: ':x:'
     path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
     title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/algorithm/sliding_window_minimum.hpp\"\n\n\n\n#include\
@@ -89,9 +92,10 @@ data:
   path: library/algorithm/sliding_window_minimum.hpp
   requiredBy: []
   timestamp: '2021-07-20 14:25:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+  - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
 documentation_of: library/algorithm/sliding_window_minimum.hpp
 layout: document
 redirect_from:

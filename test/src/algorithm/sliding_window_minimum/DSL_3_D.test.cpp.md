@@ -9,17 +9,17 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/typical90/tasks/typical90_f
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D
     links:
-    - https://atcoder.jp/contests/typical90/tasks/typical90_f
-  bundledCode: "#line 1 \"test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/typical90/tasks/typical90_f\"\n\
-    \n#include <iostream>\n#include <string>\n\n#line 1 \"library/algorithm/sliding_window_minimum.hpp\"\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D
+  bundledCode: "#line 1 \"test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp\"\
+    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D\"\
+    \n\n#include <iostream>\n\n#line 1 \"library/algorithm/sliding_window_minimum.hpp\"\
     \n\n\n\n#include <cassert>\n#include <vector>\n#include <queue>\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -59,34 +59,32 @@ data:
     \ get_window_size() const {\n            return _r - _l;\n        }\n    private:\n\
     \        const int _n;\n        int _l = 0, _r = 0;\n        std::vector<T> _a;\n\
     \        std::deque<int> _dq;\n        Comparator _cmp;\n};\n} // namespace suisen\n\
-    \n\n#line 7 \"test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp\"\n\
-    using namespace suisen;\n\nint main() {\n    int n, k;\n    std::cin >> n >> k;\n\
-    \    std::string s;\n    std::cin >> s;\n    sliding_window_minimum<char, prioritizing_mode::left_most_min<char>>\
-    \ swm(n, [&](int i) { return s[i]; });\n    std::string ans;\n    for (int rest\
-    \ = k - 1, l = 0; rest >= 0; --rest, ++l) {\n        swm.proc(l, n - rest);\n\
-    \        l = swm.arg_query();\n        ans += s[l];\n    }\n    std::cout << ans\
-    \ << '\\n';\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/typical90/tasks/typical90_f\"\
-    \n\n#include <iostream>\n#include <string>\n\n#include \"library/algorithm/sliding_window_minimum.hpp\"\
-    \nusing namespace suisen;\n\nint main() {\n    int n, k;\n    std::cin >> n >>\
-    \ k;\n    std::string s;\n    std::cin >> s;\n    sliding_window_minimum<char,\
-    \ prioritizing_mode::left_most_min<char>> swm(n, [&](int i) { return s[i]; });\n\
-    \    std::string ans;\n    for (int rest = k - 1, l = 0; rest >= 0; --rest, ++l)\
-    \ {\n        swm.proc(l, n - rest);\n        l = swm.arg_query();\n        ans\
-    \ += s[l];\n    }\n    std::cout << ans << '\\n';\n    return 0;\n}"
+    \n\n#line 6 \"test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp\"\nusing\
+    \ suisen::sliding_window_minimum;\n\nint main() {\n    int n, l;\n    std::cin\
+    \ >> n >> l;\n    std::vector<int> a(n);\n    for (int &e : a) std::cin >> e;\n\
+    \    sliding_window_minimum<int> swm(n, [&a](int i) { return a[i]; });\n    for\
+    \ (int r = l; r <= n; ++r) {\n        swm.proc(r - l, r);\n        std::cout <<\
+    \ swm.query() << \" \\n\"[r == n];\n    }\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D\"\
+    \n\n#include <iostream>\n\n#include \"library/algorithm/sliding_window_minimum.hpp\"\
+    \nusing suisen::sliding_window_minimum;\n\nint main() {\n    int n, l;\n    std::cin\
+    \ >> n >> l;\n    std::vector<int> a(n);\n    for (int &e : a) std::cin >> e;\n\
+    \    sliding_window_minimum<int> swm(n, [&a](int i) { return a[i]; });\n    for\
+    \ (int r = l; r <= n; ++r) {\n        swm.proc(r - l, r);\n        std::cout <<\
+    \ swm.query() << \" \\n\"[r == n];\n    }\n    return 0;\n}"
   dependsOn:
   - library/algorithm/sliding_window_minimum.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
-  path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+  path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 20:05:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-07-25 09:50:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+documentation_of: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
-- /verify/test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp.html
-title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+- /verify/test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
+- /verify/test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp.html
+title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
 ---

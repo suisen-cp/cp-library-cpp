@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+    title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   _isVerificationFailed: false
@@ -114,6 +117,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
 documentation_of: library/datastructure/fenwick_tree.hpp
 layout: document
 redirect_from:

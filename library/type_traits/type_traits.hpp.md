@@ -2,16 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: library/datastructure/bit_vector.hpp
+  - icon: ':question:'
+    path: library/datastructure/commutative_dual_segment_tree.hpp
+    title: library/datastructure/commutative_dual_segment_tree.hpp
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: library/datastructure/compressed_wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/dual_segment_tree.hpp
     title: library/datastructure/dual_segment_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -23,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: library/datastructure/wavelet_matrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/weighted_union_find.hpp
+    title: library/datastructure/weighted_union_find.hpp
   - icon: ':warning:'
     path: library/template.cpp
     title: library/template.cpp
@@ -36,24 +42,45 @@ data:
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
+    title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - icon: ':x:'
     path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
     title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
+    title: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
+  - icon: ':x:'
+    path: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+    title: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
+    title: test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
+    title: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
   - icon: ':x:'
     path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
-  - icon: ':x:'
-    path: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
-    title: test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+    title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
+    title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
+    title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
@@ -63,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
+    title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
@@ -204,10 +234,12 @@ data:
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
   requiredBy:
+  - library/datastructure/weighted_union_find.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/bit_vector.hpp
   - library/datastructure/fenwick_tree.hpp
   - library/datastructure/dual_segment_tree.hpp
+  - library/datastructure/commutative_dual_segment_tree.hpp
   - library/datastructure/wavelet_matrix.hpp
   - library/datastructure/segment_tree.hpp
   - library/template.hpp
@@ -218,20 +250,28 @@ data:
   timestamp: '2021-07-20 14:25:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/dual_segment_tree/rectilinear_polygons_commmutative.test.cpp
+  - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+  - test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
+  - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+  - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 redirect_from:
