@@ -49,7 +49,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2021-07-25 09:50:12+09:00'
+  timestamp: '2021-07-28 22:17:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp

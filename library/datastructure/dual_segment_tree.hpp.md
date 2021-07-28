@@ -45,14 +45,14 @@ data:
     \   private:\n        void push(int k) {\n            if (this->lazy[k] != this->id)\
     \ {\n                BaseType::apply(2 * k, this->lazy[k]), BaseType::apply(2\
     \ * k + 1, this->lazy[k]);\n                this->lazy[k] = this->id;\n      \
-    \      }\n        }\n        void push(int l, int r) {\n            static const\
-    \ int log = __builtin_ctz(this->m);\n            l += this->m, r += this->m;\n\
-    \            for (int i = log; (l >> i) << i != l; --i) push(l >> i);\n      \
-    \      for (int i = log; (r >> i) << i != r; --i) push(r >> i);\n        }\n};\n\
+    \      }\n        }\n        void push(int l, int r) {\n            const int\
+    \ log = __builtin_ctz(this->m);\n            l += this->m, r += this->m;\n   \
+    \         for (int i = log; (l >> i) << i != l; --i) push(l >> i);\n         \
+    \   for (int i = log; (r >> i) << i != r; --i) push(r >> i);\n        }\n};\n\n\
+    template <typename T, typename F, typename Mapping, typename Composition>\nDualSegmentTree(int,\
+    \ T, F, Mapping, Composition) -> DualSegmentTree<T, F, Mapping, Composition>;\n\
     \ntemplate <typename T, typename F, typename Mapping, typename Composition>\n\
-    DualSegmentTree(int, T, F, Mapping, Composition) -> DualSegmentTree<T, F, Mapping,\
-    \ Composition>;\n\ntemplate <typename T, typename F, typename Mapping, typename\
-    \ Composition>\nDualSegmentTree(std::vector<T>, F, Mapping, Composition) -> DualSegmentTree<T,\
+    DualSegmentTree(std::vector<T>, F, Mapping, Composition) -> DualSegmentTree<T,\
     \ F, Mapping, Composition>;\n\n} // namespace suisen\n\n\n#endif // SUISEN_DUAL_SEGTREE\n"
   dependsOn:
   - library/datastructure/commutative_dual_segment_tree.hpp
@@ -60,7 +60,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/dual_segment_tree.hpp
   requiredBy: []
-  timestamp: '2021-07-25 09:50:12+09:00'
+  timestamp: '2021-07-28 22:17:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
