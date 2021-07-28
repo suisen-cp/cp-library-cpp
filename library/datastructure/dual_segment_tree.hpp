@@ -25,7 +25,7 @@ class DualSegmentTree : public CommutativeDualSegmentTree<T, F, Mapping, Composi
             }
         }
         void push(int l, int r) {
-            static const int log = __builtin_ctz(this->m);
+            const int log = __builtin_ctz(this->m);
             l += this->m, r += this->m;
             for (int i = log; (l >> i) << i != l; --i) push(l >> i);
             for (int i = log; (r >> i) << i != r; --i) push(r >> i);
