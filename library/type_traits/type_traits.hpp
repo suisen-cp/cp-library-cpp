@@ -8,6 +8,14 @@ namespace suisen {
 // ! utility
 template <typename ...Types>
 using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;
+template <bool cond_v, typename Then, typename OrElse>
+constexpr decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {
+    if constexpr (cond_v) {
+        return std::forward<Then>(then);
+    } else {
+        return std::forward<OrElse>(or_else);
+    }
+}
 
 // ! function
 template <typename ReturnType, typename Callable, typename ...Args>
