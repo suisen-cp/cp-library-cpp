@@ -92,9 +92,9 @@ data:
   timestamp: '2021-07-20 16:59:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
-  - test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
   - test/src/algorithm/slope_trick/absolute_minima.test.cpp
+  - test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
+  - test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
 documentation_of: library/algorithm/slope_trick.hpp
 layout: document
 redirect_from:

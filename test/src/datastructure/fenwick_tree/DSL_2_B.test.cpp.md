@@ -23,11 +23,14 @@ data:
     \n\n\n#include <vector>\n#include <map>\n#include <unordered_map>\n\n#line 1 \"\
     library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
     \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\n\n// ! function\n\
-    template <typename ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
+    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
+    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
+    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
+    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
+    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
+    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
+    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -94,7 +97,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2021-07-25 09:50:12+09:00'
+  timestamp: '2021-08-02 17:38:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp

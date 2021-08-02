@@ -196,8 +196,8 @@ data:
   timestamp: '2021-07-22 14:46:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+  - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
 documentation_of: library/number/sieve_of_eratosthenes.hpp
 layout: document
 redirect_from:

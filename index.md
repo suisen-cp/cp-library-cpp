@@ -3,6 +3,12 @@ data:
   libraryCategories:
   - name: library/algorithm
     pages:
+    - icon: ':warning:'
+      path: library/algorithm/rmq_pm1.hpp
+      title: library/algorithm/rmq_pm1.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/algorithm/rmq_pm1_with_index.hpp
+      title: library/algorithm/rmq_pm1_with_index.hpp
     - icon: ':question:'
       path: library/algorithm/sliding_window_minimum.hpp
       title: library/algorithm/sliding_window_minimum.hpp
@@ -35,6 +41,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree.hpp
       title: library/datastructure/segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/sparse_table.hpp
+      title: library/datastructure/sparse_table.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find.hpp
       title: library/datastructure/union_find.hpp
@@ -151,6 +160,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
+    - icon: ':heavy_check_mark:'
+      path: library/tree/lowest_common_ancestor.hpp
+      title: library/tree/lowest_common_ancestor.hpp
   - name: library/type_traits
     pages:
     - icon: ':question:'
@@ -388,5 +400,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
+  - name: test/src/tree/lowest_common_anceestor
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+      title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
 layout: toppage
 ---

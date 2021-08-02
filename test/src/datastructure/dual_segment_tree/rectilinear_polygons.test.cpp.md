@@ -63,7 +63,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   requiredBy: []
-  timestamp: '2021-07-28 22:17:06+09:00'
+  timestamp: '2021-08-02 17:38:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp

@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/algorithm/rmq_pm1.hpp
+    title: library/algorithm/rmq_pm1.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/algorithm/rmq_pm1_with_index.hpp
+    title: library/algorithm/rmq_pm1_with_index.hpp
   - icon: ':question:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
@@ -24,6 +30,9 @@ data:
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/sparse_table.hpp
+    title: library/datastructure/sparse_table.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: library/datastructure/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -38,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
+  - icon: ':heavy_check_mark:'
+    path: library/tree/lowest_common_ancestor.hpp
+    title: library/tree/lowest_common_ancestor.hpp
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
@@ -108,170 +120,97 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+    title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: '#line 1 "library/type_traits/type_traits.hpp"
-
-
-
-
-    #include <limits>
-
-    #include <type_traits>
-
-
-    namespace suisen {
-
-    // ! utility
-
-    template <typename ...Types>
-
-    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;
-
-
-    // ! function
-
-    template <typename ReturnType, typename Callable, typename ...Args>
-
-    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,
-    ReturnType>;
-
-    template <typename F, typename T>
-
-    using is_uni_op = is_same_as_invoke_result<T, F, T>;
-
-    template <typename F, typename T>
-
-    using is_bin_op = is_same_as_invoke_result<T, F, T, T>;
-
-
-    template <typename Comparator, typename T>
-
-    using is_comparator = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;
-
-
-    // ! integral
-
-    template <typename T, typename = constraints_t<std::is_integral<T>>>
-
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;
-
-    template <typename T, unsigned int n>
-
-    struct is_nbit { static constexpr bool value = bit_num<T> == n; };
-
-    template <typename T, unsigned int n>
-
-    static constexpr bool is_nbit_v = is_nbit<T, n>::value;
-
-    } // namespace suisen
-
-
-
-    '
-  code: '#ifndef SUISEN_TYPE_TRITS
-
-    #define SUISEN_TYPE_TRITS
-
-
-    #include <limits>
-
-    #include <type_traits>
-
-
-    namespace suisen {
-
-    // ! utility
-
-    template <typename ...Types>
-
-    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;
-
-
-    // ! function
-
-    template <typename ReturnType, typename Callable, typename ...Args>
-
-    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,
-    ReturnType>;
-
-    template <typename F, typename T>
-
-    using is_uni_op = is_same_as_invoke_result<T, F, T>;
-
-    template <typename F, typename T>
-
-    using is_bin_op = is_same_as_invoke_result<T, F, T, T>;
-
-
-    template <typename Comparator, typename T>
-
-    using is_comparator = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;
-
-
-    // ! integral
-
-    template <typename T, typename = constraints_t<std::is_integral<T>>>
-
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;
-
-    template <typename T, unsigned int n>
-
-    struct is_nbit { static constexpr bool value = bit_num<T> == n; };
-
-    template <typename T, unsigned int n>
-
-    static constexpr bool is_nbit_v = is_nbit<T, n>::value;
-
-    } // namespace suisen
-
-
-    #endif // SUISEN_TYPE_TRITS'
+  bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
+    #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
+    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
+    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
+    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
+    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
+    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_TYPE_TRITS\n#define SUISEN_TYPE_TRITS\n\n#include <limits>\n\
+    #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
+    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
+    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
+    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
+    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
+    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n#endif // SUISEN_TYPE_TRITS"
   dependsOn: []
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
   requiredBy:
-  - library/datastructure/weighted_union_find.hpp
-  - library/datastructure/compressed_wavelet_matrix.hpp
-  - library/datastructure/bit_vector.hpp
+  - library/template.hpp
+  - library/algorithm/sliding_window_minimum.hpp
+  - library/algorithm/rmq_pm1.hpp
+  - library/algorithm/rmq_pm1_with_index.hpp
+  - library/util/coordinate_compressor.hpp
+  - library/tree/heavy_light_decomposition.hpp
+  - library/tree/lowest_common_ancestor.hpp
   - library/datastructure/fenwick_tree.hpp
   - library/datastructure/dual_segment_tree.hpp
+  - library/datastructure/sparse_table.hpp
   - library/datastructure/commutative_dual_segment_tree.hpp
   - library/datastructure/wavelet_matrix.hpp
   - library/datastructure/segment_tree.hpp
-  - library/template.hpp
+  - library/datastructure/weighted_union_find.hpp
+  - library/datastructure/compressed_wavelet_matrix.hpp
+  - library/datastructure/bit_vector.hpp
   - library/template.cpp
-  - library/util/coordinate_compressor.hpp
-  - library/tree/heavy_light_decomposition.hpp
-  - library/algorithm/sliding_window_minimum.hpp
-  timestamp: '2021-07-20 14:25:15+09:00'
+  timestamp: '2021-08-02 17:38:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
-  - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
-  - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
-  - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
-  - test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
-  - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-  - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
+  - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+  - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
-  - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
+  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
+  - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
+  - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
+  - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+  - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
+  - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 redirect_from:

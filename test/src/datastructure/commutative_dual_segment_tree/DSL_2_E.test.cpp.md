@@ -42,7 +42,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
   requiredBy: []
-  timestamp: '2021-07-25 09:50:12+09:00'
+  timestamp: '2021-08-02 17:38:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
