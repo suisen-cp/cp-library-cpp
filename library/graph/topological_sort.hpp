@@ -7,7 +7,7 @@
 namespace suisen {
 class topological_sort {
     public:
-        topological_sort(std::vector<std::vector<int>> &g): _n(g.size()) {
+        topological_sort(const std::vector<std::vector<int>> &g): _n(g.size()) {
             build(g);
         }
         bool is_dag() const { return _ord.size() == _n; }
@@ -16,7 +16,7 @@ class topological_sort {
     private:
         const int _n;
         std::vector<int> _ord;
-        void build(std::vector<std::vector<int>> &g) {
+        void build(const std::vector<std::vector<int>> &g) {
             std::vector<int> in(_n);
             for (auto &adj : g) for (int j : adj) ++in[j];
             std::deque<int> dq;
