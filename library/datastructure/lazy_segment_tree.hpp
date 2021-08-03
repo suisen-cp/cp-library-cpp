@@ -6,7 +6,10 @@
 #include "library/util/update_proxy_object.hpp"
 
 namespace suisen {
-template <typename T, typename OpTT, typename F, typename OpFT, typename OpFF>
+template <
+    typename T, typename OpTT, typename F, typename OpFT, typename OpFF,
+    constraints_t<is_bin_op<OpTT, T>, is_same_as_invoke_result<T, OpFT, F, T>, is_bin_op<OpFF, F>> = nullptr
+>
 class LazySegmentTree {
     public:
         LazySegmentTree(const std::vector<T> &init, T e, OpTT op, F id, OpFT mapping, OpFF composition) : n(init.size()), m(ceil_pow2(n)), lg(__builtin_ctz(m)), e(e), op(op), id(id), mapping(mapping), composition(composition), data(2 * m, e), lazy(m, id) {
