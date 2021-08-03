@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
   _extendedVerifiedWith:
@@ -24,18 +24,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
     title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
     title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/update_proxy_object.hpp\"\n\n\n\n#line 1 \"\
@@ -57,8 +57,8 @@ data:
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
     \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
     library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>>\nstruct\
-    \ UpdateProxyObject {\n    T &v;\n    UpdateFunc update;\n    UpdateProxyObject(T\
+    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>\n\
+    struct UpdateProxyObject {\n    T &v;\n    UpdateFunc update;\n    UpdateProxyObject(T\
     \ &v, UpdateFunc update) : v(v), update(update) {}\n    operator T() const { return\
     \ v; }\n    auto& operator++() { ++v, update(); return *this; }\n    auto& operator--()\
     \ { --v, update(); return *this; }\n    auto& operator+=(const T &val) { v +=\
@@ -72,19 +72,19 @@ data:
     };\n\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_UPDATE_PROXY_OBJECT\n#define SUISEN_UPDATE_PROXY_OBJECT\n\n\
     #include \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\ntemplate\
-    \ <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>>\n\
-    struct UpdateProxyObject {\n    T &v;\n    UpdateFunc update;\n    UpdateProxyObject(T\
-    \ &v, UpdateFunc update) : v(v), update(update) {}\n    operator T() const { return\
-    \ v; }\n    auto& operator++() { ++v, update(); return *this; }\n    auto& operator--()\
-    \ { --v, update(); return *this; }\n    auto& operator+=(const T &val) { v +=\
-    \ val, update(); return *this; }\n    auto& operator-=(const T &val) { v -= val,\
-    \ update(); return *this; }\n    auto& operator*=(const T &val) { v *= val, update();\
-    \ return *this; }\n    auto& operator/=(const T &val) { v /= val, update(); return\
-    \ *this; }\n    auto& operator%=(const T &val) { v %= val, update(); return *this;\
-    \ }\n    auto& operator =(const T &val) { v  = val, update(); return *this; }\n\
-    \    auto& operator<<=(const T &val) { v <<= val, update(); return *this; }\n\
-    \    auto& operator>>=(const T &val) { v >>= val, update(); return *this; }\n\
-    };\n\n} // namespace suisen\n\n#endif // SUISEN_UPDATE_PROXY_OBJECT\n"
+    \ <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    \ = nullptr>\nstruct UpdateProxyObject {\n    T &v;\n    UpdateFunc update;\n\
+    \    UpdateProxyObject(T &v, UpdateFunc update) : v(v), update(update) {}\n  \
+    \  operator T() const { return v; }\n    auto& operator++() { ++v, update(); return\
+    \ *this; }\n    auto& operator--() { --v, update(); return *this; }\n    auto&\
+    \ operator+=(const T &val) { v += val, update(); return *this; }\n    auto& operator-=(const\
+    \ T &val) { v -= val, update(); return *this; }\n    auto& operator*=(const T\
+    \ &val) { v *= val, update(); return *this; }\n    auto& operator/=(const T &val)\
+    \ { v /= val, update(); return *this; }\n    auto& operator%=(const T &val) {\
+    \ v %= val, update(); return *this; }\n    auto& operator =(const T &val) { v\
+    \  = val, update(); return *this; }\n    auto& operator<<=(const T &val) { v <<=\
+    \ val, update(); return *this; }\n    auto& operator>>=(const T &val) { v >>=\
+    \ val, update(); return *this; }\n};\n\n} // namespace suisen\n\n#endif // SUISEN_UPDATE_PROXY_OBJECT\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
@@ -92,8 +92,8 @@ data:
   requiredBy:
   - library/datastructure/segment_tree.hpp
   - library/datastructure/lazy_segment_tree.hpp
-  timestamp: '2021-08-03 16:06:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-08-03 16:26:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp

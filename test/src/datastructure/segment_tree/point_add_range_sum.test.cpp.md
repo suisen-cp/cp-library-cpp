@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -43,8 +43,8 @@ data:
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
     \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
     library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>>\nstruct\
-    \ UpdateProxyObject {\n    T &v;\n    UpdateFunc update;\n    UpdateProxyObject(T\
+    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>\n\
+    struct UpdateProxyObject {\n    T &v;\n    UpdateFunc update;\n    UpdateProxyObject(T\
     \ &v, UpdateFunc update) : v(v), update(update) {}\n    operator T() const { return\
     \ v; }\n    auto& operator++() { ++v, update(); return *this; }\n    auto& operator--()\
     \ { --v, update(); return *this; }\n    auto& operator+=(const T &val) { v +=\
@@ -76,7 +76,7 @@ data:
     \ const {\n            return data[1];\n        }\n\n        void set(int i, const\
     \ T &val) {\n            (*this)[i] = val;\n        }\n        auto operator[](int\
     \ i) {\n            assert(0 <= i and i < n);\n            int k = i + m;\n  \
-    \          return UpdateProxyObject { data[k], [k, this]{ update_from(k); } };\n\
+    \          return UpdateProxyObject { data[k], [this, k]{ update_from(k); } };\n\
     \        }\n\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
     \ Pred, T>> = nullptr>\n        int max_right(int l, const Pred &f) const {\n\
     \            assert(0 <= l and l <= n);\n            assert(f(e));\n         \
@@ -129,8 +129,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-08-03 16:06:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-08-03 16:26:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
 layout: document

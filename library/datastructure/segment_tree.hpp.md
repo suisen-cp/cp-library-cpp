@@ -4,23 +4,23 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
     title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
     title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree.hpp\"\n\n\n\n#include\
@@ -44,8 +44,8 @@ data:
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
     \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
     library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>>\nstruct\
-    \ UpdateProxyObject {\n    T &v;\n    UpdateFunc update;\n    UpdateProxyObject(T\
+    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>\n\
+    struct UpdateProxyObject {\n    T &v;\n    UpdateFunc update;\n    UpdateProxyObject(T\
     \ &v, UpdateFunc update) : v(v), update(update) {}\n    operator T() const { return\
     \ v; }\n    auto& operator++() { ++v, update(); return *this; }\n    auto& operator--()\
     \ { --v, update(); return *this; }\n    auto& operator+=(const T &val) { v +=\
@@ -77,7 +77,7 @@ data:
     \ const {\n            return data[1];\n        }\n\n        void set(int i, const\
     \ T &val) {\n            (*this)[i] = val;\n        }\n        auto operator[](int\
     \ i) {\n            assert(0 <= i and i < n);\n            int k = i + m;\n  \
-    \          return UpdateProxyObject { data[k], [k, this]{ update_from(k); } };\n\
+    \          return UpdateProxyObject { data[k], [this, k]{ update_from(k); } };\n\
     \        }\n\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
     \ Pred, T>> = nullptr>\n        int max_right(int l, const Pred &f) const {\n\
     \            assert(0 <= l and l <= n);\n            assert(f(e));\n         \
@@ -127,7 +127,7 @@ data:
     \            return data[1];\n        }\n\n        void set(int i, const T &val)\
     \ {\n            (*this)[i] = val;\n        }\n        auto operator[](int i)\
     \ {\n            assert(0 <= i and i < n);\n            int k = i + m;\n     \
-    \       return UpdateProxyObject { data[k], [k, this]{ update_from(k); } };\n\
+    \       return UpdateProxyObject { data[k], [this, k]{ update_from(k); } };\n\
     \        }\n\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
     \ Pred, T>> = nullptr>\n        int max_right(int l, const Pred &f) const {\n\
     \            assert(0 <= l and l <= n);\n            assert(f(e));\n         \
@@ -161,8 +161,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree.hpp
   requiredBy: []
-  timestamp: '2021-08-03 16:06:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-08-03 16:26:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_B.test.cpp

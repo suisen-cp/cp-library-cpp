@@ -44,7 +44,7 @@ data:
     - icon: ':warning:'
       path: library/datastructure/linked_union_find.hpp
       title: library/datastructure/linked_union_find.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree.hpp
       title: library/datastructure/segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -200,7 +200,7 @@ data:
     - icon: ':warning:'
       path: library/util/run_length_encoder.hpp
       title: library/util/run_length_encoder.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/update_proxy_object.hpp
       title: library/util/update_proxy_object.hpp
     - icon: ':warning:'
@@ -285,13 +285,13 @@ data:
       title: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
   - name: test/src/datastructure/segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
       title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
       title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - name: test/src/datastructure/union_find
