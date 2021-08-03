@@ -28,8 +28,8 @@ class dijkstra {
                 if (du == _dist[u]) transition(u, du, g(u));
             }
         }
-        dijkstra(unsigned int n, const std::vector<std::pair<int, Cost>> &g, unsigned int src) :
-            dijkstra(n, [&](int u, Cost du, auto f) { for (auto [v, c] : g[u]) f(v, du + c); }, src) {}
+        dijkstra(const std::vector<std::vector<std::pair<int, Cost>>> &g, unsigned int src) :
+            dijkstra(g.size(), [&](int u, Cost du, auto f) { for (auto [v, c] : g[u]) f(v, du + c); }, src) {}
         std::vector<unsigned int> path_to(unsigned int t) const {
             assert(is_reachale(t));
             std::vector<unsigned int> path = {t};
