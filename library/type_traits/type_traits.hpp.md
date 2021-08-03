@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree.hpp
     title: library/datastructure/fenwick_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -59,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedVerifiedWith:
@@ -102,7 +102,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
   - icon: ':heavy_check_mark:'

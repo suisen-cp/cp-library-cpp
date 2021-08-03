@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
@@ -127,27 +127,27 @@ data:
     \ li + 1; i <= lg; ++i) update(l >> i);\n            for (int i = ri + 1; i <=\
     \ lg; ++i) update(r >> i);\n        }\n};\n}\n\n\n#line 6 \"test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp\"\
     \nusing suisen::LazySegmentTree;\n\nconstexpr int min_e = std::numeric_limits<int>::max();\n\
-    int min_op(int x, int y) {\n    return x < y ? x : y;\n}\nconstexpr long long\
-    \ id = 0;\nconstexpr std::plus<int> mapping, composition;\n\nint main() {\n  \
-    \  std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int n, q;\n\
-    \    std::cin >> n >> q;\n    LazySegmentTree seg(std::vector<int>(n, 0), min_e,\
-    \ min_op, id, mapping, composition);\n    for (int i = 0; i < q; ++i) {\n    \
-    \    int t, l, r;\n        std::cin >> t >> l >> r;\n        ++r;\n        if\
-    \ (t == 0) {\n            long long x;\n            std::cin >> x;\n         \
-    \   seg.apply(l, r, x);\n        } else {\n            std::cout << seg(l, r)\
-    \ << '\\n';\n        }\n    }\n    return 0;\n}\n"
+    int min_op(int x, int y) {\n    return x < y ? x : y;\n}\nconstexpr int id = 0;\n\
+    constexpr std::plus<int> mapping, composition;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    LazySegmentTree\
+    \ seg(std::vector<int>(n, 0), min_e, min_op, id, mapping, composition);\n    for\
+    \ (int i = 0; i < q; ++i) {\n        int t, l, r;\n        std::cin >> t >> l\
+    \ >> r;\n        ++r;\n        if (t == 0) {\n            long long x;\n     \
+    \       std::cin >> x;\n            seg.apply(l, r, x);\n        } else {\n  \
+    \          std::cout << seg(l, r) << '\\n';\n        }\n    }\n    return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\"\
     \n\n#include <iostream>\n\n#include \"library/datastructure/lazy_segment_tree.hpp\"\
     \nusing suisen::LazySegmentTree;\n\nconstexpr int min_e = std::numeric_limits<int>::max();\n\
-    int min_op(int x, int y) {\n    return x < y ? x : y;\n}\nconstexpr long long\
-    \ id = 0;\nconstexpr std::plus<int> mapping, composition;\n\nint main() {\n  \
-    \  std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int n, q;\n\
-    \    std::cin >> n >> q;\n    LazySegmentTree seg(std::vector<int>(n, 0), min_e,\
-    \ min_op, id, mapping, composition);\n    for (int i = 0; i < q; ++i) {\n    \
-    \    int t, l, r;\n        std::cin >> t >> l >> r;\n        ++r;\n        if\
-    \ (t == 0) {\n            long long x;\n            std::cin >> x;\n         \
-    \   seg.apply(l, r, x);\n        } else {\n            std::cout << seg(l, r)\
-    \ << '\\n';\n        }\n    }\n    return 0;\n}"
+    int min_op(int x, int y) {\n    return x < y ? x : y;\n}\nconstexpr int id = 0;\n\
+    constexpr std::plus<int> mapping, composition;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    LazySegmentTree\
+    \ seg(std::vector<int>(n, 0), min_e, min_op, id, mapping, composition);\n    for\
+    \ (int i = 0; i < q; ++i) {\n        int t, l, r;\n        std::cin >> t >> l\
+    \ >> r;\n        ++r;\n        if (t == 0) {\n            long long x;\n     \
+    \       std::cin >> x;\n            seg.apply(l, r, x);\n        } else {\n  \
+    \          std::cout << seg(l, r) << '\\n';\n        }\n    }\n    return 0;\n\
+    }"
   dependsOn:
   - library/datastructure/lazy_segment_tree.hpp
   - library/util/update_proxy_object.hpp
@@ -155,8 +155,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
   requiredBy: []
-  timestamp: '2021-08-03 16:31:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-08-03 16:40:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
 layout: document

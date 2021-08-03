@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy: []
