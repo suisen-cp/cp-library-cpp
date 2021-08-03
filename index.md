@@ -23,6 +23,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bit_vector.hpp
       title: library/datastructure/bit_vector.hpp
+    - icon: ':warning:'
+      path: library/datastructure/cartesian_tree.hpp
+      title: library/datastructure/cartesian_tree.hpp
     - icon: ':question:'
       path: library/datastructure/commutative_dual_segment_tree.hpp
       title: library/datastructure/commutative_dual_segment_tree.hpp
@@ -35,10 +38,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
       title: library/datastructure/fenwick_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/lazy_segment_tree.hpp
+      title: library/datastructure/lazy_segment_tree.hpp
     - icon: ':warning:'
       path: library/datastructure/linked_union_find.hpp
       title: library/datastructure/linked_union_find.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/datastructure/segment_tree.hpp
       title: library/datastructure/segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -194,6 +200,9 @@ data:
     - icon: ':warning:'
       path: library/util/run_length_encoder.hpp
       title: library/util/run_length_encoder.hpp
+    - icon: ':question:'
+      path: library/util/update_proxy_object.hpp
+      title: library/util/update_proxy_object.hpp
     - icon: ':warning:'
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
@@ -260,15 +269,29 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - name: test/src/datastructure/segment_tree
+  - name: test/src/datastructure/lazy_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
+      title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
+      title: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
+      title: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
+      title: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
+  - name: test/src/datastructure/segment_tree
+    pages:
+    - icon: ':x:'
       path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
       title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
       title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - name: test/src/datastructure/union_find

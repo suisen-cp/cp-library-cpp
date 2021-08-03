@@ -20,11 +20,11 @@ data:
     \               if (new_cost < _dist[v]) pq.emplace(_dist[v] = new_cost, v), _par[v]\
     \ = u;\n                };\n            };\n            while (pq.size()) {\n\
     \                auto [du, u] = pq.top(); pq.pop();\n                if (du ==\
-    \ _dist[u]) transition(u, du, g(u));\n            }\n        }\n        dijkstra(unsigned\
-    \ int n, const std::vector<std::pair<int, Cost>> &g, unsigned int src) :\n   \
-    \         dijkstra(n, [&](int u, Cost du, auto f) { for (auto [v, c] : g[u]) f(v,\
-    \ du + c); }, src) {}\n        std::vector<unsigned int> path_to(unsigned int\
-    \ t) const {\n            assert(is_reachale(t));\n            std::vector<unsigned\
+    \ _dist[u]) transition(u, du, g(u));\n            }\n        }\n        dijkstra(const\
+    \ std::vector<std::vector<std::pair<int, Cost>>> &g, unsigned int src) :\n   \
+    \         dijkstra(g.size(), [&](int u, Cost du, auto f) { for (auto [v, c] :\
+    \ g[u]) f(v, du + c); }, src) {}\n        std::vector<unsigned int> path_to(unsigned\
+    \ int t) const {\n            assert(is_reachale(t));\n            std::vector<unsigned\
     \ int> path = {t};\n            while (t != _src) path.push_back(t = _par[t]);\n\
     \            std::reverse(path.begin(), path.end());\n            return path;\n\
     \        }\n        Cost operator[](unsigned int t) const { return _dist[t]; }\n\
@@ -45,11 +45,11 @@ data:
     \               if (new_cost < _dist[v]) pq.emplace(_dist[v] = new_cost, v), _par[v]\
     \ = u;\n                };\n            };\n            while (pq.size()) {\n\
     \                auto [du, u] = pq.top(); pq.pop();\n                if (du ==\
-    \ _dist[u]) transition(u, du, g(u));\n            }\n        }\n        dijkstra(unsigned\
-    \ int n, const std::vector<std::pair<int, Cost>> &g, unsigned int src) :\n   \
-    \         dijkstra(n, [&](int u, Cost du, auto f) { for (auto [v, c] : g[u]) f(v,\
-    \ du + c); }, src) {}\n        std::vector<unsigned int> path_to(unsigned int\
-    \ t) const {\n            assert(is_reachale(t));\n            std::vector<unsigned\
+    \ _dist[u]) transition(u, du, g(u));\n            }\n        }\n        dijkstra(const\
+    \ std::vector<std::vector<std::pair<int, Cost>>> &g, unsigned int src) :\n   \
+    \         dijkstra(g.size(), [&](int u, Cost du, auto f) { for (auto [v, c] :\
+    \ g[u]) f(v, du + c); }, src) {}\n        std::vector<unsigned int> path_to(unsigned\
+    \ int t) const {\n            assert(is_reachale(t));\n            std::vector<unsigned\
     \ int> path = {t};\n            while (t != _src) path.push_back(t = _par[t]);\n\
     \            std::reverse(path.begin(), path.end());\n            return path;\n\
     \        }\n        Cost operator[](unsigned int t) const { return _dist[t]; }\n\
@@ -62,7 +62,7 @@ data:
   isVerificationFile: false
   path: library/graph/dijkstra.hpp
   requiredBy: []
-  timestamp: '2021-07-17 02:33:12+09:00'
+  timestamp: '2021-08-03 16:07:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/graph/dijkstra.hpp
