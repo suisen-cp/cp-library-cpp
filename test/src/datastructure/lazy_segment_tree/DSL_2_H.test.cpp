@@ -9,7 +9,7 @@ constexpr int min_e = std::numeric_limits<int>::max();
 int min_op(int x, int y) {
     return x < y ? x : y;
 }
-constexpr long long id = 0;
+constexpr int id = 0;
 constexpr std::plus<int> mapping, composition;
 
 int main() {
