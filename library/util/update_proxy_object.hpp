@@ -5,7 +5,7 @@
 
 namespace suisen {
 
-template <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>>
+template <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>
 struct UpdateProxyObject {
     T &v;
     UpdateFunc update;

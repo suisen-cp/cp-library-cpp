@@ -50,7 +50,7 @@ class SegmentTree {
         auto operator[](int i) {
             assert(0 <= i and i < n);
             int k = i + m;
-            return UpdateProxyObject { data[k], [k, this]{ update_from(k); } };
+            return UpdateProxyObject { data[k], [this, k]{ update_from(k); } };
         }
 
         template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>

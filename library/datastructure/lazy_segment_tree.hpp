@@ -24,12 +24,6 @@ class LazySegmentTree {
             }
             update_from(l, r);
         }
-        void apply_point(int p, const F &f) {
-            assert(0 <= p and p < n);
-            push_to(p);
-            data[p + m] = mapping(f, data[p + m]);
-            update_from(p);
-        }
         T operator()(int l, int r) {
             assert(0 <= l and l <= r and r <= n);
             push_to(l, r);
@@ -56,6 +50,9 @@ class LazySegmentTree {
         }
         void set(int p, T v) {
             (*this)[p] = v;
+        }
+        void apply_point(int p, const F &f) {
+            (*this)[p] = mapping(f, get(p));
         }
 
         template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
