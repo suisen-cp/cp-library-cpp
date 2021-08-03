@@ -18,26 +18,26 @@ class FenwickTreeBase {
         void add(index_t i, T v) {
             for (++i; i <= n; i += (i & -i)) data[i - 1] += v;
         }
-        inline T sum(index_t l, index_t r) const {
+        T sum(index_t l, index_t r) const {
             return sum(r) - sum(l);
         }
         auto operator[](int i) {
             struct {
                 int i;
                 FenwickTreeBase &ft;
-                inline operator T() const { return ft.sum(i, i + 1); }
-                inline auto& operator++() { return *this += 1; }
-                inline auto& operator--() { return *this -= 1; }
-                inline auto& operator+=(T val) { ft.add(i,  val);  return *this; }
-                inline auto& operator-=(T val) { ft.add(i, -val);  return *this; }
-                inline auto& operator*=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }
-                inline auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur / val - cur); return *this; }
-                inline auto& operator%=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }
-                inline auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i,       val - cur); return *this; }
+                operator T() const { return ft.sum(i, i + 1); }
+                auto& operator++() { return *this += 1; }
+                auto& operator--() { return *this -= 1; }
+                auto& operator+=(T val) { ft.add(i,  val); return *this; }
+                auto& operator-=(T val) { ft.add(i, -val); return *this; }
+                auto& operator*=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }
+                auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur / val - cur); return *this; }
+                auto& operator%=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }
+                auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i,       val - cur); return *this; }
             } obj {i, *this};
             return obj;
         }
-        inline T operator()(int l, int r) const { return sum(l, r); }
+        T operator()(int l, int r) const { return sum(l, r); }
     protected:
         index_t n;
         Container data;

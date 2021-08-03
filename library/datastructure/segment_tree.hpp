@@ -4,7 +4,7 @@
 #include <cassert>
 #include <vector>
 
-#include "library/type_traits/type_traits.hpp"
+#include "library/util/update_proxy_object.hpp"
 
 namespace suisen {
 template <typename T, typename F, constraints_t<is_bin_op<F, T>> = nullptr>
@@ -20,7 +20,7 @@ class SegmentTree {
             std::copy(a.begin(), a.end(), data.begin() + m);
             for (int k = m - 1; k > 0; --k) update(k);
         }
-        inline T get(int i) const {
+        T get(int i) const {
             assert(0 <= i and i < n);
             return data[i + m];
         }
@@ -32,39 +32,25 @@ class SegmentTree {
             }
             return op(res_l, res_r);
         }
-        inline T prefix_prod(int r) const {
+        T prefix_prod(int r) const {
             assert(0 <= r and r <= n);
             return (*this)(0, r);
         }
-        inline T suffix_prod(int l) const {
+        T suffix_prod(int l) const {
             assert(0 <= l and l <= n);
             return (*this)(l, m);
         }
-        inline T all_prod() const {
+        T all_prod() const {
             return data[1];
         }
 
-        inline void set(int i, const T &val) {
+        void set(int i, const T &val) {
+            (*this)[i] = val;
+        }
+        auto operator[](int i) {
             assert(0 <= i and i < n);
             int k = i + m;
-            data[k] = val, propagate(k);
-        }
-        inline auto operator[](int i) {
-            assert(0 <= i and i < n);
-            struct {
-                const int k;
-                SegmentTree &seg;
-                inline operator T() const { return seg.data[k]; }
-                inline auto& operator++() { ++seg.data[k], seg.propagate(k); return *this; }
-                inline auto& operator--() { --seg.data[k], seg.propagate(k); return *this; }
-                inline auto& operator+=(const T &val) { seg.data[k] += val, seg.propagate(k); return *this; }
-                inline auto& operator-=(const T &val) { seg.data[k] -= val, seg.propagate(k); return *this; }
-                inline auto& operator*=(const T &val) { seg.data[k] *= val, seg.propagate(k); return *this; }
-                inline auto& operator/=(const T &val) { seg.data[k] /= val, seg.propagate(k); return *this; }
-                inline auto& operator%=(const T &val) { seg.data[k] %= val, seg.propagate(k); return *this; }
-                inline auto& operator =(const T &val) { seg.data[k]  = val, seg.propagate(k); return *this; }
-            } obj {i + m, *this};
-            return obj;
+            return UpdateProxyObject { data[k], [k, this]{ update_from(k); } };
         }
 
         template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
@@ -122,10 +108,10 @@ class SegmentTree {
             while (m < n) m <<= 1;
             return m;
         }
-        inline void propagate(int k) {
+        void update_from(int k) {
             for (k >>= 1; k; k >>= 1) update(k);
         }
-        inline void update(int k) {
+        void update(int k) {
             data[k] = op(data[k * 2], data[k * 2 + 1]);
         }
 };
