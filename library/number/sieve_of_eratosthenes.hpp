@@ -1,7 +1,9 @@
 #ifndef SUISEN_SIEVE_OF_ERATOSTHENES
 #define SUISEN_SIEVE_OF_ERATOSTHENES
 
+#include <cassert>
 #include <cmath>
+#include <vector>
 
 #include "library/number/internal_eratosthenes.hpp"
 
@@ -27,7 +29,7 @@ class SimpleSieve {
                 }
             }
         }
-        inline bool is_prime(const unsigned int p) const {
+        bool is_prime(const unsigned int p) const {
             using namespace internal::sieve;
             switch (p) {
                 case 2: case 3: case 5: return true;
@@ -74,7 +76,7 @@ class Sieve {
                 }
             }
         }
-        inline bool is_prime(const unsigned int p) const {
+        bool is_prime(const unsigned int p) const {
             using namespace internal::sieve;
             switch (p) {
                 case 2: case 3: case 5: return true;
@@ -92,7 +94,7 @@ class Sieve {
                     }
             }
         }
-        inline int prime_factor(const unsigned int p) const {
+        int prime_factor(const unsigned int p) const {
             using namespace internal::sieve;
             switch (p % PROD) {
                 case  0: case  2: case  4: case  6: case  8:
@@ -110,6 +112,37 @@ class Sieve {
                 case RM[7]: return pf[p / PROD * K + 7] ? pf[p / PROD * K + 7] : p;
                 default: assert(false);
             }
+        }
+        /**
+         * Returns a vector of `{ prime, index }`.
+         */
+        std::vector<std::pair<int, int>> factorize(unsigned int n) const {
+            assert(0 < n and n <= N);
+            std::vector<std::pair<int, int>> prime_powers;
+            while (n > 1) {
+                int p = prime_factor(n), c = 0;
+                do { n /= p, ++c; } while (n % p == 0);
+                prime_powers.emplace_back(p, c);
+            }
+            return prime_powers;
+        }
+        /**
+         * Returns the divisors of `n`.
+         * It is NOT guaranteed that the returned vector is sorted.
+         */
+        std::vector<int> divisors(unsigned int n) const {
+            assert(0 < n and n <= N);
+            std::vector<int> divs { 1 };
+            for (auto [prime, index] : factorize(n)) {
+                int sz = divs.size();
+                for (int i = 0; i < sz; ++i) {
+                    int d = divs[i];
+                    for (int j = 0; j < index; ++j) {
+                        divs.push_back(d *= prime);
+                    }
+                }
+            }
+            return divs;
         }
 };
 template <unsigned int N>
