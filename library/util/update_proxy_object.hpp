@@ -7,20 +7,22 @@ namespace suisen {
 
 template <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>
 struct UpdateProxyObject {
-    T &v;
-    UpdateFunc update;
-    UpdateProxyObject(T &v, UpdateFunc update) : v(v), update(update) {}
-    operator T() const { return v; }
-    auto& operator++() { ++v, update(); return *this; }
-    auto& operator--() { --v, update(); return *this; }
-    auto& operator+=(const T &val) { v += val, update(); return *this; }
-    auto& operator-=(const T &val) { v -= val, update(); return *this; }
-    auto& operator*=(const T &val) { v *= val, update(); return *this; }
-    auto& operator/=(const T &val) { v /= val, update(); return *this; }
-    auto& operator%=(const T &val) { v %= val, update(); return *this; }
-    auto& operator =(const T &val) { v  = val, update(); return *this; }
-    auto& operator<<=(const T &val) { v <<= val, update(); return *this; }
-    auto& operator>>=(const T &val) { v >>= val, update(); return *this; }
+    public:
+        UpdateProxyObject(T &v, UpdateFunc update) : v(v), update(update) {}
+        operator T() const { return v; }
+        auto& operator++() && { ++v, update(); return *this; }
+        auto& operator--() && { --v, update(); return *this; }
+        auto& operator+=(const T &val) && { v += val, update(); return *this; }
+        auto& operator-=(const T &val) && { v -= val, update(); return *this; }
+        auto& operator*=(const T &val) && { v *= val, update(); return *this; }
+        auto& operator/=(const T &val) && { v /= val, update(); return *this; }
+        auto& operator%=(const T &val) && { v %= val, update(); return *this; }
+        auto& operator =(const T &val) && { v  = val, update(); return *this; }
+        auto& operator<<=(const T &val) && { v <<= val, update(); return *this; }
+        auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }
+    private:
+        T &v;
+        UpdateFunc update;
 };
 
 } // namespace suisen
