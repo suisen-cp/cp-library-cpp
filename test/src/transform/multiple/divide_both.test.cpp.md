@@ -7,6 +7,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: library/number/sieve_of_eratosthenes.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/transform/divisor.hpp
+    title: library/transform/divisor.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/transform/multiple.hpp
+    title: library/transform/multiple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,14 +20,41 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc152/tasks/abc152_e
+    PROBLEM: https://atcoder.jp/contests/abc206/tasks/abc206_e
     links:
-    - https://atcoder.jp/contests/abc152/tasks/abc152_e
-  bundledCode: "#line 1 \"test/src/number/sieve_of_eratosthenes/flatten.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/abc152/tasks/abc152_e\"\n\n#include\
-    \ <iostream>\n#include <unordered_map>\n#include <vector>\n\n#include <atcoder/modint>\n\
-    \n#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <cmath>\n#line 7 \"library/number/sieve_of_eratosthenes.hpp\"\n\n#line\
+    - https://atcoder.jp/contests/abc206/tasks/abc206_e
+  bundledCode: "#line 1 \"test/src/transform/multiple/divide_both.test.cpp\"\n#define\
+    \ PROBLEM \"https://atcoder.jp/contests/abc206/tasks/abc206_e\"\n\n#include <cassert>\n\
+    #include <iostream>\n\n#line 1 \"library/transform/multiple.hpp\"\n\n\n\n#include\
+    \ <vector>\n\nnamespace suisen::multiple_transform {\n\n// Calculates `g` s.t.\
+    \ g(n) = Sum_{n | m} f(m) inplace.\ntemplate <typename T>\nvoid zeta(std::vector<T>\
+    \ &f) {\n    const int n = f.size();\n    std::vector<char> is_prime(n, true);\n\
+    \    auto cum = [&](const int p) {\n        const int qmax = (n - 1) / p, rmax\
+    \ = qmax * p;\n        for (int q = qmax, pq = rmax; q >= 1; --q, pq -= p) {\n\
+    \            f[q] += f[pq];\n            is_prime[pq] = false;\n        }\n  \
+    \  };\n    cum(2);\n    for (int p = 3; p < n; p += 2) if (is_prime[p]) cum(p);\n\
+    }\n\n// Calculates `f` s.t. g(n) = Sum_{n | m} f(m) inplace.\ntemplate <typename\
+    \ T>\nvoid mobius(std::vector<T> &f) {\n    const int n = f.size();\n    std::vector<char>\
+    \ is_prime(n, true);\n    auto diff = [&](const int p) {\n        for (int q =\
+    \ 1, pq = p; pq < n; ++q, pq += p) {\n            f[q] -= f[pq];\n           \
+    \ is_prime[pq] = false;\n        }\n    };\n    diff(2);\n    for (int p = 3;\
+    \ p < n; p += 2) if (is_prime[p]) diff(p);\n}\n\n} // namespace suisen:: multiple_transform\n\
+    \n\n\n#line 1 \"library/transform/divisor.hpp\"\n\n\n\n#line 5 \"library/transform/divisor.hpp\"\
+    \n\nnamespace suisen::divisor_transform {\n\n// Calculates `g` s.t. g(n) = Sum_{d\
+    \ | n} f(d) inplace.\ntemplate <typename T>\nvoid zeta(std::vector<T> &f) {\n\
+    \    const int n = f.size();\n    std::vector<char> is_prime(n, true);\n    auto\
+    \ cum = [&](const int p) {\n        for (int q = 1, pq = p; pq < n; ++q, pq +=\
+    \ p) {\n            f[pq] += f[q];\n            is_prime[pq] = false;\n      \
+    \  }\n    };\n    cum(2);\n    for (int p = 3; p < n; p += 2) if (is_prime[p])\
+    \ cum(p);\n}\n\n// Calculates `f` s.t. g(n) = Sum_{d | n} f(d) inplace.\ntemplate\
+    \ <typename T>\nvoid mobius(std::vector<T> &f) {\n    const int n = f.size();\n\
+    \    std::vector<char> is_prime(n, true);\n    auto diff = [&](const int p) {\n\
+    \        const int qmax = (n - 1) / p, rmax = qmax * p;\n        for (int q =\
+    \ qmax, pq = rmax; q >= 1; --q, pq -= p) {\n            f[pq] -= f[q];\n     \
+    \       is_prime[pq] = false;\n        }\n    };\n    diff(2);\n    for (int p\
+    \ = 3; p < n; p += 2) if (is_prime[p]) diff(p);\n}\n\n} // namespace suisen::divisor_transform\n\
+    \n\n\n#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\n\n#line 5 \"library/number/sieve_of_eratosthenes.hpp\"\
+    \n#include <cmath>\n#line 7 \"library/number/sieve_of_eratosthenes.hpp\"\n\n#line\
     \ 1 \"library/number/internal_eratosthenes.hpp\"\n\n\n\n#include <cstdint>\n#line\
     \ 6 \"library/number/internal_eratosthenes.hpp\"\n\nnamespace suisen::internal::sieve\
     \ {\n\nconstexpr std::uint8_t K = 8;\nconstexpr std::uint8_t PROD = 2 * 3 * 5;\n\
@@ -134,43 +167,61 @@ data:
     \   divs.push_back(d *= prime);\n                    }\n                }\n  \
     \          }\n            return divs;\n        }\n};\ntemplate <unsigned int\
     \ N>\nunsigned int Sieve<N>::pf[Sieve<N>::base_max + internal::sieve::K];\n} //\
-    \ namespace suisen\n\n\n#line 10 \"test/src/number/sieve_of_eratosthenes/flatten.test.cpp\"\
-    \n\nsuisen::Sieve<1000000> sieve;\n\ntemplate <typename T>\nvoid chmax(T &x, const\
-    \ T &y) {\n    if (x < y) x = y;\n}\n\nusing mint = atcoder::modint1000000007;\n\
-    \nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n \
-    \   std::unordered_map<int, int> factors;\n    for (int &e : a) {\n        std::cin\
-    \ >> e;\n        for (int x = e; x != 1;) {\n            int p = sieve.prime_factor(x);\n\
-    \            int cnt = 0;\n            while (x % p == 0) x /= p, ++cnt;\n   \
-    \         chmax(factors[p], cnt);\n        }\n    }\n    mint ans = 0;\n    for\
-    \ (int &e : a) {\n        ans += mint(e).inv();\n    }\n    for (auto [p, c] :\
-    \ factors) {\n        ans *= mint(p).pow(c);\n    }\n    std::cout << ans.val()\
-    \ << std::endl;\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc152/tasks/abc152_e\"\n\n\
-    #include <iostream>\n#include <unordered_map>\n#include <vector>\n\n#include <atcoder/modint>\n\
-    \n#include \"library/number/sieve_of_eratosthenes.hpp\"\n\nsuisen::Sieve<1000000>\
-    \ sieve;\n\ntemplate <typename T>\nvoid chmax(T &x, const T &y) {\n    if (x <\
-    \ y) x = y;\n}\n\nusing mint = atcoder::modint1000000007;\n\nint main() {\n  \
-    \  int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    std::unordered_map<int,\
-    \ int> factors;\n    for (int &e : a) {\n        std::cin >> e;\n        for (int\
-    \ x = e; x != 1;) {\n            int p = sieve.prime_factor(x);\n            int\
-    \ cnt = 0;\n            while (x % p == 0) x /= p, ++cnt;\n            chmax(factors[p],\
-    \ cnt);\n        }\n    }\n    mint ans = 0;\n    for (int &e : a) {\n       \
-    \ ans += mint(e).inv();\n    }\n    for (auto [p, c] : factors) {\n        ans\
-    \ *= mint(p).pow(c);\n    }\n    std::cout << ans.val() << std::endl;\n    return\
-    \ 0;\n}"
+    \ namespace suisen\n\n\n#line 9 \"test/src/transform/multiple/divide_both.test.cpp\"\
+    \nusing namespace suisen;\n\nconst Sieve<1000000> sieve;\n\n// count l <= x, y\
+    \ <= r s.t. gcd(x, y) = 1\nlong long count_coprime_pairs(int l, int r) {\n   \
+    \ std::vector<long long> f(r + 1, 0);\n    for (int g = 1; g <= r; ++g) {\n  \
+    \      long long w = r / g - (l + g - 1) / g + 1;\n        f[g] = w * w;\n   \
+    \ }\n    std::vector<long long> f_copy = f;\n    multiple_transform::mobius(f);\n\
+    \    long long ret = f[1];\n    {\n        {\n            multiple_transform::zeta(f);\n\
+    \            assert(f == f_copy);\n            multiple_transform::mobius(f);\n\
+    \            f_copy = f;\n        }\n        std::vector<long long> div_cum_naive(r\
+    \ + 1, 0);\n        for (int g = 1; g <= r; ++g) {\n            for (int d : sieve.divisors(g))\
+    \ {\n                div_cum_naive[g] += f[d];\n            }\n        }\n   \
+    \     divisor_transform::zeta(f);\n        assert(f == div_cum_naive);\n     \
+    \   divisor_transform::mobius(f);\n        assert(f == f_copy);\n    }\n    return\
+    \ ret;\n}\n\nint main() {\n    int l, r;\n    std::cin >> l >> r;\n\n    long\
+    \ long whole = (long long) (r - l + 1) * (r - l + 1);\n    long long coprime_pairs_num\
+    \ = count_coprime_pairs(l, r);\n    long long divisor_pairs_num = 0;\n    for\
+    \ (int g = l + (l == 1); g <= r; ++g) {\n        divisor_pairs_num += 2 * (r /\
+    \ g - 1) + 1;\n    }\n    long long ans = whole - (coprime_pairs_num + divisor_pairs_num);\n\
+    \    std::cout << ans << std::endl;\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc206/tasks/abc206_e\"\n\n\
+    #include <cassert>\n#include <iostream>\n\n#include \"library/transform/multiple.hpp\"\
+    \n#include \"library/transform/divisor.hpp\"\n#include \"library/number/sieve_of_eratosthenes.hpp\"\
+    \nusing namespace suisen;\n\nconst Sieve<1000000> sieve;\n\n// count l <= x, y\
+    \ <= r s.t. gcd(x, y) = 1\nlong long count_coprime_pairs(int l, int r) {\n   \
+    \ std::vector<long long> f(r + 1, 0);\n    for (int g = 1; g <= r; ++g) {\n  \
+    \      long long w = r / g - (l + g - 1) / g + 1;\n        f[g] = w * w;\n   \
+    \ }\n    std::vector<long long> f_copy = f;\n    multiple_transform::mobius(f);\n\
+    \    long long ret = f[1];\n    {\n        {\n            multiple_transform::zeta(f);\n\
+    \            assert(f == f_copy);\n            multiple_transform::mobius(f);\n\
+    \            f_copy = f;\n        }\n        std::vector<long long> div_cum_naive(r\
+    \ + 1, 0);\n        for (int g = 1; g <= r; ++g) {\n            for (int d : sieve.divisors(g))\
+    \ {\n                div_cum_naive[g] += f[d];\n            }\n        }\n   \
+    \     divisor_transform::zeta(f);\n        assert(f == div_cum_naive);\n     \
+    \   divisor_transform::mobius(f);\n        assert(f == f_copy);\n    }\n    return\
+    \ ret;\n}\n\nint main() {\n    int l, r;\n    std::cin >> l >> r;\n\n    long\
+    \ long whole = (long long) (r - l + 1) * (r - l + 1);\n    long long coprime_pairs_num\
+    \ = count_coprime_pairs(l, r);\n    long long divisor_pairs_num = 0;\n    for\
+    \ (int g = l + (l == 1); g <= r; ++g) {\n        divisor_pairs_num += 2 * (r /\
+    \ g - 1) + 1;\n    }\n    long long ans = whole - (coprime_pairs_num + divisor_pairs_num);\n\
+    \    std::cout << ans << std::endl;\n    return 0;\n}"
   dependsOn:
+  - library/transform/multiple.hpp
+  - library/transform/divisor.hpp
   - library/number/sieve_of_eratosthenes.hpp
   - library/number/internal_eratosthenes.hpp
   isVerificationFile: true
-  path: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+  path: test/src/transform/multiple/divide_both.test.cpp
   requiredBy: []
   timestamp: '2021-08-04 13:32:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+documentation_of: test/src/transform/multiple/divide_both.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/number/sieve_of_eratosthenes/flatten.test.cpp
-- /verify/test/src/number/sieve_of_eratosthenes/flatten.test.cpp.html
-title: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+- /verify/test/src/transform/multiple/divide_both.test.cpp
+- /verify/test/src/transform/multiple/divide_both.test.cpp.html
+title: test/src/transform/multiple/divide_both.test.cpp
 ---

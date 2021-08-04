@@ -177,31 +177,40 @@ data:
     \ {0};\n    for (int i = k - 1; i > 0; --i) {\n        int l = 2 * i, r = l +\
     \ 1;\n        g[i] = g[l] * seg[r] + g[r] * seg[l];\n    }\n    return g[1];\n\
     }\n} // namespace suisen\n\n\n\n#line 1 \"library/number/linear_sieve.hpp\"\n\n\
-    \n\n#include <numeric>\n#line 6 \"library/number/linear_sieve.hpp\"\n\nnamespace\
-    \ suisen {\n// referece: https://37zigen.com/linear-sieve/\nclass LinearSieve\
-    \ {\n    public:\n        LinearSieve(const unsigned int n) : _n(n), min_prime_factor(std::vector<unsigned\
-    \ int>(n + 1)) {\n            std::iota(min_prime_factor.begin(), min_prime_factor.end(),\
-    \ 0);\n            prime_list.reserve(_n / 3);\n            for (unsigned int\
-    \ d = 2; d <= _n; ++d) {\n                if (min_prime_factor[d] == d) prime_list.push_back(d);\n\
-    \                const unsigned int prime_max = std::min(min_prime_factor[d],\
-    \ _n / d);\n                for (unsigned int prime : prime_list) {\n        \
-    \            if (prime > prime_max) break;\n                    min_prime_factor[prime\
-    \ * d] = prime;\n                }\n            }\n        }\n        unsigned\
-    \ int prime_num() const { return prime_list.size(); }\n        const std::vector<unsigned\
-    \ int>& get_prime_list() const { return prime_list; }\n        const std::vector<unsigned\
-    \ int>& get_min_prime_factor() const { return min_prime_factor; }\n    private:\n\
-    \        const unsigned int _n;\n        std::vector<unsigned int> min_prime_factor;\n\
-    \        std::vector<unsigned int> prime_list;\n};\n} // namespace suisen\n\n\n\
-    #line 8 \"test/src/math/interpolation/cumulative_sum.test.cpp\"\n\nusing mint\
-    \ = atcoder::modint1000000007;\n\nint main() {\n    long long n;\n    int m, k;\n\
-    \    std::cin >> n >> m >> k;\n    const auto mpf = suisen::LinearSieve(k + m).get_min_prime_factor();\n\
-    \    std::vector<mint> f(k + m + 1);\n    for (int i = 1; i <= k + m; ++i) {\n\
-    \        if (i == 1) {\n            f[i] = 1;\n        } else if (mpf[i] == i)\
-    \ {\n            f[i] = mint(i).pow(k);\n        } else {\n            f[i] =\
-    \ f[mpf[i]] * f[i / mpf[i]];\n        }\n    }\n    for (int loop = 0; loop <\
-    \ m; ++loop) {\n        for (int i = 1; i <= k + m; ++i) {\n            f[i] +=\
-    \ f[i - 1];\n        }\n    }\n    std::cout << suisen::lagrange_interpolation(f,\
-    \ mint(n)).val() << '\\n';\n    return 0;\n}\n"
+    \n\n#line 5 \"library/number/linear_sieve.hpp\"\n#include <numeric>\n#line 7 \"\
+    library/number/linear_sieve.hpp\"\n\nnamespace suisen {\n// referece: https://37zigen.com/linear-sieve/\n\
+    class LinearSieve {\n    public:\n        LinearSieve(const int n) : _n(n), min_prime_factor(std::vector<int>(n\
+    \ + 1)) {\n            std::iota(min_prime_factor.begin(), min_prime_factor.end(),\
+    \ 0);\n            prime_list.reserve(_n / 20);\n            for (int d = 2; d\
+    \ <= _n; ++d) {\n                if (min_prime_factor[d] == d) prime_list.push_back(d);\n\
+    \                const int prime_max = std::min(min_prime_factor[d], _n / d);\n\
+    \                for (int prime : prime_list) {\n                    if (prime\
+    \ > prime_max) break;\n                    min_prime_factor[prime * d] = prime;\n\
+    \                }\n            }\n        }\n        int prime_num() const noexcept\
+    \ { return prime_list.size(); }\n        /**\n         * Returns a vector of primes\
+    \ in [0, n].\n         * It is guaranteed that the returned vector is sorted in\
+    \ ascending order.\n         */\n        const std::vector<int>& get_prime_list()\
+    \ const noexcept  {\n            return prime_list;\n        }\n        const\
+    \ std::vector<int>& get_min_prime_factor() const noexcept { return min_prime_factor;\
+    \ }\n        /**\n         * Returns a vector of `{ prime, index }`.\n       \
+    \  * It is guaranteed that the returned vector is sorted in ascending order.\n\
+    \         */\n        std::vector<std::pair<int, int>> factorize(int n) const\
+    \ noexcept {\n            assert(0 < n and n <= _n);\n            std::vector<std::pair<int,\
+    \ int>> prime_powers;\n            while (n > 1) {\n                int p = min_prime_factor[n],\
+    \ c = 0;\n                do { n /= p, ++c; } while (n % p == 0);\n          \
+    \      prime_powers.emplace_back(p, c);\n            }\n            return prime_powers;\n\
+    \        }\n    private:\n        const int _n;\n        std::vector<int> min_prime_factor;\n\
+    \        std::vector<int> prime_list;\n};\n} // namespace suisen\n\n\n#line 8\
+    \ \"test/src/math/interpolation/cumulative_sum.test.cpp\"\n\nusing mint = atcoder::modint1000000007;\n\
+    \nint main() {\n    long long n;\n    int m, k;\n    std::cin >> n >> m >> k;\n\
+    \    const auto mpf = suisen::LinearSieve(k + m).get_min_prime_factor();\n   \
+    \ std::vector<mint> f(k + m + 1);\n    for (int i = 1; i <= k + m; ++i) {\n  \
+    \      if (i == 1) {\n            f[i] = 1;\n        } else if (mpf[i] == i) {\n\
+    \            f[i] = mint(i).pow(k);\n        } else {\n            f[i] = f[mpf[i]]\
+    \ * f[i / mpf[i]];\n        }\n    }\n    for (int loop = 0; loop < m; ++loop)\
+    \ {\n        for (int i = 1; i <= k + m; ++i) {\n            f[i] += f[i - 1];\n\
+    \        }\n    }\n    std::cout << suisen::lagrange_interpolation(f, mint(n)).val()\
+    \ << '\\n';\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc208/tasks/abc208_f\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\n\n#include \"library/math/interpolation.hpp\"\
     \n#include \"library/number/linear_sieve.hpp\"\n\nusing mint = atcoder::modint1000000007;\n\
@@ -222,7 +231,7 @@ data:
   isVerificationFile: true
   path: test/src/math/interpolation/cumulative_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 17:43:07+09:00'
+  timestamp: '2021-08-04 13:32:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/interpolation/cumulative_sum.test.cpp

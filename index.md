@@ -106,9 +106,6 @@ data:
     - icon: ':question:'
       path: library/math/fps.hpp
       title: library/math/fps.hpp
-    - icon: ':warning:'
-      path: library/math/fzt_fmt.hpp
-      title: library/math/fzt_fmt.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/gaussian_elimination.hpp
       title: library/math/gaussian_elimination.hpp
@@ -144,6 +141,9 @@ data:
     - icon: ':x:'
       path: library/number/linear_sieve.hpp
       title: library/number/linear_sieve.hpp
+    - icon: ':warning:'
+      path: library/number/mobius_function.hpp
+      title: library/number/mobius_function.hpp
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: library/number/sieve_of_eratosthenes.hpp
@@ -158,6 +158,20 @@ data:
     - icon: ':warning:'
       path: library/template.hpp
       title: library/template.hpp
+  - name: library/transform
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/transform/divisor.hpp
+      title: library/transform/divisor.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/transform/multiple.hpp
+      title: library/transform/multiple.hpp
+    - icon: ':warning:'
+      path: library/transform/subset.hpp
+      title: library/transform/subset.hpp
+    - icon: ':warning:'
+      path: library/transform/supset.hpp
+      title: library/transform/supset.hpp
   - name: library/tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -395,6 +409,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
       title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
+  - name: test/src/transform/multiple
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/transform/multiple/divide_both.test.cpp
+      title: test/src/transform/multiple/divide_both.test.cpp
   - name: test/src/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
