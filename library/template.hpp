@@ -97,47 +97,59 @@ void read(Head &head, Tail &...tails) {
 // ! primitive utilities
 
 template <typename T>
-bool chmin(T &x, const T &y) {
+inline bool chmin(T &x, const T &y) {
     if (y >= x) return false;
     x = y;
     return true;
 }
 template <typename T>
-bool chmax(T &x, const T &y) {
+inline bool chmax(T &x, const T &y) {
     if (y <= x) return false;
     x = y;
     return true;
 }
 
+// Returns pow(-1, n)
 template <typename T>
-constexpr T fld(const T x, const T y) {
-    return y < 0 ? fld(-x, -y) : (x >= 0 ? x / y : -((-x + y - 1) / y));
+constexpr inline int pow_m1(T n) {
+    return -(n & 1) | 1;
+}
+// Returns pow(-1, n)
+template <>
+constexpr inline int pow_m1<bool>(bool n) {
+    return -int(n) | 1;
+}
+
+// Returns floor(x / y)
+template <typename T>
+constexpr inline T fld(const T x, const T y) {
+    return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y >= 0))) / y;
 }
 template <typename T>
-constexpr T cld(const T x, const T y) {
-    return y < 0 ? cld(-x, -y) : (x >= 0 ? (x + y - 1) / y : -(-x / y));
+constexpr inline T cld(const T x, const T y) {
+    return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;
 }
 
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
-constexpr int popcount(const T x) { return __builtin_popcount(x); }
+constexpr inline int popcount(const T x) { return __builtin_popcount(x); }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
-constexpr int popcount(const T x) { return __builtin_popcountll(x); }
+constexpr inline int popcount(const T x) { return __builtin_popcountll(x); }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
-constexpr int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>; }
+constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
-constexpr int count_lz(const T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>; }
+constexpr inline int count_lz(const T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
-constexpr int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>; }
+constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
-constexpr int count_tz(const T x) { return x ? __builtin_ctzll(x) : suisen::bit_num<T>; }
+constexpr inline int count_tz(const T x) { return x ? __builtin_ctzll(x) : suisen::bit_num<T>; }
 template <typename T>
-constexpr int floor_log2(const T x) { return suisen::bit_num<T> - 1 - count_lz(x); }
+constexpr inline int floor_log2(const T x) { return suisen::bit_num<T> - 1 - count_lz(x); }
 template <typename T>
-constexpr int ceil_log2(const T x)  { return floor_log2(x) + ((x & -x) != x); }
+constexpr inline int ceil_log2(const T x)  { return floor_log2(x) + ((x & -x) != x); }
 template <typename T>
-constexpr int kth_bit(const T x, const unsigned int k) { return (x >> k) & 1; }
+constexpr inline int kth_bit(const T x, const unsigned int k) { return (x >> k) & 1; }
 template <typename T>
-constexpr int parity(const T x) { return popcount(x) & 1; }
+constexpr inline int parity(const T x) { return popcount(x) & 1; }
 
 // ! container
 
