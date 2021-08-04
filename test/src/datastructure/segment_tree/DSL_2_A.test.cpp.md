@@ -44,18 +44,19 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
     library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
     \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>\n\
-    struct UpdateProxyObject {\n    T &v;\n    UpdateFunc update;\n    UpdateProxyObject(T\
-    \ &v, UpdateFunc update) : v(v), update(update) {}\n    operator T() const { return\
-    \ v; }\n    auto& operator++() { ++v, update(); return *this; }\n    auto& operator--()\
-    \ { --v, update(); return *this; }\n    auto& operator+=(const T &val) { v +=\
-    \ val, update(); return *this; }\n    auto& operator-=(const T &val) { v -= val,\
-    \ update(); return *this; }\n    auto& operator*=(const T &val) { v *= val, update();\
-    \ return *this; }\n    auto& operator/=(const T &val) { v /= val, update(); return\
-    \ *this; }\n    auto& operator%=(const T &val) { v %= val, update(); return *this;\
-    \ }\n    auto& operator =(const T &val) { v  = val, update(); return *this; }\n\
-    \    auto& operator<<=(const T &val) { v <<= val, update(); return *this; }\n\
-    \    auto& operator>>=(const T &val) { v >>= val, update(); return *this; }\n\
-    };\n\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/segment_tree.hpp\"\
+    struct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T &v, UpdateFunc\
+    \ update) : v(v), update(update) {}\n        operator T() const { return v; }\n\
+    \        auto& operator++() && { ++v, update(); return *this; }\n        auto&\
+    \ operator--() && { --v, update(); return *this; }\n        auto& operator+=(const\
+    \ T &val) && { v += val, update(); return *this; }\n        auto& operator-=(const\
+    \ T &val) && { v -= val, update(); return *this; }\n        auto& operator*=(const\
+    \ T &val) && { v *= val, update(); return *this; }\n        auto& operator/=(const\
+    \ T &val) && { v /= val, update(); return *this; }\n        auto& operator%=(const\
+    \ T &val) && { v %= val, update(); return *this; }\n        auto& operator =(const\
+    \ T &val) && { v  = val, update(); return *this; }\n        auto& operator<<=(const\
+    \ T &val) && { v <<= val, update(); return *this; }\n        auto& operator>>=(const\
+    \ T &val) && { v >>= val, update(); return *this; }\n    private:\n        T &v;\n\
+    \        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/segment_tree.hpp\"\
     \n\nnamespace suisen {\ntemplate <typename T, typename F, constraints_t<is_bin_op<F,\
     \ T>> = nullptr>\nclass SegmentTree {\n    public:\n        SegmentTree() : n(0),\
     \ m(0), e(), op() {}\n        SegmentTree(int n, const T &e, const F &op) : n(n),\
@@ -129,7 +130,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2021-08-03 16:26:07+09:00'
+  timestamp: '2021-08-04 18:37:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/DSL_2_A.test.cpp

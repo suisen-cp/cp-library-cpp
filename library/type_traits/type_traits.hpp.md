@@ -44,6 +44,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/weighted_union_find.hpp
     title: library/datastructure/weighted_union_find.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/number/util.hpp
+    title: library/number/util.hpp
   - icon: ':warning:'
     path: library/template.cpp
     title: library/template.cpp
@@ -127,6 +130,9 @@ data:
     path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/number/util/divide_both.test.cpp
+    title: test/src/number/util/divide_both.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -197,6 +203,7 @@ data:
   - library/util/update_proxy_object.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/tree/lowest_common_ancestor.hpp
+  - library/number/util.hpp
   - library/datastructure/fenwick_tree.hpp
   - library/datastructure/cartesian_tree.hpp
   - library/datastructure/dual_segment_tree.hpp
@@ -220,6 +227,7 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/number/util/divide_both.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp

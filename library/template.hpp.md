@@ -76,31 +76,35 @@ data:
     \ (auto it = a.begin(); it != a.end(); ++it) in >> *it;\n    return in;\n}\nconstexpr\
     \ void read() {}\ntemplate <typename Head, typename... Tail>\nvoid read(Head &head,\
     \ Tail &...tails) {\n    std::cin >> head;\n    read(tails...);\n}\n\n// ! primitive\
-    \ utilities\n\ntemplate <typename T>\nbool chmin(T &x, const T &y) {\n    if (y\
-    \ >= x) return false;\n    x = y;\n    return true;\n}\ntemplate <typename T>\n\
-    bool chmax(T &x, const T &y) {\n    if (y <= x) return false;\n    x = y;\n  \
-    \  return true;\n}\n\ntemplate <typename T>\nconstexpr T fld(const T x, const\
-    \ T y) {\n    return y < 0 ? fld(-x, -y) : (x >= 0 ? x / y : -((-x + y - 1) /\
-    \ y));\n}\ntemplate <typename T>\nconstexpr T cld(const T x, const T y) {\n  \
-    \  return y < 0 ? cld(-x, -y) : (x >= 0 ? (x + y - 1) / y : -(-x / y));\n}\n\n\
-    template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
-    constexpr int popcount(const T x) { return __builtin_popcount(x); }\ntemplate\
+    \ utilities\n\ntemplate <typename T>\ninline bool chmin(T &x, const T &y) {\n\
+    \    if (y >= x) return false;\n    x = y;\n    return true;\n}\ntemplate <typename\
+    \ T>\ninline bool chmax(T &x, const T &y) {\n    if (y <= x) return false;\n \
+    \   x = y;\n    return true;\n}\n\n// Returns pow(-1, n)\ntemplate <typename T>\n\
+    constexpr inline int pow_m1(T n) {\n    return -(n & 1) | 1;\n}\n// Returns pow(-1,\
+    \ n)\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool n) {\n    return -int(n)\
+    \ | 1;\n}\n\n// Returns floor(x / y)\ntemplate <typename T>\nconstexpr inline\
+    \ T fld(const T x, const T y) {\n    return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y\
+    \ >= 0))) / y;\n}\ntemplate <typename T>\nconstexpr inline T cld(const T x, const\
+    \ T y) {\n    return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;\n\
+    }\n\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
+    constexpr inline int popcount(const T x) { return __builtin_popcount(x); }\ntemplate\
     \ <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\nconstexpr\
-    \ int popcount(const T x) { return __builtin_popcountll(x); }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\nconstexpr int count_lz(const\
-    \ T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>; }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\nconstexpr int count_lz(const\
-    \ T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>; }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\nconstexpr int count_tz(const\
-    \ T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>; }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\nconstexpr int count_tz(const\
-    \ T x) { return x ? __builtin_ctzll(x) : suisen::bit_num<T>; }\ntemplate <typename\
-    \ T>\nconstexpr int floor_log2(const T x) { return suisen::bit_num<T> - 1 - count_lz(x);\
-    \ }\ntemplate <typename T>\nconstexpr int ceil_log2(const T x)  { return floor_log2(x)\
-    \ + ((x & -x) != x); }\ntemplate <typename T>\nconstexpr int kth_bit(const T x,\
-    \ const unsigned int k) { return (x >> k) & 1; }\ntemplate <typename T>\nconstexpr\
-    \ int parity(const T x) { return popcount(x) & 1; }\n\n// ! container\n\ntemplate\
-    \ <typename T, typename Comparator, suisen::constraints_t<suisen::is_comparator<Comparator,\
+    \ inline int popcount(const T x) { return __builtin_popcountll(x); }\ntemplate\
+    \ <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\nconstexpr\
+    \ inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\n\
+    constexpr inline int count_lz(const T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
+    constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\n\
+    constexpr inline int count_tz(const T x) { return x ? __builtin_ctzll(x) : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T>\nconstexpr inline int floor_log2(const T x) { return\
+    \ suisen::bit_num<T> - 1 - count_lz(x); }\ntemplate <typename T>\nconstexpr inline\
+    \ int ceil_log2(const T x)  { return floor_log2(x) + ((x & -x) != x); }\ntemplate\
+    \ <typename T>\nconstexpr inline int kth_bit(const T x, const unsigned int k)\
+    \ { return (x >> k) & 1; }\ntemplate <typename T>\nconstexpr inline int parity(const\
+    \ T x) { return popcount(x) & 1; }\n\n// ! container\n\ntemplate <typename T,\
+    \ typename Comparator, suisen::constraints_t<suisen::is_comparator<Comparator,\
     \ T>> = nullptr>\nauto priqueue_comp(const Comparator comparator) {\n    return\
     \ std::priority_queue<T, std::vector<T>, Comparator>(comparator);\n}\n\ntemplate\
     \ <typename Iterable>\nauto isize(const Iterable &iterable) -> decltype(int(iterable.size()))\
@@ -151,31 +155,35 @@ data:
     \ (auto it = a.begin(); it != a.end(); ++it) in >> *it;\n    return in;\n}\nconstexpr\
     \ void read() {}\ntemplate <typename Head, typename... Tail>\nvoid read(Head &head,\
     \ Tail &...tails) {\n    std::cin >> head;\n    read(tails...);\n}\n\n// ! primitive\
-    \ utilities\n\ntemplate <typename T>\nbool chmin(T &x, const T &y) {\n    if (y\
-    \ >= x) return false;\n    x = y;\n    return true;\n}\ntemplate <typename T>\n\
-    bool chmax(T &x, const T &y) {\n    if (y <= x) return false;\n    x = y;\n  \
-    \  return true;\n}\n\ntemplate <typename T>\nconstexpr T fld(const T x, const\
-    \ T y) {\n    return y < 0 ? fld(-x, -y) : (x >= 0 ? x / y : -((-x + y - 1) /\
-    \ y));\n}\ntemplate <typename T>\nconstexpr T cld(const T x, const T y) {\n  \
-    \  return y < 0 ? cld(-x, -y) : (x >= 0 ? (x + y - 1) / y : -(-x / y));\n}\n\n\
-    template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
-    constexpr int popcount(const T x) { return __builtin_popcount(x); }\ntemplate\
+    \ utilities\n\ntemplate <typename T>\ninline bool chmin(T &x, const T &y) {\n\
+    \    if (y >= x) return false;\n    x = y;\n    return true;\n}\ntemplate <typename\
+    \ T>\ninline bool chmax(T &x, const T &y) {\n    if (y <= x) return false;\n \
+    \   x = y;\n    return true;\n}\n\n// Returns pow(-1, n)\ntemplate <typename T>\n\
+    constexpr inline int pow_m1(T n) {\n    return -(n & 1) | 1;\n}\n// Returns pow(-1,\
+    \ n)\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool n) {\n    return -int(n)\
+    \ | 1;\n}\n\n// Returns floor(x / y)\ntemplate <typename T>\nconstexpr inline\
+    \ T fld(const T x, const T y) {\n    return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y\
+    \ >= 0))) / y;\n}\ntemplate <typename T>\nconstexpr inline T cld(const T x, const\
+    \ T y) {\n    return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;\n\
+    }\n\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
+    constexpr inline int popcount(const T x) { return __builtin_popcount(x); }\ntemplate\
     \ <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\nconstexpr\
-    \ int popcount(const T x) { return __builtin_popcountll(x); }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\nconstexpr int count_lz(const\
-    \ T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>; }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\nconstexpr int count_lz(const\
-    \ T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>; }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\nconstexpr int count_tz(const\
-    \ T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>; }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\nconstexpr int count_tz(const\
-    \ T x) { return x ? __builtin_ctzll(x) : suisen::bit_num<T>; }\ntemplate <typename\
-    \ T>\nconstexpr int floor_log2(const T x) { return suisen::bit_num<T> - 1 - count_lz(x);\
-    \ }\ntemplate <typename T>\nconstexpr int ceil_log2(const T x)  { return floor_log2(x)\
-    \ + ((x & -x) != x); }\ntemplate <typename T>\nconstexpr int kth_bit(const T x,\
-    \ const unsigned int k) { return (x >> k) & 1; }\ntemplate <typename T>\nconstexpr\
-    \ int parity(const T x) { return popcount(x) & 1; }\n\n// ! container\n\ntemplate\
-    \ <typename T, typename Comparator, suisen::constraints_t<suisen::is_comparator<Comparator,\
+    \ inline int popcount(const T x) { return __builtin_popcountll(x); }\ntemplate\
+    \ <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\nconstexpr\
+    \ inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\n\
+    constexpr inline int count_lz(const T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
+    constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\n\
+    constexpr inline int count_tz(const T x) { return x ? __builtin_ctzll(x) : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T>\nconstexpr inline int floor_log2(const T x) { return\
+    \ suisen::bit_num<T> - 1 - count_lz(x); }\ntemplate <typename T>\nconstexpr inline\
+    \ int ceil_log2(const T x)  { return floor_log2(x) + ((x & -x) != x); }\ntemplate\
+    \ <typename T>\nconstexpr inline int kth_bit(const T x, const unsigned int k)\
+    \ { return (x >> k) & 1; }\ntemplate <typename T>\nconstexpr inline int parity(const\
+    \ T x) { return popcount(x) & 1; }\n\n// ! container\n\ntemplate <typename T,\
+    \ typename Comparator, suisen::constraints_t<suisen::is_comparator<Comparator,\
     \ T>> = nullptr>\nauto priqueue_comp(const Comparator comparator) {\n    return\
     \ std::priority_queue<T, std::vector<T>, Comparator>(comparator);\n}\n\ntemplate\
     \ <typename Iterable>\nauto isize(const Iterable &iterable) -> decltype(int(iterable.size()))\
@@ -189,7 +197,7 @@ data:
   path: library/template.hpp
   requiredBy:
   - library/template.cpp
-  timestamp: '2021-08-02 17:38:49+09:00'
+  timestamp: '2021-08-04 18:36:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.hpp

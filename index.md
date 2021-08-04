@@ -150,6 +150,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
       title: library/number/sieve_of_eratosthenes_constexpr.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/number/util.hpp
+      title: library/number/util.hpp
   - name: library
     pages:
     - icon: ':warning:'
@@ -409,6 +412,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
       title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
+  - name: test/src/number/util
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/util/divide_both.test.cpp
+      title: test/src/number/util/divide_both.test.cpp
   - name: test/src/transform/multiple
     pages:
     - icon: ':heavy_check_mark:'
