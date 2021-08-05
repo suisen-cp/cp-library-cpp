@@ -52,7 +52,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bit_vector.hpp
       title: library/datastructure/bit_vector.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/cartesian_tree.hpp
       title: library/datastructure/cartesian_tree.hpp
     - icon: ':question:'
@@ -313,6 +313,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/binary_trie/xor_game.test.cpp
       title: test/src/datastructure/binary_trie/xor_game.test.cpp
+  - name: test/src/datastructure/cartesian_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
+      title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   - name: test/src/datastructure/commutative_dual_segment_tree
     pages:
     - icon: ':heavy_check_mark:'

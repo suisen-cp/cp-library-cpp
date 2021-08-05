@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: library/datastructure/bit_vector.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/cartesian_tree.hpp
     title: library/datastructure/cartesian_tree.hpp
   - icon: ':question:'
@@ -84,6 +84,9 @@ data:
   - icon: ':x:'
     path: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
+    title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
@@ -261,6 +264,7 @@ data:
   - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
