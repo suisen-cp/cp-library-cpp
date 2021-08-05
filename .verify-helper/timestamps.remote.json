@@ -9,6 +9,7 @@
 "test/src/convolution/xor_convolution/xor_convolution.test.cpp": "2021-08-05 18:57:44 +0900",
 "test/src/datastructure/binary_trie/set_xor_min.test.cpp": "2021-07-20 20:17:05 +0900",
 "test/src/datastructure/binary_trie/xor_game.test.cpp": "2021-07-20 20:17:05 +0900",
+"test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp": "2021-08-05 19:38:54 +0900",
 "test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp": "2021-08-02 17:38:49 +0900",
 "test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp": "2021-08-02 17:38:49 +0900",
 "test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp": "2021-08-02 17:38:49 +0900",
