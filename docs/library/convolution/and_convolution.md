@@ -18,7 +18,9 @@ documentation_of: //library/convolution/and_convolution.hpp
 - 概要
 
   長さ $N=2^L$ の列 $(A_0,A_1,\ldots,A_{N-1})$ および $(B_0,B_1,\ldots,B_{N-1})$ を添字 bitwise and で畳み込みます．即ち，長さ $N$ の列 $(C_0,C_1,\ldots,C_{N-1})$ であって，各 $k=0,\ldots,N-1$ に対して以下を満たす列を計算します．
-  $$C_k=\sum_{i\And j=k} A_i\cdot B_j$$
+
+  $$ C _ k = \sum _ { i \And j = k } A _ i \cdot B _ j $$
+
   以下，この畳み込みを $C=A\ast B$ と表記します．
 
 - テンプレート引数
@@ -32,9 +34,9 @@ documentation_of: //library/convolution/and_convolution.hpp
 
 - 制約
 
-  1. - ある非負整数 $L$ が存在して $|A|=|B|=2^L$ を満たす
+  1. - ある非負整数 $L$ が存在して $\vert A \vert=\vert B \vert= 2 ^ L$ を満たす
      - $0\leq L\leq 20$
-  2. - ある非負整数 $L$ が存在して $|\mathcal{A}^0|=|\mathcal{A}^1|=\cdots=2^L$ を満たす
+  2. - ある非負整数 $L$ が存在して $\vert\mathcal{A}^0\vert=\vert\mathcal{A}^1\vert=\cdots=2^L$ を満たす
      - $0\leq L\leq 20$
 
 - 時間計算量
