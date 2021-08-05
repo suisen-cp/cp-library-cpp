@@ -66,7 +66,9 @@ title: Dirichlet Convolution
 - 概要
 
   長さ $N$ の列 $(A_0,A_1,\ldots,A_{N-1})$ および $(B_0,B_1,\ldots,B_{N-1})$ を添字の積で畳み込みます．即ち，長さ $N$ の列 $(C_0,C_1,\ldots,C_{N-1})$ であって，各 $k=0,\ldots,N-1$ に対して以下を満たす列を計算します．
-  $$C_k=\sum_{i\times j=k} A_i\cdot B_j$$
+
+  $$ C _ k = \sum _ { i \times j = k } A _ i \cdot B _ j $$
+
   以下，この畳み込みを $C=A\ast B$ と表記します．
 
 - テンプレート引数
@@ -97,7 +99,9 @@ title: Dirichlet Convolution
 - 概要
 
   長さ $N$ の列 $(A_0,A_1,\ldots,A_{N-1})$ および $(B_0,B_1,\ldots,B_{N-1})$ を添字の互いに素な積で畳み込みます．即ち，長さ $N$ の列 $(C_0,C_1,\ldots,C_{N-1})$ であって，各 $k=0,\ldots,N-1$ に対して以下を満たす列を計算します．
-  $$C_k=\sum_{\overset{\scriptstyle i\times j=k,}{\gcd(i,j)=1}} A_i\cdot B_j$$
+
+  $$ C _ k = \sum _ { \overset{ \scriptstyle i \times j = k, }{ \gcd (i, j) = 1} } A _ i \cdot B _ j $$
+
   以下，この畳み込みを $C=A\ast B$ と表記します．
 
 - テンプレート引数

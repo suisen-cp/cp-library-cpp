@@ -249,7 +249,9 @@ title: Subset Convolution
 - 概要
 
   長さ $N=2^L$ の列 $(A_0,A_1,\ldots,A_{N-1})$ および $(B_0,B_1,\ldots,B_{N-1})$ を添字の直和演算で畳み込みます．即ち，長さ $N$ の列 $(C_0,C_1,\ldots,C_{N-1})$ であって，各 $k=0,\ldots,N-1$ に対して以下を満たす列を計算します．
-  $$C_k=\sum_{i\sqcup j=k} A_i\cdot B_j$$
+
+  $$ C _ k = \sum _ { i \sqcup j = k } A _ i \cdot B _ j $$
+
   ここで，$i\sqcup j=k$ は $i\And j=0$ かつ $i\mid j=k$ と等価です．
 
   以下，この畳み込みを $C=A\ast B$ と表記します．
@@ -265,9 +267,9 @@ title: Subset Convolution
 
 - 制約
 
-  1. - 列 $A$ の長さを $N$，$B$ の長さを $M$ として，ある非負整数 $L$ が存在して $N=M=2^L$ を満たす
+  1. - ある非負整数 $L$ が存在して $\vert A \vert=\vert B \vert= 2 ^ L$ を満たす
      - $0\leq L\leq 20$
-  2. - 列 $\mathcal{A}^i$ の長さを $N_i$ として，ある非負整数 $L$ が存在して $N_0=N_1=\cdots=2^L$ を満たす
+  2. - ある非負整数 $L$ が存在して $\vert\mathcal{A}^0\vert=\vert\mathcal{A}^1\vert=\cdots=2^L$ を満たす
      - $0\leq L\leq 20$
 
 - 時間計算量

@@ -99,7 +99,9 @@ title: Convolution
 - 概要
 
   長さ $N$ の列 $(A_0,A_1,\ldots,A_{N-1})$ および $(B_0,B_1,\ldots,B_{N-1})$ を畳み込みます．即ち，長さ $N$ の列 $(C_0,C_1,\ldots,C_{N-1})$ であって，各 $k=0,\ldots,N-1$ に対して以下を満たす列を計算します．
-  $$C_k=\sum_{i\oplus j=k} A_i\cdot B_j$$
+
+  $$ C _ k = \sum _ { i \oplus j = k } A _ i \cdot B _ j $$
+
   ここで，$\oplus$ は $\mathbb{Z}$ 上の二項演算です．
   
   $\odot$ を列の各点積を取る演算として，$\mathcal{F}[A]\odot \mathcal{F}[B]=\mathcal{F}[C]$ を満たす線形変換 $\mathcal{F}$ とその逆変換 $\mathcal{F}^{-1}$ を計算する静的関数を持つ `Transform` クラスをテンプレート引数に取ります．
