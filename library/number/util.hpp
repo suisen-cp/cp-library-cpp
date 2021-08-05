@@ -39,35 +39,48 @@ constexpr inline T cld(const T x, const T y) {
  */
 template <typename T>
 std::vector<std::pair<T, int>> factorize(T n) {
-    assert(0 < n);
-    std::vector<std::pair<T, int>> prime_powers;
-    int c2 = 0;
-    while ((n & 1) == 0) ++c2, n >>= 1;
-    if (c2) prime_powers.emplace_back(2, c2);
-    for (T p = 3; p * p <= n; p += 2) {
-        int cp = 0;
-        while (n % p == 0) n /= p, ++cp;
-        if (cp) prime_powers.emplace_back(p, cp);
+    static constexpr std::array primes {2, 3, 5, 7, 11, 13};
+    static constexpr int next_prime = 15;
+    static constexpr int siz = std::array{1, 2, 8, 48, 480, 5760, 92160}[primes.size() - 1];
+    static constexpr int period = []{
+        int res = 1;
+        for (auto e : primes) res *= e;
+        return res;
+    }();
+    static constexpr struct S : public std::array<int, siz> {
+        constexpr S() {
+            for (int i = next_prime, j = 0; i < period + next_prime; i += 2) {
+                bool ok = true;
+                for (int p : primes) ok &= i % p;
+                if (ok) (*this)[j++] = i - next_prime;
+            }
+        }
+    } s {};
+
+    assert(n > 0);
+    std::vector<std::pair<T, int>> res;
+    auto f = [&res, &n](int p) {
+        if (n % p) return; 
+        int cnt = 0;
+        do n /= p, ++cnt; while (n % p == 0);
+        res.emplace_back(p, cnt);
+    };
+    for (int p : primes) f(p);
+    for (T b = next_prime; b * b <= n; b += period) {
+        for (int offset : s) f(b + offset);
     }
-    if (n > 1) prime_powers.emplace_back(n, 1);
-    return prime_powers;
+    if (n != 1) res.emplace_back(n, 1);
+    return res;
 }
 
 /**
  * O(sqrt(n))
- * Returns a vector that contains all divisors of `n` in ascending order.
+ * Returns a vector that contains all divisors of `n`.
+ * It is NOT guaranteed that the vector is sorted.
  */
 template <typename T, constraints_t<std::is_integral<T>> = nullptr>
 std::vector<T> divisors(T n) {
-    assert(0 < n);
-    std::vector<T> l, r;
-    for (T p = 1; p * p <= n; ++p) {
-        if (n % p) continue;
-        l.push_back(p);
-        if (T q = n / p; p != q) r.push_back(q);
-    }
-    for (auto it = r.rbegin(); it != r.rend(); ++it) l.push_back(*it);
-    return l;
+    return divisors(factorize(n));
 }
 
 /**

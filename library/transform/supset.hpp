@@ -4,33 +4,66 @@
 #include <cassert>
 #include <vector>
 
-namespace suisen::supset_transform {
+namespace suisen {
 
-template <typename T>
-void zeta(const int n, std::vector<T> &f) {
-    int sz = f.size();
-    assert(sz == 1 << n);
-    for (int k = 1; k < (1 << n); k <<= 1) {
-        for (int l = 0; l < (1 << n); l += 2 * k) {
+namespace supset_transform {
+
+namespace internal {
+
+template <typename T, typename AssignOp>
+void transform(std::vector<T> &f, AssignOp assign_op) {
+    const int n = f.size();
+    assert((-n & n) == n);
+    for (int k = 1; k < n; k <<= 1) {
+        for (int l = 0; l < n; l += 2 * k) {
             int m = l + k;
-            for (int p = 0; p < k; ++p) f[l + p] += f[m + p];
+            for (int p = 0; p < k; ++p) assign_op(f[l + p], f[m + p]);
         }
     }
 }
 
+} // namespace internal
+
+template <typename T, typename AddAssign>
+void zeta(std::vector<T> &f, AddAssign add_assign) {
+    internal::transform(f, add_assign);
+}
+template <typename T, typename SubAssign>
+void mobius(std::vector<T> &f, SubAssign sub_assign) {
+    internal::transform(f, sub_assign);
+}
 template <typename T>
-void mobius(const int n, std::vector<T> &f) {
-    int sz = f.size();
-    assert(sz == 1 << n);
-    for (int k = 1; k < (1 << n); k <<= 1) {
-        for (int l = 0; l < (1 << n); l += 2 * k) {
-            int m = l + k;
-            for (int p = 0; p < k; ++p) f[l + p] -= f[m + p];
-        }
-    }
+void zeta(std::vector<T> &f) {
+    internal::transform(f, [](T &a, const T &b) { a += b; });
+}
+template <typename T>
+void mobius(std::vector<T> &f) {
+    internal::transform(f, [](T &a, const T &b) { a -= b; });
 }
 
-} // namespace suisen::supset_transform
+} // namespace supset_transform
+
+template <typename T, typename AddAssign, typename SubAssign, AddAssign add_assign, SubAssign sub_assign>
+struct SupsetTransformGeneral {
+    static void transform(std::vector<T> &a) {
+        supset_transform::zeta(a, add_assign);
+    }
+    static void inverse_transform(std::vector<T> &a) {
+        supset_transform::mobius(a, sub_assign);
+    }
+};
+
+template <typename T>
+struct SupsetTransform {
+    static void transform(std::vector<T> &a) {
+        supset_transform::zeta(a);
+    }
+    static void inverse_transform(std::vector<T> &a) {
+        supset_transform::mobius(a);
+    }
+};
+
+} // namespace suisen
 
 
 #endif // SUISEN_SUPSET_TRANSFORM
