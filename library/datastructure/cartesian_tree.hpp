@@ -57,6 +57,10 @@ class CartesianTree {
             }
             return Tree {-1, root, std::move(g)};
         }
+
+        int parent(int i) const {
+            return par[i];
+        }
     private:
         const int n;
         const Comparator comp;
