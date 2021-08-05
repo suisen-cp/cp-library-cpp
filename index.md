@@ -19,7 +19,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/convolution/and_convolution.hpp
-      title: library/convolution/and_convolution.hpp
+      title: Bitwise And Convolution
     - icon: ':x:'
       path: library/convolution/apply_polynomial.hpp
       title: library/convolution/apply_polynomial.hpp
@@ -28,22 +28,22 @@ data:
       title: library/convolution/apply_polynomial_multipoint_eval.hpp
     - icon: ':heavy_check_mark:'
       path: library/convolution/convolution.hpp
-      title: library/convolution/convolution.hpp
+      title: Convolution
     - icon: ':warning:'
       path: library/convolution/dirichlet_convolution.hpp
-      title: library/convolution/dirichlet_convolution.hpp
+      title: Dirichlet Convolution
     - icon: ':heavy_check_mark:'
       path: library/convolution/gcd_convolution.hpp
-      title: library/convolution/gcd_convolution.hpp
+      title: GCD Convolution
     - icon: ':warning:'
       path: library/convolution/or_convolution.hpp
-      title: library/convolution/or_convolution.hpp
+      title: Bitwise Or Convolution
     - icon: ':heavy_check_mark:'
       path: library/convolution/subset_convolution.hpp
-      title: library/convolution/subset_convolution.hpp
+      title: Subset Convolution
     - icon: ':heavy_check_mark:'
       path: library/convolution/xor_convolution.hpp
-      title: library/convolution/xor_convolution.hpp
+      title: Bitwise Xor Convolution
   - name: library/datastructure
     pages:
     - icon: ':heavy_check_mark:'

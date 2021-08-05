@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp
-    title: library/convolution/and_convolution.hpp
+    title: Bitwise And Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution.hpp
-    title: library/convolution/convolution.hpp
+    title: Convolution
   - icon: ':heavy_check_mark:'
     path: library/transform/supset.hpp
     title: library/transform/supset.hpp

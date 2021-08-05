@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution.hpp
-    title: library/convolution/convolution.hpp
+    title: Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/xor_convolution.hpp
-    title: library/convolution/xor_convolution.hpp
+    title: Bitwise Xor Convolution
   - icon: ':question:'
     path: library/transform/walsh_hadamard.hpp
     title: library/transform/walsh_hadamard.hpp

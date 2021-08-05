@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/xor_convolution.hpp
-    title: library/convolution/xor_convolution.hpp
+    title: Bitwise Xor Convolution
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/convolution/apply_polynomial/nim_counting.test.cpp

@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/gcd_convolution.hpp
-    title: library/convolution/gcd_convolution.hpp
+    title: GCD Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/gcd_convolution/lcms.test.cpp

@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp
-    title: library/convolution/and_convolution.hpp
+    title: Bitwise And Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/and_convolution/and_convolution.test.cpp

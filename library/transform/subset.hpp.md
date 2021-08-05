@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
-    title: library/convolution/or_convolution.hpp
+    title: Bitwise Or Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
-    title: library/convolution/subset_convolution.hpp
+    title: Subset Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp

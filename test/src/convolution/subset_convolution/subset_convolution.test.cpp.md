@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution.hpp
-    title: library/convolution/convolution.hpp
+    title: Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
-    title: library/convolution/subset_convolution.hpp
+    title: Subset Convolution
   - icon: ':question:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp

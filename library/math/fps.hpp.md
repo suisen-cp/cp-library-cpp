@@ -10,7 +10,7 @@ data:
     title: library/convolution/apply_polynomial_multipoint_eval.hpp
   - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
-    title: library/convolution/subset_convolution.hpp
+    title: Subset Convolution
   - icon: ':warning:'
     path: library/math/bostan_mori.hpp
     title: library/math/bostan_mori.hpp

@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution.hpp
-    title: library/convolution/convolution.hpp
+    title: Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/gcd_convolution.hpp
-    title: library/convolution/gcd_convolution.hpp
+    title: GCD Convolution
   - icon: ':heavy_check_mark:'
     path: library/transform/multiple.hpp
     title: library/transform/multiple.hpp
