@@ -6,7 +6,7 @@ data:
     title: library/convolution/apply_polynomial.hpp
   - icon: ':question:'
     path: library/transform/walsh_hadamard.hpp
-    title: library/transform/walsh_hadamard.hpp
+    title: "Walsh Hadamard \u5909\u63DB"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp

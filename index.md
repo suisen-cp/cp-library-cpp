@@ -206,7 +206,7 @@ data:
       title: library/transform/supset.hpp
     - icon: ':question:'
       path: library/transform/walsh_hadamard.hpp
-      title: library/transform/walsh_hadamard.hpp
+      title: "Walsh Hadamard \u5909\u63DB"
   - name: library/tree
     pages:
     - icon: ':heavy_check_mark:'
