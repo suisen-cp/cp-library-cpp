@@ -1,41 +1,63 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: library/convolution/apply_polynomial_multipoint_eval.hpp
+    title: library/convolution/apply_polynomial_multipoint_eval.hpp
   - icon: ':question:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: library/convolution/apply_polynomial_multipoint_eval.hpp
-    title: library/convolution/apply_polynomial_multipoint_eval.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
-    title: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-    title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+  - icon: ':question:'
+    path: library/math/multi_point_eval.hpp
+    title: library/math/multi_point_eval.hpp
+  - icon: ':question:'
+    path: library/transform/walsh_hadamard.hpp
+    title: library/transform/walsh_hadamard.hpp
+  - icon: ':question:'
+    path: library/type_traits/type_traits.hpp
+    title: library/type_traits/type_traits.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
-    \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
-    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
-    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
-    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
-    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
-    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
-    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
-    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
-    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
-    }\n\n\n#line 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_h
+    links:
+    - https://atcoder.jp/contests/abc212/tasks/abc212_h
+  bundledCode: "#line 1 \"test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp\"\
+    \n#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n\n#include\
+    \ <iostream>\n#include <atcoder/convolution>\n#include <atcoder/modint>\n\n#line\
+    \ 1 \"library/transform/walsh_hadamard.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <vector>\n\nnamespace suisen {\n\nnamespace internal {\n\ntemplate <typename\
+    \ T>\nvoid fwht(std::vector<T>& a, bool rev) {\n    const int n = a.size();\n\
+    \    assert((-n & n) == n);\n    for (int i = 1; i < n; i *= 2) {\n        for\
+    \ (int k = 0; k < n; k += i * 2) {\n            for (int j = k; j < k + i; ++j)\
+    \ {\n                T u = a[j], v = a[j + i];\n                a[j] = u + v;\n\
+    \                a[j + i] = u - v;\n            }\n        }\n    }\n    if (rev)\
+    \ {\n        T inv = T(1) / T(n);\n        for (int i = 0; i < n; i++) a[i] *=\
+    \ inv;\n    }\n}\n\n} // nemaspace internal\n\ntemplate <typename T>\nstruct WalshHadamard\
+    \ {\n    static void transform(std::vector<T> &a) {\n        internal::fwht(a,\
+    \ false);\n    }\n    static void inverse_transform(std::vector<T> &a) {\n   \
+    \     internal::fwht(a, true);\n    }\n};\n\n} // namespace suisen::walsh_hadamard_transform\n\
+    \n\n\n#line 1 \"library/convolution/apply_polynomial_multipoint_eval.hpp\"\n\n\
+    \n\n#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
+    \n\n\n\n#include <algorithm>\n#line 7 \"library/math/fps.hpp\"\n\n#line 1 \"library/math/inv_mods.hpp\"\
+    \n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\ntemplate\
+    \ <typename mint>\nclass inv_mods {\n    public:\n        inv_mods() {}\n    \
+    \    inv_mods(int n) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return invs[i];\n        }\n        static\
+    \ void ensure(int n) {\n            int sz = invs.size();\n            if (sz\
+    \ < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n               \
+    \ invs.resize(n + 1);\n                for (int i = sz; i <= n; ++i) invs[i] =\
+    \ mint(mod - mod / i) * invs[mod % i];\n            }\n        }\n    private:\n\
+    \        static std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n\
+    };\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\
+    \n#line 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
     \ mint>\nusing convolution_t = std::vector<mint> (*)(const std::vector<mint> &,\
     \ const std::vector<mint> &);\n\ntemplate <typename mint>\nclass FPS : public\
     \ std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
@@ -160,34 +182,70 @@ data:
     \ i> 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n    seg[1] = f % seg[1];\n\
     \    for (int i = 2; i < k + m; ++i) seg[i] = seg[i / 2] % seg[i];\n    std::vector<mint>\
     \ ys(m);\n    for (int i = 0; i < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n\
-    }\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_MULTI_POINT_EVALUATION\n#define SUISEN_MULTI_POINT_EVALUATION\n\
-    \n#include \"library/math/fps.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ mint>\nstd::vector<mint> multi_point_eval(const FPS<mint> &f, const std::vector<mint>\
-    \ &xs) {\n    int m = xs.size();\n    int k = 1;\n    while (k < m) k <<= 1;\n\
-    \    std::vector<FPS<mint>> seg(2 * k);\n    for (int i = 0; i < m; ++i) seg[k\
-    \ + i] = FPS<mint> {-xs[i], 1};\n    for (int i = m; i < k; ++i) seg[k + i] =\
-    \ FPS<mint> {1};\n    for (int i = k - 1; i> 0; --i) seg[i] = seg[i * 2] * seg[i\
-    \ * 2 + 1];\n    seg[1] = f % seg[1];\n    for (int i = 2; i < k + m; ++i) seg[i]\
-    \ = seg[i / 2] % seg[i];\n    std::vector<mint> ys(m);\n    for (int i = 0; i\
-    \ < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n}\n} // namespace suisen\n\
-    \n#endif // SUISEN_MULTI_POINT_EVALUATION"
+    }\n} // namespace suisen\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\
+    \n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\n\
+    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
+    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
+    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
+    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
+    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 6 \"\
+    library/convolution/apply_polynomial_multipoint_eval.hpp\"\n\nnamespace suisen\
+    \ {\n\ntemplate <typename mint, template <typename T> class Transform>\nstd::vector<mint>\
+    \ apply_polynomial(std::vector<mint> &&a, const FPS<mint> &f) {\n    Transform<mint>::transform(a);\n\
+    \    a = multi_point_eval(f, a);\n    Transform<mint>::inverse_transform(a);\n\
+    \    return a;\n}\n\ntemplate <typename mint, template <typename T> class Transform>\n\
+    std::vector<mint> apply_polynomial(const std::vector<mint> &a, const FPS<mint>\
+    \ &f) {\n    return apply_polynomial<mint, Transform>(std::vector<mint>(a), f);\n\
+    }\n\n} // namespace suisen\n\n\n#line 9 \"test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nconstexpr int M = 1 << 16;\n\nint\
+    \ main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &f, const\
+    \ auto &g) { return atcoder::convolution(f, g); });\n\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint>\
+    \ c(M, 0);\n    for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin\
+    \ >> v;\n        ++c[v];\n    }\n\n    suisen::FPS<mint> f(n + 1, 1);\n    f[0]\
+    \ = 0;\n\n    auto res = suisen::apply_polynomial<mint, suisen::WalshHadamard>(c,\
+    \ f);\n\n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
+    \ << std::endl;\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n\n\
+    #include <iostream>\n#include <atcoder/convolution>\n#include <atcoder/modint>\n\
+    \n#include \"library/transform/walsh_hadamard.hpp\"\n#include \"library/convolution/apply_polynomial_multipoint_eval.hpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nconstexpr int M = 1 << 16;\n\nint\
+    \ main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &f, const\
+    \ auto &g) { return atcoder::convolution(f, g); });\n\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint>\
+    \ c(M, 0);\n    for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin\
+    \ >> v;\n        ++c[v];\n    }\n\n    suisen::FPS<mint> f(n + 1, 1);\n    f[0]\
+    \ = 0;\n\n    auto res = suisen::apply_polynomial<mint, suisen::WalshHadamard>(c,\
+    \ f);\n\n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
+    \ << std::endl;\n\n    return 0;\n}"
   dependsOn:
+  - library/transform/walsh_hadamard.hpp
+  - library/convolution/apply_polynomial_multipoint_eval.hpp
+  - library/math/multi_point_eval.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: false
-  path: library/math/multi_point_eval.hpp
-  requiredBy:
-  - library/convolution/apply_polynomial_multipoint_eval.hpp
-  timestamp: '2021-07-18 18:22:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
-documentation_of: library/math/multi_point_eval.hpp
+  - library/type_traits/type_traits.hpp
+  isVerificationFile: true
+  path: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+  requiredBy: []
+  timestamp: '2021-08-05 18:57:44+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
 layout: document
 redirect_from:
-- /library/library/math/multi_point_eval.hpp
-- /library/library/math/multi_point_eval.hpp.html
-title: library/math/multi_point_eval.hpp
+- /verify/test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+- /verify/test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp.html
+title: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
 ---

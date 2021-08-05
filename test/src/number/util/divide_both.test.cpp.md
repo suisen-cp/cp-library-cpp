@@ -49,27 +49,33 @@ data:
     \ ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;\n}\n\n/**\n * O(sqrt(n))\n\
     \ * Returns a vector of { prime, index }. \n * It is guaranteed that `prime` is\
     \ ascending.\n */\ntemplate <typename T>\nstd::vector<std::pair<T, int>> factorize(T\
-    \ n) {\n    assert(0 < n);\n    std::vector<std::pair<T, int>> prime_powers;\n\
-    \    int c2 = 0;\n    while ((n & 1) == 0) ++c2, n >>= 1;\n    if (c2) prime_powers.emplace_back(2,\
-    \ c2);\n    for (T p = 3; p * p <= n; p += 2) {\n        int cp = 0;\n       \
-    \ while (n % p == 0) n /= p, ++cp;\n        if (cp) prime_powers.emplace_back(p,\
-    \ cp);\n    }\n    if (n > 1) prime_powers.emplace_back(n, 1);\n    return prime_powers;\n\
-    }\n\n/**\n * O(sqrt(n))\n * Returns a vector that contains all divisors of `n`\
-    \ in ascending order.\n */\ntemplate <typename T, constraints_t<std::is_integral<T>>\
-    \ = nullptr>\nstd::vector<T> divisors(T n) {\n    assert(0 < n);\n    std::vector<T>\
-    \ l, r;\n    for (T p = 1; p * p <= n; ++p) {\n        if (n % p) continue;\n\
-    \        l.push_back(p);\n        if (T q = n / p; p != q) r.push_back(q);\n \
-    \   }\n    for (auto it = r.rbegin(); it != r.rend(); ++it) l.push_back(*it);\n\
-    \    return l;\n}\n\n/**\n * O(sigma(n))\n * Returns a vector that contains all\
+    \ n) {\n    static constexpr std::array primes {2, 3, 5, 7, 11, 13};\n    static\
+    \ constexpr int next_prime = 15;\n    static constexpr int siz = std::array{1,\
+    \ 2, 8, 48, 480, 5760, 92160}[primes.size() - 1];\n    static constexpr int period\
+    \ = []{\n        int res = 1;\n        for (auto e : primes) res *= e;\n     \
+    \   return res;\n    }();\n    static constexpr struct S : public std::array<int,\
+    \ siz> {\n        constexpr S() {\n            for (int i = next_prime, j = 0;\
+    \ i < period + next_prime; i += 2) {\n                bool ok = true;\n      \
+    \          for (int p : primes) ok &= i % p;\n                if (ok) (*this)[j++]\
+    \ = i - next_prime;\n            }\n        }\n    } s {};\n\n    assert(n > 0);\n\
+    \    std::vector<std::pair<T, int>> res;\n    auto f = [&res, &n](int p) {\n \
+    \       if (n % p) return; \n        int cnt = 0;\n        do n /= p, ++cnt; while\
+    \ (n % p == 0);\n        res.emplace_back(p, cnt);\n    };\n    for (int p : primes)\
+    \ f(p);\n    for (T b = next_prime; b * b <= n; b += period) {\n        for (int\
+    \ offset : s) f(b + offset);\n    }\n    if (n != 1) res.emplace_back(n, 1);\n\
+    \    return res;\n}\n\n/**\n * O(sqrt(n))\n * Returns a vector that contains all\
     \ divisors of `n`.\n * It is NOT guaranteed that the vector is sorted.\n */\n\
-    template <typename T>\nstd::vector<T> divisors(const std::vector<std::pair<T,\
-    \ int>> &factorized) {\n    std::vector<T> res { 1 };\n    for (auto [p, c] :\
-    \ factorized) {\n        for (int i = 0, sz = res.size(); i < sz; ++i) {\n   \
-    \         T d = res[i];\n            for (int j = 0; j < c; ++j) res.push_back(d\
-    \ *= p);\n        }\n    }\n    return res;\n}\n\n/**\n * O(sqrt(n)).\n * Returns\
-    \ vector of { l : T, r : T, q : T } s.t. let S be { d | n / d = q }, l = min S\
-    \ and r = max S.\n * It is guaranteed that `l`, `r` is ascending (i.e. `q` is\
-    \ descending).\n */\ntemplate <typename T, constraints_t<std::is_integral<T>>\
+    template <typename T, constraints_t<std::is_integral<T>> = nullptr>\nstd::vector<T>\
+    \ divisors(T n) {\n    return divisors(factorize(n));\n}\n\n/**\n * O(sigma(n))\n\
+    \ * Returns a vector that contains all divisors of `n`.\n * It is NOT guaranteed\
+    \ that the vector is sorted.\n */\ntemplate <typename T>\nstd::vector<T> divisors(const\
+    \ std::vector<std::pair<T, int>> &factorized) {\n    std::vector<T> res { 1 };\n\
+    \    for (auto [p, c] : factorized) {\n        for (int i = 0, sz = res.size();\
+    \ i < sz; ++i) {\n            T d = res[i];\n            for (int j = 0; j < c;\
+    \ ++j) res.push_back(d *= p);\n        }\n    }\n    return res;\n}\n\n/**\n *\
+    \ O(sqrt(n)).\n * Returns vector of { l : T, r : T, q : T } s.t. let S be { d\
+    \ | n / d = q }, l = min S and r = max S.\n * It is guaranteed that `l`, `r` is\
+    \ ascending (i.e. `q` is descending).\n */\ntemplate <typename T, constraints_t<std::is_integral<T>>\
     \ = nullptr>\nauto enumerate_quotients(T n) {\n    assert(0 <= n);\n    std::vector<std::tuple<T,\
     \ T, T>> res;\n    for (T l = 1, r = 1; l <= n; l = r + 1) {\n        T q = n\
     \ / l;\n        res.emplace_back(l, r = n / q, q);\n    }\n    return res;\n}\n\
@@ -129,7 +135,7 @@ data:
   isVerificationFile: true
   path: test/src/number/util/divide_both.test.cpp
   requiredBy: []
-  timestamp: '2021-08-04 18:37:00+09:00'
+  timestamp: '2021-08-05 18:57:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/util/divide_both.test.cpp

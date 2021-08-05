@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
   _extendedRequiredBy: []

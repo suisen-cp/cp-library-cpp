@@ -15,6 +15,35 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/algorithm/slope_trick.hpp
       title: library/algorithm/slope_trick.hpp
+  - name: library/convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/convolution/and_convolution.hpp
+      title: library/convolution/and_convolution.hpp
+    - icon: ':x:'
+      path: library/convolution/apply_polynomial.hpp
+      title: library/convolution/apply_polynomial.hpp
+    - icon: ':x:'
+      path: library/convolution/apply_polynomial_multipoint_eval.hpp
+      title: library/convolution/apply_polynomial_multipoint_eval.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/convolution/convolution.hpp
+      title: library/convolution/convolution.hpp
+    - icon: ':warning:'
+      path: library/convolution/dirichlet_convolution.hpp
+      title: library/convolution/dirichlet_convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/convolution/gcd_convolution.hpp
+      title: library/convolution/gcd_convolution.hpp
+    - icon: ':warning:'
+      path: library/convolution/or_convolution.hpp
+      title: library/convolution/or_convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/convolution/subset_convolution.hpp
+      title: library/convolution/subset_convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/convolution/xor_convolution.hpp
+      title: library/convolution/xor_convolution.hpp
   - name: library/datastructure
     pages:
     - icon: ':heavy_check_mark:'
@@ -118,7 +147,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/matrix.hpp
       title: library/math/matrix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/multi_point_eval.hpp
       title: library/math/multi_point_eval.hpp
     - icon: ':heavy_check_mark:'
@@ -169,12 +198,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/transform/multiple.hpp
       title: library/transform/multiple.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/subset.hpp
       title: library/transform/subset.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/supset.hpp
       title: library/transform/supset.hpp
+    - icon: ':question:'
+      path: library/transform/walsh_hadamard.hpp
+      title: library/transform/walsh_hadamard.hpp
   - name: library/tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -243,6 +275,36 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
       title: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
+  - name: test/src/convolution/and_convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/and_convolution/and_convolution.test.cpp
+      title: test/src/convolution/and_convolution/and_convolution.test.cpp
+  - name: test/src/convolution/apply_polynomial
+    pages:
+    - icon: ':x:'
+      path: test/src/convolution/apply_polynomial/nim_counting.test.cpp
+      title: test/src/convolution/apply_polynomial/nim_counting.test.cpp
+  - name: test/src/convolution/apply_polynomial_multipoint_eval
+    pages:
+    - icon: ':x:'
+      path: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+      title: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+  - name: test/src/convolution/gcd_convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/gcd_convolution/lcms.test.cpp
+      title: test/src/convolution/gcd_convolution/lcms.test.cpp
+  - name: test/src/convolution/subset_convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+      title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - name: test/src/convolution/xor_convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
+      title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - name: test/src/datastructure/binary_trie
     pages:
     - icon: ':heavy_check_mark:'

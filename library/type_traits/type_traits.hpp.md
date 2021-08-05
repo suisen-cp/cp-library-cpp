@@ -11,6 +11,12 @@ data:
   - icon: ':question:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
+  - icon: ':x:'
+    path: library/convolution/apply_polynomial.hpp
+    title: library/convolution/apply_polynomial.hpp
+  - icon: ':x:'
+    path: library/convolution/apply_polynomial_multipoint_eval.hpp
+    title: library/convolution/apply_polynomial_multipoint_eval.hpp
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: library/datastructure/bit_vector.hpp
@@ -72,6 +78,12 @@ data:
   - icon: ':x:'
     path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
     title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+  - icon: ':x:'
+    path: test/src/convolution/apply_polynomial/nim_counting.test.cpp
+    title: test/src/convolution/apply_polynomial/nim_counting.test.cpp
+  - icon: ':x:'
+    path: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+    title: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
@@ -203,6 +215,8 @@ data:
   - library/util/update_proxy_object.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/tree/lowest_common_ancestor.hpp
+  - library/convolution/apply_polynomial.hpp
+  - library/convolution/apply_polynomial_multipoint_eval.hpp
   - library/number/util.hpp
   - library/datastructure/fenwick_tree.hpp
   - library/datastructure/cartesian_tree.hpp
@@ -227,6 +241,8 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/apply_polynomial/nim_counting.test.cpp
   - test/src/number/util/divide_both.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
