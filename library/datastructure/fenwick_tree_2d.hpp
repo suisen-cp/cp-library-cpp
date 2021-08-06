@@ -30,10 +30,10 @@ class FenwickTree2D {
                 auto& operator--() { return *this -= 1; }
                 auto& operator+=(T val) { ft.add(i, j,  val); return *this; }
                 auto& operator-=(T val) { ft.add(i, j, -val); return *this; }
-                auto& operator*=(T val) { T cur = *this; ft.add(i, cur * val - cur); return *this; }
-                auto& operator/=(T val) { T cur = *this; ft.add(i, cur / val - cur); return *this; }
-                auto& operator%=(T val) { T cur = *this; ft.add(i, cur % val - cur); return *this; }
-                auto& operator =(T val) { T cur = *this; ft.add(i,       val - cur); return *this; }
+                auto& operator*=(T val) { T cur = *this; ft.add(i, j, cur * val - cur); return *this; }
+                auto& operator/=(T val) { T cur = *this; ft.add(i, j, cur / val - cur); return *this; }
+                auto& operator%=(T val) { T cur = *this; ft.add(i, j, cur % val - cur); return *this; }
+                auto& operator =(T val) { T cur = *this; ft.add(i, j,       val - cur); return *this; }
             } obj {i, j, *this};
             return obj;
         }
