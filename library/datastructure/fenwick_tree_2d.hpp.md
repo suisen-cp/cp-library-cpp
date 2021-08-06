@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+    title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree_2d.hpp\"\n\n\n\n#include\
@@ -23,17 +26,17 @@ data:
     \ { return *this += 1; }\n                auto& operator--() { return *this -=\
     \ 1; }\n                auto& operator+=(T val) { ft.add(i, j,  val); return *this;\
     \ }\n                auto& operator-=(T val) { ft.add(i, j, -val); return *this;\
-    \ }\n                auto& operator*=(T val) { T cur = *this; ft.add(i, cur *\
-    \ val - cur); return *this; }\n                auto& operator/=(T val) { T cur\
-    \ = *this; ft.add(i, cur / val - cur); return *this; }\n                auto&\
-    \ operator%=(T val) { T cur = *this; ft.add(i, cur % val - cur); return *this;\
-    \ }\n                auto& operator =(T val) { T cur = *this; ft.add(i,      \
-    \ val - cur); return *this; }\n            } obj {i, j, *this};\n            return\
-    \ obj;\n        }\n        T operator()(int xl, int xr, int yl, int yr) const\
-    \ { return sum(xl, xr, yl, yr); }\n\n    private:\n        int n, m;\n       \
-    \ std::vector<std::vector<T>> data;\n\n        T sum(int xr, int yr) const {\n\
-    \            T s(0);\n            for (int x = xr; x; x -= x & -x) {\n       \
-    \         for (int y = yr; y; y -= y & -y) {\n                    s += data[x\
+    \ }\n                auto& operator*=(T val) { T cur = *this; ft.add(i, j, cur\
+    \ * val - cur); return *this; }\n                auto& operator/=(T val) { T cur\
+    \ = *this; ft.add(i, j, cur / val - cur); return *this; }\n                auto&\
+    \ operator%=(T val) { T cur = *this; ft.add(i, j, cur % val - cur); return *this;\
+    \ }\n                auto& operator =(T val) { T cur = *this; ft.add(i, j,   \
+    \    val - cur); return *this; }\n            } obj {i, j, *this};\n         \
+    \   return obj;\n        }\n        T operator()(int xl, int xr, int yl, int yr)\
+    \ const { return sum(xl, xr, yl, yr); }\n\n    private:\n        int n, m;\n \
+    \       std::vector<std::vector<T>> data;\n\n        T sum(int xr, int yr) const\
+    \ {\n            T s(0);\n            for (int x = xr; x; x -= x & -x) {\n   \
+    \             for (int y = yr; y; y -= y & -y) {\n                    s += data[x\
     \ - 1][y - 1];\n                }\n            }\n            return s;\n    \
     \    }\n};\n\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_FENWICK_TREE_2D\n#define SUISEN_FENWICK_TREE_2D\n\n#include\
@@ -51,26 +54,27 @@ data:
     \ { return *this += 1; }\n                auto& operator--() { return *this -=\
     \ 1; }\n                auto& operator+=(T val) { ft.add(i, j,  val); return *this;\
     \ }\n                auto& operator-=(T val) { ft.add(i, j, -val); return *this;\
-    \ }\n                auto& operator*=(T val) { T cur = *this; ft.add(i, cur *\
-    \ val - cur); return *this; }\n                auto& operator/=(T val) { T cur\
-    \ = *this; ft.add(i, cur / val - cur); return *this; }\n                auto&\
-    \ operator%=(T val) { T cur = *this; ft.add(i, cur % val - cur); return *this;\
-    \ }\n                auto& operator =(T val) { T cur = *this; ft.add(i,      \
-    \ val - cur); return *this; }\n            } obj {i, j, *this};\n            return\
-    \ obj;\n        }\n        T operator()(int xl, int xr, int yl, int yr) const\
-    \ { return sum(xl, xr, yl, yr); }\n\n    private:\n        int n, m;\n       \
-    \ std::vector<std::vector<T>> data;\n\n        T sum(int xr, int yr) const {\n\
-    \            T s(0);\n            for (int x = xr; x; x -= x & -x) {\n       \
-    \         for (int y = yr; y; y -= y & -y) {\n                    s += data[x\
+    \ }\n                auto& operator*=(T val) { T cur = *this; ft.add(i, j, cur\
+    \ * val - cur); return *this; }\n                auto& operator/=(T val) { T cur\
+    \ = *this; ft.add(i, j, cur / val - cur); return *this; }\n                auto&\
+    \ operator%=(T val) { T cur = *this; ft.add(i, j, cur % val - cur); return *this;\
+    \ }\n                auto& operator =(T val) { T cur = *this; ft.add(i, j,   \
+    \    val - cur); return *this; }\n            } obj {i, j, *this};\n         \
+    \   return obj;\n        }\n        T operator()(int xl, int xr, int yl, int yr)\
+    \ const { return sum(xl, xr, yl, yr); }\n\n    private:\n        int n, m;\n \
+    \       std::vector<std::vector<T>> data;\n\n        T sum(int xr, int yr) const\
+    \ {\n            T s(0);\n            for (int x = xr; x; x -= x & -x) {\n   \
+    \             for (int y = yr; y; y -= y & -y) {\n                    s += data[x\
     \ - 1][y - 1];\n                }\n            }\n            return s;\n    \
     \    }\n};\n\n} // namespace suisen\n\n#endif // SUISEN_FENWICK_TREE_2D\n"
   dependsOn: []
   isVerificationFile: false
   path: library/datastructure/fenwick_tree_2d.hpp
   requiredBy: []
-  timestamp: '2021-08-06 13:44:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-08-06 16:30:27+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
 documentation_of: library/datastructure/fenwick_tree_2d.hpp
 layout: document
 redirect_from:

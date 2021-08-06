@@ -13,6 +13,9 @@ data:
     title: library/datastructure/segment_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+    title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,6 +105,7 @@ data:
   - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
+  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
   - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp

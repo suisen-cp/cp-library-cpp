@@ -38,6 +38,9 @@ data:
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+    title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/bernoulli_number.test.cpp
     title: test/src/math/common_sequences/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -134,6 +137,7 @@ data:
   - test/src/math/common_sequences/stirling_number1.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
 documentation_of: library/math/inv_mods.hpp
 layout: document
 redirect_from:

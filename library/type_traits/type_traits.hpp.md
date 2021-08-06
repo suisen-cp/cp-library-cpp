@@ -117,6 +117,9 @@ data:
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+    title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,6 +261,7 @@ data:
   - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
+  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp

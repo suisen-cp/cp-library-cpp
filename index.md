@@ -69,7 +69,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
       title: library/datastructure/fenwick_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree_2d.hpp
       title: library/datastructure/fenwick_tree_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -362,6 +362,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+  - name: test/src/datastructure/fenwick_tree_2d
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+      title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - name: test/src/datastructure/lazy_segment_tree
     pages:
     - icon: ':heavy_check_mark:'

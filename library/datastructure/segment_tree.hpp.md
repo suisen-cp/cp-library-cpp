@@ -10,6 +10,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+    title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
     title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -165,6 +168,7 @@ data:
   timestamp: '2021-08-04 18:37:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
   - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
