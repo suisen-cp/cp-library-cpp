@@ -93,11 +93,11 @@ title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC
 
   長さ $N=2^L$ の列 $(A_0=0,A_1,\ldots,A_{N-1})$ に下位集合版のゼータ変換を施す関数 `SubsetTransform<T>::transform` およびその逆変換 (メビウス変換) を施す関数 `SubsetTransform<T>::inverse_transform` を提供します．各変換は inplace に行われ，引数として渡した列は書き換えられます．
 
-  1. ゼータ変換 (`SubsetTransform<T>::transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
+  ゼータ変換 (`SubsetTransform<T>::transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
 
     $$ B_i = \sum_{j\subseteq i} A_j $$
   
-  2. メビウス変換 (`SubsetTransform<T>::inverse_transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
+  メビウス変換 (`SubsetTransform<T>::inverse_transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
 
     $$ A_i = \sum_{j\subseteq i} B_j $$
 

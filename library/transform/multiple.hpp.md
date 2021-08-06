@@ -105,11 +105,11 @@ title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6
 
   長さ $N$ の列 $(A_0=0,A_1,\ldots,A_{N-1})$ に倍数系ゼータ変換を施す関数 `MultipleTransform<T>::transform` およびその逆変換 (メビウス変換) を施す関数 `MultipleTransform<T>::inverse_transform` を提供します．各変換は inplace に行われ，引数として渡した列は書き換えられます．
 
-  1. ゼータ変換 (`MultipleTransform<T>::transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
+  ゼータ変換 (`MultipleTransform<T>::transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
 
     $$ B_i = \sum_{i \mid j} A_j $$
   
-  2. メビウス変換 (`MultipleTransform<T>::inverse_transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
+  メビウス変換 (`MultipleTransform<T>::inverse_transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
 
     $$ A_i = \sum_{i \mid j} B_j $$
   
