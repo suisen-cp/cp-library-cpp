@@ -19,11 +19,11 @@ documentation_of: //library/transform/supset.hpp
 
   長さ $N=2^L$ の列 $(A_0=0,A_1,\ldots,A_{N-1})$ に上位集合版のゼータ変換を施す関数 `SupsetTransform<T>::transform` およびその逆変換 (メビウス変換) を施す関数 `SupsetTransform<T>::inverse_transform` を提供します．各変換は inplace に行われ，引数として渡した列は書き換えられます．
 
-  1. ゼータ変換 (`SupsetTransform<T>::transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
+  ゼータ変換 (`SupsetTransform<T>::transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
 
     $$ B_i = \sum_{i\subseteq j} A_j $$
   
-  2. メビウス変換 (`SupsetTransform<T>::inverse_transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
+  メビウス変換 (`SupsetTransform<T>::inverse_transform`) では，引数として与えた列 $A$ に対して，以下を満たす列 $B$ を計算します．
 
     $$ A_i = \sum_{i\subseteq j} B_j $$
 
