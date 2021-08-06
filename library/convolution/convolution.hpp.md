@@ -104,7 +104,7 @@ title: Convolution
 
   ここで，$\oplus$ は $\mathbb{Z}$ 上の二項演算です．
   
-  $\odot$ を列の各点積を取る演算として，$\mathcal{F}[A]\odot \mathcal{F}[B]=\mathcal{F}[C]$ を満たす線形変換 $\mathcal{F}$ とその逆変換 $\mathcal{F}^{-1}$ を計算する静的関数を持つ `Transform` クラスをテンプレート引数に取ります．
+  $\odot$ を列の各点積を取る演算として，$\mathcal{F}[A]\odot \mathcal{F}[B]=\mathcal{F}[C]$ を満たす変換行列 $\mathcal{F}$ とその逆変換 $\mathcal{F}^{-1}$ を計算する静的関数を持つ `Transform` クラスをテンプレート引数に取ります．
 
   ここでは，上記の $\mathcal{F}$ および $\mathcal{F}^{-1}$ を用いて $C$ を次のように計算します．
 
@@ -115,7 +115,7 @@ title: Convolution
 - テンプレート引数
 
   - `T`: 列の要素の型．`operator*=` が定義されている必要があります．
-  - `Transform`: 列に対して inplace に線形変換 $\mathcal{F}$ を施す `static` 関数 `Transform<T>::transform(std::vector<T>&)` およびその逆変換 $\mathcal{F}^{-1}$ を施す `static` 関数 `Transform<T>::inverse_transform(std::vector<T>&)` を持つクラスです．
+  - `Transform`: 列に対して inplace に変換行列 $\mathcal{F}$ を施す `static` 関数 `Transform<T>::transform(std::vector<T>&)` およびその逆変換 $\mathcal{F}^{-1}$ を施す `static` 関数 `Transform<T>::inverse_transform(std::vector<T>&)` を持つクラスです．
 
 - 返り値
   

@@ -85,7 +85,7 @@ title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F
 
   $$ A^i = \underbrace{A \ast A \ast \cdots \ast A}_{i} $$
 
-  また，$\ast$ に対してある可逆な線形変換 $\mathcal{F}$ が存在して，任意の列 $X,Y$ に対して
+  また，$\ast$ に対してある正則な変換行列 $\mathcal{F}$ が存在して，任意の列 $X,Y$ に対して
 
   $$ \mathcal{F}[X] \odot \mathcal{F}[Y]=\mathcal{F}[X\ast Y]$$
 
@@ -107,7 +107,7 @@ title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F
 - テンプレート引数
 
   - `T`: 列の要素の型．
-  - `Transform`: 列に対して inplace に線形変換 $\mathcal{F}$ を施す `static` 関数 `Transform<T>::transform(std::vector<T>&)` およびその逆変換 $\mathcal{F}^{-1}$ を施す `static` 関数 `Transform<T>::inverse_transform(std::vector<T>&)` を持つクラス．
+  - `Transform`: 列に対して inplace に線形写像 $\mathcal{F}$ を施す `static` 関数 `Transform<T>::transform(std::vector<T>&)` およびその逆変換 $\mathcal{F}^{-1}$ を施す `static` 関数 `Transform<T>::inverse_transform(std::vector<T>&)` を持つクラス．
   - `F`: `T` 型の要素 $x$ に対して $\displaystyle f(x)=\sum_{i=0}^{N-1}C_i \cdot x^i$ を計算する関数の型です．`F` 型のインスタンス `f` は `x` を引数に取る関数呼び出し `f(x)` によって $f(x)$ を計算できなければなりません．
 
 - 引数
@@ -123,3 +123,26 @@ title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F
 
   列 $A$ の長さを $N$，`Transform<T>::transform` の計算量を $\Theta(f(N))$, `Transform<T>::inverse_transform` の計算量を $\Theta(g(N))$，`f` の計算量を $O(h(M))$ として，$\Theta(f(N)+g(N)+N\cdot h(M))$ です．
 
+<!--
+
+- テンプレート引数 `Transform` について
+
+  典型的な畳み込み演算に対応する `Transform` の例を挙げます．
+
+  1. bitwise and convolution
+
+      [上位集合に対する高速ゼータ変換・高速メビウス変換](https://suisen-cp.github.io/cp-library-cpp/library/transform/supset.hpp)
+  2. bitwise or convolution
+
+      [下位集合に対する高速ゼータ変換・高速メビウス変換](https://suisen-cp.github.io/cp-library-cpp/library/transform/subset.hpp)
+  3. bitwise xor convolution
+
+      [Walsh Hadamard 変換](https://suisen-cp.github.io/cp-library-cpp/library/transform/walsh_hadamard.hpp)
+  4. gcd convolution
+
+      [倍数系ゼータ変換・メビウス変換](https://suisen-cp.github.io/cp-library-cpp/library/transform/multiple.hpp)
+  5. lcm convolution
+
+      [約数系ゼータ変換・メビウス変換](https://suisen-cp.github.io/cp-library-cpp/library/transform/divisor.hpp)
+
+-->

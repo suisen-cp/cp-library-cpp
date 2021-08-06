@@ -233,7 +233,7 @@ title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F
 
   $$ A^i = \underbrace{A \ast A \ast \cdots \ast A}_{i} $$
 
-  また，$\ast$ に対してある可逆な線形変換 $\mathcal{F}$ が存在して，任意の列 $X,Y$ に対して
+  また，$\ast$ に対してある正則な変換行列 $\mathcal{F}$ が存在して，任意の列 $X,Y$ に対して
 
   $$ \mathcal{F}[X] \odot \mathcal{F}[Y]=\mathcal{F}[X\ast Y]$$
 
@@ -257,7 +257,7 @@ title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F
 - テンプレート引数
 
   - `mint`: 列の要素の型．`atcoder::modint` 型を想定しています．
-  - `Transform`: 列に対して inplace に線形変換 $\mathcal{F}$ を施す `static` 関数 `Transform<T>::transform(std::vector<T>&)` およびその逆変換 $\mathcal{F}^{-1}$ を施す `static` 関数 `Transform<T>::inverse_transform(std::vector<T>&)` を持つクラス．
+  - `Transform`: 列に対して inplace に線形写像 $\mathcal{F}$ を施す `static` 関数 `Transform<T>::transform(std::vector<T>&)` およびその逆変換 $\mathcal{F}^{-1}$ を施す `static` 関数 `Transform<T>::inverse_transform(std::vector<T>&)` を持つクラス．
 
 - 引数
 
