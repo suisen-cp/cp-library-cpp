@@ -1,18 +1,18 @@
 ---
 title: 列を変数として持つ多項式の評価 (多点評価版)
-documentation_of: //library/convolution/apply_polynomial_multipoint_eval.hpp
+documentation_of: //library/convolution/polynomial_eval_multipoint_eval.hpp
 ---
 
-### apply_polynomial
+### polynomial_eval
 
 - シグネチャ
 
   ```cpp
   template <typename mint, template <typename T> class Transform>
-  std::vector<mint> apply_polynomial(std::vector<mint> &&a, const FPS<mint> &f) // (1)
+  std::vector<mint> polynomial_eval(std::vector<mint> &&a, const FPS<mint> &f) // (1)
 
   template <typename mint, template <typename T> class Transform>
-  std::vector<mint> apply_polynomial(const std::vector<mint> &a, const FPS<mint> &f) // (2)
+  std::vector<mint> polynomial_eval(const std::vector<mint> &a, const FPS<mint> &f) // (2)
   ```
 
 - 概要

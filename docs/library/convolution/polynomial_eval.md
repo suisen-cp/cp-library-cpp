@@ -1,18 +1,18 @@
 ---
 title: 列を変数として持つ多項式の評価
-documentation_of: //library/convolution/apply_polynomial.hpp
+documentation_of: //library/convolution/polynomial_eval.hpp
 ---
 
-### apply_polynomial
+### polynomial_eval
 
 - シグネチャ
 
   ```cpp
   template <typename T, template <typename> class Transform, typename F>
-  std::vector<T> apply_polynomial(std::vector<T> &&a, F f) // (1)
+  std::vector<T> polynomial_eval(std::vector<T> &&a, F f) // (1)
 
   template <typename T, template <typename> class Transform, typename F>
-  std::vector<T> apply_polynomial(const std::vector<T> &a, F f) // (2)
+  std::vector<T> polynomial_eval(const std::vector<T> &a, F f) // (2)
   ```
 
 - 概要

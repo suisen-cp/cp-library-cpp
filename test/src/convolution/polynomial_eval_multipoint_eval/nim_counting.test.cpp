@@ -5,7 +5,7 @@
 #include <atcoder/modint>
 
 #include "library/transform/walsh_hadamard.hpp"
-#include "library/convolution/apply_polynomial_multipoint_eval.hpp"
+#include "library/convolution/polynomial_eval_multipoint_eval.hpp"
 
 using mint = atcoder::modint998244353;
 
@@ -30,7 +30,7 @@ int main() {
     suisen::FPS<mint> f(n + 1, 1);
     f[0] = 0;
 
-    auto res = suisen::apply_polynomial<mint, suisen::WalshHadamard>(c, f);
+    auto res = suisen::polynomial_eval<mint, suisen::WalshHadamard>(c, f);
 
     std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val() << std::endl;
 

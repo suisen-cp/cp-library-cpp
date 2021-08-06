@@ -4,7 +4,7 @@
 #include <atcoder/modint>
 
 #include "library/transform/walsh_hadamard.hpp"
-#include "library/convolution/apply_polynomial.hpp"
+#include "library/convolution/polynomial_eval.hpp"
 
 using mint = atcoder::modint998244353;
 
@@ -24,7 +24,7 @@ int main() {
         ++c[v];
     }
 
-    auto res = suisen::apply_polynomial<mint, suisen::WalshHadamard>(c, [n](mint x) {
+    auto res = suisen::polynomial_eval<mint, suisen::WalshHadamard>(c, [n](mint x) {
         return x == 1 ? n : x * (x.pow(n) - 1) / (x - 1);
     });
 

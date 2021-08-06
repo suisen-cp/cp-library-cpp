@@ -8,7 +8,7 @@
 namespace suisen {
 
 template <typename T, template <typename> class Transform, typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>
-std::vector<T> apply_polynomial(std::vector<T> &&a, F f) {
+std::vector<T> polynomial_eval(std::vector<T> &&a, F f) {
     Transform<T>::transform(a);
     for (auto &x : a) x = f(x);
     Transform<T>::inverse_transform(a);
@@ -16,8 +16,8 @@ std::vector<T> apply_polynomial(std::vector<T> &&a, F f) {
 }
 
 template <typename T, template <typename> class Transform, typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>
-std::vector<T> apply_polynomial(const std::vector<T> &a, F f) {
-    return apply_polynomial<T, Transform>(std::vector<T>(a), f);
+std::vector<T> polynomial_eval(const std::vector<T> &a, F f) {
+    return polynomial_eval<T, Transform>(std::vector<T>(a), f);
 }
 
 } // namespace suisen

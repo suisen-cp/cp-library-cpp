@@ -7,7 +7,7 @@
 namespace suisen {
 
 template <typename mint, template <typename T> class Transform>
-std::vector<mint> apply_polynomial(std::vector<mint> &&a, const FPS<mint> &f) {
+std::vector<mint> polynomial_eval(std::vector<mint> &&a, const FPS<mint> &f) {
     Transform<mint>::transform(a);
     a = multi_point_eval(f, a);
     Transform<mint>::inverse_transform(a);
@@ -15,8 +15,8 @@ std::vector<mint> apply_polynomial(std::vector<mint> &&a, const FPS<mint> &f) {
 }
 
 template <typename mint, template <typename T> class Transform>
-std::vector<mint> apply_polynomial(const std::vector<mint> &a, const FPS<mint> &f) {
-    return apply_polynomial<mint, Transform>(std::vector<mint>(a), f);
+std::vector<mint> polynomial_eval(const std::vector<mint> &a, const FPS<mint> &f) {
+    return polynomial_eval<mint, Transform>(std::vector<mint>(a), f);
 }
 
 } // namespace suisen
