@@ -4,7 +4,8 @@ data:
   _extendedRequiredBy:
   - icon: ':x:'
     path: library/convolution/apply_polynomial_multipoint_eval.hpp
-    title: library/convolution/apply_polynomial_multipoint_eval.hpp
+    title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
+      \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution

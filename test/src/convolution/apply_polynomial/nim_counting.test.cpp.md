@@ -3,7 +3,8 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: library/convolution/apply_polynomial.hpp
-    title: library/convolution/apply_polynomial.hpp
+    title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
+      \u306E\u8A55\u4FA1"
   - icon: ':question:'
     path: library/transform/walsh_hadamard.hpp
     title: "Walsh Hadamard \u5909\u63DB"
