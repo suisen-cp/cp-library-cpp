@@ -67,6 +67,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
       title: library/datastructure/fenwick_tree.hpp
+    - icon: ':warning:'
+      path: library/datastructure/fenwick_tree_2d.hpp
+      title: library/datastructure/fenwick_tree_2d.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_segment_tree.hpp
       title: library/datastructure/lazy_segment_tree.hpp
@@ -194,16 +197,20 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/transform/divisor.hpp
-      title: library/transform/divisor.hpp
+      title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
+        \u30B9\u5909\u63DB"
     - icon: ':heavy_check_mark:'
       path: library/transform/multiple.hpp
-      title: library/transform/multiple.hpp
+      title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
+        \u30B9\u5909\u63DB"
     - icon: ':heavy_check_mark:'
       path: library/transform/subset.hpp
-      title: library/transform/subset.hpp
+      title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
+        \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
     - icon: ':heavy_check_mark:'
       path: library/transform/supset.hpp
-      title: library/transform/supset.hpp
+      title: "\u4E0A\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
+        \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
     - icon: ':question:'
       path: library/transform/walsh_hadamard.hpp
       title: "Walsh Hadamard \u5909\u63DB"

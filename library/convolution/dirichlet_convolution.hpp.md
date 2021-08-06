@@ -81,7 +81,7 @@ title: Dirichlet Convolution
 
 - 制約
 
-  - $0\leq \vert A\vert,\vert B\vert\leq 10^6$
+  - $0 \leq \vert A \vert, \vert B \vert \leq 10 ^ 6$
 
 - 時間計算量
 
@@ -114,7 +114,7 @@ title: Dirichlet Convolution
 
 - 制約
 
-  - $0\leq \vert A\vert,\vert B\vert\leq 10^6$
+  - $0 \leq \vert A \vert, \vert B \vert \leq 10 ^ 6$
 
 - 時間計算量
 
