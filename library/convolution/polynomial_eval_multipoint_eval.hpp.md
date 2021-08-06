@@ -16,14 +16,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
-    title: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+    path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+    title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/convolution/apply_polynomial_multipoint_eval.hpp\"\
+  bundledCode: "#line 1 \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\
     \n\n\n\n#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
     \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
@@ -179,22 +179,22 @@ data:
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
     \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 6 \"\
-    library/convolution/apply_polynomial_multipoint_eval.hpp\"\n\nnamespace suisen\
+    library/convolution/polynomial_eval_multipoint_eval.hpp\"\n\nnamespace suisen\
     \ {\n\ntemplate <typename mint, template <typename T> class Transform>\nstd::vector<mint>\
-    \ apply_polynomial(std::vector<mint> &&a, const FPS<mint> &f) {\n    Transform<mint>::transform(a);\n\
+    \ polynomial_eval(std::vector<mint> &&a, const FPS<mint> &f) {\n    Transform<mint>::transform(a);\n\
     \    a = multi_point_eval(f, a);\n    Transform<mint>::inverse_transform(a);\n\
     \    return a;\n}\n\ntemplate <typename mint, template <typename T> class Transform>\n\
-    std::vector<mint> apply_polynomial(const std::vector<mint> &a, const FPS<mint>\
-    \ &f) {\n    return apply_polynomial<mint, Transform>(std::vector<mint>(a), f);\n\
+    std::vector<mint> polynomial_eval(const std::vector<mint> &a, const FPS<mint>\
+    \ &f) {\n    return polynomial_eval<mint, Transform>(std::vector<mint>(a), f);\n\
     }\n\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_APPLY_POLYNOMIAL_MULTIPOINT_EVAL\n#define SUISEN_APPLY_POLYNOMIAL_MULTIPOINT_EVAL\n\
     \n#include \"library/math/multi_point_eval.hpp\"\n#include \"library/type_traits/type_traits.hpp\"\
     \n\nnamespace suisen {\n\ntemplate <typename mint, template <typename T> class\
-    \ Transform>\nstd::vector<mint> apply_polynomial(std::vector<mint> &&a, const\
-    \ FPS<mint> &f) {\n    Transform<mint>::transform(a);\n    a = multi_point_eval(f,\
-    \ a);\n    Transform<mint>::inverse_transform(a);\n    return a;\n}\n\ntemplate\
-    \ <typename mint, template <typename T> class Transform>\nstd::vector<mint> apply_polynomial(const\
-    \ std::vector<mint> &a, const FPS<mint> &f) {\n    return apply_polynomial<mint,\
+    \ Transform>\nstd::vector<mint> polynomial_eval(std::vector<mint> &&a, const FPS<mint>\
+    \ &f) {\n    Transform<mint>::transform(a);\n    a = multi_point_eval(f, a);\n\
+    \    Transform<mint>::inverse_transform(a);\n    return a;\n}\n\ntemplate <typename\
+    \ mint, template <typename T> class Transform>\nstd::vector<mint> polynomial_eval(const\
+    \ std::vector<mint> &a, const FPS<mint> &f) {\n    return polynomial_eval<mint,\
     \ Transform>(std::vector<mint>(a), f);\n}\n\n} // namespace suisen\n\n#endif //\
     \ SUISEN_APPLY_POLYNOMIAL_MULTIPOINT_EVAL\n"
   dependsOn:
@@ -203,28 +203,28 @@ data:
   - library/math/inv_mods.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
-  path: library/convolution/apply_polynomial_multipoint_eval.hpp
+  path: library/convolution/polynomial_eval_multipoint_eval.hpp
   requiredBy: []
-  timestamp: '2021-08-05 18:57:44+09:00'
+  timestamp: '2021-08-06 16:00:47+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
-documentation_of: library/convolution/apply_polynomial_multipoint_eval.hpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+documentation_of: library/convolution/polynomial_eval_multipoint_eval.hpp
 layout: document
 title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\u306E\
   \u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
 ---
 
-### apply_polynomial
+### polynomial_eval
 
 - シグネチャ
 
   ```cpp
   template <typename mint, template <typename T> class Transform>
-  std::vector<mint> apply_polynomial(std::vector<mint> &&a, const FPS<mint> &f) // (1)
+  std::vector<mint> polynomial_eval(std::vector<mint> &&a, const FPS<mint> &f) // (1)
 
   template <typename mint, template <typename T> class Transform>
-  std::vector<mint> apply_polynomial(const std::vector<mint> &a, const FPS<mint> &f) // (2)
+  std::vector<mint> polynomial_eval(const std::vector<mint> &a, const FPS<mint> &f) // (2)
   ```
 
 - 概要

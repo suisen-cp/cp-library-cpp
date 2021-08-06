@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
-    path: library/convolution/apply_polynomial.hpp
+    path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
   - icon: ':question:'
@@ -21,7 +21,7 @@ data:
     PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_h
     links:
     - https://atcoder.jp/contests/abc212/tasks/abc212_h
-  bundledCode: "#line 1 \"test/src/convolution/apply_polynomial/nim_counting.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/convolution/polynomial_eval/nim_counting.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/transform/walsh_hadamard.hpp\"\
     \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n\nnamespace\
@@ -35,7 +35,7 @@ data:
     \ntemplate <typename T>\nstruct WalshHadamard {\n    static void transform(std::vector<T>\
     \ &a) {\n        internal::fwht(a, false);\n    }\n    static void inverse_transform(std::vector<T>\
     \ &a) {\n        internal::fwht(a, true);\n    }\n};\n\n} // namespace suisen::walsh_hadamard_transform\n\
-    \n\n\n#line 1 \"library/convolution/apply_polynomial.hpp\"\n\n\n\n#line 5 \"library/convolution/apply_polynomial.hpp\"\
+    \n\n\n#line 1 \"library/convolution/polynomial_eval.hpp\"\n\n\n\n#line 5 \"library/convolution/polynomial_eval.hpp\"\
     \n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
     #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
     \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -54,47 +54,47 @@ data:
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
     \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 7 \"\
-    library/convolution/apply_polynomial.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
+    library/convolution/polynomial_eval.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
     \ T, template <typename> class Transform, typename F, constraints_t<is_same_as_invoke_result<T,\
-    \ F, T>> = nullptr>\nstd::vector<T> apply_polynomial(std::vector<T> &&a, F f)\
-    \ {\n    Transform<T>::transform(a);\n    for (auto &x : a) x = f(x);\n    Transform<T>::inverse_transform(a);\n\
+    \ F, T>> = nullptr>\nstd::vector<T> polynomial_eval(std::vector<T> &&a, F f) {\n\
+    \    Transform<T>::transform(a);\n    for (auto &x : a) x = f(x);\n    Transform<T>::inverse_transform(a);\n\
     \    return a;\n}\n\ntemplate <typename T, template <typename> class Transform,\
     \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
-    \ apply_polynomial(const std::vector<T> &a, F f) {\n    return apply_polynomial<T,\
+    \ polynomial_eval(const std::vector<T> &a, F f) {\n    return polynomial_eval<T,\
     \ Transform>(std::vector<T>(a), f);\n}\n\n} // namespace suisen\n\n\n\n#line 8\
-    \ \"test/src/convolution/apply_polynomial/nim_counting.test.cpp\"\n\nusing mint\
+    \ \"test/src/convolution/polynomial_eval/nim_counting.test.cpp\"\n\nusing mint\
     \ = atcoder::modint998244353;\n\nconstexpr int M = 1 << 16;\n\nint main() {\n\
     \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    int\
     \ n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint> c(M, 0);\n    for (int\
     \ i = 0; i < k; ++i) {\n        int v;\n        std::cin >> v;\n        ++c[v];\n\
-    \    }\n\n    auto res = suisen::apply_polynomial<mint, suisen::WalshHadamard>(c,\
+    \    }\n\n    auto res = suisen::polynomial_eval<mint, suisen::WalshHadamard>(c,\
     \ [n](mint x) {\n        return x == 1 ? n : x * (x.pow(n) - 1) / (x - 1);\n \
     \   });\n\n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
     \ << std::endl;\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\n\n#include \"library/transform/walsh_hadamard.hpp\"\
-    \n#include \"library/convolution/apply_polynomial.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    \n#include \"library/convolution/polynomial_eval.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
     \nconstexpr int M = 1 << 16;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint>\
     \ c(M, 0);\n    for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin\
-    \ >> v;\n        ++c[v];\n    }\n\n    auto res = suisen::apply_polynomial<mint,\
+    \ >> v;\n        ++c[v];\n    }\n\n    auto res = suisen::polynomial_eval<mint,\
     \ suisen::WalshHadamard>(c, [n](mint x) {\n        return x == 1 ? n : x * (x.pow(n)\
     \ - 1) / (x - 1);\n    });\n\n    std::cout << std::accumulate(res.begin() + 1,\
     \ res.end(), mint(0)).val() << std::endl;\n\n    return 0;\n}"
   dependsOn:
   - library/transform/walsh_hadamard.hpp
-  - library/convolution/apply_polynomial.hpp
+  - library/convolution/polynomial_eval.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
-  path: test/src/convolution/apply_polynomial/nim_counting.test.cpp
+  path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2021-08-05 18:57:44+09:00'
+  timestamp: '2021-08-06 16:00:47+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/convolution/apply_polynomial/nim_counting.test.cpp
+documentation_of: test/src/convolution/polynomial_eval/nim_counting.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/convolution/apply_polynomial/nim_counting.test.cpp
-- /verify/test/src/convolution/apply_polynomial/nim_counting.test.cpp.html
-title: test/src/convolution/apply_polynomial/nim_counting.test.cpp
+- /verify/test/src/convolution/polynomial_eval/nim_counting.test.cpp
+- /verify/test/src/convolution/polynomial_eval/nim_counting.test.cpp.html
+title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
 ---

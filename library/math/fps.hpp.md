@@ -6,7 +6,7 @@ data:
     title: library/math/inv_mods.hpp
   _extendedRequiredBy:
   - icon: ':x:'
-    path: library/convolution/apply_polynomial_multipoint_eval.hpp
+    path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
@@ -32,8 +32,8 @@ data:
     title: library/math/subset_sum.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
-    title: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+    path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+    title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
@@ -338,8 +338,8 @@ data:
   - library/math/subset_sum.hpp
   - library/math/bostan_mori.hpp
   - library/math/interpolation.hpp
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/convolution/subset_convolution.hpp
-  - library/convolution/apply_polynomial_multipoint_eval.hpp
   timestamp: '2021-07-18 18:22:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -356,7 +356,7 @@ data:
   - test/src/math/common_sequences/partition_function.test.cpp
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
-  - test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
 documentation_of: library/math/fps.hpp
 layout: document

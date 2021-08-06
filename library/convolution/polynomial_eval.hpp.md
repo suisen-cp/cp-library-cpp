@@ -7,14 +7,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/src/convolution/apply_polynomial/nim_counting.test.cpp
-    title: test/src/convolution/apply_polynomial/nim_counting.test.cpp
+    path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
+    title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/convolution/apply_polynomial.hpp\"\n\n\n\n#include\
+  bundledCode: "#line 1 \"library/convolution/polynomial_eval.hpp\"\n\n\n\n#include\
     \ <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include\
     \ <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate\
     \ <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -33,50 +33,50 @@ data:
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
     \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 7 \"\
-    library/convolution/apply_polynomial.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
+    library/convolution/polynomial_eval.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
     \ T, template <typename> class Transform, typename F, constraints_t<is_same_as_invoke_result<T,\
-    \ F, T>> = nullptr>\nstd::vector<T> apply_polynomial(std::vector<T> &&a, F f)\
-    \ {\n    Transform<T>::transform(a);\n    for (auto &x : a) x = f(x);\n    Transform<T>::inverse_transform(a);\n\
+    \ F, T>> = nullptr>\nstd::vector<T> polynomial_eval(std::vector<T> &&a, F f) {\n\
+    \    Transform<T>::transform(a);\n    for (auto &x : a) x = f(x);\n    Transform<T>::inverse_transform(a);\n\
     \    return a;\n}\n\ntemplate <typename T, template <typename> class Transform,\
     \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
-    \ apply_polynomial(const std::vector<T> &a, F f) {\n    return apply_polynomial<T,\
+    \ polynomial_eval(const std::vector<T> &a, F f) {\n    return polynomial_eval<T,\
     \ Transform>(std::vector<T>(a), f);\n}\n\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_APPLY_POLYNOMIAL\n#define SUISEN_APPLY_POLYNOMIAL\n\n#include\
     \ <vector>\n\n#include \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen\
     \ {\n\ntemplate <typename T, template <typename> class Transform, typename F,\
     \ constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
-    \ apply_polynomial(std::vector<T> &&a, F f) {\n    Transform<T>::transform(a);\n\
+    \ polynomial_eval(std::vector<T> &&a, F f) {\n    Transform<T>::transform(a);\n\
     \    for (auto &x : a) x = f(x);\n    Transform<T>::inverse_transform(a);\n  \
     \  return a;\n}\n\ntemplate <typename T, template <typename> class Transform,\
     \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
-    \ apply_polynomial(const std::vector<T> &a, F f) {\n    return apply_polynomial<T,\
+    \ polynomial_eval(const std::vector<T> &a, F f) {\n    return polynomial_eval<T,\
     \ Transform>(std::vector<T>(a), f);\n}\n\n} // namespace suisen\n\n\n#endif //\
     \ SUISEN_APPLY_POLYNOMIAL\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
-  path: library/convolution/apply_polynomial.hpp
+  path: library/convolution/polynomial_eval.hpp
   requiredBy: []
-  timestamp: '2021-08-05 18:57:44+09:00'
+  timestamp: '2021-08-06 16:00:47+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/convolution/apply_polynomial/nim_counting.test.cpp
-documentation_of: library/convolution/apply_polynomial.hpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+documentation_of: library/convolution/polynomial_eval.hpp
 layout: document
 title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\u306E\
   \u8A55\u4FA1"
 ---
 
-### apply_polynomial
+### polynomial_eval
 
 - シグネチャ
 
   ```cpp
   template <typename T, template <typename> class Transform, typename F>
-  std::vector<T> apply_polynomial(std::vector<T> &&a, F f) // (1)
+  std::vector<T> polynomial_eval(std::vector<T> &&a, F f) // (1)
 
   template <typename T, template <typename> class Transform, typename F>
-  std::vector<T> apply_polynomial(const std::vector<T> &a, F f) // (2)
+  std::vector<T> polynomial_eval(const std::vector<T> &a, F f) // (2)
   ```
 
 - 概要

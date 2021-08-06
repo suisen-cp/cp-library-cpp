@@ -12,11 +12,11 @@ data:
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
   - icon: ':x:'
-    path: library/convolution/apply_polynomial.hpp
+    path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
   - icon: ':x:'
-    path: library/convolution/apply_polynomial_multipoint_eval.hpp
+    path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
@@ -81,11 +81,11 @@ data:
     path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
     title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
   - icon: ':x:'
-    path: test/src/convolution/apply_polynomial/nim_counting.test.cpp
-    title: test/src/convolution/apply_polynomial/nim_counting.test.cpp
+    path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
+    title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - icon: ':x:'
-    path: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
-    title: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
+    path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+    title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
     title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
@@ -220,8 +220,8 @@ data:
   - library/util/update_proxy_object.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/tree/lowest_common_ancestor.hpp
-  - library/convolution/apply_polynomial.hpp
-  - library/convolution/apply_polynomial_multipoint_eval.hpp
+  - library/convolution/polynomial_eval.hpp
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/number/util.hpp
   - library/datastructure/fenwick_tree.hpp
   - library/datastructure/cartesian_tree.hpp
@@ -246,8 +246,8 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-  - test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/apply_polynomial/nim_counting.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/number/util/divide_both.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp

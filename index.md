@@ -20,14 +20,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/and_convolution.hpp
       title: Bitwise And Convolution
-    - icon: ':x:'
-      path: library/convolution/apply_polynomial.hpp
-      title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
-        \u306E\u8A55\u4FA1"
-    - icon: ':x:'
-      path: library/convolution/apply_polynomial_multipoint_eval.hpp
-      title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
-        \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
     - icon: ':heavy_check_mark:'
       path: library/convolution/convolution.hpp
       title: Convolution
@@ -40,6 +32,14 @@ data:
     - icon: ':warning:'
       path: library/convolution/or_convolution.hpp
       title: Bitwise Or Convolution
+    - icon: ':x:'
+      path: library/convolution/polynomial_eval.hpp
+      title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
+        \u306E\u8A55\u4FA1"
+    - icon: ':x:'
+      path: library/convolution/polynomial_eval_multipoint_eval.hpp
+      title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
+        \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
     - icon: ':heavy_check_mark:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
@@ -289,21 +289,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/convolution/and_convolution/and_convolution.test.cpp
       title: test/src/convolution/and_convolution/and_convolution.test.cpp
-  - name: test/src/convolution/apply_polynomial
-    pages:
-    - icon: ':x:'
-      path: test/src/convolution/apply_polynomial/nim_counting.test.cpp
-      title: test/src/convolution/apply_polynomial/nim_counting.test.cpp
-  - name: test/src/convolution/apply_polynomial_multipoint_eval
-    pages:
-    - icon: ':x:'
-      path: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
-      title: test/src/convolution/apply_polynomial_multipoint_eval/nim_counting.test.cpp
   - name: test/src/convolution/gcd_convolution
     pages:
     - icon: ':heavy_check_mark:'
       path: test/src/convolution/gcd_convolution/lcms.test.cpp
       title: test/src/convolution/gcd_convolution/lcms.test.cpp
+  - name: test/src/convolution/polynomial_eval
+    pages:
+    - icon: ':x:'
+      path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
+      title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - name: test/src/convolution/polynomial_eval_multipoint_eval
+    pages:
+    - icon: ':x:'
+      path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+      title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - name: test/src/convolution/subset_convolution
     pages:
     - icon: ':heavy_check_mark:'
