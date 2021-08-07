@@ -15,7 +15,7 @@ class factorial {
             return fac_[i];
         }
         const T& operator()(int i) {
-            return fac_[i];
+            return fac(i);
         }
         const U& inv(const int i) {
             ensure(i);
