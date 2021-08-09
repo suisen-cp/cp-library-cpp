@@ -19,7 +19,7 @@ using pq_greater = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 template <typename T, typename U>
 using umap = std::unordered_map<T, U>;
 
-// ! macros
+// ! macros (capital: internal macro)
 #define OVERLOAD2(_1,_2,name,...) name
 #define OVERLOAD3(_1,_2,_3,name,...) name
 #define OVERLOAD4(_1,_2,_3,_4,name,...) name
@@ -45,17 +45,24 @@ using umap = std::unordered_map<T, U>;
 
 #define all(iterable) (iterable).begin(), (iterable).end()
 #define input(type, ...) type __VA_ARGS__; read(__VA_ARGS__)
-
-// ! constants
-constexpr int dx4[4] = {1, 0, -1, 0};
-constexpr int dy4[4] = {0, 1, 0, -1};
-
-constexpr int dx8[8] = {1, 1, 0, -1, -1, -1, 0, 1};
-constexpr int dy8[8] = {0, 1, 1, 1, 0, -1, -1, -1};
+#define input_vector(value_type, name, size) std::vector<value_type> name(size); read(name)
 
 // ! I/O utilities
+
+// pair
 template <typename T, typename U>
-std::ostream& operator<<(std::ostream& out, const std::pair<T, U> &a) { return out << a.first << ' ' << a.second; }
+std::ostream& operator<<(std::ostream& out, const std::pair<T, U> &a) {
+    return out << a.first << ' ' << a.second;
+}
+// tuple
+template <unsigned int N = 0, typename ...Args>
+std::ostream& operator<<(std::ostream& out, const std::tuple<Args...> &a) {
+    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) return out;
+    out << std::get<N>(a);
+    if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>) out << ' ';
+    return operator<<<N + 1>(out, a);
+}
+// vector
 template <typename T>
 std::ostream& operator<<(std::ostream& out, const std::vector<T> &a) {
     for (auto it = a.begin(); it != a.end();) {
@@ -80,34 +87,36 @@ auto print_all(const Iterable& v, std::string sep = " ", std::string end = "\n")
     std::cout << end;
 }
 
+// pair
 template <typename T, typename U>
-std::istream& operator>>(std::istream& in, std::pair<T, U> &a) { return in >> a.first >> a.second; }
+std::istream& operator>>(std::istream& in, std::pair<T, U> &a) {
+    return in >> a.first >> a.second;
+}
+// tuple
+template <unsigned int N = 0, typename ...Args>
+std::istream& operator>>(std::istream& in, std::tuple<Args...> &a) {
+    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) return in;
+    return operator>><N + 1>(in >> std::get<N>(a), a);
+}
+// vector
 template <typename T>
 std::istream& operator>>(std::istream& in, std::vector<T> &a) {
     for (auto it = a.begin(); it != a.end(); ++it) in >> *it;
     return in;
 }
-constexpr void read() {}
-template <typename Head, typename... Tail>
-void read(Head &head, Tail &...tails) {
-    std::cin >> head;
-    read(tails...);
+template <typename ...Args>
+void read(Args &...args) {
+    ( std::cin >> ... >> args );
 }
 
-// ! primitive utilities
+struct fast_io {
+    fast_io() {
+        std::ios::sync_with_stdio(false);
+        std::cin.tie(nullptr);
+    }
+};
 
-template <typename T>
-inline bool chmin(T &x, const T &y) {
-    if (y >= x) return false;
-    x = y;
-    return true;
-}
-template <typename T>
-inline bool chmax(T &x, const T &y) {
-    if (y <= x) return false;
-    x = y;
-    return true;
-}
+// ! integral utilities
 
 // Returns pow(-1, n)
 template <typename T>
@@ -159,13 +168,38 @@ auto priqueue_comp(const Comparator comparator) {
 }
 
 template <typename Iterable>
-auto isize(const Iterable &iterable) -> decltype(int(iterable.size())) { return iterable.size(); }
+auto isize(const Iterable &iterable) -> decltype(int(iterable.size())) {
+    return iterable.size();
+}
 
 template <typename T, typename Gen, suisen::constraints_t<suisen::is_same_as_invoke_result<T, Gen, int>> = nullptr>
 auto generate_vector(int n, Gen generator) {
     std::vector<T> v(n);
     for (int i = 0; i < n; ++i) v[i] = generator(i);
     return v;
+}
+
+template <typename T>
+void sort_unique_erase(std::vector<T> &a) {
+    std::sort(a.begin(), a.end());
+    a.erase(std::unique(a.begin(), a.end()), a.end());
+}
+
+// ! other utilities
+
+// x <- min(x, y). returns true iff `x` has chenged.
+template <typename T>
+inline bool chmin(T &x, const T &y) {
+    if (y >= x) return false;
+    x = y;
+    return true;
+}
+// x <- max(x, y). returns true iff `x` has chenged.
+template <typename T>
+inline bool chmax(T &x, const T &y) {
+    if (y <= x) return false;
+    x = y;
+    return true;
 }
 
 namespace suisen {}

@@ -2,9 +2,9 @@
 
 // ! code from here
 
-int main() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
+fast_io fast_io_ {};
 
+int main() {
+    
     return 0;
 }
