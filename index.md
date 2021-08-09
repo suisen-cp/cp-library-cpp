@@ -250,6 +250,9 @@ data:
       path: library/util/dynamic_bitset.hpp
       title: library/util/dynamic_bitset.hpp
     - icon: ':warning:'
+      path: library/util/grid_utils.hpp
+      title: library/util/grid_utils.hpp
+    - icon: ':warning:'
       path: library/util/iter_util.hpp
       title: library/util/iter_util.hpp
     - icon: ':warning:'
