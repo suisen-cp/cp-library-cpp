@@ -3,7 +3,8 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
-    title: library/datastructure/lazy_eval_dynamic_sequence.hpp
+    title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
+      \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
@@ -159,9 +160,9 @@ data:
     \   *this += std::move(right);\n        }\n        void concat_left(LazyEvalDynamicSequence\
     \ &&left) {\n            this->root = (left += std::move(*this)).root;\n     \
     \   }\n        // [0, k), [k, size())\n        std::pair<LazyEvalDynamicSequence,\
-    \ LazyEvalDynamicSequence> split(int k) {\n            auto [l, r] = Node::split(k);\n\
-    \            return { LazyEvalDynamicSequence(l), LazyEvalDynamicSequence(r) };\n\
-    \        }\n    private:\n        Node *root;\n        LazyEvalDynamicSequence(Node\
+    \ LazyEvalDynamicSequence> split(int k) {\n            auto [l, r] = Node::split(root,\
+    \ k);\n            return { LazyEvalDynamicSequence(l), LazyEvalDynamicSequence(r)\
+    \ };\n        }\n    private:\n        Node *root;\n        LazyEvalDynamicSequence(Node\
     \ *root) : root(root) {}\n        bool index_bounds_check(unsigned int k, unsigned\
     \ int n) {\n            return k < n;\n        }\n};\n}\n\n\n#line 9 \"test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp\"\
     \nusing suisen::LazyEvalDynamicSequence;\n\nstruct F {\n    mint a, b;\n    F\
@@ -216,7 +217,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-08-11 01:57:40+09:00'
+  timestamp: '2021-08-11 03:03:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
