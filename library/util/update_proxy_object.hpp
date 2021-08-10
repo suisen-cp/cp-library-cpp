@@ -20,6 +20,8 @@ struct UpdateProxyObject {
         auto& operator =(const T &val) && { v  = val, update(); return *this; }
         auto& operator<<=(const T &val) && { v <<= val, update(); return *this; }
         auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }
+        template <typename F, constraints_t<is_uni_op<F, T>> = nullptr>
+        auto& apply(F f) && { v = f(v), update(); return *this; }
     private:
         T &v;
         UpdateFunc update;
