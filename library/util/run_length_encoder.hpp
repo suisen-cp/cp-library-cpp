@@ -44,7 +44,7 @@ class RunLengthEncoder {
             _length += num;
         }
 
-        long long pop_back(const long long num = 1) {
+        long long pop_back(long long num = 1) {
             long long rem = 0;
             while (comp.size()) {
                 long long cnt = comp.back().second;
