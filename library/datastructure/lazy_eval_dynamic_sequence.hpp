@@ -219,7 +219,7 @@ class LazyEvalDynamicSequence {
         }
         // [0, k), [k, size())
         std::pair<LazyEvalDynamicSequence, LazyEvalDynamicSequence> split(int k) {
-            auto [l, r] = Node::split(k);
+            auto [l, r] = Node::split(root, k);
             return { LazyEvalDynamicSequence(l), LazyEvalDynamicSequence(r) };
         }
     private:
