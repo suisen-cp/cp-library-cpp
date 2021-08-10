@@ -38,6 +38,9 @@ data:
     path: library/datastructure/fenwick_tree.hpp
     title: library/datastructure/fenwick_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/lazy_eval_dynamic_sequence.hpp
+    title: library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -119,6 +122,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
@@ -237,6 +243,7 @@ data:
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/bit_vector.hpp
   - library/datastructure/lazy_segment_tree.hpp
+  - library/datastructure/lazy_eval_dynamic_sequence.hpp
   - library/template.cpp
   timestamp: '2021-08-02 17:38:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -271,6 +278,7 @@ data:
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
+  - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
 documentation_of: library/type_traits/type_traits.hpp

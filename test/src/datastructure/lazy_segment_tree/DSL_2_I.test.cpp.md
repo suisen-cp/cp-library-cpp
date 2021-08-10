@@ -55,8 +55,10 @@ data:
     \ T &val) && { v %= val, update(); return *this; }\n        auto& operator =(const\
     \ T &val) && { v  = val, update(); return *this; }\n        auto& operator<<=(const\
     \ T &val) && { v <<= val, update(); return *this; }\n        auto& operator>>=(const\
-    \ T &val) && { v >>= val, update(); return *this; }\n    private:\n        T &v;\n\
-    \        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n#line 7 \"library/datastructure/lazy_segment_tree.hpp\"\
+    \ T &val) && { v >>= val, update(); return *this; }\n        template <typename\
+    \ F, constraints_t<is_uni_op<F, T>> = nullptr>\n        auto& apply(F f) && {\
+    \ v = f(v), update(); return *this; }\n    private:\n        T &v;\n        UpdateFunc\
+    \ update;\n};\n\n} // namespace suisen\n\n\n#line 7 \"library/datastructure/lazy_segment_tree.hpp\"\
     \n\nnamespace suisen {\ntemplate <\n    typename T, typename OpTT, typename F,\
     \ typename OpFT, typename OpFF,\n    constraints_t<is_bin_op<OpTT, T>, is_same_as_invoke_result<T,\
     \ OpFT, F, T>, is_bin_op<OpFF, F>> = nullptr\n>\nclass LazySegmentTree {\n   \
@@ -166,7 +168,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
   requiredBy: []
-  timestamp: '2021-08-04 18:37:17+09:00'
+  timestamp: '2021-08-11 01:57:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp

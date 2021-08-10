@@ -32,8 +32,8 @@ data:
     \ {\n            if (comp.size() and comp.back().first == val) {\n           \
     \     comp.back().second += num;\n            } else {\n                comp.emplace_back(val,\
     \ num);\n            }\n            _length += num;\n        }\n\n        long\
-    \ long pop_back(const long long num = 1) {\n            long long rem = 0;\n \
-    \           while (comp.size()) {\n                long long cnt = comp.back().second;\n\
+    \ long pop_back(long long num = 1) {\n            long long rem = 0;\n       \
+    \     while (comp.size()) {\n                long long cnt = comp.back().second;\n\
     \                if (cnt > num) {\n                    comp.back.second -= num;\n\
     \                    return rem + num;\n                }\n                num\
     \ -= cnt, rem += cnt;\n                comp.pop_back();\n            }\n     \
@@ -70,8 +70,8 @@ data:
     \ {\n            if (comp.size() and comp.back().first == val) {\n           \
     \     comp.back().second += num;\n            } else {\n                comp.emplace_back(val,\
     \ num);\n            }\n            _length += num;\n        }\n\n        long\
-    \ long pop_back(const long long num = 1) {\n            long long rem = 0;\n \
-    \           while (comp.size()) {\n                long long cnt = comp.back().second;\n\
+    \ long pop_back(long long num = 1) {\n            long long rem = 0;\n       \
+    \     while (comp.size()) {\n                long long cnt = comp.back().second;\n\
     \                if (cnt > num) {\n                    comp.back.second -= num;\n\
     \                    return rem + num;\n                }\n                num\
     \ -= cnt, rem += cnt;\n                comp.pop_back();\n            }\n     \
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: library/util/run_length_encoder.hpp
   requiredBy: []
-  timestamp: '2021-07-25 00:34:30+09:00'
+  timestamp: '2021-08-11 01:57:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/util/run_length_encoder.hpp

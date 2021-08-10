@@ -6,6 +6,9 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/lazy_eval_dynamic_sequence.hpp
+    title: library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
@@ -72,8 +78,10 @@ data:
     \ T &val) && { v %= val, update(); return *this; }\n        auto& operator =(const\
     \ T &val) && { v  = val, update(); return *this; }\n        auto& operator<<=(const\
     \ T &val) && { v <<= val, update(); return *this; }\n        auto& operator>>=(const\
-    \ T &val) && { v >>= val, update(); return *this; }\n    private:\n        T &v;\n\
-    \        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n"
+    \ T &val) && { v >>= val, update(); return *this; }\n        template <typename\
+    \ F, constraints_t<is_uni_op<F, T>> = nullptr>\n        auto& apply(F f) && {\
+    \ v = f(v), update(); return *this; }\n    private:\n        T &v;\n        UpdateFunc\
+    \ update;\n};\n\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_UPDATE_PROXY_OBJECT\n#define SUISEN_UPDATE_PROXY_OBJECT\n\n\
     #include \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\ntemplate\
     \ <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
@@ -89,8 +97,10 @@ data:
     \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
     \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
     \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
-    \    private:\n        T &v;\n        UpdateFunc update;\n};\n\n} // namespace\
-    \ suisen\n\n#endif // SUISEN_UPDATE_PROXY_OBJECT\n"
+    \        template <typename F, constraints_t<is_uni_op<F, T>> = nullptr>\n   \
+    \     auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n#endif\
+    \ // SUISEN_UPDATE_PROXY_OBJECT\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
@@ -98,7 +108,8 @@ data:
   requiredBy:
   - library/datastructure/segment_tree.hpp
   - library/datastructure/lazy_segment_tree.hpp
-  timestamp: '2021-08-04 18:37:17+09:00'
+  - library/datastructure/lazy_eval_dynamic_sequence.hpp
+  timestamp: '2021-08-11 01:57:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
@@ -109,6 +120,7 @@ data:
   - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
   - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/util/update_proxy_object.hpp
 layout: document
 redirect_from:

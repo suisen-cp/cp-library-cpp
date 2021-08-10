@@ -55,8 +55,10 @@ data:
     \ T &val) && { v %= val, update(); return *this; }\n        auto& operator =(const\
     \ T &val) && { v  = val, update(); return *this; }\n        auto& operator<<=(const\
     \ T &val) && { v <<= val, update(); return *this; }\n        auto& operator>>=(const\
-    \ T &val) && { v >>= val, update(); return *this; }\n    private:\n        T &v;\n\
-    \        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/segment_tree.hpp\"\
+    \ T &val) && { v >>= val, update(); return *this; }\n        template <typename\
+    \ F, constraints_t<is_uni_op<F, T>> = nullptr>\n        auto& apply(F f) && {\
+    \ v = f(v), update(); return *this; }\n    private:\n        T &v;\n        UpdateFunc\
+    \ update;\n};\n\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/segment_tree.hpp\"\
     \n\nnamespace suisen {\ntemplate <typename T, typename F, constraints_t<is_bin_op<F,\
     \ T>> = nullptr>\nclass SegmentTree {\n    public:\n        SegmentTree() : n(0),\
     \ m(0), e(), op() {}\n        SegmentTree(int n, const T &e, const F &op) : n(n),\
@@ -130,7 +132,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-08-04 18:37:17+09:00'
+  timestamp: '2021-08-11 01:57:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp

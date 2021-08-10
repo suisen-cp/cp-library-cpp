@@ -66,12 +66,21 @@ data:
     - icon: ':question:'
       path: library/datastructure/dual_segment_tree.hpp
       title: library/datastructure/dual_segment_tree.hpp
+    - icon: ':warning:'
+      path: library/datastructure/dynamic_sequence.hpp
+      title: library/datastructure/dynamic_sequence.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
       title: library/datastructure/fenwick_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree_2d.hpp
       title: library/datastructure/fenwick_tree_2d.hpp
+    - icon: ':warning:'
+      path: library/datastructure/internal_splay_tree.hpp
+      title: library/datastructure/internal_splay_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/lazy_eval_dynamic_sequence.hpp
+      title: library/datastructure/lazy_eval_dynamic_sequence.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_segment_tree.hpp
       title: library/datastructure/lazy_segment_tree.hpp
@@ -84,6 +93,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: library/datastructure/sparse_table.hpp
+    - icon: ':warning:'
+      path: library/datastructure/splay_tree_map.hpp
+      title: library/datastructure/splay_tree_map.hpp
+    - icon: ':warning:'
+      path: library/datastructure/splay_tree_set.hpp
+      title: library/datastructure/splay_tree_set.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find.hpp
       title: library/datastructure/union_find.hpp
@@ -370,6 +385,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
       title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - name: test/src/datastructure/lazy_eval_dynamic_sequence
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+      title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/lazy_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
