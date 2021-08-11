@@ -5,16 +5,38 @@
 
 namespace suisen {
 template <typename Key>
-class SplayTreeSet {
+class SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t> {
+    using Base = SplayTreeMap<Key, std::nullptr_t>;
+    using Node = Base::Node;
     public:
-        bool contains(const Key &key) { return mp.contains(key); }
-        void insert(const Key &key) { return mp.insert_if_absent(key, nullptr); }
-        bool erase(const Key &key) { return mp.erase(key); }
-        Key operator[](int k) { return mp.kth_entry(k).first; }
-        Key kth_element(int k) { return (*this)[k]; }
-        int size() { return mp.size(); }
-    private:
-        SplayTreeMap<Key, std::nullptr_t> mp;
+        using Base::SplayTreeMap;
+        SplayTreeSet& operator=(const SplayTreeSet&) = delete;
+        SplayTreeSet& operator=(SplayTreeSet&& other) {
+            delete this->root;
+            this->root = other.root;
+            other.root = nullptr;
+            return *this;
+        }
+        void insert(const Key &key) {
+            return this->insert_if_absent(key, nullptr);
+        }
+        Key operator[](int k) {
+            return this->kth_entry(k).first;
+        }
+        Key kth_element(int k) {
+            return (*this)[k];
+        }
+        SplayTreeSet split_by_index(int k) {
+            Base::index_bounds_check(k, this->size() + 1);
+            auto [l, r] = Node::split_by_index(this->root, k);
+            this->root = l;
+            return SplayTreeSet(r);
+        }
+        SplayTreeMap split_by_key(const Key &key) {
+            auto [l, r] = Node::split_by_key(this->root, key);
+            this->root = l;
+            return SplayTreeMap(r);
+        }
 };
 };
 
