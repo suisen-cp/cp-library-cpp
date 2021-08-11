@@ -75,13 +75,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree_2d.hpp
       title: library/datastructure/fenwick_tree_2d.hpp
-    - icon: ':warning:'
-      path: library/datastructure/internal_splay_tree.hpp
-      title: library/datastructure/internal_splay_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_dynamic_sequence.hpp
       title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
         \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/lazy_eval_map.hpp
+      title: library/datastructure/lazy_eval_map.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_segment_tree.hpp
       title: library/datastructure/lazy_segment_tree.hpp
@@ -92,12 +92,15 @@ data:
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: library/datastructure/range_foldable_dynamic_sequence.hpp
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/range_foldable_map.hpp
+      title: library/datastructure/range_foldable_map.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree.hpp
       title: library/datastructure/segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: library/datastructure/sparse_table.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/splay_tree_map.hpp
       title: library/datastructure/splay_tree_map.hpp
     - icon: ':warning:'
@@ -394,6 +397,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+  - name: test/src/datastructure/lazy_eval_map
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+      title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - name: test/src/datastructure/lazy_segment_tree
     pages:
     - icon: ':heavy_check_mark:'

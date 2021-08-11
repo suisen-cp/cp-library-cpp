@@ -10,11 +10,17 @@ data:
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/lazy_eval_map.hpp
+    title: library/datastructure/lazy_eval_map.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: library/datastructure/range_foldable_dynamic_sequence.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/range_foldable_map.hpp
+    title: library/datastructure/range_foldable_map.hpp
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
@@ -25,6 +31,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+    title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
@@ -110,6 +119,8 @@ data:
   isVerificationFile: false
   path: library/util/update_proxy_object.hpp
   requiredBy:
+  - library/datastructure/lazy_eval_map.hpp
+  - library/datastructure/range_foldable_map.hpp
   - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/segment_tree.hpp
   - library/datastructure/lazy_segment_tree.hpp
@@ -121,6 +132,7 @@ data:
   - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
+  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_B.test.cpp

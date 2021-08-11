@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+    title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -228,6 +231,7 @@ data:
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
 layout: document
 redirect_from:
