@@ -38,7 +38,7 @@ int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    LazyEvalDynamicSequence<std::pair<mint, int>, e, op, F, id, mapping, composition> seq;
+    LazyEvalDynamicSequence<std::pair<mint, int>, op, e, F, mapping, composition, id> seq;
 
     int n, q;
     std::cin >> n >> q;
@@ -65,7 +65,7 @@ int main() {
         } else if (t == 3) {
             int l, r, a, b;
             std::cin >> l >> r >> a >> b;
-            seq.apply({ a, b }, l, r);
+            seq.apply(l, r, { a, b });
         } else {
             int l, r;
             std::cin >> l >> r;

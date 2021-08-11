@@ -8,7 +8,7 @@ documentation_of: //library/datastructure/lazy_eval_dynamic_sequence.hpp
 - シグネチャ
 
   ```cpp
-  template <typename T, T (*e)(), T(*op)(T, T), typename F, F(*id)(), T(*mapping)(F, T), F(*composition)(F, F)>
+  template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>
   LazyEvalDynamicSequence()
   ```
 
@@ -25,12 +25,12 @@ documentation_of: //library/datastructure/lazy_eval_dynamic_sequence.hpp
 - テンプレート引数 (`<atcoder/lazysegtree>` と同じです)
 
   - `T`: 列の要素の型
-  - `T (*e)()`: モノイド $(T,\cdot)$ の単位元を生成する関数 (区間反転を用いる場合は，可換モノイド)
   - `T(*op)(T, T)`: 二項演算 $\cdot$
+  - `T (*e)()`: モノイド $(T,\cdot)$ の単位元を生成する関数 (区間反転を用いる場合は，可換モノイド)
   - `F`: 区間作用の作用素型
-  - `F (*id)()`: モノイド $(F,\circ)$ の単位元を生成する関数 (区間反転を用いる場合は，可換モノイド)
   - `T(*mapping)(F, T)`: 一点作用の関数
   - `F(*composition)(F, F)`: 二項演算 $\circ$
+  - `F (*id)()`: モノイド $(F,\circ)$ の単位元を生成する関数 (区間反転を用いる場合は，可換モノイド)
 
 - 制約
 
@@ -143,7 +143,7 @@ documentation_of: //library/datastructure/lazy_eval_dynamic_sequence.hpp
 - シグネチャ
 
   ```cpp
-  T apply(const F &f, int l, int r)
+  T apply(int l, int r, const F &f)
   ```
 
 - 概要
@@ -205,12 +205,12 @@ documentation_of: //library/datastructure/lazy_eval_dynamic_sequence.hpp
 - シグネチャ
 
   ```cpp
-  std::pair<LazyEvalDynamicSequence, LazyEvalDynamicSequence> split(int k)
+  LazyEvalDynamicSequence split(int k)
   ```
 
 - 概要
 
-  列を分割します．`split` により分割した後は，分割してできた 2 つの列に対する操作のみが有効です．分割する前の列を保持していたインスタンスに対する操作は全て未定義となります．
+  列を分割します．分割前の列を $(A_0,\ldots,A_{k-1},A_{k},\ldots,A_{N-1})$ とすると，分割後は $(A_0,\ldots,A_{k-1})$ となり，$(A_k,\ldots,A_{N-1})$ を返します．
 
 - 時間計算量
 
