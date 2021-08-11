@@ -13,6 +13,9 @@ data:
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/range_foldable_dynamic_sequence.hpp
+    title: library/datastructure/range_foldable_dynamic_sequence.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
   _extendedVerifiedWith:
@@ -107,6 +110,7 @@ data:
   isVerificationFile: false
   path: library/util/update_proxy_object.hpp
   requiredBy:
+  - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/segment_tree.hpp
   - library/datastructure/lazy_segment_tree.hpp
   - library/datastructure/lazy_eval_dynamic_sequence.hpp

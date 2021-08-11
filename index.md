@@ -66,7 +66,7 @@ data:
     - icon: ':question:'
       path: library/datastructure/dual_segment_tree.hpp
       title: library/datastructure/dual_segment_tree.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
       title: library/datastructure/dynamic_sequence.hpp
     - icon: ':heavy_check_mark:'
@@ -88,6 +88,9 @@ data:
     - icon: ':warning:'
       path: library/datastructure/linked_union_find.hpp
       title: library/datastructure/linked_union_find.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/range_foldable_dynamic_sequence.hpp
+      title: library/datastructure/range_foldable_dynamic_sequence.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree.hpp
       title: library/datastructure/segment_tree.hpp

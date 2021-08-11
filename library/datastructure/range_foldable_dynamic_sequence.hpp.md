@@ -4,34 +4,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/dynamic_sequence.hpp
     title: library/datastructure/dynamic_sequence.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/datastructure/lazy_eval_dynamic_sequence.hpp
-    title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
-      \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':heavy_check_mark:'
-    path: library/datastructure/range_foldable_dynamic_sequence.hpp
-    title: library/datastructure/range_foldable_dynamic_sequence.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/lazy_eval_dynamic_sequence.hpp
+    title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
+      \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
-    links:
-    - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
-  bundledCode: "#line 1 \"test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
-    \n\n#include <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
-    \n#line 1 \"library/datastructure/lazy_eval_dynamic_sequence.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#include <tuple>\n\n#line 1 \"library/util/update_proxy_object.hpp\"\
+    links: []
+  bundledCode: "#line 1 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <tuple>\n\n#line 1 \"library/util/update_proxy_object.hpp\"\
     \n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
     #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
     \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -66,23 +60,21 @@ data:
     \ T &val) && { v >>= val, update(); return *this; }\n        template <typename\
     \ F, constraints_t<is_uni_op<F, T>> = nullptr>\n        auto& apply(F f) && {\
     \ v = f(v), update(); return *this; }\n    private:\n        T &v;\n        UpdateFunc\
-    \ update;\n};\n\n} // namespace suisen\n\n\n#line 1 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\
-    \n\n\n\n#line 6 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\n\
-    \n#line 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include <cstddef>\n\
-    #line 7 \"library/datastructure/dynamic_sequence.hpp\"\n#include <vector>\n\n\
-    #line 10 \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace suisen {\n\
-    \nnamespace internal::dynamic_sequence {\n\ntemplate <typename T, typename Derived>\n\
-    struct DynamicSequenceNodeBase {\n    using node_ptr_t = Derived *;\n\n    T val;\n\
-    \    int siz;\n    bool rev;\n    node_ptr_t ch[2] {nullptr, nullptr};\n\n   \
-    \ DynamicSequenceNodeBase() : val(), siz(1), rev(false) {}\n    DynamicSequenceNodeBase(const\
-    \ T &val) : val(val), siz(1), rev(false) {}\n\n    ~DynamicSequenceNodeBase()\
-    \ {\n        delete ch[0];\n        delete ch[1];\n    }\n\n    void update()\
-    \ {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n    }\n    void push() {\n\
-    \        reverse_all(this->ch[0], rev), reverse_all(this->ch[1], rev);\n     \
-    \   rev = false;\n    }\n    static int size(node_ptr_t node) {\n        return\
-    \ node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t rotate(node_ptr_t\
-    \ node, bool is_right) {\n        node_ptr_t root = node->ch[is_right ^ true];\n\
-    \        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
+    \ update;\n};\n\n} // namespace suisen\n\n\n#line 1 \"library/datastructure/dynamic_sequence.hpp\"\
+    \n\n\n\n#include <cstddef>\n#line 7 \"library/datastructure/dynamic_sequence.hpp\"\
+    \n#include <vector>\n\n#line 10 \"library/datastructure/dynamic_sequence.hpp\"\
+    \n\nnamespace suisen {\n\nnamespace internal::dynamic_sequence {\n\ntemplate <typename\
+    \ T, typename Derived>\nstruct DynamicSequenceNodeBase {\n    using node_ptr_t\
+    \ = Derived *;\n\n    T val;\n    int siz;\n    bool rev;\n    node_ptr_t ch[2]\
+    \ {nullptr, nullptr};\n\n    DynamicSequenceNodeBase() : val(), siz(1), rev(false)\
+    \ {}\n    DynamicSequenceNodeBase(const T &val) : val(val), siz(1), rev(false)\
+    \ {}\n\n    ~DynamicSequenceNodeBase() {\n        delete ch[0];\n        delete\
+    \ ch[1];\n    }\n\n    void update() {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n\
+    \    }\n    void push() {\n        reverse_all(this->ch[0], rev), reverse_all(this->ch[1],\
+    \ rev);\n        rev = false;\n    }\n    static int size(node_ptr_t node) {\n\
+    \        return node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t\
+    \ rotate(node_ptr_t node, bool is_right) {\n        node_ptr_t root = node->ch[is_right\
+    \ ^ true];\n        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
     \ = node;\n        node->update(), root->update();\n        return root;\n   \
     \ }\n\n    static node_ptr_t splay(node_ptr_t node, int index) {\n        std::vector<node_ptr_t>\
     \ path;\n        node_ptr_t work_root = new Derived();\n        node_ptr_t work_leaf[2]\
@@ -224,122 +216,76 @@ data:
     \ [k, size())\n        RangeFoldableDynamicSequence split(int k) {\n         \
     \   this->index_bounds_check(k, this->size() + 1);\n            auto [l, r] =\
     \ Node::split(this->root, k);\n            this->root = l;\n            return\
-    \ RangeFoldableDynamicSequence(r);\n        }\n};\n\n}\n\n\n#line 9 \"library/datastructure/lazy_eval_dynamic_sequence.hpp\"\
-    \n\nnamespace suisen {\nnamespace internal::lazy_eval_dynamic_sequence {\n\ntemplate\
-    \ <typename T, T(*op)(T, T), T (*e)(), typename F, T(*mapping)(F, T), F(*composition)(F,\
-    \ F), F(*id)(), typename Derived>\nstruct LazyEvalDynamicSequenceNodeBase : public\
-    \ internal::range_foldable_dynamic_sequence::RangeFoldableDynamicSequenceNodeBase<T,\
-    \ op, e, Derived> {\n    using Base = internal::range_foldable_dynamic_sequence::RangeFoldableDynamicSequenceNodeBase<T,\
-    \ op, e, Derived>;\n    using node_ptr_t = typename Base::node_ptr_t;\n    F laz;\n\
-    \n    LazyEvalDynamicSequenceNodeBase() : LazyEvalDynamicSequenceNodeBase(e())\
-    \ {}\n    LazyEvalDynamicSequenceNodeBase(const T &val) : Base::RangeFoldableDynamicSequenceNodeBase(val),\
-    \ laz(id()) {}\n\n    void push() {\n        Base::push();\n        apply_all(this->ch[0],\
-    \ laz), apply_all(this->ch[1], laz);\n        laz = id();\n    }\n    static void\
-    \ apply_all(node_ptr_t node, const F &f) {\n        if (node == nullptr) return;\n\
-    \        node->val = mapping(f, node->val);\n        node->dat = mapping(f, node->dat);\n\
-    \        node->laz = composition(f, node->laz);\n    }\n    static node_ptr_t\
-    \ apply(node_ptr_t node, int l, int r, const F &f) {\n        auto [tl, tm, tr]\
-    \ = Base::split(node, l, r);\n        apply_all(tm, f);\n        return Base::merge(tl,\
-    \ tm, tr);\n    }\n};\n\ntemplate <typename T, T(*op)(T, T), T (*e)(), typename\
-    \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\nstruct LazyEvalDynamicSequenceNode\
-    \ : public LazyEvalDynamicSequenceNodeBase<T, op, e, F, mapping, composition,\
-    \ id, LazyEvalDynamicSequenceNode<T, op, e, F, mapping, composition, id>> {\n\
-    \    using Base = LazyEvalDynamicSequenceNodeBase<T, op, e, F, mapping, composition,\
-    \ id, LazyEvalDynamicSequenceNode<T, op, e, F, mapping, composition, id>>;\n \
-    \   using Base::LazyEvalDynamicSequenceNodeBase;\n    using node_ptr_t = typename\
-    \ Base::node_ptr_t;\n};\n}\n\ntemplate <typename T, T(*op)(T, T), T (*e)(), typename\
-    \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)(), typename SplayNode>\n\
-    class LazyEvalDynamicSequenceBase : public RangeFoldableDynamicSequenceBase<T,\
-    \ op, e, SplayNode> {\n    using Base = RangeFoldableDynamicSequenceBase<T, op,\
-    \ e, SplayNode>;\n    using node_ptr_t = typename SplayNode::node_ptr_t;\n   \
-    \ public:\n        using value_type = T;\n        using Base::RangeFoldableDynamicSequenceBase;\n\
-    \        void apply(int l, int r, const F &f) {\n            this->range_bounds_check(l,\
-    \ r, this->size());\n            this->root = SplayNode::apply(this->root, l,\
-    \ r, f);\n        }\n        void apply_all(const F &f) {\n            SplayNode::apply_all(this->root,\
-    \ f);\n        }\n};\n\ntemplate <typename T, T(*op)(T, T), T (*e)(), typename\
-    \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\nclass LazyEvalDynamicSequence\
-    \ : public LazyEvalDynamicSequenceBase<T, op, e, F, mapping, composition, id,\
-    \ internal::lazy_eval_dynamic_sequence::LazyEvalDynamicSequenceNode<T, op, e,\
-    \ F, mapping, composition, id>> {\n    using Node = internal::lazy_eval_dynamic_sequence::LazyEvalDynamicSequenceNode<T,\
-    \ op, e, F, mapping, composition, id>;\n    using Base = LazyEvalDynamicSequenceBase<T,\
-    \ op, e, F, mapping, composition, id, Node>;\n    using node_ptr_t = typename\
-    \ Node::node_ptr_t;\n    public:\n        using value_type = T;\n        using\
-    \ Base::LazyEvalDynamicSequenceBase;\n\n        LazyEvalDynamicSequence& operator=(LazyEvalDynamicSequence&\
-    \  other) = delete;\n        LazyEvalDynamicSequence& operator=(LazyEvalDynamicSequence&&\
+    \ RangeFoldableDynamicSequence(r);\n        }\n};\n\n}\n\n\n"
+  code: "#ifndef SUISEN_RANGE_FOLDABLE_DYNAMIC_SEQUENCE\n#define SUISEN_RANGE_FOLDABLE_DYNAMIC_SEQUENCE\n\
+    \n#include <cassert>\n#include <tuple>\n\n#include \"library/util/update_proxy_object.hpp\"\
+    \n#include \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace suisen\
+    \ {\nnamespace internal::range_foldable_dynamic_sequence {\n\ntemplate <typename\
+    \ T, T(*op)(T, T), T (*e)(), typename Derived>\nstruct RangeFoldableDynamicSequenceNodeBase\
+    \ : public internal::dynamic_sequence::DynamicSequenceNodeBase<T, Derived> {\n\
+    \    using Base = internal::dynamic_sequence::DynamicSequenceNodeBase<T, Derived>;\n\
+    \    using node_ptr_t = typename Base::node_ptr_t;\n    T dat;\n    RangeFoldableDynamicSequenceNodeBase()\
+    \ : RangeFoldableDynamicSequenceNodeBase(e()) {}\n    RangeFoldableDynamicSequenceNodeBase(const\
+    \ T &val) : Base::DynamicSequenceNodeBase(val), dat(val) {}\n    void update()\
+    \ {\n        Base::update();\n        dat = op(op(prod_all(this->ch[0]), this->val),\
+    \ prod_all(this->ch[1]));\n    }\n    static T prod_all(node_ptr_t node) {\n \
+    \       return node == nullptr ? e() : node->dat;\n    }\n    static std::pair<node_ptr_t,\
+    \ T> prod(node_ptr_t node, int l, int r) {\n        auto [tl, tm, tr] = Base::split(node,\
+    \ l, r);\n        T res = prod_all(tm);\n        return { Base::merge(tl, tm,\
+    \ tr), res };\n    }\n};\n\ntemplate <typename T, T(*op)(T, T), T (*e)()>\nstruct\
+    \ RangeFoldableDynamicSequenceNode : public RangeFoldableDynamicSequenceNodeBase<T,\
+    \ op, e, RangeFoldableDynamicSequenceNode<T, op, e>> {\n    using Base = RangeFoldableDynamicSequenceNodeBase<T,\
+    \ op, e, RangeFoldableDynamicSequenceNode<T, op, e>>;\n    using Base::RangeFoldableDynamicSequenceNodeBase;\n\
+    \    using node_ptr_t = typename Base::node_ptr_t;\n};\n}\n\ntemplate <typename\
+    \ T, T(*op)(T, T), T (*e)(), typename SplayNode>\nclass RangeFoldableDynamicSequenceBase\
+    \ : public DynamicSequenceBase<T, SplayNode> {\n    using Base = DynamicSequenceBase<T,\
+    \ SplayNode>;\n    using node_ptr_t = typename SplayNode::node_ptr_t;\n    public:\n\
+    \        using value_type = T;\n        using Base::DynamicSequenceBase;\n   \
+    \     auto operator[](int k) {\n            this->index_bounds_check(k, this->size());\n\
+    \            this->root = SplayNode::splay(this->root, k);\n            return\
+    \ UpdateProxyObject { this->root->val, [this]{ this->root->update(); } };\n  \
+    \      }\n        T operator()(int l, int r) {\n            return prod(l, r);\n\
+    \        }\n        T prod(int l, int r) {\n            this->range_bounds_check(l,\
+    \ r, this->size());\n            auto [new_root, res] = SplayNode::prod(this->root,\
+    \ l, r);\n            this->root = new_root;\n            return res;\n      \
+    \  }\n        T prod_all() {\n            return SplayNode::prod_all(this->root);\n\
+    \        }\n};\n\ntemplate <typename T, T(*op)(T, T), T (*e)()>\nclass RangeFoldableDynamicSequence\
+    \ : public RangeFoldableDynamicSequenceBase<T, op, e, internal::range_foldable_dynamic_sequence::RangeFoldableDynamicSequenceNode<T,\
+    \ op, e>> {\n    using Node = internal::range_foldable_dynamic_sequence::RangeFoldableDynamicSequenceNode<T,\
+    \ op, e>;\n    using Base = RangeFoldableDynamicSequenceBase<T, op, e, Node>;\n\
+    \    using node_ptr_t = typename Node::node_ptr_t;\n    public:\n        using\
+    \ value_type = T;\n        using Base::RangeFoldableDynamicSequenceBase;\n\n \
+    \       RangeFoldableDynamicSequence& operator=(RangeFoldableDynamicSequence&\
+    \  other) = delete;\n        RangeFoldableDynamicSequence& operator=(RangeFoldableDynamicSequence&&\
     \ other) {\n            delete this->root;\n            this->root = other.root;\n\
     \            other.root = nullptr;\n            return *this;\n        }\n\n \
-    \       LazyEvalDynamicSequence& operator+=(LazyEvalDynamicSequence &&right) {\n\
-    \            this->root = Node::merge(this->root, right.root);\n            right.root\
-    \ = nullptr;\n            return *this;\n        }\n        void concat(LazyEvalDynamicSequence\
-    \ &&right) {\n            *this += std::move(right);\n        }\n        void\
-    \ concat_left(LazyEvalDynamicSequence &&left) {\n            this->root = (left\
-    \ += std::move(*this)).root;\n            left.root = nullptr;\n        }\n  \
-    \      // erases [k, size()) and returns [k, size())\n        LazyEvalDynamicSequence\
-    \ split(int k) {\n            this->index_bounds_check(k, this->size() + 1);\n\
-    \            auto [l, r] = Node::split(this->root, k);\n            this->root\
-    \ = l;\n            return LazyEvalDynamicSequence(r);\n        }\n};\n}\n\n\n\
-    #line 9 \"test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp\"\
-    \nusing suisen::LazyEvalDynamicSequence;\n\nstruct F {\n    mint a, b;\n    F\
-    \ compose(F g) {\n        return F { a * g.a, a * g.b + b };\n    }\n};\n\nstd::pair<mint,\
-    \ int> op(std::pair<mint, int> x, std::pair<mint, int> y) {\n    auto [xs, xl]\
-    \ = x;\n    auto [ys, yl] = y;\n    return { xs + ys, xl + yl };\n}\nstd::pair<mint,\
-    \ int> e() {\n    return { 0, 0 };\n}\n\nstd::pair<mint, int> mapping(F f, std::pair<mint,\
-    \ int> x) {\n    return { f.a * x.first + f.b * x.second, x.second };\n}\nF composition(F\
-    \ f, F g) {\n    return f.compose(g);\n}\nF id() {\n    return { 1, 0 };\n}\n\n\
-    int main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    LazyEvalDynamicSequence<std::pair<mint, int>, op, e, F, mapping, composition,\
-    \ id> seq;\n\n    int n, q;\n    std::cin >> n >> q;\n    for (int i = 0; i <\
-    \ n; ++i) {\n        int a;\n        std::cin >> a;\n        seq.insert(i, { a,\
-    \ 1 });\n    }\n    while (q --> 0) {\n        int t;\n        std::cin >> t;\n\
-    \        if (t == 0) {\n            int i, x;\n            std::cin >> i >> x;\n\
-    \            seq.insert(i, { x, 1 });\n        } else if (t == 1) {\n        \
-    \    int i;\n            std::cin >> i;\n            seq.erase(i);\n        }\
-    \ else if (t == 2) {\n            int l, r;\n            std::cin >> l >> r;\n\
-    \            seq.reverse(l, r);\n        } else if (t == 3) {\n            int\
-    \ l, r, a, b;\n            std::cin >> l >> r >> a >> b;\n            seq.apply(l,\
-    \ r, { a, b });\n        } else {\n            int l, r;\n            std::cin\
-    \ >> l >> r;\n            std::cout << seq(l, r).first.val() << '\\n';\n     \
-    \   }\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
-    \n\n#include <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
-    \n#include \"library/datastructure/lazy_eval_dynamic_sequence.hpp\"\nusing suisen::LazyEvalDynamicSequence;\n\
-    \nstruct F {\n    mint a, b;\n    F compose(F g) {\n        return F { a * g.a,\
-    \ a * g.b + b };\n    }\n};\n\nstd::pair<mint, int> op(std::pair<mint, int> x,\
-    \ std::pair<mint, int> y) {\n    auto [xs, xl] = x;\n    auto [ys, yl] = y;\n\
-    \    return { xs + ys, xl + yl };\n}\nstd::pair<mint, int> e() {\n    return {\
-    \ 0, 0 };\n}\n\nstd::pair<mint, int> mapping(F f, std::pair<mint, int> x) {\n\
-    \    return { f.a * x.first + f.b * x.second, x.second };\n}\nF composition(F\
-    \ f, F g) {\n    return f.compose(g);\n}\nF id() {\n    return { 1, 0 };\n}\n\n\
-    int main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    LazyEvalDynamicSequence<std::pair<mint, int>, op, e, F, mapping, composition,\
-    \ id> seq;\n\n    int n, q;\n    std::cin >> n >> q;\n    for (int i = 0; i <\
-    \ n; ++i) {\n        int a;\n        std::cin >> a;\n        seq.insert(i, { a,\
-    \ 1 });\n    }\n    while (q --> 0) {\n        int t;\n        std::cin >> t;\n\
-    \        if (t == 0) {\n            int i, x;\n            std::cin >> i >> x;\n\
-    \            seq.insert(i, { x, 1 });\n        } else if (t == 1) {\n        \
-    \    int i;\n            std::cin >> i;\n            seq.erase(i);\n        }\
-    \ else if (t == 2) {\n            int l, r;\n            std::cin >> l >> r;\n\
-    \            seq.reverse(l, r);\n        } else if (t == 3) {\n            int\
-    \ l, r, a, b;\n            std::cin >> l >> r >> a >> b;\n            seq.apply(l,\
-    \ r, { a, b });\n        } else {\n            int l, r;\n            std::cin\
-    \ >> l >> r;\n            std::cout << seq(l, r).first.val() << '\\n';\n     \
-    \   }\n    }\n    return 0;\n}"
+    \       RangeFoldableDynamicSequence& operator+=(RangeFoldableDynamicSequence\
+    \ &&right) {\n            this->root = Node::merge(this->root, right.root);\n\
+    \            right.root = nullptr;\n            return *this;\n        }\n   \
+    \     void concat(RangeFoldableDynamicSequence &&right) {\n            *this +=\
+    \ std::move(right);\n        }\n        void concat_left(RangeFoldableDynamicSequence\
+    \ &&left) {\n            this->root = (left += std::move(*this)).root;\n     \
+    \       left.root = nullptr;\n        }\n        // erases [k, size()) and returns\
+    \ [k, size())\n        RangeFoldableDynamicSequence split(int k) {\n         \
+    \   this->index_bounds_check(k, this->size() + 1);\n            auto [l, r] =\
+    \ Node::split(this->root, k);\n            this->root = l;\n            return\
+    \ RangeFoldableDynamicSequence(r);\n        }\n};\n\n}\n\n#endif // SUISEN_RANGE_FOLDABLE_DYNAMIC_SEQUENCE\n"
   dependsOn:
-  - library/datastructure/lazy_eval_dynamic_sequence.hpp
   - library/util/update_proxy_object.hpp
   - library/type_traits/type_traits.hpp
-  - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/dynamic_sequence.hpp
-  isVerificationFile: true
-  path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  requiredBy: []
+  isVerificationFile: false
+  path: library/datastructure/range_foldable_dynamic_sequence.hpp
+  requiredBy:
+  - library/datastructure/lazy_eval_dynamic_sequence.hpp
   timestamp: '2021-08-11 19:49:14+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+documentation_of: library/datastructure/range_foldable_dynamic_sequence.hpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-- /verify/test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp.html
-title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+- /library/library/datastructure/range_foldable_dynamic_sequence.hpp
+- /library/library/datastructure/range_foldable_dynamic_sequence.hpp.html
+title: library/datastructure/range_foldable_dynamic_sequence.hpp
 ---
