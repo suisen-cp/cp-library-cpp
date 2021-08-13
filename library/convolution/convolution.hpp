@@ -4,10 +4,11 @@
 #include <vector>
 
 namespace suisen {
-
+namespace internal::arithmetic_operator {}
 template <typename T, template <typename> class Transform>
 struct Convolution {
     static std::vector<T> convolution(std::vector<T> a, std::vector<T> b) {
+        using namespace internal::arithmetic_operator;
         const int n = a.size();
         assert(n == int(b.size()));
         Transform<T>::transform(a);
@@ -17,6 +18,7 @@ struct Convolution {
         return a;
     }
     static std::vector<T> convolution(std::vector<std::vector<T>> a) {
+        using namespace internal::arithmetic_operator;
         const int num = a.size();
         if (num == 0) return {};
         const int n = a[0].size();

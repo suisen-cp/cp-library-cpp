@@ -3,9 +3,12 @@
 
 #include <vector>
 
-namespace suisen {
+namespace suisen::internal::arithmetic_operator {}
 
+namespace suisen {
 namespace multiple_transform {
+
+using namespace suisen::internal::arithmetic_operator;
 
 // Calculates `g` s.t. g(n) = Sum_{n | m} f(m) inplace.
 template <typename T, typename AddAssign>

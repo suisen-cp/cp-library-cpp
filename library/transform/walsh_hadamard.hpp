@@ -4,12 +4,13 @@
 #include <cassert>
 #include <vector>
 
+namespace suisen::internal::arithmetic_operator {}
+
 namespace suisen {
-
-namespace internal {
-
+namespace walsh_hadamard {
 template <typename T>
 void fwht(std::vector<T>& a, bool rev) {
+    using namespace suisen::internal::arithmetic_operator;
     const int n = a.size();
     assert((-n & n) == n);
     for (int i = 1; i < n; i *= 2) {
@@ -26,16 +27,15 @@ void fwht(std::vector<T>& a, bool rev) {
         for (int i = 0; i < n; i++) a[i] *= inv;
     }
 }
-
-} // nemaspace internal
+} // nemaspace walsh_hadamard
 
 template <typename T>
 struct WalshHadamard {
     static void transform(std::vector<T> &a) {
-        internal::fwht(a, false);
+        walsh_hadamard::fwht(a, false);
     }
     static void inverse_transform(std::vector<T> &a) {
-        internal::fwht(a, true);
+        walsh_hadamard::fwht(a, true);
     }
 };
 

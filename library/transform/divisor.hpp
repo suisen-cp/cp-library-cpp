@@ -3,9 +3,12 @@
 
 #include <vector>
 
-namespace suisen{
+namespace suisen::internal::arithmetic_operator {}
 
+namespace suisen {
 namespace divisor_transform {
+
+using namespace suisen::internal::arithmetic_operator;
 
 // Calculates `g` s.t. g(n) = Sum_{d | n} f(d) inplace.
 template <typename T, typename AddAssign>

@@ -4,12 +4,11 @@
 #include <cassert>
 #include <vector>
 
+namespace suisen::internal::arithmetic_operator {}
+
 namespace suisen {
-
 namespace subset_transform {
-
 namespace internal {
-
 template <typename T, typename AssignOp>
 void transform(std::vector<T> &f, AssignOp assign_op) {
     const int n = f.size();
@@ -21,8 +20,9 @@ void transform(std::vector<T> &f, AssignOp assign_op) {
         }
     }
 }
-
 } // namespace internal
+
+using namespace suisen::internal::arithmetic_operator;
 
 template <typename T, typename AddAssign>
 void zeta(std::vector<T> &f, AddAssign add_assign) {

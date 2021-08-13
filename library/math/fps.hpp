@@ -205,4 +205,25 @@ convolution_t<mint> FPS<mint>::mult = [](const auto &, const auto &) {
 
 } // namespace suisen
 
+template <typename mint>
+auto sqrt(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {
+    assert(false);
+}
+template <typename mint>
+auto log(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {
+    return a.log(a.deg());
+}
+template <typename mint>
+auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {
+    return a.exp(a.deg());
+}
+template <typename mint, typename T>
+auto pow(suisen::FPS<mint> a, T b) -> decltype(mint::mod(), mint()) {
+    return a.pow(b, a.deg());
+}
+template <typename mint>
+auto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {
+    return a.inv(a.deg());
+}
+
 #endif // SUISEN_FPS
