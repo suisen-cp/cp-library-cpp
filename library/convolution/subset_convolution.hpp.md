@@ -1,166 +1,51 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/convolution.hpp
     title: Convolution
-  - icon: ':question:'
-    path: library/math/fps.hpp
-    title: library/math/fps.hpp
-  - icon: ':question:'
-    path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: library/math/sps.hpp
+    title: library/math/sps.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/src/math/sps/connectivity2.test.cpp
+    title: test/src/math/sps/connectivity2.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+    title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/convolution/subset_convolution.hpp\"\n\n\n\n#line\
-    \ 1 \"library/math/fps.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
-    #include <iostream>\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\
-    \nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n\
-    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
-    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
-    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
-    \ = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n           \
-    \ if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
-    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
-    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
-    \        static constexpr int mod = mint::mod();\n};\ntemplate <typename mint>\n\
-    std::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 9 \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\n\ntemplate <typename mint>\nusing convolution_t = std::vector<mint>\
-    \ (*)(const std::vector<mint> &, const std::vector<mint> &);\n\ntemplate <typename\
-    \ mint>\nclass FPS : public std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
-    \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
-    \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
-    \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        inline\
-    \ FPS& operator=(const std::vector<mint> &&f) & noexcept {\n            std::vector<mint>::operator=(std::move(f));\n\
-    \            return *this;\n        }\n        inline FPS& operator=(const std::vector<mint>\
-    \  &f) & {\n            std::vector<mint>::operator=(f);\n            return *this;\n\
-    \        }\n\n        inline const mint  operator[](int n) const noexcept { return\
-    \ n <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int\
-    \ n)       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline\
-    \ int size() const noexcept { return std::vector<mint>::size(); }\n        inline\
-    \ int deg()  const noexcept { return size() - 1; }\n        inline int normalize()\
-    \ {\n            while (this->size() and this->back() == 0) this->pop_back();\n\
-    \            return deg();\n        }\n        inline FPS& pre_inplace(int max_deg)\
-    \ noexcept {\n            if (deg() > max_deg) this->resize(std::max(0, max_deg\
-    \ + 1));\n            return *this;\n        }\n        inline FPS pre(int max_deg)\
-    \ const noexcept { return FPS(*this).pre_inplace(max_deg); }\n\n        inline\
-    \ FPS operator+() const { return FPS(*this); }\n        FPS operator-() const\
-    \ {\n            FPS f(*this);\n            for (auto &e : f) e = mint::mod()\
-    \ - e;\n            return f;\n        }\n        inline FPS& operator++() { ++(*this)[0];\
-    \ return *this; }\n        inline FPS& operator--() { --(*this)[0]; return *this;\
-    \ }\n        inline FPS& operator+=(const mint x) { (*this)[0] += x; return *this;\
-    \ }\n        inline FPS& operator-=(const mint x) { (*this)[0] -= x; return *this;\
-    \ }\n        FPS& operator+=(const FPS &g) {\n            ensure_deg(g.deg());\n\
-    \            for (int i = 0; i <= g.deg(); ++i) unsafe_get(i) += g.unsafe_get(i);\n\
-    \            return *this;\n        }\n        FPS& operator-=(const FPS &g) {\n\
-    \            ensure_deg(g.deg());\n            for (int i = 0; i <= g.deg(); ++i)\
-    \ unsafe_get(i) -= g.unsafe_get(i);\n            return *this;\n        }\n  \
-    \      inline FPS& operator*=(const FPS  &g) { return *this = FPS<mint>::mult(*this,\
-    \ g); }\n        inline FPS& operator*=(      FPS &&g) { return *this = FPS<mint>::mult(*this,\
-    \ g); }\n        inline FPS& operator*=(const mint x) {\n            for (auto\
-    \ &e : *this) e *= x;\n            return *this;\n        }\n        FPS& operator/=(FPS\
-    \ &&g) {\n            const int fd = normalize(), gd = g.normalize();\n      \
-    \      assert(gd >= 0);\n            if (fd < gd) { this->clear(); return *this;\
-    \ }\n            if (gd == 0) return *this *= g.unsafe_get(0).inv();\n       \
-    \     static constexpr int THRESHOLD_NAIVE_POLY_QUOTIENT = 256;\n            if\
-    \ (gd <= THRESHOLD_NAIVE_POLY_QUOTIENT) {\n                *this = std::move(naive_div_inplace(std::move(g),\
-    \ gd).first);\n                return *this;\n            }\n            std::reverse(this->begin(),\
-    \ this->end()), std::reverse(g.begin(), g.end());\n            const int k = fd\
-    \ - gd;\n            *this *= g.inv_inplace(k), this->resize(k + 1);\n       \
-    \     std::reverse(this->begin(), this->end());\n            return *this;\n \
-    \       }\n        FPS& operator%=(FPS &&g) {\n            int fd = normalize(),\
-    \ gd = g.normalize();\n            assert(gd >= 0);\n            if (fd < gd)\
-    \ return *this;\n            if (gd == 0) { this->clear(); return *this; }\n \
-    \           static constexpr int THRESHOLD_NAIVE_REMAINDER = 256;\n          \
-    \  if (gd <= THRESHOLD_NAIVE_REMAINDER) return naive_div_inplace(std::move(g),\
-    \ gd).second;\n            *this -= g * (*this / g);\n            return pre_inplace(gd\
-    \ - 1);\n        }\n        inline FPS& operator/=(const FPS &g) { return *this\
-    \ /= FPS(g); }\n        inline FPS& operator%=(const FPS &g) { return *this %=\
-    \ FPS(g); }\n        FPS& operator<<=(const int shamt) {\n            this->insert(this->begin(),\
-    \ shamt, 0);\n            return *this;\n        }\n        FPS& operator>>=(const\
-    \ int shamt) {\n            if (shamt > size()) this->clear();\n            else\
-    \ this->erase(this->begin(), this->begin() + shamt);\n            return *this;\n\
-    \        }\n\n        inline FPS operator+(FPS &&g) const { return FPS(*this)\
-    \ += std::move(g); }\n        inline FPS operator-(FPS &&g) const { return FPS(*this)\
-    \ -= std::move(g); }\n        inline FPS operator*(FPS &&g) const { return FPS(*this)\
-    \ *= std::move(g); }\n        inline FPS operator/(FPS &&g) const { return FPS(*this)\
-    \ /= std::move(g); }\n        inline FPS operator%(FPS &&g) const { return FPS(*this)\
-    \ %= std::move(g); }\n        inline FPS operator+(const FPS &g) const { return\
-    \ FPS(*this) += g; }\n        inline FPS operator+(const mint x) const { return\
-    \ FPS(*this) += x; }\n        inline FPS operator-(const FPS &g) const { return\
-    \ FPS(*this) -= g; }\n        inline FPS operator-(const mint x) const { return\
-    \ FPS(*this) -= x; }\n        inline FPS operator*(const FPS &g) const { return\
-    \ FPS(*this) *= g; }\n        inline FPS operator*(const mint x) const { return\
-    \ FPS(*this) *= x; }\n        inline FPS operator/(const FPS &g) const { return\
-    \ FPS(*this) /= g; }\n        inline FPS operator%(const FPS &g) const { return\
-    \ FPS(*this) %= g; }\n        inline friend FPS operator*(const mint x, const\
-    \ FPS  &f) { return f * x; }\n        inline friend FPS operator*(const mint x,\
-    \       FPS &&f) { return f *= x; }\n        inline FPS operator<<(const int shamt)\
-    \ { return FPS(*this) <<= shamt; }\n        inline FPS operator>>(const int shamt)\
-    \ { return FPS(*this) >>= shamt; }\n\n        FPS& diff_inplace() {\n        \
-    \    if (this->size() == 0) return *this;\n            for (int i = 1; i <= deg();\
-    \ ++i) unsafe_get(i - 1) = unsafe_get(i) * i;\n            this->pop_back();\n\
-    \            return *this;\n        }\n        FPS& intg_inplace() {\n       \
-    \     int d = deg();\n            ensure_deg(d + 1);\n            for (int i =\
-    \ d; i >= 0; --i) unsafe_get(i + 1) = unsafe_get(i) * invs[i + 1];\n         \
-    \   unsafe_get(0) = 0;\n            return *this;\n        }\n        FPS& inv_inplace(const\
-    \ int max_deg) {\n            FPS res { unsafe_get(0).inv() };\n            for\
-    \ (int k = 1; k <= max_deg; k *= 2) {\n                FPS tmp(this->pre(k * 2)\
-    \ * (res * res));\n                res *= 2, res -= tmp.pre_inplace(2 * k);\n\
-    \            }\n            return *this = std::move(res), pre_inplace(max_deg);\n\
-    \        }\n        FPS& log_inplace(const int max_deg) {\n            FPS f_inv\
-    \ = inv(max_deg);\n            diff_inplace(), *this *= f_inv, pre_inplace(max_deg\
-    \ - 1), intg_inplace();\n            return *this;\n        }\n        FPS& exp_inplace(const\
-    \ int max_deg) {\n            FPS res {1};\n            for (int k = 1; k <= max_deg;\
-    \ k *= 2) res *= ++(pre(k * 2) - res.log(k * 2)), res.pre_inplace(k * 2);\n  \
-    \          return *this = std::move(res), pre_inplace(max_deg);\n        }\n \
-    \       FPS& pow_inplace(const long long k, const int max_deg) {\n           \
-    \ int tlz = 0;\n            while (tlz <= deg() and unsafe_get(tlz) == 0) ++tlz;\n\
-    \            if (tlz * k > max_deg) { this->clear(); return *this; }\n       \
-    \     *this >>= tlz;\n            mint base = (*this)[0];\n            *this *=\
-    \ base.inv(), log_inplace(max_deg), *this *= k, exp_inplace(max_deg), *this *=\
-    \ base.pow(k);\n            return *this <<= tlz * k, pre_inplace(max_deg);\n\
-    \        }\n        inline FPS diff() const { return FPS(*this).diff_inplace();\
-    \ }\n        inline FPS intg() const { return FPS(*this).intg_inplace(); }\n \
-    \       inline FPS inv(const int max_deg) const { return FPS(*this).inv_inplace(max_deg);\
-    \ }\n        inline FPS log(const int max_deg) const { return FPS(*this).log_inplace(max_deg);\
-    \ }\n        inline FPS exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg);\
-    \ }\n        inline FPS pow(const long long k, const int max_deg) const { return\
-    \ FPS(*this).pow_inplace(k, max_deg); }\n\n    private:\n        static inv_mods<mint>\
-    \ invs;\n        static convolution_t<mint> mult;\n        inline void ensure_deg(int\
-    \ d) { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
-    \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
-    \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
-    \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
-    \          const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
-    \            FPS q(k + 1);\n            for (int i = k; i >= 0; --i) {\n     \
-    \           mint div = this->unsafe_get(i + gd) * head_inv;\n                q.unsafe_get(i)\
-    \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
-    \ -= div * g.unsafe_get(j);\n            }\n            return {q, pre_inplace(gd\
-    \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
-    \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
-    \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n\n#line 1 \"library/transform/subset.hpp\"\n\n\n\
-    \n#line 6 \"library/transform/subset.hpp\"\n\nnamespace suisen {\n\nnamespace\
-    \ subset_transform {\n\nnamespace internal {\n\ntemplate <typename T, typename\
-    \ AssignOp>\nvoid transform(std::vector<T> &f, AssignOp assign_op) {\n    const\
-    \ int n = f.size();\n    assert((-n & n) == n);\n    for (int k = 1; k < n; k\
-    \ <<= 1) {\n        for (int l = 0; l < n; l += 2 * k) {\n            int m =\
-    \ l + k;\n            for (int p = 0; p < k; ++p) assign_op(f[m + p], f[l + p]);\n\
-    \        }\n    }\n}\n\n} // namespace internal\n\ntemplate <typename T, typename\
-    \ AddAssign>\nvoid zeta(std::vector<T> &f, AddAssign add_assign) {\n    internal::transform(f,\
+  bundledCode: "#line 1 \"library/convolution/subset_convolution.hpp\"\n\n\n\n#include\
+    \ <vector>\n\nnamespace suisen::internal::arithmetic_operator {\ntemplate <typename\
+    \ T>\nvoid operator+=(std::vector<T> &a, const std::vector<T> &b) {\n    int n\
+    \ = b.size();\n    for (int i = 0; i < n; ++i) a[i] += b[i];\n}\ntemplate <typename\
+    \ T>\nvoid operator-=(std::vector<T> &a, const std::vector<T> &b) {\n    int n\
+    \ = b.size();\n    for (int i = 0; i < n; ++i) a[i] -= b[i];\n}\ntemplate <typename\
+    \ T>\nvoid operator*=(std::vector<T> &a, const std::vector<T> &b) {\n    int n\
+    \ = b.size();\n    for (int i = n - 1; i >= 0; --i) {\n        for (int j = n\
+    \ - i - 1; j > 0; --j) a[i + j] += a[i] * b[j];\n        a[i] *= b[0];\n    }\n\
+    }\n}\n\n#line 1 \"library/transform/subset.hpp\"\n\n\n\n#include <cassert>\n#line\
+    \ 6 \"library/transform/subset.hpp\"\n\nnamespace suisen::internal::arithmetic_operator\
+    \ {}\n\nnamespace suisen {\nnamespace subset_transform {\nnamespace internal {\n\
+    template <typename T, typename AssignOp>\nvoid transform(std::vector<T> &f, AssignOp\
+    \ assign_op) {\n    const int n = f.size();\n    assert((-n & n) == n);\n    for\
+    \ (int k = 1; k < n; k <<= 1) {\n        for (int l = 0; l < n; l += 2 * k) {\n\
+    \            int m = l + k;\n            for (int p = 0; p < k; ++p) assign_op(f[m\
+    \ + p], f[l + p]);\n        }\n    }\n}\n} // namespace internal\n\nusing namespace\
+    \ suisen::internal::arithmetic_operator;\n\ntemplate <typename T, typename AddAssign>\n\
+    void zeta(std::vector<T> &f, AddAssign add_assign) {\n    internal::transform(f,\
     \ add_assign);\n}\ntemplate <typename T, typename SubAssign>\nvoid mobius(std::vector<T>\
     \ &f, SubAssign sub_assign) {\n    internal::transform(f, sub_assign);\n}\ntemplate\
     \ <typename T>\nvoid zeta(std::vector<T> &f) {\n    zeta(f, [](T &a, const T &b)\
@@ -175,60 +60,66 @@ data:
     \    }\n    static void inverse_transform(std::vector<T> &a) {\n        subset_transform::mobius(a);\n\
     \    }\n};\n\n} // namespace suisen\n\n\n\n#line 1 \"library/convolution/convolution.hpp\"\
     \n\n\n\n#line 5 \"library/convolution/convolution.hpp\"\n\nnamespace suisen {\n\
-    \ntemplate <typename T, template <typename> class Transform>\nstruct Convolution\
-    \ {\n    static std::vector<T> convolution(std::vector<T> a, std::vector<T> b)\
-    \ {\n        const int n = a.size();\n        assert(n == int(b.size()));\n  \
-    \      Transform<T>::transform(a);\n        Transform<T>::transform(b);\n    \
-    \    for (int i = 0; i < n; ++i) a[i] *= b[i];\n        Transform<T>::inverse_transform(a);\n\
+    namespace internal::arithmetic_operator {}\ntemplate <typename T, template <typename>\
+    \ class Transform>\nstruct Convolution {\n    static std::vector<T> convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n        using namespace internal::arithmetic_operator;\n\
+    \        const int n = a.size();\n        assert(n == int(b.size()));\n      \
+    \  Transform<T>::transform(a);\n        Transform<T>::transform(b);\n        for\
+    \ (int i = 0; i < n; ++i) a[i] *= b[i];\n        Transform<T>::inverse_transform(a);\n\
     \        return a;\n    }\n    static std::vector<T> convolution(std::vector<std::vector<T>>\
-    \ a) {\n        const int num = a.size();\n        if (num == 0) return {};\n\
-    \        const int n = a[0].size();\n        for (auto &v : a) {\n           \
-    \ assert(n == int(v.size()));\n            Transform<T>::transform(v);\n     \
-    \   }\n        auto &res = a[0];\n        for (int i = 1; i < num; ++i) {\n  \
-    \          for (int j = 0; j < n; ++j) res[j] *= a[i][j];\n        }\n       \
-    \ Transform<T>::inverse_transform(res);\n        return res;\n    }\n};\n\n} //\
-    \ namespace suisen\n\n\n\n#line 7 \"library/convolution/subset_convolution.hpp\"\
-    \n\nnamespace suisen {\n\nnamespace internal {\n\ntemplate <typename T>\nstruct\
-    \ SubsetTransformFPS : public SubsetTransform<T> {\n    static void transform(std::vector<T>\
-    \ &a) {\n        SubsetTransform<T>::transform(a);\n        int lg = __builtin_ctz(a.size());\n\
-    \        for (auto &v : a) v.pre_inplace(lg);\n    }\n};\n\ntemplate <typename\
-    \ mint>\nauto to_polynomial(const std::vector<mint> &a) {\n    int n = a.size();\n\
-    \    assert((-n & n) == n);\n    std::vector<FPS<mint>> fs(n);\n    for (int i\
-    \ = 0; i < n; ++i) {\n        fs[i][__builtin_popcount(i)] = a[i];\n    }\n  \
-    \  return fs;\n}\n\n} // namespace internal\n\ntemplate <typename mint>\nusing\
-    \ SubsetConvolution = Convolution<FPS<mint>, internal::SubsetTransformFPS>;\n\n\
-    template <typename mint, typename ...Args>\nstd::vector<mint> subset_convolution(Args\
-    \ &&...args) {\n    auto fs = SubsetConvolution<mint>::convolution(internal::to_polynomial(args)...);\n\
-    \    int n = fs.size();\n    std::vector<mint> res(n);\n    for (int i = 0; i\
-    \ < n; ++i) {\n        res[i] = fs[i][__builtin_popcount(i)];\n    }\n    return\
-    \ res;\n}\n\n} // namespace suisen\n\n\n"
+    \ a) {\n        using namespace internal::arithmetic_operator;\n        const\
+    \ int num = a.size();\n        if (num == 0) return {};\n        const int n =\
+    \ a[0].size();\n        for (auto &v : a) {\n            assert(n == int(v.size()));\n\
+    \            Transform<T>::transform(v);\n        }\n        auto &res = a[0];\n\
+    \        for (int i = 1; i < num; ++i) {\n            for (int j = 0; j < n; ++j)\
+    \ res[j] *= a[i][j];\n        }\n        Transform<T>::inverse_transform(res);\n\
+    \        return res;\n    }\n};\n\n} // namespace suisen\n\n\n\n#line 29 \"library/convolution/subset_convolution.hpp\"\
+    \n\nnamespace suisen {\n\nnamespace internal::subset_convolution {\ntemplate <typename\
+    \ T, typename Container>\nauto add_rank(const Container &a) {\n    int n = a.size();\n\
+    \    assert((-n & n) == n);\n    std::vector<std::vector<T>> fs(n, std::vector<T>(__builtin_ctz(n)\
+    \ + 1, T(0)));\n    for (int i = 0; i < n; ++i) fs[i][__builtin_popcount(i)] =\
+    \ a[i];\n    return fs;\n}\ntemplate <typename T>\nauto remove_rank(const std::vector<std::vector<T>>\
+    \ &polys) {\n    int n = polys.size();\n    assert((-n & n) == n);\n    std::vector<T>\
+    \ a(n);\n    for (int i = 0; i < n; ++i) a[i] = polys[i][__builtin_popcount(i)];\n\
+    \    return a;\n}\n} // namespace internal\n\ntemplate <typename T>\nusing SubsetConvolution\
+    \ = Convolution<std::vector<T>, SubsetTransform>;\n\ntemplate <typename T, typename\
+    \ ...Args>\nstd::vector<T> subset_convolution(Args &&...args) {\n    using namespace\
+    \ internal::subset_convolution;\n    return remove_rank<T>(SubsetConvolution<T>::convolution(add_rank<T>(args)...));\n\
+    }\n\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_SUBSET_CONVOLUTION\n#define SUISEN_SUBSET_CONVOLUTION\n\n\
-    #include \"library/math/fps.hpp\"\n#include \"library/transform/subset.hpp\"\n\
-    #include \"library/convolution/convolution.hpp\"\n\nnamespace suisen {\n\nnamespace\
-    \ internal {\n\ntemplate <typename T>\nstruct SubsetTransformFPS : public SubsetTransform<T>\
-    \ {\n    static void transform(std::vector<T> &a) {\n        SubsetTransform<T>::transform(a);\n\
-    \        int lg = __builtin_ctz(a.size());\n        for (auto &v : a) v.pre_inplace(lg);\n\
-    \    }\n};\n\ntemplate <typename mint>\nauto to_polynomial(const std::vector<mint>\
-    \ &a) {\n    int n = a.size();\n    assert((-n & n) == n);\n    std::vector<FPS<mint>>\
-    \ fs(n);\n    for (int i = 0; i < n; ++i) {\n        fs[i][__builtin_popcount(i)]\
-    \ = a[i];\n    }\n    return fs;\n}\n\n} // namespace internal\n\ntemplate <typename\
-    \ mint>\nusing SubsetConvolution = Convolution<FPS<mint>, internal::SubsetTransformFPS>;\n\
-    \ntemplate <typename mint, typename ...Args>\nstd::vector<mint> subset_convolution(Args\
-    \ &&...args) {\n    auto fs = SubsetConvolution<mint>::convolution(internal::to_polynomial(args)...);\n\
-    \    int n = fs.size();\n    std::vector<mint> res(n);\n    for (int i = 0; i\
-    \ < n; ++i) {\n        res[i] = fs[i][__builtin_popcount(i)];\n    }\n    return\
-    \ res;\n}\n\n} // namespace suisen\n\n#endif // SUISEN_SUBSET_CONVOLUTION\n"
+    #include <vector>\n\nnamespace suisen::internal::arithmetic_operator {\ntemplate\
+    \ <typename T>\nvoid operator+=(std::vector<T> &a, const std::vector<T> &b) {\n\
+    \    int n = b.size();\n    for (int i = 0; i < n; ++i) a[i] += b[i];\n}\ntemplate\
+    \ <typename T>\nvoid operator-=(std::vector<T> &a, const std::vector<T> &b) {\n\
+    \    int n = b.size();\n    for (int i = 0; i < n; ++i) a[i] -= b[i];\n}\ntemplate\
+    \ <typename T>\nvoid operator*=(std::vector<T> &a, const std::vector<T> &b) {\n\
+    \    int n = b.size();\n    for (int i = n - 1; i >= 0; --i) {\n        for (int\
+    \ j = n - i - 1; j > 0; --j) a[i + j] += a[i] * b[j];\n        a[i] *= b[0];\n\
+    \    }\n}\n}\n\n#include \"library/transform/subset.hpp\"\n#include \"library/convolution/convolution.hpp\"\
+    \n\nnamespace suisen {\n\nnamespace internal::subset_convolution {\ntemplate <typename\
+    \ T, typename Container>\nauto add_rank(const Container &a) {\n    int n = a.size();\n\
+    \    assert((-n & n) == n);\n    std::vector<std::vector<T>> fs(n, std::vector<T>(__builtin_ctz(n)\
+    \ + 1, T(0)));\n    for (int i = 0; i < n; ++i) fs[i][__builtin_popcount(i)] =\
+    \ a[i];\n    return fs;\n}\ntemplate <typename T>\nauto remove_rank(const std::vector<std::vector<T>>\
+    \ &polys) {\n    int n = polys.size();\n    assert((-n & n) == n);\n    std::vector<T>\
+    \ a(n);\n    for (int i = 0; i < n; ++i) a[i] = polys[i][__builtin_popcount(i)];\n\
+    \    return a;\n}\n} // namespace internal\n\ntemplate <typename T>\nusing SubsetConvolution\
+    \ = Convolution<std::vector<T>, SubsetTransform>;\n\ntemplate <typename T, typename\
+    \ ...Args>\nstd::vector<T> subset_convolution(Args &&...args) {\n    using namespace\
+    \ internal::subset_convolution;\n    return remove_rank<T>(SubsetConvolution<T>::convolution(add_rank<T>(args)...));\n\
+    }\n\n} // namespace suisen\n\n#endif // SUISEN_SUBSET_CONVOLUTION\n"
   dependsOn:
-  - library/math/fps.hpp
-  - library/math/inv_mods.hpp
   - library/transform/subset.hpp
   - library/convolution/convolution.hpp
   isVerificationFile: false
   path: library/convolution/subset_convolution.hpp
-  requiredBy: []
-  timestamp: '2021-08-05 18:57:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - library/math/sps.hpp
+  timestamp: '2021-08-13 19:00:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/src/math/sps/connectivity2.test.cpp
+  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
 documentation_of: library/convolution/subset_convolution.hpp
 layout: document

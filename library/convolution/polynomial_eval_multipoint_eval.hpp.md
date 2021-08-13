@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
   - icon: ':question:'
@@ -152,7 +152,15 @@ data:
     \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
     \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
     \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n\n#line 5 \"library/math/multi_point_eval.hpp\"\
+    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    assert(false);\n}\n\
+    template <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
+    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
+    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {\n    return a.exp(a.deg());\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
+    \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
+    \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/math/multi_point_eval.hpp\"\
     \n\nnamespace suisen {\ntemplate <typename mint>\nstd::vector<mint> multi_point_eval(const\
     \ FPS<mint> &f, const std::vector<mint> &xs) {\n    int m = xs.size();\n    int\
     \ k = 1;\n    while (k < m) k <<= 1;\n    std::vector<FPS<mint>> seg(2 * k);\n\
@@ -205,7 +213,7 @@ data:
   isVerificationFile: false
   path: library/convolution/polynomial_eval_multipoint_eval.hpp
   requiredBy: []
-  timestamp: '2021-08-06 16:00:47+09:00'
+  timestamp: '2021-08-13 19:00:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

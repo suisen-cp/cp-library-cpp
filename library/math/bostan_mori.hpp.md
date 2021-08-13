@@ -142,8 +142,16 @@ data:
     \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
     \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
     \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n\n#line 5 \"library/math/bostan_mori.hpp\"\n\n\
-    namespace suisen {\ntemplate <typename mint>\nmint bostan_mori(const FPS<mint>\
+    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    assert(false);\n}\n\
+    template <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
+    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
+    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {\n    return a.exp(a.deg());\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
+    \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
+    \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/math/bostan_mori.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(const FPS<mint>\
     \ &P, const FPS<mint> &Q, const long long n) {\n    if (n == 0) return P[0];\n\
     \    FPS mQ(Q);\n    for (int i = 0; i <= Q.deg(); i += 2) mQ[i] = -mQ[i];\n \
     \   P *= mQ, Q *= mQ;\n    FPS nP((P.deg() + 1) / 2), nQ((Q.deg() + 1) / 2);\n\
@@ -164,7 +172,7 @@ data:
   isVerificationFile: false
   path: library/math/bostan_mori.hpp
   requiredBy: []
-  timestamp: '2021-07-18 18:22:10+09:00'
+  timestamp: '2021-08-13 19:00:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/bostan_mori.hpp

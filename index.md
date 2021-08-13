@@ -20,7 +20,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/and_convolution.hpp
       title: Bitwise And Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/convolution.hpp
       title: Convolution
     - icon: ':warning:'
@@ -40,7 +40,7 @@ data:
       path: library/convolution/polynomial_eval_multipoint_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -156,7 +156,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/factorial.hpp
       title: library/math/factorial.hpp
     - icon: ':question:'
@@ -165,7 +165,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/gaussian_elimination.hpp
       title: library/math/gaussian_elimination.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/math/interpolation.hpp
       title: library/math/interpolation.hpp
     - icon: ':question:'
@@ -174,13 +174,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/matrix.hpp
       title: library/math/matrix.hpp
-    - icon: ':question:'
+    - icon: ':x:'
+      path: library/math/modint_extension.hpp
+      title: library/math/modint_extension.hpp
+    - icon: ':x:'
       path: library/math/multi_point_eval.hpp
       title: library/math/multi_point_eval.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/polynomial_taylor_shift.hpp
       title: library/math/polynomial_taylor_shift.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: library/math/sps.hpp
+      title: library/math/sps.hpp
+    - icon: ':x:'
       path: library/math/subset_sum.hpp
       title: library/math/subset_sum.hpp
   - name: library/number
@@ -191,7 +197,7 @@ data:
     - icon: ':warning:'
       path: library/number/ext_gcd.hpp
       title: library/number/ext_gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/internal_eratosthenes.hpp
       title: library/number/internal_eratosthenes.hpp
     - icon: ':x:'
@@ -200,7 +206,7 @@ data:
     - icon: ':warning:'
       path: library/number/mobius_function.hpp
       title: library/number/mobius_function.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: library/number/sieve_of_eratosthenes.hpp
     - icon: ':heavy_check_mark:'
@@ -219,15 +225,15 @@ data:
       title: library/template.hpp
   - name: library/transform
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/transform/subset.hpp
       title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -331,7 +337,7 @@ data:
       title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - name: test/src/convolution/subset_convolution
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
       title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - name: test/src/convolution/xor_convolution
@@ -483,7 +489,7 @@ data:
     - icon: ':x:'
       path: test/src/math/interpolation/cumulative_sum.test.cpp
       title: test/src/math/interpolation/cumulative_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/interpolation/polynomial_interpolation.test.cpp
       title: test/src/math/interpolation/polynomial_interpolation.test.cpp
   - name: test/src/math/matrix
@@ -499,17 +505,25 @@ data:
       title: test/src/math/matrix/matrix_product.test.cpp
   - name: test/src/math/multi_point_eval
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - name: test/src/math/polynomial_taylor_shift
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
       title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - name: test/src/math/sps
+    pages:
+    - icon: ':x:'
+      path: test/src/math/sps/connectivity2.test.cpp
+      title: test/src/math/sps/connectivity2.test.cpp
+    - icon: ':x:'
+      path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+      title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - name: test/src/math/subset_sum
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/subset_sum/p_subset_sum.test.cpp
       title: test/src/math/subset_sum/p_subset_sum.test.cpp
   - name: test/src/number/sieve_of_eratosthenes
@@ -535,7 +549,7 @@ data:
       title: test/src/number/util/divide_both.test.cpp
   - name: test/src/transform/multiple
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/transform/multiple/divide_both.test.cpp
       title: test/src/transform/multiple/divide_both.test.cpp
   - name: test/src/tree/euler_tour

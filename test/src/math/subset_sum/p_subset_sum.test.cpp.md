@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/subset_sum.hpp
     title: library/math/subset_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
@@ -151,14 +151,22 @@ data:
     \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
     \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
     \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n\n#line 5 \"library/math/subset_sum.hpp\"\n\nnamespace\
-    \ suisen {\ntemplate <typename mint>\nstd::vector<mint> subset_sum(const int n,\
-    \ const std::vector<int> &items) {\n    std::vector<int> a(n + 1, 0);\n    for\
-    \ (int e : items) {\n        assert(e >= 0);\n        if (e <= n) ++a[e];\n  \
-    \  }\n    inv_mods<mint> invs(n);\n    FPS<mint> log(n + 1);\n    for (int i =\
-    \ 1; i <= n; ++i) {\n        if (a[i] == 0) continue;\n        for (int j = 1;\
-    \ i * j <= n; ++j) {\n            if (j & 1) log[i * j] += invs[j] * a[i];\n \
-    \           else       log[i * j] -= invs[j] * a[i];\n        }\n    }\n    log.exp_inplace(n),\
+    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    assert(false);\n}\n\
+    template <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
+    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
+    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {\n    return a.exp(a.deg());\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
+    \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
+    \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/math/subset_sum.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename mint>\nstd::vector<mint> subset_sum(const\
+    \ int n, const std::vector<int> &items) {\n    std::vector<int> a(n + 1, 0);\n\
+    \    for (int e : items) {\n        assert(e >= 0);\n        if (e <= n) ++a[e];\n\
+    \    }\n    inv_mods<mint> invs(n);\n    FPS<mint> log(n + 1);\n    for (int i\
+    \ = 1; i <= n; ++i) {\n        if (a[i] == 0) continue;\n        for (int j =\
+    \ 1; i * j <= n; ++j) {\n            if (j & 1) log[i * j] += invs[j] * a[i];\n\
+    \            else       log[i * j] -= invs[j] * a[i];\n        }\n    }\n    log.exp_inplace(n),\
     \ log.resize(n + 1);\n    mint p = mint(2).pow(a[0]);\n    for (mint &e : log)\
     \ e *= p;\n    return log;\n}\n} // namespace suisen\n\n\n#line 10 \"test/src/math/subset_sum/p_subset_sum.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
@@ -183,8 +191,8 @@ data:
   isVerificationFile: true
   path: test/src/math/subset_sum/p_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 20:30:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-08-13 19:00:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/subset_sum/p_subset_sum.test.cpp
 layout: document

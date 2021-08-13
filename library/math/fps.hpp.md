@@ -9,34 +9,28 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
-    path: library/convolution/subset_convolution.hpp
-    title: Subset Convolution
   - icon: ':warning:'
     path: library/math/bostan_mori.hpp
     title: library/math/bostan_mori.hpp
   - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/polynomial_taylor_shift.hpp
     title: library/math/polynomial_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/subset_sum.hpp
     title: library/math/subset_sum.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-    title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/bernoulli_number.test.cpp
     title: test/src/math/common_sequences/bernoulli_number.test.cpp
@@ -64,16 +58,16 @@ data:
   - icon: ':x:'
     path: test/src/math/interpolation/cumulative_sum.test.cpp
     title: test/src/math/interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/interpolation/polynomial_interpolation.test.cpp
     title: test/src/math/interpolation/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/subset_sum/p_subset_sum.test.cpp
     title: test/src/math/subset_sum/p_subset_sum.test.cpp
   _isVerificationFailed: true
@@ -208,7 +202,15 @@ data:
     \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
     \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
     \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n\n"
+    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    assert(false);\n}\n\
+    template <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
+    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
+    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {\n    return a.exp(a.deg());\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
+    \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
+    \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \  {\n    return a.inv(a.deg());\n}\n\n\n"
   code: "#ifndef SUISEN_FPS\n#define SUISEN_FPS\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <iostream>\n\n#include \"library/math/inv_mods.hpp\"\n\n\
     namespace suisen {\n\ntemplate <typename mint>\nusing convolution_t = std::vector<mint>\
@@ -326,7 +328,15 @@ data:
     \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
     \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
     \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n#endif // SUISEN_FPS\n"
+    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    assert(false);\n}\n\
+    template <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
+    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
+    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {\n    return a.exp(a.deg());\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
+    \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
+    \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \  {\n    return a.inv(a.deg());\n}\n\n#endif // SUISEN_FPS\n"
   dependsOn:
   - library/math/inv_mods.hpp
   isVerificationFile: false
@@ -339,8 +349,7 @@ data:
   - library/math/bostan_mori.hpp
   - library/math/interpolation.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
-  - library/convolution/subset_convolution.hpp
-  timestamp: '2021-07-18 18:22:10+09:00'
+  timestamp: '2021-08-13 19:00:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/interpolation/polynomial_interpolation.test.cpp
@@ -357,7 +366,6 @@ data:
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
 documentation_of: library/math/fps.hpp
 layout: document
 redirect_from:

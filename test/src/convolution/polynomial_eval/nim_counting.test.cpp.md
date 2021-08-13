@@ -24,17 +24,18 @@ data:
   bundledCode: "#line 1 \"test/src/convolution/polynomial_eval/nim_counting.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/transform/walsh_hadamard.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n\nnamespace\
-    \ internal {\n\ntemplate <typename T>\nvoid fwht(std::vector<T>& a, bool rev)\
-    \ {\n    const int n = a.size();\n    assert((-n & n) == n);\n    for (int i =\
-    \ 1; i < n; i *= 2) {\n        for (int k = 0; k < n; k += i * 2) {\n        \
-    \    for (int j = k; j < k + i; ++j) {\n                T u = a[j], v = a[j +\
-    \ i];\n                a[j] = u + v;\n                a[j + i] = u - v;\n    \
-    \        }\n        }\n    }\n    if (rev) {\n        T inv = T(1) / T(n);\n \
-    \       for (int i = 0; i < n; i++) a[i] *= inv;\n    }\n}\n\n} // nemaspace internal\n\
+    \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen::internal::arithmetic_operator\
+    \ {}\n\nnamespace suisen {\nnamespace walsh_hadamard {\ntemplate <typename T>\n\
+    void fwht(std::vector<T>& a, bool rev) {\n    using namespace suisen::internal::arithmetic_operator;\n\
+    \    const int n = a.size();\n    assert((-n & n) == n);\n    for (int i = 1;\
+    \ i < n; i *= 2) {\n        for (int k = 0; k < n; k += i * 2) {\n           \
+    \ for (int j = k; j < k + i; ++j) {\n                T u = a[j], v = a[j + i];\n\
+    \                a[j] = u + v;\n                a[j + i] = u - v;\n          \
+    \  }\n        }\n    }\n    if (rev) {\n        T inv = T(1) / T(n);\n       \
+    \ for (int i = 0; i < n; i++) a[i] *= inv;\n    }\n}\n} // nemaspace walsh_hadamard\n\
     \ntemplate <typename T>\nstruct WalshHadamard {\n    static void transform(std::vector<T>\
-    \ &a) {\n        internal::fwht(a, false);\n    }\n    static void inverse_transform(std::vector<T>\
-    \ &a) {\n        internal::fwht(a, true);\n    }\n};\n\n} // namespace suisen::walsh_hadamard_transform\n\
+    \ &a) {\n        walsh_hadamard::fwht(a, false);\n    }\n    static void inverse_transform(std::vector<T>\
+    \ &a) {\n        walsh_hadamard::fwht(a, true);\n    }\n};\n\n} // namespace suisen::walsh_hadamard_transform\n\
     \n\n\n#line 1 \"library/convolution/polynomial_eval.hpp\"\n\n\n\n#line 5 \"library/convolution/polynomial_eval.hpp\"\
     \n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
     #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
@@ -88,7 +89,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2021-08-06 16:00:47+09:00'
+  timestamp: '2021-08-13 19:00:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval/nim_counting.test.cpp

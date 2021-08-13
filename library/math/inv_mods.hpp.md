@@ -6,9 +6,6 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
-    path: library/convolution/subset_convolution.hpp
-    title: Subset Convolution
   - icon: ':warning:'
     path: library/math/bostan_mori.hpp
     title: library/math/bostan_mori.hpp
@@ -18,25 +15,22 @@ data:
   - icon: ':question:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/polynomial_taylor_shift.hpp
     title: library/math/polynomial_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/subset_sum.hpp
     title: library/math/subset_sum.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-    title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
@@ -67,16 +61,16 @@ data:
   - icon: ':x:'
     path: test/src/math/interpolation/cumulative_sum.test.cpp
     title: test/src/math/interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/interpolation/polynomial_interpolation.test.cpp
     title: test/src/math/interpolation/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/subset_sum/p_subset_sum.test.cpp
     title: test/src/math/subset_sum/p_subset_sum.test.cpp
   _isVerificationFailed: true
@@ -118,7 +112,6 @@ data:
   - library/math/interpolation.hpp
   - library/math/fps.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
-  - library/convolution/subset_convolution.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -136,7 +129,6 @@ data:
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
 documentation_of: library/math/inv_mods.hpp
 layout: document

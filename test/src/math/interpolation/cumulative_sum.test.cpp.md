@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
   - icon: ':question:'
@@ -154,31 +154,39 @@ data:
     \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
     \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
     \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n\n#line 6 \"library/math/interpolation.hpp\"\n\n\
-    namespace suisen {\ntemplate <typename T>\nT lagrange_interpolation(const std::vector<T>\
-    \ &ys, const T t) {\n    const int n = ys.size();\n    T fac = 1;\n    for (int\
-    \ i = 1; i < n; ++i) fac *= i;\n    std::vector<T> fci(n), suf(n);\n    fci[n\
-    \ - 1] = T(1) / fac;\n    suf[n - 1] = 1;\n    for (int i = n - 1; i > 0; --i)\
-    \ {\n        fci[i - 1] = fci[i] * i;\n        suf[i - 1] = suf[i] * (t - i);\n\
-    \    }\n    T prf = 1, res = 0;\n    for (int i = 0; i < n; ++i) {\n        T\
-    \ val = ys[i] * prf * suf[i] * fci[i] * fci[n - i - 1];\n        if ((n - 1 -\
-    \ i) & 1) {\n            res -= val;\n        } else {\n            res += val;\n\
-    \        }\n        prf *= t - i;\n    }\n    return res;\n}\n\ntemplate <typename\
-    \ mint>\nFPS<mint> polynomial_interpolation(const std::vector<mint> &xs, const\
-    \ std::vector<mint> &ys) {\n    assert(xs.size() == ys.size());\n    int n = xs.size();\n\
-    \    int k = 1;\n    while (k < n) k <<= 1;\n    std::vector<FPS<mint>> seg(k\
-    \ << 1), g(k << 1);\n    for (int i = 0; i < n; ++i) seg[k + i] = FPS<mint> {-xs[i],\
-    \ 1};\n    for (int i = n; i < k; ++i) seg[k + i] = FPS<mint> {1};\n    for (int\
-    \ i = k - 1; i > 0; --i) {\n        seg[i] = seg[i * 2] * seg[i * 2 + 1];\n  \
-    \  }\n    g[1] = std::move(seg[1].diff_inplace());\n    for (int i = 1; i < k;\
-    \ ++i) {\n        int l = 2 * i, r = l + 1;\n        g[l] = g[i] % seg[l], g[r]\
-    \ = g[i] % seg[r];\n    }\n    for (int i = 0; i < n; ++i) g[k + i] = FPS<mint>\
-    \ {ys[i] / g[k + i][0]};\n    for (int i = n; i < k; ++i) g[k + i] = FPS<mint>\
-    \ {0};\n    for (int i = k - 1; i > 0; --i) {\n        int l = 2 * i, r = l +\
-    \ 1;\n        g[i] = g[l] * seg[r] + g[r] * seg[l];\n    }\n    return g[1];\n\
-    }\n} // namespace suisen\n\n\n\n#line 1 \"library/number/linear_sieve.hpp\"\n\n\
-    \n\n#line 5 \"library/number/linear_sieve.hpp\"\n#include <numeric>\n#line 7 \"\
-    library/number/linear_sieve.hpp\"\n\nnamespace suisen {\n// referece: https://37zigen.com/linear-sieve/\n\
+    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    assert(false);\n}\n\
+    template <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
+    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
+    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {\n    return a.exp(a.deg());\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
+    \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
+    \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 6 \"library/math/interpolation.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename T>\nT lagrange_interpolation(const\
+    \ std::vector<T> &ys, const T t) {\n    const int n = ys.size();\n    T fac =\
+    \ 1;\n    for (int i = 1; i < n; ++i) fac *= i;\n    std::vector<T> fci(n), suf(n);\n\
+    \    fci[n - 1] = T(1) / fac;\n    suf[n - 1] = 1;\n    for (int i = n - 1; i\
+    \ > 0; --i) {\n        fci[i - 1] = fci[i] * i;\n        suf[i - 1] = suf[i] *\
+    \ (t - i);\n    }\n    T prf = 1, res = 0;\n    for (int i = 0; i < n; ++i) {\n\
+    \        T val = ys[i] * prf * suf[i] * fci[i] * fci[n - i - 1];\n        if ((n\
+    \ - 1 - i) & 1) {\n            res -= val;\n        } else {\n            res\
+    \ += val;\n        }\n        prf *= t - i;\n    }\n    return res;\n}\n\ntemplate\
+    \ <typename mint>\nFPS<mint> polynomial_interpolation(const std::vector<mint>\
+    \ &xs, const std::vector<mint> &ys) {\n    assert(xs.size() == ys.size());\n \
+    \   int n = xs.size();\n    int k = 1;\n    while (k < n) k <<= 1;\n    std::vector<FPS<mint>>\
+    \ seg(k << 1), g(k << 1);\n    for (int i = 0; i < n; ++i) seg[k + i] = FPS<mint>\
+    \ {-xs[i], 1};\n    for (int i = n; i < k; ++i) seg[k + i] = FPS<mint> {1};\n\
+    \    for (int i = k - 1; i > 0; --i) {\n        seg[i] = seg[i * 2] * seg[i *\
+    \ 2 + 1];\n    }\n    g[1] = std::move(seg[1].diff_inplace());\n    for (int i\
+    \ = 1; i < k; ++i) {\n        int l = 2 * i, r = l + 1;\n        g[l] = g[i] %\
+    \ seg[l], g[r] = g[i] % seg[r];\n    }\n    for (int i = 0; i < n; ++i) g[k +\
+    \ i] = FPS<mint> {ys[i] / g[k + i][0]};\n    for (int i = n; i < k; ++i) g[k +\
+    \ i] = FPS<mint> {0};\n    for (int i = k - 1; i > 0; --i) {\n        int l =\
+    \ 2 * i, r = l + 1;\n        g[i] = g[l] * seg[r] + g[r] * seg[l];\n    }\n  \
+    \  return g[1];\n}\n} // namespace suisen\n\n\n\n#line 1 \"library/number/linear_sieve.hpp\"\
+    \n\n\n\n#line 5 \"library/number/linear_sieve.hpp\"\n#include <numeric>\n#line\
+    \ 7 \"library/number/linear_sieve.hpp\"\n\nnamespace suisen {\n// referece: https://37zigen.com/linear-sieve/\n\
     class LinearSieve {\n    public:\n        LinearSieve(const int n) : _n(n), min_prime_factor(std::vector<int>(n\
     \ + 1)) {\n            std::iota(min_prime_factor.begin(), min_prime_factor.end(),\
     \ 0);\n            prime_list.reserve(_n / 20);\n            for (int d = 2; d\
@@ -231,7 +239,7 @@ data:
   isVerificationFile: true
   path: test/src/math/interpolation/cumulative_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-08-04 13:32:53+09:00'
+  timestamp: '2021-08-13 19:00:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/interpolation/cumulative_sum.test.cpp

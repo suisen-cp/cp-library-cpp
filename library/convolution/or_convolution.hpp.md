@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/convolution.hpp
     title: Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -17,12 +17,13 @@ data:
     links: []
   bundledCode: "#line 1 \"library/convolution/or_convolution.hpp\"\n\n\n\n#line 1\
     \ \"library/transform/subset.hpp\"\n\n\n\n#include <cassert>\n#include <vector>\n\
-    \nnamespace suisen {\n\nnamespace subset_transform {\n\nnamespace internal {\n\
-    \ntemplate <typename T, typename AssignOp>\nvoid transform(std::vector<T> &f,\
-    \ AssignOp assign_op) {\n    const int n = f.size();\n    assert((-n & n) == n);\n\
-    \    for (int k = 1; k < n; k <<= 1) {\n        for (int l = 0; l < n; l += 2\
-    \ * k) {\n            int m = l + k;\n            for (int p = 0; p < k; ++p)\
-    \ assign_op(f[m + p], f[l + p]);\n        }\n    }\n}\n\n} // namespace internal\n\
+    \nnamespace suisen::internal::arithmetic_operator {}\n\nnamespace suisen {\nnamespace\
+    \ subset_transform {\nnamespace internal {\ntemplate <typename T, typename AssignOp>\n\
+    void transform(std::vector<T> &f, AssignOp assign_op) {\n    const int n = f.size();\n\
+    \    assert((-n & n) == n);\n    for (int k = 1; k < n; k <<= 1) {\n        for\
+    \ (int l = 0; l < n; l += 2 * k) {\n            int m = l + k;\n            for\
+    \ (int p = 0; p < k; ++p) assign_op(f[m + p], f[l + p]);\n        }\n    }\n}\n\
+    } // namespace internal\n\nusing namespace suisen::internal::arithmetic_operator;\n\
     \ntemplate <typename T, typename AddAssign>\nvoid zeta(std::vector<T> &f, AddAssign\
     \ add_assign) {\n    internal::transform(f, add_assign);\n}\ntemplate <typename\
     \ T, typename SubAssign>\nvoid mobius(std::vector<T> &f, SubAssign sub_assign)\
@@ -38,20 +39,21 @@ data:
     \ &a) {\n        subset_transform::zeta(a);\n    }\n    static void inverse_transform(std::vector<T>\
     \ &a) {\n        subset_transform::mobius(a);\n    }\n};\n\n} // namespace suisen\n\
     \n\n\n#line 1 \"library/convolution/convolution.hpp\"\n\n\n\n#line 5 \"library/convolution/convolution.hpp\"\
-    \n\nnamespace suisen {\n\ntemplate <typename T, template <typename> class Transform>\n\
-    struct Convolution {\n    static std::vector<T> convolution(std::vector<T> a,\
-    \ std::vector<T> b) {\n        const int n = a.size();\n        assert(n == int(b.size()));\n\
-    \        Transform<T>::transform(a);\n        Transform<T>::transform(b);\n  \
-    \      for (int i = 0; i < n; ++i) a[i] *= b[i];\n        Transform<T>::inverse_transform(a);\n\
+    \n\nnamespace suisen {\nnamespace internal::arithmetic_operator {}\ntemplate <typename\
+    \ T, template <typename> class Transform>\nstruct Convolution {\n    static std::vector<T>\
+    \ convolution(std::vector<T> a, std::vector<T> b) {\n        using namespace internal::arithmetic_operator;\n\
+    \        const int n = a.size();\n        assert(n == int(b.size()));\n      \
+    \  Transform<T>::transform(a);\n        Transform<T>::transform(b);\n        for\
+    \ (int i = 0; i < n; ++i) a[i] *= b[i];\n        Transform<T>::inverse_transform(a);\n\
     \        return a;\n    }\n    static std::vector<T> convolution(std::vector<std::vector<T>>\
-    \ a) {\n        const int num = a.size();\n        if (num == 0) return {};\n\
-    \        const int n = a[0].size();\n        for (auto &v : a) {\n           \
-    \ assert(n == int(v.size()));\n            Transform<T>::transform(v);\n     \
-    \   }\n        auto &res = a[0];\n        for (int i = 1; i < num; ++i) {\n  \
-    \          for (int j = 0; j < n; ++j) res[j] *= a[i][j];\n        }\n       \
-    \ Transform<T>::inverse_transform(res);\n        return res;\n    }\n};\n\n} //\
-    \ namespace suisen\n\n\n\n#line 6 \"library/convolution/or_convolution.hpp\"\n\
-    \nnamespace suisen {\ntemplate <typename T>\nusing OrConvolution = Convolution<T,\
+    \ a) {\n        using namespace internal::arithmetic_operator;\n        const\
+    \ int num = a.size();\n        if (num == 0) return {};\n        const int n =\
+    \ a[0].size();\n        for (auto &v : a) {\n            assert(n == int(v.size()));\n\
+    \            Transform<T>::transform(v);\n        }\n        auto &res = a[0];\n\
+    \        for (int i = 1; i < num; ++i) {\n            for (int j = 0; j < n; ++j)\
+    \ res[j] *= a[i][j];\n        }\n        Transform<T>::inverse_transform(res);\n\
+    \        return res;\n    }\n};\n\n} // namespace suisen\n\n\n\n#line 6 \"library/convolution/or_convolution.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename T>\nusing OrConvolution = Convolution<T,\
     \ SubsetTransform>;\ntemplate <typename T, typename ...Args>\nstd::vector<T> or_convolution(Args\
     \ &&...args) {\n    return OrConvolution<T>::convolution(std::forward<Args>(args)...);\n\
     }\n} // namespace suisen\n\n\n"
@@ -67,7 +69,7 @@ data:
   isVerificationFile: false
   path: library/convolution/or_convolution.hpp
   requiredBy: []
-  timestamp: '2021-08-05 18:57:44+09:00'
+  timestamp: '2021-08-13 19:00:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/convolution/or_convolution.hpp

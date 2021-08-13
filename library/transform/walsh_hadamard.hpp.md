@@ -21,37 +21,39 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/walsh_hadamard.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <vector>\n\nnamespace suisen {\n\nnamespace internal {\n\ntemplate <typename\
-    \ T>\nvoid fwht(std::vector<T>& a, bool rev) {\n    const int n = a.size();\n\
-    \    assert((-n & n) == n);\n    for (int i = 1; i < n; i *= 2) {\n        for\
-    \ (int k = 0; k < n; k += i * 2) {\n            for (int j = k; j < k + i; ++j)\
-    \ {\n                T u = a[j], v = a[j + i];\n                a[j] = u + v;\n\
-    \                a[j + i] = u - v;\n            }\n        }\n    }\n    if (rev)\
-    \ {\n        T inv = T(1) / T(n);\n        for (int i = 0; i < n; i++) a[i] *=\
-    \ inv;\n    }\n}\n\n} // nemaspace internal\n\ntemplate <typename T>\nstruct WalshHadamard\
-    \ {\n    static void transform(std::vector<T> &a) {\n        internal::fwht(a,\
-    \ false);\n    }\n    static void inverse_transform(std::vector<T> &a) {\n   \
-    \     internal::fwht(a, true);\n    }\n};\n\n} // namespace suisen::walsh_hadamard_transform\n\
+    #include <vector>\n\nnamespace suisen::internal::arithmetic_operator {}\n\nnamespace\
+    \ suisen {\nnamespace walsh_hadamard {\ntemplate <typename T>\nvoid fwht(std::vector<T>&\
+    \ a, bool rev) {\n    using namespace suisen::internal::arithmetic_operator;\n\
+    \    const int n = a.size();\n    assert((-n & n) == n);\n    for (int i = 1;\
+    \ i < n; i *= 2) {\n        for (int k = 0; k < n; k += i * 2) {\n           \
+    \ for (int j = k; j < k + i; ++j) {\n                T u = a[j], v = a[j + i];\n\
+    \                a[j] = u + v;\n                a[j + i] = u - v;\n          \
+    \  }\n        }\n    }\n    if (rev) {\n        T inv = T(1) / T(n);\n       \
+    \ for (int i = 0; i < n; i++) a[i] *= inv;\n    }\n}\n} // nemaspace walsh_hadamard\n\
+    \ntemplate <typename T>\nstruct WalshHadamard {\n    static void transform(std::vector<T>\
+    \ &a) {\n        walsh_hadamard::fwht(a, false);\n    }\n    static void inverse_transform(std::vector<T>\
+    \ &a) {\n        walsh_hadamard::fwht(a, true);\n    }\n};\n\n} // namespace suisen::walsh_hadamard_transform\n\
     \n\n\n"
   code: "#ifndef SUISEN_WALSH_HADAMARD_TRANSFORM\n#define SUISEN_WALSH_HADAMARD_TRANSFORM\n\
-    \n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n\nnamespace internal\
-    \ {\n\ntemplate <typename T>\nvoid fwht(std::vector<T>& a, bool rev) {\n    const\
-    \ int n = a.size();\n    assert((-n & n) == n);\n    for (int i = 1; i < n; i\
-    \ *= 2) {\n        for (int k = 0; k < n; k += i * 2) {\n            for (int\
-    \ j = k; j < k + i; ++j) {\n                T u = a[j], v = a[j + i];\n      \
-    \          a[j] = u + v;\n                a[j + i] = u - v;\n            }\n \
-    \       }\n    }\n    if (rev) {\n        T inv = T(1) / T(n);\n        for (int\
-    \ i = 0; i < n; i++) a[i] *= inv;\n    }\n}\n\n} // nemaspace internal\n\ntemplate\
-    \ <typename T>\nstruct WalshHadamard {\n    static void transform(std::vector<T>\
-    \ &a) {\n        internal::fwht(a, false);\n    }\n    static void inverse_transform(std::vector<T>\
-    \ &a) {\n        internal::fwht(a, true);\n    }\n};\n\n} // namespace suisen::walsh_hadamard_transform\n\
+    \n#include <cassert>\n#include <vector>\n\nnamespace suisen::internal::arithmetic_operator\
+    \ {}\n\nnamespace suisen {\nnamespace walsh_hadamard {\ntemplate <typename T>\n\
+    void fwht(std::vector<T>& a, bool rev) {\n    using namespace suisen::internal::arithmetic_operator;\n\
+    \    const int n = a.size();\n    assert((-n & n) == n);\n    for (int i = 1;\
+    \ i < n; i *= 2) {\n        for (int k = 0; k < n; k += i * 2) {\n           \
+    \ for (int j = k; j < k + i; ++j) {\n                T u = a[j], v = a[j + i];\n\
+    \                a[j] = u + v;\n                a[j + i] = u - v;\n          \
+    \  }\n        }\n    }\n    if (rev) {\n        T inv = T(1) / T(n);\n       \
+    \ for (int i = 0; i < n; i++) a[i] *= inv;\n    }\n}\n} // nemaspace walsh_hadamard\n\
+    \ntemplate <typename T>\nstruct WalshHadamard {\n    static void transform(std::vector<T>\
+    \ &a) {\n        walsh_hadamard::fwht(a, false);\n    }\n    static void inverse_transform(std::vector<T>\
+    \ &a) {\n        walsh_hadamard::fwht(a, true);\n    }\n};\n\n} // namespace suisen::walsh_hadamard_transform\n\
     \n\n#endif // SUISEN_WALSH_HADAMARD_TRANSFORM\n"
   dependsOn: []
   isVerificationFile: false
   path: library/transform/walsh_hadamard.hpp
   requiredBy:
   - library/convolution/xor_convolution.hpp
-  timestamp: '2021-08-05 18:57:44+09:00'
+  timestamp: '2021-08-13 19:00:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: library/math/factorial.hpp
   - icon: ':question:'
@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/polynomial_taylor_shift.hpp
     title: library/math/polynomial_taylor_shift.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
@@ -155,13 +155,21 @@ data:
     \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
     \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
     \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\n\n#line 1 \"library/math/factorial.hpp\"\n\n\n\n\
-    #line 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ T, typename U = T>\nclass factorial {\n    public:\n        factorial() {}\n\
-    \        factorial(int n) { ensure(n); }\n        const T& fac(const int i) {\n\
-    \            ensure(i);\n            return fac_[i];\n        }\n        const\
-    \ T& operator()(int i) {\n            return fac(i);\n        }\n        const\
-    \ U& inv(const int i) {\n            ensure(i);\n            return inv_[i];\n\
+    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    assert(false);\n}\n\
+    template <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
+    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
+    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {\n    return a.exp(a.deg());\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
+    \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
+    \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 1 \"library/math/factorial.hpp\"\
+    \n\n\n\n#line 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\ntemplate\
+    \ <typename T, typename U = T>\nclass factorial {\n    public:\n        factorial()\
+    \ {}\n        factorial(int n) { ensure(n); }\n        const T& fac(const int\
+    \ i) {\n            ensure(i);\n            return fac_[i];\n        }\n     \
+    \   const T& operator()(int i) {\n            return fac(i);\n        }\n    \
+    \    const U& inv(const int i) {\n            ensure(i);\n            return inv_[i];\n\
     \        }\n        U binom(const int n, const int r) {\n            if (n < 0\
     \ or r < 0 or n < r) return 0;\n            ensure(n);\n            return fac_[n]\
     \ * inv_[r] * inv_[n - r];\n        }\n        U perm(const int n, const int r)\
@@ -209,8 +217,8 @@ data:
   isVerificationFile: true
   path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2021-08-07 15:47:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-08-13 19:00:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 layout: document
