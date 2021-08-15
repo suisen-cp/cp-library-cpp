@@ -13,9 +13,9 @@ data:
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
@@ -88,9 +88,8 @@ data:
     \ out;\n}\n\ntemplate <typename T>\nstd::ostream& operator<<(std::ostream& out,\
     \ const std::vector<T> &a) {\n    int n = a.size();\n    for (int i = 0; i < n;\
     \ ++i) {\n        out << a[i];\n        if (i != n - 1) out << ' ';\n    }\n \
-    \   return out;\n}\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
-    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n;\n    std::cin >> n;\n    std::vector<mint>\
+    \   return out;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n  \
+    \  std::cin.tie(nullptr);\n    int n;\n    std::cin >> n;\n    std::vector<mint>\
     \ a(1 << n), b(1 << n);\n    for (auto &v : a) std::cin >> v;\n    for (auto &v\
     \ : b) std::cin >> v;\n    std::cout << suisen::subset_convolution<mint>(std::move(a),\
     \ std::move(b)) << std::endl;\n    return 0;\n}\n"
@@ -103,12 +102,11 @@ data:
     \ T>\nstd::ostream& operator<<(std::ostream& out, const std::vector<T> &a) {\n\
     \    int n = a.size();\n    for (int i = 0; i < n; ++i) {\n        out << a[i];\n\
     \        if (i != n - 1) out << ' ';\n    }\n    return out;\n}\n\nint main()\
-    \ {\n    suisen::FPS<mint>::set_multiplication([](const auto &a, const auto &b)\
-    \ { return atcoder::convolution(a, b); });\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n;\n    std::cin >> n;\n    std::vector<mint>\
-    \ a(1 << n), b(1 << n);\n    for (auto &v : a) std::cin >> v;\n    for (auto &v\
-    \ : b) std::cin >> v;\n    std::cout << suisen::subset_convolution<mint>(std::move(a),\
-    \ std::move(b)) << std::endl;\n    return 0;\n}"
+    \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int\
+    \ n;\n    std::cin >> n;\n    std::vector<mint> a(1 << n), b(1 << n);\n    for\
+    \ (auto &v : a) std::cin >> v;\n    for (auto &v : b) std::cin >> v;\n    std::cout\
+    \ << suisen::subset_convolution<mint>(std::move(a), std::move(b)) << std::endl;\n\
+    \    return 0;\n}"
   dependsOn:
   - library/convolution/subset_convolution.hpp
   - library/transform/subset.hpp
@@ -116,8 +114,8 @@ data:
   isVerificationFile: true
   path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2021-08-13 19:00:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-08-15 23:15:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/subset_convolution/subset_convolution.test.cpp
 layout: document

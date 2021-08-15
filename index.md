@@ -340,7 +340,7 @@ data:
       title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - name: test/src/convolution/subset_convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
       title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - name: test/src/convolution/xor_convolution

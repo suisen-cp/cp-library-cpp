@@ -12,7 +12,7 @@ data:
     path: library/math/sps.hpp
     title: library/math/sps.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':x:'
