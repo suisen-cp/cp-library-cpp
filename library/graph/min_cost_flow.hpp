@@ -60,9 +60,9 @@ class MinCostFlow {
         }
 
         struct Edge {
-            const int from, to;
-            const Cap cap, flow;
-            const Cost cost;
+            int from, to;
+            Cap cap, flow;
+            Cost cost;
         };
 
         Edge get_edge(int edge_id) const {
