@@ -1,8 +1,8 @@
 #include "library/template.hpp"
 
-// ! code from here
-
 fast_io fast_io_ {};
+
+// ! code from here
 
 int main() {
     

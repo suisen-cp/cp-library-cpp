@@ -1,3 +1,5 @@
+// #pragma comment(linker, "/stack:200000000")
+
 #include <bits/stdc++.h>
 
 #include "library/type_traits/type_traits.hpp"
