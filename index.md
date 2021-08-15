@@ -145,7 +145,7 @@ data:
     - icon: ':warning:'
       path: library/graph/kruscal.hpp
       title: library/graph/kruscal.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/graph/min_cost_flow.hpp
       title: library/graph/min_cost_flow.hpp
     - icon: ':warning:'
@@ -459,7 +459,7 @@ data:
     - icon: ':x:'
       path: test/src/graph/min_cost_flow/abc214_h.test.cpp
       title: test/src/graph/min_cost_flow/abc214_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
       title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   - name: test/src/math/common_sequences
