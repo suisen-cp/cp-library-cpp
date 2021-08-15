@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: library/number/internal_eratosthenes.hpp
   _extendedRequiredBy: []
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
     title: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\n\n#include\
@@ -226,7 +226,7 @@ data:
   path: library/number/sieve_of_eratosthenes.hpp
   requiredBy: []
   timestamp: '2021-08-04 13:32:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/transform/multiple/divide_both.test.cpp
   - test/src/number/sieve_of_eratosthenes/flatten.test.cpp

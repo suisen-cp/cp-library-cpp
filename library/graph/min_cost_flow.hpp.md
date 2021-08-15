@@ -2,38 +2,49 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/graph/min_cost_flow/abc214_h.test.cpp
+    title: test/src/graph/min_cost_flow/abc214_h.test.cpp
+  - icon: ':x:'
+    path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
+    title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/graph/min_cost_flow.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <limits>\n#include <vector>\n\nnamespace suisen {\n\nenum MinCostFlowInitializeMethod\
-    \ {\n    DAG, BELLMAN_FORD, DIJKSTRA\n};\n\ntemplate <typename Cap, typename Cost,\
-    \ MinCostFlowInitializeMethod init_method = MinCostFlowInitializeMethod::BELLMAN_FORD>\n\
-    class MinCostFlow {\n    struct Edge { int to; Cap cap; Cost cost; int rev; };\n\
-    \    public:\n        MinCostFlow() : MinCostFlow(0) {}\n        MinCostFlow(int\
-    \ n) : n(n), g(n), potential(n, 0), dist(n), prev_vid(n), prev_eid(n) {}\n\n \
-    \       void add_edge(int u, int v, Cap cap, Cost cost) {\n            g[u].push_back({\
-    \ v, cap,  cost, int(g[v].size())     });\n            g[v].push_back({ u,   0,\
-    \ -cost, int(g[u].size()) - 1 });\n        }\n\n        std::pair<Cap, Cost> min_cost_max_flow(const\
-    \ int s, const int t, const Cap f) {\n            return min_cost_flow(s, t, [this,\
-    \ f](Cap flow, Cost){ return flow < f; });\n        }\n        std::pair<Cap,\
-    \ Cost> min_cost_max_flow(const int s, const int t) {\n            return min_cost_max_flow(s,\
-    \ t, std::numeric_limits<Cap>::max());\n        }\n        // amount of flow is\
-    \ arbitrary.\n        std::pair<Cap, Cost> min_cost_flow(const int s, const int\
-    \ t) {\n            return min_cost_flow(s, t, [this, t](Cap, Cost){ return potential[t]\
-    \ < 0; });\n        }\n    private:\n        static constexpr Cost INF = std::numeric_limits<Cost>::max();\n\
-    \    \n        int n;\n        std::vector<std::vector<Edge>> g;\n        std::vector<Cost>\
-    \ potential;\n        std::vector<Cost> dist;\n        std::vector<int> prev_vid,\
-    \ prev_eid;\n\n        template <typename Predicate>\n        std::pair<Cap, Cost>\
-    \ min_cost_flow(const int s, const int t, Predicate pred) {\n            switch\
-    \ (init_method) {\n                case BELLMAN_FORD: bellman_ford(s); break;\n\
-    \                case DIJKSTRA:     dijkstra(s);     break;\n                case\
-    \ DAG:          dag_dp(s);       break;\n            }\n            update_potential();\n\
-    \            Cap flow = 0;\n            Cost cost = 0;\n            while (dist[t]\
-    \ != INF and pred(flow, cost)) {\n                Cap df = std::numeric_limits<Cap>::max();\n\
+  bundledCode: "#line 1 \"library/graph/min_cost_flow.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <cassert>\n#include <queue>\n#include <limits>\n#include <vector>\n\n\
+    namespace suisen {\n\nenum MinCostFlowInitializeMethod {\n    DAG, BELLMAN_FORD,\
+    \ DIJKSTRA\n};\n\ntemplate <typename Cap, typename Cost, MinCostFlowInitializeMethod\
+    \ init_method = MinCostFlowInitializeMethod::BELLMAN_FORD>\nclass MinCostFlow\
+    \ {\n    struct Edge { int to; Cap cap; Cost cost; int rev; };\n    public:\n\
+    \        MinCostFlow() : MinCostFlow(0) {}\n        MinCostFlow(int n) : n(n),\
+    \ g(n), potential(n, 0), dist(n), prev_vid(n), prev_eid(n) {}\n\n        void\
+    \ add_edge(int u, int v, Cap cap, Cost cost) {\n            g[u].push_back({ v,\
+    \ cap,  cost, int(g[v].size())     });\n            g[v].push_back({ u,   0, -cost,\
+    \ int(g[u].size()) - 1 });\n        }\n\n        /**\n         * Returns { flow,\
+    \ cost } (flow = min(max_flow, f))\n         */\n        std::pair<Cap, Cost>\
+    \ min_cost_max_flow(const int s, const int t, const Cap f) {\n            return\
+    \ min_cost_flow(s, t, [this, f](Cap flow, Cost){ return flow < f; });\n      \
+    \  }\n        /**\n         * Returns { flow, cost } (flow = max_flow)\n     \
+    \    */\n        std::pair<Cap, Cost> min_cost_max_flow(const int s, const int\
+    \ t) {\n            return min_cost_max_flow(s, t, std::numeric_limits<Cap>::max());\n\
+    \        }\n        /**\n         * Returns { flow, cost }\n         * amount\
+    \ of flow is arbitrary.\n         */\n        std::pair<Cap, Cost> min_cost_flow(const\
+    \ int s, const int t) {\n            return min_cost_flow(s, t, [this, t](Cap,\
+    \ Cost){ return potential[t] < 0; });\n        }\n    private:\n        static\
+    \ constexpr Cost INF = std::numeric_limits<Cost>::max();\n    \n        int n;\n\
+    \        std::vector<std::vector<Edge>> g;\n        std::vector<Cost> potential;\n\
+    \        std::vector<Cost> dist;\n        std::vector<int> prev_vid, prev_eid;\n\
+    \n        template <typename Predicate>\n        std::pair<Cap, Cost> min_cost_flow(const\
+    \ int s, const int t, Predicate pred) {\n            switch (init_method) {\n\
+    \                case BELLMAN_FORD: bellman_ford(s); break;\n                case\
+    \ DIJKSTRA:     dijkstra(s);     break;\n                case DAG:          dag_dp(s);\
+    \       break;\n            }\n            update_potential();\n            Cap\
+    \ flow = 0;\n            Cost cost = 0;\n            while (dist[t] != INF and\
+    \ pred(flow, cost)) {\n                Cap df = std::numeric_limits<Cap>::max();\n\
     \                for (int v = t; v != s; v = prev_vid[v]) {\n                \
     \    df = std::min(df, g[prev_vid[v]][prev_eid[v]].cap);\n                }\n\
     \                assert(df != 0);\n                flow += df;\n             \
@@ -81,32 +92,37 @@ data:
     \ ++i) {\n                        has_update |= update_dist(u, i);\n         \
     \           }\n                }\n            }\n        }\n};\n} // namespace\
     \ suisen\n\n\n\n"
-  code: "#ifndef SUISEN_MIN_COST_FLOW\n#define SUISEN_MIN_COST_FLOW\n\n#include <cassert>\n\
-    #include <limits>\n#include <vector>\n\nnamespace suisen {\n\nenum MinCostFlowInitializeMethod\
-    \ {\n    DAG, BELLMAN_FORD, DIJKSTRA\n};\n\ntemplate <typename Cap, typename Cost,\
-    \ MinCostFlowInitializeMethod init_method = MinCostFlowInitializeMethod::BELLMAN_FORD>\n\
-    class MinCostFlow {\n    struct Edge { int to; Cap cap; Cost cost; int rev; };\n\
-    \    public:\n        MinCostFlow() : MinCostFlow(0) {}\n        MinCostFlow(int\
-    \ n) : n(n), g(n), potential(n, 0), dist(n), prev_vid(n), prev_eid(n) {}\n\n \
-    \       void add_edge(int u, int v, Cap cap, Cost cost) {\n            g[u].push_back({\
-    \ v, cap,  cost, int(g[v].size())     });\n            g[v].push_back({ u,   0,\
-    \ -cost, int(g[u].size()) - 1 });\n        }\n\n        std::pair<Cap, Cost> min_cost_max_flow(const\
-    \ int s, const int t, const Cap f) {\n            return min_cost_flow(s, t, [this,\
-    \ f](Cap flow, Cost){ return flow < f; });\n        }\n        std::pair<Cap,\
-    \ Cost> min_cost_max_flow(const int s, const int t) {\n            return min_cost_max_flow(s,\
-    \ t, std::numeric_limits<Cap>::max());\n        }\n        // amount of flow is\
-    \ arbitrary.\n        std::pair<Cap, Cost> min_cost_flow(const int s, const int\
-    \ t) {\n            return min_cost_flow(s, t, [this, t](Cap, Cost){ return potential[t]\
-    \ < 0; });\n        }\n    private:\n        static constexpr Cost INF = std::numeric_limits<Cost>::max();\n\
-    \    \n        int n;\n        std::vector<std::vector<Edge>> g;\n        std::vector<Cost>\
-    \ potential;\n        std::vector<Cost> dist;\n        std::vector<int> prev_vid,\
-    \ prev_eid;\n\n        template <typename Predicate>\n        std::pair<Cap, Cost>\
-    \ min_cost_flow(const int s, const int t, Predicate pred) {\n            switch\
-    \ (init_method) {\n                case BELLMAN_FORD: bellman_ford(s); break;\n\
-    \                case DIJKSTRA:     dijkstra(s);     break;\n                case\
-    \ DAG:          dag_dp(s);       break;\n            }\n            update_potential();\n\
-    \            Cap flow = 0;\n            Cost cost = 0;\n            while (dist[t]\
-    \ != INF and pred(flow, cost)) {\n                Cap df = std::numeric_limits<Cap>::max();\n\
+  code: "#ifndef SUISEN_MIN_COST_FLOW\n#define SUISEN_MIN_COST_FLOW\n\n#include <algorithm>\n\
+    #include <cassert>\n#include <queue>\n#include <limits>\n#include <vector>\n\n\
+    namespace suisen {\n\nenum MinCostFlowInitializeMethod {\n    DAG, BELLMAN_FORD,\
+    \ DIJKSTRA\n};\n\ntemplate <typename Cap, typename Cost, MinCostFlowInitializeMethod\
+    \ init_method = MinCostFlowInitializeMethod::BELLMAN_FORD>\nclass MinCostFlow\
+    \ {\n    struct Edge { int to; Cap cap; Cost cost; int rev; };\n    public:\n\
+    \        MinCostFlow() : MinCostFlow(0) {}\n        MinCostFlow(int n) : n(n),\
+    \ g(n), potential(n, 0), dist(n), prev_vid(n), prev_eid(n) {}\n\n        void\
+    \ add_edge(int u, int v, Cap cap, Cost cost) {\n            g[u].push_back({ v,\
+    \ cap,  cost, int(g[v].size())     });\n            g[v].push_back({ u,   0, -cost,\
+    \ int(g[u].size()) - 1 });\n        }\n\n        /**\n         * Returns { flow,\
+    \ cost } (flow = min(max_flow, f))\n         */\n        std::pair<Cap, Cost>\
+    \ min_cost_max_flow(const int s, const int t, const Cap f) {\n            return\
+    \ min_cost_flow(s, t, [this, f](Cap flow, Cost){ return flow < f; });\n      \
+    \  }\n        /**\n         * Returns { flow, cost } (flow = max_flow)\n     \
+    \    */\n        std::pair<Cap, Cost> min_cost_max_flow(const int s, const int\
+    \ t) {\n            return min_cost_max_flow(s, t, std::numeric_limits<Cap>::max());\n\
+    \        }\n        /**\n         * Returns { flow, cost }\n         * amount\
+    \ of flow is arbitrary.\n         */\n        std::pair<Cap, Cost> min_cost_flow(const\
+    \ int s, const int t) {\n            return min_cost_flow(s, t, [this, t](Cap,\
+    \ Cost){ return potential[t] < 0; });\n        }\n    private:\n        static\
+    \ constexpr Cost INF = std::numeric_limits<Cost>::max();\n    \n        int n;\n\
+    \        std::vector<std::vector<Edge>> g;\n        std::vector<Cost> potential;\n\
+    \        std::vector<Cost> dist;\n        std::vector<int> prev_vid, prev_eid;\n\
+    \n        template <typename Predicate>\n        std::pair<Cap, Cost> min_cost_flow(const\
+    \ int s, const int t, Predicate pred) {\n            switch (init_method) {\n\
+    \                case BELLMAN_FORD: bellman_ford(s); break;\n                case\
+    \ DIJKSTRA:     dijkstra(s);     break;\n                case DAG:          dag_dp(s);\
+    \       break;\n            }\n            update_potential();\n            Cap\
+    \ flow = 0;\n            Cost cost = 0;\n            while (dist[t] != INF and\
+    \ pred(flow, cost)) {\n                Cap df = std::numeric_limits<Cap>::max();\n\
     \                for (int v = t; v != s; v = prev_vid[v]) {\n                \
     \    df = std::min(df, g[prev_vid[v]][prev_eid[v]].cap);\n                }\n\
     \                assert(df != 0);\n                flow += df;\n             \
@@ -158,9 +174,11 @@ data:
   isVerificationFile: false
   path: library/graph/min_cost_flow.hpp
   requiredBy: []
-  timestamp: '2021-08-15 22:47:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-08-15 23:05:51+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/graph/min_cost_flow/abc214_h.test.cpp
+  - test/src/graph/min_cost_flow/min_cost_flow.test.cpp
 documentation_of: library/graph/min_cost_flow.hpp
 layout: document
 redirect_from:

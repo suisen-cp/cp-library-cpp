@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: library/number/internal_eratosthenes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: library/number/sieve_of_eratosthenes.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/divisor.hpp
     title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/multiple.hpp
     title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc206/tasks/abc206_e
@@ -247,7 +247,7 @@ data:
   path: test/src/transform/multiple/divide_both.test.cpp
   requiredBy: []
   timestamp: '2021-08-13 19:00:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/transform/multiple/divide_both.test.cpp
 layout: document

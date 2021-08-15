@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/divisor.hpp\"\n\n\n\n#include <vector>\n\
@@ -74,7 +74,7 @@ data:
   path: library/transform/divisor.hpp
   requiredBy: []
   timestamp: '2021-08-13 19:00:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/transform/multiple/divide_both.test.cpp
 documentation_of: library/transform/divisor.hpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: library/number/internal_eratosthenes.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: library/number/sieve_of_eratosthenes.hpp
   _extendedRequiredBy: []

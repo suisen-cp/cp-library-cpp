@@ -145,7 +145,7 @@ data:
     - icon: ':warning:'
       path: library/graph/kruscal.hpp
       title: library/graph/kruscal.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/graph/min_cost_flow.hpp
       title: library/graph/min_cost_flow.hpp
     - icon: ':warning:'
@@ -189,7 +189,7 @@ data:
     - icon: ':question:'
       path: library/math/sps.hpp
       title: library/math/sps.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/subset_sum.hpp
       title: library/math/subset_sum.hpp
   - name: library/number
@@ -200,7 +200,7 @@ data:
     - icon: ':warning:'
       path: library/number/ext_gcd.hpp
       title: library/number/ext_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/internal_eratosthenes.hpp
       title: library/number/internal_eratosthenes.hpp
     - icon: ':x:'
@@ -209,7 +209,7 @@ data:
     - icon: ':warning:'
       path: library/number/mobius_function.hpp
       title: library/number/mobius_function.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: library/number/sieve_of_eratosthenes.hpp
     - icon: ':heavy_check_mark:'
@@ -228,11 +228,11 @@ data:
       title: library/template.hpp
   - name: library/transform
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
@@ -454,6 +454,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
       title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
+  - name: test/src/graph/min_cost_flow
+    pages:
+    - icon: ':x:'
+      path: test/src/graph/min_cost_flow/abc214_h.test.cpp
+      title: test/src/graph/min_cost_flow/abc214_h.test.cpp
+    - icon: ':x:'
+      path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
+      title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'
@@ -526,7 +534,7 @@ data:
       title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - name: test/src/math/subset_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/subset_sum/p_subset_sum.test.cpp
       title: test/src/math/subset_sum/p_subset_sum.test.cpp
   - name: test/src/number/sieve_of_eratosthenes
@@ -552,7 +560,7 @@ data:
       title: test/src/number/util/divide_both.test.cpp
   - name: test/src/transform/multiple
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/transform/multiple/divide_both.test.cpp
       title: test/src/transform/multiple/divide_both.test.cpp
   - name: test/src/tree/euler_tour

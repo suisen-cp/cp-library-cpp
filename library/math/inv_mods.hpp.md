@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: library/math/polynomial_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/subset_sum.hpp
     title: library/math/subset_sum.hpp
   _extendedVerifiedWith:
@@ -70,7 +70,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/subset_sum/p_subset_sum.test.cpp
     title: test/src/math/subset_sum/p_subset_sum.test.cpp
   _isVerificationFailed: true
