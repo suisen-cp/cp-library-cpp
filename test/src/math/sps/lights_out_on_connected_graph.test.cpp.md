@@ -4,24 +4,24 @@ data:
   - icon: ':question:'
     path: library/convolution/convolution.hpp
     title: Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: library/math/modint_extension.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: library/math/sps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc105/tasks/arc105_f
@@ -252,7 +252,7 @@ data:
   path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   requiredBy: []
   timestamp: '2021-08-13 19:00:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/lights_out_on_connected_graph.test.cpp
 layout: document

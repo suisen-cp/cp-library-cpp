@@ -11,13 +11,13 @@ data:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/xor_convolution.hpp
     title: Bitwise Xor Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: library/math/sps.hpp
   _extendedVerifiedWith:
@@ -36,7 +36,7 @@ data:
   - icon: ':x:'
     path: test/src/math/sps/connectivity2.test.cpp
     title: test/src/math/sps/connectivity2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
     title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   _isVerificationFailed: true

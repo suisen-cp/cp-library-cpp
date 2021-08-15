@@ -14,25 +14,25 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/template.hpp\"\n#include <bits/stdc++.h>\n\n#line\
-    \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\
-    \n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+  bundledCode: "#line 1 \"library/template.hpp\"\n// #pragma comment(linker, \"/stack:200000000\"\
+    )\n\n#include <bits/stdc++.h>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <type_traits>\n\
+    \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
+    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
+    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
+    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
+    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
+    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
+    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
+    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 4 \"\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 6 \"\
     library/template.hpp\"\n\n// ! type aliases\nusing i128 = __int128_t;\nusing u128\
     \ = __uint128_t;\nusing ll = long long;\nusing uint = unsigned int;\nusing ull\
     \  = unsigned long long;\n\ntemplate <typename T> using vec  = std::vector<T>;\n\
@@ -122,17 +122,17 @@ data:
     \ `x` has chenged.\ntemplate <typename T>\ninline bool chmax(T &x, const T &y)\
     \ {\n    if (y <= x) return false;\n    x = y;\n    return true;\n}\n\nnamespace\
     \ suisen {}\nusing namespace suisen;\nusing namespace std;\n#line 2 \"library/template.cpp\"\
-    \n\n// ! code from here\n\nfast_io fast_io_ {};\n\nint main() {\n    \n    return\
+    \n\nfast_io fast_io_ {};\n\n// ! code from here\n\nint main() {\n    \n    return\
     \ 0;\n}\n"
-  code: "#include \"library/template.hpp\"\n\n// ! code from here\n\nfast_io fast_io_\
-    \ {};\n\nint main() {\n    \n    return 0;\n}"
+  code: "#include \"library/template.hpp\"\n\nfast_io fast_io_ {};\n\n// ! code from\
+    \ here\n\nint main() {\n    \n    return 0;\n}"
   dependsOn:
   - library/template.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2021-08-09 15:18:31+09:00'
+  timestamp: '2021-08-15 22:47:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp

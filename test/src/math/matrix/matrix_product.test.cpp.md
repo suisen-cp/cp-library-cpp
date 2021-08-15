@@ -81,34 +81,33 @@ data:
     \ true); }\n\n        static std::optional<SquareMatrix<T>> inv(SquareMatrix<T>\
     \ &&A) {\n            auto &data = A.data;\n            int n = data.size();\n\
     \            for (int i = 0; i < n; ++i) {\n                data[i].resize(2 *\
-    \ n, T(0));\n                data[i][n + i] = T(1);\n            }\n         \
+    \ n, T{0});\n                data[i][n + i] = T{1};\n            }\n         \
     \   for (int i = 0; i < n; ++i) {\n                int pivot = -1;\n         \
-    \       for (int k = i; k < n; ++k) {\n                    if (data[k][i] != T(0))\
+    \       for (int k = i; k < n; ++k) {\n                    if (data[k][i] != T{0})\
     \ {\n                        pivot = k;\n                        break;\n    \
     \                }\n                }\n                if (pivot < 0) return std::nullopt;\n\
-    \                assert(pivot >= 0);\n                data[i].swap(data[pivot]);\n\
-    \                T coef = T(1) / data[i][i];\n                for (int j = i;\
-    \ j < 2 * n; ++j) data[i][j] *= coef;\n                for (int k = 0; k < n;\
-    \ ++k) {\n                    if (k == i or data[k][i] == T(0)) continue;\n  \
-    \                  T c = data[k][i];\n                    for (int j = i; j <\
-    \ 2 * n; ++j) data[k][j] -= c * data[i][j];\n                }\n            }\n\
-    \            for (auto &row : data) row.erase(row.begin(), row.begin() + n);\n\
-    \            return std::make_optional(std::move(A));\n        }\n        static\
-    \ std::optional<SquareMatrix<T>> inv(const SquareMatrix<T> &A) {\n           \
-    \ return SquareMatrix<T>::inv(SquareMatrix<T>(A));\n        }\n        static\
-    \ T det(SquareMatrix<T> &&A) {\n            auto &data = A.data;\n           \
-    \ T det_inv = T(1);\n            int n = data.size();\n            for (int i\
-    \ = 0; i < n; ++i) {\n                int pivot = -1;\n                for (int\
-    \ k = i; k < n; ++k) {\n                    if (data[k][i] != T(0)) {\n      \
-    \                  pivot = k;\n                        break;\n              \
-    \      }\n                }\n                if (pivot < 0) return T(0);\n   \
-    \             data[i].swap(data[pivot]);\n                if (pivot != i) det_inv\
-    \ *= T(-1);\n                T coef = T(1) / data[i][i];\n                for\
+    \                data[i].swap(data[pivot]);\n                T coef = T{1} / data[i][i];\n\
+    \                for (int j = i; j < 2 * n; ++j) data[i][j] *= coef;\n       \
+    \         for (int k = 0; k < n; ++k) {\n                    if (k == i or data[k][i]\
+    \ == T{0}) continue;\n                    T c = data[k][i];\n                \
+    \    for (int j = i; j < 2 * n; ++j) data[k][j] -= c * data[i][j];\n         \
+    \       }\n            }\n            for (auto &row : data) row.erase(row.begin(),\
+    \ row.begin() + n);\n            return std::make_optional(std::move(A));\n  \
+    \      }\n        static std::optional<SquareMatrix<T>> inv(const SquareMatrix<T>\
+    \ &A) {\n            return SquareMatrix<T>::inv(SquareMatrix<T>(A));\n      \
+    \  }\n        static T det(SquareMatrix<T> &&A) {\n            auto &data = A.data;\n\
+    \            T det_inv = T{1};\n            int n = data.size();\n           \
+    \ for (int i = 0; i < n; ++i) {\n                int pivot = -1;\n           \
+    \     for (int k = i; k < n; ++k) {\n                    if (data[k][i] != T{0})\
+    \ {\n                        pivot = k;\n                        break;\n    \
+    \                }\n                }\n                if (pivot < 0) return T{0};\n\
+    \                data[i].swap(data[pivot]);\n                if (pivot != i) det_inv\
+    \ *= T{-1};\n                T coef = T{1} / data[i][i];\n                for\
     \ (int j = i; j < n; ++j) data[i][j] *= coef;\n                det_inv *= coef;\n\
     \                for (int k = i + 1; k < n; ++k) {\n                    if (data[k][i]\
     \ == T(0)) continue;\n                    T c = data[k][i];\n                \
     \    for (int j = i; j < n; ++j) data[k][j] -= c * data[i][j];\n             \
-    \   }\n            }\n            return T(1) / det_inv;\n        }\n        static\
+    \   }\n            }\n            return T{1} / det_inv;\n        }\n        static\
     \ T det(const SquareMatrix<T> &A) {\n            return SquareMatrix<T>::det(SquareMatrix<T>(A));\n\
     \        }\n        SquareMatrix<T>& inv_inplace() {\n            return *this\
     \ = *SquareMatrix<T>::inv(std::move(*this));\n        }\n        SquareMatrix<T>\
@@ -150,7 +149,7 @@ data:
   isVerificationFile: true
   path: test/src/math/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 19:42:08+09:00'
+  timestamp: '2021-08-15 22:48:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/matrix/matrix_product.test.cpp

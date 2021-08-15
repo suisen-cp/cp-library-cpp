@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: library/math/polynomial_taylor_shift.hpp
   _extendedVerifiedWith:
@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/stirling_number2.test.cpp
     title: test/src/math/common_sequences/stirling_number2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n\
@@ -78,7 +78,7 @@ data:
   - library/math/common_sequences.hpp
   - library/math/polynomial_taylor_shift.hpp
   timestamp: '2021-08-07 15:47:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/math/common_sequences/bernoulli_number.test.cpp

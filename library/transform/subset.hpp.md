@@ -5,10 +5,10 @@ data:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: library/math/sps.hpp
   _extendedVerifiedWith:
@@ -18,12 +18,12 @@ data:
   - icon: ':x:'
     path: test/src/math/sps/connectivity2.test.cpp
     title: test/src/math/sps/connectivity2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
     title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/subset.hpp\"\n\n\n\n#include <cassert>\n\
@@ -80,7 +80,7 @@ data:
   - library/convolution/or_convolution.hpp
   - library/convolution/subset_convolution.hpp
   timestamp: '2021-08-13 19:00:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/sps/connectivity2.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp

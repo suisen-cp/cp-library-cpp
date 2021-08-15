@@ -15,13 +15,13 @@ data:
   - icon: ':question:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: library/math/polynomial_taylor_shift.hpp
   - icon: ':x:'
@@ -61,13 +61,13 @@ data:
   - icon: ':x:'
     path: test/src/math/interpolation/cumulative_sum.test.cpp
     title: test/src/math/interpolation/cumulative_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/interpolation/polynomial_interpolation.test.cpp
     title: test/src/math/interpolation/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - icon: ':x:'

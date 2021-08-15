@@ -40,7 +40,7 @@ data:
       path: library/convolution/polynomial_eval_multipoint_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -146,6 +146,9 @@ data:
       path: library/graph/kruscal.hpp
       title: library/graph/kruscal.hpp
     - icon: ':warning:'
+      path: library/graph/min_cost_flow.hpp
+      title: library/graph/min_cost_flow.hpp
+    - icon: ':warning:'
       path: library/graph/topological_sort.hpp
       title: library/graph/topological_sort.hpp
   - name: library/math
@@ -156,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: library/math/factorial.hpp
     - icon: ':question:'
@@ -165,7 +168,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/gaussian_elimination.hpp
       title: library/math/gaussian_elimination.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/interpolation.hpp
       title: library/math/interpolation.hpp
     - icon: ':question:'
@@ -174,16 +177,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/matrix.hpp
       title: library/math/matrix.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/modint_extension.hpp
       title: library/math/modint_extension.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/multi_point_eval.hpp
       title: library/math/multi_point_eval.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/polynomial_taylor_shift.hpp
       title: library/math/polynomial_taylor_shift.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/sps.hpp
       title: library/math/sps.hpp
     - icon: ':x:'
@@ -233,7 +236,7 @@ data:
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/transform/subset.hpp
       title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -489,7 +492,7 @@ data:
     - icon: ':x:'
       path: test/src/math/interpolation/cumulative_sum.test.cpp
       title: test/src/math/interpolation/cumulative_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/interpolation/polynomial_interpolation.test.cpp
       title: test/src/math/interpolation/polynomial_interpolation.test.cpp
   - name: test/src/math/matrix
@@ -505,12 +508,12 @@ data:
       title: test/src/math/matrix/matrix_product.test.cpp
   - name: test/src/math/multi_point_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - name: test/src/math/polynomial_taylor_shift
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
       title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - name: test/src/math/sps
@@ -518,7 +521,7 @@ data:
     - icon: ':x:'
       path: test/src/math/sps/connectivity2.test.cpp
       title: test/src/math/sps/connectivity2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
       title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - name: test/src/math/subset_sum
