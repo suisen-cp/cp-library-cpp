@@ -1,7 +1,9 @@
 #ifndef SUISEN_MIN_COST_FLOW
 #define SUISEN_MIN_COST_FLOW
 
+#include <algorithm>
 #include <cassert>
+#include <queue>
 #include <limits>
 #include <vector>
 
@@ -23,13 +25,22 @@ class MinCostFlow {
             g[v].push_back({ u,   0, -cost, int(g[u].size()) - 1 });
         }
 
+        /**
+         * Returns { flow, cost } (flow = min(max_flow, f))
+         */
         std::pair<Cap, Cost> min_cost_max_flow(const int s, const int t, const Cap f) {
             return min_cost_flow(s, t, [this, f](Cap flow, Cost){ return flow < f; });
         }
+        /**
+         * Returns { flow, cost } (flow = max_flow)
+         */
         std::pair<Cap, Cost> min_cost_max_flow(const int s, const int t) {
             return min_cost_max_flow(s, t, std::numeric_limits<Cap>::max());
         }
-        // amount of flow is arbitrary.
+        /**
+         * Returns { flow, cost }
+         * amount of flow is arbitrary.
+         */
         std::pair<Cap, Cost> min_cost_flow(const int s, const int t) {
             return min_cost_flow(s, t, [this, t](Cap, Cost){ return potential[t] < 0; });
         }
