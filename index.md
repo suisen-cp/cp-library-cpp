@@ -462,6 +462,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
       title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
+    - icon: ':x:'
+      path: test/src/graph/min_cost_flow/practice2_e.test.cpp
+      title: test/src/graph/min_cost_flow/practice2_e.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'

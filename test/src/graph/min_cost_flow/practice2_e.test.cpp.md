@@ -6,30 +6,30 @@ data:
     title: library/graph/min_cost_flow.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
+    PROBLEM: https://atcoder.jp/contests/practice2/tasks/practice2_e
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
-  bundledCode: "#line 1 \"test/src/graph/min_cost_flow/min_cost_flow.test.cpp\"\n\
-    #define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
-    \n\n#include <iostream>\n\n#line 1 \"library/graph/min_cost_flow.hpp\"\n\n\n\n\
-    #include <algorithm>\n#include <cassert>\n#include <queue>\n#include <limits>\n\
-    #include <vector>\n\nnamespace suisen {\n\nenum MinCostFlowInitializeMethod {\n\
-    \    DAG, BELLMAN_FORD, DIJKSTRA\n};\n\ntemplate <typename Cap, typename Cost,\
-    \ MinCostFlowInitializeMethod init_method = MinCostFlowInitializeMethod::BELLMAN_FORD>\n\
-    class MinCostFlow {\n    struct InternalEdge { int to; Cap cap; Cost cost; int\
-    \ rev; };\n    public:\n        MinCostFlow() : MinCostFlow(0) {}\n        MinCostFlow(int\
-    \ n) : n(n), g(n), potential(n, 0), dist(n), prev_vid(n), prev_eid(n) {}\n\n \
-    \       // Returns the id of created edge.\n        int add_edge(int u, int v,\
-    \ Cap cap, Cost cost) {\n            int edge_id = edges.size();\n           \
-    \ edges.emplace_back(u, g[u].size());\n            g[u].push_back({ v, cap,  cost,\
-    \ int(g[v].size())     });\n            g[v].push_back({ u,   0, -cost, int(g[u].size())\
-    \ - 1 });\n            return edge_id;\n        }\n\n        /**\n         * Returns\
-    \ { flow, cost } (flow = min(max_flow, f))\n         */\n        auto min_cost_max_flow(const\
+    - https://atcoder.jp/contests/practice2/tasks/practice2_e
+  bundledCode: "#line 1 \"test/src/graph/min_cost_flow/practice2_e.test.cpp\"\n#define\
+    \ PROBLEM \"https://atcoder.jp/contests/practice2/tasks/practice2_e\"\n\n#include\
+    \ <iostream>\n\n#line 1 \"library/graph/min_cost_flow.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <cassert>\n#include <queue>\n#include <limits>\n#include <vector>\n\n\
+    namespace suisen {\n\nenum MinCostFlowInitializeMethod {\n    DAG, BELLMAN_FORD,\
+    \ DIJKSTRA\n};\n\ntemplate <typename Cap, typename Cost, MinCostFlowInitializeMethod\
+    \ init_method = MinCostFlowInitializeMethod::BELLMAN_FORD>\nclass MinCostFlow\
+    \ {\n    struct InternalEdge { int to; Cap cap; Cost cost; int rev; };\n    public:\n\
+    \        MinCostFlow() : MinCostFlow(0) {}\n        MinCostFlow(int n) : n(n),\
+    \ g(n), potential(n, 0), dist(n), prev_vid(n), prev_eid(n) {}\n\n        // Returns\
+    \ the id of created edge.\n        int add_edge(int u, int v, Cap cap, Cost cost)\
+    \ {\n            int edge_id = edges.size();\n            edges.emplace_back(u,\
+    \ g[u].size());\n            g[u].push_back({ v, cap,  cost, int(g[v].size())\
+    \     });\n            g[v].push_back({ u,   0, -cost, int(g[u].size()) - 1 });\n\
+    \            return edge_id;\n        }\n\n        /**\n         * Returns { flow,\
+    \ cost } (flow = min(max_flow, f))\n         */\n        auto min_cost_max_flow(const\
     \ int s, const int t, const Cap f) {\n            return min_cost_max_flow_slope(s,\
     \ t, f).back();\n        }\n        /**\n         * Returns { flow, cost } (flow\
     \ = max_flow)\n         */\n        auto min_cost_max_flow(const int s, const\
@@ -116,35 +116,49 @@ data:
     \  if (dist[u] == INF_COST) continue;\n                    for (int i = 0; i <\
     \ int(g[u].size()); ++i) {\n                        has_update |= update_dist(u,\
     \ i);\n                    }\n                }\n            }\n        }\n};\n\
-    } // namespace suisen\n\n\n\n#line 6 \"test/src/graph/min_cost_flow/min_cost_flow.test.cpp\"\
-    \nusing namespace suisen;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n, m, f;\n    std::cin >> n >> m >> f;\n\
-    \n    MinCostFlow<int, int, DIJKSTRA> mcf(n);\n    for (int i = 0; i < m; ++i)\
-    \ {\n        int u, v, cap, cost;\n        std::cin >> u >> v >> cap >> cost;\n\
-    \        mcf.add_edge(u, v, cap, cost);\n    }\n    auto [flow, cost] = mcf.min_cost_max_flow(0,\
-    \ n - 1, f);\n    if (flow == f) {\n        std::cout << cost << std::endl;\n\
-    \    } else {\n        std::cout << -1 << std::endl;\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
+    } // namespace suisen\n\n\n\n#line 6 \"test/src/graph/min_cost_flow/practice2_e.test.cpp\"\
+    \nusing namespace suisen;\n\nconstexpr long long INF = 1LL << 50;\n\nint main()\
+    \ {\n    int n, k;\n    std::cin >> n >> k;\n    std::vector a(n, std::vector(n,\
+    \ 0LL));\n    for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) {\n    \
+    \    std::cin >> a[i][j];\n    }\n    MinCostFlow<int, long long, DIJKSTRA> mcf(n\
+    \ + n + 2);\n    int src = n + n, dst = src + 1;\n\n    mcf.add_edge(src, dst,\
+    \ n * k, INF);\n    for (int i = 0; i < n; ++i) {\n        mcf.add_edge(src, i,\
+    \ k, 0);\n        mcf.add_edge(i + n, dst, k, 0);\n    }\n    for (int i = 0;\
+    \ i < n; ++i) {\n        for (int j = 0; j < n; ++j) {\n            mcf.add_edge(i,\
+    \ j + n, 1, INF - a[i][j]);\n        }\n    }\n\n    auto [flow, cost] = mcf.min_cost_max_flow(src,\
+    \ dst, n * k);\n    long long ans = INF * flow - cost;\n    std::vector g(n, std::string(n,\
+    \ '.'));\n    for (auto e : mcf.get_edges()) {\n        if (e.flow == 1 and e.from\
+    \ != src and e.to != dst) {\n            g[e.from][e.to - n] = 'X';\n        }\n\
+    \    }\n\n    std::cout << ans << '\\n';\n    for (const auto &row : g) {\n  \
+    \      std::cout << row << '\\n';\n    }\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/practice2/tasks/practice2_e\"\
     \n\n#include <iostream>\n\n#include \"library/graph/min_cost_flow.hpp\"\nusing\
-    \ namespace suisen;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n \
-    \   std::cin.tie(nullptr);\n\n    int n, m, f;\n    std::cin >> n >> m >> f;\n\
-    \n    MinCostFlow<int, int, DIJKSTRA> mcf(n);\n    for (int i = 0; i < m; ++i)\
-    \ {\n        int u, v, cap, cost;\n        std::cin >> u >> v >> cap >> cost;\n\
-    \        mcf.add_edge(u, v, cap, cost);\n    }\n    auto [flow, cost] = mcf.min_cost_max_flow(0,\
-    \ n - 1, f);\n    if (flow == f) {\n        std::cout << cost << std::endl;\n\
-    \    } else {\n        std::cout << -1 << std::endl;\n    }\n    return 0;\n}"
+    \ namespace suisen;\n\nconstexpr long long INF = 1LL << 50;\n\nint main() {\n\
+    \    int n, k;\n    std::cin >> n >> k;\n    std::vector a(n, std::vector(n, 0LL));\n\
+    \    for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) {\n        std::cin\
+    \ >> a[i][j];\n    }\n    MinCostFlow<int, long long, DIJKSTRA> mcf(n + n + 2);\n\
+    \    int src = n + n, dst = src + 1;\n\n    mcf.add_edge(src, dst, n * k, INF);\n\
+    \    for (int i = 0; i < n; ++i) {\n        mcf.add_edge(src, i, k, 0);\n    \
+    \    mcf.add_edge(i + n, dst, k, 0);\n    }\n    for (int i = 0; i < n; ++i) {\n\
+    \        for (int j = 0; j < n; ++j) {\n            mcf.add_edge(i, j + n, 1,\
+    \ INF - a[i][j]);\n        }\n    }\n\n    auto [flow, cost] = mcf.min_cost_max_flow(src,\
+    \ dst, n * k);\n    long long ans = INF * flow - cost;\n    std::vector g(n, std::string(n,\
+    \ '.'));\n    for (auto e : mcf.get_edges()) {\n        if (e.flow == 1 and e.from\
+    \ != src and e.to != dst) {\n            g[e.from][e.to - n] = 'X';\n        }\n\
+    \    }\n\n    std::cout << ans << '\\n';\n    for (const auto &row : g) {\n  \
+    \      std::cout << row << '\\n';\n    }\n    return 0;\n}"
   dependsOn:
   - library/graph/min_cost_flow.hpp
   isVerificationFile: true
-  path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
+  path: test/src/graph/min_cost_flow/practice2_e.test.cpp
   requiredBy: []
   timestamp: '2021-08-16 00:10:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
+documentation_of: test/src/graph/min_cost_flow/practice2_e.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/graph/min_cost_flow/min_cost_flow.test.cpp
-- /verify/test/src/graph/min_cost_flow/min_cost_flow.test.cpp.html
-title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
+- /verify/test/src/graph/min_cost_flow/practice2_e.test.cpp
+- /verify/test/src/graph/min_cost_flow/practice2_e.test.cpp.html
+title: test/src/graph/min_cost_flow/practice2_e.test.cpp
 ---
