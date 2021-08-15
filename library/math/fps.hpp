@@ -129,6 +129,14 @@ class FPS : public std::vector<mint> {
         inline FPS operator<<(const int shamt) { return FPS(*this) <<= shamt; }
         inline FPS operator>>(const int shamt) { return FPS(*this) >>= shamt; }
 
+        friend bool operator==(const FPS &f, const FPS &g) {
+            int n = f.size(), m = g.size();
+            if (n < m) return g == f;
+            for (int i = 0; i < m; ++i) if (f.unsafe_get(i) != g.unsafe_get(i)) return false;
+            for (int i = m; i < n; ++i) if (f.unsafe_get(i) != 0) return false;
+            return true;
+        }
+
         FPS& diff_inplace() {
             if (this->size() == 0) return *this;
             for (int i = 1; i <= deg(); ++i) unsafe_get(i - 1) = unsafe_get(i) * i;
