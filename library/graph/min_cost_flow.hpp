@@ -29,23 +29,24 @@ class MinCostFlow {
          * Returns { flow, cost } (flow = min(max_flow, f))
          */
         std::pair<Cap, Cost> min_cost_max_flow(const int s, const int t, const Cap f) {
-            return min_cost_flow(s, t, [this, f](Cap flow, Cost){ return flow < f; });
+            return min_cost_flow(s, t, f, [](Cap, Cost){ return true; });
         }
         /**
          * Returns { flow, cost } (flow = max_flow)
          */
         std::pair<Cap, Cost> min_cost_max_flow(const int s, const int t) {
-            return min_cost_max_flow(s, t, std::numeric_limits<Cap>::max());
+            return min_cost_max_flow(s, t, INF_FLOW);
         }
         /**
          * Returns { flow, cost }
          * amount of flow is arbitrary.
          */
-        std::pair<Cap, Cost> min_cost_flow(const int s, const int t) {
-            return min_cost_flow(s, t, [this, t](Cap, Cost){ return potential[t] < 0; });
+        std::pair<Cap, Cost> min_cost_arbitrary_flow(const int s, const int t) {
+            return min_cost_flow(s, t, INF_FLOW, [this, t](Cap, Cost){ return potential[t] < 0; });
         }
     private:
-        static constexpr Cost INF = std::numeric_limits<Cost>::max();
+        static constexpr Cost INF_COST = std::numeric_limits<Cost>::max();
+        static constexpr Cost INF_FLOW = std::numeric_limits<Cap>::max();
     
         int n;
         std::vector<std::vector<Edge>> g;
@@ -54,7 +55,7 @@ class MinCostFlow {
         std::vector<int> prev_vid, prev_eid;
 
         template <typename Predicate>
-        std::pair<Cap, Cost> min_cost_flow(const int s, const int t, Predicate pred) {
+        std::pair<Cap, Cost> min_cost_flow(const int s, const int t, const Cap upper_flow, Predicate pred) {
             switch (init_method) {
                 case BELLMAN_FORD: bellman_ford(s); break;
                 case DIJKSTRA:     dijkstra(s);     break;
@@ -63,8 +64,8 @@ class MinCostFlow {
             update_potential();
             Cap flow = 0;
             Cost cost = 0;
-            while (dist[t] != INF and pred(flow, cost)) {
-                Cap df = std::numeric_limits<Cap>::max();
+            while (dist[t] != INF_COST and flow < upper_flow and pred(flow, cost)) {
+                Cap df = upper_flow - flow;
                 for (int v = t; v != s; v = prev_vid[v]) {
                     df = std::min(df, g[prev_vid[v]][prev_eid[v]].cap);
                 }
@@ -84,12 +85,12 @@ class MinCostFlow {
 
         void update_potential() {
             for (int u = 0; u < n; ++u) {
-                if (potential[u] != INF) potential[u] += dist[u];
+                if (potential[u] != INF_COST) potential[u] += dist[u];
             }
         }
 
         bool update_dist(int u, int eid) {
-            if (dist[u] == INF) return false;
+            if (dist[u] == INF_COST) return false;
             const auto &e = g[u][eid];
             if (e.cap == 0) return false;
             const int v = e.to;
@@ -109,7 +110,7 @@ class MinCostFlow {
         void dijkstra(int s) {
             using State = std::pair<Cost, int>;
             std::priority_queue<State, std::vector<State>, std::greater<State>> pq;
-            dist.assign(n, INF);
+            dist.assign(n, INF_COST);
             pq.emplace(dist[s] = 0, s);
             while (pq.size()) {
                 auto [du, u] = pq.top();
@@ -136,7 +137,7 @@ class MinCostFlow {
             for (int u = 0; u < n; ++u) {
                 if (in[u] == 0) dq.push_back(u);
             }
-            dist.assign(n, INF);
+            dist.assign(n, INF_COST);
             dist[s] = 0;
             while (dq.size()) {
                 int u = dq.front();
@@ -154,12 +155,12 @@ class MinCostFlow {
         }
 
         void bellman_ford(int s) {
-            dist.assign(n, INF);
+            dist.assign(n, INF_COST);
             dist[s] = 0;
             for (bool has_update = true; has_update;) {
                 has_update = false;
                 for (int u = 0; u < n; ++u) {
-                    if (dist[u] == INF) continue;
+                    if (dist[u] == INF_COST) continue;
                     for (int i = 0; i < int(g[u].size()); ++i) {
                         has_update |= update_dist(u, i);
                     }
