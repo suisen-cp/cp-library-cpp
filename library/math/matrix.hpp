@@ -137,24 +137,23 @@ class SquareMatrix : public Matrix<T> {
             auto &data = A.data;
             int n = data.size();
             for (int i = 0; i < n; ++i) {
-                data[i].resize(2 * n, T(0));
-                data[i][n + i] = T(1);
+                data[i].resize(2 * n, T{0});
+                data[i][n + i] = T{1};
             }
             for (int i = 0; i < n; ++i) {
                 int pivot = -1;
                 for (int k = i; k < n; ++k) {
-                    if (data[k][i] != T(0)) {
+                    if (data[k][i] != T{0}) {
                         pivot = k;
                         break;
                     }
                 }
                 if (pivot < 0) return std::nullopt;
-                assert(pivot >= 0);
                 data[i].swap(data[pivot]);
-                T coef = T(1) / data[i][i];
+                T coef = T{1} / data[i][i];
                 for (int j = i; j < 2 * n; ++j) data[i][j] *= coef;
                 for (int k = 0; k < n; ++k) {
-                    if (k == i or data[k][i] == T(0)) continue;
+                    if (k == i or data[k][i] == T{0}) continue;
                     T c = data[k][i];
                     for (int j = i; j < 2 * n; ++j) data[k][j] -= c * data[i][j];
                 }
@@ -167,20 +166,20 @@ class SquareMatrix : public Matrix<T> {
         }
         static T det(SquareMatrix<T> &&A) {
             auto &data = A.data;
-            T det_inv = T(1);
+            T det_inv = T{1};
             int n = data.size();
             for (int i = 0; i < n; ++i) {
                 int pivot = -1;
                 for (int k = i; k < n; ++k) {
-                    if (data[k][i] != T(0)) {
+                    if (data[k][i] != T{0}) {
                         pivot = k;
                         break;
                     }
                 }
-                if (pivot < 0) return T(0);
+                if (pivot < 0) return T{0};
                 data[i].swap(data[pivot]);
-                if (pivot != i) det_inv *= T(-1);
-                T coef = T(1) / data[i][i];
+                if (pivot != i) det_inv *= T{-1};
+                T coef = T{1} / data[i][i];
                 for (int j = i; j < n; ++j) data[i][j] *= coef;
                 det_inv *= coef;
                 for (int k = i + 1; k < n; ++k) {
@@ -189,7 +188,7 @@ class SquareMatrix : public Matrix<T> {
                     for (int j = i; j < n; ++j) data[k][j] -= c * data[i][j];
                 }
             }
-            return T(1) / det_inv;
+            return T{1} / det_inv;
         }
         static T det(const SquareMatrix<T> &A) {
             return SquareMatrix<T>::det(SquareMatrix<T>(A));
