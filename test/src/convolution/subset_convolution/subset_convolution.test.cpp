@@ -29,7 +29,6 @@ std::ostream& operator<<(std::ostream& out, const std::vector<T> &a) {
 }
 
 int main() {
-    suisen::FPS<mint>::set_multiplication([](const auto &a, const auto &b) { return atcoder::convolution(a, b); });
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
     int n;
