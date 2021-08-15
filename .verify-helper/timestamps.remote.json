@@ -5,6 +5,7 @@
 "test/src/algorithm/slope_trick/narrow_rectangles.test.cpp": "2021-07-20 17:04:50 +0900",
 "test/src/convolution/and_convolution/and_convolution.test.cpp": "2021-08-13 19:00:29 +0900",
 "test/src/convolution/gcd_convolution/lcms.test.cpp": "2021-08-13 19:00:29 +0900",
+"test/src/convolution/subset_convolution/subset_convolution.test.cpp": "2021-08-15 23:15:00 +0900",
 "test/src/convolution/xor_convolution/xor_convolution.test.cpp": "2021-08-13 19:00:29 +0900",
 "test/src/datastructure/binary_trie/set_xor_min.test.cpp": "2021-07-20 20:17:05 +0900",
 "test/src/datastructure/binary_trie/xor_game.test.cpp": "2021-07-20 20:17:05 +0900",
