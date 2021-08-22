@@ -20,7 +20,7 @@ class SegmentTree {
             std::copy(a.begin(), a.end(), data.begin() + m);
             for (int k = m - 1; k > 0; --k) update(k);
         }
-        T get(int i) const {
+        const T& get(int i) const {
             assert(0 <= i and i < n);
             return data[i + m];
         }
@@ -98,10 +98,10 @@ class SegmentTree {
         }
 
     private:
-        const int n, m;
+        int n, m;
         std::vector<T> data;
-        const T e;
-        const F op;
+        T e;
+        F op;
 
         static constexpr int ceil_pow2(int n) {
             int m = 1;
