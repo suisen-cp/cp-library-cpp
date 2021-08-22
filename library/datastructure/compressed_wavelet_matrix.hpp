@@ -62,6 +62,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         }
         // returns the number of v in WaveletMatrix[l, r) s.t. lower <= v < upper
         inline int range_freq(int l, int r, T lower, T upper) const {
+            if (lower >= upper) return 0;
             return range_freq(l, r, upper) - range_freq(l, r, lower);
         }
         // returns the minimum value v in WaveletMatrix[l, r) s.t. lower <= v
