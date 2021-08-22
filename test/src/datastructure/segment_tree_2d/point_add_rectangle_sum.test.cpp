@@ -4,7 +4,6 @@
 #include <tuple>
 
 #include "library/datastructure/segment_tree_2d.hpp"
-#include "library/util/coordinate_compressor.hpp"
 
 using namespace suisen;
 
@@ -15,15 +14,14 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    CoordinateCompressorBuilder<int> builder;
-    builder.reserve(n + q);
+    SegmentTree2D seg(n + q, 0LL, std::plus<long long>());
 
     std::vector<std::tuple<int, int, int>> init(n);
     for (int i = 0; i < n; ++i) {
         int x, y, w;
         std::cin >> x >> y >> w;
         init[i] = { x, y, w };
-        builder.push(x);
+        seg.add_point(x, y);
     }
     std::vector<std::tuple<int, int, int, int, int>> queries(q);
     for (int i = 0; i < q; ++i) {
@@ -33,7 +31,7 @@ int main() {
             int x, y, w;
             std::cin >> x >> y >> w;
             queries[i] = { t, x, y, w, 0 };
-            builder.push(x);
+            seg.add_point(x, y);
         } else {
             int l, d, r, u;
             std::cin >> l >> d >> r >> u;
@@ -41,17 +39,6 @@ int main() {
         }
     }
 
-    auto comp_x = builder.build();
-
-    SegmentTree2D seg(comp_x.size(), 0LL, std::plus<long long>());
-    for (auto &p : init) {
-        seg.add_point(std::get<0>(p), std::get<1>(p));
-    }
-    for (auto &q : queries) {
-        if (std::get<0>(q) == 0) {
-            seg.add_point(std::get<1>(q), std::get<2>(q));
-        }
-    }
     seg.build();
 
     for (auto [x, y, w] : init) {
@@ -60,9 +47,11 @@ int main() {
 
     for (const auto &q : queries) {
         if (std::get<0>(q) == 0) {
-            seg[{std::get<1>(q), std::get<2>(q)}] += std::get<3>(q);
+            auto [t, x, y, w, _] = q;
+            seg[{x, y}] += w;
         } else {
-            std::cout << seg(std::get<1>(q), std::get<2>(q), std::get<3>(q), std::get<4>(q)) << '\n';
+            auto [t, l, r, d, u] = q;
+            std::cout << seg(l, r, d, u) << '\n';
         }
     }
 
