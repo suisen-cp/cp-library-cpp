@@ -59,10 +59,15 @@ std::ostream& operator<<(std::ostream& out, const std::pair<T, U> &a) {
 // tuple
 template <unsigned int N = 0, typename ...Args>
 std::ostream& operator<<(std::ostream& out, const std::tuple<Args...> &a) {
-    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) return out;
-    out << std::get<N>(a);
-    if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>) out << ' ';
-    return operator<<<N + 1>(out, a);
+    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) {
+        return out;
+    } else {
+        out << std::get<N>(a);
+        if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>) {
+            out << ' ';
+        }
+        return operator<<<N + 1>(out, a);
+    }
 }
 // vector
 template <typename T>
@@ -110,13 +115,6 @@ template <typename ...Args>
 void read(Args &...args) {
     ( std::cin >> ... >> args );
 }
-
-struct fast_io {
-    fast_io() {
-        std::ios::sync_with_stdio(false);
-        std::cin.tie(nullptr);
-    }
-};
 
 // ! integral utilities
 
