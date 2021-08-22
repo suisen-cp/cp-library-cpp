@@ -239,8 +239,9 @@ struct SplayTreeMapNode : public MapNodeBase<Key, Val, SplayTreeMapNode<Key, Val
 
 template <typename Key, typename Val>
 class SplayTreeMap {
-    using Node = internal::splay_tree_map::SplayTreeMapNode<Key, Val>;
-    using node_ptr_t = typename Node::node_ptr_t;
+    protected:
+        using Node = internal::splay_tree_map::SplayTreeMapNode<Key, Val>;
+        using node_ptr_t = typename Node::node_ptr_t;
     public:
         SplayTreeMap() : root(nullptr) {}
         ~SplayTreeMap() {
@@ -299,12 +300,12 @@ class SplayTreeMap {
             index_bounds_check(k, size() + 1);
             auto [l, r] = Node::split_by_index(root, k);
             root = l;
-            return SplayTreeMap(r);
+            return SplayTreeMap<Key, Val>(r);
         }
         SplayTreeMap split_by_key(const Key &key) {
             auto [l, r] = Node::split_by_key(root, key);
             root = l;
-            return SplayTreeMap(r);
+            return SplayTreeMap<Key, Val>(r);
         }
     protected:
         Node *root;

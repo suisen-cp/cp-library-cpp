@@ -7,7 +7,7 @@ namespace suisen {
 template <typename Key>
 class SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t> {
     using Base = SplayTreeMap<Key, std::nullptr_t>;
-    using Node = Base::Node;
+    using Node = typename Base::Node;
     public:
         using Base::SplayTreeMap;
         SplayTreeSet& operator=(const SplayTreeSet&) = delete;
@@ -30,12 +30,12 @@ class SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t> {
             Base::index_bounds_check(k, this->size() + 1);
             auto [l, r] = Node::split_by_index(this->root, k);
             this->root = l;
-            return SplayTreeSet(r);
+            return SplayTreeSet<Key>(r);
         }
-        SplayTreeMap split_by_key(const Key &key) {
+        SplayTreeSet split_by_key(const Key &key) {
             auto [l, r] = Node::split_by_key(this->root, key);
             this->root = l;
-            return SplayTreeMap(r);
+            return SplayTreeSet<Key>(r);
         }
 };
 };
