@@ -263,15 +263,15 @@ data:
     \ <typename Key, typename Val>\nstruct SplayTreeMapNode : public MapNodeBase<Key,\
     \ Val, SplayTreeMapNode<Key, Val>> {\n    using Base = MapNodeBase<Key, Val, SplayTreeMapNode<Key,\
     \ Val>>;\n    using Base::MapNodeBase;\n    using node_ptr_t = typename Base::node_ptr_t;\n\
-    };\n}\n\ntemplate <typename Key, typename Val>\nclass SplayTreeMap {\n    using\
-    \ Node = internal::splay_tree_map::SplayTreeMapNode<Key, Val>;\n    using node_ptr_t\
-    \ = typename Node::node_ptr_t;\n    public:\n        SplayTreeMap() : root(nullptr)\
-    \ {}\n        ~SplayTreeMap() {\n            delete root;\n        }\n\n     \
-    \   SplayTreeMap& operator=(const SplayTreeMap&) = delete;\n        SplayTreeMap&\
-    \ operator=(SplayTreeMap&& other) {\n            delete root;\n            root\
-    \ = other.root;\n            other.root = nullptr;\n            return *this;\n\
-    \        }\n\n        int size() {\n            return Node::size(root);\n   \
-    \     }\n        bool contains(const Key &key) {\n            auto [new_root,\
+    };\n}\n\ntemplate <typename Key, typename Val>\nclass SplayTreeMap {\n    protected:\n\
+    \        using Node = internal::splay_tree_map::SplayTreeMapNode<Key, Val>;\n\
+    \        using node_ptr_t = typename Node::node_ptr_t;\n    public:\n        SplayTreeMap()\
+    \ : root(nullptr) {}\n        ~SplayTreeMap() {\n            delete root;\n  \
+    \      }\n\n        SplayTreeMap& operator=(const SplayTreeMap&) = delete;\n \
+    \       SplayTreeMap& operator=(SplayTreeMap&& other) {\n            delete root;\n\
+    \            root = other.root;\n            other.root = nullptr;\n         \
+    \   return *this;\n        }\n\n        int size() {\n            return Node::size(root);\n\
+    \        }\n        bool contains(const Key &key) {\n            auto [new_root,\
     \ found] = Node::find_key(root, key);\n            root = new_root;\n        \
     \    return found;\n        }\n        void insert(const Key &key, const Val &val)\
     \ {\n            root = Node::insert(root, key, val, true);\n        }\n     \
@@ -291,32 +291,33 @@ data:
     \      root = Node::splay_by_index(root, k);\n            return { root->key,\
     \ root->val };\n        }\n        SplayTreeMap split_by_index(int k) {\n    \
     \        index_bounds_check(k, size() + 1);\n            auto [l, r] = Node::split_by_index(root,\
-    \ k);\n            root = l;\n            return SplayTreeMap(r);\n        }\n\
-    \        SplayTreeMap split_by_key(const Key &key) {\n            auto [l, r]\
-    \ = Node::split_by_key(root, key);\n            root = l;\n            return\
-    \ SplayTreeMap(r);\n        }\n    protected:\n        Node *root;\n\n       \
-    \ SplayTreeMap(node_ptr_t root) : root(root) {}\n    \n        static void index_bounds_check(unsigned\
-    \ int k, unsigned int n) {\n            assert(k < n);\n        }\n        static\
-    \ void range_bounds_check(unsigned int l, unsigned int r, unsigned int n) {\n\
-    \            assert(l <= r and r <= n);\n        }\n};\n\n}\n\n\n#line 9 \"library/datastructure/range_foldable_map.hpp\"\
-    \n\nnamespace suisen {\nnamespace internal::range_foldable_map {\n\ntemplate <typename\
-    \ Key, typename Val, Val(*op)(Val, Val), Val (*e)(), typename Derived>\nstruct\
-    \ RangeFoldableMapNodeBase : public internal::splay_tree_map::MapNodeBase<Key,\
-    \ Val, Derived> {\n    using Base = internal::splay_tree_map::MapNodeBase<Key,\
-    \ Val, Derived>;\n    using node_ptr_t = typename Base::node_ptr_t;\n    Val dat;\n\
-    \    RangeFoldableMapNodeBase() : RangeFoldableMapNodeBase(Key{}, e()) {}\n  \
-    \  RangeFoldableMapNodeBase(const Key &key, const Val &val) : Base::MapNodeBase(key,\
-    \ val), dat(val) {}\n    void update() {\n        Base::update();\n        dat\
-    \ = op(op(prod_all(this->ch[0]), this->val), prod_all(this->ch[1]));\n    }\n\
-    \    static Val prod_all(node_ptr_t node) {\n        return node == nullptr ?\
-    \ e() : node->dat;\n    }\n    static std::pair<node_ptr_t, Val> prod_by_index(node_ptr_t\
-    \ node, int l, int r) {\n        auto [tl, tm, tr] = Base::split_by_index(node,\
-    \ l, r);\n        Val res = prod_all(tm);\n        return { Base::merge(tl, tm,\
-    \ tr), res };\n    }\n    static std::pair<node_ptr_t, Val> prod_by_key(node_ptr_t\
-    \ node, const Key &l, const Key &r) {\n        auto [tl, tm, tr] = Base::split_by_key(node,\
-    \ l, r);\n        Val res = prod_all(tm);\n        return { Base::merge(tl, tm,\
-    \ tr), res };\n    }\n};\n\ntemplate <typename Key, typename Val, Val(*op)(Val,\
-    \ Val), Val (*e)()>\nstruct RangeFoldableMapNode : public RangeFoldableMapNodeBase<Key,\
+    \ k);\n            root = l;\n            return SplayTreeMap<Key, Val>(r);\n\
+    \        }\n        SplayTreeMap split_by_key(const Key &key) {\n            auto\
+    \ [l, r] = Node::split_by_key(root, key);\n            root = l;\n           \
+    \ return SplayTreeMap<Key, Val>(r);\n        }\n    protected:\n        Node *root;\n\
+    \n        SplayTreeMap(node_ptr_t root) : root(root) {}\n    \n        static\
+    \ void index_bounds_check(unsigned int k, unsigned int n) {\n            assert(k\
+    \ < n);\n        }\n        static void range_bounds_check(unsigned int l, unsigned\
+    \ int r, unsigned int n) {\n            assert(l <= r and r <= n);\n        }\n\
+    };\n\n}\n\n\n#line 9 \"library/datastructure/range_foldable_map.hpp\"\n\nnamespace\
+    \ suisen {\nnamespace internal::range_foldable_map {\n\ntemplate <typename Key,\
+    \ typename Val, Val(*op)(Val, Val), Val (*e)(), typename Derived>\nstruct RangeFoldableMapNodeBase\
+    \ : public internal::splay_tree_map::MapNodeBase<Key, Val, Derived> {\n    using\
+    \ Base = internal::splay_tree_map::MapNodeBase<Key, Val, Derived>;\n    using\
+    \ node_ptr_t = typename Base::node_ptr_t;\n    Val dat;\n    RangeFoldableMapNodeBase()\
+    \ : RangeFoldableMapNodeBase(Key{}, e()) {}\n    RangeFoldableMapNodeBase(const\
+    \ Key &key, const Val &val) : Base::MapNodeBase(key, val), dat(val) {}\n    void\
+    \ update() {\n        Base::update();\n        dat = op(op(prod_all(this->ch[0]),\
+    \ this->val), prod_all(this->ch[1]));\n    }\n    static Val prod_all(node_ptr_t\
+    \ node) {\n        return node == nullptr ? e() : node->dat;\n    }\n    static\
+    \ std::pair<node_ptr_t, Val> prod_by_index(node_ptr_t node, int l, int r) {\n\
+    \        auto [tl, tm, tr] = Base::split_by_index(node, l, r);\n        Val res\
+    \ = prod_all(tm);\n        return { Base::merge(tl, tm, tr), res };\n    }\n \
+    \   static std::pair<node_ptr_t, Val> prod_by_key(node_ptr_t node, const Key &l,\
+    \ const Key &r) {\n        auto [tl, tm, tr] = Base::split_by_key(node, l, r);\n\
+    \        Val res = prod_all(tm);\n        return { Base::merge(tl, tm, tr), res\
+    \ };\n    }\n};\n\ntemplate <typename Key, typename Val, Val(*op)(Val, Val), Val\
+    \ (*e)()>\nstruct RangeFoldableMapNode : public RangeFoldableMapNodeBase<Key,\
     \ Val, op, e, RangeFoldableMapNode<Key, Val, op, e>> {\n    using Base = RangeFoldableMapNodeBase<Key,\
     \ Val, op, e, RangeFoldableMapNode<Key, Val, op, e>>;\n    using Base::RangeFoldableMapNodeBase;\n\
     \    using node_ptr_t = typename Base::node_ptr_t;\n};\n}\n\ntemplate <typename\
@@ -481,7 +482,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   requiredBy: []
-  timestamp: '2021-08-11 21:33:32+09:00'
+  timestamp: '2021-08-22 19:50:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

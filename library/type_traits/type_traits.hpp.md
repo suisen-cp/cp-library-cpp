@@ -60,6 +60,9 @@ data:
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree_2d.hpp
+    title: library/datastructure/segment_tree_2d.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
     title: library/datastructure/sparse_table.hpp
   - icon: ':heavy_check_mark:'
@@ -163,6 +166,12 @@ data:
     path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+    title: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+    title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
@@ -260,6 +269,7 @@ data:
   - library/datastructure/dynamic_sequence.hpp
   - library/datastructure/segment_tree.hpp
   - library/datastructure/weighted_union_find.hpp
+  - library/datastructure/segment_tree_2d.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/bit_vector.hpp
   - library/datastructure/lazy_segment_tree.hpp
@@ -290,6 +300,8 @@ data:
   - test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
   - test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp

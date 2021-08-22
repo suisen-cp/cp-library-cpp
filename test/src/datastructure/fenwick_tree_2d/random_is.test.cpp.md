@@ -83,10 +83,10 @@ data:
     \            build(a);\n        }\n        void build(const std::vector<T> &a)\
     \ {\n            assert(int(a.size()) <= m);\n            std::copy(a.begin(),\
     \ a.end(), data.begin() + m);\n            for (int k = m - 1; k > 0; --k) update(k);\n\
-    \        }\n        T get(int i) const {\n            assert(0 <= i and i < n);\n\
-    \            return data[i + m];\n        }\n        T operator()(int l, int r)\
-    \ const {\n            T res_l = e, res_r = e;\n            for (l += m, r +=\
-    \ m; l < r; l >>= 1, r >>= 1) {\n                if (l & 1) res_l = op(res_l,\
+    \        }\n        const T& get(int i) const {\n            assert(0 <= i and\
+    \ i < n);\n            return data[i + m];\n        }\n        T operator()(int\
+    \ l, int r) const {\n            T res_l = e, res_r = e;\n            for (l +=\
+    \ m, r += m; l < r; l >>= 1, r >>= 1) {\n                if (l & 1) res_l = op(res_l,\
     \ data[l++]);\n                if (r & 1) res_r = op(data[--r], res_r);\n    \
     \        }\n            return op(res_l, res_r);\n        }\n        T prefix_prod(int\
     \ r) const {\n            assert(0 <= r and r <= n);\n            return (*this)(0,\
@@ -116,13 +116,13 @@ data:
     \        if (f(op(data[r], sum_r))) sum_r = op(data[r--], sum_r);\n          \
     \          }\n                    return r + 1 - m;\n                }\n     \
     \           sum_r = op(data[r], sum_r);\n            } while ((r & -r) != r);\n\
-    \            return 0;\n        }\n\n    private:\n        const int n, m;\n \
-    \       std::vector<T> data;\n        const T e;\n        const F op;\n\n    \
-    \    static constexpr int ceil_pow2(int n) {\n            int m = 1;\n       \
-    \     while (m < n) m <<= 1;\n            return m;\n        }\n        void update_from(int\
-    \ k) {\n            for (k >>= 1; k; k >>= 1) update(k);\n        }\n        void\
-    \ update(int k) {\n            data[k] = op(data[k * 2], data[k * 2 + 1]);\n \
-    \       }\n};\n} // namespace suisen\n\n\n\n#line 1 \"library/datastructure/fenwick_tree_2d.hpp\"\
+    \            return 0;\n        }\n\n    private:\n        int n, m;\n       \
+    \ std::vector<T> data;\n        T e;\n        F op;\n\n        static constexpr\
+    \ int ceil_pow2(int n) {\n            int m = 1;\n            while (m < n) m\
+    \ <<= 1;\n            return m;\n        }\n        void update_from(int k) {\n\
+    \            for (k >>= 1; k; k >>= 1) update(k);\n        }\n        void update(int\
+    \ k) {\n            data[k] = op(data[k * 2], data[k * 2 + 1]);\n        }\n};\n\
+    } // namespace suisen\n\n\n\n#line 1 \"library/datastructure/fenwick_tree_2d.hpp\"\
     \n\n\n\n#line 5 \"library/datastructure/fenwick_tree_2d.hpp\"\n\nnamespace suisen\
     \ {\n\ntemplate <typename T>\nclass FenwickTree2D {\n    public:\n        FenwickTree2D()\
     \ {}\n        explicit FenwickTree2D(int n, int m) : n(n), m(m), data(n, std::vector<T>(m,\
@@ -195,7 +195,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   requiredBy: []
-  timestamp: '2021-08-11 01:57:14+09:00'
+  timestamp: '2021-08-22 19:50:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp

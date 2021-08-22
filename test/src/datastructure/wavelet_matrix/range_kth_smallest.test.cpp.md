@@ -137,14 +137,15 @@ data:
     \ += bv[log].rank(false, l, r);\n                succ(l, r, b, log);\n       \
     \     }\n            return res;\n        }\n        // returns the number of\
     \ v in WaveletMatrix[l, r) s.t. lower <= v < upper\n        inline int range_freq(int\
-    \ l, int r, T lower, T upper) const {\n            return range_freq(l, r, upper)\
-    \ - range_freq(l, r, lower);\n        }\n        // returns the minimum value\
-    \ v in WaveletMatrix[l, r) s.t. lower <= v\n        inline T range_min_geq(int\
-    \ l, int r, T lower, T default_value = T(-1)) const {\n            int cnt = range_freq(l,\
-    \ r, lower);\n            return cnt >= r - l ? default_value : range_kth_smallest(l,\
-    \ r, cnt);\n        }\n        // returns the minimum value v in WaveletMatrix[l,\
-    \ r) s.t. lower < v\n        inline T range_min_gt(int l, int r, T lower, T default_value\
-    \ = T(-1)) const {\n            return lower == MAX ? default_value : range_min_geq(l,\
+    \ l, int r, T lower, T upper) const {\n            if (lower >= upper) return\
+    \ 0;\n            return range_freq(l, r, upper) - range_freq(l, r, lower);\n\
+    \        }\n        // returns the minimum value v in WaveletMatrix[l, r) s.t.\
+    \ lower <= v\n        inline T range_min_geq(int l, int r, T lower, T default_value\
+    \ = T(-1)) const {\n            int cnt = range_freq(l, r, lower);\n         \
+    \   return cnt >= r - l ? default_value : range_kth_smallest(l, r, cnt);\n   \
+    \     }\n        // returns the minimum value v in WaveletMatrix[l, r) s.t. lower\
+    \ < v\n        inline T range_min_gt(int l, int r, T lower, T default_value =\
+    \ T(-1)) const {\n            return lower == MAX ? default_value : range_min_geq(l,\
     \ r, lower + 1);\n        }\n        // returns the maximum value v in WaveletMatrix[l,\
     \ r) s.t. v < upper\n        inline T range_max_lt(int l, int r, T upper, T default_value\
     \ = T(-1)) const {\n            int cnt = range_freq(l, r, upper);\n         \
@@ -184,7 +185,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2021-08-02 17:38:49+09:00'
+  timestamp: '2021-08-22 19:49:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp

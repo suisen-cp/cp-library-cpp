@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+    title: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -232,6 +235,7 @@ data:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
 layout: document
 redirect_from:

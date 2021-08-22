@@ -124,15 +124,15 @@ data:
     \ <typename Key, typename Val>\nstruct SplayTreeMapNode : public MapNodeBase<Key,\
     \ Val, SplayTreeMapNode<Key, Val>> {\n    using Base = MapNodeBase<Key, Val, SplayTreeMapNode<Key,\
     \ Val>>;\n    using Base::MapNodeBase;\n    using node_ptr_t = typename Base::node_ptr_t;\n\
-    };\n}\n\ntemplate <typename Key, typename Val>\nclass SplayTreeMap {\n    using\
-    \ Node = internal::splay_tree_map::SplayTreeMapNode<Key, Val>;\n    using node_ptr_t\
-    \ = typename Node::node_ptr_t;\n    public:\n        SplayTreeMap() : root(nullptr)\
-    \ {}\n        ~SplayTreeMap() {\n            delete root;\n        }\n\n     \
-    \   SplayTreeMap& operator=(const SplayTreeMap&) = delete;\n        SplayTreeMap&\
-    \ operator=(SplayTreeMap&& other) {\n            delete root;\n            root\
-    \ = other.root;\n            other.root = nullptr;\n            return *this;\n\
-    \        }\n\n        int size() {\n            return Node::size(root);\n   \
-    \     }\n        bool contains(const Key &key) {\n            auto [new_root,\
+    };\n}\n\ntemplate <typename Key, typename Val>\nclass SplayTreeMap {\n    protected:\n\
+    \        using Node = internal::splay_tree_map::SplayTreeMapNode<Key, Val>;\n\
+    \        using node_ptr_t = typename Node::node_ptr_t;\n    public:\n        SplayTreeMap()\
+    \ : root(nullptr) {}\n        ~SplayTreeMap() {\n            delete root;\n  \
+    \      }\n\n        SplayTreeMap& operator=(const SplayTreeMap&) = delete;\n \
+    \       SplayTreeMap& operator=(SplayTreeMap&& other) {\n            delete root;\n\
+    \            root = other.root;\n            other.root = nullptr;\n         \
+    \   return *this;\n        }\n\n        int size() {\n            return Node::size(root);\n\
+    \        }\n        bool contains(const Key &key) {\n            auto [new_root,\
     \ found] = Node::find_key(root, key);\n            root = new_root;\n        \
     \    return found;\n        }\n        void insert(const Key &key, const Val &val)\
     \ {\n            root = Node::insert(root, key, val, true);\n        }\n     \
@@ -152,14 +152,15 @@ data:
     \      root = Node::splay_by_index(root, k);\n            return { root->key,\
     \ root->val };\n        }\n        SplayTreeMap split_by_index(int k) {\n    \
     \        index_bounds_check(k, size() + 1);\n            auto [l, r] = Node::split_by_index(root,\
-    \ k);\n            root = l;\n            return SplayTreeMap(r);\n        }\n\
-    \        SplayTreeMap split_by_key(const Key &key) {\n            auto [l, r]\
-    \ = Node::split_by_key(root, key);\n            root = l;\n            return\
-    \ SplayTreeMap(r);\n        }\n    protected:\n        Node *root;\n\n       \
-    \ SplayTreeMap(node_ptr_t root) : root(root) {}\n    \n        static void index_bounds_check(unsigned\
-    \ int k, unsigned int n) {\n            assert(k < n);\n        }\n        static\
-    \ void range_bounds_check(unsigned int l, unsigned int r, unsigned int n) {\n\
-    \            assert(l <= r and r <= n);\n        }\n};\n\n}\n\n\n"
+    \ k);\n            root = l;\n            return SplayTreeMap<Key, Val>(r);\n\
+    \        }\n        SplayTreeMap split_by_key(const Key &key) {\n            auto\
+    \ [l, r] = Node::split_by_key(root, key);\n            root = l;\n           \
+    \ return SplayTreeMap<Key, Val>(r);\n        }\n    protected:\n        Node *root;\n\
+    \n        SplayTreeMap(node_ptr_t root) : root(root) {}\n    \n        static\
+    \ void index_bounds_check(unsigned int k, unsigned int n) {\n            assert(k\
+    \ < n);\n        }\n        static void range_bounds_check(unsigned int l, unsigned\
+    \ int r, unsigned int n) {\n            assert(l <= r and r <= n);\n        }\n\
+    };\n\n}\n\n\n"
   code: "#ifndef SUISEN_SPLAY_TREE_MAP\n#define SUISEN_SPLAY_TREE_MAP\n\n#include\
     \ <cassert>\n#include <cstddef>\n#include <vector>\n#include <utility>\n\nnamespace\
     \ suisen {\nnamespace internal::splay_tree_map {\n\ntemplate <typename Key, typename\
@@ -264,15 +265,15 @@ data:
     \ <typename Key, typename Val>\nstruct SplayTreeMapNode : public MapNodeBase<Key,\
     \ Val, SplayTreeMapNode<Key, Val>> {\n    using Base = MapNodeBase<Key, Val, SplayTreeMapNode<Key,\
     \ Val>>;\n    using Base::MapNodeBase;\n    using node_ptr_t = typename Base::node_ptr_t;\n\
-    };\n}\n\ntemplate <typename Key, typename Val>\nclass SplayTreeMap {\n    using\
-    \ Node = internal::splay_tree_map::SplayTreeMapNode<Key, Val>;\n    using node_ptr_t\
-    \ = typename Node::node_ptr_t;\n    public:\n        SplayTreeMap() : root(nullptr)\
-    \ {}\n        ~SplayTreeMap() {\n            delete root;\n        }\n\n     \
-    \   SplayTreeMap& operator=(const SplayTreeMap&) = delete;\n        SplayTreeMap&\
-    \ operator=(SplayTreeMap&& other) {\n            delete root;\n            root\
-    \ = other.root;\n            other.root = nullptr;\n            return *this;\n\
-    \        }\n\n        int size() {\n            return Node::size(root);\n   \
-    \     }\n        bool contains(const Key &key) {\n            auto [new_root,\
+    };\n}\n\ntemplate <typename Key, typename Val>\nclass SplayTreeMap {\n    protected:\n\
+    \        using Node = internal::splay_tree_map::SplayTreeMapNode<Key, Val>;\n\
+    \        using node_ptr_t = typename Node::node_ptr_t;\n    public:\n        SplayTreeMap()\
+    \ : root(nullptr) {}\n        ~SplayTreeMap() {\n            delete root;\n  \
+    \      }\n\n        SplayTreeMap& operator=(const SplayTreeMap&) = delete;\n \
+    \       SplayTreeMap& operator=(SplayTreeMap&& other) {\n            delete root;\n\
+    \            root = other.root;\n            other.root = nullptr;\n         \
+    \   return *this;\n        }\n\n        int size() {\n            return Node::size(root);\n\
+    \        }\n        bool contains(const Key &key) {\n            auto [new_root,\
     \ found] = Node::find_key(root, key);\n            root = new_root;\n        \
     \    return found;\n        }\n        void insert(const Key &key, const Val &val)\
     \ {\n            root = Node::insert(root, key, val, true);\n        }\n     \
@@ -292,14 +293,15 @@ data:
     \      root = Node::splay_by_index(root, k);\n            return { root->key,\
     \ root->val };\n        }\n        SplayTreeMap split_by_index(int k) {\n    \
     \        index_bounds_check(k, size() + 1);\n            auto [l, r] = Node::split_by_index(root,\
-    \ k);\n            root = l;\n            return SplayTreeMap(r);\n        }\n\
-    \        SplayTreeMap split_by_key(const Key &key) {\n            auto [l, r]\
-    \ = Node::split_by_key(root, key);\n            root = l;\n            return\
-    \ SplayTreeMap(r);\n        }\n    protected:\n        Node *root;\n\n       \
-    \ SplayTreeMap(node_ptr_t root) : root(root) {}\n    \n        static void index_bounds_check(unsigned\
-    \ int k, unsigned int n) {\n            assert(k < n);\n        }\n        static\
-    \ void range_bounds_check(unsigned int l, unsigned int r, unsigned int n) {\n\
-    \            assert(l <= r and r <= n);\n        }\n};\n\n}\n\n#endif // SUISEN_SPLAY_TREE_MAP\n"
+    \ k);\n            root = l;\n            return SplayTreeMap<Key, Val>(r);\n\
+    \        }\n        SplayTreeMap split_by_key(const Key &key) {\n            auto\
+    \ [l, r] = Node::split_by_key(root, key);\n            root = l;\n           \
+    \ return SplayTreeMap<Key, Val>(r);\n        }\n    protected:\n        Node *root;\n\
+    \n        SplayTreeMap(node_ptr_t root) : root(root) {}\n    \n        static\
+    \ void index_bounds_check(unsigned int k, unsigned int n) {\n            assert(k\
+    \ < n);\n        }\n        static void range_bounds_check(unsigned int l, unsigned\
+    \ int r, unsigned int n) {\n            assert(l <= r and r <= n);\n        }\n\
+    };\n\n}\n\n#endif // SUISEN_SPLAY_TREE_MAP\n"
   dependsOn: []
   isVerificationFile: false
   path: library/datastructure/splay_tree_map.hpp
@@ -307,7 +309,7 @@ data:
   - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/splay_tree_set.hpp
   - library/datastructure/range_foldable_map.hpp
-  timestamp: '2021-08-11 21:33:32+09:00'
+  timestamp: '2021-08-22 19:50:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

@@ -61,30 +61,31 @@ data:
     \ U> &a) {\n    return out << a.first << ' ' << a.second;\n}\n// tuple\ntemplate\
     \ <unsigned int N = 0, typename ...Args>\nstd::ostream& operator<<(std::ostream&\
     \ out, const std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
-    \ return out;\n    out << std::get<N>(a);\n    if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>)\
-    \ out << ' ';\n    return operator<<<N + 1>(out, a);\n}\n// vector\ntemplate <typename\
-    \ T>\nstd::ostream& operator<<(std::ostream& out, const std::vector<T> &a) {\n\
-    \    for (auto it = a.begin(); it != a.end();) {\n        out << *it;\n      \
-    \  if (++it != a.end()) out << ' ';\n    }\n    return out;\n}\ninline void print()\
-    \ { std::cout << '\\n'; }\ntemplate <typename Head, typename... Tail>\ninline\
-    \ void print(const Head &head, const Tail &...tails) {\n    std::cout << head;\n\
-    \    if (sizeof...(tails)) std::cout << ' ';\n    print(tails...);\n}\ntemplate\
-    \ <typename Iterable>\nauto print_all(const Iterable& v, std::string sep = \"\
-    \ \", std::string end = \"\\n\") -> decltype(std::cout << *v.begin(), void())\
-    \ {\n    for (auto it = v.begin(); it != v.end();) {\n        std::cout << *it;\n\
-    \        if (++it != v.end()) std::cout << sep;\n    }\n    std::cout << end;\n\
-    }\n\n// pair\ntemplate <typename T, typename U>\nstd::istream& operator>>(std::istream&\
-    \ in, std::pair<T, U> &a) {\n    return in >> a.first >> a.second;\n}\n// tuple\n\
-    template <unsigned int N = 0, typename ...Args>\nstd::istream& operator>>(std::istream&\
-    \ in, std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
-    \ return in;\n    return operator>><N + 1>(in >> std::get<N>(a), a);\n}\n// vector\n\
-    template <typename T>\nstd::istream& operator>>(std::istream& in, std::vector<T>\
-    \ &a) {\n    for (auto it = a.begin(); it != a.end(); ++it) in >> *it;\n    return\
+    \ {\n        return out;\n    } else {\n        out << std::get<N>(a);\n     \
+    \   if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>) {\n        \
+    \    out << ' ';\n        }\n        return operator<<<N + 1>(out, a);\n    }\n\
+    }\n// vector\ntemplate <typename T>\nstd::ostream& operator<<(std::ostream& out,\
+    \ const std::vector<T> &a) {\n    for (auto it = a.begin(); it != a.end();) {\n\
+    \        out << *it;\n        if (++it != a.end()) out << ' ';\n    }\n    return\
+    \ out;\n}\ninline void print() { std::cout << '\\n'; }\ntemplate <typename Head,\
+    \ typename... Tail>\ninline void print(const Head &head, const Tail &...tails)\
+    \ {\n    std::cout << head;\n    if (sizeof...(tails)) std::cout << ' ';\n   \
+    \ print(tails...);\n}\ntemplate <typename Iterable>\nauto print_all(const Iterable&\
+    \ v, std::string sep = \" \", std::string end = \"\\n\") -> decltype(std::cout\
+    \ << *v.begin(), void()) {\n    for (auto it = v.begin(); it != v.end();) {\n\
+    \        std::cout << *it;\n        if (++it != v.end()) std::cout << sep;\n \
+    \   }\n    std::cout << end;\n}\n\n// pair\ntemplate <typename T, typename U>\n\
+    std::istream& operator>>(std::istream& in, std::pair<T, U> &a) {\n    return in\
+    \ >> a.first >> a.second;\n}\n// tuple\ntemplate <unsigned int N = 0, typename\
+    \ ...Args>\nstd::istream& operator>>(std::istream& in, std::tuple<Args...> &a)\
+    \ {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) return in;\n\
+    \    return operator>><N + 1>(in >> std::get<N>(a), a);\n}\n// vector\ntemplate\
+    \ <typename T>\nstd::istream& operator>>(std::istream& in, std::vector<T> &a)\
+    \ {\n    for (auto it = a.begin(); it != a.end(); ++it) in >> *it;\n    return\
     \ in;\n}\ntemplate <typename ...Args>\nvoid read(Args &...args) {\n    ( std::cin\
-    \ >> ... >> args );\n}\n\nstruct fast_io {\n    fast_io() {\n        std::ios::sync_with_stdio(false);\n\
-    \        std::cin.tie(nullptr);\n    }\n};\n\n// ! integral utilities\n\n// Returns\
-    \ pow(-1, n)\ntemplate <typename T>\nconstexpr inline int pow_m1(T n) {\n    return\
-    \ -(n & 1) | 1;\n}\n// Returns pow(-1, n)\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool\
+    \ >> ... >> args );\n}\n\n// ! integral utilities\n\n// Returns pow(-1, n)\ntemplate\
+    \ <typename T>\nconstexpr inline int pow_m1(T n) {\n    return -(n & 1) | 1;\n\
+    }\n// Returns pow(-1, n)\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool\
     \ n) {\n    return -int(n) | 1;\n}\n\n// Returns floor(x / y)\ntemplate <typename\
     \ T>\nconstexpr inline T fld(const T x, const T y) {\n    return (x ^ y) >= 0\
     \ ? x / y : (x - (y + pow_m1(y >= 0))) / y;\n}\ntemplate <typename T>\nconstexpr\
@@ -151,30 +152,31 @@ data:
     \ U> &a) {\n    return out << a.first << ' ' << a.second;\n}\n// tuple\ntemplate\
     \ <unsigned int N = 0, typename ...Args>\nstd::ostream& operator<<(std::ostream&\
     \ out, const std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
-    \ return out;\n    out << std::get<N>(a);\n    if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>)\
-    \ out << ' ';\n    return operator<<<N + 1>(out, a);\n}\n// vector\ntemplate <typename\
-    \ T>\nstd::ostream& operator<<(std::ostream& out, const std::vector<T> &a) {\n\
-    \    for (auto it = a.begin(); it != a.end();) {\n        out << *it;\n      \
-    \  if (++it != a.end()) out << ' ';\n    }\n    return out;\n}\ninline void print()\
-    \ { std::cout << '\\n'; }\ntemplate <typename Head, typename... Tail>\ninline\
-    \ void print(const Head &head, const Tail &...tails) {\n    std::cout << head;\n\
-    \    if (sizeof...(tails)) std::cout << ' ';\n    print(tails...);\n}\ntemplate\
-    \ <typename Iterable>\nauto print_all(const Iterable& v, std::string sep = \"\
-    \ \", std::string end = \"\\n\") -> decltype(std::cout << *v.begin(), void())\
-    \ {\n    for (auto it = v.begin(); it != v.end();) {\n        std::cout << *it;\n\
-    \        if (++it != v.end()) std::cout << sep;\n    }\n    std::cout << end;\n\
-    }\n\n// pair\ntemplate <typename T, typename U>\nstd::istream& operator>>(std::istream&\
-    \ in, std::pair<T, U> &a) {\n    return in >> a.first >> a.second;\n}\n// tuple\n\
-    template <unsigned int N = 0, typename ...Args>\nstd::istream& operator>>(std::istream&\
-    \ in, std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
-    \ return in;\n    return operator>><N + 1>(in >> std::get<N>(a), a);\n}\n// vector\n\
-    template <typename T>\nstd::istream& operator>>(std::istream& in, std::vector<T>\
-    \ &a) {\n    for (auto it = a.begin(); it != a.end(); ++it) in >> *it;\n    return\
+    \ {\n        return out;\n    } else {\n        out << std::get<N>(a);\n     \
+    \   if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>) {\n        \
+    \    out << ' ';\n        }\n        return operator<<<N + 1>(out, a);\n    }\n\
+    }\n// vector\ntemplate <typename T>\nstd::ostream& operator<<(std::ostream& out,\
+    \ const std::vector<T> &a) {\n    for (auto it = a.begin(); it != a.end();) {\n\
+    \        out << *it;\n        if (++it != a.end()) out << ' ';\n    }\n    return\
+    \ out;\n}\ninline void print() { std::cout << '\\n'; }\ntemplate <typename Head,\
+    \ typename... Tail>\ninline void print(const Head &head, const Tail &...tails)\
+    \ {\n    std::cout << head;\n    if (sizeof...(tails)) std::cout << ' ';\n   \
+    \ print(tails...);\n}\ntemplate <typename Iterable>\nauto print_all(const Iterable&\
+    \ v, std::string sep = \" \", std::string end = \"\\n\") -> decltype(std::cout\
+    \ << *v.begin(), void()) {\n    for (auto it = v.begin(); it != v.end();) {\n\
+    \        std::cout << *it;\n        if (++it != v.end()) std::cout << sep;\n \
+    \   }\n    std::cout << end;\n}\n\n// pair\ntemplate <typename T, typename U>\n\
+    std::istream& operator>>(std::istream& in, std::pair<T, U> &a) {\n    return in\
+    \ >> a.first >> a.second;\n}\n// tuple\ntemplate <unsigned int N = 0, typename\
+    \ ...Args>\nstd::istream& operator>>(std::istream& in, std::tuple<Args...> &a)\
+    \ {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) return in;\n\
+    \    return operator>><N + 1>(in >> std::get<N>(a), a);\n}\n// vector\ntemplate\
+    \ <typename T>\nstd::istream& operator>>(std::istream& in, std::vector<T> &a)\
+    \ {\n    for (auto it = a.begin(); it != a.end(); ++it) in >> *it;\n    return\
     \ in;\n}\ntemplate <typename ...Args>\nvoid read(Args &...args) {\n    ( std::cin\
-    \ >> ... >> args );\n}\n\nstruct fast_io {\n    fast_io() {\n        std::ios::sync_with_stdio(false);\n\
-    \        std::cin.tie(nullptr);\n    }\n};\n\n// ! integral utilities\n\n// Returns\
-    \ pow(-1, n)\ntemplate <typename T>\nconstexpr inline int pow_m1(T n) {\n    return\
-    \ -(n & 1) | 1;\n}\n// Returns pow(-1, n)\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool\
+    \ >> ... >> args );\n}\n\n// ! integral utilities\n\n// Returns pow(-1, n)\ntemplate\
+    \ <typename T>\nconstexpr inline int pow_m1(T n) {\n    return -(n & 1) | 1;\n\
+    }\n// Returns pow(-1, n)\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool\
     \ n) {\n    return -int(n) | 1;\n}\n\n// Returns floor(x / y)\ntemplate <typename\
     \ T>\nconstexpr inline T fld(const T x, const T y) {\n    return (x ^ y) >= 0\
     \ ? x / y : (x - (y + pow_m1(y >= 0))) / y;\n}\ntemplate <typename T>\nconstexpr\
@@ -218,7 +220,7 @@ data:
   path: library/template.hpp
   requiredBy:
   - library/template.cpp
-  timestamp: '2021-08-15 22:47:50+09:00'
+  timestamp: '2021-08-22 19:50:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.hpp

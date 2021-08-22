@@ -142,14 +142,15 @@ data:
     \ += bv[log].rank(false, l, r);\n                succ(l, r, b, log);\n       \
     \     }\n            return res;\n        }\n        // returns the number of\
     \ v in WaveletMatrix[l, r) s.t. lower <= v < upper\n        inline int range_freq(int\
-    \ l, int r, T lower, T upper) const {\n            return range_freq(l, r, upper)\
-    \ - range_freq(l, r, lower);\n        }\n        // returns the minimum value\
-    \ v in WaveletMatrix[l, r) s.t. lower <= v\n        inline T range_min_geq(int\
-    \ l, int r, T lower, T default_value = T(-1)) const {\n            int cnt = range_freq(l,\
-    \ r, lower);\n            return cnt >= r - l ? default_value : range_kth_smallest(l,\
-    \ r, cnt);\n        }\n        // returns the minimum value v in WaveletMatrix[l,\
-    \ r) s.t. lower < v\n        inline T range_min_gt(int l, int r, T lower, T default_value\
-    \ = T(-1)) const {\n            return lower == MAX ? default_value : range_min_geq(l,\
+    \ l, int r, T lower, T upper) const {\n            if (lower >= upper) return\
+    \ 0;\n            return range_freq(l, r, upper) - range_freq(l, r, lower);\n\
+    \        }\n        // returns the minimum value v in WaveletMatrix[l, r) s.t.\
+    \ lower <= v\n        inline T range_min_geq(int l, int r, T lower, T default_value\
+    \ = T(-1)) const {\n            int cnt = range_freq(l, r, lower);\n         \
+    \   return cnt >= r - l ? default_value : range_kth_smallest(l, r, cnt);\n   \
+    \     }\n        // returns the minimum value v in WaveletMatrix[l, r) s.t. lower\
+    \ < v\n        inline T range_min_gt(int l, int r, T lower, T default_value =\
+    \ T(-1)) const {\n            return lower == MAX ? default_value : range_min_geq(l,\
     \ r, lower + 1);\n        }\n        // returns the maximum value v in WaveletMatrix[l,\
     \ r) s.t. v < upper\n        inline T range_max_lt(int l, int r, T upper, T default_value\
     \ = T(-1)) const {\n            int cnt = range_freq(l, r, upper);\n         \
@@ -293,26 +294,27 @@ data:
     \ int r, T upper) const {\n            return WaveletMatrix<int, log_max_len>::range_freq(l,\
     \ r, comp.min_geq_index(upper));\n        }\n        // returns the number of\
     \ v in WaveletMatrix[l, r) s.t. lower <= v < upper\n        inline int range_freq(int\
-    \ l, int r, T lower, T upper) const {\n            return range_freq(l, r, upper)\
-    \ - range_freq(l, r, lower);\n        }\n        // returns the minimum value\
-    \ v in WaveletMatrix[l, r) s.t. lower <= v\n        inline T range_min_geq(int\
-    \ l, int r, T lower, T default_value = T(-1)) const {\n            int x = WaveletMatrix<int,\
-    \ log_max_len>::range_min_geq(l, r, comp.min_geq_index(lower), -1);\n        \
-    \    return x == -1 ? default_value : comp.decomp(x);\n        }\n        // returns\
-    \ the minimum value v in WaveletMatrix[l, r) s.t. lower < v\n        inline T\
-    \ range_min_gt(int l, int r, T lower, T default_value = T(-1)) const {\n     \
-    \       return lower == std::numeric_limits<T>::max() ? default_value : range_min_geq(l,\
-    \ r, lower + 1, default_value);\n        }\n        // returns the maximum value\
-    \ v in WaveletMatrix[l, r) s.t. v < upper\n        inline T range_max_lt(int l,\
-    \ int r, T upper, T default_value = T(-1)) const {\n            int x = WaveletMatrix<int,\
-    \ log_max_len>::range_max_lt(l, r, comp.min_geq_index(upper), -1);\n         \
-    \   return x == -1 ? default_value : comp.decomp(x);\n        }\n        // returns\
-    \ the maximum value v in WaveletMatrix[l, r) s.t. v <= upper\n        inline T\
-    \ range_max_leq(int l, int r, T upper, T default_value = T(-1)) const {\n    \
-    \        if (r >= l) return default_value;\n            return upper == std::numeric_limits<T>::max()\
-    \ ? range_max(l, r) : range_max_lt(l, r, upper + 1, default_value);\n        }\n\
-    \    private:\n        typename CoordinateCompressorBuilder<T>::Compressor comp;\n\
-    };\n} // namespace suisen\n\n\n\n"
+    \ l, int r, T lower, T upper) const {\n            if (lower >= upper) return\
+    \ 0;\n            return range_freq(l, r, upper) - range_freq(l, r, lower);\n\
+    \        }\n        // returns the minimum value v in WaveletMatrix[l, r) s.t.\
+    \ lower <= v\n        inline T range_min_geq(int l, int r, T lower, T default_value\
+    \ = T(-1)) const {\n            int x = WaveletMatrix<int, log_max_len>::range_min_geq(l,\
+    \ r, comp.min_geq_index(lower), -1);\n            return x == -1 ? default_value\
+    \ : comp.decomp(x);\n        }\n        // returns the minimum value v in WaveletMatrix[l,\
+    \ r) s.t. lower < v\n        inline T range_min_gt(int l, int r, T lower, T default_value\
+    \ = T(-1)) const {\n            return lower == std::numeric_limits<T>::max()\
+    \ ? default_value : range_min_geq(l, r, lower + 1, default_value);\n        }\n\
+    \        // returns the maximum value v in WaveletMatrix[l, r) s.t. v < upper\n\
+    \        inline T range_max_lt(int l, int r, T upper, T default_value = T(-1))\
+    \ const {\n            int x = WaveletMatrix<int, log_max_len>::range_max_lt(l,\
+    \ r, comp.min_geq_index(upper), -1);\n            return x == -1 ? default_value\
+    \ : comp.decomp(x);\n        }\n        // returns the maximum value v in WaveletMatrix[l,\
+    \ r) s.t. v <= upper\n        inline T range_max_leq(int l, int r, T upper, T\
+    \ default_value = T(-1)) const {\n            if (r >= l) return default_value;\n\
+    \            return upper == std::numeric_limits<T>::max() ? range_max(l, r) :\
+    \ range_max_lt(l, r, upper + 1, default_value);\n        }\n    private:\n   \
+    \     typename CoordinateCompressorBuilder<T>::Compressor comp;\n};\n} // namespace\
+    \ suisen\n\n\n\n"
   code: "#ifndef SUISEN_COMP_WAVELET_MATRIX\n#define SUISEN_COMP_WAVELET_MATRIX\n\n\
     #include <cassert>\n#include <array>\n#include <type_traits>\n#include <limits>\n\
     \n#include \"library/datastructure/wavelet_matrix.hpp\"\n#include \"library/util/coordinate_compressor.hpp\"\
@@ -352,26 +354,27 @@ data:
     \ int r, T upper) const {\n            return WaveletMatrix<int, log_max_len>::range_freq(l,\
     \ r, comp.min_geq_index(upper));\n        }\n        // returns the number of\
     \ v in WaveletMatrix[l, r) s.t. lower <= v < upper\n        inline int range_freq(int\
-    \ l, int r, T lower, T upper) const {\n            return range_freq(l, r, upper)\
-    \ - range_freq(l, r, lower);\n        }\n        // returns the minimum value\
-    \ v in WaveletMatrix[l, r) s.t. lower <= v\n        inline T range_min_geq(int\
-    \ l, int r, T lower, T default_value = T(-1)) const {\n            int x = WaveletMatrix<int,\
-    \ log_max_len>::range_min_geq(l, r, comp.min_geq_index(lower), -1);\n        \
-    \    return x == -1 ? default_value : comp.decomp(x);\n        }\n        // returns\
-    \ the minimum value v in WaveletMatrix[l, r) s.t. lower < v\n        inline T\
-    \ range_min_gt(int l, int r, T lower, T default_value = T(-1)) const {\n     \
-    \       return lower == std::numeric_limits<T>::max() ? default_value : range_min_geq(l,\
-    \ r, lower + 1, default_value);\n        }\n        // returns the maximum value\
-    \ v in WaveletMatrix[l, r) s.t. v < upper\n        inline T range_max_lt(int l,\
-    \ int r, T upper, T default_value = T(-1)) const {\n            int x = WaveletMatrix<int,\
-    \ log_max_len>::range_max_lt(l, r, comp.min_geq_index(upper), -1);\n         \
-    \   return x == -1 ? default_value : comp.decomp(x);\n        }\n        // returns\
-    \ the maximum value v in WaveletMatrix[l, r) s.t. v <= upper\n        inline T\
-    \ range_max_leq(int l, int r, T upper, T default_value = T(-1)) const {\n    \
-    \        if (r >= l) return default_value;\n            return upper == std::numeric_limits<T>::max()\
-    \ ? range_max(l, r) : range_max_lt(l, r, upper + 1, default_value);\n        }\n\
-    \    private:\n        typename CoordinateCompressorBuilder<T>::Compressor comp;\n\
-    };\n} // namespace suisen\n\n\n#endif // SUISEN_COMP_WAVELET_MATRIX\n"
+    \ l, int r, T lower, T upper) const {\n            if (lower >= upper) return\
+    \ 0;\n            return range_freq(l, r, upper) - range_freq(l, r, lower);\n\
+    \        }\n        // returns the minimum value v in WaveletMatrix[l, r) s.t.\
+    \ lower <= v\n        inline T range_min_geq(int l, int r, T lower, T default_value\
+    \ = T(-1)) const {\n            int x = WaveletMatrix<int, log_max_len>::range_min_geq(l,\
+    \ r, comp.min_geq_index(lower), -1);\n            return x == -1 ? default_value\
+    \ : comp.decomp(x);\n        }\n        // returns the minimum value v in WaveletMatrix[l,\
+    \ r) s.t. lower < v\n        inline T range_min_gt(int l, int r, T lower, T default_value\
+    \ = T(-1)) const {\n            return lower == std::numeric_limits<T>::max()\
+    \ ? default_value : range_min_geq(l, r, lower + 1, default_value);\n        }\n\
+    \        // returns the maximum value v in WaveletMatrix[l, r) s.t. v < upper\n\
+    \        inline T range_max_lt(int l, int r, T upper, T default_value = T(-1))\
+    \ const {\n            int x = WaveletMatrix<int, log_max_len>::range_max_lt(l,\
+    \ r, comp.min_geq_index(upper), -1);\n            return x == -1 ? default_value\
+    \ : comp.decomp(x);\n        }\n        // returns the maximum value v in WaveletMatrix[l,\
+    \ r) s.t. v <= upper\n        inline T range_max_leq(int l, int r, T upper, T\
+    \ default_value = T(-1)) const {\n            if (r >= l) return default_value;\n\
+    \            return upper == std::numeric_limits<T>::max() ? range_max(l, r) :\
+    \ range_max_lt(l, r, upper + 1, default_value);\n        }\n    private:\n   \
+    \     typename CoordinateCompressorBuilder<T>::Compressor comp;\n};\n} // namespace\
+    \ suisen\n\n\n#endif // SUISEN_COMP_WAVELET_MATRIX\n"
   dependsOn:
   - library/datastructure/wavelet_matrix.hpp
   - library/datastructure/bit_vector.hpp
@@ -380,7 +383,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/compressed_wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2021-08-02 17:38:49+09:00'
+  timestamp: '2021-08-22 19:49:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp

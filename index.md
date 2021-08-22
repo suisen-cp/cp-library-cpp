@@ -98,6 +98,9 @@ data:
       path: library/datastructure/segment_tree.hpp
       title: library/datastructure/segment_tree.hpp
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree_2d.hpp
+      title: library/datastructure/segment_tree_2d.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: library/datastructure/sparse_table.hpp
     - icon: ':heavy_check_mark:'
@@ -209,6 +212,9 @@ data:
     - icon: ':warning:'
       path: library/number/mobius_function.hpp
       title: library/number/mobius_function.hpp
+    - icon: ':warning:'
+      path: library/number/rational.hpp
+      title: library/number/rational.hpp
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: library/number/sieve_of_eratosthenes.hpp
@@ -436,6 +442,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
+  - name: test/src/datastructure/segment_tree_2d
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+      title: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+      title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
   - name: test/src/datastructure/union_find
     pages:
     - icon: ':heavy_check_mark:'
