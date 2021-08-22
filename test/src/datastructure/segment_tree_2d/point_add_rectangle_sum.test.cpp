@@ -45,11 +45,11 @@ int main() {
 
     SegmentTree2D seg(comp_x.size(), 0LL, std::plus<long long>());
     for (auto &p : init) {
-        seg.insert(std::get<0>(p), std::get<1>(p));
+        seg.add_point(std::get<0>(p), std::get<1>(p));
     }
     for (auto &q : queries) {
         if (std::get<0>(q) == 0) {
-            seg.insert(std::get<1>(q), std::get<2>(q));
+            seg.add_point(std::get<1>(q), std::get<2>(q));
         }
     }
     seg.build();

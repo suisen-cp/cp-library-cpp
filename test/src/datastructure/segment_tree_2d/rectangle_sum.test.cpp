@@ -17,7 +17,7 @@ int main() {
         int x, y, w;
         std::cin >> x >> y >> w;
         points[i] = { x, y, w };
-        seg.insert(x, y);
+        seg.add_point(x, y);
     }
     seg.build();
     for (auto [x, y, w] : points) {

@@ -2,6 +2,7 @@
 #define SUISEN_SEGMENT_TREE_2D
 
 #include <algorithm>
+#include <tuple>
 
 #include "library/datastructure/segment_tree.hpp"
 
@@ -13,7 +14,7 @@ class SegmentTree2D {
         SegmentTree2D() {}
         SegmentTree2D(int x_num, const T &e, const F &op) : n(x_num + 1), m(ceil_pow2(n)), data(m * 2), e(e), op(op), points(), pos_x(), pos_y(m * 2) {}
 
-        void insert(int x, int y) {
+        void add_point(int x, int y) {
             built = false;
             pos_x.push_back(x);
             points.emplace_back(x, y);
@@ -48,7 +49,7 @@ class SegmentTree2D {
             }
             return op(res_l, res_r);
         }
-        T add_prod() const {
+        T all_prod() const {
             assert(built);
             return data[1].all_prod();
         }
@@ -64,7 +65,8 @@ class SegmentTree2D {
             (*this)[{x, y}] = val;
         }
         auto operator[](const std::pair<int, int> &p) {
-            auto [x, y] = p;
+            int x, y;
+            std::tie(x, y) = p;
             return UpdateProxyObject { const_cast<T&>(get(x, y)), [this, k = comp_x(x) + m, y]{ update_from(k, y); } };
         }
 
