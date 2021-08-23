@@ -27,13 +27,14 @@ data:
     \  seen[i] = true;\n                    for (const int j : ls[i]) {\n        \
     \                if (--c[j] == 0) dq.push_back(r[j]);\n                    }\n\
     \                } else if (val != ans[i]) return has_answer = false;\n      \
-    \      }\n            return has_answer = true;\n        }\n\n        // Call\
-    \ after `satisfiable()`.\n        const std::vector<bool>& answer() {\n      \
-    \      assert(has_answer);\n            return ans;\n        }\n\n    private:\n\
-    \        const int n;\n        std::vector<bool> ans;\n        std::vector<int>\
-    \ cnt;\n        std::vector<std::vector<int>> ls;\n        std::vector<std::pair<int,\
-    \ bool>> r;\n        bool has_answer = true;\n};\n\n} // namespace suisen\n\n\n\
-    \n"
+    \      }\n            for (int i = 0; i < n; ++i) {\n                if (not seen[i])\
+    \ ans[i] = false;\n            }\n            return has_answer = true;\n    \
+    \    }\n\n        // Call after `satisfiable()`.\n        const std::vector<bool>&\
+    \ answer() {\n            assert(has_answer);\n            return ans;\n     \
+    \   }\n\n    private:\n        const int n;\n        std::vector<bool> ans;\n\
+    \        std::vector<int> cnt;\n        std::vector<std::vector<int>> ls;\n  \
+    \      std::vector<std::pair<int, bool>> r;\n        bool has_answer = true;\n\
+    };\n\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_HORN_SAT\n#define SUISEN_HORN_SAT\n\n#include <cassert>\n\
     #include <queue>\n#include <vector>\n\nnamespace suisen {\n\nclass HornSAT {\n\
     \    public:\n        HornSAT() : HornSAT(0) {}\n        HornSAT(const int n)\
@@ -53,18 +54,19 @@ data:
     \  seen[i] = true;\n                    for (const int j : ls[i]) {\n        \
     \                if (--c[j] == 0) dq.push_back(r[j]);\n                    }\n\
     \                } else if (val != ans[i]) return has_answer = false;\n      \
-    \      }\n            return has_answer = true;\n        }\n\n        // Call\
-    \ after `satisfiable()`.\n        const std::vector<bool>& answer() {\n      \
-    \      assert(has_answer);\n            return ans;\n        }\n\n    private:\n\
-    \        const int n;\n        std::vector<bool> ans;\n        std::vector<int>\
-    \ cnt;\n        std::vector<std::vector<int>> ls;\n        std::vector<std::pair<int,\
-    \ bool>> r;\n        bool has_answer = true;\n};\n\n} // namespace suisen\n\n\n\
-    #endif // SUISEN_HORN_SAT\n"
+    \      }\n            for (int i = 0; i < n; ++i) {\n                if (not seen[i])\
+    \ ans[i] = false;\n            }\n            return has_answer = true;\n    \
+    \    }\n\n        // Call after `satisfiable()`.\n        const std::vector<bool>&\
+    \ answer() {\n            assert(has_answer);\n            return ans;\n     \
+    \   }\n\n    private:\n        const int n;\n        std::vector<bool> ans;\n\
+    \        std::vector<int> cnt;\n        std::vector<std::vector<int>> ls;\n  \
+    \      std::vector<std::pair<int, bool>> r;\n        bool has_answer = true;\n\
+    };\n\n} // namespace suisen\n\n\n#endif // SUISEN_HORN_SAT\n"
   dependsOn: []
   isVerificationFile: false
   path: library/algorithm/horn_sat.hpp
   requiredBy: []
-  timestamp: '2021-08-24 06:27:19+09:00'
+  timestamp: '2021-08-24 06:29:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/algorithm/horn_sat.hpp
@@ -156,3 +158,6 @@ $$
 
   `satisfiable` 内で解を計算しているので、$O(1)$
   
+## 参考
+
+- https://people.eecs.berkeley.edu/~satishr/cs270.06/lecture1.pdf
