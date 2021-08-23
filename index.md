@@ -4,6 +4,9 @@ data:
   - name: library/algorithm
     pages:
     - icon: ':warning:'
+      path: library/algorithm/horn_sat.hpp
+      title: library/algorithm/horn_sat.hpp
+    - icon: ':warning:'
       path: library/algorithm/rmq_pm1.hpp
       title: library/algorithm/rmq_pm1.hpp
     - icon: ':heavy_check_mark:'
