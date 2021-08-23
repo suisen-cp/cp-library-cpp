@@ -10,7 +10,7 @@ namespace suisen {
 class HornSAT {
     public:
         HornSAT() : HornSAT(0) {}
-        HornSAT(const int n) : n(n), ans(n, false), ls(n) {}
+        HornSAT(const int n) : n(n), ans(n), ls(n) {}
 
         void add_clause(const std::vector<int> &lhs, int rhs, bool val) {
             const int sz = cnt.size();
@@ -44,6 +44,9 @@ class HornSAT {
                         if (--c[j] == 0) dq.push_back(r[j]);
                     }
                 } else if (val != ans[i]) return has_answer = false;
+            }
+            for (int i = 0; i < n; ++i) {
+                if (not seen[i]) ans[i] = false;
             }
             return has_answer = true;
         }
