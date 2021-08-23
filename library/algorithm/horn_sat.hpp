@@ -22,8 +22,8 @@ class HornSAT {
             has_answer = false;
         }
 
-        void add_clause(const std::vector<int> &lhs) {
-            add_clause(lhs, -1, false);
+        void add_clause(int rhs, bool val) {
+            add_clause({}, rhs, val);
         }
 
         bool satisfiable() {
