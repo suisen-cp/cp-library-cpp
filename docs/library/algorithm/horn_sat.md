@@ -8,7 +8,7 @@ documentation_of: //library/algorithm/horn_sat.hpp
 以下の形式で表される充足可能性問題を解きます。
 
 $$
-\bigwedge_{i=1}^M \left(\left(x_{a_{i,1}}\land x_{a_{i,2}}\land\cdots\land x_{a_{i,c_i}}\right)\to y_{b_i}\right)\tag{1}
+\bigwedge_{i} \left(\left(x_{a_{i,1}}\land x_{a_{i,2}}\land\cdots\land x_{a_{i,c_i}}\right)\to y_{b_i}\right)\tag{1}
 $$
 
 ここで、$x$ は正リテラルに限ります ($y$ の正負は問いません)。
@@ -47,11 +47,11 @@ $$
 
   式 $(1)$ における $a_i$ と `lhs`、$b_i$ と `rhs` が対応し、`val` は $y$ が負リテラルかどうかを表す `bool` 値です。
 
-  `lhs` を省略した場合、$a_i$ は空列、すなわち単項の条件節 $y_{b_i}$ を表します。
+  `lhs` を省略すると $a_i$ は空列の場合を、すなわち単項の条件節 $y_{b_i}$ を表します。
 
 - 時間計算量
 
-  `lhs` のサイズを $C$ として、$O(C)$
+  $O(\vert a_i\vert)$
 
 ### 充足可能性判定
 

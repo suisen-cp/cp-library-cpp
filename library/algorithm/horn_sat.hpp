@@ -2,9 +2,7 @@
 #define SUISEN_HORN_SAT
 
 #include <cassert>
-#include <tuple>
 #include <queue>
-#include <optional>
 #include <vector>
 
 namespace suisen {
