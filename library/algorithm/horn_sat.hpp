@@ -10,7 +10,7 @@ namespace suisen {
 class HornSAT {
     public:
         HornSAT() : HornSAT(0) {}
-        HornSAT(const int n) : n(n), ans(n), ls(n) {}
+        HornSAT(const int n) : n(n), ans(n, false), ls(n) {}
 
         void add_clause(const std::vector<int> &lhs, int rhs, bool val) {
             const int sz = cnt.size();
