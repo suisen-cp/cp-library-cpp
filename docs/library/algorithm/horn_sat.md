@@ -87,3 +87,6 @@ $$
 
   `satisfiable` 内で解を計算しているので、$O(1)$
   
+## 参考
+
+- https://people.eecs.berkeley.edu/~satishr/cs270.06/lecture1.pdf
