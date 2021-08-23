@@ -5,7 +5,7 @@ data:
     pages:
     - icon: ':warning:'
       path: library/algorithm/horn_sat.hpp
-      title: library/algorithm/horn_sat.hpp
+      title: Horn SAT
     - icon: ':warning:'
       path: library/algorithm/rmq_pm1.hpp
       title: library/algorithm/rmq_pm1.hpp
