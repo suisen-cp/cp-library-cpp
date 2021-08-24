@@ -1,7 +1,8 @@
-#ifndef SUISEN_GEOMETRY_BASE
-#define SUISEN_GEOMETRY_BASE
+#ifndef SUISEN_GEOMETRY
+#define SUISEN_GEOMETRY
 
 #include <algorithm>
+#include <cassert>
 #include <complex>
 #include <iostream>
 #include <optional>
@@ -540,4 +541,4 @@ namespace geometry {
 }
 } // namespace suisen
 
-#endif // SUISEN_GEOMETRY_BASE
+#endif // SUISEN_GEOMETRY
