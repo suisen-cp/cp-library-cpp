@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/geometry.hpp
     title: library/geom/geometry.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
@@ -296,7 +296,7 @@ data:
     \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    std::cout << std::fixed << std::setprecision(20);\n\n    Point p1, p2;\n\
     \    std::cin >> p1 >> p2;\n\n    int q;\n    std::cin >> q;\n    while (q -->\
-    \ 0) {\n        Point p3;\n        std::cin >> p3;\n        ISP dir = isp(p1,\
+    \ 0) {\n        Point p3;\n        std::cin >> p3;\n        int dir = isp(p1,\
     \ p2, p3);\n        if (dir == ISP::BACK) {\n            std::cout << \"ONLINE_BACK\"\
     \ << '\\n';\n        } else if (dir == ISP::FRONT) {\n            std::cout <<\
     \ \"ONLINE_FRONT\" << '\\n';\n        } else if (dir == ISP::MIDDLE) {\n     \
@@ -310,7 +310,7 @@ data:
     \    std::cin.tie(nullptr);\n    std::cout << std::fixed << std::setprecision(20);\n\
     \n    Point p1, p2;\n    std::cin >> p1 >> p2;\n\n    int q;\n    std::cin >>\
     \ q;\n    while (q --> 0) {\n        Point p3;\n        std::cin >> p3;\n    \
-    \    ISP dir = isp(p1, p2, p3);\n        if (dir == ISP::BACK) {\n           \
+    \    int dir = isp(p1, p2, p3);\n        if (dir == ISP::BACK) {\n           \
     \ std::cout << \"ONLINE_BACK\" << '\\n';\n        } else if (dir == ISP::FRONT)\
     \ {\n            std::cout << \"ONLINE_FRONT\" << '\\n';\n        } else if (dir\
     \ == ISP::MIDDLE) {\n            std::cout << \"ON_SEGMENT\" << '\\n';\n     \
@@ -322,8 +322,8 @@ data:
   isVerificationFile: true
   path: test/src/geom/geometry/CGL_1_C.test.cpp
   requiredBy: []
-  timestamp: '2021-08-25 03:27:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-08-25 03:39:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/geom/geometry/CGL_1_C.test.cpp
 layout: document

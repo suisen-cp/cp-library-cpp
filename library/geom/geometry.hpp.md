@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_1_B.test.cpp
     title: test/src/geom/geometry/CGL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_1_C.test.cpp
     title: test/src/geom/geometry/CGL_1_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,9 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_I.test.cpp
     title: test/src/geom/geometry/CGL_7_I.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
@@ -665,7 +665,7 @@ data:
   - library/geom/closest_pair.hpp
   - library/geom/convex_hull.hpp
   timestamp: '2021-08-25 03:27:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/geom/closest_pair/CGL_5_A.test.cpp
   - test/src/geom/convex_hull/CGL_4_A.test.cpp

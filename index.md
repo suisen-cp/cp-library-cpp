@@ -137,7 +137,7 @@ data:
     - icon: ':warning:'
       path: library/geom/count_lattice_point.hpp
       title: library/geom/count_lattice_point.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/geometry.hpp
       title: library/geom/geometry.hpp
     - icon: ':heavy_check_mark:'
@@ -500,7 +500,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_B.test.cpp
       title: test/src/geom/geometry/CGL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_C.test.cpp
       title: test/src/geom/geometry/CGL_1_C.test.cpp
     - icon: ':heavy_check_mark:'

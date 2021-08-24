@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/geom/closest_pair.hpp
     title: library/geom/closest_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/geometry.hpp
     title: library/geom/geometry.hpp
   _extendedRequiredBy: []
