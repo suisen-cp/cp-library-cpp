@@ -77,7 +77,8 @@ data:
     \    }\n    auto det(const Point &a, const Point &b) {\n        return a.real()\
     \ * b.imag() - a.imag() * b.real();\n    }\n    bool equals(const Point &a, const\
     \ Point &b) {\n        return sgn(a.real() - b.real()) == Sign::ZERO and sgn(a.imag()\
-    \ - b.imag()) == Sign::ZERO;\n    }\n    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\n\
+    \ - b.imag()) == Sign::ZERO;\n    }\n    bool equals(coordinate_t a, coordinate_t\
+    \ b) {\n        return compare(a, b) == 0;\n    }\n    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\n\
     \    int isp(const Point &a, const Point &b, const Point &c) {\n        Point\
     \ ab = b - a, ac = c - a;\n        int s = sgn(det(ab, ac));\n        if (s ==\
     \ Sign::POSITIVE) return ISP::L_CURVE;\n        if (s == Sign::NEGATIVE) return\
@@ -89,13 +90,13 @@ data:
     \        Point a, b;\n        Ray() : Ray(ZERO, ZERO) {}\n        Ray(const Point\
     \ &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Segment {\n\
     \        Point a, b;\n        Segment() : Segment(ZERO, ZERO) {}\n        Segment(const\
-    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n\n    struct Circle\
+    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Circle\
     \ {\n        Point center;\n        coordinate_t radius;\n        Circle() : Circle(ZERO,\
     \ 0) {}\n        Circle(const Point &c, const coordinate_t &r) : center(c), radius(r)\
     \ {}\n    };\n\n    // Triangle\n    \n    coordinate_t signed_area(const Point\
     \ &a, const Point &b, const Point &c) {\n        return det(b - a, c - a) / 2;\n\
     \    }\n    coordinate_t area(const Point &a, const Point &b, const Point &c)\
-    \ {\n        return std::abs(det(b - a, c - a)) / 2;\n    }\n    Point pG(const\
+    \ {\n        return std::abs(signed_area(a, b, c));\n    }\n    Point pG(const\
     \ Point &a, const Point &b, const Point &c) {\n        return (a + b + c) / 3;\n\
     \    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
     \    Circle pI(const Point &a, const Point &b, const Point &c) {\n        auto\
@@ -129,7 +130,25 @@ data:
     \        return line.a + dot(a, b) / square_abs(b) * b;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\n\
     \    template <typename line_t>\n    Point reflection(const Point &p, const line_t\
     \ &line) {\n        Point h = projection(p, line);\n        return p + (h - p)\
-    \ * 2;\n    }\n\n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
+    \ * 2;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
+    \    coordinate_t dist(const Point &p, const Segment &l) {\n        Point h =\
+    \ projection(p, l);\n        if (isp(l.a, l.b, h) == ISP::MIDDLE) {\n        \
+    \    return abs(h - p);\n        } else {\n            return std::sqrt(std::min(square_abs(p\
+    \ - l.a), square_abs(p - l.b)));\n        }\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
+    \    coordinate_t dist(const Segment &l, const Point &p) {\n        return dist(p,\
+    \ l);\n    }\n    coordinate_t dist(const Point &p, const Ray &l) {\n        Point\
+    \ h = projection(p, l);\n        int dir = isp(l.a, l.b, h);\n        return dir\
+    \ == ISP::MIDDLE or dir == ISP::FRONT ? abs(h - p) : std::sqrt(std::min(square_abs(p\
+    \ - l.a), square_abs(p - l.b)));\n    }\n    coordinate_t dist(const Ray &l, const\
+    \ Point &p) {\n        return dist(p, l);\n    }\n    coordinate_t dist(const\
+    \ Point &p, const Line &l) {\n        return abs(projection(p, l) - p);\n    }\n\
+    \    coordinate_t dist(const Line &l, const Point &p) {\n        return dist(p,\
+    \ l);\n    }\n\n    Containment contains(const Segment &l, const Point &p) {\n\
+    \        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;\n \
+    \   }\n    Containment contains(const Ray &l, const Point &p) {\n        return\
+    \ sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;\n    }\n    Containment\
+    \ contains(const Line &l, const Point &p) {\n        return sgn(dist(l, p)) ==\
+    \ 0 ? Containment::ON : Containment::OUT;\n    }\n\n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
     \n    bool has_common_point(const Segment &l1, const Segment &l2) {\n        int\
     \ isp_1a = isp(l1.a, l1.b, l2.a), isp_1b = isp(l1.a, l1.b, l2.b);\n        if\
     \ (isp_1a * isp_1b > 0) return false;\n        int isp_2a = isp(l2.a, l2.b, l1.a),\
@@ -151,21 +170,15 @@ data:
     \ (int j = 2; j >= i; --j) {\n            if (comp(ps[j], ps[j + 1])) std::swap(ps[j],\
     \ ps[j + 1]);\n        }\n        if (ps[1] == ps[2]) return ps[1];\n        return\
     \ Segment(ps[1], ps[2]);\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
-    \    coordinate_t dist(const Point &p, const Segment &l) {\n        Point h =\
-    \ projection(p, l);\n        return isp(l.a, l.b, h) == 0 ? abs(h - p) : std::sqrt(std::min(square_abs(p\
-    \ - l.a), square_abs(p - l.b)));\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
-    \    coordinate_t dist(const Segment &l, const Point &p) {\n        return dist(p,\
-    \ l);\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
     \    coordinate_t dist(const Segment &l1, const Segment &l2) {\n        if (has_common_point(l1,\
     \ l2)) return 0;\n        return std::min({ dist(l1, l2.a), dist(l1, l2.b), dist(l1.a,\
-    \ l2), dist(l1.b, l2) });\n    }\n\n    Containment contains(const Segment &l,\
-    \ const Point &p) {\n        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;\n\
-    \    }\n\n    // Polygon\n\n    using Polygon = std::vector<Point>;\n\n    //\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n    coordinate_t\
-    \ signed_area(const Polygon &poly) {\n        coordinate_t res = 0;\n        int\
-    \ sz = poly.size();\n        for (int i = 0; i < sz; ++i) {\n            int j\
-    \ = i + 1;\n            if (j == sz) j = 0;\n            res += signed_area(ZERO,\
-    \ poly[i], poly[j]);\n        }\n        return res;\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n\
+    \ l2), dist(l1.b, l2) });\n    }\n\n    // Polygon\n\n    using Polygon = std::vector<Point>;\n\
+    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n \
+    \   coordinate_t signed_area(const Polygon &poly) {\n        coordinate_t res\
+    \ = 0;\n        int sz = poly.size();\n        for (int i = 0; i < sz; ++i) {\n\
+    \            int j = i + 1;\n            if (j == sz) j = 0;\n            res\
+    \ += signed_area(ZERO, poly[i], poly[j]);\n        }\n        return res;\n  \
+    \  }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n\
     \    auto area(const Polygon &poly) {\n        return std::abs(signed_area(poly));\n\
     \    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B\n\
     \    template <bool accept_180_degree = true>\n    bool is_convex(const Polygon\
@@ -300,7 +313,7 @@ data:
   isVerificationFile: true
   path: test/src/geom/geometry/CGL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2021-08-25 03:07:17+09:00'
+  timestamp: '2021-08-25 03:20:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/geom/geometry/CGL_2_D.test.cpp
