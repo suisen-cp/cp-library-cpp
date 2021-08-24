@@ -120,6 +120,9 @@ namespace geometry {
     bool equals(const Point &a, const Point &b) {
         return sgn(a.real() - b.real()) == Sign::ZERO and sgn(a.imag() - b.imag()) == Sign::ZERO;
     }
+    bool equals(coordinate_t a, coordinate_t b) {
+        return compare(a, b) == 0;
+    }
     
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
     int isp(const Point &a, const Point &b, const Point &c) {
@@ -148,7 +151,6 @@ namespace geometry {
         Segment() : Segment(ZERO, ZERO) {}
         Segment(const Point &from, const Point &to) : a(from), b(to) {}
     };
-
     struct Circle {
         Point center;
         coordinate_t radius;
@@ -162,7 +164,7 @@ namespace geometry {
         return det(b - a, c - a) / 2;
     }
     coordinate_t area(const Point &a, const Point &b, const Point &c) {
-        return std::abs(det(b - a, c - a)) / 2;
+        return std::abs(signed_area(a, b, c));
     }
     Point pG(const Point &a, const Point &b, const Point &c) {
         return (a + b + c) / 3;
@@ -225,6 +227,44 @@ namespace geometry {
         return p + (h - p) * 2;
     }
 
+    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
+    coordinate_t dist(const Point &p, const Segment &l) {
+        Point h = projection(p, l);
+        if (isp(l.a, l.b, h) == ISP::MIDDLE) {
+            return abs(h - p);
+        } else {
+            return std::sqrt(std::min(square_abs(p - l.a), square_abs(p - l.b)));
+        }
+    }
+    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
+    coordinate_t dist(const Segment &l, const Point &p) {
+        return dist(p, l);
+    }
+    coordinate_t dist(const Point &p, const Ray &l) {
+        Point h = projection(p, l);
+        int dir = isp(l.a, l.b, h);
+        return dir == ISP::MIDDLE or dir == ISP::FRONT ? abs(h - p) : std::sqrt(std::min(square_abs(p - l.a), square_abs(p - l.b)));
+    }
+    coordinate_t dist(const Ray &l, const Point &p) {
+        return dist(p, l);
+    }
+    coordinate_t dist(const Point &p, const Line &l) {
+        return abs(projection(p, l) - p);
+    }
+    coordinate_t dist(const Line &l, const Point &p) {
+        return dist(p, l);
+    }
+
+    Containment contains(const Segment &l, const Point &p) {
+        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;
+    }
+    Containment contains(const Ray &l, const Point &p) {
+        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;
+    }
+    Containment contains(const Line &l, const Point &p) {
+        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;
+    }
+
     // "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B"
     bool has_common_point(const Segment &l1, const Segment &l2) {
         int isp_1a = isp(l1.a, l1.b, l2.a), isp_1b = isp(l1.a, l1.b, l2.b);
@@ -261,22 +301,9 @@ namespace geometry {
     }
 
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
-    coordinate_t dist(const Point &p, const Segment &l) {
-        Point h = projection(p, l);
-        return isp(l.a, l.b, h) == 0 ? abs(h - p) : std::sqrt(std::min(square_abs(p - l.a), square_abs(p - l.b)));
-    }
-    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
-    coordinate_t dist(const Segment &l, const Point &p) {
-        return dist(p, l);
-    }
-    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
     coordinate_t dist(const Segment &l1, const Segment &l2) {
         if (has_common_point(l1, l2)) return 0;
         return std::min({ dist(l1, l2.a), dist(l1, l2.b), dist(l1.a, l2), dist(l1.b, l2) });
-    }
-
-    Containment contains(const Segment &l, const Point &p) {
-        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;
     }
 
     // Polygon
