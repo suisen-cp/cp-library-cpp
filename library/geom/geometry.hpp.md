@@ -144,8 +144,8 @@ data:
     \ ? p.imag() > q.imag() : p.real() > q.real();\n    };\n    constexpr auto YX_COMPARATOR\
     \ = [](const Point &p, const Point &q) {\n        return p.imag() == q.imag()\
     \ ? p.real() < q.real() : p.imag() < q.imag();\n    };\n    constexpr auto YX_COMPARATOR_GREATER\
-    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
-    \ ? p.imag() > q.imag() : p.real() > q.real();\n    };\n\n    int sgn(coordinate_t\
+    \ = [](const Point &p, const Point &q) {\n        return p.imag() == q.imag()\
+    \ ? p.real() > q.real() : p.imag() > q.imag();\n    };\n\n    int sgn(coordinate_t\
     \ x) {\n        return x > EPS ? Sign::POSITIVE : x < -EPS ? Sign::NEGATIVE :\
     \ Sign::ZERO;\n    }\n    int compare(coordinate_t x, coordinate_t y) {\n    \
     \    return sgn(x - y);\n    }\n\n    auto cartesian(const coordinate_t real,\
@@ -421,8 +421,8 @@ data:
     \ ? p.imag() > q.imag() : p.real() > q.real();\n    };\n    constexpr auto YX_COMPARATOR\
     \ = [](const Point &p, const Point &q) {\n        return p.imag() == q.imag()\
     \ ? p.real() < q.real() : p.imag() < q.imag();\n    };\n    constexpr auto YX_COMPARATOR_GREATER\
-    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
-    \ ? p.imag() > q.imag() : p.real() > q.real();\n    };\n\n    int sgn(coordinate_t\
+    \ = [](const Point &p, const Point &q) {\n        return p.imag() == q.imag()\
+    \ ? p.real() > q.real() : p.imag() > q.imag();\n    };\n\n    int sgn(coordinate_t\
     \ x) {\n        return x > EPS ? Sign::POSITIVE : x < -EPS ? Sign::NEGATIVE :\
     \ Sign::ZERO;\n    }\n    int compare(coordinate_t x, coordinate_t y) {\n    \
     \    return sgn(x - y);\n    }\n\n    auto cartesian(const coordinate_t real,\
@@ -664,7 +664,7 @@ data:
   requiredBy:
   - library/geom/closest_pair.hpp
   - library/geom/convex_hull.hpp
-  timestamp: '2021-08-25 03:27:55+09:00'
+  timestamp: '2021-08-25 03:57:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/geom/closest_pair/CGL_5_A.test.cpp
