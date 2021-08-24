@@ -1,0 +1,673 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: library/geom/closest_pair.hpp
+    title: library/geom/closest_pair.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/geom/convex_hull.hpp
+    title: library/geom/convex_hull.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/geom/closest_pair/CGL_5_A.test.cpp
+    title: test/src/geom/closest_pair/CGL_5_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/convex_hull/CGL_4_A.test.cpp
+    title: test/src/geom/convex_hull/CGL_4_A.test.cpp
+  - icon: ':x:'
+    path: test/src/geom/geometry/CGL_1_A.test.cpp
+    title: test/src/geom/geometry/CGL_1_A.test.cpp
+  - icon: ':x:'
+    path: test/src/geom/geometry/CGL_1_B.test.cpp
+    title: test/src/geom/geometry/CGL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/src/geom/geometry/CGL_1_C.test.cpp
+    title: test/src/geom/geometry/CGL_1_C.test.cpp
+  - icon: ':x:'
+    path: test/src/geom/geometry/CGL_2_A.test.cpp
+    title: test/src/geom/geometry/CGL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/src/geom/geometry/CGL_2_B.test.cpp
+    title: test/src/geom/geometry/CGL_2_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_2_C.test.cpp
+    title: test/src/geom/geometry/CGL_2_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_2_D.test.cpp
+    title: test/src/geom/geometry/CGL_2_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_3_A.test.cpp
+    title: test/src/geom/geometry/CGL_3_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_3_B.test.cpp
+    title: test/src/geom/geometry/CGL_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_3_C.test.cpp
+    title: test/src/geom/geometry/CGL_3_C.test.cpp
+  - icon: ':x:'
+    path: test/src/geom/geometry/CGL_4_B.test.cpp
+    title: test/src/geom/geometry/CGL_4_B.test.cpp
+  - icon: ':x:'
+    path: test/src/geom/geometry/CGL_4_C.test.cpp
+    title: test/src/geom/geometry/CGL_4_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_7_A.test.cpp
+    title: test/src/geom/geometry/CGL_7_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_7_B.test.cpp
+    title: test/src/geom/geometry/CGL_7_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_7_C.test.cpp
+    title: test/src/geom/geometry/CGL_7_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_7_D.test.cpp
+    title: test/src/geom/geometry/CGL_7_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_7_E.test.cpp
+    title: test/src/geom/geometry/CGL_7_E.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_7_F.test.cpp
+    title: test/src/geom/geometry/CGL_7_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_7_G.test.cpp
+    title: test/src/geom/geometry/CGL_7_G.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/geometry/CGL_7_H.test.cpp
+    title: test/src/geom/geometry/CGL_7_H.test.cpp
+  - icon: ':x:'
+    path: test/src/geom/geometry/CGL_7_I.test.cpp
+    title: test/src/geom/geometry/CGL_7_I.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':question:'
+  attributes:
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_A
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_E
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_G
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_I
+  bundledCode: "#line 1 \"library/geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <complex>\n#include <iostream>\n#include <optional>\n#include <tuple>\n\
+    #include <variant>\n#include <vector>\n\nnamespace suisen {\nnamespace geometry\
+    \ {\n\n    using coordinate_t = long double;\n    using Point = std::complex<coordinate_t>;\n\
+    \n    // operator\n\n    Point& operator+=(Point &p, coordinate_t real) { return\
+    \ p += Point(real, 0); }\n    Point& operator-=(Point &p, coordinate_t real) {\
+    \ return p -= Point(real, 0); }\n    Point& operator*=(Point &p, coordinate_t\
+    \ real) { return p *= Point(real, 0); }\n    Point& operator/=(Point &p, coordinate_t\
+    \ real) { return p /= Point(real, 0); }\n    Point operator+(const Point &p, coordinate_t\
+    \ real) { return Point(p) + Point(real, 0); }\n    Point operator-(const Point\
+    \ &p, coordinate_t real) { return Point(p) - Point(real, 0); }\n    Point operator*(const\
+    \ Point &p, coordinate_t real) { return Point(p) * Point(real, 0); }\n    Point\
+    \ operator/(const Point &p, coordinate_t real) { return Point(p) / Point(real,\
+    \ 0); }\n    Point operator+(coordinate_t real, const Point &p) { return Point(real,\
+    \ 0) + Point(p); }\n    Point operator-(coordinate_t real, const Point &p) { return\
+    \ Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t real, const Point\
+    \ &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) / Point(p); }\n\n    std::istream&\
+    \ operator>>(std::istream &in, Point &p) {\n        coordinate_t x, y;\n     \
+    \   in >> x >> y;\n        p = Point(x, y);\n        return in;\n    }\n    std::ostream&\
+    \ operator<<(std::ostream &out, const Point &p) {\n        return out << p.real()\
+    \ << ' ' << p.imag();\n    }\n\n    // relations between three points X, Y, Z.\n\
+    \n    struct ISP {\n        static constexpr int L_CURVE = +1; // +---------------+\
+    \ Z is in 'a' => ISP = +1\n        static constexpr int R_CURVE = -1; // |aaaaaaaaaaaaaaa|\
+    \ Z is in 'b' => ISP = -1\n        static constexpr int FRONT   = +2; // |ddd\
+    \ X eee Y ccc| Z is in 'c' => ISP = +2\n        static constexpr int BACK    =\
+    \ -2; // |bbbbbbbbbbbbbbb| Z is in 'd' => ISP = -2\n        static constexpr int\
+    \ MIDDLE  =  0; // +---------------+ Z is in 'e' => ISP =  0\n    };\n\n    struct\
+    \ Sign {\n        static constexpr int NEGATIVE = -1;\n        static constexpr\
+    \ int ZERO = 0;\n        static constexpr int POSITIVE = +1;\n    };\n\n    enum\
+    \ class Containment {\n        OUT, ON, IN\n    };\n\n    constexpr Point ZERO\
+    \ = Point(0, 0);\n    constexpr Point ONE  = Point(1, 0);\n    constexpr Point\
+    \ I    = Point(0, 1);\n    constexpr coordinate_t EPS = 1e-9;\n    constexpr coordinate_t\
+    \ PI  = M_PI;\n    constexpr coordinate_t E   = M_E;\n\n    constexpr auto XY_COMPARATOR\
+    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
+    \ ? p.imag() < q.imag() : p.real() < q.real();\n    };\n    constexpr auto XY_COMPARATOR_GREATER\
+    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
+    \ ? p.imag() > q.imag() : p.real() > q.real();\n    };\n    constexpr auto YX_COMPARATOR\
+    \ = [](const Point &p, const Point &q) {\n        return p.imag() == q.imag()\
+    \ ? p.real() < q.real() : p.imag() < q.imag();\n    };\n    constexpr auto YX_COMPARATOR_GREATER\
+    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
+    \ ? p.imag() > q.imag() : p.real() > q.real();\n    };\n\n    int sgn(coordinate_t\
+    \ x) {\n        return x > EPS ? Sign::POSITIVE : x < -EPS ? Sign::NEGATIVE :\
+    \ Sign::ZERO;\n    }\n    int compare(coordinate_t x, coordinate_t y) {\n    \
+    \    return sgn(x - y);\n    }\n\n    auto cartesian(const coordinate_t real,\
+    \ const coordinate_t imag) {\n        return Point(real, imag);\n    }\n    auto\
+    \ polar(const coordinate_t rho, const coordinate_t theta) {\n        return Point(rho\
+    \ * std::cos(theta), rho * std::sin(theta));\n    }\n    auto cis(const coordinate_t\
+    \ theta) {\n        return Point(std::cos(theta), std::sin(theta));\n    }\n \
+    \   auto conj(const Point &z) {\n        return Point(z.real(), -z.imag());\n\
+    \    }\n    auto arg(const Point &z) {\n        return std::atan2(z.imag(), z.real());\n\
+    \    }\n    auto square_abs(const Point &z) {\n        return z.real() * z.real()\
+    \ + z.imag() * z.imag();\n    }\n    auto abs(const Point &z) {\n        return\
+    \ std::sqrt(square_abs(z));\n    }\n    auto rot(const Point &z, const coordinate_t\
+    \ theta) {\n        return cis(theta) * z;\n    }\n    auto dot(const Point &a,\
+    \ const Point &b) {\n        return a.real() * b.real() + a.imag() * b.imag();\n\
+    \    }\n    auto det(const Point &a, const Point &b) {\n        return a.real()\
+    \ * b.imag() - a.imag() * b.real();\n    }\n    bool equals(const Point &a, const\
+    \ Point &b) {\n        return sgn(a.real() - b.real()) == Sign::ZERO and sgn(a.imag()\
+    \ - b.imag()) == Sign::ZERO;\n    }\n    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\n\
+    \    int isp(const Point &a, const Point &b, const Point &c) {\n        Point\
+    \ ab = b - a, ac = c - a;\n        int s = sgn(det(ab, ac));\n        if (s ==\
+    \ Sign::POSITIVE) return ISP::L_CURVE;\n        if (s == Sign::NEGATIVE) return\
+    \ ISP::R_CURVE;\n        if (sgn(dot(ab, ac)) == Sign::NEGATIVE) return ISP::BACK;\n\
+    \        Point ba = a - b, bc = c - b;\n        if (sgn(dot(ba, bc)) == Sign::NEGATIVE)\
+    \ return ISP::FRONT;\n        return ISP::MIDDLE;\n    }\n\n    struct Line {\n\
+    \        Point a, b;\n        Line() : Line(ZERO, ZERO) {}\n        Line(const\
+    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Ray {\n\
+    \        Point a, b;\n        Ray() : Ray(ZERO, ZERO) {}\n        Ray(const Point\
+    \ &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Segment {\n\
+    \        Point a, b;\n        Segment() : Segment(ZERO, ZERO) {}\n        Segment(const\
+    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n\n    struct Circle\
+    \ {\n        Point center;\n        coordinate_t radius;\n        Circle() : Circle(ZERO,\
+    \ 0) {}\n        Circle(const Point &c, const coordinate_t &r) : center(c), radius(r)\
+    \ {}\n    };\n\n    // Triangle\n    \n    coordinate_t signed_area(const Point\
+    \ &a, const Point &b, const Point &c) {\n        return det(b - a, c - a) / 2;\n\
+    \    }\n    coordinate_t area(const Point &a, const Point &b, const Point &c)\
+    \ {\n        return std::abs(det(b - a, c - a)) / 2;\n    }\n    Point pG(const\
+    \ Point &a, const Point &b, const Point &c) {\n        return (a + b + c) / 3;\n\
+    \    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
+    \    Circle pI(const Point &a, const Point &b, const Point &c) {\n        auto\
+    \ la = std::abs(b - c), lb = std::abs(c - a), lc = std::abs(a - b);\n        auto\
+    \ l = la + lb + lc;\n        la /= l, lb /= l, lc /= l;\n        Point center\
+    \ = la * a + lb * b + lc * c;\n        auto radius = 2. * area(a, b, c) / l;\n\
+    \        return Circle(center, radius);\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C\n\
+    \    Circle pO(const Point &a, const Point &b, const Point &c) {\n        Point\
+    \ ab = b - a, bc = c - b, ca = a - c;\n        auto la = square_abs(bc), lb =\
+    \ square_abs(ca), lc = square_abs(ab);\n        auto s = la * (lb + lc - la),\
+    \ t = lb * (lc + la - lb), u = lc * (la + lb - lc);\n        auto l = s + t +\
+    \ u;\n        s /= l, t /= l, u /= l;\n        Point center = a * s + b * t +\
+    \ c * u;\n        return Circle(center, std::abs(center - a));\n    }\n    Point\
+    \ pH(const Point &a, const Point &b, const Point &c) {\n        return a + b +\
+    \ c - 2 * pO(a, b, c).center;\n    }\n    auto pIabc(const Point &a, const Point\
+    \ &b, const Point &c) {\n        return std::make_tuple(pI(-a, b, c), pI(a, -b,\
+    \ c), pI(a, b, -c));\n    }\n\n    // Line\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\n\
+    \    template <typename line_t_1, typename line_t_2>\n    auto is_parallel(const\
+    \ line_t_1 &l1, const line_t_2 &l2) -> decltype(l1.a, l1.b, l2.a, l2.b, bool())\
+    \ {\n        return sgn(det(l1.b - l1.a, l2.b - l2.a)) == Sign::ZERO;\n    }\n\
+    \    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\n  \
+    \  template <typename line_t_1, typename line_t_2>\n    auto is_orthogonal(const\
+    \ line_t_1 &l1, const line_t_2 &l2) -> decltype(l1.a, l1.b, l2.a, l2.b, bool())\
+    \  {\n        return sgn(dot(l1.b - l1.a, l2.b - l2.a)) == Sign::ZERO;\n    }\n\
+    \    template <typename line_t_1, typename line_t_2>\n    auto on_the_same_line(const\
+    \ line_t_1 &l1, const line_t_2 &l2) -> decltype(l1.a, l1.b, l2.a, l2.b, bool())\
+    \  {\n        return is_parallel(l1, l2) and sgn(det(l1.b - l1.a, l2.a - l1.a))\
+    \ == Sign::ZERO;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A\n\
+    \    template <typename line_t>\n    Point projection(const Point &p, const line_t\
+    \ &line) {\n        Point a = p - line.a;\n        Point b = line.b - line.a;\n\
+    \        return line.a + dot(a, b) / square_abs(b) * b;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\n\
+    \    template <typename line_t>\n    Point reflection(const Point &p, const line_t\
+    \ &line) {\n        Point h = projection(p, line);\n        return p + (h - p)\
+    \ * 2;\n    }\n\n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
+    \n    bool has_common_point(const Segment &l1, const Segment &l2) {\n        int\
+    \ isp_1a = isp(l1.a, l1.b, l2.a), isp_1b = isp(l1.a, l1.b, l2.b);\n        if\
+    \ (isp_1a * isp_1b > 0) return false;\n        int isp_2a = isp(l2.a, l2.b, l1.a),\
+    \ isp_2b = isp(l2.a, l2.b, l1.b);\n        if (isp_2a * isp_2b > 0) return false;\n\
+    \        return true;\n    }\n\n    namespace internal {\n        template <typename\
+    \ line_t_1, typename line_t_2>\n        Point cross_point(const line_t_1 &l1,\
+    \ const line_t_2 &l2) {\n            assert(not is_parallel(l1, l2));\n      \
+    \      Point ha = projection(l2.a, l1), hb = projection(l2.b, l1);\n         \
+    \   auto la = abs(l2.a - ha);\n            if (sgn(la) == 0) return ha;\n    \
+    \        auto lb = abs(l2.b - hb);\n            if (sgn(lb) == 0) return hb;\n\
+    \            return l2.a + (l2.b - l2.a) * (la / (la + lb));\n        }\n    }\n\
+    \n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
+    \n    std::variant<std::nullptr_t, Point, Segment> common_point(const Segment\
+    \ &l1, const Segment &l2) {\n        if (not has_common_point(l1, l2)) return\
+    \ nullptr;\n        if (not is_parallel(l1, l2)) return internal::cross_point(l1,\
+    \ l2);\n        std::vector<Point> ps { l1.a, l1.b, l2.a, l2.b };\n        auto\
+    \ comp = [](const Point &p, const Point &q) { return p.real() == q.real() ? p.imag()\
+    \ < q.imag() : p.real() < q.real(); };\n        for (int i = 0; i <= 2; ++i) for\
+    \ (int j = 2; j >= i; --j) {\n            if (comp(ps[j], ps[j + 1])) std::swap(ps[j],\
+    \ ps[j + 1]);\n        }\n        if (ps[1] == ps[2]) return ps[1];\n        return\
+    \ Segment(ps[1], ps[2]);\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
+    \    coordinate_t dist(const Point &p, const Segment &l) {\n        Point h =\
+    \ projection(p, l);\n        return isp(l.a, l.b, h) == 0 ? abs(h - p) : std::sqrt(std::min(square_abs(p\
+    \ - l.a), square_abs(p - l.b)));\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
+    \    coordinate_t dist(const Segment &l, const Point &p) {\n        return dist(p,\
+    \ l);\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
+    \    coordinate_t dist(const Segment &l1, const Segment &l2) {\n        if (has_common_point(l1,\
+    \ l2)) return 0;\n        return std::min({ dist(l1, l2.a), dist(l1, l2.b), dist(l1.a,\
+    \ l2), dist(l1.b, l2) });\n    }\n\n    Containment contains(const Segment &l,\
+    \ const Point &p) {\n        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;\n\
+    \    }\n\n    // Polygon\n\n    using Polygon = std::vector<Point>;\n\n    //\
+    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n    coordinate_t\
+    \ signed_area(const Polygon &poly) {\n        coordinate_t res = 0;\n        int\
+    \ sz = poly.size();\n        for (int i = 0; i < sz; ++i) {\n            int j\
+    \ = i + 1;\n            if (j == sz) j = 0;\n            res += signed_area(ZERO,\
+    \ poly[i], poly[j]);\n        }\n        return res;\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n\
+    \    auto area(const Polygon &poly) {\n        return std::abs(signed_area(poly));\n\
+    \    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B\n\
+    \    template <bool accept_180_degree = true>\n    bool is_convex(const Polygon\
+    \ &poly) {\n        int sz = poly.size();\n        for (int i = 0; i < sz; ++i)\
+    \ {\n            int j = i + 1, k = i + 2;\n            if (j >= sz) j -= sz;\n\
+    \            if (k >= sz) k -= sz;\n            int dir = isp(poly[i], poly[j],\
+    \ poly[k]);\n            if constexpr (accept_180_degree) {\n                if\
+    \ (dir == ISP::R_CURVE) return false;\n            } else {\n                if\
+    \ (dir != ISP::L_CURVE) return false;\n            }\n        }\n        return\
+    \ true;\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C\n\
+    \    Containment contains(const Polygon &poly, const Point &p) {\n        bool\
+    \ in = false;\n        int sz = poly.size();\n        for (int i = 0; i < sz;\
+    \ ++i) {\n            int j = i + 1;\n            if (j == sz) j -= sz;\n    \
+    \        Point a = poly[i] - p, b = poly[j] - p;\n            if (a.imag() > b.imag())\
+    \ std::swap(a, b);\n            if (sgn(a.imag()) <= 0 and sgn(b.imag()) > 0 and\
+    \ sgn(det(a, b)) < 0) in = not in;\n            if (sgn(det(a, b)) == 0 and sgn(dot(a,\
+    \ b)) <= 0) return Containment::ON;\n        }\n        return in ? Containment::IN\
+    \ : Containment::OUT;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\n\
+    \    auto convex_diameter(const Polygon &convex) {\n        const int sz = convex.size();\n\
+    \        auto d2 = [&](int i, int j) { return square_abs(convex[j % sz] - convex[i]);\
+    \ };\n        coordinate_t max_dist = -1;\n        std::pair<int, int> argmax\
+    \ { -1, -1 };\n        for (int i = 0, j = 0; i < sz; ++i) {\n            while\
+    \ (d2(i, j + 1) >= d2(i, j)) ++j;\n            coordinate_t cur_dist = d2(i, j);\n\
+    \            if (cur_dist > max_dist) {\n                max_dist = cur_dist;\n\
+    \                argmax = { i, j };\n            }\n        }\n        auto [i,\
+    \ j] = argmax;\n        return std::make_tuple(i, j % sz, std::sqrt(max_dist));\n\
+    \    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C\n\
+    \    auto convex_cut(const Polygon &convex, const Line &l) {\n        Polygon\
+    \ res;\n        int sz = convex.size();\n        for (int i = 0; i < sz; ++i)\
+    \ {\n            int j = i + 1;\n            if (j == sz) j -= sz;\n         \
+    \   const Point &a = convex[i], &b = convex[j];\n            int da = sgn(det(l.b\
+    \ - l.a, a - l.a));\n            if (da >= 0) res.push_back(a);\n            int\
+    \ db = sgn(det(l.b - l.a, b - l.a));\n            if (da * db < 0) res.push_back(internal::cross_point(l,\
+    \ Segment(a, b)));\n        }\n        return res;\n    }\n\n    // Circle\n\n\
+    \    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_A\n  \
+    \  int tangent_num(const Circle &c1, const Circle &c2) {\n        coordinate_t\
+    \ r1 = c1.radius, r2 = c2.radius;\n        if (r1 > r2) return tangent_num(c2,\
+    \ c1);\n        coordinate_t d = abs(c1.center - c2.center);\n        int cp =\
+    \ compare(d, r1 + r2);\n        if (cp > 0) return 4;\n        if (cp == 0) return\
+    \ 3;\n        int cn = compare(d, r2 - r1);\n        if (cn > 0) return 2;\n \
+    \       if (cn == 0) return 1;\n        return 0;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D\n\
+    \    std::vector<Point> common_point(const Circle &c, const Line &l) {\n     \
+    \   Point h = projection(c.center, l);\n        coordinate_t d = abs(c.center\
+    \ - h);\n        int cp = compare(d, c.radius);\n        if (cp > 0) return {};\n\
+    \        if (cp == 0) return { h };\n        auto v = (l.a - l.b) * (std::sqrt(c.radius\
+    \ * c.radius - d * d) / abs(l.a - l.b));\n        return { h - v, h + v };\n \
+    \   }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H\n\
+    \    std::vector<Point> common_point(const Circle &c, const Segment &l) {\n  \
+    \      auto ps = common_point(c, Line(l.a, l.b));\n        ps.erase(std::remove_if(ps.begin(),\
+    \ ps.end(), [&](const auto &p) { return contains(l, p) != Containment::ON; }),\
+    \ ps.end());\n        return ps;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_E\n\
+    \    std::vector<Point> common_point(const Circle &c1, const Circle &c2) {\n \
+    \       coordinate_t r1 = c1.radius, r2 = c2.radius;\n        if (r1 > r2) return\
+    \ common_point(c2, c1);\n        coordinate_t d = abs(c1.center - c2.center);\n\
+    \        int cp = compare(d, r1 + r2), cn = compare(d, r2 - r1);\n        if (cp\
+    \ > 0 or cn < 0) return {};\n        auto v = c1.center - c2.center;\n       \
+    \ coordinate_t lv = abs(v);\n        if (cp == 0 or cn == 0) {\n            return\
+    \ { c2.center + v * (r2 / lv) };\n        }\n        coordinate_t lp = d, ln =\
+    \ (r2 * r2 - r1 * r1) / d;\n        coordinate_t p = (lp + ln) / 2, x = sqrt(r2\
+    \ * r2 - p * p);\n        auto h = c2.center + v * (p / lv);\n        auto t =\
+    \ v * I;\n        return { h + t * (x / lv), h - t * (x / lv) };\n    }\n\n  \
+    \  // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F\n    Containment\
+    \ contains(const Circle &c, const Point &p) {\n        coordinate_t d = abs(c.center\
+    \ - p);\n        int cp = compare(d, c.radius);\n        if (cp > 0) return Containment::OUT;\n\
+    \        if (cp < 0) return Containment::IN;\n        return Containment::ON;\n\
+    \    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F\n\
+    \    std::vector<Point> tangent_to_circle(const Circle &c, const Point &p) {\n\
+    \        Containment cnt = contains(c, p);\n        if (cnt == Containment::IN)\
+    \ return {};\n        if (cnt == Containment::ON) return { p };\n        auto\
+    \ v = c.center - p;\n        coordinate_t r = c.radius, d = abs(v), l = sqrt(d\
+    \ * d - r * r);\n        coordinate_t t = std::asin(r / d);\n        return {\
+    \ p + rot(v, t) * (l / d), p + rot(v, -t) * (l / d) };\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_G\n\
+    \    // returns { Line(p, q) | p is on c1, q is on c2, Line(p, q) is common tangent\
+    \ of c1 and c2 }\n    std::vector<Line> common_tangent(const Circle &c1, const\
+    \ Circle &c2) {\n        int num = tangent_num(c1, c2);\n        std::vector<Line>\
+    \ res;\n        if (num == 0) return res;\n        Point a = c1.center, b = c2.center,\
+    \ v = b - a;\n        coordinate_t r1 = c1.radius, r2 = c2.radius;\n        coordinate_t\
+    \ rp = r1 + r2, rm = r1 - r2, rd = r2 / r1;\n        coordinate_t sqxy = square_abs(v);\n\
+    \        coordinate_t rtp = std::sqrt(std::max(sqxy - rp * rp, coordinate_t(0)));\n\
+    \        coordinate_t rtm = std::sqrt(std::max(sqxy - rm * rm, coordinate_t(0)));\n\
+    \        Point r = v * r1, u = r * Point(0, 1);\n        Point l12 = r * rp, r12\
+    \ = u * rtp, l34 = r * rm, r34 = u * rtm;\n        Point p11 = (l12 - r12) / sqxy,\
+    \ p12 = (l12 + r12) / sqxy, p13 = (l34 - r34) / sqxy, p14 = (l34 + r34) / sqxy;\n\
+    \        Point p21 = p11 * rd, p22 = p12 * rd, p23 = p13 * rd, p24 = p14 * rd;\n\
+    \        res.emplace_back(a + p14, b + p24);\n        if (num == 1) return res;\n\
+    \        res.emplace_back(a + p13, b + p23);\n        if (num == 2) return res;\n\
+    \        res.emplace_back(a + p12, b - p22);\n        if (num == 3) return res;\n\
+    \        res.emplace_back(a + p11, b - p21);\n        return res;\n    }\n\n \
+    \   // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H\n   \
+    \ coordinate_t intersection_area(const Polygon &poly, const Circle &circle) {\n\
+    \        int sz = poly.size();\n        coordinate_t r2 = circle.radius * circle.radius;\n\
+    \        const Point &c = circle.center;\n        coordinate_t area = 0;\n   \
+    \     for (int i = 0; i < sz; i++) {\n            int j = i + 1;\n           \
+    \ if (j >= sz) j -= sz;\n            Point a = poly[i], b = poly[j];\n       \
+    \     bool in_a = contains(circle, a) == Containment::IN, in_b = contains(circle,\
+    \ b) == Containment::IN;\n            Point ca = a - c, cb = b - c;\n        \
+    \    if (in_a and in_b) {\n                area += det(ca, cb);\n            \
+    \    continue;\n            }\n            std::vector<Point> ps = common_point(circle,\
+    \ Segment(a, b));\n            if (ps.empty()) {\n                area += r2 *\
+    \ arg(cb / ca);\n            } else {\n                Point s = ps[0];\n    \
+    \            Point t = ps.size() == 1 ? s : ps[1];\n                if (compare(square_abs(t\
+    \ - a), square_abs(s - a)) < 0) std::swap(s, t);\n                Point cs = s\
+    \ - c, ct = t - c;\n                area += det(cs, ct);\n                area\
+    \ += in_a ? det(ca, cs) : r2 * arg(cs / ca);\n                area += in_b ? det(ct,\
+    \ cb) : r2 * arg(cb / ct);\n            }\n        }\n        return area / 2;\n\
+    \    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_I\n\
+    \    coordinate_t intersection_area(const Circle &c1, const Circle &c2) {\n  \
+    \      coordinate_t r = c1.radius, s = c2.radius;\n        if (r < s) return intersection_area(c2,\
+    \ c1);\n        Point a = c1.center, b = c2.center;\n        coordinate_t d =\
+    \ abs(a - b);\n        if (compare(d, r + s) >= 0) return 0;\n        if (compare(d,\
+    \ r - s) <= 0) return PI * s * s;\n        coordinate_t x = (d * d + r * r - s\
+    \ * s) / (2 * d);\n        coordinate_t h = std::sqrt(std::max(r * r - x * x,\
+    \ coordinate_t(0)));\n        coordinate_t a1 = r * r * std::acos(x / r);\n  \
+    \      coordinate_t a2 = s * s * std::acos((d - x) / s);\n        coordinate_t\
+    \ a12 = d * h;\n        return a1 + a2 - a12;\n    }\n}\n} // namespace suisen\n\
+    \n\n"
+  code: "#ifndef SUISEN_GEOMETRY_BASE\n#define SUISEN_GEOMETRY_BASE\n\n#include <algorithm>\n\
+    #include <complex>\n#include <iostream>\n#include <optional>\n#include <tuple>\n\
+    #include <variant>\n#include <vector>\n\nnamespace suisen {\nnamespace geometry\
+    \ {\n\n    using coordinate_t = long double;\n    using Point = std::complex<coordinate_t>;\n\
+    \n    // operator\n\n    Point& operator+=(Point &p, coordinate_t real) { return\
+    \ p += Point(real, 0); }\n    Point& operator-=(Point &p, coordinate_t real) {\
+    \ return p -= Point(real, 0); }\n    Point& operator*=(Point &p, coordinate_t\
+    \ real) { return p *= Point(real, 0); }\n    Point& operator/=(Point &p, coordinate_t\
+    \ real) { return p /= Point(real, 0); }\n    Point operator+(const Point &p, coordinate_t\
+    \ real) { return Point(p) + Point(real, 0); }\n    Point operator-(const Point\
+    \ &p, coordinate_t real) { return Point(p) - Point(real, 0); }\n    Point operator*(const\
+    \ Point &p, coordinate_t real) { return Point(p) * Point(real, 0); }\n    Point\
+    \ operator/(const Point &p, coordinate_t real) { return Point(p) / Point(real,\
+    \ 0); }\n    Point operator+(coordinate_t real, const Point &p) { return Point(real,\
+    \ 0) + Point(p); }\n    Point operator-(coordinate_t real, const Point &p) { return\
+    \ Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t real, const Point\
+    \ &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) / Point(p); }\n\n    std::istream&\
+    \ operator>>(std::istream &in, Point &p) {\n        coordinate_t x, y;\n     \
+    \   in >> x >> y;\n        p = Point(x, y);\n        return in;\n    }\n    std::ostream&\
+    \ operator<<(std::ostream &out, const Point &p) {\n        return out << p.real()\
+    \ << ' ' << p.imag();\n    }\n\n    // relations between three points X, Y, Z.\n\
+    \n    struct ISP {\n        static constexpr int L_CURVE = +1; // +---------------+\
+    \ Z is in 'a' => ISP = +1\n        static constexpr int R_CURVE = -1; // |aaaaaaaaaaaaaaa|\
+    \ Z is in 'b' => ISP = -1\n        static constexpr int FRONT   = +2; // |ddd\
+    \ X eee Y ccc| Z is in 'c' => ISP = +2\n        static constexpr int BACK    =\
+    \ -2; // |bbbbbbbbbbbbbbb| Z is in 'd' => ISP = -2\n        static constexpr int\
+    \ MIDDLE  =  0; // +---------------+ Z is in 'e' => ISP =  0\n    };\n\n    struct\
+    \ Sign {\n        static constexpr int NEGATIVE = -1;\n        static constexpr\
+    \ int ZERO = 0;\n        static constexpr int POSITIVE = +1;\n    };\n\n    enum\
+    \ class Containment {\n        OUT, ON, IN\n    };\n\n    constexpr Point ZERO\
+    \ = Point(0, 0);\n    constexpr Point ONE  = Point(1, 0);\n    constexpr Point\
+    \ I    = Point(0, 1);\n    constexpr coordinate_t EPS = 1e-9;\n    constexpr coordinate_t\
+    \ PI  = M_PI;\n    constexpr coordinate_t E   = M_E;\n\n    constexpr auto XY_COMPARATOR\
+    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
+    \ ? p.imag() < q.imag() : p.real() < q.real();\n    };\n    constexpr auto XY_COMPARATOR_GREATER\
+    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
+    \ ? p.imag() > q.imag() : p.real() > q.real();\n    };\n    constexpr auto YX_COMPARATOR\
+    \ = [](const Point &p, const Point &q) {\n        return p.imag() == q.imag()\
+    \ ? p.real() < q.real() : p.imag() < q.imag();\n    };\n    constexpr auto YX_COMPARATOR_GREATER\
+    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
+    \ ? p.imag() > q.imag() : p.real() > q.real();\n    };\n\n    int sgn(coordinate_t\
+    \ x) {\n        return x > EPS ? Sign::POSITIVE : x < -EPS ? Sign::NEGATIVE :\
+    \ Sign::ZERO;\n    }\n    int compare(coordinate_t x, coordinate_t y) {\n    \
+    \    return sgn(x - y);\n    }\n\n    auto cartesian(const coordinate_t real,\
+    \ const coordinate_t imag) {\n        return Point(real, imag);\n    }\n    auto\
+    \ polar(const coordinate_t rho, const coordinate_t theta) {\n        return Point(rho\
+    \ * std::cos(theta), rho * std::sin(theta));\n    }\n    auto cis(const coordinate_t\
+    \ theta) {\n        return Point(std::cos(theta), std::sin(theta));\n    }\n \
+    \   auto conj(const Point &z) {\n        return Point(z.real(), -z.imag());\n\
+    \    }\n    auto arg(const Point &z) {\n        return std::atan2(z.imag(), z.real());\n\
+    \    }\n    auto square_abs(const Point &z) {\n        return z.real() * z.real()\
+    \ + z.imag() * z.imag();\n    }\n    auto abs(const Point &z) {\n        return\
+    \ std::sqrt(square_abs(z));\n    }\n    auto rot(const Point &z, const coordinate_t\
+    \ theta) {\n        return cis(theta) * z;\n    }\n    auto dot(const Point &a,\
+    \ const Point &b) {\n        return a.real() * b.real() + a.imag() * b.imag();\n\
+    \    }\n    auto det(const Point &a, const Point &b) {\n        return a.real()\
+    \ * b.imag() - a.imag() * b.real();\n    }\n    bool equals(const Point &a, const\
+    \ Point &b) {\n        return sgn(a.real() - b.real()) == Sign::ZERO and sgn(a.imag()\
+    \ - b.imag()) == Sign::ZERO;\n    }\n    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\n\
+    \    int isp(const Point &a, const Point &b, const Point &c) {\n        Point\
+    \ ab = b - a, ac = c - a;\n        int s = sgn(det(ab, ac));\n        if (s ==\
+    \ Sign::POSITIVE) return ISP::L_CURVE;\n        if (s == Sign::NEGATIVE) return\
+    \ ISP::R_CURVE;\n        if (sgn(dot(ab, ac)) == Sign::NEGATIVE) return ISP::BACK;\n\
+    \        Point ba = a - b, bc = c - b;\n        if (sgn(dot(ba, bc)) == Sign::NEGATIVE)\
+    \ return ISP::FRONT;\n        return ISP::MIDDLE;\n    }\n\n    struct Line {\n\
+    \        Point a, b;\n        Line() : Line(ZERO, ZERO) {}\n        Line(const\
+    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Ray {\n\
+    \        Point a, b;\n        Ray() : Ray(ZERO, ZERO) {}\n        Ray(const Point\
+    \ &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Segment {\n\
+    \        Point a, b;\n        Segment() : Segment(ZERO, ZERO) {}\n        Segment(const\
+    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n\n    struct Circle\
+    \ {\n        Point center;\n        coordinate_t radius;\n        Circle() : Circle(ZERO,\
+    \ 0) {}\n        Circle(const Point &c, const coordinate_t &r) : center(c), radius(r)\
+    \ {}\n    };\n\n    // Triangle\n    \n    coordinate_t signed_area(const Point\
+    \ &a, const Point &b, const Point &c) {\n        return det(b - a, c - a) / 2;\n\
+    \    }\n    coordinate_t area(const Point &a, const Point &b, const Point &c)\
+    \ {\n        return std::abs(det(b - a, c - a)) / 2;\n    }\n    Point pG(const\
+    \ Point &a, const Point &b, const Point &c) {\n        return (a + b + c) / 3;\n\
+    \    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
+    \    Circle pI(const Point &a, const Point &b, const Point &c) {\n        auto\
+    \ la = std::abs(b - c), lb = std::abs(c - a), lc = std::abs(a - b);\n        auto\
+    \ l = la + lb + lc;\n        la /= l, lb /= l, lc /= l;\n        Point center\
+    \ = la * a + lb * b + lc * c;\n        auto radius = 2. * area(a, b, c) / l;\n\
+    \        return Circle(center, radius);\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C\n\
+    \    Circle pO(const Point &a, const Point &b, const Point &c) {\n        Point\
+    \ ab = b - a, bc = c - b, ca = a - c;\n        auto la = square_abs(bc), lb =\
+    \ square_abs(ca), lc = square_abs(ab);\n        auto s = la * (lb + lc - la),\
+    \ t = lb * (lc + la - lb), u = lc * (la + lb - lc);\n        auto l = s + t +\
+    \ u;\n        s /= l, t /= l, u /= l;\n        Point center = a * s + b * t +\
+    \ c * u;\n        return Circle(center, std::abs(center - a));\n    }\n    Point\
+    \ pH(const Point &a, const Point &b, const Point &c) {\n        return a + b +\
+    \ c - 2 * pO(a, b, c).center;\n    }\n    auto pIabc(const Point &a, const Point\
+    \ &b, const Point &c) {\n        return std::make_tuple(pI(-a, b, c), pI(a, -b,\
+    \ c), pI(a, b, -c));\n    }\n\n    // Line\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\n\
+    \    template <typename line_t_1, typename line_t_2>\n    auto is_parallel(const\
+    \ line_t_1 &l1, const line_t_2 &l2) -> decltype(l1.a, l1.b, l2.a, l2.b, bool())\
+    \ {\n        return sgn(det(l1.b - l1.a, l2.b - l2.a)) == Sign::ZERO;\n    }\n\
+    \    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\n  \
+    \  template <typename line_t_1, typename line_t_2>\n    auto is_orthogonal(const\
+    \ line_t_1 &l1, const line_t_2 &l2) -> decltype(l1.a, l1.b, l2.a, l2.b, bool())\
+    \  {\n        return sgn(dot(l1.b - l1.a, l2.b - l2.a)) == Sign::ZERO;\n    }\n\
+    \    template <typename line_t_1, typename line_t_2>\n    auto on_the_same_line(const\
+    \ line_t_1 &l1, const line_t_2 &l2) -> decltype(l1.a, l1.b, l2.a, l2.b, bool())\
+    \  {\n        return is_parallel(l1, l2) and sgn(det(l1.b - l1.a, l2.a - l1.a))\
+    \ == Sign::ZERO;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A\n\
+    \    template <typename line_t>\n    Point projection(const Point &p, const line_t\
+    \ &line) {\n        Point a = p - line.a;\n        Point b = line.b - line.a;\n\
+    \        return line.a + dot(a, b) / square_abs(b) * b;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\n\
+    \    template <typename line_t>\n    Point reflection(const Point &p, const line_t\
+    \ &line) {\n        Point h = projection(p, line);\n        return p + (h - p)\
+    \ * 2;\n    }\n\n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
+    \n    bool has_common_point(const Segment &l1, const Segment &l2) {\n        int\
+    \ isp_1a = isp(l1.a, l1.b, l2.a), isp_1b = isp(l1.a, l1.b, l2.b);\n        if\
+    \ (isp_1a * isp_1b > 0) return false;\n        int isp_2a = isp(l2.a, l2.b, l1.a),\
+    \ isp_2b = isp(l2.a, l2.b, l1.b);\n        if (isp_2a * isp_2b > 0) return false;\n\
+    \        return true;\n    }\n\n    namespace internal {\n        template <typename\
+    \ line_t_1, typename line_t_2>\n        Point cross_point(const line_t_1 &l1,\
+    \ const line_t_2 &l2) {\n            assert(not is_parallel(l1, l2));\n      \
+    \      Point ha = projection(l2.a, l1), hb = projection(l2.b, l1);\n         \
+    \   auto la = abs(l2.a - ha);\n            if (sgn(la) == 0) return ha;\n    \
+    \        auto lb = abs(l2.b - hb);\n            if (sgn(lb) == 0) return hb;\n\
+    \            return l2.a + (l2.b - l2.a) * (la / (la + lb));\n        }\n    }\n\
+    \n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
+    \n    std::variant<std::nullptr_t, Point, Segment> common_point(const Segment\
+    \ &l1, const Segment &l2) {\n        if (not has_common_point(l1, l2)) return\
+    \ nullptr;\n        if (not is_parallel(l1, l2)) return internal::cross_point(l1,\
+    \ l2);\n        std::vector<Point> ps { l1.a, l1.b, l2.a, l2.b };\n        auto\
+    \ comp = [](const Point &p, const Point &q) { return p.real() == q.real() ? p.imag()\
+    \ < q.imag() : p.real() < q.real(); };\n        for (int i = 0; i <= 2; ++i) for\
+    \ (int j = 2; j >= i; --j) {\n            if (comp(ps[j], ps[j + 1])) std::swap(ps[j],\
+    \ ps[j + 1]);\n        }\n        if (ps[1] == ps[2]) return ps[1];\n        return\
+    \ Segment(ps[1], ps[2]);\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
+    \    coordinate_t dist(const Point &p, const Segment &l) {\n        Point h =\
+    \ projection(p, l);\n        return isp(l.a, l.b, h) == 0 ? abs(h - p) : std::sqrt(std::min(square_abs(p\
+    \ - l.a), square_abs(p - l.b)));\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
+    \    coordinate_t dist(const Segment &l, const Point &p) {\n        return dist(p,\
+    \ l);\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
+    \    coordinate_t dist(const Segment &l1, const Segment &l2) {\n        if (has_common_point(l1,\
+    \ l2)) return 0;\n        return std::min({ dist(l1, l2.a), dist(l1, l2.b), dist(l1.a,\
+    \ l2), dist(l1.b, l2) });\n    }\n\n    Containment contains(const Segment &l,\
+    \ const Point &p) {\n        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;\n\
+    \    }\n\n    // Polygon\n\n    using Polygon = std::vector<Point>;\n\n    //\
+    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n    coordinate_t\
+    \ signed_area(const Polygon &poly) {\n        coordinate_t res = 0;\n        int\
+    \ sz = poly.size();\n        for (int i = 0; i < sz; ++i) {\n            int j\
+    \ = i + 1;\n            if (j == sz) j = 0;\n            res += signed_area(ZERO,\
+    \ poly[i], poly[j]);\n        }\n        return res;\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n\
+    \    auto area(const Polygon &poly) {\n        return std::abs(signed_area(poly));\n\
+    \    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B\n\
+    \    template <bool accept_180_degree = true>\n    bool is_convex(const Polygon\
+    \ &poly) {\n        int sz = poly.size();\n        for (int i = 0; i < sz; ++i)\
+    \ {\n            int j = i + 1, k = i + 2;\n            if (j >= sz) j -= sz;\n\
+    \            if (k >= sz) k -= sz;\n            int dir = isp(poly[i], poly[j],\
+    \ poly[k]);\n            if constexpr (accept_180_degree) {\n                if\
+    \ (dir == ISP::R_CURVE) return false;\n            } else {\n                if\
+    \ (dir != ISP::L_CURVE) return false;\n            }\n        }\n        return\
+    \ true;\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C\n\
+    \    Containment contains(const Polygon &poly, const Point &p) {\n        bool\
+    \ in = false;\n        int sz = poly.size();\n        for (int i = 0; i < sz;\
+    \ ++i) {\n            int j = i + 1;\n            if (j == sz) j -= sz;\n    \
+    \        Point a = poly[i] - p, b = poly[j] - p;\n            if (a.imag() > b.imag())\
+    \ std::swap(a, b);\n            if (sgn(a.imag()) <= 0 and sgn(b.imag()) > 0 and\
+    \ sgn(det(a, b)) < 0) in = not in;\n            if (sgn(det(a, b)) == 0 and sgn(dot(a,\
+    \ b)) <= 0) return Containment::ON;\n        }\n        return in ? Containment::IN\
+    \ : Containment::OUT;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\n\
+    \    auto convex_diameter(const Polygon &convex) {\n        const int sz = convex.size();\n\
+    \        auto d2 = [&](int i, int j) { return square_abs(convex[j % sz] - convex[i]);\
+    \ };\n        coordinate_t max_dist = -1;\n        std::pair<int, int> argmax\
+    \ { -1, -1 };\n        for (int i = 0, j = 0; i < sz; ++i) {\n            while\
+    \ (d2(i, j + 1) >= d2(i, j)) ++j;\n            coordinate_t cur_dist = d2(i, j);\n\
+    \            if (cur_dist > max_dist) {\n                max_dist = cur_dist;\n\
+    \                argmax = { i, j };\n            }\n        }\n        auto [i,\
+    \ j] = argmax;\n        return std::make_tuple(i, j % sz, std::sqrt(max_dist));\n\
+    \    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C\n\
+    \    auto convex_cut(const Polygon &convex, const Line &l) {\n        Polygon\
+    \ res;\n        int sz = convex.size();\n        for (int i = 0; i < sz; ++i)\
+    \ {\n            int j = i + 1;\n            if (j == sz) j -= sz;\n         \
+    \   const Point &a = convex[i], &b = convex[j];\n            int da = sgn(det(l.b\
+    \ - l.a, a - l.a));\n            if (da >= 0) res.push_back(a);\n            int\
+    \ db = sgn(det(l.b - l.a, b - l.a));\n            if (da * db < 0) res.push_back(internal::cross_point(l,\
+    \ Segment(a, b)));\n        }\n        return res;\n    }\n\n    // Circle\n\n\
+    \    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_A\n  \
+    \  int tangent_num(const Circle &c1, const Circle &c2) {\n        coordinate_t\
+    \ r1 = c1.radius, r2 = c2.radius;\n        if (r1 > r2) return tangent_num(c2,\
+    \ c1);\n        coordinate_t d = abs(c1.center - c2.center);\n        int cp =\
+    \ compare(d, r1 + r2);\n        if (cp > 0) return 4;\n        if (cp == 0) return\
+    \ 3;\n        int cn = compare(d, r2 - r1);\n        if (cn > 0) return 2;\n \
+    \       if (cn == 0) return 1;\n        return 0;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_D\n\
+    \    std::vector<Point> common_point(const Circle &c, const Line &l) {\n     \
+    \   Point h = projection(c.center, l);\n        coordinate_t d = abs(c.center\
+    \ - h);\n        int cp = compare(d, c.radius);\n        if (cp > 0) return {};\n\
+    \        if (cp == 0) return { h };\n        auto v = (l.a - l.b) * (std::sqrt(c.radius\
+    \ * c.radius - d * d) / abs(l.a - l.b));\n        return { h - v, h + v };\n \
+    \   }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H\n\
+    \    std::vector<Point> common_point(const Circle &c, const Segment &l) {\n  \
+    \      auto ps = common_point(c, Line(l.a, l.b));\n        ps.erase(std::remove_if(ps.begin(),\
+    \ ps.end(), [&](const auto &p) { return contains(l, p) != Containment::ON; }),\
+    \ ps.end());\n        return ps;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_E\n\
+    \    std::vector<Point> common_point(const Circle &c1, const Circle &c2) {\n \
+    \       coordinate_t r1 = c1.radius, r2 = c2.radius;\n        if (r1 > r2) return\
+    \ common_point(c2, c1);\n        coordinate_t d = abs(c1.center - c2.center);\n\
+    \        int cp = compare(d, r1 + r2), cn = compare(d, r2 - r1);\n        if (cp\
+    \ > 0 or cn < 0) return {};\n        auto v = c1.center - c2.center;\n       \
+    \ coordinate_t lv = abs(v);\n        if (cp == 0 or cn == 0) {\n            return\
+    \ { c2.center + v * (r2 / lv) };\n        }\n        coordinate_t lp = d, ln =\
+    \ (r2 * r2 - r1 * r1) / d;\n        coordinate_t p = (lp + ln) / 2, x = sqrt(r2\
+    \ * r2 - p * p);\n        auto h = c2.center + v * (p / lv);\n        auto t =\
+    \ v * I;\n        return { h + t * (x / lv), h - t * (x / lv) };\n    }\n\n  \
+    \  // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F\n    Containment\
+    \ contains(const Circle &c, const Point &p) {\n        coordinate_t d = abs(c.center\
+    \ - p);\n        int cp = compare(d, c.radius);\n        if (cp > 0) return Containment::OUT;\n\
+    \        if (cp < 0) return Containment::IN;\n        return Containment::ON;\n\
+    \    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F\n\
+    \    std::vector<Point> tangent_to_circle(const Circle &c, const Point &p) {\n\
+    \        Containment cnt = contains(c, p);\n        if (cnt == Containment::IN)\
+    \ return {};\n        if (cnt == Containment::ON) return { p };\n        auto\
+    \ v = c.center - p;\n        coordinate_t r = c.radius, d = abs(v), l = sqrt(d\
+    \ * d - r * r);\n        coordinate_t t = std::asin(r / d);\n        return {\
+    \ p + rot(v, t) * (l / d), p + rot(v, -t) * (l / d) };\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_G\n\
+    \    // returns { Line(p, q) | p is on c1, q is on c2, Line(p, q) is common tangent\
+    \ of c1 and c2 }\n    std::vector<Line> common_tangent(const Circle &c1, const\
+    \ Circle &c2) {\n        int num = tangent_num(c1, c2);\n        std::vector<Line>\
+    \ res;\n        if (num == 0) return res;\n        Point a = c1.center, b = c2.center,\
+    \ v = b - a;\n        coordinate_t r1 = c1.radius, r2 = c2.radius;\n        coordinate_t\
+    \ rp = r1 + r2, rm = r1 - r2, rd = r2 / r1;\n        coordinate_t sqxy = square_abs(v);\n\
+    \        coordinate_t rtp = std::sqrt(std::max(sqxy - rp * rp, coordinate_t(0)));\n\
+    \        coordinate_t rtm = std::sqrt(std::max(sqxy - rm * rm, coordinate_t(0)));\n\
+    \        Point r = v * r1, u = r * Point(0, 1);\n        Point l12 = r * rp, r12\
+    \ = u * rtp, l34 = r * rm, r34 = u * rtm;\n        Point p11 = (l12 - r12) / sqxy,\
+    \ p12 = (l12 + r12) / sqxy, p13 = (l34 - r34) / sqxy, p14 = (l34 + r34) / sqxy;\n\
+    \        Point p21 = p11 * rd, p22 = p12 * rd, p23 = p13 * rd, p24 = p14 * rd;\n\
+    \        res.emplace_back(a + p14, b + p24);\n        if (num == 1) return res;\n\
+    \        res.emplace_back(a + p13, b + p23);\n        if (num == 2) return res;\n\
+    \        res.emplace_back(a + p12, b - p22);\n        if (num == 3) return res;\n\
+    \        res.emplace_back(a + p11, b - p21);\n        return res;\n    }\n\n \
+    \   // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H\n   \
+    \ coordinate_t intersection_area(const Polygon &poly, const Circle &circle) {\n\
+    \        int sz = poly.size();\n        coordinate_t r2 = circle.radius * circle.radius;\n\
+    \        const Point &c = circle.center;\n        coordinate_t area = 0;\n   \
+    \     for (int i = 0; i < sz; i++) {\n            int j = i + 1;\n           \
+    \ if (j >= sz) j -= sz;\n            Point a = poly[i], b = poly[j];\n       \
+    \     bool in_a = contains(circle, a) == Containment::IN, in_b = contains(circle,\
+    \ b) == Containment::IN;\n            Point ca = a - c, cb = b - c;\n        \
+    \    if (in_a and in_b) {\n                area += det(ca, cb);\n            \
+    \    continue;\n            }\n            std::vector<Point> ps = common_point(circle,\
+    \ Segment(a, b));\n            if (ps.empty()) {\n                area += r2 *\
+    \ arg(cb / ca);\n            } else {\n                Point s = ps[0];\n    \
+    \            Point t = ps.size() == 1 ? s : ps[1];\n                if (compare(square_abs(t\
+    \ - a), square_abs(s - a)) < 0) std::swap(s, t);\n                Point cs = s\
+    \ - c, ct = t - c;\n                area += det(cs, ct);\n                area\
+    \ += in_a ? det(ca, cs) : r2 * arg(cs / ca);\n                area += in_b ? det(ct,\
+    \ cb) : r2 * arg(cb / ct);\n            }\n        }\n        return area / 2;\n\
+    \    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_I\n\
+    \    coordinate_t intersection_area(const Circle &c1, const Circle &c2) {\n  \
+    \      coordinate_t r = c1.radius, s = c2.radius;\n        if (r < s) return intersection_area(c2,\
+    \ c1);\n        Point a = c1.center, b = c2.center;\n        coordinate_t d =\
+    \ abs(a - b);\n        if (compare(d, r + s) >= 0) return 0;\n        if (compare(d,\
+    \ r - s) <= 0) return PI * s * s;\n        coordinate_t x = (d * d + r * r - s\
+    \ * s) / (2 * d);\n        coordinate_t h = std::sqrt(std::max(r * r - x * x,\
+    \ coordinate_t(0)));\n        coordinate_t a1 = r * r * std::acos(x / r);\n  \
+    \      coordinate_t a2 = s * s * std::acos((d - x) / s);\n        coordinate_t\
+    \ a12 = d * h;\n        return a1 + a2 - a12;\n    }\n}\n} // namespace suisen\n\
+    \n#endif // SUISEN_GEOMETRY_BASE\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: library/geom/geometry.hpp
+  requiredBy:
+  - library/geom/closest_pair.hpp
+  - library/geom/convex_hull.hpp
+  timestamp: '2021-08-25 03:07:17+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/src/geom/closest_pair/CGL_5_A.test.cpp
+  - test/src/geom/convex_hull/CGL_4_A.test.cpp
+  - test/src/geom/geometry/CGL_2_A.test.cpp
+  - test/src/geom/geometry/CGL_7_G.test.cpp
+  - test/src/geom/geometry/CGL_2_B.test.cpp
+  - test/src/geom/geometry/CGL_7_C.test.cpp
+  - test/src/geom/geometry/CGL_4_C.test.cpp
+  - test/src/geom/geometry/CGL_7_A.test.cpp
+  - test/src/geom/geometry/CGL_7_H.test.cpp
+  - test/src/geom/geometry/CGL_2_C.test.cpp
+  - test/src/geom/geometry/CGL_7_D.test.cpp
+  - test/src/geom/geometry/CGL_2_D.test.cpp
+  - test/src/geom/geometry/CGL_1_B.test.cpp
+  - test/src/geom/geometry/CGL_1_C.test.cpp
+  - test/src/geom/geometry/CGL_7_I.test.cpp
+  - test/src/geom/geometry/CGL_3_C.test.cpp
+  - test/src/geom/geometry/CGL_3_B.test.cpp
+  - test/src/geom/geometry/CGL_3_A.test.cpp
+  - test/src/geom/geometry/CGL_7_F.test.cpp
+  - test/src/geom/geometry/CGL_7_B.test.cpp
+  - test/src/geom/geometry/CGL_4_B.test.cpp
+  - test/src/geom/geometry/CGL_7_E.test.cpp
+  - test/src/geom/geometry/CGL_1_A.test.cpp
+documentation_of: library/geom/geometry.hpp
+layout: document
+redirect_from:
+- /library/library/geom/geometry.hpp
+- /library/library/geom/geometry.hpp.html
+title: library/geom/geometry.hpp
+---

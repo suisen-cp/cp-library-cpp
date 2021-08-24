@@ -5,33 +5,34 @@ data:
     path: library/geom/geometry.hpp
     title: library/geom/geometry.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/geom/convex_hull/CGL_4_A.test.cpp
-    title: test/src/geom/convex_hull/CGL_4_A.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/geom/convex_hull.hpp\"\n\n\n\n#include <numeric>\n\
-    \n#line 1 \"library/geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <complex>\n#include <iostream>\n#include <optional>\n#include <tuple>\n#include\
-    \ <variant>\n#include <vector>\n\nnamespace suisen {\nnamespace geometry {\n\n\
-    \    using coordinate_t = long double;\n    using Point = std::complex<coordinate_t>;\n\
-    \n    // operator\n\n    Point& operator+=(Point &p, coordinate_t real) { return\
-    \ p += Point(real, 0); }\n    Point& operator-=(Point &p, coordinate_t real) {\
-    \ return p -= Point(real, 0); }\n    Point& operator*=(Point &p, coordinate_t\
-    \ real) { return p *= Point(real, 0); }\n    Point& operator/=(Point &p, coordinate_t\
-    \ real) { return p /= Point(real, 0); }\n    Point operator+(const Point &p, coordinate_t\
-    \ real) { return Point(p) + Point(real, 0); }\n    Point operator-(const Point\
-    \ &p, coordinate_t real) { return Point(p) - Point(real, 0); }\n    Point operator*(const\
-    \ Point &p, coordinate_t real) { return Point(p) * Point(real, 0); }\n    Point\
-    \ operator/(const Point &p, coordinate_t real) { return Point(p) / Point(real,\
-    \ 0); }\n    Point operator+(coordinate_t real, const Point &p) { return Point(real,\
-    \ 0) + Point(p); }\n    Point operator-(coordinate_t real, const Point &p) { return\
-    \ Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t real, const Point\
-    \ &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
+  bundledCode: "#line 1 \"test/src/geom/geometry/CGL_2_B.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\n\n#include\
+    \ <iostream>\n#include <iomanip>\n\n#line 1 \"library/geom/geometry.hpp\"\n\n\n\
+    \n#include <algorithm>\n#include <complex>\n#line 7 \"library/geom/geometry.hpp\"\
+    \n#include <optional>\n#include <tuple>\n#include <variant>\n#include <vector>\n\
+    \nnamespace suisen {\nnamespace geometry {\n\n    using coordinate_t = long double;\n\
+    \    using Point = std::complex<coordinate_t>;\n\n    // operator\n\n    Point&\
+    \ operator+=(Point &p, coordinate_t real) { return p += Point(real, 0); }\n  \
+    \  Point& operator-=(Point &p, coordinate_t real) { return p -= Point(real, 0);\
+    \ }\n    Point& operator*=(Point &p, coordinate_t real) { return p *= Point(real,\
+    \ 0); }\n    Point& operator/=(Point &p, coordinate_t real) { return p /= Point(real,\
+    \ 0); }\n    Point operator+(const Point &p, coordinate_t real) { return Point(p)\
+    \ + Point(real, 0); }\n    Point operator-(const Point &p, coordinate_t real)\
+    \ { return Point(p) - Point(real, 0); }\n    Point operator*(const Point &p, coordinate_t\
+    \ real) { return Point(p) * Point(real, 0); }\n    Point operator/(const Point\
+    \ &p, coordinate_t real) { return Point(p) / Point(real, 0); }\n    Point operator+(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) + Point(p); }\n    Point operator-(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
     \ real, const Point &p) { return Point(real, 0) / Point(p); }\n\n    std::istream&\
     \ operator>>(std::istream &in, Point &p) {\n        coordinate_t x, y;\n     \
     \   in >> x >> y;\n        p = Point(x, y);\n        return in;\n    }\n    std::ostream&\
@@ -278,53 +279,35 @@ data:
     \ coordinate_t(0)));\n        coordinate_t a1 = r * r * std::acos(x / r);\n  \
     \      coordinate_t a2 = s * s * std::acos((d - x) / s);\n        coordinate_t\
     \ a12 = d * h;\n        return a1 + a2 - a12;\n    }\n}\n} // namespace suisen\n\
-    \n\n#line 7 \"library/geom/convex_hull.hpp\"\n\nnamespace suisen {\nnamespace\
-    \ geometry {\n    std::vector<int> convex_hull(const std::vector<Point> &points)\
-    \ {\n        const int n = points.size();\n        std::vector<int> sorted(n);\n\
-    \        std::iota(sorted.begin(), sorted.end(), 0);\n        std::sort(sorted.begin(),\
-    \ sorted.end(), [&points](int i, int j) {\n            auto &a = points[i], &b\
-    \ = points[j];\n            return a.real() == b.real() ? a.imag() < b.imag()\
-    \ : a.real() < b.real();\n        });\n        std::vector<char> used(n, false);\n\
-    \        sorted.resize(2 * n - 1);\n        std::copy(sorted.rbegin() + n, sorted.rend(),\
-    \ sorted.begin() + n);\n        std::vector<int> res;\n        res.reserve(n);\n\
-    \        int first = sorted[0], last = sorted[n - 1];\n        for (int k : sorted)\
-    \ {\n            if (k != first and used[k]) continue;\n            for (int sz\
-    \ = res.size(); sz >= 2; --sz) {\n                int i = res[sz - 2], j = res[sz\
-    \ - 1];\n                if (j == last or isp(points[i], points[j], points[k])\
-    \ > 0) break;\n                res.pop_back(), used[j] = false;\n            }\n\
-    \            if (not used[k]) res.push_back(k);\n            used[k] = true;\n\
-    \        }\n        return res;\n    }\n}\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_CONVEX_HULL\n#define SUISEN_CONVEX_HULL\n\n#include <numeric>\n\
-    \n#include \"library/geom/geometry.hpp\"\n\nnamespace suisen {\nnamespace geometry\
-    \ {\n    std::vector<int> convex_hull(const std::vector<Point> &points) {\n  \
-    \      const int n = points.size();\n        std::vector<int> sorted(n);\n   \
-    \     std::iota(sorted.begin(), sorted.end(), 0);\n        std::sort(sorted.begin(),\
-    \ sorted.end(), [&points](int i, int j) {\n            auto &a = points[i], &b\
-    \ = points[j];\n            return a.real() == b.real() ? a.imag() < b.imag()\
-    \ : a.real() < b.real();\n        });\n        std::vector<char> used(n, false);\n\
-    \        sorted.resize(2 * n - 1);\n        std::copy(sorted.rbegin() + n, sorted.rend(),\
-    \ sorted.begin() + n);\n        std::vector<int> res;\n        res.reserve(n);\n\
-    \        int first = sorted[0], last = sorted[n - 1];\n        for (int k : sorted)\
-    \ {\n            if (k != first and used[k]) continue;\n            for (int sz\
-    \ = res.size(); sz >= 2; --sz) {\n                int i = res[sz - 2], j = res[sz\
-    \ - 1];\n                if (j == last or isp(points[i], points[j], points[k])\
-    \ > 0) break;\n                res.pop_back(), used[j] = false;\n            }\n\
-    \            if (not used[k]) res.push_back(k);\n            used[k] = true;\n\
-    \        }\n        return res;\n    }\n}\n} // namespace suisen\n\n#endif //\
-    \ SUISEN_CONVEX_HULL\n"
+    \n\n#line 7 \"test/src/geom/geometry/CGL_2_B.test.cpp\"\n\nusing namespace suisen::geometry;\n\
+    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    std::cout << std::fixed << std::setprecision(20);\n\n    int q;\n    std::cin\
+    \ >> q;\n    while (q --> 0) {\n        Point p1, p2, p3, p4;\n        std::cin\
+    \ >> p1 >> p2 >> p3 >> p4;\n        Segment l1(p1, p2), l2(p3, p4);\n        if\
+    \ (has_common_point(l1, l2)) {\n            std::cout << 1 << '\\n';\n       \
+    \ } else {\n            std::cout << 0 << '\\n';\n        }\n    }\n    return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
+    \n\n#include <iostream>\n#include <iomanip>\n\n#include \"library/geom/geometry.hpp\"\
+    \n\nusing namespace suisen::geometry;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    std::cout << std::fixed << std::setprecision(20);\n\
+    \n    int q;\n    std::cin >> q;\n    while (q --> 0) {\n        Point p1, p2,\
+    \ p3, p4;\n        std::cin >> p1 >> p2 >> p3 >> p4;\n        Segment l1(p1, p2),\
+    \ l2(p3, p4);\n        if (has_common_point(l1, l2)) {\n            std::cout\
+    \ << 1 << '\\n';\n        } else {\n            std::cout << 0 << '\\n';\n   \
+    \     }\n    }\n    return 0;\n}"
   dependsOn:
   - library/geom/geometry.hpp
-  isVerificationFile: false
-  path: library/geom/convex_hull.hpp
+  isVerificationFile: true
+  path: test/src/geom/geometry/CGL_2_B.test.cpp
   requiredBy: []
   timestamp: '2021-08-25 03:07:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/geom/convex_hull/CGL_4_A.test.cpp
-documentation_of: library/geom/convex_hull.hpp
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/src/geom/geometry/CGL_2_B.test.cpp
 layout: document
 redirect_from:
-- /library/library/geom/convex_hull.hpp
-- /library/library/geom/convex_hull.hpp.html
-title: library/geom/convex_hull.hpp
+- /verify/test/src/geom/geometry/CGL_2_B.test.cpp
+- /verify/test/src/geom/geometry/CGL_2_B.test.cpp.html
+title: test/src/geom/geometry/CGL_2_B.test.cpp
 ---

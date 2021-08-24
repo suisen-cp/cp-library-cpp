@@ -128,15 +128,21 @@ data:
       title: library/debug/tree.hpp
   - name: library/geom
     pages:
-    - icon: ':warning:'
-      path: library/geom/base.hpp
-      title: library/geom/base.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
+      path: library/geom/closest_pair.hpp
+      title: library/geom/closest_pair.hpp
+    - icon: ':heavy_check_mark:'
       path: library/geom/convex_hull.hpp
       title: library/geom/convex_hull.hpp
     - icon: ':warning:'
       path: library/geom/count_lattice_point.hpp
       title: library/geom/count_lattice_point.hpp
+    - icon: ':question:'
+      path: library/geom/geometry.hpp
+      title: library/geom/geometry.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/geom/segment_intersections.hpp
+      title: library/geom/segment_intersections.hpp
   - name: library/graph
     pages:
     - icon: ':warning:'
@@ -157,6 +163,11 @@ data:
     - icon: ':warning:'
       path: library/graph/topological_sort.hpp
       title: library/graph/topological_sort.hpp
+  - name: library/integral_geom
+    pages:
+    - icon: ':warning:'
+      path: library/integral_geom/convex_hull.hpp
+      title: library/integral_geom/convex_hull.hpp
   - name: library/math
     pages:
     - icon: ':warning:'
@@ -471,6 +482,86 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
       title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
+  - name: test/src/geom/closest_pair
+    pages:
+    - icon: ':x:'
+      path: test/src/geom/closest_pair/CGL_5_A.test.cpp
+      title: test/src/geom/closest_pair/CGL_5_A.test.cpp
+  - name: test/src/geom/convex_hull
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/convex_hull/CGL_4_A.test.cpp
+      title: test/src/geom/convex_hull/CGL_4_A.test.cpp
+  - name: test/src/geom/geometry
+    pages:
+    - icon: ':x:'
+      path: test/src/geom/geometry/CGL_1_A.test.cpp
+      title: test/src/geom/geometry/CGL_1_A.test.cpp
+    - icon: ':x:'
+      path: test/src/geom/geometry/CGL_1_B.test.cpp
+      title: test/src/geom/geometry/CGL_1_B.test.cpp
+    - icon: ':x:'
+      path: test/src/geom/geometry/CGL_1_C.test.cpp
+      title: test/src/geom/geometry/CGL_1_C.test.cpp
+    - icon: ':x:'
+      path: test/src/geom/geometry/CGL_2_A.test.cpp
+      title: test/src/geom/geometry/CGL_2_A.test.cpp
+    - icon: ':x:'
+      path: test/src/geom/geometry/CGL_2_B.test.cpp
+      title: test/src/geom/geometry/CGL_2_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_2_C.test.cpp
+      title: test/src/geom/geometry/CGL_2_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_2_D.test.cpp
+      title: test/src/geom/geometry/CGL_2_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_3_A.test.cpp
+      title: test/src/geom/geometry/CGL_3_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_3_B.test.cpp
+      title: test/src/geom/geometry/CGL_3_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_3_C.test.cpp
+      title: test/src/geom/geometry/CGL_3_C.test.cpp
+    - icon: ':x:'
+      path: test/src/geom/geometry/CGL_4_B.test.cpp
+      title: test/src/geom/geometry/CGL_4_B.test.cpp
+    - icon: ':x:'
+      path: test/src/geom/geometry/CGL_4_C.test.cpp
+      title: test/src/geom/geometry/CGL_4_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_7_A.test.cpp
+      title: test/src/geom/geometry/CGL_7_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_7_B.test.cpp
+      title: test/src/geom/geometry/CGL_7_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_7_C.test.cpp
+      title: test/src/geom/geometry/CGL_7_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_7_D.test.cpp
+      title: test/src/geom/geometry/CGL_7_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_7_E.test.cpp
+      title: test/src/geom/geometry/CGL_7_E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_7_F.test.cpp
+      title: test/src/geom/geometry/CGL_7_F.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_7_G.test.cpp
+      title: test/src/geom/geometry/CGL_7_G.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/geometry/CGL_7_H.test.cpp
+      title: test/src/geom/geometry/CGL_7_H.test.cpp
+    - icon: ':x:'
+      path: test/src/geom/geometry/CGL_7_I.test.cpp
+      title: test/src/geom/geometry/CGL_7_I.test.cpp
+  - name: test/src/geom/segment_intersections
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
+      title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - name: test/src/graph/min_cost_flow
     pages:
     - icon: ':x:'

@@ -72,6 +72,9 @@ data:
     path: library/datastructure/weighted_union_find.hpp
     title: library/datastructure/weighted_union_find.hpp
   - icon: ':heavy_check_mark:'
+    path: library/geom/segment_intersections.hpp
+    title: library/geom/segment_intersections.hpp
+  - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: library/number/util.hpp
   - icon: ':warning:'
@@ -181,6 +184,9 @@ data:
     path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
+    title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/number/util/divide_both.test.cpp
     title: test/src/number/util/divide_both.test.cpp
   - icon: ':heavy_check_mark:'
@@ -257,6 +263,7 @@ data:
   - library/convolution/polynomial_eval.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/number/util.hpp
+  - library/geom/segment_intersections.hpp
   - library/datastructure/fenwick_tree.hpp
   - library/datastructure/cartesian_tree.hpp
   - library/datastructure/lazy_eval_map.hpp
@@ -289,6 +296,7 @@ data:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/number/util/divide_both.test.cpp
+  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp

@@ -6,15 +6,15 @@ data:
     title: library/geom/geometry.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/geom/convex_hull/CGL_4_A.test.cpp
-    title: test/src/geom/convex_hull/CGL_4_A.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/src/geom/closest_pair/CGL_5_A.test.cpp
+    title: test/src/geom/closest_pair/CGL_5_A.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/geom/convex_hull.hpp\"\n\n\n\n#include <numeric>\n\
+  bundledCode: "#line 1 \"library/geom/closest_pair.hpp\"\n\n\n\n#include <cassert>\n\
     \n#line 1 \"library/geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n#include\
     \ <complex>\n#include <iostream>\n#include <optional>\n#include <tuple>\n#include\
     \ <variant>\n#include <vector>\n\nnamespace suisen {\nnamespace geometry {\n\n\
@@ -278,53 +278,72 @@ data:
     \ coordinate_t(0)));\n        coordinate_t a1 = r * r * std::acos(x / r);\n  \
     \      coordinate_t a2 = s * s * std::acos((d - x) / s);\n        coordinate_t\
     \ a12 = d * h;\n        return a1 + a2 - a12;\n    }\n}\n} // namespace suisen\n\
-    \n\n#line 7 \"library/geom/convex_hull.hpp\"\n\nnamespace suisen {\nnamespace\
-    \ geometry {\n    std::vector<int> convex_hull(const std::vector<Point> &points)\
-    \ {\n        const int n = points.size();\n        std::vector<int> sorted(n);\n\
-    \        std::iota(sorted.begin(), sorted.end(), 0);\n        std::sort(sorted.begin(),\
-    \ sorted.end(), [&points](int i, int j) {\n            auto &a = points[i], &b\
-    \ = points[j];\n            return a.real() == b.real() ? a.imag() < b.imag()\
-    \ : a.real() < b.real();\n        });\n        std::vector<char> used(n, false);\n\
-    \        sorted.resize(2 * n - 1);\n        std::copy(sorted.rbegin() + n, sorted.rend(),\
-    \ sorted.begin() + n);\n        std::vector<int> res;\n        res.reserve(n);\n\
-    \        int first = sorted[0], last = sorted[n - 1];\n        for (int k : sorted)\
-    \ {\n            if (k != first and used[k]) continue;\n            for (int sz\
-    \ = res.size(); sz >= 2; --sz) {\n                int i = res[sz - 2], j = res[sz\
-    \ - 1];\n                if (j == last or isp(points[i], points[j], points[k])\
-    \ > 0) break;\n                res.pop_back(), used[j] = false;\n            }\n\
-    \            if (not used[k]) res.push_back(k);\n            used[k] = true;\n\
-    \        }\n        return res;\n    }\n}\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_CONVEX_HULL\n#define SUISEN_CONVEX_HULL\n\n#include <numeric>\n\
-    \n#include \"library/geom/geometry.hpp\"\n\nnamespace suisen {\nnamespace geometry\
-    \ {\n    std::vector<int> convex_hull(const std::vector<Point> &points) {\n  \
-    \      const int n = points.size();\n        std::vector<int> sorted(n);\n   \
-    \     std::iota(sorted.begin(), sorted.end(), 0);\n        std::sort(sorted.begin(),\
-    \ sorted.end(), [&points](int i, int j) {\n            auto &a = points[i], &b\
-    \ = points[j];\n            return a.real() == b.real() ? a.imag() < b.imag()\
-    \ : a.real() < b.real();\n        });\n        std::vector<char> used(n, false);\n\
-    \        sorted.resize(2 * n - 1);\n        std::copy(sorted.rbegin() + n, sorted.rend(),\
-    \ sorted.begin() + n);\n        std::vector<int> res;\n        res.reserve(n);\n\
-    \        int first = sorted[0], last = sorted[n - 1];\n        for (int k : sorted)\
-    \ {\n            if (k != first and used[k]) continue;\n            for (int sz\
-    \ = res.size(); sz >= 2; --sz) {\n                int i = res[sz - 2], j = res[sz\
-    \ - 1];\n                if (j == last or isp(points[i], points[j], points[k])\
-    \ > 0) break;\n                res.pop_back(), used[j] = false;\n            }\n\
-    \            if (not used[k]) res.push_back(k);\n            used[k] = true;\n\
-    \        }\n        return res;\n    }\n}\n} // namespace suisen\n\n#endif //\
-    \ SUISEN_CONVEX_HULL\n"
+    \n\n#line 7 \"library/geom/closest_pair.hpp\"\n\nnamespace suisen::geometry {\n\
+    std::pair<Point, Point> closest_pair(std::vector<Point> points) {\n    const int\
+    \ n = points.size();\n    assert(n > 0);\n    if (n == 1) return { points[0],\
+    \ points[0] };\n    std::sort(points.begin(), points.end(), XY_COMPARATOR);\n\
+    \    coordinate_t min_dist = std::numeric_limits<coordinate_t>::max();\n    std::pair<Point,\
+    \ Point> ans;\n    std::vector<coordinate_t> dmin(n, min_dist);\n\n    auto update_min\
+    \ = [&](int l, const Point &p, const Point &q) {\n        coordinate_t d = abs(p\
+    \ - q);\n        if (d >= dmin[l]) return;\n        dmin[l] = d;\n        if (d\
+    \ >= min_dist) return;\n        min_dist = d;\n        ans.first = p, ans.second\
+    \ = q;\n    };\n\n    static constexpr int MIN_BLOCK = 4;\n    std::vector<Point>\
+    \ y = points;\n    for (int l = 0; l < n;) {\n        int r = std::min(l + MIN_BLOCK,\
+    \ n);\n        for (int j = l; j < r; ++j) for (int i = l; i < j; ++i) {\n   \
+    \         update_min(l, points[i], points[j]);\n        }\n        std::sort(y.begin()\
+    \ + l, y.begin() + r, YX_COMPARATOR);\n        l = r;\n    }\n\n    for (int block\
+    \ = MIN_BLOCK; block <= n; block <<= 1) {\n        for (int l = 0; l + block <\
+    \ n;) {\n            int m = l + block, r = std::min(m + block, n);\n        \
+    \    std::inplace_merge(y.begin() + l, y.begin() + m, y.begin() + r, YX_COMPARATOR);\n\
+    \            dmin[l] = std::min(dmin[l], dmin[m]);\n            std::vector<int>\
+    \ ids;\n            for (int i = l; i < r; ++i) {\n                if (compare(std::abs(y[i].real()\
+    \ - points[m].real()), dmin[l]) > 0) {\n                    continue;\n      \
+    \          }\n                for (auto it = ids.rbegin(); it != ids.rend(); ++it)\
+    \ {\n                    const Point &p = y[*it];\n                    if (compare(y[i].imag()\
+    \ - p.imag(), dmin[l]) > 0) {\n                        break;\n              \
+    \      }\n                    update_min(l, y[i], p);\n                }\n   \
+    \             ids.push_back(i);\n            }\n            l = r;\n        }\n\
+    \    }\n    return ans;\n}\n} // namespace suisen::geometry\n\n\n\n"
+  code: "#ifndef SUISEN_CLOSEST_PAIR\n#define SUISEN_CLOSEST_PAIR\n\n#include <cassert>\n\
+    \n#include \"library/geom/geometry.hpp\"\n\nnamespace suisen::geometry {\nstd::pair<Point,\
+    \ Point> closest_pair(std::vector<Point> points) {\n    const int n = points.size();\n\
+    \    assert(n > 0);\n    if (n == 1) return { points[0], points[0] };\n    std::sort(points.begin(),\
+    \ points.end(), XY_COMPARATOR);\n    coordinate_t min_dist = std::numeric_limits<coordinate_t>::max();\n\
+    \    std::pair<Point, Point> ans;\n    std::vector<coordinate_t> dmin(n, min_dist);\n\
+    \n    auto update_min = [&](int l, const Point &p, const Point &q) {\n       \
+    \ coordinate_t d = abs(p - q);\n        if (d >= dmin[l]) return;\n        dmin[l]\
+    \ = d;\n        if (d >= min_dist) return;\n        min_dist = d;\n        ans.first\
+    \ = p, ans.second = q;\n    };\n\n    static constexpr int MIN_BLOCK = 4;\n  \
+    \  std::vector<Point> y = points;\n    for (int l = 0; l < n;) {\n        int\
+    \ r = std::min(l + MIN_BLOCK, n);\n        for (int j = l; j < r; ++j) for (int\
+    \ i = l; i < j; ++i) {\n            update_min(l, points[i], points[j]);\n   \
+    \     }\n        std::sort(y.begin() + l, y.begin() + r, YX_COMPARATOR);\n   \
+    \     l = r;\n    }\n\n    for (int block = MIN_BLOCK; block <= n; block <<= 1)\
+    \ {\n        for (int l = 0; l + block < n;) {\n            int m = l + block,\
+    \ r = std::min(m + block, n);\n            std::inplace_merge(y.begin() + l, y.begin()\
+    \ + m, y.begin() + r, YX_COMPARATOR);\n            dmin[l] = std::min(dmin[l],\
+    \ dmin[m]);\n            std::vector<int> ids;\n            for (int i = l; i\
+    \ < r; ++i) {\n                if (compare(std::abs(y[i].real() - points[m].real()),\
+    \ dmin[l]) > 0) {\n                    continue;\n                }\n        \
+    \        for (auto it = ids.rbegin(); it != ids.rend(); ++it) {\n            \
+    \        const Point &p = y[*it];\n                    if (compare(y[i].imag()\
+    \ - p.imag(), dmin[l]) > 0) {\n                        break;\n              \
+    \      }\n                    update_min(l, y[i], p);\n                }\n   \
+    \             ids.push_back(i);\n            }\n            l = r;\n        }\n\
+    \    }\n    return ans;\n}\n} // namespace suisen::geometry\n\n\n#endif // SUISEN_CLOSEST_PAIR\n"
   dependsOn:
   - library/geom/geometry.hpp
   isVerificationFile: false
-  path: library/geom/convex_hull.hpp
+  path: library/geom/closest_pair.hpp
   requiredBy: []
   timestamp: '2021-08-25 03:07:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/geom/convex_hull/CGL_4_A.test.cpp
-documentation_of: library/geom/convex_hull.hpp
+  - test/src/geom/closest_pair/CGL_5_A.test.cpp
+documentation_of: library/geom/closest_pair.hpp
 layout: document
 redirect_from:
-- /library/library/geom/convex_hull.hpp
-- /library/library/geom/convex_hull.hpp.html
-title: library/geom/convex_hull.hpp
+- /library/library/geom/closest_pair.hpp
+- /library/library/geom/closest_pair.hpp.html
+title: library/geom/closest_pair.hpp
 ---

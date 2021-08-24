@@ -4,7 +4,10 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/geom/segment_intersections.hpp
+    title: library/geom/segment_intersections.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
@@ -12,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
+    title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -114,10 +120,12 @@ data:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/datastructure/fenwick_tree.hpp
-  requiredBy: []
+  requiredBy:
+  - library/geom/segment_intersections.hpp
   timestamp: '2021-08-03 16:06:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
 documentation_of: library/datastructure/fenwick_tree.hpp
