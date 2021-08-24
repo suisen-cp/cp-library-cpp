@@ -22,16 +22,12 @@ data:
     library/geom/geometry.hpp\"\n#include <complex>\n#line 8 \"library/geom/geometry.hpp\"\
     \n#include <optional>\n#include <tuple>\n#include <variant>\n#include <vector>\n\
     \nnamespace suisen {\nnamespace geometry {\n\n    using coordinate_t = long double;\n\
-    \    using Point = std::complex<coordinate_t>;\n\n    // operator\n\n    Point&\
-    \ operator+=(Point &p, coordinate_t real) { return p += Point(real, 0); }\n  \
-    \  Point& operator-=(Point &p, coordinate_t real) { return p -= Point(real, 0);\
-    \ }\n    Point& operator*=(Point &p, coordinate_t real) { return p *= Point(real,\
-    \ 0); }\n    Point& operator/=(Point &p, coordinate_t real) { return p /= Point(real,\
-    \ 0); }\n    Point operator+(const Point &p, coordinate_t real) { return Point(p)\
-    \ + Point(real, 0); }\n    Point operator-(const Point &p, coordinate_t real)\
-    \ { return Point(p) - Point(real, 0); }\n    Point operator*(const Point &p, coordinate_t\
-    \ real) { return Point(p) * Point(real, 0); }\n    Point operator/(const Point\
-    \ &p, coordinate_t real) { return Point(p) / Point(real, 0); }\n    Point operator+(coordinate_t\
+    \    using Point = std::complex<coordinate_t>;\n\n    // operator\n\n    Point\
+    \ operator+(const Point &p, coordinate_t real) { return Point(p) + Point(real,\
+    \ 0); }\n    Point operator-(const Point &p, coordinate_t real) { return Point(p)\
+    \ - Point(real, 0); }\n    Point operator*(const Point &p, coordinate_t real)\
+    \ { return Point(p) * Point(real, 0); }\n    Point operator/(const Point &p, coordinate_t\
+    \ real) { return Point(p) / Point(real, 0); }\n    Point operator+(coordinate_t\
     \ real, const Point &p) { return Point(real, 0) + Point(p); }\n    Point operator-(coordinate_t\
     \ real, const Point &p) { return Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t\
     \ real, const Point &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
@@ -51,34 +47,36 @@ data:
     \ class Containment {\n        OUT, ON, IN\n    };\n\n    constexpr Point ZERO\
     \ = Point(0, 0);\n    constexpr Point ONE  = Point(1, 0);\n    constexpr Point\
     \ I    = Point(0, 1);\n    constexpr coordinate_t EPS = 1e-9;\n    constexpr coordinate_t\
-    \ PI  = M_PI;\n    constexpr coordinate_t E   = M_E;\n\n    constexpr auto XY_COMPARATOR\
-    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
-    \ ? p.imag() < q.imag() : p.real() < q.real();\n    };\n    constexpr auto XY_COMPARATOR_GREATER\
-    \ = [](const Point &p, const Point &q) {\n        return p.real() == q.real()\
-    \ ? p.imag() > q.imag() : p.real() > q.real();\n    };\n    constexpr auto YX_COMPARATOR\
-    \ = [](const Point &p, const Point &q) {\n        return p.imag() == q.imag()\
-    \ ? p.real() < q.real() : p.imag() < q.imag();\n    };\n    constexpr auto YX_COMPARATOR_GREATER\
-    \ = [](const Point &p, const Point &q) {\n        return p.imag() == q.imag()\
-    \ ? p.real() > q.real() : p.imag() > q.imag();\n    };\n\n    int sgn(coordinate_t\
-    \ x) {\n        return x > EPS ? Sign::POSITIVE : x < -EPS ? Sign::NEGATIVE :\
-    \ Sign::ZERO;\n    }\n    int compare(coordinate_t x, coordinate_t y) {\n    \
-    \    return sgn(x - y);\n    }\n\n    auto cartesian(const coordinate_t real,\
-    \ const coordinate_t imag) {\n        return Point(real, imag);\n    }\n    auto\
-    \ polar(const coordinate_t rho, const coordinate_t theta) {\n        return Point(rho\
-    \ * std::cos(theta), rho * std::sin(theta));\n    }\n    auto cis(const coordinate_t\
-    \ theta) {\n        return Point(std::cos(theta), std::sin(theta));\n    }\n \
-    \   auto conj(const Point &z) {\n        return Point(z.real(), -z.imag());\n\
-    \    }\n    auto arg(const Point &z) {\n        return std::atan2(z.imag(), z.real());\n\
-    \    }\n    auto square_abs(const Point &z) {\n        return z.real() * z.real()\
-    \ + z.imag() * z.imag();\n    }\n    auto abs(const Point &z) {\n        return\
-    \ std::sqrt(square_abs(z));\n    }\n    auto rot(const Point &z, const coordinate_t\
-    \ theta) {\n        return cis(theta) * z;\n    }\n    auto dot(const Point &a,\
-    \ const Point &b) {\n        return a.real() * b.real() + a.imag() * b.imag();\n\
-    \    }\n    auto det(const Point &a, const Point &b) {\n        return a.real()\
-    \ * b.imag() - a.imag() * b.real();\n    }\n    bool equals(const Point &a, const\
-    \ Point &b) {\n        return sgn(a.real() - b.real()) == Sign::ZERO and sgn(a.imag()\
-    \ - b.imag()) == Sign::ZERO;\n    }\n    bool equals(coordinate_t a, coordinate_t\
-    \ b) {\n        return compare(a, b) == 0;\n    }\n    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\n\
+    \ PI  = 3.14159265358979323846264338327950288419716939937510L;\n    constexpr\
+    \ coordinate_t E   = 2.71828182845904523536028747135266249775724709369995L;\n\n\
+    \    constexpr auto XY_COMPARATOR = [](const Point &p, const Point &q) {\n   \
+    \     return p.real() == q.real() ? p.imag() < q.imag() : p.real() < q.real();\n\
+    \    };\n    constexpr auto XY_COMPARATOR_GREATER = [](const Point &p, const Point\
+    \ &q) {\n        return p.real() == q.real() ? p.imag() > q.imag() : p.real()\
+    \ > q.real();\n    };\n    constexpr auto YX_COMPARATOR = [](const Point &p, const\
+    \ Point &q) {\n        return p.imag() == q.imag() ? p.real() < q.real() : p.imag()\
+    \ < q.imag();\n    };\n    constexpr auto YX_COMPARATOR_GREATER = [](const Point\
+    \ &p, const Point &q) {\n        return p.imag() == q.imag() ? p.real() > q.real()\
+    \ : p.imag() > q.imag();\n    };\n\n    int sgn(coordinate_t x) {\n        return\
+    \ x > EPS ? Sign::POSITIVE : x < -EPS ? Sign::NEGATIVE : Sign::ZERO;\n    }\n\
+    \    int compare(coordinate_t x, coordinate_t y) {\n        return sgn(x - y);\n\
+    \    }\n\n    auto cartesian(const coordinate_t real, const coordinate_t imag)\
+    \ {\n        return Point(real, imag);\n    }\n    auto polar(const coordinate_t\
+    \ rho, const coordinate_t theta) {\n        return Point(rho * std::cos(theta),\
+    \ rho * std::sin(theta));\n    }\n    auto cis(const coordinate_t theta) {\n \
+    \       return Point(std::cos(theta), std::sin(theta));\n    }\n    auto conj(const\
+    \ Point &z) {\n        return Point(z.real(), -z.imag());\n    }\n    auto arg(const\
+    \ Point &z) {\n        return std::atan2(z.imag(), z.real());\n    }\n    auto\
+    \ square_abs(const Point &z) {\n        return z.real() * z.real() + z.imag()\
+    \ * z.imag();\n    }\n    auto abs(const Point &z) {\n        return std::sqrt(square_abs(z));\n\
+    \    }\n    auto rot(const Point &z, const coordinate_t theta) {\n        return\
+    \ cis(theta) * z;\n    }\n    auto dot(const Point &a, const Point &b) {\n   \
+    \     return a.real() * b.real() + a.imag() * b.imag();\n    }\n    auto det(const\
+    \ Point &a, const Point &b) {\n        return a.real() * b.imag() - a.imag() *\
+    \ b.real();\n    }\n    bool equals(const Point &a, const Point &b) {\n      \
+    \  return sgn(a.real() - b.real()) == Sign::ZERO and sgn(a.imag() - b.imag())\
+    \ == Sign::ZERO;\n    }\n    bool equals(coordinate_t a, coordinate_t b) {\n \
+    \       return compare(a, b) == 0;\n    }\n    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\n\
     \    int isp(const Point &a, const Point &b, const Point &c) {\n        Point\
     \ ab = b - a, ac = c - a;\n        int s = sgn(det(ab, ac));\n        if (s ==\
     \ Sign::POSITIVE) return ISP::L_CURVE;\n        if (s == Sign::NEGATIVE) return\
@@ -131,24 +129,39 @@ data:
     \    template <typename line_t>\n    Point reflection(const Point &p, const line_t\
     \ &line) {\n        Point h = projection(p, line);\n        return p + (h - p)\
     \ * 2;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
-    \    coordinate_t dist(const Point &p, const Segment &l) {\n        Point h =\
-    \ projection(p, l);\n        if (isp(l.a, l.b, h) == ISP::MIDDLE) {\n        \
-    \    return abs(h - p);\n        } else {\n            return std::sqrt(std::min(square_abs(p\
-    \ - l.a), square_abs(p - l.b)));\n        }\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
-    \    coordinate_t dist(const Segment &l, const Point &p) {\n        return dist(p,\
-    \ l);\n    }\n    coordinate_t dist(const Point &p, const Ray &l) {\n        Point\
+    \    coordinate_t square_distance(const Point &p, const Segment &l) {\n      \
+    \  Point h = projection(p, l);\n        if (isp(l.a, l.b, h) == ISP::MIDDLE) {\n\
+    \            return square_abs(h - p);\n        } else {\n            return std::min(square_abs(p\
+    \ - l.a), square_abs(p - l.b));\n        }\n    }\n    coordinate_t square_distance(const\
+    \ Segment &l, const Point &p) {\n        return square_distance(p, l);\n    }\n\
+    \    coordinate_t square_distance(const Point &p, const Ray &l) {\n        Point\
     \ h = projection(p, l);\n        int dir = isp(l.a, l.b, h);\n        return dir\
-    \ == ISP::MIDDLE or dir == ISP::FRONT ? abs(h - p) : std::sqrt(std::min(square_abs(p\
-    \ - l.a), square_abs(p - l.b)));\n    }\n    coordinate_t dist(const Ray &l, const\
-    \ Point &p) {\n        return dist(p, l);\n    }\n    coordinate_t dist(const\
-    \ Point &p, const Line &l) {\n        return abs(projection(p, l) - p);\n    }\n\
-    \    coordinate_t dist(const Line &l, const Point &p) {\n        return dist(p,\
-    \ l);\n    }\n\n    Containment contains(const Segment &l, const Point &p) {\n\
-    \        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;\n \
-    \   }\n    Containment contains(const Ray &l, const Point &p) {\n        return\
-    \ sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;\n    }\n    Containment\
-    \ contains(const Line &l, const Point &p) {\n        return sgn(dist(l, p)) ==\
-    \ 0 ? Containment::ON : Containment::OUT;\n    }\n\n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
+    \ == ISP::MIDDLE or dir == ISP::FRONT ? square_abs(h - p) : std::min(square_abs(p\
+    \ - l.a), square_abs(p - l.b));\n    }\n    coordinate_t square_distance(const\
+    \ Ray &l, const Point &p) {\n        return square_distance(p, l);\n    }\n  \
+    \  coordinate_t square_distance(const Point &p, const Line &l) {\n        return\
+    \ square_abs(projection(p, l) - p);\n    }\n    coordinate_t square_distance(const\
+    \ Line &l, const Point &p) {\n        return square_distance(p, l);\n    }\n \
+    \   // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n   \
+    \ coordinate_t distance(const Point &p, const Segment &l) {\n        return std::sqrt(square_distance(p,\
+    \ l));\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
+    \    coordinate_t distance(const Segment &l, const Point &p) {\n        return\
+    \ distance(p, l);\n    }\n    coordinate_t distance(const Point &p, const Ray\
+    \ &l) {\n        return std::sqrt(square_distance(p, l));\n    }\n    coordinate_t\
+    \ distance(const Ray &l, const Point &p) {\n        return distance(p, l);\n \
+    \   }\n    coordinate_t distance(const Point &p, const Line &l) {\n        return\
+    \ std::sqrt(square_distance(p, l));\n    }\n    coordinate_t distance(const Line\
+    \ &l, const Point &p) {\n        return distance(p, l);\n    }\n\n    Containment\
+    \ contains(const Segment &l, const Point &p) {\n        return sgn(distance(l,\
+    \ p)) == 0 ? Containment::ON : Containment::OUT;\n    }\n    Containment contains(const\
+    \ Ray &l, const Point &p) {\n        return sgn(distance(l, p)) == 0 ? Containment::ON\
+    \ : Containment::OUT;\n    }\n    Containment contains(const Line &l, const Point\
+    \ &p) {\n        return sgn(distance(l, p)) == 0 ? Containment::ON : Containment::OUT;\n\
+    \    }\n\n    bool equals(const Line &l, const Line &m) {\n        return on_the_same_line(l,\
+    \ m);\n    }\n    bool equals(const Ray &l, const Ray &m) {\n        return on_the_same_line(l,\
+    \ m) and equals(l.a, m.a);\n    }\n    bool equals(const Segment &l, const Segment\
+    \ &m) {\n        return (equals(l.a, m.a) and equals(l.b, m.b)) or (equals(l.a,\
+    \ m.b) and equals(l.b, m.a));\n    }\n\n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
     \n    bool has_common_point(const Segment &l1, const Segment &l2) {\n        int\
     \ isp_1a = isp(l1.a, l1.b, l2.a), isp_1b = isp(l1.a, l1.b, l2.b);\n        if\
     \ (isp_1a * isp_1b > 0) return false;\n        int isp_2a = isp(l2.a, l2.b, l1.a),\
@@ -156,26 +169,25 @@ data:
     \        return true;\n    }\n\n    namespace internal {\n        template <typename\
     \ line_t_1, typename line_t_2>\n        Point cross_point(const line_t_1 &l1,\
     \ const line_t_2 &l2) {\n            assert(not is_parallel(l1, l2));\n      \
-    \      Point ha = projection(l2.a, l1), hb = projection(l2.b, l1);\n         \
-    \   auto la = abs(l2.a - ha);\n            if (sgn(la) == 0) return ha;\n    \
-    \        auto lb = abs(l2.b - hb);\n            if (sgn(lb) == 0) return hb;\n\
-    \            return l2.a + (l2.b - l2.a) * (la / (la + lb));\n        }\n    }\n\
-    \n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
+    \      Point u = l1.b - l1.a, v = l2.a - l2.b, c = l2.a - l1.a;\n            return\
+    \ l2.a - det(u, c) / det(u, v) * v;\n        }\n    }\n\n    // \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
     \n    std::variant<std::nullptr_t, Point, Segment> common_point(const Segment\
     \ &l1, const Segment &l2) {\n        if (not has_common_point(l1, l2)) return\
     \ nullptr;\n        if (not is_parallel(l1, l2)) return internal::cross_point(l1,\
-    \ l2);\n        std::vector<Point> ps { l1.a, l1.b, l2.a, l2.b };\n        auto\
-    \ comp = [](const Point &p, const Point &q) { return p.real() == q.real() ? p.imag()\
-    \ < q.imag() : p.real() < q.real(); };\n        for (int i = 0; i <= 2; ++i) for\
-    \ (int j = 2; j >= i; --j) {\n            if (comp(ps[j], ps[j + 1])) std::swap(ps[j],\
-    \ ps[j + 1]);\n        }\n        if (ps[1] == ps[2]) return ps[1];\n        return\
-    \ Segment(ps[1], ps[2]);\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n\
-    \    coordinate_t dist(const Segment &l1, const Segment &l2) {\n        if (has_common_point(l1,\
-    \ l2)) return 0;\n        return std::min({ dist(l1, l2.a), dist(l1, l2.b), dist(l1.a,\
-    \ l2), dist(l1.b, l2) });\n    }\n\n    // Polygon\n\n    using Polygon = std::vector<Point>;\n\
-    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n \
-    \   coordinate_t signed_area(const Polygon &poly) {\n        coordinate_t res\
-    \ = 0;\n        int sz = poly.size();\n        for (int i = 0; i < sz; ++i) {\n\
+    \ l2);\n        std::vector<Point> ps { l1.a, l1.b, l2.a, l2.b };\n        for\
+    \ (int i = 0; i <= 2; ++i) for (int j = 2; j >= i; --j) {\n            if (XY_COMPARATOR(ps[j\
+    \ + 1], ps[j])) std::swap(ps[j], ps[j + 1]);\n        }\n        if (equals(ps[1],\
+    \ ps[2])) return ps[1];\n        return Segment(ps[1], ps[2]);\n    }\n\n    //\
+    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n    coordinate_t\
+    \ square_distance(const Segment &l1, const Segment &l2) {\n        if (has_common_point(l1,\
+    \ l2)) return 0;\n        return std::min({ square_distance(l1, l2.a), square_distance(l1,\
+    \ l2.b), square_distance(l1.a, l2), square_distance(l1.b, l2) });\n    }\n   \
+    \ // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D\n    coordinate_t\
+    \ distance(const Segment &l1, const Segment &l2) {\n        return std::sqrt(square_distance(l1,\
+    \ l2));\n    }\n\n    // Polygon\n\n    using Polygon = std::vector<Point>;\n\n\
+    \    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n  \
+    \  coordinate_t signed_area(const Polygon &poly) {\n        coordinate_t res =\
+    \ 0;\n        int sz = poly.size();\n        for (int i = 0; i < sz; ++i) {\n\
     \            int j = i + 1;\n            if (j == sz) j = 0;\n            res\
     \ += signed_area(ZERO, poly[i], poly[j]);\n        }\n        return res;\n  \
     \  }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_A\n\
@@ -260,15 +272,15 @@ data:
     \        coordinate_t rtp = std::sqrt(std::max(sqxy - rp * rp, coordinate_t(0)));\n\
     \        coordinate_t rtm = std::sqrt(std::max(sqxy - rm * rm, coordinate_t(0)));\n\
     \        Point r = v * r1, u = r * Point(0, 1);\n        Point l12 = r * rp, r12\
-    \ = u * rtp, l34 = r * rm, r34 = u * rtm;\n        Point p11 = (l12 - r12) / sqxy,\
-    \ p12 = (l12 + r12) / sqxy, p13 = (l34 - r34) / sqxy, p14 = (l34 + r34) / sqxy;\n\
-    \        Point p21 = p11 * rd, p22 = p12 * rd, p23 = p13 * rd, p24 = p14 * rd;\n\
-    \        res.emplace_back(a + p14, b + p24);\n        if (num == 1) return res;\n\
-    \        res.emplace_back(a + p13, b + p23);\n        if (num == 2) return res;\n\
-    \        res.emplace_back(a + p12, b - p22);\n        if (num == 3) return res;\n\
-    \        res.emplace_back(a + p11, b - p21);\n        return res;\n    }\n\n \
-    \   // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H\n   \
-    \ coordinate_t intersection_area(const Polygon &poly, const Circle &circle) {\n\
+    \ = u * rtp, l34 = r * rm, r34 = u * rtm;\n        Point p14 = (l34 + r34) / sqxy;\n\
+    \        res.emplace_back(a + p14, b + p14 * rd);\n        if (num == 1) return\
+    \ res;\n        Point p13 = (l34 - r34) / sqxy;\n        res.emplace_back(a +\
+    \ p13, b + p13 * rd);\n        if (num == 2) return res;\n        Point p12 =\
+    \ (l12 + r12) / sqxy;\n        res.emplace_back(a + p12, b - p12 * rd);\n    \
+    \    if (num == 3) return res;\n        Point p11 = (l12 - r12) / sqxy;\n    \
+    \    res.emplace_back(a + p11, b - p11 * rd);\n        return res;\n    }\n\n\
+    \    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H\n  \
+    \  coordinate_t intersection_area(const Polygon &poly, const Circle &circle) {\n\
     \        int sz = poly.size();\n        coordinate_t r2 = circle.radius * circle.radius;\n\
     \        const Point &c = circle.center;\n        coordinate_t area = 0;\n   \
     \     for (int i = 0; i < sz; i++) {\n            int j = i + 1;\n           \
@@ -313,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/src/geom/geometry/CGL_4_B.test.cpp
   requiredBy: []
-  timestamp: '2021-08-25 03:57:41+09:00'
+  timestamp: '2021-08-25 07:44:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/geom/geometry/CGL_4_B.test.cpp
