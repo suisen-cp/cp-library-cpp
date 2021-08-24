@@ -78,7 +78,7 @@ namespace geometry {
         return p.imag() == q.imag() ? p.real() < q.real() : p.imag() < q.imag();
     };
     constexpr auto YX_COMPARATOR_GREATER = [](const Point &p, const Point &q) {
-        return p.real() == q.real() ? p.imag() > q.imag() : p.real() > q.real();
+        return p.imag() == q.imag() ? p.real() > q.real() : p.imag() > q.imag();
     };
 
     int sgn(coordinate_t x) {
