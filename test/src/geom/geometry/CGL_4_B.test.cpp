@@ -1,4 +1,5 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B"
+#define ERROR 0.000001
 
 #include <cassert>
 #include <iostream>
