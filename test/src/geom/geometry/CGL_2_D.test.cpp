@@ -20,7 +20,7 @@ int main() {
         Point p1, p2, p3, p4;
         std::cin >> p1 >> p2 >> p3 >> p4;
         Segment l1(p1, p2), l2(p3, p4);
-        std::cout << dist(l1, l2) << '\n';
+        std::cout << distance(l1, l2) << '\n';
     }
     return 0;
 }

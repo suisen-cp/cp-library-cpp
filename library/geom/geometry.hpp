@@ -18,10 +18,6 @@ namespace geometry {
 
     // operator
 
-    Point& operator+=(Point &p, coordinate_t real) { return p += Point(real, 0); }
-    Point& operator-=(Point &p, coordinate_t real) { return p -= Point(real, 0); }
-    Point& operator*=(Point &p, coordinate_t real) { return p *= Point(real, 0); }
-    Point& operator/=(Point &p, coordinate_t real) { return p /= Point(real, 0); }
     Point operator+(const Point &p, coordinate_t real) { return Point(p) + Point(real, 0); }
     Point operator-(const Point &p, coordinate_t real) { return Point(p) - Point(real, 0); }
     Point operator*(const Point &p, coordinate_t real) { return Point(p) * Point(real, 0); }
@@ -65,8 +61,8 @@ namespace geometry {
     constexpr Point ONE  = Point(1, 0);
     constexpr Point I    = Point(0, 1);
     constexpr coordinate_t EPS = 1e-9;
-    constexpr coordinate_t PI  = M_PI;
-    constexpr coordinate_t E   = M_E;
+    constexpr coordinate_t PI  = 3.14159265358979323846264338327950288419716939937510L;
+    constexpr coordinate_t E   = 2.71828182845904523536028747135266249775724709369995L;
 
     constexpr auto XY_COMPARATOR = [](const Point &p, const Point &q) {
         return p.real() == q.real() ? p.imag() < q.imag() : p.real() < q.real();
@@ -229,41 +225,70 @@ namespace geometry {
     }
 
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
-    coordinate_t dist(const Point &p, const Segment &l) {
+    coordinate_t square_distance(const Point &p, const Segment &l) {
         Point h = projection(p, l);
         if (isp(l.a, l.b, h) == ISP::MIDDLE) {
-            return abs(h - p);
+            return square_abs(h - p);
         } else {
-            return std::sqrt(std::min(square_abs(p - l.a), square_abs(p - l.b)));
+            return std::min(square_abs(p - l.a), square_abs(p - l.b));
         }
     }
-    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
-    coordinate_t dist(const Segment &l, const Point &p) {
-        return dist(p, l);
+    coordinate_t square_distance(const Segment &l, const Point &p) {
+        return square_distance(p, l);
     }
-    coordinate_t dist(const Point &p, const Ray &l) {
+    coordinate_t square_distance(const Point &p, const Ray &l) {
         Point h = projection(p, l);
         int dir = isp(l.a, l.b, h);
-        return dir == ISP::MIDDLE or dir == ISP::FRONT ? abs(h - p) : std::sqrt(std::min(square_abs(p - l.a), square_abs(p - l.b)));
+        return dir == ISP::MIDDLE or dir == ISP::FRONT ? square_abs(h - p) : std::min(square_abs(p - l.a), square_abs(p - l.b));
     }
-    coordinate_t dist(const Ray &l, const Point &p) {
-        return dist(p, l);
+    coordinate_t square_distance(const Ray &l, const Point &p) {
+        return square_distance(p, l);
     }
-    coordinate_t dist(const Point &p, const Line &l) {
-        return abs(projection(p, l) - p);
+    coordinate_t square_distance(const Point &p, const Line &l) {
+        return square_abs(projection(p, l) - p);
     }
-    coordinate_t dist(const Line &l, const Point &p) {
-        return dist(p, l);
+    coordinate_t square_distance(const Line &l, const Point &p) {
+        return square_distance(p, l);
+    }
+    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
+    coordinate_t distance(const Point &p, const Segment &l) {
+        return std::sqrt(square_distance(p, l));
+    }
+    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
+    coordinate_t distance(const Segment &l, const Point &p) {
+        return distance(p, l);
+    }
+    coordinate_t distance(const Point &p, const Ray &l) {
+        return std::sqrt(square_distance(p, l));
+    }
+    coordinate_t distance(const Ray &l, const Point &p) {
+        return distance(p, l);
+    }
+    coordinate_t distance(const Point &p, const Line &l) {
+        return std::sqrt(square_distance(p, l));
+    }
+    coordinate_t distance(const Line &l, const Point &p) {
+        return distance(p, l);
     }
 
     Containment contains(const Segment &l, const Point &p) {
-        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;
+        return sgn(distance(l, p)) == 0 ? Containment::ON : Containment::OUT;
     }
     Containment contains(const Ray &l, const Point &p) {
-        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;
+        return sgn(distance(l, p)) == 0 ? Containment::ON : Containment::OUT;
     }
     Containment contains(const Line &l, const Point &p) {
-        return sgn(dist(l, p)) == 0 ? Containment::ON : Containment::OUT;
+        return sgn(distance(l, p)) == 0 ? Containment::ON : Containment::OUT;
+    }
+
+    bool equals(const Line &l, const Line &m) {
+        return on_the_same_line(l, m);
+    }
+    bool equals(const Ray &l, const Ray &m) {
+        return on_the_same_line(l, m) and equals(l.a, m.a);
+    }
+    bool equals(const Segment &l, const Segment &m) {
+        return (equals(l.a, m.a) and equals(l.b, m.b)) or (equals(l.a, m.b) and equals(l.b, m.a));
     }
 
     // "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B"
@@ -279,12 +304,8 @@ namespace geometry {
         template <typename line_t_1, typename line_t_2>
         Point cross_point(const line_t_1 &l1, const line_t_2 &l2) {
             assert(not is_parallel(l1, l2));
-            Point ha = projection(l2.a, l1), hb = projection(l2.b, l1);
-            auto la = abs(l2.a - ha);
-            if (sgn(la) == 0) return ha;
-            auto lb = abs(l2.b - hb);
-            if (sgn(lb) == 0) return hb;
-            return l2.a + (l2.b - l2.a) * (la / (la + lb));
+            Point u = l1.b - l1.a, v = l2.a - l2.b, c = l2.a - l1.a;
+            return l2.a - det(u, c) / det(u, v) * v;
         }
     }
 
@@ -293,18 +314,21 @@ namespace geometry {
         if (not has_common_point(l1, l2)) return nullptr;
         if (not is_parallel(l1, l2)) return internal::cross_point(l1, l2);
         std::vector<Point> ps { l1.a, l1.b, l2.a, l2.b };
-        auto comp = [](const Point &p, const Point &q) { return p.real() == q.real() ? p.imag() < q.imag() : p.real() < q.real(); };
         for (int i = 0; i <= 2; ++i) for (int j = 2; j >= i; --j) {
-            if (comp(ps[j], ps[j + 1])) std::swap(ps[j], ps[j + 1]);
+            if (XY_COMPARATOR(ps[j + 1], ps[j])) std::swap(ps[j], ps[j + 1]);
         }
-        if (ps[1] == ps[2]) return ps[1];
+        if (equals(ps[1], ps[2])) return ps[1];
         return Segment(ps[1], ps[2]);
     }
 
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
-    coordinate_t dist(const Segment &l1, const Segment &l2) {
+    coordinate_t square_distance(const Segment &l1, const Segment &l2) {
         if (has_common_point(l1, l2)) return 0;
-        return std::min({ dist(l1, l2.a), dist(l1, l2.b), dist(l1.a, l2), dist(l1.b, l2) });
+        return std::min({ square_distance(l1, l2.a), square_distance(l1, l2.b), square_distance(l1.a, l2), square_distance(l1.b, l2) });
+    }
+    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_D
+    coordinate_t distance(const Segment &l1, const Segment &l2) {
+        return std::sqrt(square_distance(l1, l2));
     }
 
     // Polygon
@@ -479,15 +503,17 @@ namespace geometry {
         coordinate_t rtm = std::sqrt(std::max(sqxy - rm * rm, coordinate_t(0)));
         Point r = v * r1, u = r * Point(0, 1);
         Point l12 = r * rp, r12 = u * rtp, l34 = r * rm, r34 = u * rtm;
-        Point p11 = (l12 - r12) / sqxy, p12 = (l12 + r12) / sqxy, p13 = (l34 - r34) / sqxy, p14 = (l34 + r34) / sqxy;
-        Point p21 = p11 * rd, p22 = p12 * rd, p23 = p13 * rd, p24 = p14 * rd;
-        res.emplace_back(a + p14, b + p24);
+        Point p14 = (l34 + r34) / sqxy;
+        res.emplace_back(a + p14, b + p14 * rd);
         if (num == 1) return res;
-        res.emplace_back(a + p13, b + p23);
+        Point p13 = (l34 - r34) / sqxy;
+        res.emplace_back(a + p13, b + p13 * rd);
         if (num == 2) return res;
-        res.emplace_back(a + p12, b - p22);
+        Point p12 = (l12 + r12) / sqxy;
+        res.emplace_back(a + p12, b - p12 * rd);
         if (num == 3) return res;
-        res.emplace_back(a + p11, b - p21);
+        Point p11 = (l12 - r12) / sqxy;
+        res.emplace_back(a + p11, b - p11 * rd);
         return res;
     }
 
