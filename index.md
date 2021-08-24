@@ -128,7 +128,7 @@ data:
       title: library/debug/tree.hpp
   - name: library/geom
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/closest_pair.hpp
       title: library/geom/closest_pair.hpp
     - icon: ':heavy_check_mark:'
@@ -484,7 +484,7 @@ data:
       title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - name: test/src/geom/closest_pair
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/closest_pair/CGL_5_A.test.cpp
       title: test/src/geom/closest_pair/CGL_5_A.test.cpp
   - name: test/src/geom/convex_hull
@@ -494,19 +494,19 @@ data:
       title: test/src/geom/convex_hull/CGL_4_A.test.cpp
   - name: test/src/geom/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_A.test.cpp
       title: test/src/geom/geometry/CGL_1_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_B.test.cpp
       title: test/src/geom/geometry/CGL_1_B.test.cpp
     - icon: ':x:'
       path: test/src/geom/geometry/CGL_1_C.test.cpp
       title: test/src/geom/geometry/CGL_1_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_A.test.cpp
       title: test/src/geom/geometry/CGL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_B.test.cpp
       title: test/src/geom/geometry/CGL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -524,10 +524,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_3_C.test.cpp
       title: test/src/geom/geometry/CGL_3_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_4_B.test.cpp
       title: test/src/geom/geometry/CGL_4_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_4_C.test.cpp
       title: test/src/geom/geometry/CGL_4_C.test.cpp
     - icon: ':heavy_check_mark:'
@@ -554,7 +554,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_H.test.cpp
       title: test/src/geom/geometry/CGL_7_H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_I.test.cpp
       title: test/src/geom/geometry/CGL_7_I.test.cpp
   - name: test/src/geom/segment_intersections

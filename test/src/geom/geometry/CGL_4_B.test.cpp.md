@@ -6,18 +6,20 @@ data:
     title: library/geom/geometry.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: '0.000001'
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
   bundledCode: "#line 1 \"test/src/geom/geometry/CGL_4_B.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\"\n\n#include\
-    \ <cassert>\n#include <iostream>\n#include <iomanip>\n\n#line 1 \"library/geom/geometry.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <complex>\n#line 7 \"library/geom/geometry.hpp\"\
+    \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\"\n#define\
+    \ ERROR 0.000001\n\n#include <cassert>\n#include <iostream>\n#include <iomanip>\n\
+    \n#line 1 \"library/geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n#line 6 \"\
+    library/geom/geometry.hpp\"\n#include <complex>\n#line 8 \"library/geom/geometry.hpp\"\
     \n#include <optional>\n#include <tuple>\n#include <variant>\n#include <vector>\n\
     \nnamespace suisen {\nnamespace geometry {\n\n    using coordinate_t = long double;\n\
     \    using Point = std::complex<coordinate_t>;\n\n    // operator\n\n    Point&\
@@ -292,27 +294,27 @@ data:
     \ coordinate_t(0)));\n        coordinate_t a1 = r * r * std::acos(x / r);\n  \
     \      coordinate_t a2 = s * s * std::acos((d - x) / s);\n        coordinate_t\
     \ a12 = d * h;\n        return a1 + a2 - a12;\n    }\n}\n} // namespace suisen\n\
-    \n\n#line 8 \"test/src/geom/geometry/CGL_4_B.test.cpp\"\n\nusing namespace suisen::geometry;\n\
+    \n\n#line 9 \"test/src/geom/geometry/CGL_4_B.test.cpp\"\n\nusing namespace suisen::geometry;\n\
     \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    std::cout << std::fixed << std::setprecision(20);\n\n    int n;\n    std::cin\
     \ >> n;\n\n    Polygon poly(n);\n\n    for (int i = 0; i < n; ++i) {\n       \
     \ std::cin >> poly[i];\n    }\n\n    auto [i, j, diam] = convex_diameter(poly);\n\
     \    std::cout << diam << '\\n';\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\"\
-    \n\n#include <cassert>\n#include <iostream>\n#include <iomanip>\n\n#include \"\
-    library/geom/geometry.hpp\"\n\nusing namespace suisen::geometry;\n\nint main()\
-    \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    std::cout\
-    \ << std::fixed << std::setprecision(20);\n\n    int n;\n    std::cin >> n;\n\n\
-    \    Polygon poly(n);\n\n    for (int i = 0; i < n; ++i) {\n        std::cin >>\
-    \ poly[i];\n    }\n\n    auto [i, j, diam] = convex_diameter(poly);\n    std::cout\
-    \ << diam << '\\n';\n    return 0;\n}"
+    \n#define ERROR 0.000001\n\n#include <cassert>\n#include <iostream>\n#include\
+    \ <iomanip>\n\n#include \"library/geom/geometry.hpp\"\n\nusing namespace suisen::geometry;\n\
+    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    std::cout << std::fixed << std::setprecision(20);\n\n    int n;\n    std::cin\
+    \ >> n;\n\n    Polygon poly(n);\n\n    for (int i = 0; i < n; ++i) {\n       \
+    \ std::cin >> poly[i];\n    }\n\n    auto [i, j, diam] = convex_diameter(poly);\n\
+    \    std::cout << diam << '\\n';\n    return 0;\n}"
   dependsOn:
   - library/geom/geometry.hpp
   isVerificationFile: true
   path: test/src/geom/geometry/CGL_4_B.test.cpp
   requiredBy: []
-  timestamp: '2021-08-25 03:20:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-08-25 03:27:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/geom/geometry/CGL_4_B.test.cpp
 layout: document

@@ -6,9 +6,9 @@ data:
     title: library/geom/geometry.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
@@ -17,7 +17,7 @@ data:
   bundledCode: "#line 1 \"test/src/geom/geometry/CGL_2_B.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\n\n#include\
     \ <iostream>\n#include <iomanip>\n\n#line 1 \"library/geom/geometry.hpp\"\n\n\n\
-    \n#include <algorithm>\n#include <complex>\n#line 7 \"library/geom/geometry.hpp\"\
+    \n#include <algorithm>\n#include <cassert>\n#include <complex>\n#line 8 \"library/geom/geometry.hpp\"\
     \n#include <optional>\n#include <tuple>\n#include <variant>\n#include <vector>\n\
     \nnamespace suisen {\nnamespace geometry {\n\n    using coordinate_t = long double;\n\
     \    using Point = std::complex<coordinate_t>;\n\n    // operator\n\n    Point&\
@@ -314,8 +314,8 @@ data:
   isVerificationFile: true
   path: test/src/geom/geometry/CGL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2021-08-25 03:20:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-08-25 03:27:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/geom/geometry/CGL_2_B.test.cpp
 layout: document

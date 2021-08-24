@@ -2,32 +2,32 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/closest_pair.hpp
     title: library/geom/closest_pair.hpp
   - icon: ':heavy_check_mark:'
     path: library/geom/convex_hull.hpp
     title: library/geom/convex_hull.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/closest_pair/CGL_5_A.test.cpp
     title: test/src/geom/closest_pair/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/geom/convex_hull/CGL_4_A.test.cpp
     title: test/src/geom/convex_hull/CGL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_1_A.test.cpp
     title: test/src/geom/geometry/CGL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_1_B.test.cpp
     title: test/src/geom/geometry/CGL_1_B.test.cpp
   - icon: ':x:'
     path: test/src/geom/geometry/CGL_1_C.test.cpp
     title: test/src/geom/geometry/CGL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_2_A.test.cpp
     title: test/src/geom/geometry/CGL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_2_B.test.cpp
     title: test/src/geom/geometry/CGL_2_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,10 +45,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_3_C.test.cpp
     title: test/src/geom/geometry/CGL_3_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_4_B.test.cpp
     title: test/src/geom/geometry/CGL_4_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_4_C.test.cpp
     title: test/src/geom/geometry/CGL_4_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_H.test.cpp
     title: test/src/geom/geometry/CGL_7_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_I.test.cpp
     title: test/src/geom/geometry/CGL_7_I.test.cpp
   _isVerificationFailed: true
@@ -105,22 +105,22 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_H
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_I
   bundledCode: "#line 1 \"library/geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <complex>\n#include <iostream>\n#include <optional>\n#include <tuple>\n\
-    #include <variant>\n#include <vector>\n\nnamespace suisen {\nnamespace geometry\
-    \ {\n\n    using coordinate_t = long double;\n    using Point = std::complex<coordinate_t>;\n\
-    \n    // operator\n\n    Point& operator+=(Point &p, coordinate_t real) { return\
-    \ p += Point(real, 0); }\n    Point& operator-=(Point &p, coordinate_t real) {\
-    \ return p -= Point(real, 0); }\n    Point& operator*=(Point &p, coordinate_t\
-    \ real) { return p *= Point(real, 0); }\n    Point& operator/=(Point &p, coordinate_t\
-    \ real) { return p /= Point(real, 0); }\n    Point operator+(const Point &p, coordinate_t\
-    \ real) { return Point(p) + Point(real, 0); }\n    Point operator-(const Point\
-    \ &p, coordinate_t real) { return Point(p) - Point(real, 0); }\n    Point operator*(const\
-    \ Point &p, coordinate_t real) { return Point(p) * Point(real, 0); }\n    Point\
-    \ operator/(const Point &p, coordinate_t real) { return Point(p) / Point(real,\
-    \ 0); }\n    Point operator+(coordinate_t real, const Point &p) { return Point(real,\
-    \ 0) + Point(p); }\n    Point operator-(coordinate_t real, const Point &p) { return\
-    \ Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t real, const Point\
-    \ &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
+    #include <cassert>\n#include <complex>\n#include <iostream>\n#include <optional>\n\
+    #include <tuple>\n#include <variant>\n#include <vector>\n\nnamespace suisen {\n\
+    namespace geometry {\n\n    using coordinate_t = long double;\n    using Point\
+    \ = std::complex<coordinate_t>;\n\n    // operator\n\n    Point& operator+=(Point\
+    \ &p, coordinate_t real) { return p += Point(real, 0); }\n    Point& operator-=(Point\
+    \ &p, coordinate_t real) { return p -= Point(real, 0); }\n    Point& operator*=(Point\
+    \ &p, coordinate_t real) { return p *= Point(real, 0); }\n    Point& operator/=(Point\
+    \ &p, coordinate_t real) { return p /= Point(real, 0); }\n    Point operator+(const\
+    \ Point &p, coordinate_t real) { return Point(p) + Point(real, 0); }\n    Point\
+    \ operator-(const Point &p, coordinate_t real) { return Point(p) - Point(real,\
+    \ 0); }\n    Point operator*(const Point &p, coordinate_t real) { return Point(p)\
+    \ * Point(real, 0); }\n    Point operator/(const Point &p, coordinate_t real)\
+    \ { return Point(p) / Point(real, 0); }\n    Point operator+(coordinate_t real,\
+    \ const Point &p) { return Point(real, 0) + Point(p); }\n    Point operator-(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
     \ real, const Point &p) { return Point(real, 0) / Point(p); }\n\n    std::istream&\
     \ operator>>(std::istream &in, Point &p) {\n        coordinate_t x, y;\n     \
     \   in >> x >> y;\n        p = Point(x, y);\n        return in;\n    }\n    std::ostream&\
@@ -381,23 +381,23 @@ data:
     \      coordinate_t a2 = s * s * std::acos((d - x) / s);\n        coordinate_t\
     \ a12 = d * h;\n        return a1 + a2 - a12;\n    }\n}\n} // namespace suisen\n\
     \n\n"
-  code: "#ifndef SUISEN_GEOMETRY_BASE\n#define SUISEN_GEOMETRY_BASE\n\n#include <algorithm>\n\
-    #include <complex>\n#include <iostream>\n#include <optional>\n#include <tuple>\n\
-    #include <variant>\n#include <vector>\n\nnamespace suisen {\nnamespace geometry\
-    \ {\n\n    using coordinate_t = long double;\n    using Point = std::complex<coordinate_t>;\n\
-    \n    // operator\n\n    Point& operator+=(Point &p, coordinate_t real) { return\
-    \ p += Point(real, 0); }\n    Point& operator-=(Point &p, coordinate_t real) {\
-    \ return p -= Point(real, 0); }\n    Point& operator*=(Point &p, coordinate_t\
-    \ real) { return p *= Point(real, 0); }\n    Point& operator/=(Point &p, coordinate_t\
-    \ real) { return p /= Point(real, 0); }\n    Point operator+(const Point &p, coordinate_t\
-    \ real) { return Point(p) + Point(real, 0); }\n    Point operator-(const Point\
-    \ &p, coordinate_t real) { return Point(p) - Point(real, 0); }\n    Point operator*(const\
-    \ Point &p, coordinate_t real) { return Point(p) * Point(real, 0); }\n    Point\
-    \ operator/(const Point &p, coordinate_t real) { return Point(p) / Point(real,\
-    \ 0); }\n    Point operator+(coordinate_t real, const Point &p) { return Point(real,\
-    \ 0) + Point(p); }\n    Point operator-(coordinate_t real, const Point &p) { return\
-    \ Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t real, const Point\
-    \ &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
+  code: "#ifndef SUISEN_GEOMETRY\n#define SUISEN_GEOMETRY\n\n#include <algorithm>\n\
+    #include <cassert>\n#include <complex>\n#include <iostream>\n#include <optional>\n\
+    #include <tuple>\n#include <variant>\n#include <vector>\n\nnamespace suisen {\n\
+    namespace geometry {\n\n    using coordinate_t = long double;\n    using Point\
+    \ = std::complex<coordinate_t>;\n\n    // operator\n\n    Point& operator+=(Point\
+    \ &p, coordinate_t real) { return p += Point(real, 0); }\n    Point& operator-=(Point\
+    \ &p, coordinate_t real) { return p -= Point(real, 0); }\n    Point& operator*=(Point\
+    \ &p, coordinate_t real) { return p *= Point(real, 0); }\n    Point& operator/=(Point\
+    \ &p, coordinate_t real) { return p /= Point(real, 0); }\n    Point operator+(const\
+    \ Point &p, coordinate_t real) { return Point(p) + Point(real, 0); }\n    Point\
+    \ operator-(const Point &p, coordinate_t real) { return Point(p) - Point(real,\
+    \ 0); }\n    Point operator*(const Point &p, coordinate_t real) { return Point(p)\
+    \ * Point(real, 0); }\n    Point operator/(const Point &p, coordinate_t real)\
+    \ { return Point(p) / Point(real, 0); }\n    Point operator+(coordinate_t real,\
+    \ const Point &p) { return Point(real, 0) + Point(p); }\n    Point operator-(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
     \ real, const Point &p) { return Point(real, 0) / Point(p); }\n\n    std::istream&\
     \ operator>>(std::istream &in, Point &p) {\n        coordinate_t x, y;\n     \
     \   in >> x >> y;\n        p = Point(x, y);\n        return in;\n    }\n    std::ostream&\
@@ -657,14 +657,14 @@ data:
     \ coordinate_t(0)));\n        coordinate_t a1 = r * r * std::acos(x / r);\n  \
     \      coordinate_t a2 = s * s * std::acos((d - x) / s);\n        coordinate_t\
     \ a12 = d * h;\n        return a1 + a2 - a12;\n    }\n}\n} // namespace suisen\n\
-    \n#endif // SUISEN_GEOMETRY_BASE\n"
+    \n#endif // SUISEN_GEOMETRY\n"
   dependsOn: []
   isVerificationFile: false
   path: library/geom/geometry.hpp
   requiredBy:
   - library/geom/closest_pair.hpp
   - library/geom/convex_hull.hpp
-  timestamp: '2021-08-25 03:20:59+09:00'
+  timestamp: '2021-08-25 03:27:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/geom/closest_pair/CGL_5_A.test.cpp

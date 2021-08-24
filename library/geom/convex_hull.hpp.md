@@ -16,9 +16,9 @@ data:
     links: []
   bundledCode: "#line 1 \"library/geom/convex_hull.hpp\"\n\n\n\n#include <numeric>\n\
     \n#line 1 \"library/geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <complex>\n#include <iostream>\n#include <optional>\n#include <tuple>\n#include\
-    \ <variant>\n#include <vector>\n\nnamespace suisen {\nnamespace geometry {\n\n\
-    \    using coordinate_t = long double;\n    using Point = std::complex<coordinate_t>;\n\
+    \ <cassert>\n#include <complex>\n#include <iostream>\n#include <optional>\n#include\
+    \ <tuple>\n#include <variant>\n#include <vector>\n\nnamespace suisen {\nnamespace\
+    \ geometry {\n\n    using coordinate_t = long double;\n    using Point = std::complex<coordinate_t>;\n\
     \n    // operator\n\n    Point& operator+=(Point &p, coordinate_t real) { return\
     \ p += Point(real, 0); }\n    Point& operator-=(Point &p, coordinate_t real) {\
     \ return p -= Point(real, 0); }\n    Point& operator*=(Point &p, coordinate_t\
@@ -330,7 +330,7 @@ data:
   isVerificationFile: false
   path: library/geom/convex_hull.hpp
   requiredBy: []
-  timestamp: '2021-08-25 03:20:59+09:00'
+  timestamp: '2021-08-25 03:27:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/geom/convex_hull/CGL_4_A.test.cpp

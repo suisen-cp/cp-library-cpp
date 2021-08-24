@@ -6,32 +6,32 @@ data:
     title: library/geom/geometry.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/closest_pair/CGL_5_A.test.cpp
     title: test/src/geom/closest_pair/CGL_5_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/geom/closest_pair.hpp\"\n\n\n\n#include <cassert>\n\
-    \n#line 1 \"library/geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <complex>\n#include <iostream>\n#include <optional>\n#include <tuple>\n#include\
-    \ <variant>\n#include <vector>\n\nnamespace suisen {\nnamespace geometry {\n\n\
-    \    using coordinate_t = long double;\n    using Point = std::complex<coordinate_t>;\n\
-    \n    // operator\n\n    Point& operator+=(Point &p, coordinate_t real) { return\
-    \ p += Point(real, 0); }\n    Point& operator-=(Point &p, coordinate_t real) {\
-    \ return p -= Point(real, 0); }\n    Point& operator*=(Point &p, coordinate_t\
-    \ real) { return p *= Point(real, 0); }\n    Point& operator/=(Point &p, coordinate_t\
-    \ real) { return p /= Point(real, 0); }\n    Point operator+(const Point &p, coordinate_t\
-    \ real) { return Point(p) + Point(real, 0); }\n    Point operator-(const Point\
-    \ &p, coordinate_t real) { return Point(p) - Point(real, 0); }\n    Point operator*(const\
-    \ Point &p, coordinate_t real) { return Point(p) * Point(real, 0); }\n    Point\
-    \ operator/(const Point &p, coordinate_t real) { return Point(p) / Point(real,\
-    \ 0); }\n    Point operator+(coordinate_t real, const Point &p) { return Point(real,\
-    \ 0) + Point(p); }\n    Point operator-(coordinate_t real, const Point &p) { return\
-    \ Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t real, const Point\
-    \ &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
+    \n#line 1 \"library/geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n#line 6 \"\
+    library/geom/geometry.hpp\"\n#include <complex>\n#include <iostream>\n#include\
+    \ <optional>\n#include <tuple>\n#include <variant>\n#include <vector>\n\nnamespace\
+    \ suisen {\nnamespace geometry {\n\n    using coordinate_t = long double;\n  \
+    \  using Point = std::complex<coordinate_t>;\n\n    // operator\n\n    Point&\
+    \ operator+=(Point &p, coordinate_t real) { return p += Point(real, 0); }\n  \
+    \  Point& operator-=(Point &p, coordinate_t real) { return p -= Point(real, 0);\
+    \ }\n    Point& operator*=(Point &p, coordinate_t real) { return p *= Point(real,\
+    \ 0); }\n    Point& operator/=(Point &p, coordinate_t real) { return p /= Point(real,\
+    \ 0); }\n    Point operator+(const Point &p, coordinate_t real) { return Point(p)\
+    \ + Point(real, 0); }\n    Point operator-(const Point &p, coordinate_t real)\
+    \ { return Point(p) - Point(real, 0); }\n    Point operator*(const Point &p, coordinate_t\
+    \ real) { return Point(p) * Point(real, 0); }\n    Point operator/(const Point\
+    \ &p, coordinate_t real) { return Point(p) / Point(real, 0); }\n    Point operator+(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) + Point(p); }\n    Point operator-(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t\
+    \ real, const Point &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
     \ real, const Point &p) { return Point(real, 0) / Point(p); }\n\n    std::istream&\
     \ operator>>(std::istream &in, Point &p) {\n        coordinate_t x, y;\n     \
     \   in >> x >> y;\n        p = Point(x, y);\n        return in;\n    }\n    std::ostream&\
@@ -349,8 +349,8 @@ data:
   isVerificationFile: false
   path: library/geom/closest_pair.hpp
   requiredBy: []
-  timestamp: '2021-08-25 03:20:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-08-25 03:27:55+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/geom/closest_pair/CGL_5_A.test.cpp
 documentation_of: library/geom/closest_pair.hpp
