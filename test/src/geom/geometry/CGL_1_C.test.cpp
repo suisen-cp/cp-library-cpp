@@ -20,7 +20,7 @@ int main() {
     while (q --> 0) {
         Point p3;
         std::cin >> p3;
-        ISP dir = isp(p1, p2, p3);
+        int dir = isp(p1, p2, p3);
         if (dir == ISP::BACK) {
             std::cout << "ONLINE_BACK" << '\n';
         } else if (dir == ISP::FRONT) {
