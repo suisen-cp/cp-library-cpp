@@ -8,7 +8,7 @@ documentation_of: //library/algorithm/horn_sat.hpp
 以下の形式で表される充足可能性問題を解きます。
 
 $$
-\bigwedge_{i} \left(\left(x_{a_{i,1}}\land x_{a_{i,2}}\land\cdots\land x_{a_{i,c_i}}\right)\to y_{b_i}\right)\tag{1}
+\bigwedge_{i=1}^M \left(\left(x_{a^i_1}\land x_{a^i_2}\land\cdots\land x_{a^i_{c_i}}\right)\to y_{b_i}\right)\tag{1}
 $$
 
 ここで、$x$ は正リテラルに限ります ($y$ の正負は問いません)。
@@ -32,7 +32,7 @@ $$
 
 - 時間計算量
 
-  - $O(n)$
+  $O(n)$
 
 ### 条件節の追加
 
@@ -45,13 +45,13 @@ $$
 
 - 概要
 
-  式 $(1)$ における $a_i$ と `lhs`、$b_i$ と `rhs` が対応し、`val` は $y$ が負リテラルかどうかを表す `bool` 値です。
+  式 $(1)$ における $a^i$ と `lhs`、$b_i$ と `rhs` が対応し、`val` は $y$ が正リテラルかどうかを表す `bool` 値です。`true` なら正リテラル、`false` なら負リテラルであることを表します。
 
-  `lhs` を省略すると $a_i$ は空列の場合を、すなわち単項の条件節 $y_{b_i}$ を表します。
+  `lhs` を省略すると $a^i$ は空列の場合、すなわち単項の条件節 $y_{b_i}$ を表します。
 
 - 時間計算量
 
-  $O(\vert a_i\vert)$
+  $O(c_i)$
 
 ### 充足可能性判定
 
@@ -67,7 +67,7 @@ $$
 
 - 時間計算量
 
-  条件節の項数の和を $M$ として、$O(N+M)$
+  $O(N+M+\sum c_i)$
 
 ### 解の例示
 
@@ -85,7 +85,7 @@ $$
 
 - 時間計算量
 
-  `satisfiable` 内で解を計算しているので、$O(1)$
+  先に `satisfiable` 内で解を計算するので、$O(1)$
   
 ## 参考
 
