@@ -6,7 +6,7 @@ data:
   - icon: ':x:'
     path: test/src/graph/min_cost_flow/abc214_h.test.cpp
     title: test/src/graph/min_cost_flow/abc214_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
     title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/src/graph/min_cost_flow/practice2_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/min_cost_flow.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -224,7 +224,7 @@ data:
   path: library/graph/min_cost_flow.hpp
   requiredBy: []
   timestamp: '2021-09-02 19:44:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   - test/src/graph/min_cost_flow/practice2_e.test.cpp

@@ -57,7 +57,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/binary_trie.hpp
       title: library/datastructure/binary_trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bit_vector.hpp
       title: library/datastructure/bit_vector.hpp
     - icon: ':heavy_check_mark:'
@@ -72,44 +72,47 @@ data:
     - icon: ':question:'
       path: library/datastructure/dual_segment_tree.hpp
       title: library/datastructure/dual_segment_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
       title: library/datastructure/dynamic_sequence.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
       title: library/datastructure/fenwick_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree_2d.hpp
       title: library/datastructure/fenwick_tree_2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_dynamic_sequence.hpp
       title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
         \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_map.hpp
       title: library/datastructure/lazy_eval_map.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_segment_tree.hpp
       title: library/datastructure/lazy_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/li_chao_segment_tree.hpp
+      title: library/datastructure/li_chao_segment_tree.hpp
     - icon: ':warning:'
       path: library/datastructure/linked_union_find.hpp
       title: library/datastructure/linked_union_find.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: library/datastructure/range_foldable_dynamic_sequence.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_map.hpp
       title: library/datastructure/range_foldable_map.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree.hpp
       title: library/datastructure/segment_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree_2d.hpp
       title: library/datastructure/segment_tree_2d.hpp
     - icon: ':x:'
       path: library/datastructure/sparse_table.hpp
       title: library/datastructure/sparse_table.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/splay_tree_map.hpp
       title: library/datastructure/splay_tree_map.hpp
     - icon: ':warning:'
@@ -118,10 +121,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find.hpp
       title: library/datastructure/union_find.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
       title: library/datastructure/wavelet_matrix.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/weighted_union_find.hpp
       title: library/datastructure/weighted_union_find.hpp
   - name: library/debug
@@ -143,7 +146,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/geom/geometry.hpp
       title: library/geom/geometry.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/segment_intersections.hpp
       title: library/geom/segment_intersections.hpp
   - name: library/graph
@@ -160,7 +163,7 @@ data:
     - icon: ':warning:'
       path: library/graph/kruscal.hpp
       title: library/graph/kruscal.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/graph/min_cost_flow.hpp
       title: library/graph/min_cost_flow.hpp
     - icon: ':warning:'
@@ -238,7 +241,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
       title: library/number/sieve_of_eratosthenes_constexpr.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: library/number/util.hpp
   - name: library
@@ -275,7 +278,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: library/tree/euler_tour.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
     - icon: ':x:'
@@ -294,7 +297,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: library/util/container_utils.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
       title: library/util/coordinate_compressor.hpp
     - icon: ':warning:'
@@ -315,7 +318,7 @@ data:
     - icon: ':warning:'
       path: library/util/run_length_encoder.hpp
       title: library/util/run_length_encoder.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/update_proxy_object.hpp
       title: library/util/update_proxy_object.hpp
     - icon: ':warning:'
@@ -434,45 +437,53 @@ data:
       title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - name: test/src/datastructure/lazy_eval_dynamic_sequence
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/lazy_eval_map
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
       title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - name: test/src/datastructure/lazy_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
       title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
       title: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
       title: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
       title: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
+  - name: test/src/datastructure/li_chao_segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/li_chao_segment_tree/line_add_get_min.test.cpp
+      title: test/src/datastructure/li_chao_segment_tree/line_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/li_chao_segment_tree/segment_add_get_min.test.cpp
+      title: test/src/datastructure/li_chao_segment_tree/segment_add_get_min.test.cpp
   - name: test/src/datastructure/segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
       title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
       title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - name: test/src/datastructure/segment_tree_2d
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
       title: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
       title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
   - name: test/src/datastructure/union_find
@@ -482,15 +493,15 @@ data:
       title: test/src/datastructure/union_find/DSL_1_A.test.cpp
   - name: test/src/datastructure/wavelet_matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - name: test/src/datastructure/weighted_union_find
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
       title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - name: test/src/geom/closest_pair
@@ -570,7 +581,7 @@ data:
       title: test/src/geom/geometry/CGL_7_I.test.cpp
   - name: test/src/geom/segment_intersections
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - name: test/src/graph/min_cost_flow
@@ -578,7 +589,7 @@ data:
     - icon: ':x:'
       path: test/src/graph/min_cost_flow/abc214_h.test.cpp
       title: test/src/graph/min_cost_flow/abc214_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
       title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
     - icon: ':x:'
@@ -677,7 +688,7 @@ data:
       title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
   - name: test/src/number/util
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
   - name: test/src/transform/multiple
@@ -698,7 +709,7 @@ data:
       title: test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/heavy_light_decomposition
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     - icon: ':x:'

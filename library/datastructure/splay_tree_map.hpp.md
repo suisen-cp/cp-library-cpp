@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_map.hpp
     title: library/datastructure/lazy_eval_map.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_map.hpp
     title: library/datastructure/range_foldable_map.hpp
   - icon: ':warning:'
     path: library/datastructure/splay_tree_set.hpp
     title: library/datastructure/splay_tree_set.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/splay_tree_map.hpp\"\n\n\n\n#include\
@@ -310,7 +310,7 @@ data:
   - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/range_foldable_map.hpp
   timestamp: '2021-08-22 19:50:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
 documentation_of: library/datastructure/splay_tree_map.hpp

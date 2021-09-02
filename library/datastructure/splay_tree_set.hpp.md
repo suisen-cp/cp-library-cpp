@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/splay_tree_map.hpp
     title: library/datastructure/splay_tree_map.hpp
   _extendedRequiredBy: []
