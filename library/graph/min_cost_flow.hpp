@@ -53,7 +53,7 @@ class MinCostFlow {
             return min_cost_flow_slope(s, t, f, [](Cap, Cost){ return true; });
         }
         auto min_cost_max_flow_slope(const int s, const int t) {
-            return min_cost_flow_slope(s, t, INF_FLOW);
+            return min_cost_max_flow_slope(s, t, INF_FLOW);
         }
         auto min_cost_arbitrary_flow_slope(const int s, const int t) {
             return min_cost_flow_slope(s, t, INF_FLOW, [this, t](Cap, Cost){ return potential[t] < 0; });
