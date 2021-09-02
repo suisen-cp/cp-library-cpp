@@ -102,8 +102,11 @@ std::istream& operator>>(std::istream& in, std::pair<T, U> &a) {
 // tuple
 template <unsigned int N = 0, typename ...Args>
 std::istream& operator>>(std::istream& in, std::tuple<Args...> &a) {
-    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) return in;
-    return operator>><N + 1>(in >> std::get<N>(a), a);
+    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) {
+        return in;
+    } else {
+        return operator>><N + 1>(in >> std::get<N>(a), a);
+    }
 }
 // vector
 template <typename T>
