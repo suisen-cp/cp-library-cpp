@@ -72,11 +72,11 @@ data:
   path: library/datastructure/commutative_dual_segment_tree.hpp
   requiredBy:
   - library/datastructure/dual_segment_tree.hpp
-  timestamp: '2021-08-02 17:38:49+09:00'
+  timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
+  - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
   - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp

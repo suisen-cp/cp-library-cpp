@@ -6,12 +6,12 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2018/05/30/191943
@@ -33,10 +33,16 @@ data:
     constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
     template <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool\
     \ value = bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 10\
-    \ \"library/datastructure/weighted_union_find.hpp\"\n\nnamespace suisen {\n\n\
-    // reference: https://noshi91.hatenablog.com/entry/2018/05/30/191943\n\ntemplate\
-    \ <\n    typename T, typename Op = std::plus<T>, typename Inv = std::negate<T>,\n\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 10 \"library/datastructure/weighted_union_find.hpp\"\
+    \n\nnamespace suisen {\n\n// reference: https://noshi91.hatenablog.com/entry/2018/05/30/191943\n\
+    \ntemplate <\n    typename T, typename Op = std::plus<T>, typename Inv = std::negate<T>,\n\
     \    constraints_t<is_uni_op<Inv, T>, is_bin_op<Op, T>> = nullptr\n>\nclass WeightedUnionFind\
     \ {\n    public:\n        WeightedUnionFind() {}\n        explicit WeightedUnionFind(int\
     \ n, const T &e = T(0)) : n(n), par(n), siz(n, 1), e(e), value(n, e) {\n     \
@@ -125,8 +131,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/weighted_union_find.hpp
   requiredBy: []
-  timestamp: '2021-08-02 17:38:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
 documentation_of: library/datastructure/weighted_union_find.hpp

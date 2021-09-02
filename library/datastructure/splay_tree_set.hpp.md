@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/splay_tree_map.hpp
     title: library/datastructure/splay_tree_map.hpp
   _extendedRequiredBy: []
@@ -159,16 +159,21 @@ data:
     \        SplayTreeSet& operator=(const SplayTreeSet&) = delete;\n        SplayTreeSet&\
     \ operator=(SplayTreeSet&& other) {\n            delete this->root;\n        \
     \    this->root = other.root;\n            other.root = nullptr;\n           \
-    \ return *this;\n        }\n        void insert(const Key &key) {\n          \
-    \  return this->insert_if_absent(key, nullptr);\n        }\n        Key operator[](int\
-    \ k) {\n            return this->kth_entry(k).first;\n        }\n        Key kth_element(int\
-    \ k) {\n            return (*this)[k];\n        }\n        SplayTreeSet split_by_index(int\
-    \ k) {\n            Base::index_bounds_check(k, this->size() + 1);\n         \
-    \   auto [l, r] = Node::split_by_index(this->root, k);\n            this->root\
-    \ = l;\n            return SplayTreeSet<Key>(r);\n        }\n        SplayTreeSet\
-    \ split_by_key(const Key &key) {\n            auto [l, r] = Node::split_by_key(this->root,\
-    \ key);\n            this->root = l;\n            return SplayTreeSet<Key>(r);\n\
-    \        }\n};\n};\n\n\n"
+    \ return *this;\n        }\n        int size() {\n            return Node::size(this->root);\n\
+    \        }\n        bool contains(const Key &key) {\n            auto [new_root,\
+    \ found] = Node::find_key(this->root, key);\n            this->root = new_root;\n\
+    \            return found;\n        }\n        void insert(const Key &key) {\n\
+    \            return this->insert_if_absent(key, nullptr);\n        }\n       \
+    \ Key operator[](int k) {\n            return this->kth_entry(k).first;\n    \
+    \    }\n        Key kth_element(int k) {\n            return (*this)[k];\n   \
+    \     }\n        SplayTreeSet split_by_index(int k) {\n            Base::index_bounds_check(k,\
+    \ this->size() + 1);\n            auto [l, r] = Node::split_by_index(this->root,\
+    \ k);\n            this->root = l;\n            return SplayTreeSet<Key>(r);\n\
+    \        }\n        SplayTreeSet split_by_key(const Key &key) {\n            auto\
+    \ [l, r] = Node::split_by_key(this->root, key);\n            this->root = l;\n\
+    \            return SplayTreeSet<Key>(r);\n        }\n        void merge(SplayTreeSet\
+    \ &&r) {\n            this->root = Node::merge(this->root, r.root);\n        \
+    \    r.root = nullptr;\n        }\n};\n};\n\n\n"
   code: "#ifndef SUISEN_SPLAY_TREE_SET\n#define SUISEN_SPLAY_TREE_SET\n\n#include\
     \ \"library/datastructure/splay_tree_map.hpp\"\n\nnamespace suisen {\ntemplate\
     \ <typename Key>\nclass SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t>\
@@ -177,7 +182,10 @@ data:
     \ operator=(const SplayTreeSet&) = delete;\n        SplayTreeSet& operator=(SplayTreeSet&&\
     \ other) {\n            delete this->root;\n            this->root = other.root;\n\
     \            other.root = nullptr;\n            return *this;\n        }\n   \
-    \     void insert(const Key &key) {\n            return this->insert_if_absent(key,\
+    \     int size() {\n            return Node::size(this->root);\n        }\n  \
+    \      bool contains(const Key &key) {\n            auto [new_root, found] = Node::find_key(this->root,\
+    \ key);\n            this->root = new_root;\n            return found;\n     \
+    \   }\n        void insert(const Key &key) {\n            return this->insert_if_absent(key,\
     \ nullptr);\n        }\n        Key operator[](int k) {\n            return this->kth_entry(k).first;\n\
     \        }\n        Key kth_element(int k) {\n            return (*this)[k];\n\
     \        }\n        SplayTreeSet split_by_index(int k) {\n            Base::index_bounds_check(k,\
@@ -185,13 +193,15 @@ data:
     \ k);\n            this->root = l;\n            return SplayTreeSet<Key>(r);\n\
     \        }\n        SplayTreeSet split_by_key(const Key &key) {\n            auto\
     \ [l, r] = Node::split_by_key(this->root, key);\n            this->root = l;\n\
-    \            return SplayTreeSet<Key>(r);\n        }\n};\n};\n\n#endif // SUISEN_SPLAY_TREE_SET\n"
+    \            return SplayTreeSet<Key>(r);\n        }\n        void merge(SplayTreeSet\
+    \ &&r) {\n            this->root = Node::merge(this->root, r.root);\n        \
+    \    r.root = nullptr;\n        }\n};\n};\n\n#endif // SUISEN_SPLAY_TREE_SET\n"
   dependsOn:
   - library/datastructure/splay_tree_map.hpp
   isVerificationFile: false
   path: library/datastructure/splay_tree_set.hpp
   requiredBy: []
-  timestamp: '2021-08-22 19:50:02+09:00'
+  timestamp: '2021-09-02 19:44:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/splay_tree_set.hpp

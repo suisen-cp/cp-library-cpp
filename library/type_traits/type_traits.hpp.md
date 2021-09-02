@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/algorithm/monotonic_convex_hull_trick.hpp
+    title: library/algorithm/monotonic_convex_hull_trick.hpp
   - icon: ':warning:'
     path: library/algorithm/rmq_pm1.hpp
     title: library/algorithm/rmq_pm1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/algorithm/rmq_pm1_with_index.hpp
     title: library/algorithm/rmq_pm1_with_index.hpp
   - icon: ':question:'
@@ -19,7 +22,7 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/bit_vector.hpp
     title: library/datastructure/bit_vector.hpp
   - icon: ':heavy_check_mark:'
@@ -34,47 +37,47 @@ data:
   - icon: ':question:'
     path: library/datastructure/dual_segment_tree.hpp
     title: library/datastructure/dual_segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/dynamic_sequence.hpp
     title: library/datastructure/dynamic_sequence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree.hpp
     title: library/datastructure/fenwick_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_map.hpp
     title: library/datastructure/lazy_eval_map.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: library/datastructure/range_foldable_dynamic_sequence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_map.hpp
     title: library/datastructure/range_foldable_map.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree_2d.hpp
     title: library/datastructure/segment_tree_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/sparse_table.hpp
     title: library/datastructure/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/wavelet_matrix.hpp
     title: library/datastructure/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/weighted_union_find.hpp
     title: library/datastructure/weighted_union_find.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: library/geom/segment_intersections.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/number/util.hpp
     title: library/number/util.hpp
   - icon: ':warning:'
@@ -83,19 +86,22 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: library/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/lowest_common_ancestor.hpp
     title: library/tree/lowest_common_ancestor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
+    title: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
     title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
@@ -141,70 +147,70 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
     title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
     title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/number/util/divide_both.test.cpp
     title: test/src/number/util/divide_both.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   _isVerificationFailed: true
@@ -229,7 +235,14 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n"
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_TYPE_TRITS\n#define SUISEN_TYPE_TRITS\n\n#include <limits>\n\
     #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
     \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -247,81 +260,90 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n#endif // SUISEN_TYPE_TRITS"
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n#endif // SUISEN_TYPE_TRITS"
   dependsOn: []
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
   requiredBy:
-  - library/template.hpp
-  - library/algorithm/sliding_window_minimum.hpp
-  - library/algorithm/rmq_pm1.hpp
-  - library/algorithm/rmq_pm1_with_index.hpp
-  - library/util/coordinate_compressor.hpp
-  - library/util/update_proxy_object.hpp
-  - library/tree/heavy_light_decomposition.hpp
-  - library/tree/lowest_common_ancestor.hpp
+  - library/template.cpp
+  - library/datastructure/wavelet_matrix.hpp
+  - library/datastructure/weighted_union_find.hpp
+  - library/datastructure/compressed_wavelet_matrix.hpp
+  - library/datastructure/cartesian_tree.hpp
+  - library/datastructure/segment_tree.hpp
+  - library/datastructure/lazy_segment_tree.hpp
+  - library/datastructure/segment_tree_2d.hpp
+  - library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - library/datastructure/dynamic_sequence.hpp
+  - library/datastructure/range_foldable_dynamic_sequence.hpp
+  - library/datastructure/fenwick_tree.hpp
+  - library/datastructure/lazy_eval_map.hpp
+  - library/datastructure/range_foldable_map.hpp
+  - library/datastructure/sparse_table.hpp
+  - library/datastructure/dual_segment_tree.hpp
+  - library/datastructure/bit_vector.hpp
+  - library/datastructure/commutative_dual_segment_tree.hpp
   - library/convolution/polynomial_eval.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
-  - library/number/util.hpp
+  - library/tree/lowest_common_ancestor.hpp
+  - library/tree/heavy_light_decomposition.hpp
+  - library/algorithm/sliding_window_minimum.hpp
+  - library/algorithm/rmq_pm1_with_index.hpp
+  - library/algorithm/monotonic_convex_hull_trick.hpp
+  - library/algorithm/rmq_pm1.hpp
+  - library/template.hpp
+  - library/util/update_proxy_object.hpp
+  - library/util/coordinate_compressor.hpp
   - library/geom/segment_intersections.hpp
-  - library/datastructure/fenwick_tree.hpp
-  - library/datastructure/cartesian_tree.hpp
-  - library/datastructure/lazy_eval_map.hpp
-  - library/datastructure/dual_segment_tree.hpp
-  - library/datastructure/sparse_table.hpp
-  - library/datastructure/commutative_dual_segment_tree.hpp
-  - library/datastructure/range_foldable_map.hpp
-  - library/datastructure/wavelet_matrix.hpp
-  - library/datastructure/range_foldable_dynamic_sequence.hpp
-  - library/datastructure/dynamic_sequence.hpp
-  - library/datastructure/segment_tree.hpp
-  - library/datastructure/weighted_union_find.hpp
-  - library/datastructure/segment_tree_2d.hpp
-  - library/datastructure/compressed_wavelet_matrix.hpp
-  - library/datastructure/bit_vector.hpp
-  - library/datastructure/lazy_segment_tree.hpp
-  - library/datastructure/lazy_eval_dynamic_sequence.hpp
-  - library/template.cpp
-  timestamp: '2021-08-02 17:38:49+09:00'
+  - library/number/util.hpp
+  timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
-  - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
-  - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/number/util/divide_both.test.cpp
-  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
-  - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
-  - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
-  - test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
-  - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
+  - test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
-  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-  - test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
-  - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
-  - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
-  - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-  - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
-  - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
+  - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
+  - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
+  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
+  - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+  - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
+  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
+  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+  - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
+  - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
+  - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
+  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - test/src/number/util/divide_both.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 redirect_from:

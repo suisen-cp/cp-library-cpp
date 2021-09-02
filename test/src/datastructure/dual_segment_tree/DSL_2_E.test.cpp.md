@@ -48,7 +48,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
   requiredBy: []
-  timestamp: '2021-08-02 17:38:49+09:00'
+  timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp

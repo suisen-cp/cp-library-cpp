@@ -37,14 +37,20 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 9 \"\
-    library/datastructure/cartesian_tree.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ T, typename Comparator, constraints_t<is_comparator<Comparator, T>> = nullptr>\n\
-    class CartesianTree {\n    public:\n        CartesianTree(std::vector<T> &&a,\
-    \ Comparator comp = Comparator{}) : n(a.size()), comp(comp), par(n, -1) {\n  \
-    \          for (int i = 1; i < n; ++i) {\n                int p = i - 1, l = i;\n\
-    \                while (p >= 0 and comp(a[i], a[p])) l = p, p = par[p];\n    \
-    \            par[l] = i, par[i] = p;\n            }\n        }\n        CartesianTree(const\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 9 \"library/datastructure/cartesian_tree.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename T, typename Comparator, constraints_t<is_comparator<Comparator,\
+    \ T>> = nullptr>\nclass CartesianTree {\n    public:\n        CartesianTree(std::vector<T>\
+    \ &&a, Comparator comp = Comparator{}) : n(a.size()), comp(comp), par(n, -1) {\n\
+    \            for (int i = 1; i < n; ++i) {\n                int p = i - 1, l =\
+    \ i;\n                while (p >= 0 and comp(a[i], a[p])) l = p, p = par[p];\n\
+    \                par[l] = i, par[i] = p;\n            }\n        }\n        CartesianTree(const\
     \ std::vector<T> &a, Comparator comp = Comparator{}) : CartesianTree(std::vector<T>(a),\
     \ comp) {}\n\n        struct Tree {\n            const int absent;\n         \
     \   const int root;\n            const std::vector<std::array<int, 2>> g;\n\n\
@@ -84,7 +90,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-08-05 19:38:54+09:00'
+  timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp

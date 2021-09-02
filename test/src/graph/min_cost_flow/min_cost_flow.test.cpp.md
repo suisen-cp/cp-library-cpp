@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/graph/min_cost_flow.hpp
     title: library/graph/min_cost_flow.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
@@ -40,30 +40,30 @@ data:
     \        }\n\n        auto min_cost_max_flow_slope(const int s, const int t, const\
     \ Cap f) {\n            return min_cost_flow_slope(s, t, f, [](Cap, Cost){ return\
     \ true; });\n        }\n        auto min_cost_max_flow_slope(const int s, const\
-    \ int t) {\n            return min_cost_flow_slope(s, t, INF_FLOW);\n        }\n\
-    \        auto min_cost_arbitrary_flow_slope(const int s, const int t) {\n    \
-    \        return min_cost_flow_slope(s, t, INF_FLOW, [this, t](Cap, Cost){ return\
-    \ potential[t] < 0; });\n        }\n\n        struct Edge {\n            int from,\
-    \ to;\n            Cap cap, flow;\n            Cost cost;\n        };\n\n    \
-    \    Edge get_edge(int edge_id) const {\n            const auto &e  = g[edges[edge_id].first][edges[edge_id].second];\n\
-    \            const auto &re = g[e.to][e.rev];\n            return Edge { re.to,\
-    \ e.to, e.cap + re.cap, re.cap, e.cost };\n        }\n        std::vector<Edge>\
-    \ get_edges() const {\n            std::vector<Edge> res(edges.size());\n    \
-    \        for (std::size_t i = 0; i < edges.size(); ++i) res[i] = get_edge(i);\n\
-    \            return res;\n        }\n\n    private:\n        static constexpr\
-    \ Cost INF_COST = std::numeric_limits<Cost>::max();\n        static constexpr\
-    \ Cost INF_FLOW = std::numeric_limits<Cap>::max();\n    \n        int n;\n   \
-    \     std::vector<std::vector<InternalEdge>> g;\n        std::vector<Cost> potential;\n\
-    \        std::vector<Cost> dist;\n        std::vector<int> prev_vid, prev_eid;\n\
-    \n        std::vector<std::pair<int, int>> edges;\n\n        template <typename\
-    \ Predicate>\n        std::pair<Cap, Cost> min_cost_flow(const int s, const int\
-    \ t, const Cap upper_flow, Predicate pred) {\n            return min_cost_flow_slope(s,\
-    \ t, upper_flow, pred).back();\n        }\n\n        template <typename Predicate>\n\
-    \        std::vector<std::pair<Cap, Cost>> min_cost_flow_slope(const int s, const\
-    \ int t, const Cap upper_flow, Predicate pred) {\n            switch (init_method)\
-    \ {\n                case BELLMAN_FORD: bellman_ford(s); break;\n            \
-    \    case DIJKSTRA:     dijkstra(s);     break;\n                case DAG:   \
-    \       dag_dp(s);       break;\n            }\n            update_potential();\n\
+    \ int t) {\n            return min_cost_max_flow_slope(s, t, INF_FLOW);\n    \
+    \    }\n        auto min_cost_arbitrary_flow_slope(const int s, const int t) {\n\
+    \            return min_cost_flow_slope(s, t, INF_FLOW, [this, t](Cap, Cost){\
+    \ return potential[t] < 0; });\n        }\n\n        struct Edge {\n         \
+    \   int from, to;\n            Cap cap, flow;\n            Cost cost;\n      \
+    \  };\n\n        Edge get_edge(int edge_id) const {\n            const auto &e\
+    \  = g[edges[edge_id].first][edges[edge_id].second];\n            const auto &re\
+    \ = g[e.to][e.rev];\n            return Edge { re.to, e.to, e.cap + re.cap, re.cap,\
+    \ e.cost };\n        }\n        std::vector<Edge> get_edges() const {\n      \
+    \      std::vector<Edge> res(edges.size());\n            for (std::size_t i =\
+    \ 0; i < edges.size(); ++i) res[i] = get_edge(i);\n            return res;\n \
+    \       }\n\n    private:\n        static constexpr Cost INF_COST = std::numeric_limits<Cost>::max();\n\
+    \        static constexpr Cost INF_FLOW = std::numeric_limits<Cap>::max();\n \
+    \   \n        int n;\n        std::vector<std::vector<InternalEdge>> g;\n    \
+    \    std::vector<Cost> potential;\n        std::vector<Cost> dist;\n        std::vector<int>\
+    \ prev_vid, prev_eid;\n\n        std::vector<std::pair<int, int>> edges;\n\n \
+    \       template <typename Predicate>\n        std::pair<Cap, Cost> min_cost_flow(const\
+    \ int s, const int t, const Cap upper_flow, Predicate pred) {\n            return\
+    \ min_cost_flow_slope(s, t, upper_flow, pred).back();\n        }\n\n        template\
+    \ <typename Predicate>\n        std::vector<std::pair<Cap, Cost>> min_cost_flow_slope(const\
+    \ int s, const int t, const Cap upper_flow, Predicate pred) {\n            switch\
+    \ (init_method) {\n                case BELLMAN_FORD: bellman_ford(s); break;\n\
+    \                case DIJKSTRA:     dijkstra(s);     break;\n                case\
+    \ DAG:          dag_dp(s);       break;\n            }\n            update_potential();\n\
     \            std::vector<std::pair<Cap, Cost>> slope;\n            Cap flow =\
     \ 0;\n            Cost cost = 0;\n            slope.emplace_back(flow, cost);\n\
     \            while (dist[t] != INF_COST and flow < upper_flow and pred(flow, cost))\
@@ -138,8 +138,8 @@ data:
   isVerificationFile: true
   path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   requiredBy: []
-  timestamp: '2021-08-16 00:10:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-02 19:44:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
 layout: document

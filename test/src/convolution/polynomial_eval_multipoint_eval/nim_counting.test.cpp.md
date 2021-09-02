@@ -214,15 +214,22 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 6 \"\
-    library/convolution/polynomial_eval_multipoint_eval.hpp\"\n\nnamespace suisen\
-    \ {\n\ntemplate <typename mint, template <typename T> class Transform>\nstd::vector<mint>\
-    \ polynomial_eval(std::vector<mint> &&a, const FPS<mint> &f) {\n    Transform<mint>::transform(a);\n\
-    \    a = multi_point_eval(f, a);\n    Transform<mint>::inverse_transform(a);\n\
-    \    return a;\n}\n\ntemplate <typename mint, template <typename T> class Transform>\n\
-    std::vector<mint> polynomial_eval(const std::vector<mint> &a, const FPS<mint>\
-    \ &f) {\n    return polynomial_eval<mint, Transform>(std::vector<mint>(a), f);\n\
-    }\n\n} // namespace suisen\n\n\n#line 9 \"test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp\"\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 6 \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename mint, template <typename T> class\
+    \ Transform>\nstd::vector<mint> polynomial_eval(std::vector<mint> &&a, const FPS<mint>\
+    \ &f) {\n    Transform<mint>::transform(a);\n    a = multi_point_eval(f, a);\n\
+    \    Transform<mint>::inverse_transform(a);\n    return a;\n}\n\ntemplate <typename\
+    \ mint, template <typename T> class Transform>\nstd::vector<mint> polynomial_eval(const\
+    \ std::vector<mint> &a, const FPS<mint> &f) {\n    return polynomial_eval<mint,\
+    \ Transform>(std::vector<mint>(a), f);\n}\n\n} // namespace suisen\n\n\n#line\
+    \ 9 \"test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nconstexpr int M = 1 << 16;\n\nint\
     \ main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &f, const\
     \ auto &g) { return atcoder::convolution(f, g); });\n\n    std::ios::sync_with_stdio(false);\n\
@@ -254,7 +261,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2021-08-15 22:47:55+09:00'
+  timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

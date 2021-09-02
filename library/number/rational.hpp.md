@@ -39,13 +39,13 @@ data:
     \ compare(l, r) != 0;\n    }\n\n    Rational operator+() const {\n        return\
     \ *this;\n    }\n    Rational operator-() const {\n        return Rational(-num,\
     \ den);\n    }\n    friend Rational operator+(const Rational &l, const Rational\
-    \ &r) {\n        int lcm = l.den / std::gcd(l.den, r.den) * r.den;\n        return\
+    \ &r) {\n        T lcm = l.den / std::gcd(l.den, r.den) * r.den;\n        return\
     \ Rational(l.num * (lcm / l.den) + r.num * (lcm / r.den), lcm);\n    }\n    friend\
-    \ Rational operator-(const Rational &l, const Rational &r) {\n        int lcm\
-    \ = l.den / std::gcd(l.den, r.den) * r.den;\n        return Rational(l.num * (lcm\
+    \ Rational operator-(const Rational &l, const Rational &r) {\n        T lcm =\
+    \ l.den / std::gcd(l.den, r.den) * r.den;\n        return Rational(l.num * (lcm\
     \ / l.den) - r.num * (lcm / r.den), lcm);\n    }\n    friend Rational operator*(const\
-    \ Rational &l, const Rational &r) {\n        int g1 = std::gcd(l.num, r.den);\n\
-    \        int g2 = std::gcd(l.den, r.num);\n        return Rational((l.num / g1)\
+    \ Rational &l, const Rational &r) {\n        T g1 = std::gcd(l.num, r.den);\n\
+    \        T g2 = std::gcd(l.den, r.num);\n        return Rational((l.num / g1)\
     \ * (r.num / g2), (l.den / g2) * (r.den / g1));\n    }\n    friend Rational operator/(const\
     \ Rational &l, const Rational &r) {\n        return l * r.inv();\n    }\n    Rational&\
     \ operator+=(const Rational &r) {\n        *this = *this + r;\n        return\
@@ -127,13 +127,13 @@ data:
     \ compare(l, r) != 0;\n    }\n\n    Rational operator+() const {\n        return\
     \ *this;\n    }\n    Rational operator-() const {\n        return Rational(-num,\
     \ den);\n    }\n    friend Rational operator+(const Rational &l, const Rational\
-    \ &r) {\n        int lcm = l.den / std::gcd(l.den, r.den) * r.den;\n        return\
+    \ &r) {\n        T lcm = l.den / std::gcd(l.den, r.den) * r.den;\n        return\
     \ Rational(l.num * (lcm / l.den) + r.num * (lcm / r.den), lcm);\n    }\n    friend\
-    \ Rational operator-(const Rational &l, const Rational &r) {\n        int lcm\
-    \ = l.den / std::gcd(l.den, r.den) * r.den;\n        return Rational(l.num * (lcm\
+    \ Rational operator-(const Rational &l, const Rational &r) {\n        T lcm =\
+    \ l.den / std::gcd(l.den, r.den) * r.den;\n        return Rational(l.num * (lcm\
     \ / l.den) - r.num * (lcm / r.den), lcm);\n    }\n    friend Rational operator*(const\
-    \ Rational &l, const Rational &r) {\n        int g1 = std::gcd(l.num, r.den);\n\
-    \        int g2 = std::gcd(l.den, r.num);\n        return Rational((l.num / g1)\
+    \ Rational &l, const Rational &r) {\n        T g1 = std::gcd(l.num, r.den);\n\
+    \        T g2 = std::gcd(l.den, r.num);\n        return Rational((l.num / g1)\
     \ * (r.num / g2), (l.den / g2) * (r.den / g1));\n    }\n    friend Rational operator/(const\
     \ Rational &l, const Rational &r) {\n        return l * r.inv();\n    }\n    Rational&\
     \ operator+=(const Rational &r) {\n        *this = *this + r;\n        return\
@@ -188,7 +188,7 @@ data:
   isVerificationFile: false
   path: library/number/rational.hpp
   requiredBy: []
-  timestamp: '2021-08-22 19:49:50+09:00'
+  timestamp: '2021-09-02 19:44:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/number/rational.hpp

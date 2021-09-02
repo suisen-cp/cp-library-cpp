@@ -5,68 +5,68 @@ data:
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_map.hpp
     title: library/datastructure/lazy_eval_map.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: library/datastructure/range_foldable_dynamic_sequence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_map.hpp
     title: library/datastructure/range_foldable_map.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree_2d.hpp
     title: library/datastructure/segment_tree_2d.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
     title: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
     title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
     title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/update_proxy_object.hpp\"\n\n\n\n#line 1 \"\
@@ -86,24 +86,30 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
-    library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>\n\
-    struct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T &v, UpdateFunc\
-    \ update) : v(v), update(update) {}\n        operator T() const { return v; }\n\
-    \        auto& operator++() && { ++v, update(); return *this; }\n        auto&\
-    \ operator--() && { --v, update(); return *this; }\n        auto& operator+=(const\
-    \ T &val) && { v += val, update(); return *this; }\n        auto& operator-=(const\
-    \ T &val) && { v -= val, update(); return *this; }\n        auto& operator*=(const\
-    \ T &val) && { v *= val, update(); return *this; }\n        auto& operator/=(const\
-    \ T &val) && { v /= val, update(); return *this; }\n        auto& operator%=(const\
-    \ T &val) && { v %= val, update(); return *this; }\n        auto& operator =(const\
-    \ T &val) && { v  = val, update(); return *this; }\n        auto& operator<<=(const\
-    \ T &val) && { v <<= val, update(); return *this; }\n        auto& operator>>=(const\
-    \ T &val) && { v >>= val, update(); return *this; }\n        template <typename\
-    \ F, constraints_t<is_uni_op<F, T>> = nullptr>\n        auto& apply(F f) && {\
-    \ v = f(v), update(); return *this; }\n    private:\n        T &v;\n        UpdateFunc\
-    \ update;\n};\n\n} // namespace suisen\n\n\n"
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 5 \"library/util/update_proxy_object.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    \ = nullptr>\nstruct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T\
+    \ &v, UpdateFunc update) : v(v), update(update) {}\n        operator T() const\
+    \ { return v; }\n        auto& operator++() && { ++v, update(); return *this;\
+    \ }\n        auto& operator--() && { --v, update(); return *this; }\n        auto&\
+    \ operator+=(const T &val) && { v += val, update(); return *this; }\n        auto&\
+    \ operator-=(const T &val) && { v -= val, update(); return *this; }\n        auto&\
+    \ operator*=(const T &val) && { v *= val, update(); return *this; }\n        auto&\
+    \ operator/=(const T &val) && { v /= val, update(); return *this; }\n        auto&\
+    \ operator%=(const T &val) && { v %= val, update(); return *this; }\n        auto&\
+    \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
+    \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
+    \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
+    \        template <typename F, constraints_t<is_uni_op<F, T>> = nullptr>\n   \
+    \     auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_UPDATE_PROXY_OBJECT\n#define SUISEN_UPDATE_PROXY_OBJECT\n\n\
     #include \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\ntemplate\
     \ <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
@@ -128,27 +134,27 @@ data:
   isVerificationFile: false
   path: library/util/update_proxy_object.hpp
   requiredBy:
+  - library/datastructure/segment_tree.hpp
+  - library/datastructure/lazy_segment_tree.hpp
+  - library/datastructure/segment_tree_2d.hpp
+  - library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/range_foldable_map.hpp
-  - library/datastructure/range_foldable_dynamic_sequence.hpp
-  - library/datastructure/segment_tree.hpp
-  - library/datastructure/segment_tree_2d.hpp
-  - library/datastructure/lazy_segment_tree.hpp
-  - library/datastructure/lazy_eval_dynamic_sequence.hpp
-  timestamp: '2021-08-11 01:57:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
-  - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
+  - test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
-  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-  - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
   - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
+  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/util/update_proxy_object.hpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -38,28 +38,34 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
-    library/tree/heavy_light_decomposition.hpp\"\n#include <vector>\n\nnamespace suisen\
-    \ {\nclass HeavyLightDecomposition {\n    public:\n        template <typename\
-    \ Q>\n        using is_point_update_query = std::is_invocable<Q, int>;\n     \
-    \   template <typename Q>\n        using is_range_update_query = std::is_invocable<Q,\
-    \ int, int>;\n        template <typename Q, typename T>\n        using is_point_get_query\
-    \  = std::is_same<std::invoke_result_t<Q, int>, T>;\n        template <typename\
-    \ Q, typename T>\n        using is_range_fold_query = std::is_same<std::invoke_result_t<Q,\
-    \ int, int>, T>;\n\n        using Graph = std::vector<std::vector<int>>;\n\n \
-    \       HeavyLightDecomposition(Graph &g, int root = 0) : n(g.size()), root(root),\
-    \ visit(n), leave(n), head(n), ord(n), siz(n), par(n) {\n            dfs(g, root,\
-    \ -1);\n            int time = 0;\n            hld(g, root, -1, time);\n     \
-    \   }\n        int lca(int u, int v) {\n            for (;; v = par[head[v]])\
-    \ {\n                if (visit[u] > visit[v]) std::swap(u, v);\n             \
-    \   if (head[u] == head[v]) return u;\n            }\n        }\n        int la(int\
-    \ u, int k, int default_value = -1) {\n            for (int h = head[u]; u >=\
-    \ 0; u = par[h], h = head[u]) {\n                if (visit[u] - k >= visit[h])\
-    \ return ord[visit[u] - k];\n                k -= visit[u] - visit[h] + 1;\n \
-    \           }\n            return default_value;\n        }\n        template\
-    \ <typename T, typename Q, typename F, constraints_t<is_range_fold_query<Q, T>,\
-    \ is_bin_op<F, T>> = nullptr>\n        T fold_path(int u, int v, T identity, F\
-    \ bin_op, Q fold_query, bool is_edge_query = false) {\n            T res = identity;\n\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 5 \"library/tree/heavy_light_decomposition.hpp\"\
+    \n#include <vector>\n\nnamespace suisen {\nclass HeavyLightDecomposition {\n \
+    \   public:\n        template <typename Q>\n        using is_point_update_query\
+    \ = std::is_invocable<Q, int>;\n        template <typename Q>\n        using is_range_update_query\
+    \ = std::is_invocable<Q, int, int>;\n        template <typename Q, typename T>\n\
+    \        using is_point_get_query  = std::is_same<std::invoke_result_t<Q, int>,\
+    \ T>;\n        template <typename Q, typename T>\n        using is_range_fold_query\
+    \ = std::is_same<std::invoke_result_t<Q, int, int>, T>;\n\n        using Graph\
+    \ = std::vector<std::vector<int>>;\n\n        HeavyLightDecomposition(Graph &g,\
+    \ int root = 0) : n(g.size()), root(root), visit(n), leave(n), head(n), ord(n),\
+    \ siz(n), par(n) {\n            dfs(g, root, -1);\n            int time = 0;\n\
+    \            hld(g, root, -1, time);\n        }\n        int lca(int u, int v)\
+    \ {\n            for (;; v = par[head[v]]) {\n                if (visit[u] > visit[v])\
+    \ std::swap(u, v);\n                if (head[u] == head[v]) return u;\n      \
+    \      }\n        }\n        int la(int u, int k, int default_value = -1) {\n\
+    \            for (int h = head[u]; u >= 0; u = par[h], h = head[u]) {\n      \
+    \          if (visit[u] - k >= visit[h]) return ord[visit[u] - k];\n         \
+    \       k -= visit[u] - visit[h] + 1;\n            }\n            return default_value;\n\
+    \        }\n        template <typename T, typename Q, typename F, constraints_t<is_range_fold_query<Q,\
+    \ T>, is_bin_op<F, T>> = nullptr>\n        T fold_path(int u, int v, T identity,\
+    \ F bin_op, Q fold_query, bool is_edge_query = false) {\n            T res = identity;\n\
     \            for (;; v = par[head[v]]) {\n                if (visit[u] > visit[v])\
     \ std::swap(u, v);\n                if (head[u] == head[v]) break;\n         \
     \       res = bin_op(fold_query(visit[head[v]], visit[v] + 1), res);\n       \
@@ -163,8 +169,8 @@ data:
   isVerificationFile: true
   path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2021-08-02 17:38:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
 layout: document

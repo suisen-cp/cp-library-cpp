@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/dynamic_sequence.hpp
     title: library/datastructure/dynamic_sequence.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\
@@ -43,38 +43,45 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
-    library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>\n\
-    struct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T &v, UpdateFunc\
-    \ update) : v(v), update(update) {}\n        operator T() const { return v; }\n\
-    \        auto& operator++() && { ++v, update(); return *this; }\n        auto&\
-    \ operator--() && { --v, update(); return *this; }\n        auto& operator+=(const\
-    \ T &val) && { v += val, update(); return *this; }\n        auto& operator-=(const\
-    \ T &val) && { v -= val, update(); return *this; }\n        auto& operator*=(const\
-    \ T &val) && { v *= val, update(); return *this; }\n        auto& operator/=(const\
-    \ T &val) && { v /= val, update(); return *this; }\n        auto& operator%=(const\
-    \ T &val) && { v %= val, update(); return *this; }\n        auto& operator =(const\
-    \ T &val) && { v  = val, update(); return *this; }\n        auto& operator<<=(const\
-    \ T &val) && { v <<= val, update(); return *this; }\n        auto& operator>>=(const\
-    \ T &val) && { v >>= val, update(); return *this; }\n        template <typename\
-    \ F, constraints_t<is_uni_op<F, T>> = nullptr>\n        auto& apply(F f) && {\
-    \ v = f(v), update(); return *this; }\n    private:\n        T &v;\n        UpdateFunc\
-    \ update;\n};\n\n} // namespace suisen\n\n\n#line 1 \"library/datastructure/dynamic_sequence.hpp\"\
-    \n\n\n\n#include <cstddef>\n#line 7 \"library/datastructure/dynamic_sequence.hpp\"\
-    \n#include <vector>\n\n#line 10 \"library/datastructure/dynamic_sequence.hpp\"\
-    \n\nnamespace suisen {\n\nnamespace internal::dynamic_sequence {\n\ntemplate <typename\
-    \ T, typename Derived>\nstruct DynamicSequenceNodeBase {\n    using node_ptr_t\
-    \ = Derived *;\n\n    T val;\n    int siz;\n    bool rev;\n    node_ptr_t ch[2]\
-    \ {nullptr, nullptr};\n\n    DynamicSequenceNodeBase() : val(), siz(1), rev(false)\
-    \ {}\n    DynamicSequenceNodeBase(const T &val) : val(val), siz(1), rev(false)\
-    \ {}\n\n    ~DynamicSequenceNodeBase() {\n        delete ch[0];\n        delete\
-    \ ch[1];\n    }\n\n    void update() {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n\
-    \    }\n    void push() {\n        reverse_all(this->ch[0], rev), reverse_all(this->ch[1],\
-    \ rev);\n        rev = false;\n    }\n    static int size(node_ptr_t node) {\n\
-    \        return node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t\
-    \ rotate(node_ptr_t node, bool is_right) {\n        node_ptr_t root = node->ch[is_right\
-    \ ^ true];\n        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 5 \"library/util/update_proxy_object.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    \ = nullptr>\nstruct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T\
+    \ &v, UpdateFunc update) : v(v), update(update) {}\n        operator T() const\
+    \ { return v; }\n        auto& operator++() && { ++v, update(); return *this;\
+    \ }\n        auto& operator--() && { --v, update(); return *this; }\n        auto&\
+    \ operator+=(const T &val) && { v += val, update(); return *this; }\n        auto&\
+    \ operator-=(const T &val) && { v -= val, update(); return *this; }\n        auto&\
+    \ operator*=(const T &val) && { v *= val, update(); return *this; }\n        auto&\
+    \ operator/=(const T &val) && { v /= val, update(); return *this; }\n        auto&\
+    \ operator%=(const T &val) && { v %= val, update(); return *this; }\n        auto&\
+    \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
+    \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
+    \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
+    \        template <typename F, constraints_t<is_uni_op<F, T>> = nullptr>\n   \
+    \     auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
+    #line 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include <cstddef>\n\
+    #line 7 \"library/datastructure/dynamic_sequence.hpp\"\n#include <vector>\n\n\
+    #line 10 \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace suisen {\n\
+    \nnamespace internal::dynamic_sequence {\n\ntemplate <typename T, typename Derived>\n\
+    struct DynamicSequenceNodeBase {\n    using node_ptr_t = Derived *;\n\n    T val;\n\
+    \    int siz;\n    bool rev;\n    node_ptr_t ch[2] {nullptr, nullptr};\n\n   \
+    \ DynamicSequenceNodeBase() : val(), siz(1), rev(false) {}\n    DynamicSequenceNodeBase(const\
+    \ T &val) : val(val), siz(1), rev(false) {}\n\n    ~DynamicSequenceNodeBase()\
+    \ {\n        delete ch[0];\n        delete ch[1];\n    }\n\n    void update()\
+    \ {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n    }\n    void push() {\n\
+    \        reverse_all(this->ch[0], rev), reverse_all(this->ch[1], rev);\n     \
+    \   rev = false;\n    }\n    static int size(node_ptr_t node) {\n        return\
+    \ node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t rotate(node_ptr_t\
+    \ node, bool is_right) {\n        node_ptr_t root = node->ch[is_right ^ true];\n\
+    \        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
     \ = node;\n        node->update(), root->update();\n        return root;\n   \
     \ }\n\n    static node_ptr_t splay(node_ptr_t node, int index) {\n        std::vector<node_ptr_t>\
     \ path;\n        node_ptr_t work_root = new Derived();\n        node_ptr_t work_leaf[2]\
@@ -278,8 +285,8 @@ data:
   path: library/datastructure/range_foldable_dynamic_sequence.hpp
   requiredBy:
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
-  timestamp: '2021-08-11 19:49:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/datastructure/range_foldable_dynamic_sequence.hpp

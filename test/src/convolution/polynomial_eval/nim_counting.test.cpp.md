@@ -54,12 +54,19 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 7 \"\
-    library/convolution/polynomial_eval.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ T, template <typename> class Transform, typename F, constraints_t<is_same_as_invoke_result<T,\
-    \ F, T>> = nullptr>\nstd::vector<T> polynomial_eval(std::vector<T> &&a, F f) {\n\
-    \    Transform<T>::transform(a);\n    for (auto &x : a) x = f(x);\n    Transform<T>::inverse_transform(a);\n\
-    \    return a;\n}\n\ntemplate <typename T, template <typename> class Transform,\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 7 \"library/convolution/polynomial_eval.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename T, template <typename> class Transform,\
+    \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
+    \ polynomial_eval(std::vector<T> &&a, F f) {\n    Transform<T>::transform(a);\n\
+    \    for (auto &x : a) x = f(x);\n    Transform<T>::inverse_transform(a);\n  \
+    \  return a;\n}\n\ntemplate <typename T, template <typename> class Transform,\
     \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
     \ polynomial_eval(const std::vector<T> &a, F f) {\n    return polynomial_eval<T,\
     \ Transform>(std::vector<T>(a), f);\n}\n\n} // namespace suisen\n\n\n\n#line 8\
@@ -89,7 +96,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2021-08-13 19:00:29+09:00'
+  timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval/nim_counting.test.cpp

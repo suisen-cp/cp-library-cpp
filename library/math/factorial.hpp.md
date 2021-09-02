@@ -75,16 +75,16 @@ data:
   isVerificationFile: false
   path: library/math/factorial.hpp
   requiredBy:
-  - library/math/common_sequences.hpp
   - library/math/polynomial_taylor_shift.hpp
+  - library/math/common_sequences.hpp
   timestamp: '2021-08-07 15:47:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - test/src/math/common_sequences/bernoulli_number.test.cpp
-  - test/src/math/common_sequences/partition_function.test.cpp
-  - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
+  - test/src/math/common_sequences/stirling_number2.test.cpp
+  - test/src/math/common_sequences/partition_function.test.cpp
+  - test/src/math/common_sequences/bernoulli_number.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document
 redirect_from:

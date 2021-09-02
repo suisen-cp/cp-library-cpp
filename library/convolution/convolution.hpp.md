@@ -78,21 +78,21 @@ data:
   isVerificationFile: false
   path: library/convolution/convolution.hpp
   requiredBy:
-  - library/math/sps.hpp
-  - library/convolution/and_convolution.hpp
   - library/convolution/gcd_convolution.hpp
   - library/convolution/or_convolution.hpp
   - library/convolution/subset_convolution.hpp
   - library/convolution/xor_convolution.hpp
+  - library/convolution/and_convolution.hpp
+  - library/math/sps.hpp
   timestamp: '2021-08-13 19:00:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/math/sps/connectivity2.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - test/src/math/sps/connectivity2.test.cpp
+  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
 documentation_of: library/convolution/convolution.hpp
 layout: document
 title: Convolution

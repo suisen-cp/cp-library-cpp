@@ -8,19 +8,19 @@ data:
   - icon: ':warning:'
     path: library/algorithm/rmq_pm1.hpp
     title: library/algorithm/rmq_pm1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/algorithm/rmq_pm1_with_index.hpp
     title: library/algorithm/rmq_pm1_with_index.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/lowest_common_ancestor.hpp
     title: library/tree/lowest_common_ancestor.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/sparse_table.hpp\"\n\n\n\n#include\
@@ -41,14 +41,20 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 7 \"\
-    library/datastructure/sparse_table.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ T, typename Op, constraints_t<is_bin_op<Op, T>> = nullptr>\nclass SparseTable\
-    \ {\n    public:\n        SparseTable() {}\n        SparseTable(std::vector<T>\
-    \ &&a, T e, Op op) : n(a.size()), log(floor_log2(n)), e(e), op(op), table(log\
-    \ + 1), flog(n + 1, 0) {\n            build_table(std::move(a));\n           \
-    \ build_flog_table();\n        }\n        SparseTable(const std::vector<T> &a,\
-    \ T e, Op op) : SparseTable(std::vector<T>(a), e, op) {}\n        T operator()(int\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 7 \"library/datastructure/sparse_table.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename T, typename Op, constraints_t<is_bin_op<Op,\
+    \ T>> = nullptr>\nclass SparseTable {\n    public:\n        SparseTable() {}\n\
+    \        SparseTable(std::vector<T> &&a, T e, Op op) : n(a.size()), log(floor_log2(n)),\
+    \ e(e), op(op), table(log + 1), flog(n + 1, 0) {\n            build_table(std::move(a));\n\
+    \            build_flog_table();\n        }\n        SparseTable(const std::vector<T>\
+    \ &a, T e, Op op) : SparseTable(std::vector<T>(a), e, op) {}\n        T operator()(int\
     \ l, int r) const {\n            if (l >= r) return e;\n            int i = flog[r\
     \ - l];\n            return op(table[i][l], table[i][r - (1 << i)]);\n       \
     \ }\n        T prod(int l, int r) const {\n            return (*this)(l, r);\n\
@@ -92,11 +98,11 @@ data:
   isVerificationFile: false
   path: library/datastructure/sparse_table.hpp
   requiredBy:
-  - library/algorithm/rmq_pm1.hpp
-  - library/algorithm/rmq_pm1_with_index.hpp
   - library/tree/lowest_common_ancestor.hpp
-  timestamp: '2021-08-02 17:38:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - library/algorithm/rmq_pm1_with_index.hpp
+  - library/algorithm/rmq_pm1.hpp
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
 documentation_of: library/datastructure/sparse_table.hpp

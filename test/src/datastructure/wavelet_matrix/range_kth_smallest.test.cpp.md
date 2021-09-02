@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/bit_vector.hpp
     title: library/datastructure/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/wavelet_matrix.hpp
     title: library/datastructure/wavelet_matrix.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -42,19 +42,25 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 8 \"\
-    library/datastructure/bit_vector.hpp\"\n\nnamespace suisen {\nclass BitVector\
-    \ {\n    using u8 = std::uint8_t;\n    public:\n        explicit BitVector(int\
-    \ n) : n(n), nl((n >> LOG_BLOCK_L) + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl,\
-    \ 0), cum_s(ns, 0), bits(ns, 0) {}\n        BitVector() : BitVector(0) {}\n  \
-    \      template <typename Gen, constraints_t<is_same_as_invoke_result<bool, Gen,\
-    \ int>> = nullptr>\n        BitVector(int n, Gen gen) : BitVector(n) {\n     \
-    \       build(gen);\n        }\n        BitVector& operator=(const BitVector &bv)\
-    \ {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s = bv.cum_s,\
-    \ bits = bv.bits;\n            return *this;\n        }\n        BitVector& operator=(BitVector\
-    \ &&bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = std::move(bv.cum_l),\
-    \ cum_s = std::move(bv.cum_s), bits = std::move(bv.bits);\n            return\
-    \ *this;\n        }\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/bit_vector.hpp\"\
+    \n\nnamespace suisen {\nclass BitVector {\n    using u8 = std::uint8_t;\n    public:\n\
+    \        explicit BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L) + 1), ns((n >>\
+    \ LOG_BLOCK_S) + 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}\n        BitVector()\
+    \ : BitVector(0) {}\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
+    \ Gen, int>> = nullptr>\n        BitVector(int n, Gen gen) : BitVector(n) {\n\
+    \            build(gen);\n        }\n        BitVector& operator=(const BitVector\
+    \ &bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s\
+    \ = bv.cum_s, bits = bv.bits;\n            return *this;\n        }\n        BitVector&\
+    \ operator=(BitVector &&bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l\
+    \ = std::move(bv.cum_l), cum_s = std::move(bv.cum_s), bits = std::move(bv.bits);\n\
+    \            return *this;\n        }\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
     \ Gen, int>> = nullptr>\n        void build(Gen gen) {\n            int i = 0;\n\
     \            for (int index_s = 1; index_s < ns; ++index_s) {\n              \
     \  int count = cum_s[index_s - 1];\n                for (; i < index_s << LOG_BLOCK_S;\
@@ -185,8 +191,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2021-08-22 19:49:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
 layout: document

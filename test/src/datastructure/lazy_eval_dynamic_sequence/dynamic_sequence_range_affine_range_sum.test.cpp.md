@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/dynamic_sequence.hpp
     title: library/datastructure/dynamic_sequence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: library/datastructure/range_foldable_dynamic_sequence.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -49,26 +49,33 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
-    library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>\n\
-    struct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T &v, UpdateFunc\
-    \ update) : v(v), update(update) {}\n        operator T() const { return v; }\n\
-    \        auto& operator++() && { ++v, update(); return *this; }\n        auto&\
-    \ operator--() && { --v, update(); return *this; }\n        auto& operator+=(const\
-    \ T &val) && { v += val, update(); return *this; }\n        auto& operator-=(const\
-    \ T &val) && { v -= val, update(); return *this; }\n        auto& operator*=(const\
-    \ T &val) && { v *= val, update(); return *this; }\n        auto& operator/=(const\
-    \ T &val) && { v /= val, update(); return *this; }\n        auto& operator%=(const\
-    \ T &val) && { v %= val, update(); return *this; }\n        auto& operator =(const\
-    \ T &val) && { v  = val, update(); return *this; }\n        auto& operator<<=(const\
-    \ T &val) && { v <<= val, update(); return *this; }\n        auto& operator>>=(const\
-    \ T &val) && { v >>= val, update(); return *this; }\n        template <typename\
-    \ F, constraints_t<is_uni_op<F, T>> = nullptr>\n        auto& apply(F f) && {\
-    \ v = f(v), update(); return *this; }\n    private:\n        T &v;\n        UpdateFunc\
-    \ update;\n};\n\n} // namespace suisen\n\n\n#line 1 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\
-    \n\n\n\n#line 6 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\n\
-    \n#line 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include <cstddef>\n\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 5 \"library/util/update_proxy_object.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    \ = nullptr>\nstruct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T\
+    \ &v, UpdateFunc update) : v(v), update(update) {}\n        operator T() const\
+    \ { return v; }\n        auto& operator++() && { ++v, update(); return *this;\
+    \ }\n        auto& operator--() && { --v, update(); return *this; }\n        auto&\
+    \ operator+=(const T &val) && { v += val, update(); return *this; }\n        auto&\
+    \ operator-=(const T &val) && { v -= val, update(); return *this; }\n        auto&\
+    \ operator*=(const T &val) && { v *= val, update(); return *this; }\n        auto&\
+    \ operator/=(const T &val) && { v /= val, update(); return *this; }\n        auto&\
+    \ operator%=(const T &val) && { v %= val, update(); return *this; }\n        auto&\
+    \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
+    \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
+    \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
+    \        template <typename F, constraints_t<is_uni_op<F, T>> = nullptr>\n   \
+    \     auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
+    #line 1 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\n\n\n\n\
+    #line 6 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\n\n#line\
+    \ 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include <cstddef>\n\
     #line 7 \"library/datastructure/dynamic_sequence.hpp\"\n#include <vector>\n\n\
     #line 10 \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace suisen {\n\
     \nnamespace internal::dynamic_sequence {\n\ntemplate <typename T, typename Derived>\n\
@@ -333,8 +340,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-08-11 19:49:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
 layout: document

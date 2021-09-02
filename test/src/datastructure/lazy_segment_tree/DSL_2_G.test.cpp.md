@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_segment_tree.hpp
     title: library/datastructure/lazy_segment_tree.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_G
@@ -41,29 +41,36 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 5 \"\
-    library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>> = nullptr>\n\
-    struct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T &v, UpdateFunc\
-    \ update) : v(v), update(update) {}\n        operator T() const { return v; }\n\
-    \        auto& operator++() && { ++v, update(); return *this; }\n        auto&\
-    \ operator--() && { --v, update(); return *this; }\n        auto& operator+=(const\
-    \ T &val) && { v += val, update(); return *this; }\n        auto& operator-=(const\
-    \ T &val) && { v -= val, update(); return *this; }\n        auto& operator*=(const\
-    \ T &val) && { v *= val, update(); return *this; }\n        auto& operator/=(const\
-    \ T &val) && { v /= val, update(); return *this; }\n        auto& operator%=(const\
-    \ T &val) && { v %= val, update(); return *this; }\n        auto& operator =(const\
-    \ T &val) && { v  = val, update(); return *this; }\n        auto& operator<<=(const\
-    \ T &val) && { v <<= val, update(); return *this; }\n        auto& operator>>=(const\
-    \ T &val) && { v >>= val, update(); return *this; }\n        template <typename\
-    \ F, constraints_t<is_uni_op<F, T>> = nullptr>\n        auto& apply(F f) && {\
-    \ v = f(v), update(); return *this; }\n    private:\n        T &v;\n        UpdateFunc\
-    \ update;\n};\n\n} // namespace suisen\n\n\n#line 7 \"library/datastructure/lazy_segment_tree.hpp\"\
-    \n\nnamespace suisen {\ntemplate <\n    typename T, typename OpTT, typename F,\
-    \ typename OpFT, typename OpFF,\n    constraints_t<is_bin_op<OpTT, T>, is_same_as_invoke_result<T,\
-    \ OpFT, F, T>, is_bin_op<OpFF, F>> = nullptr\n>\nclass LazySegmentTree {\n   \
-    \ public:\n        LazySegmentTree(const std::vector<T> &init, T e, OpTT op, F\
-    \ id, OpFT mapping, OpFF composition) : n(init.size()), m(ceil_pow2(n)), lg(__builtin_ctz(m)),\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 5 \"library/util/update_proxy_object.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    \ = nullptr>\nstruct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T\
+    \ &v, UpdateFunc update) : v(v), update(update) {}\n        operator T() const\
+    \ { return v; }\n        auto& operator++() && { ++v, update(); return *this;\
+    \ }\n        auto& operator--() && { --v, update(); return *this; }\n        auto&\
+    \ operator+=(const T &val) && { v += val, update(); return *this; }\n        auto&\
+    \ operator-=(const T &val) && { v -= val, update(); return *this; }\n        auto&\
+    \ operator*=(const T &val) && { v *= val, update(); return *this; }\n        auto&\
+    \ operator/=(const T &val) && { v /= val, update(); return *this; }\n        auto&\
+    \ operator%=(const T &val) && { v %= val, update(); return *this; }\n        auto&\
+    \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
+    \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
+    \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
+    \        template <typename F, constraints_t<is_uni_op<F, T>> = nullptr>\n   \
+    \     auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
+    #line 7 \"library/datastructure/lazy_segment_tree.hpp\"\n\nnamespace suisen {\n\
+    template <\n    typename T, typename OpTT, typename F, typename OpFT, typename\
+    \ OpFF,\n    constraints_t<is_bin_op<OpTT, T>, is_same_as_invoke_result<T, OpFT,\
+    \ F, T>, is_bin_op<OpFF, F>> = nullptr\n>\nclass LazySegmentTree {\n    public:\n\
+    \        LazySegmentTree(const std::vector<T> &init, T e, OpTT op, F id, OpFT\
+    \ mapping, OpFF composition) : n(init.size()), m(ceil_pow2(n)), lg(__builtin_ctz(m)),\
     \ e(e), op(op), id(id), mapping(mapping), composition(composition), data(2 * m,\
     \ e), lazy(m, id) {\n            std::copy(init.begin(), init.end(), data.begin()\
     \ + m);\n            for (int k = m - 1; k > 0; --k) update(k);\n        }\n \
@@ -164,8 +171,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
   requiredBy: []
-  timestamp: '2021-08-11 01:57:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
 layout: document

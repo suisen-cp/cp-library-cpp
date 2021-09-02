@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: library/datastructure/compressed_wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: library/geom/segment_intersections.hpp
   _extendedVerifiedWith:
@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/coordinate_compressor.hpp\"\n\n\n\n#include\
@@ -47,17 +47,24 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 9 \"\
-    library/util/coordinate_compressor.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ T>\nclass CoordinateCompressorBuilder {\n    public:\n        struct Compressor\
-    \ {\n            public:\n                static constexpr int absent = -1;\n\n\
-    \                // default constructor\n                Compressor() : _xs(std::vector<T>{})\
-    \ {}\n                // Construct from strictly sorted vector\n             \
-    \   Compressor(const std::vector<T> &xs) : _xs(xs) {\n                    assert(is_strictly_sorted(xs));\n\
-    \                }\n\n                // Return the number of distinct keys.\n\
-    \                int size() const {\n                    return _xs.size();\n\
-    \                }\n                // Check if the element is registered.\n \
-    \               bool has_key(const T &e) const {\n                    return std::binary_search(_xs.begin(),\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 9 \"library/util/coordinate_compressor.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename T>\nclass CoordinateCompressorBuilder\
+    \ {\n    public:\n        struct Compressor {\n            public:\n         \
+    \       static constexpr int absent = -1;\n\n                // default constructor\n\
+    \                Compressor() : _xs(std::vector<T>{}) {}\n                // Construct\
+    \ from strictly sorted vector\n                Compressor(const std::vector<T>\
+    \ &xs) : _xs(xs) {\n                    assert(is_strictly_sorted(xs));\n    \
+    \            }\n\n                // Return the number of distinct keys.\n   \
+    \             int size() const {\n                    return _xs.size();\n   \
+    \             }\n                // Check if the element is registered.\n    \
+    \            bool has_key(const T &e) const {\n                    return std::binary_search(_xs.begin(),\
     \ _xs.end(), e);\n                }\n                // Compress the element.\
     \ if not registered, returns `default_value`. (default: Compressor::absent)\n\
     \                int comp(const T &e, int default_value = absent) const {\n  \
@@ -231,15 +238,15 @@ data:
   isVerificationFile: false
   path: library/util/coordinate_compressor.hpp
   requiredBy:
-  - library/geom/segment_intersections.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
-  timestamp: '2021-08-02 17:38:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - library/geom/segment_intersections.hpp
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
 layout: document
 redirect_from:

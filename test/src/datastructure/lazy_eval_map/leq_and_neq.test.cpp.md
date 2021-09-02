@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_map.hpp
     title: library/datastructure/lazy_eval_map.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_map.hpp
     title: library/datastructure/range_foldable_map.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/splay_tree_map.hpp
     title: library/datastructure/splay_tree_map.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc115/tasks/arc115_e
@@ -51,17 +51,24 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 9 \"\
-    library/util/coordinate_compressor.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ T>\nclass CoordinateCompressorBuilder {\n    public:\n        struct Compressor\
-    \ {\n            public:\n                static constexpr int absent = -1;\n\n\
-    \                // default constructor\n                Compressor() : _xs(std::vector<T>{})\
-    \ {}\n                // Construct from strictly sorted vector\n             \
-    \   Compressor(const std::vector<T> &xs) : _xs(xs) {\n                    assert(is_strictly_sorted(xs));\n\
-    \                }\n\n                // Return the number of distinct keys.\n\
-    \                int size() const {\n                    return _xs.size();\n\
-    \                }\n                // Check if the element is registered.\n \
-    \               bool has_key(const T &e) const {\n                    return std::binary_search(_xs.begin(),\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 9 \"library/util/coordinate_compressor.hpp\"\
+    \n\nnamespace suisen {\ntemplate <typename T>\nclass CoordinateCompressorBuilder\
+    \ {\n    public:\n        struct Compressor {\n            public:\n         \
+    \       static constexpr int absent = -1;\n\n                // default constructor\n\
+    \                Compressor() : _xs(std::vector<T>{}) {}\n                // Construct\
+    \ from strictly sorted vector\n                Compressor(const std::vector<T>\
+    \ &xs) : _xs(xs) {\n                    assert(is_strictly_sorted(xs));\n    \
+    \            }\n\n                // Return the number of distinct keys.\n   \
+    \             int size() const {\n                    return _xs.size();\n   \
+    \             }\n                // Check if the element is registered.\n    \
+    \            bool has_key(const T &e) const {\n                    return std::binary_search(_xs.begin(),\
     \ _xs.end(), e);\n                }\n                // Compress the element.\
     \ if not registered, returns `default_value`. (default: Compressor::absent)\n\
     \                int comp(const T &e, int default_value = absent) const {\n  \
@@ -482,8 +489,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   requiredBy: []
-  timestamp: '2021-08-22 19:50:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-09-02 19:44:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
 layout: document

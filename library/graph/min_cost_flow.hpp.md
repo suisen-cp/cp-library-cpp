@@ -6,7 +6,7 @@ data:
   - icon: ':x:'
     path: test/src/graph/min_cost_flow/abc214_h.test.cpp
     title: test/src/graph/min_cost_flow/abc214_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
     title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/src/graph/min_cost_flow/practice2_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/min_cost_flow.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -41,30 +41,30 @@ data:
     \        }\n\n        auto min_cost_max_flow_slope(const int s, const int t, const\
     \ Cap f) {\n            return min_cost_flow_slope(s, t, f, [](Cap, Cost){ return\
     \ true; });\n        }\n        auto min_cost_max_flow_slope(const int s, const\
-    \ int t) {\n            return min_cost_flow_slope(s, t, INF_FLOW);\n        }\n\
-    \        auto min_cost_arbitrary_flow_slope(const int s, const int t) {\n    \
-    \        return min_cost_flow_slope(s, t, INF_FLOW, [this, t](Cap, Cost){ return\
-    \ potential[t] < 0; });\n        }\n\n        struct Edge {\n            int from,\
-    \ to;\n            Cap cap, flow;\n            Cost cost;\n        };\n\n    \
-    \    Edge get_edge(int edge_id) const {\n            const auto &e  = g[edges[edge_id].first][edges[edge_id].second];\n\
-    \            const auto &re = g[e.to][e.rev];\n            return Edge { re.to,\
-    \ e.to, e.cap + re.cap, re.cap, e.cost };\n        }\n        std::vector<Edge>\
-    \ get_edges() const {\n            std::vector<Edge> res(edges.size());\n    \
-    \        for (std::size_t i = 0; i < edges.size(); ++i) res[i] = get_edge(i);\n\
-    \            return res;\n        }\n\n    private:\n        static constexpr\
-    \ Cost INF_COST = std::numeric_limits<Cost>::max();\n        static constexpr\
-    \ Cost INF_FLOW = std::numeric_limits<Cap>::max();\n    \n        int n;\n   \
-    \     std::vector<std::vector<InternalEdge>> g;\n        std::vector<Cost> potential;\n\
-    \        std::vector<Cost> dist;\n        std::vector<int> prev_vid, prev_eid;\n\
-    \n        std::vector<std::pair<int, int>> edges;\n\n        template <typename\
-    \ Predicate>\n        std::pair<Cap, Cost> min_cost_flow(const int s, const int\
-    \ t, const Cap upper_flow, Predicate pred) {\n            return min_cost_flow_slope(s,\
-    \ t, upper_flow, pred).back();\n        }\n\n        template <typename Predicate>\n\
-    \        std::vector<std::pair<Cap, Cost>> min_cost_flow_slope(const int s, const\
-    \ int t, const Cap upper_flow, Predicate pred) {\n            switch (init_method)\
-    \ {\n                case BELLMAN_FORD: bellman_ford(s); break;\n            \
-    \    case DIJKSTRA:     dijkstra(s);     break;\n                case DAG:   \
-    \       dag_dp(s);       break;\n            }\n            update_potential();\n\
+    \ int t) {\n            return min_cost_max_flow_slope(s, t, INF_FLOW);\n    \
+    \    }\n        auto min_cost_arbitrary_flow_slope(const int s, const int t) {\n\
+    \            return min_cost_flow_slope(s, t, INF_FLOW, [this, t](Cap, Cost){\
+    \ return potential[t] < 0; });\n        }\n\n        struct Edge {\n         \
+    \   int from, to;\n            Cap cap, flow;\n            Cost cost;\n      \
+    \  };\n\n        Edge get_edge(int edge_id) const {\n            const auto &e\
+    \  = g[edges[edge_id].first][edges[edge_id].second];\n            const auto &re\
+    \ = g[e.to][e.rev];\n            return Edge { re.to, e.to, e.cap + re.cap, re.cap,\
+    \ e.cost };\n        }\n        std::vector<Edge> get_edges() const {\n      \
+    \      std::vector<Edge> res(edges.size());\n            for (std::size_t i =\
+    \ 0; i < edges.size(); ++i) res[i] = get_edge(i);\n            return res;\n \
+    \       }\n\n    private:\n        static constexpr Cost INF_COST = std::numeric_limits<Cost>::max();\n\
+    \        static constexpr Cost INF_FLOW = std::numeric_limits<Cap>::max();\n \
+    \   \n        int n;\n        std::vector<std::vector<InternalEdge>> g;\n    \
+    \    std::vector<Cost> potential;\n        std::vector<Cost> dist;\n        std::vector<int>\
+    \ prev_vid, prev_eid;\n\n        std::vector<std::pair<int, int>> edges;\n\n \
+    \       template <typename Predicate>\n        std::pair<Cap, Cost> min_cost_flow(const\
+    \ int s, const int t, const Cap upper_flow, Predicate pred) {\n            return\
+    \ min_cost_flow_slope(s, t, upper_flow, pred).back();\n        }\n\n        template\
+    \ <typename Predicate>\n        std::vector<std::pair<Cap, Cost>> min_cost_flow_slope(const\
+    \ int s, const int t, const Cap upper_flow, Predicate pred) {\n            switch\
+    \ (init_method) {\n                case BELLMAN_FORD: bellman_ford(s); break;\n\
+    \                case DIJKSTRA:     dijkstra(s);     break;\n                case\
+    \ DAG:          dag_dp(s);       break;\n            }\n            update_potential();\n\
     \            std::vector<std::pair<Cap, Cost>> slope;\n            Cap flow =\
     \ 0;\n            Cost cost = 0;\n            slope.emplace_back(flow, cost);\n\
     \            while (dist[t] != INF_COST and flow < upper_flow and pred(flow, cost))\
@@ -142,30 +142,30 @@ data:
     \        }\n\n        auto min_cost_max_flow_slope(const int s, const int t, const\
     \ Cap f) {\n            return min_cost_flow_slope(s, t, f, [](Cap, Cost){ return\
     \ true; });\n        }\n        auto min_cost_max_flow_slope(const int s, const\
-    \ int t) {\n            return min_cost_flow_slope(s, t, INF_FLOW);\n        }\n\
-    \        auto min_cost_arbitrary_flow_slope(const int s, const int t) {\n    \
-    \        return min_cost_flow_slope(s, t, INF_FLOW, [this, t](Cap, Cost){ return\
-    \ potential[t] < 0; });\n        }\n\n        struct Edge {\n            int from,\
-    \ to;\n            Cap cap, flow;\n            Cost cost;\n        };\n\n    \
-    \    Edge get_edge(int edge_id) const {\n            const auto &e  = g[edges[edge_id].first][edges[edge_id].second];\n\
-    \            const auto &re = g[e.to][e.rev];\n            return Edge { re.to,\
-    \ e.to, e.cap + re.cap, re.cap, e.cost };\n        }\n        std::vector<Edge>\
-    \ get_edges() const {\n            std::vector<Edge> res(edges.size());\n    \
-    \        for (std::size_t i = 0; i < edges.size(); ++i) res[i] = get_edge(i);\n\
-    \            return res;\n        }\n\n    private:\n        static constexpr\
-    \ Cost INF_COST = std::numeric_limits<Cost>::max();\n        static constexpr\
-    \ Cost INF_FLOW = std::numeric_limits<Cap>::max();\n    \n        int n;\n   \
-    \     std::vector<std::vector<InternalEdge>> g;\n        std::vector<Cost> potential;\n\
-    \        std::vector<Cost> dist;\n        std::vector<int> prev_vid, prev_eid;\n\
-    \n        std::vector<std::pair<int, int>> edges;\n\n        template <typename\
-    \ Predicate>\n        std::pair<Cap, Cost> min_cost_flow(const int s, const int\
-    \ t, const Cap upper_flow, Predicate pred) {\n            return min_cost_flow_slope(s,\
-    \ t, upper_flow, pred).back();\n        }\n\n        template <typename Predicate>\n\
-    \        std::vector<std::pair<Cap, Cost>> min_cost_flow_slope(const int s, const\
-    \ int t, const Cap upper_flow, Predicate pred) {\n            switch (init_method)\
-    \ {\n                case BELLMAN_FORD: bellman_ford(s); break;\n            \
-    \    case DIJKSTRA:     dijkstra(s);     break;\n                case DAG:   \
-    \       dag_dp(s);       break;\n            }\n            update_potential();\n\
+    \ int t) {\n            return min_cost_max_flow_slope(s, t, INF_FLOW);\n    \
+    \    }\n        auto min_cost_arbitrary_flow_slope(const int s, const int t) {\n\
+    \            return min_cost_flow_slope(s, t, INF_FLOW, [this, t](Cap, Cost){\
+    \ return potential[t] < 0; });\n        }\n\n        struct Edge {\n         \
+    \   int from, to;\n            Cap cap, flow;\n            Cost cost;\n      \
+    \  };\n\n        Edge get_edge(int edge_id) const {\n            const auto &e\
+    \  = g[edges[edge_id].first][edges[edge_id].second];\n            const auto &re\
+    \ = g[e.to][e.rev];\n            return Edge { re.to, e.to, e.cap + re.cap, re.cap,\
+    \ e.cost };\n        }\n        std::vector<Edge> get_edges() const {\n      \
+    \      std::vector<Edge> res(edges.size());\n            for (std::size_t i =\
+    \ 0; i < edges.size(); ++i) res[i] = get_edge(i);\n            return res;\n \
+    \       }\n\n    private:\n        static constexpr Cost INF_COST = std::numeric_limits<Cost>::max();\n\
+    \        static constexpr Cost INF_FLOW = std::numeric_limits<Cap>::max();\n \
+    \   \n        int n;\n        std::vector<std::vector<InternalEdge>> g;\n    \
+    \    std::vector<Cost> potential;\n        std::vector<Cost> dist;\n        std::vector<int>\
+    \ prev_vid, prev_eid;\n\n        std::vector<std::pair<int, int>> edges;\n\n \
+    \       template <typename Predicate>\n        std::pair<Cap, Cost> min_cost_flow(const\
+    \ int s, const int t, const Cap upper_flow, Predicate pred) {\n            return\
+    \ min_cost_flow_slope(s, t, upper_flow, pred).back();\n        }\n\n        template\
+    \ <typename Predicate>\n        std::vector<std::pair<Cap, Cost>> min_cost_flow_slope(const\
+    \ int s, const int t, const Cap upper_flow, Predicate pred) {\n            switch\
+    \ (init_method) {\n                case BELLMAN_FORD: bellman_ford(s); break;\n\
+    \                case DIJKSTRA:     dijkstra(s);     break;\n                case\
+    \ DAG:          dag_dp(s);       break;\n            }\n            update_potential();\n\
     \            std::vector<std::pair<Cap, Cost>> slope;\n            Cap flow =\
     \ 0;\n            Cost cost = 0;\n            slope.emplace_back(flow, cost);\n\
     \            while (dist[t] != INF_COST and flow < upper_flow and pred(flow, cost))\
@@ -223,12 +223,12 @@ data:
   isVerificationFile: false
   path: library/graph/min_cost_flow.hpp
   requiredBy: []
-  timestamp: '2021-08-16 00:10:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-09-02 19:44:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/graph/min_cost_flow/abc214_h.test.cpp
   - test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   - test/src/graph/min_cost_flow/practice2_e.test.cpp
+  - test/src/graph/min_cost_flow/abc214_h.test.cpp
 documentation_of: library/graph/min_cost_flow.hpp
 layout: document
 redirect_from:

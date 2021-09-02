@@ -32,17 +32,24 @@ data:
     \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
     \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
     \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n} // namespace suisen\n\n\n#line 6 \"\
-    library/template.hpp\"\n\n// ! type aliases\nusing i128 = __int128_t;\nusing u128\
-    \ = __uint128_t;\nusing ll = long long;\nusing uint = unsigned int;\nusing ull\
-    \  = unsigned long long;\n\ntemplate <typename T> using vec  = std::vector<T>;\n\
-    template <typename T> using vec2 = vec<vec <T>>;\ntemplate <typename T> using\
-    \ vec3 = vec<vec2<T>>;\ntemplate <typename T> using vec4 = vec<vec3<T>>;\n\ntemplate\
-    \ <typename T>\nusing pq_greater = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    template <typename T, typename U>\nusing umap = std::unordered_map<T, U>;\n\n\
-    // ! macros (capital: internal macro)\n#define OVERLOAD2(_1,_2,name,...) name\n\
-    #define OVERLOAD3(_1,_2,_3,name,...) name\n#define OVERLOAD4(_1,_2,_3,_4,name,...)\
-    \ name\n\n#define REP4(i,l,r,s)  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
+    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
+    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
+    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
+    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 6 \"library/template.hpp\"\
+    \n\n// ! type aliases\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing\
+    \ ll = long long;\nusing uint = unsigned int;\nusing ull  = unsigned long long;\n\
+    \ntemplate <typename T> using vec  = std::vector<T>;\ntemplate <typename T> using\
+    \ vec2 = vec<vec <T>>;\ntemplate <typename T> using vec3 = vec<vec2<T>>;\ntemplate\
+    \ <typename T> using vec4 = vec<vec3<T>>;\n\ntemplate <typename T>\nusing pq_greater\
+    \ = std::priority_queue<T, std::vector<T>, std::greater<T>>;\ntemplate <typename\
+    \ T, typename U>\nusing umap = std::unordered_map<T, U>;\n\n// ! macros (capital:\
+    \ internal macro)\n#define OVERLOAD2(_1,_2,name,...) name\n#define OVERLOAD3(_1,_2,_3,name,...)\
+    \ name\n#define OVERLOAD4(_1,_2,_3,_4,name,...) name\n\n#define REP4(i,l,r,s)\
+    \  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
     #define REP3(i,l,r)    REP4(i,l,r,1)\n#define REP2(i,n)      REP3(i,0,n)\n#define\
     \ REPINF3(i,l,s) for(std::remove_reference_t<std::remove_const_t<decltype(l)>>i=(l);;i+=(s))\n\
     #define REPINF2(i,l)   REPINF3(i,l,1)\n#define REPINF1(i)     REPINF2(i,0)\n#define\
@@ -78,14 +85,14 @@ data:
     std::istream& operator>>(std::istream& in, std::pair<T, U> &a) {\n    return in\
     \ >> a.first >> a.second;\n}\n// tuple\ntemplate <unsigned int N = 0, typename\
     \ ...Args>\nstd::istream& operator>>(std::istream& in, std::tuple<Args...> &a)\
-    \ {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) return in;\n\
-    \    return operator>><N + 1>(in >> std::get<N>(a), a);\n}\n// vector\ntemplate\
-    \ <typename T>\nstd::istream& operator>>(std::istream& in, std::vector<T> &a)\
-    \ {\n    for (auto it = a.begin(); it != a.end(); ++it) in >> *it;\n    return\
-    \ in;\n}\ntemplate <typename ...Args>\nvoid read(Args &...args) {\n    ( std::cin\
-    \ >> ... >> args );\n}\n\n// ! integral utilities\n\n// Returns pow(-1, n)\ntemplate\
-    \ <typename T>\nconstexpr inline int pow_m1(T n) {\n    return -(n & 1) | 1;\n\
-    }\n// Returns pow(-1, n)\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool\
+    \ {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) {\n      \
+    \  return in;\n    } else {\n        return operator>><N + 1>(in >> std::get<N>(a),\
+    \ a);\n    }\n}\n// vector\ntemplate <typename T>\nstd::istream& operator>>(std::istream&\
+    \ in, std::vector<T> &a) {\n    for (auto it = a.begin(); it != a.end(); ++it)\
+    \ in >> *it;\n    return in;\n}\ntemplate <typename ...Args>\nvoid read(Args &...args)\
+    \ {\n    ( std::cin >> ... >> args );\n}\n\n// ! integral utilities\n\n// Returns\
+    \ pow(-1, n)\ntemplate <typename T>\nconstexpr inline int pow_m1(T n) {\n    return\
+    \ -(n & 1) | 1;\n}\n// Returns pow(-1, n)\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool\
     \ n) {\n    return -int(n) | 1;\n}\n\n// Returns floor(x / y)\ntemplate <typename\
     \ T>\nconstexpr inline T fld(const T x, const T y) {\n    return (x ^ y) >= 0\
     \ ? x / y : (x - (y + pow_m1(y >= 0))) / y;\n}\ntemplate <typename T>\nconstexpr\
@@ -137,7 +144,7 @@ data:
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2021-08-22 19:50:30+09:00'
+  timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp

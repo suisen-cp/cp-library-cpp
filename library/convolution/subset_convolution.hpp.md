@@ -118,9 +118,9 @@ data:
   timestamp: '2021-08-13 19:00:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
 documentation_of: library/convolution/subset_convolution.hpp
 layout: document
 title: Subset Convolution
