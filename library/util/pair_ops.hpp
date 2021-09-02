@@ -28,7 +28,11 @@ std::pair<T, U>& operator*=(std::pair<T, U> &p, const V m) {
     return p;
 }
 template <typename T, typename U, typename V>
-std::pair<T, U> operator*(std::pair<T, U> &p, const V m) {
+std::pair<T, U> operator*(const std::pair<T, U> &p, const V m) {
+    return {p.first * m, p.second * m};
+}
+template <typename T, typename U, typename V>
+std::pair<T, U> operator*(const V m, const std::pair<T, U> &p) {
     return {p.first * m, p.second * m};
 }
 } // namespace suisen
