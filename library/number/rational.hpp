@@ -77,16 +77,16 @@ struct Rational {
         return Rational(-num, den);
     }
     friend Rational operator+(const Rational &l, const Rational &r) {
-        int lcm = l.den / std::gcd(l.den, r.den) * r.den;
+        T lcm = l.den / std::gcd(l.den, r.den) * r.den;
         return Rational(l.num * (lcm / l.den) + r.num * (lcm / r.den), lcm);
     }
     friend Rational operator-(const Rational &l, const Rational &r) {
-        int lcm = l.den / std::gcd(l.den, r.den) * r.den;
+        T lcm = l.den / std::gcd(l.den, r.den) * r.den;
         return Rational(l.num * (lcm / l.den) - r.num * (lcm / r.den), lcm);
     }
     friend Rational operator*(const Rational &l, const Rational &r) {
-        int g1 = std::gcd(l.num, r.den);
-        int g2 = std::gcd(l.den, r.num);
+        T g1 = std::gcd(l.num, r.den);
+        T g2 = std::gcd(l.den, r.num);
         return Rational((l.num / g1) * (r.num / g2), (l.den / g2) * (r.den / g1));
     }
     friend Rational operator/(const Rational &l, const Rational &r) {
