@@ -17,6 +17,14 @@ class SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t> {
             other.root = nullptr;
             return *this;
         }
+        int size() {
+            return Node::size(this->root);
+        }
+        bool contains(const Key &key) {
+            auto [new_root, found] = Node::find_key(this->root, key);
+            this->root = new_root;
+            return found;
+        }
         void insert(const Key &key) {
             return this->insert_if_absent(key, nullptr);
         }
@@ -36,6 +44,10 @@ class SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t> {
             auto [l, r] = Node::split_by_key(this->root, key);
             this->root = l;
             return SplayTreeSet<Key>(r);
+        }
+        void merge(SplayTreeSet &&r) {
+            this->root = Node::merge(this->root, r.root);
+            r.root = nullptr;
         }
 };
 };
