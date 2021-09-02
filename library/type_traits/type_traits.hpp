@@ -35,6 +35,23 @@ template <typename T, unsigned int n>
 struct is_nbit { static constexpr bool value = bit_num<T> == n; };
 template <typename T, unsigned int n>
 static constexpr bool is_nbit_v = is_nbit<T, n>::value;
+
+// ?
+template <typename T>
+struct safely_multipliable {};
+template <>
+struct safely_multipliable<int> { using type = long long; };
+template <>
+struct safely_multipliable<long long> { using type = __int128_t; };
+template <>
+struct safely_multipliable<float> { using type = float; };
+template <>
+struct safely_multipliable<double> { using type = double; };
+template <>
+struct safely_multipliable<long double> { using type = long double; };
+template <typename T>
+using safely_multipliable_t = typename safely_multipliable<T>::type;
+
 } // namespace suisen
 
 #endif // SUISEN_TYPE_TRITS
