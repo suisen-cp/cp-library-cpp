@@ -12,7 +12,7 @@ data:
     - icon: ':warning:'
       path: library/algorithm/rmq_pm1.hpp
       title: library/algorithm/rmq_pm1.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/algorithm/rmq_pm1_with_index.hpp
       title: library/algorithm/rmq_pm1_with_index.hpp
     - icon: ':question:'
@@ -109,7 +109,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree_2d.hpp
       title: library/datastructure/segment_tree_2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/sparse_lazy_segment_tree.hpp
+      title: library/datastructure/sparse_lazy_segment_tree.hpp
+    - icon: ':warning:'
+      path: library/datastructure/sparse_segment_tree.hpp
+      title: library/datastructure/sparse_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: library/datastructure/sparse_table.hpp
     - icon: ':heavy_check_mark:'
@@ -278,10 +284,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: library/tree/euler_tour.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: library/tree/lowest_common_ancestor.hpp
   - name: library/type_traits
@@ -486,6 +492,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
       title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+  - name: test/src/datastructure/sparse_lazy_segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
+      title: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
   - name: test/src/datastructure/union_find
     pages:
     - icon: ':heavy_check_mark:'
@@ -712,21 +723,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/lowest_common_anceestor
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
       title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
 layout: toppage

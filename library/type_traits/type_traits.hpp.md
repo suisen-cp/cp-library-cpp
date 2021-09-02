@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: library/algorithm/rmq_pm1.hpp
     title: library/algorithm/rmq_pm1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
     title: library/algorithm/rmq_pm1_with_index.hpp
   - icon: ':question:'
@@ -65,7 +65,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree_2d.hpp
     title: library/datastructure/segment_tree_2d.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/sparse_lazy_segment_tree.hpp
+    title: library/datastructure/sparse_lazy_segment_tree.hpp
+  - icon: ':warning:'
+    path: library/datastructure/sparse_segment_tree.hpp
+    title: library/datastructure/sparse_segment_tree.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
     title: library/datastructure/sparse_table.hpp
   - icon: ':heavy_check_mark:'
@@ -86,10 +92,10 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: library/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
     title: library/tree/lowest_common_ancestor.hpp
   - icon: ':heavy_check_mark:'
@@ -181,6 +187,9 @@ data:
     path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
+    title: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,19 +207,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   _isVerificationFailed: true
@@ -288,7 +297,9 @@ data:
   - library/datastructure/range_foldable_map.hpp
   - library/datastructure/sparse_table.hpp
   - library/datastructure/dual_segment_tree.hpp
+  - library/datastructure/sparse_segment_tree.hpp
   - library/datastructure/bit_vector.hpp
+  - library/datastructure/sparse_lazy_segment_tree.hpp
   - library/datastructure/commutative_dual_segment_tree.hpp
   - library/convolution/polynomial_eval.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
@@ -314,6 +325,7 @@ data:
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
   - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp

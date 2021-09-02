@@ -27,6 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree_2d.hpp
     title: library/datastructure/segment_tree_2d.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/sparse_lazy_segment_tree.hpp
+    title: library/datastructure/sparse_lazy_segment_tree.hpp
+  - icon: ':warning:'
+    path: library/datastructure/sparse_segment_tree.hpp
+    title: library/datastructure/sparse_segment_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
@@ -64,6 +70,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
+    title: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -141,6 +150,8 @@ data:
   - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/range_foldable_map.hpp
+  - library/datastructure/sparse_segment_tree.hpp
+  - library/datastructure/sparse_lazy_segment_tree.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -148,6 +159,7 @@ data:
   - test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
   - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
+  - test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
   - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
