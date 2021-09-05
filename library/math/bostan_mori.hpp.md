@@ -156,28 +156,42 @@ data:
     \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
     \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
     \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/math/bostan_mori.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(const FPS<mint>\
-    \ &P, const FPS<mint> &Q, const long long n) {\n    if (n == 0) return P[0];\n\
-    \    FPS mQ(Q);\n    for (int i = 0; i <= Q.deg(); i += 2) mQ[i] = -mQ[i];\n \
-    \   P *= mQ, Q *= mQ;\n    FPS nP((P.deg() + 1) / 2), nQ((Q.deg() + 1) / 2);\n\
-    \    for (int i = 0    ; i <= Q.deg(); i += 2) nQ[i >> 1] = Q[i];\n    for (int\
-    \ i = n & 1; i <= P.deg(); i += 2) nP[i >> 1] = P[i];\n    return bostan_mori(nP,\
-    \ nQ, n / 2);\n}\n} // namespace suisen\n\n\n"
+    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(FPS<mint> P,\
+    \ FPS<mint> Q, unsigned long long n) {\n    auto alternate = [](FPS<mint> &&a,\
+    \ bool odd) -> FPS<mint>&& {\n        std::size_t i = 0;\n        for (std::size_t\
+    \ j = odd; j < a.size(); j += 2) a[i++] = a[j];\n        a.erase(a.begin() + i,\
+    \ a.end());\n        return std::move(a);\n    };\n    for (; n; n >>= 1) {\n\
+    \        FPS<mint> mQ(Q);\n        for (std::size_t i = 1; i < Q.size(); i +=\
+    \ 2) mQ[i] = -mQ[i];\n        P = alternate(P * mQ, n & 1);\n        Q = alternate(Q\
+    \ * mQ,     0);\n    }\n    return P[0];\n}\n\ntemplate <typename mint>\nmint\
+    \ nth_term_of_linear_recurrence(const FPS<mint> &a, const FPS<mint> &c, const\
+    \ unsigned long long n) {\n    const std::size_t K = c.size();\n    assert(K <=\
+    \ a.size());\n    FPS<mint> Q(K + 1);\n    Q[0] = 1;\n    for (std::size_t i =\
+    \ 0; i < K; ++i) {\n        Q[i + 1] = -c[i];\n    }\n    FPS<mint> P = a * Q;\n\
+    \    return bostan_mori(P.pre_inplace(K - 1), Q, n);\n}\n\n} // namespace suisen\n\
+    \n\n"
   code: "#ifndef SUISEN_BOSTAN_MORI\n#define SUISEN_BOSTAN_MORI\n\n#include \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(const FPS<mint>\
-    \ &P, const FPS<mint> &Q, const long long n) {\n    if (n == 0) return P[0];\n\
-    \    FPS mQ(Q);\n    for (int i = 0; i <= Q.deg(); i += 2) mQ[i] = -mQ[i];\n \
-    \   P *= mQ, Q *= mQ;\n    FPS nP((P.deg() + 1) / 2), nQ((Q.deg() + 1) / 2);\n\
-    \    for (int i = 0    ; i <= Q.deg(); i += 2) nQ[i >> 1] = Q[i];\n    for (int\
-    \ i = n & 1; i <= P.deg(); i += 2) nP[i >> 1] = P[i];\n    return bostan_mori(nP,\
-    \ nQ, n / 2);\n}\n} // namespace suisen\n\n#endif // SUISEN_BOSTAN_MORI"
+    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(FPS<mint> P,\
+    \ FPS<mint> Q, unsigned long long n) {\n    auto alternate = [](FPS<mint> &&a,\
+    \ bool odd) -> FPS<mint>&& {\n        std::size_t i = 0;\n        for (std::size_t\
+    \ j = odd; j < a.size(); j += 2) a[i++] = a[j];\n        a.erase(a.begin() + i,\
+    \ a.end());\n        return std::move(a);\n    };\n    for (; n; n >>= 1) {\n\
+    \        FPS<mint> mQ(Q);\n        for (std::size_t i = 1; i < Q.size(); i +=\
+    \ 2) mQ[i] = -mQ[i];\n        P = alternate(P * mQ, n & 1);\n        Q = alternate(Q\
+    \ * mQ,     0);\n    }\n    return P[0];\n}\n\ntemplate <typename mint>\nmint\
+    \ nth_term_of_linear_recurrence(const FPS<mint> &a, const FPS<mint> &c, const\
+    \ unsigned long long n) {\n    const std::size_t K = c.size();\n    assert(K <=\
+    \ a.size());\n    FPS<mint> Q(K + 1);\n    Q[0] = 1;\n    for (std::size_t i =\
+    \ 0; i < K; ++i) {\n        Q[i + 1] = -c[i];\n    }\n    FPS<mint> P = a * Q;\n\
+    \    return bostan_mori(P.pre_inplace(K - 1), Q, n);\n}\n\n} // namespace suisen\n\
+    \n#endif // SUISEN_BOSTAN_MORI"
   dependsOn:
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
   isVerificationFile: false
   path: library/math/bostan_mori.hpp
   requiredBy: []
-  timestamp: '2021-08-15 22:47:55+09:00'
+  timestamp: '2021-09-06 01:30:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/bostan_mori.hpp

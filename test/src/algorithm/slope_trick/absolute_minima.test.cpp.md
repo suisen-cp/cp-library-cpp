@@ -44,19 +44,19 @@ data:
     \         return *this;\n        }\n        SlopeTrick& operator>>=(const T shamt_right)\
     \ {\n            add_l += shamt_right, add_r += shamt_right;\n            return\
     \ *this;\n        }\n        SlopeTrick& translate(const T dx) {\n           \
-    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        SlopeTrick&\
-    \ sliding_window_minimum(const T a, const T b) {\n            assert(a <= b);\n\
-    \            add_l += a, add_r += b;\n            return *this;\n        }\n \
-    \   private:\n        static constexpr T inf = std::numeric_limits<T>::max() /\
-    \ 2;\n        T base, add_l, add_r;\n        pq_dsc l;\n        pq_asc r;\n};\n\
-    } // namespace suisen\n\n\n#line 5 \"test/src/algorithm/slope_trick/absolute_minima.test.cpp\"\
-    \n\nvoid solve() {\n    suisen::SlopeTrick<long long> f;\n    int q;\n    std::cin\
-    \ >> q;\n    while (q --> 0) {\n        int t;\n        std::cin >> t;\n     \
-    \   if (t == 1) {\n            int a, b;\n            std::cin >> a >> b;\n  \
-    \          f.add_abs(a), f.add_const(b);\n        } else {\n            std::cout\
-    \ << f.argmin_range().first << ' ' << f.min() << '\\n';\n        }\n    }\n}\n\
-    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    solve();        \n    return 0;\n}\n"
+    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        // f(x) =\
+    \ min_{x-b <= y <= x-a} f(y)\n        SlopeTrick& sliding_window_minimum(const\
+    \ T a, const T b) {\n            assert(a <= b);\n            add_l += a, add_r\
+    \ += b;\n            return *this;\n        }\n    private:\n        static constexpr\
+    \ T inf = std::numeric_limits<T>::max() / 2;\n        T base, add_l, add_r;\n\
+    \        pq_dsc l;\n        pq_asc r;\n};\n} // namespace suisen\n\n\n#line 5\
+    \ \"test/src/algorithm/slope_trick/absolute_minima.test.cpp\"\n\nvoid solve()\
+    \ {\n    suisen::SlopeTrick<long long> f;\n    int q;\n    std::cin >> q;\n  \
+    \  while (q --> 0) {\n        int t;\n        std::cin >> t;\n        if (t ==\
+    \ 1) {\n            int a, b;\n            std::cin >> a >> b;\n            f.add_abs(a),\
+    \ f.add_const(b);\n        } else {\n            std::cout << f.argmin_range().first\
+    \ << ' ' << f.min() << '\\n';\n        }\n    }\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    solve();        \n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc127/tasks/abc127_f\"\n\n\
     #include <iostream>\n#include \"library/algorithm/slope_trick.hpp\"\n\nvoid solve()\
     \ {\n    suisen::SlopeTrick<long long> f;\n    int q;\n    std::cin >> q;\n  \
@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/slope_trick/absolute_minima.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 16:59:23+09:00'
+  timestamp: '2021-09-06 01:30:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/slope_trick/absolute_minima.test.cpp

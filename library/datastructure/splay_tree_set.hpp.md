@@ -121,24 +121,24 @@ data:
     \        using node_ptr_t = typename Node::node_ptr_t;\n    public:\n        SplayTreeMap()\
     \ : root(nullptr) {}\n        ~SplayTreeMap() {\n            delete root;\n  \
     \      }\n\n        SplayTreeMap& operator=(const SplayTreeMap&) = delete;\n \
-    \       SplayTreeMap& operator=(SplayTreeMap&& other) {\n            delete root;\n\
-    \            root = other.root;\n            other.root = nullptr;\n         \
-    \   return *this;\n        }\n\n        int size() {\n            return Node::size(root);\n\
-    \        }\n        bool contains(const Key &key) {\n            auto [new_root,\
-    \ found] = Node::find_key(root, key);\n            root = new_root;\n        \
-    \    return found;\n        }\n        void insert(const Key &key, const Val &val)\
-    \ {\n            root = Node::insert(root, key, val, true);\n        }\n     \
-    \   void insert_if_absent(const Key &key, const Val &val) {\n            root\
-    \ = Node::insert(root, key, val, false);\n        }\n        bool erase_key(const\
-    \ Key &key) {\n            auto [new_root, is_erased] = Node::erase_key(root,\
-    \ key);\n            root = new_root;\n            return is_erased;\n       \
-    \ }\n        void erase_index(int k) {\n            index_bounds_check(k, size()\
-    \ + 1);\n            root = Node::erase_index(root, k);\n        }\n        Val&\
-    \ get_or_create(const Key &key, const Val &val) {\n            root = Node::insert(root,\
-    \ key, val, false);\n            return root->val;\n        }\n        Val& operator[](const\
-    \ Key &key) {\n            return get_or_create(key, Val{});\n        }\n    \
-    \    Val get_or_default(const Key &key, const Val &default_value) {\n        \
-    \    auto [new_root, res] = Node::get_or_default(root, key, default_value);\n\
+    \       SplayTreeMap& operator=(SplayTreeMap&& other) {\n            if (other.root\
+    \ == root) return *this;\n            delete root;\n            root = other.root;\n\
+    \            other.root = nullptr;\n            return *this;\n        }\n\n \
+    \       int size() {\n            return Node::size(root);\n        }\n      \
+    \  bool contains(const Key &key) {\n            auto [new_root, found] = Node::find_key(root,\
+    \ key);\n            root = new_root;\n            return found;\n        }\n\
+    \        void insert(const Key &key, const Val &val) {\n            root = Node::insert(root,\
+    \ key, val, true);\n        }\n        void insert_if_absent(const Key &key, const\
+    \ Val &val) {\n            root = Node::insert(root, key, val, false);\n     \
+    \   }\n        bool erase_key(const Key &key) {\n            auto [new_root, is_erased]\
+    \ = Node::erase_key(root, key);\n            root = new_root;\n            return\
+    \ is_erased;\n        }\n        void erase_index(int k) {\n            index_bounds_check(k,\
+    \ size() + 1);\n            root = Node::erase_index(root, k);\n        }\n  \
+    \      Val& get_or_create(const Key &key, const Val &val) {\n            root\
+    \ = Node::insert(root, key, val, false);\n            return root->val;\n    \
+    \    }\n        Val& operator[](const Key &key) {\n            return get_or_create(key,\
+    \ Val{});\n        }\n        Val get_or_default(const Key &key, const Val &default_value)\
+    \ {\n            auto [new_root, res] = Node::get_or_default(root, key, default_value);\n\
     \            root = new_root;\n            return res;\n        }\n        std::pair<Key,\
     \ Val> kth_entry(int k) {\n            index_bounds_check(k, size());\n      \
     \      root = Node::splay_by_index(root, k);\n            return { root->key,\
@@ -157,16 +157,16 @@ data:
     \ std::nullptr_t> {\n    using Base = SplayTreeMap<Key, std::nullptr_t>;\n   \
     \ using Node = typename Base::Node;\n    public:\n        using Base::SplayTreeMap;\n\
     \        SplayTreeSet& operator=(const SplayTreeSet&) = delete;\n        SplayTreeSet&\
-    \ operator=(SplayTreeSet&& other) {\n            delete this->root;\n        \
-    \    this->root = other.root;\n            other.root = nullptr;\n           \
-    \ return *this;\n        }\n        int size() {\n            return Node::size(this->root);\n\
-    \        }\n        bool contains(const Key &key) {\n            auto [new_root,\
-    \ found] = Node::find_key(this->root, key);\n            this->root = new_root;\n\
-    \            return found;\n        }\n        void insert(const Key &key) {\n\
-    \            return this->insert_if_absent(key, nullptr);\n        }\n       \
-    \ Key operator[](int k) {\n            return this->kth_entry(k).first;\n    \
-    \    }\n        Key kth_element(int k) {\n            return (*this)[k];\n   \
-    \     }\n        SplayTreeSet split_by_index(int k) {\n            Base::index_bounds_check(k,\
+    \ operator=(SplayTreeSet&& other) {\n            if (other.root == this->root)\
+    \ return *this;\n            delete this->root;\n            this->root = other.root;\n\
+    \            other.root = nullptr;\n            return *this;\n        }\n   \
+    \     int size() {\n            return Node::size(this->root);\n        }\n  \
+    \      bool contains(const Key &key) {\n            auto [new_root, found] = Node::find_key(this->root,\
+    \ key);\n            this->root = new_root;\n            return found;\n     \
+    \   }\n        void insert(const Key &key) {\n            return this->insert_if_absent(key,\
+    \ nullptr);\n        }\n        Key operator[](int k) {\n            return this->kth_entry(k).first;\n\
+    \        }\n        Key kth_element(int k) {\n            return (*this)[k];\n\
+    \        }\n        SplayTreeSet split_by_index(int k) {\n            Base::index_bounds_check(k,\
     \ this->size() + 1);\n            auto [l, r] = Node::split_by_index(this->root,\
     \ k);\n            this->root = l;\n            return SplayTreeSet<Key>(r);\n\
     \        }\n        SplayTreeSet split_by_key(const Key &key) {\n            auto\
@@ -180,10 +180,11 @@ data:
     \ {\n    using Base = SplayTreeMap<Key, std::nullptr_t>;\n    using Node = typename\
     \ Base::Node;\n    public:\n        using Base::SplayTreeMap;\n        SplayTreeSet&\
     \ operator=(const SplayTreeSet&) = delete;\n        SplayTreeSet& operator=(SplayTreeSet&&\
-    \ other) {\n            delete this->root;\n            this->root = other.root;\n\
-    \            other.root = nullptr;\n            return *this;\n        }\n   \
-    \     int size() {\n            return Node::size(this->root);\n        }\n  \
-    \      bool contains(const Key &key) {\n            auto [new_root, found] = Node::find_key(this->root,\
+    \ other) {\n            if (other.root == this->root) return *this;\n        \
+    \    delete this->root;\n            this->root = other.root;\n            other.root\
+    \ = nullptr;\n            return *this;\n        }\n        int size() {\n   \
+    \         return Node::size(this->root);\n        }\n        bool contains(const\
+    \ Key &key) {\n            auto [new_root, found] = Node::find_key(this->root,\
     \ key);\n            this->root = new_root;\n            return found;\n     \
     \   }\n        void insert(const Key &key) {\n            return this->insert_if_absent(key,\
     \ nullptr);\n        }\n        Key operator[](int k) {\n            return this->kth_entry(k).first;\n\
@@ -201,7 +202,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/splay_tree_set.hpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:12+09:00'
+  timestamp: '2021-09-06 01:30:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/splay_tree_set.hpp

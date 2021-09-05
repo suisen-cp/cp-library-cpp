@@ -45,12 +45,12 @@ data:
     \         return *this;\n        }\n        SlopeTrick& operator>>=(const T shamt_right)\
     \ {\n            add_l += shamt_right, add_r += shamt_right;\n            return\
     \ *this;\n        }\n        SlopeTrick& translate(const T dx) {\n           \
-    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        SlopeTrick&\
-    \ sliding_window_minimum(const T a, const T b) {\n            assert(a <= b);\n\
-    \            add_l += a, add_r += b;\n            return *this;\n        }\n \
-    \   private:\n        static constexpr T inf = std::numeric_limits<T>::max() /\
-    \ 2;\n        T base, add_l, add_r;\n        pq_dsc l;\n        pq_asc r;\n};\n\
-    } // namespace suisen\n\n\n"
+    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        // f(x) =\
+    \ min_{x-b <= y <= x-a} f(y)\n        SlopeTrick& sliding_window_minimum(const\
+    \ T a, const T b) {\n            assert(a <= b);\n            add_l += a, add_r\
+    \ += b;\n            return *this;\n        }\n    private:\n        static constexpr\
+    \ T inf = std::numeric_limits<T>::max() / 2;\n        T base, add_l, add_r;\n\
+    \        pq_dsc l;\n        pq_asc r;\n};\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_SLOPE_TRICK\n#define SUISEN_SLOPE_TRICK\n\n#include <cassert>\n\
     #include <limits>\n#include <queue>\n\nnamespace suisen {\ntemplate <typename\
     \ T>\nclass SlopeTrick {\n    using pq_dsc = std::priority_queue<T>;\n    using\
@@ -79,17 +79,18 @@ data:
     \         return *this;\n        }\n        SlopeTrick& operator>>=(const T shamt_right)\
     \ {\n            add_l += shamt_right, add_r += shamt_right;\n            return\
     \ *this;\n        }\n        SlopeTrick& translate(const T dx) {\n           \
-    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        SlopeTrick&\
-    \ sliding_window_minimum(const T a, const T b) {\n            assert(a <= b);\n\
-    \            add_l += a, add_r += b;\n            return *this;\n        }\n \
-    \   private:\n        static constexpr T inf = std::numeric_limits<T>::max() /\
-    \ 2;\n        T base, add_l, add_r;\n        pq_dsc l;\n        pq_asc r;\n};\n\
-    } // namespace suisen\n\n#endif // SUISEN_SLOPE_TRICK"
+    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        // f(x) =\
+    \ min_{x-b <= y <= x-a} f(y)\n        SlopeTrick& sliding_window_minimum(const\
+    \ T a, const T b) {\n            assert(a <= b);\n            add_l += a, add_r\
+    \ += b;\n            return *this;\n        }\n    private:\n        static constexpr\
+    \ T inf = std::numeric_limits<T>::max() / 2;\n        T base, add_l, add_r;\n\
+    \        pq_dsc l;\n        pq_asc r;\n};\n} // namespace suisen\n\n#endif //\
+    \ SUISEN_SLOPE_TRICK"
   dependsOn: []
   isVerificationFile: false
   path: library/algorithm/slope_trick.hpp
   requiredBy: []
-  timestamp: '2021-07-20 16:59:23+09:00'
+  timestamp: '2021-09-06 01:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/algorithm/slope_trick/absolute_minima.test.cpp

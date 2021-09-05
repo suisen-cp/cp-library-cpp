@@ -175,24 +175,24 @@ data:
     \        using node_ptr_t = typename Node::node_ptr_t;\n    public:\n        SplayTreeMap()\
     \ : root(nullptr) {}\n        ~SplayTreeMap() {\n            delete root;\n  \
     \      }\n\n        SplayTreeMap& operator=(const SplayTreeMap&) = delete;\n \
-    \       SplayTreeMap& operator=(SplayTreeMap&& other) {\n            delete root;\n\
-    \            root = other.root;\n            other.root = nullptr;\n         \
-    \   return *this;\n        }\n\n        int size() {\n            return Node::size(root);\n\
-    \        }\n        bool contains(const Key &key) {\n            auto [new_root,\
-    \ found] = Node::find_key(root, key);\n            root = new_root;\n        \
-    \    return found;\n        }\n        void insert(const Key &key, const Val &val)\
-    \ {\n            root = Node::insert(root, key, val, true);\n        }\n     \
-    \   void insert_if_absent(const Key &key, const Val &val) {\n            root\
-    \ = Node::insert(root, key, val, false);\n        }\n        bool erase_key(const\
-    \ Key &key) {\n            auto [new_root, is_erased] = Node::erase_key(root,\
-    \ key);\n            root = new_root;\n            return is_erased;\n       \
-    \ }\n        void erase_index(int k) {\n            index_bounds_check(k, size()\
-    \ + 1);\n            root = Node::erase_index(root, k);\n        }\n        Val&\
-    \ get_or_create(const Key &key, const Val &val) {\n            root = Node::insert(root,\
-    \ key, val, false);\n            return root->val;\n        }\n        Val& operator[](const\
-    \ Key &key) {\n            return get_or_create(key, Val{});\n        }\n    \
-    \    Val get_or_default(const Key &key, const Val &default_value) {\n        \
-    \    auto [new_root, res] = Node::get_or_default(root, key, default_value);\n\
+    \       SplayTreeMap& operator=(SplayTreeMap&& other) {\n            if (other.root\
+    \ == root) return *this;\n            delete root;\n            root = other.root;\n\
+    \            other.root = nullptr;\n            return *this;\n        }\n\n \
+    \       int size() {\n            return Node::size(root);\n        }\n      \
+    \  bool contains(const Key &key) {\n            auto [new_root, found] = Node::find_key(root,\
+    \ key);\n            root = new_root;\n            return found;\n        }\n\
+    \        void insert(const Key &key, const Val &val) {\n            root = Node::insert(root,\
+    \ key, val, true);\n        }\n        void insert_if_absent(const Key &key, const\
+    \ Val &val) {\n            root = Node::insert(root, key, val, false);\n     \
+    \   }\n        bool erase_key(const Key &key) {\n            auto [new_root, is_erased]\
+    \ = Node::erase_key(root, key);\n            root = new_root;\n            return\
+    \ is_erased;\n        }\n        void erase_index(int k) {\n            index_bounds_check(k,\
+    \ size() + 1);\n            root = Node::erase_index(root, k);\n        }\n  \
+    \      Val& get_or_create(const Key &key, const Val &val) {\n            root\
+    \ = Node::insert(root, key, val, false);\n            return root->val;\n    \
+    \    }\n        Val& operator[](const Key &key) {\n            return get_or_create(key,\
+    \ Val{});\n        }\n        Val get_or_default(const Key &key, const Val &default_value)\
+    \ {\n            auto [new_root, res] = Node::get_or_default(root, key, default_value);\n\
     \            root = new_root;\n            return res;\n        }\n        std::pair<Key,\
     \ Val> kth_entry(int k) {\n            index_bounds_check(k, size());\n      \
     \      root = Node::splay_by_index(root, k);\n            return { root->key,\
@@ -234,15 +234,16 @@ data:
     \      RangeFoldableMap() : root(nullptr) {}\n        ~RangeFoldableMap() {\n\
     \            delete root;\n        }\n\n        RangeFoldableMap& operator=(const\
     \ RangeFoldableMap&) = delete;\n        RangeFoldableMap& operator=(RangeFoldableMap&&\
-    \ other) {\n            delete root;\n            root = other.root;\n       \
-    \     other.root = nullptr;\n            return *this;\n        }\n\n        int\
-    \ size() {\n            return Node::size(root);\n        }\n        bool contains(const\
-    \ Key &key) {\n            auto [new_root, found] = Node::find_key(root, key);\n\
-    \            root = new_root;\n            return found;\n        }\n        void\
-    \ insert(const Key &key, const Val &val) {\n            root = Node::insert(root,\
-    \ key, val, true);\n        }\n        void insert_if_absent(const Key &key, const\
-    \ Val &val) {\n            root = Node::insert(root, key, val, false);\n     \
-    \   }\n        bool erase_key(const Key &key) {\n            auto [new_root, is_erased]\
+    \ other) {\n            if (other.root == root) return *this;\n            delete\
+    \ root;\n            root = other.root;\n            other.root = nullptr;\n \
+    \           return *this;\n        }\n\n        int size() {\n            return\
+    \ Node::size(root);\n        }\n        bool contains(const Key &key) {\n    \
+    \        auto [new_root, found] = Node::find_key(root, key);\n            root\
+    \ = new_root;\n            return found;\n        }\n        void insert(const\
+    \ Key &key, const Val &val) {\n            root = Node::insert(root, key, val,\
+    \ true);\n        }\n        void insert_if_absent(const Key &key, const Val &val)\
+    \ {\n            root = Node::insert(root, key, val, false);\n        }\n    \
+    \    bool erase_key(const Key &key) {\n            auto [new_root, is_erased]\
     \ = Node::erase_key(root, key);\n            root = new_root;\n            return\
     \ is_erased;\n        }\n        void erase_index(int k) {\n            index_bounds_check(k,\
     \ size() + 1);\n            root = Node::erase_index(root, k);\n        }\n  \
@@ -303,15 +304,16 @@ data:
     \      RangeFoldableMap() : root(nullptr) {}\n        ~RangeFoldableMap() {\n\
     \            delete root;\n        }\n\n        RangeFoldableMap& operator=(const\
     \ RangeFoldableMap&) = delete;\n        RangeFoldableMap& operator=(RangeFoldableMap&&\
-    \ other) {\n            delete root;\n            root = other.root;\n       \
-    \     other.root = nullptr;\n            return *this;\n        }\n\n        int\
-    \ size() {\n            return Node::size(root);\n        }\n        bool contains(const\
-    \ Key &key) {\n            auto [new_root, found] = Node::find_key(root, key);\n\
-    \            root = new_root;\n            return found;\n        }\n        void\
-    \ insert(const Key &key, const Val &val) {\n            root = Node::insert(root,\
-    \ key, val, true);\n        }\n        void insert_if_absent(const Key &key, const\
-    \ Val &val) {\n            root = Node::insert(root, key, val, false);\n     \
-    \   }\n        bool erase_key(const Key &key) {\n            auto [new_root, is_erased]\
+    \ other) {\n            if (other.root == root) return *this;\n            delete\
+    \ root;\n            root = other.root;\n            other.root = nullptr;\n \
+    \           return *this;\n        }\n\n        int size() {\n            return\
+    \ Node::size(root);\n        }\n        bool contains(const Key &key) {\n    \
+    \        auto [new_root, found] = Node::find_key(root, key);\n            root\
+    \ = new_root;\n            return found;\n        }\n        void insert(const\
+    \ Key &key, const Val &val) {\n            root = Node::insert(root, key, val,\
+    \ true);\n        }\n        void insert_if_absent(const Key &key, const Val &val)\
+    \ {\n            root = Node::insert(root, key, val, false);\n        }\n    \
+    \    bool erase_key(const Key &key) {\n            auto [new_root, is_erased]\
     \ = Node::erase_key(root, key);\n            root = new_root;\n            return\
     \ is_erased;\n        }\n        void erase_index(int k) {\n            index_bounds_check(k,\
     \ size() + 1);\n            root = Node::erase_index(root, k);\n        }\n  \
@@ -350,7 +352,7 @@ data:
   path: library/datastructure/range_foldable_map.hpp
   requiredBy:
   - library/datastructure/lazy_eval_map.hpp
-  timestamp: '2021-09-02 19:44:31+09:00'
+  timestamp: '2021-09-06 01:30:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

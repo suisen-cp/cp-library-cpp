@@ -44,18 +44,19 @@ data:
     \         return *this;\n        }\n        SlopeTrick& operator>>=(const T shamt_right)\
     \ {\n            add_l += shamt_right, add_r += shamt_right;\n            return\
     \ *this;\n        }\n        SlopeTrick& translate(const T dx) {\n           \
-    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        SlopeTrick&\
-    \ sliding_window_minimum(const T a, const T b) {\n            assert(a <= b);\n\
-    \            add_l += a, add_r += b;\n            return *this;\n        }\n \
-    \   private:\n        static constexpr T inf = std::numeric_limits<T>::max() /\
-    \ 2;\n        T base, add_l, add_r;\n        pq_dsc l;\n        pq_asc r;\n};\n\
-    } // namespace suisen\n\n\n#line 6 \"test/src/algorithm/slope_trick/narrow_rectangles.test.cpp\"\
-    \n\nlong long solve() {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long\
-    \ long> f;\n    for (long long prev = 0, curr; n --> 0; prev = curr) {\n     \
-    \   long long l, r;\n        std::cin >> l >> r;\n        curr = r - l;\n    \
-    \    f.sliding_window_minimum(-curr, prev).add_abs(l);\n    }\n    return f.min();\n\
-    }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    std::cout << solve() << '\\n';\n    return 0;\n}\n"
+    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        // f(x) =\
+    \ min_{x-b <= y <= x-a} f(y)\n        SlopeTrick& sliding_window_minimum(const\
+    \ T a, const T b) {\n            assert(a <= b);\n            add_l += a, add_r\
+    \ += b;\n            return *this;\n        }\n    private:\n        static constexpr\
+    \ T inf = std::numeric_limits<T>::max() / 2;\n        T base, add_l, add_r;\n\
+    \        pq_dsc l;\n        pq_asc r;\n};\n} // namespace suisen\n\n\n#line 6\
+    \ \"test/src/algorithm/slope_trick/narrow_rectangles.test.cpp\"\n\nlong long solve()\
+    \ {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long long> f;\n  \
+    \  for (long long prev = 0, curr; n --> 0; prev = curr) {\n        long long l,\
+    \ r;\n        std::cin >> l >> r;\n        curr = r - l;\n        f.sliding_window_minimum(-curr,\
+    \ prev).add_abs(l);\n    }\n    return f.min();\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    std::cout << solve() << '\\n';\n    return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc070/tasks/arc070_e\"\n\n\
     #include <iostream>\n\n#include \"library/algorithm/slope_trick.hpp\"\n\nlong\
     \ long solve() {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long\
@@ -69,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 17:04:50+09:00'
+  timestamp: '2021-09-06 01:30:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp

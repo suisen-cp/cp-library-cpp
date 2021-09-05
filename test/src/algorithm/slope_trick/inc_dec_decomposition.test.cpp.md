@@ -44,16 +44,17 @@ data:
     \         return *this;\n        }\n        SlopeTrick& operator>>=(const T shamt_right)\
     \ {\n            add_l += shamt_right, add_r += shamt_right;\n            return\
     \ *this;\n        }\n        SlopeTrick& translate(const T dx) {\n           \
-    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        SlopeTrick&\
-    \ sliding_window_minimum(const T a, const T b) {\n            assert(a <= b);\n\
-    \            add_l += a, add_r += b;\n            return *this;\n        }\n \
-    \   private:\n        static constexpr T inf = std::numeric_limits<T>::max() /\
-    \ 2;\n        T base, add_l, add_r;\n        pq_dsc l;\n        pq_asc r;\n};\n\
-    } // namespace suisen\n\n\n#line 6 \"test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp\"\
-    \n\nconstexpr long long inf = std::numeric_limits<long long>::max() / 2;\n\nlong\
-    \ long solve() {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long\
-    \ long> f;\n    for (long long prev = inf, curr; n --> 0; prev = curr) {\n   \
-    \     std::cin >> curr;\n        f.translate(std::max(0LL, curr - prev)).cumulative_min_left().add_abs(0).add_abs(curr);\n\
+    \ return dx >= 0 ? *this >>= dx : *this <<= -dx;\n        }\n        // f(x) =\
+    \ min_{x-b <= y <= x-a} f(y)\n        SlopeTrick& sliding_window_minimum(const\
+    \ T a, const T b) {\n            assert(a <= b);\n            add_l += a, add_r\
+    \ += b;\n            return *this;\n        }\n    private:\n        static constexpr\
+    \ T inf = std::numeric_limits<T>::max() / 2;\n        T base, add_l, add_r;\n\
+    \        pq_dsc l;\n        pq_asc r;\n};\n} // namespace suisen\n\n\n#line 6\
+    \ \"test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp\"\n\nconstexpr\
+    \ long long inf = std::numeric_limits<long long>::max() / 2;\n\nlong long solve()\
+    \ {\n    int n;\n    std::cin >> n;\n    suisen::SlopeTrick<long long> f;\n  \
+    \  for (long long prev = inf, curr; n --> 0; prev = curr) {\n        std::cin\
+    \ >> curr;\n        f.translate(std::max(0LL, curr - prev)).cumulative_min_left().add_abs(0).add_abs(curr);\n\
     \    }\n    return f.min();\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n    std::cout << solve() << '\\n';\n    return 0;\n\
     }\n"
@@ -71,7 +72,7 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2021-07-20 16:59:23+09:00'
+  timestamp: '2021-09-06 01:30:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
