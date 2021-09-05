@@ -68,6 +68,7 @@ class SlopeTrick {
         SlopeTrick& translate(const T dx) {
             return dx >= 0 ? *this >>= dx : *this <<= -dx;
         }
+        // f(x) = min_{x-b <= y <= x-a} f(y)
         SlopeTrick& sliding_window_minimum(const T a, const T b) {
             assert(a <= b);
             add_l += a, add_r += b;
