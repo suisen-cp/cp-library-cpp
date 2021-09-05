@@ -76,6 +76,7 @@ class RangeFoldableDynamicSequence : public RangeFoldableDynamicSequenceBase<T, 
 
         RangeFoldableDynamicSequence& operator=(RangeFoldableDynamicSequence&  other) = delete;
         RangeFoldableDynamicSequence& operator=(RangeFoldableDynamicSequence&& other) {
+            if (other.root == this->root) return *this;
             delete this->root;
             this->root = other.root;
             other.root = nullptr;

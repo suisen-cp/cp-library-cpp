@@ -56,6 +56,7 @@ class RangeFoldableMap {
 
         RangeFoldableMap& operator=(const RangeFoldableMap&) = delete;
         RangeFoldableMap& operator=(RangeFoldableMap&& other) {
+            if (other.root == root) return *this;
             delete root;
             root = other.root;
             other.root = nullptr;

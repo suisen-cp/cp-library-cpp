@@ -250,6 +250,7 @@ class SplayTreeMap {
 
         SplayTreeMap& operator=(const SplayTreeMap&) = delete;
         SplayTreeMap& operator=(SplayTreeMap&& other) {
+            if (other.root == root) return *this;
             delete root;
             root = other.root;
             other.root = nullptr;

@@ -62,6 +62,7 @@ class LazyEvalMap {
 
         LazyEvalMap& operator=(const LazyEvalMap&) = delete;
         LazyEvalMap& operator=(LazyEvalMap&& other) {
+            if (other.root == root) return *this;
             delete root;
             root = other.root;
             other.root = nullptr;

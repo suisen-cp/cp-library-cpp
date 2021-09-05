@@ -12,6 +12,7 @@ class SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t> {
         using Base::SplayTreeMap;
         SplayTreeSet& operator=(const SplayTreeSet&) = delete;
         SplayTreeSet& operator=(SplayTreeSet&& other) {
+            if (other.root == this->root) return *this;
             delete this->root;
             this->root = other.root;
             other.root = nullptr;

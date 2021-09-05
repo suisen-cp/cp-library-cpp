@@ -72,6 +72,7 @@ class LazyEvalDynamicSequence : public LazyEvalDynamicSequenceBase<T, op, e, F, 
 
         LazyEvalDynamicSequence& operator=(LazyEvalDynamicSequence&  other) = delete;
         LazyEvalDynamicSequence& operator=(LazyEvalDynamicSequence&& other) {
+            if (other.root == this->root) return *this;
             delete this->root;
             this->root = other.root;
             other.root = nullptr;
