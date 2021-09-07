@@ -182,7 +182,7 @@ data:
       title: library/integral_geom/convex_hull.hpp
   - name: library/math
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/math/bostan_mori.hpp
       title: library/math/bostan_mori.hpp
     - icon: ':heavy_check_mark:'
@@ -250,6 +250,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: library/number/util.hpp
+  - name: library/string
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/string/suffix_automaton.hpp
+      title: library/string/suffix_automaton.hpp
   - name: library
     pages:
     - icon: ':warning:'
@@ -606,6 +611,11 @@ data:
     - icon: ':x:'
       path: test/src/graph/min_cost_flow/practice2_e.test.cpp
       title: test/src/graph/min_cost_flow/practice2_e.test.cpp
+  - name: test/src/math/bostan_mori
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+      title: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'
@@ -622,6 +632,9 @@ data:
       title: test/src/math/common_sequences/stirling_number2.test.cpp
   - name: test/src/math/fps
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/fps/division_of_polynomials.test.cpp
+      title: test/src/math/fps/division_of_polynomials.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/math/fps/exp_of_fps.test.cpp
       title: test/src/math/fps/exp_of_fps.test.cpp
@@ -702,6 +715,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
+  - name: test/src/string/suffix_automaton
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/string/suffix_automaton/number_of_substrings.test.cpp
+      title: test/src/string/suffix_automaton/number_of_substrings.test.cpp
   - name: test/src/transform/multiple
     pages:
     - icon: ':heavy_check_mark:'

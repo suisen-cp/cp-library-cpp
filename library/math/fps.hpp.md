@@ -9,7 +9,7 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/math/bostan_mori.hpp
     title: library/math/bostan_mori.hpp
   - icon: ':heavy_check_mark:'
@@ -32,6 +32,9 @@ data:
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/bernoulli_number.test.cpp
     title: test/src/math/common_sequences/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -43,6 +46,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/stirling_number2.test.cpp
     title: test/src/math/common_sequences/stirling_number2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/fps/division_of_polynomials.test.cpp
+    title: test/src/math/fps/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/fps/exp_of_fps.test.cpp
     title: test/src/math/fps/exp_of_fps.test.cpp
@@ -367,11 +373,13 @@ data:
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/math/fps/exp_of_fps.test.cpp
+  - test/src/math/fps/division_of_polynomials.test.cpp
   - test/src/math/fps/pow_of_fps.test.cpp
   - test/src/math/fps/log_of_fps.test.cpp
   - test/src/math/fps/inv_of_fps.test.cpp
   - test/src/math/interpolation/cumulative_sum.test.cpp
   - test/src/math/interpolation/polynomial_interpolation.test.cpp
+  - test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/partition_function.test.cpp

@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: library/math/bostan_mori.hpp
+    title: library/math/bostan_mori.hpp
   - icon: ':question:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
@@ -8,31 +11,34 @@ data:
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-    title: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/math/bostan_mori.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
-    \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
-    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
-    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
-    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
-    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
-    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
-    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
-    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
-    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
-    }\n\n\n#line 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ mint>\nusing convolution_t = std::vector<mint> (*)(const std::vector<mint> &,\
-    \ const std::vector<mint> &);\n\ntemplate <typename mint>\nclass FPS : public\
-    \ std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+    links:
+    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+  bundledCode: "#line 1 \"test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \nusing mint = atcoder::modint998244353;\n\n#line 1 \"library/math/bostan_mori.hpp\"\
+    \n\n\n\n#line 1 \"library/math/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <cassert>\n#line 7 \"library/math/fps.hpp\"\n\n#line 1 \"library/math/inv_mods.hpp\"\
+    \n\n\n\n#include <vector>\n\nnamespace suisen {\ntemplate <typename mint>\nclass\
+    \ inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int n) { ensure(n);\
+    \ }\n        const mint& operator[](int i) const {\n            ensure(i);\n \
+    \           return invs[i];\n        }\n        static void ensure(int n) {\n\
+    \            int sz = invs.size();\n            if (sz < 2) invs = {0, 1}, sz\
+    \ = 2;\n            if (sz < n + 1) {\n                invs.resize(n + 1);\n \
+    \               for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) *\
+    \ invs[mod % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
+    \ invs;\n        static constexpr int mod = mint::mod();\n};\ntemplate <typename\
+    \ mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 9 \"library/math/fps.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename mint>\nusing convolution_t = std::vector<mint>\
+    \ (*)(const std::vector<mint> &, const std::vector<mint> &);\n\ntemplate <typename\
+    \ mint>\nclass FPS : public std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
     \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
     \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
     \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        inline\
@@ -171,35 +177,42 @@ data:
     \ K = c.size();\n    assert(K <= a.size());\n    FPS<mint> Q(K + 1);\n    Q[0]\
     \ = 1;\n    for (int i = 0; i < K; ++i) {\n        Q[i + 1] = -c[i];\n    }\n\
     \    FPS<mint> P = a * Q;\n    return bostan_mori(P.pre_inplace(K - 1), Q, n);\n\
-    }\n\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_BOSTAN_MORI\n#define SUISEN_BOSTAN_MORI\n\n#include \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(FPS<mint> P,\
-    \ FPS<mint> Q, unsigned long long n) {\n    auto alternate = [](FPS<mint> &&a,\
-    \ bool odd) -> FPS<mint>&& {\n        int i = 0;\n        for (int j = odd; j\
-    \ < a.size(); j += 2) a[i++] = a[j];\n        a.erase(a.begin() + i, a.end());\n\
-    \        return std::move(a);\n    };\n    for (; n; n >>= 1) {\n        FPS<mint>\
-    \ mQ(Q);\n        for (int i = 1; i < Q.size(); i += 2) mQ[i] = -mQ[i];\n    \
-    \    P = alternate(P * mQ, n & 1);\n        Q = alternate(Q * mQ,     0);\n  \
-    \  }\n    return P[0];\n}\n\ntemplate <typename mint>\nmint nth_term_of_linearly_recurrent_sequence(const\
-    \ FPS<mint> &a, const FPS<mint> &c, const unsigned long long n) {\n    const int\
-    \ K = c.size();\n    assert(K <= a.size());\n    FPS<mint> Q(K + 1);\n    Q[0]\
-    \ = 1;\n    for (int i = 0; i < K; ++i) {\n        Q[i + 1] = -c[i];\n    }\n\
-    \    FPS<mint> P = a * Q;\n    return bostan_mori(P.pre_inplace(K - 1), Q, n);\n\
-    }\n\n} // namespace suisen\n\n#endif // SUISEN_BOSTAN_MORI"
+    }\n\n} // namespace suisen\n\n\n#line 10 \"test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
+    \nusing suisen::FPS;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    FPS<mint>::set_multiplication([](const auto\
+    \ &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    std::size_t\
+    \ d;\n    unsigned long long k;\n    std::cin >> d >> k;\n\n    FPS<mint> a(d),\
+    \ c(d);\n    for (std::size_t i = 0; i < d; ++i) {\n        unsigned int v;\n\
+    \        std::cin >> v;\n        a[i] = v;\n    }\n    for (std::size_t i = 0;\
+    \ i < d; ++i) {\n        unsigned int v;\n        std::cin >> v;\n        c[i]\
+    \ = v;\n    }\n    \n    std::cout << suisen::nth_term_of_linearly_recurrent_sequence(a,\
+    \ c, k).val() << std::endl;\n    \n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \nusing mint = atcoder::modint998244353;\n\n#include \"library/math/bostan_mori.hpp\"\
+    \nusing suisen::FPS;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    FPS<mint>::set_multiplication([](const auto\
+    \ &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    std::size_t\
+    \ d;\n    unsigned long long k;\n    std::cin >> d >> k;\n\n    FPS<mint> a(d),\
+    \ c(d);\n    for (std::size_t i = 0; i < d; ++i) {\n        unsigned int v;\n\
+    \        std::cin >> v;\n        a[i] = v;\n    }\n    for (std::size_t i = 0;\
+    \ i < d; ++i) {\n        unsigned int v;\n        std::cin >> v;\n        c[i]\
+    \ = v;\n    }\n    \n    std::cout << suisen::nth_term_of_linearly_recurrent_sequence(a,\
+    \ c, k).val() << std::endl;\n    \n    return 0;\n}"
   dependsOn:
+  - library/math/bostan_mori.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: false
-  path: library/math/bostan_mori.hpp
+  isVerificationFile: true
+  path: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
   timestamp: '2021-09-08 03:45:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-documentation_of: library/math/bostan_mori.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
 layout: document
 redirect_from:
-- /library/library/math/bostan_mori.hpp
-- /library/library/math/bostan_mori.hpp.html
-title: library/math/bostan_mori.hpp
+- /verify/test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+- /verify/test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp.html
+title: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
 ---

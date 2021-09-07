@@ -8,18 +8,21 @@ data:
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-    title: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/math/bostan_mori.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
+    links:
+    - https://judge.yosupo.jp/problem/division_of_polynomials
+  bundledCode: "#line 1 \"test/src/math/fps/division_of_polynomials.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\n\n#include\
+    \ <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\nusing\
+    \ mint = atcoder::modint998244353;\n\n#line 1 \"library/math/fps.hpp\"\n\n\n\n\
+    #include <algorithm>\n#include <cassert>\n#line 7 \"library/math/fps.hpp\"\n\n\
+    #line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
     \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
     \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
     \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
@@ -158,48 +161,51 @@ data:
     }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
     \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
     \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
-    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/math/bostan_mori.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(FPS<mint> P,\
-    \ FPS<mint> Q, unsigned long long n) {\n    auto alternate = [](FPS<mint> &&a,\
-    \ bool odd) -> FPS<mint>&& {\n        int i = 0;\n        for (int j = odd; j\
-    \ < a.size(); j += 2) a[i++] = a[j];\n        a.erase(a.begin() + i, a.end());\n\
-    \        return std::move(a);\n    };\n    for (; n; n >>= 1) {\n        FPS<mint>\
-    \ mQ(Q);\n        for (int i = 1; i < Q.size(); i += 2) mQ[i] = -mQ[i];\n    \
-    \    P = alternate(P * mQ, n & 1);\n        Q = alternate(Q * mQ,     0);\n  \
-    \  }\n    return P[0];\n}\n\ntemplate <typename mint>\nmint nth_term_of_linearly_recurrent_sequence(const\
-    \ FPS<mint> &a, const FPS<mint> &c, const unsigned long long n) {\n    const int\
-    \ K = c.size();\n    assert(K <= a.size());\n    FPS<mint> Q(K + 1);\n    Q[0]\
-    \ = 1;\n    for (int i = 0; i < K; ++i) {\n        Q[i + 1] = -c[i];\n    }\n\
-    \    FPS<mint> P = a * Q;\n    return bostan_mori(P.pre_inplace(K - 1), Q, n);\n\
-    }\n\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_BOSTAN_MORI\n#define SUISEN_BOSTAN_MORI\n\n#include \"library/math/fps.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(FPS<mint> P,\
-    \ FPS<mint> Q, unsigned long long n) {\n    auto alternate = [](FPS<mint> &&a,\
-    \ bool odd) -> FPS<mint>&& {\n        int i = 0;\n        for (int j = odd; j\
-    \ < a.size(); j += 2) a[i++] = a[j];\n        a.erase(a.begin() + i, a.end());\n\
-    \        return std::move(a);\n    };\n    for (; n; n >>= 1) {\n        FPS<mint>\
-    \ mQ(Q);\n        for (int i = 1; i < Q.size(); i += 2) mQ[i] = -mQ[i];\n    \
-    \    P = alternate(P * mQ, n & 1);\n        Q = alternate(Q * mQ,     0);\n  \
-    \  }\n    return P[0];\n}\n\ntemplate <typename mint>\nmint nth_term_of_linearly_recurrent_sequence(const\
-    \ FPS<mint> &a, const FPS<mint> &c, const unsigned long long n) {\n    const int\
-    \ K = c.size();\n    assert(K <= a.size());\n    FPS<mint> Q(K + 1);\n    Q[0]\
-    \ = 1;\n    for (int i = 0; i < K; ++i) {\n        Q[i + 1] = -c[i];\n    }\n\
-    \    FPS<mint> P = a * Q;\n    return bostan_mori(P.pre_inplace(K - 1), Q, n);\n\
-    }\n\n} // namespace suisen\n\n#endif // SUISEN_BOSTAN_MORI"
+    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 10 \"test/src/math/fps/division_of_polynomials.test.cpp\"\
+    \nusing suisen::FPS;\n\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    FPS<mint>::set_multiplication([](const auto\
+    \ &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int n, m;\n\
+    \    std::cin >> n >> m;\n    FPS<mint> f(n), g(m);\n    for (int i = 0; i < n;\
+    \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
+    \    }\n    for (int i = 0; i < m; ++i) {\n        int coef;\n        std::cin\
+    \ >> coef;\n        g[i] = coef;\n    }\n    auto q = f / g, r = f % g;\n    while\
+    \ (q.size() and q.back() == 0) q.pop_back();\n    while (r.size() and r.back()\
+    \ == 0) r.pop_back();\n    std::cout << q.size() << ' ' << r.size() << '\\n';\n\
+    \    for (int i = 0; i < q.size(); ++i) {\n        std::cout << q[i].val();\n\
+    \        if (i + 1 < q.size()) std::cout << ' ';\n    }\n    std::cout << '\\\
+    n';\n    for (int i = 0; i < r.size(); ++i) {\n        std::cout << r[i].val();\n\
+    \        if (i + 1 < r.size()) std::cout << ' ';\n    }\n    std::cout << '\\\
+    n';\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \nusing mint = atcoder::modint998244353;\n\n#include \"library/math/fps.hpp\"\n\
+    using suisen::FPS;\n\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    FPS<mint>::set_multiplication([](const auto\
+    \ &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int n, m;\n\
+    \    std::cin >> n >> m;\n    FPS<mint> f(n), g(m);\n    for (int i = 0; i < n;\
+    \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
+    \    }\n    for (int i = 0; i < m; ++i) {\n        int coef;\n        std::cin\
+    \ >> coef;\n        g[i] = coef;\n    }\n    auto q = f / g, r = f % g;\n    while\
+    \ (q.size() and q.back() == 0) q.pop_back();\n    while (r.size() and r.back()\
+    \ == 0) r.pop_back();\n    std::cout << q.size() << ' ' << r.size() << '\\n';\n\
+    \    for (int i = 0; i < q.size(); ++i) {\n        std::cout << q[i].val();\n\
+    \        if (i + 1 < q.size()) std::cout << ' ';\n    }\n    std::cout << '\\\
+    n';\n    for (int i = 0; i < r.size(); ++i) {\n        std::cout << r[i].val();\n\
+    \        if (i + 1 < r.size()) std::cout << ' ';\n    }\n    std::cout << '\\\
+    n';\n    return 0;\n}"
   dependsOn:
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: false
-  path: library/math/bostan_mori.hpp
+  isVerificationFile: true
+  path: test/src/math/fps/division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2021-09-08 03:45:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-documentation_of: library/math/bostan_mori.hpp
+  timestamp: '2021-09-08 03:45:41+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/math/fps/division_of_polynomials.test.cpp
 layout: document
 redirect_from:
-- /library/library/math/bostan_mori.hpp
-- /library/library/math/bostan_mori.hpp.html
-title: library/math/bostan_mori.hpp
+- /verify/test/src/math/fps/division_of_polynomials.test.cpp
+- /verify/test/src/math/fps/division_of_polynomials.test.cpp.html
+title: test/src/math/fps/division_of_polynomials.test.cpp
 ---
