@@ -56,11 +56,11 @@ class SuffixAutomatonBase {
         }
 
         bool accept(const Container &t) const {
-            Node &cur = nodes[0];
+            int cur = 0;
             for (const auto &c : t) {
-                auto it = cur.nxt.find(c);
-                if (it == cur.nxt.end()) return false;
-                cur = nodes[it->second];
+                auto it = nodes[cur].nxt.find(c);
+                if (it == nodes[cur].nxt.end()) return false;
+                cur = it->second;
             }
             return true;
         }
@@ -98,28 +98,28 @@ class SuffixAutomatonBase {
 
         class SubstringSet {
             public:
-                SubstringSet(const SuffixAutomatonBase &sa, std::vector<long long> &&dp) : sa_(sa), dp_(std::move(dp)) {}
+                SubstringSet(const SuffixAutomatonBase *sa, std::vector<long long> &&dp) : sa(sa), dp(std::move(dp)) {}
 
                 long long size() const {
-                    return dp_[0];
+                    return dp[0];
                 }
 
                 bool contains(const Container &t) const {
-                    return sa_.accept(t);
+                    return sa->accept(t);
                 }
 
-                Container operator[](unsigned long long k) const {
-                    assert(k < dp_[0]);
+                Container operator[](long long k) const {
+                    assert((unsigned long long) k < dp[0]);
                     int cur = 0;
                     Container res;
                     while (k--) {
-                        for (const auto &[e, v] : sa_.nodes[cur].nxt) {
-                            if (k < dp_[v]) {
+                        for (const auto &[e, v] : sa->nodes[cur].nxt) {
+                            if (k < dp[v]) {
                                 res.push_back(e);
                                 cur = v;
                                 break;
                             } else {
-                                k -= dp_[v];
+                                k -= dp[v];
                             }
                         }
                     }
@@ -130,9 +130,93 @@ class SuffixAutomatonBase {
                     return (*this)[k];
                 }
 
+                long long count_lt(const Container &t) const {
+                    long long res = 0;
+                    int cur = 0;
+                    for (const T& c : t) {
+                        ++res;
+                        auto it_r = sa->nodes[cur].nxt.lower_bound(c);
+                        for (auto it_l = sa->nodes[cur].nxt.begin(); it_l != it_r; ++it_l) {
+                            res += dp[it_l->second];
+                        }
+                        if (it_r == sa->nodes[cur].nxt.end() or it_r->first != c) break;
+                        cur = it_r->second;
+                    }
+                    return res;
+                }
+                long long count_leq(const Container &t) const {
+                    return count_lt(t) + contains(t);
+                }
+                long long count_gt(const Container &t) const {
+                    return size() - count_leq(t);
+                }
+                long long count_geq(const Container &t) const {
+                    return size() - count_lt(t);
+                }
+
+                Container min_geq(const Container &t) const {
+                    return (*this)[count_lt(t)];
+                }
+                Container min_gt(const Container &t) const {
+                    return (*this)[count_leq(t)];
+                }
+                Container max_lt(const Container &t) const {
+                    return (*this)[count_lt(t) - 1];
+                }
+                Container max_leq(const Container &t) const {
+                    return (*this)[count_leq(t) - 1];
+                }
+
+                class SubstringSetIterator {
+                    public:
+                        SubstringSetIterator(const SubstringSet *s, long long init) : st(s), k(init) {}
+
+                        SubstringSetIterator& operator=(const SubstringSetIterator& other) {
+                            st = other.st;
+                            k = other.k;
+                            return *this;
+                        }
+
+                        Container operator*() const { return st->kth_substring(k); }
+
+                        SubstringSetIterator& operator--() { --k; return *this; }
+                        SubstringSetIterator& operator++() { ++k; return *this; }
+
+                        bool operator==(const SubstringSetIterator& other) const { return k == other.k; }
+                        bool operator!=(const SubstringSetIterator& other) const { return k != other.k; }
+                        bool operator< (const SubstringSetIterator& other) const { return k <  other.k; }
+                        bool operator<=(const SubstringSetIterator& other) const { return k <= other.k; }
+                        bool operator> (const SubstringSetIterator& other) const { return k >  other.k; }
+                        bool operator>=(const SubstringSetIterator& other) const { return k >= other.k; }
+
+                    private:
+                        const SubstringSet *st;
+                        long long k;
+                };
+
+                SubstringSetIterator begin() const {
+                    return SubstringSetIterator { this, 0LL };
+                }
+                SubstringSetIterator end() const {
+                    return SubstringSetIterator { this, size() };
+                }
+
+                SubstringSetIterator lower_bound(const Container &t) const {
+                    return SubstringSetIterator { this, count_lt(t) };
+                }
+                SubstringSetIterator upper_bound(const Container &t) const {
+                    return SubstringSetIterator { this, count_leq(t) };
+                }
+
+                SubstringSetIterator find(const Container &t) const {
+                    auto it = lower_bound(t);
+                    if (it == end() or t != *it) return end();
+                    return it;
+                }
+
             private:
-                const SuffixAutomatonBase &sa_;
-                const std::vector<long long> dp_;
+                const SuffixAutomatonBase *sa;
+                std::vector<long long> dp;
         };
 
         SubstringSet substring_set() const {
@@ -143,7 +227,7 @@ class SuffixAutomatonBase {
                 const int u = ord[i];
                 for (const auto &[_, v] : nodes[u].nxt) dp[u] += dp[v];
             }
-            return SubstringSet { *this, std::move(dp) };
+            return SubstringSet { this, std::move(dp) };
         }
 
         // returns { from, len } s.t. lcs = t[from:from+len]
