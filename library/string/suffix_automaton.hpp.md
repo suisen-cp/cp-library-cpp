@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/string/substring_set.hpp
     title: library/string/substring_set.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/substring_set/arc097_a.test.cpp
     title: test/src/string/substring_set/arc097_a.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,9 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/string/suffix_automaton/yuki430.test.cpp
     title: test/src/string/suffix_automaton/yuki430.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://w.atwiki.jp/uwicoder/pages/2842.html
@@ -159,7 +159,7 @@ data:
   requiredBy:
   - library/string/substring_set.hpp
   timestamp: '2021-09-08 17:15:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/string/substring_set/number_of_substrings.test.cpp
   - test/src/string/substring_set/arc097_a.test.cpp

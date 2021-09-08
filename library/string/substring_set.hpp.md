@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/string/suffix_automaton.hpp
     title: library/string/suffix_automaton.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/substring_set/arc097_a.test.cpp
     title: test/src/string/substring_set/arc097_a.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/string/substring_set/number_of_substrings.test.cpp
     title: test/src/string/substring_set/number_of_substrings.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/string/substring_set.hpp\"\n\n\n\n#line 1 \"library/string/suffix_automaton.hpp\"\
@@ -287,7 +287,7 @@ data:
   path: library/string/substring_set.hpp
   requiredBy: []
   timestamp: '2021-09-08 17:15:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/string/substring_set/number_of_substrings.test.cpp
   - test/src/string/substring_set/arc097_a.test.cpp

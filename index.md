@@ -252,10 +252,10 @@ data:
       title: library/number/util.hpp
   - name: library/string
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/string/substring_set.hpp
       title: library/string/substring_set.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/string/suffix_automaton.hpp
       title: library/string/suffix_automaton.hpp
   - name: library
@@ -720,7 +720,7 @@ data:
       title: test/src/number/util/divide_both.test.cpp
   - name: test/src/string/substring_set
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/string/substring_set/arc097_a.test.cpp
       title: test/src/string/substring_set/arc097_a.test.cpp
     - icon: ':heavy_check_mark:'

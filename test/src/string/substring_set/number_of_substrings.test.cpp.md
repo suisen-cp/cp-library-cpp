@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/string/substring_set.hpp
     title: library/string/substring_set.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/string/suffix_automaton.hpp
     title: library/string/suffix_automaton.hpp
   _extendedRequiredBy: []
