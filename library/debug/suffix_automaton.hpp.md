@@ -7,16 +7,13 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/430
     links:
-    - https://yukicoder.me/problems/no/430
-  bundledCode: "#line 1 \"test/src/string/suffix_automaton/yuki430.test.cpp\"\n#define\
-    \ PROBLEM \"https://yukicoder.me/problems/no/430\"\n\n#include <iostream>\n\n\
-    #line 1 \"library/string/suffix_automaton.hpp\"\n\n\n\n#include <algorithm>\n\
+    - http://chart.apis.google.com/chart?cht=gv&chl=
+  bundledCode: "#line 1 \"library/debug/suffix_automaton.hpp\"\n\n\n\n#include <sstream>\n\
+    \n#line 1 \"library/string/suffix_automaton.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cassert>\n#include <deque>\n#include <map>\n#include <string>\n#include\
     \ <vector>\n\nnamespace suisen {\n\n/**\n * reference\n * - https://w.atwiki.jp/uwicoder/pages/2842.html\n\
     \ * - https://cp-algorithms.com/string/suffix-automaton.html\n */\ntemplate <typename\
@@ -120,31 +117,63 @@ data:
     \ SuffixAutomatonBase<char, std::string> {\n    using SuffixAutomatonBase<char,\
     \ std::string>::SuffixAutomatonBase;\n    using value_type = char;\n    using\
     \ sequence_type = std::string;\n};\n\nSuffixAutomaton(std::string) -> SuffixAutomaton<char>;\n\
-    \n} // namespace suisen\n\n\n#line 6 \"test/src/string/suffix_automaton/yuki430.test.cpp\"\
-    \nusing suisen::SuffixAutomaton;\n\nint main() {\n    std::string s;\n    std::cin\
-    \ >> s;\n    SuffixAutomaton sa(s);\n    auto counter = sa.substring_counter();\n\
-    \    int m;\n    std::cin >> m;\n    long long ans = 0;\n    while (m --> 0) {\n\
-    \        std::string c;\n        std::cin >> c;\n        ans += counter.count(c);\n\
-    \    }\n    std::cout << ans << '\\n';\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/430\"\n\n#include <iostream>\n\
-    \n#include \"library/string/suffix_automaton.hpp\"\nusing suisen::SuffixAutomaton;\n\
-    \nint main() {\n    std::string s;\n    std::cin >> s;\n    SuffixAutomaton sa(s);\n\
-    \    auto counter = sa.substring_counter();\n    int m;\n    std::cin >> m;\n\
-    \    long long ans = 0;\n    while (m --> 0) {\n        std::string c;\n     \
-    \   std::cin >> c;\n        ans += counter.count(c);\n    }\n    std::cout <<\
-    \ ans << '\\n';\n    return 0;\n}"
+    \n} // namespace suisen\n\n\n#line 7 \"library/debug/suffix_automaton.hpp\"\n\n\
+    namespace suisen::debug {\n\ntemplate <typename T, typename SequenceType>\nstd::string\
+    \ to_dot(const SuffixAutomatonBase<T, SequenceType> &dfa, bool display_suffix_link\
+    \ = true, bool use_chart_api = false) {\n    const std::string graph_rank_dir\
+    \ = \"LR\";\n    const std::string node_shape = \"circle\";\n    const std::string\
+    \ suffix_link_style = \"dashed\";\n    const std::string suffix_link_color = \"\
+    blue\";\n\n    const auto id = [&](int i) {\n        return std::to_string(i);\n\
+    \    };\n    const auto label = [&](int i) {\n        std::string s = std::to_string(i);\n\
+    \        if (dfa.nodes[i].cloned) s += \"C\";\n        return s;\n    };\n   \
+    \ const auto edge = [&](int i, int j) {\n        return id(i) + \"->\" + id(j);\n\
+    \    };\n\n    std::ostringstream oss;\n    if (use_chart_api) oss << \"http://chart.apis.google.com/chart?cht=gv&chl=\"\
+    ;\n    oss << \"digraph{\";\n    oss << \"graph[rankdir=\" << graph_rank_dir <<\
+    \ \",ordering=out];\";\n    oss << \"node[shape=\" << node_shape << \",width=0.5];\"\
+    ;\n    const int n = dfa.nodes.size();\n    for (int i = 0; i < n; ++i) {\n  \
+    \      oss << id(i) << \"[label=\\\"\" << label(i) << \"\\\",fixedsize=true];\"\
+    ;\n    }\n    for (int i = 0; i < n; ++i) {\n        const auto &node = dfa.nodes[i];\n\
+    \        if (display_suffix_link and node.link >= 0) {\n            oss << edge(i,\
+    \ node.link) << \"[constraint=false,color=\" << suffix_link_color << \",style=\"\
+    \ << suffix_link_style << \"];\";\n        }\n        for (const auto &[k, v]\
+    \ : node.nxt) {\n            oss << edge(i, v) << \"[label=\\\"\" << k << \"\\\
+    \",fontsize=20];\";\n        }\n    }\n    oss << \"}\";\n    return oss.str();\n\
+    }\n\n} // namespace suisen::debug\n\n\n\n"
+  code: "#ifndef SUISEN_DEBUG_SUFFIX_AUTOMATON\n#define SUISEN_DEBUG_SUFFIX_AUTOMATON\n\
+    \n#include <sstream>\n\n#include \"library/string/suffix_automaton.hpp\"\n\nnamespace\
+    \ suisen::debug {\n\ntemplate <typename T, typename SequenceType>\nstd::string\
+    \ to_dot(const SuffixAutomatonBase<T, SequenceType> &dfa, bool display_suffix_link\
+    \ = true, bool use_chart_api = false) {\n    const std::string graph_rank_dir\
+    \ = \"LR\";\n    const std::string node_shape = \"circle\";\n    const std::string\
+    \ suffix_link_style = \"dashed\";\n    const std::string suffix_link_color = \"\
+    blue\";\n\n    const auto id = [&](int i) {\n        return std::to_string(i);\n\
+    \    };\n    const auto label = [&](int i) {\n        std::string s = std::to_string(i);\n\
+    \        if (dfa.nodes[i].cloned) s += \"C\";\n        return s;\n    };\n   \
+    \ const auto edge = [&](int i, int j) {\n        return id(i) + \"->\" + id(j);\n\
+    \    };\n\n    std::ostringstream oss;\n    if (use_chart_api) oss << \"http://chart.apis.google.com/chart?cht=gv&chl=\"\
+    ;\n    oss << \"digraph{\";\n    oss << \"graph[rankdir=\" << graph_rank_dir <<\
+    \ \",ordering=out];\";\n    oss << \"node[shape=\" << node_shape << \",width=0.5];\"\
+    ;\n    const int n = dfa.nodes.size();\n    for (int i = 0; i < n; ++i) {\n  \
+    \      oss << id(i) << \"[label=\\\"\" << label(i) << \"\\\",fixedsize=true];\"\
+    ;\n    }\n    for (int i = 0; i < n; ++i) {\n        const auto &node = dfa.nodes[i];\n\
+    \        if (display_suffix_link and node.link >= 0) {\n            oss << edge(i,\
+    \ node.link) << \"[constraint=false,color=\" << suffix_link_color << \",style=\"\
+    \ << suffix_link_style << \"];\";\n        }\n        for (const auto &[k, v]\
+    \ : node.nxt) {\n            oss << edge(i, v) << \"[label=\\\"\" << k << \"\\\
+    \",fontsize=20];\";\n        }\n    }\n    oss << \"}\";\n    return oss.str();\n\
+    }\n\n} // namespace suisen::debug\n\n\n#endif // SUISEN_DEBUG_SUFFIX_AUTOMATON\n"
   dependsOn:
   - library/string/suffix_automaton.hpp
-  isVerificationFile: true
-  path: test/src/string/suffix_automaton/yuki430.test.cpp
+  isVerificationFile: false
+  path: library/debug/suffix_automaton.hpp
   requiredBy: []
   timestamp: '2021-09-09 05:49:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/src/string/suffix_automaton/yuki430.test.cpp
+documentation_of: library/debug/suffix_automaton.hpp
 layout: document
 redirect_from:
-- /verify/test/src/string/suffix_automaton/yuki430.test.cpp
-- /verify/test/src/string/suffix_automaton/yuki430.test.cpp.html
-title: test/src/string/suffix_automaton/yuki430.test.cpp
+- /library/library/debug/suffix_automaton.hpp
+- /library/library/debug/suffix_automaton.hpp.html
+title: library/debug/suffix_automaton.hpp
 ---

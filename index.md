@@ -136,6 +136,9 @@ data:
   - name: library/debug
     pages:
     - icon: ':warning:'
+      path: library/debug/suffix_automaton.hpp
+      title: library/debug/suffix_automaton.hpp
+    - icon: ':warning:'
       path: library/debug/tree.hpp
       title: library/debug/tree.hpp
   - name: library/geom
@@ -163,6 +166,9 @@ data:
     - icon: ':warning:'
       path: library/graph/BFS01.hpp
       title: library/graph/BFS01.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/graph/cycle_detection.hpp
+      title: library/graph/cycle_detection.hpp
     - icon: ':warning:'
       path: library/graph/dijkstra.hpp
       title: library/graph/dijkstra.hpp
@@ -603,6 +609,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - name: test/src/graph/cycle_detection
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/cycle_detection/cycle_detection.test.cpp
+      title: test/src/graph/cycle_detection/cycle_detection.test.cpp
   - name: test/src/graph/min_cost_flow
     pages:
     - icon: ':x:'
