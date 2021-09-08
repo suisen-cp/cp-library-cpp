@@ -12,287 +12,152 @@ namespace suisen {
 /**
  * reference : https://w.atwiki.jp/uwicoder/pages/2842.html
  */
-template <typename T, typename Container>
-class SuffixAutomatonBase {
+template <typename T, typename SequenceType>
+struct SuffixAutomatonBase {
     struct Node {
         std::map<T, int> nxt;
         int link, len;
         bool cloned;
     };
 
-    public:
-        SuffixAutomatonBase() {
-            nodes.push_back({ {}, -1, 0, false });
-            last = 0;
-        }
-        SuffixAutomatonBase(const Container &s) : SuffixAutomatonBase() {
-            for (const T &c : s) append(c);
-        }
+    std::vector<Node> nodes;
+    int last;
 
-        void append(const T &c) {
-            const int new_node = nodes.size();
-            nodes.push_back({ {}, -1, nodes[last].len + 1, false });
-            int p = last;
-            for (; p != -1 and not nodes[p].nxt.count(c); p = nodes[p].link) nodes[p].nxt[c] = new_node;
-            const int q = p == -1 ? 0 : nodes[p].nxt[c];
-            if (p == -1 or nodes[p].len + 1 == nodes[q].len) {
-                nodes[new_node].link = q;
-            } else {
-                const int clone_node = nodes.size();
-                nodes.push_back({ nodes[q].nxt, nodes[q].link, nodes[p].len + 1, true });
-                for (; p != -1 and nodes[p].nxt[c] == q; p = nodes[p].link) nodes[p].nxt[c] = clone_node;
-                nodes[new_node].link = nodes[q].link = clone_node;
+    SuffixAutomatonBase() {
+        nodes.push_back({ {}, -1, 0, false });
+        last = 0;
+    }
+    SuffixAutomatonBase(const SequenceType &s) : SuffixAutomatonBase() {
+        for (const T &c : s) append(c);
+    }
+
+    void append(const T &c) {
+        const int new_node = nodes.size();
+        nodes.push_back({ {}, -1, nodes[last].len + 1, false });
+        int p = last;
+        for (; p != -1 and not nodes[p].nxt.count(c); p = nodes[p].link) nodes[p].nxt[c] = new_node;
+        const int q = p == -1 ? 0 : nodes[p].nxt[c];
+        if (p == -1 or nodes[p].len + 1 == nodes[q].len) {
+            nodes[new_node].link = q;
+        } else {
+            const int clone_node = nodes.size();
+            nodes.push_back({ nodes[q].nxt, nodes[q].link, nodes[p].len + 1, true });
+            for (; p != -1 and nodes[p].nxt[c] == q; p = nodes[p].link) nodes[p].nxt[c] = clone_node;
+            nodes[new_node].link = nodes[q].link = clone_node;
+        }
+        last = new_node;
+    }
+    SuffixAutomatonBase& operator+=(const T &c) {
+        append(c);
+        return *this;
+    }
+
+    bool accept(const SequenceType &t) const {
+        int cur = 0;
+        for (const auto &c : t) {
+            auto it = nodes[cur].nxt.find(c);
+            if (it == nodes[cur].nxt.end()) return false;
+            cur = it->second;
+        }
+        return true;
+    }
+
+    class SubstringCounter {
+        public:
+            SubstringCounter(const SuffixAutomatonBase *sa, std::vector<long long> &&dp) : sa(sa), dp(std::move(dp)) {}
+
+            long long count(const SequenceType &t) const {
+                int cur = 0;
+                for (const auto &c : t) {
+                    auto it = sa->nodes[cur].nxt.find(c);
+                    if (it == sa->nodes[cur].nxt.end()) return 0;
+                    cur = it->second;
+                }
+                return dp[cur];
             }
-            last = new_node;
-        }
 
-        SuffixAutomatonBase& operator+=(const T &c) {
-            append(c);
-            return *this;
-        }
+        private:
+            const SuffixAutomatonBase *sa;
+            const std::vector<long long> dp;
+    };
 
-        long long number_of_substrings() const {
-            return substring_set().size();
+    SubstringCounter substring_counter() const & {
+        const int n = nodes.size();
+        const std::vector<int> ord = topological_order();
+        std::vector<long long> dp(n, 0);
+        for (int i = n - 1; i > 0; --i) {
+            const int u = ord[i];
+            if (not nodes[u].cloned) ++dp[u];
+            dp[nodes[u].link] += dp[u];
         }
+        return SubstringCounter { this, std::move(dp) };
+    }
+    SubstringCounter substring_counter() const && = delete;
 
-        bool accept(const Container &t) const {
-            int cur = 0;
-            for (const auto &c : t) {
-                auto it = nodes[cur].nxt.find(c);
-                if (it == nodes[cur].nxt.end()) return false;
-                cur = it->second;
+    // returns { from, len } s.t. lcs = t[from:from+len]
+    std::pair<int, int> longest_common_substring(const SequenceType &t) const {
+        if (t.size() == 0) return { 0, 0 };
+        const Node *v = &nodes[0];
+        int l = 0, best = 0, best_pos = 0;
+        for (int i = 0; i < int(t.size()); ++i){
+            while (v->link != -1 and not v->nxt.count(t[i])) {
+                v = &nodes[v->link];
+                l = v->len;
             }
-            return true;
+            auto it = v->nxt.find(t[i]);
+            if (it != v->nxt.end()){
+                v = &nodes[it->second];
+                l++;
+            }
+            if (l > best){
+                best = l;
+                best_pos = i;
+            }
         }
+        return { best_pos - best + 1, best };
+    }
 
-        class SubstringCounter {
-            public:
-                SubstringCounter(const SuffixAutomatonBase &sa, std::vector<long long> &&dp) : sa_(sa), dp_(std::move(dp)) {}
-
-                long long count(const Container &t) const {
-                    int cur = 0;
-                    for (const auto &c : t) {
-                        auto it = sa_.nodes[cur].nxt.find(c);
-                        if (it == sa_.nodes[cur].nxt.end()) return 0;
-                        cur = it->second;
-                    }
-                    return dp_[cur];
-                }
-
-            private:
-                const SuffixAutomatonBase &sa_;
-                const std::vector<long long> dp_;
-        };
-
-        SubstringCounter substring_counter() const {
-            const int n = nodes.size();
-            const std::vector<int> ord = topological_order();
-            std::vector<long long> dp(n, 0);
-            for (int i = n - 1; i > 0; --i) {
-                const int u = ord[i];
-                if (not nodes[u].cloned) ++dp[u];
-                dp[nodes[u].link] += dp[u];
-            }
-            return SubstringCounter { *this, std::move(dp) };
+    std::vector<int> topological_order() const {
+        const int n = nodes.size();
+        std::vector<int> in(n, 0);
+        for (const auto &node : nodes) {
+            for (const auto &p : node.nxt) ++in[p.second];
         }
-
-        class SubstringSet {
-            public:
-                SubstringSet(const SuffixAutomatonBase *sa, std::vector<long long> &&dp) : sa(sa), dp(std::move(dp)) {}
-
-                long long size() const {
-                    return dp[0];
-                }
-
-                bool contains(const Container &t) const {
-                    return sa->accept(t);
-                }
-
-                Container operator[](long long k) const {
-                    assert((unsigned long long) k < dp[0]);
-                    int cur = 0;
-                    Container res;
-                    while (k--) {
-                        for (const auto &[e, v] : sa->nodes[cur].nxt) {
-                            if (k < dp[v]) {
-                                res.push_back(e);
-                                cur = v;
-                                break;
-                            } else {
-                                k -= dp[v];
-                            }
-                        }
-                    }
-                    return res;
-                }
-
-                Container kth_substring(unsigned long long k) const {
-                    return (*this)[k];
-                }
-
-                long long count_lt(const Container &t) const {
-                    long long res = 0;
-                    int cur = 0;
-                    for (const T& c : t) {
-                        ++res;
-                        auto it_r = sa->nodes[cur].nxt.lower_bound(c);
-                        for (auto it_l = sa->nodes[cur].nxt.begin(); it_l != it_r; ++it_l) {
-                            res += dp[it_l->second];
-                        }
-                        if (it_r == sa->nodes[cur].nxt.end() or it_r->first != c) break;
-                        cur = it_r->second;
-                    }
-                    return res;
-                }
-                long long count_leq(const Container &t) const {
-                    return count_lt(t) + contains(t);
-                }
-                long long count_gt(const Container &t) const {
-                    return size() - count_leq(t);
-                }
-                long long count_geq(const Container &t) const {
-                    return size() - count_lt(t);
-                }
-
-                Container min_geq(const Container &t) const {
-                    return (*this)[count_lt(t)];
-                }
-                Container min_gt(const Container &t) const {
-                    return (*this)[count_leq(t)];
-                }
-                Container max_lt(const Container &t) const {
-                    return (*this)[count_lt(t) - 1];
-                }
-                Container max_leq(const Container &t) const {
-                    return (*this)[count_leq(t) - 1];
-                }
-
-                class SubstringSetIterator {
-                    public:
-                        SubstringSetIterator(const SubstringSet *s, long long init) : st(s), k(init) {}
-
-                        SubstringSetIterator& operator=(const SubstringSetIterator& other) {
-                            st = other.st;
-                            k = other.k;
-                            return *this;
-                        }
-
-                        Container operator*() const { return st->kth_substring(k); }
-
-                        SubstringSetIterator& operator--() { --k; return *this; }
-                        SubstringSetIterator& operator++() { ++k; return *this; }
-
-                        bool operator==(const SubstringSetIterator& other) const { return k == other.k; }
-                        bool operator!=(const SubstringSetIterator& other) const { return k != other.k; }
-                        bool operator< (const SubstringSetIterator& other) const { return k <  other.k; }
-                        bool operator<=(const SubstringSetIterator& other) const { return k <= other.k; }
-                        bool operator> (const SubstringSetIterator& other) const { return k >  other.k; }
-                        bool operator>=(const SubstringSetIterator& other) const { return k >= other.k; }
-
-                    private:
-                        const SubstringSet *st;
-                        long long k;
-                };
-
-                SubstringSetIterator begin() const {
-                    return SubstringSetIterator { this, 0LL };
-                }
-                SubstringSetIterator end() const {
-                    return SubstringSetIterator { this, size() };
-                }
-
-                SubstringSetIterator lower_bound(const Container &t) const {
-                    return SubstringSetIterator { this, count_lt(t) };
-                }
-                SubstringSetIterator upper_bound(const Container &t) const {
-                    return SubstringSetIterator { this, count_leq(t) };
-                }
-
-                SubstringSetIterator find(const Container &t) const {
-                    auto it = lower_bound(t);
-                    if (it == end() or t != *it) return end();
-                    return it;
-                }
-
-            private:
-                const SuffixAutomatonBase *sa;
-                std::vector<long long> dp;
-        };
-
-        SubstringSet substring_set() const {
-            const int n = nodes.size();
-            const std::vector<int> ord = topological_order();
-            std::vector<long long> dp(n, 1);
-            for (int i = n - 1; i >= 0; --i) {
-                const int u = ord[i];
-                for (const auto &[_, v] : nodes[u].nxt) dp[u] += dp[v];
-            }
-            return SubstringSet { this, std::move(dp) };
+        std::deque<int> dq;
+        for (int i = 0; i < n; ++i) {
+            if (in[i] == 0) dq.push_back(i);
         }
-
-        // returns { from, len } s.t. lcs = t[from:from+len]
-        std::pair<int, int> longest_common_substring(const Container &t) const {
-            if (t.size() == 0) return { 0, 0 };
-            const Node *v = &nodes[0];
-            int l = 0, best = 0, best_pos = 0;
-            for (int i = 0; i < int(t.size()); ++i){
-                while (v->link != -1 and not v->nxt.count(t[i])) {
-                    v = &nodes[v->link];
-                    l = v->len;
-                }
-                auto it = v->nxt.find(t[i]);
-                if (it != v->nxt.end()){
-                    v = &nodes[it->second];
-                    l++;
-                }
-                if (l > best){
-                    best = l;
-                    best_pos = i;
-                }
+        std::vector<int> res;
+        while (dq.size()) {
+            int u = dq.front();
+            dq.pop_front();
+            res.push_back(u);
+            for (const auto &p : nodes[u].nxt) {
+                if (--in[p.second] == 0) dq.push_back(p.second);
             }
-            return { best_pos - best + 1, best };
         }
-
-    private:
-        std::vector<Node> nodes;
-        int last;
-
-        std::vector<int> topological_order() const {
-            const int n = nodes.size();
-            std::vector<int> in(n, 0);
-            for (const auto &node : nodes) {
-                for (const auto &[_, v] : node.nxt) ++in[v];
-            }
-            std::deque<int> dq;
-            for (int i = 0; i < n; ++i) {
-                if (in[i] == 0) dq.push_back(i);
-            }
-            std::vector<int> res;
-            while (dq.size()) {
-                int u = dq.front();
-                dq.pop_front();
-                res.push_back(u);
-                for (const auto &[_, v] : nodes[u].nxt) {
-                    if (--in[v] == 0) dq.push_back(v);
-                }
-            }
-            assert(int(res.size()) == n);
-            return res;
-        }
+        assert(int(res.size()) == n);
+        return res;
+    }
 };
 
 template <typename T>
 struct SuffixAutomaton : public SuffixAutomatonBase<T, std::vector<T>> {
     using SuffixAutomatonBase<T, std::vector<T>>::SuffixAutomatonBase;
-};
-
-template <>
-struct SuffixAutomaton<char> : public SuffixAutomatonBase<char, std::string> {
-    using SuffixAutomatonBase<char, std::string>::SuffixAutomatonBase;
+    using value_type = T;
+    using sequence_type = std::vector<T>;
 };
 
 template <typename T>
 SuffixAutomaton(std::vector<T>) -> SuffixAutomaton<T>;
+
+template <>
+struct SuffixAutomaton<char> : public SuffixAutomatonBase<char, std::string> {
+    using SuffixAutomatonBase<char, std::string>::SuffixAutomatonBase;
+    using value_type = char;
+    using sequence_type = std::string;
+};
+
 SuffixAutomaton(std::string) -> SuffixAutomaton<char>;
 
 } // namespace suisen

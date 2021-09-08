@@ -2,12 +2,12 @@
 
 #include <iostream>
 
-#include "library/string/suffix_automaton.hpp"
-using suisen::SuffixAutomaton;
+#include "library/string/substring_set.hpp"
+using suisen::SubstringSet;
 
 int main() {
     std::string s;
     std::cin >> s;
-    std::cout << SuffixAutomaton(s).number_of_substrings() - 1 << std::endl;
+    std::cout << SubstringSet(s).size() - 1 << std::endl;
     return 0;
 }
