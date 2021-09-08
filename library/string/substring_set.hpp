@@ -26,11 +26,8 @@ class SubstringSet {
         // build set of all substrings in `s`
         void build(const value_type &s) {
             sa = SuffixAutomaton(s);
-            const int n = sa.nodes.size();
-            dp.resize(n, size_type(1));
-            const std::vector<int> ord = sa.topological_order();
-            for (int i = n - 1; i >= 0; --i) {
-                const int u = ord[i];
+            dp.resize(sa.nodes.size(), size_type(1));
+            for (const int u : sa.topological_order(/* reversed = */true)) {
                 for (const auto &p : sa.nodes[u].nxt) dp[u] += dp[p.second];
             }
         }

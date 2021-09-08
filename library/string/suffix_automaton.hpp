@@ -1,6 +1,7 @@
 #ifndef SUISEN_SUFFIX_AUTOMATON
 #define SUISEN_SUFFIX_AUTOMATON
 
+#include <algorithm>
 #include <cassert>
 #include <deque>
 #include <map>
@@ -10,7 +11,9 @@
 namespace suisen {
 
 /**
- * reference : https://w.atwiki.jp/uwicoder/pages/2842.html
+ * reference
+ * - https://w.atwiki.jp/uwicoder/pages/2842.html
+ * - https://cp-algorithms.com/string/suffix-automaton.html
  */
 template <typename T, typename SequenceType>
 struct SuffixAutomatonBase {
@@ -52,47 +55,124 @@ struct SuffixAutomatonBase {
         return *this;
     }
 
-    bool accept(const SequenceType &t) const {
+    int transition(const SequenceType &t, int invalid_state = -1) const {
         int cur = 0;
         for (const auto &c : t) {
             auto it = nodes[cur].nxt.find(c);
-            if (it == nodes[cur].nxt.end()) return false;
+            if (it == nodes[cur].nxt.end()) return invalid_state;
             cur = it->second;
         }
-        return true;
+        return cur;
+    }
+
+    bool accept(const SequenceType &t) const {
+        return transition(t) != -1;
     }
 
     class SubstringCounter {
         public:
-            SubstringCounter(const SuffixAutomatonBase *sa, std::vector<long long> &&dp) : sa(sa), dp(std::move(dp)) {}
-
-            long long count(const SequenceType &t) const {
-                int cur = 0;
-                for (const auto &c : t) {
-                    auto it = sa->nodes[cur].nxt.find(c);
-                    if (it == sa->nodes[cur].nxt.end()) return 0;
-                    cur = it->second;
+            SubstringCounter(const SuffixAutomatonBase *sa) : sa(sa), n(sa->nodes.size()), dp(n, 0) {
+                const std::vector<Node> &nodes = sa->nodes;
+                for (const int u : sa->topological_order(/* reversed = */ true)) {
+                    dp[u] += not nodes[u].cloned;
+                    const int p = nodes[u].link;
+                    if (p >= 0) dp[p] += dp[u];
                 }
-                return dp[cur];
+            }
+            long long count(const SequenceType &t) const {
+                const int state = sa->transition(t);
+                return state == -1 ? 0 : dp[state];
+            }
+        private:
+            const SuffixAutomatonBase *sa;
+            int n;
+            std::vector<long long> dp;
+    };
+
+    SubstringCounter substring_counter() const & {
+        return SubstringCounter { this };
+    }
+    SubstringCounter substring_counter() const && = delete;
+
+    class SuffixLinkTree {
+        public:
+            SuffixLinkTree(const SuffixAutomatonBase *sa) : sa(sa), g(sa->nodes.size()) {
+                const int n = g.size();
+                for (int i = 1; i < n; ++i) g[sa->nodes[i].link].push_back(i);
+            }
+            const int size() const {
+                return g.size();
+            }
+            const std::vector<int>& operator[](int i) const {
+                return g[i];
+            }
+        private:
+            const SuffixAutomatonBase *sa;
+            std::vector<std::vector<int>> g;
+    };
+
+    SuffixLinkTree suffix_link_tree() const & {
+        return SuffixLinkTree(this);
+    }
+    SuffixLinkTree suffix_link_tree() const && = delete;
+
+    class OccurrenceEnumerator {
+        public:
+            OccurrenceEnumerator(const SuffixAutomatonBase *sa) : sa(sa), t(sa->suffix_link_tree()) {}
+
+            // returns vector of i s.t. S[i:i+|t|] = t
+            std::vector<int> enumerate_all_occurrence(const SequenceType &pattern) const {
+                const int state = sa->transition(pattern);
+                if (state == -1) return {};
+                const std::vector<Node> &nodes = sa->nodes;
+                const int l = pattern.size();
+                std::vector<int> res;
+                auto dfs = [&](auto self, int u) -> void {
+                    if (not nodes[u].cloned) res.push_back(nodes[u].len - l);
+                    for (const int v : t[u]) self(self, v);
+                };
+                dfs(dfs, state);
+                return res;
             }
 
         private:
             const SuffixAutomatonBase *sa;
-            const std::vector<long long> dp;
+            SuffixLinkTree t;
     };
 
-    SubstringCounter substring_counter() const & {
-        const int n = nodes.size();
-        const std::vector<int> ord = topological_order();
-        std::vector<long long> dp(n, 0);
-        for (int i = n - 1; i > 0; --i) {
-            const int u = ord[i];
-            if (not nodes[u].cloned) ++dp[u];
-            dp[nodes[u].link] += dp[u];
-        }
-        return SubstringCounter { this, std::move(dp) };
+    OccurrenceEnumerator occurrence_enumerator() const & {
+        return OccurrenceEnumerator(this);
     }
-    SubstringCounter substring_counter() const && = delete;
+    OccurrenceEnumerator occurrence_enumerator() const && = delete;
+
+    class FirstOccurenceSearcher {
+        public:
+            FirstOccurenceSearcher(const SuffixAutomatonBase *sa) : sa(sa) {
+                const std::vector<Node> &nodes = sa->nodes;
+                dp.resize(nodes.size(), std::numeric_limits<int>::max());
+                for (const int u : sa->topological_order(/* reversed = */ true)) {
+                    if (not nodes[u].cloned) dp[u] = nodes[u].len;
+                    const int p = nodes[u].link;
+                    if (p >= 0 and nodes[p].cloned) dp[p] = std::min(dp[p], dp[u]);
+                }
+            }
+
+            // returns min { i | S[i:i+|t|] = t }. if such i does not exist, returns -1.
+            int first_occurrence(const SequenceType &t) const {
+                const int state = sa->transition(t);
+                if (state == -1) return -1;
+                return dp[state] - t.size();
+            }
+
+        private:
+            const SuffixAutomatonBase *sa;
+            std::vector<int> dp;
+    };
+
+    FirstOccurenceSearcher first_occurence_searcher() const & {
+        return FirstOccurenceSearcher(this);
+    }
+    FirstOccurenceSearcher first_occurence_searcher() const && = delete;
 
     // returns { from, len } s.t. lcs = t[from:from+len]
     std::pair<int, int> longest_common_substring(const SequenceType &t) const {
@@ -117,7 +197,7 @@ struct SuffixAutomatonBase {
         return { best_pos - best + 1, best };
     }
 
-    std::vector<int> topological_order() const {
+    std::vector<int> topological_order(bool reversed = false) const {
         const int n = nodes.size();
         std::vector<int> in(n, 0);
         for (const auto &node : nodes) {
@@ -136,6 +216,7 @@ struct SuffixAutomatonBase {
                 if (--in[p.second] == 0) dq.push_back(p.second);
             }
         }
+        if (reversed) std::reverse(res.begin(), res.end());
         assert(int(res.size()) == n);
         return res;
     }
