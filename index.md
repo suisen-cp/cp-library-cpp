@@ -252,7 +252,10 @@ data:
       title: library/number/util.hpp
   - name: library/string
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
+      path: library/string/substring_set.hpp
+      title: library/string/substring_set.hpp
+    - icon: ':question:'
       path: library/string/suffix_automaton.hpp
       title: library/string/suffix_automaton.hpp
   - name: library
@@ -715,11 +718,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
+  - name: test/src/string/substring_set
+    pages:
+    - icon: ':x:'
+      path: test/src/string/substring_set/arc097_a.test.cpp
+      title: test/src/string/substring_set/arc097_a.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/string/substring_set/number_of_substrings.test.cpp
+      title: test/src/string/substring_set/number_of_substrings.test.cpp
   - name: test/src/string/suffix_automaton
     pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/string/suffix_automaton/number_of_substrings.test.cpp
-      title: test/src/string/suffix_automaton/number_of_substrings.test.cpp
+    - icon: ':x:'
+      path: test/src/string/suffix_automaton/yuki430.test.cpp
+      title: test/src/string/suffix_automaton/yuki430.test.cpp
   - name: test/src/transform/multiple
     pages:
     - icon: ':heavy_check_mark:'
