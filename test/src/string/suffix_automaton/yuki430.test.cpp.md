@@ -6,9 +6,9 @@ data:
     title: library/string/suffix_automaton.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/430
@@ -100,7 +100,7 @@ data:
   path: test/src/string/suffix_automaton/yuki430.test.cpp
   requiredBy: []
   timestamp: '2021-09-08 17:15:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/string/suffix_automaton/yuki430.test.cpp
 layout: document

@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/string/substring_set/number_of_substrings.test.cpp
     title: test/src/string/substring_set/number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/suffix_automaton/yuki430.test.cpp
     title: test/src/string/suffix_automaton/yuki430.test.cpp
   _isVerificationFailed: true

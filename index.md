@@ -728,7 +728,7 @@ data:
       title: test/src/string/substring_set/number_of_substrings.test.cpp
   - name: test/src/string/suffix_automaton
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/string/suffix_automaton/yuki430.test.cpp
       title: test/src/string/suffix_automaton/yuki430.test.cpp
   - name: test/src/transform/multiple
