@@ -6,42 +6,85 @@
 
 namespace suisen {
 
-std::optional<std::vector<int>> get_cycle_digraph(const std::vector<std::vector<int>> &g) {
+enum class GraphType {
+    DIRECTED, UNDIRECTED
+};
+
+template <GraphType t>
+std::optional<std::vector<int>> get_cycle(const std::vector<std::vector<int>> &g) {
     const int n = g.size();
-    std::vector<int> index(n, -1);
-    std::vector<char> vis(n, false);
-    std::vector<int> st, it;
-    st.reserve(n), it.reserve(n);
+    // detect multiedge
+    if constexpr (t == GraphType::UNDIRECTED) {
+        std::vector<uint8_t> exists(n, 0);
+        for (int u = 0; u < n; ++u) {
+            for (int v : g[u]) if (exists[v]++) return std::vector<int> { u, v };
+            for (int v : g[u]) exists[v] = 0;
+        }
+    }
+    // simulate dfs
+    std::vector<int> itr(n, 0), stk, par(0);
+    if constexpr (t == GraphType::UNDIRECTED) par.resize(n, -1);
+    stk.reserve(n);
+    std::vector<uint8_t> in(n, false);
     for (int i = 0; i < n; ++i) {
-        if (vis[i]) continue;
-        index[i] = 0;
-        vis[i] = true;
-        st.push_back(i);
-        it.push_back(0);
-        while (st.size()) {
-            const int u = st.back();
-            if (it.back() == int(g[u].size())) {
-                index[u] = -1;
-                st.pop_back();
-                it.pop_back();
-                continue;
-            }
-            const int v = g[u][it.back()++];
-            if (index[v] >= 0) {
-                st.erase(st.begin(), st.begin() + index[v]);
-                return st;
-            }
-            if (vis[v]) continue;
-            index[v] = st.size();
-            vis[v] = true;
-            st.push_back(v);
-            it.push_back(0);
+        if (itr[i] == 0) stk.push_back(i), in[i] = true;
+        while (stk.size()) {
+            const int u = stk.back();
+            if (itr[u] < int(g[u].size())) {
+                const int v = g[u][itr[u]++];
+                if constexpr (t == GraphType::UNDIRECTED) if (v == par[u]) continue;
+                if (in[v]) return stk.erase(stk.begin(), std::find(stk.begin(), stk.end(), v)), stk;
+                if (itr[v] == 0) {
+                    stk.push_back(v), in[v] = true;
+                    if constexpr (t == GraphType::UNDIRECTED) par[v] = u;
+                }
+            } else stk.pop_back(), in[u] = false;
+        }
+    }
+    return std::nullopt;
+}
+
+template <GraphType t, typename T>
+std::optional<std::vector<T>> get_cycle_values(const std::vector<std::vector<std::pair<int, T>>> &g) {
+    const int n = g.size();
+    // detect multiedge
+    if constexpr (t == GraphType::UNDIRECTED) {
+        std::vector<uint8_t> exists(n, 0);
+        std::vector<T> vals(n);
+        for (int u = 0; u < n; ++u) {
+            for (const auto &[v, val] : g[u]) if (exists[v]++) return std::vector<T> { vals[v], val };
+            for (const auto &[v, val] : g[u]) exists[v] = 0;
+        }
+    }
+    // simulate dfs
+    std::vector<int> itr(n, 0), stk, par(0);
+    std::vector<T> vals;
+    if constexpr (t == GraphType::UNDIRECTED) par.resize(n, -1);
+    stk.reserve(n), vals.reserve(n);
+    std::vector<uint8_t> in(n, false);
+    for (int i = 0; i < n; ++i) {
+        if (itr[i] == 0) stk.push_back(i), in[i] = true, vals.push_back(T{});
+        while (stk.size()) {
+            const int u = stk.back();
+            if (itr[u] < int(g[u].size())) {
+                const auto &[v, val] = g[u][itr[u]++];
+                if constexpr (t == GraphType::UNDIRECTED) if (v == par[u]) continue;
+                if (in[v]) {
+                    const int idx = std::find(stk.begin(), stk.end(), v) - stk.begin();
+                    vals[idx] = val;
+                    vals.erase(vals.begin(), vals.begin() + idx);
+                    return vals;
+                }
+                if (itr[v] == 0) {
+                    stk.push_back(v), in[v] = true, vals.push_back(val);
+                    if constexpr (t == GraphType::UNDIRECTED) par[v] = u;
+                }
+            } else stk.pop_back(), in[u] = false, vals.pop_back();
         }
     }
     return std::nullopt;
 }
 
 } // namespace suisen
-
 
 #endif // SUISEN_CYCLE_DETECTION
