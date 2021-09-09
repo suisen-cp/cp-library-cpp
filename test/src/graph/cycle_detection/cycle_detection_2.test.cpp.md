@@ -14,7 +14,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/cycle_detection
     links:
     - https://judge.yosupo.jp/problem/cycle_detection
-  bundledCode: "#line 1 \"test/src/graph/cycle_detection/cycle_detection.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/graph/cycle_detection/cycle_detection_2.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\n\n#include\
     \ <algorithm>\n#include <iostream>\n\n#line 1 \"library/graph/cycle_detection.hpp\"\
     \n\n\n\n#include <optional>\n#include <vector>\n\nnamespace suisen {\n\nenum class\
@@ -56,45 +56,39 @@ data:
     \ in[v] = true, vals.push_back(val);\n                    if constexpr (t == GraphType::UNDIRECTED)\
     \ par[v] = u;\n                }\n            } else stk.pop_back(), in[u] = false,\
     \ vals.pop_back();\n        }\n    }\n    return std::nullopt;\n}\n\n} // namespace\
-    \ suisen\n\n\n#line 7 \"test/src/graph/cycle_detection/cycle_detection.test.cpp\"\
+    \ suisen\n\n\n#line 7 \"test/src/graph/cycle_detection/cycle_detection_2.test.cpp\"\
     \nusing namespace suisen;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<std::vector<int>>\
-    \ g(n);\n    std::vector<long long> edges(m);\n    for (int i = 0; i < m; ++i)\
-    \ {\n        long long u, v;\n        std::cin >> u >> v;\n        edges[i] =\
-    \ u << 40 | v << 20 | i;\n        g[u].push_back(v);\n    }\n    std::sort(edges.begin(),\
-    \ edges.end());\n\n    const auto optional_cycle = get_cycle<GraphType::DIRECTED>(g);\n\
-    \    if (optional_cycle.has_value()) {\n        const auto &cycle = *optional_cycle;\n\
-    \        const int sz = cycle.size();\n        std::cout << sz << '\\n';\n   \
-    \     for (int i = 0; i < sz; ++i) {\n            const long long u = cycle[i],\
-    \ v = cycle[(i + 1) % sz];\n            std::cout << (*std::lower_bound(edges.begin(),\
-    \ edges.end(), u << 40 | v << 20) & ((1 << 20) - 1)) << '\\n';\n        }\n  \
-    \  } else {\n        std::cout << -1 << '\\n';\n    }\n    return 0;\n}\n"
+    \    std::cin.tie(nullptr);\n\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<std::vector<std::pair<int,\
+    \ int>>> g(n);\n    for (int i = 0; i < m; ++i) {\n        long long u, v;\n \
+    \       std::cin >> u >> v;\n        g[u].emplace_back(v, i);\n    }\n\n    const\
+    \ auto optional_cycle = get_cycle_values<GraphType::DIRECTED>(g);\n    if (optional_cycle.has_value())\
+    \ {\n        const auto &cycle = *optional_cycle;\n        const int sz = cycle.size();\n\
+    \        std::cout << sz << '\\n';\n        for (int i = 0; i < sz; ++i) {\n \
+    \           std::cout << cycle[i] << '\\n';\n        }\n    } else {\n       \
+    \ std::cout << -1 << '\\n';\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\n\n#include\
     \ <algorithm>\n#include <iostream>\n\n#include \"library/graph/cycle_detection.hpp\"\
     \nusing namespace suisen;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<std::vector<int>>\
-    \ g(n);\n    std::vector<long long> edges(m);\n    for (int i = 0; i < m; ++i)\
-    \ {\n        long long u, v;\n        std::cin >> u >> v;\n        edges[i] =\
-    \ u << 40 | v << 20 | i;\n        g[u].push_back(v);\n    }\n    std::sort(edges.begin(),\
-    \ edges.end());\n\n    const auto optional_cycle = get_cycle<GraphType::DIRECTED>(g);\n\
-    \    if (optional_cycle.has_value()) {\n        const auto &cycle = *optional_cycle;\n\
-    \        const int sz = cycle.size();\n        std::cout << sz << '\\n';\n   \
-    \     for (int i = 0; i < sz; ++i) {\n            const long long u = cycle[i],\
-    \ v = cycle[(i + 1) % sz];\n            std::cout << (*std::lower_bound(edges.begin(),\
-    \ edges.end(), u << 40 | v << 20) & ((1 << 20) - 1)) << '\\n';\n        }\n  \
-    \  } else {\n        std::cout << -1 << '\\n';\n    }\n    return 0;\n}"
+    \    std::cin.tie(nullptr);\n\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<std::vector<std::pair<int,\
+    \ int>>> g(n);\n    for (int i = 0; i < m; ++i) {\n        long long u, v;\n \
+    \       std::cin >> u >> v;\n        g[u].emplace_back(v, i);\n    }\n\n    const\
+    \ auto optional_cycle = get_cycle_values<GraphType::DIRECTED>(g);\n    if (optional_cycle.has_value())\
+    \ {\n        const auto &cycle = *optional_cycle;\n        const int sz = cycle.size();\n\
+    \        std::cout << sz << '\\n';\n        for (int i = 0; i < sz; ++i) {\n \
+    \           std::cout << cycle[i] << '\\n';\n        }\n    } else {\n       \
+    \ std::cout << -1 << '\\n';\n    }\n    return 0;\n}"
   dependsOn:
   - library/graph/cycle_detection.hpp
   isVerificationFile: true
-  path: test/src/graph/cycle_detection/cycle_detection.test.cpp
+  path: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
   requiredBy: []
   timestamp: '2021-09-09 21:18:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/graph/cycle_detection/cycle_detection.test.cpp
+documentation_of: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/graph/cycle_detection/cycle_detection.test.cpp
-- /verify/test/src/graph/cycle_detection/cycle_detection.test.cpp.html
-title: test/src/graph/cycle_detection/cycle_detection.test.cpp
+- /verify/test/src/graph/cycle_detection/cycle_detection_2.test.cpp
+- /verify/test/src/graph/cycle_detection/cycle_detection_2.test.cpp.html
+title: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
 ---

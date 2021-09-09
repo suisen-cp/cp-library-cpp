@@ -179,6 +179,9 @@ data:
       path: library/graph/min_cost_flow.hpp
       title: library/graph/min_cost_flow.hpp
     - icon: ':warning:'
+      path: library/graph/remove_multiedges.hpp
+      title: library/graph/remove_multiedges.hpp
+    - icon: ':warning:'
       path: library/graph/topological_sort.hpp
       title: library/graph/topological_sort.hpp
   - name: library/integral_geom
@@ -614,6 +617,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/cycle_detection/cycle_detection.test.cpp
       title: test/src/graph/cycle_detection/cycle_detection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
+      title: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
   - name: test/src/graph/min_cost_flow
     pages:
     - icon: ':x:'
