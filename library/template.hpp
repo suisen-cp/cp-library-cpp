@@ -47,7 +47,6 @@ using umap = std::unordered_map<T, U>;
 
 #define all(iterable) (iterable).begin(), (iterable).end()
 #define input(type, ...) type __VA_ARGS__; read(__VA_ARGS__)
-#define input_vector(value_type, name, size) std::vector<value_type> name(size); read(name)
 
 // ! I/O utilities
 
@@ -162,6 +161,20 @@ template <typename T>
 constexpr inline int kth_bit(const T x, const unsigned int k) { return (x >> k) & 1; }
 template <typename T>
 constexpr inline int parity(const T x) { return popcount(x) & 1; }
+
+struct all_subset {
+    struct all_subset_iter {
+        const int s; int t;
+        constexpr all_subset_iter(int s) : s(s), t(s + 1) {}
+        constexpr auto operator*() const { return t; }
+        constexpr auto operator++() {}
+        constexpr auto operator!=(std::nullptr_t) { return t ? (--t &= s, true) : false; }
+    };
+    int s;
+    constexpr all_subset(int s) : s(s) {}
+    constexpr auto begin() { return all_subset_iter(s); }
+    constexpr auto end()   { return nullptr; }
+};
 
 // ! container
 
