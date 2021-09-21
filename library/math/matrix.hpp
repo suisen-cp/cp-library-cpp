@@ -7,102 +7,103 @@
 
 namespace suisen {
 template <typename T>
-class Matrix {
-    public:
-        Matrix() {}
-        Matrix(int n, int m, T fill_value = T(0)) : data(n, std::vector<T>(m, fill_value)) {}
-        Matrix(const std::vector<std::vector<T>>  &data) noexcept : data(data) {}
-        Matrix(      std::vector<std::vector<T>> &&data) noexcept : data(std::move(data)) {}
-        Matrix(const Matrix<T>  &other) noexcept : data(other.data) {}
-        Matrix(      Matrix<T> &&other) noexcept : data(std::move(other.data)) {}
+struct Matrix {
+    std::vector<std::vector<T>> data;
+    
+    Matrix() {}
+    Matrix(int n, int m, T fill_value = T(0)) : data(n, std::vector<T>(m, fill_value)) {}
+    Matrix(const std::vector<std::vector<T>>  &data) noexcept : data(data) {}
+    Matrix(      std::vector<std::vector<T>> &&data) noexcept : data(std::move(data)) {}
+    Matrix(const Matrix<T>  &other) noexcept : data(other.data) {}
+    Matrix(      Matrix<T> &&other) noexcept : data(std::move(other.data)) {}
 
-        Matrix<T>& operator=(const Matrix<T> &other) noexcept {
-            data = other.data;
-            return *this;
-        }
-        Matrix<T>& operator=(Matrix<T> &&other) noexcept {
-            data = std::move(other.data);
-            return *this;
-        }
+    Matrix<T>& operator=(const Matrix<T> &other) noexcept {
+        data = other.data;
+        return *this;
+    }
+    Matrix<T>& operator=(Matrix<T> &&other) noexcept {
+        data = std::move(other.data);
+        return *this;
+    }
 
-        const std::vector<T>& operator[](int i) const { return data[i]; }
-              std::vector<T>& operator[](int i)       { return data[i]; }
+    const std::vector<T>& operator[](int i) const { return data[i]; }
+          std::vector<T>& operator[](int i)       { return data[i]; }
 
-        std::pair<int, int> size() const {
-            if (data.empty()) {
-                return {0, 0};
-            } else {
-                return {data.size(), data[0].size()};
-            }
+    std::pair<int, int> size() const {
+        if (data.empty()) {
+            return {0, 0};
+        } else {
+            return {data.size(), data[0].size()};
         }
-        int row_size() const {
-            return data.size();
-        }
-        int col_size() const {
-            return data.empty() ? 0 : data[0].size();
-        }
+    }
+    int row_size() const {
+        return data.size();
+    }
+    int col_size() const {
+        return data.empty() ? 0 : data[0].size();
+    }
 
-        Matrix<T>& operator+=(const Matrix<T> &other) {
-            assert(size() == other.size());
-            auto [n, m] = size();
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
-                data[i][j] += other[i][j];
-            }
+    Matrix<T>& operator+=(const Matrix<T> &other) {
+        assert(size() == other.size());
+        auto [n, m] = size();
+        for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
+            data[i][j] += other[i][j];
         }
-        Matrix<T>& operator-=(const Matrix<T> &other) {
-            assert(size() == other.size());
-            auto [n, m] = size();
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
-                data[i][j] -= other[i][j];
-            }
+        return *this;
+    }
+    Matrix<T>& operator-=(const Matrix<T> &other) {
+        assert(size() == other.size());
+        auto [n, m] = size();
+        for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
+            data[i][j] -= other[i][j];
         }
-        Matrix<T>& operator*=(const Matrix<T> &other) {
-            return *this = *this * other;
+        return *this;
+    }
+    Matrix<T>& operator*=(const Matrix<T> &other) {
+        return *this = *this * other;
+    }
+    Matrix<T>& operator*=(const T &val) {
+        auto [n, m] = size();
+        for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
+            data[i][j] *= val;
         }
-        Matrix<T>& operator*=(const T &val) {
-            auto [n, m] = size();
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
-                data[i][j] *= val;
-            }
-            return *this;
+        return *this;
+    }
+    Matrix<T>& operator/=(const T &val) {
+        return *this *= T(1) / val;
+    }
+    Matrix<T> operator+(const Matrix<T> &other) const {
+        return Matrix<T>(*this) += other;
+    }
+    Matrix<T> operator-(const Matrix<T> &other) const {
+        return Matrix<T>(*this) -= other;
+    }
+    Matrix<T> operator*(const Matrix<T> &other) const {
+        auto [n, m] = size();
+        auto [m2, l] = other.size();
+        assert(m == m2);
+        std::vector res(n, std::vector(l, T(0)));
+        for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) for (int k = 0; k < l; ++k) {
+            res[i][k] += (*this)[i][j] * other[j][k];
         }
-        Matrix<T>& operator/=(const T &val) {
-            return *this *= T(1) / val;
-        }
-        Matrix<T> operator+(const Matrix<T> &other) const {
-            return Matrix<T>(*this) += other;
-        }
-        Matrix<T> operator-(const Matrix<T> &other) const {
-            return Matrix<T>(*this) -= other;
-        }
-        Matrix<T> operator*(const Matrix<T> &other) const {
-            auto [n, m] = size();
-            auto [m2, l] = other.size();
-            assert(m == m2);
-            std::vector res(n, std::vector(l, T(0)));
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) for (int k = 0; k < l; ++k) {
-                res[i][k] += (*this)[i][j] * other[j][k];
-            }
-            return res;
-        }
-        Matrix<T> operator*(const T &val) const {
-            return Matrix<T>(*this) *= val;
-        }
-        Matrix<T> operator/(const T &val) const {
-            return Matrix<T>(*this) /= val;
-        }
+        return res;
+    }
+    Matrix<T> operator*(const T &val) const {
+        return Matrix<T>(*this) *= val;
+    }
+    Matrix<T> operator/(const T &val) const {
+        return Matrix<T>(*this) /= val;
+    }
 
-        std::vector<T> operator*(const std::vector<T> &x) const {
-            auto [n, m] = size();
-            assert(m == int(x.size()));
-            std::vector<T> b(n, T(0));
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
-                b[i] += data[i][j] * x[j];
-            }
-            return b;
+    std::vector<T> operator*(const std::vector<T> &x) const {
+        auto [n, m] = size();
+        assert(m == int(x.size()));
+        std::vector<T> b(n, T(0));
+        for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
+            b[i] += data[i][j] * x[j];
         }
-    protected:
-        std::vector<std::vector<T>> data;
+        return b;
+    }
 };
 
 template <typename T>
@@ -110,16 +111,18 @@ class SquareMatrix : public Matrix<T> {
     public:
         SquareMatrix() {}
         SquareMatrix(int n, T fill_value = T(0)) : Matrix<T>::Matrix(n, n, fill_value) {}
-        SquareMatrix(const std::vector<std::vector<T>> &data) noexcept : Matrix<T>::Matrix(data) {
+        SquareMatrix(const std::vector<std::vector<T>> &data) : Matrix<T>::Matrix(data) {
             auto [n, m] = this->size();
             assert(n == m);
         }
-        SquareMatrix(std::vector<std::vector<T>> &&data) noexcept : Matrix<T>::Matrix(std::move(data)) {
+        SquareMatrix(std::vector<std::vector<T>> &&data) : Matrix<T>::Matrix(std::move(data)) {
             auto [n, m] = this->size();
             assert(n == m);
         }
-        SquareMatrix(const SquareMatrix<T>  &other) noexcept : Matrix<T>::Matrix(other.data) {}
-        SquareMatrix(      SquareMatrix<T> &&other) noexcept : Matrix<T>::Matrix(std::move(other.data)) {}
+        SquareMatrix(const SquareMatrix<T>  &other) : SquareMatrix(other.data) {}
+        SquareMatrix(      SquareMatrix<T> &&other) : SquareMatrix(std::move(other.data)) {}
+        SquareMatrix(const Matrix<T>  &other) : Matrix<T>::Matrix(other.data) {}
+        SquareMatrix(      Matrix<T> &&other) : Matrix<T>::Matrix(std::move(other.data)) {}
 
         SquareMatrix<T>& operator=(const SquareMatrix<T> &other) noexcept {
             this->data = other.data;
@@ -218,7 +221,7 @@ class SquareMatrix : public Matrix<T> {
             return res;
         }
     private:
-        SquareMatrix(int n, bool mult_identity) : Matrix<T>::Matrix(n) {
+        SquareMatrix(int n, bool mult_identity) : Matrix<T>::Matrix(n, n) {
             if (mult_identity) for (int i = 0; i < n; ++i) this->data[i][i] = 1;
         }
 };
