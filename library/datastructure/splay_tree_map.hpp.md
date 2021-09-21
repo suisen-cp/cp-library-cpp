@@ -155,12 +155,15 @@ data:
     \ k);\n            root = l;\n            return SplayTreeMap<Key, Val>(r);\n\
     \        }\n        SplayTreeMap split_by_key(const Key &key) {\n            auto\
     \ [l, r] = Node::split_by_key(root, key);\n            root = l;\n           \
-    \ return SplayTreeMap<Key, Val>(r);\n        }\n    protected:\n        Node *root;\n\
-    \n        SplayTreeMap(node_ptr_t root) : root(root) {}\n    \n        static\
-    \ void index_bounds_check(unsigned int k, unsigned int n) {\n            assert(k\
-    \ < n);\n        }\n        static void range_bounds_check(unsigned int l, unsigned\
-    \ int r, unsigned int n) {\n            assert(l <= r and r <= n);\n        }\n\
-    };\n\n}\n\n\n"
+    \ return SplayTreeMap<Key, Val>(r);\n        }\n        void merge(SplayTreeMap\
+    \ &&r) {\n            assert(root != r.root);\n            root = Node::merge(root,\
+    \ r.root);\n            r.root = nullptr;\n        }\n        void swap(SplayTreeMap\
+    \ &r) {\n            std::swap(root, r.root);\n        }\n\n    protected:\n \
+    \       Node *root;\n\n        SplayTreeMap(node_ptr_t root) : root(root) {}\n\
+    \    \n        static void index_bounds_check(unsigned int k, unsigned int n)\
+    \ {\n            assert(k < n);\n        }\n        static void range_bounds_check(unsigned\
+    \ int l, unsigned int r, unsigned int n) {\n            assert(l <= r and r <=\
+    \ n);\n        }\n};\n\n}\n\n\n"
   code: "#ifndef SUISEN_SPLAY_TREE_MAP\n#define SUISEN_SPLAY_TREE_MAP\n\n#include\
     \ <cassert>\n#include <cstddef>\n#include <vector>\n#include <utility>\n\nnamespace\
     \ suisen {\nnamespace internal::splay_tree_map {\n\ntemplate <typename Key, typename\
@@ -296,20 +299,23 @@ data:
     \ k);\n            root = l;\n            return SplayTreeMap<Key, Val>(r);\n\
     \        }\n        SplayTreeMap split_by_key(const Key &key) {\n            auto\
     \ [l, r] = Node::split_by_key(root, key);\n            root = l;\n           \
-    \ return SplayTreeMap<Key, Val>(r);\n        }\n    protected:\n        Node *root;\n\
-    \n        SplayTreeMap(node_ptr_t root) : root(root) {}\n    \n        static\
-    \ void index_bounds_check(unsigned int k, unsigned int n) {\n            assert(k\
-    \ < n);\n        }\n        static void range_bounds_check(unsigned int l, unsigned\
-    \ int r, unsigned int n) {\n            assert(l <= r and r <= n);\n        }\n\
-    };\n\n}\n\n#endif // SUISEN_SPLAY_TREE_MAP\n"
+    \ return SplayTreeMap<Key, Val>(r);\n        }\n        void merge(SplayTreeMap\
+    \ &&r) {\n            assert(root != r.root);\n            root = Node::merge(root,\
+    \ r.root);\n            r.root = nullptr;\n        }\n        void swap(SplayTreeMap\
+    \ &r) {\n            std::swap(root, r.root);\n        }\n\n    protected:\n \
+    \       Node *root;\n\n        SplayTreeMap(node_ptr_t root) : root(root) {}\n\
+    \    \n        static void index_bounds_check(unsigned int k, unsigned int n)\
+    \ {\n            assert(k < n);\n        }\n        static void range_bounds_check(unsigned\
+    \ int l, unsigned int r, unsigned int n) {\n            assert(l <= r and r <=\
+    \ n);\n        }\n};\n\n}\n\n#endif // SUISEN_SPLAY_TREE_MAP\n"
   dependsOn: []
   isVerificationFile: false
   path: library/datastructure/splay_tree_map.hpp
   requiredBy:
-  - library/datastructure/splay_tree_set.hpp
   - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/range_foldable_map.hpp
-  timestamp: '2021-09-06 01:30:07+09:00'
+  - library/datastructure/splay_tree_set.hpp
+  timestamp: '2021-09-21 22:11:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

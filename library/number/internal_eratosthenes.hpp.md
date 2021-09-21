@@ -93,16 +93,16 @@ data:
   isVerificationFile: false
   path: library/number/internal_eratosthenes.hpp
   requiredBy:
-  - library/number/sieve_of_eratosthenes.hpp
   - library/number/sieve_of_eratosthenes_constexpr.hpp
+  - library/number/sieve_of_eratosthenes.hpp
   timestamp: '2021-07-22 14:46:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/transform/multiple/divide_both.test.cpp
-  - test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
-  - test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
   - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+  - test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
+  - test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
+  - test/src/transform/multiple/divide_both.test.cpp
 documentation_of: library/number/internal_eratosthenes.hpp
 layout: document
 redirect_from:

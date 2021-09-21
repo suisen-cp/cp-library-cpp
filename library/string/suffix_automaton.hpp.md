@@ -244,9 +244,9 @@ data:
   timestamp: '2021-09-09 05:49:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/string/substring_set/number_of_substrings.test.cpp
-  - test/src/string/substring_set/arc097_a.test.cpp
   - test/src/string/suffix_automaton/yuki430.test.cpp
+  - test/src/string/substring_set/arc097_a.test.cpp
+  - test/src/string/substring_set/number_of_substrings.test.cpp
 documentation_of: library/string/suffix_automaton.hpp
 layout: document
 redirect_from:

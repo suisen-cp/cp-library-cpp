@@ -201,30 +201,33 @@ data:
     \ k);\n            root = l;\n            return SplayTreeMap<Key, Val>(r);\n\
     \        }\n        SplayTreeMap split_by_key(const Key &key) {\n            auto\
     \ [l, r] = Node::split_by_key(root, key);\n            root = l;\n           \
-    \ return SplayTreeMap<Key, Val>(r);\n        }\n    protected:\n        Node *root;\n\
-    \n        SplayTreeMap(node_ptr_t root) : root(root) {}\n    \n        static\
-    \ void index_bounds_check(unsigned int k, unsigned int n) {\n            assert(k\
-    \ < n);\n        }\n        static void range_bounds_check(unsigned int l, unsigned\
-    \ int r, unsigned int n) {\n            assert(l <= r and r <= n);\n        }\n\
-    };\n\n}\n\n\n#line 9 \"library/datastructure/range_foldable_map.hpp\"\n\nnamespace\
-    \ suisen {\nnamespace internal::range_foldable_map {\n\ntemplate <typename Key,\
-    \ typename Val, Val(*op)(Val, Val), Val (*e)(), typename Derived>\nstruct RangeFoldableMapNodeBase\
-    \ : public internal::splay_tree_map::MapNodeBase<Key, Val, Derived> {\n    using\
-    \ Base = internal::splay_tree_map::MapNodeBase<Key, Val, Derived>;\n    using\
-    \ node_ptr_t = typename Base::node_ptr_t;\n    Val dat;\n    RangeFoldableMapNodeBase()\
-    \ : RangeFoldableMapNodeBase(Key{}, e()) {}\n    RangeFoldableMapNodeBase(const\
-    \ Key &key, const Val &val) : Base::MapNodeBase(key, val), dat(val) {}\n    void\
-    \ update() {\n        Base::update();\n        dat = op(op(prod_all(this->ch[0]),\
-    \ this->val), prod_all(this->ch[1]));\n    }\n    static Val prod_all(node_ptr_t\
-    \ node) {\n        return node == nullptr ? e() : node->dat;\n    }\n    static\
-    \ std::pair<node_ptr_t, Val> prod_by_index(node_ptr_t node, int l, int r) {\n\
-    \        auto [tl, tm, tr] = Base::split_by_index(node, l, r);\n        Val res\
-    \ = prod_all(tm);\n        return { Base::merge(tl, tm, tr), res };\n    }\n \
-    \   static std::pair<node_ptr_t, Val> prod_by_key(node_ptr_t node, const Key &l,\
-    \ const Key &r) {\n        auto [tl, tm, tr] = Base::split_by_key(node, l, r);\n\
-    \        Val res = prod_all(tm);\n        return { Base::merge(tl, tm, tr), res\
-    \ };\n    }\n};\n\ntemplate <typename Key, typename Val, Val(*op)(Val, Val), Val\
-    \ (*e)()>\nstruct RangeFoldableMapNode : public RangeFoldableMapNodeBase<Key,\
+    \ return SplayTreeMap<Key, Val>(r);\n        }\n        void merge(SplayTreeMap\
+    \ &&r) {\n            assert(root != r.root);\n            root = Node::merge(root,\
+    \ r.root);\n            r.root = nullptr;\n        }\n        void swap(SplayTreeMap\
+    \ &r) {\n            std::swap(root, r.root);\n        }\n\n    protected:\n \
+    \       Node *root;\n\n        SplayTreeMap(node_ptr_t root) : root(root) {}\n\
+    \    \n        static void index_bounds_check(unsigned int k, unsigned int n)\
+    \ {\n            assert(k < n);\n        }\n        static void range_bounds_check(unsigned\
+    \ int l, unsigned int r, unsigned int n) {\n            assert(l <= r and r <=\
+    \ n);\n        }\n};\n\n}\n\n\n#line 9 \"library/datastructure/range_foldable_map.hpp\"\
+    \n\nnamespace suisen {\nnamespace internal::range_foldable_map {\n\ntemplate <typename\
+    \ Key, typename Val, Val(*op)(Val, Val), Val (*e)(), typename Derived>\nstruct\
+    \ RangeFoldableMapNodeBase : public internal::splay_tree_map::MapNodeBase<Key,\
+    \ Val, Derived> {\n    using Base = internal::splay_tree_map::MapNodeBase<Key,\
+    \ Val, Derived>;\n    using node_ptr_t = typename Base::node_ptr_t;\n    Val dat;\n\
+    \    RangeFoldableMapNodeBase() : RangeFoldableMapNodeBase(Key{}, e()) {}\n  \
+    \  RangeFoldableMapNodeBase(const Key &key, const Val &val) : Base::MapNodeBase(key,\
+    \ val), dat(val) {}\n    void update() {\n        Base::update();\n        dat\
+    \ = op(op(prod_all(this->ch[0]), this->val), prod_all(this->ch[1]));\n    }\n\
+    \    static Val prod_all(node_ptr_t node) {\n        return node == nullptr ?\
+    \ e() : node->dat;\n    }\n    static std::pair<node_ptr_t, Val> prod_by_index(node_ptr_t\
+    \ node, int l, int r) {\n        auto [tl, tm, tr] = Base::split_by_index(node,\
+    \ l, r);\n        Val res = prod_all(tm);\n        return { Base::merge(tl, tm,\
+    \ tr), res };\n    }\n    static std::pair<node_ptr_t, Val> prod_by_key(node_ptr_t\
+    \ node, const Key &l, const Key &r) {\n        auto [tl, tm, tr] = Base::split_by_key(node,\
+    \ l, r);\n        Val res = prod_all(tm);\n        return { Base::merge(tl, tm,\
+    \ tr), res };\n    }\n};\n\ntemplate <typename Key, typename Val, Val(*op)(Val,\
+    \ Val), Val (*e)()>\nstruct RangeFoldableMapNode : public RangeFoldableMapNodeBase<Key,\
     \ Val, op, e, RangeFoldableMapNode<Key, Val, op, e>> {\n    using Base = RangeFoldableMapNodeBase<Key,\
     \ Val, op, e, RangeFoldableMapNode<Key, Val, op, e>>;\n    using Base::RangeFoldableMapNodeBase;\n\
     \    using node_ptr_t = typename Base::node_ptr_t;\n};\n}\n\ntemplate <typename\
@@ -268,12 +271,15 @@ data:
     \ k);\n            root = l;\n            return RangeFoldableMap(r);\n      \
     \  }\n        RangeFoldableMap split_by_key(const Key &key) {\n            auto\
     \ [l, r] = Node::split_by_key(root, key);\n            root = l;\n           \
-    \ return RangeFoldableMap(r);\n        }\n    protected:\n        Node *root;\n\
-    \n        RangeFoldableMap(node_ptr_t root) : root(root) {}\n    \n        static\
-    \ void index_bounds_check(unsigned int k, unsigned int n) {\n            assert(k\
-    \ < n);\n        }\n        static void range_bounds_check(unsigned int l, unsigned\
-    \ int r, unsigned int n) {\n            assert(l <= r and r <= n);\n        }\n\
-    };\n\n}\n\n\n"
+    \ return RangeFoldableMap(r);\n        }\n        void merge(RangeFoldableMap\
+    \ &&r) {\n            assert(root != r.root);\n            root = Node::merge(root,\
+    \ r.root);\n            r.root = nullptr;\n        }\n        void swap(RangeFoldableMap\
+    \ &r) {\n            std::swap(root, r.root);\n        }\n\n    protected:\n \
+    \       Node *root;\n\n        RangeFoldableMap(node_ptr_t root) : root(root)\
+    \ {}\n    \n        static void index_bounds_check(unsigned int k, unsigned int\
+    \ n) {\n            assert(k < n);\n        }\n        static void range_bounds_check(unsigned\
+    \ int l, unsigned int r, unsigned int n) {\n            assert(l <= r and r <=\
+    \ n);\n        }\n};\n\n}\n\n\n"
   code: "#ifndef SUISEN_RANGE_FOLDABLE_MAP\n#define SUISEN_RANGE_FOLDABLE_MAP\n\n\
     #include <cassert>\n#include <tuple>\n\n#include \"library/util/update_proxy_object.hpp\"\
     \n#include \"library/datastructure/splay_tree_map.hpp\"\n\nnamespace suisen {\n\
@@ -338,12 +344,15 @@ data:
     \ k);\n            root = l;\n            return RangeFoldableMap(r);\n      \
     \  }\n        RangeFoldableMap split_by_key(const Key &key) {\n            auto\
     \ [l, r] = Node::split_by_key(root, key);\n            root = l;\n           \
-    \ return RangeFoldableMap(r);\n        }\n    protected:\n        Node *root;\n\
-    \n        RangeFoldableMap(node_ptr_t root) : root(root) {}\n    \n        static\
-    \ void index_bounds_check(unsigned int k, unsigned int n) {\n            assert(k\
-    \ < n);\n        }\n        static void range_bounds_check(unsigned int l, unsigned\
-    \ int r, unsigned int n) {\n            assert(l <= r and r <= n);\n        }\n\
-    };\n\n}\n\n#endif // SUISEN_RANGE_FOLDABLE_MAP\n"
+    \ return RangeFoldableMap(r);\n        }\n        void merge(RangeFoldableMap\
+    \ &&r) {\n            assert(root != r.root);\n            root = Node::merge(root,\
+    \ r.root);\n            r.root = nullptr;\n        }\n        void swap(RangeFoldableMap\
+    \ &r) {\n            std::swap(root, r.root);\n        }\n\n    protected:\n \
+    \       Node *root;\n\n        RangeFoldableMap(node_ptr_t root) : root(root)\
+    \ {}\n    \n        static void index_bounds_check(unsigned int k, unsigned int\
+    \ n) {\n            assert(k < n);\n        }\n        static void range_bounds_check(unsigned\
+    \ int l, unsigned int r, unsigned int n) {\n            assert(l <= r and r <=\
+    \ n);\n        }\n};\n\n}\n\n#endif // SUISEN_RANGE_FOLDABLE_MAP\n"
   dependsOn:
   - library/util/update_proxy_object.hpp
   - library/type_traits/type_traits.hpp
@@ -352,7 +361,7 @@ data:
   path: library/datastructure/range_foldable_map.hpp
   requiredBy:
   - library/datastructure/lazy_eval_map.hpp
-  timestamp: '2021-09-06 01:30:07+09:00'
+  timestamp: '2021-09-21 22:11:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

@@ -217,8 +217,8 @@ data:
   timestamp: '2021-08-15 22:47:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/math/interpolation/cumulative_sum.test.cpp
   - test/src/math/interpolation/polynomial_interpolation.test.cpp
+  - test/src/math/interpolation/cumulative_sum.test.cpp
 documentation_of: library/math/interpolation.hpp
 layout: document
 redirect_from:

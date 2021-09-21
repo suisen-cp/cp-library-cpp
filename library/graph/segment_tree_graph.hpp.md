@@ -1,0 +1,121 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/graph/segment_tree_graph/flags.test.cpp
+    title: test/src/graph/segment_tree_graph/flags.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"library/graph/segment_tree_graph.hpp\"\n\n\n\n#include <cassert>\n\
+    #include <type_traits>\n#include <vector>\n\nnamespace suisen {\n\nclass SegmentTreeGraph\
+    \ {\n    public:\n        struct SegmentNode { const int order_id, l, r; };\n\n\
+    \        SegmentTreeGraph() : SegmentTreeGraph(0) {}\n        SegmentTreeGraph(int\
+    \ n) : n(n), next_id(n), ceil_log2(n + 2, 0), is_invalid_node(n, false) {\n  \
+    \          for (int i = 1, l = 0; i <= n + 1; ++i) {\n                ceil_log2[i]\
+    \ = l;\n                l += (i & -i) == i;\n            }\n            if (n)\
+    \ {\n                for (int m = n / (-n & n) >> 1;; m >>= 1) {\n           \
+    \         is_invalid_node[m] = true;\n                    if (m == 0) break;\n\
+    \                }\n            }\n        }\n\n        int size() const {\n \
+    \           return next_id;\n        }\n\n        int add_order(const std::vector<int>\
+    \ &p) {\n            assert(int(p.size()) == n);\n            std::vector<int>\
+    \ seg(2 * n, -1);\n            for (int i = 0; i < n; ++i) seg[n + i] = p[i];\n\
+    \            for (int i = 1; i < n; ++i) seg[i] = next_id++;\n            segs.push_back(std::move(seg));\n\
+    \            return segs.size() - 1;\n        }\n        int add_order_identity()\
+    \ {\n            std::vector<int> p(n);\n            for (int i = 0; i < n; ++i)\
+    \ p[i] = i;\n            return add_order(p);\n        }\n\n        bool is_segment_node(int\
+    \ node_id) const {\n            return node_id >= n;\n        }\n\n        SegmentNode\
+    \ get_segment_node(int node_id) const {\n            assert(node_id >= n);\n \
+    \           node_id -= n;\n            int order_id = node_id / (n - 1);\n   \
+    \         int k = node_id - order_id * (n - 1) + 1;\n            int l = k <<\
+    \ ceil_log2[(n + k - 1) / k], r = (k + 1) << ceil_log2[n / (k + 1) + 1];\n   \
+    \         return SegmentNode { order_id, l - n, r - n };\n        }\n        SegmentNode\
+    \ operator[](int node_id) const {\n            return get_segment_node(node_id);\n\
+    \        }\n\n        // add_edge(parent, child_l, child_r)\n        template\
+    \ <typename AddEdge, std::enable_if_t<std::is_invocable_v<AddEdge, int, int, int>,\
+    \ std::nullptr_t> = nullptr>\n        void add_edges_to_children(AddEdge add_edge)\
+    \ {\n            for (const auto &seg : segs) {\n                for (int i =\
+    \ 1; i < n; ++i) {\n                    if (is_invalid_node[i]) continue;\n  \
+    \                  add_edge(seg[i], seg[i * 2 + 0], seg[i * 2 + 1]);\n       \
+    \         }\n            }\n        }\n        // add_edge(parent, child)\n  \
+    \      template <typename AddEdge, std::enable_if_t<std::is_invocable_v<AddEdge,\
+    \ int, int>, std::nullptr_t> = nullptr>\n        void add_edges_to_children(AddEdge\
+    \ add_edge) {\n            for (const auto &seg : segs) {\n                for\
+    \ (int i = 1; i < n; ++i) {\n                    if (is_invalid_node[i]) continue;\n\
+    \                    add_edge(seg[i], seg[i * 2 + 0]);\n                    add_edge(seg[i],\
+    \ seg[i * 2 + 1]);\n                }\n            }\n        }\n\n        //\
+    \ add_edge(from, to)\n        template <typename AddEdge, std::enable_if_t<std::is_invocable_v<AddEdge,\
+    \ int, int>, std::nullptr_t> = nullptr>\n        void add_edge(int from, SegmentNode\
+    \ to, AddEdge add_edge_func) {\n            const auto &seg = segs[to.order_id];\n\
+    \            for (int lk = to.l + n, rk = to.r + n; lk < rk; lk >>= 1, rk >>=\
+    \ 1) {\n                if (lk & 1) add_edge_func(from, seg[lk++]);\n        \
+    \        if (rk & 1) add_edge_func(from, seg[--rk]);\n            }\n        }\n\
+    \n    private:\n        int n;\n        int next_id;\n        std::vector<int>\
+    \ ceil_log2;\n        std::vector<char> is_invalid_node;\n        std::vector<std::vector<int>>\
+    \ segs;\n};\n\n} // namespace suisen\n\n\n\n"
+  code: "#ifndef SUISEN_SEGMENT_TREE_GRAPH\n#define SUISEN_SEGMENT_TREE_GRAPH\n\n\
+    #include <cassert>\n#include <type_traits>\n#include <vector>\n\nnamespace suisen\
+    \ {\n\nclass SegmentTreeGraph {\n    public:\n        struct SegmentNode { const\
+    \ int order_id, l, r; };\n\n        SegmentTreeGraph() : SegmentTreeGraph(0) {}\n\
+    \        SegmentTreeGraph(int n) : n(n), next_id(n), ceil_log2(n + 2, 0), is_invalid_node(n,\
+    \ false) {\n            for (int i = 1, l = 0; i <= n + 1; ++i) {\n          \
+    \      ceil_log2[i] = l;\n                l += (i & -i) == i;\n            }\n\
+    \            if (n) {\n                for (int m = n / (-n & n) >> 1;; m >>=\
+    \ 1) {\n                    is_invalid_node[m] = true;\n                    if\
+    \ (m == 0) break;\n                }\n            }\n        }\n\n        int\
+    \ size() const {\n            return next_id;\n        }\n\n        int add_order(const\
+    \ std::vector<int> &p) {\n            assert(int(p.size()) == n);\n          \
+    \  std::vector<int> seg(2 * n, -1);\n            for (int i = 0; i < n; ++i) seg[n\
+    \ + i] = p[i];\n            for (int i = 1; i < n; ++i) seg[i] = next_id++;\n\
+    \            segs.push_back(std::move(seg));\n            return segs.size() -\
+    \ 1;\n        }\n        int add_order_identity() {\n            std::vector<int>\
+    \ p(n);\n            for (int i = 0; i < n; ++i) p[i] = i;\n            return\
+    \ add_order(p);\n        }\n\n        bool is_segment_node(int node_id) const\
+    \ {\n            return node_id >= n;\n        }\n\n        SegmentNode get_segment_node(int\
+    \ node_id) const {\n            assert(node_id >= n);\n            node_id -=\
+    \ n;\n            int order_id = node_id / (n - 1);\n            int k = node_id\
+    \ - order_id * (n - 1) + 1;\n            int l = k << ceil_log2[(n + k - 1) /\
+    \ k], r = (k + 1) << ceil_log2[n / (k + 1) + 1];\n            return SegmentNode\
+    \ { order_id, l - n, r - n };\n        }\n        SegmentNode operator[](int node_id)\
+    \ const {\n            return get_segment_node(node_id);\n        }\n\n      \
+    \  // add_edge(parent, child_l, child_r)\n        template <typename AddEdge,\
+    \ std::enable_if_t<std::is_invocable_v<AddEdge, int, int, int>, std::nullptr_t>\
+    \ = nullptr>\n        void add_edges_to_children(AddEdge add_edge) {\n       \
+    \     for (const auto &seg : segs) {\n                for (int i = 1; i < n; ++i)\
+    \ {\n                    if (is_invalid_node[i]) continue;\n                 \
+    \   add_edge(seg[i], seg[i * 2 + 0], seg[i * 2 + 1]);\n                }\n   \
+    \         }\n        }\n        // add_edge(parent, child)\n        template <typename\
+    \ AddEdge, std::enable_if_t<std::is_invocable_v<AddEdge, int, int>, std::nullptr_t>\
+    \ = nullptr>\n        void add_edges_to_children(AddEdge add_edge) {\n       \
+    \     for (const auto &seg : segs) {\n                for (int i = 1; i < n; ++i)\
+    \ {\n                    if (is_invalid_node[i]) continue;\n                 \
+    \   add_edge(seg[i], seg[i * 2 + 0]);\n                    add_edge(seg[i], seg[i\
+    \ * 2 + 1]);\n                }\n            }\n        }\n\n        // add_edge(from,\
+    \ to)\n        template <typename AddEdge, std::enable_if_t<std::is_invocable_v<AddEdge,\
+    \ int, int>, std::nullptr_t> = nullptr>\n        void add_edge(int from, SegmentNode\
+    \ to, AddEdge add_edge_func) {\n            const auto &seg = segs[to.order_id];\n\
+    \            for (int lk = to.l + n, rk = to.r + n; lk < rk; lk >>= 1, rk >>=\
+    \ 1) {\n                if (lk & 1) add_edge_func(from, seg[lk++]);\n        \
+    \        if (rk & 1) add_edge_func(from, seg[--rk]);\n            }\n        }\n\
+    \n    private:\n        int n;\n        int next_id;\n        std::vector<int>\
+    \ ceil_log2;\n        std::vector<char> is_invalid_node;\n        std::vector<std::vector<int>>\
+    \ segs;\n};\n\n} // namespace suisen\n\n\n#endif // SUISEN_SEGMENT_TREE_GRAPH\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: library/graph/segment_tree_graph.hpp
+  requiredBy: []
+  timestamp: '2021-09-21 22:08:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/graph/segment_tree_graph/flags.test.cpp
+documentation_of: library/graph/segment_tree_graph.hpp
+layout: document
+redirect_from:
+- /library/library/graph/segment_tree_graph.hpp
+- /library/library/graph/segment_tree_graph.hpp.html
+title: library/graph/segment_tree_graph.hpp
+---

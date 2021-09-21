@@ -231,10 +231,11 @@ data:
     \ }\n        // erases [k, size()) and returns [k, size())\n        RangeFoldableDynamicSequence\
     \ split(int k) {\n            this->index_bounds_check(k, this->size() + 1);\n\
     \            auto [l, r] = Node::split(this->root, k);\n            this->root\
-    \ = l;\n            return RangeFoldableDynamicSequence(r);\n        }\n};\n\n\
-    }\n\n\n#line 9 \"library/datastructure/lazy_eval_dynamic_sequence.hpp\"\n\nnamespace\
-    \ suisen {\nnamespace internal::lazy_eval_dynamic_sequence {\n\ntemplate <typename\
-    \ T, T(*op)(T, T), T (*e)(), typename F, T(*mapping)(F, T), F(*composition)(F,\
+    \ = l;\n            return RangeFoldableDynamicSequence(r);\n        }\n     \
+    \   void swap(RangeFoldableDynamicSequence &r) {\n            std::swap(this->root,\
+    \ r.root);\n        }\n};\n\n}\n\n\n#line 9 \"library/datastructure/lazy_eval_dynamic_sequence.hpp\"\
+    \n\nnamespace suisen {\nnamespace internal::lazy_eval_dynamic_sequence {\n\ntemplate\
+    \ <typename T, T(*op)(T, T), T (*e)(), typename F, T(*mapping)(F, T), F(*composition)(F,\
     \ F), F(*id)(), typename Derived>\nstruct LazyEvalDynamicSequenceNodeBase : public\
     \ internal::range_foldable_dynamic_sequence::RangeFoldableDynamicSequenceNodeBase<T,\
     \ op, e, Derived> {\n    using Base = internal::range_foldable_dynamic_sequence::RangeFoldableDynamicSequenceNodeBase<T,\
@@ -286,7 +287,8 @@ data:
     \ [k, size())\n        LazyEvalDynamicSequence split(int k) {\n            this->index_bounds_check(k,\
     \ this->size() + 1);\n            auto [l, r] = Node::split(this->root, k);\n\
     \            this->root = l;\n            return LazyEvalDynamicSequence(r);\n\
-    \        }\n};\n}\n\n\n#line 9 \"test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+    \        }\n        void swap(LazyEvalDynamicSequence &r) {\n            std::swap(this->root,\
+    \ r.root);\n        }\n};\n}\n\n\n#line 9 \"test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp\"\
     \nusing suisen::LazyEvalDynamicSequence;\n\nstruct F {\n    mint a, b;\n    F\
     \ compose(F g) {\n        return F { a * g.a, a * g.b + b };\n    }\n};\n\nstd::pair<mint,\
     \ int> op(std::pair<mint, int> x, std::pair<mint, int> y) {\n    auto [xs, xl]\
@@ -341,7 +343,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-06 01:30:07+09:00'
+  timestamp: '2021-09-21 22:11:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp

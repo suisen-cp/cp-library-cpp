@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
   _extendedRequiredBy: []

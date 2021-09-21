@@ -227,8 +227,8 @@ data:
   timestamp: '2021-07-20 20:17:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/binary_trie/xor_game.test.cpp
   - test/src/datastructure/binary_trie/set_xor_min.test.cpp
+  - test/src/datastructure/binary_trie/xor_game.test.cpp
 documentation_of: library/datastructure/binary_trie.hpp
 layout: document
 redirect_from:

@@ -75,8 +75,8 @@ data:
   isVerificationFile: false
   path: library/math/factorial.hpp
   requiredBy:
-  - library/math/polynomial_taylor_shift.hpp
   - library/math/common_sequences.hpp
+  - library/math/polynomial_taylor_shift.hpp
   timestamp: '2021-08-07 15:47:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

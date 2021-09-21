@@ -62,12 +62,11 @@ data:
     \ CAT(tag, __LINE__)\n#define loop(n) for (std::remove_reference_t<std::remove_const_t<decltype(n)>>\
     \ UNIQVAR(loop_variable) = n; UNIQVAR(loop_variable) --> 0;)\n\n#define all(iterable)\
     \ (iterable).begin(), (iterable).end()\n#define input(type, ...) type __VA_ARGS__;\
-    \ read(__VA_ARGS__)\n#define input_vector(value_type, name, size) std::vector<value_type>\
-    \ name(size); read(name)\n\n// ! I/O utilities\n\n// pair\ntemplate <typename\
-    \ T, typename U>\nstd::ostream& operator<<(std::ostream& out, const std::pair<T,\
-    \ U> &a) {\n    return out << a.first << ' ' << a.second;\n}\n// tuple\ntemplate\
-    \ <unsigned int N = 0, typename ...Args>\nstd::ostream& operator<<(std::ostream&\
-    \ out, const std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
+    \ read(__VA_ARGS__)\n\n// ! I/O utilities\n\n// pair\ntemplate <typename T, typename\
+    \ U>\nstd::ostream& operator<<(std::ostream& out, const std::pair<T, U> &a) {\n\
+    \    return out << a.first << ' ' << a.second;\n}\n// tuple\ntemplate <unsigned\
+    \ int N = 0, typename ...Args>\nstd::ostream& operator<<(std::ostream& out, const\
+    \ std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
     \ {\n        return out;\n    } else {\n        out << std::get<N>(a);\n     \
     \   if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>) {\n        \
     \    out << ' ';\n        }\n        return operator<<<N + 1>(out, a);\n    }\n\
@@ -114,8 +113,14 @@ data:
     \ int ceil_log2(const T x)  { return floor_log2(x) + ((x & -x) != x); }\ntemplate\
     \ <typename T>\nconstexpr inline int kth_bit(const T x, const unsigned int k)\
     \ { return (x >> k) & 1; }\ntemplate <typename T>\nconstexpr inline int parity(const\
-    \ T x) { return popcount(x) & 1; }\n\n// ! container\n\ntemplate <typename T,\
-    \ typename Comparator, suisen::constraints_t<suisen::is_comparator<Comparator,\
+    \ T x) { return popcount(x) & 1; }\n\nstruct all_subset {\n    struct all_subset_iter\
+    \ {\n        const int s; int t;\n        constexpr all_subset_iter(int s) : s(s),\
+    \ t(s + 1) {}\n        constexpr auto operator*() const { return t; }\n      \
+    \  constexpr auto operator++() {}\n        constexpr auto operator!=(std::nullptr_t)\
+    \ { return t ? (--t &= s, true) : false; }\n    };\n    int s;\n    constexpr\
+    \ all_subset(int s) : s(s) {}\n    constexpr auto begin() { return all_subset_iter(s);\
+    \ }\n    constexpr auto end()   { return nullptr; }\n};\n\n// ! container\n\n\
+    template <typename T, typename Comparator, suisen::constraints_t<suisen::is_comparator<Comparator,\
     \ T>> = nullptr>\nauto priqueue_comp(const Comparator comparator) {\n    return\
     \ std::priority_queue<T, std::vector<T>, Comparator>(comparator);\n}\n\ntemplate\
     \ <typename Iterable>\nauto isize(const Iterable &iterable) -> decltype(int(iterable.size()))\
@@ -144,7 +149,7 @@ data:
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:31+09:00'
+  timestamp: '2021-09-21 22:07:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp

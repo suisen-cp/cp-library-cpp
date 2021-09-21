@@ -181,6 +181,9 @@ data:
     - icon: ':warning:'
       path: library/graph/remove_multiedges.hpp
       title: library/graph/remove_multiedges.hpp
+    - icon: ':x:'
+      path: library/graph/segment_tree_graph.hpp
+      title: library/graph/segment_tree_graph.hpp
     - icon: ':warning:'
       path: library/graph/topological_sort.hpp
       title: library/graph/topological_sort.hpp
@@ -320,7 +323,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: library/util/container_utils.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/util/coordinate_compressor.hpp
       title: library/util/coordinate_compressor.hpp
     - icon: ':warning:'
@@ -338,6 +341,9 @@ data:
     - icon: ':warning:'
       path: library/util/pair_ops.hpp
       title: library/util/pair_ops.hpp
+    - icon: ':question:'
+      path: library/util/range_set.hpp
+      title: library/util/range_set.hpp
     - icon: ':warning:'
       path: library/util/run_length_encoder.hpp
       title: library/util/run_length_encoder.hpp
@@ -631,6 +637,11 @@ data:
     - icon: ':x:'
       path: test/src/graph/min_cost_flow/practice2_e.test.cpp
       title: test/src/graph/min_cost_flow/practice2_e.test.cpp
+  - name: test/src/graph/segment_tree_graph
+    pages:
+    - icon: ':x:'
+      path: test/src/graph/segment_tree_graph/flags.test.cpp
+      title: test/src/graph/segment_tree_graph/flags.test.cpp
   - name: test/src/math/bostan_mori
     pages:
     - icon: ':heavy_check_mark:'
@@ -786,5 +797,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
       title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - name: test/src/util/range_set
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/util/range_set/DSL_2_D.test.cpp
+      title: test/src/util/range_set/DSL_2_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/util/range_set/DSL_4_A.test.cpp
+      title: test/src/util/range_set/DSL_4_A.test.cpp
+    - icon: ':x:'
+      path: test/src/util/range_set/past6_m.test.cpp
+      title: test/src/util/range_set/past6_m.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/util/range_set/yuki674.test.cpp
+      title: test/src/util/range_set/yuki674.test.cpp
 layout: toppage
 ---

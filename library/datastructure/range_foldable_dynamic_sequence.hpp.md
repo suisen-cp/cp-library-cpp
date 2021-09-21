@@ -223,8 +223,9 @@ data:
     \ }\n        // erases [k, size()) and returns [k, size())\n        RangeFoldableDynamicSequence\
     \ split(int k) {\n            this->index_bounds_check(k, this->size() + 1);\n\
     \            auto [l, r] = Node::split(this->root, k);\n            this->root\
-    \ = l;\n            return RangeFoldableDynamicSequence(r);\n        }\n};\n\n\
-    }\n\n\n"
+    \ = l;\n            return RangeFoldableDynamicSequence(r);\n        }\n     \
+    \   void swap(RangeFoldableDynamicSequence &r) {\n            std::swap(this->root,\
+    \ r.root);\n        }\n};\n\n}\n\n\n"
   code: "#ifndef SUISEN_RANGE_FOLDABLE_DYNAMIC_SEQUENCE\n#define SUISEN_RANGE_FOLDABLE_DYNAMIC_SEQUENCE\n\
     \n#include <cassert>\n#include <tuple>\n\n#include \"library/util/update_proxy_object.hpp\"\
     \n#include \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace suisen\
@@ -277,8 +278,9 @@ data:
     \ }\n        // erases [k, size()) and returns [k, size())\n        RangeFoldableDynamicSequence\
     \ split(int k) {\n            this->index_bounds_check(k, this->size() + 1);\n\
     \            auto [l, r] = Node::split(this->root, k);\n            this->root\
-    \ = l;\n            return RangeFoldableDynamicSequence(r);\n        }\n};\n\n\
-    }\n\n#endif // SUISEN_RANGE_FOLDABLE_DYNAMIC_SEQUENCE\n"
+    \ = l;\n            return RangeFoldableDynamicSequence(r);\n        }\n     \
+    \   void swap(RangeFoldableDynamicSequence &r) {\n            std::swap(this->root,\
+    \ r.root);\n        }\n};\n\n}\n\n#endif // SUISEN_RANGE_FOLDABLE_DYNAMIC_SEQUENCE\n"
   dependsOn:
   - library/util/update_proxy_object.hpp
   - library/type_traits/type_traits.hpp
@@ -287,7 +289,7 @@ data:
   path: library/datastructure/range_foldable_dynamic_sequence.hpp
   requiredBy:
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
-  timestamp: '2021-09-06 01:30:07+09:00'
+  timestamp: '2021-09-21 22:11:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
