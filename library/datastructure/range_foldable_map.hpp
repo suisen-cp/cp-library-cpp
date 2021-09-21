@@ -133,6 +133,15 @@ class RangeFoldableMap {
             root = l;
             return RangeFoldableMap(r);
         }
+        void merge(RangeFoldableMap &&r) {
+            assert(root != r.root);
+            root = Node::merge(root, r.root);
+            r.root = nullptr;
+        }
+        void swap(RangeFoldableMap &r) {
+            std::swap(root, r.root);
+        }
+
     protected:
         Node *root;
 

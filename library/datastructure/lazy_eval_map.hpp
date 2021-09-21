@@ -148,6 +148,15 @@ class LazyEvalMap {
             root = l;
             return LazyEvalMap(r);
         }
+        void merge(LazyEvalMap &&r) {
+            assert(root != r.root);
+            root = Node::merge(root, r.root);
+            r.root = nullptr;
+        }
+        void swap(LazyEvalMap &r) {
+            std::swap(root, r.root);
+        }
+
     protected:
         Node *root;
 

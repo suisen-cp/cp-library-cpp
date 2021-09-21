@@ -29,6 +29,9 @@ class SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t> {
         void insert(const Key &key) {
             return this->insert_if_absent(key, nullptr);
         }
+        bool erase(const Key &key) {
+            return this->erase_key(key);
+        }
         Key operator[](int k) {
             return this->kth_entry(k).first;
         }
@@ -47,8 +50,12 @@ class SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t> {
             return SplayTreeSet<Key>(r);
         }
         void merge(SplayTreeSet &&r) {
+            assert(this->root != r.root);
             this->root = Node::merge(this->root, r.root);
             r.root = nullptr;
+        }
+        void swap(SplayTreeSet &r) {
+            std::swap(this->root, r.root);
         }
 };
 };

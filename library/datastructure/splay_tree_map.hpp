@@ -308,6 +308,15 @@ class SplayTreeMap {
             root = l;
             return SplayTreeMap<Key, Val>(r);
         }
+        void merge(SplayTreeMap &&r) {
+            assert(root != r.root);
+            root = Node::merge(root, r.root);
+            r.root = nullptr;
+        }
+        void swap(SplayTreeMap &r) {
+            std::swap(root, r.root);
+        }
+
     protected:
         Node *root;
 

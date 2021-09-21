@@ -98,6 +98,9 @@ class LazyEvalDynamicSequence : public LazyEvalDynamicSequenceBase<T, op, e, F, 
             this->root = l;
             return LazyEvalDynamicSequence(r);
         }
+        void swap(LazyEvalDynamicSequence &r) {
+            std::swap(this->root, r.root);
+        }
 };
 }
 

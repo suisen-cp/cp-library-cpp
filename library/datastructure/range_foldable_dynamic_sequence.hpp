@@ -102,6 +102,9 @@ class RangeFoldableDynamicSequence : public RangeFoldableDynamicSequenceBase<T, 
             this->root = l;
             return RangeFoldableDynamicSequence(r);
         }
+        void swap(RangeFoldableDynamicSequence &r) {
+            std::swap(this->root, r.root);
+        }
 };
 
 }
