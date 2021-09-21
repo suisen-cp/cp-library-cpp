@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/segment_tree_graph/flags.test.cpp
     title: test/src/graph/segment_tree_graph/flags.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/segment_tree_graph.hpp\"\n\n\n\n#include <cassert>\n\
@@ -109,7 +109,7 @@ data:
   path: library/graph/segment_tree_graph.hpp
   requiredBy: []
   timestamp: '2021-09-21 22:08:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/segment_tree_graph/flags.test.cpp
 documentation_of: library/graph/segment_tree_graph.hpp

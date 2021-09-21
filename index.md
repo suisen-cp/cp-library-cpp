@@ -181,7 +181,7 @@ data:
     - icon: ':warning:'
       path: library/graph/remove_multiedges.hpp
       title: library/graph/remove_multiedges.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/segment_tree_graph.hpp
       title: library/graph/segment_tree_graph.hpp
     - icon: ':warning:'
@@ -639,7 +639,7 @@ data:
       title: test/src/graph/min_cost_flow/practice2_e.test.cpp
   - name: test/src/graph/segment_tree_graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/segment_tree_graph/flags.test.cpp
       title: test/src/graph/segment_tree_graph/flags.test.cpp
   - name: test/src/math/bostan_mori
