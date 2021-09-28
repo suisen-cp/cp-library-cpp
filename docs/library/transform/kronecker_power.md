@@ -3,7 +3,7 @@ title: クロネッカー冪による線形変換 (仮称)
 documentation_of: //library/transform/kronecker_power.hpp
 ---
 
-### kronecker_power
+### kronecker_power_transform
 
 - シグネチャ
 
