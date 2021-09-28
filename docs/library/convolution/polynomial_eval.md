@@ -8,10 +8,10 @@ documentation_of: //library/convolution/polynomial_eval.hpp
 - シグネチャ
 
   ```cpp
-  template <typename T, template <typename> class Transform, typename F>
+  template <typename T, auto transform, auto transform_inv, typename F>
   std::vector<T> polynomial_eval(std::vector<T> &&a, F f) // (1)
 
-  template <typename T, template <typename> class Transform, typename F>
+  template <typename T, auto transform, auto transform_inv, typename F>
   std::vector<T> polynomial_eval(const std::vector<T> &a, F f) // (2)
   ```
 
@@ -38,12 +38,13 @@ documentation_of: //library/convolution/polynomial_eval.hpp
   \end{pmatrix}\right]
   \end{aligned}$$
 
-  上式における $\mathcal{F}$ と $\mathcal{F}^{-1}$ による変換を与えるのがテンプレート引数 `Transform` の静的メンバ関数 `Transform<T>::transform` と `Transform<T>::inverse_transform` で，$f(\cdot)$ を評価するのが引数 `f` です．
+  上式における $\mathcal{F}$ と $\mathcal{F}^{-1}$ による変換を与えるのがテンプレート引数 `transform` および `transform_inv` であり，$f(\cdot)$ を評価するのが引数 `f` です．
 
 - テンプレート引数
 
   - `T`: 列の要素の型．
-  - `Transform`: 列に対して inplace に線形写像 $\mathcal{F}$ を施す `static` 関数 `Transform<T>::transform(std::vector<T>&)` およびその逆変換 $\mathcal{F}^{-1}$ を施す `static` 関数 `Transform<T>::inverse_transform(std::vector<T>&)` を持つクラス．
+  - `transform`: 列に対して inplace に線形変換 $\mathcal{F}$ を施す関数
+  - `transform_inv`: 逆変換 $\mathcal{F}^{-1}$ を施す関数
   - `F`: `T` 型の要素 $x$ に対して $\displaystyle f(x)=\sum_{i=0}^{N-1}C_i \cdot x^i$ を計算する関数の型です．`F` 型のインスタンス `f` は `x` を引数に取る関数呼び出し `f(x)` によって $f(x)$ を計算できなければなりません．
 
 - 引数
@@ -57,7 +58,7 @@ documentation_of: //library/convolution/polynomial_eval.hpp
 
 - 時間計算量
 
-  列 $A$ の長さを $N$，`Transform<T>::transform` の計算量を $\Theta(f(N))$, `Transform<T>::inverse_transform` の計算量を $\Theta(g(N))$，`f` の計算量を $O(h(M))$ として，$\Theta(f(N)+g(N)+N\cdot h(M))$ です．
+  列 $A$ の長さを $N$，`transform` の計算量を $\Theta(f(N))$, `transform_inv` の計算量を $\Theta(g(N))$，`f` の計算量を $O(h(M))$ として，$\Theta(f(N)+g(N)+N\cdot h(M))$ です．
 
 <!--
 

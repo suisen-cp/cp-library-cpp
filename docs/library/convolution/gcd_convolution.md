@@ -8,11 +8,13 @@ documentation_of: //library/convolution/gcd_convolution.hpp
 - シグネチャ
 
   ```cpp
-  template <typename T>
-  std::vector<T> gcd_convolution(std::vector<T> a, std::vector<T> b) // (1)
-
-  template <typename T>
-  std::vector<T> gcd_convolution(std::vector<std::vector<T>> a) // (2)
+  template <
+      typename T,
+      auto add = default_operator::add<T>,
+      auto sub = default_operator::sub<T>,
+      auto mul = default_operator::mul<T>
+  >
+  std::vector<T> gcd_convolution(std::vector<T> a, std::vector<T> b)
   ```
 
 - 概要
@@ -27,21 +29,20 @@ documentation_of: //library/convolution/gcd_convolution.hpp
 
 - テンプレート引数
 
-  - `T`: 列の要素の型．`operator+=`，`operator-=`，`operator*=` が定義されている必要があります．
+  - `T`: 列の要素の型．
+  - `add`: 二項演算 (加算)．デフォルトでは `operator+` が呼ばれるようになっています．
+  - `sub`: 二項演算 (減算)．デフォルトでは `operator-` が呼ばれるようになっています．
+  - `mul`: 二項演算 (乗算)．デフォルトでは `operator*` が呼ばれるようになっています．
 
 - 返り値
   
-  1. $A\ast B$
-  2. $\mathcal{A}^0\ast \mathcal{A}^1\ast \cdots$ (ここで，$\mathcal{A}^i$ は列 $(A_0^i,\ldots,A_{N-1}^i)$ を表す)
+  $A\ast B$
 
 - 制約
 
-  1. - $\vert A\vert =\vert B\vert$
-     - $A_0=B_0=0$
-  2. - $\vert \mathcal{A} ^ i\vert$ は全て等しい
-     - $\forall i.\; \mathcal{A} ^ i _ 0 = 0$
+  - $\vert A\vert =\vert B\vert$
+  - $A_0=B_0=0$
 
 - 時間計算量
 
-  1. $\Theta(N\log\log N)$
-  2. 列の数を $K$ として，$\Theta(K\cdot N\log\log N)$
+  $\Theta(N\log\log N)$
