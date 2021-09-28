@@ -5,6 +5,7 @@
 
 #include "library/transform/walsh_hadamard.hpp"
 #include "library/convolution/polynomial_eval.hpp"
+using namespace suisen;
 
 using mint = atcoder::modint998244353;
 
@@ -24,7 +25,9 @@ int main() {
         ++c[v];
     }
 
-    auto res = suisen::polynomial_eval<mint, suisen::WalshHadamard>(c, [n](mint x) {
+    using namespace walsh_hadamard;
+
+    auto res = suisen::polynomial_eval<mint, walsh_hadamard_transform<mint>, walsh_hadamard_transform_inv<mint>>(c, [n](mint x) {
         return x == 1 ? n : x * (x.pow(n) - 1) / (x - 1);
     });
 

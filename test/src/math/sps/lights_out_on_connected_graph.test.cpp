@@ -6,6 +6,7 @@
 using mint = atcoder::modint998244353;
 
 #include "library/math/sps.hpp"
+#include "library/transform/subset.hpp"
 
 using namespace suisen;
 
@@ -19,7 +20,7 @@ int main() {
         std::cin >> u >> v;
         c[(1 << --u) | (1 << --v)] = 1;
     }
-    subset_transform::zeta(c);
+    subset_transform::zeta<int>(c);
     mint inv_2 = mint(2).inv();
     std::vector<mint> pow_2(m + 1, 0), pow_inv_2(m + 1, 0);
     pow_2[0] = pow_inv_2[0] = 1;

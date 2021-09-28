@@ -1,69 +1,32 @@
 #ifndef SUISEN_SUBSET_TRANSFORM
 #define SUISEN_SUBSET_TRANSFORM
 
-#include <cassert>
-#include <vector>
+#include "library/transform/kronecker_power.hpp"
 
-namespace suisen::internal::arithmetic_operator {}
-
-namespace suisen {
-namespace subset_transform {
-namespace internal {
-template <typename T, typename AssignOp>
-void transform(std::vector<T> &f, AssignOp assign_op) {
-    const int n = f.size();
-    assert((-n & n) == n);
-    for (int k = 1; k < n; k <<= 1) {
-        for (int l = 0; l < n; l += 2 * k) {
-            int m = l + k;
-            for (int p = 0; p < k; ++p) assign_op(f[m + p], f[l + p]);
+namespace suisen::subset_transform {
+    namespace internal {
+        template <typename T, auto add = default_operator::add<T>>
+        void zeta_unit_transform(T &x0, T &x1) {
+                                // 1, 0
+            x1 = add(x1, x0);   // 1, 1
         }
+        template <typename T, auto sub = default_operator::sub<T>>
+        void mobius_unit_transform(T &x0, T &x1) {
+                                //  1, 0
+            x1 = sub(x1, x0);   // -1, 1
+        }
+    } // namespace internal
+
+    using kronecker_power_transform::kronecker_power_transform;
+
+    template <typename T, auto add = default_operator::add<T>>
+    void zeta(std::vector<T> &a) {
+        kronecker_power_transform<T, 2, internal::zeta_unit_transform<T, add>>(a);
     }
-}
-} // namespace internal
-
-using namespace suisen::internal::arithmetic_operator;
-
-template <typename T, typename AddAssign>
-void zeta(std::vector<T> &f, AddAssign add_assign) {
-    internal::transform(f, add_assign);
-}
-template <typename T, typename SubAssign>
-void mobius(std::vector<T> &f, SubAssign sub_assign) {
-    internal::transform(f, sub_assign);
-}
-template <typename T>
-void zeta(std::vector<T> &f) {
-    zeta(f, [](T &a, const T &b) { a += b; });
-}
-template <typename T>
-void mobius(std::vector<T> &f) {
-    mobius(f, [](T &a, const T &b) { a -= b; });
-}
-
-} // namespace subset_transform
-
-template <typename T, typename AddAssign, typename SubAssign, AddAssign add_assign, SubAssign sub_assign>
-struct SubsetTransformGeneral {
-    static void transform(std::vector<T> &a) {
-        subset_transform::zeta(a, add_assign);
+    template <typename T, auto sub = default_operator::sub<T>>
+    void mobius(std::vector<T> &a) {
+        kronecker_power_transform<T, 2, internal::mobius_unit_transform<T, sub>>(a);
     }
-    static void inverse_transform(std::vector<T> &a) {
-        subset_transform::mobius(a, sub_assign);
-    }
-};
-
-template <typename T>
-struct SubsetTransform {
-    static void transform(std::vector<T> &a) {
-        subset_transform::zeta(a);
-    }
-    static void inverse_transform(std::vector<T> &a) {
-        subset_transform::mobius(a);
-    }
-};
-
-} // namespace suisen
-
+} // namespace suisen::subset_transform
 
 #endif // SUISEN_SUBSET_TRANSFORM

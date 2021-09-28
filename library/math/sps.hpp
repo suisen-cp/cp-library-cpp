@@ -4,8 +4,8 @@
 #include <cmath>
 #include <initializer_list>
 #include <type_traits>
-#include "library/convolution/subset_convolution.hpp"
 #include "library/math/modint_extension.hpp"
+#include "library/convolution/subset_convolution.hpp"
 
 namespace suisen {
 
@@ -69,6 +69,10 @@ class SPS : private std::vector<T> {
             return f;
         }
 
+        friend bool operator==(const SPS &lhs, const SPS &rhs) {
+            return std::operator==(lhs, rhs);
+        }
+
         void set_cardinality(int n) {
             resize(1 << n, 0);
         }
@@ -129,53 +133,35 @@ class SPS : private std::vector<T> {
         friend SPS operator/(const SPS &f, T c) { return SPS(f) /= c; }
 
         SPS inv() {
-            using namespace suisen::internal::arithmetic_operator;
-            using namespace suisen::internal::subset_convolution;
+            using namespace internal::subset_convolution;
 
             SPS res { ::inv(front()) };
             res.reserve(size());
             for (unsigned int p = 1; p < size(); p <<= 1) {
-                auto res_poly = add_rank<T>(res);
-                auto poly = add_rank<T>(cut_upper(p));
-                subset_transform::zeta(res_poly);
-                subset_transform::zeta(poly);
+                auto res_poly = ranked_zeta<T>(res);
+                auto poly = ranked_zeta<T>(cut_upper(p));
                 for (unsigned int i = 0; i < p; ++i) {
-                    poly[i] *= res_poly[i], poly[i] *= res_poly[i];
+                    muleq(muleq(poly[i], res_poly[i]), res_poly[i]);
                     for (auto &e : poly[i]) e *= -1;
                 }
-                subset_transform::mobius(poly);
-                res.concat(remove_rank<T>(poly));
+                res.concat(deranked_mobius<T>(poly));
             }
             return res;
         }
         SPS sqrt() {
-            using namespace suisen::internal::arithmetic_operator;
-            using namespace suisen::internal::subset_convolution;
+            using namespace internal::subset_convolution;
 
             SPS res { ::sqrt(front()) };
             assert(res[0] * res[0] == front());
             res.reserve(size());
             for (unsigned int p = 1; p < size(); p <<= 1) {
-                auto res_poly = add_rank<T>(res);
-                auto poly = add_rank<T>(cut_upper(p));
-                subset_transform::zeta(res_poly);
-                subset_transform::zeta(poly);
+                auto res_poly = ranked_zeta<T>(res);
+                auto poly = ranked_zeta<T>(cut_upper(p));
                 for (unsigned int i = 0; i < p; ++i) {
-                    unsigned int n = res_poly[i].size();
                     for (auto &e : res_poly[i]) e *= 2;
-                    std::vector<T> res_inv(n, 0);
-                    T v = ::inv(res_poly[i][0]);
-                    for (unsigned int j = 0; j < n; ++j) {
-                        res_inv[j] = j == 0;
-                        for (unsigned int k = 0; k < j; ++k) {
-                            res_inv[j] -= res_poly[i][j - k] * res_inv[k];
-                        }
-                        res_inv[j] *= v;
-                    }
-                    poly[i] *= res_inv;
+                    muleq(poly[i], naive_poly_inv(res_poly[i]));
                 }
-                subset_transform::mobius(poly);
-                res.concat(remove_rank<T>(poly));
+                res.concat(deranked_mobius<T>(poly));
             }
             return res;
         }
@@ -193,28 +179,29 @@ class SPS : private std::vector<T> {
             return res;
         }
         SPS pow(long long k) {
-            using namespace suisen::internal::arithmetic_operator;
-            using namespace suisen::internal::subset_convolution;
+            const T c = (*this)[0];
 
-            T c = (*this)[0];
-            if (c == 0) {
-                int n = cardinality();
-                if (n < k) return SPS(n, 0);
-                auto res_poly = add_rank<T>(one(n));
-                auto cur_poly = add_rank<T>(SPS(*this));
-                for (; k; k >>= 1) {
-                    for (unsigned int i = 0; i < size(); ++i) {
-                        if (k & 1) res_poly[i] *= cur_poly[i];
-                        cur_poly[i] *= std::vector<T>(cur_poly[i]);
-                    }
-                }
-                return SPS(remove_rank<T>(res_poly));
+            if (c != 0) {
+                T pow_c = ::pow(c, k);
+                SPS f = *this / c;
+                f = (T(k) * f.log()).exp();
+                for (auto &e : f) e *= pow_c;
+                return f;
             }
-            T pow_c = ::pow(c, k);
-            SPS f = *this / c;
-            f = (T(k) * f.log()).exp();
-            for (auto &e : f) e *= pow_c;
-            return f;
+
+            using namespace internal::subset_convolution;
+
+            int n = cardinality();
+            if (n < k) return SPS(n, 0);
+            auto res_poly = ranked<T>(one(n));
+            auto cur_poly = ranked<T>(*this);
+            for (; k; k >>= 1) {
+                for (unsigned int i = 0; i < size(); ++i) {
+                    if (k & 1) muleq(res_poly[i], cur_poly[i]);
+                    muleq(cur_poly[i], std::vector<T>(cur_poly[i]));
+                }
+            }
+            return SPS(deranked<T>(res_poly));
         }
 
     private:
@@ -236,6 +223,18 @@ class SPS : private std::vector<T> {
 
         void ensure(unsigned int n) {
             if (size() < n) resize(n, 0);
+        }
+
+        static std::vector<T> naive_poly_inv(std::vector<T> &a) {
+            const unsigned int n = a.size();
+            std::vector<T> res(n, T(0));
+            T v = ::inv(a[0]);
+            for (unsigned int j = 0; j < n; ++j) {
+                res[j] = j == 0;
+                for (unsigned int k = 0; k < j; ++k) res[j] -= a[j - k] * res[k];
+                res[j] *= v;
+            }
+            return res;
         }
 };
 

@@ -5,12 +5,39 @@
 #include "library/convolution/convolution.hpp"
 
 namespace suisen {
-template <typename T>
-using XorConvolution = Convolution<T, WalshHadamard>;
-template <typename T, typename ...Args>
-std::vector<T> xor_convolution(Args &&...args) {
-    return XorConvolution<T>::convolution(std::forward<Args>(args)...);
-}
+    template <
+        typename T,
+        auto add = default_operator::add<T>,
+        auto sub = default_operator::sub<T>,
+        auto mul = default_operator::mul<T>,
+        auto div = default_operator::div<T>,
+        std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr
+    >
+    auto xor_convolution(std::vector<T> a, std::vector<T> b) {
+        return convolution::transform_convolution<
+            T,
+            walsh_hadamard::walsh_hadamard_transform<T, add, sub>,
+            walsh_hadamard::walsh_hadamard_transform_inv<T, add, sub, div>,
+            mul
+        >(std::move(a), std::move(b));
+    }
+
+    template <
+        typename T,
+        auto add = default_operator::add<T>,
+        auto sub = default_operator::sub<T>,
+        auto mul = default_operator::mul<T>,
+        auto inv = default_operator::inv<T>,
+        std::enable_if_t<std::negation_v<std::is_integral<T>>, std::nullptr_t> = nullptr
+    >
+    auto xor_convolution(std::vector<T> a, std::vector<T> b) {
+        return convolution::transform_convolution<
+            T,
+            walsh_hadamard::walsh_hadamard_transform<T, add, sub>,
+            walsh_hadamard::walsh_hadamard_transform_inv<T, add, sub, mul, inv>,
+            mul
+        >(std::move(a), std::move(b));
+    }
 } // namespace suisen
 
 #endif // SUISEN_XOR_CONVOLUTION
