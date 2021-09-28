@@ -27,9 +27,9 @@ int main() {
 
     using namespace walsh_hadamard;
 
-    auto res = suisen::polynomial_eval<mint, walsh_hadamard_transform<mint>, walsh_hadamard_transform_inv<mint>>(c, [n](mint x) {
+    auto res = suisen::polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c, [n](mint x) {
         return x == 1 ? n : x * (x.pow(n) - 1) / (x - 1);
-    });
+        });
 
     std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val() << std::endl;
 

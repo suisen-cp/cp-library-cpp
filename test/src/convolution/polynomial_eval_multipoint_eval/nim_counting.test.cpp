@@ -13,7 +13,7 @@ using mint = atcoder::modint998244353;
 constexpr int M = 1 << 16;
 
 int main() {
-    FPS<mint>::set_multiplication([](const auto &f, const auto &g) { return atcoder::convolution(f, g); });
+    FPS<mint>::set_multiplication([](const auto& f, const auto& g) { return atcoder::convolution(f, g); });
 
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
@@ -33,7 +33,7 @@ int main() {
 
     using namespace walsh_hadamard;
 
-    auto res = polynomial_eval<mint, walsh_hadamard_transform<mint>, walsh_hadamard_transform_inv<mint>>(c, f);
+    auto res = polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c, f);
 
     std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val() << std::endl;
 

@@ -6,7 +6,7 @@
 namespace suisen::walsh_hadamard {
     namespace internal {
         template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>
-        void unit_transform(T &x0, T &x1) {
+        void unit_transform(T& x0, T& x1) {
             T y0 = x0, y1 = x1;
             x0 = add(y0, y1);   // 1,  1
             x1 = sub(y0, y1);   // 1, -1
@@ -16,21 +16,21 @@ namespace suisen::walsh_hadamard {
     using kronecker_power_transform::kronecker_power_transform;
 
     template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>
-    void walsh_hadamard_transform(std::vector<T> &a) {
+    void walsh_hadamard(std::vector<T>& a) {
         kronecker_power_transform<T, 2, internal::unit_transform<T, add, sub>>(a);
     }
     template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>, auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-    void walsh_walsh_hadamard_transform_inv(std::vector<T> &a) {
-        walsh_hadamard_transform<T, add, sub>(a);
-        const T n { a.size() };
-        for (auto &val : a) val = div(val, n);
+    void walsh_walsh_hadamard_inv(std::vector<T>& a) {
+        walsh_hadamard<T, add, sub>(a);
+        const T n{ a.size() };
+        for (auto& val : a) val = div(val, n);
     }
     template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>, auto mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>, std::nullptr_t> = nullptr>
-    void walsh_hadamard_transform_inv(std::vector<T> &a) {
-        walsh_hadamard_transform<T, add, sub>(a);
-        const T n { a.size() };
+    void walsh_hadamard_inv(std::vector<T>& a) {
+        walsh_hadamard<T, add, sub>(a);
+        const T n{ a.size() };
         const T inv_n = inv(n);
-        for (auto &val : a) val = mul(val, inv_n);
+        for (auto& val : a) val = mul(val, inv_n);
     }
 } // namespace suisen::walsh_hadamard
 
