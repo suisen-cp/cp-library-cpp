@@ -182,25 +182,25 @@ title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62
 
   - 上位集合版のゼータ変換
   
-    $D=2,A=\begin{pmatrix} 1 & 1 \\\\\\ 0 & 1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & 1 \\\\\ 0 & 1 \end{pmatrix}$
   
   - 上位集合版のメビウス変換
 
-    $D=2,A=\begin{pmatrix} 1 & -1 \\\\\\ 0 & 1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & -1 \\\\\ 0 & 1 \end{pmatrix}$
 
   - 下位集合版のゼータ変換
   
-    $D=2,A=\begin{pmatrix} 1 & 0 \\\\\\ 1 & 1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & 0 \\\\\ 1 & 1 \end{pmatrix}$
 
   - 下位集合版のメビウス変換
 
-    $D=2,A=\begin{pmatrix} 1 & 0 \\\\\\ -1 & 1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & 0 \\\\\ -1 & 1 \end{pmatrix}$
 
   - アダマール変換
 
-    $D=2,A=\begin{pmatrix} 1 & 1 \\\\\\ 1 & -1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & 1 \\\\\ 1 & -1 \end{pmatrix}$
 
-  これらは全て $D=2$ の例であるが、例えば $3$ 進ゼータ変換は $D=3,A=\begin{pmatrix} 1 & 0 & 0 \\\\\\ 1 & 1 & 0 \\\\\\ 1 & 1 & 1 \end{pmatrix}$、メビウス変換は $D=3,A=\begin{pmatrix} 1 & 0 & 0 \\\\\\ -1 & 1 & 0 \\\\\\ 0 & -1 & 1 \end{pmatrix}$ となる (はず)。
+  これらは全て $D=2$ の例であるが、例えば $3$ 進ゼータ変換は $D=3,A=\begin{pmatrix} 1 & 0 & 0 \\\\\ 1 & 1 & 0 \\\\\ 1 & 1 & 1 \end{pmatrix}$、メビウス変換は $D=3,A=\begin{pmatrix} 1 & 0 & 0 \\\\\ -1 & 1 & 0 \\\\\ 0 & -1 & 1 \end{pmatrix}$ となる (はず)。
 
 - 使い方
 
