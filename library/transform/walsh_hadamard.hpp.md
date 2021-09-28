@@ -82,14 +82,14 @@ data:
     \            x0 = add(y0, y1);   // 1,  1\n            x1 = sub(y0, y1);   //\
     \ 1, -1\n        }\n    } // namespace internal\n\n    using kronecker_power_transform::kronecker_power_transform;\n\
     \n    template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \    constexpr auto walsh_hadamard_transform = kronecker_power_transform<T, 2,\
-    \ internal::unit_transform<T, add, sub>>;\n    template <typename T, auto add\
-    \ = default_operator::add<T>, auto sub = default_operator::sub<T>, auto div =\
-    \ default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n    void walsh_walsh_hadamard_transform_inv(std::vector<T> &a) {\n\
-    \        walsh_hadamard_transform<T, add, sub>(a);\n        const T n { a.size()\
-    \ };\n        for (auto &val : a) val = div(val, n);\n    }\n    template <typename\
+    \    void walsh_hadamard_transform(std::vector<T> &a) {\n        kronecker_power_transform<T,\
+    \ 2, internal::unit_transform<T, add, sub>>(a);\n    }\n    template <typename\
     \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
+    \ auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    void walsh_walsh_hadamard_transform_inv(std::vector<T>\
+    \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
+    \ { a.size() };\n        for (auto &val : a) val = div(val, n);\n    }\n    template\
+    \ <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
     \ auto mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>,\
     \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_transform_inv(std::vector<T>\
     \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
@@ -103,14 +103,14 @@ data:
     \            x1 = sub(y0, y1);   // 1, -1\n        }\n    } // namespace internal\n\
     \n    using kronecker_power_transform::kronecker_power_transform;\n\n    template\
     \ <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \    constexpr auto walsh_hadamard_transform = kronecker_power_transform<T, 2,\
-    \ internal::unit_transform<T, add, sub>>;\n    template <typename T, auto add\
-    \ = default_operator::add<T>, auto sub = default_operator::sub<T>, auto div =\
-    \ default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n    void walsh_walsh_hadamard_transform_inv(std::vector<T> &a) {\n\
-    \        walsh_hadamard_transform<T, add, sub>(a);\n        const T n { a.size()\
-    \ };\n        for (auto &val : a) val = div(val, n);\n    }\n    template <typename\
+    \    void walsh_hadamard_transform(std::vector<T> &a) {\n        kronecker_power_transform<T,\
+    \ 2, internal::unit_transform<T, add, sub>>(a);\n    }\n    template <typename\
     \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
+    \ auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    void walsh_walsh_hadamard_transform_inv(std::vector<T>\
+    \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
+    \ { a.size() };\n        for (auto &val : a) val = div(val, n);\n    }\n    template\
+    \ <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
     \ auto mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>,\
     \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_transform_inv(std::vector<T>\
     \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
@@ -124,7 +124,7 @@ data:
   path: library/transform/walsh_hadamard.hpp
   requiredBy:
   - library/convolution/xor_convolution.hpp
-  timestamp: '2021-09-29 01:36:15+09:00'
+  timestamp: '2021-09-29 02:35:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
@@ -135,25 +135,31 @@ layout: document
 title: "Walsh Hadamard \u5909\u63DB"
 ---
 
-### struct WalshHadamard
-
 - シグネチャ
 
   ```cpp
-  template <typename T>
-  struct WalshHadamard {
-      static void transform(std::vector<T> &a)
-      static void inverse_transform(std::vector<T> &a)
-  };
+  template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>
+  void walsh_hadamard_transform(std::vector<T>&)
+  template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>, auto div = default_operator::div<T>>
+  void walsh_walsh_hadamard_transform_inv(std::vector<T>&) // std::is_integral_v<T> が true となる型
+  template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>, auto mul = default_operator::mul<T>, auto inv = default_operator::inv<T>>
+  void walsh_hadamard_transform_inv(std::vector<T>&) // std::is_integral_v<T> が false となる型
   ```
 
 - 概要
 
-  長さ $N=2^L$ の列 $(A_0=0,A_1,\ldots,A_{N-1})$ に [アダマール変換](https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%80%E3%83%9E%E3%83%BC%E3%83%AB%E5%A4%89%E6%8F%9B) を施す関数 `WalshHadamard<T>::transform` およびその逆変換を施す関数 `WalshHadamard<T>::inverse_transform` を提供します．各変換は inplace に行われ，引数として渡した列は書き換えられます．
+  長さ $N=2^L$ の列 $(A_0=0,A_1,\ldots,A_{N-1})$ に [アダマール変換](https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%80%E3%83%9E%E3%83%BC%E3%83%AB%E5%A4%89%E6%8F%9B) を施す関数 `walsh_hadamard_transform` およびその逆変換を施す関数 `walsh_walsh_hadamard_transform_inv` を提供します．各変換は inplace に行われ，引数として渡した列は書き換えられます．
 
 - テンプレート引数
 
-  - `T`: 列の要素の型．`operator+`，`operator-`，`operator*=` が定義されている必要があります．
+  - `T`: 列の要素の型．
+  - `add`: 二項演算 (加算)．デフォルトでは `operator+` が呼ばれるようになっています．
+  - `sub`: 二項演算 (減算)．デフォルトでは `operator-` が呼ばれるようになっています．
+  - `mul`: 二項演算 (乗算)．デフォルトでは `operator*` が呼ばれるようになっています．
+  - `div`: 二項演算 (除算)．デフォルトでは `operator/` が呼ばれるようになっています．
+  - `inv`: 単項演算 (乗法逆元)．デフォルトでは `x` に対して `T{1}/x` と計算されます．
+
+  `walsh_walsh_hadamard_transform_inv` に関して，`T` が `int` や `long long` などの型に対しては除算 `div` が要求され，`double` や `atcoder::modint` などの型に対しては乗法逆元 `inv` および乗算 `mul` が要求されます (あとで設計を見直す可能性が高いです)．
 
 - 制約
 

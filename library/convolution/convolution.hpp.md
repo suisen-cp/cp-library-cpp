@@ -100,16 +100,15 @@ layout: document
 title: Convolution
 ---
 
-### convolution
+### transform_convolution
 
 - シグネチャ
 
   ```cpp
-  template <typename T, template <typename> class Transform>
-  struct Convolution {
-      std::vector<T> convolution(std::vector<T> a, std::vector<T> b) // (1)
-      std::vector<T> convolution(std::vector<std::vector<T>> a) // (2)
-  }
+  template <typename T, auto transform, auto inv_transform, auto mul = default_operator::mul<T>>
+  std::vector<T> transform_convolution(std::vector<T> a, std::vector<T> b) // (1)
+  template <typename T, auto transform, auto inv_transform, auto mul = default_operator::mul<T>>
+  std::vector<T> transform_convolution(std::vector<std::vector<T>> a) // (2)
   ```
 
 - 概要
@@ -120,18 +119,16 @@ title: Convolution
 
   ここで，$\oplus$ は $\mathbb{Z}$ 上の二項演算です．
   
-  $\odot$ を列の各点積を取る演算として，$\mathcal{F}[A]\odot \mathcal{F}[B]=\mathcal{F}[C]$ を満たす変換行列 $\mathcal{F}$ とその逆変換 $\mathcal{F}^{-1}$ を計算する静的関数を持つ `Transform` クラスをテンプレート引数に取ります．
-
-  ここでは，上記の $\mathcal{F}$ および $\mathcal{F}^{-1}$ を用いて $C$ を次のように計算します．
-
-  $$\mathcal{F}^{-1}\left[\mathcal{F}[A]\odot \mathcal{F}[B]\right]=C$$
+  この関数は $\odot$ を列の各点積を取る演算として，$\mathcal{F}[A]\odot \mathcal{F}[B]=\mathcal{F}[C]$ を満たす変換行列 $\mathcal{F}$ とその逆行列 $\mathcal{F}^{-1}$ が存在することが必要であり，この条件の下で $C=\mathcal{F}^{-1}\left[\mathcal{F}[A]\odot \mathcal{F}[B]\right]$ として畳み込みを計算します．
 
   以下，この畳み込みを $C=A\ast B$ と表記します．
 
 - テンプレート引数
 
-  - `T`: 列の要素の型．`operator*=` が定義されている必要があります．
-  - `Transform`: 列に対して inplace に変換行列 $\mathcal{F}$ を施す `static` 関数 `Transform<T>::transform(std::vector<T>&)` およびその逆変換 $\mathcal{F}^{-1}$ を施す `static` 関数 `Transform<T>::inverse_transform(std::vector<T>&)` を持つクラスです．
+  - `T`: 列の要素の型．
+  - `transform`: 列に対して inplace に線形変換 $\mathcal{F}$ を作用させる関数
+  - `transform_inv`: 列に対して inplace に線形変換 $\mathcal{F}^{-1}$ を作用させる関数
+  - `mul`: 各点積 $\odot$ を計算するための `T` 上の乗算．デフォルトでは `operator*` が呼ばれるようになっています．
 
 - 返り値
   
@@ -140,7 +137,7 @@ title: Convolution
 
 - 時間計算量
 
-  ここでは，`Transform<T>::transform` の計算量を $\Theta(f(N))$, `Transform<T>::inverse_transform` の計算量を $\Theta(g(N))$ とします．
+  `transform` の計算量を $\Theta(f(N))$, `transform_inv` の計算量を $\Theta(g(N))$ として
 
   1. $\Theta(f(N)+g(N))$
   2. 列の数を $K$ として，$\Theta(K\cdot(f(N)+g(N)))$

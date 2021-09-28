@@ -85,14 +85,14 @@ data:
     \            x0 = add(y0, y1);   // 1,  1\n            x1 = sub(y0, y1);   //\
     \ 1, -1\n        }\n    } // namespace internal\n\n    using kronecker_power_transform::kronecker_power_transform;\n\
     \n    template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \    constexpr auto walsh_hadamard_transform = kronecker_power_transform<T, 2,\
-    \ internal::unit_transform<T, add, sub>>;\n    template <typename T, auto add\
-    \ = default_operator::add<T>, auto sub = default_operator::sub<T>, auto div =\
-    \ default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n    void walsh_walsh_hadamard_transform_inv(std::vector<T> &a) {\n\
-    \        walsh_hadamard_transform<T, add, sub>(a);\n        const T n { a.size()\
-    \ };\n        for (auto &val : a) val = div(val, n);\n    }\n    template <typename\
+    \    void walsh_hadamard_transform(std::vector<T> &a) {\n        kronecker_power_transform<T,\
+    \ 2, internal::unit_transform<T, add, sub>>(a);\n    }\n    template <typename\
     \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
+    \ auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    void walsh_walsh_hadamard_transform_inv(std::vector<T>\
+    \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
+    \ { a.size() };\n        for (auto &val : a) val = div(val, n);\n    }\n    template\
+    \ <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
     \ auto mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>,\
     \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_transform_inv(std::vector<T>\
     \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
@@ -163,7 +163,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2021-09-29 01:36:15+09:00'
+  timestamp: '2021-09-29 02:35:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval/nim_counting.test.cpp

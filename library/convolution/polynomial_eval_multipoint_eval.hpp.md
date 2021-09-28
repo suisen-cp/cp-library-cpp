@@ -238,10 +238,10 @@ title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F
 - シグネチャ
 
   ```cpp
-  template <typename mint, template <typename T> class Transform>
+  template <typename mint, auto transform, auto transform_inv>
   std::vector<mint> polynomial_eval(std::vector<mint> &&a, const FPS<mint> &f) // (1)
 
-  template <typename mint, template <typename T> class Transform>
+  template <typename mint, auto transform, auto transform_inv>
   std::vector<mint> polynomial_eval(const std::vector<mint> &a, const FPS<mint> &f) // (2)
   ```
 
@@ -268,14 +268,15 @@ title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F
   \end{pmatrix}\right]
   \end{aligned}$$
 
-  上式における $\mathcal{F}$ と $\mathcal{F}^{-1}$ による変換を与えるのがテンプレート引数 `Transform` の静的メンバ関数 `Transform<T>::transform` と `Transform<T>::inverse_transform` で，$f(\cdot)$ を評価するのが引数 `f` です．
+  上式における $\mathcal{F}$ と $\mathcal{F}^{-1}$ による変換を与えるのがテンプレート引数 `transform` および `transform_inv` であり，$f(\cdot)$ を評価するのが引数 `f` です．
 
   このライブラリでは $f(\cdot)$ たちの計算に多点評価のアルゴリズムを用いることで高速化を図ります．従って，引数として与える多項式 $f$ を形式的冪級数型 `FPS` に制限し，値型は `atcoder::modint` であることを想定しています．
 
 - テンプレート引数
 
   - `mint`: 列の要素の型．`atcoder::modint` 型を想定しています．
-  - `Transform`: 列に対して inplace に線形写像 $\mathcal{F}$ を施す `static` 関数 `Transform<T>::transform(std::vector<T>&)` およびその逆変換 $\mathcal{F}^{-1}$ を施す `static` 関数 `Transform<T>::inverse_transform(std::vector<T>&)` を持つクラス．
+  - `transform`: 列に対して inplace に線形変換 $\mathcal{F}$ を施す関数
+  - `transform_inv`: 逆変換 $\mathcal{F}^{-1}$ を施す関数
 
 - 引数
 
@@ -288,5 +289,5 @@ title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F
 
 - 時間計算量
 
-  列 $A$ の長さを $N$，`Transform<T>::transform` の計算量を $\Theta(f(N))$, `Transform<T>::inverse_transform` の計算量を $\Theta(g(N))$ として，$\Theta(f(N)+g(N)+N (\log N) ^ 2)$ です．
+  列 $A$ の長さを $N$，`transform` の計算量を $\Theta(f(N))$, `transform_inv` の計算量を $\Theta(g(N))$ として，$\Theta(f(N)+g(N)+N (\log N) ^ 2)$ です．
 
