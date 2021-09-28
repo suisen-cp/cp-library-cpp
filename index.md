@@ -26,7 +26,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/and_convolution.hpp
       title: Bitwise And Convolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/convolution.hpp
       title: Convolution
     - icon: ':warning:'
@@ -284,6 +284,9 @@ data:
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
+    - icon: ':question:'
+      path: library/transform/kronecker_power.hpp
+      title: library/transform/kronecker_power.hpp
     - icon: ':heavy_check_mark:'
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
@@ -323,9 +326,12 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: library/util/container_utils.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
       title: library/util/coordinate_compressor.hpp
+    - icon: ':question:'
+      path: library/util/default_operator.hpp
+      title: library/util/default_operator.hpp
     - icon: ':warning:'
       path: library/util/default_vector.hpp
       title: library/util/default_vector.hpp
@@ -341,7 +347,7 @@ data:
     - icon: ':warning:'
       path: library/util/pair_ops.hpp
       title: library/util/pair_ops.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/range_set.hpp
       title: library/util/range_set.hpp
     - icon: ':warning:'

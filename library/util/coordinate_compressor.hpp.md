@@ -27,12 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
-  - icon: ':x:'
-    path: test/src/util/range_set/past6_m.test.cpp
-    title: test/src/util/range_set/past6_m.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/coordinate_compressor.hpp\"\n\n\n\n#include\
@@ -247,12 +244,11 @@ data:
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/geom/segment_intersections.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - test/src/util/range_set/past6_m.test.cpp
   - test/src/util/range_set/DSL_4_A.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp

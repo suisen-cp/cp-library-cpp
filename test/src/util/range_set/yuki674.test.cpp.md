@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/range_set.hpp
     title: library/util/range_set.hpp
   _extendedRequiredBy: []

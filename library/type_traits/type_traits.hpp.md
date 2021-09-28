@@ -98,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
     title: library/tree/lowest_common_ancestor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
   - icon: ':heavy_check_mark:'
@@ -225,9 +225,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
-  - icon: ':x:'
-    path: test/src/util/range_set/past6_m.test.cpp
-    title: test/src/util/range_set/past6_m.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -358,7 +355,6 @@ data:
   - test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/util/range_set/past6_m.test.cpp
   - test/src/util/range_set/DSL_4_A.test.cpp
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp

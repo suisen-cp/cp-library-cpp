@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: library/util/default_operator.hpp
+    title: library/util/default_operator.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp
@@ -11,15 +14,9 @@ data:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':question:'
-    path: library/convolution/subset_convolution.hpp
-    title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/xor_convolution.hpp
     title: Bitwise Xor Convolution
-  - icon: ':question:'
-    path: library/math/sps.hpp
-    title: library/math/sps.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/and_convolution/and_convolution.test.cpp
@@ -28,71 +25,76 @@ data:
     path: test/src/convolution/gcd_convolution/lcms.test.cpp
     title: test/src/convolution/gcd_convolution/lcms.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-    title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
     title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - icon: ':x:'
-    path: test/src/math/sps/connectivity2.test.cpp
-    title: test/src/math/sps/connectivity2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-    title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/convolution/convolution.hpp\"\n\n\n\n#include <vector>\n\
-    \nnamespace suisen {\nnamespace internal::arithmetic_operator {}\ntemplate <typename\
-    \ T, template <typename> class Transform>\nstruct Convolution {\n    static std::vector<T>\
-    \ convolution(std::vector<T> a, std::vector<T> b) {\n        using namespace internal::arithmetic_operator;\n\
-    \        const int n = a.size();\n        assert(n == int(b.size()));\n      \
-    \  Transform<T>::transform(a);\n        Transform<T>::transform(b);\n        for\
-    \ (int i = 0; i < n; ++i) a[i] *= b[i];\n        Transform<T>::inverse_transform(a);\n\
-    \        return a;\n    }\n    static std::vector<T> convolution(std::vector<std::vector<T>>\
-    \ a) {\n        using namespace internal::arithmetic_operator;\n        const\
-    \ int num = a.size();\n        if (num == 0) return {};\n        const int n =\
-    \ a[0].size();\n        for (auto &v : a) {\n            assert(n == int(v.size()));\n\
-    \            Transform<T>::transform(v);\n        }\n        auto &res = a[0];\n\
-    \        for (int i = 1; i < num; ++i) {\n            for (int j = 0; j < n; ++j)\
-    \ res[j] *= a[i][j];\n        }\n        Transform<T>::inverse_transform(res);\n\
-    \        return res;\n    }\n};\n\n} // namespace suisen\n\n\n\n"
-  code: "#ifndef SUISEN_CONVOLUTION\n#define SUISEN_CONVOLUTION\n\n#include <vector>\n\
-    \nnamespace suisen {\nnamespace internal::arithmetic_operator {}\ntemplate <typename\
-    \ T, template <typename> class Transform>\nstruct Convolution {\n    static std::vector<T>\
-    \ convolution(std::vector<T> a, std::vector<T> b) {\n        using namespace internal::arithmetic_operator;\n\
-    \        const int n = a.size();\n        assert(n == int(b.size()));\n      \
-    \  Transform<T>::transform(a);\n        Transform<T>::transform(b);\n        for\
-    \ (int i = 0; i < n; ++i) a[i] *= b[i];\n        Transform<T>::inverse_transform(a);\n\
-    \        return a;\n    }\n    static std::vector<T> convolution(std::vector<std::vector<T>>\
-    \ a) {\n        using namespace internal::arithmetic_operator;\n        const\
-    \ int num = a.size();\n        if (num == 0) return {};\n        const int n =\
-    \ a[0].size();\n        for (auto &v : a) {\n            assert(n == int(v.size()));\n\
-    \            Transform<T>::transform(v);\n        }\n        auto &res = a[0];\n\
-    \        for (int i = 1; i < num; ++i) {\n            for (int j = 0; j < n; ++j)\
-    \ res[j] *= a[i][j];\n        }\n        Transform<T>::inverse_transform(res);\n\
-    \        return res;\n    }\n};\n\n} // namespace suisen\n\n\n#endif // SUISEN_CONVOLUTION\n"
-  dependsOn: []
+  bundledCode: "#line 1 \"library/convolution/convolution.hpp\"\n\n\n\n#include <cassert>\n\
+    #include <vector>\n\n#line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace\
+    \ suisen {\n    namespace default_operator {\n        template <typename T>\n\
+    \        auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n        template\
+    \ <typename T>\n        auto one()  -> decltype(T { 1 }) { return T { 1 }; }\n\
+    \        template <typename T>\n        auto add(const T &x, const T &y) -> decltype(x\
+    \ + y) { return x + y; }\n        template <typename T>\n        auto sub(const\
+    \ T &x, const T &y) -> decltype(x - y) { return x - y; }\n        template <typename\
+    \ T>\n        auto mul(const T &x, const T &y) -> decltype(x * y) { return x *\
+    \ y; }\n        template <typename T>\n        auto div(const T &x, const T &y)\
+    \ -> decltype(x / y) { return x / y; }\n        template <typename T>\n      \
+    \  auto mod(const T &x, const T &y) -> decltype(x % y) { return x % y; }\n   \
+    \     template <typename T>\n        auto neg(const T &x) -> decltype(-x) { return\
+    \ -x; }\n        template <typename T>\n        auto inv(const T &x) -> decltype(one<T>()\
+    \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
+    \n\n#line 8 \"library/convolution/convolution.hpp\"\n\nnamespace suisen {\n  \
+    \  namespace convolution {\n        template <typename T, auto transform, auto\
+    \ inv_transform, auto mul = default_operator::mul<T>>\n        std::vector<T>\
+    \ transform_convolution(std::vector<T> a, std::vector<T> b) {\n            const\
+    \ std::size_t n = a.size(), m = b.size();\n            assert(n == m);\n     \
+    \       transform(a), transform(b);\n            for (std::size_t i = 0; i < n;\
+    \ ++i) a[i] = mul(a[i], b[i]);\n            inv_transform(a);\n            return\
+    \ a;\n        }\n        template <typename T, auto transform, auto inv_transform,\
+    \ auto mul = default_operator::mul<T>>\n        std::vector<T> transform_convolution(std::vector<std::vector<T>>\
+    \ a) {\n            const std::size_t num = a.size();\n            assert(num);\n\
+    \            const std::size_t n = a[0].size();\n            for (auto &v : a)\
+    \ {\n                assert(n == int(v.size()));\n                transform(v);\n\
+    \            }\n            auto &res = a[0];\n            for (int i = 1; i <\
+    \ num; ++i) {\n                for (int j = 0; j < n; ++j) res[j] = mul(res[j],\
+    \ a[i][j]);\n            }\n            inv_transform(res);\n            return\
+    \ res;\n        }\n    }\n} // namespace suisen\n\n\n\n"
+  code: "#ifndef SUISEN_CONVOLUTION\n#define SUISEN_CONVOLUTION\n\n#include <cassert>\n\
+    #include <vector>\n\n#include \"library/util/default_operator.hpp\"\n\nnamespace\
+    \ suisen {\n    namespace convolution {\n        template <typename T, auto transform,\
+    \ auto inv_transform, auto mul = default_operator::mul<T>>\n        std::vector<T>\
+    \ transform_convolution(std::vector<T> a, std::vector<T> b) {\n            const\
+    \ std::size_t n = a.size(), m = b.size();\n            assert(n == m);\n     \
+    \       transform(a), transform(b);\n            for (std::size_t i = 0; i < n;\
+    \ ++i) a[i] = mul(a[i], b[i]);\n            inv_transform(a);\n            return\
+    \ a;\n        }\n        template <typename T, auto transform, auto inv_transform,\
+    \ auto mul = default_operator::mul<T>>\n        std::vector<T> transform_convolution(std::vector<std::vector<T>>\
+    \ a) {\n            const std::size_t num = a.size();\n            assert(num);\n\
+    \            const std::size_t n = a[0].size();\n            for (auto &v : a)\
+    \ {\n                assert(n == int(v.size()));\n                transform(v);\n\
+    \            }\n            auto &res = a[0];\n            for (int i = 1; i <\
+    \ num; ++i) {\n                for (int j = 0; j < n; ++j) res[j] = mul(res[j],\
+    \ a[i][j]);\n            }\n            inv_transform(res);\n            return\
+    \ res;\n        }\n    }\n} // namespace suisen\n\n\n#endif // SUISEN_CONVOLUTION\n"
+  dependsOn:
+  - library/util/default_operator.hpp
   isVerificationFile: false
   path: library/convolution/convolution.hpp
   requiredBy:
   - library/convolution/and_convolution.hpp
   - library/convolution/gcd_convolution.hpp
-  - library/convolution/subset_convolution.hpp
   - library/convolution/xor_convolution.hpp
   - library/convolution/or_convolution.hpp
-  - library/math/sps.hpp
-  timestamp: '2021-08-13 19:00:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-09-29 01:36:15+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/math/sps/connectivity2.test.cpp
 documentation_of: library/convolution/convolution.hpp
 layout: document
 title: Convolution

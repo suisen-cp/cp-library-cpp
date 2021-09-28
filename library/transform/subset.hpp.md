@@ -1,20 +1,17 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: library/transform/kronecker_power.hpp
+    title: library/transform/kronecker_power.hpp
+  - icon: ':question:'
+    path: library/util/default_operator.hpp
+    title: library/util/default_operator.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':question:'
-    path: library/convolution/subset_convolution.hpp
-    title: Subset Convolution
-  - icon: ':question:'
-    path: library/math/sps.hpp
-    title: library/math/sps.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-    title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':x:'
     path: test/src/math/sps/connectivity2.test.cpp
     title: test/src/math/sps/connectivity2.test.cpp
@@ -26,63 +23,92 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/transform/subset.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <vector>\n\nnamespace suisen::internal::arithmetic_operator {}\n\nnamespace\
-    \ suisen {\nnamespace subset_transform {\nnamespace internal {\ntemplate <typename\
-    \ T, typename AssignOp>\nvoid transform(std::vector<T> &f, AssignOp assign_op)\
-    \ {\n    const int n = f.size();\n    assert((-n & n) == n);\n    for (int k =\
-    \ 1; k < n; k <<= 1) {\n        for (int l = 0; l < n; l += 2 * k) {\n       \
-    \     int m = l + k;\n            for (int p = 0; p < k; ++p) assign_op(f[m +\
-    \ p], f[l + p]);\n        }\n    }\n}\n} // namespace internal\n\nusing namespace\
-    \ suisen::internal::arithmetic_operator;\n\ntemplate <typename T, typename AddAssign>\n\
-    void zeta(std::vector<T> &f, AddAssign add_assign) {\n    internal::transform(f,\
-    \ add_assign);\n}\ntemplate <typename T, typename SubAssign>\nvoid mobius(std::vector<T>\
-    \ &f, SubAssign sub_assign) {\n    internal::transform(f, sub_assign);\n}\ntemplate\
-    \ <typename T>\nvoid zeta(std::vector<T> &f) {\n    zeta(f, [](T &a, const T &b)\
-    \ { a += b; });\n}\ntemplate <typename T>\nvoid mobius(std::vector<T> &f) {\n\
-    \    mobius(f, [](T &a, const T &b) { a -= b; });\n}\n\n} // namespace subset_transform\n\
-    \ntemplate <typename T, typename AddAssign, typename SubAssign, AddAssign add_assign,\
-    \ SubAssign sub_assign>\nstruct SubsetTransformGeneral {\n    static void transform(std::vector<T>\
-    \ &a) {\n        subset_transform::zeta(a, add_assign);\n    }\n    static void\
-    \ inverse_transform(std::vector<T> &a) {\n        subset_transform::mobius(a,\
-    \ sub_assign);\n    }\n};\n\ntemplate <typename T>\nstruct SubsetTransform {\n\
-    \    static void transform(std::vector<T> &a) {\n        subset_transform::zeta(a);\n\
-    \    }\n    static void inverse_transform(std::vector<T> &a) {\n        subset_transform::mobius(a);\n\
-    \    }\n};\n\n} // namespace suisen\n\n\n\n"
+  bundledCode: "#line 1 \"library/transform/subset.hpp\"\n\n\n\n#line 1 \"library/transform/kronecker_power.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <vector>\n\n#line 1 \"library/util/default_operator.hpp\"\
+    \n\n\n\nnamespace suisen {\n    namespace default_operator {\n        template\
+    \ <typename T>\n        auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n\
+    \        template <typename T>\n        auto one()  -> decltype(T { 1 }) { return\
+    \ T { 1 }; }\n        template <typename T>\n        auto add(const T &x, const\
+    \ T &y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
+    \        auto sub(const T &x, const T &y) -> decltype(x - y) { return x - y; }\n\
+    \        template <typename T>\n        auto mul(const T &x, const T &y) -> decltype(x\
+    \ * y) { return x * y; }\n        template <typename T>\n        auto div(const\
+    \ T &x, const T &y) -> decltype(x / y) { return x / y; }\n        template <typename\
+    \ T>\n        auto mod(const T &x, const T &y) -> decltype(x % y) { return x %\
+    \ y; }\n        template <typename T>\n        auto neg(const T &x) -> decltype(-x)\
+    \ { return -x; }\n        template <typename T>\n        auto inv(const T &x)\
+    \ -> decltype(one<T>() / x)  { return one<T>() / x; }\n    } // default_operator\n\
+    } // namespace suisen\n\n\n#line 8 \"library/transform/kronecker_power.hpp\"\n\
+    \nnamespace suisen {\n    namespace kronecker_power_transform {\n        namespace\
+    \ internal {\n            template <typename UnitTransform, typename ReferenceGetter,\
+    \ std::size_t... Seq>\n            void unit_transform(UnitTransform transform,\
+    \ ReferenceGetter ref_getter, std::index_sequence<Seq...>) {\n               \
+    \ transform(ref_getter(Seq)...);\n            }\n        }\n\n        template\
+    \ <typename T, std::size_t D, auto unit_transform>\n        void kronecker_power_transform(std::vector<T>\
+    \ &x) {\n            const std::size_t n = x.size();\n            for (std::size_t\
+    \ block = 1; block < n; block *= D) {\n                for (std::size_t l = 0;\
+    \ l < n; l += D * block) {\n                    for (std::size_t offset = l; offset\
+    \ < l + block; ++offset) {\n                        const auto ref_getter = [&](std::size_t\
+    \ i) -> T& { return x[offset + i * block]; };\n                        internal::unit_transform(unit_transform,\
+    \ ref_getter, std::make_index_sequence<D>());\n                    }\n       \
+    \         }\n            }\n        }\n\n        template <typename T, typename\
+    \ UnitTransform>\n        void kronecker_power_transform(std::vector<T> &x, const\
+    \ std::size_t D, UnitTransform unit_transform) {\n            const std::size_t\
+    \ n = x.size();\n            std::vector<T> work(D);\n            for (std::size_t\
+    \ block = 1; block < n; block *= D) {\n                for (std::size_t l = 0;\
+    \ l < n; l += D * block) {\n                    for (std::size_t offset = l; offset\
+    \ < l + block; ++offset) {\n                        for (std::size_t i = 0; i\
+    \ < D; ++i) work[i] = x[offset + i * block];\n                        unit_transform(work);\n\
+    \                        for (std::size_t i = 0; i < D; ++i) x[offset + i * block]\
+    \ = work[i];\n                    }\n                }\n            }\n      \
+    \  }\n\n        template <typename T, auto e = default_operator::zero<T>, auto\
+    \ add = default_operator::add<T>, auto mul = default_operator::mul<T>>\n     \
+    \   auto kronecker_power_transform(std::vector<T> &x, const std::vector<std::vector<T>>\
+    \ &A) -> decltype(e(), add(std::declval<T>(), std::declval<T>()), mul(std::declval<T>(),\
+    \ std::declval<T>()), void()) {\n            const std::size_t D = A.size();\n\
+    \            assert(D == A[0].size());\n            auto unit_transform = [&](std::vector<T>\
+    \ &x) {\n                std::vector<T> y(D, e());\n                for (std::size_t\
+    \ i = 0; i < D; ++i) for (std::size_t j = 0; j < D; ++j) {\n                 \
+    \   y[i] = add(y[i], mul(A[i][j], x[j]));\n                }\n               \
+    \ x.swap(y);\n            };\n            kronecker_power_transform<T>(x, D, unit_transform);\n\
+    \        }\n    }\n} // namespace suisen\n\n\n\n#line 5 \"library/transform/subset.hpp\"\
+    \n\nnamespace suisen::subset_transform {\n    namespace internal {\n        template\
+    \ <typename T, auto add = default_operator::add<T>>\n        void zeta_unit_transform(T\
+    \ &x0, T &x1) {\n                                // 1, 0\n            x1 = add(x1,\
+    \ x0);   // 1, 1\n        }\n        template <typename T, auto sub = default_operator::sub<T>>\n\
+    \        void mobius_unit_transform(T &x0, T &x1) {\n                        \
+    \        //  1, 0\n            x1 = sub(x1, x0);   // -1, 1\n        }\n    }\
+    \ // namespace internal\n\n    using kronecker_power_transform::kronecker_power_transform;\n\
+    \n    template <typename T, auto add = default_operator::add<T>>\n    void zeta(std::vector<T>\
+    \ &a) {\n        kronecker_power_transform<T, 2, internal::zeta_unit_transform<T,\
+    \ add>>(a);\n    }\n    template <typename T, auto sub = default_operator::sub<T>>\n\
+    \    void mobius(std::vector<T> &a) {\n        kronecker_power_transform<T, 2,\
+    \ internal::mobius_unit_transform<T, sub>>(a);\n    }\n} // namespace suisen::subset_transform\n\
+    \n\n"
   code: "#ifndef SUISEN_SUBSET_TRANSFORM\n#define SUISEN_SUBSET_TRANSFORM\n\n#include\
-    \ <cassert>\n#include <vector>\n\nnamespace suisen::internal::arithmetic_operator\
-    \ {}\n\nnamespace suisen {\nnamespace subset_transform {\nnamespace internal {\n\
-    template <typename T, typename AssignOp>\nvoid transform(std::vector<T> &f, AssignOp\
-    \ assign_op) {\n    const int n = f.size();\n    assert((-n & n) == n);\n    for\
-    \ (int k = 1; k < n; k <<= 1) {\n        for (int l = 0; l < n; l += 2 * k) {\n\
-    \            int m = l + k;\n            for (int p = 0; p < k; ++p) assign_op(f[m\
-    \ + p], f[l + p]);\n        }\n    }\n}\n} // namespace internal\n\nusing namespace\
-    \ suisen::internal::arithmetic_operator;\n\ntemplate <typename T, typename AddAssign>\n\
-    void zeta(std::vector<T> &f, AddAssign add_assign) {\n    internal::transform(f,\
-    \ add_assign);\n}\ntemplate <typename T, typename SubAssign>\nvoid mobius(std::vector<T>\
-    \ &f, SubAssign sub_assign) {\n    internal::transform(f, sub_assign);\n}\ntemplate\
-    \ <typename T>\nvoid zeta(std::vector<T> &f) {\n    zeta(f, [](T &a, const T &b)\
-    \ { a += b; });\n}\ntemplate <typename T>\nvoid mobius(std::vector<T> &f) {\n\
-    \    mobius(f, [](T &a, const T &b) { a -= b; });\n}\n\n} // namespace subset_transform\n\
-    \ntemplate <typename T, typename AddAssign, typename SubAssign, AddAssign add_assign,\
-    \ SubAssign sub_assign>\nstruct SubsetTransformGeneral {\n    static void transform(std::vector<T>\
-    \ &a) {\n        subset_transform::zeta(a, add_assign);\n    }\n    static void\
-    \ inverse_transform(std::vector<T> &a) {\n        subset_transform::mobius(a,\
-    \ sub_assign);\n    }\n};\n\ntemplate <typename T>\nstruct SubsetTransform {\n\
-    \    static void transform(std::vector<T> &a) {\n        subset_transform::zeta(a);\n\
-    \    }\n    static void inverse_transform(std::vector<T> &a) {\n        subset_transform::mobius(a);\n\
-    \    }\n};\n\n} // namespace suisen\n\n\n#endif // SUISEN_SUBSET_TRANSFORM"
-  dependsOn: []
+    \ \"library/transform/kronecker_power.hpp\"\n\nnamespace suisen::subset_transform\
+    \ {\n    namespace internal {\n        template <typename T, auto add = default_operator::add<T>>\n\
+    \        void zeta_unit_transform(T &x0, T &x1) {\n                          \
+    \      // 1, 0\n            x1 = add(x1, x0);   // 1, 1\n        }\n        template\
+    \ <typename T, auto sub = default_operator::sub<T>>\n        void mobius_unit_transform(T\
+    \ &x0, T &x1) {\n                                //  1, 0\n            x1 = sub(x1,\
+    \ x0);   // -1, 1\n        }\n    } // namespace internal\n\n    using kronecker_power_transform::kronecker_power_transform;\n\
+    \n    template <typename T, auto add = default_operator::add<T>>\n    void zeta(std::vector<T>\
+    \ &a) {\n        kronecker_power_transform<T, 2, internal::zeta_unit_transform<T,\
+    \ add>>(a);\n    }\n    template <typename T, auto sub = default_operator::sub<T>>\n\
+    \    void mobius(std::vector<T> &a) {\n        kronecker_power_transform<T, 2,\
+    \ internal::mobius_unit_transform<T, sub>>(a);\n    }\n} // namespace suisen::subset_transform\n\
+    \n#endif // SUISEN_SUBSET_TRANSFORM"
+  dependsOn:
+  - library/transform/kronecker_power.hpp
+  - library/util/default_operator.hpp
   isVerificationFile: false
   path: library/transform/subset.hpp
   requiredBy:
-  - library/convolution/subset_convolution.hpp
   - library/convolution/or_convolution.hpp
-  - library/math/sps.hpp
-  timestamp: '2021-08-13 19:00:29+09:00'
+  timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
 documentation_of: library/transform/subset.hpp

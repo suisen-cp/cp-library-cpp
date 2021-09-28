@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution.hpp
     title: Convolution
   - icon: ':heavy_check_mark:'
@@ -11,6 +11,9 @@ data:
     path: library/transform/multiple.hpp
     title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
+  - icon: ':question:'
+    path: library/util/default_operator.hpp
+    title: library/util/default_operator.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -24,60 +27,66 @@ data:
   bundledCode: "#line 1 \"test/src/convolution/gcd_convolution/lcms.test.cpp\"\n#define\
     \ PROBLEM \"https://atcoder.jp/contests/agc038/tasks/agc038_c\"\n\n#include <iostream>\n\
     #include <atcoder/modint>\n\n#line 1 \"library/convolution/gcd_convolution.hpp\"\
-    \n\n\n\n#line 1 \"library/transform/multiple.hpp\"\n\n\n\n#include <vector>\n\n\
-    namespace suisen::internal::arithmetic_operator {}\n\nnamespace suisen {\nnamespace\
-    \ multiple_transform {\n\nusing namespace suisen::internal::arithmetic_operator;\n\
-    \n// Calculates `g` s.t. g(n) = Sum_{n | m} f(m) inplace.\ntemplate <typename\
-    \ T, typename AddAssign>\nvoid zeta(std::vector<T> &f, AddAssign add_assign) {\n\
-    \    const int n = f.size();\n    std::vector<char> is_prime(n, true);\n    auto\
-    \ cum = [&](const int p) {\n        const int qmax = (n - 1) / p, rmax = qmax\
-    \ * p;\n        for (int q = qmax, pq = rmax; q >= 1; --q, pq -= p) {\n      \
-    \      add_assign(f[q], f[pq]);\n            is_prime[pq] = false;\n        }\n\
-    \    };\n    cum(2);\n    for (int p = 3; p < n; p += 2) if (is_prime[p]) cum(p);\n\
-    }\n\n// Calculates `f` s.t. g(n) = Sum_{n | m} f(m) inplace.\ntemplate <typename\
-    \ T, typename SubAssign>\nvoid mobius(std::vector<T> &f, SubAssign sub_assign)\
-    \ {\n    const int n = f.size();\n    std::vector<char> is_prime(n, true);\n \
-    \   auto diff = [&](const int p) {\n        for (int q = 1, pq = p; pq < n; ++q,\
-    \ pq += p) {\n            sub_assign(f[q], f[pq]);\n            is_prime[pq] =\
-    \ false;\n        }\n    };\n    diff(2);\n    for (int p = 3; p < n; p += 2)\
-    \ if (is_prime[p]) diff(p);\n}\n\n// Calculates `g` s.t. g(n) = Sum_{n | m} f(m)\
-    \ inplace.\ntemplate <typename T>\nvoid zeta(std::vector<T> &f) {\n    zeta(f,\
-    \ [](T &a, const T &b) { a += b; });\n}\n\n// Calculates `f` s.t. g(n) = Sum_{n\
-    \ | m} f(m) inplace.\ntemplate <typename T>\nvoid mobius(std::vector<T> &f) {\n\
-    \    mobius(f, [](T &a, const T &b) { a -= b; });\n}\n\n} // namespace multiple_transform\n\
-    \ntemplate <typename T, typename AddAssign, typename SubAssign, AddAssign add_assign,\
-    \ SubAssign sub_assign>\nstruct MultipleTransformGeneral {\n    static void transform(std::vector<T>\
-    \ &a) {\n        multiple_transform::zeta(a, add_assign);\n    }\n    static void\
-    \ inverse_transform(std::vector<T> &a) {\n        multiple_transform::mobius(a,\
-    \ sub_assign);\n    }\n};\n\ntemplate <typename T>\nstruct MultipleTransform {\n\
-    \    static void transform(std::vector<T> &a) {\n        multiple_transform::zeta(a);\n\
-    \    }\n    static void inverse_transform(std::vector<T> &a) {\n        multiple_transform::mobius(a);\n\
-    \    }\n};\n\n} // namespace suisen\n\n\n\n#line 1 \"library/convolution/convolution.hpp\"\
-    \n\n\n\n#line 5 \"library/convolution/convolution.hpp\"\n\nnamespace suisen {\n\
-    namespace internal::arithmetic_operator {}\ntemplate <typename T, template <typename>\
-    \ class Transform>\nstruct Convolution {\n    static std::vector<T> convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n        using namespace internal::arithmetic_operator;\n\
-    \        const int n = a.size();\n        assert(n == int(b.size()));\n      \
-    \  Transform<T>::transform(a);\n        Transform<T>::transform(b);\n        for\
-    \ (int i = 0; i < n; ++i) a[i] *= b[i];\n        Transform<T>::inverse_transform(a);\n\
-    \        return a;\n    }\n    static std::vector<T> convolution(std::vector<std::vector<T>>\
-    \ a) {\n        using namespace internal::arithmetic_operator;\n        const\
-    \ int num = a.size();\n        if (num == 0) return {};\n        const int n =\
-    \ a[0].size();\n        for (auto &v : a) {\n            assert(n == int(v.size()));\n\
-    \            Transform<T>::transform(v);\n        }\n        auto &res = a[0];\n\
-    \        for (int i = 1; i < num; ++i) {\n            for (int j = 0; j < n; ++j)\
-    \ res[j] *= a[i][j];\n        }\n        Transform<T>::inverse_transform(res);\n\
-    \        return res;\n    }\n};\n\n} // namespace suisen\n\n\n\n#line 6 \"library/convolution/gcd_convolution.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename T>\nusing GCDConvolution = Convolution<T,\
-    \ MultipleTransform>;\ntemplate <typename T, typename ...Args>\nstd::vector<T>\
-    \ gcd_convolution(Args &&...args) {\n    return GCDConvolution<T>::convolution(std::forward<Args>(args)...);\n\
-    }\n} // namespace suisen\n\n\n#line 7 \"test/src/convolution/gcd_convolution/lcms.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nconstexpr int M = 1000000;\n\nint\
-    \ main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    int n;\n    std::cin >> n;\n    std::vector<mint> count(M + 1, 0);\n   \
-    \ for (int i = 0; i < n; ++i) {\n        int v;\n        std::cin >> v;\n    \
-    \    ++count[v];\n    }\n\n    std::vector<mint> f(M + 1);\n    for (int i = 0;\
-    \ i <= M; ++i) f[i] = count[i] * i;\n\n    auto c = suisen::gcd_convolution<mint>(f,\
+    \n\n\n\n#line 1 \"library/transform/multiple.hpp\"\n\n\n\n#include <vector>\n\
+    #line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n    namespace\
+    \ default_operator {\n        template <typename T>\n        auto zero() -> decltype(T\
+    \ { 0 }) { return T { 0 }; }\n        template <typename T>\n        auto one()\
+    \  -> decltype(T { 1 }) { return T { 1 }; }\n        template <typename T>\n \
+    \       auto add(const T &x, const T &y) -> decltype(x + y) { return x + y; }\n\
+    \        template <typename T>\n        auto sub(const T &x, const T &y) -> decltype(x\
+    \ - y) { return x - y; }\n        template <typename T>\n        auto mul(const\
+    \ T &x, const T &y) -> decltype(x * y) { return x * y; }\n        template <typename\
+    \ T>\n        auto div(const T &x, const T &y) -> decltype(x / y) { return x /\
+    \ y; }\n        template <typename T>\n        auto mod(const T &x, const T &y)\
+    \ -> decltype(x % y) { return x % y; }\n        template <typename T>\n      \
+    \  auto neg(const T &x) -> decltype(-x) { return -x; }\n        template <typename\
+    \ T>\n        auto inv(const T &x) -> decltype(one<T>() / x)  { return one<T>()\
+    \ / x; }\n    } // default_operator\n} // namespace suisen\n\n\n#line 6 \"library/transform/multiple.hpp\"\
+    \n\nnamespace suisen::multiple_transform {\n    // Calculates `g` s.t. g(n) =\
+    \ Sum_{n | m} f(m) inplace.\n    template <typename T, auto add = default_operator::add<T>>\n\
+    \    void zeta(std::vector<T> &f) {\n        const int n = f.size();\n       \
+    \ std::vector<char> is_prime(n, true);\n        auto cum = [&](const int p) {\n\
+    \            const int qmax = (n - 1) / p, rmax = qmax * p;\n            for (int\
+    \ q = qmax, pq = rmax; q >= 1; --q, pq -= p) {\n                f[q] = add(f[q],\
+    \ f[pq]);\n                is_prime[pq] = false;\n            }\n        };\n\
+    \        for (int p = 2; p < n; ++p) if (is_prime[p]) cum(p);\n    }\n    // Calculates\
+    \ `f` s.t. g(n) = Sum_{n | m} f(m) inplace.\n    template <typename T, auto sub\
+    \ = default_operator::sub<T>>\n    void mobius(std::vector<T> &f) {\n        const\
+    \ int n = f.size();\n        std::vector<char> is_prime(n, true);\n        auto\
+    \ diff = [&](const int p) {\n            for (int q = 1, pq = p; pq < n; ++q,\
+    \ pq += p) {\n                f[q] = sub(f[q], f[pq]);\n                is_prime[pq]\
+    \ = false;\n            }\n        };\n        for (int p = 2; p < n; ++p) if\
+    \ (is_prime[p]) diff(p);\n    }\n} // namespace suisen::multiple_transform\n\n\
+    \n#line 1 \"library/convolution/convolution.hpp\"\n\n\n\n#include <cassert>\n\
+    #line 6 \"library/convolution/convolution.hpp\"\n\n#line 8 \"library/convolution/convolution.hpp\"\
+    \n\nnamespace suisen {\n    namespace convolution {\n        template <typename\
+    \ T, auto transform, auto inv_transform, auto mul = default_operator::mul<T>>\n\
+    \        std::vector<T> transform_convolution(std::vector<T> a, std::vector<T>\
+    \ b) {\n            const std::size_t n = a.size(), m = b.size();\n          \
+    \  assert(n == m);\n            transform(a), transform(b);\n            for (std::size_t\
+    \ i = 0; i < n; ++i) a[i] = mul(a[i], b[i]);\n            inv_transform(a);\n\
+    \            return a;\n        }\n        template <typename T, auto transform,\
+    \ auto inv_transform, auto mul = default_operator::mul<T>>\n        std::vector<T>\
+    \ transform_convolution(std::vector<std::vector<T>> a) {\n            const std::size_t\
+    \ num = a.size();\n            assert(num);\n            const std::size_t n =\
+    \ a[0].size();\n            for (auto &v : a) {\n                assert(n == int(v.size()));\n\
+    \                transform(v);\n            }\n            auto &res = a[0];\n\
+    \            for (int i = 1; i < num; ++i) {\n                for (int j = 0;\
+    \ j < n; ++j) res[j] = mul(res[j], a[i][j]);\n            }\n            inv_transform(res);\n\
+    \            return res;\n        }\n    }\n} // namespace suisen\n\n\n\n#line\
+    \ 6 \"library/convolution/gcd_convolution.hpp\"\n\nnamespace suisen {\n    template\
+    \ <\n        typename T,\n        auto add = default_operator::add<T>,\n     \
+    \   auto sub = default_operator::sub<T>,\n        auto mul = default_operator::mul<T>\n\
+    \    >\n    auto gcd_convolution(std::vector<T> a, std::vector<T> b) {\n     \
+    \   return convolution::transform_convolution<\n            T,\n            multiple_transform::zeta<T,\
+    \ add>,\n            multiple_transform::mobius<T, sub>,\n            mul\n  \
+    \      >(std::move(a), std::move(b));\n    }\n} // namespace suisen\n\n\n#line\
+    \ 7 \"test/src/convolution/gcd_convolution/lcms.test.cpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    \nconstexpr int M = 1000000;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n    std::vector<mint>\
+    \ count(M + 1, 0);\n    for (int i = 0; i < n; ++i) {\n        int v;\n      \
+    \  std::cin >> v;\n        ++count[v];\n    }\n\n    std::vector<mint> f(M + 1);\n\
+    \    for (int i = 0; i <= M; ++i) f[i] = count[i] * i;\n\n    auto c = suisen::gcd_convolution<mint>(f,\
     \ f);\n\n    mint ans = 0;\n    for (int g = 1; g <= M; ++g) {\n        ans +=\
     \ (c[g] - f[g] * f[g]) / (2 * g);\n    }\n\n    for (int i = 1; i <= M; ++i) {\n\
     \        ans += count[i] * (count[i] - 1) * i / 2;\n    }\n    std::cout << ans.val()\
@@ -97,11 +106,12 @@ data:
   dependsOn:
   - library/convolution/gcd_convolution.hpp
   - library/transform/multiple.hpp
+  - library/util/default_operator.hpp
   - library/convolution/convolution.hpp
   isVerificationFile: true
   path: test/src/convolution/gcd_convolution/lcms.test.cpp
   requiredBy: []
-  timestamp: '2021-08-13 19:00:29+09:00'
+  timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/gcd_convolution/lcms.test.cpp

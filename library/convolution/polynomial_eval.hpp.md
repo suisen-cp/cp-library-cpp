@@ -40,31 +40,31 @@ data:
     \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
     \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
     \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 7 \"library/convolution/polynomial_eval.hpp\"\
-    \n\nnamespace suisen {\n\ntemplate <typename T, template <typename> class Transform,\
-    \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
-    \ polynomial_eval(std::vector<T> &&a, F f) {\n    Transform<T>::transform(a);\n\
-    \    for (auto &x : a) x = f(x);\n    Transform<T>::inverse_transform(a);\n  \
-    \  return a;\n}\n\ntemplate <typename T, template <typename> class Transform,\
-    \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
-    \ polynomial_eval(const std::vector<T> &a, F f) {\n    return polynomial_eval<T,\
-    \ Transform>(std::vector<T>(a), f);\n}\n\n} // namespace suisen\n\n\n\n"
+    \n\nnamespace suisen {\n    template <typename T, auto transform, auto transform_inv,\
+    \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\n  \
+    \  std::vector<T> polynomial_eval(std::vector<T> &&a, F f) {\n        transform(a);\n\
+    \        for (auto &x : a) x = f(x);\n        transform_inv(a);\n        return\
+    \ a;\n    }\n\n    template <typename T, auto transform, auto transform_inv, typename\
+    \ F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\n    std::vector<T>\
+    \ polynomial_eval(const std::vector<T> &a, F f) {\n        return polynomial_eval<T,\
+    \ transform, transform_inv>(std::vector<T>(a), f);\n    }\n} // namespace suisen\n\
+    \n\n"
   code: "#ifndef SUISEN_APPLY_POLYNOMIAL\n#define SUISEN_APPLY_POLYNOMIAL\n\n#include\
     \ <vector>\n\n#include \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen\
-    \ {\n\ntemplate <typename T, template <typename> class Transform, typename F,\
-    \ constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
-    \ polynomial_eval(std::vector<T> &&a, F f) {\n    Transform<T>::transform(a);\n\
-    \    for (auto &x : a) x = f(x);\n    Transform<T>::inverse_transform(a);\n  \
-    \  return a;\n}\n\ntemplate <typename T, template <typename> class Transform,\
-    \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\nstd::vector<T>\
-    \ polynomial_eval(const std::vector<T> &a, F f) {\n    return polynomial_eval<T,\
-    \ Transform>(std::vector<T>(a), f);\n}\n\n} // namespace suisen\n\n\n#endif //\
-    \ SUISEN_APPLY_POLYNOMIAL\n"
+    \ {\n    template <typename T, auto transform, auto transform_inv, typename F,\
+    \ constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\n    std::vector<T>\
+    \ polynomial_eval(std::vector<T> &&a, F f) {\n        transform(a);\n        for\
+    \ (auto &x : a) x = f(x);\n        transform_inv(a);\n        return a;\n    }\n\
+    \n    template <typename T, auto transform, auto transform_inv, typename F, constraints_t<is_same_as_invoke_result<T,\
+    \ F, T>> = nullptr>\n    std::vector<T> polynomial_eval(const std::vector<T> &a,\
+    \ F f) {\n        return polynomial_eval<T, transform, transform_inv>(std::vector<T>(a),\
+    \ f);\n    }\n} // namespace suisen\n\n#endif // SUISEN_APPLY_POLYNOMIAL\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/convolution/polynomial_eval.hpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:31+09:00'
+  timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp

@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/range_set.hpp
     title: library/util/range_set.hpp
   _extendedRequiredBy: []
