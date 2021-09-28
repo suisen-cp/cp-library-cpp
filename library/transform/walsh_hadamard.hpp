@@ -3,7 +3,7 @@
 
 #include "library/transform/kronecker_power.hpp"
 
-namespace suisen::walsh_hadamard {
+namespace suisen::walsh_hadamard_transform {
     namespace internal {
         template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>
         void unit_transform(T& x0, T& x1) {
@@ -32,7 +32,7 @@ namespace suisen::walsh_hadamard {
         const T inv_n = inv(n);
         for (auto& val : a) val = mul(val, inv_n);
     }
-} // namespace suisen::walsh_hadamard
+} // namespace suisen::walsh_hadamard_transform
 
 
 #endif // SUISEN_WALSH_HADAMARD_TRANSFORM

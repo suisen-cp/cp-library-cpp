@@ -31,7 +31,7 @@ int main() {
     FPS<mint> f(n + 1, 1);
     f[0] = 0;
 
-    using namespace walsh_hadamard;
+    using namespace walsh_hadamard_transform;
 
     auto res = polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c, f);
 

@@ -25,7 +25,7 @@ int main() {
         ++c[v];
     }
 
-    using namespace walsh_hadamard;
+    using namespace walsh_hadamard_transform;
 
     auto res = suisen::polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c, [n](mint x) {
         return x == 1 ? n : x * (x.pow(n) - 1) / (x - 1);
