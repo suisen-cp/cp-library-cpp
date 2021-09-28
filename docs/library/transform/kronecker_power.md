@@ -26,25 +26,25 @@ documentation_of: //library/transform/kronecker_power.hpp
 
   - 上位集合版のゼータ変換
   
-    $D=2,A=\begin{pmatrix} 1 & 1 \\\\\\ 0 & 1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & 1 \\\\\ 0 & 1 \end{pmatrix}$
   
   - 上位集合版のメビウス変換
 
-    $D=2,A=\begin{pmatrix} 1 & -1 \\\\\\ 0 & 1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & -1 \\\\\ 0 & 1 \end{pmatrix}$
 
   - 下位集合版のゼータ変換
   
-    $D=2,A=\begin{pmatrix} 1 & 0 \\\\\\ 1 & 1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & 0 \\\\\ 1 & 1 \end{pmatrix}$
 
   - 下位集合版のメビウス変換
 
-    $D=2,A=\begin{pmatrix} 1 & 0 \\\\\\ -1 & 1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & 0 \\\\\ -1 & 1 \end{pmatrix}$
 
   - アダマール変換
 
-    $D=2,A=\begin{pmatrix} 1 & 1 \\\\\\ 1 & -1 \end{pmatrix}$
+    $D=2,A=\begin{pmatrix} 1 & 1 \\\\\ 1 & -1 \end{pmatrix}$
 
-  これらは全て $D=2$ の例であるが、例えば $3$ 進ゼータ変換は $D=3,A=\begin{pmatrix} 1 & 0 & 0 \\\\\\ 1 & 1 & 0 \\\\\\ 1 & 1 & 1 \end{pmatrix}$、メビウス変換は $D=3,A=\begin{pmatrix} 1 & 0 & 0 \\\\\\ -1 & 1 & 0 \\\\\\ 0 & -1 & 1 \end{pmatrix}$ となる (はず)。
+  これらは全て $D=2$ の例であるが、例えば $3$ 進ゼータ変換は $D=3,A=\begin{pmatrix} 1 & 0 & 0 \\\\\ 1 & 1 & 0 \\\\\ 1 & 1 & 1 \end{pmatrix}$、メビウス変換は $D=3,A=\begin{pmatrix} 1 & 0 & 0 \\\\\ -1 & 1 & 0 \\\\\ 0 & -1 & 1 \end{pmatrix}$ となる (はず)。
 
 - 使い方
 
