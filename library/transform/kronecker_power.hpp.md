@@ -159,7 +159,7 @@ title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62
   \u63DB (\u4EEE\u79F0)"
 ---
 
-### kronecker_power
+### kronecker_power_transform
 
 - シグネチャ
 
