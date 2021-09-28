@@ -76,12 +76,13 @@ data:
     \   y[i] = add(y[i], mul(A[i][j], x[j]));\n                }\n               \
     \ x.swap(y);\n            };\n            kronecker_power_transform<T>(x, D, unit_transform);\n\
     \        }\n    }\n} // namespace suisen\n\n\n\n#line 5 \"library/transform/walsh_hadamard.hpp\"\
-    \n\nnamespace suisen::walsh_hadamard {\n    namespace internal {\n        template\
+    \n\nnamespace suisen::walsh_hadamard_transform {\n    namespace internal {\n \
+    \       template <typename T, auto add = default_operator::add<T>, auto sub =\
+    \ default_operator::sub<T>>\n        void unit_transform(T& x0, T& x1) {\n   \
+    \         T y0 = x0, y1 = x1;\n            x0 = add(y0, y1);   // 1,  1\n    \
+    \        x1 = sub(y0, y1);   // 1, -1\n        }\n    } // namespace internal\n\
+    \n    using kronecker_power_transform::kronecker_power_transform;\n\n    template\
     \ <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \        void unit_transform(T& x0, T& x1) {\n            T y0 = x0, y1 = x1;\n\
-    \            x0 = add(y0, y1);   // 1,  1\n            x1 = sub(y0, y1);   //\
-    \ 1, -1\n        }\n    } // namespace internal\n\n    using kronecker_power_transform::kronecker_power_transform;\n\
-    \n    template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
     \    void walsh_hadamard(std::vector<T>& a) {\n        kronecker_power_transform<T,\
     \ 2, internal::unit_transform<T, add, sub>>(a);\n    }\n    template <typename\
     \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
@@ -94,9 +95,9 @@ data:
     \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_inv(std::vector<T>& a) {\n\
     \        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n   \
     \     const T inv_n = inv(n);\n        for (auto& val : a) val = mul(val, inv_n);\n\
-    \    }\n} // namespace suisen::walsh_hadamard\n\n\n\n"
+    \    }\n} // namespace suisen::walsh_hadamard_transform\n\n\n\n"
   code: "#ifndef SUISEN_WALSH_HADAMARD_TRANSFORM\n#define SUISEN_WALSH_HADAMARD_TRANSFORM\n\
-    \n#include \"library/transform/kronecker_power.hpp\"\n\nnamespace suisen::walsh_hadamard\
+    \n#include \"library/transform/kronecker_power.hpp\"\n\nnamespace suisen::walsh_hadamard_transform\
     \ {\n    namespace internal {\n        template <typename T, auto add = default_operator::add<T>,\
     \ auto sub = default_operator::sub<T>>\n        void unit_transform(T& x0, T&\
     \ x1) {\n            T y0 = x0, y1 = x1;\n            x0 = add(y0, y1);   // 1,\
@@ -115,7 +116,7 @@ data:
     \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_inv(std::vector<T>& a) {\n\
     \        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n   \
     \     const T inv_n = inv(n);\n        for (auto& val : a) val = mul(val, inv_n);\n\
-    \    }\n} // namespace suisen::walsh_hadamard\n\n\n#endif // SUISEN_WALSH_HADAMARD_TRANSFORM\n"
+    \    }\n} // namespace suisen::walsh_hadamard_transform\n\n\n#endif // SUISEN_WALSH_HADAMARD_TRANSFORM\n"
   dependsOn:
   - library/transform/kronecker_power.hpp
   - library/util/default_operator.hpp
@@ -123,7 +124,7 @@ data:
   path: library/transform/walsh_hadamard.hpp
   requiredBy:
   - library/convolution/xor_convolution.hpp
-  timestamp: '2021-09-29 03:09:13+09:00'
+  timestamp: '2021-09-29 03:14:14+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
