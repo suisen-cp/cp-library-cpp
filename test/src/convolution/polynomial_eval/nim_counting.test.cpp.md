@@ -81,27 +81,26 @@ data:
     \        }\n    }\n} // namespace suisen\n\n\n\n#line 5 \"library/transform/walsh_hadamard.hpp\"\
     \n\nnamespace suisen::walsh_hadamard {\n    namespace internal {\n        template\
     \ <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \        void unit_transform(T &x0, T &x1) {\n            T y0 = x0, y1 = x1;\n\
+    \        void unit_transform(T& x0, T& x1) {\n            T y0 = x0, y1 = x1;\n\
     \            x0 = add(y0, y1);   // 1,  1\n            x1 = sub(y0, y1);   //\
     \ 1, -1\n        }\n    } // namespace internal\n\n    using kronecker_power_transform::kronecker_power_transform;\n\
     \n    template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \    void walsh_hadamard_transform(std::vector<T> &a) {\n        kronecker_power_transform<T,\
+    \    void walsh_hadamard(std::vector<T>& a) {\n        kronecker_power_transform<T,\
     \ 2, internal::unit_transform<T, add, sub>>(a);\n    }\n    template <typename\
     \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
     \ auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    void walsh_walsh_hadamard_transform_inv(std::vector<T>\
-    \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
-    \ { a.size() };\n        for (auto &val : a) val = div(val, n);\n    }\n    template\
-    \ <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
+    \ std::nullptr_t> = nullptr>\n    void walsh_walsh_hadamard_inv(std::vector<T>&\
+    \ a) {\n        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n\
+    \        for (auto& val : a) val = div(val, n);\n    }\n    template <typename\
+    \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
     \ auto mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>,\
-    \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_transform_inv(std::vector<T>\
-    \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
-    \ { a.size() };\n        const T inv_n = inv(n);\n        for (auto &val : a)\
-    \ val = mul(val, inv_n);\n    }\n} // namespace suisen::walsh_hadamard\n\n\n\n\
-    #line 1 \"library/convolution/polynomial_eval.hpp\"\n\n\n\n#line 5 \"library/convolution/polynomial_eval.hpp\"\
-    \n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
-    #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_inv(std::vector<T>& a) {\n\
+    \        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n   \
+    \     const T inv_n = inv(n);\n        for (auto& val : a) val = mul(val, inv_n);\n\
+    \    }\n} // namespace suisen::walsh_hadamard\n\n\n\n#line 1 \"library/convolution/polynomial_eval.hpp\"\
+    \n\n\n\n#line 5 \"library/convolution/polynomial_eval.hpp\"\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
+    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
     \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
@@ -138,9 +137,9 @@ data:
     \n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint> c(M, 0);\n \
     \   for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin >> v;\n  \
     \      ++c[v];\n    }\n\n    using namespace walsh_hadamard;\n\n    auto res =\
-    \ suisen::polynomial_eval<mint, walsh_hadamard_transform<mint>, walsh_hadamard_transform_inv<mint>>(c,\
+    \ suisen::polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c,\
     \ [n](mint x) {\n        return x == 1 ? n : x * (x.pow(n) - 1) / (x - 1);\n \
-    \   });\n\n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
+    \       });\n\n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
     \ << std::endl;\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\n\n#include \"library/transform/walsh_hadamard.hpp\"\
@@ -150,9 +149,9 @@ data:
     \n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint> c(M, 0);\n \
     \   for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin >> v;\n  \
     \      ++c[v];\n    }\n\n    using namespace walsh_hadamard;\n\n    auto res =\
-    \ suisen::polynomial_eval<mint, walsh_hadamard_transform<mint>, walsh_hadamard_transform_inv<mint>>(c,\
+    \ suisen::polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c,\
     \ [n](mint x) {\n        return x == 1 ? n : x * (x.pow(n) - 1) / (x - 1);\n \
-    \   });\n\n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
+    \       });\n\n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
     \ << std::endl;\n\n    return 0;\n}"
   dependsOn:
   - library/transform/walsh_hadamard.hpp
@@ -163,7 +162,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2021-09-29 02:35:07+09:00'
+  timestamp: '2021-09-29 03:09:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval/nim_counting.test.cpp

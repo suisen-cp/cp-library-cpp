@@ -90,25 +90,24 @@ data:
     \        }\n    }\n} // namespace suisen\n\n\n\n#line 5 \"library/transform/walsh_hadamard.hpp\"\
     \n\nnamespace suisen::walsh_hadamard {\n    namespace internal {\n        template\
     \ <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \        void unit_transform(T &x0, T &x1) {\n            T y0 = x0, y1 = x1;\n\
+    \        void unit_transform(T& x0, T& x1) {\n            T y0 = x0, y1 = x1;\n\
     \            x0 = add(y0, y1);   // 1,  1\n            x1 = sub(y0, y1);   //\
     \ 1, -1\n        }\n    } // namespace internal\n\n    using kronecker_power_transform::kronecker_power_transform;\n\
     \n    template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \    void walsh_hadamard_transform(std::vector<T> &a) {\n        kronecker_power_transform<T,\
+    \    void walsh_hadamard(std::vector<T>& a) {\n        kronecker_power_transform<T,\
     \ 2, internal::unit_transform<T, add, sub>>(a);\n    }\n    template <typename\
     \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
     \ auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    void walsh_walsh_hadamard_transform_inv(std::vector<T>\
-    \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
-    \ { a.size() };\n        for (auto &val : a) val = div(val, n);\n    }\n    template\
-    \ <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
+    \ std::nullptr_t> = nullptr>\n    void walsh_walsh_hadamard_inv(std::vector<T>&\
+    \ a) {\n        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n\
+    \        for (auto& val : a) val = div(val, n);\n    }\n    template <typename\
+    \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
     \ auto mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>,\
-    \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_transform_inv(std::vector<T>\
-    \ &a) {\n        walsh_hadamard_transform<T, add, sub>(a);\n        const T n\
-    \ { a.size() };\n        const T inv_n = inv(n);\n        for (auto &val : a)\
-    \ val = mul(val, inv_n);\n    }\n} // namespace suisen::walsh_hadamard\n\n\n\n\
-    #line 1 \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\n\n\n\n#line\
-    \ 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
+    \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_inv(std::vector<T>& a) {\n\
+    \        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n   \
+    \     const T inv_n = inv(n);\n        for (auto& val : a) val = mul(val, inv_n);\n\
+    \    }\n} // namespace suisen::walsh_hadamard\n\n\n\n#line 1 \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\
+    \n\n\n\n#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
     \n\n\n\n#include <algorithm>\n#line 7 \"library/math/fps.hpp\"\n\n#line 1 \"library/math/inv_mods.hpp\"\
     \n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\ntemplate\
     \ <typename mint>\nclass inv_mods {\n    public:\n        inv_mods() {}\n    \
@@ -292,27 +291,25 @@ data:
     \ f);\n    }\n} // namespace suisen\n\n\n#line 9 \"test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp\"\
     \nusing namespace suisen;\n\nusing mint = atcoder::modint998244353;\n\nconstexpr\
     \ int M = 1 << 16;\n\nint main() {\n    FPS<mint>::set_multiplication([](const\
-    \ auto &f, const auto &g) { return atcoder::convolution(f, g); });\n\n    std::ios::sync_with_stdio(false);\n\
+    \ auto& f, const auto& g) { return atcoder::convolution(f, g); });\n\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint>\
     \ c(M, 0);\n    for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin\
     \ >> v;\n        ++c[v];\n    }\n\n    FPS<mint> f(n + 1, 1);\n    f[0] = 0;\n\
     \n    using namespace walsh_hadamard;\n\n    auto res = polynomial_eval<mint,\
-    \ walsh_hadamard_transform<mint>, walsh_hadamard_transform_inv<mint>>(c, f);\n\
-    \n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
-    \ << std::endl;\n\n    return 0;\n}\n"
+    \ walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c, f);\n\n    std::cout << std::accumulate(res.begin()\
+    \ + 1, res.end(), mint(0)).val() << std::endl;\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n\n\
     #include <iostream>\n#include <atcoder/convolution>\n#include <atcoder/modint>\n\
     \n#include \"library/transform/walsh_hadamard.hpp\"\n#include \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\
     \nusing namespace suisen;\n\nusing mint = atcoder::modint998244353;\n\nconstexpr\
     \ int M = 1 << 16;\n\nint main() {\n    FPS<mint>::set_multiplication([](const\
-    \ auto &f, const auto &g) { return atcoder::convolution(f, g); });\n\n    std::ios::sync_with_stdio(false);\n\
+    \ auto& f, const auto& g) { return atcoder::convolution(f, g); });\n\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint>\
     \ c(M, 0);\n    for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin\
     \ >> v;\n        ++c[v];\n    }\n\n    FPS<mint> f(n + 1, 1);\n    f[0] = 0;\n\
     \n    using namespace walsh_hadamard;\n\n    auto res = polynomial_eval<mint,\
-    \ walsh_hadamard_transform<mint>, walsh_hadamard_transform_inv<mint>>(c, f);\n\
-    \n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
-    \ << std::endl;\n\n    return 0;\n}"
+    \ walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c, f);\n\n    std::cout << std::accumulate(res.begin()\
+    \ + 1, res.end(), mint(0)).val() << std::endl;\n\n    return 0;\n}"
   dependsOn:
   - library/transform/walsh_hadamard.hpp
   - library/transform/kronecker_power.hpp
@@ -325,7 +322,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2021-09-29 02:35:07+09:00'
+  timestamp: '2021-09-29 03:09:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
