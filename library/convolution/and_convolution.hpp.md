@@ -6,7 +6,8 @@ data:
     title: Convolution
   - icon: ':question:'
     path: library/transform/kronecker_power.hpp
-    title: library/transform/kronecker_power.hpp
+    title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
+      \u5909\u63DB (\u4EEE\u79F0)"
   - icon: ':heavy_check_mark:'
     path: library/transform/supset.hpp
     title: "\u4E0A\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
