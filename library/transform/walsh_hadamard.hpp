@@ -16,7 +16,9 @@ namespace suisen::walsh_hadamard {
     using kronecker_power_transform::kronecker_power_transform;
 
     template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>
-    constexpr auto walsh_hadamard_transform = kronecker_power_transform<T, 2, internal::unit_transform<T, add, sub>>;
+    void walsh_hadamard_transform(std::vector<T> &a) {
+        kronecker_power_transform<T, 2, internal::unit_transform<T, add, sub>>(a);
+    }
     template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>, auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
     void walsh_walsh_hadamard_transform_inv(std::vector<T> &a) {
         walsh_hadamard_transform<T, add, sub>(a);
