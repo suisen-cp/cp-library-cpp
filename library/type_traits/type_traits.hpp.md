@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
@@ -111,7 +111,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
     title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
@@ -222,9 +222,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
@@ -315,7 +315,7 @@ data:
   - library/util/update_proxy_object.hpp
   - library/template.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp

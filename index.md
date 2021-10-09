@@ -38,7 +38,7 @@ data:
     - icon: ':warning:'
       path: library/convolution/or_convolution.hpp
       title: Bitwise Or Convolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/polynomial_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1"
@@ -284,7 +284,7 @@ data:
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/kronecker_power.hpp
       title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
         \u5909\u63DB (\u4EEE\u79F0)"
@@ -300,7 +300,7 @@ data:
       path: library/transform/supset.hpp
       title: "\u4E0A\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/walsh_hadamard.hpp
       title: "Walsh Hadamard \u5909\u63DB"
   - name: library/tree
@@ -314,9 +314,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: library/tree/lowest_common_ancestor.hpp
+    - icon: ':warning:'
+      path: library/tree/rerooting.hpp
+      title: library/tree/rerooting.hpp
   - name: library/type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
@@ -330,7 +333,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
       title: library/util/coordinate_compressor.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/default_operator.hpp
       title: library/util/default_operator.hpp
     - icon: ':warning:'
@@ -397,7 +400,7 @@ data:
       title: test/src/convolution/gcd_convolution/lcms.test.cpp
   - name: test/src/convolution/polynomial_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
       title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - name: test/src/convolution/polynomial_eval_multipoint_eval

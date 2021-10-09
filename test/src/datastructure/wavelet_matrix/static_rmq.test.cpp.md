@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: library/datastructure/wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
