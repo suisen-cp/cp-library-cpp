@@ -29,7 +29,7 @@ data:
     path: library/transform/multiple.hpp
     title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -50,13 +50,13 @@ data:
   - icon: ':x:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
     title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/connectivity2.test.cpp
     title: test/src/math/sps/connectivity2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -105,23 +105,23 @@ data:
   path: library/util/default_operator.hpp
   requiredBy:
   - library/convolution/and_convolution.hpp
-  - library/convolution/gcd_convolution.hpp
   - library/convolution/xor_convolution.hpp
-  - library/convolution/convolution.hpp
   - library/convolution/or_convolution.hpp
-  - library/transform/supset.hpp
+  - library/convolution/convolution.hpp
+  - library/convolution/gcd_convolution.hpp
   - library/transform/kronecker_power.hpp
+  - library/transform/supset.hpp
   - library/transform/walsh_hadamard.hpp
-  - library/transform/multiple.hpp
   - library/transform/divisor.hpp
   - library/transform/subset.hpp
+  - library/transform/multiple.hpp
   timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - test/src/math/sps/connectivity2.test.cpp

@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
@@ -15,10 +15,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
   - icon: ':heavy_check_mark:'
@@ -28,7 +28,7 @@ data:
     path: library/math/subset_sum.hpp
     title: library/math/subset_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
@@ -61,7 +61,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/fps/pow_of_fps.test.cpp
     title: test/src/math/fps/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/interpolation/cumulative_sum.test.cpp
     title: test/src/math/interpolation/cumulative_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -76,9 +76,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/subset_sum/p_subset_sum.test.cpp
     title: test/src/math/subset_sum/p_subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -359,31 +359,31 @@ data:
   path: library/math/fps.hpp
   requiredBy:
   - library/convolution/polynomial_eval_multipoint_eval.hpp
-  - library/math/multi_point_eval.hpp
-  - library/math/subset_sum.hpp
   - library/math/common_sequences.hpp
-  - library/math/bostan_mori.hpp
   - library/math/polynomial_taylor_shift.hpp
+  - library/math/subset_sum.hpp
+  - library/math/multi_point_eval.hpp
   - library/math/interpolation.hpp
+  - library/math/bostan_mori.hpp
   timestamp: '2021-08-15 22:47:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/math/fps/log_of_fps.test.cpp
-  - test/src/math/fps/pow_of_fps.test.cpp
-  - test/src/math/fps/division_of_polynomials.test.cpp
-  - test/src/math/fps/exp_of_fps.test.cpp
-  - test/src/math/fps/inv_of_fps.test.cpp
   - test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/math/interpolation/polynomial_interpolation.test.cpp
   - test/src/math/interpolation/cumulative_sum.test.cpp
-  - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - test/src/math/common_sequences/stirling_number1.test.cpp
-  - test/src/math/common_sequences/stirling_number2.test.cpp
-  - test/src/math/common_sequences/partition_function.test.cpp
   - test/src/math/common_sequences/bernoulli_number.test.cpp
+  - test/src/math/common_sequences/partition_function.test.cpp
+  - test/src/math/common_sequences/stirling_number2.test.cpp
+  - test/src/math/common_sequences/stirling_number1.test.cpp
   - test/src/math/subset_sum/p_subset_sum.test.cpp
-  - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/math/fps/pow_of_fps.test.cpp
+  - test/src/math/fps/exp_of_fps.test.cpp
+  - test/src/math/fps/division_of_polynomials.test.cpp
+  - test/src/math/fps/inv_of_fps.test.cpp
+  - test/src/math/fps/log_of_fps.test.cpp
+  - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 documentation_of: library/math/fps.hpp
 layout: document
 redirect_from:

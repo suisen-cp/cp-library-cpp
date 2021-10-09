@@ -5,14 +5,14 @@ data:
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/dual_segment_tree.hpp
     title: library/datastructure/dual_segment_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - icon: ':heavy_check_mark:'
@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.9.7/x64/lib/python3.9/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -73,7 +73,7 @@ data:
   requiredBy:
   - library/datastructure/dual_segment_tree.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp

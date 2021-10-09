@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: library/math/multi_point_eval.hpp
   - icon: ':question:'
@@ -29,9 +29,9 @@ data:
     title: library/util/default_operator.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_h
@@ -100,11 +100,11 @@ data:
     \ 2, internal::unit_transform<T, add, sub>>(a);\n    }\n    template <typename\
     \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
     \ auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    void walsh_walsh_hadamard_inv(std::vector<T>&\
-    \ a) {\n        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n\
-    \        for (auto& val : a) val = div(val, n);\n    }\n    template <typename\
-    \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
-    \ auto mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>,\
+    \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_inv(std::vector<T>& a) {\n\
+    \        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n   \
+    \     for (auto& val : a) val = div(val, n);\n    }\n    template <typename T,\
+    \ auto add = default_operator::add<T>, auto sub = default_operator::sub<T>, auto\
+    \ mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>,\
     \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_inv(std::vector<T>& a) {\n\
     \        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n   \
     \     const T inv_n = inv(n);\n        for (auto& val : a) val = mul(val, inv_n);\n\
@@ -324,8 +324,8 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2021-09-29 03:14:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-10-10 02:52:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 layout: document

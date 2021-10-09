@@ -6,12 +6,12 @@ data:
     path: library/number/anymod_binom.hpp
     title: library/number/anymod_binom.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/interpolation/cumulative_sum.test.cpp
     title: test/src/math/interpolation/cumulative_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://37zigen.com/linear-sieve/
@@ -70,7 +70,7 @@ data:
   requiredBy:
   - library/number/anymod_binom.hpp
   timestamp: '2021-08-04 13:32:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/interpolation/cumulative_sum.test.cpp
 documentation_of: library/number/linear_sieve.hpp

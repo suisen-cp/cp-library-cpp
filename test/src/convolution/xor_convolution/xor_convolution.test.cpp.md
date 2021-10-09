@@ -90,11 +90,11 @@ data:
     \ 2, internal::unit_transform<T, add, sub>>(a);\n    }\n    template <typename\
     \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
     \ auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    void walsh_walsh_hadamard_inv(std::vector<T>&\
-    \ a) {\n        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n\
-    \        for (auto& val : a) val = div(val, n);\n    }\n    template <typename\
-    \ T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>,\
-    \ auto mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>,\
+    \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_inv(std::vector<T>& a) {\n\
+    \        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n   \
+    \     for (auto& val : a) val = div(val, n);\n    }\n    template <typename T,\
+    \ auto add = default_operator::add<T>, auto sub = default_operator::sub<T>, auto\
+    \ mul = default_operator::mul<T>, auto inv = default_operator::inv<T>, std::enable_if_t<std::negation_v<std::is_integral<T>>,\
     \ std::nullptr_t> = nullptr>\n    void walsh_hadamard_inv(std::vector<T>& a) {\n\
     \        walsh_hadamard<T, add, sub>(a);\n        const T n{ a.size() };\n   \
     \     const T inv_n = inv(n);\n        for (auto& val : a) val = mul(val, inv_n);\n\
@@ -119,7 +119,7 @@ data:
     \ <\n        typename T,\n        auto add = default_operator::add<T>,\n     \
     \   auto sub = default_operator::sub<T>,\n        auto mul = default_operator::mul<T>,\n\
     \        auto div = default_operator::div<T>,\n        std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr\n    >\n        auto xor_convolution(std::vector<T>\
+    \ std::nullptr_t> = nullptr\n    >\n    std::vector<T> xor_convolution(std::vector<T>\
     \ a, std::vector<T> b) {\n        return convolution::transform_convolution<\n\
     \            T,\n            walsh_hadamard_transform::walsh_hadamard<T, add,\
     \ sub>,\n            walsh_hadamard_transform::walsh_hadamard_inv<T, add, sub,\
@@ -127,7 +127,7 @@ data:
     \  template <\n        typename T,\n        auto add = default_operator::add<T>,\n\
     \        auto sub = default_operator::sub<T>,\n        auto mul = default_operator::mul<T>,\n\
     \        auto inv = default_operator::inv<T>,\n        std::enable_if_t<std::negation_v<std::is_integral<T>>,\
-    \ std::nullptr_t> = nullptr\n    >\n        auto xor_convolution(std::vector<T>\
+    \ std::nullptr_t> = nullptr\n    >\n    std::vector<T> xor_convolution(std::vector<T>\
     \ a, std::vector<T> b) {\n        return convolution::transform_convolution<\n\
     \            T,\n            walsh_hadamard_transform::walsh_hadamard<T, add,\
     \ sub>,\n            walsh_hadamard_transform::walsh_hadamard_inv<T, add, sub,\
@@ -166,7 +166,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2021-09-29 03:14:14+09:00'
+  timestamp: '2021-10-10 02:52:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/xor_convolution/xor_convolution.test.cpp

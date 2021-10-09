@@ -86,14 +86,14 @@ data:
   path: library/convolution/convolution.hpp
   requiredBy:
   - library/convolution/and_convolution.hpp
-  - library/convolution/gcd_convolution.hpp
   - library/convolution/xor_convolution.hpp
   - library/convolution/or_convolution.hpp
+  - library/convolution/gcd_convolution.hpp
   timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
 documentation_of: library/convolution/convolution.hpp
 layout: document

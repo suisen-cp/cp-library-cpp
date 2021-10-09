@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/min_cost_flow/abc214_h.test.cpp
     title: test/src/graph/min_cost_flow/abc214_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -226,9 +226,9 @@ data:
   timestamp: '2021-09-02 19:44:53+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/graph/min_cost_flow/practice2_e.test.cpp
-  - test/src/graph/min_cost_flow/abc214_h.test.cpp
   - test/src/graph/min_cost_flow/min_cost_flow.test.cpp
+  - test/src/graph/min_cost_flow/abc214_h.test.cpp
+  - test/src/graph/min_cost_flow/practice2_e.test.cpp
 documentation_of: library/graph/min_cost_flow.hpp
 layout: document
 redirect_from:

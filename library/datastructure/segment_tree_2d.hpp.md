@@ -228,8 +228,8 @@ data:
   timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
 documentation_of: library/datastructure/segment_tree_2d.hpp
 layout: document
 redirect_from:

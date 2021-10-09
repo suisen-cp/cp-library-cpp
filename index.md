@@ -42,11 +42,11 @@ data:
       path: library/convolution/polynomial_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/polynomial_eval_multipoint_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -63,13 +63,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/cartesian_tree.hpp
       title: library/datastructure/cartesian_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/commutative_dual_segment_tree.hpp
       title: library/datastructure/commutative_dual_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: library/datastructure/compressed_wavelet_matrix.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/dual_segment_tree.hpp
       title: library/datastructure/dual_segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -203,31 +203,31 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: library/math/factorial.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/fps.hpp
       title: library/math/fps.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/gaussian_elimination.hpp
       title: library/math/gaussian_elimination.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/interpolation.hpp
       title: library/math/interpolation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv_mods.hpp
       title: library/math/inv_mods.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/matrix.hpp
       title: library/math/matrix.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: library/math/modint_extension.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/multi_point_eval.hpp
       title: library/math/multi_point_eval.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/polynomial_taylor_shift.hpp
       title: library/math/polynomial_taylor_shift.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
       title: library/math/sps.hpp
     - icon: ':heavy_check_mark:'
@@ -244,7 +244,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/internal_eratosthenes.hpp
       title: library/number/internal_eratosthenes.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/number/linear_sieve.hpp
       title: library/number/linear_sieve.hpp
     - icon: ':warning:'
@@ -259,7 +259,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
       title: library/number/sieve_of_eratosthenes_constexpr.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/number/util.hpp
       title: library/number/util.hpp
   - name: library/string
@@ -292,7 +292,7 @@ data:
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/subset.hpp
       title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -405,7 +405,7 @@ data:
       title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - name: test/src/convolution/polynomial_eval_multipoint_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
       title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - name: test/src/convolution/subset_convolution
@@ -436,7 +436,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
       title: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
       title: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - name: test/src/datastructure/compressed_wavelet_matrix
@@ -455,7 +455,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
       title: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
       title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - name: test/src/datastructure/fenwick_tree
@@ -635,7 +635,7 @@ data:
       title: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
   - name: test/src/graph/min_cost_flow
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/min_cost_flow/abc214_h.test.cpp
       title: test/src/graph/min_cost_flow/abc214_h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -692,7 +692,7 @@ data:
       title: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
   - name: test/src/math/interpolation
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/interpolation/cumulative_sum.test.cpp
       title: test/src/math/interpolation/cumulative_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -721,7 +721,7 @@ data:
       title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - name: test/src/math/sps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/sps/connectivity2.test.cpp
       title: test/src/math/sps/connectivity2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -750,7 +750,7 @@ data:
       title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
   - name: test/src/number/util
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
   - name: test/src/string/substring_set
