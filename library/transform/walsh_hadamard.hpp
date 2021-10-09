@@ -20,7 +20,7 @@ namespace suisen::walsh_hadamard_transform {
         kronecker_power_transform<T, 2, internal::unit_transform<T, add, sub>>(a);
     }
     template <typename T, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>, auto div = default_operator::div<T>, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-    void walsh_walsh_hadamard_inv(std::vector<T>& a) {
+    void walsh_hadamard_inv(std::vector<T>& a) {
         walsh_hadamard<T, add, sub>(a);
         const T n{ a.size() };
         for (auto& val : a) val = div(val, n);
