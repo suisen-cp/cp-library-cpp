@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
   - icon: ':question:'

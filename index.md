@@ -15,7 +15,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/algorithm/rmq_pm1_with_index.hpp
       title: library/algorithm/rmq_pm1_with_index.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/algorithm/sliding_window_minimum.hpp
       title: library/algorithm/sliding_window_minimum.hpp
     - icon: ':heavy_check_mark:'
@@ -175,7 +175,7 @@ data:
     - icon: ':warning:'
       path: library/graph/kruscal.hpp
       title: library/graph/kruscal.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/min_cost_flow.hpp
       title: library/graph/min_cost_flow.hpp
     - icon: ':warning:'
@@ -259,7 +259,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
       title: library/number/sieve_of_eratosthenes_constexpr.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: library/number/util.hpp
   - name: library/string
@@ -374,9 +374,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
       title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
-    - icon: ':x:'
-      path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
-      title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
   - name: test/src/algorithm/slope_trick
     pages:
     - icon: ':heavy_check_mark:'
@@ -641,9 +638,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
       title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
-    - icon: ':x:'
-      path: test/src/graph/min_cost_flow/practice2_e.test.cpp
-      title: test/src/graph/min_cost_flow/practice2_e.test.cpp
   - name: test/src/graph/segment_tree_graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -750,7 +744,7 @@ data:
       title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
   - name: test/src/number/util
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
   - name: test/src/string/substring_set
@@ -812,9 +806,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/util/range_set/DSL_4_A.test.cpp
       title: test/src/util/range_set/DSL_4_A.test.cpp
-    - icon: ':x:'
-      path: test/src/util/range_set/past6_m.test.cpp
-      title: test/src/util/range_set/past6_m.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/util/range_set/yuki674.test.cpp
       title: test/src/util/range_set/yuki674.test.cpp

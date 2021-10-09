@@ -9,12 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
     title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
-  - icon: ':x:'
-    path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
-    title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/algorithm/sliding_window_minimum.hpp\"\n\n\n\n#include\
@@ -103,9 +100,8 @@ data:
   path: library/algorithm/sliding_window_minimum.hpp
   requiredBy: []
   timestamp: '2021-09-02 19:44:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
 documentation_of: library/algorithm/sliding_window_minimum.hpp
 layout: document

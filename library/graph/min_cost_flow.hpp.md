@@ -9,12 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
     title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
-  - icon: ':x:'
-    path: test/src/graph/min_cost_flow/practice2_e.test.cpp
-    title: test/src/graph/min_cost_flow/practice2_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/min_cost_flow.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -224,11 +221,10 @@ data:
   path: library/graph/min_cost_flow.hpp
   requiredBy: []
   timestamp: '2021-09-02 19:44:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   - test/src/graph/min_cost_flow/abc214_h.test.cpp
-  - test/src/graph/min_cost_flow/practice2_e.test.cpp
 documentation_of: library/graph/min_cost_flow.hpp
 layout: document
 redirect_from:

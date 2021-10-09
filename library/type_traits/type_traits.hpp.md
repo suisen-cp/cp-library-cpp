@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
     title: library/algorithm/rmq_pm1_with_index.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
   - icon: ':x:'
@@ -83,7 +83,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: library/geom/segment_intersections.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: library/number/util.hpp
   - icon: ':warning:'
@@ -111,9 +111,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
     title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
-  - icon: ':x:'
-    path: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
-    title: test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
   - icon: ':x:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
@@ -201,7 +198,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/util/divide_both.test.cpp
     title: test/src/number/util/divide_both.test.cpp
   - icon: ':heavy_check_mark:'
@@ -355,7 +352,6 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - test/src/algorithm/sliding_window_minimum/tenkei006.test.cpp
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
   - test/src/number/util/divide_both.test.cpp

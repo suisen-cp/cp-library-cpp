@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: library/number/util.hpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc206/tasks/abc206_e
@@ -152,7 +152,7 @@ data:
   path: test/src/number/util/divide_both.test.cpp
   requiredBy: []
   timestamp: '2021-10-10 02:52:22+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/util/divide_both.test.cpp
 layout: document
