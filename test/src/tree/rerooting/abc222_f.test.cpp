@@ -17,7 +17,7 @@ long long e() {
 long long add_subtree_root(long long val, int, int) {
     return val;
 }
-long long trans_to_par(long long val, int, int v, long long w) {
+long long trans_to_par(long long val, int v, int, long long w) {
     return op(d[v], val) + w;
 }
 
