@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/commutative_dual_segment_tree.hpp
     title: library/datastructure/commutative_dual_segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []

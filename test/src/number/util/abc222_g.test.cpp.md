@@ -9,21 +9,21 @@ data:
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc206/tasks/abc206_e
+    PROBLEM: https://atcoder.jp/contests/abc222/tasks/abc222_g
     links:
-    - https://atcoder.jp/contests/abc206/tasks/abc206_e
-  bundledCode: "#line 1 \"test/src/number/util/divide_both.test.cpp\"\n#define PROBLEM\
-    \ \"https://atcoder.jp/contests/abc206/tasks/abc206_e\"\n\n#include <iostream>\n\
-    #include <unordered_map>\n\n#line 1 \"library/number/util.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <cassert>\n#include <tuple>\n#include\
-    \ <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
-    #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    - https://atcoder.jp/contests/abc222/tasks/abc222_g
+  bundledCode: "#line 1 \"test/src/number/util/abc222_g.test.cpp\"\n#define PROBLEM\
+    \ \"https://atcoder.jp/contests/abc222/tasks/abc222_g\"\n\n#include <iostream>\n\
+    #include <atcoder/modint>\nusing mint = atcoder::modint;\n\n#line 1 \"library/number/util.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <tuple>\n\
+    #include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include\
+    \ <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate\
+    \ <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
     \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
@@ -110,54 +110,38 @@ data:
     \ ++i) {\n                qs[i] = vs[i] / l;\n                r = std::min(r,\
     \ qs[i] == 0 ? std::numeric_limits<T>::max() : vs[i] / qs[i]);\n            }\n\
     \            res.emplace_back(l, r, std::move(qs));\n        }\n        return\
-    \ res;\n    }\n\n} // namespace suisen\n\n\n#line 7 \"test/src/number/util/divide_both.test.cpp\"\
-    \n\nusing namespace suisen;\n\nconstexpr int MAX = 1000010;\n\nint main() {\n\
-    \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int l,\
-    \ r;\n    std::cin >> l >> r;\n    l = std::max(l - 1, 1);\n    std::unordered_map<long\
-    \ long, long long> memo;\n    auto f = [&memo](auto self, int l, int r) -> long\
-    \ long {\n        const long long key = (long long) l * MAX + r;\n        {\n\
-    \            auto it = memo.find(key);\n            if (it != memo.end()) return\
-    \ it->second;\n        }\n        long long res = (long long) (r - l) * (r - l);\n\
-    \        for (auto [lg, rg, qs] : enumerate_multiple_quotients(std::array<int,\
-    \ 2>{l, r})) {\n            if (lg == 1 and rg == 1) continue;\n            auto\
-    \ [nl, nr] = qs;\n            res -= (rg - lg + 1) * self(self, nl, nr);\n   \
-    \     }\n        return memo[key] = res;\n    };\n    long long whole_pairs =\
-    \ (long long) (r - l) * (r - l);\n    long long divisor_pairs = 0;\n    for (auto\
-    \ [lg, rg, q] : enumerate_quotients(r)) {\n        divisor_pairs += (long long)\
-    \ std::max(0, (rg - std::max(lg - 1, l))) * q;\n    }\n    divisor_pairs += divisor_pairs\
-    \ - (r - l);\n    std::cout << whole_pairs - f(f, l, r) - divisor_pairs << std::endl;\n\
-    \    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc206/tasks/abc206_e\"\n\n\
-    #include <iostream>\n#include <unordered_map>\n\n#include \"library/number/util.hpp\"\
-    \n\nusing namespace suisen;\n\nconstexpr int MAX = 1000010;\n\nint main() {\n\
-    \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int l,\
-    \ r;\n    std::cin >> l >> r;\n    l = std::max(l - 1, 1);\n    std::unordered_map<long\
-    \ long, long long> memo;\n    auto f = [&memo](auto self, int l, int r) -> long\
-    \ long {\n        const long long key = (long long) l * MAX + r;\n        {\n\
-    \            auto it = memo.find(key);\n            if (it != memo.end()) return\
-    \ it->second;\n        }\n        long long res = (long long) (r - l) * (r - l);\n\
-    \        for (auto [lg, rg, qs] : enumerate_multiple_quotients(std::array<int,\
-    \ 2>{l, r})) {\n            if (lg == 1 and rg == 1) continue;\n            auto\
-    \ [nl, nr] = qs;\n            res -= (rg - lg + 1) * self(self, nl, nr);\n   \
-    \     }\n        return memo[key] = res;\n    };\n    long long whole_pairs =\
-    \ (long long) (r - l) * (r - l);\n    long long divisor_pairs = 0;\n    for (auto\
-    \ [lg, rg, q] : enumerate_quotients(r)) {\n        divisor_pairs += (long long)\
-    \ std::max(0, (rg - std::max(lg - 1, l))) * q;\n    }\n    divisor_pairs += divisor_pairs\
-    \ - (r - l);\n    std::cout << whole_pairs - f(f, l, r) - divisor_pairs << std::endl;\n\
-    \    return 0;\n}"
+    \ res;\n    }\n\n} // namespace suisen\n\n\n#line 8 \"test/src/number/util/abc222_g.test.cpp\"\
+    \nusing suisen::divisors;\nusing suisen::totient;\n\nint main() {\n    int t;\n\
+    \    std::cin >> t;\n    while (t --> 0) {\n        int k;\n        std::cin >>\
+    \ k;\n        k = k * 9 / std::gcd(k, 2);\n        if (std::gcd(10, k) > 1) {\n\
+    \            std::cout << -1 << std::endl;\n        } else {\n            int\
+    \ res = totient(k);\n            mint::set_mod(k);\n            for (int d : divisors(res))\
+    \ {\n                if (mint(10).pow(d) == 1) res = std::min(res, d);\n     \
+    \       }\n            std::cout << res << std::endl;\n        }\n    }\n    return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc222/tasks/abc222_g\"\n\n\
+    #include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint;\n\
+    \n#include \"library/number/util.hpp\"\nusing suisen::divisors;\nusing suisen::totient;\n\
+    \nint main() {\n    int t;\n    std::cin >> t;\n    while (t --> 0) {\n      \
+    \  int k;\n        std::cin >> k;\n        k = k * 9 / std::gcd(k, 2);\n     \
+    \   if (std::gcd(10, k) > 1) {\n            std::cout << -1 << std::endl;\n  \
+    \      } else {\n            int res = totient(k);\n            mint::set_mod(k);\n\
+    \            for (int d : divisors(res)) {\n                if (mint(10).pow(d)\
+    \ == 1) res = std::min(res, d);\n            }\n            std::cout << res <<\
+    \ std::endl;\n        }\n    }\n    return 0;\n}"
   dependsOn:
   - library/number/util.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
-  path: test/src/number/util/divide_both.test.cpp
+  path: test/src/number/util/abc222_g.test.cpp
   requiredBy: []
-  timestamp: '2021-10-10 02:52:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-10-12 21:18:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/number/util/divide_both.test.cpp
+documentation_of: test/src/number/util/abc222_g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/number/util/divide_both.test.cpp
-- /verify/test/src/number/util/divide_both.test.cpp.html
-title: test/src/number/util/divide_both.test.cpp
+- /verify/test/src/number/util/abc222_g.test.cpp
+- /verify/test/src/number/util/abc222_g.test.cpp.html
+title: test/src/number/util/abc222_g.test.cpp
 ---

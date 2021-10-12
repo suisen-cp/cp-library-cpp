@@ -83,7 +83,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: library/geom/segment_intersections.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/util.hpp
     title: library/number/util.hpp
   - icon: ':warning:'
@@ -198,6 +198,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - icon: ':x:'
+    path: test/src/number/util/abc222_g.test.cpp
+    title: test/src/number/util/abc222_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/util/divide_both.test.cpp
     title: test/src/number/util/divide_both.test.cpp
@@ -222,9 +225,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
@@ -315,7 +318,7 @@ data:
   - library/util/update_proxy_object.hpp
   - library/template.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
@@ -354,6 +357,7 @@ data:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
+  - test/src/number/util/abc222_g.test.cpp
   - test/src/number/util/divide_both.test.cpp
   - test/src/util/range_set/DSL_4_A.test.cpp
 documentation_of: library/type_traits/type_traits.hpp

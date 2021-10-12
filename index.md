@@ -259,7 +259,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
       title: library/number/sieve_of_eratosthenes_constexpr.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/util.hpp
       title: library/number/util.hpp
   - name: library/string
@@ -314,12 +314,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: library/tree/lowest_common_ancestor.hpp
-    - icon: ':warning:'
+    - icon: ':question:'
       path: library/tree/rerooting.hpp
       title: library/tree/rerooting.hpp
   - name: library/type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
@@ -747,6 +747,9 @@ data:
       title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
   - name: test/src/number/util
     pages:
+    - icon: ':x:'
+      path: test/src/number/util/abc222_g.test.cpp
+      title: test/src/number/util/abc222_g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
@@ -801,6 +804,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
       title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - name: test/src/tree/rerooting
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/rerooting/abc160_f.test.cpp
+      title: test/src/tree/rerooting/abc160_f.test.cpp
+    - icon: ':x:'
+      path: test/src/tree/rerooting/abc222_f.test.cpp
+      title: test/src/tree/rerooting/abc222_f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/rerooting/edpc_v.test.cpp
+      title: test/src/tree/rerooting/edpc_v.test.cpp
   - name: test/src/util/range_set
     pages:
     - icon: ':heavy_check_mark:'
