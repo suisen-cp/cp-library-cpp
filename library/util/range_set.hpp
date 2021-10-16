@@ -103,6 +103,13 @@ struct RangeSet : public std::map<T, T> {
             return it == this->end() ? lower : it->second + 1;
         }
 
+        // returns maximum integer x s.t. x <= upper and x is NOT in this set
+        T maximum_excluded(T upper) const {
+            static_assert(merge_adjacent_segment);
+            auto it = find_range(upper);
+            return it == this->end() ? upper : it->first - 1;
+        }
+
     private:
         T _size;
 
