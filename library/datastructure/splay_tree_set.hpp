@@ -50,7 +50,7 @@ class SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t> {
             return SplayTreeSet<Key>(r);
         }
         void merge(SplayTreeSet &&r) {
-            assert(this->root != r.root);
+            assert(this->root == nullptr or this->root != r.root);
             this->root = Node::merge(this->root, r.root);
             r.root = nullptr;
         }
