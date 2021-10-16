@@ -11,9 +11,12 @@ class SlopeTrick {
     using pq_dsc = std::priority_queue<T>;
     using pq_asc = std::priority_queue<T, std::vector<T>, std::greater<T>>;
     public:
+        static constexpr T inf = std::numeric_limits<T>::max() / 2;
+
         SlopeTrick() : base(0), add_l(0), add_r(0) {
             l.push(-inf), r.push(+inf);
         }
+
         T min() const {
             return base;
         }
@@ -24,7 +27,7 @@ class SlopeTrick {
             base += a;
             return *this;
         }
-        // $f \leftarrow f + max(0, x - a)$
+        // f += max(0, x - a)
         SlopeTrick& add_right(const T a) {
             if (l.top() + add_l <= a) {
                 r.push(a - add_r);
@@ -34,7 +37,7 @@ class SlopeTrick {
             }
             return *this;
         }
-        // $f \leftarrow f + max(0, a - x)$
+        // f += max(0, a - x)
         SlopeTrick& add_left(const T a) {
             if (r.top() + add_r >= a) {
                 l.push(a - add_l);
@@ -44,7 +47,7 @@ class SlopeTrick {
             }
             return *this;
         }
-        // $f \leftarrow f + |x - a|$
+        // f += |x - a|
         SlopeTrick& add_abs(const T a) {
             add_left(a), add_right(a);
             return *this;
@@ -75,7 +78,6 @@ class SlopeTrick {
             return *this;
         }
     private:
-        static constexpr T inf = std::numeric_limits<T>::max() / 2;
         T base, add_l, add_r;
         pq_dsc l;
         pq_asc r;
