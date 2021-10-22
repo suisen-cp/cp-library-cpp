@@ -95,6 +95,11 @@ class HeavyLightDecomposition {
         void update_point(int u, Q update_query) {
             update_query(visit[u]);
         }
+        std::vector<int> inv_ids() const {
+            std::vector<int> inv(n);
+            for (int i = 0; i < n; ++i) inv[visit[i]] = i;
+            return inv;
+        }
     private:
         const int n, root;
         std::vector<int> visit, leave, head, ord, siz, par;
