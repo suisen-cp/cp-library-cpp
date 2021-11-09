@@ -339,7 +339,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: library/util/container_utils.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
       title: library/util/coordinate_compressor.hpp
     - icon: ':heavy_check_mark:'
@@ -363,7 +363,7 @@ data:
     - icon: ':warning:'
       path: library/util/permutation.hpp
       title: library/util/permutation.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/util/range_set.hpp
       title: library/util/range_set.hpp
     - icon: ':warning:'
@@ -847,13 +847,13 @@ data:
       title: test/src/tree/rerooting/edpc_v.test.cpp
   - name: test/src/util/range_set
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/range_set/DSL_2_D.test.cpp
       title: test/src/util/range_set/DSL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/range_set/DSL_4_A.test.cpp
       title: test/src/util/range_set/DSL_4_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/range_set/yuki674.test.cpp
       title: test/src/util/range_set/yuki674.test.cpp
 layout: toppage
