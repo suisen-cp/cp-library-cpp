@@ -9,11 +9,11 @@
 
 namespace suisen {
 
-enum MinCostFlowInitializeMethod {
+enum MCFPotentialInitializer {
     DAG, BELLMAN_FORD, DIJKSTRA
 };
 
-template <typename Cap, typename Cost, MinCostFlowInitializeMethod init_method = MinCostFlowInitializeMethod::BELLMAN_FORD>
+template <typename Cap, typename Cost, MCFPotentialInitializer init_method = MCFPotentialInitializer::BELLMAN_FORD>
 class MinCostFlow {
     struct InternalEdge { int to; Cap cap; Cost cost; int rev; };
     public:
@@ -77,8 +77,8 @@ class MinCostFlow {
         }
 
     private:
-        static constexpr Cost INF_COST = std::numeric_limits<Cost>::max();
-        static constexpr Cost INF_FLOW = std::numeric_limits<Cap>::max();
+        static constexpr Cost INF_COST = std::numeric_limits<Cost>::max() / 2;
+        static constexpr Cost INF_FLOW = std::numeric_limits<Cap>::max() / 2;
     
         int n;
         std::vector<std::vector<InternalEdge>> g;
@@ -95,10 +95,12 @@ class MinCostFlow {
 
         template <typename Predicate>
         std::vector<std::pair<Cap, Cost>> min_cost_flow_slope(const int s, const int t, const Cap upper_flow, Predicate pred) {
-            switch (init_method) {
-                case BELLMAN_FORD: bellman_ford(s); break;
-                case DIJKSTRA:     dijkstra(s);     break;
-                case DAG:          dag_dp(s);       break;
+            if constexpr (init_method == BELLMAN_FORD) {
+                bellman_ford(s);
+            } else if constexpr (init_method == DIJKSTRA) {
+                dijkstra(s);
+            } else {
+                dag_dp(s);
             }
             update_potential();
             std::vector<std::pair<Cap, Cost>> slope;
