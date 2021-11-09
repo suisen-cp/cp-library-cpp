@@ -134,7 +134,7 @@ class RangeFoldableMap {
             return RangeFoldableMap(r);
         }
         void merge(RangeFoldableMap &&r) {
-            assert(root != r.root);
+            assert(root == nullptr or root != r.root);
             root = Node::merge(root, r.root);
             r.root = nullptr;
         }
