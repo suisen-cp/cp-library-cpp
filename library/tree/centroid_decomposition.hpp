@@ -17,6 +17,7 @@ namespace suisen {
 
     private:
         std::vector<bool> removed;
+        std::vector<int> sub;
 
         struct AdjacentListIterator {
             using it_t = std::vector<int>::const_iterator;
@@ -47,32 +48,48 @@ namespace suisen {
     public:
         static constexpr void dummy(int, int) {}
 
+        // Returns the list of vertices adjacent to `u`. If called during decomposition, it skips removed vertices.
         auto operator[](int u) {
             return AdjacentList{ this, u };
         }
+        // Returns the (constant) list of vertices adjacent to `u`. If called during decomposition, it skips removed vertices.
         auto operator[](int u) const {
             return ConstAdjacentList{ this, u };
+        }
+
+        // This method is expected to be called in functions passed to the `decomp`.
+        // The argument `root` must be directly connected to the current centroid. If not, the returned value will be undefined.
+        int component_size(int root) const {
+            return sub[root];
         }
 
         template <typename DownF, typename UpF = decltype(dummy)>
         void decomp(DownF down, UpF up = dummy) {
             removed.assign(size(), false);
-            std::vector<int> sub(size(), 0);
+            sub.assign(size(), 0);
             auto rec = [&](auto rec, int r, int siz) -> void {
-                int pc = -1, c = -1;
+                int c = -1;
                 auto get_centroid = [&](auto get_centroid, int u, int p) -> void {
                     sub[u] = 1;
                     for (int v : (*this)[u]) {
                         if (v == p) continue;
                         get_centroid(get_centroid, v, u);
+                        if (v == c) {
+                            sub[u] = siz - sub[c];
+                            break;
+                        }
                         sub[u] += sub[v];
                     }
-                    if (c < 0 and sub[u] * 2 > siz) pc = p, c = u;
+                    if (c < 0 and sub[u] * 2 > siz) c = u;
                 };
                 get_centroid(get_centroid, r, -1);
                 down(c, siz);
                 removed[c] = true;
-                for (int v : (*this)[c]) rec(rec, v, v == pc ? siz - sub[c] : sub[v]);
+                for (int v : (*this)[c]) {
+                    const int comp_size = sub[v];
+                    rec(rec, v, comp_size);
+                    sub[v] = comp_size;
+                }
                 removed[c] = false;
                 up(c, siz);
             };

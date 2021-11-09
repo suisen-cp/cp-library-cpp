@@ -25,9 +25,8 @@ int main() {
     auto f = [&](const size_t c, const size_t) {
         std::vector<long long> sum { 1 };
         for (size_t r : g[c]) {
-            std::vector<long long> d;
+            std::vector<long long> d(g.component_size(r) + 1, 0);
             auto dfs = [&](auto dfs, size_t u, size_t p, size_t dep) -> void {
-                if (dep >= d.size()) d.resize(dep + 1);
                 ++d[dep];
                 for (size_t v : g[u]) {
                     if (v == p) continue;
@@ -35,6 +34,7 @@ int main() {
                 }
             };
             dfs(dfs, r, c, 1);
+            while (d.size() and d.back() == 0) d.pop_back();
             auto dmap = atcoder::convolution_ll(sum, d);
             for (size_t i = 0; i < dmap.size(); ++i) {
                 ans[i] += dmap[i];
@@ -45,7 +45,7 @@ int main() {
             }
         }
     };
-    g.decomp(f);
+    g.decomp(CentroidDecomposition::dummy, f);
 
     for (size_t d = 1; d < n; ++d) {
         std::cout << ans[d] << " \n"[d == n - 1];
