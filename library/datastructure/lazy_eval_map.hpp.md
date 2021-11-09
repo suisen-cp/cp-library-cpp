@@ -273,14 +273,14 @@ data:
     \  }\n        RangeFoldableMap split_by_key(const Key &key) {\n            auto\
     \ [l, r] = Node::split_by_key(root, key);\n            root = l;\n           \
     \ return RangeFoldableMap(r);\n        }\n        void merge(RangeFoldableMap\
-    \ &&r) {\n            assert(root != r.root);\n            root = Node::merge(root,\
-    \ r.root);\n            r.root = nullptr;\n        }\n        void swap(RangeFoldableMap\
-    \ &r) {\n            std::swap(root, r.root);\n        }\n\n    protected:\n \
-    \       Node *root;\n\n        RangeFoldableMap(node_ptr_t root) : root(root)\
-    \ {}\n    \n        static void index_bounds_check(unsigned int k, unsigned int\
-    \ n) {\n            assert(k < n);\n        }\n        static void range_bounds_check(unsigned\
-    \ int l, unsigned int r, unsigned int n) {\n            assert(l <= r and r <=\
-    \ n);\n        }\n};\n\n}\n\n\n#line 9 \"library/datastructure/lazy_eval_map.hpp\"\
+    \ &&r) {\n            assert(root == nullptr or root != r.root);\n           \
+    \ root = Node::merge(root, r.root);\n            r.root = nullptr;\n        }\n\
+    \        void swap(RangeFoldableMap &r) {\n            std::swap(root, r.root);\n\
+    \        }\n\n    protected:\n        Node *root;\n\n        RangeFoldableMap(node_ptr_t\
+    \ root) : root(root) {}\n    \n        static void index_bounds_check(unsigned\
+    \ int k, unsigned int n) {\n            assert(k < n);\n        }\n        static\
+    \ void range_bounds_check(unsigned int l, unsigned int r, unsigned int n) {\n\
+    \            assert(l <= r and r <= n);\n        }\n};\n\n}\n\n\n#line 9 \"library/datastructure/lazy_eval_map.hpp\"\
     \n\nnamespace suisen {\nnamespace internal::lazy_eval_map {\n\ntemplate <typename\
     \ Key, typename Val, Val(*op)(Val, Val), Val (*e)(), typename F, Val(*mapping)(F,\
     \ Val), F(*composition)(F, F), F(*id)(), typename Derived>\nstruct LazyEvalMapNodeBase\
@@ -445,7 +445,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/lazy_eval_map.hpp
   requiredBy: []
-  timestamp: '2021-09-21 22:11:49+09:00'
+  timestamp: '2021-11-09 16:02:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

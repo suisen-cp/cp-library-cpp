@@ -99,10 +99,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/transform/multiple/divide_both.test.cpp
-  - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
-  - test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
+  - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
+  - test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
 documentation_of: library/number/internal_eratosthenes.hpp
 layout: document
 redirect_from:

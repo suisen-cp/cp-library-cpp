@@ -240,9 +240,9 @@ data:
   timestamp: '2021-09-21 22:08:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/matrix/matrix_product.test.cpp
-  - test/src/math/matrix/determinant_of_matrix.test.cpp
   - test/src/math/matrix/inverse_matrix.test.cpp
+  - test/src/math/matrix/determinant_of_matrix.test.cpp
+  - test/src/math/matrix/matrix_product.test.cpp
 documentation_of: library/math/matrix.hpp
 layout: document
 redirect_from:

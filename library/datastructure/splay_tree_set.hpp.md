@@ -177,9 +177,9 @@ data:
     \ split_by_key(const Key &key) {\n            auto [l, r] = Node::split_by_key(this->root,\
     \ key);\n            this->root = l;\n            return SplayTreeSet<Key>(r);\n\
     \        }\n        void merge(SplayTreeSet &&r) {\n            assert(this->root\
-    \ != r.root);\n            this->root = Node::merge(this->root, r.root);\n   \
-    \         r.root = nullptr;\n        }\n        void swap(SplayTreeSet &r) {\n\
-    \            std::swap(this->root, r.root);\n        }\n};\n};\n\n\n"
+    \ == nullptr or this->root != r.root);\n            this->root = Node::merge(this->root,\
+    \ r.root);\n            r.root = nullptr;\n        }\n        void swap(SplayTreeSet\
+    \ &r) {\n            std::swap(this->root, r.root);\n        }\n};\n};\n\n\n"
   code: "#ifndef SUISEN_SPLAY_TREE_SET\n#define SUISEN_SPLAY_TREE_SET\n\n#include\
     \ \"library/datastructure/splay_tree_map.hpp\"\n\nnamespace suisen {\ntemplate\
     \ <typename Key>\nclass SplayTreeSet : protected SplayTreeMap<Key, std::nullptr_t>\
@@ -203,15 +203,16 @@ data:
     \ split_by_key(const Key &key) {\n            auto [l, r] = Node::split_by_key(this->root,\
     \ key);\n            this->root = l;\n            return SplayTreeSet<Key>(r);\n\
     \        }\n        void merge(SplayTreeSet &&r) {\n            assert(this->root\
-    \ != r.root);\n            this->root = Node::merge(this->root, r.root);\n   \
-    \         r.root = nullptr;\n        }\n        void swap(SplayTreeSet &r) {\n\
-    \            std::swap(this->root, r.root);\n        }\n};\n};\n\n#endif // SUISEN_SPLAY_TREE_SET\n"
+    \ == nullptr or this->root != r.root);\n            this->root = Node::merge(this->root,\
+    \ r.root);\n            r.root = nullptr;\n        }\n        void swap(SplayTreeSet\
+    \ &r) {\n            std::swap(this->root, r.root);\n        }\n};\n};\n\n#endif\
+    \ // SUISEN_SPLAY_TREE_SET\n"
   dependsOn:
   - library/datastructure/splay_tree_map.hpp
   isVerificationFile: false
   path: library/datastructure/splay_tree_set.hpp
   requiredBy: []
-  timestamp: '2021-09-21 22:11:49+09:00'
+  timestamp: '2021-10-16 19:55:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/splay_tree_set.hpp

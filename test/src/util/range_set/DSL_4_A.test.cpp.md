@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/util/range_set.hpp
     title: library/util/range_set.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A
@@ -186,23 +186,27 @@ data:
     \        // returns minimum integer x s.t. x >= lower and x is NOT in this set\n\
     \        T minimum_excluded(T lower = 0) const {\n            static_assert(merge_adjacent_segment);\n\
     \            auto it = find_range(lower);\n            return it == this->end()\
-    \ ? lower : it->second + 1;\n        }\n\n    private:\n        T _size;\n\n \
-    \       bool is_mergeable(T cur_r, T next_l) {\n            return next_l <= cur_r\
-    \ + merge_adjacent_segment;\n        }\n};\n\n} // namespace suisen\n\n\n#line\
-    \ 8 \"test/src/util/range_set/DSL_4_A.test.cpp\"\nusing suisen::CoordinateCompressorBuilder;\n\
-    using suisen::RangeSet;\n\nconstexpr int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n;\n    std::cin >> n;\n    CoordinateCompressorBuilder<long\
-    \ long> builder;\n    std::vector<std::tuple<long long, long long, long long,\
-    \ long long>> rectangles(n);\n    for (int i = 0; i < n; ++i) {\n        int xl,\
-    \ yl, xr, yr;\n        std::cin >> xl >> yl >> xr >> yr;\n        rectangles[i]\
-    \ = { xl, yl, xr, yr };\n        builder.push(yl);\n        builder.push(yr);\n\
-    \    }\n    auto comp_y = builder.build();\n    int m = comp_y.size();\n    std::vector<RangeSet<long\
-    \ long>> sets(m);\n    for (const auto &[xl, yl, xr, yr] : rectangles) {\n   \
-    \     int cyl = comp_y[yl], cyr = comp_y[yr];\n        for (int i = cyl; i < cyr;\
-    \ ++i) {\n            sets[i].insert(xl, xr - 1);\n        }\n    }\n    long\
-    \ long ans = 0;\n    for (int i = 0; i < m - 1; ++i) {\n        long long hight\
-    \ = comp_y.decomp(i + 1) -comp_y.decomp(i);\n        ans += hight * sets[i].size();\n\
-    \    }\n    std::cout << ans << std::endl;\n    return 0;\n}\n"
+    \ ? lower : it->second + 1;\n        }\n\n        // returns maximum integer x\
+    \ s.t. x <= upper and x is NOT in this set\n        T maximum_excluded(T upper)\
+    \ const {\n            static_assert(merge_adjacent_segment);\n            auto\
+    \ it = find_range(upper);\n            return it == this->end() ? upper : it->first\
+    \ - 1;\n        }\n\n    private:\n        T _size;\n\n        bool is_mergeable(T\
+    \ cur_r, T next_l) {\n            return next_l <= cur_r + merge_adjacent_segment;\n\
+    \        }\n};\n\n} // namespace suisen\n\n\n#line 8 \"test/src/util/range_set/DSL_4_A.test.cpp\"\
+    \nusing suisen::CoordinateCompressorBuilder;\nusing suisen::RangeSet;\n\nconstexpr\
+    \ int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    int n;\n    std::cin >> n;\n    CoordinateCompressorBuilder<long long> builder;\n\
+    \    std::vector<std::tuple<long long, long long, long long, long long>> rectangles(n);\n\
+    \    for (int i = 0; i < n; ++i) {\n        int xl, yl, xr, yr;\n        std::cin\
+    \ >> xl >> yl >> xr >> yr;\n        rectangles[i] = { xl, yl, xr, yr };\n    \
+    \    builder.push(yl);\n        builder.push(yr);\n    }\n    auto comp_y = builder.build();\n\
+    \    int m = comp_y.size();\n    std::vector<RangeSet<long long>> sets(m);\n \
+    \   for (const auto &[xl, yl, xr, yr] : rectangles) {\n        int cyl = comp_y[yl],\
+    \ cyr = comp_y[yr];\n        for (int i = cyl; i < cyr; ++i) {\n            sets[i].insert(xl,\
+    \ xr - 1);\n        }\n    }\n    long long ans = 0;\n    for (int i = 0; i <\
+    \ m - 1; ++i) {\n        long long hight = comp_y.decomp(i + 1) -comp_y.decomp(i);\n\
+    \        ans += hight * sets[i].size();\n    }\n    std::cout << ans << std::endl;\n\
+    \    return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A\"\n\n\
     #include <iostream>\n#include <tuple>\n\n#include \"library/util/coordinate_compressor.hpp\"\
     \n#include \"library/util/range_set.hpp\"\nusing suisen::CoordinateCompressorBuilder;\n\
@@ -226,8 +230,8 @@ data:
   isVerificationFile: true
   path: test/src/util/range_set/DSL_4_A.test.cpp
   requiredBy: []
-  timestamp: '2021-09-21 22:07:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-10-16 19:54:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/util/range_set/DSL_4_A.test.cpp
 layout: document

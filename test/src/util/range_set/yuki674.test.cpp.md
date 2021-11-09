@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/util/range_set.hpp
     title: library/util/range_set.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/674
@@ -66,16 +66,19 @@ data:
     \        // returns minimum integer x s.t. x >= lower and x is NOT in this set\n\
     \        T minimum_excluded(T lower = 0) const {\n            static_assert(merge_adjacent_segment);\n\
     \            auto it = find_range(lower);\n            return it == this->end()\
-    \ ? lower : it->second + 1;\n        }\n\n    private:\n        T _size;\n\n \
-    \       bool is_mergeable(T cur_r, T next_l) {\n            return next_l <= cur_r\
-    \ + merge_adjacent_segment;\n        }\n};\n\n} // namespace suisen\n\n\n#line\
-    \ 6 \"test/src/util/range_set/yuki674.test.cpp\"\nusing suisen::RangeSet;\n\n\
-    int main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    long long d;\n    int q;\n    std::cin >> d >> q;\n\n    long long ans =\
-    \ 0;\n    RangeSet<long long> set;\n    while (q --> 0) {\n        long long l,\
-    \ r;\n        std::cin >> l >> r;\n        set.insert(l, r);\n        auto [nl,\
-    \ nr] = *set.find_range(l);\n        ans = std::max(ans, nr - nl + 1);\n     \
-    \   std::cout << ans << '\\n';\n    }\n    return 0;\n}\n"
+    \ ? lower : it->second + 1;\n        }\n\n        // returns maximum integer x\
+    \ s.t. x <= upper and x is NOT in this set\n        T maximum_excluded(T upper)\
+    \ const {\n            static_assert(merge_adjacent_segment);\n            auto\
+    \ it = find_range(upper);\n            return it == this->end() ? upper : it->first\
+    \ - 1;\n        }\n\n    private:\n        T _size;\n\n        bool is_mergeable(T\
+    \ cur_r, T next_l) {\n            return next_l <= cur_r + merge_adjacent_segment;\n\
+    \        }\n};\n\n} // namespace suisen\n\n\n#line 6 \"test/src/util/range_set/yuki674.test.cpp\"\
+    \nusing suisen::RangeSet;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    long long d;\n    int q;\n    std::cin >> d >>\
+    \ q;\n\n    long long ans = 0;\n    RangeSet<long long> set;\n    while (q -->\
+    \ 0) {\n        long long l, r;\n        std::cin >> l >> r;\n        set.insert(l,\
+    \ r);\n        auto [nl, nr] = *set.find_range(l);\n        ans = std::max(ans,\
+    \ nr - nl + 1);\n        std::cout << ans << '\\n';\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/674\"\n\n#include <iostream>\n\
     \n#include \"library/util/range_set.hpp\"\nusing suisen::RangeSet;\n\nint main()\
     \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    long\
@@ -89,8 +92,8 @@ data:
   isVerificationFile: true
   path: test/src/util/range_set/yuki674.test.cpp
   requiredBy: []
-  timestamp: '2021-09-21 22:07:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-10-16 19:54:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/util/range_set/yuki674.test.cpp
 layout: document

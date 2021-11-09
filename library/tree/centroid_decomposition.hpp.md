@@ -1,0 +1,110 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
+    title: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"library/tree/centroid_decomposition.hpp\"\n\n\n\n#include\
+    \ <vector>\n\nnamespace suisen {\n\n    struct CentroidDecomposition : public\
+    \ std::vector<std::vector<int>> {\n        using BaseType = std::vector<std::vector<int>>;\n\
+    \    public:\n        using BaseType::BaseType;\n\n        void add_edge(int u,\
+    \ int v) {\n            BaseType::operator[](u).push_back(v);\n            BaseType::operator[](v).push_back(u);\n\
+    \        }\n\n    private:\n        std::vector<bool> removed;\n\n        struct\
+    \ AdjacentListIterator {\n            using it_t = std::vector<int>::const_iterator;\n\
+    \            const CentroidDecomposition* const ptr;\n            const int u;\n\
+    \            it_t it;\n            AdjacentListIterator(const CentroidDecomposition*\
+    \ const ptr, int u, it_t it) : ptr(ptr), u(u), it(it) { suc(); }\n           \
+    \ AdjacentListIterator& operator++() { return ++it, suc(), * this; }\n       \
+    \     int operator*() { return *it; }\n            bool operator!=(const AdjacentListIterator&\
+    \ other) { return it != other.it; }\n            void suc() { while (it != (*ptr).BaseType::operator[](u).end()\
+    \ and ptr->removed[*it]) ++it; }\n        };\n        struct AdjacentList {\n\
+    \            CentroidDecomposition* const ptr;\n            const int u;\n   \
+    \         std::vector<int>& base_vector()& { return ptr->BaseType::operator[](u);\
+    \ }\n            auto begin() const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).begin());\
+    \ }\n            auto end()   const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).end());\
+    \ }\n        };\n        struct ConstAdjacentList {\n            const CentroidDecomposition*\
+    \ const ptr;\n            const int u;\n            const std::vector<int>& base_vector()\
+    \ const& { return ptr->BaseType::operator[](u); }\n            auto begin() const\
+    \ { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).begin());\
+    \ }\n            auto end()   const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).end());\
+    \ }\n        };\n\n    public:\n        static constexpr void dummy(int, int)\
+    \ {}\n\n        auto operator[](int u) {\n            return AdjacentList{ this,\
+    \ u };\n        }\n        auto operator[](int u) const {\n            return\
+    \ ConstAdjacentList{ this, u };\n        }\n\n        template <typename DownF,\
+    \ typename UpF = decltype(dummy)>\n        void decomp(DownF down, UpF up = dummy)\
+    \ {\n            removed.assign(size(), false);\n            std::vector<int>\
+    \ sub(size(), 0);\n            auto rec = [&](auto rec, int r, int siz) -> void\
+    \ {\n                int pc = -1, c = -1;\n                auto get_centroid =\
+    \ [&](auto get_centroid, int u, int p) -> void {\n                    sub[u] =\
+    \ 1;\n                    for (int v : (*this)[u]) {\n                       \
+    \ if (v == p) continue;\n                        get_centroid(get_centroid, v,\
+    \ u);\n                        sub[u] += sub[v];\n                    }\n    \
+    \                if (c < 0 and sub[u] * 2 > siz) pc = p, c = u;\n            \
+    \    };\n                get_centroid(get_centroid, r, -1);\n                down(c,\
+    \ siz);\n                removed[c] = true;\n                for (int v : (*this)[c])\
+    \ rec(rec, v, v == pc ? siz - sub[c] : sub[v]);\n                removed[c] =\
+    \ false;\n                up(c, siz);\n            };\n            rec(rec, 0,\
+    \ size());\n        }\n    };\n\n} // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_CENTROID_DECOMPOSITION\n#define SUISEN_CENTROID_DECOMPOSITION\n\
+    \n#include <vector>\n\nnamespace suisen {\n\n    struct CentroidDecomposition\
+    \ : public std::vector<std::vector<int>> {\n        using BaseType = std::vector<std::vector<int>>;\n\
+    \    public:\n        using BaseType::BaseType;\n\n        void add_edge(int u,\
+    \ int v) {\n            BaseType::operator[](u).push_back(v);\n            BaseType::operator[](v).push_back(u);\n\
+    \        }\n\n    private:\n        std::vector<bool> removed;\n\n        struct\
+    \ AdjacentListIterator {\n            using it_t = std::vector<int>::const_iterator;\n\
+    \            const CentroidDecomposition* const ptr;\n            const int u;\n\
+    \            it_t it;\n            AdjacentListIterator(const CentroidDecomposition*\
+    \ const ptr, int u, it_t it) : ptr(ptr), u(u), it(it) { suc(); }\n           \
+    \ AdjacentListIterator& operator++() { return ++it, suc(), * this; }\n       \
+    \     int operator*() { return *it; }\n            bool operator!=(const AdjacentListIterator&\
+    \ other) { return it != other.it; }\n            void suc() { while (it != (*ptr).BaseType::operator[](u).end()\
+    \ and ptr->removed[*it]) ++it; }\n        };\n        struct AdjacentList {\n\
+    \            CentroidDecomposition* const ptr;\n            const int u;\n   \
+    \         std::vector<int>& base_vector()& { return ptr->BaseType::operator[](u);\
+    \ }\n            auto begin() const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).begin());\
+    \ }\n            auto end()   const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).end());\
+    \ }\n        };\n        struct ConstAdjacentList {\n            const CentroidDecomposition*\
+    \ const ptr;\n            const int u;\n            const std::vector<int>& base_vector()\
+    \ const& { return ptr->BaseType::operator[](u); }\n            auto begin() const\
+    \ { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).begin());\
+    \ }\n            auto end()   const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).end());\
+    \ }\n        };\n\n    public:\n        static constexpr void dummy(int, int)\
+    \ {}\n\n        auto operator[](int u) {\n            return AdjacentList{ this,\
+    \ u };\n        }\n        auto operator[](int u) const {\n            return\
+    \ ConstAdjacentList{ this, u };\n        }\n\n        template <typename DownF,\
+    \ typename UpF = decltype(dummy)>\n        void decomp(DownF down, UpF up = dummy)\
+    \ {\n            removed.assign(size(), false);\n            std::vector<int>\
+    \ sub(size(), 0);\n            auto rec = [&](auto rec, int r, int siz) -> void\
+    \ {\n                int pc = -1, c = -1;\n                auto get_centroid =\
+    \ [&](auto get_centroid, int u, int p) -> void {\n                    sub[u] =\
+    \ 1;\n                    for (int v : (*this)[u]) {\n                       \
+    \ if (v == p) continue;\n                        get_centroid(get_centroid, v,\
+    \ u);\n                        sub[u] += sub[v];\n                    }\n    \
+    \                if (c < 0 and sub[u] * 2 > siz) pc = p, c = u;\n            \
+    \    };\n                get_centroid(get_centroid, r, -1);\n                down(c,\
+    \ siz);\n                removed[c] = true;\n                for (int v : (*this)[c])\
+    \ rec(rec, v, v == pc ? siz - sub[c] : sub[v]);\n                removed[c] =\
+    \ false;\n                up(c, siz);\n            };\n            rec(rec, 0,\
+    \ size());\n        }\n    };\n\n} // namespace suisen\n\n#endif // SUISEN_CENTROID_DECOMPOSITION\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: library/tree/centroid_decomposition.hpp
+  requiredBy: []
+  timestamp: '2021-11-09 16:03:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
+documentation_of: library/tree/centroid_decomposition.hpp
+layout: document
+redirect_from:
+- /library/library/tree/centroid_decomposition.hpp
+- /library/library/tree/centroid_decomposition.hpp.html
+title: library/tree/centroid_decomposition.hpp
+---

@@ -176,6 +176,9 @@ data:
       path: library/graph/kruscal.hpp
       title: library/graph/kruscal.hpp
     - icon: ':heavy_check_mark:'
+      path: library/graph/low_link.hpp
+      title: library/graph/low_link.hpp
+    - icon: ':heavy_check_mark:'
       path: library/graph/min_cost_flow.hpp
       title: library/graph/min_cost_flow.hpp
     - icon: ':warning:'
@@ -187,6 +190,9 @@ data:
     - icon: ':warning:'
       path: library/graph/topological_sort.hpp
       title: library/graph/topological_sort.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/graph/two_edge_connected_components.hpp
+      title: library/graph/two_edge_connected_components.hpp
   - name: library/integral_geom
     pages:
     - icon: ':warning:'
@@ -306,6 +312,9 @@ data:
   - name: library/tree
     pages:
     - icon: ':heavy_check_mark:'
+      path: library/tree/centroid_decomposition.hpp
+      title: library/tree/centroid_decomposition.hpp
+    - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: library/tree/euler_tour.hpp
     - icon: ':heavy_check_mark:'
@@ -330,7 +339,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: library/util/container_utils.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/util/coordinate_compressor.hpp
       title: library/util/coordinate_compressor.hpp
     - icon: ':heavy_check_mark:'
@@ -351,7 +360,10 @@ data:
     - icon: ':warning:'
       path: library/util/pair_ops.hpp
       title: library/util/pair_ops.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: library/util/permutation.hpp
+      title: library/util/permutation.hpp
+    - icon: ':x:'
       path: library/util/range_set.hpp
       title: library/util/range_set.hpp
     - icon: ':warning:'
@@ -633,6 +645,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
       title: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
+  - name: test/src/graph/low_link
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/low_link/articulation_points.test.cpp
+      title: test/src/graph/low_link/articulation_points.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/low_link/bridges.test.cpp
+      title: test/src/graph/low_link/bridges.test.cpp
   - name: test/src/graph/min_cost_flow
     pages:
     - icon: ':heavy_check_mark:'
@@ -646,6 +666,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/segment_tree_graph/flags.test.cpp
       title: test/src/graph/segment_tree_graph/flags.test.cpp
+  - name: test/src/graph/two_edge_connected_components
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
+      title: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
   - name: test/src/math/bostan_mori
     pages:
     - icon: ':heavy_check_mark:'
@@ -771,6 +796,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/transform/multiple/divide_both.test.cpp
       title: test/src/transform/multiple/divide_both.test.cpp
+  - name: test/src/tree/centroid_decomposition
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
+      title: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
   - name: test/src/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
@@ -817,13 +847,13 @@ data:
       title: test/src/tree/rerooting/edpc_v.test.cpp
   - name: test/src/util/range_set
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/util/range_set/DSL_2_D.test.cpp
       title: test/src/util/range_set/DSL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/util/range_set/DSL_4_A.test.cpp
       title: test/src/util/range_set/DSL_4_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/util/range_set/yuki674.test.cpp
       title: test/src/util/range_set/yuki674.test.cpp
 layout: toppage

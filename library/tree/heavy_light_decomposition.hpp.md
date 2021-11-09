@@ -106,19 +106,21 @@ data:
     \ T>> = nullptr>\n        T get_point(int u, Q get_query) {\n            return\
     \ get_query(visit[u]);\n        }\n        template <typename Q, constraints_t<is_point_update_query<Q>>\
     \ = nullptr>\n        void update_point(int u, Q update_query) {\n           \
-    \ update_query(visit[u]);\n        }\n    private:\n        const int n, root;\n\
-    \        std::vector<int> visit, leave, head, ord, siz, par;\n        int dfs(Graph\
-    \ &g, int u, int p) {\n            par[u] = p;\n            siz[u] = 1;\n    \
-    \        int max_size = 0;\n            for (int &v : g[u]) {\n              \
-    \  if (v == p) continue;\n                siz[u] += dfs(g, v, u);\n          \
-    \      if (max_size < siz[v]) {\n                    max_size = siz[v];\n    \
-    \                std::swap(g[u].front(), v);\n                }\n            }\n\
-    \            return siz[u];\n        }\n        void hld(Graph &g, int u, int\
-    \ p, int &time) {\n            visit[u] = time, ord[time] = u, ++time;\n     \
-    \       head[u] = p >= 0 and g[p].front() == u ? head[p] : u;\n            for\
-    \ (int v : g[u]) {\n                if (v != p) hld(g, v, u, time);\n        \
-    \    }\n            leave[u] = time;\n        }\n};\n} // namespace suisen\n\n\
-    \n"
+    \ update_query(visit[u]);\n        }\n        std::vector<int> inv_ids() const\
+    \ {\n            std::vector<int> inv(n);\n            for (int i = 0; i < n;\
+    \ ++i) inv[visit[i]] = i;\n            return inv;\n        }\n    private:\n\
+    \        const int n, root;\n        std::vector<int> visit, leave, head, ord,\
+    \ siz, par;\n        int dfs(Graph &g, int u, int p) {\n            par[u] = p;\n\
+    \            siz[u] = 1;\n            int max_size = 0;\n            for (int\
+    \ &v : g[u]) {\n                if (v == p) continue;\n                siz[u]\
+    \ += dfs(g, v, u);\n                if (max_size < siz[v]) {\n               \
+    \     max_size = siz[v];\n                    std::swap(g[u].front(), v);\n  \
+    \              }\n            }\n            return siz[u];\n        }\n     \
+    \   void hld(Graph &g, int u, int p, int &time) {\n            visit[u] = time,\
+    \ ord[time] = u, ++time;\n            head[u] = p >= 0 and g[p].front() == u ?\
+    \ head[p] : u;\n            for (int v : g[u]) {\n                if (v != p)\
+    \ hld(g, v, u, time);\n            }\n            leave[u] = time;\n        }\n\
+    };\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_HLD\n#define SUISEN_HLD\n\n#include \"library/type_traits/type_traits.hpp\"\
     \n#include <vector>\n\nnamespace suisen {\nclass HeavyLightDecomposition {\n \
     \   public:\n        template <typename Q>\n        using is_point_update_query\
@@ -175,32 +177,34 @@ data:
     \ T>> = nullptr>\n        T get_point(int u, Q get_query) {\n            return\
     \ get_query(visit[u]);\n        }\n        template <typename Q, constraints_t<is_point_update_query<Q>>\
     \ = nullptr>\n        void update_point(int u, Q update_query) {\n           \
-    \ update_query(visit[u]);\n        }\n    private:\n        const int n, root;\n\
-    \        std::vector<int> visit, leave, head, ord, siz, par;\n        int dfs(Graph\
-    \ &g, int u, int p) {\n            par[u] = p;\n            siz[u] = 1;\n    \
-    \        int max_size = 0;\n            for (int &v : g[u]) {\n              \
-    \  if (v == p) continue;\n                siz[u] += dfs(g, v, u);\n          \
-    \      if (max_size < siz[v]) {\n                    max_size = siz[v];\n    \
-    \                std::swap(g[u].front(), v);\n                }\n            }\n\
-    \            return siz[u];\n        }\n        void hld(Graph &g, int u, int\
-    \ p, int &time) {\n            visit[u] = time, ord[time] = u, ++time;\n     \
-    \       head[u] = p >= 0 and g[p].front() == u ? head[p] : u;\n            for\
-    \ (int v : g[u]) {\n                if (v != p) hld(g, v, u, time);\n        \
-    \    }\n            leave[u] = time;\n        }\n};\n} // namespace suisen\n\n\
-    #endif // SUISEN_HLD\n"
+    \ update_query(visit[u]);\n        }\n        std::vector<int> inv_ids() const\
+    \ {\n            std::vector<int> inv(n);\n            for (int i = 0; i < n;\
+    \ ++i) inv[visit[i]] = i;\n            return inv;\n        }\n    private:\n\
+    \        const int n, root;\n        std::vector<int> visit, leave, head, ord,\
+    \ siz, par;\n        int dfs(Graph &g, int u, int p) {\n            par[u] = p;\n\
+    \            siz[u] = 1;\n            int max_size = 0;\n            for (int\
+    \ &v : g[u]) {\n                if (v == p) continue;\n                siz[u]\
+    \ += dfs(g, v, u);\n                if (max_size < siz[v]) {\n               \
+    \     max_size = siz[v];\n                    std::swap(g[u].front(), v);\n  \
+    \              }\n            }\n            return siz[u];\n        }\n     \
+    \   void hld(Graph &g, int u, int p, int &time) {\n            visit[u] = time,\
+    \ ord[time] = u, ++time;\n            head[u] = p >= 0 and g[p].front() == u ?\
+    \ head[p] : u;\n            for (int v : g[u]) {\n                if (v != p)\
+    \ hld(g, v, u, time);\n            }\n            leave[u] = time;\n        }\n\
+    };\n} // namespace suisen\n\n#endif // SUISEN_HLD\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/tree/heavy_light_decomposition.hpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:31+09:00'
+  timestamp: '2021-10-22 11:27:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
 documentation_of: library/tree/heavy_light_decomposition.hpp
 layout: document
 title: Heavy Light Decomposition (HLD)

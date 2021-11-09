@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/util/range_set/DSL_2_D.test.cpp
     title: test/src/util/range_set/DSL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/util/range_set/yuki674.test.cpp
     title: test/src/util/range_set/yuki674.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/range_set.hpp\"\n\n\n\n#include <map>\n\nnamespace\
@@ -68,9 +68,13 @@ data:
     \        // returns minimum integer x s.t. x >= lower and x is NOT in this set\n\
     \        T minimum_excluded(T lower = 0) const {\n            static_assert(merge_adjacent_segment);\n\
     \            auto it = find_range(lower);\n            return it == this->end()\
-    \ ? lower : it->second + 1;\n        }\n\n    private:\n        T _size;\n\n \
-    \       bool is_mergeable(T cur_r, T next_l) {\n            return next_l <= cur_r\
-    \ + merge_adjacent_segment;\n        }\n};\n\n} // namespace suisen\n\n\n"
+    \ ? lower : it->second + 1;\n        }\n\n        // returns maximum integer x\
+    \ s.t. x <= upper and x is NOT in this set\n        T maximum_excluded(T upper)\
+    \ const {\n            static_assert(merge_adjacent_segment);\n            auto\
+    \ it = find_range(upper);\n            return it == this->end() ? upper : it->first\
+    \ - 1;\n        }\n\n    private:\n        T _size;\n\n        bool is_mergeable(T\
+    \ cur_r, T next_l) {\n            return next_l <= cur_r + merge_adjacent_segment;\n\
+    \        }\n};\n\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_RANGE_SET\n#define SUISEN_RANGE_SET\n\n#include <map>\n\n\
     namespace suisen {\n\ntemplate <typename T, bool merge_adjacent_segment = true>\n\
     struct RangeSet : public std::map<T, T> {\n    public:\n        RangeSet() : _size(0)\
@@ -122,20 +126,23 @@ data:
     \        // returns minimum integer x s.t. x >= lower and x is NOT in this set\n\
     \        T minimum_excluded(T lower = 0) const {\n            static_assert(merge_adjacent_segment);\n\
     \            auto it = find_range(lower);\n            return it == this->end()\
-    \ ? lower : it->second + 1;\n        }\n\n    private:\n        T _size;\n\n \
-    \       bool is_mergeable(T cur_r, T next_l) {\n            return next_l <= cur_r\
-    \ + merge_adjacent_segment;\n        }\n};\n\n} // namespace suisen\n\n#endif\
-    \ // SUISEN_RANGE_SET\n"
+    \ ? lower : it->second + 1;\n        }\n\n        // returns maximum integer x\
+    \ s.t. x <= upper and x is NOT in this set\n        T maximum_excluded(T upper)\
+    \ const {\n            static_assert(merge_adjacent_segment);\n            auto\
+    \ it = find_range(upper);\n            return it == this->end() ? upper : it->first\
+    \ - 1;\n        }\n\n    private:\n        T _size;\n\n        bool is_mergeable(T\
+    \ cur_r, T next_l) {\n            return next_l <= cur_r + merge_adjacent_segment;\n\
+    \        }\n};\n\n} // namespace suisen\n\n#endif // SUISEN_RANGE_SET\n"
   dependsOn: []
   isVerificationFile: false
   path: library/util/range_set.hpp
   requiredBy: []
-  timestamp: '2021-09-21 22:07:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-10-16 19:54:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/util/range_set/yuki674.test.cpp
-  - test/src/util/range_set/DSL_2_D.test.cpp
   - test/src/util/range_set/DSL_4_A.test.cpp
+  - test/src/util/range_set/DSL_2_D.test.cpp
 documentation_of: library/util/range_set.hpp
 layout: document
 redirect_from:

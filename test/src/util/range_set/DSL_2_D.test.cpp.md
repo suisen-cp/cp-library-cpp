@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/util/range_set.hpp
     title: library/util/range_set.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
@@ -67,11 +67,14 @@ data:
     \        // returns minimum integer x s.t. x >= lower and x is NOT in this set\n\
     \        T minimum_excluded(T lower = 0) const {\n            static_assert(merge_adjacent_segment);\n\
     \            auto it = find_range(lower);\n            return it == this->end()\
-    \ ? lower : it->second + 1;\n        }\n\n    private:\n        T _size;\n\n \
-    \       bool is_mergeable(T cur_r, T next_l) {\n            return next_l <= cur_r\
-    \ + merge_adjacent_segment;\n        }\n};\n\n} // namespace suisen\n\n\n#line\
-    \ 7 \"test/src/util/range_set/DSL_2_D.test.cpp\"\nusing suisen::RangeSet;\n\n\
-    constexpr int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \ ? lower : it->second + 1;\n        }\n\n        // returns maximum integer x\
+    \ s.t. x <= upper and x is NOT in this set\n        T maximum_excluded(T upper)\
+    \ const {\n            static_assert(merge_adjacent_segment);\n            auto\
+    \ it = find_range(upper);\n            return it == this->end() ? upper : it->first\
+    \ - 1;\n        }\n\n    private:\n        T _size;\n\n        bool is_mergeable(T\
+    \ cur_r, T next_l) {\n            return next_l <= cur_r + merge_adjacent_segment;\n\
+    \        }\n};\n\n} // namespace suisen\n\n\n#line 7 \"test/src/util/range_set/DSL_2_D.test.cpp\"\
+    \nusing suisen::RangeSet;\n\nconstexpr int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::array<RangeSet<int>,\
     \ L> bits;\n    for (int i = 0; i < L; ++i) {\n        bits[i].insert(0, n - 1);\n\
     \    }\n\n    while (q --> 0) {\n        int query_type;\n        std::cin >>\
@@ -104,8 +107,8 @@ data:
   isVerificationFile: true
   path: test/src/util/range_set/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2021-09-21 22:07:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-10-16 19:54:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/util/range_set/DSL_2_D.test.cpp
 layout: document

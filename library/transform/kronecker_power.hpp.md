@@ -138,21 +138,21 @@ data:
   isVerificationFile: false
   path: library/transform/kronecker_power.hpp
   requiredBy:
+  - library/transform/supset.hpp
+  - library/transform/subset.hpp
+  - library/transform/walsh_hadamard.hpp
   - library/convolution/and_convolution.hpp
   - library/convolution/xor_convolution.hpp
   - library/convolution/or_convolution.hpp
-  - library/transform/supset.hpp
-  - library/transform/walsh_hadamard.hpp
-  - library/transform/subset.hpp
   timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
 documentation_of: library/transform/kronecker_power.hpp
 layout: document
 title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\u5909\

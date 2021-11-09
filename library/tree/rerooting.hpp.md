@@ -101,8 +101,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/tree/rerooting/abc222_f.test.cpp
-  - test/src/tree/rerooting/abc160_f.test.cpp
   - test/src/tree/rerooting/edpc_v.test.cpp
+  - test/src/tree/rerooting/abc160_f.test.cpp
 documentation_of: library/tree/rerooting.hpp
 layout: document
 redirect_from:
