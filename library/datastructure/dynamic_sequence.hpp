@@ -185,11 +185,23 @@ struct DynamicSequenceBase {
             index_bounds_check(k, size() + 1);
             root = SplayNode::insert(root, k, val);
         }
+        void push_front(const T &val) {
+            insert(0, val);
+        }
+        void push_back(const T &val) {
+            insert(size(), val);
+        }
         void erase(int k) {
             index_bounds_check(k, size());
             root = SplayNode::erase(root, k);
         }
-        int size() {
+        void pop_back() {
+            erase(size() - 1);
+        }
+        void pop_front() {
+            erase(0);
+        }
+        int size() const {
             return SplayNode::size(root);
         }
         void reverse(int l, int r) {
@@ -200,7 +212,7 @@ struct DynamicSequenceBase {
             SplayNode::reverese_all(root);
         }
     protected:
-        node_ptr_t root;
+        mutable node_ptr_t root;
 
         DynamicSequenceBase(node_ptr_t root) : root(root) {}
     
@@ -233,6 +245,23 @@ struct DynamicSequence : public DynamicSequenceBase<T, internal::dynamic_sequenc
             this->index_bounds_check(k, this->size());
             this->root = Node::splay(this->root, k);
             return this->root->val;
+        }
+        const T& operator[](int k) const {
+            this->index_bounds_check(k, this->size());
+            this->root = Node::splay(this->root, k);
+            return this->root->val;
+        }
+        T& front() {
+            return (*this)[0];
+        }
+        const T& front() const {
+            return (*this)[0];
+        }
+        T& back() {
+            return (*this)[this->size() - 1];
+        }
+        const T& back() const {
+            return (*this)[this->size() - 1];
         }
 
         DynamicSequence& operator+=(DynamicSequence &&right) {
