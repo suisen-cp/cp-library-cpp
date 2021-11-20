@@ -3,15 +3,15 @@
 #include <iostream>
 #include <tuple>
 
-#include "library/datastructure/segment_tree_2d.hpp"
-using suisen::SegmentTree2D;
+#include "library/datastructure/segment_tree_2d_sparse.hpp"
+using suisen::SegmentTree2DSparse;
 
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
     int n, q;
     std::cin >> n >> q;
-    SegmentTree2D seg(n, 0LL, std::plus<long long>());
+    SegmentTree2DSparse seg(n, 0LL, std::plus<long long>());
     std::vector<std::tuple<int, int, int>> points(n);
     for (int i = 0; i < n; ++i) {
         int x, y, w;

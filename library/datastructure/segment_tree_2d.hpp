@@ -1,120 +1,66 @@
 #ifndef SUISEN_SEGMENT_TREE_2D
 #define SUISEN_SEGMENT_TREE_2D
 
-#include <algorithm>
-#include <tuple>
-
-#include "library/datastructure/segment_tree.hpp"
+#include <cassert>
+#include <vector>
 
 namespace suisen {
-
-template <typename T, typename F, constraints_t<is_bin_op<F, T>> = nullptr>
-class SegmentTree2D {
-    public:
+    template <typename T, T(*op)(T, T), T(*e)()>
+    struct SegmentTree2D {
         SegmentTree2D() {}
-        SegmentTree2D(int x_num, const T &e, const F &op) : n(x_num + 1), m(ceil_pow2(n)), data(m * 2), e(e), op(op), points(), pos_x(), pos_y(m * 2) {}
-
-        void add_point(int x, int y) {
-            built = false;
-            pos_x.push_back(x);
-            points.emplace_back(x, y);
-        }
-
-        void build() {
-            built = true;
-            pos_x.push_back(std::numeric_limits<int>::max());
-            std::sort(pos_x.begin(), pos_x.end());
-            pos_x.erase(std::unique(pos_x.begin(), pos_x.end()), pos_x.end());
-            assert(int(pos_x.size()) <= n);
-            for (auto [x, y] : points) {
-                for (int k = comp_x(x) + m; k; k >>= 1) pos_y[k].push_back(y);
+        SegmentTree2D(int n, int m) : SegmentTree2D(std::vector(2 * n, std::vector(2 * m, e()))) {}
+        SegmentTree2D(const std::vector<std::vector<T>> &a) : n(a.size()), m(n == 0 ? 0 : a[0].size()), dat(2 * n, std::vector<T>(2 * m, e())) {
+            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
+                dat[n + i][m + j] = a[i][j];
             }
-            for (int k = 1; k < 2 * m; ++k) {
-                pos_y[k].push_back(std::numeric_limits<int>::max());
-                std::sort(pos_y[k].begin(), pos_y[k].end());
-                pos_y[k].erase(std::unique(pos_y[k].begin(), pos_y[k].end()), pos_y[k].end());
-                data[k] = SegmentTree(pos_y[k].size(), e, op);
+            for (int i = 1; i < 2 * n; ++i) for (int j = m - 1; j > 0; --j) {
+                dat[i][j] = op(dat[i][2 * j + 0], dat[i][2 * j + 1]);
+            }
+            for (int i = n - 1; i > 0; --i) for (int j = 1; j < 2 * m; ++j) {
+                dat[i][j] = op(dat[2 * i + 0][j], dat[2 * i + 1][j]);
             }
         }
 
-        T prod(int l, int r, int d, int u) const {
-            return (*this)(l, r, d, u);
-        }
-        T operator()(int l, int r, int d, int u) const {
-            assert(built);
-            T res_l = e, res_r = e;
-            for (l = comp_x(l) + m, r = comp_x(r) + m; l < r; l >>= 1, r >>= 1) {
-                if (l & 1) res_l = op(res_l, prod(l++, d, u));
-                if (r & 1) res_r = op(prod(--r, d, u), res_r);
+        T operator()(int u, int d, int l, int r) const {
+            assert(0 <= u and u <= d and d <= n and 0 <= l and l <= r and r <= m);
+            auto inner_query = [&](const auto &seg) {
+                T res_l = e(), res_r = e();
+                for (int tl = l + m, tr = r + m; tl < tr; tl >>= 1, tr >>= 1) {
+                    if (tl & 1) res_l = op(res_l, seg[tl++]);
+                    if (tr & 1) res_r = op(seg[--tr], res_r);
+                }
+                return op(res_l, res_r);
+            };
+            T res_u = e(), res_d = e();
+            for (int tu = u + n, td = d + n; tu < td; tu >>= 1, td >>= 1) {
+                if (tu & 1) res_u = op(res_u, inner_query(dat[tu++]));
+                if (td & 1) res_d = op(inner_query(dat[--td]), res_d);
             }
-            return op(res_l, res_r);
-        }
-        T all_prod() const {
-            assert(built);
-            return data[1].all_prod();
+            return op(res_u, res_d);
         }
 
-        const T& get(int x, int y) const {
-            assert(built);
-            int i = comp_x(x), j = comp_y(i + m, y);
-            assert(pos_x[i] == x);
-            assert(pos_y[i + m][j] == y);
-            return data[i + m].get(j);
+        T get(int i, int j) const {
+            assert(0 <= i and i < n and 0 <= j and j < m);
+            return dat[n + i][m + j];
         }
-        void set(int x, int y, T val) {
-            (*this)[{x, y}] = val;
-        }
-        auto operator[](const std::pair<int, int> &p) {
-            int x, y;
-            std::tie(x, y) = p;
-            return UpdateProxyObject { const_cast<T&>(get(x, y)), [this, k = comp_x(x) + m, y]{ update_from(k, y); } };
+
+        void set(int i, int j, const T &val) {
+            assert(0 <= i and i < n and 0 <= j and j < m);
+            dat[n + i][m + j] = val;
+            for (int tj = (m + j) >> 1; tj; tj >>= 1) {
+                dat[n + i][tj] = op(dat[n + i][2 * tj + 0], dat[n + i][2 * tj + 1]);
+            }
+            for (int ti = (n + i) >> 1; ti; ti >>= 1) {
+                for (int tj = m + j; tj; tj >>= 1) {
+                    dat[ti][tj] = op(dat[2 * ti + 0][tj], dat[2 * ti + 1][tj]);
+                }
+            }
         }
 
     private:
         int n, m;
-        std::vector<SegmentTree<T, F>> data;
-        T e;
-        F op;
-        std::vector<std::pair<int, int>> points;
-        std::vector<int> pos_x;
-        std::vector<std::vector<int>> pos_y;
-        bool built = true;
-
-        static constexpr int ceil_pow2(int n) {
-            int m = 1;
-            while (m < n) m <<= 1;
-            return m;
-        }
-
-        int comp_x(int x) const {
-            return std::lower_bound(pos_x.begin(), pos_x.end(), x) - pos_x.begin();
-        }
-        int comp_y(int k, int y) const {
-            return std::lower_bound(pos_y[k].begin(), pos_y[k].end(), y) - pos_y[k].begin();
-        }
-
-        T prod(int k, int d, int u) const {
-            return data[k](comp_y(k, d), comp_y(k, u));
-        }
-
-        void update(int k, int y) {
-            int p = comp_y(k, y);
-            assert(pos_y[k][p] == y);
-            if (k < m) {
-                int l = comp_y(k * 2, y), r = comp_y(k * 2 + 1, y);
-                const T& lv = pos_y[k * 2 + 0][l] == y ? data[k * 2 + 0].get(l) : e;
-                const T& rv = pos_y[k * 2 + 1][r] == y ? data[k * 2 + 1].get(r) : e;
-                data[k][p] = op(lv, rv);
-            } else {
-                data[k][p] = T(data[k][p]);
-            }
-        }
-        void update_from(int k, int y) {
-            for (; k; k >>= 1) update(k, y);
-        }
-};
-
-} // namespace suisen
-
+        std::vector<std::vector<T>> dat;
+    };
+}
 
 #endif // SUISEN_SEGMENT_TREE_2D

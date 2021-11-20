@@ -3,7 +3,7 @@
 #include <iostream>
 #include <tuple>
 
-#include "library/datastructure/segment_tree_2d.hpp"
+#include "library/datastructure/segment_tree_2d_sparse.hpp"
 
 using namespace suisen;
 
@@ -14,7 +14,7 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    SegmentTree2D seg(n + q, 0LL, std::plus<long long>());
+    SegmentTree2DSparse seg(n + q, 0LL, std::plus<long long>());
 
     std::vector<std::tuple<int, int, int>> init(n);
     for (int i = 0; i < n; ++i) {
