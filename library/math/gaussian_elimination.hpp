@@ -9,12 +9,22 @@ namespace suisen {
 namespace internal {
     namespace gauss_jordan {
         template <typename T>
+        bool equals_zero(const T& v) {
+            return v == 0;
+        }
+        template <>
+        bool equals_zero<long double>(const long double &v) {
+            static constexpr long double EPS = 1e-9;
+            return std::abs(v) < EPS;
+        }
+
+        template <typename T>
         std::pair<unsigned int, unsigned int> pivoting(const std::vector<std::vector<T>> &Ab, const T &zero, const unsigned int i) {
             const unsigned int n = Ab.size(), m = Ab[0].size() - 1;
             unsigned int mse = m, pivot = n;
             for (unsigned int row = i; row < n; ++row) {
                 for (unsigned int col = 0; col < mse; ++col) {
-                    if (Ab[row][col] != zero) {
+                    if (not equals_zero(Ab[row][col])) {
                         mse = col, pivot = row;
                         break;
                     }
@@ -34,7 +44,7 @@ namespace internal {
                     max_val = std::abs(Ab[row][mse]);
                 }
                 for (unsigned int col = 0; col < mse; ++col) {
-                    if (Ab[row][col] != zero) {
+                    if (not equals_zero(Ab[row][col])) {
                         mse = col, pivot = row, max_val = std::abs(Ab[row][col]);
                         break;
                     }
@@ -93,7 +103,7 @@ class GaussianElimination {
                 Ab[i].swap(Ab[pivot]);
                 T mse_val_inv = mul_inv_fp(Ab[i][mse]);
                 for (unsigned int row = i + 1; row < n; ++row) {
-                    if (Ab[row][mse] != zero) {
+                    if (not internal::gauss_jordan::equals_zero(Ab[row][mse])) {
                         T coef = add_inv_fp(mul_fp(Ab[row][mse], mse_val_inv));
                         for (unsigned int col = mse; col <= m; ++col) {
                             Ab[row][col] = add_fp(Ab[row][col], mul_fp(coef, Ab[i][col]));
@@ -107,7 +117,7 @@ class GaussianElimination {
             for (unsigned int i = n; i --> 0;) {
                 unsigned int mse = m + 1;
                 for (unsigned int col = 0; col <= m; ++col) {
-                    if (Ab[i][col] != zero) {
+                    if (not internal::gauss_jordan::equals_zero(Ab[i][col])) {
                         mse = col;
                         break;
                     }
@@ -115,7 +125,7 @@ class GaussianElimination {
                 if (mse < m) {
                     T mse_val_inv = mul_inv_fp(Ab[i][mse]);
                     for (unsigned int row = 0; row < i; ++row) {
-                        if (Ab[row][mse] != zero) {
+                        if (not internal::gauss_jordan::equals_zero(Ab[row][mse])) {
                             T coef = add_inv_fp(mul_fp(Ab[row][mse], mse_val_inv));
                             for (unsigned int col = mse; col <= m; ++col) {
                                 Ab[row][col] = add_fp(Ab[row][col], mul_fp(coef, Ab[i][col]));
