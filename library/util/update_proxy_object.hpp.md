@@ -25,8 +25,8 @@ data:
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/segment_tree_2d.hpp
-    title: library/datastructure/segment_tree_2d.hpp
+    path: library/datastructure/segment_tree_2d_sparse.hpp
+    title: library/datastructure/segment_tree_2d_sparse.hpp
   - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_lazy_segment_tree.hpp
     title: library/datastructure/sparse_lazy_segment_tree.hpp
@@ -65,11 +65,11 @@ data:
     path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
-    title: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+    path: test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+    title: test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-    title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+    path: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
+    title: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
     title: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
@@ -145,29 +145,29 @@ data:
   requiredBy:
   - library/datastructure/range_foldable_map.hpp
   - library/datastructure/range_foldable_dynamic_sequence.hpp
+  - library/datastructure/segment_tree_2d_sparse.hpp
   - library/datastructure/sparse_segment_tree.hpp
-  - library/datastructure/lazy_segment_tree.hpp
   - library/datastructure/sparse_lazy_segment_tree.hpp
-  - library/datastructure/lazy_eval_map.hpp
-  - library/datastructure/segment_tree_2d.hpp
-  - library/datastructure/segment_tree.hpp
+  - library/datastructure/lazy_segment_tree.hpp
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - library/datastructure/segment_tree.hpp
+  - library/datastructure/lazy_eval_map.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
-  - test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
-  - test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
-  - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
-  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
+  - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
+  - test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
+  - test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
+  - test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
 documentation_of: library/util/update_proxy_object.hpp
 layout: document
 redirect_from:

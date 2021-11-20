@@ -9,8 +9,8 @@ data:
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/segment_tree_2d.hpp
-    title: library/datastructure/segment_tree_2d.hpp
+    path: library/datastructure/segment_tree_2d_sparse.hpp
+    title: library/datastructure/segment_tree_2d_sparse.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
@@ -25,11 +25,11 @@ data:
     path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
-    title: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+    path: test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+    title: test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-    title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+    path: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
+    title: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -183,16 +183,16 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree.hpp
   requiredBy:
-  - library/datastructure/segment_tree_2d.hpp
+  - library/datastructure/segment_tree_2d_sparse.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_A.test.cpp
   - test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
 documentation_of: library/datastructure/segment_tree.hpp
 layout: document
 redirect_from:

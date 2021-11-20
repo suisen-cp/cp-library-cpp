@@ -40,6 +40,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/transform/walsh_hadamard.hpp
     title: "Walsh Hadamard \u5909\u63DB"
+  - icon: ':warning:'
+    path: library/util/cumulative_sum.hpp
+    title: library/util/cumulative_sum.hpp
+  - icon: ':warning:'
+    path: library/util/cumulative_sum_2d.hpp
+    title: library/util/cumulative_sum_2d.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/and_convolution/and_convolution.test.cpp
@@ -104,28 +110,30 @@ data:
   isVerificationFile: false
   path: library/util/default_operator.hpp
   requiredBy:
-  - library/transform/supset.hpp
-  - library/transform/subset.hpp
-  - library/transform/kronecker_power.hpp
+  - library/transform/multiple.hpp
   - library/transform/divisor.hpp
   - library/transform/walsh_hadamard.hpp
-  - library/transform/multiple.hpp
-  - library/convolution/and_convolution.hpp
+  - library/transform/subset.hpp
+  - library/transform/kronecker_power.hpp
+  - library/transform/supset.hpp
   - library/convolution/xor_convolution.hpp
+  - library/convolution/and_convolution.hpp
+  - library/convolution/convolution.hpp
   - library/convolution/gcd_convolution.hpp
   - library/convolution/or_convolution.hpp
-  - library/convolution/convolution.hpp
+  - library/util/cumulative_sum.hpp
+  - library/util/cumulative_sum_2d.hpp
   timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/transform/multiple/divide_both.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/math/sps/connectivity2.test.cpp
-  - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/and_convolution/and_convolution.test.cpp
+  - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/math/sps/connectivity2.test.cpp
+  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
 documentation_of: library/util/default_operator.hpp
 layout: document
 redirect_from:

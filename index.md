@@ -7,6 +7,9 @@ data:
       path: library/algorithm/horn_sat.hpp
       title: Horn SAT
     - icon: ':heavy_check_mark:'
+      path: library/algorithm/mo.hpp
+      title: library/algorithm/mo.hpp
+    - icon: ':heavy_check_mark:'
       path: library/algorithm/monotonic_convex_hull_trick.hpp
       title: library/algorithm/monotonic_convex_hull_trick.hpp
     - icon: ':warning:'
@@ -110,6 +113,9 @@ data:
       path: library/datastructure/segment_tree_2d.hpp
       title: library/datastructure/segment_tree_2d.hpp
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree_2d_sparse.hpp
+      title: library/datastructure/segment_tree_2d_sparse.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_lazy_segment_tree.hpp
       title: library/datastructure/sparse_lazy_segment_tree.hpp
     - icon: ':warning:'
@@ -173,6 +179,9 @@ data:
       path: library/graph/dijkstra.hpp
       title: library/graph/dijkstra.hpp
     - icon: ':warning:'
+      path: library/graph/directed_eulerian_graph.hpp
+      title: library/graph/directed_eulerian_graph.hpp
+    - icon: ':warning:'
       path: library/graph/kruscal.hpp
       title: library/graph/kruscal.hpp
     - icon: ':heavy_check_mark:'
@@ -193,6 +202,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/two_edge_connected_components.hpp
       title: library/graph/two_edge_connected_components.hpp
+    - icon: ':warning:'
+      path: library/graph/undirected_eulerian_graph.hpp
+      title: library/graph/undirected_eulerian_graph.hpp
   - name: library/integral_geom
     pages:
     - icon: ':warning:'
@@ -342,6 +354,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
       title: library/util/coordinate_compressor.hpp
+    - icon: ':warning:'
+      path: library/util/cumulative_sum.hpp
+      title: library/util/cumulative_sum.hpp
+    - icon: ':warning:'
+      path: library/util/cumulative_sum_2d.hpp
+      title: library/util/cumulative_sum_2d.hpp
     - icon: ':heavy_check_mark:'
       path: library/util/default_operator.hpp
       title: library/util/default_operator.hpp
@@ -379,6 +397,11 @@ data:
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
   verificationCategories:
+  - name: test/src/algorithm/mo
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/mo/abc174_f.test.cpp
+      title: test/src/algorithm/mo/abc174_f.test.cpp
   - name: test/src/algorithm/monotonic_convex_hull_trick
     pages:
     - icon: ':heavy_check_mark:'
@@ -529,11 +552,16 @@ data:
   - name: test/src/datastructure/segment_tree_2d
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
-      title: test/src/datastructure/segment_tree_2d/point_add_rectangle_sum.test.cpp
+      path: test/src/datastructure/segment_tree_2d/point_add_range_sum.test.cpp
+      title: test/src/datastructure/segment_tree_2d/point_add_range_sum.test.cpp
+  - name: test/src/datastructure/segment_tree_2d_sparse
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-      title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+      path: test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+      title: test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
+      title: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - name: test/src/datastructure/sparse_lazy_segment_tree
     pages:
     - icon: ':heavy_check_mark:'

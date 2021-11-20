@@ -5,8 +5,8 @@ data:
     path: library/datastructure/segment_tree.hpp
     title: library/datastructure/segment_tree.hpp
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/segment_tree_2d.hpp
-    title: library/datastructure/segment_tree_2d.hpp
+    path: library/datastructure/segment_tree_2d_sparse.hpp
+    title: library/datastructure/segment_tree_2d_sparse.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
@@ -23,10 +23,10 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
     links:
     - https://judge.yosupo.jp/problem/rectangle_sum
-  bundledCode: "#line 1 \"test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ <iostream>\n#include <tuple>\n\n#line 1 \"library/datastructure/segment_tree_2d.hpp\"\
-    \n\n\n\n#include <algorithm>\n#line 6 \"library/datastructure/segment_tree_2d.hpp\"\
+    \ <iostream>\n#include <tuple>\n\n#line 1 \"library/datastructure/segment_tree_2d_sparse.hpp\"\
+    \n\n\n\n#include <algorithm>\n#line 6 \"library/datastructure/segment_tree_2d_sparse.hpp\"\
     \n\n#line 1 \"library/datastructure/segment_tree.hpp\"\n\n\n\n#include <cassert>\n\
     #include <vector>\n\n#line 1 \"library/util/update_proxy_object.hpp\"\n\n\n\n\
     #line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include\
@@ -117,10 +117,10 @@ data:
     \ <<= 1;\n            return m;\n        }\n        void update_from(int k) {\n\
     \            for (k >>= 1; k; k >>= 1) update(k);\n        }\n        void update(int\
     \ k) {\n            data[k] = op(data[k * 2], data[k * 2 + 1]);\n        }\n};\n\
-    } // namespace suisen\n\n\n\n#line 8 \"library/datastructure/segment_tree_2d.hpp\"\
+    } // namespace suisen\n\n\n\n#line 8 \"library/datastructure/segment_tree_2d_sparse.hpp\"\
     \n\nnamespace suisen {\n\ntemplate <typename T, typename F, constraints_t<is_bin_op<F,\
-    \ T>> = nullptr>\nclass SegmentTree2D {\n    public:\n        SegmentTree2D()\
-    \ {}\n        SegmentTree2D(int x_num, const T &e, const F &op) : n(x_num + 1),\
+    \ T>> = nullptr>\nclass SegmentTree2DSparse {\n    public:\n        SegmentTree2DSparse()\
+    \ {}\n        SegmentTree2DSparse(int x_num, T e, const F & op) : n(x_num + 1),\
     \ m(ceil_pow2(n)), data(m * 2), e(e), op(op), points(), pos_x(), pos_y(m * 2)\
     \ {}\n\n        void add_point(int x, int y) {\n            built = false;\n \
     \           pos_x.push_back(x);\n            points.emplace_back(x, y);\n    \
@@ -148,9 +148,22 @@ data:
     \   (*this)[{x, y}] = val;\n        }\n        auto operator[](const std::pair<int,\
     \ int> &p) {\n            int x, y;\n            std::tie(x, y) = p;\n       \
     \     return UpdateProxyObject { const_cast<T&>(get(x, y)), [this, k = comp_x(x)\
-    \ + m, y]{ update_from(k, y); } };\n        }\n\n    private:\n        int n,\
-    \ m;\n        std::vector<SegmentTree<T, F>> data;\n        T e;\n        F op;\n\
-    \        std::vector<std::pair<int, int>> points;\n        std::vector<int> pos_x;\n\
+    \ + m, y]{ update_from(k, y); } };\n        }\n\n        template <typename Pred,\
+    \ constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>\n        int\
+    \ max_up(int l, int r, int d, const Pred &f) const {\n            assert(built);\n\
+    \            int res = std::numeric_limits<int>::max();\n            for (l =\
+    \ comp_x(l) + m, r = comp_x(r) + m; l < r; l >>= 1, r >>= 1) {\n             \
+    \   if (l & 1) res = std::min(res, max_up(l++, d, f));\n                if (r\
+    \ & 1) res = std::min(res, max_up(--r, d, f));\n            }\n            return\
+    \ res;\n        }\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
+    \ Pred, T>> = nullptr>\n        int min_down(int l, int r, int u, const Pred &f)\
+    \ const {\n            assert(built);\n            int res = std::numeric_limits<int>::min();\n\
+    \            for (l = comp_x(l) + m, r = comp_x(r) + m; l < r; l >>= 1, r >>=\
+    \ 1) {\n                if (l & 1) res = std::max(res, min_down(l++, u, f));\n\
+    \                if (r & 1) res = std::max(res, min_down(--r, u, f));\n      \
+    \      }\n            return res;\n        }\n\n    private:\n        int n, m;\n\
+    \        std::vector<SegmentTree<T, F>> data;\n        T e;\n        F op;\n \
+    \       std::vector<std::pair<int, int>> points;\n        std::vector<int> pos_x;\n\
     \        std::vector<std::vector<int>> pos_y;\n        bool built = true;\n\n\
     \        static constexpr int ceil_pow2(int n) {\n            int m = 1;\n   \
     \         while (m < n) m <<= 1;\n            return m;\n        }\n\n       \
@@ -159,17 +172,25 @@ data:
     \ const {\n            return std::lower_bound(pos_y[k].begin(), pos_y[k].end(),\
     \ y) - pos_y[k].begin();\n        }\n\n        T prod(int k, int d, int u) const\
     \ {\n            return data[k](comp_y(k, d), comp_y(k, u));\n        }\n\n  \
-    \      void update(int k, int y) {\n            int p = comp_y(k, y);\n      \
-    \      assert(pos_y[k][p] == y);\n            if (k < m) {\n                int\
-    \ l = comp_y(k * 2, y), r = comp_y(k * 2 + 1, y);\n                const T& lv\
-    \ = pos_y[k * 2 + 0][l] == y ? data[k * 2 + 0].get(l) : e;\n                const\
-    \ T& rv = pos_y[k * 2 + 1][r] == y ? data[k * 2 + 1].get(r) : e;\n           \
-    \     data[k][p] = op(lv, rv);\n            } else {\n                data[k][p]\
-    \ = T(data[k][p]);\n            }\n        }\n        void update_from(int k,\
-    \ int y) {\n            for (; k; k >>= 1) update(k, y);\n        }\n};\n\n} //\
-    \ namespace suisen\n\n\n\n#line 7 \"test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp\"\
-    \nusing suisen::SegmentTree2D;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    SegmentTree2D\
+    \      template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred,\
+    \ T>> = nullptr>\n        int max_up(int k, int d, const Pred &f) const {\n  \
+    \          const int u = data[k].max_right(comp_y(k, d), f);\n            return\
+    \ u == int(pos_y[k].size()) ? std::numeric_limits<int>::max() : pos_y[k][u];\n\
+    \        }\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
+    \ Pred, T>> = nullptr>\n        int min_down(int k, int u, const Pred &f) const\
+    \ {\n            const int d = data[k].min_left(comp_y(k, u), f);\n          \
+    \  return d == 0 ? std::numeric_limits<int>::min() : pos_y[k][d - 1] + 1;\n  \
+    \      }\n\n        void update(int k, int y) {\n            int p = comp_y(k,\
+    \ y);\n            assert(pos_y[k][p] == y);\n            if (k < m) {\n     \
+    \           int l = comp_y(k * 2, y), r = comp_y(k * 2 + 1, y);\n            \
+    \    const T& lv = pos_y[k * 2 + 0][l] == y ? data[k * 2 + 0].get(l) : e;\n  \
+    \              const T& rv = pos_y[k * 2 + 1][r] == y ? data[k * 2 + 1].get(r)\
+    \ : e;\n                data[k][p] = op(lv, rv);\n            } else {\n     \
+    \           data[k][p] = T(data[k][p]);\n            }\n        }\n        void\
+    \ update_from(int k, int y) {\n            for (; k; k >>= 1) update(k, y);\n\
+    \        }\n};\n\n} // namespace suisen\n\n\n\n#line 7 \"test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp\"\
+    \nusing suisen::SegmentTree2DSparse;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    SegmentTree2DSparse\
     \ seg(n, 0LL, std::plus<long long>());\n    std::vector<std::tuple<int, int, int>>\
     \ points(n);\n    for (int i = 0; i < n; ++i) {\n        int x, y, w;\n      \
     \  std::cin >> x >> y >> w;\n        points[i] = { x, y, w };\n        seg.add_point(x,\
@@ -178,9 +199,9 @@ data:
     \        std::cin >> l >> d >> r >> u;\n        std::cout << seg(l, r, d, u) <<\
     \ '\\n';\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ <iostream>\n#include <tuple>\n\n#include \"library/datastructure/segment_tree_2d.hpp\"\
-    \nusing suisen::SegmentTree2D;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    SegmentTree2D\
+    \ <iostream>\n#include <tuple>\n\n#include \"library/datastructure/segment_tree_2d_sparse.hpp\"\
+    \nusing suisen::SegmentTree2DSparse;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    SegmentTree2DSparse\
     \ seg(n, 0LL, std::plus<long long>());\n    std::vector<std::tuple<int, int, int>>\
     \ points(n);\n    for (int i = 0; i < n; ++i) {\n        int x, y, w;\n      \
     \  std::cin >> x >> y >> w;\n        points[i] = { x, y, w };\n        seg.add_point(x,\
@@ -189,20 +210,20 @@ data:
     \        std::cin >> l >> d >> r >> u;\n        std::cout << seg(l, r, d, u) <<\
     \ '\\n';\n    }\n    return 0;\n}"
   dependsOn:
-  - library/datastructure/segment_tree_2d.hpp
+  - library/datastructure/segment_tree_2d_sparse.hpp
   - library/datastructure/segment_tree.hpp
   - library/util/update_proxy_object.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
-  path: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+  path: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:31+09:00'
+  timestamp: '2021-11-21 01:22:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+documentation_of: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
-- /verify/test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp.html
-title: test/src/datastructure/segment_tree_2d/rectangle_sum.test.cpp
+- /verify/test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
+- /verify/test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp.html
+title: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
 ---

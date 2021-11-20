@@ -75,11 +75,11 @@ data:
   timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
-  - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
-  - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
+  - test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+  - test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
 documentation_of: library/datastructure/commutative_dual_segment_tree.hpp
 layout: document
 redirect_from:

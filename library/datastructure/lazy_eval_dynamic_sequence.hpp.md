@@ -143,18 +143,22 @@ data:
     \     using value_type = T;\n\n        DynamicSequenceBase() : root(nullptr) {}\n\
     \        ~DynamicSequenceBase() { delete root; }\n\n        void insert(int k,\
     \ const T& val) {\n            index_bounds_check(k, size() + 1);\n          \
-    \  root = SplayNode::insert(root, k, val);\n        }\n        void erase(int\
+    \  root = SplayNode::insert(root, k, val);\n        }\n        void push_front(const\
+    \ T &val) {\n            insert(0, val);\n        }\n        void push_back(const\
+    \ T &val) {\n            insert(size(), val);\n        }\n        void erase(int\
     \ k) {\n            index_bounds_check(k, size());\n            root = SplayNode::erase(root,\
-    \ k);\n        }\n        int size() {\n            return SplayNode::size(root);\n\
-    \        }\n        void reverse(int l, int r) {\n            range_bounds_check(l,\
-    \ r, size());\n            root = SplayNode::reverse(root, l, r);\n        }\n\
-    \        void reverse_all() {\n            SplayNode::reverese_all(root);\n  \
-    \      }\n    protected:\n        node_ptr_t root;\n\n        DynamicSequenceBase(node_ptr_t\
-    \ root) : root(root) {}\n    \n        static void index_bounds_check(unsigned\
-    \ int k, unsigned int n) {\n            assert(k < n);\n        }\n        static\
-    \ void range_bounds_check(unsigned int l, unsigned int r, unsigned int n) {\n\
-    \            assert(l <= r and r <= n);\n        }\n};\n\ntemplate <typename T>\n\
-    struct DynamicSequence : public DynamicSequenceBase<T, internal::dynamic_sequence::DynamicSequenceNode<T>>\
+    \ k);\n        }\n        void pop_back() {\n            erase(size() - 1);\n\
+    \        }\n        void pop_front() {\n            erase(0);\n        }\n   \
+    \     int size() const {\n            return SplayNode::size(root);\n        }\n\
+    \        void reverse(int l, int r) {\n            range_bounds_check(l, r, size());\n\
+    \            root = SplayNode::reverse(root, l, r);\n        }\n        void reverse_all()\
+    \ {\n            SplayNode::reverese_all(root);\n        }\n    protected:\n \
+    \       mutable node_ptr_t root;\n\n        DynamicSequenceBase(node_ptr_t root)\
+    \ : root(root) {}\n    \n        static void index_bounds_check(unsigned int k,\
+    \ unsigned int n) {\n            assert(k < n);\n        }\n        static void\
+    \ range_bounds_check(unsigned int l, unsigned int r, unsigned int n) {\n     \
+    \       assert(l <= r and r <= n);\n        }\n};\n\ntemplate <typename T>\nstruct\
+    \ DynamicSequence : public DynamicSequenceBase<T, internal::dynamic_sequence::DynamicSequenceNode<T>>\
     \ {\n    using Node = internal::dynamic_sequence::DynamicSequenceNode<T>;\n  \
     \  using Base = DynamicSequenceBase<T, Node>;\n    using node_ptr_t = typename\
     \ Node::node_ptr_t;\n    public:\n        using value_type = T;\n        using\
@@ -164,17 +168,24 @@ data:
     \     other.root = nullptr;\n            return *this;\n        }\n\n        T&\
     \ operator[](int k) {\n            this->index_bounds_check(k, this->size());\n\
     \            this->root = Node::splay(this->root, k);\n            return this->root->val;\n\
-    \        }\n\n        DynamicSequence& operator+=(DynamicSequence &&right) {\n\
-    \            this->root = Node::merge(this->root, right.root);\n            right.root\
-    \ = nullptr;\n            return *this;\n        }\n        void concat(DynamicSequence\
-    \ &&right) {\n            *this += std::move(right);\n        }\n        void\
-    \ concat_left(DynamicSequence &&left) {\n            this->root = (left += std::move(*this)).root;\n\
-    \            left.root = nullptr;\n        }\n        // erases [k, size()) and\
-    \ returns [k, size())\n        // template <typename T = decltype(*this), constraints_t<std::is_same<typename\
-    \ T::Node, Node>> = nullptr>\n        DynamicSequence split(int k) {\n       \
-    \     this->index_bounds_check(k, this->size() + 1);\n            auto [l, r]\
-    \ = Node::split(this->root, k);\n            this->root = l;\n            return\
-    \ DynamicSequence(r);\n        }\n};\n\n}\n\n\n#line 9 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\
+    \        }\n        const T& operator[](int k) const {\n            this->index_bounds_check(k,\
+    \ this->size());\n            this->root = Node::splay(this->root, k);\n     \
+    \       return this->root->val;\n        }\n        T& front() {\n           \
+    \ return (*this)[0];\n        }\n        const T& front() const {\n          \
+    \  return (*this)[0];\n        }\n        T& back() {\n            return (*this)[this->size()\
+    \ - 1];\n        }\n        const T& back() const {\n            return (*this)[this->size()\
+    \ - 1];\n        }\n\n        DynamicSequence& operator+=(DynamicSequence &&right)\
+    \ {\n            this->root = Node::merge(this->root, right.root);\n         \
+    \   right.root = nullptr;\n            return *this;\n        }\n        void\
+    \ concat(DynamicSequence &&right) {\n            *this += std::move(right);\n\
+    \        }\n        void concat_left(DynamicSequence &&left) {\n            this->root\
+    \ = (left += std::move(*this)).root;\n            left.root = nullptr;\n     \
+    \   }\n        // erases [k, size()) and returns [k, size())\n        // template\
+    \ <typename T = decltype(*this), constraints_t<std::is_same<typename T::Node,\
+    \ Node>> = nullptr>\n        DynamicSequence split(int k) {\n            this->index_bounds_check(k,\
+    \ this->size() + 1);\n            auto [l, r] = Node::split(this->root, k);\n\
+    \            this->root = l;\n            return DynamicSequence(r);\n       \
+    \ }\n};\n\n}\n\n\n#line 9 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\
     \n\nnamespace suisen {\nnamespace internal::range_foldable_dynamic_sequence {\n\
     \ntemplate <typename T, T(*op)(T, T), T (*e)(), typename Derived>\nstruct RangeFoldableDynamicSequenceNodeBase\
     \ : public internal::dynamic_sequence::DynamicSequenceNodeBase<T, Derived> {\n\
@@ -348,7 +359,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/lazy_eval_dynamic_sequence.hpp
   requiredBy: []
-  timestamp: '2021-09-21 22:11:49+09:00'
+  timestamp: '2021-11-21 01:25:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp

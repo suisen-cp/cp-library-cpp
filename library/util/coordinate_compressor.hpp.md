@@ -241,16 +241,16 @@ data:
   isVerificationFile: false
   path: library/util/coordinate_compressor.hpp
   requiredBy:
-  - library/datastructure/compressed_wavelet_matrix.hpp
   - library/geom/segment_intersections.hpp
+  - library/datastructure/compressed_wavelet_matrix.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/util/range_set/DSL_4_A.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
 layout: document
 redirect_from:
