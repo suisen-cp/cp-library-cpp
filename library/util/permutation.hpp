@@ -65,6 +65,39 @@ namespace suisen {
             return p;
         }
     };
+
+    template <typename hash_t>
+    struct PermutationHash {
+        hash_t operator()(const Permutation &p) const {
+            return hash(p);
+        }
+        /**
+         * minimal perfect hash function for permutations.
+         * complexity: O(n) time, O(n) extra space
+         * reference: https://twitter.com/noshi91/status/1452081886025555972?s=20
+         */
+        static hash_t hash(const Permutation &per) {
+            hash_t h = 0;
+            const int n = per.size();
+            Permutation p = per;
+            Permutation q = per.inv();
+            for (int i = n - 1; i >= 0; --i) {
+                h = h * (i + 1) + p[i];
+                p[q[i]] = p[i];
+                q[p[i]] = q[i];
+            }
+            return h;
+        }
+        static Permutation unhash(int n, hash_t h) {
+            Permutation p = Permutation(n), q = p;
+            for (int i = 0; i < n; ++i) {
+                p[i] = h % (i + 1), q[i] = q[p[i]];
+                q[p[i]] = p[q[i]] = i;
+                h /= i + 1;
+            }
+            return p;
+        }
+    };
 } // namespace suisen
 
 #endif // SUISEN_PERMUTATION
