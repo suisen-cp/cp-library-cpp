@@ -63,11 +63,27 @@ namespace suisen {
             return sub[root];
         }
 
-        template <typename DownF, typename UpF = decltype(dummy)>
-        void decomp(DownF down, UpF up = dummy) {
+        struct DecompositionTree {
+            DecompositionTree() {}
+            DecompositionTree(int root, const std::vector<int> &par) : n(par.size()), root(root), par(par) {}
+
+            int size() const { return n; }
+            int get_root() const { return root; }
+            int get_parent(int u) const { return par[u]; }
+            const std::vector<int>& parents() const { return par; }
+        private:
+            int n;
+            int root;
+            std::vector<int> par;
+        };
+
+        // returns the centroid decomposition tree
+        template <typename DownF = decltype(dummy), typename UpF = decltype(dummy)>
+        DecompositionTree decomp(DownF down = dummy, UpF up = dummy) {
             removed.assign(size(), false);
             sub.assign(size(), 0);
-            auto rec = [&](auto rec, int r, int siz) -> void {
+            std::vector<int> par(size(), -1);
+            auto rec = [&](auto rec, int r, int siz) -> int {
                 int c = -1;
                 auto get_centroid = [&](auto get_centroid, int u, int p) -> void {
                     sub[u] = 1;
@@ -87,13 +103,15 @@ namespace suisen {
                 removed[c] = true;
                 for (int v : (*this)[c]) {
                     const int comp_size = sub[v];
-                    rec(rec, v, comp_size);
+                    par[rec(rec, v, comp_size)] = c;
                     sub[v] = comp_size;
                 }
                 removed[c] = false;
                 up(c, siz);
+                return c;
             };
-            rec(rec, 0, size());
+            int root = rec(rec, 0, size());
+            return DecompositionTree(root, par);
         }
     };
 
