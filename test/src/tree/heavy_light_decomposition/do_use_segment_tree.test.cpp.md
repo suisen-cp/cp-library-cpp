@@ -102,19 +102,20 @@ data:
     \ = nullptr>\n        void update_point(int u, Q update_query) {\n           \
     \ update_query(visit[u]);\n        }\n        std::vector<int> inv_ids() const\
     \ {\n            std::vector<int> inv(n);\n            for (int i = 0; i < n;\
-    \ ++i) inv[visit[i]] = i;\n            return inv;\n        }\n    private:\n\
-    \        const int n, root;\n        std::vector<int> visit, leave, head, ord,\
-    \ siz, par;\n        int dfs(Graph &g, int u, int p) {\n            par[u] = p;\n\
-    \            siz[u] = 1;\n            int max_size = 0;\n            for (int\
-    \ &v : g[u]) {\n                if (v == p) continue;\n                siz[u]\
-    \ += dfs(g, v, u);\n                if (max_size < siz[v]) {\n               \
-    \     max_size = siz[v];\n                    std::swap(g[u].front(), v);\n  \
-    \              }\n            }\n            return siz[u];\n        }\n     \
-    \   void hld(Graph &g, int u, int p, int &time) {\n            visit[u] = time,\
-    \ ord[time] = u, ++time;\n            head[u] = p >= 0 and g[p].front() == u ?\
-    \ head[p] : u;\n            for (int v : g[u]) {\n                if (v != p)\
-    \ hld(g, v, u, time);\n            }\n            leave[u] = time;\n        }\n\
-    };\n} // namespace suisen\n\n\n#line 6 \"test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp\"\
+    \ ++i) inv[visit[i]] = i;\n            return inv;\n        }\n        int get_head(int\
+    \ u) const {\n            return head[u];\n        }\n    private:\n        const\
+    \ int n, root;\n        std::vector<int> visit, leave, head, ord, siz, par;\n\
+    \        int dfs(Graph &g, int u, int p) {\n            par[u] = p;\n        \
+    \    siz[u] = 1;\n            int max_size = 0;\n            for (int &v : g[u])\
+    \ {\n                if (v == p) continue;\n                siz[u] += dfs(g, v,\
+    \ u);\n                if (max_size < siz[v]) {\n                    max_size\
+    \ = siz[v];\n                    std::swap(g[u].front(), v);\n               \
+    \ }\n            }\n            return siz[u];\n        }\n        void hld(Graph\
+    \ &g, int u, int p, int &time) {\n            visit[u] = time, ord[time] = u,\
+    \ ++time;\n            head[u] = p >= 0 and g[p].front() == u ? head[p] : u;\n\
+    \            for (int v : g[u]) {\n                if (v != p) hld(g, v, u, time);\n\
+    \            }\n            leave[u] = time;\n        }\n};\n} // namespace suisen\n\
+    \n\n#line 6 \"test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp\"\
     \n\nstruct S {\n    int len;\n    long long pref, max, suff, sum;\n    S(int len,\
     \ long long pref, long long max, long long suff, long long sum) : len(len), pref(pref),\
     \ max(max), suff(suff), sum(sum) {}\n};\n\nconstexpr long long INF = std::numeric_limits<int>::max();\n\
@@ -183,7 +184,7 @@ data:
   isVerificationFile: true
   path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-10-22 11:27:29+09:00'
+  timestamp: '2021-11-23 20:32:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp

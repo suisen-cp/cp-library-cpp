@@ -161,6 +161,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/geom/geometry.hpp
       title: library/geom/geometry.hpp
+    - icon: ':warning:'
+      path: library/geom/geometry3d.hpp
+      title: library/geom/geometry3d.hpp
     - icon: ':heavy_check_mark:'
       path: library/geom/segment_intersections.hpp
       title: library/geom/segment_intersections.hpp
