@@ -8,9 +8,9 @@ class LowestCommonAncestor {
     public:
         LowestCommonAncestor(const std::vector<std::vector<int>> &g, int root = 0) : idx(g.size()), dep(2 * g.size() - 1), tour(2 * g.size() - 1), rmq(dfs(g, root)) {}
 
-        int operator()(int u, int v) const {
-            return idx[u] <= idx[v] ? tour[rmq(idx[u], idx[v] + 1).second] : operator()(v, u);
-        }
+        int lca(int u, int v) const { return idx[u] <= idx[v] ? tour[rmq(idx[u], idx[v] + 1).second] : lca(v, u); }
+        int dist(int u, int v) const { return dep[idx[u]] + dep[idx[v]] - 2 * dep[idx[operator()(u, v)]]; }
+        int operator()(int u, int v) const { return lca(u, v); }
     private:
         std::vector<int> idx, dep, tour;
         RMQpm1WithIndex<true> rmq;
