@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: library/algorithm/convex_hull_trick.hpp
+    title: library/algorithm/convex_hull_trick.hpp
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/monotonic_convex_hull_trick.hpp
     title: library/algorithm/monotonic_convex_hull_trick.hpp
   - icon: ':warning:'
@@ -105,6 +108,9 @@ data:
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
+    title: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
     title: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
@@ -295,6 +301,7 @@ data:
   - library/tree/heavy_light_decomposition.hpp
   - library/geom/segment_intersections.hpp
   - library/algorithm/sliding_window_minimum.hpp
+  - library/algorithm/convex_hull_trick.hpp
   - library/algorithm/monotonic_convex_hull_trick.hpp
   - library/algorithm/rmq_pm1.hpp
   - library/algorithm/rmq_pm1_with_index.hpp
@@ -334,6 +341,7 @@ data:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
+  - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp

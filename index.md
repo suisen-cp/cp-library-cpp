@@ -3,6 +3,9 @@ data:
   libraryCategories:
   - name: library/algorithm
     pages:
+    - icon: ':heavy_check_mark:'
+      path: library/algorithm/convex_hull_trick.hpp
+      title: library/algorithm/convex_hull_trick.hpp
     - icon: ':warning:'
       path: library/algorithm/horn_sat.hpp
       title: Horn SAT
@@ -400,6 +403,11 @@ data:
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
   verificationCategories:
+  - name: test/src/algorithm/convex_hull_trick
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
+      title: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
   - name: test/src/algorithm/mo
     pages:
     - icon: ':heavy_check_mark:'

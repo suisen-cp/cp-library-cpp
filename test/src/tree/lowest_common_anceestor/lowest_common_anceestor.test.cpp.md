@@ -123,9 +123,11 @@ data:
     \ + l);\n        }\n};\n} // namespace suisen\n\n\n#line 5 \"library/tree/lowest_common_ancestor.hpp\"\
     \n\nnamespace suisen {\nclass LowestCommonAncestor {\n    public:\n        LowestCommonAncestor(const\
     \ std::vector<std::vector<int>> &g, int root = 0) : idx(g.size()), dep(2 * g.size()\
-    \ - 1), tour(2 * g.size() - 1), rmq(dfs(g, root)) {}\n\n        int operator()(int\
-    \ u, int v) const {\n            return idx[u] <= idx[v] ? tour[rmq(idx[u], idx[v]\
-    \ + 1).second] : operator()(v, u);\n        }\n    private:\n        std::vector<int>\
+    \ - 1), tour(2 * g.size() - 1), rmq(dfs(g, root)) {}\n\n        int lca(int u,\
+    \ int v) const { return idx[u] <= idx[v] ? tour[rmq(idx[u], idx[v] + 1).second]\
+    \ : lca(v, u); }\n        int dist(int u, int v) const { return dep[idx[u]] +\
+    \ dep[idx[v]] - 2 * dep[idx[operator()(u, v)]]; }\n        int operator()(int\
+    \ u, int v) const { return lca(u, v); }\n    private:\n        std::vector<int>\
     \ idx, dep, tour;\n        RMQpm1WithIndex<true> rmq;\n\n        std::vector<int>&\
     \ dfs(const std::vector<std::vector<int>> &g, int root) {\n            int k =\
     \ 0;\n            auto rec = [&](auto self, int u, int p, int d) -> void {\n \
@@ -158,7 +160,7 @@ data:
   isVerificationFile: true
   path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:31+09:00'
+  timestamp: '2021-11-23 23:32:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
