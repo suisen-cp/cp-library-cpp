@@ -100,6 +100,9 @@ class HeavyLightDecomposition {
             for (int i = 0; i < n; ++i) inv[visit[i]] = i;
             return inv;
         }
+        int get_head(int u) const {
+            return head[u];
+        }
     private:
         const int n, root;
         std::vector<int> visit, leave, head, ord, siz, par;
