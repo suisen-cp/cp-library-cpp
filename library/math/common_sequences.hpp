@@ -124,6 +124,14 @@ std::vector<mint> partition_number(int n) {
     inv.inv_inplace(n), inv.resize(n + 1);
     return inv;
 }
+
+template <typename mint>
+std::vector<mint> montmort_number(int n) {
+    std::vector<mint> res { 1, 0 };
+    for (int i = 2; i <= n; ++i) res.push_back((i - 1) * (res[i - 1] + res[i - 2]));
+    res.resize(n + 1);
+    return res;
+}
 } // namespace suisen
 
 #endif // SUISEN_COMMON_SEQ
