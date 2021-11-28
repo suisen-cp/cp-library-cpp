@@ -230,7 +230,10 @@ data:
     \ + 1, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
     \   for (int i = 1, k = 2; k <= n; k += 3 * i + 2, i++) {\n        if (i & 1)\
     \ --inv[k];\n        else ++inv[k];\n    }\n    inv.inv_inplace(n), inv.resize(n\
-    \ + 1);\n    return inv;\n}\n} // namespace suisen\n\n\n#line 9 \"test/src/math/common_sequences/partition_function.test.cpp\"\
+    \ + 1);\n    return inv;\n}\n\ntemplate <typename mint>\nstd::vector<mint> montmort_number(int\
+    \ n) {\n    std::vector<mint> res { 1, 0 };\n    for (int i = 2; i <= n; ++i)\
+    \ res.push_back((i - 1) * (res[i - 1] + res[i - 2]));\n    res.resize(n + 1);\n\
+    \    return res;\n}\n} // namespace suisen\n\n\n#line 9 \"test/src/math/common_sequences/partition_function.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
     \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
     \ n;\n    std::cin >> n;\n    auto f = suisen::partition_number<mint>(n);\n  \
@@ -252,7 +255,7 @@ data:
   isVerificationFile: true
   path: test/src/math/common_sequences/partition_function.test.cpp
   requiredBy: []
-  timestamp: '2021-08-15 22:47:55+09:00'
+  timestamp: '2021-11-25 16:42:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/common_sequences/partition_function.test.cpp

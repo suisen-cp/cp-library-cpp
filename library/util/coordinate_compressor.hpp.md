@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+    title: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
@@ -248,6 +251,7 @@ data:
   verifiedWith:
   - test/src/util/range_set/DSL_4_A.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/rerooting.hpp
     title: library/tree/rerooting.hpp
   _extendedRequiredBy: []

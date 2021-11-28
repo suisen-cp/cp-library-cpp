@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: library/geom/segment_intersections.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: library/number/util.hpp
   - icon: ':warning:'
@@ -135,6 +135,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+    title: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
@@ -196,6 +199,9 @@ data:
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
+    title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -204,7 +210,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/util/abc222_g.test.cpp
     title: test/src/number/util/abc222_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,9 +237,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
@@ -325,7 +331,7 @@ data:
   - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/sparse_table.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
@@ -342,6 +348,7 @@ data:
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
   - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
@@ -351,6 +358,7 @@ data:
   - test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp

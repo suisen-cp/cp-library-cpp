@@ -41,6 +41,9 @@ data:
     path: test/src/math/common_sequences/bernoulli_number.test.cpp
     title: test/src/math/common_sequences/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/math/common_sequences/montmort_number_mod.test.cpp
+    title: test/src/math/common_sequences/montmort_number_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/partition_function.test.cpp
     title: test/src/math/common_sequences/partition_function.test.cpp
   - icon: ':heavy_check_mark:'
@@ -134,6 +137,7 @@ data:
   - test/src/math/interpolation/cumulative_sum.test.cpp
   - test/src/math/common_sequences/partition_function.test.cpp
   - test/src/math/common_sequences/bernoulli_number.test.cpp
+  - test/src/math/common_sequences/montmort_number_mod.test.cpp
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp

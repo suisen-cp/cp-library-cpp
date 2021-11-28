@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: library/datastructure/wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -162,12 +162,12 @@ data:
     \      }\n    protected:\n        WaveletMatrix(int n) noexcept : n(n) {}\n  \
     \  private:\n        static_assert(bit_num > 0);\n        static constexpr T MAX\
     \ = bit_num == std::numeric_limits<T>::digits ? std::numeric_limits<T>::max()\
-    \ : (T(1) << bit_num) - 1;\n\n        const int n;\n        std::array<BitVector,\
-    \ bit_num> bv;\n        std::array<int, bit_num> mid;\n\n        inline void succ(int\
-    \ &l, int &r, const bool b, const int log) const {\n            l = b * mid[log]\
-    \ + bv[log].rank(b, l);\n            r = b * mid[log] + bv[log].rank(b, r);\n\
-    \        }\n\n        static constexpr void check_value_bounds(T val) {\n    \
-    \        assert((val >> bit_num) == 0);\n        }\n};\n\n\n} // namespace suisen\n\
+    \ : (T(1) << bit_num) - 1;\n\n        int n;\n        std::array<BitVector, bit_num>\
+    \ bv;\n        std::array<int, bit_num> mid;\n\n        inline void succ(int &l,\
+    \ int &r, const bool b, const int log) const {\n            l = b * mid[log] +\
+    \ bv[log].rank(b, l);\n            r = b * mid[log] + bv[log].rank(b, r);\n  \
+    \      }\n\n        static constexpr void check_value_bounds(T val) {\n      \
+    \      assert((val >> bit_num) == 0);\n        }\n};\n\n\n} // namespace suisen\n\
     \n\n#line 6 \"test/src/datastructure/wavelet_matrix/static_rmq.test.cpp\"\n\n\
     using suisen::WaveletMatrix;\n\nconstexpr int MAX_LOG = 30;\n\nint main() {\n\
     \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int n,\
@@ -189,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:31+09:00'
+  timestamp: '2021-11-28 20:19:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp

@@ -16,6 +16,9 @@ data:
     path: test/src/math/common_sequences/bernoulli_number.test.cpp
     title: test/src/math/common_sequences/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/math/common_sequences/montmort_number_mod.test.cpp
+    title: test/src/math/common_sequences/montmort_number_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/partition_function.test.cpp
     title: test/src/math/common_sequences/partition_function.test.cpp
   - icon: ':heavy_check_mark:'
@@ -233,7 +236,10 @@ data:
     \ + 1, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
     \   for (int i = 1, k = 2; k <= n; k += 3 * i + 2, i++) {\n        if (i & 1)\
     \ --inv[k];\n        else ++inv[k];\n    }\n    inv.inv_inplace(n), inv.resize(n\
-    \ + 1);\n    return inv;\n}\n} // namespace suisen\n\n\n"
+    \ + 1);\n    return inv;\n}\n\ntemplate <typename mint>\nstd::vector<mint> montmort_number(int\
+    \ n) {\n    std::vector<mint> res { 1, 0 };\n    for (int i = 2; i <= n; ++i)\
+    \ res.push_back((i - 1) * (res[i - 1] + res[i - 2]));\n    res.resize(n + 1);\n\
+    \    return res;\n}\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_COMMON_SEQ\n#define SUISEN_COMMON_SEQ\n\n#include \"library/math/fps.hpp\"\
     \n#include \"library/math/factorial.hpp\"\n\nnamespace suisen {\n/**\n * return:\n\
     \ *   vector<mint> v s.t. v[i] = S1[n,n-i] for i=0,...,k (unsigned)\n * constraints:\n\
@@ -276,7 +282,10 @@ data:
     \ (int i = 1, k = 1; k <= n; k += 3 * i + 1, i++) {\n        if (i & 1) --inv[k];\n\
     \        else ++inv[k];\n    }\n    for (int i = 1, k = 2; k <= n; k += 3 * i\
     \ + 2, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
-    \   inv.inv_inplace(n), inv.resize(n + 1);\n    return inv;\n}\n} // namespace\
+    \   inv.inv_inplace(n), inv.resize(n + 1);\n    return inv;\n}\n\ntemplate <typename\
+    \ mint>\nstd::vector<mint> montmort_number(int n) {\n    std::vector<mint> res\
+    \ { 1, 0 };\n    for (int i = 2; i <= n; ++i) res.push_back((i - 1) * (res[i -\
+    \ 1] + res[i - 2]));\n    res.resize(n + 1);\n    return res;\n}\n} // namespace\
     \ suisen\n\n#endif // SUISEN_COMMON_SEQ\n"
   dependsOn:
   - library/math/fps.hpp
@@ -285,11 +294,12 @@ data:
   isVerificationFile: false
   path: library/math/common_sequences.hpp
   requiredBy: []
-  timestamp: '2021-08-15 22:47:55+09:00'
+  timestamp: '2021-11-25 16:42:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/common_sequences/partition_function.test.cpp
   - test/src/math/common_sequences/bernoulli_number.test.cpp
+  - test/src/math/common_sequences/montmort_number_mod.test.cpp
   - test/src/math/common_sequences/stirling_number2.test.cpp
   - test/src/math/common_sequences/stirling_number1.test.cpp
 documentation_of: library/math/common_sequences.hpp

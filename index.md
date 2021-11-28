@@ -219,6 +219,9 @@ data:
   - name: library/math
     pages:
     - icon: ':heavy_check_mark:'
+      path: library/math/bigint.hpp
+      title: library/math/bigint.hpp
+    - icon: ':heavy_check_mark:'
       path: library/math/bostan_mori.hpp
       title: library/math/bostan_mori.hpp
     - icon: ':heavy_check_mark:'
@@ -252,6 +255,9 @@ data:
       path: library/math/polynomial_taylor_shift.hpp
       title: library/math/polynomial_taylor_shift.hpp
     - icon: ':heavy_check_mark:'
+      path: library/math/pow_mods.hpp
+      title: library/math/pow_mods.hpp
+    - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
       title: library/math/sps.hpp
     - icon: ':heavy_check_mark:'
@@ -283,11 +289,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
       title: library/number/sieve_of_eratosthenes_constexpr.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: library/number/util.hpp
   - name: library/string
     pages:
+    - icon: ':heavy_check_mark:'
+      path: library/string/rolling_hash.hpp
+      title: library/string/rolling_hash.hpp
     - icon: ':heavy_check_mark:'
       path: library/string/substring_set.hpp
       title: library/string/substring_set.hpp
@@ -341,12 +350,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: library/tree/lowest_common_ancestor.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: library/tree/rerooting.hpp
   - name: library/type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
@@ -491,6 +500,9 @@ data:
       path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+      title: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - name: test/src/datastructure/dual_segment_tree
@@ -588,6 +600,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
+      title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
@@ -710,6 +725,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
       title: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
+  - name: test/src/math/bigint
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/bigint/NTL_2_A.test.cpp
+      title: test/src/math/bigint/NTL_2_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/bigint/NTL_2_B.test.cpp
+      title: test/src/math/bigint/NTL_2_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/bigint/NTL_2_F.test.cpp
+      title: test/src/math/bigint/NTL_2_F.test.cpp
   - name: test/src/math/bostan_mori
     pages:
     - icon: ':heavy_check_mark:'
@@ -720,6 +746,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/common_sequences/bernoulli_number.test.cpp
       title: test/src/math/common_sequences/bernoulli_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/common_sequences/montmort_number_mod.test.cpp
+      title: test/src/math/common_sequences/montmort_number_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/math/common_sequences/partition_function.test.cpp
       title: test/src/math/common_sequences/partition_function.test.cpp
@@ -811,12 +840,17 @@ data:
       title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
   - name: test/src/number/util
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/util/abc222_g.test.cpp
       title: test/src/number/util/abc222_g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
+  - name: test/src/string/rolling_hash
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/string/rolling_hash/abc141_e.test.cpp
+      title: test/src/string/rolling_hash/abc141_e.test.cpp
   - name: test/src/string/substring_set
     pages:
     - icon: ':heavy_check_mark:'
@@ -878,7 +912,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/abc160_f.test.cpp
       title: test/src/tree/rerooting/abc160_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/abc222_f.test.cpp
       title: test/src/tree/rerooting/abc222_f.test.cpp
     - icon: ':heavy_check_mark:'

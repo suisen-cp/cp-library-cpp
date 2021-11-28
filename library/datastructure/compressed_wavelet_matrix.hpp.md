@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: library/datastructure/wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+    title: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
@@ -168,12 +171,12 @@ data:
     \      }\n    protected:\n        WaveletMatrix(int n) noexcept : n(n) {}\n  \
     \  private:\n        static_assert(bit_num > 0);\n        static constexpr T MAX\
     \ = bit_num == std::numeric_limits<T>::digits ? std::numeric_limits<T>::max()\
-    \ : (T(1) << bit_num) - 1;\n\n        const int n;\n        std::array<BitVector,\
-    \ bit_num> bv;\n        std::array<int, bit_num> mid;\n\n        inline void succ(int\
-    \ &l, int &r, const bool b, const int log) const {\n            l = b * mid[log]\
-    \ + bv[log].rank(b, l);\n            r = b * mid[log] + bv[log].rank(b, r);\n\
-    \        }\n\n        static constexpr void check_value_bounds(T val) {\n    \
-    \        assert((val >> bit_num) == 0);\n        }\n};\n\n\n} // namespace suisen\n\
+    \ : (T(1) << bit_num) - 1;\n\n        int n;\n        std::array<BitVector, bit_num>\
+    \ bv;\n        std::array<int, bit_num> mid;\n\n        inline void succ(int &l,\
+    \ int &r, const bool b, const int log) const {\n            l = b * mid[log] +\
+    \ bv[log].rank(b, l);\n            r = b * mid[log] + bv[log].rank(b, r);\n  \
+    \      }\n\n        static constexpr void check_value_bounds(T val) {\n      \
+    \      assert((val >> bit_num) == 0);\n        }\n};\n\n\n} // namespace suisen\n\
     \n\n#line 1 \"library/util/coordinate_compressor.hpp\"\n\n\n\n#include <algorithm>\n\
     #line 7 \"library/util/coordinate_compressor.hpp\"\n\n#line 9 \"library/util/coordinate_compressor.hpp\"\
     \n\nnamespace suisen {\ntemplate <typename T>\nclass CoordinateCompressorBuilder\
@@ -389,9 +392,10 @@ data:
   isVerificationFile: false
   path: library/datastructure/compressed_wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:31+09:00'
+  timestamp: '2021-11-28 20:19:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
 documentation_of: library/datastructure/compressed_wavelet_matrix.hpp

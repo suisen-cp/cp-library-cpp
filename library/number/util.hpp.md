@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/util/abc222_g.test.cpp
     title: test/src/number/util/abc222_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/util/divide_both.test.cpp
     title: test/src/number/util/divide_both.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/util.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -181,7 +181,7 @@ data:
   path: library/number/util.hpp
   requiredBy: []
   timestamp: '2021-10-10 02:52:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/util/abc222_g.test.cpp
   - test/src/number/util/divide_both.test.cpp

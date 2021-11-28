@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/rerooting/abc160_f.test.cpp
     title: test/src/tree/rerooting/abc160_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/rerooting/abc222_f.test.cpp
     title: test/src/tree/rerooting/abc222_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/tree/rerooting/edpc_v.test.cpp
     title: test/src/tree/rerooting/edpc_v.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/rerooting.hpp\"\n\n\n\n#include <vector>\n\n\
@@ -98,7 +98,7 @@ data:
   path: library/tree/rerooting.hpp
   requiredBy: []
   timestamp: '2021-10-12 21:48:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/rerooting/abc222_f.test.cpp
   - test/src/tree/rerooting/edpc_v.test.cpp
