@@ -129,7 +129,7 @@ class WaveletMatrix {
         static_assert(bit_num > 0);
         static constexpr T MAX = bit_num == std::numeric_limits<T>::digits ? std::numeric_limits<T>::max() : (T(1) << bit_num) - 1;
 
-        const int n;
+        int n;
         std::array<BitVector, bit_num> bv;
         std::array<int, bit_num> mid;
 
