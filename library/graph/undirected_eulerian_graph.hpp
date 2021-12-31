@@ -29,6 +29,7 @@ namespace suisen {
                 used[i].resize(sz, false);
                 if (sz & 1) return std::nullopt;
             }
+            edge_num /= 2;
             std::vector<int> res;
             auto dfs = [&](auto dfs, int u) -> void {
                 for (std::size_t i = 0; i < g[u].size(); ++i) {
