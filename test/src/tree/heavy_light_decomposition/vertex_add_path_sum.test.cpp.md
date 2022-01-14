@@ -12,7 +12,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
+    links:
+    - https://judge.yosupo.jp/problem/vertex_add_path_sum
   bundledCode: "#line 1 \"test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n\
     #include <iostream>\n#include <atcoder/segtree>\n\n#line 1 \"library/tree/heavy_light_decomposition.hpp\"\

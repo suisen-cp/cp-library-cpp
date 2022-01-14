@@ -9,7 +9,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_2_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_2_A
   bundledCode: "#line 1 \"test/src/math/bigint/NTL_2_A.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_2_A\"\n\n#include\
     \ <iostream>\n\n#line 1 \"library/math/bigint.hpp\"\n\n\n\n#include <atcoder/convolution>\n\

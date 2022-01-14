@@ -23,7 +23,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
+    links:
+    - https://judge.yosupo.jp/problem/bitwise_and_convolution
   bundledCode: "#line 1 \"test/src/convolution/and_convolution/and_convolution.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n\
     \n#include <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/convolution/and_convolution.hpp\"\

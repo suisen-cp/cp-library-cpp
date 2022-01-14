@@ -9,7 +9,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
+    links:
+    - https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
   bundledCode: "#line 1 \"test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
     \n\n#include <iostream>\n#include <queue>\n#include <atcoder/convolution>\n\n\

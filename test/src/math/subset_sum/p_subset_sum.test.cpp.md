@@ -15,7 +15,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
+    links:
+    - https://judge.yosupo.jp/problem/sharp_p_subset_sum
   bundledCode: "#line 1 \"test/src/math/subset_sum/p_subset_sum.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/sharp_p_subset_sum\"\n\n#include <iostream>\n\
     #include <vector>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\

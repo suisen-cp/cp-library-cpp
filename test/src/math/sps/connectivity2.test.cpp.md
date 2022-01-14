@@ -26,7 +26,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/abc213/tasks/abc213_g
+    links:
+    - https://atcoder.jp/contests/abc213/tasks/abc213_g
   bundledCode: "#line 1 \"test/src/math/sps/connectivity2.test.cpp\"\n#define PROBLEM\
     \ \"https://atcoder.jp/contests/abc213/tasks/abc213_g\"\n\n#include <iostream>\n\
     #include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\n#line 1\

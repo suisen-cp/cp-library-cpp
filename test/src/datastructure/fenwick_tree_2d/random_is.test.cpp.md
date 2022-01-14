@@ -21,7 +21,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/arc108/tasks/arc108_e
+    links:
+    - https://atcoder.jp/contests/arc108/tasks/arc108_e
   bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree_2d/random_is.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/arc108/tasks/arc108_e\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/math/inv_mods.hpp\"\

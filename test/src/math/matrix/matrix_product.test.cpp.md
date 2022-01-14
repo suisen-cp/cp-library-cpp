@@ -9,7 +9,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_product
+    links:
+    - https://judge.yosupo.jp/problem/matrix_product
   bundledCode: "#line 1 \"test/src/math/matrix/matrix_product.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include <iostream>\n\
     #include <atcoder/modint>\n\n#line 1 \"library/math/matrix.hpp\"\n\n\n\n#include\

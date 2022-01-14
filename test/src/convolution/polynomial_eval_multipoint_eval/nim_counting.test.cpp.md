@@ -32,7 +32,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_h
+    links:
+    - https://atcoder.jp/contests/abc212/tasks/abc212_h
   bundledCode: "#line 1 \"test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n\n#include\
     \ <iostream>\n#include <atcoder/convolution>\n#include <atcoder/modint>\n\n#line\

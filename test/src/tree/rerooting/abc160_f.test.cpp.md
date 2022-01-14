@@ -9,7 +9,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/abc160/tasks/abc160_f
+    links:
+    - https://atcoder.jp/contests/abc160/tasks/abc160_f
   bundledCode: "#line 1 \"test/src/tree/rerooting/abc160_f.test.cpp\"\n#define PROBLEM\
     \ \"https://atcoder.jp/contests/abc160/tasks/abc160_f\"\n\n#include <iostream>\n\
     #include <atcoder/modint>\n\nusing mint = atcoder::modint1000000007;\n\n#line\

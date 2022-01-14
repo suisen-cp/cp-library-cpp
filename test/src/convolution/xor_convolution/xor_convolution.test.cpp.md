@@ -22,7 +22,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/bitwise_xor_convolution
+    links:
+    - https://judge.yosupo.jp/problem/bitwise_xor_convolution
   bundledCode: "#line 1 \"test/src/convolution/xor_convolution/xor_convolution.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\n\
     \n#include <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/convolution/xor_convolution.hpp\"\

@@ -12,7 +12,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
+    links:
+    - https://judge.yosupo.jp/problem/division_of_polynomials
   bundledCode: "#line 1 \"test/src/math/fps/division_of_polynomials.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\nusing\

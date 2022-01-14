@@ -18,7 +18,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
+    links:
+    - https://judge.yosupo.jp/problem/polynomial_taylor_shift
   bundledCode: "#line 1 \"test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_taylor_shift\"\n\
     \n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\

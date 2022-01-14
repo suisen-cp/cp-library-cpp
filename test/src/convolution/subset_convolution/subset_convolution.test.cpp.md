@@ -9,7 +9,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/subset_convolution
+    links:
+    - https://judge.yosupo.jp/problem/subset_convolution
   bundledCode: "#line 1 \"test/src/convolution/subset_convolution/subset_convolution.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/subset_convolution\"\n\n#include\
     \ <iostream>\n#include <atcoder/convolution>\n#include <atcoder/modint>\n\n#line\

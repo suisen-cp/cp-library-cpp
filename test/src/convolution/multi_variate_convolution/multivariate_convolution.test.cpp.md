@@ -12,7 +12,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution
+    links:
+    - https://judge.yosupo.jp/problem/multivariate_convolution
   bundledCode: "#line 1 \"test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
     \n\n#include <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\

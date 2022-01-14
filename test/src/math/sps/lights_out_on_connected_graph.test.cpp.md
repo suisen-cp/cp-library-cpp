@@ -26,7 +26,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/arc105/tasks/arc105_f
+    links:
+    - https://atcoder.jp/contests/arc105/tasks/arc105_f
   bundledCode: "#line 1 \"test/src/math/sps/lights_out_on_connected_graph.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/arc105/tasks/arc105_f\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\

@@ -15,7 +15,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+    links:
+    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
   bundledCode: "#line 1 \"test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\

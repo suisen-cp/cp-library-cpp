@@ -12,7 +12,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
+    links:
+    - https://judge.yosupo.jp/problem/vertex_set_path_composite
   bundledCode: "#line 1 \"test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \n\n#include <iostream>\n#include <atcoder/segtree>\n#include <atcoder/modint>\n\

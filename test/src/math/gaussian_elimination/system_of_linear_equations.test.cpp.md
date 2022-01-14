@@ -9,7 +9,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
+    links:
+    - https://judge.yosupo.jp/problem/system_of_linear_equations
   bundledCode: "#line 1 \"test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
     \n\n#include <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/math/gaussian_elimination.hpp\"\

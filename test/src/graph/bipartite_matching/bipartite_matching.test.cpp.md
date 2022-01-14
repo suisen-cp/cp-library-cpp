@@ -31,8 +31,8 @@ data:
     \                for (int v : _g[u]) if (dfs(dfs, _to_l[v])) return _to_r[u] =\
     \ v, _to_l[v] = u, true;\n                return false;\n            };\n    \n\
     \            for (bool upd = true; std::exchange(upd, false);) {\n           \
-    \     vis.assign(_n + _m, false);\n                for (int i = 0; i < _n; ++i)\
-    \ if (_to_r[i] == Absent) upd |= dfs(dfs, i);\n            }\n\n            return\
+    \     vis.assign(_n, false);\n                for (int i = 0; i < _n; ++i) if\
+    \ (_to_r[i] == Absent) upd |= dfs(dfs, i);\n            }\n\n            return\
     \ _f = _n - std::count(_to_r.begin(), _to_r.end(), Absent);\n        }\n\n   \
     \     std::vector<std::pair<int, int>> max_matching() {\n            if (_f <\
     \ 0) _f = solve();\n            std::vector<std::pair<int, int>> res;\n      \
@@ -55,7 +55,7 @@ data:
     \  vis[i] = true;\n            }\n            while (dq.size()) {\n          \
     \      int u = dq.front();\n                dq.pop_front();\n                for\
     \ (int v : g[u]) {\n                    if (vis[v]) continue;\n              \
-    \      (v < _n ? cl[v] : cr[v - _n]) = true;\n                    vis[v] = true;\n\
+    \      vis[v] = true;\n                    (v < _n ? cl[v] : cr[v - _n]) = true;\n\
     \                    dq.push_back(v);\n                }\n            }\n    \
     \        std::vector<int> res;\n            for (int i = 0; i < _n; ++i) if (not\
     \ cl[i]) res.push_back(i);\n            for (int i = 0; i < _m; ++i) if (cr[i])\
@@ -88,7 +88,7 @@ data:
   isVerificationFile: true
   path: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
   requiredBy: []
-  timestamp: '2022-01-15 06:03:00+09:00'
+  timestamp: '2022-01-15 06:33:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/graph/bipartite_matching/bipartite_matching.test.cpp

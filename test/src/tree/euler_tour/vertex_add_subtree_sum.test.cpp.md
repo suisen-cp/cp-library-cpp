@@ -9,7 +9,11 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes: {}
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
+    links:
+    - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
   bundledCode: "#line 1 \"test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\
     \n#include <iostream>\n#include <atcoder/segtree>\n\n#line 1 \"library/tree/euler_tour.hpp\"\
