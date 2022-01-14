@@ -31,7 +31,7 @@ namespace suisen {
             };
     
             for (bool upd = true; std::exchange(upd, false);) {
-                vis.assign(_n + _m, false);
+                vis.assign(_n, false);
                 for (int i = 0; i < _n; ++i) if (_to_r[i] == Absent) upd |= dfs(dfs, i);
             }
 
@@ -80,8 +80,8 @@ namespace suisen {
                 dq.pop_front();
                 for (int v : g[u]) {
                     if (vis[v]) continue;
-                    (v < _n ? cl[v] : cr[v - _n]) = true;
                     vis[v] = true;
+                    (v < _n ? cl[v] : cr[v - _n]) = true;
                     dq.push_back(v);
                 }
             }
