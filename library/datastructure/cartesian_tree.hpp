@@ -2,6 +2,7 @@
 #define SUISEN_CARTESIAN_TREE
 
 #include <array>
+#include <cassert>
 #include <functional>
 #include <vector>
 
@@ -54,7 +55,7 @@ namespace suisen {
         }
 
         int parent(std::size_t i) const {
-            assert(i < n);
+            assert(i < std::size_t(n));
             return par[i];
         }
         int operator[](std::size_t i) const {
