@@ -72,8 +72,8 @@ data:
     \ dim(k);\n    for (int &e : dim) std::cin >> e;\n\n    multi_variate_convolution\
     \ convolution(dim);\n    int n = convolution.size();\n\n    std::vector<mint>\
     \ f(n), g(n);\n    for (auto &e : f) std::cin >> e;\n    for (auto &e : g) std::cin\
-    \ >> e;\n\n    auto h = convolution(f, g);\n\n    for (int i = 0; i < n; ++i)\
-    \ std::cout << h[i] << \" \\n\"[i == n - 1];\n\n    return 0;\n}\n"
+    \ >> e;\n    auto h = convolution(f, g);\n\n    for (int i = 0; i < n; ++i) std::cout\
+    \ << h[i] << \" \\n\"[i == n - 1];\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
     \n\n#include <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
     \nstd::istream& operator>>(std::istream& in, mint &a) {\n    long long e; in >>\
@@ -84,15 +84,15 @@ data:
     \ dim(k);\n    for (int &e : dim) std::cin >> e;\n\n    multi_variate_convolution\
     \ convolution(dim);\n    int n = convolution.size();\n\n    std::vector<mint>\
     \ f(n), g(n);\n    for (auto &e : f) std::cin >> e;\n    for (auto &e : g) std::cin\
-    \ >> e;\n\n    auto h = convolution(f, g);\n\n    for (int i = 0; i < n; ++i)\
-    \ std::cout << h[i] << \" \\n\"[i == n - 1];\n\n    return 0;\n}"
+    \ >> e;\n    auto h = convolution(f, g);\n\n    for (int i = 0; i < n; ++i) std::cout\
+    \ << h[i] << \" \\n\"[i == n - 1];\n\n    return 0;\n}"
   dependsOn:
   - library/convolution/multi_variate_convolution.hpp
   - library/util/default_operator.hpp
   isVerificationFile: true
   path: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-01-14 20:23:14+09:00'
+  timestamp: '2022-01-15 06:44:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
