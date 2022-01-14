@@ -72,6 +72,7 @@
 "test/src/geom/geometry/CGL_7_H.test.cpp": "2021-08-25 07:44:31 +0900",
 "test/src/geom/geometry/CGL_7_I.test.cpp": "2021-08-25 07:44:31 +0900",
 "test/src/geom/segment_intersections/CGL_6_A.test.cpp": "2021-09-02 19:44:31 +0900",
+"test/src/graph/bipartite_matching/bipartite_matching.test.cpp": "2022-01-15 05:46:10 +0900",
 "test/src/graph/cycle_detection/cycle_detection.test.cpp": "2021-09-09 21:18:28 +0900",
 "test/src/graph/cycle_detection/cycle_detection_2.test.cpp": "2021-09-09 21:18:28 +0900",
 "test/src/graph/low_link/articulation_points.test.cpp": "2021-10-22 11:27:09 +0900",
