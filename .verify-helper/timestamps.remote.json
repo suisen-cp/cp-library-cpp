@@ -16,6 +16,7 @@
 "test/src/datastructure/ZDD/maximum_independent_set.test.cpp": "2022-01-15 02:41:24 +0900",
 "test/src/datastructure/binary_trie/set_xor_min.test.cpp": "2021-07-20 20:17:05 +0900",
 "test/src/datastructure/binary_trie/xor_game.test.cpp": "2021-07-20 20:17:05 +0900",
+"test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp": "2022-01-15 03:56:07 +0900",
 "test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp": "2021-09-02 19:44:31 +0900",
 "test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp": "2021-09-02 19:44:31 +0900",
 "test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp": "2021-11-28 20:19:02 +0900",
