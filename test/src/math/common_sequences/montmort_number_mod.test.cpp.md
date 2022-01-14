@@ -18,11 +18,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/montmort_number_mod
-    links:
-    - https://judge.yosupo.jp/problem/montmort_number_mod
+  attributes: {}
   bundledCode: "#line 1 \"test/src/math/common_sequences/montmort_number_mod.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint;\n\

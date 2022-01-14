@@ -15,11 +15,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/polynomial_interpolation
-    links:
-    - https://judge.yosupo.jp/problem/polynomial_interpolation
+  attributes: {}
   bundledCode: "#line 1 \"test/src/math/interpolation/polynomial_interpolation.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/polynomial_interpolation\"\
     \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\

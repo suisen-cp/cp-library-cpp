@@ -9,11 +9,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc214/tasks/abc214_h
-    links:
-    - https://atcoder.jp/contests/abc214/tasks/abc214_h
+  attributes: {}
   bundledCode: "#line 1 \"test/src/graph/min_cost_flow/abc214_h.test.cpp\"\n#define\
     \ PROBLEM \"https://atcoder.jp/contests/abc214/tasks/abc214_h\"\n\n#include <iostream>\n\
     \n#include <atcoder/scc>\n\n#line 1 \"library/graph/min_cost_flow.hpp\"\n\n\n\n\

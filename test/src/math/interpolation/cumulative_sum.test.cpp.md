@@ -18,11 +18,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc208/tasks/abc208_f
-    links:
-    - https://atcoder.jp/contests/abc208/tasks/abc208_f
+  attributes: {}
   bundledCode: "#line 1 \"test/src/math/interpolation/cumulative_sum.test.cpp\"\n\
     #define PROBLEM \"https://atcoder.jp/contests/abc208/tasks/abc208_f\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/math/interpolation.hpp\"\

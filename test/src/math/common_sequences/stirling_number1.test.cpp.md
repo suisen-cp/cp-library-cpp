@@ -18,11 +18,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
-    links:
-    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
+  attributes: {}
   bundledCode: "#line 1 \"test/src/math/common_sequences/stirling_number1.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind\"\
     \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\

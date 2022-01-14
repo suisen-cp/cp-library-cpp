@@ -18,11 +18,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/partition_function
-    links:
-    - https://judge.yosupo.jp/problem/partition_function
+  attributes: {}
   bundledCode: "#line 1 \"test/src/math/common_sequences/partition_function.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/partition_function\"\n\n#include\
     \ <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\n\

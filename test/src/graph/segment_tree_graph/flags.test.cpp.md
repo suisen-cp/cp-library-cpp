@@ -9,11 +9,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/arc069/tasks/arc069_f
-    links:
-    - https://atcoder.jp/contests/arc069/tasks/arc069_f
+  attributes: {}
   bundledCode: "#line 1 \"test/src/graph/segment_tree_graph/flags.test.cpp\"\n#define\
     \ PROBLEM \"https://atcoder.jp/contests/arc069/tasks/arc069_f\"\n\n#include <algorithm>\n\
     #include <iostream>\n#include <numeric>\n#include <atcoder/twosat>\n\n#line 1\

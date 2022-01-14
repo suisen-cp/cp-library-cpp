@@ -9,11 +9,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_det
-    links:
-    - https://judge.yosupo.jp/problem/matrix_det
+  attributes: {}
   bundledCode: "#line 1 \"test/src/math/matrix/determinant_of_matrix.test.cpp\"\n\
     #define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include <iostream>\n\
     #include <atcoder/modint>\n\n#line 1 \"library/math/matrix.hpp\"\n\n\n\n#include\

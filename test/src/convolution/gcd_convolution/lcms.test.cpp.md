@@ -19,11 +19,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/agc038/tasks/agc038_c
-    links:
-    - https://atcoder.jp/contests/agc038/tasks/agc038_c
+  attributes: {}
   bundledCode: "#line 1 \"test/src/convolution/gcd_convolution/lcms.test.cpp\"\n#define\
     \ PROBLEM \"https://atcoder.jp/contests/agc038/tasks/agc038_c\"\n\n#include <iostream>\n\
     #include <atcoder/modint>\n\n#line 1 \"library/convolution/gcd_convolution.hpp\"\

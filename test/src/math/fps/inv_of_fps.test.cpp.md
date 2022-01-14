@@ -12,11 +12,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
-    links:
-    - https://judge.yosupo.jp/problem/inv_of_formal_power_series
+  attributes: {}
   bundledCode: "#line 1 \"test/src/math/fps/inv_of_fps.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/inv_of_formal_power_series\"\n\n#include <iostream>\n\
     #include <vector>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\

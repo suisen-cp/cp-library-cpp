@@ -12,11 +12,7 @@ data:
   _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
-  attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc222/tasks/abc222_g
-    links:
-    - https://atcoder.jp/contests/abc222/tasks/abc222_g
+  attributes: {}
   bundledCode: "#line 1 \"test/src/number/util/abc222_g.test.cpp\"\n#define PROBLEM\
     \ \"https://atcoder.jp/contests/abc222/tasks/abc222_g\"\n\n#include <iostream>\n\
     #include <atcoder/modint>\nusing mint = atcoder::modint;\n\n#line 1 \"library/number/util.hpp\"\
