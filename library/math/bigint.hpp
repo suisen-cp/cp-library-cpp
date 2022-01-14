@@ -1,6 +1,7 @@
 #ifndef SUISEN_STRING_BIGINT
 #define SUISEN_STRING_BIGINT
 
+#include <atcoder/convolution>
 #include <algorithm>
 #include <cassert>
 #include <iostream>
@@ -57,7 +58,7 @@ namespace suisen {
         friend bool operator==(const BigInt &lhs, const BigInt &rhs) { return compare(lhs, rhs) == 0; }
         friend bool operator!=(const BigInt &lhs, const BigInt &rhs) { return compare(lhs, rhs) != 0; }
 
-        operator bool() const { return d != std::vector<int32_t>{ 0 }; }
+        operator bool() const { return d != std::vector<int>{ 0 }; }
 
         BigInt operator+() const {
             return *this;
@@ -98,7 +99,14 @@ namespace suisen {
                 return lhs + (-rhs);
             }
         }
-        friend BigInt operator*(const BigInt &lhs, const BigInt &rhs) { return karatsuba(lhs, rhs); }
+        friend BigInt operator*(const BigInt &lhs, const BigInt &rhs) {
+            BigInt res(atcoder::convolution<998244353>(lhs.d, rhs.d));
+            res.fix_carry();
+            res.cut_leading_zeros();
+            res.negative = lhs.negative ^ rhs.negative;
+            res.fix_sign();
+            return res;
+        }
 
         BigInt& operator+=(const BigInt &rhs) { return *this = *this + rhs; }
         BigInt& operator-=(const BigInt &rhs) { return *this = *this - rhs; }
@@ -137,13 +145,17 @@ namespace suisen {
             return in;
         }
 
+        const std::vector<int>& digits() const {
+            return d;
+        }
+
     private:
         bool negative;
-        std::vector<int32_t> d;
+        std::vector<int> d;
 
-        BigInt(std::vector<int32_t> &&d) : negative(false), d(std::move(d)) {}
-        BigInt(const std::vector<int32_t> &d) : negative(false), d(d) {}
-        BigInt(std::vector<int32_t>::const_iterator start, std::vector<int32_t>::const_iterator last) : negative(false), d(start, last) {}
+        BigInt(std::vector<int> &&d) : negative(false), d(std::move(d)) {}
+        BigInt(const std::vector<int> &d) : negative(false), d(d) {}
+        BigInt(std::vector<int>::const_iterator start, std::vector<int>::const_iterator last) : negative(false), d(start, last) {}
 
         BigInt substr(size_t l, size_t r) const { return BigInt(d.begin() + l, d.begin() + r); }
 
@@ -156,10 +168,10 @@ namespace suisen {
         }
 
         void fix_carry() {
-            int32_t carry = 0;
+            int carry = 0;
             for (size_t i = 0; i < d.size(); ++i) {
                 d[i] += carry;
-                int32_t q = d[i] / 10, r = d[i] % 10;
+                int q = d[i] / 10, r = d[i] % 10;
                 if (r < 0) --q, r += 10;
                 carry = q, d[i] = r;
             }
@@ -167,54 +179,18 @@ namespace suisen {
             cut_leading_zeros();
         }
 
-        static BigInt add_unsigned(std::vector<int32_t> lhs, const std::vector<int32_t> &rhs) {
+        static BigInt add_unsigned(std::vector<int> lhs, const std::vector<int> &rhs) {
             if (lhs.size() < rhs.size()) return add_unsigned(rhs, lhs);
             for (size_t i = 0; i < rhs.size(); ++i) lhs[i] += rhs[i];
             BigInt res(lhs);
             res.fix_carry();
             return res;
         }
-        static BigInt sub_unsigned(std::vector<int32_t> lhs, const std::vector<int32_t> &rhs) {
+        static BigInt sub_unsigned(std::vector<int> lhs, const std::vector<int> &rhs) {
             assert(lhs.size() >= rhs.size());
             for (size_t i = 0; i < rhs.size(); ++i) lhs[i] -= rhs[i];
             BigInt res(lhs);
             res.fix_carry();
-            return res;
-        }
-
-        static BigInt naive_multiplication(const BigInt &lhs, const BigInt &rhs) {
-            size_t n = lhs.d.size(), m = rhs.d.size();
-            BigInt res;
-            res.ensure_size(lhs.d.size() + rhs.d.size());
-            for (size_t i = 0; i < n; ++i) {
-                for (size_t j = 0; j < m; ++j) res.d[i + j] += lhs.d[i] * rhs.d[j];
-            }
-            res.fix_carry();
-            res.cut_leading_zeros();
-            res.negative = lhs.negative ^ rhs.negative;
-            res.fix_sign();
-            return res;
-        }
-        static BigInt karatsuba(const BigInt &lhs, const BigInt &rhs) {
-            constexpr size_t THRESHOLD_NAIVE_MULTIPLICATION = 100;
-            if (lhs.d.size() < rhs.d.size()) return karatsuba(rhs, lhs);
-            const size_t k = lhs.d.size(), l = rhs.d.size();
-            if (l <= THRESHOLD_NAIVE_MULTIPLICATION) return naive_multiplication(lhs, rhs);
-            BigInt res;
-            if (k >= 2 * l) {
-                for (size_t i = 0; i < k; i += l) res += karatsuba(lhs.substr(i, std::min(i + l, k)), rhs).muleq_pow_of_10(i);
-            } else {
-                size_t m = k / 2;
-                BigInt ld(lhs.d.begin(), lhs.d.begin() + m), lu(lhs.d.begin() + m, lhs.d.end());
-                BigInt rd(rhs.d.begin(), rhs.d.begin() + m), ru(rhs.d.begin() + m, rhs.d.end());
-                BigInt res_d = karatsuba(ld, rd), res_u = karatsuba(lu, ru);
-                BigInt res_m = karatsuba(lu + ld, ru + rd) - (res_d + res_u);
-                res = res_u.muleq_pow_of_10(2 * m) + res_m.muleq_pow_of_10(m) + res_d;
-            }
-            res.fix_carry();
-            res.cut_leading_zeros();
-            res.negative = lhs.negative ^ rhs.negative;
-            res.fix_sign();
             return res;
         }
     };
