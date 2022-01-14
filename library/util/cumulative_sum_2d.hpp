@@ -15,7 +15,7 @@ namespace suisen {
             }
         }
         T operator()(size_t u, size_t d, size_t l, size_t r) const {
-            assert(u <= d and d <= n and l <= r and r <= m);
+            if (not (u <= d and d <= n and l <= r and r <= m)) return zero();
             return sub(add(s[d][r], s[u][l]), add(s[u][r], s[d][l]));
         }
     private:
