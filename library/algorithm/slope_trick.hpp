@@ -1,11 +1,14 @@
 #ifndef SUISEN_SLOPE_TRICK
 #define SUISEN_SLOPE_TRICK
 
+#include <algorithm>
 #include <cassert>
 #include <limits>
+#include <tuple>
 #include <queue>
 
 namespace suisen {
+
 template <typename T>
 class SlopeTrick {
     using pq_dsc = std::priority_queue<T>;
@@ -77,6 +80,19 @@ class SlopeTrick {
             add_l += a, add_r += b;
             return *this;
         }
+
+        std::tuple<std::vector<T>, T, std::vector<T>> lines() {
+            struct seq_getter_dsc : public pq_dsc { static std::vector<T> get(const pq_dsc& pq) { return pq.*&seq_getter_dsc::c; } };
+            struct seq_getter_asc : public pq_asc { static std::vector<T> get(const pq_dsc& pq) { return pq.*&seq_getter_asc::c; } };
+            std::vector<T> neg = seq_getter_dsc::get(l);
+            std::vector<T> pos = seq_getter_asc::get(r);
+            std::sort(neg.begin(), neg.end());
+            std::sort(pos.begin(), pos.end());
+            for (auto &e : neg) e += add_l;
+            for (auto &e : pos) e += add_r;
+            return std::make_tuple(neg, base, pos);
+        }
+
     private:
         T base, add_l, add_r;
         pq_dsc l;
