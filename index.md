@@ -332,7 +332,7 @@ data:
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/kronecker_power.hpp
       title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
         \u5909\u63DB (\u4EEE\u79F0)"
@@ -390,7 +390,7 @@ data:
     - icon: ':warning:'
       path: library/util/cumulative_sum_2d.hpp
       title: library/util/cumulative_sum_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/default_operator.hpp
       title: library/util/default_operator.hpp
     - icon: ':warning:'
@@ -897,7 +897,7 @@ data:
       title: test/src/string/suffix_automaton/yuki430.test.cpp
   - name: test/src/transform/kronecker_power
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/transform/kronecker_power/agc044_c.test.cpp
       title: test/src/transform/kronecker_power/agc044_c.test.cpp
   - name: test/src/transform/multiple

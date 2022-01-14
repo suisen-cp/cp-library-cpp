@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: library/util/default_operator.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/agc044/tasks/agc044_c
@@ -91,8 +91,8 @@ data:
     \ utit_transform>(qu);\n        for (int upper = 0; upper < usz; ++upper) {\n\
     \            int pos = upper * lsz + lower;\n            int idx = qu[upper] *\
     \ lsz + ql[lower];\n            p[idx] = pos;\n        }\n    }\n    \n    for\
-    \ (int i = 0; i < sz; ++i) {\n        std::cout << p[i] << \" \\n\"[i == sz -\
-    \ 1];\n    }\n    return 0;\n}\n"
+    \ (int i = 0; i < sz; ++i) {\n        std::cout << p[i] << ' ';\n    }\n    std::cout\
+    \ << std::endl;\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/agc044/tasks/agc044_c\"\n\n\
     #include <algorithm>\n#include <iostream>\n#include <numeric>\n#include <string>\n\
     #include <vector>\n\n#include \"library/transform/kronecker_power.hpp\"\nusing\
@@ -117,16 +117,16 @@ data:
     \ utit_transform>(qu);\n        for (int upper = 0; upper < usz; ++upper) {\n\
     \            int pos = upper * lsz + lower;\n            int idx = qu[upper] *\
     \ lsz + ql[lower];\n            p[idx] = pos;\n        }\n    }\n    \n    for\
-    \ (int i = 0; i < sz; ++i) {\n        std::cout << p[i] << \" \\n\"[i == sz -\
-    \ 1];\n    }\n    return 0;\n}"
+    \ (int i = 0; i < sz; ++i) {\n        std::cout << p[i] << ' ';\n    }\n    std::cout\
+    \ << std::endl;\n    return 0;\n}"
   dependsOn:
   - library/transform/kronecker_power.hpp
   - library/util/default_operator.hpp
   isVerificationFile: true
   path: test/src/transform/kronecker_power/agc044_c.test.cpp
   requiredBy: []
-  timestamp: '2022-01-15 00:27:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-15 03:46:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/transform/kronecker_power/agc044_c.test.cpp
 layout: document
