@@ -88,9 +88,9 @@ data:
   timestamp: '2021-10-22 11:27:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
   - test/src/graph/low_link/articulation_points.test.cpp
   - test/src/graph/low_link/bridges.test.cpp
+  - test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
 documentation_of: library/graph/low_link.hpp
 layout: document
 redirect_from:

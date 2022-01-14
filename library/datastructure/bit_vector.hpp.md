@@ -152,8 +152,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/bit_vector.hpp
   requiredBy:
-  - library/datastructure/wavelet_matrix.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
+  - library/datastructure/wavelet_matrix.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

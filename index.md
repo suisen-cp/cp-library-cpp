@@ -41,6 +41,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/gcd_convolution.hpp
       title: GCD Convolution
+    - icon: ':heavy_check_mark:'
+      path: library/convolution/multi_variate_convolution.hpp
+      title: library/convolution/multi_variate_convolution.hpp
     - icon: ':warning:'
       path: library/convolution/or_convolution.hpp
       title: Bitwise Or Convolution
@@ -60,6 +63,9 @@ data:
       title: Bitwise Xor Convolution
   - name: library/datastructure
     pages:
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/ZDD.hpp
+      title: library/datastructure/ZDD.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/binary_trie.hpp
       title: library/datastructure/binary_trie.hpp
@@ -403,6 +409,9 @@ data:
       path: library/util/run_length_encoder.hpp
       title: library/util/run_length_encoder.hpp
     - icon: ':heavy_check_mark:'
+      path: library/util/tuple_hash.hpp
+      title: library/util/tuple_hash.hpp
+    - icon: ':heavy_check_mark:'
       path: library/util/update_proxy_object.hpp
       title: library/util/update_proxy_object.hpp
     - icon: ':warning:'
@@ -453,6 +462,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/convolution/gcd_convolution/lcms.test.cpp
       title: test/src/convolution/gcd_convolution/lcms.test.cpp
+  - name: test/src/convolution/multi_variate_convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
+      title: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
   - name: test/src/convolution/polynomial_eval
     pages:
     - icon: ':heavy_check_mark:'
@@ -473,6 +487,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
       title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - name: test/src/datastructure/ZDD
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
+      title: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
   - name: test/src/datastructure/binary_trie
     pages:
     - icon: ':heavy_check_mark:'

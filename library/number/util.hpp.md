@@ -183,8 +183,8 @@ data:
   timestamp: '2021-10-10 02:52:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/number/util/abc222_g.test.cpp
   - test/src/number/util/divide_both.test.cpp
+  - test/src/number/util/abc222_g.test.cpp
 documentation_of: library/number/util.hpp
 layout: document
 redirect_from:

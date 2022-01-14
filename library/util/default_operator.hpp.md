@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/gcd_convolution.hpp
     title: GCD Convolution
+  - icon: ':heavy_check_mark:'
+    path: library/convolution/multi_variate_convolution.hpp
+    title: library/convolution/multi_variate_convolution.hpp
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
@@ -53,6 +56,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/gcd_convolution/lcms.test.cpp
     title: test/src/convolution/gcd_convolution/lcms.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
+    title: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
@@ -110,30 +116,32 @@ data:
   isVerificationFile: false
   path: library/util/default_operator.hpp
   requiredBy:
-  - library/transform/multiple.hpp
-  - library/transform/divisor.hpp
-  - library/transform/walsh_hadamard.hpp
+  - library/util/cumulative_sum_2d.hpp
+  - library/util/cumulative_sum.hpp
   - library/transform/subset.hpp
+  - library/transform/multiple.hpp
+  - library/transform/walsh_hadamard.hpp
+  - library/transform/divisor.hpp
   - library/transform/kronecker_power.hpp
   - library/transform/supset.hpp
   - library/convolution/xor_convolution.hpp
+  - library/convolution/gcd_convolution.hpp
+  - library/convolution/multi_variate_convolution.hpp
   - library/convolution/and_convolution.hpp
   - library/convolution/convolution.hpp
-  - library/convolution/gcd_convolution.hpp
   - library/convolution/or_convolution.hpp
-  - library/util/cumulative_sum.hpp
-  - library/util/cumulative_sum_2d.hpp
   timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/transform/multiple/divide_both.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
-  - test/src/convolution/gcd_convolution/lcms.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
 documentation_of: library/util/default_operator.hpp
 layout: document
 redirect_from:
