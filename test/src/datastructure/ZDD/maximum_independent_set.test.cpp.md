@@ -192,13 +192,13 @@ data:
     \ > v) std::swap(u, v);\n        ZDD f = ZDD::create_zdd(ZDD::create_zdd(ZDD::terminal1(),\
     \ ZDD::terminal1(), lvl[u]), ZDD::terminal1(), lvl[v]);\n        for (int i =\
     \ 0; i < n; ++i) {\n            if (i == u or i == v) continue;\n            f\
-    \ = ZDD::change(f, lvl[i]) + f;\n        }\n        return f;\n    };\n\n    auto\
-    \ U = [&]{\n        ZDD f = ZDD::terminal1();\n        for (int i = 0; i < n;\
-    \ ++i) f = ZDD::change(f, lvl[i]) + f;\n        return f;\n    }();\n\n    for\
-    \ (int i = 0; i < m; ++i) {\n        int u, v;\n        std::cin >> u >> v;\n\
-    \        auto Fuv = F(u, v);\n        U = U & Fuv;\n    }\n\n    auto ans = *ZDD::max_len_item(U);\n\
-    \n    std::cout << ans.size() << std::endl;\n    for (int e : ans) std::cout <<\
-    \ e - 1 << ' ';\n    std::cout << std::endl;\n    return 0;\n}\n"
+    \ = ZDD::change(f, lvl[i]) + f;\n        }\n        return f;\n    };\n\n    ZDD\
+    \ U = ZDD::terminal1();\n    for (int i = 0; i < n; ++i) U = ZDD::change(U, lvl[i])\
+    \ + U;\n\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        std::cin\
+    \ >> u >> v;\n        auto Fuv = F(u, v);\n        U = U & Fuv;\n    }\n\n   \
+    \ auto ans = *ZDD::max_len_item(U);\n\n    std::cout << ans.size() << std::endl;\n\
+    \    for (int e : ans) std::cout << e - 1 << ' ';\n    std::cout << std::endl;\n\
+    \    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/maximum_independent_set\"\
     \n\n#include <iostream>\n\n#include \"library/datastructure/ZDD.hpp\"\nusing namespace\
     \ suisen;\n\nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    std::vector<int>\
@@ -207,20 +207,19 @@ data:
     \        ZDD f = ZDD::create_zdd(ZDD::create_zdd(ZDD::terminal1(), ZDD::terminal1(),\
     \ lvl[u]), ZDD::terminal1(), lvl[v]);\n        for (int i = 0; i < n; ++i) {\n\
     \            if (i == u or i == v) continue;\n            f = ZDD::change(f, lvl[i])\
-    \ + f;\n        }\n        return f;\n    };\n\n    auto U = [&]{\n        ZDD\
-    \ f = ZDD::terminal1();\n        for (int i = 0; i < n; ++i) f = ZDD::change(f,\
-    \ lvl[i]) + f;\n        return f;\n    }();\n\n    for (int i = 0; i < m; ++i)\
-    \ {\n        int u, v;\n        std::cin >> u >> v;\n        auto Fuv = F(u, v);\n\
-    \        U = U & Fuv;\n    }\n\n    auto ans = *ZDD::max_len_item(U);\n\n    std::cout\
-    \ << ans.size() << std::endl;\n    for (int e : ans) std::cout << e - 1 << ' ';\n\
-    \    std::cout << std::endl;\n    return 0;\n}"
+    \ + f;\n        }\n        return f;\n    };\n\n    ZDD U = ZDD::terminal1();\n\
+    \    for (int i = 0; i < n; ++i) U = ZDD::change(U, lvl[i]) + U;\n\n    for (int\
+    \ i = 0; i < m; ++i) {\n        int u, v;\n        std::cin >> u >> v;\n     \
+    \   auto Fuv = F(u, v);\n        U = U & Fuv;\n    }\n\n    auto ans = *ZDD::max_len_item(U);\n\
+    \n    std::cout << ans.size() << std::endl;\n    for (int e : ans) std::cout <<\
+    \ e - 1 << ' ';\n    std::cout << std::endl;\n    return 0;\n}"
   dependsOn:
   - library/datastructure/ZDD.hpp
   - library/util/tuple_hash.hpp
   isVerificationFile: true
   path: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
   requiredBy: []
-  timestamp: '2022-01-15 00:25:19+09:00'
+  timestamp: '2022-01-15 02:41:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
