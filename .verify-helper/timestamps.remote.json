@@ -114,6 +114,7 @@
 "test/src/string/substring_set/arc097_a.test.cpp": "2021-09-09 05:49:37 +0900",
 "test/src/string/substring_set/number_of_substrings.test.cpp": "2021-09-09 05:49:37 +0900",
 "test/src/string/suffix_automaton/yuki430.test.cpp": "2021-09-09 05:49:37 +0900",
+"test/src/transform/kronecker_power/agc044_c.test.cpp": "2022-01-15 03:46:57 +0900",
 "test/src/transform/multiple/divide_both.test.cpp": "2021-09-29 01:36:15 +0900",
 "test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp": "2021-11-23 20:31:45 +0900",
 "test/src/tree/euler_tour/lowest_common_ancestor.test.cpp": "2021-07-18 19:28:54 +0900",
