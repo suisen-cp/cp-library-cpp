@@ -8,15 +8,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-      with:
-        submodules: true
+      # with:
+      #   submodules: true
 
     - name: Set up Python
       uses: actions/setup-python@v1
 
-    # ! dependents on other library
-    - name: Add AtCoder Library as Submodule
-      run: git submodule update --remote ac-library
+    # # ! dependents on other library
+    # - name: Add AtCoder Library as Submodule
+    #   run: git submodule update --remote ac-library
 
     - name: Install dependencies
       run: pip3 install -U online-judge-verify-helper
