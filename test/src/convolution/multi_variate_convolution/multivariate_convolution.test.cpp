@@ -33,7 +33,6 @@ int main() {
     std::vector<mint> f(n), g(n);
     for (auto &e : f) std::cin >> e;
     for (auto &e : g) std::cin >> e;
-
     auto h = convolution(f, g);
 
     for (int i = 0; i < n; ++i) std::cout << h[i] << " \n"[i == n - 1];
