@@ -191,6 +191,9 @@ data:
       path: library/graph/BFS01.hpp
       title: library/graph/BFS01.hpp
     - icon: ':heavy_check_mark:'
+      path: library/graph/bipartite_matching.hpp
+      title: library/graph/bipartite_matching.hpp
+    - icon: ':heavy_check_mark:'
       path: library/graph/cycle_detection.hpp
       title: library/graph/cycle_detection.hpp
     - icon: ':warning:'
@@ -722,6 +725,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - name: test/src/graph/bipartite_matching
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
+      title: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
   - name: test/src/graph/cycle_detection
     pages:
     - icon: ':heavy_check_mark:'
