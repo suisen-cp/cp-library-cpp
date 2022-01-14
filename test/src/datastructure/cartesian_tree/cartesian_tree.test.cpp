@@ -11,7 +11,7 @@ int main() {
     std::cin >> n;
     std::vector<int> a(n);
     for (int &e : a) std::cin >> e;
-    suisen::CartesianTree<int, std::less<int>> t(a);
+    suisen::CartesianTreeBuilder<int, std::less<int>> t(a);
     for (int i = 0; i < n; ++i) {
         int p = t.parent(i);
         std::cout << (p < 0 ? i : p) << " \n"[i == n - 1];
