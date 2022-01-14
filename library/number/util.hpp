@@ -10,27 +10,27 @@
 
 namespace suisen {
 
-    // Returns pow(-1, n)
-    template <typename T>
-    constexpr inline int pow_m1(T n) {
-        return -(n & 1) | 1;
-    }
-    // Returns pow(-1, n)
-    template <>
-    constexpr inline int pow_m1<bool>(bool n) {
-        return -int(n) | 1;
-    }
+    // // Returns pow(-1, n)
+    // template <typename T>
+    // constexpr inline int pow_m1(T n) {
+    //     return -(n & 1) | 1;
+    // }
+    // // Returns pow(-1, n)
+    // template <>
+    // constexpr inline int pow_m1<bool>(bool n) {
+    //     return -int(n) | 1;
+    // }
 
-    // Returns floor(x / y)
-    template <typename T>
-    constexpr inline T fld(const T x, const T y) {
-        return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y >= 0))) / y;
-    }
-    // Returns ceil(x / y)
-    template <typename T>
-    constexpr inline T cld(const T x, const T y) {
-        return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;
-    }
+    // // Returns floor(x / y)
+    // template <typename T>
+    // constexpr inline T fld(const T x, const T y) {
+    //     return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y >= 0))) / y;
+    // }
+    // // Returns ceil(x / y)
+    // template <typename T>
+    // constexpr inline T cld(const T x, const T y) {
+    //     return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;
+    // }
 
     /**
      * O(sqrt(n))
