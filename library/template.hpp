@@ -77,6 +77,15 @@ std::ostream& operator<<(std::ostream& out, const std::vector<T> &a) {
     }
     return out;
 }
+// array
+template <typename T, size_t N>
+std::ostream& operator<<(std::ostream& out, const std::array<T, N> &a) {
+    for (auto it = a.begin(); it != a.end();) {
+        out << *it;
+        if (++it != a.end()) out << ' ';
+    }
+    return out;
+}
 inline void print() { std::cout << '\n'; }
 template <typename Head, typename... Tail>
 inline void print(const Head &head, const Tail &...tails) {
@@ -113,6 +122,12 @@ std::istream& operator>>(std::istream& in, std::vector<T> &a) {
     for (auto it = a.begin(); it != a.end(); ++it) in >> *it;
     return in;
 }
+// array
+template <typename T, size_t N>
+std::istream& operator>>(std::istream& in, std::array<T, N> &a) {
+    for (auto it = a.begin(); it != a.end(); ++it) in >> *it;
+    return in;
+}
 template <typename ...Args>
 void read(Args &...args) {
     ( std::cin >> ... >> args );
@@ -141,14 +156,20 @@ constexpr inline T cld(const T x, const T y) {
     return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;
 }
 
+template <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>
+constexpr inline int popcount(const T x) { return __builtin_popcount(x); }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
 constexpr inline int popcount(const T x) { return __builtin_popcount(x); }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
 constexpr inline int popcount(const T x) { return __builtin_popcountll(x); }
+template <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>
+constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
 constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
 constexpr inline int count_lz(const T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>; }
+template <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>
+constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
 constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
@@ -194,12 +215,30 @@ auto generate_vector(int n, Gen generator) {
     for (int i = 0; i < n; ++i) v[i] = generator(i);
     return v;
 }
+template <typename T>
+auto generate_range_vector(T l, T r) {
+    return generate_vector(r - l, [l](int i) { return l + i; });
+}
+template <typename T>
+auto generate_range_vector(T n) {
+    return generate_range_vector(0, n);
+}
 
 template <typename T>
 void sort_unique_erase(std::vector<T> &a) {
     std::sort(a.begin(), a.end());
     a.erase(std::unique(a.begin(), a.end()), a.end());
 }
+
+template <typename InputIterator, typename BiConsumer>
+auto foreach_adjacent_values(InputIterator first, InputIterator last, BiConsumer f) -> decltype(f(*first++, *last), void()) {
+    if (first != last) for (auto itr = first, itl = itr++; itr != last; itl = itr++) f(*itl, *itr);
+}
+template <typename Container, typename BiConsumer>
+auto foreach_adjacent_values(Container c, BiConsumer f) -> decltype(c.begin(), c.end(), void()){
+    foreach_adjacent_values(c.begin(), c.end(), f);
+}
+
 
 // ! other utilities
 
