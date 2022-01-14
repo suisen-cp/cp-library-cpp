@@ -24,11 +24,8 @@ int main() {
         return f;
     };
 
-    auto U = [&]{
-        ZDD f = ZDD::terminal1();
-        for (int i = 0; i < n; ++i) f = ZDD::change(f, lvl[i]) + f;
-        return f;
-    }();
+    ZDD U = ZDD::terminal1();
+    for (int i = 0; i < n; ++i) U = ZDD::change(U, lvl[i]) + U;
 
     for (int i = 0; i < m; ++i) {
         int u, v;
