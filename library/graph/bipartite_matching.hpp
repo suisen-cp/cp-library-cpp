@@ -13,8 +13,7 @@ namespace suisen {
         BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n, None), _to_l(_m, None), _g(n + m) {}
 
         void add_edge(int fr, int to) {
-            _g[fr].push_back(to);
-            _f = -1;
+            _g[fr].push_back(to), _f = -1;
         }
 
         template <bool shuffle = true>
@@ -57,11 +56,9 @@ namespace suisen {
             auto res = max_matching();
             std::vector<bool> vl(_n, false), vr(_n, false);
             for (const auto &[u, v] : res) vl[u] = vr[v] = true;
-            for (int u = 0; u < _n; ++u) {
-                for (int v : _g[u]) if (not (vl[u] and vr[v])) {
-                    vl[u] = vr[v] = true;
-                    res.emplace_back(u, v);
-                }
+            for (int u = 0; u < _n; ++u) for (int v : _g[u]) if (not (vl[u] and vr[v])) {
+                vl[u] = vr[v] = true;
+                res.emplace_back(u, v);
             }
             return res;
         }
@@ -70,14 +67,12 @@ namespace suisen {
             if (_f < 0) _f = solve();
             std::vector<std::vector<int>> g(_n + _m);
             std::vector<bool> cl(_n, true), cr(_m, false);
-            for (int u = 0; u < _n; ++u) {
-                for (int v : _g[u]){
-                    if (_to_r[u] == v) {
-                        g[v + _n].push_back(u);
-                        cl[u] = false;
-                    } else {
-                        g[u].push_back(v + _n);
-                    }
+            for (int u = 0; u < _n; ++u) for (int v : _g[u]) {
+                if (_to_r[u] == v) {
+                    g[v + _n].push_back(u);
+                    cl[u] = false;
+                } else {
+                    g[u].push_back(v + _n);
                 }
             }
             std::vector<bool> vis(_n + _m, false);
