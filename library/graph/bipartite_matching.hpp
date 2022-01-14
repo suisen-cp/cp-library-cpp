@@ -10,7 +10,7 @@
 namespace suisen {
     struct BipartiteMatching {
         BipartiteMatching() {}
-        BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n, None), _to_l(_m, None), _g(n + m) {}
+        BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n, Absent), _to_l(_m, Absent), _g(n + m) {}
 
         void add_edge(int fr, int to) {
             _g[fr].push_back(to), _f = -1;
@@ -25,30 +25,24 @@ namespace suisen {
         
             auto dfs = [&, this](auto dfs, int u) -> bool {
                 if (std::exchange(vis[u], true)) return false;
-                for (int v : _g[u]) if (_to_l[v] == None) {
-                    _to_r[u] = v, _to_l[v] = u;
-                    return true;
-                }
-                for (int v : _g[u]) if (dfs(dfs, _to_l[v])) {
-                    _to_r[u] = v, _to_l[v] = u;
-                    return true;
-                }
+                for (int v : _g[u]) if (_to_l[v] == Absent) return _to_r[u] = v, _to_l[v] = u, true;
+                for (int v : _g[u]) if (dfs(dfs, _to_l[v])) return _to_r[u] = v, _to_l[v] = u, true;
                 return false;
             };
     
             for (bool upd = true; std::exchange(upd, false);) {
                 vis.assign(_n + _m, false);
-                for (int i = 0; i < _n; ++i) if (_to_r[i] == None) upd |= dfs(dfs, i);
+                for (int i = 0; i < _n; ++i) if (_to_r[i] == Absent) upd |= dfs(dfs, i);
             }
 
-            return _f = _n - std::count(_to_r.begin(), _to_r.end(), None);
+            return _f = _n - std::count(_to_r.begin(), _to_r.end(), Absent);
         }
 
         std::vector<std::pair<int, int>> max_matching() {
             if (_f < 0) _f = solve();
             std::vector<std::pair<int, int>> res;
             res.reserve(_f);
-            for (int i = 0; i < _n; ++i) if (_to_r[i] != None) res.emplace_back(i, _to_r[i]);
+            for (int i = 0; i < _n; ++i) if (_to_r[i] != Absent) res.emplace_back(i, _to_r[i]);
             return res;
         }
 
@@ -106,7 +100,7 @@ namespace suisen {
         }
 
     private:
-        static constexpr int None = -1;
+        static constexpr int Absent = -1;
 
         int _n, _m;
         std::vector<int> _to_r, _to_l;
