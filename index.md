@@ -72,7 +72,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bit_vector.hpp
       title: library/datastructure/bit_vector.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/cartesian_tree.hpp
       title: library/datastructure/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -370,7 +370,7 @@ data:
       title: library/tree/rerooting.hpp
   - name: library/type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
@@ -514,7 +514,7 @@ data:
       title: test/src/datastructure/binary_trie/xor_game.test.cpp
   - name: test/src/datastructure/cartesian_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
       title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   - name: test/src/datastructure/commutative_dual_segment_tree
