@@ -65,7 +65,8 @@ int main() {
     }
     
     for (int i = 0; i < sz; ++i) {
-        std::cout << p[i] << " \n"[i == sz - 1];
+        std::cout << p[i] << ' ';
     }
+    std::cout << std::endl;
     return 0;
 }
