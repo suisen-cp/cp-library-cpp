@@ -72,7 +72,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bit_vector.hpp
       title: library/datastructure/bit_vector.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/datastructure/cartesian_tree.hpp
       title: library/datastructure/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -109,6 +109,9 @@ data:
     - icon: ':warning:'
       path: library/datastructure/linked_union_find.hpp
       title: library/datastructure/linked_union_find.hpp
+    - icon: ':warning:'
+      path: library/datastructure/permutation_tree.hpp
+      title: library/datastructure/permutation_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: library/datastructure/range_foldable_dynamic_sequence.hpp
@@ -139,6 +142,9 @@ data:
     - icon: ':warning:'
       path: library/datastructure/splay_tree_set.hpp
       title: library/datastructure/splay_tree_set.hpp
+    - icon: ':warning:'
+      path: library/datastructure/undo_union_find.hpp
+      title: library/datastructure/undo_union_find.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find.hpp
       title: library/datastructure/union_find.hpp
@@ -300,6 +306,9 @@ data:
       title: library/number/util.hpp
   - name: library/string
     pages:
+    - icon: ':warning:'
+      path: library/string/morris_pratt.hpp
+      title: library/string/morris_pratt.hpp
     - icon: ':heavy_check_mark:'
       path: library/string/rolling_hash.hpp
       title: library/string/rolling_hash.hpp
@@ -323,7 +332,7 @@ data:
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/transform/kronecker_power.hpp
       title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
         \u5909\u63DB (\u4EEE\u79F0)"
@@ -361,7 +370,7 @@ data:
       title: library/tree/rerooting.hpp
   - name: library/type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
@@ -381,7 +390,7 @@ data:
     - icon: ':warning:'
       path: library/util/cumulative_sum_2d.hpp
       title: library/util/cumulative_sum_2d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/util/default_operator.hpp
       title: library/util/default_operator.hpp
     - icon: ':warning:'
@@ -420,6 +429,9 @@ data:
     - icon: ':warning:'
       path: library/util/vector_ops.hpp
       title: library/util/vector_ops.hpp
+    - icon: ':warning:'
+      path: library/util/zobrist_hash.hpp
+      title: library/util/zobrist_hash.hpp
   verificationCategories:
   - name: test/src/algorithm/convex_hull_trick
     pages:
@@ -502,7 +514,7 @@ data:
       title: test/src/datastructure/binary_trie/xor_game.test.cpp
   - name: test/src/datastructure/cartesian_tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
       title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   - name: test/src/datastructure/commutative_dual_segment_tree
@@ -883,6 +895,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/string/suffix_automaton/yuki430.test.cpp
       title: test/src/string/suffix_automaton/yuki430.test.cpp
+  - name: test/src/transform/kronecker_power
+    pages:
+    - icon: ':x:'
+      path: test/src/transform/kronecker_power/agc044_c.test.cpp
+      title: test/src/transform/kronecker_power/agc044_c.test.cpp
   - name: test/src/transform/multiple
     pages:
     - icon: ':heavy_check_mark:'

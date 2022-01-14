@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/cartesian_tree.hpp
     title: library/datastructure/cartesian_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cartesian_tree
@@ -45,53 +45,60 @@ data:
     \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
     \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
     \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 9 \"library/datastructure/cartesian_tree.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename T, typename Comparator, constraints_t<is_comparator<Comparator,\
-    \ T>> = nullptr>\nclass CartesianTree {\n    public:\n        CartesianTree(std::vector<T>\
-    \ &&a, Comparator comp = Comparator{}) : n(a.size()), comp(comp), par(n, -1) {\n\
-    \            for (int i = 1; i < n; ++i) {\n                int p = i - 1, l =\
-    \ i;\n                while (p >= 0 and comp(a[i], a[p])) l = p, p = par[p];\n\
-    \                par[l] = i, par[i] = p;\n            }\n        }\n        CartesianTree(const\
-    \ std::vector<T> &a, Comparator comp = Comparator{}) : CartesianTree(std::vector<T>(a),\
-    \ comp) {}\n\n        struct Tree {\n            const int absent;\n         \
-    \   const int root;\n            const std::vector<std::array<int, 2>> g;\n\n\
-    \            std::vector<std::pair<int, int>> ranges() const {\n             \
-    \   std::vector<std::pair<int, int>> res(g.size());\n                auto dfs\
-    \ = [&](auto self, int u) -> void {\n                    res[u] = {u, u + 1};\n\
-    \                    auto [l, r] = g[u];\n                    if (l != absent)\
-    \ {\n                        self(self, l);\n                        res[u].first\
-    \ = res[l].first;\n                    }\n                    if (r != absent)\
-    \ {\n                        self(self, r);\n                        res[u].second\
-    \ = res[r].second;\n                    }\n                };\n              \
-    \  dfs(dfs, root);\n                return res;\n            }\n        };\n\n\
-    \        std::vector<std::array<int, 2>> build_tree() const {\n            int\
-    \ root = -1;\n            std::vector<std::array<int, 2>> g(n, {-1, -1});\n  \
-    \          for (int i = 0; i < n; ++i) {\n                int p = par[i];\n  \
-    \              if (p >= 0) {\n                    g[p][p <= i] = i;\n        \
-    \        } else {\n                    root = p;\n                }\n        \
-    \    }\n            return Tree {-1, root, std::move(g)};\n        }\n\n     \
-    \   int parent(int i) const {\n            return par[i];\n        }\n    private:\n\
-    \        const int n;\n        const Comparator comp;\n        std::vector<int>\
-    \ par;\n};\n} // namespace suisen\n\n\n#line 6 \"test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp\"\
+    \n\nnamespace suisen {\n    struct CartesianTree : public std::vector<std::array<int,\
+    \ 2>> {\n        using base_type = std::vector<std::array<int, 2>>;\n\n      \
+    \  static constexpr int absent = -1;\n\n        const int root;\n\n        CartesianTree()\
+    \ : base_type(), root(0) {}\n        CartesianTree(int root, const base_type&\
+    \ g) : base_type(g), root(root) {}\n        CartesianTree(int root, base_type&&\
+    \ g) : base_type(std::move(g)), root(root) {}\n\n        auto ranges() const {\n\
+    \            std::vector<std::pair<int, int>> res;\n            res.reserve(size());\n\
+    \            auto rec = [&](auto rec, int l, int m, int r) -> void {\n       \
+    \         if (m == absent) return;\n                const auto& [lm, rm] = (*this)[m];\n\
+    \                rec(rec, l, lm, m), res.emplace_back(l, r), rec(rec, m + 1, rm,\
+    \ r);\n            };\n            rec(rec, 0, root, size());\n            return\
+    \ res;\n        }\n    };\n\n    template <typename T, typename Comparator, constraints_t<is_comparator<Comparator,\
+    \ T>> = nullptr>\n    struct CartesianTreeBuilder {\n        CartesianTreeBuilder()\
+    \ {}\n        template <typename RandomAccessibleContainer>\n        CartesianTreeBuilder(const\
+    \ RandomAccessibleContainer& a, Comparator comp = Comparator{}) : n(a.size()),\
+    \ comp(comp), par(calc_par(a, comp)) {}\n\n        CartesianTree build() const\
+    \ {\n            int root = -1;\n            std::vector<std::array<int, 2>> g(n,\
+    \ { CartesianTree::absent, CartesianTree::absent });\n            for (int i =\
+    \ 0; i < n; ++i) {\n                int p = par[i];\n                (p >= 0 ?\
+    \ g[p][p <= i] : root) = i;\n            }\n            return CartesianTree{\
+    \ root, std::move(g) };\n        }\n\n        template <typename RandomAccessibleContainer>\n\
+    \        static CartesianTree build(const RandomAccessibleContainer& a, Comparator\
+    \ comp = Comparator{}) {\n            return CartesianTreeBuilder(a, comp).build();\n\
+    \        }\n\n        int parent(std::size_t i) const {\n            assert(i\
+    \ < n);\n            return par[i];\n        }\n        int operator[](std::size_t\
+    \ i) const {\n            return parent(i);\n        }\n    private:\n       \
+    \ const int n;\n        const Comparator comp;\n        const std::vector<int>\
+    \ par;\n\n        template <typename RandomAccessibleContainer>\n        static\
+    \ std::vector<int> calc_par(const RandomAccessibleContainer& a, Comparator comp)\
+    \ {\n            const int n = a.size();\n            std::vector<int> par(n,\
+    \ -1);\n            for (int i = 1; i < n; ++i) {\n                int p = i -\
+    \ 1, l = i;\n                while (p >= 0 and comp(a[i], a[p])) l = p, p = par[p];\n\
+    \                par[l] = i, par[i] = p;\n            }\n            return par;\n\
+    \        }\n    };\n} // namespace suisen\n\n\n#line 6 \"test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp\"\
     \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for (int &e :\
-    \ a) std::cin >> e;\n    suisen::CartesianTree<int, std::less<int>> t(a);\n  \
-    \  for (int i = 0; i < n; ++i) {\n        int p = t.parent(i);\n        std::cout\
+    \ a) std::cin >> e;\n    suisen::CartesianTreeBuilder<int, std::less<int>> t(a);\n\
+    \    for (int i = 0; i < n; ++i) {\n        int p = t.parent(i);\n        std::cout\
     \ << (p < 0 ? i : p) << \" \\n\"[i == n - 1];\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\n\n#include\
     \ <iostream>\n\n#include \"library/datastructure/cartesian_tree.hpp\"\n\nint main()\
     \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int\
     \ n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for (int &e : a) std::cin\
-    \ >> e;\n    suisen::CartesianTree<int, std::less<int>> t(a);\n    for (int i\
-    \ = 0; i < n; ++i) {\n        int p = t.parent(i);\n        std::cout << (p <\
-    \ 0 ? i : p) << \" \\n\"[i == n - 1];\n    }\n    return 0;\n}"
+    \ >> e;\n    suisen::CartesianTreeBuilder<int, std::less<int>> t(a);\n    for\
+    \ (int i = 0; i < n; ++i) {\n        int p = t.parent(i);\n        std::cout <<\
+    \ (p < 0 ? i : p) << \" \\n\"[i == n - 1];\n    }\n    return 0;\n}"
   dependsOn:
   - library/datastructure/cartesian_tree.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
   path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-01-15 00:26:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
 layout: document

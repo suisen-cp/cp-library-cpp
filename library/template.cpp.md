@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: library/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []
@@ -73,8 +73,11 @@ data:
     }\n// vector\ntemplate <typename T>\nstd::ostream& operator<<(std::ostream& out,\
     \ const std::vector<T> &a) {\n    for (auto it = a.begin(); it != a.end();) {\n\
     \        out << *it;\n        if (++it != a.end()) out << ' ';\n    }\n    return\
-    \ out;\n}\ninline void print() { std::cout << '\\n'; }\ntemplate <typename Head,\
-    \ typename... Tail>\ninline void print(const Head &head, const Tail &...tails)\
+    \ out;\n}\n// array\ntemplate <typename T, size_t N>\nstd::ostream& operator<<(std::ostream&\
+    \ out, const std::array<T, N> &a) {\n    for (auto it = a.begin(); it != a.end();)\
+    \ {\n        out << *it;\n        if (++it != a.end()) out << ' ';\n    }\n  \
+    \  return out;\n}\ninline void print() { std::cout << '\\n'; }\ntemplate <typename\
+    \ Head, typename... Tail>\ninline void print(const Head &head, const Tail &...tails)\
     \ {\n    std::cout << head;\n    if (sizeof...(tails)) std::cout << ' ';\n   \
     \ print(tails...);\n}\ntemplate <typename Iterable>\nauto print_all(const Iterable&\
     \ v, std::string sep = \" \", std::string end = \"\\n\") -> decltype(std::cout\
@@ -88,22 +91,31 @@ data:
     \  return in;\n    } else {\n        return operator>><N + 1>(in >> std::get<N>(a),\
     \ a);\n    }\n}\n// vector\ntemplate <typename T>\nstd::istream& operator>>(std::istream&\
     \ in, std::vector<T> &a) {\n    for (auto it = a.begin(); it != a.end(); ++it)\
-    \ in >> *it;\n    return in;\n}\ntemplate <typename ...Args>\nvoid read(Args &...args)\
-    \ {\n    ( std::cin >> ... >> args );\n}\n\n// ! integral utilities\n\n// Returns\
-    \ pow(-1, n)\ntemplate <typename T>\nconstexpr inline int pow_m1(T n) {\n    return\
-    \ -(n & 1) | 1;\n}\n// Returns pow(-1, n)\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool\
-    \ n) {\n    return -int(n) | 1;\n}\n\n// Returns floor(x / y)\ntemplate <typename\
-    \ T>\nconstexpr inline T fld(const T x, const T y) {\n    return (x ^ y) >= 0\
-    \ ? x / y : (x - (y + pow_m1(y >= 0))) / y;\n}\ntemplate <typename T>\nconstexpr\
-    \ inline T cld(const T x, const T y) {\n    return (x ^ y) <= 0 ? x / y : (x +\
-    \ (y + pow_m1(y >= 0))) / y;\n}\n\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T,\
-    \ 32>> = nullptr>\nconstexpr inline int popcount(const T x) { return __builtin_popcount(x);\
-    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\n\
-    constexpr inline int popcount(const T x) { return __builtin_popcountll(x); }\n\
-    template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
+    \ in >> *it;\n    return in;\n}\n// array\ntemplate <typename T, size_t N>\nstd::istream&\
+    \ operator>>(std::istream& in, std::array<T, N> &a) {\n    for (auto it = a.begin();\
+    \ it != a.end(); ++it) in >> *it;\n    return in;\n}\ntemplate <typename ...Args>\n\
+    void read(Args &...args) {\n    ( std::cin >> ... >> args );\n}\n\n// ! integral\
+    \ utilities\n\n// Returns pow(-1, n)\ntemplate <typename T>\nconstexpr inline\
+    \ int pow_m1(T n) {\n    return -(n & 1) | 1;\n}\n// Returns pow(-1, n)\ntemplate\
+    \ <>\nconstexpr inline int pow_m1<bool>(bool n) {\n    return -int(n) | 1;\n}\n\
+    \n// Returns floor(x / y)\ntemplate <typename T>\nconstexpr inline T fld(const\
+    \ T x, const T y) {\n    return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y >= 0)))\
+    \ / y;\n}\ntemplate <typename T>\nconstexpr inline T cld(const T x, const T y)\
+    \ {\n    return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;\n}\n\n\
+    template <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>\n\
+    constexpr inline int popcount(const T x) { return __builtin_popcount(x); }\ntemplate\
+    \ <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\nconstexpr\
+    \ inline int popcount(const T x) { return __builtin_popcount(x); }\ntemplate <typename\
+    \ T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\nconstexpr inline\
+    \ int popcount(const T x) { return __builtin_popcountll(x); }\ntemplate <typename\
+    \ T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>\nconstexpr inline\
+    \ int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
     constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>;\
     \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\n\
     constexpr inline int count_lz(const T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>;\
+    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>\n\
+    constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>;\
     \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
     constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>;\
     \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\n\
@@ -127,13 +139,22 @@ data:
     \ {\n    return iterable.size();\n}\n\ntemplate <typename T, typename Gen, suisen::constraints_t<suisen::is_same_as_invoke_result<T,\
     \ Gen, int>> = nullptr>\nauto generate_vector(int n, Gen generator) {\n    std::vector<T>\
     \ v(n);\n    for (int i = 0; i < n; ++i) v[i] = generator(i);\n    return v;\n\
-    }\n\ntemplate <typename T>\nvoid sort_unique_erase(std::vector<T> &a) {\n    std::sort(a.begin(),\
-    \ a.end());\n    a.erase(std::unique(a.begin(), a.end()), a.end());\n}\n\n// !\
-    \ other utilities\n\n// x <- min(x, y). returns true iff `x` has chenged.\ntemplate\
-    \ <typename T>\ninline bool chmin(T &x, const T &y) {\n    if (y >= x) return\
-    \ false;\n    x = y;\n    return true;\n}\n// x <- max(x, y). returns true iff\
-    \ `x` has chenged.\ntemplate <typename T>\ninline bool chmax(T &x, const T &y)\
-    \ {\n    if (y <= x) return false;\n    x = y;\n    return true;\n}\n\nnamespace\
+    }\ntemplate <typename T>\nauto generate_range_vector(T l, T r) {\n    return generate_vector(r\
+    \ - l, [l](int i) { return l + i; });\n}\ntemplate <typename T>\nauto generate_range_vector(T\
+    \ n) {\n    return generate_range_vector(0, n);\n}\n\ntemplate <typename T>\n\
+    void sort_unique_erase(std::vector<T> &a) {\n    std::sort(a.begin(), a.end());\n\
+    \    a.erase(std::unique(a.begin(), a.end()), a.end());\n}\n\ntemplate <typename\
+    \ InputIterator, typename BiConsumer>\nauto foreach_adjacent_values(InputIterator\
+    \ first, InputIterator last, BiConsumer f) -> decltype(f(*first++, *last), void())\
+    \ {\n    if (first != last) for (auto itr = first, itl = itr++; itr != last; itl\
+    \ = itr++) f(*itl, *itr);\n}\ntemplate <typename Container, typename BiConsumer>\n\
+    auto foreach_adjacent_values(Container c, BiConsumer f) -> decltype(c.begin(),\
+    \ c.end(), void()){\n    foreach_adjacent_values(c.begin(), c.end(), f);\n}\n\n\
+    \n// ! other utilities\n\n// x <- min(x, y). returns true iff `x` has chenged.\n\
+    template <typename T>\ninline bool chmin(T &x, const T &y) {\n    if (y >= x)\
+    \ return false;\n    x = y;\n    return true;\n}\n// x <- max(x, y). returns true\
+    \ iff `x` has chenged.\ntemplate <typename T>\ninline bool chmax(T &x, const T\
+    \ &y) {\n    if (y <= x) return false;\n    x = y;\n    return true;\n}\n\nnamespace\
     \ suisen {}\nusing namespace suisen;\nusing namespace std;\n#line 2 \"library/template.cpp\"\
     \n\nstruct io_setup {\n    io_setup(int precision = 20) {\n        std::ios::sync_with_stdio(false);\n\
     \        std::cin.tie(nullptr);\n        std::cout << std::fixed << std::setprecision(precision);\n\
@@ -149,7 +170,7 @@ data:
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2021-09-21 22:07:25+09:00'
+  timestamp: '2022-01-15 00:26:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp
