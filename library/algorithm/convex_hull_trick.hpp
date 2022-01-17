@@ -13,23 +13,23 @@ namespace suisen {
         struct Line {
             // f(x)=ax+b,m=max{x|f=argmin_{f' in S}{f'(x)}}
             mutable T a, b, m;
-            Line(const T &a, const T &b, const T &m) : a(a), b(b), m(m) {}
-            bool operator<(const Line<T> &rhs) const { return a < rhs.a; }
-            bool operator<(const T &x) const { return not (m < x); }
+            Line(const T& a, const T& b, const T& m) : a(a), b(b), m(m) {}
+            bool operator<(const Line<T>& rhs) const { return a < rhs.a; }
+            bool operator<(const T& x) const { return not (m < x); }
         };
 
         template <typename T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>
-        inline T div(const T &num, const T &den) {
+        inline T div(const T& num, const T& den) {
             return num / den - ((num ^ den) < 0 and num % den);
         }
         template <typename T, std::enable_if_t<std::negation<std::is_integral<T>>::value, std::nullptr_t> = nullptr>
-        inline T div(const T &num, const T &den) {
+        inline T div(const T& num, const T& den) {
             return num / den;
         }
     }
 
     template <typename T, bool is_min_query = true>
-    class CHT : std::multiset<internal::convex_hull_trick::Line<T>, std::less<>> {
+    class ConvexHullTrick : std::multiset<internal::convex_hull_trick::Line<T>, std::less<>> {
         using iterator = typename std::multiset<internal::convex_hull_trick::Line<T>>::iterator;
         using MultT = safely_multipliable_t<T>;
         using Line = internal::convex_hull_trick::Line<T>;
