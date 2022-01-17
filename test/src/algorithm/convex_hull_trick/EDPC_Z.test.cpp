@@ -5,7 +5,7 @@
 
 #include "library/algorithm/convex_hull_trick.hpp"
 
-using suisen::CHT;
+using suisen::ConvexHullTrick;
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -18,7 +18,7 @@ int main() {
         std::cin >> h[i];
     }
     std::vector<long long> dp(n, 0);
-    CHT<long long> cht;
+    ConvexHullTrick<long long> cht;
     for (int i = 1; i < n; ++i) {
         cht.add_line(-2 * h[i - 1], dp[i - 1] + h[i - 1] * h[i - 1]);
         dp[i] = cht.query(h[i]) + h[i] * h[i] + c;
