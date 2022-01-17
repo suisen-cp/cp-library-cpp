@@ -7,8 +7,8 @@
 #include "library/type_traits/type_traits.hpp"
 
 namespace suisen {
-class BitVector {
-    using u8 = std::uint8_t;
+    class BitVector {
+        using u8 = std::uint8_t;
     public:
         explicit BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L) + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}
         BitVector() : BitVector(0) {}
@@ -16,11 +16,11 @@ class BitVector {
         BitVector(int n, Gen gen) : BitVector(n) {
             build(gen);
         }
-        BitVector& operator=(const BitVector &bv) {
+        BitVector& operator=(const BitVector& bv) {
             n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s = bv.cum_s, bits = bv.bits;
             return *this;
         }
-        BitVector& operator=(BitVector &&bv) {
+        BitVector& operator=(BitVector&& bv) {
             n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = std::move(bv.cum_l), cum_s = std::move(bv.cum_s), bits = std::move(bv.bits);
             return *this;
         }
@@ -82,7 +82,7 @@ class BitVector {
             x = (x & 0b00110011) + ((x >> 2) & 0b00110011);
             return (x & 0b00001111) + (x >> 4);
         }
-};
+    };
 } // namespace suisen
 
 #endif // SUISEN_BIT_VECTOR

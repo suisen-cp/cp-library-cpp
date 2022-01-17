@@ -10,9 +10,8 @@
 #include "library/util/coordinate_compressor.hpp"
 
 namespace suisen {
-template <typename T, int log_max_len = std::numeric_limits<std::make_unsigned_t<T>>::digits>
-class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
-    public:
+    template <typename T, int log_max_len = std::numeric_limits<std::make_unsigned_t<T>>::digits>
+    struct CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         // default constructor
         CompressedWaveletMatrix() noexcept : WaveletMatrix<int, log_max_len>(0) {}
         // builds WaveletMatrix from generating function typed as (int) -> T
@@ -22,7 +21,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         }
         // builds WaveletMatrix from vector
         template <typename U, constraints_t<std::is_constructible<T, U>> = nullptr>
-        CompressedWaveletMatrix(const std::vector<U> &a) : CompressedWaveletMatrix(a.size(), [&a](int i) { return T(a[i]); }) {}
+        CompressedWaveletMatrix(const std::vector<U>& a) : CompressedWaveletMatrix(a.size(), [&a](int i) { return T(a[i]); }) {}
 
         // returns WaveletMatrix[i]
         inline T operator[](int i) const {
@@ -35,7 +34,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         // returns the number of `val` in WaveletMatrix[0, i).
         inline int rank(T val, int i) const {
             int x = comp.comp(val, -1);
-            if (x == -1) return 0; 
+            if (x == -1) return 0;
             return WaveletMatrix<int, log_max_len>::rank(x, i);
         }
         // returns the k'th smallest value in WaveletMatrix[l, r) (k : 0-indexed)
@@ -86,7 +85,7 @@ class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
         }
     private:
         typename CoordinateCompressorBuilder<T>::Compressor comp;
-};
+    };
 } // namespace suisen
 
 

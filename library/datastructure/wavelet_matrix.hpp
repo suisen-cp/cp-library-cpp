@@ -9,9 +9,8 @@
 #include "library/datastructure/bit_vector.hpp"
 
 namespace suisen {
-template <typename T, int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits>
-class WaveletMatrix {
-    public:
+    template <typename T, int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits>
+    struct WaveletMatrix {
         // default constructor
         WaveletMatrix() noexcept : n(0) {}
         // builds WaveletMatrix from generating function typed as (int) -> T
@@ -21,10 +20,10 @@ class WaveletMatrix {
         }
         // builds WaveletMatrix from vector
         template <typename U, constraints_t<std::is_constructible<T, U>> = nullptr>
-        WaveletMatrix(const std::vector<U> &a) : WaveletMatrix(a.size(), [&a](int i) { return T(a[i]); }) {}
+        WaveletMatrix(const std::vector<U>& a) : WaveletMatrix(a.size(), [&a](int i) { return T(a[i]); }) {}
 
         // builds WaveletMatrix from generating function typed as (int) -> T
-        template <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>>  = nullptr>
+        template <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>
         void build(Gen generator) {
             std::vector<T> a(n), l(n), r(n);
             for (int i = 0; i < n; ++i) a[i] = generator(i);
@@ -133,7 +132,7 @@ class WaveletMatrix {
         std::array<BitVector, bit_num> bv;
         std::array<int, bit_num> mid;
 
-        inline void succ(int &l, int &r, const bool b, const int log) const {
+        inline void succ(int& l, int& r, const bool b, const int log) const {
             l = b * mid[log] + bv[log].rank(b, l);
             r = b * mid[log] + bv[log].rank(b, r);
         }
@@ -141,9 +140,7 @@ class WaveletMatrix {
         static constexpr void check_value_bounds(T val) {
             assert((val >> bit_num) == 0);
         }
-};
-
-
+    };
 } // namespace suisen
 
 #endif // SUISEN_WAVELET_MATRIX
