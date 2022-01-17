@@ -124,8 +124,6 @@ data:
   - test/src/graph/bipartite_matching/bipartite_matching.test.cpp
 documentation_of: library/graph/bipartite_matching.hpp
 layout: document
-redirect_from:
-- /library/library/graph/bipartite_matching.hpp
-- /library/library/graph/bipartite_matching.hpp.html
-title: library/graph/bipartite_matching.hpp
+title: Bipartite Matching
 ---
+## Bipartite Matching

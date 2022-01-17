@@ -3,17 +3,17 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/algorithm/rmq_pm1.hpp
-    title: library/algorithm/rmq_pm1.hpp
+    title: Rmq Pm1
   - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
-    title: library/algorithm/rmq_pm1_with_index.hpp
+    title: Rmq Pm1 With Index
   - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
-    title: library/tree/lowest_common_ancestor.hpp
+    title: Lowest Common Ancestor
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
@@ -107,8 +107,6 @@ data:
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
 documentation_of: library/datastructure/sparse_table.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/sparse_table.hpp
-- /library/library/datastructure/sparse_table.hpp.html
-title: library/datastructure/sparse_table.hpp
+title: Sparse Table
 ---
+## Sparse Table

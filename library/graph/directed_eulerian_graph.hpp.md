@@ -85,8 +85,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/directed_eulerian_graph.hpp
 layout: document
-redirect_from:
-- /library/library/graph/directed_eulerian_graph.hpp
-- /library/library/graph/directed_eulerian_graph.hpp.html
-title: library/graph/directed_eulerian_graph.hpp
+title: Directed Eulerian Graph
 ---
+## Directed Eulerian Graph

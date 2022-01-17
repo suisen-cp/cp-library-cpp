@@ -7,13 +7,13 @@ data:
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
-    title: library/math/multi_point_eval.hpp
+    title: Multi Point Eval
   - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
@@ -23,10 +23,10 @@ data:
     title: "Walsh Hadamard \u5909\u63DB"
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
-    title: library/util/default_operator.hpp
+    title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

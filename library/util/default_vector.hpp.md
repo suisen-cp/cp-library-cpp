@@ -53,8 +53,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/default_vector.hpp
 layout: document
-redirect_from:
-- /library/library/util/default_vector.hpp
-- /library/library/util/default_vector.hpp.html
-title: library/util/default_vector.hpp
+title: Default Vector
 ---
+## Default Vector

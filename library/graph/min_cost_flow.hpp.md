@@ -229,8 +229,6 @@ data:
   - test/src/graph/min_cost_flow/abc214_h.test.cpp
 documentation_of: library/graph/min_cost_flow.hpp
 layout: document
-redirect_from:
-- /library/library/graph/min_cost_flow.hpp
-- /library/library/graph/min_cost_flow.hpp.html
-title: library/graph/min_cost_flow.hpp
+title: Min Cost Flow
 ---
+## Min Cost Flow

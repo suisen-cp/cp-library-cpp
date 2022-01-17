@@ -138,8 +138,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/container_utils.hpp
 layout: document
-redirect_from:
-- /library/library/util/container_utils.hpp
-- /library/library/util/container_utils.hpp.html
-title: library/util/container_utils.hpp
+title: Container Utils
 ---
+## Container Utils

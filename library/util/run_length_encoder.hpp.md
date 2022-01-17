@@ -94,8 +94,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/run_length_encoder.hpp
 layout: document
-redirect_from:
-- /library/library/util/run_length_encoder.hpp
-- /library/library/util/run_length_encoder.hpp.html
-title: library/util/run_length_encoder.hpp
+title: Run Length Encoder
 ---
+## Run Length Encoder

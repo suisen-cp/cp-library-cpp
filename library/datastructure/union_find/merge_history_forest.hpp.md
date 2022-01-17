@@ -70,8 +70,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/union_find/merge_history_forest.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/union_find/merge_history_forest.hpp
-- /library/library/datastructure/union_find/merge_history_forest.hpp.html
-title: library/datastructure/union_find/merge_history_forest.hpp
+title: Merge History Forest
 ---
+## Merge History Forest

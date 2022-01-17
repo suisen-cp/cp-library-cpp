@@ -97,8 +97,6 @@ data:
   - test/src/tree/euler_tour/vertex_add_path_sum.test.cpp
 documentation_of: library/tree/euler_tour.hpp
 layout: document
-redirect_from:
-- /library/library/tree/euler_tour.hpp
-- /library/library/tree/euler_tour.hpp.html
-title: library/tree/euler_tour.hpp
+title: Euler Tour
 ---
+## Euler Tour

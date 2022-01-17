@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/string/suffix_automaton.hpp
-    title: library/string/suffix_automaton.hpp
+    title: Suffix Automaton
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -172,8 +172,6 @@ data:
   verifiedWith: []
 documentation_of: library/debug/suffix_automaton.hpp
 layout: document
-redirect_from:
-- /library/library/debug/suffix_automaton.hpp
-- /library/library/debug/suffix_automaton.hpp.html
-title: library/debug/suffix_automaton.hpp
+title: Suffix Automaton
 ---
+## Suffix Automaton

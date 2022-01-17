@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/pow_mods.hpp
-    title: library/math/pow_mods.hpp
+    title: Pow Mods
   - icon: ':heavy_check_mark:'
     path: library/string/rolling_hash.hpp
-    title: library/string/rolling_hash.hpp
+    title: Rolling Hash
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

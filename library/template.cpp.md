@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':warning:'
     path: library/template.hpp
-    title: library/template.hpp
+    title: Template
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

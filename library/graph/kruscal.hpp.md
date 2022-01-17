@@ -85,8 +85,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/kruscal.hpp
 layout: document
-redirect_from:
-- /library/library/graph/kruscal.hpp
-- /library/library/graph/kruscal.hpp.html
-title: library/graph/kruscal.hpp
+title: Kruscal
 ---
+## Kruscal

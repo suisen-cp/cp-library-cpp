@@ -47,8 +47,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/ext_gcd.hpp
 layout: document
-redirect_from:
-- /library/library/number/ext_gcd.hpp
-- /library/library/number/ext_gcd.hpp.html
-title: library/number/ext_gcd.hpp
+title: Ext Gcd
 ---
+## Ext Gcd

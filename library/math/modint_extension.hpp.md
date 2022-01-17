@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
-    title: library/math/sps.hpp
+    title: Sps
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/connectivity2.test.cpp
@@ -70,8 +70,6 @@ data:
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
 documentation_of: library/math/modint_extension.hpp
 layout: document
-redirect_from:
-- /library/library/math/modint_extension.hpp
-- /library/library/math/modint_extension.hpp.html
-title: library/math/modint_extension.hpp
+title: Modint Extension
 ---
+## Modint Extension

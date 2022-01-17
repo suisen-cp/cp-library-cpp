@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/geom/geometry.hpp
-    title: library/geom/geometry.hpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -348,8 +348,6 @@ data:
   - test/src/geom/convex_hull/CGL_4_A.test.cpp
 documentation_of: library/geom/convex_hull.hpp
 layout: document
-redirect_from:
-- /library/library/geom/convex_hull.hpp
-- /library/library/geom/convex_hull.hpp.html
-title: library/geom/convex_hull.hpp
+title: Convex Hull
 ---
+## Convex Hull

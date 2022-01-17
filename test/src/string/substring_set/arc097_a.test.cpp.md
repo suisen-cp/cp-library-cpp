@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/string/substring_set.hpp
-    title: library/string/substring_set.hpp
+    title: Substring Set
   - icon: ':heavy_check_mark:'
     path: library/string/suffix_automaton.hpp
-    title: library/string/suffix_automaton.hpp
+    title: Suffix Automaton
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -5,28 +5,28 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/algorithm/convex_hull_trick.hpp
-      title: library/algorithm/convex_hull_trick.hpp
+      title: Convex Hull Trick
     - icon: ':warning:'
       path: library/algorithm/horn_sat.hpp
       title: Horn SAT
     - icon: ':heavy_check_mark:'
       path: library/algorithm/mo.hpp
-      title: library/algorithm/mo.hpp
+      title: Mo
     - icon: ':heavy_check_mark:'
       path: library/algorithm/monotonic_convex_hull_trick.hpp
-      title: library/algorithm/monotonic_convex_hull_trick.hpp
+      title: Monotonic Convex Hull Trick
     - icon: ':warning:'
       path: library/algorithm/rmq_pm1.hpp
-      title: library/algorithm/rmq_pm1.hpp
+      title: Rmq Pm1
     - icon: ':heavy_check_mark:'
       path: library/algorithm/rmq_pm1_with_index.hpp
-      title: library/algorithm/rmq_pm1_with_index.hpp
+      title: Rmq Pm1 With Index
     - icon: ':heavy_check_mark:'
       path: library/algorithm/sliding_window_minimum.hpp
-      title: library/algorithm/sliding_window_minimum.hpp
+      title: Sliding Window Minimum
     - icon: ':heavy_check_mark:'
       path: library/algorithm/slope_trick.hpp
-      title: library/algorithm/slope_trick.hpp
+      title: Slope Trick
   - name: library/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -43,7 +43,7 @@ data:
       title: GCD Convolution
     - icon: ':heavy_check_mark:'
       path: library/convolution/multi_variate_convolution.hpp
-      title: library/convolution/multi_variate_convolution.hpp
+      title: Multi Variate Convolution
     - icon: ':warning:'
       path: library/convolution/or_convolution.hpp
       title: Bitwise Or Convolution
@@ -65,130 +65,130 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/ZDD.hpp
-      title: library/datastructure/ZDD.hpp
+      title: Zdd
     - icon: ':heavy_check_mark:'
       path: library/datastructure/binary_trie.hpp
-      title: library/datastructure/binary_trie.hpp
+      title: Binary Trie
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bit_vector.hpp
-      title: library/datastructure/bit_vector.hpp
+      title: Bit Vector
     - icon: ':heavy_check_mark:'
       path: library/datastructure/cartesian_tree.hpp
-      title: library/datastructure/cartesian_tree.hpp
+      title: Cartesian Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/compressed_wavelet_matrix.hpp
-      title: library/datastructure/compressed_wavelet_matrix.hpp
+      title: Compressed Wavelet Matrix
     - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
-      title: library/datastructure/dynamic_sequence.hpp
+      title: Dynamic Sequence
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
-      title: library/datastructure/fenwick_tree.hpp
+      title: Fenwick Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree_2d.hpp
-      title: library/datastructure/fenwick_tree_2d.hpp
+      title: Fenwick Tree 2d
     - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_dynamic_sequence.hpp
       title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
         \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_map.hpp
-      title: library/datastructure/lazy_eval_map.hpp
+      title: Lazy Eval Map
     - icon: ':warning:'
       path: library/datastructure/permutation_tree.hpp
-      title: library/datastructure/permutation_tree.hpp
+      title: Permutation Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
-      title: library/datastructure/range_foldable_dynamic_sequence.hpp
+      title: Range Foldable Dynamic Sequence
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_map.hpp
-      title: library/datastructure/range_foldable_map.hpp
+      title: Range Foldable Map
     - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
-      title: library/datastructure/sparse_table.hpp
+      title: Sparse Table
     - icon: ':heavy_check_mark:'
       path: library/datastructure/splay_tree_map.hpp
-      title: library/datastructure/splay_tree_map.hpp
+      title: Splay Tree Map
     - icon: ':warning:'
       path: library/datastructure/splay_tree_set.hpp
-      title: library/datastructure/splay_tree_set.hpp
+      title: Splay Tree Set
     - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
-      title: library/datastructure/wavelet_matrix.hpp
+      title: Wavelet Matrix
   - name: library/datastructure/segment_tree
     pages:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
-      title: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
+      title: Commutative Dual Segment Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
-      title: library/datastructure/segment_tree/dual_segment_tree.hpp
+      title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/lazy_segment_tree.hpp
-      title: library/datastructure/segment_tree/lazy_segment_tree.hpp
+      title: Lazy Segment Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/li_chao_segment_tree.hpp
-      title: library/datastructure/segment_tree/li_chao_segment_tree.hpp
+      title: Li Chao Segment Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree.hpp
-      title: library/datastructure/segment_tree/segment_tree.hpp
+      title: Segment Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree_2d.hpp
-      title: library/datastructure/segment_tree/segment_tree_2d.hpp
+      title: Segment Tree 2d
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-      title: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
+      title: Segment Tree 2d Sparse
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
-      title: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
+      title: Sparse Lazy Segment Tree
     - icon: ':warning:'
       path: library/datastructure/segment_tree/sparse_segment_tree.hpp
-      title: library/datastructure/segment_tree/sparse_segment_tree.hpp
+      title: Sparse Segment Tree
   - name: library/datastructure/union_find
     pages:
     - icon: ':warning:'
       path: library/datastructure/union_find/linked_union_find.hpp
-      title: library/datastructure/union_find/linked_union_find.hpp
+      title: Linked Union Find
     - icon: ':warning:'
       path: library/datastructure/union_find/merge_history_forest.hpp
-      title: library/datastructure/union_find/merge_history_forest.hpp
+      title: Merge History Forest
     - icon: ':warning:'
       path: library/datastructure/union_find/undo_union_find.hpp
-      title: library/datastructure/union_find/undo_union_find.hpp
+      title: Undo Union Find
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/union_find.hpp
-      title: library/datastructure/union_find/union_find.hpp
+      title: Union Find
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/weighted_union_find.hpp
-      title: library/datastructure/union_find/weighted_union_find.hpp
+      title: Weighted Union Find
   - name: library/debug
     pages:
     - icon: ':warning:'
       path: library/debug/suffix_automaton.hpp
-      title: library/debug/suffix_automaton.hpp
+      title: Suffix Automaton
     - icon: ':warning:'
       path: library/debug/tree.hpp
-      title: library/debug/tree.hpp
+      title: Tree
   - name: library/geom
     pages:
     - icon: ':heavy_check_mark:'
       path: library/geom/closest_pair.hpp
-      title: library/geom/closest_pair.hpp
+      title: Closest Pair
     - icon: ':heavy_check_mark:'
       path: library/geom/convex_hull.hpp
-      title: library/geom/convex_hull.hpp
+      title: Convex Hull
     - icon: ':warning:'
       path: library/geom/count_lattice_point.hpp
-      title: library/geom/count_lattice_point.hpp
+      title: Count Lattice Point
     - icon: ':heavy_check_mark:'
       path: library/geom/geometry.hpp
-      title: library/geom/geometry.hpp
+      title: Geometry
     - icon: ':warning:'
       path: library/geom/geometry3d.hpp
-      title: library/geom/geometry3d.hpp
+      title: Geometry3d
     - icon: ':heavy_check_mark:'
       path: library/geom/segment_intersections.hpp
-      title: library/geom/segment_intersections.hpp
+      title: Segment Intersections
   - name: library/graph
     pages:
     - icon: ':warning:'
@@ -199,135 +199,135 @@ data:
       title: library/graph/BFS01.hpp
     - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_matching.hpp
-      title: library/graph/bipartite_matching.hpp
+      title: Bipartite Matching
     - icon: ':heavy_check_mark:'
       path: library/graph/cycle_detection.hpp
-      title: library/graph/cycle_detection.hpp
+      title: Cycle Detection
     - icon: ':warning:'
       path: library/graph/dijkstra.hpp
-      title: library/graph/dijkstra.hpp
+      title: Dijkstra
     - icon: ':warning:'
       path: library/graph/directed_eulerian_graph.hpp
-      title: library/graph/directed_eulerian_graph.hpp
+      title: Directed Eulerian Graph
     - icon: ':warning:'
       path: library/graph/kruscal.hpp
-      title: library/graph/kruscal.hpp
+      title: Kruscal
     - icon: ':heavy_check_mark:'
       path: library/graph/low_link.hpp
-      title: library/graph/low_link.hpp
+      title: Low Link
     - icon: ':heavy_check_mark:'
       path: library/graph/min_cost_flow.hpp
-      title: library/graph/min_cost_flow.hpp
+      title: Min Cost Flow
     - icon: ':warning:'
       path: library/graph/remove_multiedges.hpp
-      title: library/graph/remove_multiedges.hpp
+      title: Remove Multiedges
     - icon: ':heavy_check_mark:'
       path: library/graph/segment_tree_graph.hpp
-      title: library/graph/segment_tree_graph.hpp
+      title: Segment Tree Graph
     - icon: ':warning:'
       path: library/graph/topological_sort.hpp
-      title: library/graph/topological_sort.hpp
+      title: Topological Sort
     - icon: ':heavy_check_mark:'
       path: library/graph/two_edge_connected_components.hpp
-      title: library/graph/two_edge_connected_components.hpp
+      title: Two Edge Connected Components
     - icon: ':warning:'
       path: library/graph/undirected_eulerian_graph.hpp
-      title: library/graph/undirected_eulerian_graph.hpp
+      title: Undirected Eulerian Graph
   - name: library/integral_geom
     pages:
     - icon: ':warning:'
       path: library/integral_geom/convex_hull.hpp
-      title: library/integral_geom/convex_hull.hpp
+      title: Convex Hull
   - name: library/math
     pages:
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
-      title: library/math/bigint.hpp
+      title: Bigint
     - icon: ':heavy_check_mark:'
       path: library/math/bostan_mori.hpp
-      title: library/math/bostan_mori.hpp
+      title: Bostan Mori
     - icon: ':heavy_check_mark:'
       path: library/math/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
     - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
-      title: library/math/factorial.hpp
+      title: Factorial
     - icon: ':heavy_check_mark:'
       path: library/math/fps.hpp
-      title: library/math/fps.hpp
+      title: Fps
     - icon: ':heavy_check_mark:'
       path: library/math/gaussian_elimination.hpp
-      title: library/math/gaussian_elimination.hpp
+      title: Gaussian Elimination
     - icon: ':heavy_check_mark:'
       path: library/math/interpolation.hpp
-      title: library/math/interpolation.hpp
+      title: Interpolation
     - icon: ':heavy_check_mark:'
       path: library/math/inv_mods.hpp
-      title: library/math/inv_mods.hpp
+      title: Inv Mods
     - icon: ':heavy_check_mark:'
       path: library/math/matrix.hpp
-      title: library/math/matrix.hpp
+      title: Matrix
     - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
-      title: library/math/modint_extension.hpp
+      title: Modint Extension
     - icon: ':heavy_check_mark:'
       path: library/math/multi_point_eval.hpp
-      title: library/math/multi_point_eval.hpp
+      title: Multi Point Eval
     - icon: ':heavy_check_mark:'
       path: library/math/polynomial_taylor_shift.hpp
-      title: library/math/polynomial_taylor_shift.hpp
+      title: Polynomial Taylor Shift
     - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
-      title: library/math/pow_mods.hpp
+      title: Pow Mods
     - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
-      title: library/math/sps.hpp
+      title: Sps
     - icon: ':heavy_check_mark:'
       path: library/math/subset_sum.hpp
-      title: library/math/subset_sum.hpp
+      title: Subset Sum
   - name: library/number
     pages:
     - icon: ':warning:'
       path: library/number/anymod_binom.hpp
-      title: library/number/anymod_binom.hpp
+      title: Anymod Binom
     - icon: ':warning:'
       path: library/number/ext_gcd.hpp
-      title: library/number/ext_gcd.hpp
+      title: Ext Gcd
     - icon: ':heavy_check_mark:'
       path: library/number/internal_eratosthenes.hpp
-      title: library/number/internal_eratosthenes.hpp
+      title: Internal Eratosthenes
     - icon: ':heavy_check_mark:'
       path: library/number/linear_sieve.hpp
-      title: library/number/linear_sieve.hpp
+      title: Linear Sieve
     - icon: ':warning:'
       path: library/number/mobius_function.hpp
-      title: library/number/mobius_function.hpp
+      title: Mobius Function
     - icon: ':warning:'
       path: library/number/rational.hpp
-      title: library/number/rational.hpp
+      title: Rational
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes.hpp
-      title: library/number/sieve_of_eratosthenes.hpp
+      title: Sieve Of Eratosthenes
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
-      title: library/number/sieve_of_eratosthenes_constexpr.hpp
+      title: Sieve Of Eratosthenes Constexpr
     - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
-      title: library/number/util.hpp
+      title: Util
   - name: library/string
     pages:
     - icon: ':warning:'
       path: library/string/morris_pratt.hpp
-      title: library/string/morris_pratt.hpp
+      title: Morris Pratt
     - icon: ':heavy_check_mark:'
       path: library/string/rolling_hash.hpp
-      title: library/string/rolling_hash.hpp
+      title: Rolling Hash
     - icon: ':heavy_check_mark:'
       path: library/string/substring_set.hpp
-      title: library/string/substring_set.hpp
+      title: Substring Set
     - icon: ':heavy_check_mark:'
       path: library/string/suffix_automaton.hpp
-      title: library/string/suffix_automaton.hpp
+      title: Suffix Automaton
   - name: library
     pages:
     - icon: ':warning:'
@@ -335,7 +335,7 @@ data:
       title: library/template.cpp
     - icon: ':warning:'
       path: library/template.hpp
-      title: library/template.hpp
+      title: Template
   - name: library/transform
     pages:
     - icon: ':heavy_check_mark:'
@@ -365,83 +365,83 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/tree/centroid_decomposition.hpp
-      title: library/tree/centroid_decomposition.hpp
+      title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
-      title: library/tree/euler_tour.hpp
+      title: Euler Tour
     - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
     - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
-      title: library/tree/lowest_common_ancestor.hpp
+      title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
-      title: library/tree/rerooting.hpp
+      title: Rerooting
   - name: library/type_traits
     pages:
     - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
-      title: library/type_traits/type_traits.hpp
+      title: Type Traits
   - name: library/util
     pages:
     - icon: ':warning:'
       path: library/util/bit_utils.hpp
-      title: library/util/bit_utils.hpp
+      title: Bit Utils
     - icon: ':warning:'
       path: library/util/container_utils.hpp
-      title: library/util/container_utils.hpp
+      title: Container Utils
     - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
-      title: library/util/coordinate_compressor.hpp
+      title: Coordinate Compressor
     - icon: ':warning:'
       path: library/util/cumulative_sum.hpp
-      title: library/util/cumulative_sum.hpp
+      title: Cumulative Sum
     - icon: ':warning:'
       path: library/util/cumulative_sum_2d.hpp
-      title: library/util/cumulative_sum_2d.hpp
+      title: Cumulative Sum 2d
     - icon: ':heavy_check_mark:'
       path: library/util/default_operator.hpp
-      title: library/util/default_operator.hpp
+      title: Default Operator
     - icon: ':warning:'
       path: library/util/default_vector.hpp
-      title: library/util/default_vector.hpp
+      title: Default Vector
     - icon: ':warning:'
       path: library/util/dynamic_bitset.hpp
-      title: library/util/dynamic_bitset.hpp
+      title: Dynamic Bitset
     - icon: ':warning:'
       path: library/util/grid_utils.hpp
-      title: library/util/grid_utils.hpp
+      title: Grid Utils
     - icon: ':warning:'
       path: library/util/iter_util.hpp
-      title: library/util/iter_util.hpp
+      title: Iter Util
     - icon: ':warning:'
       path: library/util/pair_ops.hpp
-      title: library/util/pair_ops.hpp
+      title: Pair Ops
     - icon: ':warning:'
       path: library/util/permutation.hpp
-      title: library/util/permutation.hpp
+      title: Permutation
     - icon: ':heavy_check_mark:'
       path: library/util/range_set.hpp
-      title: library/util/range_set.hpp
+      title: Range Set
     - icon: ':warning:'
       path: library/util/run_length_encoder.hpp
-      title: library/util/run_length_encoder.hpp
+      title: Run Length Encoder
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_hash.hpp
-      title: library/util/tuple_hash.hpp
+      title: Tuple Hash
     - icon: ':heavy_check_mark:'
       path: library/util/update_proxy_object.hpp
-      title: library/util/update_proxy_object.hpp
+      title: Update Proxy Object
     - icon: ':warning:'
       path: library/util/variant_utils.hpp
-      title: library/util/variant_utils.hpp
+      title: Variant Utils
     - icon: ':warning:'
       path: library/util/vector_ops.hpp
-      title: library/util/vector_ops.hpp
+      title: Vector Ops
     - icon: ':warning:'
       path: library/util/zobrist_hash.hpp
-      title: library/util/zobrist_hash.hpp
+      title: Zobrist Hash
   verificationCategories:
   - name: test/src/algorithm/convex_hull_trick
     pages:

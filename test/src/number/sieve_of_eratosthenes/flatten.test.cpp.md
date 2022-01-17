@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
-    title: library/number/internal_eratosthenes.hpp
+    title: Internal Eratosthenes
   - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
-    title: library/number/sieve_of_eratosthenes.hpp
+    title: Sieve Of Eratosthenes
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
-    title: library/util/coordinate_compressor.hpp
+    title: Coordinate Compressor
   - icon: ':heavy_check_mark:'
     path: library/util/range_set.hpp
-    title: library/util/range_set.hpp
+    title: Range Set
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

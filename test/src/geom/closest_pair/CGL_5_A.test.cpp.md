@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/geom/closest_pair.hpp
-    title: library/geom/closest_pair.hpp
+    title: Closest Pair
   - icon: ':heavy_check_mark:'
     path: library/geom/geometry.hpp
-    title: library/geom/geometry.hpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

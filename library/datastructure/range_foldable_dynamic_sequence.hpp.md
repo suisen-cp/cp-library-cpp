@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/dynamic_sequence.hpp
-    title: library/datastructure/dynamic_sequence.hpp
+    title: Dynamic Sequence
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
-    title: library/util/update_proxy_object.hpp
+    title: Update Proxy Object
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
@@ -306,8 +306,6 @@ data:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/datastructure/range_foldable_dynamic_sequence.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/range_foldable_dynamic_sequence.hpp
-- /library/library/datastructure/range_foldable_dynamic_sequence.hpp.html
-title: library/datastructure/range_foldable_dynamic_sequence.hpp
+title: Range Foldable Dynamic Sequence
 ---
+## Range Foldable Dynamic Sequence

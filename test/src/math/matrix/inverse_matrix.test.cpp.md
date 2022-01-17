@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/matrix.hpp
-    title: library/math/matrix.hpp
+    title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

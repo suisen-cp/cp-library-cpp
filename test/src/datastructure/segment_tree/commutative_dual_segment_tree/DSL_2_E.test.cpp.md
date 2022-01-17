@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
-    title: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
+    title: Commutative Dual Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

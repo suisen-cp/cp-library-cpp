@@ -98,8 +98,6 @@ data:
   - test/src/algorithm/mo/abc174_f.test.cpp
 documentation_of: library/algorithm/mo.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/mo.hpp
-- /library/library/algorithm/mo.hpp.html
-title: library/algorithm/mo.hpp
+title: Mo
 ---
+## Mo

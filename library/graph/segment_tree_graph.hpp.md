@@ -114,8 +114,6 @@ data:
   - test/src/graph/segment_tree_graph/flags.test.cpp
 documentation_of: library/graph/segment_tree_graph.hpp
 layout: document
-redirect_from:
-- /library/library/graph/segment_tree_graph.hpp
-- /library/library/graph/segment_tree_graph.hpp.html
-title: library/graph/segment_tree_graph.hpp
+title: Segment Tree Graph
 ---
+## Segment Tree Graph

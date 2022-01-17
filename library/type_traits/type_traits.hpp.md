@@ -4,19 +4,19 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/convex_hull_trick.hpp
-    title: library/algorithm/convex_hull_trick.hpp
+    title: Convex Hull Trick
   - icon: ':heavy_check_mark:'
     path: library/algorithm/monotonic_convex_hull_trick.hpp
-    title: library/algorithm/monotonic_convex_hull_trick.hpp
+    title: Monotonic Convex Hull Trick
   - icon: ':warning:'
     path: library/algorithm/rmq_pm1.hpp
-    title: library/algorithm/rmq_pm1.hpp
+    title: Rmq Pm1
   - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
-    title: library/algorithm/rmq_pm1_with_index.hpp
+    title: Rmq Pm1 With Index
   - icon: ':heavy_check_mark:'
     path: library/algorithm/sliding_window_minimum.hpp
-    title: library/algorithm/sliding_window_minimum.hpp
+    title: Sliding Window Minimum
   - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
@@ -27,86 +27,86 @@ data:
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
-    title: library/datastructure/bit_vector.hpp
+    title: Bit Vector
   - icon: ':heavy_check_mark:'
     path: library/datastructure/cartesian_tree.hpp
-    title: library/datastructure/cartesian_tree.hpp
+    title: Cartesian Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
-    title: library/datastructure/compressed_wavelet_matrix.hpp
+    title: Compressed Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: library/datastructure/dynamic_sequence.hpp
-    title: library/datastructure/dynamic_sequence.hpp
+    title: Dynamic Sequence
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree.hpp
-    title: library/datastructure/fenwick_tree.hpp
+    title: Fenwick Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_map.hpp
-    title: library/datastructure/lazy_eval_map.hpp
+    title: Lazy Eval Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
-    title: library/datastructure/range_foldable_dynamic_sequence.hpp
+    title: Range Foldable Dynamic Sequence
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_map.hpp
-    title: library/datastructure/range_foldable_map.hpp
+    title: Range Foldable Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
-    title: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
+    title: Commutative Dual Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
-    title: library/datastructure/segment_tree/dual_segment_tree.hpp
+    title: Dual Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
-    title: library/datastructure/segment_tree/lazy_segment_tree.hpp
+    title: Lazy Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
-    title: library/datastructure/segment_tree/segment_tree.hpp
+    title: Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-    title: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
+    title: Segment Tree 2d Sparse
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
-    title: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
+    title: Sparse Lazy Segment Tree
   - icon: ':warning:'
     path: library/datastructure/segment_tree/sparse_segment_tree.hpp
-    title: library/datastructure/segment_tree/sparse_segment_tree.hpp
+    title: Sparse Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
-    title: library/datastructure/sparse_table.hpp
+    title: Sparse Table
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
-    title: library/datastructure/union_find/weighted_union_find.hpp
+    title: Weighted Union Find
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
-    title: library/datastructure/wavelet_matrix.hpp
+    title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
-    title: library/geom/segment_intersections.hpp
+    title: Segment Intersections
   - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
-    title: library/number/util.hpp
+    title: Util
   - icon: ':warning:'
     path: library/template.cpp
     title: library/template.cpp
   - icon: ':warning:'
     path: library/template.hpp
-    title: library/template.hpp
+    title: Template
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
   - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
-    title: library/tree/lowest_common_ancestor.hpp
+    title: Lowest Common Ancestor
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
-    title: library/util/coordinate_compressor.hpp
+    title: Coordinate Compressor
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
-    title: library/util/update_proxy_object.hpp
+    title: Update Proxy Object
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
@@ -378,8 +378,6 @@ data:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
-redirect_from:
-- /library/library/type_traits/type_traits.hpp
-- /library/library/type_traits/type_traits.hpp.html
-title: library/type_traits/type_traits.hpp
+title: Type Traits
 ---
+## Type Traits

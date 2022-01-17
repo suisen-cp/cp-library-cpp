@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
-    title: library/math/factorial.hpp
+    title: Factorial
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -213,8 +213,6 @@ data:
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 documentation_of: library/math/polynomial_taylor_shift.hpp
 layout: document
-redirect_from:
-- /library/library/math/polynomial_taylor_shift.hpp
-- /library/library/math/polynomial_taylor_shift.hpp.html
-title: library/math/polynomial_taylor_shift.hpp
+title: Polynomial Taylor Shift
 ---
+## Polynomial Taylor Shift

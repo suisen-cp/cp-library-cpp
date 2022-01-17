@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/util/tuple_hash.hpp
-    title: library/util/tuple_hash.hpp
+    title: Tuple Hash
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -343,8 +343,6 @@ data:
   - test/src/datastructure/ZDD/maximum_independent_set.test.cpp
 documentation_of: library/datastructure/ZDD.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/ZDD.hpp
-- /library/library/datastructure/ZDD.hpp.html
-title: library/datastructure/ZDD.hpp
+title: Zdd
 ---
+## Zdd

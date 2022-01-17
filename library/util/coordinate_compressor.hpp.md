@@ -3,14 +3,14 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
-    title: library/datastructure/compressed_wavelet_matrix.hpp
+    title: Compressed Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
-    title: library/geom/segment_intersections.hpp
+    title: Segment Intersections
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
@@ -257,8 +257,6 @@ data:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
 layout: document
-redirect_from:
-- /library/library/util/coordinate_compressor.hpp
-- /library/library/util/coordinate_compressor.hpp.html
-title: library/util/coordinate_compressor.hpp
+title: Coordinate Compressor
 ---
+## Coordinate Compressor

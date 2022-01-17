@@ -40,8 +40,6 @@ data:
   verifiedWith: []
 documentation_of: library/geom/count_lattice_point.hpp
 layout: document
-redirect_from:
-- /library/library/geom/count_lattice_point.hpp
-- /library/library/geom/count_lattice_point.hpp.html
-title: library/geom/count_lattice_point.hpp
+title: Count Lattice Point
 ---
+## Count Lattice Point

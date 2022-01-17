@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -221,8 +221,6 @@ data:
   - test/src/math/interpolation/cumulative_sum.test.cpp
 documentation_of: library/math/interpolation.hpp
 layout: document
-redirect_from:
-- /library/library/math/interpolation.hpp
-- /library/library/math/interpolation.hpp.html
-title: library/math/interpolation.hpp
+title: Interpolation
 ---
+## Interpolation

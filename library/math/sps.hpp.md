@@ -6,7 +6,7 @@ data:
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
-    title: library/math/modint_extension.hpp
+    title: Modint Extension
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -310,8 +310,6 @@ data:
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
 documentation_of: library/math/sps.hpp
 layout: document
-redirect_from:
-- /library/library/math/sps.hpp
-- /library/library/math/sps.hpp.html
-title: library/math/sps.hpp
+title: Sps
 ---
+## Sps

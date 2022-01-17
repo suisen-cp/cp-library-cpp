@@ -53,8 +53,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/vector_ops.hpp
 layout: document
-redirect_from:
-- /library/library/util/vector_ops.hpp
-- /library/library/util/vector_ops.hpp.html
-title: library/util/vector_ops.hpp
+title: Vector Ops
 ---
+## Vector Ops

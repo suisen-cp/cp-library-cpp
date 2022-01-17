@@ -3,19 +3,19 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree_2d.hpp
-    title: library/datastructure/fenwick_tree_2d.hpp
+    title: Fenwick Tree 2d
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
-    title: library/datastructure/segment_tree/segment_tree.hpp
+    title: Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
-    title: library/util/update_proxy_object.hpp
+    title: Update Proxy Object
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

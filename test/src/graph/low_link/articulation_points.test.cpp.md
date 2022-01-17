@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/low_link.hpp
-    title: library/graph/low_link.hpp
+    title: Low Link
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

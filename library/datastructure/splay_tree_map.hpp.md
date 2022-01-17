@@ -4,13 +4,13 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_map.hpp
-    title: library/datastructure/lazy_eval_map.hpp
+    title: Lazy Eval Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_map.hpp
-    title: library/datastructure/range_foldable_map.hpp
+    title: Range Foldable Map
   - icon: ':warning:'
     path: library/datastructure/splay_tree_set.hpp
-    title: library/datastructure/splay_tree_set.hpp
+    title: Splay Tree Set
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
@@ -321,8 +321,6 @@ data:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
 documentation_of: library/datastructure/splay_tree_map.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/splay_tree_map.hpp
-- /library/library/datastructure/splay_tree_map.hpp.html
-title: library/datastructure/splay_tree_map.hpp
+title: Splay Tree Map
 ---
+## Splay Tree Map

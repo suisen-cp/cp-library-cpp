@@ -46,8 +46,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/topological_sort.hpp
 layout: document
-redirect_from:
-- /library/library/graph/topological_sort.hpp
-- /library/library/graph/topological_sort.hpp.html
-title: library/graph/topological_sort.hpp
+title: Topological Sort
 ---
+## Topological Sort

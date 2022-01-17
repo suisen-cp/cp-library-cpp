@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -190,8 +190,6 @@ data:
   - test/src/math/subset_sum/p_subset_sum.test.cpp
 documentation_of: library/math/subset_sum.hpp
 layout: document
-redirect_from:
-- /library/library/math/subset_sum.hpp
-- /library/library/math/subset_sum.hpp.html
-title: library/math/subset_sum.hpp
+title: Subset Sum
 ---
+## Subset Sum

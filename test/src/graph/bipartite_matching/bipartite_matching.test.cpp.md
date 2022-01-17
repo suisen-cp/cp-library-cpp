@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
-    title: library/graph/bipartite_matching.hpp
+    title: Bipartite Matching
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -107,8 +107,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/permutation.hpp
 layout: document
-redirect_from:
-- /library/library/util/permutation.hpp
-- /library/library/util/permutation.hpp.html
-title: library/util/permutation.hpp
+title: Permutation
 ---
+## Permutation

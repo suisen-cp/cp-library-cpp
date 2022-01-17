@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
@@ -11,7 +11,7 @@ data:
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
-    title: library/datastructure/range_foldable_dynamic_sequence.hpp
+    title: Range Foldable Dynamic Sequence
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
@@ -293,8 +293,6 @@ data:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/datastructure/dynamic_sequence.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/dynamic_sequence.hpp
-- /library/library/datastructure/dynamic_sequence.hpp.html
-title: library/datastructure/dynamic_sequence.hpp
+title: Dynamic Sequence
 ---
+## Dynamic Sequence

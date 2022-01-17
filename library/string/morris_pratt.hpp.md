@@ -71,8 +71,6 @@ data:
   verifiedWith: []
 documentation_of: library/string/morris_pratt.hpp
 layout: document
-redirect_from:
-- /library/library/string/morris_pratt.hpp
-- /library/library/string/morris_pratt.hpp.html
-title: library/string/morris_pratt.hpp
+title: Morris Pratt
 ---
+## Morris Pratt

@@ -3,16 +3,16 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/interpolation.hpp
-    title: library/math/interpolation.hpp
+    title: Interpolation
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   - icon: ':heavy_check_mark:'
     path: library/number/linear_sieve.hpp
-    title: library/number/linear_sieve.hpp
+    title: Linear Sieve
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

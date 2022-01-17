@@ -3,14 +3,14 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
-    title: library/datastructure/bit_vector.hpp
+    title: Bit Vector
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
-    title: library/datastructure/compressed_wavelet_matrix.hpp
+    title: Compressed Wavelet Matrix
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
@@ -282,8 +282,6 @@ data:
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
 documentation_of: library/datastructure/wavelet_matrix.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/wavelet_matrix.hpp
-- /library/library/datastructure/wavelet_matrix.hpp.html
-title: library/datastructure/wavelet_matrix.hpp
+title: Wavelet Matrix
 ---
+## Wavelet Matrix

@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
-    title: library/number/sieve_of_eratosthenes.hpp
+    title: Sieve Of Eratosthenes
   - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes_constexpr.hpp
-    title: library/number/sieve_of_eratosthenes_constexpr.hpp
+    title: Sieve Of Eratosthenes Constexpr
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
@@ -105,8 +105,6 @@ data:
   - test/src/transform/multiple/divide_both.test.cpp
 documentation_of: library/number/internal_eratosthenes.hpp
 layout: document
-redirect_from:
-- /library/library/number/internal_eratosthenes.hpp
-- /library/library/number/internal_eratosthenes.hpp.html
-title: library/number/internal_eratosthenes.hpp
+title: Internal Eratosthenes
 ---
+## Internal Eratosthenes

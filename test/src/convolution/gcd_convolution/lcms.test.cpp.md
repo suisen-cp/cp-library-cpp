@@ -13,7 +13,7 @@ data:
       \u30B9\u5909\u63DB"
   - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
-    title: library/util/default_operator.hpp
+    title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

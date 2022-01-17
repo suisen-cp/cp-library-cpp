@@ -158,8 +158,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/bit_utils.hpp
 layout: document
-redirect_from:
-- /library/library/util/bit_utils.hpp
-- /library/library/util/bit_utils.hpp.html
-title: library/util/bit_utils.hpp
+title: Bit Utils
 ---
+## Bit Utils

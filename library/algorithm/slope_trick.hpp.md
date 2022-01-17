@@ -115,8 +115,6 @@ data:
   - test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
 documentation_of: library/algorithm/slope_trick.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/slope_trick.hpp
-- /library/library/algorithm/slope_trick.hpp.html
-title: library/algorithm/slope_trick.hpp
+title: Slope Trick
 ---
+## Slope Trick

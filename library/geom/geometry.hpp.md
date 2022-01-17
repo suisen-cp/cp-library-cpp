@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/geom/closest_pair.hpp
-    title: library/geom/closest_pair.hpp
+    title: Closest Pair
   - icon: ':heavy_check_mark:'
     path: library/geom/convex_hull.hpp
-    title: library/geom/convex_hull.hpp
+    title: Convex Hull
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/closest_pair/CGL_5_A.test.cpp
@@ -716,8 +716,6 @@ data:
   - test/src/geom/convex_hull/CGL_4_A.test.cpp
 documentation_of: library/geom/geometry.hpp
 layout: document
-redirect_from:
-- /library/library/geom/geometry.hpp
-- /library/library/geom/geometry.hpp.html
-title: library/geom/geometry.hpp
+title: Geometry
 ---
+## Geometry

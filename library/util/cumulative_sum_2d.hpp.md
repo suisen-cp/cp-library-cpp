@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
-    title: library/util/default_operator.hpp
+    title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -62,8 +62,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/cumulative_sum_2d.hpp
 layout: document
-redirect_from:
-- /library/library/util/cumulative_sum_2d.hpp
-- /library/library/util/cumulative_sum_2d.hpp.html
-title: library/util/cumulative_sum_2d.hpp
+title: Cumulative Sum 2d
 ---
+## Cumulative Sum 2d

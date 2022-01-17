@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/string/rolling_hash.hpp
-    title: library/string/rolling_hash.hpp
+    title: Rolling Hash
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/string/rolling_hash/abc141_e.test.cpp
@@ -61,8 +61,6 @@ data:
   - test/src/string/rolling_hash/abc141_e.test.cpp
 documentation_of: library/math/pow_mods.hpp
 layout: document
-redirect_from:
-- /library/library/math/pow_mods.hpp
-- /library/library/math/pow_mods.hpp.html
-title: library/math/pow_mods.hpp
+title: Pow Mods
 ---
+## Pow Mods

@@ -208,8 +208,6 @@ data:
   - test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
 documentation_of: library/math/gaussian_elimination.hpp
 layout: document
-redirect_from:
-- /library/library/math/gaussian_elimination.hpp
-- /library/library/math/gaussian_elimination.hpp.html
-title: library/math/gaussian_elimination.hpp
+title: Gaussian Elimination
 ---
+## Gaussian Elimination

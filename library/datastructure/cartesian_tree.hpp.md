@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -121,8 +121,6 @@ data:
   - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
 documentation_of: library/datastructure/cartesian_tree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/cartesian_tree.hpp
-- /library/library/datastructure/cartesian_tree.hpp.html
-title: library/datastructure/cartesian_tree.hpp
+title: Cartesian Tree
 ---
+## Cartesian Tree

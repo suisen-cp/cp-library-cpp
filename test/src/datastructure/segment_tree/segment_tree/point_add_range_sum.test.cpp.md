@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
-    title: library/datastructure/segment_tree/segment_tree.hpp
+    title: Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
-    title: library/util/update_proxy_object.hpp
+    title: Update Proxy Object
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

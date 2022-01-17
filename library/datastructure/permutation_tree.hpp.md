@@ -179,8 +179,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/permutation_tree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/permutation_tree.hpp
-- /library/library/datastructure/permutation_tree.hpp.html
-title: library/datastructure/permutation_tree.hpp
+title: Permutation Tree
 ---
+## Permutation Tree

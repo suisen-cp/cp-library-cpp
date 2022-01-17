@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/geom/convex_hull.hpp
-    title: library/geom/convex_hull.hpp
+    title: Convex Hull
   - icon: ':heavy_check_mark:'
     path: library/geom/geometry.hpp
-    title: library/geom/geometry.hpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

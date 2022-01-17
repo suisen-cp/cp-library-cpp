@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/template.cpp
@@ -284,8 +284,6 @@ data:
   verifiedWith: []
 documentation_of: library/template.hpp
 layout: document
-redirect_from:
-- /library/library/template.hpp
-- /library/library/template.hpp.html
-title: library/template.hpp
+title: Template
 ---
+## Template

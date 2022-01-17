@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/debug/suffix_automaton.hpp
-    title: library/debug/suffix_automaton.hpp
+    title: Suffix Automaton
   - icon: ':heavy_check_mark:'
     path: library/string/substring_set.hpp
-    title: library/string/substring_set.hpp
+    title: Substring Set
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/string/substring_set/arc097_a.test.cpp
@@ -249,8 +249,6 @@ data:
   - test/src/string/suffix_automaton/yuki430.test.cpp
 documentation_of: library/string/suffix_automaton.hpp
 layout: document
-redirect_from:
-- /library/library/string/suffix_automaton.hpp
-- /library/library/string/suffix_automaton.hpp.html
-title: library/string/suffix_automaton.hpp
+title: Suffix Automaton
 ---
+## Suffix Automaton

@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/number/anymod_binom.hpp
-    title: library/number/anymod_binom.hpp
+    title: Anymod Binom
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/math/interpolation/cumulative_sum.test.cpp
@@ -75,8 +75,6 @@ data:
   - test/src/math/interpolation/cumulative_sum.test.cpp
 documentation_of: library/number/linear_sieve.hpp
 layout: document
-redirect_from:
-- /library/library/number/linear_sieve.hpp
-- /library/library/number/linear_sieve.hpp.html
-title: library/number/linear_sieve.hpp
+title: Linear Sieve
 ---
+## Linear Sieve

@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
-    title: library/datastructure/bit_vector.hpp
+    title: Bit Vector
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
-    title: library/datastructure/wavelet_matrix.hpp
+    title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

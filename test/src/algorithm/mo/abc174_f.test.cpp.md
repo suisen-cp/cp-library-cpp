@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/mo.hpp
-    title: library/algorithm/mo.hpp
+    title: Mo
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

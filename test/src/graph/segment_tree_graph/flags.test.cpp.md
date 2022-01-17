@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/segment_tree_graph.hpp
-    title: library/graph/segment_tree_graph.hpp
+    title: Segment Tree Graph
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

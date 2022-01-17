@@ -3,14 +3,14 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
-    title: library/util/update_proxy_object.hpp
+    title: Update Proxy Object
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-    title: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
+    title: Segment Tree 2d Sparse
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
@@ -195,8 +195,6 @@ data:
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/segment_tree/segment_tree.hpp
-- /library/library/datastructure/segment_tree/segment_tree.hpp.html
-title: library/datastructure/segment_tree/segment_tree.hpp
+title: Segment Tree
 ---
+## Segment Tree

@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
@@ -200,8 +200,6 @@ data:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/math/multi_point_eval.hpp
 layout: document
-redirect_from:
-- /library/library/math/multi_point_eval.hpp
-- /library/library/math/multi_point_eval.hpp.html
-title: library/math/multi_point_eval.hpp
+title: Multi Point Eval
 ---
+## Multi Point Eval

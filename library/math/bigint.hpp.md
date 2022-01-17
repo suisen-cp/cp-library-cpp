@@ -221,8 +221,6 @@ data:
   - test/src/math/bigint/NTL_2_B.test.cpp
 documentation_of: library/math/bigint.hpp
 layout: document
-redirect_from:
-- /library/library/math/bigint.hpp
-- /library/library/math/bigint.hpp.html
-title: library/math/bigint.hpp
+title: Bigint
 ---
+## Bigint

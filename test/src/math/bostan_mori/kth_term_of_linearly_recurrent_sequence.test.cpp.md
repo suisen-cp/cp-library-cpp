@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/bostan_mori.hpp
-    title: library/math/bostan_mori.hpp
+    title: Bostan Mori
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

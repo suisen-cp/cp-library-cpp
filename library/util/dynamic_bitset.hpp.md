@@ -205,8 +205,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/dynamic_bitset.hpp
 layout: document
-redirect_from:
-- /library/library/util/dynamic_bitset.hpp
-- /library/library/util/dynamic_bitset.hpp.html
-title: library/util/dynamic_bitset.hpp
+title: Dynamic Bitset
 ---
+## Dynamic Bitset

@@ -6,13 +6,13 @@ data:
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
-    title: library/math/factorial.hpp
+    title: Factorial
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

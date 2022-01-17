@@ -6,10 +6,10 @@ data:
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
-    title: library/math/modint_extension.hpp
+    title: Modint Extension
   - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
-    title: library/math/sps.hpp
+    title: Sps
   - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
@@ -20,7 +20,7 @@ data:
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
   - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
-    title: library/util/default_operator.hpp
+    title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

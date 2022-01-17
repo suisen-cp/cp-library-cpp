@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/union_find.hpp
-    title: library/datastructure/union_find/union_find.hpp
+    title: Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -71,8 +71,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/union_find/linked_union_find.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/union_find/linked_union_find.hpp
-- /library/library/datastructure/union_find/linked_union_find.hpp.html
-title: library/datastructure/union_find/linked_union_find.hpp
+title: Linked Union Find
 ---
+## Linked Union Find

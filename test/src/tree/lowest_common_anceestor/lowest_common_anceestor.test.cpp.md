@@ -3,16 +3,16 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
-    title: library/algorithm/rmq_pm1_with_index.hpp
+    title: Rmq Pm1 With Index
   - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
-    title: library/datastructure/sparse_table.hpp
+    title: Sparse Table
   - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
-    title: library/tree/lowest_common_ancestor.hpp
+    title: Lowest Common Ancestor
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

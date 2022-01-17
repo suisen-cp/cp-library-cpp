@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/slope_trick.hpp
-    title: library/algorithm/slope_trick.hpp
+    title: Slope Trick
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

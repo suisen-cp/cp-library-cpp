@@ -67,8 +67,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/union_find/undo_union_find.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/union_find/undo_union_find.hpp
-- /library/library/datastructure/union_find/undo_union_find.hpp.html
-title: library/datastructure/union_find/undo_union_find.hpp
+title: Undo Union Find
 ---
+## Undo Union Find

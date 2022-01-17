@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -169,8 +169,6 @@ data:
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
 documentation_of: library/algorithm/monotonic_convex_hull_trick.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/monotonic_convex_hull_trick.hpp
-- /library/library/algorithm/monotonic_convex_hull_trick.hpp.html
-title: library/algorithm/monotonic_convex_hull_trick.hpp
+title: Monotonic Convex Hull Trick
 ---
+## Monotonic Convex Hull Trick

@@ -245,8 +245,6 @@ data:
   - test/src/math/matrix/inverse_matrix.test.cpp
 documentation_of: library/math/matrix.hpp
 layout: document
-redirect_from:
-- /library/library/math/matrix.hpp
-- /library/library/math/matrix.hpp.html
-title: library/math/matrix.hpp
+title: Matrix
 ---
+## Matrix

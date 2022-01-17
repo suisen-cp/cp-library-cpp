@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_2d.hpp
-    title: library/datastructure/segment_tree/segment_tree_2d.hpp
+    title: Segment Tree 2d
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

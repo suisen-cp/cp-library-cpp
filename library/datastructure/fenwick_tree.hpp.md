@@ -3,11 +3,11 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
-    title: library/geom/segment_intersections.hpp
+    title: Segment Intersections
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
@@ -143,8 +143,6 @@ data:
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
 documentation_of: library/datastructure/fenwick_tree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/fenwick_tree.hpp
-- /library/library/datastructure/fenwick_tree.hpp.html
-title: library/datastructure/fenwick_tree.hpp
+title: Fenwick Tree
 ---
+## Fenwick Tree

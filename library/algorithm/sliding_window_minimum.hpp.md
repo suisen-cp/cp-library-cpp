@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -105,8 +105,6 @@ data:
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
 documentation_of: library/algorithm/sliding_window_minimum.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/sliding_window_minimum.hpp
-- /library/library/algorithm/sliding_window_minimum.hpp.html
-title: library/algorithm/sliding_window_minimum.hpp
+title: Sliding Window Minimum
 ---
+## Sliding Window Minimum

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
-    title: library/util/default_operator.hpp
+    title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -101,8 +101,6 @@ data:
   - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
 documentation_of: library/convolution/multi_variate_convolution.hpp
 layout: document
-redirect_from:
-- /library/library/convolution/multi_variate_convolution.hpp
-- /library/library/convolution/multi_variate_convolution.hpp.html
-title: library/convolution/multi_variate_convolution.hpp
+title: Multi Variate Convolution
 ---
+## Multi Variate Convolution

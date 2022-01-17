@@ -143,8 +143,6 @@ data:
   - test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
 documentation_of: library/datastructure/segment_tree/li_chao_segment_tree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/segment_tree/li_chao_segment_tree.hpp
-- /library/library/datastructure/segment_tree/li_chao_segment_tree.hpp.html
-title: library/datastructure/segment_tree/li_chao_segment_tree.hpp
+title: Li Chao Segment Tree
 ---
+## Li Chao Segment Tree

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/tree/rerooting.hpp
-    title: library/tree/rerooting.hpp
+    title: Rerooting
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

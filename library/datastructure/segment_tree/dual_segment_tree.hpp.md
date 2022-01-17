@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
-    title: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
+    title: Commutative Dual Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -64,8 +64,6 @@ data:
   - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
 documentation_of: library/datastructure/segment_tree/dual_segment_tree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/segment_tree/dual_segment_tree.hpp
-- /library/library/datastructure/segment_tree/dual_segment_tree.hpp.html
-title: library/datastructure/segment_tree/dual_segment_tree.hpp
+title: Dual Segment Tree
 ---
+## Dual Segment Tree

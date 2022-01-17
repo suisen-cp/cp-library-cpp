@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree.hpp
-    title: library/datastructure/fenwick_tree.hpp
+    title: Fenwick Tree
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
-    title: library/util/coordinate_compressor.hpp
+    title: Coordinate Compressor
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -224,8 +224,6 @@ data:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/geom/segment_intersections.hpp
 layout: document
-redirect_from:
-- /library/library/geom/segment_intersections.hpp
-- /library/library/geom/segment_intersections.hpp.html
-title: library/geom/segment_intersections.hpp
+title: Segment Intersections
 ---
+## Segment Intersections

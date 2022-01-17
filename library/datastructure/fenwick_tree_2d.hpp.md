@@ -75,8 +75,6 @@ data:
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
 documentation_of: library/datastructure/fenwick_tree_2d.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/fenwick_tree_2d.hpp
-- /library/library/datastructure/fenwick_tree_2d.hpp.html
-title: library/datastructure/fenwick_tree_2d.hpp
+title: Fenwick Tree 2d
 ---
+## Fenwick Tree 2d

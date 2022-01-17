@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
-    title: library/number/internal_eratosthenes.hpp
+    title: Internal Eratosthenes
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -233,8 +233,6 @@ data:
   - test/src/transform/multiple/divide_both.test.cpp
 documentation_of: library/number/sieve_of_eratosthenes.hpp
 layout: document
-redirect_from:
-- /library/library/number/sieve_of_eratosthenes.hpp
-- /library/library/number/sieve_of_eratosthenes.hpp.html
-title: library/number/sieve_of_eratosthenes.hpp
+title: Sieve Of Eratosthenes
 ---
+## Sieve Of Eratosthenes

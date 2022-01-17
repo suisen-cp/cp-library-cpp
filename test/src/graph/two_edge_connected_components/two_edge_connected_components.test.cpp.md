@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/low_link.hpp
-    title: library/graph/low_link.hpp
+    title: Low Link
   - icon: ':heavy_check_mark:'
     path: library/graph/two_edge_connected_components.hpp
-    title: library/graph/two_edge_connected_components.hpp
+    title: Two Edge Connected Components
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

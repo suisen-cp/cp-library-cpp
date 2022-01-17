@@ -111,8 +111,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/zobrist_hash.hpp
 layout: document
-redirect_from:
-- /library/library/util/zobrist_hash.hpp
-- /library/library/util/zobrist_hash.hpp.html
-title: library/util/zobrist_hash.hpp
+title: Zobrist Hash
 ---
+## Zobrist Hash

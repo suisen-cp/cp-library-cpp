@@ -13,7 +13,7 @@ data:
     title: GCD Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution.hpp
-    title: library/convolution/multi_variate_convolution.hpp
+    title: Multi Variate Convolution
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
@@ -45,10 +45,10 @@ data:
     title: "Walsh Hadamard \u5909\u63DB"
   - icon: ':warning:'
     path: library/util/cumulative_sum.hpp
-    title: library/util/cumulative_sum.hpp
+    title: Cumulative Sum
   - icon: ':warning:'
     path: library/util/cumulative_sum_2d.hpp
-    title: library/util/cumulative_sum_2d.hpp
+    title: Cumulative Sum 2d
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/and_convolution/and_convolution.test.cpp
@@ -148,8 +148,6 @@ data:
   - test/src/convolution/and_convolution/and_convolution.test.cpp
 documentation_of: library/util/default_operator.hpp
 layout: document
-redirect_from:
-- /library/library/util/default_operator.hpp
-- /library/library/util/default_operator.hpp.html
-title: library/util/default_operator.hpp
+title: Default Operator
 ---
+## Default Operator

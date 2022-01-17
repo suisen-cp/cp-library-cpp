@@ -32,8 +32,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/remove_multiedges.hpp
 layout: document
-redirect_from:
-- /library/library/graph/remove_multiedges.hpp
-- /library/library/graph/remove_multiedges.hpp.html
-title: library/graph/remove_multiedges.hpp
+title: Remove Multiedges
 ---
+## Remove Multiedges

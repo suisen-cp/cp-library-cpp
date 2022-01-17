@@ -7,7 +7,7 @@ data:
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
-    title: library/math/polynomial_taylor_shift.hpp
+    title: Polynomial Taylor Shift
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/bernoulli_number.test.cpp
@@ -91,8 +91,6 @@ data:
   - test/src/math/common_sequences/stirling_number2.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document
-redirect_from:
-- /library/library/math/factorial.hpp
-- /library/library/math/factorial.hpp.html
-title: library/math/factorial.hpp
+title: Factorial
 ---
+## Factorial

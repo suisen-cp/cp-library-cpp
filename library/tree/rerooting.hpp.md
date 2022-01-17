@@ -105,8 +105,6 @@ data:
   - test/src/tree/rerooting/abc222_f.test.cpp
 documentation_of: library/tree/rerooting.hpp
 layout: document
-redirect_from:
-- /library/library/tree/rerooting.hpp
-- /library/library/tree/rerooting.hpp.html
-title: library/tree/rerooting.hpp
+title: Rerooting
 ---
+## Rerooting

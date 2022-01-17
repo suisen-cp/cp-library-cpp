@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/min_cost_flow.hpp
-    title: library/graph/min_cost_flow.hpp
+    title: Min Cost Flow
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

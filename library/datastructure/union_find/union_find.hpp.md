@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/datastructure/union_find/linked_union_find.hpp
-    title: library/datastructure/union_find/linked_union_find.hpp
+    title: Linked Union Find
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
@@ -70,8 +70,6 @@ data:
   - test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
 documentation_of: library/datastructure/union_find/union_find.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/union_find/union_find.hpp
-- /library/library/datastructure/union_find/union_find.hpp.html
-title: library/datastructure/union_find/union_find.hpp
+title: Union Find
 ---
+## Union Find

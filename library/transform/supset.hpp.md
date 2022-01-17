@@ -7,7 +7,7 @@ data:
       \u5909\u63DB (\u4EEE\u79F0)"
   - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
-    title: library/util/default_operator.hpp
+    title: Default Operator
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp

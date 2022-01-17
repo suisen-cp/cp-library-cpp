@@ -133,8 +133,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/grid_utils.hpp
 layout: document
-redirect_from:
-- /library/library/util/grid_utils.hpp
-- /library/library/util/grid_utils.hpp.html
-title: library/util/grid_utils.hpp
+title: Grid Utils
 ---
+## Grid Utils

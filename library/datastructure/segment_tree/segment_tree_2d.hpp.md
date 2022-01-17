@@ -89,8 +89,6 @@ data:
   - test/src/datastructure/segment_tree/segment_tree_2d/point_add_range_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree_2d.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/segment_tree/segment_tree_2d.hpp
-- /library/library/datastructure/segment_tree/segment_tree_2d.hpp.html
-title: library/datastructure/segment_tree/segment_tree_2d.hpp
+title: Segment Tree 2d
 ---
+## Segment Tree 2d

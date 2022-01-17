@@ -65,8 +65,6 @@ data:
   verifiedWith: []
 documentation_of: library/integral_geom/convex_hull.hpp
 layout: document
-redirect_from:
-- /library/library/integral_geom/convex_hull.hpp
-- /library/library/integral_geom/convex_hull.hpp.html
-title: library/integral_geom/convex_hull.hpp
+title: Convex Hull
 ---
+## Convex Hull

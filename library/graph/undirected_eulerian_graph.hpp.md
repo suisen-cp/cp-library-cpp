@@ -89,8 +89,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/undirected_eulerian_graph.hpp
 layout: document
-redirect_from:
-- /library/library/graph/undirected_eulerian_graph.hpp
-- /library/library/graph/undirected_eulerian_graph.hpp.html
-title: library/graph/undirected_eulerian_graph.hpp
+title: Undirected Eulerian Graph
 ---
+## Undirected Eulerian Graph

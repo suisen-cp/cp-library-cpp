@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/li_chao_segment_tree.hpp
-    title: library/datastructure/segment_tree/li_chao_segment_tree.hpp
+    title: Li Chao Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

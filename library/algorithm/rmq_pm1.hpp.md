@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
-    title: library/datastructure/sparse_table.hpp
+    title: Sparse Table
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -148,8 +148,6 @@ data:
   verifiedWith: []
 documentation_of: library/algorithm/rmq_pm1.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/rmq_pm1.hpp
-- /library/library/algorithm/rmq_pm1.hpp.html
-title: library/algorithm/rmq_pm1.hpp
+title: Rmq Pm1
 ---
+## Rmq Pm1

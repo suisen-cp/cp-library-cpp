@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/geom/geometry.hpp
-    title: library/geom/geometry.hpp
+    title: Geometry
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -367,8 +367,6 @@ data:
   - test/src/geom/closest_pair/CGL_5_A.test.cpp
 documentation_of: library/geom/closest_pair.hpp
 layout: document
-redirect_from:
-- /library/library/geom/closest_pair.hpp
-- /library/library/geom/closest_pair.hpp.html
-title: library/geom/closest_pair.hpp
+title: Closest Pair
 ---
+## Closest Pair

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/gaussian_elimination.hpp
-    title: library/math/gaussian_elimination.hpp
+    title: Gaussian Elimination
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

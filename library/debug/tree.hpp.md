@@ -290,8 +290,6 @@ data:
   verifiedWith: []
 documentation_of: library/debug/tree.hpp
 layout: document
-redirect_from:
-- /library/library/debug/tree.hpp
-- /library/library/debug/tree.hpp.html
-title: library/debug/tree.hpp
+title: Tree
 ---
+## Tree

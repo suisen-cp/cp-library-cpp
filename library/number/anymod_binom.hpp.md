@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/number/linear_sieve.hpp
-    title: library/number/linear_sieve.hpp
+    title: Linear Sieve
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -132,8 +132,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/anymod_binom.hpp
 layout: document
-redirect_from:
-- /library/library/number/anymod_binom.hpp
-- /library/library/number/anymod_binom.hpp.html
-title: library/number/anymod_binom.hpp
+title: Anymod Binom
 ---
+## Anymod Binom

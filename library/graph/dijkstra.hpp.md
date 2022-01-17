@@ -67,8 +67,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/dijkstra.hpp
 layout: document
-redirect_from:
-- /library/library/graph/dijkstra.hpp
-- /library/library/graph/dijkstra.hpp.html
-title: library/graph/dijkstra.hpp
+title: Dijkstra
 ---
+## Dijkstra

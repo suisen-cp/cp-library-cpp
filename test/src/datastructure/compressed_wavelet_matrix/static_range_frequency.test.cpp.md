@@ -3,19 +3,19 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
-    title: library/datastructure/bit_vector.hpp
+    title: Bit Vector
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
-    title: library/datastructure/compressed_wavelet_matrix.hpp
+    title: Compressed Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
-    title: library/datastructure/wavelet_matrix.hpp
+    title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
-    title: library/util/coordinate_compressor.hpp
+    title: Coordinate Compressor
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

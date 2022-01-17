@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
-    title: library/util/default_operator.hpp
+    title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -54,8 +54,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/cumulative_sum.hpp
 layout: document
-redirect_from:
-- /library/library/util/cumulative_sum.hpp
-- /library/library/util/cumulative_sum.hpp.html
-title: library/util/cumulative_sum.hpp
+title: Cumulative Sum
 ---
+## Cumulative Sum

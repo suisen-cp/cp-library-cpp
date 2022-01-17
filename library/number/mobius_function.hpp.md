@@ -71,8 +71,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/mobius_function.hpp
 layout: document
-redirect_from:
-- /library/library/number/mobius_function.hpp
-- /library/library/number/mobius_function.hpp.html
-title: library/number/mobius_function.hpp
+title: Mobius Function
 ---
+## Mobius Function

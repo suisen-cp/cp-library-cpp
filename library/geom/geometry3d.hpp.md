@@ -304,8 +304,6 @@ data:
   verifiedWith: []
 documentation_of: library/geom/geometry3d.hpp
 layout: document
-redirect_from:
-- /library/library/geom/geometry3d.hpp
-- /library/library/geom/geometry3d.hpp.html
-title: library/geom/geometry3d.hpp
+title: Geometry3d
 ---
+## Geometry3d

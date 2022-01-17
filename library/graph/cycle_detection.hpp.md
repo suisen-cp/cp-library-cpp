@@ -107,8 +107,6 @@ data:
   - test/src/graph/cycle_detection/cycle_detection.test.cpp
 documentation_of: library/graph/cycle_detection.hpp
 layout: document
-redirect_from:
-- /library/library/graph/cycle_detection.hpp
-- /library/library/graph/cycle_detection.hpp.html
-title: library/graph/cycle_detection.hpp
+title: Cycle Detection
 ---
+## Cycle Detection

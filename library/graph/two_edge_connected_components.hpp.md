@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/low_link.hpp
-    title: library/graph/low_link.hpp
+    title: Low Link
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -101,8 +101,6 @@ data:
   - test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
 documentation_of: library/graph/two_edge_connected_components.hpp
 layout: document
-redirect_from:
-- /library/library/graph/two_edge_connected_components.hpp
-- /library/library/graph/two_edge_connected_components.hpp.html
-title: library/graph/two_edge_connected_components.hpp
+title: Two Edge Connected Components
 ---
+## Two Edge Connected Components

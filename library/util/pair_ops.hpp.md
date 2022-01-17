@@ -51,8 +51,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/pair_ops.hpp
 layout: document
-redirect_from:
-- /library/library/util/pair_ops.hpp
-- /library/library/util/pair_ops.hpp.html
-title: library/util/pair_ops.hpp
+title: Pair Ops
 ---
+## Pair Ops

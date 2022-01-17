@@ -179,8 +179,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/iter_util.hpp
 layout: document
-redirect_from:
-- /library/library/util/iter_util.hpp
-- /library/library/util/iter_util.hpp.html
-title: library/util/iter_util.hpp
+title: Iter Util
 ---
+## Iter Util

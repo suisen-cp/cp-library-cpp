@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/graph/two_edge_connected_components.hpp
-    title: library/graph/two_edge_connected_components.hpp
+    title: Two Edge Connected Components
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/low_link/articulation_points.test.cpp
@@ -93,8 +93,6 @@ data:
   - test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
 documentation_of: library/graph/low_link.hpp
 layout: document
-redirect_from:
-- /library/library/graph/low_link.hpp
-- /library/library/graph/low_link.hpp.html
-title: library/graph/low_link.hpp
+title: Low Link
 ---
+## Low Link

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
@@ -11,28 +11,28 @@ data:
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_map.hpp
-    title: library/datastructure/lazy_eval_map.hpp
+    title: Lazy Eval Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
-    title: library/datastructure/range_foldable_dynamic_sequence.hpp
+    title: Range Foldable Dynamic Sequence
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_map.hpp
-    title: library/datastructure/range_foldable_map.hpp
+    title: Range Foldable Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
-    title: library/datastructure/segment_tree/lazy_segment_tree.hpp
+    title: Lazy Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
-    title: library/datastructure/segment_tree/segment_tree.hpp
+    title: Segment Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-    title: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
+    title: Segment Tree 2d Sparse
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
-    title: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
+    title: Sparse Lazy Segment Tree
   - icon: ':warning:'
     path: library/datastructure/segment_tree/sparse_segment_tree.hpp
-    title: library/datastructure/segment_tree/sparse_segment_tree.hpp
+    title: Sparse Segment Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
@@ -170,8 +170,6 @@ data:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
 documentation_of: library/util/update_proxy_object.hpp
 layout: document
-redirect_from:
-- /library/library/util/update_proxy_object.hpp
-- /library/library/util/update_proxy_object.hpp.html
-title: library/util/update_proxy_object.hpp
+title: Update Proxy Object
 ---
+## Update Proxy Object

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/splay_tree_map.hpp
-    title: library/datastructure/splay_tree_map.hpp
+    title: Splay Tree Map
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -217,8 +217,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/splay_tree_set.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/splay_tree_set.hpp
-- /library/library/datastructure/splay_tree_set.hpp.html
-title: library/datastructure/splay_tree_set.hpp
+title: Splay Tree Set
 ---
+## Splay Tree Set

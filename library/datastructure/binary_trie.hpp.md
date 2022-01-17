@@ -231,8 +231,6 @@ data:
   - test/src/datastructure/binary_trie/set_xor_min.test.cpp
 documentation_of: library/datastructure/binary_trie.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/binary_trie.hpp
-- /library/library/datastructure/binary_trie.hpp.html
-title: library/datastructure/binary_trie.hpp
+title: Binary Trie
 ---
+## Binary Trie

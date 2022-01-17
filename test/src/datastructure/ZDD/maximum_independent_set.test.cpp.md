@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/ZDD.hpp
-    title: library/datastructure/ZDD.hpp
+    title: Zdd
   - icon: ':heavy_check_mark:'
     path: library/util/tuple_hash.hpp
-    title: library/util/tuple_hash.hpp
+    title: Tuple Hash
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

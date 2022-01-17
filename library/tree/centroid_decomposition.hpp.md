@@ -143,8 +143,6 @@ data:
   - test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
 documentation_of: library/tree/centroid_decomposition.hpp
 layout: document
-redirect_from:
-- /library/library/tree/centroid_decomposition.hpp
-- /library/library/tree/centroid_decomposition.hpp.html
-title: library/tree/centroid_decomposition.hpp
+title: Centroid Decomposition
 ---
+## Centroid Decomposition

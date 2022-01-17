@@ -193,8 +193,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/rational.hpp
 layout: document
-redirect_from:
-- /library/library/number/rational.hpp
-- /library/library/number/rational.hpp.html
-title: library/number/rational.hpp
+title: Rational
 ---
+## Rational

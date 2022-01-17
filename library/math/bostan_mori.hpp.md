@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: library/math/inv_mods.hpp
+    title: Inv Mods
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -198,8 +198,6 @@ data:
   - test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: library/math/bostan_mori.hpp
 layout: document
-redirect_from:
-- /library/library/math/bostan_mori.hpp
-- /library/library/math/bostan_mori.hpp.html
-title: library/math/bostan_mori.hpp
+title: Bostan Mori
 ---
+## Bostan Mori

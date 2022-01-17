@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -148,8 +148,6 @@ data:
   - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
 documentation_of: library/datastructure/union_find/weighted_union_find.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/union_find/weighted_union_find.hpp
-- /library/library/datastructure/union_find/weighted_union_find.hpp.html
-title: library/datastructure/union_find/weighted_union_find.hpp
+title: Weighted Union Find
 ---
+## Weighted Union Find

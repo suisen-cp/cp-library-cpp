@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/string/suffix_automaton.hpp
-    title: library/string/suffix_automaton.hpp
+    title: Suffix Automaton
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -330,8 +330,6 @@ data:
   - test/src/string/substring_set/arc097_a.test.cpp
 documentation_of: library/string/substring_set.hpp
 layout: document
-redirect_from:
-- /library/library/string/substring_set.hpp
-- /library/library/string/substring_set.hpp.html
-title: library/string/substring_set.hpp
+title: Substring Set
 ---
+## Substring Set

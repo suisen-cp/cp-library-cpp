@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/bigint.hpp
-    title: library/math/bigint.hpp
+    title: Bigint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

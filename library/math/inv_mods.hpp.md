@@ -8,25 +8,25 @@ data:
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
     path: library/math/bostan_mori.hpp
-    title: library/math/bostan_mori.hpp
+    title: Bostan Mori
   - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: library/math/fps.hpp
+    title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/interpolation.hpp
-    title: library/math/interpolation.hpp
+    title: Interpolation
   - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
-    title: library/math/multi_point_eval.hpp
+    title: Multi Point Eval
   - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
-    title: library/math/polynomial_taylor_shift.hpp
+    title: Polynomial Taylor Shift
   - icon: ':heavy_check_mark:'
     path: library/math/subset_sum.hpp
-    title: library/math/subset_sum.hpp
+    title: Subset Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
@@ -144,8 +144,6 @@ data:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/math/inv_mods.hpp
 layout: document
-redirect_from:
-- /library/library/math/inv_mods.hpp
-- /library/library/math/inv_mods.hpp.html
-title: library/math/inv_mods.hpp
+title: Inv Mods
 ---
+## Inv Mods

@@ -145,8 +145,6 @@ data:
   - test/src/util/range_set/yuki674.test.cpp
 documentation_of: library/util/range_set.hpp
 layout: document
-redirect_from:
-- /library/library/util/range_set.hpp
-- /library/library/util/range_set.hpp.html
-title: library/util/range_set.hpp
+title: Range Set
 ---
+## Range Set

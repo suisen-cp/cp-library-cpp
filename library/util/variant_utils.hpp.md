@@ -39,8 +39,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/variant_utils.hpp
 layout: document
-redirect_from:
-- /library/library/util/variant_utils.hpp
-- /library/library/util/variant_utils.hpp.html
-title: library/util/variant_utils.hpp
+title: Variant Utils
 ---
+## Variant Utils

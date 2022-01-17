@@ -3,22 +3,22 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_map.hpp
-    title: library/datastructure/lazy_eval_map.hpp
+    title: Lazy Eval Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_map.hpp
-    title: library/datastructure/range_foldable_map.hpp
+    title: Range Foldable Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/splay_tree_map.hpp
-    title: library/datastructure/splay_tree_map.hpp
+    title: Splay Tree Map
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
-    title: library/type_traits/type_traits.hpp
+    title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
-    title: library/util/coordinate_compressor.hpp
+    title: Coordinate Compressor
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
-    title: library/util/update_proxy_object.hpp
+    title: Update Proxy Object
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
