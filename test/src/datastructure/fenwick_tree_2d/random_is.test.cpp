@@ -4,11 +4,18 @@
 #include <atcoder/modint>
 
 #include "library/math/inv_mods.hpp"
-#include "library/datastructure/segment_tree.hpp"
+#include "library/datastructure/segment_tree/segment_tree.hpp"
 #include "library/datastructure/fenwick_tree_2d.hpp"
 
 using namespace suisen;
 using mint = atcoder::modint1000000007;
+
+mint op(mint x, mint y) {
+    return x + y;
+}
+mint e() {
+    return 0;
+}
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -24,8 +31,8 @@ int main() {
     a.insert(a.begin(), 0);
     a.insert(a.end(), n + 1);
 
-    std::vector dp_segs(n + 2, SegmentTree(n + 2, mint(0), std::plus<mint>()));
-    std::vector pd_segs(n + 2, SegmentTree(n + 2, mint(0), std::plus<mint>()));
+    std::vector dp_segs(n + 2, SegmentTree<mint, op, e>(n + 2));
+    std::vector pd_segs(n + 2, SegmentTree<mint, op, e>(n + 2));
 
     FenwickTree2D<int> ft_point(n + 2, n + 2);
     for (int i = 1; i <= n; ++i) ++ft_point[{i, a[i]}];
