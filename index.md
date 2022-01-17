@@ -76,21 +76,15 @@ data:
       path: library/datastructure/cartesian_tree.hpp
       title: library/datastructure/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
-      path: library/datastructure/commutative_dual_segment_tree.hpp
-      title: library/datastructure/commutative_dual_segment_tree.hpp
-    - icon: ':heavy_check_mark:'
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: library/datastructure/compressed_wavelet_matrix.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/dual_segment_tree.hpp
-      title: library/datastructure/dual_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
       title: library/datastructure/dynamic_sequence.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
       title: library/datastructure/fenwick_tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/datastructure/fenwick_tree_2d.hpp
       title: library/datastructure/fenwick_tree_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -100,15 +94,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_map.hpp
       title: library/datastructure/lazy_eval_map.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/lazy_segment_tree.hpp
-      title: library/datastructure/lazy_segment_tree.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/li_chao_segment_tree.hpp
-      title: library/datastructure/li_chao_segment_tree.hpp
-    - icon: ':warning:'
-      path: library/datastructure/linked_union_find.hpp
-      title: library/datastructure/linked_union_find.hpp
     - icon: ':warning:'
       path: library/datastructure/permutation_tree.hpp
       title: library/datastructure/permutation_tree.hpp
@@ -119,21 +104,6 @@ data:
       path: library/datastructure/range_foldable_map.hpp
       title: library/datastructure/range_foldable_map.hpp
     - icon: ':heavy_check_mark:'
-      path: library/datastructure/segment_tree.hpp
-      title: library/datastructure/segment_tree.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/segment_tree_2d.hpp
-      title: library/datastructure/segment_tree_2d.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/segment_tree_2d_sparse.hpp
-      title: library/datastructure/segment_tree_2d_sparse.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/sparse_lazy_segment_tree.hpp
-      title: library/datastructure/sparse_lazy_segment_tree.hpp
-    - icon: ':warning:'
-      path: library/datastructure/sparse_segment_tree.hpp
-      title: library/datastructure/sparse_segment_tree.hpp
-    - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: library/datastructure/sparse_table.hpp
     - icon: ':heavy_check_mark:'
@@ -142,18 +112,55 @@ data:
     - icon: ':warning:'
       path: library/datastructure/splay_tree_set.hpp
       title: library/datastructure/splay_tree_set.hpp
-    - icon: ':warning:'
-      path: library/datastructure/undo_union_find.hpp
-      title: library/datastructure/undo_union_find.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/union_find.hpp
-      title: library/datastructure/union_find.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
       title: library/datastructure/wavelet_matrix.hpp
+  - name: library/datastructure/segment_tree
+    pages:
     - icon: ':heavy_check_mark:'
-      path: library/datastructure/weighted_union_find.hpp
-      title: library/datastructure/weighted_union_find.hpp
+      path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
+      title: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree/dual_segment_tree.hpp
+      title: library/datastructure/segment_tree/dual_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree/lazy_segment_tree.hpp
+      title: library/datastructure/segment_tree/lazy_segment_tree.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree/li_chao_segment_tree.hpp
+      title: library/datastructure/segment_tree/li_chao_segment_tree.hpp
+    - icon: ':question:'
+      path: library/datastructure/segment_tree/segment_tree.hpp
+      title: library/datastructure/segment_tree/segment_tree.hpp
+    - icon: ':x:'
+      path: library/datastructure/segment_tree/segment_tree_2d.hpp
+      title: library/datastructure/segment_tree/segment_tree_2d.hpp
+    - icon: ':x:'
+      path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
+      title: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
+    - icon: ':x:'
+      path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
+      title: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
+    - icon: ':warning:'
+      path: library/datastructure/segment_tree/sparse_segment_tree.hpp
+      title: library/datastructure/segment_tree/sparse_segment_tree.hpp
+  - name: library/datastructure/union_find
+    pages:
+    - icon: ':warning:'
+      path: library/datastructure/union_find/linked_union_find.hpp
+      title: library/datastructure/union_find/linked_union_find.hpp
+    - icon: ':warning:'
+      path: library/datastructure/union_find/merge_history_forest.hpp
+      title: library/datastructure/union_find/merge_history_forest.hpp
+    - icon: ':warning:'
+      path: library/datastructure/union_find/undo_union_find.hpp
+      title: library/datastructure/union_find/undo_union_find.hpp
+    - icon: ':x:'
+      path: library/datastructure/union_find/union_find.hpp
+      title: library/datastructure/union_find/union_find.hpp
+    - icon: ':x:'
+      path: library/datastructure/union_find/weighted_union_find.hpp
+      title: library/datastructure/union_find/weighted_union_find.hpp
   - name: library/debug
     pages:
     - icon: ':warning:'
@@ -254,7 +261,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/interpolation.hpp
       title: library/math/interpolation.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv_mods.hpp
       title: library/math/inv_mods.hpp
     - icon: ':heavy_check_mark:'
@@ -373,7 +380,7 @@ data:
       title: library/tree/rerooting.hpp
   - name: library/type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/type_traits/type_traits.hpp
       title: library/type_traits/type_traits.hpp
   - name: library/util
@@ -423,7 +430,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_hash.hpp
       title: library/util/tuple_hash.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/util/update_proxy_object.hpp
       title: library/util/update_proxy_object.hpp
     - icon: ':warning:'
@@ -520,14 +527,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
       title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
-  - name: test/src/datastructure/commutative_dual_segment_tree
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
-      title: test/src/datastructure/commutative_dual_segment_tree/DSL_2_E.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
-      title: test/src/datastructure/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - name: test/src/datastructure/compressed_wavelet_matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -539,17 +538,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - name: test/src/datastructure/dual_segment_tree
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
-      title: test/src/datastructure/dual_segment_tree/DSL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
-      title: test/src/datastructure/dual_segment_tree/DSL_2_E.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
-      title: test/src/datastructure/dual_segment_tree/rectilinear_polygons.test.cpp
   - name: test/src/datastructure/fenwick_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -560,7 +548,7 @@ data:
       title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - name: test/src/datastructure/fenwick_tree_2d
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
       title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - name: test/src/datastructure/lazy_eval_dynamic_sequence
@@ -573,62 +561,86 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
       title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - name: test/src/datastructure/lazy_segment_tree
+  - name: test/src/datastructure/segment_tree/commutative_dual_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
-      title: test/src/datastructure/lazy_segment_tree/DSL_2_F.test.cpp
+      path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
+      title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
-      title: test/src/datastructure/lazy_segment_tree/DSL_2_G.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
-      title: test/src/datastructure/lazy_segment_tree/DSL_2_H.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
-      title: test/src/datastructure/lazy_segment_tree/DSL_2_I.test.cpp
-  - name: test/src/datastructure/li_chao_segment_tree
+      path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+      title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+  - name: test/src/datastructure/segment_tree/dual_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/li_chao_segment_tree/line_add_get_min.test.cpp
-      title: test/src/datastructure/li_chao_segment_tree/line_add_get_min.test.cpp
+      path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
+      title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/li_chao_segment_tree/segment_add_get_min.test.cpp
-      title: test/src/datastructure/li_chao_segment_tree/segment_add_get_min.test.cpp
-  - name: test/src/datastructure/segment_tree
+      path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
+      title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
+      title: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
+  - name: test/src/datastructure/segment_tree/lazy_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
-      title: test/src/datastructure/segment_tree/DSL_2_A.test.cpp
+      path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
+      title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
-      title: test/src/datastructure/segment_tree/DSL_2_B.test.cpp
+      path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
+      title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
-      title: test/src/datastructure/segment_tree/point_add_range_sum.test.cpp
-  - name: test/src/datastructure/segment_tree_2d
+      path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
+      title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
+      title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
+  - name: test/src/datastructure/segment_tree/li_chao_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/segment_tree_2d/point_add_range_sum.test.cpp
-      title: test/src/datastructure/segment_tree_2d/point_add_range_sum.test.cpp
-  - name: test/src/datastructure/segment_tree_2d_sparse
+      path: test/src/datastructure/segment_tree/li_chao_segment_tree/line_add_get_min.test.cpp
+      title: test/src/datastructure/segment_tree/li_chao_segment_tree/line_add_get_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
+      title: test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
+  - name: test/src/datastructure/segment_tree/segment_tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-      title: test/src/datastructure/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
-      title: test/src/datastructure/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - name: test/src/datastructure/sparse_lazy_segment_tree
+      path: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
+      title: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
+      title: test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
+      title: test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
+  - name: test/src/datastructure/segment_tree/segment_tree_2d
     pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
-      title: test/src/datastructure/sparse_lazy_segment_tree/arc115_e.test.cpp
-  - name: test/src/datastructure/union_find
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/segment_tree_2d/point_add_range_sum.test.cpp
+      title: test/src/datastructure/segment_tree/segment_tree_2d/point_add_range_sum.test.cpp
+  - name: test/src/datastructure/segment_tree/segment_tree_2d_sparse
     pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/union_find/DSL_1_A.test.cpp
-      title: test/src/datastructure/union_find/DSL_1_A.test.cpp
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+      title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+      title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - name: test/src/datastructure/segment_tree/sparse_lazy_segment_tree
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
+      title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
+  - name: test/src/datastructure/union_find/union_find
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
+      title: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
+  - name: test/src/datastructure/union_find/weighted_union_find
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
+      title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   - name: test/src/datastructure/wavelet_matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -640,11 +652,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - name: test/src/datastructure/weighted_union_find
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
-      title: test/src/datastructure/weighted_union_find/DSL_1_B.test.cpp
   - name: test/src/geom/closest_pair
     pages:
     - icon: ':heavy_check_mark:'

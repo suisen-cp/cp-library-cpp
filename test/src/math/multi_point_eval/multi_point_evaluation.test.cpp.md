@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   - icon: ':heavy_check_mark:'
