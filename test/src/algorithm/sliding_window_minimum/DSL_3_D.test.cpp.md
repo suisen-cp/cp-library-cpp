@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: library/algorithm/sliding_window_minimum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy: []

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
     title: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc115/tasks/arc115_e
@@ -163,7 +163,7 @@ data:
   path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   requiredBy: []
   timestamp: '2022-01-17 22:14:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
 layout: document

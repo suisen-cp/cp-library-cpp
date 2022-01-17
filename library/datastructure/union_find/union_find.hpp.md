@@ -6,12 +6,12 @@ data:
     path: library/datastructure/union_find/linked_union_find.hpp
     title: library/datastructure/union_find/linked_union_find.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
     title: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/union_find/union_find.hpp\"\n\n\n\n\
@@ -65,7 +65,7 @@ data:
   requiredBy:
   - library/datastructure/union_find/linked_union_find.hpp
   timestamp: '2022-01-17 22:14:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
 documentation_of: library/datastructure/union_find/union_find.hpp

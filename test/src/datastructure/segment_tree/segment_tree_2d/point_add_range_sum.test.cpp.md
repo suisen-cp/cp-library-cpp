@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_2d.hpp
     title: library/datastructure/segment_tree/segment_tree_2d.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
@@ -86,7 +86,7 @@ data:
   path: test/src/datastructure/segment_tree/segment_tree_2d/point_add_range_sum.test.cpp
   requiredBy: []
   timestamp: '2022-01-17 22:14:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/segment_tree_2d/point_add_range_sum.test.cpp
 layout: document

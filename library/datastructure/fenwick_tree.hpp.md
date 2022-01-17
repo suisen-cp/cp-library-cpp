@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   _extendedRequiredBy:
@@ -49,87 +49,93 @@ data:
     \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
     \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
     \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree.hpp\"\
-    \n\nnamespace suisen {\nnamespace internal {\n\ntemplate <typename T, typename\
-    \ index_t = int, typename Container = std::vector<T>>\nclass FenwickTreeBase {\n\
-    \    public:\n        FenwickTreeBase() {}\n        explicit FenwickTreeBase(index_t\
-    \ n) : n(n) {}\n        void add(index_t i, T v) {\n            for (++i; i <=\
-    \ n; i += (i & -i)) data[i - 1] += v;\n        }\n        T sum(index_t l, index_t\
-    \ r) const {\n            return sum(r) - sum(l);\n        }\n        auto operator[](int\
-    \ i) {\n            struct {\n                int i;\n                FenwickTreeBase\
-    \ &ft;\n                operator T() const { return ft.sum(i, i + 1); }\n    \
-    \            auto& operator++() { return *this += 1; }\n                auto&\
-    \ operator--() { return *this -= 1; }\n                auto& operator+=(T val)\
-    \ { ft.add(i,  val); return *this; }\n                auto& operator-=(T val)\
-    \ { ft.add(i, -val); return *this; }\n                auto& operator*=(T val)\
-    \ { T cur = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }\n  \
-    \              auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur\
-    \ / val - cur); return *this; }\n                auto& operator%=(T val) { T cur\
-    \ = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }\n          \
-    \      auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i,       val\
-    \ - cur); return *this; }\n            } obj {i, *this};\n            return obj;\n\
-    \        }\n        T operator()(int l, int r) const { return sum(l, r); }\n \
-    \   protected:\n        index_t n;\n        Container data;\n        template\
-    \ <typename ...Args>\n        FenwickTreeBase(index_t n, Args &&...args) : n(n),\
-    \ data(std::forward<Args>(args)...) {}\n    private:\n        T sum(int r) const\
-    \ {\n            T s(0);\n            for (; r; r -= r & -r) s += data[r - 1];\n\
-    \            return s;\n        }\n};\n\ntemplate <typename Key, typename Value,\
-    \ bool unordered>\nusing cond_map_t = std::conditional_t<unordered, std::unordered_map<Key,\
-    \ Value>, std::map<Key, Value>>;\n\n} // namespace internal\n\ntemplate <typename\
-    \ T>\nstruct FenwickTree : public internal::FenwickTreeBase<T> {\n    FenwickTree()\
-    \ : FenwickTree(0) {}\n    explicit FenwickTree(int n) : internal::FenwickTreeBase<T>::FenwickTreeBase(n,\
-    \ n, T(0)) {}\n    explicit FenwickTree(std::vector<T> &&a) : internal::FenwickTreeBase<T>::FenwickTreeBase(a.size(),\
-    \ std::move(a)) {\n        for (int i = 1; i <= this->n; ++i) {\n            int\
-    \ p = i + (i & -i);\n            if (p <= this->n) this->data[p - 1] += this->data[i\
-    \ - 1];\n        }\n    }\n    explicit FenwickTree(const std::vector<T> &a) :\
-    \ FenwickTree(std::vector<T>(a)) {}\n};\n\ntemplate <typename T, typename index_t,\
-    \ bool use_unordered_map = false>\nusing MapFenwickTree = internal::FenwickTreeBase<T,\
-    \ index_t, internal::cond_map_t<index_t, T, use_unordered_map>>;\n\n} // namespace\
-    \ suisen\n\n\n"
+    \n\nnamespace suisen {\n    namespace internal {\n        template <typename T,\
+    \ typename index_t = int, typename Container = std::vector<T>>\n        class\
+    \ FenwickTreeBase {\n        public:\n            FenwickTreeBase() {}\n     \
+    \       explicit FenwickTreeBase(index_t n) : n(n) {}\n            void add(index_t\
+    \ i, T v) {\n                for (++i; i <= n; i += (i & -i)) data[i - 1] += v;\n\
+    \            }\n            T sum(index_t l, index_t r) const {\n            \
+    \    return sum(r) - sum(l);\n            }\n            auto operator[](int i)\
+    \ {\n                struct {\n                    int i;\n                  \
+    \  FenwickTreeBase& ft;\n                    operator T() const { return ft.sum(i,\
+    \ i + 1); }\n                    auto& operator++() { return *this += 1; }\n \
+    \                   auto& operator--() { return *this -= 1; }\n              \
+    \      auto& operator+=(T val) { ft.add(i, val); return *this; }\n           \
+    \         auto& operator-=(T val) { ft.add(i, -val); return *this; }\n       \
+    \             auto& operator*=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur\
+    \ * val - cur); return *this; }\n                    auto& operator/=(T val) {\
+    \ T cur = ft.sum(i, i + 1); ft.add(i, cur / val - cur); return *this; }\n    \
+    \                auto& operator%=(T val) { T cur = ft.sum(i, i + 1); ft.add(i,\
+    \ cur % val - cur); return *this; }\n                    auto& operator =(T val)\
+    \ { T cur = ft.sum(i, i + 1); ft.add(i, val - cur); return *this; }\n        \
+    \        } obj{ i, *this };\n                return obj;\n            }\n    \
+    \        T operator()(int l, int r) const { return sum(l, r); }\n        protected:\n\
+    \            index_t n;\n            Container data;\n            template <typename\
+    \ ...Args>\n            FenwickTreeBase(index_t n, Args &&...args) : n(n), data(std::forward<Args>(args)...)\
+    \ {}\n        private:\n            T sum(int r) const {\n                T s(0);\n\
+    \                for (; r; r -= r & -r) s += data[r - 1];\n                return\
+    \ s;\n            }\n        };\n\n        template <typename Key, typename Value,\
+    \ bool unordered>\n        using cond_map_t = std::conditional_t<unordered, std::unordered_map<Key,\
+    \ Value>, std::map<Key, Value>>;\n\n    } // namespace internal\n\n    template\
+    \ <typename T>\n    struct FenwickTree : public internal::FenwickTreeBase<T> {\n\
+    \        FenwickTree() : FenwickTree(0) {}\n        explicit FenwickTree(int n)\
+    \ : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T(0)) {}\n        explicit\
+    \ FenwickTree(std::vector<T>&& a) : internal::FenwickTreeBase<T>::FenwickTreeBase(a.size(),\
+    \ std::move(a)) {\n            for (int i = 1; i <= this->n; ++i) {\n        \
+    \        int p = i + (i & -i);\n                if (p <= this->n) this->data[p\
+    \ - 1] += this->data[i - 1];\n            }\n        }\n        explicit FenwickTree(const\
+    \ std::vector<T>& a) : FenwickTree(std::vector<T>(a)) {}\n    };\n\n    template\
+    \ <typename T, typename index_t, bool use_unordered_map = false>\n    using MapFenwickTree\
+    \ = internal::FenwickTreeBase<T, index_t, internal::cond_map_t<index_t, T, use_unordered_map>>;\n\
+    \n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_FENWICK_TREE\n#define SUISEN_FENWICK_TREE\n\n#include <vector>\n\
     #include <map>\n#include <unordered_map>\n\n#include \"library/type_traits/type_traits.hpp\"\
-    \n\nnamespace suisen {\nnamespace internal {\n\ntemplate <typename T, typename\
-    \ index_t = int, typename Container = std::vector<T>>\nclass FenwickTreeBase {\n\
-    \    public:\n        FenwickTreeBase() {}\n        explicit FenwickTreeBase(index_t\
-    \ n) : n(n) {}\n        void add(index_t i, T v) {\n            for (++i; i <=\
-    \ n; i += (i & -i)) data[i - 1] += v;\n        }\n        T sum(index_t l, index_t\
-    \ r) const {\n            return sum(r) - sum(l);\n        }\n        auto operator[](int\
-    \ i) {\n            struct {\n                int i;\n                FenwickTreeBase\
-    \ &ft;\n                operator T() const { return ft.sum(i, i + 1); }\n    \
-    \            auto& operator++() { return *this += 1; }\n                auto&\
-    \ operator--() { return *this -= 1; }\n                auto& operator+=(T val)\
-    \ { ft.add(i,  val); return *this; }\n                auto& operator-=(T val)\
-    \ { ft.add(i, -val); return *this; }\n                auto& operator*=(T val)\
-    \ { T cur = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }\n  \
-    \              auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur\
-    \ / val - cur); return *this; }\n                auto& operator%=(T val) { T cur\
-    \ = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }\n          \
-    \      auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i,       val\
-    \ - cur); return *this; }\n            } obj {i, *this};\n            return obj;\n\
-    \        }\n        T operator()(int l, int r) const { return sum(l, r); }\n \
-    \   protected:\n        index_t n;\n        Container data;\n        template\
-    \ <typename ...Args>\n        FenwickTreeBase(index_t n, Args &&...args) : n(n),\
-    \ data(std::forward<Args>(args)...) {}\n    private:\n        T sum(int r) const\
-    \ {\n            T s(0);\n            for (; r; r -= r & -r) s += data[r - 1];\n\
-    \            return s;\n        }\n};\n\ntemplate <typename Key, typename Value,\
-    \ bool unordered>\nusing cond_map_t = std::conditional_t<unordered, std::unordered_map<Key,\
-    \ Value>, std::map<Key, Value>>;\n\n} // namespace internal\n\ntemplate <typename\
-    \ T>\nstruct FenwickTree : public internal::FenwickTreeBase<T> {\n    FenwickTree()\
-    \ : FenwickTree(0) {}\n    explicit FenwickTree(int n) : internal::FenwickTreeBase<T>::FenwickTreeBase(n,\
-    \ n, T(0)) {}\n    explicit FenwickTree(std::vector<T> &&a) : internal::FenwickTreeBase<T>::FenwickTreeBase(a.size(),\
-    \ std::move(a)) {\n        for (int i = 1; i <= this->n; ++i) {\n            int\
-    \ p = i + (i & -i);\n            if (p <= this->n) this->data[p - 1] += this->data[i\
-    \ - 1];\n        }\n    }\n    explicit FenwickTree(const std::vector<T> &a) :\
-    \ FenwickTree(std::vector<T>(a)) {}\n};\n\ntemplate <typename T, typename index_t,\
-    \ bool use_unordered_map = false>\nusing MapFenwickTree = internal::FenwickTreeBase<T,\
-    \ index_t, internal::cond_map_t<index_t, T, use_unordered_map>>;\n\n} // namespace\
-    \ suisen\n\n#endif // SUISEN_FENWICK_TREE\n"
+    \n\nnamespace suisen {\n    namespace internal {\n        template <typename T,\
+    \ typename index_t = int, typename Container = std::vector<T>>\n        class\
+    \ FenwickTreeBase {\n        public:\n            FenwickTreeBase() {}\n     \
+    \       explicit FenwickTreeBase(index_t n) : n(n) {}\n            void add(index_t\
+    \ i, T v) {\n                for (++i; i <= n; i += (i & -i)) data[i - 1] += v;\n\
+    \            }\n            T sum(index_t l, index_t r) const {\n            \
+    \    return sum(r) - sum(l);\n            }\n            auto operator[](int i)\
+    \ {\n                struct {\n                    int i;\n                  \
+    \  FenwickTreeBase& ft;\n                    operator T() const { return ft.sum(i,\
+    \ i + 1); }\n                    auto& operator++() { return *this += 1; }\n \
+    \                   auto& operator--() { return *this -= 1; }\n              \
+    \      auto& operator+=(T val) { ft.add(i, val); return *this; }\n           \
+    \         auto& operator-=(T val) { ft.add(i, -val); return *this; }\n       \
+    \             auto& operator*=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur\
+    \ * val - cur); return *this; }\n                    auto& operator/=(T val) {\
+    \ T cur = ft.sum(i, i + 1); ft.add(i, cur / val - cur); return *this; }\n    \
+    \                auto& operator%=(T val) { T cur = ft.sum(i, i + 1); ft.add(i,\
+    \ cur % val - cur); return *this; }\n                    auto& operator =(T val)\
+    \ { T cur = ft.sum(i, i + 1); ft.add(i, val - cur); return *this; }\n        \
+    \        } obj{ i, *this };\n                return obj;\n            }\n    \
+    \        T operator()(int l, int r) const { return sum(l, r); }\n        protected:\n\
+    \            index_t n;\n            Container data;\n            template <typename\
+    \ ...Args>\n            FenwickTreeBase(index_t n, Args &&...args) : n(n), data(std::forward<Args>(args)...)\
+    \ {}\n        private:\n            T sum(int r) const {\n                T s(0);\n\
+    \                for (; r; r -= r & -r) s += data[r - 1];\n                return\
+    \ s;\n            }\n        };\n\n        template <typename Key, typename Value,\
+    \ bool unordered>\n        using cond_map_t = std::conditional_t<unordered, std::unordered_map<Key,\
+    \ Value>, std::map<Key, Value>>;\n\n    } // namespace internal\n\n    template\
+    \ <typename T>\n    struct FenwickTree : public internal::FenwickTreeBase<T> {\n\
+    \        FenwickTree() : FenwickTree(0) {}\n        explicit FenwickTree(int n)\
+    \ : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T(0)) {}\n        explicit\
+    \ FenwickTree(std::vector<T>&& a) : internal::FenwickTreeBase<T>::FenwickTreeBase(a.size(),\
+    \ std::move(a)) {\n            for (int i = 1; i <= this->n; ++i) {\n        \
+    \        int p = i + (i & -i);\n                if (p <= this->n) this->data[p\
+    \ - 1] += this->data[i - 1];\n            }\n        }\n        explicit FenwickTree(const\
+    \ std::vector<T>& a) : FenwickTree(std::vector<T>(a)) {}\n    };\n\n    template\
+    \ <typename T, typename index_t, bool use_unordered_map = false>\n    using MapFenwickTree\
+    \ = internal::FenwickTreeBase<T, index_t, internal::cond_map_t<index_t, T, use_unordered_map>>;\n\
+    \n} // namespace suisen\n\n#endif // SUISEN_FENWICK_TREE\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/datastructure/fenwick_tree.hpp
   requiredBy:
   - library/geom/segment_intersections.hpp
-  timestamp: '2021-09-02 19:44:31+09:00'
+  timestamp: '2022-01-17 22:23:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp

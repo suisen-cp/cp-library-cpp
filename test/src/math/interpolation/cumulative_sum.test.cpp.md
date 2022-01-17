@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/interpolation.hpp
     title: library/math/interpolation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   - icon: ':heavy_check_mark:'

@@ -62,13 +62,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: library/datastructure/segment_tree/lazy_segment_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: library/datastructure/segment_tree/segment_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
     title: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
     title: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
   - icon: ':warning:'
@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
     title: library/datastructure/sparse_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: library/datastructure/union_find/weighted_union_find.hpp
   - icon: ':heavy_check_mark:'
@@ -104,7 +104,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: library/util/coordinate_compressor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: library/util/update_proxy_object.hpp
   _extendedVerifiedWith:
@@ -141,7 +141,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - icon: ':heavy_check_mark:'
@@ -180,22 +180,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
     title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -237,9 +237,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
@@ -331,7 +331,7 @@ data:
   - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/convolution/polynomial_eval.hpp
   timestamp: '2021-09-02 19:44:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/util/divide_both.test.cpp
   - test/src/number/util/abc222_g.test.cpp

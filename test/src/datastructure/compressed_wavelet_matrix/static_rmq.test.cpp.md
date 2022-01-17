@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: library/datastructure/wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   - icon: ':heavy_check_mark:'
@@ -57,15 +57,15 @@ data:
     \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
     \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
     \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/bit_vector.hpp\"\
-    \n\nnamespace suisen {\nclass BitVector {\n    using u8 = std::uint8_t;\n    public:\n\
-    \        explicit BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L) + 1), ns((n >>\
-    \ LOG_BLOCK_S) + 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}\n        BitVector()\
-    \ : BitVector(0) {}\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
+    \n\nnamespace suisen {\n    class BitVector {\n        using u8 = std::uint8_t;\n\
+    \    public:\n        explicit BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L)\
+    \ + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}\n\
+    \        BitVector() : BitVector(0) {}\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
     \ Gen, int>> = nullptr>\n        BitVector(int n, Gen gen) : BitVector(n) {\n\
-    \            build(gen);\n        }\n        BitVector& operator=(const BitVector\
-    \ &bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s\
+    \            build(gen);\n        }\n        BitVector& operator=(const BitVector&\
+    \ bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s\
     \ = bv.cum_s, bits = bv.bits;\n            return *this;\n        }\n        BitVector&\
-    \ operator=(BitVector &&bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l\
+    \ operator=(BitVector&& bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l\
     \ = std::move(bv.cum_l), cum_s = std::move(bv.cum_s), bits = std::move(bv.bits);\n\
     \            return *this;\n        }\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
     \ Gen, int>> = nullptr>\n        void build(Gen gen) {\n            int i = 0;\n\
@@ -98,18 +98,18 @@ data:
     \ cum_s, bits;\n\n        static constexpr u8 popcount8(u8 x) {\n            x\
     \ = (x & 0b01010101) + ((x >> 1) & 0b01010101);\n            x = (x & 0b00110011)\
     \ + ((x >> 2) & 0b00110011);\n            return (x & 0b00001111) + (x >> 4);\n\
-    \        }\n};\n} // namespace suisen\n\n\n#line 10 \"library/datastructure/wavelet_matrix.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename T, int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
-    class WaveletMatrix {\n    public:\n        // default constructor\n        WaveletMatrix()\
+    \        }\n    };\n} // namespace suisen\n\n\n#line 10 \"library/datastructure/wavelet_matrix.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T, int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
+    \    struct WaveletMatrix {\n        // default constructor\n        WaveletMatrix()\
     \ noexcept : n(0) {}\n        // builds WaveletMatrix from generating function\
     \ typed as (int) -> T\n        template <typename Gen, constraints_t<is_same_as_invoke_result<T,\
     \ Gen, int>> = nullptr>\n        WaveletMatrix(int n, Gen generator) : n(n) {\n\
     \            build(generator);\n        }\n        // builds WaveletMatrix from\
     \ vector\n        template <typename U, constraints_t<std::is_constructible<T,\
-    \ U>> = nullptr>\n        WaveletMatrix(const std::vector<U> &a) : WaveletMatrix(a.size(),\
+    \ U>> = nullptr>\n        WaveletMatrix(const std::vector<U>& a) : WaveletMatrix(a.size(),\
     \ [&a](int i) { return T(a[i]); }) {}\n\n        // builds WaveletMatrix from\
     \ generating function typed as (int) -> T\n        template <typename Gen, constraints_t<is_same_as_invoke_result<T,\
-    \ Gen, int>>  = nullptr>\n        void build(Gen generator) {\n            std::vector<T>\
+    \ Gen, int>> = nullptr>\n        void build(Gen generator) {\n            std::vector<T>\
     \ a(n), l(n), r(n);\n            for (int i = 0; i < n; ++i) a[i] = generator(i);\n\
     \            for (int log = bit_num - 1; log >= 0; --log) {\n                bv[log]\
     \ = BitVector(n, [&a, log](int i) -> bool { return (a[i] >> log) & 1; });\n  \
@@ -171,11 +171,11 @@ data:
     \  private:\n        static_assert(bit_num > 0);\n        static constexpr T MAX\
     \ = bit_num == std::numeric_limits<T>::digits ? std::numeric_limits<T>::max()\
     \ : (T(1) << bit_num) - 1;\n\n        int n;\n        std::array<BitVector, bit_num>\
-    \ bv;\n        std::array<int, bit_num> mid;\n\n        inline void succ(int &l,\
-    \ int &r, const bool b, const int log) const {\n            l = b * mid[log] +\
-    \ bv[log].rank(b, l);\n            r = b * mid[log] + bv[log].rank(b, r);\n  \
-    \      }\n\n        static constexpr void check_value_bounds(T val) {\n      \
-    \      assert((val >> bit_num) == 0);\n        }\n};\n\n\n} // namespace suisen\n\
+    \ bv;\n        std::array<int, bit_num> mid;\n\n        inline void succ(int&\
+    \ l, int& r, const bool b, const int log) const {\n            l = b * mid[log]\
+    \ + bv[log].rank(b, l);\n            r = b * mid[log] + bv[log].rank(b, r);\n\
+    \        }\n\n        static constexpr void check_value_bounds(T val) {\n    \
+    \        assert((val >> bit_num) == 0);\n        }\n    };\n} // namespace suisen\n\
     \n\n#line 1 \"library/util/coordinate_compressor.hpp\"\n\n\n\n#include <algorithm>\n\
     #line 7 \"library/util/coordinate_compressor.hpp\"\n\n#line 9 \"library/util/coordinate_compressor.hpp\"\
     \n\nnamespace suisen {\ntemplate <typename T>\nclass CoordinateCompressorBuilder\
@@ -266,24 +266,24 @@ data:
     \   static auto build(const int n, Gen generator) {\n            return CoordinateCompressorBuilder<T>(n,\
     \ generator).build();\n        }\n    private:\n        std::vector<T> _xs;\n\
     };\n\n} // namespace suisen\n\n\n#line 11 \"library/datastructure/compressed_wavelet_matrix.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename T, int log_max_len = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
-    class CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {\n   \
-    \ public:\n        // default constructor\n        CompressedWaveletMatrix() noexcept\
-    \ : WaveletMatrix<int, log_max_len>(0) {}\n        // builds WaveletMatrix from\
+    \n\nnamespace suisen {\n    template <typename T, int log_max_len = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
+    \    struct CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {\n\
+    \        // default constructor\n        CompressedWaveletMatrix() noexcept :\
+    \ WaveletMatrix<int, log_max_len>(0) {}\n        // builds WaveletMatrix from\
     \ generating function typed as (int) -> T\n        template <typename Gen, constraints_t<is_same_as_invoke_result<T,\
     \ Gen, int>> = nullptr>\n        CompressedWaveletMatrix(int n, Gen generator)\
     \ : WaveletMatrix<int, log_max_len>(n), comp(CoordinateCompressorBuilder<T>::build(n,\
     \ generator)) {\n            this->build([this, &generator](int i) { return comp[generator(i)];\
     \ });\n        }\n        // builds WaveletMatrix from vector\n        template\
     \ <typename U, constraints_t<std::is_constructible<T, U>> = nullptr>\n       \
-    \ CompressedWaveletMatrix(const std::vector<U> &a) : CompressedWaveletMatrix(a.size(),\
+    \ CompressedWaveletMatrix(const std::vector<U>& a) : CompressedWaveletMatrix(a.size(),\
     \ [&a](int i) { return T(a[i]); }) {}\n\n        // returns WaveletMatrix[i]\n\
     \        inline T operator[](int i) const {\n            return comp.decomp(WaveletMatrix<int,\
     \ log_max_len>::operator[](i));\n        }\n        // returns WaveletMatrix[i]\n\
     \        inline T access(int i) const {\n            return (*this)[i];\n    \
     \    }\n        // returns the number of `val` in WaveletMatrix[0, i).\n     \
     \   inline int rank(T val, int i) const {\n            int x = comp.comp(val,\
-    \ -1);\n            if (x == -1) return 0; \n            return WaveletMatrix<int,\
+    \ -1);\n            if (x == -1) return 0;\n            return WaveletMatrix<int,\
     \ log_max_len>::rank(x, i);\n        }\n        // returns the k'th smallest value\
     \ in WaveletMatrix[l, r) (k : 0-indexed)\n        inline T range_kth_smallest(int\
     \ l, int r, int k, T default_value = T(-1)) const {\n            int x = WaveletMatrix<int,\
@@ -321,8 +321,8 @@ data:
     \ default_value = T(-1)) const {\n            if (r >= l) return default_value;\n\
     \            return upper == std::numeric_limits<T>::max() ? range_max(l, r) :\
     \ range_max_lt(l, r, upper + 1, default_value);\n        }\n    private:\n   \
-    \     typename CoordinateCompressorBuilder<T>::Compressor comp;\n};\n} // namespace\
-    \ suisen\n\n\n\n#line 6 \"test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp\"\
+    \     typename CoordinateCompressorBuilder<T>::Compressor comp;\n    };\n} //\
+    \ namespace suisen\n\n\n\n#line 6 \"test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp\"\
     \n\nusing suisen::CompressedWaveletMatrix;\n\nconstexpr int MAX_LOG = 19;\n\n\
     int main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    int n, q;\n    std::cin >> n >> q;\n    std::vector<int> a(n);\n    for (auto\
@@ -346,7 +346,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   requiredBy: []
-  timestamp: '2021-11-28 20:19:02+09:00'
+  timestamp: '2022-01-17 22:19:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp

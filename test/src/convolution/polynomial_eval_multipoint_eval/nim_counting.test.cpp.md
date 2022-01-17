@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: library/math/fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: library/math/inv_mods.hpp
   - icon: ':heavy_check_mark:'
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/transform/walsh_hadamard.hpp
     title: "Walsh Hadamard \u5909\u63DB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: library/type_traits/type_traits.hpp
   - icon: ':heavy_check_mark:'
