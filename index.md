@@ -192,11 +192,11 @@ data:
   - name: library/graph
     pages:
     - icon: ':warning:'
-      path: library/graph/BFS.hpp
-      title: library/graph/BFS.hpp
+      path: library/graph/bfs.hpp
+      title: Bfs
     - icon: ':warning:'
-      path: library/graph/BFS01.hpp
-      title: library/graph/BFS01.hpp
+      path: library/graph/bfs01.hpp
+      title: Bfs01
     - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_matching.hpp
       title: Bipartite Matching

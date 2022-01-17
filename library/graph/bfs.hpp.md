@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/graph/BFS.hpp\"\n\n\n\n#include <limits>\n#include\
+  bundledCode: "#line 1 \"library/graph/bfs.hpp\"\n\n\n\n#include <limits>\n#include\
     \ <map>\n#include <queue>\n#include <vector>\n\nnamespace suisen {\ntemplate <typename\
     \ Cost, typename Node, typename Container>\nclass BFS_base {\n    protected:\n\
     \        Container _dist;\n\n        virtual Cost get_dist(const Node &node) const\
@@ -79,15 +79,13 @@ data:
     \ SUISEN_BFS\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/graph/BFS.hpp
+  path: library/graph/bfs.hpp
   requiredBy: []
-  timestamp: '2021-07-17 02:33:12+09:00'
+  timestamp: '2022-01-18 00:03:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: library/graph/BFS.hpp
+documentation_of: library/graph/bfs.hpp
 layout: document
-redirect_from:
-- /library/library/graph/BFS.hpp
-- /library/library/graph/BFS.hpp.html
-title: library/graph/BFS.hpp
+title: Bfs
 ---
+## Bfs

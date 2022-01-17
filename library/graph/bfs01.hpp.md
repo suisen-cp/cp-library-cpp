@@ -8,7 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/graph/BFS01.hpp\"\n\n\n\n#include <limits>\n#include\
+  bundledCode: "#line 1 \"library/graph/bfs01.hpp\"\n\n\n\n#include <limits>\n#include\
     \ <map>\n#include <queue>\n#include <vector>\n\nnamespace suisen {\ntemplate <typename\
     \ Node, typename Container>\nclass BFS01_base {\n    protected:\n        Container\
     \ _dist;\n\n        template <typename ...Args>\n        BFS01_base(Args &&...args)\
@@ -84,15 +84,13 @@ data:
     \        }\n};\n} // namespace suisen\n\n#endif // SUISEN_BFS01\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/graph/BFS01.hpp
+  path: library/graph/bfs01.hpp
   requiredBy: []
-  timestamp: '2021-08-09 15:18:26+09:00'
+  timestamp: '2022-01-18 00:03:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: library/graph/BFS01.hpp
+documentation_of: library/graph/bfs01.hpp
 layout: document
-redirect_from:
-- /library/library/graph/BFS01.hpp
-- /library/library/graph/BFS01.hpp.html
-title: library/graph/BFS01.hpp
+title: Bfs01
 ---
+## Bfs01

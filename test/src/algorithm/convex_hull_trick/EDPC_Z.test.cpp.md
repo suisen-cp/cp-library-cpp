@@ -47,17 +47,17 @@ data:
     \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 9 \"library/algorithm/convex_hull_trick.hpp\"\
     \n\nnamespace suisen {\n    namespace internal::convex_hull_trick {\n        template\
     \ <typename T>\n        struct Line {\n            // f(x)=ax+b,m=max{x|f=argmin_{f'\
-    \ in S}{f'(x)}}\n            mutable T a, b, m;\n            Line(const T &a,\
-    \ const T &b, const T &m) : a(a), b(b), m(m) {}\n            bool operator<(const\
-    \ Line<T> &rhs) const { return a < rhs.a; }\n            bool operator<(const\
-    \ T &x) const { return not (m < x); }\n        };\n\n        template <typename\
+    \ in S}{f'(x)}}\n            mutable T a, b, m;\n            Line(const T& a,\
+    \ const T& b, const T& m) : a(a), b(b), m(m) {}\n            bool operator<(const\
+    \ Line<T>& rhs) const { return a < rhs.a; }\n            bool operator<(const\
+    \ T& x) const { return not (m < x); }\n        };\n\n        template <typename\
     \ T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>\n\
-    \        inline T div(const T &num, const T &den) {\n            return num /\
+    \        inline T div(const T& num, const T& den) {\n            return num /\
     \ den - ((num ^ den) < 0 and num % den);\n        }\n        template <typename\
     \ T, std::enable_if_t<std::negation<std::is_integral<T>>::value, std::nullptr_t>\
-    \ = nullptr>\n        inline T div(const T &num, const T &den) {\n           \
+    \ = nullptr>\n        inline T div(const T& num, const T& den) {\n           \
     \ return num / den;\n        }\n    }\n\n    template <typename T, bool is_min_query\
-    \ = true>\n    class CHT : std::multiset<internal::convex_hull_trick::Line<T>,\
+    \ = true>\n    class ConvexHullTrick : std::multiset<internal::convex_hull_trick::Line<T>,\
     \ std::less<>> {\n        using iterator = typename std::multiset<internal::convex_hull_trick::Line<T>>::iterator;\n\
     \        using MultT = safely_multipliable_t<T>;\n        using Line = internal::convex_hull_trick::Line<T>;\n\
     \n        static constexpr T inf = std::numeric_limits<T>::max();\n    public:\n\
@@ -84,20 +84,20 @@ data:
     \ {\n                r->m = internal::convex_hull_trick::div(r->b - l->b, l->a\
     \ - r->a);\n            }\n            return l->m > r->m;\n        }\n    };\n\
     \n} // namespace suisen\n\n\n#line 7 \"test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp\"\
-    \n\nusing suisen::CHT;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \n\nusing suisen::ConvexHullTrick;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n    int n;\n    long long c;\n    std::cin >> n >>\
     \ c;\n    std::vector<long long> h(n);\n    for (int i = 0; i < n; ++i) {\n  \
-    \      std::cin >> h[i];\n    }\n    std::vector<long long> dp(n, 0);\n    CHT<long\
+    \      std::cin >> h[i];\n    }\n    std::vector<long long> dp(n, 0);\n    ConvexHullTrick<long\
     \ long> cht;\n    for (int i = 1; i < n; ++i) {\n        cht.add_line(-2 * h[i\
     \ - 1], dp[i - 1] + h[i - 1] * h[i - 1]);\n        dp[i] = cht.query(h[i]) + h[i]\
     \ * h[i] + c;\n    }\n    std::cout << dp[n - 1] << std::endl;\n    return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/dp/tasks/dp_z\"\n\n#include\
     \ <iostream>\n#include <vector>\n\n#include \"library/algorithm/convex_hull_trick.hpp\"\
-    \n\nusing suisen::CHT;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \n\nusing suisen::ConvexHullTrick;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n    int n;\n    long long c;\n    std::cin >> n >>\
     \ c;\n    std::vector<long long> h(n);\n    for (int i = 0; i < n; ++i) {\n  \
-    \      std::cin >> h[i];\n    }\n    std::vector<long long> dp(n, 0);\n    CHT<long\
+    \      std::cin >> h[i];\n    }\n    std::vector<long long> dp(n, 0);\n    ConvexHullTrick<long\
     \ long> cht;\n    for (int i = 1; i < n; ++i) {\n        cht.add_line(-2 * h[i\
     \ - 1], dp[i - 1] + h[i - 1] * h[i - 1]);\n        dp[i] = cht.query(h[i]) + h[i]\
     \ * h[i] + c;\n    }\n    std::cout << dp[n - 1] << std::endl;\n    return 0;\n\
@@ -108,7 +108,7 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 23:32:25+09:00'
+  timestamp: '2022-01-18 00:04:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
