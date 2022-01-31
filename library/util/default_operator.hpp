@@ -22,6 +22,26 @@ namespace suisen {
         template <typename T>
         auto inv(const T &x) -> decltype(one<T>() / x)  { return one<T>() / x; }
     } // default_operator
+    namespace default_operator_noref {
+        template <typename T>
+        auto zero() -> decltype(T { 0 }) { return T { 0 }; }
+        template <typename T>
+        auto one()  -> decltype(T { 1 }) { return T { 1 }; }
+        template <typename T>
+        auto add(T x, T y) -> decltype(x + y) { return x + y; }
+        template <typename T>
+        auto sub(T x, T y) -> decltype(x - y) { return x - y; }
+        template <typename T>
+        auto mul(T x, T y) -> decltype(x * y) { return x * y; }
+        template <typename T>
+        auto div(T x, T y) -> decltype(x / y) { return x / y; }
+        template <typename T>
+        auto mod(T x, T y) -> decltype(x % y) { return x % y; }
+        template <typename T>
+        auto neg(T x) -> decltype(-x) { return -x; }
+        template <typename T>
+        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x; }
+    } // default_operator
 } // namespace suisen
 
 #endif // SUISEN_DEFAULT_OPERATOR
