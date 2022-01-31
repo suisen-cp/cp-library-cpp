@@ -202,16 +202,16 @@ struct Rational {
 }
 
 template <typename T>
-std::ostream& operator<<(std::ostream &out, const Rational<T> &r) {
+std::ostream& operator<<(std::ostream &out, const suisen::Rational<T> &r) {
     return out << r.num << '/' << r.den;
 }
 
 template <typename T>
-Rational<T> max(const Rational<T> &l, const Rational<T> &r) {
+suisen::Rational<T> max(const suisen::Rational<T> &l, const suisen::Rational<T> &r) {
     return l > r ? l : r;
 }
 template <typename T>
-Rational<T> min(const Rational<T> &l, const Rational<T> &r) {
+suisen::Rational<T> min(const suisen::Rational<T> &l, const suisen::Rational<T> &r) {
     return l < r ? l : r;
 }
 
