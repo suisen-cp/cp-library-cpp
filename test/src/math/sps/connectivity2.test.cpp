@@ -25,9 +25,13 @@ int main() {
     for (int i = 0; i < 1 << n; ++i) {
         g[i] = mint(2).pow(c[i]);
     }
+
+    assert(g.inv() * g == suisen::SPS<mint>::one(n));
+
     auto f = g.log();
+    auto h = f.exp();
     // test of exp
-    assert(g == f.exp());
+    assert(g == h);
     std::vector<mint> ans(n, 0);
     int full = (1 << n) - 1;
     for (int i = 1; i < 1 << n; i += 2) {
