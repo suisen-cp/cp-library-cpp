@@ -67,17 +67,29 @@ data:
     \ y; }\n        template <typename T>\n        auto neg(const T &x) -> decltype(-x)\
     \ { return -x; }\n        template <typename T>\n        auto inv(const T &x)\
     \ -> decltype(one<T>() / x)  { return one<T>() / x; }\n    } // default_operator\n\
-    } // namespace suisen\n\n\n#line 8 \"library/transform/kronecker_power.hpp\"\n\
-    \nnamespace suisen {\n    namespace kronecker_power_transform {\n        namespace\
-    \ internal {\n            template <typename UnitTransform, typename ReferenceGetter,\
-    \ std::size_t... Seq>\n            void unit_transform(UnitTransform transform,\
-    \ ReferenceGetter ref_getter, std::index_sequence<Seq...>) {\n               \
-    \ transform(ref_getter(Seq)...);\n            }\n        }\n\n        template\
-    \ <typename T, std::size_t D, auto unit_transform>\n        void kronecker_power_transform(std::vector<T>\
-    \ &x) {\n            const std::size_t n = x.size();\n            for (std::size_t\
-    \ block = 1; block < n; block *= D) {\n                for (std::size_t l = 0;\
-    \ l < n; l += D * block) {\n                    for (std::size_t offset = l; offset\
-    \ < l + block; ++offset) {\n                        const auto ref_getter = [&](std::size_t\
+    \    namespace default_operator_noref {\n        template <typename T>\n     \
+    \   auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n        template <typename\
+    \ T>\n        auto one()  -> decltype(T { 1 }) { return T { 1 }; }\n        template\
+    \ <typename T>\n        auto add(T x, T y) -> decltype(x + y) { return x + y;\
+    \ }\n        template <typename T>\n        auto sub(T x, T y) -> decltype(x -\
+    \ y) { return x - y; }\n        template <typename T>\n        auto mul(T x, T\
+    \ y) -> decltype(x * y) { return x * y; }\n        template <typename T>\n   \
+    \     auto div(T x, T y) -> decltype(x / y) { return x / y; }\n        template\
+    \ <typename T>\n        auto mod(T x, T y) -> decltype(x % y) { return x % y;\
+    \ }\n        template <typename T>\n        auto neg(T x) -> decltype(-x) { return\
+    \ -x; }\n        template <typename T>\n        auto inv(T x) -> decltype(one<T>()\
+    \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
+    \n\n#line 8 \"library/transform/kronecker_power.hpp\"\n\nnamespace suisen {\n\
+    \    namespace kronecker_power_transform {\n        namespace internal {\n   \
+    \         template <typename UnitTransform, typename ReferenceGetter, std::size_t...\
+    \ Seq>\n            void unit_transform(UnitTransform transform, ReferenceGetter\
+    \ ref_getter, std::index_sequence<Seq...>) {\n                transform(ref_getter(Seq)...);\n\
+    \            }\n        }\n\n        template <typename T, std::size_t D, auto\
+    \ unit_transform>\n        void kronecker_power_transform(std::vector<T> &x) {\n\
+    \            const std::size_t n = x.size();\n            for (std::size_t block\
+    \ = 1; block < n; block *= D) {\n                for (std::size_t l = 0; l < n;\
+    \ l += D * block) {\n                    for (std::size_t offset = l; offset <\
+    \ l + block; ++offset) {\n                        const auto ref_getter = [&](std::size_t\
     \ i) -> T& { return x[offset + i * block]; };\n                        internal::unit_transform(unit_transform,\
     \ ref_getter, std::make_index_sequence<D>());\n                    }\n       \
     \         }\n            }\n        }\n\n        template <typename T, typename\
@@ -141,22 +153,22 @@ data:
   isVerificationFile: false
   path: library/transform/kronecker_power.hpp
   requiredBy:
-  - library/transform/subset.hpp
+  - library/convolution/xor_convolution.hpp
+  - library/convolution/or_convolution.hpp
+  - library/convolution/and_convolution.hpp
   - library/transform/walsh_hadamard.hpp
   - library/transform/supset.hpp
-  - library/convolution/xor_convolution.hpp
-  - library/convolution/and_convolution.hpp
-  - library/convolution/or_convolution.hpp
-  timestamp: '2021-09-29 01:36:15+09:00'
+  - library/transform/subset.hpp
+  timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/transform/kronecker_power/agc044_c.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
 documentation_of: library/transform/kronecker_power.hpp
 layout: document
 title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\u5909\

@@ -228,9 +228,9 @@ data:
   timestamp: '2021-08-04 13:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
-  - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
   - test/src/transform/multiple/divide_both.test.cpp
+  - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+  - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
 documentation_of: library/number/sieve_of_eratosthenes.hpp
 layout: document
 title: Sieve Of Eratosthenes

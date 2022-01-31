@@ -37,8 +37,20 @@ data:
     \ y; }\n        template <typename T>\n        auto neg(const T &x) -> decltype(-x)\
     \ { return -x; }\n        template <typename T>\n        auto inv(const T &x)\
     \ -> decltype(one<T>() / x)  { return one<T>() / x; }\n    } // default_operator\n\
-    } // namespace suisen\n\n\n#line 8 \"library/convolution/multi_variate_convolution.hpp\"\
-    \n\nnamespace suisen {\n    struct multi_variate_convolution {\n        multi_variate_convolution()\
+    \    namespace default_operator_noref {\n        template <typename T>\n     \
+    \   auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n        template <typename\
+    \ T>\n        auto one()  -> decltype(T { 1 }) { return T { 1 }; }\n        template\
+    \ <typename T>\n        auto add(T x, T y) -> decltype(x + y) { return x + y;\
+    \ }\n        template <typename T>\n        auto sub(T x, T y) -> decltype(x -\
+    \ y) { return x - y; }\n        template <typename T>\n        auto mul(T x, T\
+    \ y) -> decltype(x * y) { return x * y; }\n        template <typename T>\n   \
+    \     auto div(T x, T y) -> decltype(x / y) { return x / y; }\n        template\
+    \ <typename T>\n        auto mod(T x, T y) -> decltype(x % y) { return x % y;\
+    \ }\n        template <typename T>\n        auto neg(T x) -> decltype(-x) { return\
+    \ -x; }\n        template <typename T>\n        auto inv(T x) -> decltype(one<T>()\
+    \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
+    \n\n#line 8 \"library/convolution/multi_variate_convolution.hpp\"\n\nnamespace\
+    \ suisen {\n    struct multi_variate_convolution {\n        multi_variate_convolution()\
     \ : multi_variate_convolution(std::vector<int>{}) {}\n        multi_variate_convolution(const\
     \ std::vector<int> &dim) : _n(std::accumulate(dim.begin(), dim.end(), 1, std::multiplies<int>())),\
     \ _k(dim.size()), _m(2 * ceil_pow2(_n)), _chi(_n, 0) {\n            for (int i\
@@ -92,7 +104,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-01-15 06:44:10+09:00'
+  timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp

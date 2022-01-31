@@ -44,71 +44,82 @@ data:
     \  auto mod(const T &x, const T &y) -> decltype(x % y) { return x % y; }\n   \
     \     template <typename T>\n        auto neg(const T &x) -> decltype(-x) { return\
     \ -x; }\n        template <typename T>\n        auto inv(const T &x) -> decltype(one<T>()\
-    \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
-    \n\n#line 6 \"library/transform/multiple.hpp\"\n\nnamespace suisen::multiple_transform\
-    \ {\n    // Calculates `g` s.t. g(n) = Sum_{n | m} f(m) inplace.\n    template\
-    \ <typename T, auto add = default_operator::add<T>>\n    void zeta(std::vector<T>\
+    \ / x)  { return one<T>() / x; }\n    } // default_operator\n    namespace default_operator_noref\
+    \ {\n        template <typename T>\n        auto zero() -> decltype(T { 0 }) {\
+    \ return T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
+    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(T\
+    \ x, T y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
+    \        auto sub(T x, T y) -> decltype(x - y) { return x - y; }\n        template\
+    \ <typename T>\n        auto mul(T x, T y) -> decltype(x * y) { return x * y;\
+    \ }\n        template <typename T>\n        auto div(T x, T y) -> decltype(x /\
+    \ y) { return x / y; }\n        template <typename T>\n        auto mod(T x, T\
+    \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
+    \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
+    \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
+    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 6 \"library/transform/multiple.hpp\"\
+    \n\nnamespace suisen::multiple_transform {\n    // Calculates `g` s.t. g(n) =\
+    \ Sum_{n | m} f(m) inplace.\n    template <typename T, auto add = default_operator::add<T>>\n\
+    \    void zeta(std::vector<T> &f) {\n        const int n = f.size();\n       \
+    \ std::vector<char> is_prime(n, true);\n        auto cum = [&](const int p) {\n\
+    \            const int qmax = (n - 1) / p, rmax = qmax * p;\n            for (int\
+    \ q = qmax, pq = rmax; q >= 1; --q, pq -= p) {\n                f[q] = add(f[q],\
+    \ f[pq]);\n                is_prime[pq] = false;\n            }\n        };\n\
+    \        for (int p = 2; p < n; ++p) if (is_prime[p]) cum(p);\n    }\n    // Calculates\
+    \ `f` s.t. g(n) = Sum_{n | m} f(m) inplace.\n    template <typename T, auto sub\
+    \ = default_operator::sub<T>>\n    void mobius(std::vector<T> &f) {\n        const\
+    \ int n = f.size();\n        std::vector<char> is_prime(n, true);\n        auto\
+    \ diff = [&](const int p) {\n            for (int q = 1, pq = p; pq < n; ++q,\
+    \ pq += p) {\n                f[q] = sub(f[q], f[pq]);\n                is_prime[pq]\
+    \ = false;\n            }\n        };\n        for (int p = 2; p < n; ++p) if\
+    \ (is_prime[p]) diff(p);\n    }\n} // namespace suisen::multiple_transform\n\n\
+    \n#line 1 \"library/transform/divisor.hpp\"\n\n\n\n#line 6 \"library/transform/divisor.hpp\"\
+    \n\nnamespace suisen::divisor_transform {\n    // Calculates `g` s.t. g(n) = Sum_{d\
+    \ | n} f(d) inplace.\n    template <typename T, auto add = default_operator::add<T>>\n\
+    \    void zeta(std::vector<T> &f) {\n        const int n = f.size();\n       \
+    \ std::vector<char> is_prime(n, true);\n        auto cum = [&](const int p) {\n\
+    \            for (int q = 1, pq = p; pq < n; ++q, pq += p) {\n               \
+    \ f[pq] = add(f[pq], f[q]);\n                is_prime[pq] = false;\n         \
+    \   }\n        };\n        for (int p = 2; p < n; ++p) if (is_prime[p]) cum(p);\n\
+    \    }\n    // Calculates `f` s.t. g(n) = Sum_{d | n} f(d) inplace.\n    template\
+    \ <typename T, auto sub = default_operator::sub<T>>\n    void mobius(std::vector<T>\
     \ &f) {\n        const int n = f.size();\n        std::vector<char> is_prime(n,\
-    \ true);\n        auto cum = [&](const int p) {\n            const int qmax =\
+    \ true);\n        auto diff = [&](const int p) {\n            const int qmax =\
     \ (n - 1) / p, rmax = qmax * p;\n            for (int q = qmax, pq = rmax; q >=\
-    \ 1; --q, pq -= p) {\n                f[q] = add(f[q], f[pq]);\n             \
-    \   is_prime[pq] = false;\n            }\n        };\n        for (int p = 2;\
-    \ p < n; ++p) if (is_prime[p]) cum(p);\n    }\n    // Calculates `f` s.t. g(n)\
-    \ = Sum_{n | m} f(m) inplace.\n    template <typename T, auto sub = default_operator::sub<T>>\n\
-    \    void mobius(std::vector<T> &f) {\n        const int n = f.size();\n     \
-    \   std::vector<char> is_prime(n, true);\n        auto diff = [&](const int p)\
-    \ {\n            for (int q = 1, pq = p; pq < n; ++q, pq += p) {\n           \
-    \     f[q] = sub(f[q], f[pq]);\n                is_prime[pq] = false;\n      \
-    \      }\n        };\n        for (int p = 2; p < n; ++p) if (is_prime[p]) diff(p);\n\
-    \    }\n} // namespace suisen::multiple_transform\n\n\n#line 1 \"library/transform/divisor.hpp\"\
-    \n\n\n\n#line 6 \"library/transform/divisor.hpp\"\n\nnamespace suisen::divisor_transform\
-    \ {\n    // Calculates `g` s.t. g(n) = Sum_{d | n} f(d) inplace.\n    template\
-    \ <typename T, auto add = default_operator::add<T>>\n    void zeta(std::vector<T>\
-    \ &f) {\n        const int n = f.size();\n        std::vector<char> is_prime(n,\
-    \ true);\n        auto cum = [&](const int p) {\n            for (int q = 1, pq\
-    \ = p; pq < n; ++q, pq += p) {\n                f[pq] = add(f[pq], f[q]);\n  \
-    \              is_prime[pq] = false;\n            }\n        };\n        for (int\
-    \ p = 2; p < n; ++p) if (is_prime[p]) cum(p);\n    }\n    // Calculates `f` s.t.\
-    \ g(n) = Sum_{d | n} f(d) inplace.\n    template <typename T, auto sub = default_operator::sub<T>>\n\
-    \    void mobius(std::vector<T> &f) {\n        const int n = f.size();\n     \
-    \   std::vector<char> is_prime(n, true);\n        auto diff = [&](const int p)\
-    \ {\n            const int qmax = (n - 1) / p, rmax = qmax * p;\n            for\
-    \ (int q = qmax, pq = rmax; q >= 1; --q, pq -= p) {\n                f[pq] = sub(f[pq],\
-    \ f[q]);\n                is_prime[pq] = false;\n            }\n        };\n \
-    \       for (int p = 2; p < n; ++p) if (is_prime[p]) diff(p);\n    }\n} // namespace\
-    \ suisen::divisor_transform\n\n\n#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\
-    \n\n\n\n#line 5 \"library/number/sieve_of_eratosthenes.hpp\"\n#include <cmath>\n\
-    #line 7 \"library/number/sieve_of_eratosthenes.hpp\"\n\n#line 1 \"library/number/internal_eratosthenes.hpp\"\
-    \n\n\n\n#include <cstdint>\n#line 6 \"library/number/internal_eratosthenes.hpp\"\
-    \n\nnamespace suisen::internal::sieve {\n\nconstexpr std::uint8_t K = 8;\nconstexpr\
-    \ std::uint8_t PROD = 2 * 3 * 5;\nconstexpr std::uint8_t RM[K] = { 1,  7, 11,\
-    \ 13, 17, 19, 23, 29 };\nconstexpr std::uint8_t DR[K] = { 6,  4,  2,  4,  2, \
-    \ 4,  6,  2 };\nconstexpr std::uint8_t DF[K][K] = {\n    { 0, 0, 0, 0, 0, 0, 0,\
-    \ 1 }, { 1, 1, 1, 0, 1, 1, 1, 1 },\n    { 2, 2, 0, 2, 0, 2, 2, 1 }, { 3, 1, 1,\
-    \ 2, 1, 1, 3, 1 },\n    { 3, 3, 1, 2, 1, 3, 3, 1 }, { 4, 2, 2, 2, 2, 2, 4, 1 },\n\
-    \    { 5, 3, 1, 4, 1, 3, 5, 1 }, { 6, 4, 2, 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t\
-    \ DRP[K] = { 48, 32, 16, 32, 16, 32, 48, 16 };\nconstexpr std::uint8_t DFP[K][K]\
-    \ = {\n    {  0,  0,  0,  0,  0,  0,  0,  8 }, {  8,  8,  8,  0,  8,  8,  8, \
-    \ 8 },\n    { 16, 16,  0, 16,  0, 16, 16,  8 }, { 24,  8,  8, 16,  8,  8, 24,\
-    \  8 },\n    { 24, 24,  8, 16,  8, 24, 24,  8 }, { 32, 16, 16, 16, 16, 16, 32,\
-    \  8 },\n    { 40, 24,  8, 32,  8, 24, 40,  8 }, { 48, 32, 16, 32, 16, 32, 48,\
-    \  8 },\n};\n\nconstexpr std::uint8_t MASK[K][K] = {\n    { 0x01, 0x02, 0x04,\
-    \ 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02, 0x20, 0x10, 0x01, 0x80, 0x08, 0x04,\
-    \ 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02, 0x80, 0x08, 0x20 }, { 0x08, 0x01,\
-    \ 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n    { 0x10, 0x80, 0x02, 0x04, 0x20, 0x40,\
-    \ 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02, 0x40, 0x01, 0x10, 0x04 },\n    { 0x40,\
-    \ 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02 }, { 0x80, 0x40, 0x20, 0x10, 0x08,\
-    \ 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t OFFSET[K][K] = {\n    { 0, 1,\
-    \ 2, 3, 4, 5, 6, 7, },\n    { 1, 5, 4, 0, 7, 3, 2, 6, },\n    { 2, 4, 0, 6, 1,\
-    \ 7, 3, 5, },\n    { 3, 0, 6, 5, 2, 1, 7, 4, },\n    { 4, 7, 1, 2, 5, 6, 0, 3,\
-    \ },\n    { 5, 3, 7, 1, 6, 0, 4, 2, },\n    { 6, 2, 3, 7, 0, 4, 5, 1, },\n   \
-    \ { 7, 6, 5, 4, 3, 2, 1, 0, },\n};\n\nconstexpr std::uint8_t mask_to_index(const\
-    \ std::uint8_t bits) {\n    switch (bits) {\n        case 1 << 0: return 0;\n\
-    \        case 1 << 1: return 1;\n        case 1 << 2: return 2;\n        case\
-    \ 1 << 3: return 3;\n        case 1 << 4: return 4;\n        case 1 << 5: return\
-    \ 5;\n        case 1 << 6: return 6;\n        case 1 << 7: return 7;\n       \
-    \ default: assert(false);\n    }\n}\n} // namespace suisen::internal::sieve\n\n\
-    \n#line 9 \"library/number/sieve_of_eratosthenes.hpp\"\n\nnamespace suisen {\n\
+    \ 1; --q, pq -= p) {\n                f[pq] = sub(f[pq], f[q]);\n            \
+    \    is_prime[pq] = false;\n            }\n        };\n        for (int p = 2;\
+    \ p < n; ++p) if (is_prime[p]) diff(p);\n    }\n} // namespace suisen::divisor_transform\n\
+    \n\n#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\n\n#line 5 \"library/number/sieve_of_eratosthenes.hpp\"\
+    \n#include <cmath>\n#line 7 \"library/number/sieve_of_eratosthenes.hpp\"\n\n#line\
+    \ 1 \"library/number/internal_eratosthenes.hpp\"\n\n\n\n#include <cstdint>\n#line\
+    \ 6 \"library/number/internal_eratosthenes.hpp\"\n\nnamespace suisen::internal::sieve\
+    \ {\n\nconstexpr std::uint8_t K = 8;\nconstexpr std::uint8_t PROD = 2 * 3 * 5;\n\
+    constexpr std::uint8_t RM[K] = { 1,  7, 11, 13, 17, 19, 23, 29 };\nconstexpr std::uint8_t\
+    \ DR[K] = { 6,  4,  2,  4,  2,  4,  6,  2 };\nconstexpr std::uint8_t DF[K][K]\
+    \ = {\n    { 0, 0, 0, 0, 0, 0, 0, 1 }, { 1, 1, 1, 0, 1, 1, 1, 1 },\n    { 2, 2,\
+    \ 0, 2, 0, 2, 2, 1 }, { 3, 1, 1, 2, 1, 1, 3, 1 },\n    { 3, 3, 1, 2, 1, 3, 3,\
+    \ 1 }, { 4, 2, 2, 2, 2, 2, 4, 1 },\n    { 5, 3, 1, 4, 1, 3, 5, 1 }, { 6, 4, 2,\
+    \ 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t DRP[K] = { 48, 32, 16, 32, 16,\
+    \ 32, 48, 16 };\nconstexpr std::uint8_t DFP[K][K] = {\n    {  0,  0,  0,  0, \
+    \ 0,  0,  0,  8 }, {  8,  8,  8,  0,  8,  8,  8,  8 },\n    { 16, 16,  0, 16,\
+    \  0, 16, 16,  8 }, { 24,  8,  8, 16,  8,  8, 24,  8 },\n    { 24, 24,  8, 16,\
+    \  8, 24, 24,  8 }, { 32, 16, 16, 16, 16, 16, 32,  8 },\n    { 40, 24,  8, 32,\
+    \  8, 24, 40,  8 }, { 48, 32, 16, 32, 16, 32, 48,  8 },\n};\n\nconstexpr std::uint8_t\
+    \ MASK[K][K] = {\n    { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02,\
+    \ 0x20, 0x10, 0x01, 0x80, 0x08, 0x04, 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02,\
+    \ 0x80, 0x08, 0x20 }, { 0x08, 0x01, 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n  \
+    \  { 0x10, 0x80, 0x02, 0x04, 0x20, 0x40, 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02,\
+    \ 0x40, 0x01, 0x10, 0x04 },\n    { 0x40, 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02\
+    \ }, { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t\
+    \ OFFSET[K][K] = {\n    { 0, 1, 2, 3, 4, 5, 6, 7, },\n    { 1, 5, 4, 0, 7, 3,\
+    \ 2, 6, },\n    { 2, 4, 0, 6, 1, 7, 3, 5, },\n    { 3, 0, 6, 5, 2, 1, 7, 4, },\n\
+    \    { 4, 7, 1, 2, 5, 6, 0, 3, },\n    { 5, 3, 7, 1, 6, 0, 4, 2, },\n    { 6,\
+    \ 2, 3, 7, 0, 4, 5, 1, },\n    { 7, 6, 5, 4, 3, 2, 1, 0, },\n};\n\nconstexpr std::uint8_t\
+    \ mask_to_index(const std::uint8_t bits) {\n    switch (bits) {\n        case\
+    \ 1 << 0: return 0;\n        case 1 << 1: return 1;\n        case 1 << 2: return\
+    \ 2;\n        case 1 << 3: return 3;\n        case 1 << 4: return 4;\n       \
+    \ case 1 << 5: return 5;\n        case 1 << 6: return 6;\n        case 1 << 7:\
+    \ return 7;\n        default: assert(false);\n    }\n}\n} // namespace suisen::internal::sieve\n\
+    \n\n#line 9 \"library/number/sieve_of_eratosthenes.hpp\"\n\nnamespace suisen {\n\
     \ntemplate <unsigned int N>\nclass SimpleSieve {\n    private:\n        static\
     \ constexpr unsigned int siz = N / internal::sieve::PROD + 1;\n        static\
     \ std::uint8_t flag[siz];\n    public:\n        SimpleSieve() {\n            using\
@@ -240,7 +251,7 @@ data:
   isVerificationFile: true
   path: test/src/transform/multiple/divide_both.test.cpp
   requiredBy: []
-  timestamp: '2021-09-29 01:36:15+09:00'
+  timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/transform/multiple/divide_both.test.cpp

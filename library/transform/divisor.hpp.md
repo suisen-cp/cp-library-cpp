@@ -28,7 +28,19 @@ data:
     \ -> decltype(x % y) { return x % y; }\n        template <typename T>\n      \
     \  auto neg(const T &x) -> decltype(-x) { return -x; }\n        template <typename\
     \ T>\n        auto inv(const T &x) -> decltype(one<T>() / x)  { return one<T>()\
-    \ / x; }\n    } // default_operator\n} // namespace suisen\n\n\n#line 6 \"library/transform/divisor.hpp\"\
+    \ / x; }\n    } // default_operator\n    namespace default_operator_noref {\n\
+    \        template <typename T>\n        auto zero() -> decltype(T { 0 }) { return\
+    \ T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
+    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(T\
+    \ x, T y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
+    \        auto sub(T x, T y) -> decltype(x - y) { return x - y; }\n        template\
+    \ <typename T>\n        auto mul(T x, T y) -> decltype(x * y) { return x * y;\
+    \ }\n        template <typename T>\n        auto div(T x, T y) -> decltype(x /\
+    \ y) { return x / y; }\n        template <typename T>\n        auto mod(T x, T\
+    \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
+    \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
+    \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
+    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 6 \"library/transform/divisor.hpp\"\
     \n\nnamespace suisen::divisor_transform {\n    // Calculates `g` s.t. g(n) = Sum_{d\
     \ | n} f(d) inplace.\n    template <typename T, auto add = default_operator::add<T>>\n\
     \    void zeta(std::vector<T> &f) {\n        const int n = f.size();\n       \
@@ -67,7 +79,7 @@ data:
   isVerificationFile: false
   path: library/transform/divisor.hpp
   requiredBy: []
-  timestamp: '2021-09-29 01:36:15+09:00'
+  timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/transform/multiple/divide_both.test.cpp

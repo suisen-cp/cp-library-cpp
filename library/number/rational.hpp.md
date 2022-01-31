@@ -91,11 +91,11 @@ data:
     \            seq[i++] = t[k];\n            dfs(dfs, k * 2 + 1);\n        };\n\
     \        seq[i++] = Rational(0, 1);\n        dfs(dfs, 1);\n        seq[i++] =\
     \ Rational(1, 1);\n        return seq;\n    }\n};\n\n}\n\ntemplate <typename T>\n\
-    std::ostream& operator<<(std::ostream &out, const Rational<T> &r) {\n    return\
-    \ out << r.num << '/' << r.den;\n}\n\ntemplate <typename T>\nRational<T> max(const\
-    \ Rational<T> &l, const Rational<T> &r) {\n    return l > r ? l : r;\n}\ntemplate\
-    \ <typename T>\nRational<T> min(const Rational<T> &l, const Rational<T> &r) {\n\
-    \    return l < r ? l : r;\n}\n\n\n\n"
+    std::ostream& operator<<(std::ostream &out, const suisen::Rational<T> &r) {\n\
+    \    return out << r.num << '/' << r.den;\n}\n\ntemplate <typename T>\nsuisen::Rational<T>\
+    \ max(const suisen::Rational<T> &l, const suisen::Rational<T> &r) {\n    return\
+    \ l > r ? l : r;\n}\ntemplate <typename T>\nsuisen::Rational<T> min(const suisen::Rational<T>\
+    \ &l, const suisen::Rational<T> &r) {\n    return l < r ? l : r;\n}\n\n\n\n"
   code: "#ifndef SUISEN_RATIONAL\n#define SUISEN_RATIONAL\n\n#include <cmath>\n#include\
     \ <ostream>\n#include <numeric>\n#include <type_traits>\n#include <vector>\n\n\
     namespace suisen {\n\ntemplate <typename T, std::enable_if_t<std::is_integral_v<T>,\
@@ -179,16 +179,17 @@ data:
     \            seq[i++] = t[k];\n            dfs(dfs, k * 2 + 1);\n        };\n\
     \        seq[i++] = Rational(0, 1);\n        dfs(dfs, 1);\n        seq[i++] =\
     \ Rational(1, 1);\n        return seq;\n    }\n};\n\n}\n\ntemplate <typename T>\n\
-    std::ostream& operator<<(std::ostream &out, const Rational<T> &r) {\n    return\
-    \ out << r.num << '/' << r.den;\n}\n\ntemplate <typename T>\nRational<T> max(const\
-    \ Rational<T> &l, const Rational<T> &r) {\n    return l > r ? l : r;\n}\ntemplate\
-    \ <typename T>\nRational<T> min(const Rational<T> &l, const Rational<T> &r) {\n\
-    \    return l < r ? l : r;\n}\n\n\n#endif // SUISEN_RATIONAL\n"
+    std::ostream& operator<<(std::ostream &out, const suisen::Rational<T> &r) {\n\
+    \    return out << r.num << '/' << r.den;\n}\n\ntemplate <typename T>\nsuisen::Rational<T>\
+    \ max(const suisen::Rational<T> &l, const suisen::Rational<T> &r) {\n    return\
+    \ l > r ? l : r;\n}\ntemplate <typename T>\nsuisen::Rational<T> min(const suisen::Rational<T>\
+    \ &l, const suisen::Rational<T> &r) {\n    return l < r ? l : r;\n}\n\n\n#endif\
+    \ // SUISEN_RATIONAL\n"
   dependsOn: []
   isVerificationFile: false
   path: library/number/rational.hpp
   requiredBy: []
-  timestamp: '2021-09-02 19:44:23+09:00'
+  timestamp: '2022-01-31 13:35:33+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/number/rational.hpp

@@ -1,0 +1,236 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/string/palindromic_tree/abc237_h.test.cpp
+    title: test/src/string/palindromic_tree/abc237_h.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
+  attributes:
+    links: []
+  bundledCode: "#line 1 \"library/string/palindromic_tree.hpp\"\n\n\n\n#include <array>\n\
+    #include <cassert>\n#include <vector>\n#include <map>\n\nnamespace suisen {\n\
+    \    namespace internal::palindromic_tree {\n        template <typename T>\n \
+    \       constexpr bool false_v = false;\n\n        template <typename T, typename\
+    \ Sequence, typename ChildrenContainerType>\n        struct PalindromicTreeBase\
+    \ {\n            using container_type = Sequence;\n            using value_type\
+    \ = T;\n\n            using children_container_type = ChildrenContainerType;\n\
+    \n            struct PalindromicTreeNode {\n                friend struct PalindromicTreeBase;\n\
+    \                PalindromicTreeNode() = default;\n            private:\n    \
+    \            children_container_type _children;\n                int _suffix_link;\n\
+    \                int _length;\n                int _multiplicity;\n          \
+    \      int _first_occurence;\n            };\n\n            using node_type =\
+    \ PalindromicTreeNode;\n            using node_pointer_type = node_type*;\n\n\
+    \            static constexpr int NODE_NULL = -1;\n            static constexpr\
+    \ int NODE_M1 = 0;\n            static constexpr int NODE_0 = 1;\n\n         \
+    \   PalindromicTreeBase() {\n                _nodes.reserve(2);\n\n          \
+    \      node_pointer_type node_m1 = _new_node();\n                node_m1->_suffix_link\
+    \ = NODE_M1;\n                node_m1->_length = -1;\n                node_m1->_first_occurence\
+    \ = 1;\n\n                node_pointer_type node_0 = _new_node();\n          \
+    \      node_0->_suffix_link = NODE_M1;\n                node_0->_length = 0;\n\
+    \                node_m1->_first_occurence = 0;\n\n                _active_index\
+    \ = 0;\n            }\n            template <typename Iterable>\n            PalindromicTreeBase(const\
+    \ Iterable& seq) : PalindromicTreeBase() {\n                for (const auto& val\
+    \ : seq) add(val);\n            }\n\n            int add(const value_type& val)\
+    \ {\n                _seq.push_back(val);\n                _nodes.reserve(_nodes.size()\
+    \ + 1);\n\n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
+    \                auto& ch = par_node->_children;\n\n                bool inserted\
+    \ = false;\n\n                if constexpr (is_map) {\n                    const\
+    \ auto [it, inserted_tmp] = ch.emplace(val, _nodes.size());\n                \
+    \    inserted = inserted_tmp;\n                    _active_index = it->second;\n\
+    \                } else if constexpr (is_vector) {\n                    if (value_type(ch.size())\
+    \ <= val) ch.resize(val + 1, NODE_NULL);\n                    if (ch[val] == NODE_NULL)\
+    \ {\n                        inserted = true;\n                        ch[val]\
+    \ = _nodes.size();\n                        _active_index = _nodes.size();\n \
+    \                   } else {\n                        _active_index = ch[val];\n\
+    \                    }\n                } else if constexpr (is_array) {\n   \
+    \                 if (ch[val] == NODE_NULL) {\n                        inserted\
+    \ = true;\n                        ch[val] = _nodes.size();\n                \
+    \        _active_index = _nodes.size();\n                    } else {\n      \
+    \                  _active_index = ch[val];\n                    }\n         \
+    \       } else static_assert(false_v<void>);\n                if (inserted) {\n\
+    \                    node_pointer_type new_node = _new_node();\n\n           \
+    \         new_node->_multiplicity = 1;\n                    new_node->_length\
+    \ = par_node->_length + 2;\n                    new_node->_first_occurence = _seq.size()\
+    \ - new_node->_length;\n                    if (new_node->_length == 1) {\n  \
+    \                      new_node->_suffix_link = NODE_0;\n                    }\
+    \ else {\n                        new_node->_suffix_link = _find_next_longest_suffix_palindrome(_get_node(par_node->_suffix_link))->_children[val];\n\
+    \                    }\n                } else {\n                    ++_get_node(_active_index)->_multiplicity;\n\
+    \                }\n                return _active_index;\n            }\n\n \
+    \           int node_num() const {\n                return _nodes.size();\n  \
+    \          }\n\n            const node_type& get_node(int index) const {\n   \
+    \             return _nodes[index];\n            }\n\n            int first_occurence(int\
+    \ index) const {\n                return get_node(index)._first_occurence;\n \
+    \           }\n            int length(int index) const {\n                return\
+    \ get_node(index)._length;\n            }\n            int suffix_link(int index)\
+    \ const {\n                return get_node(index)._suffix_link;\n            }\n\
+    \            int node_multiplicity(int index) const {\n                return\
+    \ get_node(index)._multiplicity;\n            }\n            const children_container_type&\
+    \ children(int index) const {\n                return get_node(index)._children;\n\
+    \            }\n            std::vector<int> parents() const {\n             \
+    \   int sz = node_num();\n                std::vector<int> res(sz, -1);\n    \
+    \            for (int i = 0; i < sz; ++i) {\n                    for (const auto&\
+    \ p : children(i)) {\n                        if constexpr (is_map) {\n      \
+    \                      res[p.second] = i;\n                        } else if (p\
+    \ != NODE_NULL) {\n                            res[p] = i;\n                 \
+    \       }\n                    }\n                }\n                return res;\n\
+    \            }\n\n            const container_type get_palindrome(int index) {\n\
+    \                if (index == NODE_M1) return container_type{};\n            \
+    \    int l = first_occurence(index), r = l + length(index);\n                return\
+    \ container_type{ _seq.begin() + l, _seq.begin() + r };\n            }\n\n   \
+    \         std::vector<int> frequency_table() const {\n                int sz =\
+    \ node_num();\n                std::vector<int> res(sz);\n                for\
+    \ (int i = sz; i-- > 1;) {\n                    res[i] += node_multiplicity(i);\n\
+    \                    res[suffix_link(i)] += res[i];\n                }\n     \
+    \           return res;\n            }\n\n        private:\n            static\
+    \ constexpr bool is_map = std::is_same_v<std::map<value_type, int>, children_container_type>;\n\
+    \            static constexpr bool is_vector = std::is_same_v<std::vector<value_type>,\
+    \ children_container_type>;\n            static constexpr bool is_array = std::is_same_v<std::array<value_type,\
+    \ std::tuple_size_v<children_container_type>>, children_container_type>;\n\n \
+    \           int _active_index;\n            container_type _seq;\n           \
+    \ std::vector<node_type> _nodes;\n\n            node_pointer_type _new_node()\
+    \ {\n                node_pointer_type new_node = &_nodes.emplace_back();\n  \
+    \              if constexpr (not (is_map or is_vector)) {\n                  \
+    \  std::fill(new_node->_children.begin(), new_node->_children.end(), NODE_NULL);\n\
+    \                }\n                return new_node;\n            }\n\n      \
+    \      node_pointer_type _find_next_longest_suffix_palindrome(node_pointer_type\
+    \ node) {\n                const int sz = _seq.size();\n                for (;;\
+    \ node = _get_node(node->_suffix_link)) {\n                    int opposite_index\
+    \ = sz - node->_length - 2;\n                    if (opposite_index >= 0 and _seq[opposite_index]\
+    \ == _seq.back()) return node;\n                }\n            }\n\n         \
+    \   node_pointer_type _get_node(int index) {\n                return &_nodes[index];\n\
+    \            }\n        };\n    } // namespace internal::palindromic_tree\n\n\
+    \    template <typename T, typename Sequence = std::vector<T>>\n    struct PalindromicTree\
+    \ : public internal::palindromic_tree::PalindromicTreeBase<T, Sequence, std::map<T,\
+    \ int>> {\n        using base_type = internal::palindromic_tree::PalindromicTreeBase<T,\
+    \ Sequence, std::map<T, int>>;\n        using base_type::base_type;\n    };\n\n\
+    \    template <typename T, typename Sequence = std::vector<T>>\n    struct PalindromicTreeVec\
+    \ : public internal::palindromic_tree::PalindromicTreeBase<T, Sequence, std::vector<T>>\
+    \ {\n        using base_type = internal::palindromic_tree::PalindromicTreeBase<T,\
+    \ Sequence, std::vector<T>>;\n        using base_type::base_type;\n    };\n\n\
+    \    template <typename T, std::size_t N, typename Sequence = std::vector<T>>\n\
+    \    struct PalindromicTreeArr : public internal::palindromic_tree::PalindromicTreeBase<T,\
+    \ Sequence, std::array<T, N>> {\n        using base_type = internal::palindromic_tree::PalindromicTreeBase<T,\
+    \ Sequence, std::array<T, N>>;\n        using base_type::base_type;\n    };\n\
+    } // namespace suisen\n\n\n\n"
+  code: "#ifndef SUISEN_PALINDROMIC_TREE\n#define SUISEN_PALINDROMIC_TREE\n\n#include\
+    \ <array>\n#include <cassert>\n#include <vector>\n#include <map>\n\nnamespace\
+    \ suisen {\n    namespace internal::palindromic_tree {\n        template <typename\
+    \ T>\n        constexpr bool false_v = false;\n\n        template <typename T,\
+    \ typename Sequence, typename ChildrenContainerType>\n        struct PalindromicTreeBase\
+    \ {\n            using container_type = Sequence;\n            using value_type\
+    \ = T;\n\n            using children_container_type = ChildrenContainerType;\n\
+    \n            struct PalindromicTreeNode {\n                friend struct PalindromicTreeBase;\n\
+    \                PalindromicTreeNode() = default;\n            private:\n    \
+    \            children_container_type _children;\n                int _suffix_link;\n\
+    \                int _length;\n                int _multiplicity;\n          \
+    \      int _first_occurence;\n            };\n\n            using node_type =\
+    \ PalindromicTreeNode;\n            using node_pointer_type = node_type*;\n\n\
+    \            static constexpr int NODE_NULL = -1;\n            static constexpr\
+    \ int NODE_M1 = 0;\n            static constexpr int NODE_0 = 1;\n\n         \
+    \   PalindromicTreeBase() {\n                _nodes.reserve(2);\n\n          \
+    \      node_pointer_type node_m1 = _new_node();\n                node_m1->_suffix_link\
+    \ = NODE_M1;\n                node_m1->_length = -1;\n                node_m1->_first_occurence\
+    \ = 1;\n\n                node_pointer_type node_0 = _new_node();\n          \
+    \      node_0->_suffix_link = NODE_M1;\n                node_0->_length = 0;\n\
+    \                node_m1->_first_occurence = 0;\n\n                _active_index\
+    \ = 0;\n            }\n            template <typename Iterable>\n            PalindromicTreeBase(const\
+    \ Iterable& seq) : PalindromicTreeBase() {\n                for (const auto& val\
+    \ : seq) add(val);\n            }\n\n            int add(const value_type& val)\
+    \ {\n                _seq.push_back(val);\n                _nodes.reserve(_nodes.size()\
+    \ + 1);\n\n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
+    \                auto& ch = par_node->_children;\n\n                bool inserted\
+    \ = false;\n\n                if constexpr (is_map) {\n                    const\
+    \ auto [it, inserted_tmp] = ch.emplace(val, _nodes.size());\n                \
+    \    inserted = inserted_tmp;\n                    _active_index = it->second;\n\
+    \                } else if constexpr (is_vector) {\n                    if (value_type(ch.size())\
+    \ <= val) ch.resize(val + 1, NODE_NULL);\n                    if (ch[val] == NODE_NULL)\
+    \ {\n                        inserted = true;\n                        ch[val]\
+    \ = _nodes.size();\n                        _active_index = _nodes.size();\n \
+    \                   } else {\n                        _active_index = ch[val];\n\
+    \                    }\n                } else if constexpr (is_array) {\n   \
+    \                 if (ch[val] == NODE_NULL) {\n                        inserted\
+    \ = true;\n                        ch[val] = _nodes.size();\n                \
+    \        _active_index = _nodes.size();\n                    } else {\n      \
+    \                  _active_index = ch[val];\n                    }\n         \
+    \       } else static_assert(false_v<void>);\n                if (inserted) {\n\
+    \                    node_pointer_type new_node = _new_node();\n\n           \
+    \         new_node->_multiplicity = 1;\n                    new_node->_length\
+    \ = par_node->_length + 2;\n                    new_node->_first_occurence = _seq.size()\
+    \ - new_node->_length;\n                    if (new_node->_length == 1) {\n  \
+    \                      new_node->_suffix_link = NODE_0;\n                    }\
+    \ else {\n                        new_node->_suffix_link = _find_next_longest_suffix_palindrome(_get_node(par_node->_suffix_link))->_children[val];\n\
+    \                    }\n                } else {\n                    ++_get_node(_active_index)->_multiplicity;\n\
+    \                }\n                return _active_index;\n            }\n\n \
+    \           int node_num() const {\n                return _nodes.size();\n  \
+    \          }\n\n            const node_type& get_node(int index) const {\n   \
+    \             return _nodes[index];\n            }\n\n            int first_occurence(int\
+    \ index) const {\n                return get_node(index)._first_occurence;\n \
+    \           }\n            int length(int index) const {\n                return\
+    \ get_node(index)._length;\n            }\n            int suffix_link(int index)\
+    \ const {\n                return get_node(index)._suffix_link;\n            }\n\
+    \            int node_multiplicity(int index) const {\n                return\
+    \ get_node(index)._multiplicity;\n            }\n            const children_container_type&\
+    \ children(int index) const {\n                return get_node(index)._children;\n\
+    \            }\n            std::vector<int> parents() const {\n             \
+    \   int sz = node_num();\n                std::vector<int> res(sz, -1);\n    \
+    \            for (int i = 0; i < sz; ++i) {\n                    for (const auto&\
+    \ p : children(i)) {\n                        if constexpr (is_map) {\n      \
+    \                      res[p.second] = i;\n                        } else if (p\
+    \ != NODE_NULL) {\n                            res[p] = i;\n                 \
+    \       }\n                    }\n                }\n                return res;\n\
+    \            }\n\n            const container_type get_palindrome(int index) {\n\
+    \                if (index == NODE_M1) return container_type{};\n            \
+    \    int l = first_occurence(index), r = l + length(index);\n                return\
+    \ container_type{ _seq.begin() + l, _seq.begin() + r };\n            }\n\n   \
+    \         std::vector<int> frequency_table() const {\n                int sz =\
+    \ node_num();\n                std::vector<int> res(sz);\n                for\
+    \ (int i = sz; i-- > 1;) {\n                    res[i] += node_multiplicity(i);\n\
+    \                    res[suffix_link(i)] += res[i];\n                }\n     \
+    \           return res;\n            }\n\n        private:\n            static\
+    \ constexpr bool is_map = std::is_same_v<std::map<value_type, int>, children_container_type>;\n\
+    \            static constexpr bool is_vector = std::is_same_v<std::vector<value_type>,\
+    \ children_container_type>;\n            static constexpr bool is_array = std::is_same_v<std::array<value_type,\
+    \ std::tuple_size_v<children_container_type>>, children_container_type>;\n\n \
+    \           int _active_index;\n            container_type _seq;\n           \
+    \ std::vector<node_type> _nodes;\n\n            node_pointer_type _new_node()\
+    \ {\n                node_pointer_type new_node = &_nodes.emplace_back();\n  \
+    \              if constexpr (not (is_map or is_vector)) {\n                  \
+    \  std::fill(new_node->_children.begin(), new_node->_children.end(), NODE_NULL);\n\
+    \                }\n                return new_node;\n            }\n\n      \
+    \      node_pointer_type _find_next_longest_suffix_palindrome(node_pointer_type\
+    \ node) {\n                const int sz = _seq.size();\n                for (;;\
+    \ node = _get_node(node->_suffix_link)) {\n                    int opposite_index\
+    \ = sz - node->_length - 2;\n                    if (opposite_index >= 0 and _seq[opposite_index]\
+    \ == _seq.back()) return node;\n                }\n            }\n\n         \
+    \   node_pointer_type _get_node(int index) {\n                return &_nodes[index];\n\
+    \            }\n        };\n    } // namespace internal::palindromic_tree\n\n\
+    \    template <typename T, typename Sequence = std::vector<T>>\n    struct PalindromicTree\
+    \ : public internal::palindromic_tree::PalindromicTreeBase<T, Sequence, std::map<T,\
+    \ int>> {\n        using base_type = internal::palindromic_tree::PalindromicTreeBase<T,\
+    \ Sequence, std::map<T, int>>;\n        using base_type::base_type;\n    };\n\n\
+    \    template <typename T, typename Sequence = std::vector<T>>\n    struct PalindromicTreeVec\
+    \ : public internal::palindromic_tree::PalindromicTreeBase<T, Sequence, std::vector<T>>\
+    \ {\n        using base_type = internal::palindromic_tree::PalindromicTreeBase<T,\
+    \ Sequence, std::vector<T>>;\n        using base_type::base_type;\n    };\n\n\
+    \    template <typename T, std::size_t N, typename Sequence = std::vector<T>>\n\
+    \    struct PalindromicTreeArr : public internal::palindromic_tree::PalindromicTreeBase<T,\
+    \ Sequence, std::array<T, N>> {\n        using base_type = internal::palindromic_tree::PalindromicTreeBase<T,\
+    \ Sequence, std::array<T, N>>;\n        using base_type::base_type;\n    };\n\
+    } // namespace suisen\n\n\n#endif // SUISEN_PALINDROMIC_TREE\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: library/string/palindromic_tree.hpp
+  requiredBy: []
+  timestamp: '2022-01-31 15:29:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/string/palindromic_tree/abc237_h.test.cpp
+documentation_of: library/string/palindromic_tree.hpp
+layout: document
+title: Palindromic Tree
+---
+## Palindromic Tree

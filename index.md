@@ -197,7 +197,7 @@ data:
     - icon: ':warning:'
       path: library/graph/bfs01.hpp
       title: Bfs01
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/graph/bipartite_matching.hpp
       title: Bipartite Matching
     - icon: ':heavy_check_mark:'
@@ -240,6 +240,9 @@ data:
       title: Convex Hull
   - name: library/math
     pages:
+    - icon: ':warning:'
+      path: library/math/array_matrix.hpp
+      title: Array Matrix
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: Bigint
@@ -319,6 +322,9 @@ data:
     - icon: ':warning:'
       path: library/string/morris_pratt.hpp
       title: Morris Pratt
+    - icon: ':x:'
+      path: library/string/palindromic_tree.hpp
+      title: Palindromic Tree
     - icon: ':heavy_check_mark:'
       path: library/string/rolling_hash.hpp
       title: Rolling Hash
@@ -892,6 +898,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
+  - name: test/src/string/palindromic_tree
+    pages:
+    - icon: ':x:'
+      path: test/src/string/palindromic_tree/abc237_h.test.cpp
+      title: test/src/string/palindromic_tree/abc237_h.test.cpp
   - name: test/src/string/rolling_hash
     pages:
     - icon: ':heavy_check_mark:'

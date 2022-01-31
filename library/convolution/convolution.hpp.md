@@ -46,23 +46,34 @@ data:
     \  auto mod(const T &x, const T &y) -> decltype(x % y) { return x % y; }\n   \
     \     template <typename T>\n        auto neg(const T &x) -> decltype(-x) { return\
     \ -x; }\n        template <typename T>\n        auto inv(const T &x) -> decltype(one<T>()\
-    \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
-    \n\n#line 8 \"library/convolution/convolution.hpp\"\n\nnamespace suisen {\n  \
-    \  namespace convolution {\n        template <typename T, auto transform, auto\
-    \ inv_transform, auto mul = default_operator::mul<T>>\n        std::vector<T>\
-    \ transform_convolution(std::vector<T> a, std::vector<T> b) {\n            const\
-    \ std::size_t n = a.size(), m = b.size();\n            assert(n == m);\n     \
-    \       transform(a), transform(b);\n            for (std::size_t i = 0; i < n;\
-    \ ++i) a[i] = mul(a[i], b[i]);\n            inv_transform(a);\n            return\
-    \ a;\n        }\n        template <typename T, auto transform, auto inv_transform,\
-    \ auto mul = default_operator::mul<T>>\n        std::vector<T> transform_convolution(std::vector<std::vector<T>>\
-    \ a) {\n            const std::size_t num = a.size();\n            assert(num);\n\
-    \            const std::size_t n = a[0].size();\n            for (auto &v : a)\
-    \ {\n                assert(n == int(v.size()));\n                transform(v);\n\
-    \            }\n            auto &res = a[0];\n            for (int i = 1; i <\
-    \ num; ++i) {\n                for (int j = 0; j < n; ++j) res[j] = mul(res[j],\
-    \ a[i][j]);\n            }\n            inv_transform(res);\n            return\
-    \ res;\n        }\n    }\n} // namespace suisen\n\n\n\n"
+    \ / x)  { return one<T>() / x; }\n    } // default_operator\n    namespace default_operator_noref\
+    \ {\n        template <typename T>\n        auto zero() -> decltype(T { 0 }) {\
+    \ return T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
+    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(T\
+    \ x, T y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
+    \        auto sub(T x, T y) -> decltype(x - y) { return x - y; }\n        template\
+    \ <typename T>\n        auto mul(T x, T y) -> decltype(x * y) { return x * y;\
+    \ }\n        template <typename T>\n        auto div(T x, T y) -> decltype(x /\
+    \ y) { return x / y; }\n        template <typename T>\n        auto mod(T x, T\
+    \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
+    \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
+    \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
+    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 8 \"library/convolution/convolution.hpp\"\
+    \n\nnamespace suisen {\n    namespace convolution {\n        template <typename\
+    \ T, auto transform, auto inv_transform, auto mul = default_operator::mul<T>>\n\
+    \        std::vector<T> transform_convolution(std::vector<T> a, std::vector<T>\
+    \ b) {\n            const std::size_t n = a.size(), m = b.size();\n          \
+    \  assert(n == m);\n            transform(a), transform(b);\n            for (std::size_t\
+    \ i = 0; i < n; ++i) a[i] = mul(a[i], b[i]);\n            inv_transform(a);\n\
+    \            return a;\n        }\n        template <typename T, auto transform,\
+    \ auto inv_transform, auto mul = default_operator::mul<T>>\n        std::vector<T>\
+    \ transform_convolution(std::vector<std::vector<T>> a) {\n            const std::size_t\
+    \ num = a.size();\n            assert(num);\n            const std::size_t n =\
+    \ a[0].size();\n            for (auto &v : a) {\n                assert(n == int(v.size()));\n\
+    \                transform(v);\n            }\n            auto &res = a[0];\n\
+    \            for (int i = 1; i < num; ++i) {\n                for (int j = 0;\
+    \ j < n; ++j) res[j] = mul(res[j], a[i][j]);\n            }\n            inv_transform(res);\n\
+    \            return res;\n        }\n    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_CONVOLUTION\n#define SUISEN_CONVOLUTION\n\n#include <cassert>\n\
     #include <vector>\n\n#include \"library/util/default_operator.hpp\"\n\nnamespace\
     \ suisen {\n    namespace convolution {\n        template <typename T, auto transform,\
@@ -86,14 +97,14 @@ data:
   path: library/convolution/convolution.hpp
   requiredBy:
   - library/convolution/xor_convolution.hpp
+  - library/convolution/or_convolution.hpp
   - library/convolution/gcd_convolution.hpp
   - library/convolution/and_convolution.hpp
-  - library/convolution/or_convolution.hpp
-  timestamp: '2021-09-29 01:36:15+09:00'
+  timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/and_convolution/and_convolution.test.cpp
 documentation_of: library/convolution/convolution.hpp
 layout: document

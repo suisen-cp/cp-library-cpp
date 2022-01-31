@@ -34,7 +34,19 @@ data:
     \ -> decltype(x % y) { return x % y; }\n        template <typename T>\n      \
     \  auto neg(const T &x) -> decltype(-x) { return -x; }\n        template <typename\
     \ T>\n        auto inv(const T &x) -> decltype(one<T>() / x)  { return one<T>()\
-    \ / x; }\n    } // default_operator\n} // namespace suisen\n\n\n#line 6 \"library/transform/multiple.hpp\"\
+    \ / x; }\n    } // default_operator\n    namespace default_operator_noref {\n\
+    \        template <typename T>\n        auto zero() -> decltype(T { 0 }) { return\
+    \ T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
+    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(T\
+    \ x, T y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
+    \        auto sub(T x, T y) -> decltype(x - y) { return x - y; }\n        template\
+    \ <typename T>\n        auto mul(T x, T y) -> decltype(x * y) { return x * y;\
+    \ }\n        template <typename T>\n        auto div(T x, T y) -> decltype(x /\
+    \ y) { return x / y; }\n        template <typename T>\n        auto mod(T x, T\
+    \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
+    \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
+    \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
+    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 6 \"library/transform/multiple.hpp\"\
     \n\nnamespace suisen::multiple_transform {\n    // Calculates `g` s.t. g(n) =\
     \ Sum_{n | m} f(m) inplace.\n    template <typename T, auto add = default_operator::add<T>>\n\
     \    void zeta(std::vector<T> &f) {\n        const int n = f.size();\n       \
@@ -75,11 +87,11 @@ data:
   path: library/transform/multiple.hpp
   requiredBy:
   - library/convolution/gcd_convolution.hpp
-  timestamp: '2021-09-29 01:36:15+09:00'
+  timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/transform/multiple/divide_both.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/transform/multiple/divide_both.test.cpp
 documentation_of: library/transform/multiple.hpp
 layout: document
 title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\u30B9\

@@ -130,8 +130,8 @@ data:
     \    SPS f(n, 0);\n            f[0] = 1;\n            return f;\n        }\n\n\
     \        friend bool operator==(const SPS &lhs, const SPS &rhs) {\n          \
     \  return std::operator==(lhs, rhs);\n        }\n\n        void set_cardinality(int\
-    \ n) {\n            resize(1 << n, 0);\n        }\n        int cardinality() {\n\
-    \            return __builtin_ctz(size());\n        }\n\n        SPS cut_lower(unsigned\
+    \ n) {\n            resize(1 << n, 0);\n        }\n        int cardinality() const\
+    \ {\n            return __builtin_ctz(size());\n        }\n\n        SPS cut_lower(unsigned\
     \ int p) const {\n            return SPS(begin(), begin() + p);\n        }\n \
     \       SPS cut_upper(unsigned int p) const {\n            return SPS(begin()\
     \ + p, begin() + p + p);\n        }\n\n        void concat(const SPS &upper) {\n\
@@ -163,33 +163,71 @@ data:
     \                for (unsigned int i = 0; i < p; ++i) {\n                    muleq(muleq(poly[i],\
     \ res_poly[i]), res_poly[i]);\n                    for (auto &e : poly[i]) e *=\
     \ -1;\n                }\n                res.concat(deranked_mobius<T>(poly));\n\
-    \            }\n            return res;\n        }\n        SPS sqrt() {\n   \
-    \         using namespace internal::subset_convolution;\n\n            SPS res\
-    \ { ::sqrt(front()) };\n            assert(res[0] * res[0] == front());\n    \
-    \        res.reserve(size());\n            for (unsigned int p = 1; p < size();\
+    \            }\n            return res;\n        }\n        // SPS inv() {\n \
+    \       //     using namespace internal::subset_convolution;\n        //     const\
+    \ int n = size();\n        //     auto rf = ranked(*this);\n        //     rf[0][0]\
+    \ = ::inv(front());\n        //     for (int i = 1; i < n; i <<= 1) {\n      \
+    \  //         for (int k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l +=\
+    \ 2 * k) for (int p = l; p < l + k; ++p) addeq(rf[p + k], rf[p]);\n        //\
+    \         for (int j = 0; j < i; ++j) {\n        //             muleq(rf[i + j],\
+    \ rf[j]);\n        //             muleq(rf[i + j], rf[j]);\n        //       \
+    \      rf[i + j] = sub(rf[j], rf[i + j]);\n        //         }\n        //  \
+    \   }\n        //     return deranked_mobius(rf);\n        // }\n        SPS sqrt()\
+    \ {\n            using namespace internal::subset_convolution;\n\n           \
+    \ SPS res { ::sqrt(front()) };\n            assert(res[0] * res[0] == front());\n\
+    \            res.reserve(size());\n            for (unsigned int p = 1; p < size();\
     \ p <<= 1) {\n                auto res_poly = ranked_zeta<T>(res);\n         \
     \       auto poly = ranked_zeta<T>(cut_upper(p));\n                for (unsigned\
     \ int i = 0; i < p; ++i) {\n                    for (auto &e : res_poly[i]) e\
     \ *= 2;\n                    muleq(poly[i], naive_poly_inv(res_poly[i]));\n  \
     \              }\n                res.concat(deranked_mobius<T>(poly));\n    \
-    \        }\n            return res;\n        }\n        SPS exp() {\n        \
-    \    SPS res { ::exp(front()) };\n            res.reserve(size());\n         \
-    \   for (unsigned int p = 1; p < size(); p <<= 1) res.concat(cut_upper(p) * res);\n\
-    \            return res;\n        }\n        SPS log() {\n            SPS res\
-    \ { ::log(front()) };\n            res.reserve(size());\n            SPS inv_\
-    \ = cut_lower(size() >> 1).inv();\n            for (unsigned int p = 1; p < size();\
-    \ p <<= 1) res.concat(cut_upper(p) * inv_.cut_lower(p));\n            return res;\n\
-    \        }\n        SPS pow(long long k) {\n            const T c = (*this)[0];\n\
-    \n            if (c != 0) {\n                T pow_c = ::pow(c, k);\n        \
-    \        SPS f = *this / c;\n                f = (T(k) * f.log()).exp();\n   \
-    \             for (auto &e : f) e *= pow_c;\n                return f;\n     \
-    \       }\n\n            using namespace internal::subset_convolution;\n\n   \
-    \         int n = cardinality();\n            if (n < k) return SPS(n, 0);\n \
-    \           auto res_poly = ranked<T>(one(n));\n            auto cur_poly = ranked<T>(*this);\n\
-    \            for (; k; k >>= 1) {\n                for (unsigned int i = 0; i\
-    \ < size(); ++i) {\n                    if (k & 1) muleq(res_poly[i], cur_poly[i]);\n\
-    \                    muleq(cur_poly[i], std::vector<T>(cur_poly[i]));\n      \
-    \          }\n            }\n            return SPS(deranked<T>(res_poly));\n\
+    \        }\n            return res;\n        }\n        // SPS sqrt() {\n    \
+    \    //     using namespace internal::subset_convolution;\n        //     const\
+    \ int n = size();\n        //     auto rf = ranked(*this);\n        //     rf[0][0]\
+    \ = ::sqrt(front());\n        //     assert(rf[0][0] * rf[0][0] == front());\n\
+    \        //     for (int i = 1; i < n; i <<= 1) {\n        //         for (int\
+    \ k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l += 2 * k) for (int p = l;\
+    \ p < l + k; ++p) addeq(rf[p + k], rf[p]);\n        //         for (int j = 0;\
+    \ j < i; ++j) {\n        //             auto inv_2rg = rf[j];\n        //    \
+    \         for (auto &e : inv_2rg) e *= 2;\n        //             muleq(rf[i +\
+    \ j], naive_poly_inv(inv_2rg));\n        //             addeq(rf[i + j], rf[j]);\n\
+    \        //         }\n        //     }\n        //     return deranked_mobius(rf);\n\
+    \        // }\n        SPS exp() {\n            SPS res { ::exp(front()) };\n\
+    \            res.reserve(size());\n            for (unsigned int p = 1; p < size();\
+    \ p <<= 1) res.concat(cut_upper(p) * res);\n            return res;\n        }\n\
+    \        // SPS exp() {\n        //     using namespace internal::subset_convolution;\n\
+    \        //     const int n = size();\n        //     auto rf = ranked(*this);\n\
+    \        //     rf[0][0] = ::exp(front());\n        //     for (int i = 1; i <\
+    \ n; i <<= 1) {\n        //         for (int k = 1; k < i; k <<= 1) for (int l\
+    \ = i; l < 2 * i; l += 2 * k) for (int p = l; p < l + k; ++p) addeq(rf[p + k],\
+    \ rf[p]);\n        //         for (int j = 0; j < i; ++j) {\n        //      \
+    \       ++rf[i + j][0];\n        //             muleq(rf[i + j], rf[j]);\n   \
+    \     //         }\n        //     }\n        //     return deranked_mobius(rf);\n\
+    \        // }\n        SPS log() {\n            SPS res { ::log(front()) };\n\
+    \            res.reserve(size());\n            SPS inv_ = cut_lower(size() >>\
+    \ 1).inv();\n            for (unsigned int p = 1; p < size(); p <<= 1) res.concat(cut_upper(p)\
+    \ * inv_.cut_lower(p));\n            return res;\n        }\n        // SPS log()\
+    \ {\n        //     using namespace internal::subset_convolution;\n        //\
+    \     const int n = size();\n        //     auto rg = ranked_zeta<T>(cut_lower(size()\
+    \ >> 1).inv());\n        //     for (auto &v : rg) v.push_back(T(0));\n      \
+    \  //     auto rf = ranked(*this);\n        //     rf[0][0] = ::log(front());\n\
+    \        //     for (int i = 1; i < n; i <<= 1) {\n        //         for (int\
+    \ k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l += 2 * k) for (int p = l;\
+    \ p < l + k; ++p) addeq(rf[p + k], rf[p]);\n        //         for (int j = 0;\
+    \ j < i; ++j) {\n        //             muleq(rf[i + j], rg[j]);\n        // \
+    \            addeq(rf[i + j], rf[j]);\n        //         }\n        //     }\n\
+    \        //     return deranked_mobius(rf);\n        // }\n        SPS pow(long\
+    \ long k) {\n            const T c = (*this)[0];\n\n            if (c != 0) {\n\
+    \                T pow_c = ::pow(c, k);\n                SPS f = *this / c;\n\
+    \                f = (T(k) * f.log()).exp();\n                for (auto &e : f)\
+    \ e *= pow_c;\n                return f;\n            }\n\n            using namespace\
+    \ internal::subset_convolution;\n\n            int n = cardinality();\n      \
+    \      if (n < k) return SPS(n, 0);\n            auto res_poly = ranked_zeta<T>(one(n));\n\
+    \            auto cur_poly = ranked_zeta<T>(*this);\n            for (unsigned\
+    \ int i = 0; i < size(); ++i) {\n                for (long long b = k; b; b >>=\
+    \ 1) {\n                    if (b & 1) muleq(res_poly[i], cur_poly[i]);\n    \
+    \                muleq(cur_poly[i], std::vector<T>(cur_poly[i]));\n          \
+    \      }\n            }\n            return SPS(deranked_mobius<T>(res_poly));\n\
     \        }\n\n    private:\n        using base_type::assign;\n        using base_type::push_back;\n\
     \        using base_type::emplace_back;\n        using base_type::pop_back;\n\
     \        using base_type::insert;\n        using base_type::emplace;\n       \
@@ -218,18 +256,29 @@ data:
     \  auto mod(const T &x, const T &y) -> decltype(x % y) { return x % y; }\n   \
     \     template <typename T>\n        auto neg(const T &x) -> decltype(-x) { return\
     \ -x; }\n        template <typename T>\n        auto inv(const T &x) -> decltype(one<T>()\
-    \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
-    \n\n#line 8 \"library/transform/kronecker_power.hpp\"\n\nnamespace suisen {\n\
-    \    namespace kronecker_power_transform {\n        namespace internal {\n   \
-    \         template <typename UnitTransform, typename ReferenceGetter, std::size_t...\
-    \ Seq>\n            void unit_transform(UnitTransform transform, ReferenceGetter\
-    \ ref_getter, std::index_sequence<Seq...>) {\n                transform(ref_getter(Seq)...);\n\
-    \            }\n        }\n\n        template <typename T, std::size_t D, auto\
-    \ unit_transform>\n        void kronecker_power_transform(std::vector<T> &x) {\n\
-    \            const std::size_t n = x.size();\n            for (std::size_t block\
-    \ = 1; block < n; block *= D) {\n                for (std::size_t l = 0; l < n;\
-    \ l += D * block) {\n                    for (std::size_t offset = l; offset <\
-    \ l + block; ++offset) {\n                        const auto ref_getter = [&](std::size_t\
+    \ / x)  { return one<T>() / x; }\n    } // default_operator\n    namespace default_operator_noref\
+    \ {\n        template <typename T>\n        auto zero() -> decltype(T { 0 }) {\
+    \ return T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
+    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(T\
+    \ x, T y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
+    \        auto sub(T x, T y) -> decltype(x - y) { return x - y; }\n        template\
+    \ <typename T>\n        auto mul(T x, T y) -> decltype(x * y) { return x * y;\
+    \ }\n        template <typename T>\n        auto div(T x, T y) -> decltype(x /\
+    \ y) { return x / y; }\n        template <typename T>\n        auto mod(T x, T\
+    \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
+    \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
+    \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
+    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 8 \"library/transform/kronecker_power.hpp\"\
+    \n\nnamespace suisen {\n    namespace kronecker_power_transform {\n        namespace\
+    \ internal {\n            template <typename UnitTransform, typename ReferenceGetter,\
+    \ std::size_t... Seq>\n            void unit_transform(UnitTransform transform,\
+    \ ReferenceGetter ref_getter, std::index_sequence<Seq...>) {\n               \
+    \ transform(ref_getter(Seq)...);\n            }\n        }\n\n        template\
+    \ <typename T, std::size_t D, auto unit_transform>\n        void kronecker_power_transform(std::vector<T>\
+    \ &x) {\n            const std::size_t n = x.size();\n            for (std::size_t\
+    \ block = 1; block < n; block *= D) {\n                for (std::size_t l = 0;\
+    \ l < n; l += D * block) {\n                    for (std::size_t offset = l; offset\
+    \ < l + block; ++offset) {\n                        const auto ref_getter = [&](std::size_t\
     \ i) -> T& { return x[offset + i * block]; };\n                        internal::unit_transform(unit_transform,\
     \ ref_getter, std::make_index_sequence<D>());\n                    }\n       \
     \         }\n            }\n        }\n\n        template <typename T, typename\
@@ -301,7 +350,7 @@ data:
   isVerificationFile: true
   path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   requiredBy: []
-  timestamp: '2021-09-29 01:36:15+09:00'
+  timestamp: '2022-01-31 13:35:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/lights_out_on_connected_graph.test.cpp
