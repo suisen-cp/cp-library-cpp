@@ -209,13 +209,13 @@ data:
     \ *it;\n                }\n                // Return the maximum registered value\
     \ less than `e`. if not exists, return `default_value`\n                T max_lt(const\
     \ T &e, const T &default_value) const {\n                    auto it = std::upper_bound(_xs.rbegin(),\
-    \ _xs.rend(), e);\n                    return it == _xs.rend() ? default_value\
-    \ : *it;\n                }\n                // Return the maximum registered\
-    \ value less than or equal to `e`. if not exists, return `default_value`\n   \
-    \             T max_leq(const T &e, const T &default_value) const {\n        \
-    \            auto it = std::lower_bound(_xs.rbegin(), _xs.rend(), e);\n      \
-    \              return it == _xs.rend() ? default_value : *it;\n              \
-    \  }\n                // Return the compressed index of the minimum registered\
+    \ _xs.rend(), e, std::greater<T>());\n                    return it == _xs.rend()\
+    \ ? default_value : *it;\n                }\n                // Return the maximum\
+    \ registered value less than or equal to `e`. if not exists, return `default_value`\n\
+    \                T max_leq(const T &e, const T &default_value) const {\n     \
+    \               auto it = std::lower_bound(_xs.rbegin(), _xs.rend(), e, std::greater<T>());\n\
+    \                    return it == _xs.rend() ? default_value : *it;\n        \
+    \        }\n                // Return the compressed index of the minimum registered\
     \ value greater than `e`. if not exists, return `compressor.size()`.\n       \
     \         int min_gt_index(const T &e) const {\n                    return std::upper_bound(_xs.begin(),\
     \ _xs.end(), e) - _xs.begin();\n                }\n                // Return the\
@@ -225,18 +225,18 @@ data:
     \ e) - _xs.begin();\n                }\n                // Return the compressed\
     \ index of the maximum registered value less than `e`. if not exists, return -1.\n\
     \                int max_lt_index(const T &e) const {\n                    return\
-    \ int(_xs.rend() - std::upper_bound(_xs.rbegin(), _xs.rend(), e)) - 1;\n     \
-    \           }\n                // Return the compressed index of the maximum registered\
-    \ value less than or equal to `e`. if not exists, return -1.\n               \
-    \ int max_leq_index(const T &e) const {\n                    return int(_xs.rend()\
-    \ - std::lower_bound(_xs.rbegin(), _xs.rend(), e)) - 1;\n                }\n \
-    \           private:\n                std::vector<T> _xs;\n                static\
-    \ bool is_strictly_sorted(const std::vector<T> &v) {\n                    return\
-    \ std::adjacent_find(v.begin(), v.end(), std::greater_equal<T>()) == v.end();\n\
-    \                }\n        };\n        CoordinateCompressorBuilder() : _xs(std::vector<T>{})\
-    \ {}\n        explicit CoordinateCompressorBuilder(const std::vector<T> &xs) :\
-    \ _xs(xs) {}\n        explicit CoordinateCompressorBuilder(std::vector<T> &&xs)\
-    \ : _xs(std::move(xs)) {}\n        template <typename Gen, constraints_t<is_same_as_invoke_result<T,\
+    \ int(_xs.rend() - std::upper_bound(_xs.rbegin(), _xs.rend(), e, std::greater<T>()))\
+    \ - 1;\n                }\n                // Return the compressed index of the\
+    \ maximum registered value less than or equal to `e`. if not exists, return -1.\n\
+    \                int max_leq_index(const T &e) const {\n                    return\
+    \ int(_xs.rend() - std::lower_bound(_xs.rbegin(), _xs.rend(), e, std::greater<T>()))\
+    \ - 1;\n                }\n            private:\n                std::vector<T>\
+    \ _xs;\n                static bool is_strictly_sorted(const std::vector<T> &v)\
+    \ {\n                    return std::adjacent_find(v.begin(), v.end(), std::greater_equal<T>())\
+    \ == v.end();\n                }\n        };\n        CoordinateCompressorBuilder()\
+    \ : _xs(std::vector<T>{}) {}\n        explicit CoordinateCompressorBuilder(const\
+    \ std::vector<T> &xs) : _xs(xs) {}\n        explicit CoordinateCompressorBuilder(std::vector<T>\
+    \ &&xs) : _xs(std::move(xs)) {}\n        template <typename Gen, constraints_t<is_same_as_invoke_result<T,\
     \ Gen, int>> = nullptr>\n        CoordinateCompressorBuilder(const int n, Gen\
     \ generator) {\n            reserve(n);\n            for (int i = 0; i < n; ++i)\
     \ push(generator(i));\n        }\n        // Attempt to preallocate enough memory\
@@ -348,7 +348,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2022-01-17 22:19:31+09:00'
+  timestamp: '2022-02-01 07:52:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
