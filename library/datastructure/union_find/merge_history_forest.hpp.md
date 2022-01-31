@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
+    title: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/union_find/merge_history_forest.hpp\"\
@@ -66,8 +69,9 @@ data:
   path: library/datastructure/union_find/merge_history_forest.hpp
   requiredBy: []
   timestamp: '2022-01-17 22:14:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
 documentation_of: library/datastructure/union_find/merge_history_forest.hpp
 layout: document
 title: Merge History Forest

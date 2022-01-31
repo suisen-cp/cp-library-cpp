@@ -2,22 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Sps
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc236_h.test.cpp
+    title: test/src/math/sps/abc236_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/connectivity2.test.cpp
     title: test/src/math/sps/connectivity2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
     title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/subset_convolution.hpp\"\n\n\n\n#include\
@@ -115,10 +118,11 @@ data:
   requiredBy:
   - library/math/sps.hpp
   timestamp: '2021-09-29 01:36:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
+  - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
 documentation_of: library/convolution/subset_convolution.hpp
 layout: document

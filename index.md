@@ -55,7 +55,7 @@ data:
       path: library/convolution/polynomial_eval_multipoint_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -149,7 +149,7 @@ data:
     - icon: ':warning:'
       path: library/datastructure/union_find/linked_union_find.hpp
       title: Linked Union Find
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/datastructure/union_find/merge_history_forest.hpp
       title: Merge History Forest
     - icon: ':warning:'
@@ -270,7 +270,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/matrix.hpp
       title: Matrix
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
     - icon: ':heavy_check_mark:'
@@ -282,7 +282,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: Pow Mods
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/sps.hpp
       title: Sps
     - icon: ':heavy_check_mark:'
@@ -637,6 +637,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
+  - name: test/src/datastructure/union_find/merge_history_forest
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
+      title: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
   - name: test/src/datastructure/union_find/union_find
     pages:
     - icon: ':heavy_check_mark:'
@@ -863,6 +868,9 @@ data:
       title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - name: test/src/math/sps
     pages:
+    - icon: ':x:'
+      path: test/src/math/sps/abc236_h.test.cpp
+      title: test/src/math/sps/abc236_h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/math/sps/connectivity2.test.cpp
       title: test/src/math/sps/connectivity2.test.cpp

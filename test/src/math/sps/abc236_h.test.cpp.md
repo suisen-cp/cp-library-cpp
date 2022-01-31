@@ -10,30 +10,16 @@ data:
   - icon: ':question:'
     path: library/math/sps.hpp
     title: Sps
-  - icon: ':heavy_check_mark:'
-    path: library/transform/kronecker_power.hpp
-    title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
-      \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':heavy_check_mark:'
-    path: library/transform/subset.hpp
-    title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
-      \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-  - icon: ':heavy_check_mark:'
-    path: library/util/default_operator.hpp
-    title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc213/tasks/abc213_g
-    links:
-    - https://atcoder.jp/contests/abc213/tasks/abc213_g
-  bundledCode: "#line 1 \"test/src/math/sps/connectivity2.test.cpp\"\n#define PROBLEM\
-    \ \"https://atcoder.jp/contests/abc213/tasks/abc213_g\"\n\n#include <iostream>\n\
-    #include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\n#line 1\
+    links: []
+  bundledCode: "#line 1 \"test/src/math/sps/abc236_h.test.cpp\"\n#include <iostream>\n\
+    \n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\n#line 1\
     \ \"library/math/sps.hpp\"\n\n\n\n#include <cmath>\n#include <initializer_list>\n\
     #include <type_traits>\n#line 1 \"library/math/modint_extension.hpp\"\n\n\n\n\
     #include <cassert>\n#include <optional>\n\nnamespace suisen {\n/**\n * refernce:\
@@ -243,123 +229,45 @@ data:
     \  for (size_type j = 0; j < n; ++j) {\n                res[j] = j == 0;\n   \
     \             for (size_type k = 0; k < j; ++k) res[j] -= a[j - k] * res[k];\n\
     \                res[j] *= v;\n            }\n            return res;\n      \
-    \  }\n};\n\n} // namespace suisen\n\n\n#line 1 \"library/transform/subset.hpp\"\
-    \n\n\n\n#line 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#line 6 \"library/transform/kronecker_power.hpp\"\
-    \n\n#line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n\
-    \    namespace default_operator {\n        template <typename T>\n        auto\
-    \ zero() -> decltype(T { 0 }) { return T { 0 }; }\n        template <typename\
-    \ T>\n        auto one()  -> decltype(T { 1 }) { return T { 1 }; }\n        template\
-    \ <typename T>\n        auto add(const T &x, const T &y) -> decltype(x + y) {\
-    \ return x + y; }\n        template <typename T>\n        auto sub(const T &x,\
-    \ const T &y) -> decltype(x - y) { return x - y; }\n        template <typename\
-    \ T>\n        auto mul(const T &x, const T &y) -> decltype(x * y) { return x *\
-    \ y; }\n        template <typename T>\n        auto div(const T &x, const T &y)\
-    \ -> decltype(x / y) { return x / y; }\n        template <typename T>\n      \
-    \  auto mod(const T &x, const T &y) -> decltype(x % y) { return x % y; }\n   \
-    \     template <typename T>\n        auto neg(const T &x) -> decltype(-x) { return\
-    \ -x; }\n        template <typename T>\n        auto inv(const T &x) -> decltype(one<T>()\
-    \ / x)  { return one<T>() / x; }\n    } // default_operator\n    namespace default_operator_noref\
-    \ {\n        template <typename T>\n        auto zero() -> decltype(T { 0 }) {\
-    \ return T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
-    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(T\
-    \ x, T y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
-    \        auto sub(T x, T y) -> decltype(x - y) { return x - y; }\n        template\
-    \ <typename T>\n        auto mul(T x, T y) -> decltype(x * y) { return x * y;\
-    \ }\n        template <typename T>\n        auto div(T x, T y) -> decltype(x /\
-    \ y) { return x / y; }\n        template <typename T>\n        auto mod(T x, T\
-    \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
-    \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
-    \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
-    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 8 \"library/transform/kronecker_power.hpp\"\
-    \n\nnamespace suisen {\n    namespace kronecker_power_transform {\n        namespace\
-    \ internal {\n            template <typename UnitTransform, typename ReferenceGetter,\
-    \ std::size_t... Seq>\n            void unit_transform(UnitTransform transform,\
-    \ ReferenceGetter ref_getter, std::index_sequence<Seq...>) {\n               \
-    \ transform(ref_getter(Seq)...);\n            }\n        }\n\n        template\
-    \ <typename T, std::size_t D, auto unit_transform>\n        void kronecker_power_transform(std::vector<T>\
-    \ &x) {\n            const std::size_t n = x.size();\n            for (std::size_t\
-    \ block = 1; block < n; block *= D) {\n                for (std::size_t l = 0;\
-    \ l < n; l += D * block) {\n                    for (std::size_t offset = l; offset\
-    \ < l + block; ++offset) {\n                        const auto ref_getter = [&](std::size_t\
-    \ i) -> T& { return x[offset + i * block]; };\n                        internal::unit_transform(unit_transform,\
-    \ ref_getter, std::make_index_sequence<D>());\n                    }\n       \
-    \         }\n            }\n        }\n\n        template <typename T, typename\
-    \ UnitTransform>\n        void kronecker_power_transform(std::vector<T> &x, const\
-    \ std::size_t D, UnitTransform unit_transform) {\n            const std::size_t\
-    \ n = x.size();\n            std::vector<T> work(D);\n            for (std::size_t\
-    \ block = 1; block < n; block *= D) {\n                for (std::size_t l = 0;\
-    \ l < n; l += D * block) {\n                    for (std::size_t offset = l; offset\
-    \ < l + block; ++offset) {\n                        for (std::size_t i = 0; i\
-    \ < D; ++i) work[i] = x[offset + i * block];\n                        unit_transform(work);\n\
-    \                        for (std::size_t i = 0; i < D; ++i) x[offset + i * block]\
-    \ = work[i];\n                    }\n                }\n            }\n      \
-    \  }\n\n        template <typename T, auto e = default_operator::zero<T>, auto\
-    \ add = default_operator::add<T>, auto mul = default_operator::mul<T>>\n     \
-    \   auto kronecker_power_transform(std::vector<T> &x, const std::vector<std::vector<T>>\
-    \ &A) -> decltype(e(), add(std::declval<T>(), std::declval<T>()), mul(std::declval<T>(),\
-    \ std::declval<T>()), void()) {\n            const std::size_t D = A.size();\n\
-    \            assert(D == A[0].size());\n            auto unit_transform = [&](std::vector<T>\
-    \ &x) {\n                std::vector<T> y(D, e());\n                for (std::size_t\
-    \ i = 0; i < D; ++i) for (std::size_t j = 0; j < D; ++j) {\n                 \
-    \   y[i] = add(y[i], mul(A[i][j], x[j]));\n                }\n               \
-    \ x.swap(y);\n            };\n            kronecker_power_transform<T>(x, D, unit_transform);\n\
-    \        }\n    }\n} // namespace suisen\n\n\n\n#line 5 \"library/transform/subset.hpp\"\
-    \n\nnamespace suisen::subset_transform {\n    namespace internal {\n        template\
-    \ <typename T, auto add = default_operator::add<T>>\n        void zeta_unit_transform(T\
-    \ &x0, T &x1) {\n                                // 1, 0\n            x1 = add(x1,\
-    \ x0);   // 1, 1\n        }\n        template <typename T, auto sub = default_operator::sub<T>>\n\
-    \        void mobius_unit_transform(T &x0, T &x1) {\n                        \
-    \        //  1, 0\n            x1 = sub(x1, x0);   // -1, 1\n        }\n    }\
-    \ // namespace internal\n\n    using kronecker_power_transform::kronecker_power_transform;\n\
-    \n    template <typename T, auto add = default_operator::add<T>>\n    void zeta(std::vector<T>\
-    \ &a) {\n        kronecker_power_transform<T, 2, internal::zeta_unit_transform<T,\
-    \ add>>(a);\n    }\n    template <typename T, auto sub = default_operator::sub<T>>\n\
-    \    void mobius(std::vector<T> &a) {\n        kronecker_power_transform<T, 2,\
-    \ internal::mobius_unit_transform<T, sub>>(a);\n    }\n} // namespace suisen::subset_transform\n\
-    \n\n#line 10 \"test/src/math/sps/connectivity2.test.cpp\"\n\nusing namespace suisen;\n\
-    \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n    std::vector<int> c(1\
-    \ << n, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        std::cin\
-    \ >> u >> v;\n        --u, --v;\n        c[(1 << u) | (1 << v)] = 1;\n    }\n\
-    \    suisen::subset_transform::zeta(c);\n    suisen::SPS<mint> g(n);\n    for\
-    \ (int i = 0; i < 1 << n; ++i) {\n        g[i] = mint(2).pow(c[i]);\n    }\n\n\
-    \    assert(g.inv() * g == suisen::SPS<mint>::one(n));\n\n    auto f = g.log();\n\
-    \    auto h = f.exp();\n    // test of exp\n    assert(g == h);\n    std::vector<mint>\
-    \ ans(n, 0);\n    int full = (1 << n) - 1;\n    for (int i = 1; i < 1 << n; i\
-    \ += 2) {\n        mint x = f[i] * g[full ^ i];\n        for (int j = 0; j < n;\
-    \ ++j) ans[j] += ((i >> j) & 1) * x;\n    }\n    for (int i = 1; i < n; ++i) {\n\
-    \        std::cout << ans[i].val() << std::endl;\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc213/tasks/abc213_g\"\n\n\
-    #include <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
-    \n#include \"library/math/sps.hpp\"\n#include \"library/transform/subset.hpp\"\
-    \n\nusing namespace suisen;\n\nint main() {\n    int n, m;\n    std::cin >> n\
-    \ >> m;\n    std::vector<int> c(1 << n, 0);\n    for (int i = 0; i < m; ++i) {\n\
-    \        int u, v;\n        std::cin >> u >> v;\n        --u, --v;\n        c[(1\
-    \ << u) | (1 << v)] = 1;\n    }\n    suisen::subset_transform::zeta(c);\n    suisen::SPS<mint>\
-    \ g(n);\n    for (int i = 0; i < 1 << n; ++i) {\n        g[i] = mint(2).pow(c[i]);\n\
-    \    }\n\n    assert(g.inv() * g == suisen::SPS<mint>::one(n));\n\n    auto f\
-    \ = g.log();\n    auto h = f.exp();\n    // test of exp\n    assert(g == h);\n\
-    \    std::vector<mint> ans(n, 0);\n    int full = (1 << n) - 1;\n    for (int\
-    \ i = 1; i < 1 << n; i += 2) {\n        mint x = f[i] * g[full ^ i];\n       \
-    \ for (int j = 0; j < n; ++j) ans[j] += ((i >> j) & 1) * x;\n    }\n    for (int\
-    \ i = 1; i < n; ++i) {\n        std::cout << ans[i].val() << std::endl;\n    }\n\
+    \  }\n};\n\n} // namespace suisen\n\n\n#line 7 \"test/src/math/sps/abc236_h.test.cpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    size_t n;\n    uint64_t m;\n    std::cin >> n >> m;\n    std::vector<uint64_t>\
+    \ d(n);\n    for (auto &e : d) std::cin >> e;\n\n    std::vector<mint> h(n + 1);\n\
+    \    mint fac = 1;\n    for (std::size_t i = 1; i <= n; ++i) {\n        h[i] =\
+    \ (i & 1) ? fac : -fac;\n        fac *= i;\n    }\n\n    std::vector<uint64_t>\
+    \ lcm(1 << n, 1);\n \n    suisen::SPS<mint> f(n);\n    for (std::size_t s = 1;\
+    \ s < 1U << n; ++s) {\n        std::size_t i = __builtin_ctz(s);\n        std::size_t\
+    \ t = s ^ (1U << i);\n        uint64_t x = d[i] / std::gcd(d[i], lcm[t]);\n  \
+    \      lcm[s] = x > m / lcm[t] ? m + 1 : x * lcm[t];\n        std::size_t pc =\
+    \ __builtin_popcount(s);\n        f[s] = (m / lcm[s]) * h[pc];\n    }\n\n    std::cout\
+    \ << f.exp().back().val() << std::endl;\n    return 0;\n}\n"
+  code: "#include <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
+    \n#include \"library/math/sps.hpp\"\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    size_t n;\n    uint64_t m;\n    std::cin >>\
+    \ n >> m;\n    std::vector<uint64_t> d(n);\n    for (auto &e : d) std::cin >>\
+    \ e;\n\n    std::vector<mint> h(n + 1);\n    mint fac = 1;\n    for (std::size_t\
+    \ i = 1; i <= n; ++i) {\n        h[i] = (i & 1) ? fac : -fac;\n        fac *=\
+    \ i;\n    }\n\n    std::vector<uint64_t> lcm(1 << n, 1);\n \n    suisen::SPS<mint>\
+    \ f(n);\n    for (std::size_t s = 1; s < 1U << n; ++s) {\n        std::size_t\
+    \ i = __builtin_ctz(s);\n        std::size_t t = s ^ (1U << i);\n        uint64_t\
+    \ x = d[i] / std::gcd(d[i], lcm[t]);\n        lcm[s] = x > m / lcm[t] ? m + 1\
+    \ : x * lcm[t];\n        std::size_t pc = __builtin_popcount(s);\n        f[s]\
+    \ = (m / lcm[s]) * h[pc];\n    }\n\n    std::cout << f.exp().back().val() << std::endl;\n\
     \    return 0;\n}"
   dependsOn:
   - library/math/sps.hpp
   - library/math/modint_extension.hpp
   - library/convolution/subset_convolution.hpp
-  - library/transform/subset.hpp
-  - library/transform/kronecker_power.hpp
-  - library/util/default_operator.hpp
   isVerificationFile: true
-  path: test/src/math/sps/connectivity2.test.cpp
+  path: test/src/math/sps/abc236_h.test.cpp
   requiredBy: []
   timestamp: '2022-01-31 17:40:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/math/sps/connectivity2.test.cpp
+documentation_of: test/src/math/sps/abc236_h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/math/sps/connectivity2.test.cpp
-- /verify/test/src/math/sps/connectivity2.test.cpp.html
-title: test/src/math/sps/connectivity2.test.cpp
+- /verify/test/src/math/sps/abc236_h.test.cpp
+- /verify/test/src/math/sps/abc236_h.test.cpp.html
+title: test/src/math/sps/abc236_h.test.cpp
 ---

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Sps
   - icon: ':heavy_check_mark:'
@@ -113,56 +113,57 @@ data:
     \ typename base_type::const_iterator;\n        using reverse_iterator       =\
     \ typename base_type::reverse_iterator;\n        using const_reverse_iterator\
     \ = typename base_type::const_reverse_iterator;\n\n        using base_type::vector;\n\
-    \n        SPS() : SPS(0) {}\n        SPS(int n) : SPS(n, 0) {}\n        SPS(int\
-    \ n, T val) : SPS(std::vector<T>(1 << n, val)) {}\n        SPS(const std::vector<T>\
-    \ &a) : SPS(std::vector<T>(a)) {}\n        SPS(std::vector<T> &&a) : std::vector<T>(std::move(a))\
-    \ {\n            resize(ceil_pow2(size()), 0);\n        }\n        SPS(std::initializer_list<T>\
-    \ l) : SPS(std::vector<T>(l)) {}\n\n        using base_type::operator=;\n\n  \
-    \      using base_type::size;\n        using base_type::max_size;\n        using\
-    \ base_type::capacity;\n        using base_type::empty;\n        using base_type::reserve;\n\
-    \        using base_type::shrink_to_fit;\n\n        using base_type::begin;\n\
-    \        using base_type::end;\n        using base_type::cbegin;\n        using\
-    \ base_type::cend;\n        using base_type::rbegin;\n        using base_type::rend;\n\
-    \        using base_type::crbegin;\n        using base_type::crend;\n        \n\
-    \        using base_type::operator[];\n        using base_type::at;\n        using\
-    \ base_type::data;\n        using base_type::front;\n        using base_type::back;\n\
-    \n        using base_type::swap;\n\n        static SPS one(int n) {\n        \
-    \    SPS f(n, 0);\n            f[0] = 1;\n            return f;\n        }\n\n\
-    \        friend bool operator==(const SPS &lhs, const SPS &rhs) {\n          \
-    \  return std::operator==(lhs, rhs);\n        }\n\n        void set_cardinality(int\
-    \ n) {\n            resize(1 << n, 0);\n        }\n        int cardinality() const\
-    \ {\n            return __builtin_ctz(size());\n        }\n\n        SPS cut_lower(unsigned\
-    \ int p) const {\n            return SPS(begin(), begin() + p);\n        }\n \
-    \       SPS cut_upper(unsigned int p) const {\n            return SPS(begin()\
-    \ + p, begin() + p + p);\n        }\n\n        void concat(const SPS &upper) {\n\
-    \            assert(size() == upper.size());\n            insert(end(), upper.begin(),\
-    \ upper.end());\n        }\n\n        SPS operator+() const {\n            return\
-    \ *this;\n        }\n        SPS operator-() const {\n            SPS res(*this);\n\
-    \            for (auto &e : res) e = -e;\n            return res;\n        }\n\
-    \        SPS& operator+=(const SPS &g) {\n            ensure(g.size());\n    \
-    \        for (unsigned int i = 0; i < g.size(); ++i) (*this)[i] += g[i];\n   \
-    \         return *this;\n        }\n        SPS& operator-=(const SPS &g) {\n\
-    \            ensure(g.size());\n            for (unsigned int i = 0; i < g.size();\
-    \ ++i) (*this)[i] -= g[i];\n            return *this;\n        }\n        SPS&\
-    \ operator*=(const SPS &g) {\n            SPS g_(g);\n            ensure(g_.size()),\
-    \ g_.ensure(size());\n            *this = subset_convolution<T>(*this, g_);\n\
-    \            return *this;\n        }\n        SPS& operator*=(T c) {\n      \
-    \      for (auto &e : *this) e *= c;\n            return *this;\n        }\n \
-    \       SPS& operator/=(T c) {\n            T inv_c = ::inv(c);\n            for\
-    \ (auto &e : *this) e *= inv_c;\n            return *this;\n        }\n      \
-    \  friend SPS operator+(const SPS &f, const SPS &g) { return SPS(f) += g; }\n\
-    \        friend SPS operator-(const SPS &f, const SPS &g) { return SPS(f) -= g;\
-    \ }\n        friend SPS operator*(const SPS &f, const SPS &g) { return SPS(f)\
-    \ *= g; }\n        friend SPS operator*(const SPS &f, T c) { return SPS(f) *=\
-    \ c; }\n        friend SPS operator*(T c, const SPS &f) { return SPS(f) *= c;\
-    \ }\n        friend SPS operator/(const SPS &f, T c) { return SPS(f) /= c; }\n\
-    \n        SPS inv() {\n            using namespace internal::subset_convolution;\n\
-    \n            SPS res { ::inv(front()) };\n            res.reserve(size());\n\
-    \            for (unsigned int p = 1; p < size(); p <<= 1) {\n               \
-    \ auto res_poly = ranked_zeta<T>(res);\n                auto poly = ranked_zeta<T>(cut_upper(p));\n\
-    \                for (unsigned int i = 0; i < p; ++i) {\n                    muleq(muleq(poly[i],\
+    \n        SPS() : SPS(0) {}\n        SPS(size_type n) : SPS(n, 0) {}\n       \
+    \ SPS(size_type n, const value_type &val) : SPS(std::vector<value_type>(1 << n,\
+    \ val)) {}\n        SPS(const base_type &a) : SPS(base_type(a)) {}\n        SPS(base_type\
+    \ &&a) : base_type(std::move(a)) {\n            resize(ceil_pow2(size()), 0);\n\
+    \        }\n        SPS(std::initializer_list<value_type> l) : SPS(base_type(l))\
+    \ {}\n\n        using base_type::operator=;\n\n        using base_type::size;\n\
+    \        using base_type::max_size;\n        using base_type::capacity;\n    \
+    \    using base_type::empty;\n        using base_type::reserve;\n        using\
+    \ base_type::shrink_to_fit;\n\n        using base_type::begin;\n        using\
+    \ base_type::end;\n        using base_type::cbegin;\n        using base_type::cend;\n\
+    \        using base_type::rbegin;\n        using base_type::rend;\n        using\
+    \ base_type::crbegin;\n        using base_type::crend;\n        \n        using\
+    \ base_type::operator[];\n        using base_type::at;\n        using base_type::data;\n\
+    \        using base_type::front;\n        using base_type::back;\n\n        using\
+    \ base_type::swap;\n\n        static SPS one(int n) {\n            SPS f(n, 0);\n\
+    \            f[0] = 1;\n            return f;\n        }\n\n        friend bool\
+    \ operator==(const SPS &lhs, const SPS &rhs) {\n            return std::operator==(lhs,\
+    \ rhs);\n        }\n\n        void set_cardinality(int n) {\n            resize(1\
+    \ << n, 0);\n        }\n        int cardinality() const {\n            return\
+    \ __builtin_ctz(size());\n        }\n\n        SPS cut_lower(size_type p) const\
+    \ {\n            return SPS(begin(), begin() + p);\n        }\n        SPS cut_upper(size_type\
+    \ p) const {\n            return SPS(begin() + p, begin() + p + p);\n        }\n\
+    \n        void concat(const SPS &upper) {\n            assert(size() == upper.size());\n\
+    \            insert(end(), upper.begin(), upper.end());\n        }\n\n       \
+    \ SPS operator+() const {\n            return *this;\n        }\n        SPS operator-()\
+    \ const {\n            SPS res(*this);\n            for (auto &e : res) e = -e;\n\
+    \            return res;\n        }\n        SPS& operator+=(const SPS &g) {\n\
+    \            ensure(g.size());\n            for (size_type i = 0; i < g.size();\
+    \ ++i) (*this)[i] += g[i];\n            return *this;\n        }\n        SPS&\
+    \ operator-=(const SPS &g) {\n            ensure(g.size());\n            for (size_type\
+    \ i = 0; i < g.size(); ++i) (*this)[i] -= g[i];\n            return *this;\n \
+    \       }\n        SPS& operator*=(const SPS &g) {\n            SPS g_(g);\n \
+    \           ensure(g_.size()), g_.ensure(size());\n            *this = subset_convolution<value_type>(*this,\
+    \ g_);\n            return *this;\n        }\n        SPS& operator*=(value_type\
+    \ c) {\n            for (auto &e : *this) e *= c;\n            return *this;\n\
+    \        }\n        SPS& operator/=(value_type c) {\n            value_type inv_c\
+    \ = ::inv(c);\n            for (auto &e : *this) e *= inv_c;\n            return\
+    \ *this;\n        }\n        friend SPS operator+(const SPS &f, const SPS &g)\
+    \ { return SPS(f) += g; }\n        friend SPS operator-(const SPS &f, const SPS\
+    \ &g) { return SPS(f) -= g; }\n        friend SPS operator*(const SPS &f, const\
+    \ SPS &g) { return SPS(f) *= g; }\n        friend SPS operator*(const SPS &f,\
+    \ value_type c) { return SPS(f) *= c; }\n        friend SPS operator*(value_type\
+    \ c, const SPS &f) { return SPS(f) *= c; }\n        friend SPS operator/(const\
+    \ SPS &f, value_type c) { return SPS(f) /= c; }\n\n        SPS inv() {\n     \
+    \       using namespace internal::subset_convolution;\n\n            SPS res {\
+    \ ::inv(front()) };\n            res.reserve(size());\n            for (size_type\
+    \ p = 1; p < size(); p <<= 1) {\n                auto res_poly = ranked_zeta<value_type>(res);\n\
+    \                auto poly = ranked_zeta<value_type>(cut_upper(p));\n        \
+    \        for (size_type i = 0; i < p; ++i) {\n                    muleq(muleq(poly[i],\
     \ res_poly[i]), res_poly[i]);\n                    for (auto &e : poly[i]) e *=\
-    \ -1;\n                }\n                res.concat(deranked_mobius<T>(poly));\n\
+    \ -1;\n                }\n                res.concat(deranked_mobius<value_type>(poly));\n\
     \            }\n            return res;\n        }\n        // SPS inv() {\n \
     \       //     using namespace internal::subset_convolution;\n        //     const\
     \ int n = size();\n        //     auto rf = ranked(*this);\n        //     rf[0][0]\
@@ -175,27 +176,27 @@ data:
     \   }\n        //     return deranked_mobius(rf);\n        // }\n        SPS sqrt()\
     \ {\n            using namespace internal::subset_convolution;\n\n           \
     \ SPS res { ::sqrt(front()) };\n            assert(res[0] * res[0] == front());\n\
-    \            res.reserve(size());\n            for (unsigned int p = 1; p < size();\
-    \ p <<= 1) {\n                auto res_poly = ranked_zeta<T>(res);\n         \
-    \       auto poly = ranked_zeta<T>(cut_upper(p));\n                for (unsigned\
-    \ int i = 0; i < p; ++i) {\n                    for (auto &e : res_poly[i]) e\
-    \ *= 2;\n                    muleq(poly[i], naive_poly_inv(res_poly[i]));\n  \
-    \              }\n                res.concat(deranked_mobius<T>(poly));\n    \
-    \        }\n            return res;\n        }\n        // SPS sqrt() {\n    \
-    \    //     using namespace internal::subset_convolution;\n        //     const\
-    \ int n = size();\n        //     auto rf = ranked(*this);\n        //     rf[0][0]\
-    \ = ::sqrt(front());\n        //     assert(rf[0][0] * rf[0][0] == front());\n\
-    \        //     for (int i = 1; i < n; i <<= 1) {\n        //         for (int\
-    \ k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l += 2 * k) for (int p = l;\
-    \ p < l + k; ++p) addeq(rf[p + k], rf[p]);\n        //         for (int j = 0;\
-    \ j < i; ++j) {\n        //             auto inv_2rg = rf[j];\n        //    \
-    \         for (auto &e : inv_2rg) e *= 2;\n        //             muleq(rf[i +\
-    \ j], naive_poly_inv(inv_2rg));\n        //             addeq(rf[i + j], rf[j]);\n\
-    \        //         }\n        //     }\n        //     return deranked_mobius(rf);\n\
-    \        // }\n        SPS exp() {\n            SPS res { ::exp(front()) };\n\
-    \            res.reserve(size());\n            for (unsigned int p = 1; p < size();\
-    \ p <<= 1) res.concat(cut_upper(p) * res);\n            return res;\n        }\n\
-    \        // SPS exp() {\n        //     using namespace internal::subset_convolution;\n\
+    \            res.reserve(size());\n            for (size_type p = 1; p < size();\
+    \ p <<= 1) {\n                auto res_poly = ranked_zeta<value_type>(res);\n\
+    \                auto poly = ranked_zeta<value_type>(cut_upper(p));\n        \
+    \        for (size_type i = 0; i < p; ++i) {\n                    for (auto &e\
+    \ : res_poly[i]) e *= 2;\n                    muleq(poly[i], naive_poly_inv(res_poly[i]));\n\
+    \                }\n                res.concat(deranked_mobius<value_type>(poly));\n\
+    \            }\n            return res;\n        }\n        // SPS sqrt() {\n\
+    \        //     using namespace internal::subset_convolution;\n        //    \
+    \ const int n = size();\n        //     auto rf = ranked(*this);\n        // \
+    \    rf[0][0] = ::sqrt(front());\n        //     assert(rf[0][0] * rf[0][0] ==\
+    \ front());\n        //     for (int i = 1; i < n; i <<= 1) {\n        //    \
+    \     for (int k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l += 2 * k) for\
+    \ (int p = l; p < l + k; ++p) addeq(rf[p + k], rf[p]);\n        //         for\
+    \ (int j = 0; j < i; ++j) {\n        //             auto inv_2rg = rf[j];\n  \
+    \      //             for (auto &e : inv_2rg) e *= 2;\n        //            \
+    \ muleq(rf[i + j], naive_poly_inv(inv_2rg));\n        //             addeq(rf[i\
+    \ + j], rf[j]);\n        //         }\n        //     }\n        //     return\
+    \ deranked_mobius(rf);\n        // }\n        SPS exp() {\n            SPS res\
+    \ { ::exp(front()) };\n            res.reserve(size());\n            for (size_type\
+    \ p = 1; p < size(); p <<= 1) res.concat(cut_upper(p) * res);\n            return\
+    \ res;\n        }\n        // SPS exp() {\n        //     using namespace internal::subset_convolution;\n\
     \        //     const int n = size();\n        //     auto rf = ranked(*this);\n\
     \        //     rf[0][0] = ::exp(front());\n        //     for (int i = 1; i <\
     \ n; i <<= 1) {\n        //         for (int k = 1; k < i; k <<= 1) for (int l\
@@ -205,44 +206,45 @@ data:
     \     //         }\n        //     }\n        //     return deranked_mobius(rf);\n\
     \        // }\n        SPS log() {\n            SPS res { ::log(front()) };\n\
     \            res.reserve(size());\n            SPS inv_ = cut_lower(size() >>\
-    \ 1).inv();\n            for (unsigned int p = 1; p < size(); p <<= 1) res.concat(cut_upper(p)\
+    \ 1).inv();\n            for (size_type p = 1; p < size(); p <<= 1) res.concat(cut_upper(p)\
     \ * inv_.cut_lower(p));\n            return res;\n        }\n        // SPS log()\
     \ {\n        //     using namespace internal::subset_convolution;\n        //\
-    \     const int n = size();\n        //     auto rg = ranked_zeta<T>(cut_lower(size()\
-    \ >> 1).inv());\n        //     for (auto &v : rg) v.push_back(T(0));\n      \
-    \  //     auto rf = ranked(*this);\n        //     rf[0][0] = ::log(front());\n\
+    \     const int n = size();\n        //     auto rg = ranked_zeta<value_type>(cut_lower(size()\
+    \ >> 1).inv());\n        //     for (auto &v : rg) v.push_back(value_type(0));\n\
+    \        //     auto rf = ranked(*this);\n        //     rf[0][0] = ::log(front());\n\
     \        //     for (int i = 1; i < n; i <<= 1) {\n        //         for (int\
     \ k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l += 2 * k) for (int p = l;\
     \ p < l + k; ++p) addeq(rf[p + k], rf[p]);\n        //         for (int j = 0;\
     \ j < i; ++j) {\n        //             muleq(rf[i + j], rg[j]);\n        // \
     \            addeq(rf[i + j], rf[j]);\n        //         }\n        //     }\n\
     \        //     return deranked_mobius(rf);\n        // }\n        SPS pow(long\
-    \ long k) {\n            const T c = (*this)[0];\n\n            if (c != 0) {\n\
-    \                T pow_c = ::pow(c, k);\n                SPS f = *this / c;\n\
-    \                f = (T(k) * f.log()).exp();\n                for (auto &e : f)\
-    \ e *= pow_c;\n                return f;\n            }\n\n            using namespace\
-    \ internal::subset_convolution;\n\n            int n = cardinality();\n      \
-    \      if (n < k) return SPS(n, 0);\n            auto res_poly = ranked_zeta<T>(one(n));\n\
-    \            auto cur_poly = ranked_zeta<T>(*this);\n            for (unsigned\
-    \ int i = 0; i < size(); ++i) {\n                for (long long b = k; b; b >>=\
-    \ 1) {\n                    if (b & 1) muleq(res_poly[i], cur_poly[i]);\n    \
-    \                muleq(cur_poly[i], std::vector<T>(cur_poly[i]));\n          \
-    \      }\n            }\n            return SPS(deranked_mobius<T>(res_poly));\n\
-    \        }\n\n    private:\n        using base_type::assign;\n        using base_type::push_back;\n\
+    \ long k) {\n            const value_type c = (*this)[0];\n\n            if (c\
+    \ != 0) {\n                value_type pow_c = ::pow(c, k);\n                SPS\
+    \ f = *this / c;\n                f = (value_type(k) * f.log()).exp();\n     \
+    \           for (auto &e : f) e *= pow_c;\n                return f;\n       \
+    \     }\n\n            using namespace internal::subset_convolution;\n\n     \
+    \       int n = cardinality();\n            if (n < k) return SPS(n, 0);\n   \
+    \         auto res_poly = ranked_zeta<value_type>(one(n));\n            auto cur_poly\
+    \ = ranked_zeta<value_type>(*this);\n            for (size_type i = 0; i < size();\
+    \ ++i) {\n                for (long long b = k; b; b >>= 1) {\n              \
+    \      if (b & 1) muleq(res_poly[i], cur_poly[i]);\n                    muleq(cur_poly[i],\
+    \ std::vector<value_type>(cur_poly[i]));\n                }\n            }\n \
+    \           return SPS(deranked_mobius<value_type>(res_poly));\n        }\n\n\
+    \    private:\n        using base_type::assign;\n        using base_type::push_back;\n\
     \        using base_type::emplace_back;\n        using base_type::pop_back;\n\
     \        using base_type::insert;\n        using base_type::emplace;\n       \
     \ using base_type::erase;\n        using base_type::clear;\n        using base_type::resize;\n\
-    \n        static constexpr int ceil_pow2(unsigned int n) {\n            unsigned\
-    \ int res = 1;\n            while (res < n) res <<= 1;\n            return res;\n\
-    \        }\n\n        void ensure(unsigned int n) {\n            if (size() <\
-    \ n) resize(n, 0);\n        }\n\n        static std::vector<T> naive_poly_inv(std::vector<T>\
-    \ &a) {\n            const unsigned int n = a.size();\n            std::vector<T>\
-    \ res(n, T(0));\n            T v = ::inv(a[0]);\n            for (unsigned int\
-    \ j = 0; j < n; ++j) {\n                res[j] = j == 0;\n                for\
-    \ (unsigned int k = 0; k < j; ++k) res[j] -= a[j - k] * res[k];\n            \
-    \    res[j] *= v;\n            }\n            return res;\n        }\n};\n\n}\
-    \ // namespace suisen\n\n\n#line 1 \"library/transform/subset.hpp\"\n\n\n\n#line\
-    \ 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#line 6 \"library/transform/kronecker_power.hpp\"\
+    \n        static constexpr int ceil_pow2(size_type n) {\n            size_type\
+    \ res = 1;\n            while (res < n) res <<= 1;\n            return res;\n\
+    \        }\n\n        void ensure(size_type n) {\n            if (size() < n)\
+    \ resize(n, 0);\n        }\n\n        static std::vector<value_type> naive_poly_inv(std::vector<value_type>\
+    \ &a) {\n            const size_type n = a.size();\n            std::vector<value_type>\
+    \ res(n, value_type(0));\n            value_type v = ::inv(a[0]);\n          \
+    \  for (size_type j = 0; j < n; ++j) {\n                res[j] = j == 0;\n   \
+    \             for (size_type k = 0; k < j; ++k) res[j] -= a[j - k] * res[k];\n\
+    \                res[j] *= v;\n            }\n            return res;\n      \
+    \  }\n};\n\n} // namespace suisen\n\n\n#line 1 \"library/transform/subset.hpp\"\
+    \n\n\n\n#line 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#line 6 \"library/transform/kronecker_power.hpp\"\
     \n\n#line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n\
     \    namespace default_operator {\n        template <typename T>\n        auto\
     \ zero() -> decltype(T { 0 }) { return T { 0 }; }\n        template <typename\
@@ -350,7 +352,7 @@ data:
   isVerificationFile: true
   path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 13:35:21+09:00'
+  timestamp: '2022-01-31 17:40:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/lights_out_on_connected_graph.test.cpp
