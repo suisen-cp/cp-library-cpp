@@ -91,10 +91,9 @@ data:
     \      node_0->_suffix_link = NODE_M1;\n                node_0->_length = 0;\n\
     \                node_m1->_first_occurence = 0;\n\n                _active_index\
     \ = 0;\n            }\n            template <typename Iterable>\n            PalindromicTreeBase(const\
-    \ Iterable& seq) : PalindromicTreeBase() {\n                for (const auto& val\
-    \ : seq) add(val);\n            }\n\n            int add(const value_type& val)\
-    \ {\n                _seq.push_back(val);\n                _nodes.reserve(_nodes.size()\
-    \ + 1);\n\n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
+    \ Iterable& seq) : PalindromicTreeBase() {\n                add_all(seq);\n  \
+    \          }\n\n            void add(const value_type& val) {\n              \
+    \  _seq.push_back(val);\n\n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
     \                auto& ch = par_node->_children;\n\n                bool inserted\
     \ = false;\n\n                if constexpr (is_map) {\n                    const\
     \ auto [it, inserted_tmp] = ch.emplace(val, _nodes.size());\n                \
@@ -109,39 +108,41 @@ data:
     \ = true;\n                        ch[val] = _nodes.size();\n                \
     \        _active_index = _nodes.size();\n                    } else {\n      \
     \                  _active_index = ch[val];\n                    }\n         \
-    \       } else static_assert(false_v<void>);\n                if (inserted) {\n\
-    \                    node_pointer_type new_node = _new_node();\n\n           \
-    \         new_node->_multiplicity = 1;\n                    new_node->_length\
-    \ = par_node->_length + 2;\n                    new_node->_first_occurence = _seq.size()\
-    \ - new_node->_length;\n                    if (new_node->_length == 1) {\n  \
-    \                      new_node->_suffix_link = NODE_0;\n                    }\
-    \ else {\n                        new_node->_suffix_link = _find_next_longest_suffix_palindrome(_get_node(par_node->_suffix_link))->_children[val];\n\
-    \                    }\n                } else {\n                    ++_get_node(_active_index)->_multiplicity;\n\
-    \                }\n                return _active_index;\n            }\n\n \
-    \           int node_num() const {\n                return _nodes.size();\n  \
-    \          }\n\n            const node_type& get_node(int index) const {\n   \
-    \             return _nodes[index];\n            }\n\n            int first_occurence(int\
-    \ index) const {\n                return get_node(index)._first_occurence;\n \
-    \           }\n            int length(int index) const {\n                return\
-    \ get_node(index)._length;\n            }\n            int suffix_link(int index)\
-    \ const {\n                return get_node(index)._suffix_link;\n            }\n\
-    \            int node_multiplicity(int index) const {\n                return\
-    \ get_node(index)._multiplicity;\n            }\n            const children_container_type&\
-    \ children(int index) const {\n                return get_node(index)._children;\n\
-    \            }\n            std::vector<int> parents() const {\n             \
-    \   int sz = node_num();\n                std::vector<int> res(sz, -1);\n    \
-    \            for (int i = 0; i < sz; ++i) {\n                    for (const auto&\
-    \ p : children(i)) {\n                        if constexpr (is_map) {\n      \
-    \                      res[p.second] = i;\n                        } else if (p\
-    \ != NODE_NULL) {\n                            res[p] = i;\n                 \
-    \       }\n                    }\n                }\n                return res;\n\
-    \            }\n\n            const container_type get_palindrome(int index) {\n\
-    \                if (index == NODE_M1) return container_type{};\n            \
-    \    int l = first_occurence(index), r = l + length(index);\n                return\
-    \ container_type{ _seq.begin() + l, _seq.begin() + r };\n            }\n\n   \
-    \         std::vector<int> frequency_table() const {\n                int sz =\
-    \ node_num();\n                std::vector<int> res(sz);\n                for\
-    \ (int i = sz; i-- > 1;) {\n                    res[i] += node_multiplicity(i);\n\
+    \       } else static_assert(false_v<void>);\n                if (not inserted)\
+    \ {\n                    ++_get_node(_active_index)->_multiplicity;\n        \
+    \            return;\n                }\n\n                int par_length = par_node->_length;\n\
+    \                int par_suffix_link = par_node->_suffix_link;\n\n           \
+    \     node_pointer_type new_node = _new_node();\n\n                new_node->_multiplicity\
+    \ = 1;\n                new_node->_length = par_length + 2;\n                new_node->_first_occurence\
+    \ = _seq.size() - new_node->_length;\n                if (new_node->_length ==\
+    \ 1) {\n                    new_node->_suffix_link = NODE_0;\n               \
+    \ } else {\n                    new_node->_suffix_link = _find_next_longest_suffix_palindrome(_get_node(par_suffix_link))->_children[val];\n\
+    \                }\n            }\n            template <typename Iterable>\n\
+    \            void add_all(const Iterable &seq) {\n                for (const auto\
+    \ &val : seq) add(val);\n            }\n\n            int node_num() const {\n\
+    \                return _nodes.size();\n            }\n\n            const node_type&\
+    \ get_node(int index) const {\n                return _nodes[index];\n       \
+    \     }\n\n            int first_occurence(int index) const {\n              \
+    \  return get_node(index)._first_occurence;\n            }\n            int length(int\
+    \ index) const {\n                return get_node(index)._length;\n          \
+    \  }\n            int suffix_link(int index) const {\n                return get_node(index)._suffix_link;\n\
+    \            }\n            int node_multiplicity(int index) const {\n       \
+    \         return get_node(index)._multiplicity;\n            }\n            const\
+    \ children_container_type& children(int index) const {\n                return\
+    \ get_node(index)._children;\n            }\n            std::vector<int> parents()\
+    \ const {\n                int sz = node_num();\n                std::vector<int>\
+    \ res(sz, -1);\n                for (int i = 0; i < sz; ++i) {\n             \
+    \       for (const auto& p : children(i)) {\n                        if constexpr\
+    \ (is_map) {\n                            res[p.second] = i;\n               \
+    \         } else if (p != NODE_NULL) {\n                            res[p] = i;\n\
+    \                        }\n                    }\n                }\n       \
+    \         return res;\n            }\n\n            const container_type get_palindrome(int\
+    \ index) {\n                if (index == NODE_M1) return container_type{};\n \
+    \               int l = first_occurence(index), r = l + length(index);\n     \
+    \           return container_type{ _seq.begin() + l, _seq.begin() + r };\n   \
+    \         }\n\n            std::vector<int> frequency_table() const {\n      \
+    \          int sz = node_num();\n                std::vector<int> res(sz);\n \
+    \               for (int i = sz; i-- > 1;) {\n                    res[i] += node_multiplicity(i);\n\
     \                    res[suffix_link(i)] += res[i];\n                }\n     \
     \           return res;\n            }\n\n        private:\n            static\
     \ constexpr bool is_map = std::is_same_v<std::map<value_type, int>, children_container_type>;\n\
@@ -177,37 +178,41 @@ data:
     \n\nusing suisen::BipartiteMatching;\nusing suisen::PalindromicTree;\nusing suisen::PalindromicTreeVec;\n\
     using suisen::PalindromicTreeArr;\n\nint main() {\n    std::string s;\n    std::cin\
     \ >> s;\n\n    std::vector<int> s2;\n    for (char c : s) s2.push_back(c - 'a');\n\
-    \n    PalindromicTree<char, std::string> t(s);\n\n    PalindromicTreeVec<int>\
-    \ tv(s2);\n    PalindromicTreeArr<int, 26> ta(s2); \n\n    const int n = t.node_num()\
-    \ - 2;\n    std::vector<int> par = t.parents();\n    \n    assert(par == tv.parents());\n\
-    \    assert(par == ta.parents());\n\n    BipartiteMatching matching(n, n);\n \
-    \   for (int i = 0; i < n; ++i) {\n        int j = t.suffix_link(i + 2) - 2, k\
-    \ = par[i + 2] - 2;\n        assert(j == tv.suffix_link(i + 2) - 2);\n       \
-    \ assert(j == ta.suffix_link(i + 2) - 2);\n        if (j >= 0) matching.add_edge(i,\
-    \ j);\n        if (k >= 0) matching.add_edge(i, k);\n    }\n\n    std::cout <<\
-    \ n - matching.solve() << std::endl;\n\n    return 0;\n}\n"
+    \n    PalindromicTree<char, std::string> t(s);\n\n    const int n = t.node_num()\
+    \ - 2;\n    std::vector<int> par = t.parents();\n\n    BipartiteMatching matching(n,\
+    \ n);\n    for (int i = 0; i < n; ++i) {\n        int j = t.suffix_link(i + 2)\
+    \ - 2, k = par[i + 2] - 2;\n        if (j >= 0) matching.add_edge(i, j);\n   \
+    \     if (k >= 0) matching.add_edge(i, k);\n    }\n\n    std::cout << n - matching.solve()\
+    \ << std::endl;\n\n    // verification of other versions of palindromic tree\n\
+    \    {\n        PalindromicTreeVec<int> tv(s2);\n        PalindromicTreeArr<int,\
+    \ 26> ta(s2); \n        assert(par == tv.parents());\n        assert(par == ta.parents());\n\
+    \        for (int i = 0; i < n + 2; ++i) {\n            assert(t.suffix_link(i)\
+    \ == tv.suffix_link(i));\n            assert(t.suffix_link(i) == ta.suffix_link(i));\n\
+    \        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_h\"\n\n\
     #include <iostream>\n\n#include \"library/graph/bipartite_matching.hpp\"\n#include\
     \ \"library/string/palindromic_tree.hpp\"\n\nusing suisen::BipartiteMatching;\n\
     using suisen::PalindromicTree;\nusing suisen::PalindromicTreeVec;\nusing suisen::PalindromicTreeArr;\n\
     \nint main() {\n    std::string s;\n    std::cin >> s;\n\n    std::vector<int>\
     \ s2;\n    for (char c : s) s2.push_back(c - 'a');\n\n    PalindromicTree<char,\
-    \ std::string> t(s);\n\n    PalindromicTreeVec<int> tv(s2);\n    PalindromicTreeArr<int,\
-    \ 26> ta(s2); \n\n    const int n = t.node_num() - 2;\n    std::vector<int> par\
-    \ = t.parents();\n    \n    assert(par == tv.parents());\n    assert(par == ta.parents());\n\
-    \n    BipartiteMatching matching(n, n);\n    for (int i = 0; i < n; ++i) {\n \
-    \       int j = t.suffix_link(i + 2) - 2, k = par[i + 2] - 2;\n        assert(j\
-    \ == tv.suffix_link(i + 2) - 2);\n        assert(j == ta.suffix_link(i + 2) -\
-    \ 2);\n        if (j >= 0) matching.add_edge(i, j);\n        if (k >= 0) matching.add_edge(i,\
-    \ k);\n    }\n\n    std::cout << n - matching.solve() << std::endl;\n\n    return\
-    \ 0;\n}"
+    \ std::string> t(s);\n\n    const int n = t.node_num() - 2;\n    std::vector<int>\
+    \ par = t.parents();\n\n    BipartiteMatching matching(n, n);\n    for (int i\
+    \ = 0; i < n; ++i) {\n        int j = t.suffix_link(i + 2) - 2, k = par[i + 2]\
+    \ - 2;\n        if (j >= 0) matching.add_edge(i, j);\n        if (k >= 0) matching.add_edge(i,\
+    \ k);\n    }\n\n    std::cout << n - matching.solve() << std::endl;\n\n    //\
+    \ verification of other versions of palindromic tree\n    {\n        PalindromicTreeVec<int>\
+    \ tv(s2);\n        PalindromicTreeArr<int, 26> ta(s2); \n        assert(par ==\
+    \ tv.parents());\n        assert(par == ta.parents());\n        for (int i = 0;\
+    \ i < n + 2; ++i) {\n            assert(t.suffix_link(i) == tv.suffix_link(i));\n\
+    \            assert(t.suffix_link(i) == ta.suffix_link(i));\n        }\n    }\n\
+    \    return 0;\n}"
   dependsOn:
   - library/graph/bipartite_matching.hpp
   - library/string/palindromic_tree.hpp
   isVerificationFile: true
   path: test/src/string/palindromic_tree/abc237_h.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 15:29:42+09:00'
+  timestamp: '2022-01-31 16:34:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/string/palindromic_tree/abc237_h.test.cpp
