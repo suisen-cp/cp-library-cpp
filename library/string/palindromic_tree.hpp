@@ -37,8 +37,6 @@ namespace suisen {
             static constexpr int NODE_0 = 1;
 
             PalindromicTreeBase() {
-                _nodes.reserve(2);
-
                 node_pointer_type node_m1 = _new_node();
                 node_m1->_suffix_link = NODE_M1;
                 node_m1->_length = -1;
@@ -47,7 +45,7 @@ namespace suisen {
                 node_pointer_type node_0 = _new_node();
                 node_0->_suffix_link = NODE_M1;
                 node_0->_length = 0;
-                node_m1->_first_occurence = 0;
+                node_0->_first_occurence = 0;
 
                 _active_index = 0;
             }
@@ -162,6 +160,22 @@ namespace suisen {
                     res[suffix_link(i)] += res[i];
                 }
                 return res;
+            }
+
+            template <bool erase_root = false>
+            void clear() {
+                _active_index = 0;
+                _seq.clear();
+                if constexpr (erase_root) {
+                    _nodes.clear();
+                } else {
+                    _nodes.erase(_nodes.begin() + 2, _nodes.end());
+                }
+            }
+
+            void shrink_to_fit() {
+                _seq.shrink_to_fit();
+                _nodes.shrink_to_fit();
             }
 
         private:
