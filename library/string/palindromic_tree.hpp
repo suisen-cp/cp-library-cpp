@@ -53,12 +53,11 @@ namespace suisen {
             }
             template <typename Iterable>
             PalindromicTreeBase(const Iterable& seq) : PalindromicTreeBase() {
-                for (const auto& val : seq) add(val);
+                add_all(seq);
             }
 
-            int add(const value_type& val) {
+            void add(const value_type& val) {
                 _seq.push_back(val);
-                _nodes.reserve(_nodes.size() + 1);
 
                 node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));
                 auto& ch = par_node->_children;
@@ -87,21 +86,28 @@ namespace suisen {
                         _active_index = ch[val];
                     }
                 } else static_assert(false_v<void>);
-                if (inserted) {
-                    node_pointer_type new_node = _new_node();
-
-                    new_node->_multiplicity = 1;
-                    new_node->_length = par_node->_length + 2;
-                    new_node->_first_occurence = _seq.size() - new_node->_length;
-                    if (new_node->_length == 1) {
-                        new_node->_suffix_link = NODE_0;
-                    } else {
-                        new_node->_suffix_link = _find_next_longest_suffix_palindrome(_get_node(par_node->_suffix_link))->_children[val];
-                    }
-                } else {
+                if (not inserted) {
                     ++_get_node(_active_index)->_multiplicity;
+                    return;
                 }
-                return _active_index;
+
+                int par_length = par_node->_length;
+                int par_suffix_link = par_node->_suffix_link;
+
+                node_pointer_type new_node = _new_node();
+
+                new_node->_multiplicity = 1;
+                new_node->_length = par_length + 2;
+                new_node->_first_occurence = _seq.size() - new_node->_length;
+                if (new_node->_length == 1) {
+                    new_node->_suffix_link = NODE_0;
+                } else {
+                    new_node->_suffix_link = _find_next_longest_suffix_palindrome(_get_node(par_suffix_link))->_children[val];
+                }
+            }
+            template <typename Iterable>
+            void add_all(const Iterable &seq) {
+                for (const auto &val : seq) add(val);
             }
 
             int node_num() const {

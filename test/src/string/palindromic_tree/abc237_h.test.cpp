@@ -19,25 +19,28 @@ int main() {
 
     PalindromicTree<char, std::string> t(s);
 
-    PalindromicTreeVec<int> tv(s2);
-    PalindromicTreeArr<int, 26> ta(s2); 
-
     const int n = t.node_num() - 2;
     std::vector<int> par = t.parents();
-    
-    assert(par == tv.parents());
-    assert(par == ta.parents());
 
     BipartiteMatching matching(n, n);
     for (int i = 0; i < n; ++i) {
         int j = t.suffix_link(i + 2) - 2, k = par[i + 2] - 2;
-        assert(j == tv.suffix_link(i + 2) - 2);
-        assert(j == ta.suffix_link(i + 2) - 2);
         if (j >= 0) matching.add_edge(i, j);
         if (k >= 0) matching.add_edge(i, k);
     }
 
     std::cout << n - matching.solve() << std::endl;
 
+    // verification of other versions of palindromic tree
+    {
+        PalindromicTreeVec<int> tv(s2);
+        PalindromicTreeArr<int, 26> ta(s2); 
+        assert(par == tv.parents());
+        assert(par == ta.parents());
+        for (int i = 0; i < n + 2; ++i) {
+            assert(t.suffix_link(i) == tv.suffix_link(i));
+            assert(t.suffix_link(i) == ta.suffix_link(i));
+        }
+    }
     return 0;
 }
