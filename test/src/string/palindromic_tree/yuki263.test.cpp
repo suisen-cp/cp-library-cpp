@@ -25,6 +25,9 @@ int main() {
 
     // verification of other versions of palindromic tree
     {
+        tree.clear<true>();
+        tree.shrink_to_fit();
+
         using suisen::PalindromicTreeVec;
         using suisen::PalindromicTreeArr;
 
@@ -39,6 +42,8 @@ int main() {
         tv.add(26), tv.add(27);
         tv.add_all(fix(t));
         assert(tv.frequency_table() == g);
+        tv.clear<true>();
+        tv.shrink_to_fit();
 
         PalindromicTreeArr<int, 28> ta(fix(s));
         assert(ta.frequency_table() == f);
