@@ -56,14 +56,14 @@ namespace suisen {
                 for (const auto& val : seq) add(val);
             }
 
-            void add(const value_type& val) {
+            int add(const value_type& val) {
                 _seq.push_back(val);
                 _nodes.reserve(_nodes.size() + 1);
 
                 node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));
                 auto& ch = par_node->_children;
 
-                bool inserted;
+                bool inserted = false;
 
                 if constexpr (is_map) {
                     const auto [it, inserted_tmp] = ch.emplace(val, _nodes.size());
@@ -86,24 +86,22 @@ namespace suisen {
                     } else {
                         _active_index = ch[val];
                     }
+                } else static_assert(false_v<void>);
+                if (inserted) {
+                    node_pointer_type new_node = _new_node();
+
+                    new_node->_multiplicity = 1;
+                    new_node->_length = par_node->_length + 2;
+                    new_node->_first_occurence = _seq.size() - new_node->_length;
+                    if (new_node->_length == 1) {
+                        new_node->_suffix_link = NODE_0;
+                    } else {
+                        new_node->_suffix_link = _find_next_longest_suffix_palindrome(_get_node(par_node->_suffix_link))->_children[val];
+                    }
                 } else {
-                    static_assert(false_v<void>);
-                }
-                if (not inserted) {
                     ++_get_node(_active_index)->_multiplicity;
-                    return;
                 }
-
-                node_pointer_type new_node = _new_node();
-
-                new_node->_multiplicity = 1;
-                new_node->_length = par_node->_length + 2;
-                new_node->_first_occurence = _seq.size() - new_node->_length;
-                if (new_node->_length == 1) {
-                    new_node->_suffix_link = NODE_0;
-                } else {
-                    new_node->_suffix_link = _find_next_longest_suffix_palindrome(_get_node(par_node->_suffix_link))->_children[val];
-                }
+                return _active_index;
             }
 
             int node_num() const {
