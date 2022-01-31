@@ -29,13 +29,13 @@ class SPS : private std::vector<T> {
         using base_type::vector;
 
         SPS() : SPS(0) {}
-        SPS(int n) : SPS(n, 0) {}
-        SPS(int n, T val) : SPS(std::vector<T>(1 << n, val)) {}
-        SPS(const std::vector<T> &a) : SPS(std::vector<T>(a)) {}
-        SPS(std::vector<T> &&a) : std::vector<T>(std::move(a)) {
+        SPS(size_type n) : SPS(n, 0) {}
+        SPS(size_type n, const value_type &val) : SPS(std::vector<value_type>(1 << n, val)) {}
+        SPS(const base_type &a) : SPS(base_type(a)) {}
+        SPS(base_type &&a) : base_type(std::move(a)) {
             resize(ceil_pow2(size()), 0);
         }
-        SPS(std::initializer_list<T> l) : SPS(std::vector<T>(l)) {}
+        SPS(std::initializer_list<value_type> l) : SPS(base_type(l)) {}
 
         using base_type::operator=;
 
@@ -80,10 +80,10 @@ class SPS : private std::vector<T> {
             return __builtin_ctz(size());
         }
 
-        SPS cut_lower(unsigned int p) const {
+        SPS cut_lower(size_type p) const {
             return SPS(begin(), begin() + p);
         }
-        SPS cut_upper(unsigned int p) const {
+        SPS cut_upper(size_type p) const {
             return SPS(begin() + p, begin() + p + p);
         }
 
@@ -102,49 +102,49 @@ class SPS : private std::vector<T> {
         }
         SPS& operator+=(const SPS &g) {
             ensure(g.size());
-            for (unsigned int i = 0; i < g.size(); ++i) (*this)[i] += g[i];
+            for (size_type i = 0; i < g.size(); ++i) (*this)[i] += g[i];
             return *this;
         }
         SPS& operator-=(const SPS &g) {
             ensure(g.size());
-            for (unsigned int i = 0; i < g.size(); ++i) (*this)[i] -= g[i];
+            for (size_type i = 0; i < g.size(); ++i) (*this)[i] -= g[i];
             return *this;
         }
         SPS& operator*=(const SPS &g) {
             SPS g_(g);
             ensure(g_.size()), g_.ensure(size());
-            *this = subset_convolution<T>(*this, g_);
+            *this = subset_convolution<value_type>(*this, g_);
             return *this;
         }
-        SPS& operator*=(T c) {
+        SPS& operator*=(value_type c) {
             for (auto &e : *this) e *= c;
             return *this;
         }
-        SPS& operator/=(T c) {
-            T inv_c = ::inv(c);
+        SPS& operator/=(value_type c) {
+            value_type inv_c = ::inv(c);
             for (auto &e : *this) e *= inv_c;
             return *this;
         }
         friend SPS operator+(const SPS &f, const SPS &g) { return SPS(f) += g; }
         friend SPS operator-(const SPS &f, const SPS &g) { return SPS(f) -= g; }
         friend SPS operator*(const SPS &f, const SPS &g) { return SPS(f) *= g; }
-        friend SPS operator*(const SPS &f, T c) { return SPS(f) *= c; }
-        friend SPS operator*(T c, const SPS &f) { return SPS(f) *= c; }
-        friend SPS operator/(const SPS &f, T c) { return SPS(f) /= c; }
+        friend SPS operator*(const SPS &f, value_type c) { return SPS(f) *= c; }
+        friend SPS operator*(value_type c, const SPS &f) { return SPS(f) *= c; }
+        friend SPS operator/(const SPS &f, value_type c) { return SPS(f) /= c; }
 
         SPS inv() {
             using namespace internal::subset_convolution;
 
             SPS res { ::inv(front()) };
             res.reserve(size());
-            for (unsigned int p = 1; p < size(); p <<= 1) {
-                auto res_poly = ranked_zeta<T>(res);
-                auto poly = ranked_zeta<T>(cut_upper(p));
-                for (unsigned int i = 0; i < p; ++i) {
+            for (size_type p = 1; p < size(); p <<= 1) {
+                auto res_poly = ranked_zeta<value_type>(res);
+                auto poly = ranked_zeta<value_type>(cut_upper(p));
+                for (size_type i = 0; i < p; ++i) {
                     muleq(muleq(poly[i], res_poly[i]), res_poly[i]);
                     for (auto &e : poly[i]) e *= -1;
                 }
-                res.concat(deranked_mobius<T>(poly));
+                res.concat(deranked_mobius<value_type>(poly));
             }
             return res;
         }
@@ -169,14 +169,14 @@ class SPS : private std::vector<T> {
             SPS res { ::sqrt(front()) };
             assert(res[0] * res[0] == front());
             res.reserve(size());
-            for (unsigned int p = 1; p < size(); p <<= 1) {
-                auto res_poly = ranked_zeta<T>(res);
-                auto poly = ranked_zeta<T>(cut_upper(p));
-                for (unsigned int i = 0; i < p; ++i) {
+            for (size_type p = 1; p < size(); p <<= 1) {
+                auto res_poly = ranked_zeta<value_type>(res);
+                auto poly = ranked_zeta<value_type>(cut_upper(p));
+                for (size_type i = 0; i < p; ++i) {
                     for (auto &e : res_poly[i]) e *= 2;
                     muleq(poly[i], naive_poly_inv(res_poly[i]));
                 }
-                res.concat(deranked_mobius<T>(poly));
+                res.concat(deranked_mobius<value_type>(poly));
             }
             return res;
         }
@@ -200,7 +200,7 @@ class SPS : private std::vector<T> {
         SPS exp() {
             SPS res { ::exp(front()) };
             res.reserve(size());
-            for (unsigned int p = 1; p < size(); p <<= 1) res.concat(cut_upper(p) * res);
+            for (size_type p = 1; p < size(); p <<= 1) res.concat(cut_upper(p) * res);
             return res;
         }
         // SPS exp() {
@@ -221,14 +221,14 @@ class SPS : private std::vector<T> {
             SPS res { ::log(front()) };
             res.reserve(size());
             SPS inv_ = cut_lower(size() >> 1).inv();
-            for (unsigned int p = 1; p < size(); p <<= 1) res.concat(cut_upper(p) * inv_.cut_lower(p));
+            for (size_type p = 1; p < size(); p <<= 1) res.concat(cut_upper(p) * inv_.cut_lower(p));
             return res;
         }
         // SPS log() {
         //     using namespace internal::subset_convolution;
         //     const int n = size();
-        //     auto rg = ranked_zeta<T>(cut_lower(size() >> 1).inv());
-        //     for (auto &v : rg) v.push_back(T(0));
+        //     auto rg = ranked_zeta<value_type>(cut_lower(size() >> 1).inv());
+        //     for (auto &v : rg) v.push_back(value_type(0));
         //     auto rf = ranked(*this);
         //     rf[0][0] = ::log(front());
         //     for (int i = 1; i < n; i <<= 1) {
@@ -241,12 +241,12 @@ class SPS : private std::vector<T> {
         //     return deranked_mobius(rf);
         // }
         SPS pow(long long k) {
-            const T c = (*this)[0];
+            const value_type c = (*this)[0];
 
             if (c != 0) {
-                T pow_c = ::pow(c, k);
+                value_type pow_c = ::pow(c, k);
                 SPS f = *this / c;
-                f = (T(k) * f.log()).exp();
+                f = (value_type(k) * f.log()).exp();
                 for (auto &e : f) e *= pow_c;
                 return f;
             }
@@ -255,15 +255,15 @@ class SPS : private std::vector<T> {
 
             int n = cardinality();
             if (n < k) return SPS(n, 0);
-            auto res_poly = ranked_zeta<T>(one(n));
-            auto cur_poly = ranked_zeta<T>(*this);
-            for (unsigned int i = 0; i < size(); ++i) {
+            auto res_poly = ranked_zeta<value_type>(one(n));
+            auto cur_poly = ranked_zeta<value_type>(*this);
+            for (size_type i = 0; i < size(); ++i) {
                 for (long long b = k; b; b >>= 1) {
                     if (b & 1) muleq(res_poly[i], cur_poly[i]);
-                    muleq(cur_poly[i], std::vector<T>(cur_poly[i]));
+                    muleq(cur_poly[i], std::vector<value_type>(cur_poly[i]));
                 }
             }
-            return SPS(deranked_mobius<T>(res_poly));
+            return SPS(deranked_mobius<value_type>(res_poly));
         }
 
     private:
@@ -277,23 +277,23 @@ class SPS : private std::vector<T> {
         using base_type::clear;
         using base_type::resize;
 
-        static constexpr int ceil_pow2(unsigned int n) {
-            unsigned int res = 1;
+        static constexpr int ceil_pow2(size_type n) {
+            size_type res = 1;
             while (res < n) res <<= 1;
             return res;
         }
 
-        void ensure(unsigned int n) {
+        void ensure(size_type n) {
             if (size() < n) resize(n, 0);
         }
 
-        static std::vector<T> naive_poly_inv(std::vector<T> &a) {
-            const unsigned int n = a.size();
-            std::vector<T> res(n, T(0));
-            T v = ::inv(a[0]);
-            for (unsigned int j = 0; j < n; ++j) {
+        static std::vector<value_type> naive_poly_inv(std::vector<value_type> &a) {
+            const size_type n = a.size();
+            std::vector<value_type> res(n, value_type(0));
+            value_type v = ::inv(a[0]);
+            for (size_type j = 0; j < n; ++j) {
                 res[j] = j == 0;
-                for (unsigned int k = 0; k < j; ++k) res[j] -= a[j - k] * res[k];
+                for (size_type k = 0; k < j; ++k) res[j] -= a[j - k] * res[k];
                 res[j] *= v;
             }
             return res;
