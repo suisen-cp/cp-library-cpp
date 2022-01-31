@@ -1,6 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/263"
 
 #include <iostream>
+#include <string>
 
 #include "library/string/palindromic_tree.hpp"
 
@@ -12,7 +13,7 @@ int main() {
 
     PalindromicTree<char, std::string> tree(s);
     std::vector<int> f = tree.frequency_table();
-    tree.add_all("[]");
+    tree.add('['), tree.add(']');
     tree.add_all(t);
     std::vector<int> g = tree.frequency_table();
 
