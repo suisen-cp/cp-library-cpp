@@ -6,12 +6,12 @@ data:
   - icon: ':x:'
     path: test/src/string/palindromic_tree/abc237_h.test.cpp
     title: test/src/string/palindromic_tree/abc237_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/palindromic_tree/yuki263.test.cpp
     title: test/src/string/palindromic_tree/yuki263.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/string/palindromic_tree.hpp\"\n\n\n\n#include <array>\n\
@@ -29,16 +29,16 @@ data:
     \ PalindromicTreeNode;\n            using node_pointer_type = node_type*;\n\n\
     \            static constexpr int NODE_NULL = -1;\n            static constexpr\
     \ int NODE_M1 = 0;\n            static constexpr int NODE_0 = 1;\n\n         \
-    \   PalindromicTreeBase() {\n                _nodes.reserve(2);\n\n          \
-    \      node_pointer_type node_m1 = _new_node();\n                node_m1->_suffix_link\
-    \ = NODE_M1;\n                node_m1->_length = -1;\n                node_m1->_first_occurence\
-    \ = 1;\n\n                node_pointer_type node_0 = _new_node();\n          \
-    \      node_0->_suffix_link = NODE_M1;\n                node_0->_length = 0;\n\
-    \                node_m1->_first_occurence = 0;\n\n                _active_index\
-    \ = 0;\n            }\n            template <typename Iterable>\n            PalindromicTreeBase(const\
-    \ Iterable& seq) : PalindromicTreeBase() {\n                add_all(seq);\n  \
-    \          }\n\n            void add(const value_type& val) {\n              \
-    \  _seq.push_back(val);\n\n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
+    \   PalindromicTreeBase() {\n                node_pointer_type node_m1 = _new_node();\n\
+    \                node_m1->_suffix_link = NODE_M1;\n                node_m1->_length\
+    \ = -1;\n                node_m1->_first_occurence = 1;\n\n                node_pointer_type\
+    \ node_0 = _new_node();\n                node_0->_suffix_link = NODE_M1;\n   \
+    \             node_0->_length = 0;\n                node_0->_first_occurence =\
+    \ 0;\n\n                _active_index = 0;\n            }\n            template\
+    \ <typename Iterable>\n            PalindromicTreeBase(const Iterable& seq) :\
+    \ PalindromicTreeBase() {\n                add_all(seq);\n            }\n\n  \
+    \          void add(const value_type& val) {\n                _seq.push_back(val);\n\
+    \n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
     \                auto& ch = par_node->_children;\n\n                bool inserted\
     \ = false;\n\n                if constexpr (is_map) {\n                    const\
     \ auto [it, inserted_tmp] = ch.emplace(val, _nodes.size());\n                \
@@ -89,10 +89,17 @@ data:
     \          int sz = node_num();\n                std::vector<int> res(sz);\n \
     \               for (int i = sz; i-- > 1;) {\n                    res[i] += node_multiplicity(i);\n\
     \                    res[suffix_link(i)] += res[i];\n                }\n     \
-    \           return res;\n            }\n\n        private:\n            static\
-    \ constexpr bool is_map = std::is_same_v<std::map<value_type, int>, children_container_type>;\n\
-    \            static constexpr bool is_vector = std::is_same_v<std::vector<value_type>,\
-    \ children_container_type>;\n            static constexpr bool is_array = std::is_same_v<std::array<value_type,\
+    \           return res;\n            }\n\n            template <bool erase_root\
+    \ = false>\n            void clear() {\n                _active_index = 0;\n \
+    \               _seq.clear();\n                if constexpr (erase_root) {\n \
+    \                   _nodes.clear();\n                } else {\n              \
+    \      _nodes.erase(_nodes.begin() + 2, _nodes.end());\n                }\n  \
+    \          }\n\n            void shrink_to_fit() {\n                _seq.shrink_to_fit();\n\
+    \                _nodes.shrink_to_fit();\n            }\n\n        private:\n\
+    \            static constexpr bool is_map = std::is_same_v<std::map<value_type,\
+    \ int>, children_container_type>;\n            static constexpr bool is_vector\
+    \ = std::is_same_v<std::vector<value_type>, children_container_type>;\n      \
+    \      static constexpr bool is_array = std::is_same_v<std::array<value_type,\
     \ std::tuple_size_v<children_container_type>>, children_container_type>;\n\n \
     \           int _active_index;\n            container_type _seq;\n           \
     \ std::vector<node_type> _nodes;\n\n            node_pointer_type _new_node()\
@@ -135,16 +142,16 @@ data:
     \ PalindromicTreeNode;\n            using node_pointer_type = node_type*;\n\n\
     \            static constexpr int NODE_NULL = -1;\n            static constexpr\
     \ int NODE_M1 = 0;\n            static constexpr int NODE_0 = 1;\n\n         \
-    \   PalindromicTreeBase() {\n                _nodes.reserve(2);\n\n          \
-    \      node_pointer_type node_m1 = _new_node();\n                node_m1->_suffix_link\
-    \ = NODE_M1;\n                node_m1->_length = -1;\n                node_m1->_first_occurence\
-    \ = 1;\n\n                node_pointer_type node_0 = _new_node();\n          \
-    \      node_0->_suffix_link = NODE_M1;\n                node_0->_length = 0;\n\
-    \                node_m1->_first_occurence = 0;\n\n                _active_index\
-    \ = 0;\n            }\n            template <typename Iterable>\n            PalindromicTreeBase(const\
-    \ Iterable& seq) : PalindromicTreeBase() {\n                add_all(seq);\n  \
-    \          }\n\n            void add(const value_type& val) {\n              \
-    \  _seq.push_back(val);\n\n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
+    \   PalindromicTreeBase() {\n                node_pointer_type node_m1 = _new_node();\n\
+    \                node_m1->_suffix_link = NODE_M1;\n                node_m1->_length\
+    \ = -1;\n                node_m1->_first_occurence = 1;\n\n                node_pointer_type\
+    \ node_0 = _new_node();\n                node_0->_suffix_link = NODE_M1;\n   \
+    \             node_0->_length = 0;\n                node_0->_first_occurence =\
+    \ 0;\n\n                _active_index = 0;\n            }\n            template\
+    \ <typename Iterable>\n            PalindromicTreeBase(const Iterable& seq) :\
+    \ PalindromicTreeBase() {\n                add_all(seq);\n            }\n\n  \
+    \          void add(const value_type& val) {\n                _seq.push_back(val);\n\
+    \n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
     \                auto& ch = par_node->_children;\n\n                bool inserted\
     \ = false;\n\n                if constexpr (is_map) {\n                    const\
     \ auto [it, inserted_tmp] = ch.emplace(val, _nodes.size());\n                \
@@ -195,10 +202,17 @@ data:
     \          int sz = node_num();\n                std::vector<int> res(sz);\n \
     \               for (int i = sz; i-- > 1;) {\n                    res[i] += node_multiplicity(i);\n\
     \                    res[suffix_link(i)] += res[i];\n                }\n     \
-    \           return res;\n            }\n\n        private:\n            static\
-    \ constexpr bool is_map = std::is_same_v<std::map<value_type, int>, children_container_type>;\n\
-    \            static constexpr bool is_vector = std::is_same_v<std::vector<value_type>,\
-    \ children_container_type>;\n            static constexpr bool is_array = std::is_same_v<std::array<value_type,\
+    \           return res;\n            }\n\n            template <bool erase_root\
+    \ = false>\n            void clear() {\n                _active_index = 0;\n \
+    \               _seq.clear();\n                if constexpr (erase_root) {\n \
+    \                   _nodes.clear();\n                } else {\n              \
+    \      _nodes.erase(_nodes.begin() + 2, _nodes.end());\n                }\n  \
+    \          }\n\n            void shrink_to_fit() {\n                _seq.shrink_to_fit();\n\
+    \                _nodes.shrink_to_fit();\n            }\n\n        private:\n\
+    \            static constexpr bool is_map = std::is_same_v<std::map<value_type,\
+    \ int>, children_container_type>;\n            static constexpr bool is_vector\
+    \ = std::is_same_v<std::vector<value_type>, children_container_type>;\n      \
+    \      static constexpr bool is_array = std::is_same_v<std::array<value_type,\
     \ std::tuple_size_v<children_container_type>>, children_container_type>;\n\n \
     \           int _active_index;\n            container_type _seq;\n           \
     \ std::vector<node_type> _nodes;\n\n            node_pointer_type _new_node()\
@@ -230,8 +244,8 @@ data:
   isVerificationFile: false
   path: library/string/palindromic_tree.hpp
   requiredBy: []
-  timestamp: '2022-01-31 16:34:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-01-31 17:00:05+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/string/palindromic_tree/yuki263.test.cpp
   - test/src/string/palindromic_tree/abc237_h.test.cpp

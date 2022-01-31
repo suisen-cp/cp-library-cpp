@@ -322,7 +322,7 @@ data:
     - icon: ':warning:'
       path: library/string/morris_pratt.hpp
       title: Morris Pratt
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/string/palindromic_tree.hpp
       title: Palindromic Tree
     - icon: ':heavy_check_mark:'
@@ -903,7 +903,7 @@ data:
     - icon: ':x:'
       path: test/src/string/palindromic_tree/abc237_h.test.cpp
       title: test/src/string/palindromic_tree/abc237_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/string/palindromic_tree/yuki263.test.cpp
       title: test/src/string/palindromic_tree/yuki263.test.cpp
   - name: test/src/string/rolling_hash

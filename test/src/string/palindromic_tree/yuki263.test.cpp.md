@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/string/palindromic_tree.hpp
     title: Palindromic Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/263
     links:
     - https://yukicoder.me/problems/no/263
   bundledCode: "#line 1 \"test/src/string/palindromic_tree/yuki263.test.cpp\"\n#define\
-    \ PROBLEM \"https://yukicoder.me/problems/no/263\"\n\n#include <iostream>\n\n\
-    #line 1 \"library/string/palindromic_tree.hpp\"\n\n\n\n#include <array>\n#include\
-    \ <cassert>\n#include <vector>\n#include <map>\n\nnamespace suisen {\n    namespace\
-    \ internal::palindromic_tree {\n        template <typename T>\n        constexpr\
-    \ bool false_v = false;\n\n        template <typename T, typename Sequence, typename\
-    \ ChildrenContainerType>\n        struct PalindromicTreeBase {\n            using\
-    \ container_type = Sequence;\n            using value_type = T;\n\n          \
-    \  using children_container_type = ChildrenContainerType;\n\n            struct\
-    \ PalindromicTreeNode {\n                friend struct PalindromicTreeBase;\n\
+    \ PROBLEM \"https://yukicoder.me/problems/no/263\"\n\n#include <iostream>\n#include\
+    \ <string>\n\n#line 1 \"library/string/palindromic_tree.hpp\"\n\n\n\n#include\
+    \ <array>\n#include <cassert>\n#include <vector>\n#include <map>\n\nnamespace\
+    \ suisen {\n    namespace internal::palindromic_tree {\n        template <typename\
+    \ T>\n        constexpr bool false_v = false;\n\n        template <typename T,\
+    \ typename Sequence, typename ChildrenContainerType>\n        struct PalindromicTreeBase\
+    \ {\n            using container_type = Sequence;\n            using value_type\
+    \ = T;\n\n            using children_container_type = ChildrenContainerType;\n\
+    \n            struct PalindromicTreeNode {\n                friend struct PalindromicTreeBase;\n\
     \                PalindromicTreeNode() = default;\n            private:\n    \
     \            children_container_type _children;\n                int _suffix_link;\n\
     \                int _length;\n                int _multiplicity;\n          \
@@ -31,16 +31,16 @@ data:
     \ PalindromicTreeNode;\n            using node_pointer_type = node_type*;\n\n\
     \            static constexpr int NODE_NULL = -1;\n            static constexpr\
     \ int NODE_M1 = 0;\n            static constexpr int NODE_0 = 1;\n\n         \
-    \   PalindromicTreeBase() {\n                _nodes.reserve(2);\n\n          \
-    \      node_pointer_type node_m1 = _new_node();\n                node_m1->_suffix_link\
-    \ = NODE_M1;\n                node_m1->_length = -1;\n                node_m1->_first_occurence\
-    \ = 1;\n\n                node_pointer_type node_0 = _new_node();\n          \
-    \      node_0->_suffix_link = NODE_M1;\n                node_0->_length = 0;\n\
-    \                node_m1->_first_occurence = 0;\n\n                _active_index\
-    \ = 0;\n            }\n            template <typename Iterable>\n            PalindromicTreeBase(const\
-    \ Iterable& seq) : PalindromicTreeBase() {\n                add_all(seq);\n  \
-    \          }\n\n            void add(const value_type& val) {\n              \
-    \  _seq.push_back(val);\n\n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
+    \   PalindromicTreeBase() {\n                node_pointer_type node_m1 = _new_node();\n\
+    \                node_m1->_suffix_link = NODE_M1;\n                node_m1->_length\
+    \ = -1;\n                node_m1->_first_occurence = 1;\n\n                node_pointer_type\
+    \ node_0 = _new_node();\n                node_0->_suffix_link = NODE_M1;\n   \
+    \             node_0->_length = 0;\n                node_0->_first_occurence =\
+    \ 0;\n\n                _active_index = 0;\n            }\n            template\
+    \ <typename Iterable>\n            PalindromicTreeBase(const Iterable& seq) :\
+    \ PalindromicTreeBase() {\n                add_all(seq);\n            }\n\n  \
+    \          void add(const value_type& val) {\n                _seq.push_back(val);\n\
+    \n                node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));\n\
     \                auto& ch = par_node->_children;\n\n                bool inserted\
     \ = false;\n\n                if constexpr (is_map) {\n                    const\
     \ auto [it, inserted_tmp] = ch.emplace(val, _nodes.size());\n                \
@@ -91,10 +91,17 @@ data:
     \          int sz = node_num();\n                std::vector<int> res(sz);\n \
     \               for (int i = sz; i-- > 1;) {\n                    res[i] += node_multiplicity(i);\n\
     \                    res[suffix_link(i)] += res[i];\n                }\n     \
-    \           return res;\n            }\n\n        private:\n            static\
-    \ constexpr bool is_map = std::is_same_v<std::map<value_type, int>, children_container_type>;\n\
-    \            static constexpr bool is_vector = std::is_same_v<std::vector<value_type>,\
-    \ children_container_type>;\n            static constexpr bool is_array = std::is_same_v<std::array<value_type,\
+    \           return res;\n            }\n\n            template <bool erase_root\
+    \ = false>\n            void clear() {\n                _active_index = 0;\n \
+    \               _seq.clear();\n                if constexpr (erase_root) {\n \
+    \                   _nodes.clear();\n                } else {\n              \
+    \      _nodes.erase(_nodes.begin() + 2, _nodes.end());\n                }\n  \
+    \          }\n\n            void shrink_to_fit() {\n                _seq.shrink_to_fit();\n\
+    \                _nodes.shrink_to_fit();\n            }\n\n        private:\n\
+    \            static constexpr bool is_map = std::is_same_v<std::map<value_type,\
+    \ int>, children_container_type>;\n            static constexpr bool is_vector\
+    \ = std::is_same_v<std::vector<value_type>, children_container_type>;\n      \
+    \      static constexpr bool is_array = std::is_same_v<std::array<value_type,\
     \ std::tuple_size_v<children_container_type>>, children_container_type>;\n\n \
     \           int _active_index;\n            container_type _seq;\n           \
     \ std::vector<node_type> _nodes;\n\n            node_pointer_type _new_node()\
@@ -121,38 +128,41 @@ data:
     \    struct PalindromicTreeArr : public internal::palindromic_tree::PalindromicTreeBase<T,\
     \ Sequence, std::array<T, N>> {\n        using base_type = internal::palindromic_tree::PalindromicTreeBase<T,\
     \ Sequence, std::array<T, N>>;\n        using base_type::base_type;\n    };\n\
-    } // namespace suisen\n\n\n\n#line 6 \"test/src/string/palindromic_tree/yuki263.test.cpp\"\
+    } // namespace suisen\n\n\n\n#line 7 \"test/src/string/palindromic_tree/yuki263.test.cpp\"\
     \n\nusing suisen::PalindromicTree;\n\nint main() {\n    std::string s, t;\n  \
     \  std::cin >> s >> t;\n\n    PalindromicTree<char, std::string> tree(s);\n  \
-    \  std::vector<int> f = tree.frequency_table();\n    tree.add_all(\"[]\");\n \
-    \   tree.add_all(t);\n    std::vector<int> g = tree.frequency_table();\n\n   \
-    \ long long ans = 0;\n    for (int i = 2, n = f.size(); i < n; ++i) {\n      \
-    \  ans += (long long) f[i] * (g[i] - f[i]);\n    }\n    std::cout << ans << std::endl;\n\
-    \n    // verification of other versions of palindromic tree\n    {\n        using\
-    \ suisen::PalindromicTreeVec;\n        using suisen::PalindromicTreeArr;\n\n \
-    \       auto fix = [](const std::string& s) {\n            std::vector<int> res;\n\
-    \            for (char c : s) res.push_back(c - 'A');\n            return res;\n\
-    \        };\n\n        PalindromicTreeVec<int> tv(fix(s));\n        assert(tv.frequency_table()\
-    \ == f);\n        tv.add(26), tv.add(27);\n        tv.add_all(fix(t));\n     \
-    \   assert(tv.frequency_table() == g);\n\n        PalindromicTreeArr<int, 28>\
-    \ ta(fix(s));\n        assert(ta.frequency_table() == f);\n        ta.add(26),\
+    \  std::vector<int> f = tree.frequency_table();\n    tree.add('['), tree.add(']');\n\
+    \    tree.add_all(t);\n    std::vector<int> g = tree.frequency_table();\n\n  \
+    \  long long ans = 0;\n    for (int i = 2, n = f.size(); i < n; ++i) {\n     \
+    \   ans += (long long) f[i] * (g[i] - f[i]);\n    }\n    std::cout << ans << std::endl;\n\
+    \n    // verification of other versions of palindromic tree\n    {\n        tree.clear<true>();\n\
+    \        tree.shrink_to_fit();\n\n        using suisen::PalindromicTreeVec;\n\
+    \        using suisen::PalindromicTreeArr;\n\n        auto fix = [](const std::string&\
+    \ s) {\n            std::vector<int> res;\n            for (char c : s) res.push_back(c\
+    \ - 'A');\n            return res;\n        };\n\n        PalindromicTreeVec<int>\
+    \ tv(fix(s));\n        assert(tv.frequency_table() == f);\n        tv.add(26),\
+    \ tv.add(27);\n        tv.add_all(fix(t));\n        assert(tv.frequency_table()\
+    \ == g);\n        tv.clear<true>();\n        tv.shrink_to_fit();\n\n        PalindromicTreeArr<int,\
+    \ 28> ta(fix(s));\n        assert(ta.frequency_table() == f);\n        ta.add(26),\
     \ ta.add(27);\n        ta.add_all(fix(t));\n        assert(ta.frequency_table()\
     \ == g);\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/263\"\n\n#include <iostream>\n\
-    \n#include \"library/string/palindromic_tree.hpp\"\n\nusing suisen::PalindromicTree;\n\
-    \nint main() {\n    std::string s, t;\n    std::cin >> s >> t;\n\n    PalindromicTree<char,\
-    \ std::string> tree(s);\n    std::vector<int> f = tree.frequency_table();\n  \
-    \  tree.add_all(\"[]\");\n    tree.add_all(t);\n    std::vector<int> g = tree.frequency_table();\n\
-    \n    long long ans = 0;\n    for (int i = 2, n = f.size(); i < n; ++i) {\n  \
-    \      ans += (long long) f[i] * (g[i] - f[i]);\n    }\n    std::cout << ans <<\
-    \ std::endl;\n\n    // verification of other versions of palindromic tree\n  \
-    \  {\n        using suisen::PalindromicTreeVec;\n        using suisen::PalindromicTreeArr;\n\
-    \n        auto fix = [](const std::string& s) {\n            std::vector<int>\
-    \ res;\n            for (char c : s) res.push_back(c - 'A');\n            return\
-    \ res;\n        };\n\n        PalindromicTreeVec<int> tv(fix(s));\n        assert(tv.frequency_table()\
-    \ == f);\n        tv.add(26), tv.add(27);\n        tv.add_all(fix(t));\n     \
-    \   assert(tv.frequency_table() == g);\n\n        PalindromicTreeArr<int, 28>\
-    \ ta(fix(s));\n        assert(ta.frequency_table() == f);\n        ta.add(26),\
+    #include <string>\n\n#include \"library/string/palindromic_tree.hpp\"\n\nusing\
+    \ suisen::PalindromicTree;\n\nint main() {\n    std::string s, t;\n    std::cin\
+    \ >> s >> t;\n\n    PalindromicTree<char, std::string> tree(s);\n    std::vector<int>\
+    \ f = tree.frequency_table();\n    tree.add('['), tree.add(']');\n    tree.add_all(t);\n\
+    \    std::vector<int> g = tree.frequency_table();\n\n    long long ans = 0;\n\
+    \    for (int i = 2, n = f.size(); i < n; ++i) {\n        ans += (long long) f[i]\
+    \ * (g[i] - f[i]);\n    }\n    std::cout << ans << std::endl;\n\n    // verification\
+    \ of other versions of palindromic tree\n    {\n        tree.clear<true>();\n\
+    \        tree.shrink_to_fit();\n\n        using suisen::PalindromicTreeVec;\n\
+    \        using suisen::PalindromicTreeArr;\n\n        auto fix = [](const std::string&\
+    \ s) {\n            std::vector<int> res;\n            for (char c : s) res.push_back(c\
+    \ - 'A');\n            return res;\n        };\n\n        PalindromicTreeVec<int>\
+    \ tv(fix(s));\n        assert(tv.frequency_table() == f);\n        tv.add(26),\
+    \ tv.add(27);\n        tv.add_all(fix(t));\n        assert(tv.frequency_table()\
+    \ == g);\n        tv.clear<true>();\n        tv.shrink_to_fit();\n\n        PalindromicTreeArr<int,\
+    \ 28> ta(fix(s));\n        assert(ta.frequency_table() == f);\n        ta.add(26),\
     \ ta.add(27);\n        ta.add_all(fix(t));\n        assert(ta.frequency_table()\
     \ == g);\n    }\n\n    return 0;\n}"
   dependsOn:
@@ -160,8 +170,8 @@ data:
   isVerificationFile: true
   path: test/src/string/palindromic_tree/yuki263.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 16:34:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-31 17:00:05+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/string/palindromic_tree/yuki263.test.cpp
 layout: document
