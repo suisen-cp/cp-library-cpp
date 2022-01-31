@@ -76,7 +76,7 @@ class SPS : private std::vector<T> {
         void set_cardinality(int n) {
             resize(1 << n, 0);
         }
-        int cardinality() {
+        int cardinality() const {
             return __builtin_ctz(size());
         }
 
@@ -148,6 +148,21 @@ class SPS : private std::vector<T> {
             }
             return res;
         }
+        // SPS inv() {
+        //     using namespace internal::subset_convolution;
+        //     const int n = size();
+        //     auto rf = ranked(*this);
+        //     rf[0][0] = ::inv(front());
+        //     for (int i = 1; i < n; i <<= 1) {
+        //         for (int k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l += 2 * k) for (int p = l; p < l + k; ++p) addeq(rf[p + k], rf[p]);
+        //         for (int j = 0; j < i; ++j) {
+        //             muleq(rf[i + j], rf[j]);
+        //             muleq(rf[i + j], rf[j]);
+        //             rf[i + j] = sub(rf[j], rf[i + j]);
+        //         }
+        //     }
+        //     return deranked_mobius(rf);
+        // }
         SPS sqrt() {
             using namespace internal::subset_convolution;
 
@@ -165,12 +180,43 @@ class SPS : private std::vector<T> {
             }
             return res;
         }
+        // SPS sqrt() {
+        //     using namespace internal::subset_convolution;
+        //     const int n = size();
+        //     auto rf = ranked(*this);
+        //     rf[0][0] = ::sqrt(front());
+        //     assert(rf[0][0] * rf[0][0] == front());
+        //     for (int i = 1; i < n; i <<= 1) {
+        //         for (int k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l += 2 * k) for (int p = l; p < l + k; ++p) addeq(rf[p + k], rf[p]);
+        //         for (int j = 0; j < i; ++j) {
+        //             auto inv_2rg = rf[j];
+        //             for (auto &e : inv_2rg) e *= 2;
+        //             muleq(rf[i + j], naive_poly_inv(inv_2rg));
+        //             addeq(rf[i + j], rf[j]);
+        //         }
+        //     }
+        //     return deranked_mobius(rf);
+        // }
         SPS exp() {
             SPS res { ::exp(front()) };
             res.reserve(size());
             for (unsigned int p = 1; p < size(); p <<= 1) res.concat(cut_upper(p) * res);
             return res;
         }
+        // SPS exp() {
+        //     using namespace internal::subset_convolution;
+        //     const int n = size();
+        //     auto rf = ranked(*this);
+        //     rf[0][0] = ::exp(front());
+        //     for (int i = 1; i < n; i <<= 1) {
+        //         for (int k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l += 2 * k) for (int p = l; p < l + k; ++p) addeq(rf[p + k], rf[p]);
+        //         for (int j = 0; j < i; ++j) {
+        //             ++rf[i + j][0];
+        //             muleq(rf[i + j], rf[j]);
+        //         }
+        //     }
+        //     return deranked_mobius(rf);
+        // }
         SPS log() {
             SPS res { ::log(front()) };
             res.reserve(size());
@@ -178,6 +224,22 @@ class SPS : private std::vector<T> {
             for (unsigned int p = 1; p < size(); p <<= 1) res.concat(cut_upper(p) * inv_.cut_lower(p));
             return res;
         }
+        // SPS log() {
+        //     using namespace internal::subset_convolution;
+        //     const int n = size();
+        //     auto rg = ranked_zeta<T>(cut_lower(size() >> 1).inv());
+        //     for (auto &v : rg) v.push_back(T(0));
+        //     auto rf = ranked(*this);
+        //     rf[0][0] = ::log(front());
+        //     for (int i = 1; i < n; i <<= 1) {
+        //         for (int k = 1; k < i; k <<= 1) for (int l = i; l < 2 * i; l += 2 * k) for (int p = l; p < l + k; ++p) addeq(rf[p + k], rf[p]);
+        //         for (int j = 0; j < i; ++j) {
+        //             muleq(rf[i + j], rg[j]);
+        //             addeq(rf[i + j], rf[j]);
+        //         }
+        //     }
+        //     return deranked_mobius(rf);
+        // }
         SPS pow(long long k) {
             const T c = (*this)[0];
 
@@ -193,15 +255,15 @@ class SPS : private std::vector<T> {
 
             int n = cardinality();
             if (n < k) return SPS(n, 0);
-            auto res_poly = ranked<T>(one(n));
-            auto cur_poly = ranked<T>(*this);
-            for (; k; k >>= 1) {
-                for (unsigned int i = 0; i < size(); ++i) {
-                    if (k & 1) muleq(res_poly[i], cur_poly[i]);
+            auto res_poly = ranked_zeta<T>(one(n));
+            auto cur_poly = ranked_zeta<T>(*this);
+            for (unsigned int i = 0; i < size(); ++i) {
+                for (long long b = k; b; b >>= 1) {
+                    if (b & 1) muleq(res_poly[i], cur_poly[i]);
                     muleq(cur_poly[i], std::vector<T>(cur_poly[i]));
                 }
             }
-            return SPS(deranked<T>(res_poly));
+            return SPS(deranked_mobius<T>(res_poly));
         }
 
     private:
