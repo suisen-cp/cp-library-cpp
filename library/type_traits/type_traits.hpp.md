@@ -235,6 +235,9 @@ data:
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/util/coordinate_compressor/dummy.test.cpp
+    title: test/src/util/coordinate_compressor/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
   _isVerificationFailed: false
@@ -367,6 +370,7 @@ data:
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
   - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
+  - test/src/util/coordinate_compressor/dummy.test.cpp
   - test/src/util/range_set/DSL_4_A.test.cpp
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp

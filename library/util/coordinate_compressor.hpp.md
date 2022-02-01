@@ -28,6 +28,9 @@ data:
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/util/coordinate_compressor/dummy.test.cpp
+    title: test/src/util/coordinate_compressor/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
   _isVerificationFailed: false
@@ -254,6 +257,7 @@ data:
   - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - test/src/util/coordinate_compressor/dummy.test.cpp
   - test/src/util/range_set/DSL_4_A.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
 layout: document

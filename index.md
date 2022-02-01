@@ -991,6 +991,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/edpc_v.test.cpp
       title: test/src/tree/rerooting/edpc_v.test.cpp
+  - name: test/src/util/coordinate_compressor
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/util/coordinate_compressor/dummy.test.cpp
+      title: test/src/util/coordinate_compressor/dummy.test.cpp
   - name: test/src/util/range_set
     pages:
     - icon: ':heavy_check_mark:'
