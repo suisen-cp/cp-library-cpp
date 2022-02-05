@@ -15,12 +15,12 @@ documentation_of: //library/algorithm/mo.hpp
 
 - 概要
 
-  クエリに答える順番を計算しておく．
+  内部でクエリに答える順番を並び替える．並び替え方は [Mo's algorithm](https://ei1333.hateblo.jp/entry/2017/09/11/211011) の「おまけ その 1: 定数倍改善」の項を参照．
 
 - 引数
 
   - `n` : 区間の右端の上限値．
-  - `queries` : クエリの区間 $[l_i,r_i)$ を $i$ 番目の要素として持つ `std::vector<std::pair<int, int>>`．$0\leq l_i\leq r_i\leq n$ を満たす必要がある．
+  - `queries` : 半開区間 $[l_i,r_i)$ で表されるクエリを $i$ 番目の要素として持つ `std::vector<std::pair<int, int>>`．$0\leq l_i\leq r_i\leq n$ を満たす必要がある．
 
 - 時間計算量
 
@@ -57,16 +57,51 @@ documentation_of: //library/algorithm/mo.hpp
 
   $i$ 番目のクエリの答えを $i$ 番目の要素として持つ `std::vector<decltype(eval())>`．つまり，`std::vector` の要素の型は `eval()` が返す型．
 
+  ここでいう $i$ 番目は，クエリの並べ替え前の順番を指す．即ち，外部からは内部の並び替えについては一切意識しなくてもよい．
+
 - 制約
 
-  - `eval` は引数を取らず，default constructiveな型の値を返す関数
-  - `add_l`, `del_l`, `add_r`, `del_r` は，`int` を 1 つ受け取る関数
+  - `eval` は引数を取らない関数 (返り値の型はデフォルト構築可能であることを要求する)
+  - `add_l`, `del_l`, `add_r`, `del_r` は，引数として `int` 型の値を 1 つ受け取る関数
 
 - 時間計算量
 
   `eval` や `add_l` などの計算量を $O(1)$ として，$O(N\sqrt Q)$
 
-- 参考
+### get_left, get_right, get_range
+
+- シグネチャ
+
+  ```cpp
+  // (1)
+  int get_left()
+  // (2)
+  int get_right()
+  // (3)
+  std::pair<int, int> get_range()
+  ```
+
+- 概要
+
+  [solve](#solve) に渡す `add_l` などの関数内で，現時点の区間を取得したい場合に用いる関数．
+
+- 返り値
+
+  現時点の区間は半開区間で $[l,r)$ と表されるとする．
+
+  1. `l` を返す
+  2. `r` を返す
+  3. `std::pair<int, int> { l, r }` を返す
+
+- 制約
+
+  無し
+
+- 時間計算量
+
+  いずれも $O(1)$
+
+## 参考
 
   - [Mo's algorithm](https://ei1333.hateblo.jp/entry/2017/09/11/211011)
   - [Mo's algorithm とその上位互換の話](https://snuke.hatenablog.com/entry/2016/07/01/000000)
