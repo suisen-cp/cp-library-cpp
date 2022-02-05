@@ -132,6 +132,7 @@
 "test/src/tree/rerooting/abc160_f.test.cpp": "2021-10-12 21:48:57 +0900",
 "test/src/tree/rerooting/abc222_f.test.cpp": "2021-10-12 21:48:57 +0900",
 "test/src/tree/rerooting/edpc_v.test.cpp": "2021-10-12 21:48:57 +0900",
+"test/src/util/coordinate_compressor/dummy.test.cpp": "2022-02-01 09:37:39 +0900",
 "test/src/util/range_set/DSL_2_D.test.cpp": "2021-10-16 19:54:37 +0900",
 "test/src/util/range_set/DSL_4_A.test.cpp": "2022-02-01 07:52:56 +0900",
 "test/src/util/range_set/yuki674.test.cpp": "2021-10-16 19:54:37 +0900"
