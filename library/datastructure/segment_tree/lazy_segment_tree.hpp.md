@@ -217,10 +217,10 @@ data:
   timestamp: '2022-01-17 22:14:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
 documentation_of: library/datastructure/segment_tree/lazy_segment_tree.hpp
 layout: document
 title: Lazy Segment Tree

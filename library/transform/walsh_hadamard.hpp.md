@@ -140,8 +140,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/transform/walsh_hadamard.hpp
 layout: document
 title: "Walsh Hadamard \u5909\u63DB"

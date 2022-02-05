@@ -120,10 +120,10 @@ data:
   timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - test/src/math/sps/connectivity2.test.cpp
   - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  - test/src/math/sps/connectivity2.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
 documentation_of: library/convolution/subset_convolution.hpp
 layout: document
 title: Subset Convolution

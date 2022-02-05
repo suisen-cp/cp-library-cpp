@@ -124,8 +124,8 @@ data:
   timestamp: '2022-01-15 06:33:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/graph/bipartite_matching/bipartite_matching.test.cpp
   - test/src/string/palindromic_tree/abc237_h.test.cpp
+  - test/src/graph/bipartite_matching/bipartite_matching.test.cpp
 documentation_of: library/graph/bipartite_matching.hpp
 layout: document
 title: Bipartite Matching

@@ -139,8 +139,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
 documentation_of: library/datastructure/fenwick_tree.hpp
 layout: document
 title: Fenwick Tree

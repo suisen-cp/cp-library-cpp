@@ -268,8 +268,8 @@ data:
   timestamp: '2022-01-17 22:14:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
 layout: document
 title: Segment Tree 2d Sparse
