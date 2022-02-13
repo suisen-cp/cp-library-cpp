@@ -14,6 +14,7 @@
 "test/src/convolution/subset_convolution/subset_convolution.test.cpp": "2021-09-29 01:36:15 +0900",
 "test/src/convolution/xor_convolution/xor_convolution.test.cpp": "2022-01-31 13:34:34 +0900",
 "test/src/datastructure/ZDD/maximum_independent_set.test.cpp": "2022-01-15 02:41:24 +0900",
+"test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp": "2022-02-13 16:56:06 +0900",
 "test/src/datastructure/binary_trie/set_xor_min.test.cpp": "2021-07-20 20:17:05 +0900",
 "test/src/datastructure/binary_trie/xor_game.test.cpp": "2021-07-20 20:17:05 +0900",
 "test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp": "2022-01-15 03:56:07 +0900",
