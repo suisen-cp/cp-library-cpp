@@ -115,6 +115,38 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
+  - name: library/datastructure/bbst
+    pages:
+    - icon: ':warning:'
+      path: library/datastructure/bbst/persistent_red_black_lazy_segment_tree.hpp
+      title: Persistent Red Black Lazy Segment Tree
+    - icon: ':warning:'
+      path: library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
+      title: Persistent Red Black Reversible Lazy Segment Tree
+    - icon: ':warning:'
+      path: library/datastructure/bbst/persistent_red_black_segment_tree.hpp
+      title: Persistent Red Black Segment Tree
+    - icon: ':warning:'
+      path: library/datastructure/bbst/persistent_red_black_tree.hpp
+      title: Persistent Red Black Tree
+    - icon: ':warning:'
+      path: library/datastructure/bbst/persistent_red_black_tree_base.hpp
+      title: Persistent Red Black Tree Base
+    - icon: ':warning:'
+      path: library/datastructure/bbst/red_black_lazy_segment_tree.hpp
+      title: Red Black Lazy Segment Tree
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/bbst/red_black_reversible_lazy_segment_tree.hpp
+      title: Red Black Reversible Lazy Segment Tree
+    - icon: ':warning:'
+      path: library/datastructure/bbst/red_black_segment_tree.hpp
+      title: Red Black Segment Tree
+    - icon: ':warning:'
+      path: library/datastructure/bbst/red_black_tree.hpp
+      title: Red Black Tree
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/bbst/red_black_tree_base.hpp
+      title: Red Black Tree Base
   - name: library/datastructure/segment_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -421,6 +453,9 @@ data:
     - icon: ':warning:'
       path: library/util/iter_util.hpp
       title: Iter Util
+    - icon: ':heavy_check_mark:'
+      path: library/util/object_pool.hpp
+      title: Object Pool
     - icon: ':warning:'
       path: library/util/pair_ops.hpp
       title: Pair Ops
@@ -520,6 +555,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
       title: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
+  - name: test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
+      title: test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/binary_trie
     pages:
     - icon: ':heavy_check_mark:'
