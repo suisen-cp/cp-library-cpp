@@ -1,6 +1,8 @@
 #ifndef SUISEN_RED_BLACK_TREE_BASE
 #define SUISEN_RED_BLACK_TREE_BASE
 
+#include <sstream>
+#include <string>
 #include <tuple>
 #include "library/util/object_pool.hpp"
 
@@ -94,6 +96,8 @@ namespace suisen::bbst::internal {
             auto [tl, tr] = split(node, k);
             return merge(merge(tl, create_leaf(val)), tr);
         }
+        static tree_type push_front(tree_type node, const value_type &val) { return insert(node, 0, val); }
+        static tree_type push_back(tree_type node, const value_type &val) { return insert(node, size(node), val); }
 
         static std::pair<tree_type, value_type> erase(tree_type node, size_type k) {
             auto [tl, tm, tr] = split_range(node, k, k + 1);
@@ -101,6 +105,8 @@ namespace suisen::bbst::internal {
             free_node(tm);
             return { merge(tl, tr) , erased_value };
         }
+        static std::pair<tree_type, value_type> pop_front(tree_type node) { return erase(node, 0); }
+        static std::pair<tree_type, value_type> pop_back(tree_type node) { return erase(node, size(node) - 1); }
 
         template <typename U>
         static tree_type build(const std::vector<U>& a, int l, int r) {
@@ -125,6 +131,35 @@ namespace suisen::bbst::internal {
                 dfs(dfs, cur->_ch[1]);
             };
             dfs(dfs, node);
+        }
+
+        // Don't use on persistent tree.
+        static void free(tree_type node) {
+            auto dfs = [&](auto dfs, tree_type cur) -> void {
+                if (not cur) return;
+                dfs(dfs, cur->_ch[0]);
+                dfs(dfs, cur->_ch[1]);
+                free_node(cur);
+            };
+            dfs(dfs, node);
+        }
+
+        template <typename ToStr>
+        static std::string to_string(tree_type node, ToStr f) {
+            std::vector<value_type> dat;
+            node_type::dump(node, std::back_inserter(dat));
+            std::ostringstream res;
+            int siz = dat.size();
+            res << '[';
+            for (int i = 0; i < siz; ++i) {
+                res << f(dat[i]);
+                if (i != siz - 1) res << ", ";
+            }
+            res << ']';
+            return res.str();
+        }
+        static std::string to_string(tree_type node) {
+            return to_string(node, [](const auto &e) { return e; });
         }
 
     protected:
