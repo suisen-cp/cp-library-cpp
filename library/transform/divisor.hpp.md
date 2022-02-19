@@ -4,8 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/convolution/lcm_convolution.hpp
+    title: Lcm Convolution
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
+    title: test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
@@ -78,10 +84,12 @@ data:
   - library/util/default_operator.hpp
   isVerificationFile: false
   path: library/transform/divisor.hpp
-  requiredBy: []
+  requiredBy:
+  - library/convolution/lcm_convolution.hpp
   timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
   - test/src/transform/multiple/divide_both.test.cpp
 documentation_of: library/transform/divisor.hpp
 layout: document

@@ -12,6 +12,9 @@ data:
     path: library/convolution/gcd_convolution.hpp
     title: GCD Convolution
   - icon: ':heavy_check_mark:'
+    path: library/convolution/lcm_convolution.hpp
+    title: Lcm Convolution
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution.hpp
     title: Multi Variate Convolution
   - icon: ':warning:'
@@ -57,8 +60,14 @@ data:
     path: test/src/convolution/and_convolution/and_convolution.test.cpp
     title: test/src/convolution/and_convolution/and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
+    title: test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/gcd_convolution/lcms.test.cpp
     title: test/src/convolution/gcd_convolution/lcms.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
+    title: test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
@@ -147,6 +156,7 @@ data:
   - library/util/cumulative_sum.hpp
   - library/util/cumulative_sum_2d.hpp
   - library/math/array_matrix.hpp
+  - library/convolution/lcm_convolution.hpp
   - library/convolution/convolution.hpp
   - library/convolution/and_convolution.hpp
   - library/convolution/gcd_convolution.hpp
@@ -164,8 +174,10 @@ data:
   verifiedWith:
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
+  - test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
   - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
+  - test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
   - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp

@@ -42,25 +42,25 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/bbst/red_black_tree_base.hpp\"\n\n\
-    \n\n#include <tuple>\n#line 1 \"library/util/object_pool.hpp\"\n\n\n\n#include\
-    \ <deque>\n#include <vector>\n\nnamespace suisen {\n    template <typename T,\
-    \ bool auto_extend = false>\n    struct ObjectPool {\n        using value_type\
-    \ = T;\n        using value_pointer_type = T*;\n\n        template <typename U>\n\
-    \        using container_type = std::conditional_t<auto_extend, std::deque<U>,\
-    \ std::vector<U>>;\n\n        container_type<value_type> pool;\n        container_type<value_pointer_type>\
-    \ stock;\n        decltype(stock.begin()) it;\n\n        ObjectPool() : ObjectPool(0)\
-    \ {}\n        ObjectPool(int siz) : pool(siz), stock(siz) {\n            clear();\n\
-    \        }\n\n        int capacity() const { return pool.size(); }\n        int\
-    \ size() const { return it - stock.begin(); }\n\n        value_pointer_type alloc()\
-    \ {\n            if constexpr (auto_extend) ensure();\n            return *it++;\n\
-    \        }\n\n        void free(value_pointer_type t) {\n            *--it = t;\n\
-    \        }\n\n        void clear() {\n            int siz = pool.size();\n   \
-    \         it = stock.begin();\n            for (int i = 0; i < siz; i++) stock[i]\
-    \ = &pool[i];\n        }\n\n        void ensure() {\n            if (it != stock.end())\
-    \ return;\n            int siz = stock.size();\n            for (int i = siz;\
-    \ i <= siz * 2; ++i) {\n                stock.push_back(&pool.emplace_back());\n\
+    \n\n#include <sstream>\n#include <string>\n#include <tuple>\n#line 1 \"library/util/object_pool.hpp\"\
+    \n\n\n\n#include <deque>\n#include <vector>\n\nnamespace suisen {\n    template\
+    \ <typename T, bool auto_extend = false>\n    struct ObjectPool {\n        using\
+    \ value_type = T;\n        using value_pointer_type = T*;\n\n        template\
+    \ <typename U>\n        using container_type = std::conditional_t<auto_extend,\
+    \ std::deque<U>, std::vector<U>>;\n\n        container_type<value_type> pool;\n\
+    \        container_type<value_pointer_type> stock;\n        decltype(stock.begin())\
+    \ it;\n\n        ObjectPool() : ObjectPool(0) {}\n        ObjectPool(int siz)\
+    \ : pool(siz), stock(siz) {\n            clear();\n        }\n\n        int capacity()\
+    \ const { return pool.size(); }\n        int size() const { return it - stock.begin();\
+    \ }\n\n        value_pointer_type alloc() {\n            if constexpr (auto_extend)\
+    \ ensure();\n            return *it++;\n        }\n\n        void free(value_pointer_type\
+    \ t) {\n            *--it = t;\n        }\n\n        void clear() {\n        \
+    \    int siz = pool.size();\n            it = stock.begin();\n            for\
+    \ (int i = 0; i < siz; i++) stock[i] = &pool[i];\n        }\n\n        void ensure()\
+    \ {\n            if (it != stock.end()) return;\n            int siz = stock.size();\n\
+    \            for (int i = siz; i <= siz * 2; ++i) {\n                stock.push_back(&pool.emplace_back());\n\
     \            }\n            it = stock.begin() + siz;\n        }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 6 \"library/datastructure/bbst/red_black_tree_base.hpp\"\
+    \ namespace suisen\n\n\n#line 8 \"library/datastructure/bbst/red_black_tree_base.hpp\"\
     \n\nnamespace suisen::bbst::internal {\n    template <typename T, typename Derived>\n\
     \    struct RedBlackTreeNodeBase {\n        enum RedBlackTreeNodeColor { RED,\
     \ BLACK };\n\n        using base_type = void;\n        using size_type = int;\n\
@@ -104,24 +104,42 @@ data:
     \            auto [tl, tm] = split(tlm, l);\n            return { tl, tm, tr };\n\
     \        }\n\n        static tree_type insert(tree_type node, size_type k, const\
     \ value_type& val) {\n            auto [tl, tr] = split(node, k);\n          \
-    \  return merge(merge(tl, create_leaf(val)), tr);\n        }\n\n        static\
-    \ std::pair<tree_type, value_type> erase(tree_type node, size_type k) {\n    \
-    \        auto [tl, tm, tr] = split_range(node, k, k + 1);\n            value_type\
-    \ erased_value = tm->_val;\n            free_node(tm);\n            return { merge(tl,\
-    \ tr) , erased_value };\n        }\n\n        template <typename U>\n        static\
-    \ tree_type build(const std::vector<U>& a, int l, int r) {\n            if (r\
-    \ - l == 1) return create_leaf(a[l]);\n            int m = (l + r) >> 1;\n   \
-    \         return merge(build(a, l, m), build(a, m, r));\n        }\n        template\
-    \ <typename U>\n        static tree_type build(const std::vector<U>& a) {\n  \
-    \          return a.empty() ? empty_tree() : build(a, 0, a.size());\n        }\n\
-    \n        template <typename OutputIterator>\n        static void dump(tree_type\
-    \ node, OutputIterator it) {\n            if (empty(node)) return;\n         \
-    \   auto dfs = [&](auto dfs, tree_type cur) -> void {\n                if (cur->is_leaf())\
-    \ {\n                    *it++ = cur->_val;\n                    return;\n   \
-    \             }\n                dfs(dfs, cur->_ch[0]);\n                dfs(dfs,\
-    \ cur->_ch[1]);\n            };\n            dfs(dfs, node);\n        }\n\n  \
-    \  protected:\n        color_type _col;\n        tree_type _ch[2]{ nullptr, nullptr\
-    \ };\n        value_type _val;\n        size_type _siz, _lev;\n\n        RedBlackTreeNodeBase(const\
+    \  return merge(merge(tl, create_leaf(val)), tr);\n        }\n        static tree_type\
+    \ push_front(tree_type node, const value_type &val) { return insert(node, 0, val);\
+    \ }\n        static tree_type push_back(tree_type node, const value_type &val)\
+    \ { return insert(node, size(node), val); }\n\n        static std::pair<tree_type,\
+    \ value_type> erase(tree_type node, size_type k) {\n            auto [tl, tm,\
+    \ tr] = split_range(node, k, k + 1);\n            value_type erased_value = tm->_val;\n\
+    \            free_node(tm);\n            return { merge(tl, tr) , erased_value\
+    \ };\n        }\n        static std::pair<tree_type, value_type> pop_front(tree_type\
+    \ node) { return erase(node, 0); }\n        static std::pair<tree_type, value_type>\
+    \ pop_back(tree_type node) { return erase(node, size(node) - 1); }\n\n       \
+    \ template <typename U>\n        static tree_type build(const std::vector<U>&\
+    \ a, int l, int r) {\n            if (r - l == 1) return create_leaf(a[l]);\n\
+    \            int m = (l + r) >> 1;\n            return merge(build(a, l, m), build(a,\
+    \ m, r));\n        }\n        template <typename U>\n        static tree_type\
+    \ build(const std::vector<U>& a) {\n            return a.empty() ? empty_tree()\
+    \ : build(a, 0, a.size());\n        }\n\n        template <typename OutputIterator>\n\
+    \        static void dump(tree_type node, OutputIterator it) {\n            if\
+    \ (empty(node)) return;\n            auto dfs = [&](auto dfs, tree_type cur) ->\
+    \ void {\n                if (cur->is_leaf()) {\n                    *it++ = cur->_val;\n\
+    \                    return;\n                }\n                dfs(dfs, cur->_ch[0]);\n\
+    \                dfs(dfs, cur->_ch[1]);\n            };\n            dfs(dfs,\
+    \ node);\n        }\n\n        // Don't use on persistent tree.\n        static\
+    \ void free(tree_type node) {\n            auto dfs = [&](auto dfs, tree_type\
+    \ cur) -> void {\n                if (not cur) return;\n                dfs(dfs,\
+    \ cur->_ch[0]);\n                dfs(dfs, cur->_ch[1]);\n                free_node(cur);\n\
+    \            };\n            dfs(dfs, node);\n        }\n\n        template <typename\
+    \ ToStr>\n        static std::string to_string(tree_type node, ToStr f) {\n  \
+    \          std::vector<value_type> dat;\n            node_type::dump(node, std::back_inserter(dat));\n\
+    \            std::ostringstream res;\n            int siz = dat.size();\n    \
+    \        res << '[';\n            for (int i = 0; i < siz; ++i) {\n          \
+    \      res << f(dat[i]);\n                if (i != siz - 1) res << \", \";\n \
+    \           }\n            res << ']';\n            return res.str();\n      \
+    \  }\n        static std::string to_string(tree_type node) {\n            return\
+    \ to_string(node, [](const auto &e) { return e; });\n        }\n\n    protected:\n\
+    \        color_type _col;\n        tree_type _ch[2]{ nullptr, nullptr };\n   \
+    \     value_type _val;\n        size_type _siz, _lev;\n\n        RedBlackTreeNodeBase(const\
     \ value_type& val) : _col(BLACK), _val(val), _siz(1), _lev(0) {}\n        RedBlackTreeNodeBase(tree_type\
     \ l, tree_type r) : _col(RED), _ch{ l, r }, _siz(l->_siz + r->_siz), _lev(l->_lev\
     \ + (l->_col == BLACK)) {}\n\n        static void clear_pool() { pool.clear();\
@@ -145,15 +163,15 @@ data:
     \        }\n\n        static void free_node(tree_type node) {\n            if\
     \ (node) pool.free(node);\n        }\n    };\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_RED_BLACK_TREE_BASE\n#define SUISEN_RED_BLACK_TREE_BASE\n\n\
-    #include <tuple>\n#include \"library/util/object_pool.hpp\"\n\nnamespace suisen::bbst::internal\
-    \ {\n    template <typename T, typename Derived>\n    struct RedBlackTreeNodeBase\
-    \ {\n        enum RedBlackTreeNodeColor { RED, BLACK };\n\n        using base_type\
-    \ = void;\n        using size_type = int;\n\n        using value_type = T;\n\n\
-    \        using node_type = Derived;\n        using tree_type = node_type*;\n\n\
-    \        using color_type = RedBlackTreeNodeColor;\n\n        RedBlackTreeNodeBase()\
-    \ = default;\n\n        static inline ObjectPool<node_type> pool{};\n\n      \
-    \  static void init_pool(int siz) { pool = ObjectPool<node_type>(siz); }\n   \
-    \     static int node_num() { return pool.size(); }\n\n        static tree_type\
+    #include <sstream>\n#include <string>\n#include <tuple>\n#include \"library/util/object_pool.hpp\"\
+    \n\nnamespace suisen::bbst::internal {\n    template <typename T, typename Derived>\n\
+    \    struct RedBlackTreeNodeBase {\n        enum RedBlackTreeNodeColor { RED,\
+    \ BLACK };\n\n        using base_type = void;\n        using size_type = int;\n\
+    \n        using value_type = T;\n\n        using node_type = Derived;\n      \
+    \  using tree_type = node_type*;\n\n        using color_type = RedBlackTreeNodeColor;\n\
+    \n        RedBlackTreeNodeBase() = default;\n\n        static inline ObjectPool<node_type>\
+    \ pool{};\n\n        static void init_pool(int siz) { pool = ObjectPool<node_type>(siz);\
+    \ }\n        static int node_num() { return pool.size(); }\n\n        static tree_type\
     \ empty_tree() { return nullptr; }\n\n        static size_type size(tree_type\
     \ node) { return node ? node->_siz : 0; }\n        static bool empty(tree_type\
     \ node) { return not node; }\n\n        template <bool force_black_root = true>\n\
@@ -189,24 +207,42 @@ data:
     \            auto [tl, tm] = split(tlm, l);\n            return { tl, tm, tr };\n\
     \        }\n\n        static tree_type insert(tree_type node, size_type k, const\
     \ value_type& val) {\n            auto [tl, tr] = split(node, k);\n          \
-    \  return merge(merge(tl, create_leaf(val)), tr);\n        }\n\n        static\
-    \ std::pair<tree_type, value_type> erase(tree_type node, size_type k) {\n    \
-    \        auto [tl, tm, tr] = split_range(node, k, k + 1);\n            value_type\
-    \ erased_value = tm->_val;\n            free_node(tm);\n            return { merge(tl,\
-    \ tr) , erased_value };\n        }\n\n        template <typename U>\n        static\
-    \ tree_type build(const std::vector<U>& a, int l, int r) {\n            if (r\
-    \ - l == 1) return create_leaf(a[l]);\n            int m = (l + r) >> 1;\n   \
-    \         return merge(build(a, l, m), build(a, m, r));\n        }\n        template\
-    \ <typename U>\n        static tree_type build(const std::vector<U>& a) {\n  \
-    \          return a.empty() ? empty_tree() : build(a, 0, a.size());\n        }\n\
-    \n        template <typename OutputIterator>\n        static void dump(tree_type\
-    \ node, OutputIterator it) {\n            if (empty(node)) return;\n         \
-    \   auto dfs = [&](auto dfs, tree_type cur) -> void {\n                if (cur->is_leaf())\
-    \ {\n                    *it++ = cur->_val;\n                    return;\n   \
-    \             }\n                dfs(dfs, cur->_ch[0]);\n                dfs(dfs,\
-    \ cur->_ch[1]);\n            };\n            dfs(dfs, node);\n        }\n\n  \
-    \  protected:\n        color_type _col;\n        tree_type _ch[2]{ nullptr, nullptr\
-    \ };\n        value_type _val;\n        size_type _siz, _lev;\n\n        RedBlackTreeNodeBase(const\
+    \  return merge(merge(tl, create_leaf(val)), tr);\n        }\n        static tree_type\
+    \ push_front(tree_type node, const value_type &val) { return insert(node, 0, val);\
+    \ }\n        static tree_type push_back(tree_type node, const value_type &val)\
+    \ { return insert(node, size(node), val); }\n\n        static std::pair<tree_type,\
+    \ value_type> erase(tree_type node, size_type k) {\n            auto [tl, tm,\
+    \ tr] = split_range(node, k, k + 1);\n            value_type erased_value = tm->_val;\n\
+    \            free_node(tm);\n            return { merge(tl, tr) , erased_value\
+    \ };\n        }\n        static std::pair<tree_type, value_type> pop_front(tree_type\
+    \ node) { return erase(node, 0); }\n        static std::pair<tree_type, value_type>\
+    \ pop_back(tree_type node) { return erase(node, size(node) - 1); }\n\n       \
+    \ template <typename U>\n        static tree_type build(const std::vector<U>&\
+    \ a, int l, int r) {\n            if (r - l == 1) return create_leaf(a[l]);\n\
+    \            int m = (l + r) >> 1;\n            return merge(build(a, l, m), build(a,\
+    \ m, r));\n        }\n        template <typename U>\n        static tree_type\
+    \ build(const std::vector<U>& a) {\n            return a.empty() ? empty_tree()\
+    \ : build(a, 0, a.size());\n        }\n\n        template <typename OutputIterator>\n\
+    \        static void dump(tree_type node, OutputIterator it) {\n            if\
+    \ (empty(node)) return;\n            auto dfs = [&](auto dfs, tree_type cur) ->\
+    \ void {\n                if (cur->is_leaf()) {\n                    *it++ = cur->_val;\n\
+    \                    return;\n                }\n                dfs(dfs, cur->_ch[0]);\n\
+    \                dfs(dfs, cur->_ch[1]);\n            };\n            dfs(dfs,\
+    \ node);\n        }\n\n        // Don't use on persistent tree.\n        static\
+    \ void free(tree_type node) {\n            auto dfs = [&](auto dfs, tree_type\
+    \ cur) -> void {\n                if (not cur) return;\n                dfs(dfs,\
+    \ cur->_ch[0]);\n                dfs(dfs, cur->_ch[1]);\n                free_node(cur);\n\
+    \            };\n            dfs(dfs, node);\n        }\n\n        template <typename\
+    \ ToStr>\n        static std::string to_string(tree_type node, ToStr f) {\n  \
+    \          std::vector<value_type> dat;\n            node_type::dump(node, std::back_inserter(dat));\n\
+    \            std::ostringstream res;\n            int siz = dat.size();\n    \
+    \        res << '[';\n            for (int i = 0; i < siz; ++i) {\n          \
+    \      res << f(dat[i]);\n                if (i != siz - 1) res << \", \";\n \
+    \           }\n            res << ']';\n            return res.str();\n      \
+    \  }\n        static std::string to_string(tree_type node) {\n            return\
+    \ to_string(node, [](const auto &e) { return e; });\n        }\n\n    protected:\n\
+    \        color_type _col;\n        tree_type _ch[2]{ nullptr, nullptr };\n   \
+    \     value_type _val;\n        size_type _siz, _lev;\n\n        RedBlackTreeNodeBase(const\
     \ value_type& val) : _col(BLACK), _val(val), _siz(1), _lev(0) {}\n        RedBlackTreeNodeBase(tree_type\
     \ l, tree_type r) : _col(RED), _ch{ l, r }, _siz(l->_siz + r->_siz), _lev(l->_lev\
     \ + (l->_col == BLACK)) {}\n\n        static void clear_pool() { pool.clear();\
@@ -244,7 +280,7 @@ data:
   - library/datastructure/bbst/persistent_red_black_tree.hpp
   - library/datastructure/bbst/persistent_red_black_tree_base.hpp
   - library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
-  timestamp: '2022-02-13 16:56:06+09:00'
+  timestamp: '2022-02-16 15:41:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp

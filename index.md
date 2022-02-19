@@ -42,6 +42,9 @@ data:
       path: library/convolution/gcd_convolution.hpp
       title: GCD Convolution
     - icon: ':heavy_check_mark:'
+      path: library/convolution/lcm_convolution.hpp
+      title: Lcm Convolution
+    - icon: ':heavy_check_mark:'
       path: library/convolution/multi_variate_convolution.hpp
       title: Multi Variate Convolution
     - icon: ':warning:'
@@ -523,8 +526,16 @@ data:
   - name: test/src/convolution/gcd_convolution
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
+      title: test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/gcd_convolution/lcms.test.cpp
       title: test/src/convolution/gcd_convolution/lcms.test.cpp
+  - name: test/src/convolution/lcm_convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
+      title: test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
   - name: test/src/convolution/multi_variate_convolution
     pages:
     - icon: ':heavy_check_mark:'
