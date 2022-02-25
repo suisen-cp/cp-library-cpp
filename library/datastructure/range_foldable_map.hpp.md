@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/splay_tree_map.hpp
     title: Splay Tree Map
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy:
@@ -45,12 +45,15 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
-    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
-    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
-    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
-    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 5 \"library/util/update_proxy_object.hpp\"\
-    \n\nnamespace suisen {\n\ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
+    \ 5 \"library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\ntemplate\
+    \ <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
     \ = nullptr>\nstruct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T\
     \ &v, UpdateFunc update) : v(v), update(update) {}\n        operator T() const\
     \ { return v; }\n        auto& operator++() && { ++v, update(); return *this;\
@@ -361,7 +364,7 @@ data:
   path: library/datastructure/range_foldable_map.hpp
   requiredBy:
   - library/datastructure/lazy_eval_map.hpp
-  timestamp: '2021-11-09 16:02:27+09:00'
+  timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

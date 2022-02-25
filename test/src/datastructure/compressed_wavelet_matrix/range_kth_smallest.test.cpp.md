@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: Coordinate Compressor
   _extendedRequiredBy: []
@@ -52,15 +52,18 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
-    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
-    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
-    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
-    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/bit_vector.hpp\"\
-    \n\nnamespace suisen {\n    class BitVector {\n        using u8 = std::uint8_t;\n\
-    \    public:\n        explicit BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L)\
-    \ + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}\n\
-    \        BitVector() : BitVector(0) {}\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
+    \ 8 \"library/datastructure/bit_vector.hpp\"\n\nnamespace suisen {\n    class\
+    \ BitVector {\n        using u8 = std::uint8_t;\n    public:\n        explicit\
+    \ BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L) + 1), ns((n >> LOG_BLOCK_S) +\
+    \ 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}\n        BitVector() : BitVector(0)\
+    \ {}\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
     \ Gen, int>> = nullptr>\n        BitVector(int n, Gen gen) : BitVector(n) {\n\
     \            build(gen);\n        }\n        BitVector& operator=(const BitVector&\
     \ bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s\
@@ -348,7 +351,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2022-02-01 07:52:56+09:00'
+  timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp

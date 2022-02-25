@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []
@@ -35,13 +35,15 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
-    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
-    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
-    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
-    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 1 \"library/util/update_proxy_object.hpp\"\
-    \n\n\n\n#line 5 \"library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\
-    \ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
+    \ 1 \"library/util/update_proxy_object.hpp\"\n\n\n\n#line 5 \"library/util/update_proxy_object.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
     \ = nullptr>\nstruct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T\
     \ &v, UpdateFunc update) : v(v), update(update) {}\n        operator T() const\
     \ { return v; }\n        auto& operator++() && { ++v, update(); return *this;\
@@ -150,7 +152,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree/sparse_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-01-17 22:14:37+09:00'
+  timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/segment_tree/sparse_segment_tree.hpp

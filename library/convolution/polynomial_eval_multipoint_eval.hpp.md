@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: Multi Point Eval
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -194,17 +194,20 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
-    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
-    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
-    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
-    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 6 \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint, auto transform, auto transform_inv>\n\
-    \    std::vector<mint> polynomial_eval(std::vector<mint> &&a, const FPS<mint>\
-    \ &f) {\n        transform(a);\n        a = multi_point_eval(f, a);\n        transform_inv(a);\n\
-    \        return a;\n    }\n\n    template <typename mint, auto transform, auto\
-    \ transform_inv>\n    std::vector<mint> polynomial_eval(const std::vector<mint>\
-    \ &a, const FPS<mint> &f) {\n        return polynomial_eval<mint, transform, transform_inv>(std::vector<mint>(a),\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
+    \ 6 \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\n\nnamespace suisen\
+    \ {\n    template <typename mint, auto transform, auto transform_inv>\n    std::vector<mint>\
+    \ polynomial_eval(std::vector<mint> &&a, const FPS<mint> &f) {\n        transform(a);\n\
+    \        a = multi_point_eval(f, a);\n        transform_inv(a);\n        return\
+    \ a;\n    }\n\n    template <typename mint, auto transform, auto transform_inv>\n\
+    \    std::vector<mint> polynomial_eval(const std::vector<mint> &a, const FPS<mint>\
+    \ &f) {\n        return polynomial_eval<mint, transform, transform_inv>(std::vector<mint>(a),\
     \ f);\n    }\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_APPLY_POLYNOMIAL_MULTIPOINT_EVAL\n#define SUISEN_APPLY_POLYNOMIAL_MULTIPOINT_EVAL\n\
     \n#include \"library/math/multi_point_eval.hpp\"\n#include \"library/type_traits/type_traits.hpp\"\
@@ -223,7 +226,7 @@ data:
   isVerificationFile: false
   path: library/convolution/polynomial_eval_multipoint_eval.hpp
   requiredBy: []
-  timestamp: '2021-09-29 01:36:15+09:00'
+  timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

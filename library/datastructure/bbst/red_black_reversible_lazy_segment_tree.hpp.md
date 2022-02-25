@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy:

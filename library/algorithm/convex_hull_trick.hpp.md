@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -35,24 +35,26 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
-    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
-    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
-    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
-    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 9 \"library/algorithm/convex_hull_trick.hpp\"\
-    \n\nnamespace suisen {\n    namespace internal::convex_hull_trick {\n        template\
-    \ <typename T>\n        struct Line {\n            // f(x)=ax+b,m=max{x|f=argmin_{f'\
-    \ in S}{f'(x)}}\n            mutable T a, b, m;\n            Line(const T& a,\
-    \ const T& b, const T& m) : a(a), b(b), m(m) {}\n            bool operator<(const\
-    \ Line<T>& rhs) const { return a < rhs.a; }\n            bool operator<(const\
-    \ T& x) const { return not (m < x); }\n        };\n\n        template <typename\
-    \ T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>\n\
-    \        inline T div(const T& num, const T& den) {\n            return num /\
-    \ den - ((num ^ den) < 0 and num % den);\n        }\n        template <typename\
-    \ T, std::enable_if_t<std::negation<std::is_integral<T>>::value, std::nullptr_t>\
-    \ = nullptr>\n        inline T div(const T& num, const T& den) {\n           \
-    \ return num / den;\n        }\n    }\n\n    template <typename T, bool is_min_query\
-    \ = true>\n    class ConvexHullTrick : std::multiset<internal::convex_hull_trick::Line<T>,\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
+    \ 9 \"library/algorithm/convex_hull_trick.hpp\"\n\nnamespace suisen {\n    namespace\
+    \ internal::convex_hull_trick {\n        template <typename T>\n        struct\
+    \ Line {\n            // f(x)=ax+b,m=max{x|f=argmin_{f' in S}{f'(x)}}\n      \
+    \      mutable T a, b, m;\n            Line(const T& a, const T& b, const T& m)\
+    \ : a(a), b(b), m(m) {}\n            bool operator<(const Line<T>& rhs) const\
+    \ { return a < rhs.a; }\n            bool operator<(const T& x) const { return\
+    \ not (m < x); }\n        };\n\n        template <typename T, std::enable_if_t<std::is_integral<T>::value,\
+    \ std::nullptr_t> = nullptr>\n        inline T div(const T& num, const T& den)\
+    \ {\n            return num / den - ((num ^ den) < 0 and num % den);\n       \
+    \ }\n        template <typename T, std::enable_if_t<std::negation<std::is_integral<T>>::value,\
+    \ std::nullptr_t> = nullptr>\n        inline T div(const T& num, const T& den)\
+    \ {\n            return num / den;\n        }\n    }\n\n    template <typename\
+    \ T, bool is_min_query = true>\n    class ConvexHullTrick : std::multiset<internal::convex_hull_trick::Line<T>,\
     \ std::less<>> {\n        using iterator = typename std::multiset<internal::convex_hull_trick::Line<T>>::iterator;\n\
     \        using MultT = safely_multipliable_t<T>;\n        using Line = internal::convex_hull_trick::Line<T>;\n\
     \n        static constexpr T inf = std::numeric_limits<T>::max();\n    public:\n\
@@ -124,7 +126,7 @@ data:
   isVerificationFile: false
   path: library/algorithm/convex_hull_trick.hpp
   requiredBy: []
-  timestamp: '2022-01-18 00:04:01+09:00'
+  timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp

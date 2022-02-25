@@ -4,11 +4,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution.hpp
     title: Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/multiple.hpp
     title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []

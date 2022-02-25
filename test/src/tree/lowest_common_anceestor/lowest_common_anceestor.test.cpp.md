@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/algorithm/rmq_pm1_with_index.hpp
     title: Rmq Pm1 With Index
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/sparse_table.hpp
     title: Sparse Table
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/lowest_common_ancestor.hpp
     title: Lowest Common Ancestor
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -47,17 +47,20 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
-    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
-    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
-    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
-    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 7 \"library/datastructure/sparse_table.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename T, typename Op, constraints_t<is_bin_op<Op,\
-    \ T>> = nullptr>\nclass SparseTable {\n    public:\n        SparseTable() {}\n\
-    \        SparseTable(std::vector<T> &&a, T e, Op op) : n(a.size()), log(floor_log2(n)),\
-    \ e(e), op(op), table(log + 1), flog(n + 1, 0) {\n            build_table(std::move(a));\n\
-    \            build_flog_table();\n        }\n        SparseTable(const std::vector<T>\
-    \ &a, T e, Op op) : SparseTable(std::vector<T>(a), e, op) {}\n        T operator()(int\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
+    \ 7 \"library/datastructure/sparse_table.hpp\"\n\nnamespace suisen {\ntemplate\
+    \ <typename T, typename Op, constraints_t<is_bin_op<Op, T>> = nullptr>\nclass\
+    \ SparseTable {\n    public:\n        SparseTable() {}\n        SparseTable(std::vector<T>\
+    \ &&a, T e, Op op) : n(a.size()), log(floor_log2(n)), e(e), op(op), table(log\
+    \ + 1), flog(n + 1, 0) {\n            build_table(std::move(a));\n           \
+    \ build_flog_table();\n        }\n        SparseTable(const std::vector<T> &a,\
+    \ T e, Op op) : SparseTable(std::vector<T>(a), e, op) {}\n        T operator()(int\
     \ l, int r) const {\n            if (l >= r) return e;\n            int i = flog[r\
     \ - l];\n            return op(table[i][l], table[i][r - (1 << i)]);\n       \
     \ }\n        T prod(int l, int r) const {\n            return (*this)(l, r);\n\
@@ -160,8 +163,8 @@ data:
   isVerificationFile: true
   path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 23:32:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-25 23:20:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
 layout: document

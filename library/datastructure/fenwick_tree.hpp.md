@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree.hpp\"\n\n\n\n#include\
@@ -44,38 +44,41 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
-    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
-    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
-    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
-    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree.hpp\"\
-    \n\nnamespace suisen {\n    namespace internal {\n        template <typename T,\
-    \ typename index_t = int, typename Container = std::vector<T>>\n        class\
-    \ FenwickTreeBase {\n        public:\n            FenwickTreeBase() {}\n     \
-    \       explicit FenwickTreeBase(index_t n) : n(n) {}\n            void add(index_t\
-    \ i, T v) {\n                for (++i; i <= n; i += (i & -i)) data[i - 1] += v;\n\
-    \            }\n            T sum(index_t l, index_t r) const {\n            \
-    \    return sum(r) - sum(l);\n            }\n            auto operator[](int i)\
-    \ {\n                struct {\n                    int i;\n                  \
-    \  FenwickTreeBase& ft;\n                    operator T() const { return ft.sum(i,\
-    \ i + 1); }\n                    auto& operator++() { return *this += 1; }\n \
-    \                   auto& operator--() { return *this -= 1; }\n              \
-    \      auto& operator+=(T val) { ft.add(i, val); return *this; }\n           \
-    \         auto& operator-=(T val) { ft.add(i, -val); return *this; }\n       \
-    \             auto& operator*=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur\
-    \ * val - cur); return *this; }\n                    auto& operator/=(T val) {\
-    \ T cur = ft.sum(i, i + 1); ft.add(i, cur / val - cur); return *this; }\n    \
-    \                auto& operator%=(T val) { T cur = ft.sum(i, i + 1); ft.add(i,\
-    \ cur % val - cur); return *this; }\n                    auto& operator =(T val)\
-    \ { T cur = ft.sum(i, i + 1); ft.add(i, val - cur); return *this; }\n        \
-    \        } obj{ i, *this };\n                return obj;\n            }\n    \
-    \        T operator()(int l, int r) const { return sum(l, r); }\n        protected:\n\
-    \            index_t n;\n            Container data;\n            template <typename\
-    \ ...Args>\n            FenwickTreeBase(index_t n, Args &&...args) : n(n), data(std::forward<Args>(args)...)\
-    \ {}\n        private:\n            T sum(int r) const {\n                T s(0);\n\
-    \                for (; r; r -= r & -r) s += data[r - 1];\n                return\
-    \ s;\n            }\n        };\n\n        template <typename Key, typename Value,\
-    \ bool unordered>\n        using cond_map_t = std::conditional_t<unordered, std::unordered_map<Key,\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
+    \ 9 \"library/datastructure/fenwick_tree.hpp\"\n\nnamespace suisen {\n    namespace\
+    \ internal {\n        template <typename T, typename index_t = int, typename Container\
+    \ = std::vector<T>>\n        class FenwickTreeBase {\n        public:\n      \
+    \      FenwickTreeBase() {}\n            explicit FenwickTreeBase(index_t n) :\
+    \ n(n) {}\n            void add(index_t i, T v) {\n                for (++i; i\
+    \ <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
+    \ l, index_t r) const {\n                return sum(r) - sum(l);\n           \
+    \ }\n            auto operator[](int i) {\n                struct {\n        \
+    \            int i;\n                    FenwickTreeBase& ft;\n              \
+    \      operator T() const { return ft.sum(i, i + 1); }\n                    auto&\
+    \ operator++() { return *this += 1; }\n                    auto& operator--()\
+    \ { return *this -= 1; }\n                    auto& operator+=(T val) { ft.add(i,\
+    \ val); return *this; }\n                    auto& operator-=(T val) { ft.add(i,\
+    \ -val); return *this; }\n                    auto& operator*=(T val) { T cur\
+    \ = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }\n          \
+    \          auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur /\
+    \ val - cur); return *this; }\n                    auto& operator%=(T val) { T\
+    \ cur = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }\n      \
+    \              auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i, val\
+    \ - cur); return *this; }\n                } obj{ i, *this };\n              \
+    \  return obj;\n            }\n            T operator()(int l, int r) const {\
+    \ return sum(l, r); }\n        protected:\n            index_t n;\n          \
+    \  Container data;\n            template <typename ...Args>\n            FenwickTreeBase(index_t\
+    \ n, Args &&...args) : n(n), data(std::forward<Args>(args)...) {}\n        private:\n\
+    \            T sum(int r) const {\n                T s(0);\n                for\
+    \ (; r; r -= r & -r) s += data[r - 1];\n                return s;\n          \
+    \  }\n        };\n\n        template <typename Key, typename Value, bool unordered>\n\
+    \        using cond_map_t = std::conditional_t<unordered, std::unordered_map<Key,\
     \ Value>, std::map<Key, Value>>;\n\n    } // namespace internal\n\n    template\
     \ <typename T>\n    struct FenwickTree : public internal::FenwickTreeBase<T> {\n\
     \        FenwickTree() : FenwickTree(0) {}\n        explicit FenwickTree(int n)\
@@ -135,8 +138,8 @@ data:
   path: library/datastructure/fenwick_tree.hpp
   requiredBy:
   - library/geom/segment_intersections.hpp
-  timestamp: '2022-01-17 22:23:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-25 23:20:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp

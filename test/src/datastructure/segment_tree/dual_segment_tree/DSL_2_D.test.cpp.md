@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
     title: Commutative Dual Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
     title: Dual Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
@@ -50,8 +50,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2022-01-17 22:14:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-25 23:20:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
 layout: document

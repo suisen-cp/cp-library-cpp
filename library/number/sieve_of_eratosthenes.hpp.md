@@ -1,23 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/algorithm/mo/abc238_g.test.cpp
+    title: test/src/algorithm/mo/abc238_g.test.cpp
+  - icon: ':x:'
+    path: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
+    title: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
+  - icon: ':x:'
     path: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
     title: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
     title: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\n\n#include\
@@ -63,78 +69,86 @@ data:
     \ + 2 * m) + m * m / PROD;\n                    for (std::uint8_t mq = mp; kr\
     \ < siz; kr += kp * DR[mq] + DF[mp][mq], ++mq &= 7) {\n                      \
     \  flag[kr] |= MASK[mp][mq];\n                    }\n                }\n     \
-    \       }\n        }\n        bool is_prime(const unsigned int p) const {\n  \
-    \          using namespace internal::sieve;\n            switch (p) {\n      \
-    \          case 2: case 3: case 5: return true;\n                default:\n  \
-    \                  switch (p % PROD) {\n                        case RM[0]: return\
-    \ ((flag[p / PROD] >> 0) & 1) == 0;\n                        case RM[1]: return\
-    \ ((flag[p / PROD] >> 1) & 1) == 0;\n                        case RM[2]: return\
-    \ ((flag[p / PROD] >> 2) & 1) == 0;\n                        case RM[3]: return\
-    \ ((flag[p / PROD] >> 3) & 1) == 0;\n                        case RM[4]: return\
-    \ ((flag[p / PROD] >> 4) & 1) == 0;\n                        case RM[5]: return\
-    \ ((flag[p / PROD] >> 5) & 1) == 0;\n                        case RM[6]: return\
-    \ ((flag[p / PROD] >> 6) & 1) == 0;\n                        case RM[7]: return\
-    \ ((flag[p / PROD] >> 7) & 1) == 0;\n                        default: return false;\n\
-    \                    }\n            }\n        }\n};\ntemplate <unsigned int N>\n\
-    std::uint8_t SimpleSieve<N>::flag[SimpleSieve<N>::siz];\n\ntemplate <unsigned\
-    \ int N>\nclass Sieve {\n    private:\n        static constexpr unsigned int base_max\
-    \ = (N + 1) * internal::sieve::K / internal::sieve::PROD;\n        static unsigned\
-    \ int pf[base_max + internal::sieve::K];\n\n    public:\n        Sieve() {\n \
-    \           using namespace internal::sieve;\n            pf[0] = 1;\n       \
-    \     unsigned int k_max = ((unsigned int) std::sqrt(N + 1) - 1) / PROD;\n   \
-    \         for (unsigned int kp = 0; kp <= k_max; ++kp) {\n                const\
-    \ int base_i = kp * K, base_act_i = kp * PROD;\n                for (int mp =\
-    \ 0; mp < K; ++mp) {\n                    const int m = RM[mp], i = base_i + mp;\n\
-    \                    if (pf[i] == 0) {\n                        unsigned int act_i\
-    \ = base_act_i + m;\n                        unsigned int base_k = (kp * (PROD\
-    \ * kp + 2 * m) + m * m / PROD) * K;\n                        for (std::uint8_t\
-    \ mq = mp; base_k <= base_max; base_k += kp * DRP[mq] + DFP[mp][mq], ++mq &= 7)\
-    \ {\n                            pf[base_k + OFFSET[mp][mq]] = act_i;\n      \
-    \                  }\n                    }\n                }\n            }\n\
-    \        }\n        bool is_prime(const unsigned int p) const {\n            using\
-    \ namespace internal::sieve;\n            switch (p) {\n                case 2:\
-    \ case 3: case 5: return true;\n                default:\n                   \
-    \ switch (p % PROD) {\n                        case RM[0]: return pf[p / PROD\
-    \ * K + 0] == 0;\n                        case RM[1]: return pf[p / PROD * K +\
-    \ 1] == 0;\n                        case RM[2]: return pf[p / PROD * K + 2] ==\
-    \ 0;\n                        case RM[3]: return pf[p / PROD * K + 3] == 0;\n\
-    \                        case RM[4]: return pf[p / PROD * K + 4] == 0;\n     \
-    \                   case RM[5]: return pf[p / PROD * K + 5] == 0;\n          \
-    \              case RM[6]: return pf[p / PROD * K + 6] == 0;\n               \
-    \         case RM[7]: return pf[p / PROD * K + 7] == 0;\n                    \
-    \    default: return false;\n                    }\n            }\n        }\n\
-    \        int prime_factor(const unsigned int p) const {\n            using namespace\
-    \ internal::sieve;\n            switch (p % PROD) {\n                case  0:\
-    \ case  2: case  4: case  6: case  8:\n                case 10: case 12: case\
-    \ 14: case 16: case 18:\n                case 20: case 22: case 24: case 26: case\
-    \ 28: return 2;\n                case  3: case  9: case 15: case 21: case 27:\
-    \ return 3;\n                case  5: case 25: return 5;\n                case\
-    \ RM[0]: return pf[p / PROD * K + 0] ? pf[p / PROD * K + 0] : p;\n           \
-    \     case RM[1]: return pf[p / PROD * K + 1] ? pf[p / PROD * K + 1] : p;\n  \
-    \              case RM[2]: return pf[p / PROD * K + 2] ? pf[p / PROD * K + 2]\
-    \ : p;\n                case RM[3]: return pf[p / PROD * K + 3] ? pf[p / PROD\
-    \ * K + 3] : p;\n                case RM[4]: return pf[p / PROD * K + 4] ? pf[p\
-    \ / PROD * K + 4] : p;\n                case RM[5]: return pf[p / PROD * K + 5]\
-    \ ? pf[p / PROD * K + 5] : p;\n                case RM[6]: return pf[p / PROD\
-    \ * K + 6] ? pf[p / PROD * K + 6] : p;\n                case RM[7]: return pf[p\
-    \ / PROD * K + 7] ? pf[p / PROD * K + 7] : p;\n                default: assert(false);\n\
-    \            }\n        }\n        /**\n         * Returns a vector of `{ prime,\
-    \ index }`.\n         */\n        std::vector<std::pair<int, int>> factorize(unsigned\
-    \ int n) const {\n            assert(0 < n and n <= N);\n            std::vector<std::pair<int,\
-    \ int>> prime_powers;\n            while (n > 1) {\n                int p = prime_factor(n),\
-    \ c = 0;\n                do { n /= p, ++c; } while (n % p == 0);\n          \
-    \      prime_powers.emplace_back(p, c);\n            }\n            return prime_powers;\n\
-    \        }\n        /**\n         * Returns the divisors of `n`.\n         * It\
-    \ is NOT guaranteed that the returned vector is sorted.\n         */\n       \
-    \ std::vector<int> divisors(unsigned int n) const {\n            assert(0 < n\
-    \ and n <= N);\n            std::vector<int> divs { 1 };\n            for (auto\
-    \ [prime, index] : factorize(n)) {\n                int sz = divs.size();\n  \
-    \              for (int i = 0; i < sz; ++i) {\n                    int d = divs[i];\n\
-    \                    for (int j = 0; j < index; ++j) {\n                     \
-    \   divs.push_back(d *= prime);\n                    }\n                }\n  \
-    \          }\n            return divs;\n        }\n};\ntemplate <unsigned int\
-    \ N>\nunsigned int Sieve<N>::pf[Sieve<N>::base_max + internal::sieve::K];\n} //\
-    \ namespace suisen\n\n\n"
+    \       }\n        }\n        std::vector<int> prime_list(unsigned int max_val\
+    \ = N) const {\n            using namespace internal::sieve;\n            std::vector<int>\
+    \ res { 2, 3, 5 };\n            res.reserve(max_val / 25);\n            for (unsigned\
+    \ int i = 0, offset = 0; i < siz and offset < max_val; ++i, offset += PROD) {\n\
+    \                for (uint8_t f = ~flag[i]; f;) {\n                    uint8_t\
+    \ g = f & -f;\n                    res.push_back(offset + RM[mask_to_index(g)]);\n\
+    \                    f ^= g;\n                }\n            }\n            while\
+    \ (res.size() and (unsigned int) res.back() > max_val) res.pop_back();\n     \
+    \       return res;\n        }\n        bool is_prime(const unsigned int p) const\
+    \ {\n            using namespace internal::sieve;\n            switch (p) {\n\
+    \                case 2: case 3: case 5: return true;\n                default:\n\
+    \                    switch (p % PROD) {\n                        case RM[0]:\
+    \ return ((flag[p / PROD] >> 0) & 1) == 0;\n                        case RM[1]:\
+    \ return ((flag[p / PROD] >> 1) & 1) == 0;\n                        case RM[2]:\
+    \ return ((flag[p / PROD] >> 2) & 1) == 0;\n                        case RM[3]:\
+    \ return ((flag[p / PROD] >> 3) & 1) == 0;\n                        case RM[4]:\
+    \ return ((flag[p / PROD] >> 4) & 1) == 0;\n                        case RM[5]:\
+    \ return ((flag[p / PROD] >> 5) & 1) == 0;\n                        case RM[6]:\
+    \ return ((flag[p / PROD] >> 6) & 1) == 0;\n                        case RM[7]:\
+    \ return ((flag[p / PROD] >> 7) & 1) == 0;\n                        default: return\
+    \ false;\n                    }\n            }\n        }\n};\ntemplate <unsigned\
+    \ int N>\nstd::uint8_t SimpleSieve<N>::flag[SimpleSieve<N>::siz];\n\ntemplate\
+    \ <unsigned int N>\nclass Sieve {\n    private:\n        static constexpr unsigned\
+    \ int base_max = (N + 1) * internal::sieve::K / internal::sieve::PROD;\n     \
+    \   static unsigned int pf[base_max + internal::sieve::K];\n\n    public:\n  \
+    \      Sieve() {\n            using namespace internal::sieve;\n            pf[0]\
+    \ = 1;\n            unsigned int k_max = ((unsigned int) std::sqrt(N + 1) - 1)\
+    \ / PROD;\n            for (unsigned int kp = 0; kp <= k_max; ++kp) {\n      \
+    \          const int base_i = kp * K, base_act_i = kp * PROD;\n              \
+    \  for (int mp = 0; mp < K; ++mp) {\n                    const int m = RM[mp],\
+    \ i = base_i + mp;\n                    if (pf[i] == 0) {\n                  \
+    \      unsigned int act_i = base_act_i + m;\n                        unsigned\
+    \ int base_k = (kp * (PROD * kp + 2 * m) + m * m / PROD) * K;\n              \
+    \          for (std::uint8_t mq = mp; base_k <= base_max; base_k += kp * DRP[mq]\
+    \ + DFP[mp][mq], ++mq &= 7) {\n                            pf[base_k + OFFSET[mp][mq]]\
+    \ = act_i;\n                        }\n                    }\n               \
+    \ }\n            }\n        }\n        bool is_prime(const unsigned int p) const\
+    \ {\n            using namespace internal::sieve;\n            switch (p) {\n\
+    \                case 2: case 3: case 5: return true;\n                default:\n\
+    \                    switch (p % PROD) {\n                        case RM[0]:\
+    \ return pf[p / PROD * K + 0] == 0;\n                        case RM[1]: return\
+    \ pf[p / PROD * K + 1] == 0;\n                        case RM[2]: return pf[p\
+    \ / PROD * K + 2] == 0;\n                        case RM[3]: return pf[p / PROD\
+    \ * K + 3] == 0;\n                        case RM[4]: return pf[p / PROD * K +\
+    \ 4] == 0;\n                        case RM[5]: return pf[p / PROD * K + 5] ==\
+    \ 0;\n                        case RM[6]: return pf[p / PROD * K + 6] == 0;\n\
+    \                        case RM[7]: return pf[p / PROD * K + 7] == 0;\n     \
+    \                   default: return false;\n                    }\n          \
+    \  }\n        }\n        int prime_factor(const unsigned int p) const {\n    \
+    \        using namespace internal::sieve;\n            switch (p % PROD) {\n \
+    \               case  0: case  2: case  4: case  6: case  8:\n               \
+    \ case 10: case 12: case 14: case 16: case 18:\n                case 20: case\
+    \ 22: case 24: case 26: case 28: return 2;\n                case  3: case  9:\
+    \ case 15: case 21: case 27: return 3;\n                case  5: case 25: return\
+    \ 5;\n                case RM[0]: return pf[p / PROD * K + 0] ? pf[p / PROD *\
+    \ K + 0] : p;\n                case RM[1]: return pf[p / PROD * K + 1] ? pf[p\
+    \ / PROD * K + 1] : p;\n                case RM[2]: return pf[p / PROD * K + 2]\
+    \ ? pf[p / PROD * K + 2] : p;\n                case RM[3]: return pf[p / PROD\
+    \ * K + 3] ? pf[p / PROD * K + 3] : p;\n                case RM[4]: return pf[p\
+    \ / PROD * K + 4] ? pf[p / PROD * K + 4] : p;\n                case RM[5]: return\
+    \ pf[p / PROD * K + 5] ? pf[p / PROD * K + 5] : p;\n                case RM[6]:\
+    \ return pf[p / PROD * K + 6] ? pf[p / PROD * K + 6] : p;\n                case\
+    \ RM[7]: return pf[p / PROD * K + 7] ? pf[p / PROD * K + 7] : p;\n           \
+    \     default: assert(false);\n            }\n        }\n        /**\n       \
+    \  * Returns a vector of `{ prime, index }`.\n         */\n        std::vector<std::pair<int,\
+    \ int>> factorize(unsigned int n) const {\n            assert(0 < n and n <= N);\n\
+    \            std::vector<std::pair<int, int>> prime_powers;\n            while\
+    \ (n > 1) {\n                int p = prime_factor(n), c = 0;\n               \
+    \ do { n /= p, ++c; } while (n % p == 0);\n                prime_powers.emplace_back(p,\
+    \ c);\n            }\n            return prime_powers;\n        }\n        /**\n\
+    \         * Returns the divisors of `n`.\n         * It is NOT guaranteed that\
+    \ the returned vector is sorted.\n         */\n        std::vector<int> divisors(unsigned\
+    \ int n) const {\n            assert(0 < n and n <= N);\n            std::vector<int>\
+    \ divs { 1 };\n            for (auto [prime, index] : factorize(n)) {\n      \
+    \          int sz = divs.size();\n                for (int i = 0; i < sz; ++i)\
+    \ {\n                    int d = divs[i];\n                    for (int j = 0;\
+    \ j < index; ++j) {\n                        divs.push_back(d *= prime);\n   \
+    \                 }\n                }\n            }\n            return divs;\n\
+    \        }\n};\ntemplate <unsigned int N>\nunsigned int Sieve<N>::pf[Sieve<N>::base_max\
+    \ + internal::sieve::K];\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_SIEVE_OF_ERATOSTHENES\n#define SUISEN_SIEVE_OF_ERATOSTHENES\n\
     \n#include <cassert>\n#include <cmath>\n#include <vector>\n\n#include \"library/number/internal_eratosthenes.hpp\"\
     \n\nnamespace suisen {\n\ntemplate <unsigned int N>\nclass SimpleSieve {\n   \
@@ -148,7 +162,15 @@ data:
     \              unsigned int kr = kp * (PROD * kp + 2 * m) + m * m / PROD;\n  \
     \                  for (std::uint8_t mq = mp; kr < siz; kr += kp * DR[mq] + DF[mp][mq],\
     \ ++mq &= 7) {\n                        flag[kr] |= MASK[mp][mq];\n          \
-    \          }\n                }\n            }\n        }\n        bool is_prime(const\
+    \          }\n                }\n            }\n        }\n        std::vector<int>\
+    \ prime_list(unsigned int max_val = N) const {\n            using namespace internal::sieve;\n\
+    \            std::vector<int> res { 2, 3, 5 };\n            res.reserve(max_val\
+    \ / 25);\n            for (unsigned int i = 0, offset = 0; i < siz and offset\
+    \ < max_val; ++i, offset += PROD) {\n                for (uint8_t f = ~flag[i];\
+    \ f;) {\n                    uint8_t g = f & -f;\n                    res.push_back(offset\
+    \ + RM[mask_to_index(g)]);\n                    f ^= g;\n                }\n \
+    \           }\n            while (res.size() and (unsigned int) res.back() > max_val)\
+    \ res.pop_back();\n            return res;\n        }\n        bool is_prime(const\
     \ unsigned int p) const {\n            using namespace internal::sieve;\n    \
     \        switch (p) {\n                case 2: case 3: case 5: return true;\n\
     \                default:\n                    switch (p % PROD) {\n         \
@@ -225,11 +247,13 @@ data:
   isVerificationFile: false
   path: library/number/sieve_of_eratosthenes.hpp
   requiredBy: []
-  timestamp: '2021-08-04 13:32:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-25 23:20:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+  - test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
   - test/src/transform/multiple/divide_both.test.cpp
 documentation_of: library/number/sieve_of_eratosthenes.hpp
 layout: document

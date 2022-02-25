@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
@@ -35,21 +35,23 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
-    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
-    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
-    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
-    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 6 \"library/template.hpp\"\
-    \n\n// ! type aliases\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing\
-    \ ll = long long;\nusing uint = unsigned int;\nusing ull  = unsigned long long;\n\
-    \ntemplate <typename T> using vec  = std::vector<T>;\ntemplate <typename T> using\
-    \ vec2 = vec<vec <T>>;\ntemplate <typename T> using vec3 = vec<vec2<T>>;\ntemplate\
-    \ <typename T> using vec4 = vec<vec3<T>>;\n\ntemplate <typename T>\nusing pq_greater\
-    \ = std::priority_queue<T, std::vector<T>, std::greater<T>>;\ntemplate <typename\
-    \ T, typename U>\nusing umap = std::unordered_map<T, U>;\n\n// ! macros (capital:\
-    \ internal macro)\n#define OVERLOAD2(_1,_2,name,...) name\n#define OVERLOAD3(_1,_2,_3,name,...)\
-    \ name\n#define OVERLOAD4(_1,_2,_3,_4,name,...) name\n\n#define REP4(i,l,r,s)\
-    \  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
+    \ 6 \"library/template.hpp\"\n\n// ! type aliases\nusing i128 = __int128_t;\n\
+    using u128 = __uint128_t;\nusing ll = long long;\nusing uint = unsigned int;\n\
+    using ull  = unsigned long long;\n\ntemplate <typename T> using vec  = std::vector<T>;\n\
+    template <typename T> using vec2 = vec<vec <T>>;\ntemplate <typename T> using\
+    \ vec3 = vec<vec2<T>>;\ntemplate <typename T> using vec4 = vec<vec3<T>>;\n\ntemplate\
+    \ <typename T>\nusing pq_greater = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    template <typename T, typename U>\nusing umap = std::unordered_map<T, U>;\n\n\
+    // ! macros (capital: internal macro)\n#define OVERLOAD2(_1,_2,name,...) name\n\
+    #define OVERLOAD3(_1,_2,_3,name,...) name\n#define OVERLOAD4(_1,_2,_3,_4,name,...)\
+    \ name\n\n#define REP4(i,l,r,s)  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
     #define REP3(i,l,r)    REP4(i,l,r,1)\n#define REP2(i,n)      REP3(i,0,n)\n#define\
     \ REPINF3(i,l,s) for(std::remove_reference_t<std::remove_const_t<decltype(l)>>i=(l);;i+=(s))\n\
     #define REPINF2(i,l)   REPINF3(i,l,1)\n#define REPINF1(i)     REPINF2(i,0)\n#define\
@@ -279,7 +281,7 @@ data:
   path: library/template.hpp
   requiredBy:
   - library/template.cpp
-  timestamp: '2022-01-15 00:26:32+09:00'
+  timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.hpp

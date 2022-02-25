@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/datastructure/bbst/persistent_red_black_segment_tree.hpp
     title: Persistent Red Black Segment Tree
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
+    title: test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/bbst/red_black_segment_tree.hpp\"\n\
@@ -187,8 +190,9 @@ data:
   requiredBy:
   - library/datastructure/bbst/persistent_red_black_segment_tree.hpp
   timestamp: '2022-02-16 15:41:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
 documentation_of: library/datastructure/bbst/red_black_segment_tree.hpp
 layout: document
 title: Red Black Segment Tree

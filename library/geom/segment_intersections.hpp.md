@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: Coordinate Compressor
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/geom/segment_intersections.hpp\"\n\n\n\n#include\
@@ -42,38 +42,41 @@ data:
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<float> { using\
-    \ type = float; };\ntemplate <>\nstruct safely_multipliable<double> { using type\
-    \ = double; };\ntemplate <>\nstruct safely_multipliable<long double> { using type\
-    \ = long double; };\ntemplate <typename T>\nusing safely_multipliable_t = typename\
-    \ safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line 9 \"library/util/coordinate_compressor.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename T>\nclass CoordinateCompressorBuilder\
-    \ {\n    public:\n        struct Compressor {\n            public:\n         \
-    \       static constexpr int absent = -1;\n\n                // default constructor\n\
-    \                Compressor() : _xs(std::vector<T>{}) {}\n                // Construct\
-    \ from strictly sorted vector\n                Compressor(const std::vector<T>\
-    \ &xs) : _xs(xs) {\n                    assert(is_strictly_sorted(xs));\n    \
-    \            }\n\n                // Return the number of distinct keys.\n   \
-    \             int size() const {\n                    return _xs.size();\n   \
-    \             }\n                // Check if the element is registered.\n    \
-    \            bool has_key(const T &e) const {\n                    return std::binary_search(_xs.begin(),\
-    \ _xs.end(), e);\n                }\n                // Compress the element.\
-    \ if not registered, returns `default_value`. (default: Compressor::absent)\n\
-    \                int comp(const T &e, int default_value = absent) const {\n  \
-    \                  const int res = min_geq_index(e);\n                    return\
-    \ res != size() and _xs[res] == e ? res : default_value;\n                }\n\
-    \                // Restore the element from the index.\n                T decomp(const\
-    \ int compressed_index) const {\n                    return _xs[compressed_index];\n\
-    \                }\n                // Compress the element. Equivalent to call\
-    \ `comp(e)`\n                int operator[](const T &e) const {\n            \
-    \        return comp(e);\n                }\n                // Return the minimum\
-    \ registered value greater than `e`. if not exists, return `default_value`.\n\
-    \                T min_gt(const T &e, const T &default_value) const {\n      \
-    \              auto it = std::upper_bound(_xs.begin(), _xs.end(), e);\n      \
-    \              return it == _xs.end() ? default_value : *it;\n               \
-    \ }\n                // Return the minimum registered value greater than or equal\
-    \ to `e`. if not exists, return `default_value`.\n                T min_geq(const\
-    \ T &e, const T &default_value) const {\n                    auto it = std::lower_bound(_xs.begin(),\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
+    \ 9 \"library/util/coordinate_compressor.hpp\"\n\nnamespace suisen {\ntemplate\
+    \ <typename T>\nclass CoordinateCompressorBuilder {\n    public:\n        struct\
+    \ Compressor {\n            public:\n                static constexpr int absent\
+    \ = -1;\n\n                // default constructor\n                Compressor()\
+    \ : _xs(std::vector<T>{}) {}\n                // Construct from strictly sorted\
+    \ vector\n                Compressor(const std::vector<T> &xs) : _xs(xs) {\n \
+    \                   assert(is_strictly_sorted(xs));\n                }\n\n   \
+    \             // Return the number of distinct keys.\n                int size()\
+    \ const {\n                    return _xs.size();\n                }\n       \
+    \         // Check if the element is registered.\n                bool has_key(const\
+    \ T &e) const {\n                    return std::binary_search(_xs.begin(), _xs.end(),\
+    \ e);\n                }\n                // Compress the element. if not registered,\
+    \ returns `default_value`. (default: Compressor::absent)\n                int\
+    \ comp(const T &e, int default_value = absent) const {\n                    const\
+    \ int res = min_geq_index(e);\n                    return res != size() and _xs[res]\
+    \ == e ? res : default_value;\n                }\n                // Restore the\
+    \ element from the index.\n                T decomp(const int compressed_index)\
+    \ const {\n                    return _xs[compressed_index];\n               \
+    \ }\n                // Compress the element. Equivalent to call `comp(e)`\n \
+    \               int operator[](const T &e) const {\n                    return\
+    \ comp(e);\n                }\n                // Return the minimum registered\
+    \ value greater than `e`. if not exists, return `default_value`.\n           \
+    \     T min_gt(const T &e, const T &default_value) const {\n                 \
+    \   auto it = std::upper_bound(_xs.begin(), _xs.end(), e);\n                 \
+    \   return it == _xs.end() ? default_value : *it;\n                }\n       \
+    \         // Return the minimum registered value greater than or equal to `e`.\
+    \ if not exists, return `default_value`.\n                T min_geq(const T &e,\
+    \ const T &default_value) const {\n                    auto it = std::lower_bound(_xs.begin(),\
     \ _xs.end(), e);\n                    return it == _xs.end() ? default_value :\
     \ *it;\n                }\n                // Return the maximum registered value\
     \ less than `e`. if not exists, return `default_value`\n                T max_lt(const\
@@ -218,8 +221,8 @@ data:
   isVerificationFile: false
   path: library/geom/segment_intersections.hpp
   requiredBy: []
-  timestamp: '2022-02-01 07:52:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-25 23:20:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/geom/segment_intersections.hpp

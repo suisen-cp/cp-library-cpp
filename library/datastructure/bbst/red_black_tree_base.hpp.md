@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy:
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_reversible_lazy_segment_tree.hpp
     title: Red Black Reversible Lazy Segment Tree
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/datastructure/bbst/red_black_segment_tree.hpp
     title: Red Black Segment Tree
   - icon: ':warning:'
@@ -36,9 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
+    title: test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/bbst/red_black_tree_base.hpp\"\n\n\
@@ -281,8 +284,9 @@ data:
   - library/datastructure/bbst/persistent_red_black_tree_base.hpp
   - library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
   timestamp: '2022-02-16 15:41:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
   - test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/datastructure/bbst/red_black_tree_base.hpp
 layout: document
