@@ -29,6 +29,20 @@ class SimpleSieve {
                 }
             }
         }
+        std::vector<int> prime_list(unsigned int max_val = N) const {
+            using namespace internal::sieve;
+            std::vector<int> res { 2, 3, 5 };
+            res.reserve(max_val / 25);
+            for (unsigned int i = 0, offset = 0; i < siz and offset < max_val; ++i, offset += PROD) {
+                for (uint8_t f = ~flag[i]; f;) {
+                    uint8_t g = f & -f;
+                    res.push_back(offset + RM[mask_to_index(g)]);
+                    f ^= g;
+                }
+            }
+            while (res.size() and (unsigned int) res.back() > max_val) res.pop_back();
+            return res;
+        }
         bool is_prime(const unsigned int p) const {
             using namespace internal::sieve;
             switch (p) {
