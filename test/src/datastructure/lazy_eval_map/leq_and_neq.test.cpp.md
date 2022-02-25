@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: Coordinate Compressor
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []

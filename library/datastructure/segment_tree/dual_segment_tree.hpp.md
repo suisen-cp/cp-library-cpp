@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
     title: Commutative Dual Segment Tree
   - icon: ':question:'
@@ -9,18 +9,18 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.2/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -57,7 +57,7 @@ data:
   path: library/datastructure/segment_tree/dual_segment_tree.hpp
   requiredBy: []
   timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
