@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
     title: Rmq Pm1 With Index
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
     title: Sparse Table
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
     title: Lowest Common Ancestor
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -164,7 +164,7 @@ data:
   path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   requiredBy: []
   timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
 layout: document

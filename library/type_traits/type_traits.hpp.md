@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: library/algorithm/rmq_pm1.hpp
     title: Rmq Pm1
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
     title: Rmq Pm1 With Index
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   - icon: ':warning:'
     path: library/datastructure/segment_tree/sparse_segment_tree.hpp
     title: Sparse Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
     title: Sparse Table
   - icon: ':heavy_check_mark:'
@@ -101,13 +101,13 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
     title: Lowest Common Ancestor
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: Coordinate Compressor
   - icon: ':heavy_check_mark:'
@@ -240,21 +240,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
@@ -353,7 +353,7 @@ data:
   - library/number/util.hpp
   - library/template.hpp
   timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/util/range_set/DSL_4_A.test.cpp
   - test/src/util/coordinate_compressor/dummy.test.cpp

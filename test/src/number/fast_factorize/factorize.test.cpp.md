@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: Fast Factorize
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

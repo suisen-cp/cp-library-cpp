@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: Coordinate Compressor
   _extendedRequiredBy: []

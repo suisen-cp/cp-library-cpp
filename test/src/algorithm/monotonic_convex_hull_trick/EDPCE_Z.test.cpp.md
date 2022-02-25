@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/monotonic_convex_hull_trick.hpp
     title: Monotonic Convex Hull Trick
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

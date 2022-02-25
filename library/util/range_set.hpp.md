@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_2_D.test.cpp
     title: test/src/util/range_set/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/DSL_4_A.test.cpp
     title: test/src/util/range_set/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/util/range_set/yuki674.test.cpp
     title: test/src/util/range_set/yuki674.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/range_set.hpp\"\n\n\n\n#include <map>\n\nnamespace\
@@ -138,7 +138,7 @@ data:
   path: library/util/range_set.hpp
   requiredBy: []
   timestamp: '2021-10-16 19:54:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/util/range_set/DSL_4_A.test.cpp
   - test/src/util/range_set/yuki674.test.cpp

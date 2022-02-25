@@ -221,19 +221,25 @@ data:
     \ n) {\n    factorial<mint> fac(n);\n    FPS<mint> a(n + 1), b(n + 1);\n    for\
     \ (int i = 0; i <= n; ++i) {\n        a[i] = mint(i).pow(n) * fac.inv(i);\n  \
     \      b[i] = i & 1 ? -fac.inv(i) : fac.inv(i);\n    }\n    a *= b, a.pre_inplace(n);\n\
-    \    return a;\n}\n\ntemplate <typename mint>\nstd::vector<mint> bernoulli_number(int\
-    \ n) {\n    factorial<mint> fac(n);\n    FPS<mint> a(n + 1);\n    for (int i =\
-    \ 0; i <= n; ++i) a[i] = fac.inv(i + 1);\n    a.inv_inplace(n), a.resize(n + 1);\n\
-    \    for (int i = 2; i <= n; ++i) a[i] *= fac(i);\n    return a;\n}\n\ntemplate\
-    \ <typename mint>\nstd::vector<mint> partition_number(int n) {\n    FPS<mint>\
-    \ inv(n + 1);\n    inv[0] = 1;\n    for (int i = 1, k = 1; k <= n; k += 3 * i\
-    \ + 1, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
-    \   for (int i = 1, k = 2; k <= n; k += 3 * i + 2, i++) {\n        if (i & 1)\
-    \ --inv[k];\n        else ++inv[k];\n    }\n    inv.inv_inplace(n), inv.resize(n\
-    \ + 1);\n    return inv;\n}\n\ntemplate <typename mint>\nstd::vector<mint> montmort_number(int\
-    \ n) {\n    std::vector<mint> res { 1, 0 };\n    for (int i = 2; i <= n; ++i)\
-    \ res.push_back((i - 1) * (res[i - 1] + res[i - 2]));\n    res.resize(n + 1);\n\
-    \    return res;\n}\n} // namespace suisen\n\n\n#line 9 \"test/src/math/common_sequences/bernoulli_number.test.cpp\"\
+    \    return a;\n}\n\n/**\n * return:\n *   vector<mint> v s.t. v[i] = B_i = \u03A3\
+    _j S2[i,j] for i=0,...,n\n * constraints:\n *   0 <= n <= 10^6\n * note:\n * \
+    \  EGF of B is e^(e^x-1)\n */\ntemplate <typename mint>\nstd::vector<mint> bell_number(int\
+    \ n) {\n    factorial<mint> fac(n);\n    FPS<mint> f(n + 1);\n    for (int i =\
+    \ 1; i <= n; ++i) f[i] = fac.inv(i);\n    f.exp_inplace(n);\n    for (int i =\
+    \ 0; i <= n; ++i) f[i] *= fac.fac(i);\n    return f;\n}\n\ntemplate <typename\
+    \ mint>\nstd::vector<mint> bernoulli_number(int n) {\n    factorial<mint> fac(n);\n\
+    \    FPS<mint> a(n + 1);\n    for (int i = 0; i <= n; ++i) a[i] = fac.inv(i +\
+    \ 1);\n    a.inv_inplace(n), a.resize(n + 1);\n    for (int i = 2; i <= n; ++i)\
+    \ a[i] *= fac(i);\n    return a;\n}\n\ntemplate <typename mint>\nstd::vector<mint>\
+    \ partition_number(int n) {\n    FPS<mint> inv(n + 1);\n    inv[0] = 1;\n    for\
+    \ (int i = 1, k = 1; k <= n; k += 3 * i + 1, i++) {\n        if (i & 1) --inv[k];\n\
+    \        else ++inv[k];\n    }\n    for (int i = 1, k = 2; k <= n; k += 3 * i\
+    \ + 2, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
+    \   inv.inv_inplace(n), inv.resize(n + 1);\n    return inv;\n}\n\ntemplate <typename\
+    \ mint>\nstd::vector<mint> montmort_number(int n) {\n    std::vector<mint> res\
+    \ { 1, 0 };\n    for (int i = 2; i <= n; ++i) res.push_back((i - 1) * (res[i -\
+    \ 1] + res[i - 2]));\n    res.resize(n + 1);\n    return res;\n}\n} // namespace\
+    \ suisen\n\n\n#line 9 \"test/src/math/common_sequences/bernoulli_number.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
     \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
     \ n;\n    std::cin >> n;\n    auto f = suisen::bernoulli_number<mint>(n);\n  \
@@ -255,7 +261,7 @@ data:
   isVerificationFile: true
   path: test/src/math/common_sequences/bernoulli_number.test.cpp
   requiredBy: []
-  timestamp: '2021-11-25 16:42:00+09:00'
+  timestamp: '2022-02-26 02:46:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/common_sequences/bernoulli_number.test.cpp

@@ -18,7 +18,7 @@ data:
     - icon: ':warning:'
       path: library/algorithm/rmq_pm1.hpp
       title: Rmq Pm1
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/algorithm/rmq_pm1_with_index.hpp
       title: Rmq Pm1 With Index
     - icon: ':heavy_check_mark:'
@@ -106,7 +106,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_map.hpp
       title: Range Foldable Map
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
@@ -422,10 +422,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
@@ -433,7 +433,7 @@ data:
       title: Rerooting
   - name: library/type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
   - name: library/util
@@ -444,7 +444,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: Container Utils
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
       title: Coordinate Compressor
     - icon: ':warning:'
@@ -477,7 +477,7 @@ data:
     - icon: ':warning:'
       path: library/util/permutation.hpp
       title: Permutation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/range_set.hpp
       title: Range Set
     - icon: ':warning:'
@@ -1067,12 +1067,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/lowest_common_anceestor
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
       title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - name: test/src/tree/rerooting
@@ -1088,7 +1088,7 @@ data:
       title: test/src/tree/rerooting/edpc_v.test.cpp
   - name: test/src/util/coordinate_compressor
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/coordinate_compressor/dummy.test.cpp
       title: test/src/util/coordinate_compressor/dummy.test.cpp
   - name: test/src/util/range_set
@@ -1096,7 +1096,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/util/range_set/DSL_2_D.test.cpp
       title: test/src/util/range_set/DSL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/range_set/DSL_4_A.test.cpp
       title: test/src/util/range_set/DSL_4_A.test.cpp
     - icon: ':heavy_check_mark:'

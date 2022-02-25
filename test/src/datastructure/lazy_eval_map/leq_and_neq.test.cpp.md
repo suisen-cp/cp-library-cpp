@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/splay_tree_map.hpp
     title: Splay Tree Map
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: Coordinate Compressor
   - icon: ':heavy_check_mark:'
