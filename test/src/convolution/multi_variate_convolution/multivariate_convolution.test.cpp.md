@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution.hpp
     title: Multi Variate Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: Sieve Of Eratosthenes
   - icon: ':heavy_check_mark:'
@@ -12,13 +12,13 @@ data:
   - icon: ':x:'
     path: test/src/algorithm/mo/abc238_g.test.cpp
     title: test/src/algorithm/mo/abc238_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
     title: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
     title: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
     title: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
     title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
   _isVerificationFailed: true

@@ -11,15 +11,17 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
+    PROBLEM: https://atcoder.jp/contests/abc235/tasks/abc235_h
+    links:
+    - https://atcoder.jp/contests/abc235/tasks/abc235_h
   bundledCode: "#line 1 \"test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp\"\
-    \n#include <iostream>\n#include <map>\n\n#include <atcoder/modint>\nusing mint\
-    \ = atcoder::modint998244353;\n\n#include <atcoder/dsu>\n#include <algorithm>\n\
-    #include <deque>\n#include <numeric>\n#include <optional>\n#include <queue>\n\n\
-    #line 1 \"library/datastructure/union_find/merge_history_forest.hpp\"\n\n\n\n\
-    #line 8 \"library/datastructure/union_find/merge_history_forest.hpp\"\n\nnamespace\
-    \ suisen {\n    struct MergeHistoryForest : public atcoder::dsu {\n        using\
-    \ base_type = atcoder::dsu;\n\n        MergeHistoryForest() : MergeHistoryForest(0)\
+    \n#define PROBLEM \"https://atcoder.jp/contests/abc235/tasks/abc235_h\"\n\n#include\
+    \ <iostream>\n#include <map>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
+    \n#include <atcoder/dsu>\n#include <algorithm>\n#include <deque>\n#include <numeric>\n\
+    #include <optional>\n#include <queue>\n\n#line 1 \"library/datastructure/union_find/merge_history_forest.hpp\"\
+    \n\n\n\n#line 8 \"library/datastructure/union_find/merge_history_forest.hpp\"\n\
+    \nnamespace suisen {\n    struct MergeHistoryForest : public atcoder::dsu {\n\
+    \        using base_type = atcoder::dsu;\n\n        MergeHistoryForest() : MergeHistoryForest(0)\
     \ {}\n        explicit MergeHistoryForest(int n) : base_type(n), _g(n), _root(n)\
     \ {\n            std::iota(_root.begin(), _root.end(), 0);\n        }\n\n    \
     \    int node_num() const { return _g.size(); }\n\n        const auto& get_forest()\
@@ -41,7 +43,7 @@ data:
     \        std::vector<std::vector<int>> _g;\n        std::vector<int> _root;\n\n\
     \        void dfs(int u, std::vector<int> &con) {\n            for (int v : _g[u])\
     \ dfs(v, con), _g[v].shrink_to_fit();\n            con.push_back(_root[u]), _g[u].clear();\n\
-    \        }\n    };\n} // namespace suisen\n\n\n\n#line 15 \"test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp\"\
+    \        }\n    };\n} // namespace suisen\n\n\n\n#line 17 \"test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp\"\
     \nusing suisen::MergeHistoryForest;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n \n    int n, m, k;\n    std::cin >> n >> m >> k;\n\
     \ \n    std::map<int, std::vector<std::pair<int, int>>> edges;\n    while (m -->\
@@ -63,8 +65,9 @@ data:
     \ root : uf.tree_roots()) {\n        dfs(dfs, root);\n        f = merge(f, dp[root]);\n\
     \    }\n \n    std::cout << std::accumulate(f.begin(), f.end(), mint(0)).val()\
     \ << std::endl;\n \n    return 0;\n}\n"
-  code: "#include <iostream>\n#include <map>\n\n#include <atcoder/modint>\nusing mint\
-    \ = atcoder::modint998244353;\n\n#include <atcoder/dsu>\n#include <algorithm>\n\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc235/tasks/abc235_h\"\n\n\
+    #include <iostream>\n#include <map>\n\n#include <atcoder/modint>\nusing mint =\
+    \ atcoder::modint998244353;\n\n#include <atcoder/dsu>\n#include <algorithm>\n\
     #include <deque>\n#include <numeric>\n#include <optional>\n#include <queue>\n\n\
     #include \"library/datastructure/union_find/merge_history_forest.hpp\"\nusing\
     \ suisen::MergeHistoryForest;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
@@ -93,7 +96,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 17:46:05+09:00'
+  timestamp: '2022-02-26 00:55:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp

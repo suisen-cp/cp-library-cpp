@@ -349,21 +349,21 @@ data:
     - icon: ':warning:'
       path: library/number/rational.hpp
       title: Rational
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: Sieve Of Eratosthenes
     - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
       title: Sieve Of Eratosthenes Constexpr
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/number/sum_of_totient_function.hpp
       title: Sum Of Totient Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: Util
   - name: library/string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/string/manacher.hpp
       title: library/string/manacher.hpp
     - icon: ':warning:'
@@ -391,7 +391,7 @@ data:
       title: Template
   - name: library/transform
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
@@ -399,7 +399,7 @@ data:
       path: library/transform/kronecker_power.hpp
       title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
         \u5909\u63DB (\u4EEE\u79F0)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
@@ -422,7 +422,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
     - icon: ':x:'
@@ -453,7 +453,7 @@ data:
     - icon: ':warning:'
       path: library/util/cumulative_sum_2d.hpp
       title: Cumulative Sum 2d
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/default_operator.hpp
       title: Default Operator
     - icon: ':warning:'
@@ -960,13 +960,13 @@ data:
       title: test/src/number/fast_factorize/factorize.test.cpp
   - name: test/src/number/sieve_of_eratosthenes
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
       title: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
       title: test/src/number/sieve_of_eratosthenes/flatten.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
       title: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - name: test/src/number/sieve_of_eratosthenes_constexpr
@@ -979,26 +979,26 @@ data:
       title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
   - name: test/src/number/sum_of_totient_function
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/sum_of_totient_function/abc162_e.test.cpp
       title: test/src/number/sum_of_totient_function/abc162_e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
       title: test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
   - name: test/src/number/util
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/util/abc222_g.test.cpp
       title: test/src/number/util/abc222_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/util/same_div_dens.test.cpp
       title: test/src/number/util/same_div_dens.test.cpp
   - name: test/src/string/manacher
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/string/manacher/enumerate_palindromes.test.cpp
       title: test/src/string/manacher/enumerate_palindromes.test.cpp
   - name: test/src/string/palindromic_tree
@@ -1034,7 +1034,7 @@ data:
       title: test/src/transform/kronecker_power/agc044_c.test.cpp
   - name: test/src/transform/multiple
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/transform/multiple/divide_both.test.cpp
       title: test/src/transform/multiple/divide_both.test.cpp
   - name: test/src/tree/centroid_decomposition
@@ -1055,16 +1055,16 @@ data:
       title: test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/heavy_light_decomposition
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
     - icon: ':x:'

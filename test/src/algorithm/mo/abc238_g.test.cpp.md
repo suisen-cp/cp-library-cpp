@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: Sieve Of Eratosthenes
   _extendedRequiredBy: []

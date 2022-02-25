@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/sum_of_totient_function/abc162_e.test.cpp
     title: test/src/number/sum_of_totient_function/abc162_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
     title: test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://yukicoder.me/wiki/sum_totient
@@ -74,7 +74,7 @@ data:
   path: library/number/sum_of_totient_function.hpp
   requiredBy: []
   timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/sum_of_totient_function/abc162_e.test.cpp
   - test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
