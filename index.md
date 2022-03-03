@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: library/algorithm/horn_sat.hpp
       title: Horn SAT
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/algorithm/mo.hpp
       title: Mo
     - icon: ':heavy_check_mark:'
@@ -135,19 +135,19 @@ data:
     - icon: ':warning:'
       path: library/datastructure/bbst/persistent_red_black_tree_base.hpp
       title: Persistent Red Black Tree Base
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/red_black_lazy_segment_tree.hpp
       title: Red Black Lazy Segment Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/red_black_reversible_lazy_segment_tree.hpp
       title: Red Black Reversible Lazy Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/red_black_segment_tree.hpp
       title: Red Black Segment Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/red_black_tree.hpp
       title: Red Black Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/red_black_tree_base.hpp
       title: Red Black Tree Base
   - name: library/datastructure/segment_tree
@@ -323,6 +323,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/subset_sum.hpp
       title: Subset Sum
+    - icon: ':warning:'
+      path: library/math/vec_sparse_fps.hpp
+      title: library/math/vec_sparse_fps.hpp
   - name: library/number
     pages:
     - icon: ':warning:'
@@ -337,7 +340,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/fast_factorize.hpp
       title: Fast Factorize
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/internal_eratosthenes.hpp
       title: Internal Eratosthenes
     - icon: ':heavy_check_mark:'
@@ -349,7 +352,7 @@ data:
     - icon: ':warning:'
       path: library/number/rational.hpp
       title: Rational
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: Sieve Of Eratosthenes
     - icon: ':heavy_check_mark:'
@@ -365,7 +368,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/string/manacher.hpp
-      title: library/string/manacher.hpp
+      title: Manacher
     - icon: ':warning:'
       path: library/string/morris_pratt.hpp
       title: Morris Pratt
@@ -468,7 +471,7 @@ data:
     - icon: ':warning:'
       path: library/util/iter_util.hpp
       title: Iter Util
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/object_pool.hpp
       title: Object Pool
     - icon: ':warning:'
@@ -509,7 +512,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/mo/abc174_f.test.cpp
       title: test/src/algorithm/mo/abc174_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/algorithm/mo/abc238_g.test.cpp
       title: test/src/algorithm/mo/abc238_g.test.cpp
   - name: test/src/algorithm/monotonic_convex_hull_trick
@@ -581,6 +584,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
       title: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
+  - name: test/src/datastructure/bbst/red_black_lazy_segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
+      title: test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -588,9 +596,14 @@ data:
       title: test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/bbst/red_black_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
       title: test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
+  - name: test/src/datastructure/bbst/red_black_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
+      title: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
   - name: test/src/datastructure/binary_trie
     pages:
     - icon: ':heavy_check_mark:'

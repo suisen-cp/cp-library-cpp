@@ -2,28 +2,30 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/bbst/red_black_tree.hpp
+    title: Red Black Tree
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base
   - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: library/datastructure/bbst/persistent_red_black_lazy_segment_tree.hpp
-    title: Persistent Red Black Lazy Segment Tree
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
-    title: test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/datastructure/bbst/red_black_lazy_segment_tree.hpp\"\
-    \n\n\n\n#line 1 \"library/datastructure/bbst/red_black_tree_base.hpp\"\n\n\n\n\
-    #include <cassert>\n#include <sstream>\n#include <string>\n#include <tuple>\n\
-    #line 1 \"library/util/object_pool.hpp\"\n\n\n\n#include <deque>\n#include <vector>\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_d
+    links:
+    - https://atcoder.jp/contests/abc237/tasks/abc237_d
+  bundledCode: "#line 1 \"test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp\"\
+    \n#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_d\"\n\n#include\
+    \ <iostream>\n#line 1 \"library/datastructure/bbst/red_black_tree.hpp\"\n\n\n\n\
+    #line 1 \"library/datastructure/bbst/red_black_tree_base.hpp\"\n\n\n\n#include\
+    \ <cassert>\n#include <sstream>\n#include <string>\n#include <tuple>\n#line 1\
+    \ \"library/util/object_pool.hpp\"\n\n\n\n#include <deque>\n#include <vector>\n\
     \nnamespace suisen {\n    template <typename T, bool auto_extend = false>\n  \
     \  struct ObjectPool {\n        using value_type = T;\n        using value_pointer_type\
     \ = T*;\n\n        template <typename U>\n        using container_type = std::conditional_t<auto_extend,\
@@ -151,106 +153,51 @@ data:
     \ {\n            return node_type::update(&(*pool.alloc() = node_type(l, r)));\n\
     \        }\n\n        static void free_node(tree_type node) {\n            if\
     \ (node) pool.free(node);\n        }\n    };\n} // namespace suisen\n\n\n#line\
-    \ 5 \"library/datastructure/bbst/red_black_lazy_segment_tree.hpp\"\n\nnamespace\
-    \ suisen::bbst::lazy_segtree {\n    template <typename T, T(*op)(T, T), T(*e)(),\
-    \ typename F, T(*mapping)(F, T, int), F(*composition)(F, F), F(*id)(), template\
-    \ <typename, typename> typename BaseNode = internal::RedBlackTreeNodeBase>\n \
-    \   struct RedBlackTreeNode : public BaseNode<T, RedBlackTreeNode<T, op, e, F,\
-    \ mapping, composition, id, BaseNode>> {\n        using base_type = BaseNode<T,\
-    \ RedBlackTreeNode<T, op, e, F, mapping, composition, id, BaseNode>>;\n      \
-    \  using node_type = typename base_type::node_type;\n        using tree_type =\
-    \ typename base_type::tree_type;\n        using size_type = typename base_type::size_type;\n\
-    \        using value_type = typename base_type::value_type;\n        using operator_type\
-    \ = F;\n\n        friend base_type;\n        friend typename base_type::base_type;\n\
-    \n        RedBlackTreeNode() : base_type(), _laz(id()) {}\n\n        static std::pair<tree_type,\
-    \ value_type> prod(tree_type node, size_type l, size_type r) {\n            auto\
-    \ [tl, tm, tr] = base_type::split_range(node, l, r);\n            value_type res\
-    \ = value(tm);\n            return { base_type::merge(base_type::merge(tl, tm),\
-    \ tr), res };\n        }\n        static value_type prod_all(tree_type node) {\n\
-    \            return value(node);\n        }\n\n        static tree_type apply(tree_type\
-    \ node, size_type l, size_type r, const operator_type& f) {\n            auto\
-    \ [tl, tm, tr] = base_type::split_range(node, l, r);\n            return base_type::merge(base_type::merge(tl,\
-    \ apply_all(tm, f)), tr);\n        }\n        static tree_type apply_all(tree_type\
-    \ node, const operator_type& f) {\n            if (not node) return node;\n  \
-    \          node = base_type::clone(node);\n            node->_val = mapping(f,\
-    \ node->_val, base_type::size(node));\n            node->_laz = composition(f,\
-    \ node->_laz);\n            return node;\n        }\n\n        template <typename\
-    \ OutputIterator>\n        static void dump(tree_type node, OutputIterator it)\
-    \ {\n            if (base_type::empty(node)) return;\n            auto dfs = [&](auto\
-    \ dfs, tree_type cur, operator_type laz) -> void {\n                if (cur->is_leaf())\
-    \ {\n                    *it++ = mapping(laz, cur->_val, 1);\n               \
-    \     return;\n                }\n                operator_type next_laz = composition(laz,\
-    \ cur->_laz);\n                dfs(dfs, cur->_ch[0], next_laz);\n            \
-    \    dfs(dfs, cur->_ch[1], next_laz);\n            };\n            dfs(dfs, node,\
-    \ id());\n        }\n\n    private:\n        operator_type _laz;\n\n        RedBlackTreeNode(const\
-    \ value_type& val) : base_type(val), _laz(id()) {}\n        RedBlackTreeNode(tree_type\
-    \ l, tree_type r) : base_type(l, r), _laz(id()) {}\n\n        static value_type\
-    \ value(tree_type node) { return node ? node->_val : e(); }\n\n        static\
-    \ tree_type update(tree_type node) {\n            base_type::update(node);\n \
-    \           node->_val = op(value(node->_ch[0]), value(node->_ch[1]));\n     \
-    \       return node;\n        }\n        static tree_type push(tree_type node)\
-    \ {\n            node = base_type::clone(node);\n            if (node->_laz !=\
-    \ id()) {\n                node->_ch[0] = apply_all(node->_ch[0], node->_laz);\n\
-    \                node->_ch[1] = apply_all(node->_ch[1], node->_laz);\n       \
-    \         node->_laz = id();\n            }\n            return node;\n      \
-    \  }\n    };\n}\n\n\n"
-  code: "#ifndef SUISEN_RED_BLACK_LAZY_SEGMENT_TREE\n#define SUISEN_RED_BLACK_LAZY_SEGMENT_TREE\n\
-    \n#include \"library/datastructure/bbst/red_black_tree_base.hpp\"\n\nnamespace\
-    \ suisen::bbst::lazy_segtree {\n    template <typename T, T(*op)(T, T), T(*e)(),\
-    \ typename F, T(*mapping)(F, T, int), F(*composition)(F, F), F(*id)(), template\
-    \ <typename, typename> typename BaseNode = internal::RedBlackTreeNodeBase>\n \
-    \   struct RedBlackTreeNode : public BaseNode<T, RedBlackTreeNode<T, op, e, F,\
-    \ mapping, composition, id, BaseNode>> {\n        using base_type = BaseNode<T,\
-    \ RedBlackTreeNode<T, op, e, F, mapping, composition, id, BaseNode>>;\n      \
-    \  using node_type = typename base_type::node_type;\n        using tree_type =\
-    \ typename base_type::tree_type;\n        using size_type = typename base_type::size_type;\n\
-    \        using value_type = typename base_type::value_type;\n        using operator_type\
-    \ = F;\n\n        friend base_type;\n        friend typename base_type::base_type;\n\
-    \n        RedBlackTreeNode() : base_type(), _laz(id()) {}\n\n        static std::pair<tree_type,\
-    \ value_type> prod(tree_type node, size_type l, size_type r) {\n            auto\
-    \ [tl, tm, tr] = base_type::split_range(node, l, r);\n            value_type res\
-    \ = value(tm);\n            return { base_type::merge(base_type::merge(tl, tm),\
-    \ tr), res };\n        }\n        static value_type prod_all(tree_type node) {\n\
-    \            return value(node);\n        }\n\n        static tree_type apply(tree_type\
-    \ node, size_type l, size_type r, const operator_type& f) {\n            auto\
-    \ [tl, tm, tr] = base_type::split_range(node, l, r);\n            return base_type::merge(base_type::merge(tl,\
-    \ apply_all(tm, f)), tr);\n        }\n        static tree_type apply_all(tree_type\
-    \ node, const operator_type& f) {\n            if (not node) return node;\n  \
-    \          node = base_type::clone(node);\n            node->_val = mapping(f,\
-    \ node->_val, base_type::size(node));\n            node->_laz = composition(f,\
-    \ node->_laz);\n            return node;\n        }\n\n        template <typename\
-    \ OutputIterator>\n        static void dump(tree_type node, OutputIterator it)\
-    \ {\n            if (base_type::empty(node)) return;\n            auto dfs = [&](auto\
-    \ dfs, tree_type cur, operator_type laz) -> void {\n                if (cur->is_leaf())\
-    \ {\n                    *it++ = mapping(laz, cur->_val, 1);\n               \
-    \     return;\n                }\n                operator_type next_laz = composition(laz,\
-    \ cur->_laz);\n                dfs(dfs, cur->_ch[0], next_laz);\n            \
-    \    dfs(dfs, cur->_ch[1], next_laz);\n            };\n            dfs(dfs, node,\
-    \ id());\n        }\n\n    private:\n        operator_type _laz;\n\n        RedBlackTreeNode(const\
-    \ value_type& val) : base_type(val), _laz(id()) {}\n        RedBlackTreeNode(tree_type\
-    \ l, tree_type r) : base_type(l, r), _laz(id()) {}\n\n        static value_type\
-    \ value(tree_type node) { return node ? node->_val : e(); }\n\n        static\
-    \ tree_type update(tree_type node) {\n            base_type::update(node);\n \
-    \           node->_val = op(value(node->_ch[0]), value(node->_ch[1]));\n     \
-    \       return node;\n        }\n        static tree_type push(tree_type node)\
-    \ {\n            node = base_type::clone(node);\n            if (node->_laz !=\
-    \ id()) {\n                node->_ch[0] = apply_all(node->_ch[0], node->_laz);\n\
-    \                node->_ch[1] = apply_all(node->_ch[1], node->_laz);\n       \
-    \         node->_laz = id();\n            }\n            return node;\n      \
-    \  }\n    };\n}\n\n#endif // SUISEN_RED_BLACK_LAZY_SEGMENT_TREE\n"
+    \ 5 \"library/datastructure/bbst/red_black_tree.hpp\"\n\nnamespace suisen::bbst\
+    \ {\n    template <typename T, template <typename, typename> typename BaseNode\
+    \ = internal::RedBlackTreeNodeBase>\n    struct RedBlackTreeNode : public BaseNode<T,\
+    \ RedBlackTreeNode<T, BaseNode>> {\n        using base_type = BaseNode<T, RedBlackTreeNode<T,\
+    \ BaseNode>>;\n        using node_type = typename base_type::node_type;\n    \
+    \    using tree_type = typename base_type::tree_type;\n        using size_type\
+    \ = typename base_type::size_type;\n        using value_type = typename base_type::value_type;\n\
+    \n        friend base_type;\n        friend typename base_type::base_type;\n\n\
+    \        RedBlackTreeNode() = default;\n\n    private:\n        RedBlackTreeNode(const\
+    \ value_type& val) : base_type(val) {}\n        RedBlackTreeNode(tree_type l,\
+    \ tree_type r) : base_type(l, r) {}\n    };\n}\n\n\n#line 5 \"test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp\"\
+    \n\nusing Node = suisen::bbst::RedBlackTreeNode<int>;\nusing Tree = Node::tree_type;\n\
+    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n;\n    std::string s;\n    std::cin >> n >> s;\n\n    Node::init_pool(1000010);\n\
+    \n    Tree t = Node::push_back(Node::empty_tree(), 0);\n    int pos = 0;\n   \
+    \ for (int i = 0; i < n; ++i) {\n        if (s[i] == 'L') {\n            t = Node::insert(t,\
+    \ pos, i + 1);\n        } else {\n            t = Node::insert(t, ++pos, i + 1);\n\
+    \        }\n    }\n    std::vector<int> res;\n    Node::dump(t, std::back_inserter(res));\n\
+    \n    for (int i = 0; i <= n; ++i) {\n        std::cout << res[i] << \" \\n\"\
+    [i == n];\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_d\"\n\n\
+    #include <iostream>\n#include \"library/datastructure/bbst/red_black_tree.hpp\"\
+    \n\nusing Node = suisen::bbst::RedBlackTreeNode<int>;\nusing Tree = Node::tree_type;\n\
+    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n;\n    std::string s;\n    std::cin >> n >> s;\n\n    Node::init_pool(1000010);\n\
+    \n    Tree t = Node::push_back(Node::empty_tree(), 0);\n    int pos = 0;\n   \
+    \ for (int i = 0; i < n; ++i) {\n        if (s[i] == 'L') {\n            t = Node::insert(t,\
+    \ pos, i + 1);\n        } else {\n            t = Node::insert(t, ++pos, i + 1);\n\
+    \        }\n    }\n    std::vector<int> res;\n    Node::dump(t, std::back_inserter(res));\n\
+    \n    for (int i = 0; i <= n; ++i) {\n        std::cout << res[i] << \" \\n\"\
+    [i == n];\n    }\n\n    return 0;\n}\n"
   dependsOn:
+  - library/datastructure/bbst/red_black_tree.hpp
   - library/datastructure/bbst/red_black_tree_base.hpp
   - library/util/object_pool.hpp
-  isVerificationFile: false
-  path: library/datastructure/bbst/red_black_lazy_segment_tree.hpp
-  requiredBy:
-  - library/datastructure/bbst/persistent_red_black_lazy_segment_tree.hpp
+  isVerificationFile: true
+  path: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
+  requiredBy: []
   timestamp: '2022-03-03 17:52:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
-documentation_of: library/datastructure/bbst/red_black_lazy_segment_tree.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
 layout: document
-title: Red Black Lazy Segment Tree
+redirect_from:
+- /verify/test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
+- /verify/test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp.html
+title: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
 ---
-## Red Black Lazy Segment Tree

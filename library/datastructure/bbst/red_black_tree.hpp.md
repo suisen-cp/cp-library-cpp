@@ -1,29 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/datastructure/bbst/persistent_red_black_tree.hpp
     title: Persistent Red Black Tree
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
+    title: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/bbst/red_black_tree.hpp\"\n\n\n\n\
     #line 1 \"library/datastructure/bbst/red_black_tree_base.hpp\"\n\n\n\n#include\
-    \ <sstream>\n#include <string>\n#include <tuple>\n#line 1 \"library/util/object_pool.hpp\"\
-    \n\n\n\n#include <deque>\n#include <vector>\n\nnamespace suisen {\n    template\
-    \ <typename T, bool auto_extend = false>\n    struct ObjectPool {\n        using\
-    \ value_type = T;\n        using value_pointer_type = T*;\n\n        template\
-    \ <typename U>\n        using container_type = std::conditional_t<auto_extend,\
+    \ <cassert>\n#include <sstream>\n#include <string>\n#include <tuple>\n#line 1\
+    \ \"library/util/object_pool.hpp\"\n\n\n\n#include <deque>\n#include <vector>\n\
+    \nnamespace suisen {\n    template <typename T, bool auto_extend = false>\n  \
+    \  struct ObjectPool {\n        using value_type = T;\n        using value_pointer_type\
+    \ = T*;\n\n        template <typename U>\n        using container_type = std::conditional_t<auto_extend,\
     \ std::deque<U>, std::vector<U>>;\n\n        container_type<value_type> pool;\n\
     \        container_type<value_pointer_type> stock;\n        decltype(stock.begin())\
     \ it;\n\n        ObjectPool() : ObjectPool(0) {}\n        ObjectPool(int siz)\
@@ -37,7 +40,7 @@ data:
     \ {\n            if (it != stock.end()) return;\n            int siz = stock.size();\n\
     \            for (int i = siz; i <= siz * 2; ++i) {\n                stock.push_back(&pool.emplace_back());\n\
     \            }\n            it = stock.begin() + siz;\n        }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 8 \"library/datastructure/bbst/red_black_tree_base.hpp\"\
+    \ namespace suisen\n\n\n#line 9 \"library/datastructure/bbst/red_black_tree_base.hpp\"\
     \n\nnamespace suisen::bbst::internal {\n    template <typename T, typename Derived>\n\
     \    struct RedBlackTreeNodeBase {\n        enum RedBlackTreeNodeColor { RED,\
     \ BLACK };\n\n        using base_type = void;\n        using size_type = int;\n\
@@ -71,27 +74,28 @@ data:
     \ node };\n            if (k == size(node)) return { node, nullptr };\n\n    \
     \        tree_type l = std::exchange(node->_ch[0], nullptr);\n            tree_type\
     \ r = std::exchange(node->_ch[1], nullptr);\n\n            free_node(node);\n\n\
-    \            size_type szl = size(l);\n            tree_type m;\n            if\
-    \ (k < szl) {\n                std::tie(l, m) = split(l, k);\n               \
-    \ return { l, merge(m, r) };\n            }\n            if (k > szl) {\n    \
-    \            std::tie(m, r) = split(r, k - szl);\n                return { merge(l,\
-    \ m), r };\n            }\n            return { l, r };\n        }\n\n       \
-    \ static std::tuple<tree_type, tree_type, tree_type> split_range(tree_type node,\
-    \ size_type l, size_type r) {\n            auto [tlm, tr] = split(node, r);\n\
-    \            auto [tl, tm] = split(tlm, l);\n            return { tl, tm, tr };\n\
-    \        }\n\n        static tree_type insert(tree_type node, size_type k, const\
-    \ value_type& val) {\n            auto [tl, tr] = split(node, k);\n          \
-    \  return merge(merge(tl, create_leaf(val)), tr);\n        }\n        static tree_type\
-    \ push_front(tree_type node, const value_type &val) { return insert(node, 0, val);\
-    \ }\n        static tree_type push_back(tree_type node, const value_type &val)\
-    \ { return insert(node, size(node), val); }\n\n        static std::pair<tree_type,\
-    \ value_type> erase(tree_type node, size_type k) {\n            auto [tl, tm,\
-    \ tr] = split_range(node, k, k + 1);\n            value_type erased_value = tm->_val;\n\
-    \            free_node(tm);\n            return { merge(tl, tr) , erased_value\
-    \ };\n        }\n        static std::pair<tree_type, value_type> pop_front(tree_type\
-    \ node) { return erase(node, 0); }\n        static std::pair<tree_type, value_type>\
-    \ pop_back(tree_type node) { return erase(node, size(node) - 1); }\n\n       \
-    \ template <typename U>\n        static tree_type build(const std::vector<U>&\
+    \            if (color(l) == RED) l->_col = BLACK;\n            if (color(r) ==\
+    \ RED) r->_col = BLACK;\n\n            size_type szl = size(l);\n            tree_type\
+    \ m;\n            if (k < szl) {\n                std::tie(l, m) = split(l, k);\n\
+    \                return { l, merge(m, r) };\n            }\n            if (k\
+    \ > szl) {\n                std::tie(m, r) = split(r, k - szl);\n            \
+    \    return { merge(l, m), r };\n            }\n            return { l, r };\n\
+    \        }\n\n        static std::tuple<tree_type, tree_type, tree_type> split_range(tree_type\
+    \ node, size_type l, size_type r) {\n            auto [tlm, tr] = split(node,\
+    \ r);\n            auto [tl, tm] = split(tlm, l);\n            return { tl, tm,\
+    \ tr };\n        }\n\n        static tree_type insert(tree_type node, size_type\
+    \ k, const value_type& val) {\n            auto [tl, tr] = split(node, k);\n \
+    \           return merge(merge(tl, create_leaf(val)), tr);\n        }\n      \
+    \  static tree_type push_front(tree_type node, const value_type &val) { return\
+    \ insert(node, 0, val); }\n        static tree_type push_back(tree_type node,\
+    \ const value_type &val) { return insert(node, size(node), val); }\n\n       \
+    \ static std::pair<tree_type, value_type> erase(tree_type node, size_type k) {\n\
+    \            auto [tl, tm, tr] = split_range(node, k, k + 1);\n            value_type\
+    \ erased_value = tm->_val;\n            free_node(tm);\n            return { merge(tl,\
+    \ tr) , erased_value };\n        }\n        static std::pair<tree_type, value_type>\
+    \ pop_front(tree_type node) { return erase(node, 0); }\n        static std::pair<tree_type,\
+    \ value_type> pop_back(tree_type node) { return erase(node, size(node) - 1); }\n\
+    \n        template <typename U>\n        static tree_type build(const std::vector<U>&\
     \ a, int l, int r) {\n            if (r - l == 1) return create_leaf(a[l]);\n\
     \            int m = (l + r) >> 1;\n            return merge(build(a, l, m), build(a,\
     \ m, r));\n        }\n        template <typename U>\n        static tree_type\
@@ -114,7 +118,15 @@ data:
     \      res << f(dat[i]);\n                if (i != siz - 1) res << \", \";\n \
     \           }\n            res << ']';\n            return res.str();\n      \
     \  }\n        static std::string to_string(tree_type node) {\n            return\
-    \ to_string(node, [](const auto &e) { return e; });\n        }\n\n    protected:\n\
+    \ to_string(node, [](const auto &e) { return e; });\n        }\n\n        static\
+    \ void check_rbtree_properties(tree_type node) {\n            assert(color(node)\
+    \ == BLACK);\n            auto dfs = [&](auto dfs, tree_type cur) -> int {\n \
+    \               if (not cur) return 0;\n                if (cur->_col == RED)\
+    \ {\n                    assert(color(cur->_ch[0]) == BLACK);\n              \
+    \      assert(color(cur->_ch[1]) == BLACK);\n                }\n             \
+    \   int bl = dfs(dfs, cur->_ch[0]);\n                int br = dfs(dfs, cur->_ch[1]);\n\
+    \                assert(bl == br);\n                return bl + (cur->_col ==\
+    \ BLACK);\n            };\n            dfs(dfs, node);\n        }\n\n    protected:\n\
     \        color_type _col;\n        tree_type _ch[2]{ nullptr, nullptr };\n   \
     \     value_type _val;\n        size_type _siz, _lev;\n\n        RedBlackTreeNodeBase(const\
     \ value_type& val) : _col(BLACK), _val(val), _siz(1), _lev(0) {}\n        RedBlackTreeNodeBase(tree_type\
@@ -169,9 +181,10 @@ data:
   path: library/datastructure/bbst/red_black_tree.hpp
   requiredBy:
   - library/datastructure/bbst/persistent_red_black_tree.hpp
-  timestamp: '2022-02-16 15:41:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-03-03 17:52:43+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
 documentation_of: library/datastructure/bbst/red_black_tree.hpp
 layout: document
 title: Red Black Tree

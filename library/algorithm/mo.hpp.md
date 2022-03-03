@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc174_f.test.cpp
     title: test/src/algorithm/mo/abc174_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc238_g.test.cpp
     title: test/src/algorithm/mo/abc238_g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/algorithm/mo.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -96,7 +96,7 @@ data:
   path: library/algorithm/mo.hpp
   requiredBy: []
   timestamp: '2021-11-21 01:23:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/algorithm/mo/abc174_f.test.cpp

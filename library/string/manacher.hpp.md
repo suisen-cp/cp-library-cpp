@@ -53,8 +53,6 @@ data:
   - test/src/string/manacher/enumerate_palindromes.test.cpp
 documentation_of: library/string/manacher.hpp
 layout: document
-redirect_from:
-- /library/library/string/manacher.hpp
-- /library/library/string/manacher.hpp.html
-title: library/string/manacher.hpp
+title: Manacher
 ---
+## Manacher
