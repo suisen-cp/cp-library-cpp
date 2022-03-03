@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/merge_history_forest.hpp
     title: Merge History Forest
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc235/tasks/abc235_h
+    PROBLEM: https://atcoder.jp/contests/abc235/tasks/abc235_Ex
     links:
-    - https://atcoder.jp/contests/abc235/tasks/abc235_h
+    - https://atcoder.jp/contests/abc235/tasks/abc235_Ex
   bundledCode: "#line 1 \"test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/abc235/tasks/abc235_h\"\n\n#include\
+    \n#define PROBLEM \"https://atcoder.jp/contests/abc235/tasks/abc235_Ex\"\n\n#include\
     \ <iostream>\n#include <map>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
     \n#include <atcoder/dsu>\n#include <algorithm>\n#include <deque>\n#include <numeric>\n\
     #include <optional>\n#include <queue>\n\n#line 1 \"library/datastructure/union_find/merge_history_forest.hpp\"\
@@ -65,7 +65,7 @@ data:
     \ root : uf.tree_roots()) {\n        dfs(dfs, root);\n        f = merge(f, dp[root]);\n\
     \    }\n \n    std::cout << std::accumulate(f.begin(), f.end(), mint(0)).val()\
     \ << std::endl;\n \n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc235/tasks/abc235_h\"\n\n\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc235/tasks/abc235_Ex\"\n\n\
     #include <iostream>\n#include <map>\n\n#include <atcoder/modint>\nusing mint =\
     \ atcoder::modint998244353;\n\n#include <atcoder/dsu>\n#include <algorithm>\n\
     #include <deque>\n#include <numeric>\n#include <optional>\n#include <queue>\n\n\
@@ -96,8 +96,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 00:55:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-03 18:13:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
 layout: document

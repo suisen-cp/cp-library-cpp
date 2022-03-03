@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Sps
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"test/src/math/sps/abc236_h.test.cpp\"\n#include <iostream>\n\
-    \n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\n#line 1\
-    \ \"library/math/sps.hpp\"\n\n\n\n#include <cmath>\n#include <initializer_list>\n\
+    PROBLEM: https://atcoder.jp/contests/abc236/tasks/abc236_Ex
+    links:
+    - https://atcoder.jp/contests/abc236/tasks/abc236_Ex
+  bundledCode: "#line 1 \"test/src/math/sps/abc236_h.test.cpp\"\n#define PROBLEM \"\
+    https://atcoder.jp/contests/abc236/tasks/abc236_Ex\"\n\n#include <iostream>\n\n\
+    #include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\n#line 1 \"\
+    library/math/sps.hpp\"\n\n\n\n#include <cmath>\n#include <initializer_list>\n\
     #include <type_traits>\n#line 1 \"library/math/modint_extension.hpp\"\n\n\n\n\
     #include <cassert>\n#include <optional>\n\nnamespace suisen {\n/**\n * refernce:\
     \ https://37zigen.com/tonelli-shanks-algorithm/\n * calculates x s.t. x^2 = a\
@@ -229,7 +232,7 @@ data:
     \  for (size_type j = 0; j < n; ++j) {\n                res[j] = j == 0;\n   \
     \             for (size_type k = 0; k < j; ++k) res[j] -= a[j - k] * res[k];\n\
     \                res[j] *= v;\n            }\n            return res;\n      \
-    \  }\n};\n\n} // namespace suisen\n\n\n#line 7 \"test/src/math/sps/abc236_h.test.cpp\"\
+    \  }\n};\n\n} // namespace suisen\n\n\n#line 9 \"test/src/math/sps/abc236_h.test.cpp\"\
     \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    size_t n;\n    uint64_t m;\n    std::cin >> n >> m;\n    std::vector<uint64_t>\
     \ d(n);\n    for (auto &e : d) std::cin >> e;\n\n    std::vector<mint> h(n + 1);\n\
@@ -241,7 +244,8 @@ data:
     \      lcm[s] = x > m / lcm[t] ? m + 1 : x * lcm[t];\n        std::size_t pc =\
     \ __builtin_popcount(s);\n        f[s] = (m / lcm[s]) * h[pc];\n    }\n\n    std::cout\
     \ << f.exp().back().val() << std::endl;\n    return 0;\n}\n"
-  code: "#include <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc236/tasks/abc236_Ex\"\n\n\
+    #include <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
     \n#include \"library/math/sps.hpp\"\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    size_t n;\n    uint64_t m;\n    std::cin >>\
     \ n >> m;\n    std::vector<uint64_t> d(n);\n    for (auto &e : d) std::cin >>\
@@ -261,8 +265,8 @@ data:
   isVerificationFile: true
   path: test/src/math/sps/abc236_h.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 17:40:31+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-03 18:13:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/abc236_h.test.cpp
 layout: document

@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Sps
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,9 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
     title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://37zigen.com/tonelli-shanks-algorithm/
@@ -67,7 +67,7 @@ data:
   requiredBy:
   - library/math/sps.hpp
   timestamp: '2021-08-13 19:00:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp

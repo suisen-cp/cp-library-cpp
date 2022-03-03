@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
     title: Bipartite Matching
   _extendedRequiredBy: []

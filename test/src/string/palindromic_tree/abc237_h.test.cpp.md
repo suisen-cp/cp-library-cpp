@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
     title: Bipartite Matching
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/string/palindromic_tree.hpp
     title: Palindromic Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_h
+    PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_Ex
     links:
-    - https://atcoder.jp/contests/abc237/tasks/abc237_h
+    - https://atcoder.jp/contests/abc237/tasks/abc237_Ex
   bundledCode: "#line 1 \"test/src/string/palindromic_tree/abc237_h.test.cpp\"\n#define\
-    \ PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_h\"\n\n#include <iostream>\n\
+    \ PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_Ex\"\n\n#include <iostream>\n\
     \n#line 1 \"library/graph/bipartite_matching.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <deque>\n#include <random>\n#include <utility>\n#include <vector>\n\n\
     namespace suisen {\n    struct BipartiteMatching {\n        BipartiteMatching()\
@@ -196,7 +196,7 @@ data:
     \        for (int i = 0; i < n + 2; ++i) {\n            assert(t.suffix_link(i)\
     \ == tv.suffix_link(i));\n            assert(t.suffix_link(i) == ta.suffix_link(i));\n\
     \        }\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_h\"\n\n\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_Ex\"\n\n\
     #include <iostream>\n\n#include \"library/graph/bipartite_matching.hpp\"\n#include\
     \ \"library/string/palindromic_tree.hpp\"\n\nusing suisen::BipartiteMatching;\n\
     using suisen::PalindromicTree;\nusing suisen::PalindromicTreeVec;\nusing suisen::PalindromicTreeArr;\n\
@@ -219,8 +219,8 @@ data:
   isVerificationFile: true
   path: test/src/string/palindromic_tree/abc237_h.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 17:00:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-03 18:13:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/string/palindromic_tree/abc237_h.test.cpp
 layout: document

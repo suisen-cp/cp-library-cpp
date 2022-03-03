@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Sps
   - icon: ':heavy_check_mark:'
