@@ -1,6 +1,7 @@
 #ifndef SUISEN_RED_BLACK_TREE_BASE
 #define SUISEN_RED_BLACK_TREE_BASE
 
+#include <cassert>
 #include <sstream>
 #include <string>
 #include <tuple>
@@ -72,6 +73,9 @@ namespace suisen::bbst::internal {
             tree_type r = std::exchange(node->_ch[1], nullptr);
 
             free_node(node);
+
+            if (color(l) == RED) l->_col = BLACK;
+            if (color(r) == RED) r->_col = BLACK;
 
             size_type szl = size(l);
             tree_type m;
@@ -160,6 +164,22 @@ namespace suisen::bbst::internal {
         }
         static std::string to_string(tree_type node) {
             return to_string(node, [](const auto &e) { return e; });
+        }
+
+        static void check_rbtree_properties(tree_type node) {
+            assert(color(node) == BLACK);
+            auto dfs = [&](auto dfs, tree_type cur) -> int {
+                if (not cur) return 0;
+                if (cur->_col == RED) {
+                    assert(color(cur->_ch[0]) == BLACK);
+                    assert(color(cur->_ch[1]) == BLACK);
+                }
+                int bl = dfs(dfs, cur->_ch[0]);
+                int br = dfs(dfs, cur->_ch[1]);
+                assert(bl == br);
+                return bl + (cur->_col == BLACK);
+            };
+            dfs(dfs, node);
         }
 
     protected:
