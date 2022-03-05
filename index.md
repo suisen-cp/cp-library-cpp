@@ -323,6 +323,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/subset_sum.hpp
       title: Subset Sum
+    - icon: ':heavy_check_mark:'
+      path: library/math/util.hpp
+      title: Util
     - icon: ':warning:'
       path: library/math/vec_sparse_fps.hpp
       title: library/math/vec_sparse_fps.hpp
@@ -968,7 +971,7 @@ data:
       title: test/src/math/subset_sum/p_subset_sum.test.cpp
   - name: test/src/math/util
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/util/abc240_g.test.cpp
       title: test/src/math/util/abc240_g.test.cpp
   - name: test/src/number/fast_factorize
