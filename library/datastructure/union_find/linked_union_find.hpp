@@ -14,7 +14,7 @@ class LinkedUnionFind : public UnionFind {
         // Merge two vertices `x` and `y`.
         bool merge(int x, int y) {
             if (UnionFind::merge(x, y)) {
-                std::swap(link[root(x)], link[root(y)]);
+                std::swap(link[x], link[y]);
                 return true;
             }
             return false;
