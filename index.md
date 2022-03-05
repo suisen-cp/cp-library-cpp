@@ -966,6 +966,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/subset_sum/p_subset_sum.test.cpp
       title: test/src/math/subset_sum/p_subset_sum.test.cpp
+  - name: test/src/math/util
+    pages:
+    - icon: ':x:'
+      path: test/src/math/util/abc240_g.test.cpp
+      title: test/src/math/util/abc240_g.test.cpp
   - name: test/src/number/fast_factorize
     pages:
     - icon: ':heavy_check_mark:'

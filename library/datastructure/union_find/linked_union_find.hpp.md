@@ -39,34 +39,34 @@ data:
     \        LinkedUnionFind() {}\n        explicit LinkedUnionFind(int n) : UnionFind(n),\
     \ link(n) {\n            std::iota(link.begin(), link.end(), 0);\n        }\n\
     \        // Merge two vertices `x` and `y`.\n        bool merge(int x, int y)\
-    \ {\n            if (UnionFind::merge(x, y)) {\n                std::swap(link[root(x)],\
-    \ link[root(y)]);\n                return true;\n            }\n            return\
-    \ false;\n        }\n        // Get items connected to `x` (including `x`). Let\
-    \ the size of return value be `m`, time complexity is O(m).\n        std::vector<int>\
-    \ connected_component(int x) const {\n            std::vector<int> comp {x};\n\
-    \            for (int y = link[x]; y != x; y = link[y]) comp.push_back(y);\n \
-    \           return comp;\n        }\n    private:\n        std::vector<int> link;\n\
-    };\n} // namespace suisen\n\n\n"
+    \ {\n            if (UnionFind::merge(x, y)) {\n                std::swap(link[x],\
+    \ link[y]);\n                return true;\n            }\n            return false;\n\
+    \        }\n        // Get items connected to `x` (including `x`). Let the size\
+    \ of return value be `m`, time complexity is O(m).\n        std::vector<int> connected_component(int\
+    \ x) const {\n            std::vector<int> comp {x};\n            for (int y =\
+    \ link[x]; y != x; y = link[y]) comp.push_back(y);\n            return comp;\n\
+    \        }\n    private:\n        std::vector<int> link;\n};\n} // namespace suisen\n\
+    \n\n"
   code: "#ifndef SUISEN_LINKED_UNION_FIND\n#define SUISEN_LINKED_UNION_FIND\n\n#include\
     \ <numeric>\n#include \"library/datastructure/union_find/union_find.hpp\"\n\n\
     namespace suisen {\nclass LinkedUnionFind : public UnionFind {\n    public:\n\
     \        LinkedUnionFind() {}\n        explicit LinkedUnionFind(int n) : UnionFind(n),\
     \ link(n) {\n            std::iota(link.begin(), link.end(), 0);\n        }\n\
     \        // Merge two vertices `x` and `y`.\n        bool merge(int x, int y)\
-    \ {\n            if (UnionFind::merge(x, y)) {\n                std::swap(link[root(x)],\
-    \ link[root(y)]);\n                return true;\n            }\n            return\
-    \ false;\n        }\n        // Get items connected to `x` (including `x`). Let\
-    \ the size of return value be `m`, time complexity is O(m).\n        std::vector<int>\
-    \ connected_component(int x) const {\n            std::vector<int> comp {x};\n\
-    \            for (int y = link[x]; y != x; y = link[y]) comp.push_back(y);\n \
-    \           return comp;\n        }\n    private:\n        std::vector<int> link;\n\
-    };\n} // namespace suisen\n\n#endif // SUISEN_LINKED_UNION_FIND\n"
+    \ {\n            if (UnionFind::merge(x, y)) {\n                std::swap(link[x],\
+    \ link[y]);\n                return true;\n            }\n            return false;\n\
+    \        }\n        // Get items connected to `x` (including `x`). Let the size\
+    \ of return value be `m`, time complexity is O(m).\n        std::vector<int> connected_component(int\
+    \ x) const {\n            std::vector<int> comp {x};\n            for (int y =\
+    \ link[x]; y != x; y = link[y]) comp.push_back(y);\n            return comp;\n\
+    \        }\n    private:\n        std::vector<int> link;\n};\n} // namespace suisen\n\
+    \n#endif // SUISEN_LINKED_UNION_FIND\n"
   dependsOn:
   - library/datastructure/union_find/union_find.hpp
   isVerificationFile: false
   path: library/datastructure/union_find/linked_union_find.hpp
   requiredBy: []
-  timestamp: '2022-01-17 22:14:37+09:00'
+  timestamp: '2022-03-05 23:47:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/union_find/linked_union_find.hpp
