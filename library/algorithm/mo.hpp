@@ -9,7 +9,7 @@
 namespace suisen {
     struct Mo {
         Mo() {}
-        Mo(const int n, const std::vector<std::pair<int, int>> &queries) : n(n), q(queries.size()), b(n / (::sqrt(q) + 1)), qs(queries), ord(q) {
+        Mo(const int n, const std::vector<std::pair<int, int>> &queries) : n(n), q(queries.size()), b(std::max(1, int(n / (::sqrt(q) + 1)))), qs(queries), ord(q) {
             std::iota(ord.begin(), ord.end(), 0);
             std::sort(
                 ord.begin(), ord.end(),
