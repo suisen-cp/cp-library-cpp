@@ -115,6 +115,7 @@
 "test/src/math/sps/connectivity2.test.cpp": "2022-01-31 17:40:31 +0900",
 "test/src/math/sps/lights_out_on_connected_graph.test.cpp": "2022-01-31 17:40:31 +0900",
 "test/src/math/subset_sum/p_subset_sum.test.cpp": "2021-08-15 22:47:55 +0900",
+"test/src/math/util/abc240_g.test.cpp": "2022-03-06 00:26:19 +0900",
 "test/src/number/fast_factorize/factorize.test.cpp": "2022-02-25 23:20:55 +0900",
 "test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp": "2022-02-25 23:20:55 +0900",
 "test/src/number/sieve_of_eratosthenes/flatten.test.cpp": "2022-02-25 23:20:55 +0900",
