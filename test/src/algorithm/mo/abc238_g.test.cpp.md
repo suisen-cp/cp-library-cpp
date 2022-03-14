@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/algorithm/mo.hpp
     title: Mo
   - icon: ':heavy_check_mark:'
@@ -149,61 +149,62 @@ data:
     \n\n\n\n#include <algorithm>\n#line 6 \"library/algorithm/mo.hpp\"\n#include <numeric>\n\
     #line 8 \"library/algorithm/mo.hpp\"\n\nnamespace suisen {\n    struct Mo {\n\
     \        Mo() {}\n        Mo(const int n, const std::vector<std::pair<int, int>>\
-    \ &queries) : n(n), q(queries.size()), b(std::max(1, int(n / (::sqrt(q) + 1)))),\
-    \ qs(queries), ord(q) {\n            std::iota(ord.begin(), ord.end(), 0);\n \
-    \           std::sort(\n                ord.begin(), ord.end(),\n            \
-    \    [&, this](int i, int j) {\n                    const auto &[li, ri] = qs[i];\n\
-    \                    const auto &[lj, rj] = qs[j];\n                    const\
-    \ int bi = li / b, bj = lj / b;\n                    if (bi != bj) return bi <\
-    \ bj;\n                    if (ri != rj) return bi & 1 ? ri > rj : ri < rj;\n\
-    \                    return li < lj;\n                }\n            );\n    \
-    \    }\n\n        // getter methods used in updating functions: AddL, DelL, etc.\n\
-    \        auto get_left()  const { return l; }\n        auto get_right() const\
-    \ { return r; }\n        auto get_range() const { return std::make_pair(l, r);\
-    \ }\n\n        /**\n         * [Parameters]\n         * Eval : () -> T : return\
-    \ the current answer\n         * AddL : int -> any (discarded) : add    `l` to\
-    \   the current range [l + 1, r)\n         * DelL : int -> any (discarded) : delete\
-    \ `l` from the current range [l, r)\n         * AddR : int -> any (discarded)\
-    \ : add    `r` to   the current range [l, r)\n         * DelR : int -> any (discarded)\
-    \ : delete `r` from the current range [l, r + 1)\n         * \n         * [Note]\n\
-    \         * starting from the range [0, 0).\n         */\n        template <typename\
-    \ Eval, typename AddL, typename DelL, typename AddR, typename DelR>\n        auto\
-    \ solve(Eval eval, AddL add_l, DelL del_l, AddR add_r, DelR del_r) {\n       \
-    \     l = 0, r = 0;\n            std::vector<decltype(eval())> res(q);\n     \
-    \       for (int qi : ord) {\n                const auto &[nl, nr] = qs[qi];\n\
-    \                while (r < nr) add_r(r), ++r;\n                while (l > nl)\
-    \ --l, add_l(l);\n                while (r > nr) --r, del_r(r);\n            \
-    \    while (l < nl) del_l(l), ++l;\n                res[qi] = eval();\n      \
-    \      }\n            return res;\n        }\n    \n        /**\n         * [Parameters]\n\
-    \         * Eval : () -> T : return the current answer\n         * Add : int ->\
-    \ any (discarded) : add    `i` to   the current range [i + 1, r) or [l, i)\n \
-    \        * Del : int -> any (discarded) : delete `i` from the current range [i,\
-    \ r) or [l, i + 1)\n         * \n         * [Note]\n         * starting from the\
+    \ &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries), ord(q)\
+    \ {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
+    \                ord.begin(), ord.end(),\n                [&, this](int i, int\
+    \ j) {\n                    const auto &[li, ri] = qs[i];\n                  \
+    \  const auto &[lj, rj] = qs[j];\n                    const int bi = li / b, bj\
+    \ = lj / b;\n                    if (bi != bj) return bi < bj;\n             \
+    \       if (ri != rj) return bi & 1 ? ri > rj : ri < rj;\n                   \
+    \ return li < lj;\n                }\n            );\n        }\n\n        //\
+    \ getter methods used in updating functions: AddL, DelL, etc.\n        auto get_left()\
+    \  const { return l; }\n        auto get_right() const { return r; }\n       \
+    \ auto get_range() const { return std::make_pair(l, r); }\n\n        /**\n   \
+    \      * [Parameters]\n         * Eval : () -> T : return the current answer\n\
+    \         * AddL : int -> any (discarded) : add    `l` to   the current range\
+    \ [l + 1, r)\n         * DelL : int -> any (discarded) : delete `l` from the current\
+    \ range [l, r)\n         * AddR : int -> any (discarded) : add    `r` to   the\
+    \ current range [l, r)\n         * DelR : int -> any (discarded) : delete `r`\
+    \ from the current range [l, r + 1)\n         * \n         * [Note]\n        \
+    \ * starting from the range [0, 0).\n         */\n        template <typename Eval,\
+    \ typename AddL, typename DelL, typename AddR, typename DelR>\n        auto solve(Eval\
+    \ eval, AddL add_l, DelL del_l, AddR add_r, DelR del_r) {\n            l = 0,\
+    \ r = 0;\n            std::vector<decltype(eval())> res(q);\n            for (int\
+    \ qi : ord) {\n                const auto &[nl, nr] = qs[qi];\n              \
+    \  while (r < nr) add_r(r), ++r;\n                while (l > nl) --l, add_l(l);\n\
+    \                while (r > nr) --r, del_r(r);\n                while (l < nl)\
+    \ del_l(l), ++l;\n                res[qi] = eval();\n            }\n         \
+    \   return res;\n        }\n    \n        /**\n         * [Parameters]\n     \
+    \    * Eval : () -> T : return the current answer\n         * Add : int -> any\
+    \ (discarded) : add    `i` to   the current range [i + 1, r) or [l, i)\n     \
+    \    * Del : int -> any (discarded) : delete `i` from the current range [i, r)\
+    \ or [l, i + 1)\n         * \n         * [Note]\n         * starting from the\
     \ range [0, 0).\n         */\n        template <typename Eval, typename Add, typename\
     \ Del>\n        auto solve(Eval eval, Add add, Del del) {\n            return\
     \ solve(eval, add, del, add, del);\n        }\n\n    private:\n        int n,\
     \ q, b;\n        std::vector<std::pair<int, int>> qs;\n        std::vector<int>\
-    \ ord;\n        int l = 0, r = 0;\n    };\n} // namespace suisen\n\n\n#line 10\
-    \ \"test/src/algorithm/mo/abc238_g.test.cpp\"\n\nusing suisen::Sieve;\nusing suisen::Mo;\n\
-    \nconstexpr int M = 1000000;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    Sieve<M>\
-    \ sieve;\n    std::vector<std::vector<std::pair<int, mint>>> factorized(n);\n\
-    \    for (int i = 0; i < n; ++i) {\n        int v;\n        std::cin >> v;\n\n\
-    \        for (auto &&[p, c] : sieve.factorize(v)) {\n            factorized[i].emplace_back(p,\
-    \ c);\n        }\n    }\n\n    std::vector<std::pair<int, int>> queries(q);\n\
-    \    for (auto &[l, r] : queries) {\n        std::cin >> l >> r;\n        --l;\n\
-    \    }\n\n    std::vector<mint> index_sum(M + 1, 0);\n    int invalid = 0;\n\n\
-    \    auto answers = Mo(n, queries).solve(\n        // Eval\n        [&]{\n   \
-    \         return invalid == 0;\n        },\n        // Add\n        [&](int i)\
-    \ {\n            for (const auto &[p, c] : factorized[i]) {\n                invalid\
-    \ -= index_sum[p] != 0;\n                index_sum[p] += c;\n                invalid\
-    \ += index_sum[p] != 0;\n            }\n        },\n        // Del\n        [&](int\
-    \ i) {\n            for (const auto &[p, c] : factorized[i]) {\n             \
-    \   invalid -= index_sum[p] != 0;\n                index_sum[p] -= c;\n      \
-    \          invalid += index_sum[p] != 0;\n            }\n        }\n    );\n\n\
-    \    for (bool answer : answers) {\n        if (answer) {\n            std::cout\
-    \ << \"Yes\" << '\\n';\n        } else {\n            std::cout << \"No\" << '\\\
-    n';\n        }\n    }\n    return 0;\n}\n"
+    \ ord;\n        int l = 0, r = 0;\n\n        static int bucket_size(int n, int\
+    \ q) {\n            return std::max(1, int(::sqrt(3) * n / ::sqrt(std::max(1,\
+    \ 2 * q))));\n        }\n    };\n} // namespace suisen\n\n\n#line 10 \"test/src/algorithm/mo/abc238_g.test.cpp\"\
+    \n\nusing suisen::Sieve;\nusing suisen::Mo;\n\nconstexpr int M = 1000000;\n\n\
+    int main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n, q;\n    std::cin >> n >> q;\n\n    Sieve<M> sieve;\n    std::vector<std::vector<std::pair<int,\
+    \ mint>>> factorized(n);\n    for (int i = 0; i < n; ++i) {\n        int v;\n\
+    \        std::cin >> v;\n\n        for (auto &&[p, c] : sieve.factorize(v)) {\n\
+    \            factorized[i].emplace_back(p, c);\n        }\n    }\n\n    std::vector<std::pair<int,\
+    \ int>> queries(q);\n    for (auto &[l, r] : queries) {\n        std::cin >> l\
+    \ >> r;\n        --l;\n    }\n\n    std::vector<mint> index_sum(M + 1, 0);\n \
+    \   int invalid = 0;\n\n    auto answers = Mo(n, queries).solve(\n        // Eval\n\
+    \        [&]{\n            return invalid == 0;\n        },\n        // Add\n\
+    \        [&](int i) {\n            for (const auto &[p, c] : factorized[i]) {\n\
+    \                invalid -= index_sum[p] != 0;\n                index_sum[p] +=\
+    \ c;\n                invalid += index_sum[p] != 0;\n            }\n        },\n\
+    \        // Del\n        [&](int i) {\n            for (const auto &[p, c] : factorized[i])\
+    \ {\n                invalid -= index_sum[p] != 0;\n                index_sum[p]\
+    \ -= c;\n                invalid += index_sum[p] != 0;\n            }\n      \
+    \  }\n    );\n\n    for (bool answer : answers) {\n        if (answer) {\n   \
+    \         std::cout << \"Yes\" << '\\n';\n        } else {\n            std::cout\
+    \ << \"No\" << '\\n';\n        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc238/tasks/abc238_g\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::static_modint<3>;\n\
     \n#include \"library/number/sieve_of_eratosthenes.hpp\"\n#include \"library/algorithm/mo.hpp\"\
@@ -233,7 +234,7 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/mo/abc238_g.test.cpp
   requiredBy: []
-  timestamp: '2022-03-05 23:47:33+09:00'
+  timestamp: '2022-03-15 05:05:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/mo/abc238_g.test.cpp

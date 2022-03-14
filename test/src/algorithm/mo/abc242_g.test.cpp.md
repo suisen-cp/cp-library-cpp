@@ -6,16 +6,16 @@ data:
     title: Mo
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc174/tasks/abc174_f
+    PROBLEM: https://atcoder.jp/contests/abc242/tasks/abc242_g
     links:
-    - https://atcoder.jp/contests/abc174/tasks/abc174_f
-  bundledCode: "#line 1 \"test/src/algorithm/mo/abc174_f.test.cpp\"\n#define PROBLEM\
-    \ \"https://atcoder.jp/contests/abc174/tasks/abc174_f\"\n\n#include <iostream>\n\
+    - https://atcoder.jp/contests/abc242/tasks/abc242_g
+  bundledCode: "#line 1 \"test/src/algorithm/mo/abc242_g.test.cpp\"\n#define PROBLEM\
+    \ \"https://atcoder.jp/contests/abc242/tasks/abc242_g\"\n\n#include <iostream>\n\
     \n#line 1 \"library/algorithm/mo.hpp\"\n\n\n\n#include <algorithm>\n#include <cmath>\n\
     #include <numeric>\n#include <vector>\n\nnamespace suisen {\n    struct Mo {\n\
     \        Mo() {}\n        Mo(const int n, const std::vector<std::pair<int, int>>\
@@ -55,39 +55,43 @@ data:
     \ q, b;\n        std::vector<std::pair<int, int>> qs;\n        std::vector<int>\
     \ ord;\n        int l = 0, r = 0;\n\n        static int bucket_size(int n, int\
     \ q) {\n            return std::max(1, int(::sqrt(3) * n / ::sqrt(std::max(1,\
-    \ 2 * q))));\n        }\n    };\n} // namespace suisen\n\n\n#line 6 \"test/src/algorithm/mo/abc174_f.test.cpp\"\
+    \ 2 * q))));\n        }\n    };\n} // namespace suisen\n\n\n#line 6 \"test/src/algorithm/mo/abc242_g.test.cpp\"\
     \nusing suisen::Mo;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n \
-    \   std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<int>\
-    \ c(n);\n    for (int &e : c) {\n        std::cin >> e;\n        --e;\n    }\n\
-    \    std::vector<std::pair<int, int>> queries(q);\n    for (auto &[l, r] : queries)\
-    \ {\n        std::cin >> l >> r;\n        --l;\n    }\n\n    std::vector<int>\
-    \ cnt(n, 0);\n    int ans = 0;\n\n    auto res = Mo(n, queries).solve(\n     \
-    \   [&]{ return ans; },\n        [&](int i) { if (++cnt[c[i]] == 1) ++ans; },\n\
-    \        [&](int i) { if (--cnt[c[i]] == 0) --ans; }\n    );\n\n    for (auto\
-    \ x : res) std::cout << x << '\\n';\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc174/tasks/abc174_f\"\n\n\
+    \   std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    std::vector<int>\
+    \ a(n);\n    for (auto& e : a) std::cin >> e, --e;\n\n    int q;\n    std::cin\
+    \ >> q;\n\n    std::vector<std::pair<int, int>> qs;\n    for (int i = 0; i < q;\
+    \ ++i) {\n        int l, r;\n        std::cin >> l >> r;\n        --l;\n     \
+    \   qs.emplace_back(l, r);\n    }\n\n    std::vector<int8_t> cnt(n);\n    int\
+    \ cur = 0;\n\n    auto ans = Mo(n, qs).solve(\n        [&] {\n            return\
+    \ cur;\n        },\n        [&](int i) {\n            auto &v = cnt[a[i]];\n \
+    \           cur += v, v ^= 1;\n        },\n        [&](int i) {\n            auto\
+    \ &v = cnt[a[i]];\n            v ^= 1, cur -= v;\n        }\n    );\n\n    for\
+    \ (int e : ans) std::cout << e << '\\n';\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc242/tasks/abc242_g\"\n\n\
     #include <iostream>\n\n#include \"library/algorithm/mo.hpp\"\nusing suisen::Mo;\n\
     \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    int n, q;\n    std::cin >> n >> q;\n    std::vector<int> c(n);\n    for\
-    \ (int &e : c) {\n        std::cin >> e;\n        --e;\n    }\n    std::vector<std::pair<int,\
-    \ int>> queries(q);\n    for (auto &[l, r] : queries) {\n        std::cin >> l\
-    \ >> r;\n        --l;\n    }\n\n    std::vector<int> cnt(n, 0);\n    int ans =\
-    \ 0;\n\n    auto res = Mo(n, queries).solve(\n        [&]{ return ans; },\n  \
-    \      [&](int i) { if (++cnt[c[i]] == 1) ++ans; },\n        [&](int i) { if (--cnt[c[i]]\
-    \ == 0) --ans; }\n    );\n\n    for (auto x : res) std::cout << x << '\\n';\n\
-    \    return 0;\n}"
+    \n    int n;\n    std::cin >> n;\n\n    std::vector<int> a(n);\n    for (auto&\
+    \ e : a) std::cin >> e, --e;\n\n    int q;\n    std::cin >> q;\n\n    std::vector<std::pair<int,\
+    \ int>> qs;\n    for (int i = 0; i < q; ++i) {\n        int l, r;\n        std::cin\
+    \ >> l >> r;\n        --l;\n        qs.emplace_back(l, r);\n    }\n\n    std::vector<int8_t>\
+    \ cnt(n);\n    int cur = 0;\n\n    auto ans = Mo(n, qs).solve(\n        [&] {\n\
+    \            return cur;\n        },\n        [&](int i) {\n            auto &v\
+    \ = cnt[a[i]];\n            cur += v, v ^= 1;\n        },\n        [&](int i)\
+    \ {\n            auto &v = cnt[a[i]];\n            v ^= 1, cur -= v;\n       \
+    \ }\n    );\n\n    for (int e : ans) std::cout << e << '\\n';\n\n    return 0;\n\
+    }"
   dependsOn:
   - library/algorithm/mo.hpp
   isVerificationFile: true
-  path: test/src/algorithm/mo/abc174_f.test.cpp
+  path: test/src/algorithm/mo/abc242_g.test.cpp
   requiredBy: []
   timestamp: '2022-03-15 05:05:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/algorithm/mo/abc174_f.test.cpp
+documentation_of: test/src/algorithm/mo/abc242_g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/algorithm/mo/abc174_f.test.cpp
-- /verify/test/src/algorithm/mo/abc174_f.test.cpp.html
-title: test/src/algorithm/mo/abc174_f.test.cpp
+- /verify/test/src/algorithm/mo/abc242_g.test.cpp
+- /verify/test/src/algorithm/mo/abc242_g.test.cpp.html
+title: test/src/algorithm/mo/abc242_g.test.cpp
 ---

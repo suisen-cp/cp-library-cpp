@@ -9,7 +9,7 @@ data:
     - icon: ':warning:'
       path: library/algorithm/horn_sat.hpp
       title: Horn SAT
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/algorithm/mo.hpp
       title: Mo
     - icon: ':heavy_check_mark:'
@@ -164,6 +164,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/li_chao_segment_tree.hpp
       title: Li Chao Segment Tree
+    - icon: ':warning:'
+      path: library/datastructure/segment_tree/persistent_segment_tree.hpp
+      title: Persistent Segment Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree.hpp
       title: Segment Tree
@@ -184,7 +187,7 @@ data:
     - icon: ':warning:'
       path: library/datastructure/union_find/linked_union_find.hpp
       title: Linked Union Find
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/datastructure/union_find/merge_history_forest.hpp
       title: Merge History Forest
     - icon: ':warning:'
@@ -328,7 +331,7 @@ data:
       title: Util
     - icon: ':warning:'
       path: library/math/vec_sparse_fps.hpp
-      title: library/math/vec_sparse_fps.hpp
+      title: Vec Sparse Fps
   - name: library/number
     pages:
     - icon: ':warning:'
@@ -518,6 +521,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/mo/abc238_g.test.cpp
       title: test/src/algorithm/mo/abc238_g.test.cpp
+    - icon: ':x:'
+      path: test/src/algorithm/mo/abc242_g.test.cpp
+      title: test/src/algorithm/mo/abc242_g.test.cpp
   - name: test/src/algorithm/monotonic_convex_hull_trick
     pages:
     - icon: ':heavy_check_mark:'
@@ -726,7 +732,7 @@ data:
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   - name: test/src/datastructure/union_find/merge_history_forest
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
       title: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
   - name: test/src/datastructure/union_find/union_find

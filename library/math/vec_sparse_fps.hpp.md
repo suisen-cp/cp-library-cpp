@@ -161,8 +161,6 @@ data:
   verifiedWith: []
 documentation_of: library/math/vec_sparse_fps.hpp
 layout: document
-redirect_from:
-- /library/library/math/vec_sparse_fps.hpp
-- /library/library/math/vec_sparse_fps.hpp.html
-title: library/math/vec_sparse_fps.hpp
+title: Vec Sparse Fps
 ---
+## Vec Sparse Fps

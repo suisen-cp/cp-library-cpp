@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base
+  - icon: ':warning:'
+    path: library/datastructure/segment_tree/persistent_segment_tree.hpp
+    title: Persistent Segment Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
@@ -102,6 +105,7 @@ data:
   - library/datastructure/bbst/persistent_red_black_tree.hpp
   - library/datastructure/bbst/persistent_red_black_tree_base.hpp
   - library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
+  - library/datastructure/segment_tree/persistent_segment_tree.hpp
   timestamp: '2022-02-13 16:56:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
