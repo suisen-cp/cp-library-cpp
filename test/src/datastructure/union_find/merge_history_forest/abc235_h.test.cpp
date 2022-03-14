@@ -68,7 +68,7 @@ int main() {
     };
  
     std::vector<mint> f { 1 };
-    for (int root : uf.tree_roots()) {
+    for (int root : uf.forest_roots()) {
         dfs(dfs, root);
         f = merge(f, dp[root]);
     }
