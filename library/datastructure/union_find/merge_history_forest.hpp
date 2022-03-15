@@ -111,6 +111,7 @@ namespace suisen {
         int create_node() {
             _g.emplace_back();
             _created_time.push_back(_time);
+            _parent.push_back(-1);
             return _g.size() - 1;
         }
         void create_edge(int new_root, int old_root) {
