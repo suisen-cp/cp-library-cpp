@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
     title: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/union_find/merge_history_forest.hpp\"\
@@ -64,12 +64,12 @@ data:
     \ new_root) {\n            for (int v : _g[u]) merge_dfs(v, new_root), _g[v].shrink_to_fit();\n\
     \            create_edge(new_root, _root[u]);\n            _g[u].clear();\n  \
     \      }\n\n        int create_node() {\n            _g.emplace_back();\n    \
-    \        _created_time.push_back(_time);\n            return _g.size() - 1;\n\
-    \        }\n        void create_edge(int new_root, int old_root) {\n         \
-    \   _g[new_root].push_back(old_root);\n            _parent[old_root] = new_root;\n\
-    \        }\n        static int floor_log2(int n) {\n            int res = 0;\n\
-    \            while (1 << (res + 1) <= n) ++res;\n            return res;\n   \
-    \     }\n    };\n} // namespace suisen\n\n\n\n"
+    \        _created_time.push_back(_time);\n            _parent.push_back(-1);\n\
+    \            return _g.size() - 1;\n        }\n        void create_edge(int new_root,\
+    \ int old_root) {\n            _g[new_root].push_back(old_root);\n           \
+    \ _parent[old_root] = new_root;\n        }\n        static int floor_log2(int\
+    \ n) {\n            int res = 0;\n            while (1 << (res + 1) <= n) ++res;\n\
+    \            return res;\n        }\n    };\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_MERGE_HISTORY_FOREST\n#define SUISEN_MERGE_HISTORY_FOREST\n\
     \n#include <atcoder/dsu>\n#include <algorithm>\n#include <deque>\n#include <numeric>\n\
     #include <limits>\n\nnamespace suisen {\n    struct MergeHistoryForest : public\
@@ -123,18 +123,19 @@ data:
     \ new_root) {\n            for (int v : _g[u]) merge_dfs(v, new_root), _g[v].shrink_to_fit();\n\
     \            create_edge(new_root, _root[u]);\n            _g[u].clear();\n  \
     \      }\n\n        int create_node() {\n            _g.emplace_back();\n    \
-    \        _created_time.push_back(_time);\n            return _g.size() - 1;\n\
-    \        }\n        void create_edge(int new_root, int old_root) {\n         \
-    \   _g[new_root].push_back(old_root);\n            _parent[old_root] = new_root;\n\
-    \        }\n        static int floor_log2(int n) {\n            int res = 0;\n\
-    \            while (1 << (res + 1) <= n) ++res;\n            return res;\n   \
-    \     }\n    };\n} // namespace suisen\n\n\n#endif // SUISEN_MERGE_HISTORY_FOREST\n"
+    \        _created_time.push_back(_time);\n            _parent.push_back(-1);\n\
+    \            return _g.size() - 1;\n        }\n        void create_edge(int new_root,\
+    \ int old_root) {\n            _g[new_root].push_back(old_root);\n           \
+    \ _parent[old_root] = new_root;\n        }\n        static int floor_log2(int\
+    \ n) {\n            int res = 0;\n            while (1 << (res + 1) <= n) ++res;\n\
+    \            return res;\n        }\n    };\n} // namespace suisen\n\n\n#endif\
+    \ // SUISEN_MERGE_HISTORY_FOREST\n"
   dependsOn: []
   isVerificationFile: false
   path: library/datastructure/union_find/merge_history_forest.hpp
   requiredBy: []
-  timestamp: '2022-03-15 05:05:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-03-15 15:38:47+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
 documentation_of: library/datastructure/union_find/merge_history_forest.hpp

@@ -187,7 +187,7 @@ data:
     - icon: ':warning:'
       path: library/datastructure/union_find/linked_union_find.hpp
       title: Linked Union Find
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/merge_history_forest.hpp
       title: Merge History Forest
     - icon: ':warning:'
@@ -732,7 +732,7 @@ data:
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   - name: test/src/datastructure/union_find/merge_history_forest
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
       title: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
   - name: test/src/datastructure/union_find/union_find

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/merge_history_forest.hpp
     title: Merge History Forest
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc235/tasks/abc235_Ex
@@ -71,12 +71,13 @@ data:
     \ new_root) {\n            for (int v : _g[u]) merge_dfs(v, new_root), _g[v].shrink_to_fit();\n\
     \            create_edge(new_root, _root[u]);\n            _g[u].clear();\n  \
     \      }\n\n        int create_node() {\n            _g.emplace_back();\n    \
-    \        _created_time.push_back(_time);\n            return _g.size() - 1;\n\
-    \        }\n        void create_edge(int new_root, int old_root) {\n         \
-    \   _g[new_root].push_back(old_root);\n            _parent[old_root] = new_root;\n\
-    \        }\n        static int floor_log2(int n) {\n            int res = 0;\n\
-    \            while (1 << (res + 1) <= n) ++res;\n            return res;\n   \
-    \     }\n    };\n} // namespace suisen\n\n\n\n#line 17 \"test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp\"\
+    \        _created_time.push_back(_time);\n            _parent.push_back(-1);\n\
+    \            return _g.size() - 1;\n        }\n        void create_edge(int new_root,\
+    \ int old_root) {\n            _g[new_root].push_back(old_root);\n           \
+    \ _parent[old_root] = new_root;\n        }\n        static int floor_log2(int\
+    \ n) {\n            int res = 0;\n            while (1 << (res + 1) <= n) ++res;\n\
+    \            return res;\n        }\n    };\n} // namespace suisen\n\n\n\n#line\
+    \ 17 \"test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp\"\
     \nusing suisen::MergeHistoryForest;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n \n    int n, m, k;\n    std::cin >> n >> m >> k;\n\
     \ \n    std::map<int, std::vector<std::pair<int, int>>> edges;\n    while (m -->\
@@ -129,8 +130,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
   requiredBy: []
-  timestamp: '2022-03-15 05:05:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-15 15:38:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
 layout: document
