@@ -31,6 +31,10 @@ namespace suisen {
                 node->_dat = op(node->_ch[0]->_dat, node->_ch[1]->_dat);
             }
 
+            static bool is_leaf(node_pointer_type node) {
+                return not node->_ch[0];
+            }
+
             static node_pointer_type build(const std::vector<value_type>& dat) {
                 auto rec = [&](auto rec, int l, int r) -> node_pointer_type {
                     node_pointer_type res = _pool.alloc();
@@ -56,27 +60,16 @@ namespace suisen {
                 return op(prod(node->_ch[0], tl, tm, ql, qr), prod(node->_ch[1], tm, tr, ql, qr));
             }
 
-            static value_type get(node_pointer_type node, int siz, int i) {
-                for (int l = 0, r = siz; r - l > 1;) {
-                    int m = (l + r) >> 1;
-                    if (i < m) {
-                        node = node->_ch[0] = clone(node->_ch[0]);
-                        r = m;
-                    } else {
-                        node = node->_ch[1] = clone(node->_ch[1]);
-                        l = m;
-                    }
-                }
-                return node->_dat;
-            }
-            static node_pointer_type set(node_pointer_type node, int siz, int i, const value_type& dat) {
-                std::vector<node_pointer_type> path;
+            template <bool do_update, typename F>
+            static auto search_node(node_pointer_type node, int siz, int i, F &&f) {
+                static std::vector<node_pointer_type> path;
 
-                node_pointer_type res = clone(node);
+                node_pointer_type res = node;
+                if constexpr (do_update) res = clone(res);
                 node_pointer_type cur = res;
 
                 for (int l = 0, r = siz; r - l > 1;) {
-                    path.push_back(cur);
+                    if constexpr (do_update) path.push_back(cur);
                     int m = (l + r) >> 1;
                     if (i < m) {
                         cur = cur->_ch[0] = clone(cur->_ch[0]);
@@ -86,16 +79,33 @@ namespace suisen {
                         l = m;
                     }
                 }
-                cur->_dat = dat;
+                f(cur);
 
-                while (path.size()) update(path.back()), path.pop_back();
+                if constexpr (do_update) {
+                    while (path.size()) update(path.back()), path.pop_back();
+                    return res;
+                } else {
+                    return;
+                }
+            }
+
+            static value_type get(node_pointer_type node, int siz, int i) {
+                value_type res;
+                search_node</* do_update = */false>(node, siz, i, [&](node_pointer_type i_th_node) { res = i_th_node->_dat; });
                 return res;
+            }
+            template <typename F>
+            static node_pointer_type apply(node_pointer_type node, int siz, int i, F&& f) {
+                return search_node</* do_update = */true>(node, siz, i, [&](node_pointer_type i_th_node) { i_th_node->_dat = f(i_th_node->_dat); });
+            }
+            static node_pointer_type set(node_pointer_type node, int siz, int i, const value_type& dat) {
+                return apply(node, siz, i, [&](const value_type&) { return dat; });
             }
 
             template <typename F>
             static int max_right(node_pointer_type node, int siz, int l, F&& f) {
                 assert(f(e()));
-                auto rec = [&](auto rec, node_pointer_type cur, int tl, int tr, value_type& sum) {
+                auto rec = [&](auto rec, node_pointer_type cur, int tl, int tr, value_type& sum) -> int {
                     if (tr <= l) return tr;
                     if (l <= tl) {
                         value_type nxt_sum = op(sum, cur->_dat);
@@ -115,7 +125,7 @@ namespace suisen {
             template <typename F>
             static int min_left(node_pointer_type node, int siz, int r, F&& f) {
                 assert(f(e()));
-                auto rec = [&](auto rec, node_pointer_type cur, int tl, int tr, value_type& sum) {
+                auto rec = [&](auto rec, node_pointer_type cur, int tl, int tr, value_type& sum) -> int {
                     if (r <= tl) return tl;
                     if (tr <= r) {
                         value_type nxt_sum = op(cur->_dat, sum);
@@ -132,6 +142,24 @@ namespace suisen {
                 value_type sum = e();
                 return rec(rec, node, 0, siz, sum);
             }
+
+            template <typename OutputIterator>
+            static void dump(node_pointer_type node, OutputIterator it) {
+                if (not node) return;
+                auto rec = [&](auto rec, node_pointer_type cur) -> void {
+                    if (is_leaf(cur)) {
+                        *it++ = cur->_dat;
+                    } else {
+                        rec(rec, cur->_ch[0]), rec(rec, cur->_ch[1]);
+                    }
+                };
+                rec(rec, node);
+            }
+            static std::vector<value_type> dump(node_pointer_type node) {
+                std::vector<value_type> res;
+                dump(node, std::back_inserter(res));
+                return res;
+            }
         };
 
         PersistentSegmentTree() : _n(0), _root(nullptr) {}
@@ -140,6 +168,9 @@ namespace suisen {
 
         static void init_pool(int siz) {
             node_type::_pool = ObjectPool<node_type>(siz);
+        }
+        static void clear_pool() {
+            node_type::_pool.clear();
         }
 
         value_type prod_all() {
@@ -154,14 +185,20 @@ namespace suisen {
         }
 
         value_type get(int i) {
-            assert(0 <= i and i <= _n);
+            assert(0 <= i and i < _n);
             return node_type::get(_root, _n, i);
         }
         value_type operator[](int i) {
             return get(i);
         }
+
+        template <typename F>
+        PersistentSegmentTree apply(int i, F&& f) {
+            assert(0 <= i and i < _n);
+            return PersistentSegmentTree(_n, node_type::apply(_root, _n, i, std::forward<F>(f)));
+        }
         PersistentSegmentTree set(int i, const value_type& v) {
-            assert(0 <= i and i <= _n);
+            assert(0 <= i and i < _n);
             return PersistentSegmentTree(_n, node_type::set(_root, _n, i, v));
         }
 
@@ -182,6 +219,14 @@ namespace suisen {
         template <bool(*pred)(value_type)>
         static int min_left(int r) {
             return min_left(r, pred);
+        }
+
+        template <typename OutputIterator>
+        void dump(OutputIterator it) {
+            node_type::dump(_root, it);
+        }
+        std::vector<value_type> dump() {
+            return node_type::dump(_root);
         }
 
     private:
