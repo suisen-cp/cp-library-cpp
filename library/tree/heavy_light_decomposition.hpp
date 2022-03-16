@@ -18,10 +18,11 @@ class HeavyLightDecomposition {
 
         using Graph = std::vector<std::vector<int>>;
 
-        HeavyLightDecomposition(Graph &g, int root = 0) : n(g.size()), root(root), visit(n), leave(n), head(n), ord(n), siz(n), par(n) {
-            dfs(g, root, -1);
+        HeavyLightDecomposition() = default;
+        HeavyLightDecomposition(Graph &g) : n(g.size()), visit(n), leave(n), head(n), ord(n), siz(n), par(n, -1) {
+            for (int i = 0; i < n; ++i) if (par[i] < 0) dfs(g, i, -1);
             int time = 0;
-            hld(g, root, -1, time);
+            for (int i = 0; i < n; ++i) if (par[i] < 0) hld(g, i, -1, time);
         }
         int lca(int u, int v) {
             for (;; v = par[head[v]]) {
@@ -103,8 +104,19 @@ class HeavyLightDecomposition {
         int get_head(int u) const {
             return head[u];
         }
+        int get_parent(int u) const {
+            return par[u];
+        }
+        int get_subtree_size(int u) const {
+            return siz[u];
+        }
+        std::vector<int> get_roots() const {
+            std::vector<int> res;
+            for (int i = 0; i < n; ++i) if (par[i] < 0) res.push_back(i);
+            return res;
+        }
     private:
-        const int n, root;
+        int n;
         std::vector<int> visit, leave, head, ord, siz, par;
         int dfs(Graph &g, int u, int p) {
             par[u] = p;
