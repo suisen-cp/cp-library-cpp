@@ -9,8 +9,10 @@
 
 namespace suisen {
     struct BipartiteMatching {
+        static constexpr int ABSENT = -1;
+
         BipartiteMatching() {}
-        BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n, Absent), _to_l(_m, Absent), _g(n + m) {}
+        BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n, ABSENT), _to_l(_m, ABSENT), _g(n + m) {}
 
         void add_edge(int fr, int to) {
             _g[fr].push_back(to), _f = -1;
@@ -18,6 +20,8 @@ namespace suisen {
 
         template <bool shuffle = true>
         int solve() {
+            if (_f >= 0) return _f;
+
             static std::mt19937 rng(std::random_device{}());
             if constexpr (shuffle) for (auto &adj : _g) std::shuffle(adj.begin(), adj.end(), rng);
 
@@ -25,24 +29,24 @@ namespace suisen {
         
             auto dfs = [&, this](auto dfs, int u) -> bool {
                 if (std::exchange(vis[u], true)) return false;
-                for (int v : _g[u]) if (_to_l[v] == Absent) return _to_r[u] = v, _to_l[v] = u, true;
+                for (int v : _g[u]) if (_to_l[v] == ABSENT) return _to_r[u] = v, _to_l[v] = u, true;
                 for (int v : _g[u]) if (dfs(dfs, _to_l[v])) return _to_r[u] = v, _to_l[v] = u, true;
                 return false;
             };
     
             for (bool upd = true; std::exchange(upd, false);) {
                 vis.assign(_n, false);
-                for (int i = 0; i < _n; ++i) if (_to_r[i] == Absent) upd |= dfs(dfs, i);
+                for (int i = 0; i < _n; ++i) if (_to_r[i] == ABSENT) upd |= dfs(dfs, i);
             }
 
-            return _f = _n - std::count(_to_r.begin(), _to_r.end(), Absent);
+            return _f = _n - std::count(_to_r.begin(), _to_r.end(), ABSENT);
         }
 
         std::vector<std::pair<int, int>> max_matching() {
             if (_f < 0) _f = solve();
             std::vector<std::pair<int, int>> res;
             res.reserve(_f);
-            for (int i = 0; i < _n; ++i) if (_to_r[i] != Absent) res.emplace_back(i, _to_r[i]);
+            for (int i = 0; i < _n; ++i) if (_to_r[i] != ABSENT) res.emplace_back(i, _to_r[i]);
             return res;
         }
 
@@ -99,9 +103,22 @@ namespace suisen {
             return res;
         }
 
-    private:
-        static constexpr int Absent = -1;
+        int left_size() const { return _n; }
+        int right_size() const { return _m; }
+        std::pair<int, int> size() const { return { _n, _m }; }
 
+        int right(int l) const { return _to_r[l]; }
+        int left(int r) const { return _to_l[r]; }
+
+        const auto graph() const { return _g; }
+
+        auto reversed_graph() const {
+            std::vector<std::vector<int>> h(_m);
+            for (int i = 0; i < _n; ++i) for (int j : _g[i]) h[j].push_back(i);
+            return h;
+        }
+
+    private:
         int _n, _m;
         std::vector<int> _to_r, _to_l;
         std::vector<std::vector<int>> _g;
