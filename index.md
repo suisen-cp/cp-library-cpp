@@ -236,6 +236,9 @@ data:
       path: library/graph/bfs01.hpp
       title: Bfs01
     - icon: ':heavy_check_mark:'
+      path: library/graph/bipartite_graph_recognition.hpp
+      title: library/graph/bipartite_graph_recognition.hpp
+    - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_matching.hpp
       title: Bipartite Matching
     - icon: ':heavy_check_mark:'
@@ -247,6 +250,9 @@ data:
     - icon: ':warning:'
       path: library/graph/directed_eulerian_graph.hpp
       title: Directed Eulerian Graph
+    - icon: ':heavy_check_mark:'
+      path: library/graph/dulmage_mendelsohn_decomposition.hpp
+      title: Dulmage Mendelsohn Decomposition
     - icon: ':warning:'
       path: library/graph/kruscal.hpp
       title: Kruscal
@@ -849,6 +855,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
       title: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
+  - name: test/src/graph/dulmage_mendelsohn_decomposition
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
+      title: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
+      title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
+      title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - name: test/src/graph/low_link
     pages:
     - icon: ':heavy_check_mark:'
