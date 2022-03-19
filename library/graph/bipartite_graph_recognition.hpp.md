@@ -51,8 +51,6 @@ data:
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
 documentation_of: library/graph/bipartite_graph_recognition.hpp
 layout: document
-redirect_from:
-- /library/library/graph/bipartite_graph_recognition.hpp
-- /library/library/graph/bipartite_graph_recognition.hpp.html
-title: library/graph/bipartite_graph_recognition.hpp
+title: Bipartite Graph Recognition
 ---
+## Bipartite Graph Recognition

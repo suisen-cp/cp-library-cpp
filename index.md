@@ -237,7 +237,7 @@ data:
       title: Bfs01
     - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_graph_recognition.hpp
-      title: library/graph/bipartite_graph_recognition.hpp
+      title: Bipartite Graph Recognition
     - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_matching.hpp
       title: Bipartite Matching
@@ -338,6 +338,9 @@ data:
     - icon: ':warning:'
       path: library/math/vec_sparse_fps.hpp
       title: Vec Sparse Fps
+    - icon: ':warning:'
+      path: library/math/xor_base.hpp
+      title: Xor Base
   - name: library/number
     pages:
     - icon: ':warning:'
@@ -498,6 +501,9 @@ data:
     - icon: ':warning:'
       path: library/util/run_length_encoder.hpp
       title: Run Length Encoder
+    - icon: ':warning:'
+      path: library/util/static_bitset.hpp
+      title: Static Bitset
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_hash.hpp
       title: Tuple Hash

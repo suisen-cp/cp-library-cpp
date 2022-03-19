@@ -30,32 +30,33 @@ data:
     \ return li < lj;\n                }\n            );\n        }\n\n        //\
     \ getter methods used in updating functions: AddL, DelL, etc.\n        auto get_left()\
     \  const { return l; }\n        auto get_right() const { return r; }\n       \
-    \ auto get_range() const { return std::make_pair(l, r); }\n\n        /**\n   \
-    \      * [Parameters]\n         * Eval : () -> T : return the current answer\n\
-    \         * AddL : int -> any (discarded) : add    `l` to   the current range\
-    \ [l + 1, r)\n         * DelL : int -> any (discarded) : delete `l` from the current\
-    \ range [l, r)\n         * AddR : int -> any (discarded) : add    `r` to   the\
-    \ current range [l, r)\n         * DelR : int -> any (discarded) : delete `r`\
-    \ from the current range [l, r + 1)\n         * \n         * [Note]\n        \
-    \ * starting from the range [0, 0).\n         */\n        template <typename Eval,\
-    \ typename AddL, typename DelL, typename AddR, typename DelR>\n        auto solve(Eval\
-    \ eval, AddL add_l, DelL del_l, AddR add_r, DelR del_r) {\n            l = 0,\
-    \ r = 0;\n            std::vector<decltype(eval())> res(q);\n            for (int\
-    \ qi : ord) {\n                const auto &[nl, nr] = qs[qi];\n              \
-    \  while (r < nr) add_r(r), ++r;\n                while (l > nl) --l, add_l(l);\n\
-    \                while (r > nr) --r, del_r(r);\n                while (l < nl)\
-    \ del_l(l), ++l;\n                res[qi] = eval();\n            }\n         \
-    \   return res;\n        }\n    \n        /**\n         * [Parameters]\n     \
-    \    * Eval : () -> T : return the current answer\n         * Add : int -> any\
-    \ (discarded) : add    `i` to   the current range [i + 1, r) or [l, i)\n     \
-    \    * Del : int -> any (discarded) : delete `i` from the current range [i, r)\
-    \ or [l, i + 1)\n         * \n         * [Note]\n         * starting from the\
-    \ range [0, 0).\n         */\n        template <typename Eval, typename Add, typename\
-    \ Del>\n        auto solve(Eval eval, Add add, Del del) {\n            return\
-    \ solve(eval, add, del, add, del);\n        }\n\n    private:\n        int n,\
-    \ q, b;\n        std::vector<std::pair<int, int>> qs;\n        std::vector<int>\
-    \ ord;\n        int l = 0, r = 0;\n\n        static int bucket_size(int n, int\
-    \ q) {\n            return std::max(1, int(::sqrt(3) * n / ::sqrt(std::max(1,\
+    \ auto get_range() const { return std::make_pair(l, r); }\n        auto get_query_id()\
+    \ const { return query_id; }\n\n        /**\n         * [Parameters]\n       \
+    \  * Eval : () -> T : return the current answer\n         * AddL : int -> any\
+    \ (discarded) : add    `l` to   the current range [l + 1, r)\n         * DelL\
+    \ : int -> any (discarded) : delete `l` from the current range [l, r)\n      \
+    \   * AddR : int -> any (discarded) : add    `r` to   the current range [l, r)\n\
+    \         * DelR : int -> any (discarded) : delete `r` from the current range\
+    \ [l, r + 1)\n         * \n         * [Note]\n         * starting from the range\
+    \ [0, 0).\n         */\n        template <typename Eval, typename AddL, typename\
+    \ DelL, typename AddR, typename DelR>\n        auto solve(Eval eval, AddL add_l,\
+    \ DelL del_l, AddR add_r, DelR del_r) {\n            l = 0, r = 0;\n         \
+    \   std::vector<decltype(eval())> res(q);\n            for (int qi : ord) {\n\
+    \                const auto &[nl, nr] = qs[query_id = qi];\n                while\
+    \ (r < nr) add_r(r), ++r;\n                while (l > nl) --l, add_l(l);\n   \
+    \             while (r > nr) --r, del_r(r);\n                while (l < nl) del_l(l),\
+    \ ++l;\n                res[qi] = eval();\n            }\n            return res;\n\
+    \        }\n    \n        /**\n         * [Parameters]\n         * Eval : () ->\
+    \ T : return the current answer\n         * Add : int -> any (discarded) : add\
+    \    `i` to   the current range [i + 1, r) or [l, i)\n         * Del : int ->\
+    \ any (discarded) : delete `i` from the current range [i, r) or [l, i + 1)\n \
+    \        * \n         * [Note]\n         * starting from the range [0, 0).\n \
+    \        */\n        template <typename Eval, typename Add, typename Del>\n  \
+    \      auto solve(Eval eval, Add add, Del del) {\n            return solve(eval,\
+    \ add, del, add, del);\n        }\n\n    private:\n        int n, q, b;\n    \
+    \    int query_id = -1;\n        std::vector<std::pair<int, int>> qs;\n      \
+    \  std::vector<int> ord;\n        int l = 0, r = 0;\n\n        static int bucket_size(int\
+    \ n, int q) {\n            return std::max(1, int(::sqrt(3) * n / ::sqrt(std::max(1,\
     \ 2 * q))));\n        }\n    };\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_MO\n#define SUISEN_MO\n\n#include <algorithm>\n#include <cmath>\n\
     #include <numeric>\n#include <vector>\n\nnamespace suisen {\n    struct Mo {\n\
@@ -70,38 +71,39 @@ data:
     \ return li < lj;\n                }\n            );\n        }\n\n        //\
     \ getter methods used in updating functions: AddL, DelL, etc.\n        auto get_left()\
     \  const { return l; }\n        auto get_right() const { return r; }\n       \
-    \ auto get_range() const { return std::make_pair(l, r); }\n\n        /**\n   \
-    \      * [Parameters]\n         * Eval : () -> T : return the current answer\n\
-    \         * AddL : int -> any (discarded) : add    `l` to   the current range\
-    \ [l + 1, r)\n         * DelL : int -> any (discarded) : delete `l` from the current\
-    \ range [l, r)\n         * AddR : int -> any (discarded) : add    `r` to   the\
-    \ current range [l, r)\n         * DelR : int -> any (discarded) : delete `r`\
-    \ from the current range [l, r + 1)\n         * \n         * [Note]\n        \
-    \ * starting from the range [0, 0).\n         */\n        template <typename Eval,\
-    \ typename AddL, typename DelL, typename AddR, typename DelR>\n        auto solve(Eval\
-    \ eval, AddL add_l, DelL del_l, AddR add_r, DelR del_r) {\n            l = 0,\
-    \ r = 0;\n            std::vector<decltype(eval())> res(q);\n            for (int\
-    \ qi : ord) {\n                const auto &[nl, nr] = qs[qi];\n              \
-    \  while (r < nr) add_r(r), ++r;\n                while (l > nl) --l, add_l(l);\n\
-    \                while (r > nr) --r, del_r(r);\n                while (l < nl)\
-    \ del_l(l), ++l;\n                res[qi] = eval();\n            }\n         \
-    \   return res;\n        }\n    \n        /**\n         * [Parameters]\n     \
-    \    * Eval : () -> T : return the current answer\n         * Add : int -> any\
-    \ (discarded) : add    `i` to   the current range [i + 1, r) or [l, i)\n     \
-    \    * Del : int -> any (discarded) : delete `i` from the current range [i, r)\
-    \ or [l, i + 1)\n         * \n         * [Note]\n         * starting from the\
-    \ range [0, 0).\n         */\n        template <typename Eval, typename Add, typename\
-    \ Del>\n        auto solve(Eval eval, Add add, Del del) {\n            return\
-    \ solve(eval, add, del, add, del);\n        }\n\n    private:\n        int n,\
-    \ q, b;\n        std::vector<std::pair<int, int>> qs;\n        std::vector<int>\
-    \ ord;\n        int l = 0, r = 0;\n\n        static int bucket_size(int n, int\
-    \ q) {\n            return std::max(1, int(::sqrt(3) * n / ::sqrt(std::max(1,\
+    \ auto get_range() const { return std::make_pair(l, r); }\n        auto get_query_id()\
+    \ const { return query_id; }\n\n        /**\n         * [Parameters]\n       \
+    \  * Eval : () -> T : return the current answer\n         * AddL : int -> any\
+    \ (discarded) : add    `l` to   the current range [l + 1, r)\n         * DelL\
+    \ : int -> any (discarded) : delete `l` from the current range [l, r)\n      \
+    \   * AddR : int -> any (discarded) : add    `r` to   the current range [l, r)\n\
+    \         * DelR : int -> any (discarded) : delete `r` from the current range\
+    \ [l, r + 1)\n         * \n         * [Note]\n         * starting from the range\
+    \ [0, 0).\n         */\n        template <typename Eval, typename AddL, typename\
+    \ DelL, typename AddR, typename DelR>\n        auto solve(Eval eval, AddL add_l,\
+    \ DelL del_l, AddR add_r, DelR del_r) {\n            l = 0, r = 0;\n         \
+    \   std::vector<decltype(eval())> res(q);\n            for (int qi : ord) {\n\
+    \                const auto &[nl, nr] = qs[query_id = qi];\n                while\
+    \ (r < nr) add_r(r), ++r;\n                while (l > nl) --l, add_l(l);\n   \
+    \             while (r > nr) --r, del_r(r);\n                while (l < nl) del_l(l),\
+    \ ++l;\n                res[qi] = eval();\n            }\n            return res;\n\
+    \        }\n    \n        /**\n         * [Parameters]\n         * Eval : () ->\
+    \ T : return the current answer\n         * Add : int -> any (discarded) : add\
+    \    `i` to   the current range [i + 1, r) or [l, i)\n         * Del : int ->\
+    \ any (discarded) : delete `i` from the current range [i, r) or [l, i + 1)\n \
+    \        * \n         * [Note]\n         * starting from the range [0, 0).\n \
+    \        */\n        template <typename Eval, typename Add, typename Del>\n  \
+    \      auto solve(Eval eval, Add add, Del del) {\n            return solve(eval,\
+    \ add, del, add, del);\n        }\n\n    private:\n        int n, q, b;\n    \
+    \    int query_id = -1;\n        std::vector<std::pair<int, int>> qs;\n      \
+    \  std::vector<int> ord;\n        int l = 0, r = 0;\n\n        static int bucket_size(int\
+    \ n, int q) {\n            return std::max(1, int(::sqrt(3) * n / ::sqrt(std::max(1,\
     \ 2 * q))));\n        }\n    };\n} // namespace suisen\n\n#endif // SUISEN_MO\n"
   dependsOn: []
   isVerificationFile: false
   path: library/algorithm/mo.hpp
   requiredBy: []
-  timestamp: '2022-03-15 05:05:26+09:00'
+  timestamp: '2022-03-19 20:36:40+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/algorithm/mo/abc238_g.test.cpp

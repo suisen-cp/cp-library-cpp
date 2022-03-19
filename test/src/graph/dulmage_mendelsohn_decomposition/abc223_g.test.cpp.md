@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_graph_recognition.hpp
-    title: library/graph/bipartite_graph_recognition.hpp
+    title: Bipartite Graph Recognition
   - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
     title: Bipartite Matching
