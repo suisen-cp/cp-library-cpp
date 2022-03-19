@@ -51,7 +51,9 @@ namespace suisen {
             for (int i = 0; i < n; ++i) if (g[i].size() & 1) (s < 0 ? s : t < 0 ? t : invalid) = i;
             if (s < 0 or t < 0 or invalid >= 0) return std::nullopt;
             add_edge(s, t);
-            auto res = *eulerian_circuit(s);
+            auto opt_res = eulerian_circuit(s);
+            if (not opt_res.has_value()) return std::nullopt;
+            auto res = *opt_res;
             res.pop_back();
             // remove edge (s, t)
             g[s].pop_back(), inv[s].pop_back();
