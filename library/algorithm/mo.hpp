@@ -28,6 +28,7 @@ namespace suisen {
         auto get_left()  const { return l; }
         auto get_right() const { return r; }
         auto get_range() const { return std::make_pair(l, r); }
+        auto get_query_id() const { return query_id; }
 
         /**
          * [Parameters]
@@ -45,7 +46,7 @@ namespace suisen {
             l = 0, r = 0;
             std::vector<decltype(eval())> res(q);
             for (int qi : ord) {
-                const auto &[nl, nr] = qs[qi];
+                const auto &[nl, nr] = qs[query_id = qi];
                 while (r < nr) add_r(r), ++r;
                 while (l > nl) --l, add_l(l);
                 while (r > nr) --r, del_r(r);
@@ -71,6 +72,7 @@ namespace suisen {
 
     private:
         int n, q, b;
+        int query_id = -1;
         std::vector<std::pair<int, int>> qs;
         std::vector<int> ord;
         int l = 0, r = 0;
