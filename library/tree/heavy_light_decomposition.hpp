@@ -19,7 +19,7 @@ class HeavyLightDecomposition {
         using Graph = std::vector<std::vector<int>>;
 
         HeavyLightDecomposition() = default;
-        HeavyLightDecomposition(Graph &g) : n(g.size()), visit(n), leave(n), head(n), ord(n), siz(n), par(n, -1) {
+        HeavyLightDecomposition(Graph &g) : n(g.size()), visit(n), leave(n), head(n), ord(n), siz(n), par(n, -1), dep(n, 0) {
             for (int i = 0; i < n; ++i) if (par[i] < 0) dfs(g, i, -1);
             int time = 0;
             for (int i = 0; i < n; ++i) if (par[i] < 0) hld(g, i, -1, time);
@@ -31,11 +31,25 @@ class HeavyLightDecomposition {
             }
         }
         int la(int u, int k, int default_value = -1) {
-            for (int h = head[u]; u >= 0; u = par[h], h = head[u]) {
+            if (k < 0) return default_value;
+            while (u >= 0) {
+                int h = head[u];
                 if (visit[u] - k >= visit[h]) return ord[visit[u] - k];
                 k -= visit[u] - visit[h] + 1;
+                u = par[h];
             }
             return default_value;
+        }
+        int move_to(int u, int v, int d, int default_value = -1) {
+            if (d < 0) return default_value;
+            const int w = lca(u, v);
+            int uw = dep[u] - dep[w];
+            if (d <= uw) return la(u, d);
+            int vw = dep[v] - dep[w];
+            return d <= uw + vw ? la(v, (uw + vw) - d) : default_value;
+        }
+        int dist(int u, int v) {
+            return dep[u] + dep[v] - 2 * dep[lca(u, v)];
         }
         template <typename T, typename Q, typename F, constraints_t<is_range_fold_query<Q, T>, is_bin_op<F, T>> = nullptr>
         T fold_path(int u, int v, T identity, F bin_op, Q fold_query, bool is_edge_query = false) {
@@ -117,13 +131,14 @@ class HeavyLightDecomposition {
         }
     private:
         int n;
-        std::vector<int> visit, leave, head, ord, siz, par;
+        std::vector<int> visit, leave, head, ord, siz, par, dep;
         int dfs(Graph &g, int u, int p) {
             par[u] = p;
             siz[u] = 1;
             int max_size = 0;
             for (int &v : g[u]) {
                 if (v == p) continue;
+                dep[v] = dep[u] + 1;
                 siz[u] += dfs(g, v, u);
                 if (max_size < siz[v]) {
                     max_size = siz[v];
