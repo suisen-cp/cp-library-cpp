@@ -244,23 +244,24 @@ data:
     \             for (size_type k = 0; k < j; ++k) res[j] -= a[j - k] * res[k];\n\
     \                res[j] *= v;\n            }\n            return res;\n      \
     \  }\n};\n\n} // namespace suisen\n\n\n#line 1 \"library/transform/subset.hpp\"\
-    \n\n\n\n#line 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#line 6 \"library/transform/kronecker_power.hpp\"\
-    \n\n#line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n\
-    \    namespace default_operator {\n        template <typename T>\n        auto\
-    \ zero() -> decltype(T { 0 }) { return T { 0 }; }\n        template <typename\
-    \ T>\n        auto one()  -> decltype(T { 1 }) { return T { 1 }; }\n        template\
-    \ <typename T>\n        auto add(const T &x, const T &y) -> decltype(x + y) {\
-    \ return x + y; }\n        template <typename T>\n        auto sub(const T &x,\
-    \ const T &y) -> decltype(x - y) { return x - y; }\n        template <typename\
-    \ T>\n        auto mul(const T &x, const T &y) -> decltype(x * y) { return x *\
-    \ y; }\n        template <typename T>\n        auto div(const T &x, const T &y)\
-    \ -> decltype(x / y) { return x / y; }\n        template <typename T>\n      \
-    \  auto mod(const T &x, const T &y) -> decltype(x % y) { return x % y; }\n   \
-    \     template <typename T>\n        auto neg(const T &x) -> decltype(-x) { return\
-    \ -x; }\n        template <typename T>\n        auto inv(const T &x) -> decltype(one<T>()\
-    \ / x)  { return one<T>() / x; }\n    } // default_operator\n    namespace default_operator_noref\
-    \ {\n        template <typename T>\n        auto zero() -> decltype(T { 0 }) {\
-    \ return T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
+    \n\n\n\n#line 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#line 5 \"library/transform/kronecker_power.hpp\"\
+    \n#include <utility>\n#line 7 \"library/transform/kronecker_power.hpp\"\n\n#line\
+    \ 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n    namespace\
+    \ default_operator {\n        template <typename T>\n        auto zero() -> decltype(T\
+    \ { 0 }) { return T { 0 }; }\n        template <typename T>\n        auto one()\
+    \  -> decltype(T { 1 }) { return T { 1 }; }\n        template <typename T>\n \
+    \       auto add(const T &x, const T &y) -> decltype(x + y) { return x + y; }\n\
+    \        template <typename T>\n        auto sub(const T &x, const T &y) -> decltype(x\
+    \ - y) { return x - y; }\n        template <typename T>\n        auto mul(const\
+    \ T &x, const T &y) -> decltype(x * y) { return x * y; }\n        template <typename\
+    \ T>\n        auto div(const T &x, const T &y) -> decltype(x / y) { return x /\
+    \ y; }\n        template <typename T>\n        auto mod(const T &x, const T &y)\
+    \ -> decltype(x % y) { return x % y; }\n        template <typename T>\n      \
+    \  auto neg(const T &x) -> decltype(-x) { return -x; }\n        template <typename\
+    \ T>\n        auto inv(const T &x) -> decltype(one<T>() / x)  { return one<T>()\
+    \ / x; }\n    } // default_operator\n    namespace default_operator_noref {\n\
+    \        template <typename T>\n        auto zero() -> decltype(T { 0 }) { return\
+    \ T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
     \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(T\
     \ x, T y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
     \        auto sub(T x, T y) -> decltype(x - y) { return x - y; }\n        template\
@@ -270,7 +271,7 @@ data:
     \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
     \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
     \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
-    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 8 \"library/transform/kronecker_power.hpp\"\
+    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 9 \"library/transform/kronecker_power.hpp\"\
     \n\nnamespace suisen {\n    namespace kronecker_power_transform {\n        namespace\
     \ internal {\n            template <typename UnitTransform, typename ReferenceGetter,\
     \ std::size_t... Seq>\n            void unit_transform(UnitTransform transform,\
@@ -352,7 +353,7 @@ data:
   isVerificationFile: true
   path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 17:40:31+09:00'
+  timestamp: '2022-03-21 02:24:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/lights_out_on_connected_graph.test.cpp

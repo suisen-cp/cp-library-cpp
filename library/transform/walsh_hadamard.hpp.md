@@ -28,14 +28,14 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/walsh_hadamard.hpp\"\n\n\n\n#line 1 \"\
-    library/transform/kronecker_power.hpp\"\n\n\n\n#include <cassert>\n#include <vector>\n\
-    \n#line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n  \
-    \  namespace default_operator {\n        template <typename T>\n        auto zero()\
-    \ -> decltype(T { 0 }) { return T { 0 }; }\n        template <typename T>\n  \
-    \      auto one()  -> decltype(T { 1 }) { return T { 1 }; }\n        template\
-    \ <typename T>\n        auto add(const T &x, const T &y) -> decltype(x + y) {\
-    \ return x + y; }\n        template <typename T>\n        auto sub(const T &x,\
-    \ const T &y) -> decltype(x - y) { return x - y; }\n        template <typename\
+    library/transform/kronecker_power.hpp\"\n\n\n\n#include <cassert>\n#include <utility>\n\
+    #include <vector>\n\n#line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace\
+    \ suisen {\n    namespace default_operator {\n        template <typename T>\n\
+    \        auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n        template\
+    \ <typename T>\n        auto one()  -> decltype(T { 1 }) { return T { 1 }; }\n\
+    \        template <typename T>\n        auto add(const T &x, const T &y) -> decltype(x\
+    \ + y) { return x + y; }\n        template <typename T>\n        auto sub(const\
+    \ T &x, const T &y) -> decltype(x - y) { return x - y; }\n        template <typename\
     \ T>\n        auto mul(const T &x, const T &y) -> decltype(x * y) { return x *\
     \ y; }\n        template <typename T>\n        auto div(const T &x, const T &y)\
     \ -> decltype(x / y) { return x / y; }\n        template <typename T>\n      \
@@ -54,7 +54,7 @@ data:
     \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
     \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
     \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
-    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 8 \"library/transform/kronecker_power.hpp\"\
+    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 9 \"library/transform/kronecker_power.hpp\"\
     \n\nnamespace suisen {\n    namespace kronecker_power_transform {\n        namespace\
     \ internal {\n            template <typename UnitTransform, typename ReferenceGetter,\
     \ std::size_t... Seq>\n            void unit_transform(UnitTransform transform,\
@@ -136,7 +136,7 @@ data:
   path: library/transform/walsh_hadamard.hpp
   requiredBy:
   - library/convolution/xor_convolution.hpp
-  timestamp: '2022-01-31 13:34:34+09:00'
+  timestamp: '2022-03-21 02:24:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp

@@ -41,43 +41,43 @@ data:
     \n#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_h\"\n\n#include\
     \ <iostream>\n#include <atcoder/convolution>\n#include <atcoder/modint>\n\n#line\
     \ 1 \"library/transform/walsh_hadamard.hpp\"\n\n\n\n#line 1 \"library/transform/kronecker_power.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <vector>\n\n#line 1 \"library/util/default_operator.hpp\"\
-    \n\n\n\nnamespace suisen {\n    namespace default_operator {\n        template\
+    \n\n\n\n#include <cassert>\n#include <utility>\n#include <vector>\n\n#line 1 \"\
+    library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n    namespace default_operator\
+    \ {\n        template <typename T>\n        auto zero() -> decltype(T { 0 }) {\
+    \ return T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
+    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(const\
+    \ T &x, const T &y) -> decltype(x + y) { return x + y; }\n        template <typename\
+    \ T>\n        auto sub(const T &x, const T &y) -> decltype(x - y) { return x -\
+    \ y; }\n        template <typename T>\n        auto mul(const T &x, const T &y)\
+    \ -> decltype(x * y) { return x * y; }\n        template <typename T>\n      \
+    \  auto div(const T &x, const T &y) -> decltype(x / y) { return x / y; }\n   \
+    \     template <typename T>\n        auto mod(const T &x, const T &y) -> decltype(x\
+    \ % y) { return x % y; }\n        template <typename T>\n        auto neg(const\
+    \ T &x) -> decltype(-x) { return -x; }\n        template <typename T>\n      \
+    \  auto inv(const T &x) -> decltype(one<T>() / x)  { return one<T>() / x; }\n\
+    \    } // default_operator\n    namespace default_operator_noref {\n        template\
     \ <typename T>\n        auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n\
     \        template <typename T>\n        auto one()  -> decltype(T { 1 }) { return\
-    \ T { 1 }; }\n        template <typename T>\n        auto add(const T &x, const\
-    \ T &y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
-    \        auto sub(const T &x, const T &y) -> decltype(x - y) { return x - y; }\n\
-    \        template <typename T>\n        auto mul(const T &x, const T &y) -> decltype(x\
-    \ * y) { return x * y; }\n        template <typename T>\n        auto div(const\
-    \ T &x, const T &y) -> decltype(x / y) { return x / y; }\n        template <typename\
-    \ T>\n        auto mod(const T &x, const T &y) -> decltype(x % y) { return x %\
-    \ y; }\n        template <typename T>\n        auto neg(const T &x) -> decltype(-x)\
-    \ { return -x; }\n        template <typename T>\n        auto inv(const T &x)\
-    \ -> decltype(one<T>() / x)  { return one<T>() / x; }\n    } // default_operator\n\
-    \    namespace default_operator_noref {\n        template <typename T>\n     \
-    \   auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n        template <typename\
-    \ T>\n        auto one()  -> decltype(T { 1 }) { return T { 1 }; }\n        template\
-    \ <typename T>\n        auto add(T x, T y) -> decltype(x + y) { return x + y;\
-    \ }\n        template <typename T>\n        auto sub(T x, T y) -> decltype(x -\
-    \ y) { return x - y; }\n        template <typename T>\n        auto mul(T x, T\
-    \ y) -> decltype(x * y) { return x * y; }\n        template <typename T>\n   \
-    \     auto div(T x, T y) -> decltype(x / y) { return x / y; }\n        template\
-    \ <typename T>\n        auto mod(T x, T y) -> decltype(x % y) { return x % y;\
-    \ }\n        template <typename T>\n        auto neg(T x) -> decltype(-x) { return\
-    \ -x; }\n        template <typename T>\n        auto inv(T x) -> decltype(one<T>()\
-    \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
-    \n\n#line 8 \"library/transform/kronecker_power.hpp\"\n\nnamespace suisen {\n\
-    \    namespace kronecker_power_transform {\n        namespace internal {\n   \
-    \         template <typename UnitTransform, typename ReferenceGetter, std::size_t...\
-    \ Seq>\n            void unit_transform(UnitTransform transform, ReferenceGetter\
-    \ ref_getter, std::index_sequence<Seq...>) {\n                transform(ref_getter(Seq)...);\n\
-    \            }\n        }\n\n        template <typename T, std::size_t D, auto\
-    \ unit_transform>\n        void kronecker_power_transform(std::vector<T> &x) {\n\
-    \            const std::size_t n = x.size();\n            for (std::size_t block\
-    \ = 1; block < n; block *= D) {\n                for (std::size_t l = 0; l < n;\
-    \ l += D * block) {\n                    for (std::size_t offset = l; offset <\
-    \ l + block; ++offset) {\n                        const auto ref_getter = [&](std::size_t\
+    \ T { 1 }; }\n        template <typename T>\n        auto add(T x, T y) -> decltype(x\
+    \ + y) { return x + y; }\n        template <typename T>\n        auto sub(T x,\
+    \ T y) -> decltype(x - y) { return x - y; }\n        template <typename T>\n \
+    \       auto mul(T x, T y) -> decltype(x * y) { return x * y; }\n        template\
+    \ <typename T>\n        auto div(T x, T y) -> decltype(x / y) { return x / y;\
+    \ }\n        template <typename T>\n        auto mod(T x, T y) -> decltype(x %\
+    \ y) { return x % y; }\n        template <typename T>\n        auto neg(T x) ->\
+    \ decltype(-x) { return -x; }\n        template <typename T>\n        auto inv(T\
+    \ x) -> decltype(one<T>() / x)  { return one<T>() / x; }\n    } // default_operator\n\
+    } // namespace suisen\n\n\n#line 9 \"library/transform/kronecker_power.hpp\"\n\
+    \nnamespace suisen {\n    namespace kronecker_power_transform {\n        namespace\
+    \ internal {\n            template <typename UnitTransform, typename ReferenceGetter,\
+    \ std::size_t... Seq>\n            void unit_transform(UnitTransform transform,\
+    \ ReferenceGetter ref_getter, std::index_sequence<Seq...>) {\n               \
+    \ transform(ref_getter(Seq)...);\n            }\n        }\n\n        template\
+    \ <typename T, std::size_t D, auto unit_transform>\n        void kronecker_power_transform(std::vector<T>\
+    \ &x) {\n            const std::size_t n = x.size();\n            for (std::size_t\
+    \ block = 1; block < n; block *= D) {\n                for (std::size_t l = 0;\
+    \ l < n; l += D * block) {\n                    for (std::size_t offset = l; offset\
+    \ < l + block; ++offset) {\n                        const auto ref_getter = [&](std::size_t\
     \ i) -> T& { return x[offset + i * block]; };\n                        internal::unit_transform(unit_transform,\
     \ ref_getter, std::make_index_sequence<D>());\n                    }\n       \
     \         }\n            }\n        }\n\n        template <typename T, typename\
@@ -339,7 +339,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2022-02-25 23:20:55+09:00'
+  timestamp: '2022-03-21 02:24:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

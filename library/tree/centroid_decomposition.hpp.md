@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/tree/contour_aggregation_query_on_tree.hpp
+    title: Contour Aggregation Query On Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
     title: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
+    title: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -136,11 +142,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/tree/centroid_decomposition.hpp
-  requiredBy: []
+  requiredBy:
+  - library/tree/contour_aggregation_query_on_tree.hpp
   timestamp: '2021-11-23 20:31:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
+  - test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
 documentation_of: library/tree/centroid_decomposition.hpp
 layout: document
 title: Centroid Decomposition

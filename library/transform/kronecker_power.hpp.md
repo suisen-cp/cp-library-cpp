@@ -53,7 +53,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#include <vector>\n\n#line 1 \"library/util/default_operator.hpp\"\
+    \ <cassert>\n#include <utility>\n#include <vector>\n\n#line 1 \"library/util/default_operator.hpp\"\
     \n\n\n\nnamespace suisen {\n    namespace default_operator {\n        template\
     \ <typename T>\n        auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n\
     \        template <typename T>\n        auto one()  -> decltype(T { 1 }) { return\
@@ -79,7 +79,7 @@ data:
     \ }\n        template <typename T>\n        auto neg(T x) -> decltype(-x) { return\
     \ -x; }\n        template <typename T>\n        auto inv(T x) -> decltype(one<T>()\
     \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
-    \n\n#line 8 \"library/transform/kronecker_power.hpp\"\n\nnamespace suisen {\n\
+    \n\n#line 9 \"library/transform/kronecker_power.hpp\"\n\nnamespace suisen {\n\
     \    namespace kronecker_power_transform {\n        namespace internal {\n   \
     \         template <typename UnitTransform, typename ReferenceGetter, std::size_t...\
     \ Seq>\n            void unit_transform(UnitTransform transform, ReferenceGetter\
@@ -114,7 +114,7 @@ data:
     \ x.swap(y);\n            };\n            kronecker_power_transform<T>(x, D, unit_transform);\n\
     \        }\n    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_KRONECKER_POWER\n#define SUISEN_KRONECKER_POWER\n\n#include\
-    \ <cassert>\n#include <vector>\n\n#include \"library/util/default_operator.hpp\"\
+    \ <cassert>\n#include <utility>\n#include <vector>\n\n#include \"library/util/default_operator.hpp\"\
     \n\nnamespace suisen {\n    namespace kronecker_power_transform {\n        namespace\
     \ internal {\n            template <typename UnitTransform, typename ReferenceGetter,\
     \ std::size_t... Seq>\n            void unit_transform(UnitTransform transform,\
@@ -159,7 +159,7 @@ data:
   - library/transform/subset.hpp
   - library/transform/walsh_hadamard.hpp
   - library/transform/supset.hpp
-  timestamp: '2022-01-31 13:34:34+09:00'
+  timestamp: '2022-03-21 02:24:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp

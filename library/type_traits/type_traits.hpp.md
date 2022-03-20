@@ -102,6 +102,9 @@ data:
     path: library/template.hpp
     title: Template
   - icon: ':heavy_check_mark:'
+    path: library/tree/contour_aggregation_query_on_tree.hpp
+    title: Contour Aggregation Query On Tree
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
   - icon: ':heavy_check_mark:'
@@ -229,6 +232,9 @@ data:
     path: test/src/number/util/same_div_dens.test.cpp
     title: test/src/number/util/same_div_dens.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
+    title: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -323,6 +329,7 @@ data:
   - library/geom/segment_intersections.hpp
   - library/template.cpp
   - library/tree/lowest_common_ancestor.hpp
+  - library/tree/contour_aggregation_query_on_tree.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/wavelet_matrix.hpp
@@ -366,6 +373,7 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
   - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp

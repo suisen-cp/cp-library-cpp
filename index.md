@@ -438,6 +438,9 @@ data:
       path: library/tree/centroid_decomposition.hpp
       title: Centroid Decomposition
     - icon: ':heavy_check_mark:'
+      path: library/tree/contour_aggregation_query_on_tree.hpp
+      title: Contour Aggregation Query On Tree
+    - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
     - icon: ':heavy_check_mark:'
@@ -1092,6 +1095,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
       title: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
+  - name: test/src/tree/contour_aggregation_query_on_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
+      title: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
   - name: test/src/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
