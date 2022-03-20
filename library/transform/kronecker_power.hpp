@@ -2,6 +2,7 @@
 #define SUISEN_KRONECKER_POWER
 
 #include <cassert>
+#include <utility>
 #include <vector>
 
 #include "library/util/default_operator.hpp"
