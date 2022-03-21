@@ -4,17 +4,8 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: library/tree/contour_aggregation_query_on_tree.hpp
-    title: Contour Aggregation Query On Tree
-  - icon: ':heavy_check_mark:'
-    path: library/tree/contour_aggregation_query_on_tree_base.hpp
-    title: library/tree/contour_aggregation_query_on_tree_base.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
-    title: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
@@ -236,9 +227,7 @@ data:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/tree/heavy_light_decomposition.hpp
-  requiredBy:
-  - library/tree/contour_aggregation_query_on_tree.hpp
-  - library/tree/contour_aggregation_query_on_tree_base.hpp
+  requiredBy: []
   timestamp: '2022-03-21 02:23:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -247,7 +236,6 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-  - test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
 documentation_of: library/tree/heavy_light_decomposition.hpp
 layout: document
 title: Heavy Light Decomposition (HLD)
