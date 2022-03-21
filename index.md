@@ -441,6 +441,9 @@ data:
       path: library/tree/contour_aggregation_query_on_tree.hpp
       title: Contour Aggregation Query On Tree
     - icon: ':heavy_check_mark:'
+      path: library/tree/contour_aggregation_query_on_tree_base.hpp
+      title: library/tree/contour_aggregation_query_on_tree_base.hpp
+    - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
     - icon: ':heavy_check_mark:'

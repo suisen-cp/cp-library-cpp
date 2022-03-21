@@ -8,6 +8,9 @@ data:
     path: library/tree/contour_aggregation_query_on_tree.hpp
     title: Contour Aggregation Query On Tree
   - icon: ':heavy_check_mark:'
+    path: library/tree/contour_aggregation_query_on_tree_base.hpp
+    title: library/tree/contour_aggregation_query_on_tree_base.hpp
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
   - icon: ':heavy_check_mark:'
@@ -26,12 +29,12 @@ data:
   bundledCode: "#line 1 \"test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp\"\
     \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n\n#include <iostream>\n#include <numeric>\n\n#line 1 \"library/tree/contour_aggregation_query_on_tree.hpp\"\
-    \n\n\n\n#include <deque>\n#include <map>\n#include <tuple>\n\n#include <atcoder/segtree>\n\
-    \n#line 1 \"library/tree/centroid_decomposition.hpp\"\n\n\n\n#include <vector>\n\
-    \nnamespace suisen {\n\n    struct CentroidDecomposition : public std::vector<std::vector<int>>\
-    \ {\n        using BaseType = std::vector<std::vector<int>>;\n    public:\n  \
-    \      using BaseType::BaseType;\n\n        void add_edge(int u, int v) {\n  \
-    \          BaseType::operator[](u).push_back(v);\n            BaseType::operator[](v).push_back(u);\n\
+    \n\n\n\n#include <atcoder/segtree>\n\n#line 1 \"library/tree/contour_aggregation_query_on_tree_base.hpp\"\
+    \n\n\n\n#include <deque>\n#include <map>\n#include <tuple>\n\n#line 1 \"library/tree/centroid_decomposition.hpp\"\
+    \n\n\n\n#include <vector>\n\nnamespace suisen {\n\n    struct CentroidDecomposition\
+    \ : public std::vector<std::vector<int>> {\n        using BaseType = std::vector<std::vector<int>>;\n\
+    \    public:\n        using BaseType::BaseType;\n\n        void add_edge(int u,\
+    \ int v) {\n            BaseType::operator[](u).push_back(v);\n            BaseType::operator[](v).push_back(u);\n\
     \        }\n\n    private:\n        std::vector<bool> removed;\n        std::vector<int>\
     \ sub;\n\n        struct AdjacentListIterator {\n            using it_t = std::vector<int>::const_iterator;\n\
     \            const CentroidDecomposition* const ptr;\n            const int u;\n\
@@ -198,59 +201,79 @@ data:
     \            head[u] = p >= 0 and g[p].front() == u ? head[p] : u;\n         \
     \   for (int v : g[u]) {\n                if (v != p) hld(g, v, u, time);\n  \
     \          }\n            leave[u] = time;\n        }\n};\n} // namespace suisen\n\
-    \n\n#line 12 \"library/tree/contour_aggregation_query_on_tree.hpp\"\n\nnamespace\
-    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)()>\n    struct ContourAggregationQueryOnTree\
+    \n\n#line 10 \"library/tree/contour_aggregation_query_on_tree_base.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename SequenceType>\n    struct ContourAggregationQueryOnTreeBase\
     \ : private CentroidDecomposition {\n        using base_type = CentroidDecomposition;\n\
     \        using base_type::base_type;\n        using base_type::add_edge;\n\n \
-    \       using segtree_type = atcoder::segtree<T, op, e>;\n\n        void build(const\
-    \ std::vector<T> &dat) {\n            _hld = HeavyLightDecomposition(*this);\n\
-    \            _siz.resize(size());\n            _sub_root.resize(size());\n   \
+    \       using sequence_type = SequenceType;\n\n        template <typename T>\n\
+    \        void build(const std::vector<T> &dat) {\n            _hld = HeavyLightDecomposition(*this);\n\
+    \            _idx.resize(size());\n            _sub_root.resize(size());\n   \
     \         _sep.resize(size());\n            _range.resize(size());\n         \
-    \   _seg.resize(size());\n            _tree = base_type::decomp(\n           \
-    \     [&](int centroid, int siz) {\n                    _siz[centroid] = siz;\n\
-    \                    std::vector<T> vs { dat[centroid] };\n                  \
-    \  auto &sep = _sep[centroid];\n                    auto &ran = _range[centroid];\n\
-    \                    auto &sub = _sub_root[centroid];\n                    //\
-    \ (current vertex, parent vertex, component id, depth)\n                    std::deque<std::tuple<int,\
-    \ int, int, int>> dq;\n                    for (int sub_root : (*this)[centroid])\
-    \ sub.push_back(sub_root);\n                    std::sort(sub.begin(), sub.end());\n\
-    \                    for (std::size_t i = 0; i < sub.size(); ++i) {\n        \
-    \                dq.emplace_back(sub[i], centroid, i, 1);\n                  \
-    \  }\n                    sep.push_back(0);\n                    ran.resize(sub.size(),\
-    \ { { -1, -1 } });\n                    int pre_dep = 0, pre_id = -1;\n      \
-    \              while (dq.size()) {\n                        const auto [u, p,\
-    \ id, dep] = dq.front();\n                        dq.pop_front();\n          \
-    \              if (pre_dep != dep or pre_id != id) {\n                       \
-    \     if (pre_dep != dep) sep.push_back(vs.size());\n                        \
-    \    if (pre_id >= 0) {\n                                ran[pre_id][pre_dep].second\
-    \ = vs.size();\n                            }\n                            ran[id].emplace_back(vs.size(),\
-    \ -1);\n                            pre_dep = dep, pre_id = id;\n            \
-    \            }\n                        vs.push_back(dat[u]);\n              \
-    \          for (int v : (*this)[u]) {\n                            if (v == p)\
-    \ continue;\n                            dq.emplace_back(v, u, id, dep + 1);\n\
-    \                        }\n                    }\n                    if (pre_id\
-    \ >= 0) {\n                        ran[pre_id][pre_dep].second = vs.size();\n\
-    \                        sep.push_back(vs.size());\n                    }\n  \
-    \                  _seg[centroid] = segtree_type(std::move(vs));\n           \
-    \     }\n            );\n        }\n\n        T prod(int u, int d) {\n       \
-    \     T res = e();\n            int skip = -1;\n            for (int v = u;;)\
-    \ {\n                res = op(res, prod(v, d - _hld.dist(u, v), skip));\n    \
-    \            int p = _tree.get_parent(v);\n                if (p < 0) break;\n\
+    \   _seq.resize(size());\n            _tree = base_type::decomp(\n           \
+    \     base_type::dummy,\n                [&](int centroid, int) {\n          \
+    \          _idx[centroid].push_back(0);\n                    std::vector<T> vs\
+    \ { dat[centroid] };\n                    auto &sep = _sep[centroid];\n      \
+    \              auto &ran = _range[centroid];\n                    auto &sub =\
+    \ _sub_root[centroid];\n                    // (current vertex, parent vertex,\
+    \ component id, depth)\n                    std::deque<std::tuple<int, int, int,\
+    \ int>> dq;\n                    for (int sub_root : (*this)[centroid]) sub.push_back(sub_root);\n\
+    \                    std::sort(sub.begin(), sub.end());\n                    for\
+    \ (std::size_t i = 0; i < sub.size(); ++i) {\n                        dq.emplace_back(sub[i],\
+    \ centroid, i, 1);\n                    }\n                    sep.push_back(0);\n\
+    \                    ran.resize(sub.size(), { { -1, -1 } });\n               \
+    \     int pre_dep = 0, pre_id = -1;\n                    while (dq.size()) {\n\
+    \                        const auto [u, p, id, dep] = dq.front();\n          \
+    \              dq.pop_front();\n                        if (pre_dep != dep or\
+    \ pre_id != id) {\n                            if (pre_dep != dep) sep.push_back(vs.size());\n\
+    \                            if (pre_id >= 0) {\n                            \
+    \    ran[pre_id][pre_dep].second = vs.size();\n                            }\n\
+    \                            ran[id].emplace_back(vs.size(), -1);\n          \
+    \                  pre_dep = dep, pre_id = id;\n                        }\n  \
+    \                      _idx[u].push_back(vs.size());\n                       \
+    \ vs.push_back(dat[u]);\n                        for (int v : (*this)[u]) {\n\
+    \                            if (v == p) continue;\n                         \
+    \   dq.emplace_back(v, u, id, dep + 1);\n                        }\n         \
+    \           }\n                    if (pre_id >= 0) {\n                      \
+    \  ran[pre_id][pre_dep].second = vs.size();\n                        sep.push_back(vs.size());\n\
+    \                    }\n                    _seq[centroid] = sequence_type(std::move(vs));\n\
+    \                }\n            );\n        }\n\n        // getter(seq, i)\n \
+    \       template <typename Getter>\n        auto get(int u, Getter &&getter) {\n\
+    \            return getter(_seq[u], 0);\n        }\n        // setter(seq, i)\n\
+    \        template <typename Setter>\n        void set(int u, Setter &&setter)\
+    \ {\n            for (int i : _idx[u]) setter(_seq[std::exchange(u, _tree.get_parent(u))],\
+    \ i);\n        }\n        // agg(seq, l, r)\n        template <typename Aggregator>\n\
+    \        void prod(int u, int d, Aggregator &&agg) {\n            for (int v =\
+    \ u, skip = -1;;) {\n                prod(v, d - _hld.dist(u, v), skip, agg);\n\
+    \                int p = _tree.get_parent(v);\n                if (p < 0) break;\n\
     \                skip = _hld.move_to(p, v, 1);\n                v = p;\n     \
-    \       }\n            return res;\n        }\n\n    private:\n        HeavyLightDecomposition\
+    \       }\n        }\n        \n    protected:\n        HeavyLightDecomposition\
     \ _hld;\n\n        CentroidDecomposition::DecompositionTree _tree;\n\n       \
-    \ std::vector<int> _siz;\n        std::vector<std::vector<int>> _sub_root;\n \
-    \       std::vector<std::vector<int>> _sep;\n        std::vector<std::vector<std::vector<std::pair<int,\
-    \ int>>>> _range;\n        std::vector<segtree_type> _seg;\n\n        T prod(int\
-    \ u, int d, int skip) {\n            if (d == 0) return _seg[u].get(0);\n    \
-    \        if (d < 0 or int(_sep[u].size()) <= d + 1) return e();\n            int\
-    \ l = _sep[u][d], r = _sep[u][d + 1];\n            if (skip < 0) return _seg[u].prod(l,\
-    \ r);\n            int skip_index = std::lower_bound(_sub_root[u].begin(), _sub_root[u].end(),\
-    \ skip) - _sub_root[u].begin();\n            if (int(_range[u][skip_index].size())\
-    \ <= d) {\n                return _seg[u].prod(l, r);\n            } else {\n\
-    \                auto [ml, mr] = _range[u][skip_index][d];\n                return\
-    \ op(_seg[u].prod(l, ml), _seg[u].prod(mr, r));\n            }\n        }\n  \
-    \  };\n} // namespace suisen\n\n\n\n#line 7 \"test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp\"\
+    \ std::vector<std::vector<int>> _idx;\n        std::vector<std::vector<int>> _sub_root;\n\
+    \        std::vector<std::vector<int>> _sep;\n        std::vector<std::vector<std::vector<std::pair<int,\
+    \ int>>>> _range;\n        std::vector<sequence_type> _seq;\n\n        template\
+    \ <typename Aggregator>\n        void prod(int u, int d, int skip, Aggregator\
+    \ &&agg) {\n            if (d == 0) {\n                agg(_seq[u], 0, 1);\n \
+    \               return;\n            }\n            if (d < 0 or int(_sep[u].size())\
+    \ <= d + 1) return;\n            int l = _sep[u][d], r = _sep[u][d + 1];\n   \
+    \         if (skip < 0) {\n                agg(_seq[u], l, r);\n             \
+    \   return;\n            }\n            int skip_index = std::lower_bound(_sub_root[u].begin(),\
+    \ _sub_root[u].end(), skip) - _sub_root[u].begin();\n            if (int(_range[u][skip_index].size())\
+    \ <= d) {\n                agg(_seq[u], l, r);\n            } else {\n       \
+    \         auto [ml, mr] = _range[u][skip_index][d];\n                agg(_seq[u],\
+    \ l, ml);\n                agg(_seq[u], mr, r);\n            }\n        }\n  \
+    \  };\n} // namespace suisen\n\n\n\n#line 7 \"library/tree/contour_aggregation_query_on_tree.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T, T(*op)(T, T), T(*e)()>\n   \
+    \ struct ContourAggregationQueryOnTree : ContourAggregationQueryOnTreeBase<atcoder::segtree<T,\
+    \ op, e>> {\n        using base_type = ContourAggregationQueryOnTreeBase<atcoder::segtree<T,\
+    \ op, e>>;\n        using base_type::base_type;\n\n        T prod(int u, int d)\
+    \ {\n            T res = e();\n            base_type::prod(u, d, [&res](auto &seg,\
+    \ int l, int r) { res = op(res, seg.prod(l, r)); });\n            return res;\n\
+    \        }\n        T get(int u) {\n            return base_type::get(u, [](auto\
+    \ &seg, int i) { return seg.get(i); });\n        }\n        void set(int u, const\
+    \ T &val) {\n            base_type::set(u, [&val](auto &seg, int i) { seg.set(i,\
+    \ val); });\n        }\n        template <typename F>\n        void apply(int\
+    \ u, F &&f) {\n            set(u, f(get(u)));\n        }\n    };\n} // namespace\
+    \ suisen\n\n\n\n#line 7 \"test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp\"\
     \n\nint op(int x, int y) {\n    return x + y;\n}\nint e() {\n    return 0;\n}\n\
     \nvoid test() {\n    std::vector<std::vector<int>> g {\n        { 1, 8, 16 },\
     \       // 0\n        { 0, 2, 3 },        // 1\n        { 1 },              //\
@@ -315,13 +338,14 @@ data:
     Hello World\" << std::endl;\n    return 0;\n}"
   dependsOn:
   - library/tree/contour_aggregation_query_on_tree.hpp
+  - library/tree/contour_aggregation_query_on_tree_base.hpp
   - library/tree/centroid_decomposition.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
   path: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
   requiredBy: []
-  timestamp: '2022-03-21 02:24:41+09:00'
+  timestamp: '2022-03-21 22:26:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp

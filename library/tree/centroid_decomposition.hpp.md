@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/contour_aggregation_query_on_tree.hpp
     title: Contour Aggregation Query On Tree
+  - icon: ':heavy_check_mark:'
+    path: library/tree/contour_aggregation_query_on_tree_base.hpp
+    title: library/tree/contour_aggregation_query_on_tree_base.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
@@ -144,6 +147,7 @@ data:
   path: library/tree/centroid_decomposition.hpp
   requiredBy:
   - library/tree/contour_aggregation_query_on_tree.hpp
+  - library/tree/contour_aggregation_query_on_tree_base.hpp
   timestamp: '2021-11-23 20:31:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

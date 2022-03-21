@@ -105,6 +105,9 @@ data:
     path: library/tree/contour_aggregation_query_on_tree.hpp
     title: Contour Aggregation Query On Tree
   - icon: ':heavy_check_mark:'
+    path: library/tree/contour_aggregation_query_on_tree_base.hpp
+    title: library/tree/contour_aggregation_query_on_tree_base.hpp
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
   - icon: ':heavy_check_mark:'
@@ -331,6 +334,7 @@ data:
   - library/tree/lowest_common_ancestor.hpp
   - library/tree/contour_aggregation_query_on_tree.hpp
   - library/tree/heavy_light_decomposition.hpp
+  - library/tree/contour_aggregation_query_on_tree_base.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/wavelet_matrix.hpp
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
