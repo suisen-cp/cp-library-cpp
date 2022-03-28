@@ -86,10 +86,14 @@ class BinaryTrie {
 
         inline U xor_kth_min(const U x, const int k) const {
             assert(0 <= k and k < size());
-            return unchecked_xor_kth_min(x, k);
+            return unchecked_xor_kth_element</* is_max_query = */false>(x, k);
+        }
+        inline U xor_kth_max(const U x, const int k) const {
+            assert(0 <= k and k < size());
+            return unchecked_xor_kth_element</* is_max_query = */true>(x, k);
         }
         inline U xor_min(const U x) const { return xor_kth_min(x, 0);  }
-        inline U xor_max(const U x) const { return xor_kth_min(~x, 0); }
+        inline U xor_max(const U x) const { return xor_kth_max(x, 0); }
         int xor_count_lt(const U x, const U val) const noexcept {
             int res = 0;
             Node *cur = root;
@@ -109,19 +113,19 @@ class BinaryTrie {
         inline int xor_count_geq(const U x, const U val) const noexcept { return size() - xor_count_lt(x, val);     }
         inline U xor_lower(const U x, const U val, const U default_value = ~U(0)) const noexcept {
             int k = size() - xor_count_geq(x, val) - 1;
-            return k < 0 ? default_value : unchecked_xor_kth_min(x, k);
+            return k < 0 ? default_value : unchecked_xor_kth_element(x, k);
         }
         inline U xor_floor(const U x, const U val, const U default_value = ~U(0)) const noexcept {
             int k = size() - xor_count_gt(x, val) - 1;
-            return k < 0 ? default_value : unchecked_xor_kth_min(x, k);
+            return k < 0 ? default_value : unchecked_xor_kth_element(x, k);
         }
         inline U xor_higher(const U x, const U val, const U default_value = ~U(0)) const noexcept {
             int k = xor_count_leq(x, val);
-            return k == size() ? default_value : unchecked_xor_kth_min(x, k);
+            return k == size() ? default_value : unchecked_xor_kth_element(x, k);
         }
         inline U xor_ceil(const U x, const U val, const U default_value = ~U(0)) const noexcept {
             int k = xor_count_lt(x, val);
-            return k == size() ? default_value : unchecked_xor_kth_min(x, k);
+            return k == size() ? default_value : unchecked_xor_kth_element(x, k);
         }
 
         inline U kth_min(const int k) const { return xor_kth_min(0, k); }
@@ -155,12 +159,13 @@ class BinaryTrie {
             cur->update_size();
             return removed;
         }
-        U unchecked_xor_kth_min(const U x, const int k) const noexcept {
+        template <bool is_max_query = false>
+        U unchecked_xor_kth_element(const U x, const int k) const noexcept {
             U res = 0;
             int rest = k;
             Node *cur = root;
             for (int i = bit_length - 1; i >= 0; --i) {
-                bool b = bit(x, i);
+                bool b = is_max_query ^ bit(x, i);
                 int sz = Node::size((*cur)[b]);
                 if (sz <= rest) rest -= sz, b = not b;
                 res |= U(b) << i;
