@@ -59,14 +59,17 @@ data:
     \  inline int count(const U val) const noexcept { return prefix_count(val, 0);\
     \ }\n        inline bool contains(const U val) const noexcept { return count(val)\
     \ > 0; }\n\n        inline U xor_kth_min(const U x, const int k) const {\n   \
-    \         assert(0 <= k and k < size());\n            return unchecked_xor_kth_min(x,\
-    \ k);\n        }\n        inline U xor_min(const U x) const { return xor_kth_min(x,\
-    \ 0);  }\n        inline U xor_max(const U x) const { return xor_kth_min(~x, 0);\
-    \ }\n        int xor_count_lt(const U x, const U val) const noexcept {\n     \
-    \       int res = 0;\n            Node *cur = root;\n            for (int i =\
-    \ bit_length - 1; i >= 0; --i) {\n                if (cur == nullptr) break;\n\
-    \                bool bx = bit(x, i);\n                bool bv = bit(x ^ val,\
-    \ i);\n                if (bx != bv) {\n                    res += Node::size((*cur)[bx]);\n\
+    \         assert(0 <= k and k < size());\n            return unchecked_xor_kth_element</*\
+    \ is_max_query = */false>(x, k);\n        }\n        inline U xor_kth_max(const\
+    \ U x, const int k) const {\n            assert(0 <= k and k < size());\n    \
+    \        return unchecked_xor_kth_element</* is_max_query = */true>(x, k);\n \
+    \       }\n        inline U xor_min(const U x) const { return xor_kth_min(x, 0);\
+    \  }\n        inline U xor_max(const U x) const { return xor_kth_max(x, 0); }\n\
+    \        int xor_count_lt(const U x, const U val) const noexcept {\n         \
+    \   int res = 0;\n            Node *cur = root;\n            for (int i = bit_length\
+    \ - 1; i >= 0; --i) {\n                if (cur == nullptr) break;\n          \
+    \      bool bx = bit(x, i);\n                bool bv = bit(x ^ val, i);\n    \
+    \            if (bx != bv) {\n                    res += Node::size((*cur)[bx]);\n\
     \                }\n                cur = (*cur)[bv];\n            }\n       \
     \     return res;\n        }\n        inline int xor_count_leq(const U x, const\
     \ U val) const noexcept { return xor_count_lt(x, val) + count(val); }\n      \
@@ -75,17 +78,17 @@ data:
     \ U val) const noexcept { return size() - xor_count_lt(x, val);     }\n      \
     \  inline U xor_lower(const U x, const U val, const U default_value = ~U(0)) const\
     \ noexcept {\n            int k = size() - xor_count_geq(x, val) - 1;\n      \
-    \      return k < 0 ? default_value : unchecked_xor_kth_min(x, k);\n        }\n\
-    \        inline U xor_floor(const U x, const U val, const U default_value = ~U(0))\
-    \ const noexcept {\n            int k = size() - xor_count_gt(x, val) - 1;\n \
-    \           return k < 0 ? default_value : unchecked_xor_kth_min(x, k);\n    \
-    \    }\n        inline U xor_higher(const U x, const U val, const U default_value\
-    \ = ~U(0)) const noexcept {\n            int k = xor_count_leq(x, val);\n    \
-    \        return k == size() ? default_value : unchecked_xor_kth_min(x, k);\n \
-    \       }\n        inline U xor_ceil(const U x, const U val, const U default_value\
+    \      return k < 0 ? default_value : unchecked_xor_kth_element(x, k);\n     \
+    \   }\n        inline U xor_floor(const U x, const U val, const U default_value\
+    \ = ~U(0)) const noexcept {\n            int k = size() - xor_count_gt(x, val)\
+    \ - 1;\n            return k < 0 ? default_value : unchecked_xor_kth_element(x,\
+    \ k);\n        }\n        inline U xor_higher(const U x, const U val, const U\
+    \ default_value = ~U(0)) const noexcept {\n            int k = xor_count_leq(x,\
+    \ val);\n            return k == size() ? default_value : unchecked_xor_kth_element(x,\
+    \ k);\n        }\n        inline U xor_ceil(const U x, const U val, const U default_value\
     \ = ~U(0)) const noexcept {\n            int k = xor_count_lt(x, val);\n     \
-    \       return k == size() ? default_value : unchecked_xor_kth_min(x, k);\n  \
-    \      }\n\n        inline U kth_min(const int k) const { return xor_kth_min(0,\
+    \       return k == size() ? default_value : unchecked_xor_kth_element(x, k);\n\
+    \        }\n\n        inline U kth_min(const int k) const { return xor_kth_min(0,\
     \ k); }\n        inline U min() const { return xor_kth_min(0, 0); }\n        inline\
     \ U max() const { return xor_kth_min(~U(0), 0); }\n        inline int count_lt\
     \ (const U val) const noexcept { return xor_count_lt(0, val);  }\n        inline\
@@ -109,14 +112,14 @@ data:
     \                return removed;\n            }\n            bool b = bit(val,\
     \ k);\n            if (cur->is_absent(b)) return 0;\n            int removed =\
     \ erase((*cur)[b], k - 1, val, num);\n            cur->update_size();\n      \
-    \      return removed;\n        }\n        U unchecked_xor_kth_min(const U x,\
-    \ const int k) const noexcept {\n            U res = 0;\n            int rest\
-    \ = k;\n            Node *cur = root;\n            for (int i = bit_length - 1;\
-    \ i >= 0; --i) {\n                bool b = bit(x, i);\n                int sz\
-    \ = Node::size((*cur)[b]);\n                if (sz <= rest) rest -= sz, b = not\
-    \ b;\n                res |= U(b) << i;\n                cur = (*cur)[b];\n  \
-    \          }\n            return x ^ res;\n        }\n};\n} // namespace suisen\n\
-    \n\n"
+    \      return removed;\n        }\n        template <bool is_max_query = false>\n\
+    \        U unchecked_xor_kth_element(const U x, const int k) const noexcept {\n\
+    \            U res = 0;\n            int rest = k;\n            Node *cur = root;\n\
+    \            for (int i = bit_length - 1; i >= 0; --i) {\n                bool\
+    \ b = is_max_query ^ bit(x, i);\n                int sz = Node::size((*cur)[b]);\n\
+    \                if (sz <= rest) rest -= sz, b = not b;\n                res |=\
+    \ U(b) << i;\n                cur = (*cur)[b];\n            }\n            return\
+    \ x ^ res;\n        }\n};\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_BINARY_TRIE\n#define SUISEN_BINARY_TRIE\n\n#include <cassert>\n\
     #include <limits>\n#include <optional>\n#include <string>\n#include <vector>\n\
     \nnamespace suisen {\ntemplate <typename T, int bit_length = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
@@ -162,14 +165,17 @@ data:
     \  inline int count(const U val) const noexcept { return prefix_count(val, 0);\
     \ }\n        inline bool contains(const U val) const noexcept { return count(val)\
     \ > 0; }\n\n        inline U xor_kth_min(const U x, const int k) const {\n   \
-    \         assert(0 <= k and k < size());\n            return unchecked_xor_kth_min(x,\
-    \ k);\n        }\n        inline U xor_min(const U x) const { return xor_kth_min(x,\
-    \ 0);  }\n        inline U xor_max(const U x) const { return xor_kth_min(~x, 0);\
-    \ }\n        int xor_count_lt(const U x, const U val) const noexcept {\n     \
-    \       int res = 0;\n            Node *cur = root;\n            for (int i =\
-    \ bit_length - 1; i >= 0; --i) {\n                if (cur == nullptr) break;\n\
-    \                bool bx = bit(x, i);\n                bool bv = bit(x ^ val,\
-    \ i);\n                if (bx != bv) {\n                    res += Node::size((*cur)[bx]);\n\
+    \         assert(0 <= k and k < size());\n            return unchecked_xor_kth_element</*\
+    \ is_max_query = */false>(x, k);\n        }\n        inline U xor_kth_max(const\
+    \ U x, const int k) const {\n            assert(0 <= k and k < size());\n    \
+    \        return unchecked_xor_kth_element</* is_max_query = */true>(x, k);\n \
+    \       }\n        inline U xor_min(const U x) const { return xor_kth_min(x, 0);\
+    \  }\n        inline U xor_max(const U x) const { return xor_kth_max(x, 0); }\n\
+    \        int xor_count_lt(const U x, const U val) const noexcept {\n         \
+    \   int res = 0;\n            Node *cur = root;\n            for (int i = bit_length\
+    \ - 1; i >= 0; --i) {\n                if (cur == nullptr) break;\n          \
+    \      bool bx = bit(x, i);\n                bool bv = bit(x ^ val, i);\n    \
+    \            if (bx != bv) {\n                    res += Node::size((*cur)[bx]);\n\
     \                }\n                cur = (*cur)[bv];\n            }\n       \
     \     return res;\n        }\n        inline int xor_count_leq(const U x, const\
     \ U val) const noexcept { return xor_count_lt(x, val) + count(val); }\n      \
@@ -178,17 +184,17 @@ data:
     \ U val) const noexcept { return size() - xor_count_lt(x, val);     }\n      \
     \  inline U xor_lower(const U x, const U val, const U default_value = ~U(0)) const\
     \ noexcept {\n            int k = size() - xor_count_geq(x, val) - 1;\n      \
-    \      return k < 0 ? default_value : unchecked_xor_kth_min(x, k);\n        }\n\
-    \        inline U xor_floor(const U x, const U val, const U default_value = ~U(0))\
-    \ const noexcept {\n            int k = size() - xor_count_gt(x, val) - 1;\n \
-    \           return k < 0 ? default_value : unchecked_xor_kth_min(x, k);\n    \
-    \    }\n        inline U xor_higher(const U x, const U val, const U default_value\
-    \ = ~U(0)) const noexcept {\n            int k = xor_count_leq(x, val);\n    \
-    \        return k == size() ? default_value : unchecked_xor_kth_min(x, k);\n \
-    \       }\n        inline U xor_ceil(const U x, const U val, const U default_value\
+    \      return k < 0 ? default_value : unchecked_xor_kth_element(x, k);\n     \
+    \   }\n        inline U xor_floor(const U x, const U val, const U default_value\
+    \ = ~U(0)) const noexcept {\n            int k = size() - xor_count_gt(x, val)\
+    \ - 1;\n            return k < 0 ? default_value : unchecked_xor_kth_element(x,\
+    \ k);\n        }\n        inline U xor_higher(const U x, const U val, const U\
+    \ default_value = ~U(0)) const noexcept {\n            int k = xor_count_leq(x,\
+    \ val);\n            return k == size() ? default_value : unchecked_xor_kth_element(x,\
+    \ k);\n        }\n        inline U xor_ceil(const U x, const U val, const U default_value\
     \ = ~U(0)) const noexcept {\n            int k = xor_count_lt(x, val);\n     \
-    \       return k == size() ? default_value : unchecked_xor_kth_min(x, k);\n  \
-    \      }\n\n        inline U kth_min(const int k) const { return xor_kth_min(0,\
+    \       return k == size() ? default_value : unchecked_xor_kth_element(x, k);\n\
+    \        }\n\n        inline U kth_min(const int k) const { return xor_kth_min(0,\
     \ k); }\n        inline U min() const { return xor_kth_min(0, 0); }\n        inline\
     \ U max() const { return xor_kth_min(~U(0), 0); }\n        inline int count_lt\
     \ (const U val) const noexcept { return xor_count_lt(0, val);  }\n        inline\
@@ -212,19 +218,19 @@ data:
     \                return removed;\n            }\n            bool b = bit(val,\
     \ k);\n            if (cur->is_absent(b)) return 0;\n            int removed =\
     \ erase((*cur)[b], k - 1, val, num);\n            cur->update_size();\n      \
-    \      return removed;\n        }\n        U unchecked_xor_kth_min(const U x,\
-    \ const int k) const noexcept {\n            U res = 0;\n            int rest\
-    \ = k;\n            Node *cur = root;\n            for (int i = bit_length - 1;\
-    \ i >= 0; --i) {\n                bool b = bit(x, i);\n                int sz\
-    \ = Node::size((*cur)[b]);\n                if (sz <= rest) rest -= sz, b = not\
-    \ b;\n                res |= U(b) << i;\n                cur = (*cur)[b];\n  \
-    \          }\n            return x ^ res;\n        }\n};\n} // namespace suisen\n\
-    \n#endif // SUISEN_BINARY_TRIE\n"
+    \      return removed;\n        }\n        template <bool is_max_query = false>\n\
+    \        U unchecked_xor_kth_element(const U x, const int k) const noexcept {\n\
+    \            U res = 0;\n            int rest = k;\n            Node *cur = root;\n\
+    \            for (int i = bit_length - 1; i >= 0; --i) {\n                bool\
+    \ b = is_max_query ^ bit(x, i);\n                int sz = Node::size((*cur)[b]);\n\
+    \                if (sz <= rest) rest -= sz, b = not b;\n                res |=\
+    \ U(b) << i;\n                cur = (*cur)[b];\n            }\n            return\
+    \ x ^ res;\n        }\n};\n} // namespace suisen\n\n#endif // SUISEN_BINARY_TRIE\n"
   dependsOn: []
   isVerificationFile: false
   path: library/datastructure/binary_trie.hpp
   requiredBy: []
-  timestamp: '2021-07-20 20:17:05+09:00'
+  timestamp: '2022-03-28 17:49:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/binary_trie/xor_game.test.cpp
