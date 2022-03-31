@@ -465,6 +465,9 @@ data:
       path: library/tree/range_contour_aggregation_query_on_tree.hpp
       title: library/tree/range_contour_aggregation_query_on_tree.hpp
     - icon: ':heavy_check_mark:'
+      path: library/tree/range_contour_operation_query_on_tree.hpp
+      title: library/tree/range_contour_operation_query_on_tree.hpp
+    - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: Rerooting
   - name: library/type_traits
@@ -1158,6 +1161,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
       title: test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
+  - name: test/src/tree/range_contour_operation_query_on_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/range_contour_operation_query_on_tree/yuki1038.test.cpp
+      title: test/src/tree/range_contour_operation_query_on_tree/yuki1038.test.cpp
   - name: test/src/tree/rerooting
     pages:
     - icon: ':heavy_check_mark:'
