@@ -6,10 +6,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/algorithm/convex_hull_trick.hpp
       title: Convex Hull Trick
+    - icon: ':heavy_check_mark:'
+      path: library/algorithm/dynamic_convex_hull_offline.hpp
+      title: library/algorithm/dynamic_convex_hull_offline.hpp
     - icon: ':warning:'
       path: library/algorithm/horn_sat.hpp
       title: Horn SAT
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/algorithm/mo.hpp
       title: Mo
     - icon: ':heavy_check_mark:'
@@ -27,6 +30,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/algorithm/slope_trick.hpp
       title: Slope Trick
+    - icon: ':warning:'
+      path: library/algorithm/two_sat.hpp
+      title: library/algorithm/two_sat.hpp
   - name: library/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -253,6 +259,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/dulmage_mendelsohn_decomposition.hpp
       title: Dulmage Mendelsohn Decomposition
+    - icon: ':warning:'
+      path: library/graph/functional_graph.hpp
+      title: library/graph/functional_graph.hpp
     - icon: ':warning:'
       path: library/graph/kruscal.hpp
       title: Kruscal
@@ -531,6 +540,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
       title: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
+  - name: test/src/algorithm/dynamic_convex_hull_offline
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/dynamic_convex_hull_offline/convex_layers.test.cpp
+      title: test/src/algorithm/dynamic_convex_hull_offline/convex_layers.test.cpp
   - name: test/src/algorithm/mo
     pages:
     - icon: ':heavy_check_mark:'
@@ -539,7 +553,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/mo/abc238_g.test.cpp
       title: test/src/algorithm/mo/abc238_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/algorithm/mo/abc242_g.test.cpp
       title: test/src/algorithm/mo/abc242_g.test.cpp
   - name: test/src/algorithm/monotonic_convex_hull_trick
