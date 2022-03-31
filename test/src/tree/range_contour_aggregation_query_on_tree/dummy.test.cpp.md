@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/range_contour_aggregation_query_on_tree.hpp
     title: library/tree/range_contour_aggregation_query_on_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -162,8 +162,8 @@ data:
     \    for (int i = 0; i < n; ++i) for (int j : g[i]) if (i < j) {\n        contour_aggregator.add_edge(i,\
     \ j);\n    }\n\n    contour_aggregator.build();\n    NaiveSolution naive(g, dat);\n\
     \n    random_queries(n, q, contour_aggregator, naive);\n}\n\nint main() {\n  \
-    \  test1();\n    test2();\n    // std::cout << \"Hello World\" << std::endl;\n\
-    \    return 0;\n}\n"
+    \  test1();\n    test2();\n    std::cout << \"Hello World\" << std::endl;\n  \
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n\n#include <iostream>\n#include <numeric>\n#include <random>\n\n#include \"\
     library/tree/range_contour_aggregation_query_on_tree.hpp\"\n\nint op(int x, int\
@@ -216,15 +216,15 @@ data:
     \ contour_aggregator(dat);\n    for (int i = 0; i < n; ++i) for (int j : g[i])\
     \ if (i < j) {\n        contour_aggregator.add_edge(i, j);\n    }\n\n    contour_aggregator.build();\n\
     \    NaiveSolution naive(g, dat);\n\n    random_queries(n, q, contour_aggregator,\
-    \ naive);\n}\n\nint main() {\n    test1();\n    test2();\n    // std::cout <<\
-    \ \"Hello World\" << std::endl;\n    return 0;\n}"
+    \ naive);\n}\n\nint main() {\n    test1();\n    test2();\n    std::cout << \"\
+    Hello World\" << std::endl;\n    return 0;\n}"
   dependsOn:
   - library/tree/range_contour_aggregation_query_on_tree.hpp
   isVerificationFile: true
   path: test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
   requiredBy: []
-  timestamp: '2022-03-31 19:51:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-31 19:54:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
 layout: document
