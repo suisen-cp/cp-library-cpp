@@ -461,6 +461,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: Lowest Common Ancestor
+    - icon: ':x:'
+      path: library/tree/range_contour_aggregation_query_on_tree.hpp
+      title: library/tree/range_contour_aggregation_query_on_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: Rerooting
@@ -1150,6 +1153,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
       title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - name: test/src/tree/range_contour_aggregation_query_on_tree
+    pages:
+    - icon: ':x:'
+      path: test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
+      title: test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
   - name: test/src/tree/rerooting
     pages:
     - icon: ':heavy_check_mark:'
