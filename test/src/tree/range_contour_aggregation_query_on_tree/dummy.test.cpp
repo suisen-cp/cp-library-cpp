@@ -152,6 +152,6 @@ void test2(int n = 1000, int q = 10000) {
 int main() {
     test1();
     test2();
-    // std::cout << "Hello World" << std::endl;
+    std::cout << "Hello World" << std::endl;
     return 0;
 }
