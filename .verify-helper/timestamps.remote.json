@@ -153,6 +153,7 @@
 "test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp": "2022-03-21 02:23:33 +0900",
 "test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp": "2022-02-25 23:20:55 +0900",
 "test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp": "2022-03-31 19:54:33 +0900",
+"test/src/tree/range_contour_operation_query_on_tree/yuki1038.test.cpp": "2022-03-31 22:21:43 +0900",
 "test/src/tree/rerooting/abc160_f.test.cpp": "2021-10-12 21:48:57 +0900",
 "test/src/tree/rerooting/abc222_f.test.cpp": "2021-10-12 21:48:57 +0900",
 "test/src/tree/rerooting/edpc_v.test.cpp": "2021-10-12 21:48:57 +0900",
