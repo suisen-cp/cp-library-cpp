@@ -7,7 +7,7 @@ data:
     title: Contour Aggregation Query On Tree
   - icon: ':heavy_check_mark:'
     path: library/tree/contour_aggregation_query_on_tree_base.hpp
-    title: library/tree/contour_aggregation_query_on_tree_base.hpp
+    title: Contour Aggregation Query On Tree Base
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp

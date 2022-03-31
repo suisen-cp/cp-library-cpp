@@ -135,8 +135,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/functional_graph.hpp
 layout: document
-redirect_from:
-- /library/library/graph/functional_graph.hpp
-- /library/library/graph/functional_graph.hpp.html
-title: library/graph/functional_graph.hpp
+title: Functional Graph
 ---
+## Functional Graph

@@ -195,8 +195,6 @@ data:
   - test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
 documentation_of: library/tree/contour_aggregation_query_on_tree_base.hpp
 layout: document
-redirect_from:
-- /library/library/tree/contour_aggregation_query_on_tree_base.hpp
-- /library/library/tree/contour_aggregation_query_on_tree_base.hpp.html
-title: library/tree/contour_aggregation_query_on_tree_base.hpp
+title: Contour Aggregation Query On Tree Base
 ---
+## Contour Aggregation Query On Tree Base

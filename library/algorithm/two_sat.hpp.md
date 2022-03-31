@@ -37,8 +37,6 @@ data:
   verifiedWith: []
 documentation_of: library/algorithm/two_sat.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/two_sat.hpp
-- /library/library/algorithm/two_sat.hpp.html
-title: library/algorithm/two_sat.hpp
+title: Two Sat
 ---
+## Two Sat

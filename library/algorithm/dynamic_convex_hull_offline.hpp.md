@@ -241,8 +241,7 @@ data:
   - test/src/algorithm/dynamic_convex_hull_offline/convex_layers.test.cpp
 documentation_of: library/algorithm/dynamic_convex_hull_offline.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/dynamic_convex_hull_offline.hpp
-- /library/library/algorithm/dynamic_convex_hull_offline.hpp.html
-title: library/algorithm/dynamic_convex_hull_offline.hpp
+title: Dynamic Convex Hull Offline
 ---
+
+## Dynamic Convex Hull Offline

@@ -8,7 +8,7 @@ data:
       title: Convex Hull Trick
     - icon: ':heavy_check_mark:'
       path: library/algorithm/dynamic_convex_hull_offline.hpp
-      title: library/algorithm/dynamic_convex_hull_offline.hpp
+      title: Dynamic Convex Hull Offline
     - icon: ':warning:'
       path: library/algorithm/horn_sat.hpp
       title: Horn SAT
@@ -32,7 +32,7 @@ data:
       title: Slope Trick
     - icon: ':warning:'
       path: library/algorithm/two_sat.hpp
-      title: library/algorithm/two_sat.hpp
+      title: Two Sat
   - name: library/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -261,7 +261,7 @@ data:
       title: Dulmage Mendelsohn Decomposition
     - icon: ':warning:'
       path: library/graph/functional_graph.hpp
-      title: library/graph/functional_graph.hpp
+      title: Functional Graph
     - icon: ':warning:'
       path: library/graph/kruscal.hpp
       title: Kruscal
@@ -451,7 +451,7 @@ data:
       title: Contour Aggregation Query On Tree
     - icon: ':heavy_check_mark:'
       path: library/tree/contour_aggregation_query_on_tree_base.hpp
-      title: library/tree/contour_aggregation_query_on_tree_base.hpp
+      title: Contour Aggregation Query On Tree Base
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
@@ -463,10 +463,10 @@ data:
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
       path: library/tree/range_contour_aggregation_query_on_tree.hpp
-      title: library/tree/range_contour_aggregation_query_on_tree.hpp
+      title: Range Contour Aggregation Query On Tree
     - icon: ':heavy_check_mark:'
       path: library/tree/range_contour_operation_query_on_tree.hpp
-      title: library/tree/range_contour_operation_query_on_tree.hpp
+      title: Range Contour Operation Query On Tree
     - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: Rerooting

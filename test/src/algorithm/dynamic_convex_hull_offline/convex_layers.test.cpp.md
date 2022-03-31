@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/dynamic_convex_hull_offline.hpp
-    title: library/algorithm/dynamic_convex_hull_offline.hpp
+    title: Dynamic Convex Hull Offline
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
