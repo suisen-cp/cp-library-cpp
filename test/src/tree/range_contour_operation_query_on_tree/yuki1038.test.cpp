@@ -14,6 +14,8 @@ long long id() {
     return 0;
 }
 
+#include <chrono>
+
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
@@ -28,15 +30,31 @@ int main() {
         --u, --v;
         g.add_edge(u, v);
     }
-    g.build();
 
-    for (int i = 0; i < q; ++i) {
-        int x, y, z;
+    std::vector<std::tuple<int, int, int>> qs(q);
+    for (auto &[x, y, z] : qs) {
         std::cin >> x >> y >> z;
         --x, ++y;
-        std::cout << g.get(x) << '\n';
+    }
+    std::vector<long long> ans(q);
+
+    auto t1 = std::chrono::system_clock::now();
+    g.build();
+    auto t2 = std::chrono::system_clock::now();
+    for (int i = 0; i < q; ++i) {
+        const auto &[x, y, z] = qs[i];
+        ans[i] = g.get(x);
         g.apply(x, 0, y, z);
     }
+    auto t3 = std::chrono::system_clock::now();
+
+    for (auto &e : ans) std::cout << e << '\n';
+
+    auto build_time_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();
+    auto query_time_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t3 - t2).count();
+
+    std::cerr << "build : " << build_time_ms << " ms" << std::endl;
+    std::cerr << "query : " << query_time_ms << " ms" << std::endl;
 
     return 0;
 }
