@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: Factorial
   - icon: ':heavy_check_mark:'

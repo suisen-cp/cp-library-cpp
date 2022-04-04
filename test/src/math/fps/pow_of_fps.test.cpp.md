@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/fps.hpp
     title: Fps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: Inv Mods
   _extendedRequiredBy: []
@@ -36,35 +36,33 @@ data:
     using convolution_t = std::vector<mint> (*)(const std::vector<mint> &, const std::vector<mint>\
     \ &);\n\ntemplate <typename mint>\nclass FPS : public std::vector<mint> {\n  \
     \  public:\n        using std::vector<mint>::vector;\n\n        FPS(const std::initializer_list<mint>\
-    \ l) : std::vector<mint>::vector(l) {}\n\n        static void set_multiplication(convolution_t<mint>\
-    \ multiplication) {\n            FPS<mint>::mult = multiplication;\n        }\n\
-    \n        inline FPS& operator=(const std::vector<mint> &&f) & noexcept {\n  \
-    \          std::vector<mint>::operator=(std::move(f));\n            return *this;\n\
-    \        }\n        inline FPS& operator=(const std::vector<mint>  &f) & {\n \
-    \           std::vector<mint>::operator=(f);\n            return *this;\n    \
-    \    }\n\n        inline const mint  operator[](int n) const noexcept { return\
-    \ n <= deg() ? unsafe_get(n) : 0; }\n        inline       mint& operator[](int\
-    \ n)       noexcept { ensure_deg(n); return unsafe_get(n); }\n\n        inline\
-    \ int size() const noexcept { return std::vector<mint>::size(); }\n        inline\
-    \ int deg()  const noexcept { return size() - 1; }\n        inline int normalize()\
-    \ {\n            while (this->size() and this->back() == 0) this->pop_back();\n\
-    \            return deg();\n        }\n        inline FPS& pre_inplace(int max_deg)\
-    \ noexcept {\n            if (deg() > max_deg) this->resize(std::max(0, max_deg\
-    \ + 1));\n            return *this;\n        }\n        inline FPS pre(int max_deg)\
-    \ const noexcept { return FPS(*this).pre_inplace(max_deg); }\n\n        inline\
-    \ FPS operator+() const { return FPS(*this); }\n        FPS operator-() const\
-    \ {\n            FPS f(*this);\n            for (auto &e : f) e = mint::mod()\
-    \ - e;\n            return f;\n        }\n        inline FPS& operator++() { ++(*this)[0];\
-    \ return *this; }\n        inline FPS& operator--() { --(*this)[0]; return *this;\
-    \ }\n        inline FPS& operator+=(const mint x) { (*this)[0] += x; return *this;\
-    \ }\n        inline FPS& operator-=(const mint x) { (*this)[0] -= x; return *this;\
-    \ }\n        FPS& operator+=(const FPS &g) {\n            ensure_deg(g.deg());\n\
-    \            for (int i = 0; i <= g.deg(); ++i) unsafe_get(i) += g.unsafe_get(i);\n\
-    \            return *this;\n        }\n        FPS& operator-=(const FPS &g) {\n\
-    \            ensure_deg(g.deg());\n            for (int i = 0; i <= g.deg(); ++i)\
-    \ unsafe_get(i) -= g.unsafe_get(i);\n            return *this;\n        }\n  \
-    \      inline FPS& operator*=(const FPS  &g) { return *this = FPS<mint>::mult(*this,\
-    \ g); }\n        inline FPS& operator*=(      FPS &&g) { return *this = FPS<mint>::mult(*this,\
+    \ l) : std::vector<mint>::vector(l) {}\n        FPS(const std::vector<mint> &v)\
+    \ : std::vector<mint>::vector(v) {}\n        FPS(std::vector<mint> &&v) : std::vector<mint>::vector(std::move(v))\
+    \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
+    \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        inline\
+    \ const mint  operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n)\
+    \ : 0; }\n        inline       mint& operator[](int n)       noexcept { ensure_deg(n);\
+    \ return unsafe_get(n); }\n\n        inline int size() const noexcept { return\
+    \ std::vector<mint>::size(); }\n        inline int deg()  const noexcept { return\
+    \ size() - 1; }\n        inline int normalize() {\n            while (this->size()\
+    \ and this->back() == 0) this->pop_back();\n            return deg();\n      \
+    \  }\n        inline FPS& pre_inplace(int max_deg) noexcept {\n            if\
+    \ (deg() > max_deg) this->resize(std::max(0, max_deg + 1));\n            return\
+    \ *this;\n        }\n        inline FPS pre(int max_deg) const noexcept { return\
+    \ FPS(*this).pre_inplace(max_deg); }\n\n        inline FPS operator+() const {\
+    \ return FPS(*this); }\n        FPS operator-() const {\n            FPS f(*this);\n\
+    \            for (auto &e : f) e = mint::mod() - e;\n            return f;\n \
+    \       }\n        inline FPS& operator++() { ++(*this)[0]; return *this; }\n\
+    \        inline FPS& operator--() { --(*this)[0]; return *this; }\n        inline\
+    \ FPS& operator+=(const mint x) { (*this)[0] += x; return *this; }\n        inline\
+    \ FPS& operator-=(const mint x) { (*this)[0] -= x; return *this; }\n        FPS&\
+    \ operator+=(const FPS &g) {\n            ensure_deg(g.deg());\n            for\
+    \ (int i = 0; i <= g.deg(); ++i) unsafe_get(i) += g.unsafe_get(i);\n         \
+    \   return *this;\n        }\n        FPS& operator-=(const FPS &g) {\n      \
+    \      ensure_deg(g.deg());\n            for (int i = 0; i <= g.deg(); ++i) unsafe_get(i)\
+    \ -= g.unsafe_get(i);\n            return *this;\n        }\n        inline FPS&\
+    \ operator*=(const FPS  &g) { return *this = FPS<mint>::mult(*this, g); }\n  \
+    \      inline FPS& operator*=(      FPS &&g) { return *this = FPS<mint>::mult(*this,\
     \ g); }\n        inline FPS& operator*=(const mint x) {\n            for (auto\
     \ &e : *this) e *= x;\n            return *this;\n        }\n        FPS& operator/=(FPS\
     \ &&g) {\n            const int fd = normalize(), gd = g.normalize();\n      \
@@ -139,13 +137,13 @@ data:
     \ max_deg) const { return FPS(*this).log_inplace(max_deg); }\n        inline FPS\
     \ exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg); }\n \
     \       inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k,\
-    \ max_deg); }\n\n    private:\n        static inv_mods<mint> invs;\n        static\
-    \ convolution_t<mint> mult;\n        inline void ensure_deg(int d) { if (deg()\
-    \ < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int i)\
-    \ const { return std::vector<mint>::operator[](i); }\n        inline       mint&\
-    \ unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\n   \
-    \     std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n      \
-    \      const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
+    \ max_deg); }\n\n    private:\n        static inline inv_mods<mint> invs;\n  \
+    \      static convolution_t<mint> mult;\n        inline void ensure_deg(int d)\
+    \ { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
+    \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
+    \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
+    \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
+    \          const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
     \            FPS q(k + 1);\n            for (int i = k; i >= 0; --i) {\n     \
     \           mint div = this->unsafe_get(i + gd) * head_inv;\n                q.unsafe_get(i)\
     \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
@@ -184,7 +182,7 @@ data:
   isVerificationFile: true
   path: test/src/math/fps/pow_of_fps.test.cpp
   requiredBy: []
-  timestamp: '2021-08-15 22:47:55+09:00'
+  timestamp: '2022-04-04 15:11:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/fps/pow_of_fps.test.cpp
