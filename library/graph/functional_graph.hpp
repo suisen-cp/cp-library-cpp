@@ -16,7 +16,7 @@ namespace suisen {
 
         FunctionalGraph() : FunctionalGraph(0) {}
         FunctionalGraph(int n) : _n(n), _nxt(n) {}
-        FunctionalGraph(const std::vector<int> &nxt) : _n(nxt.size()), _nxt(nxt) {}
+        FunctionalGraph(const std::vector<int>& nxt) : _n(nxt.size()), _nxt(nxt) {}
 
         const int& operator[](int u) const {
             return _nxt[u];
@@ -37,7 +37,7 @@ namespace suisen {
             int _n, _log;
             std::vector<std::vector<int>> _nxt;
 
-            Doubling(const std::vector<int> &nxt, long long max_step) : _n(nxt.size()), _log(floor_log2(max_step)), _nxt(_log + 1, std::vector<int>(_n)) {
+            Doubling(const std::vector<int>& nxt, long long max_step) : _n(nxt.size()), _log(floor_log2(max_step)), _nxt(_log + 1, std::vector<int>(_n)) {
                 _nxt[0] = nxt;
                 for (int i = 1; i <= _log; ++i) for (int j = 0; j < _n; ++j) {
                     _nxt[i][j] = _nxt[i - 1][_nxt[i - 1][j]];
@@ -58,13 +58,13 @@ namespace suisen {
             Result query(int u, long long d) {
                 T sum = e();
                 for (int l = _log; l >= 0; --l) if ((d >> l) & 1) sum = op(sum, _dat[l][std::exchange(u, _nxt[l][u])]);
-                return Result { u, sum };
+                return Result{ u, sum };
             }
 
         private:
             std::vector<std::vector<T>> _dat;
 
-            DoublingSum(const std::vector<int> &nxt, long long max_step, const std::vector<T> &dat) : Doubling(nxt, max_step), _dat(_log + 1, std::vector<T>(_n, e())) {
+            DoublingSum(const std::vector<int>& nxt, long long max_step, const std::vector<T>& dat) : Doubling(nxt, max_step), _dat(_log + 1, std::vector<T>(_n, e())) {
                 _dat[0] = dat;
                 for (int i = 1; i <= _log; ++i) for (int j = 0; j < _n; ++j) {
                     _dat[i][j] = op(_dat[i - 1][j], _dat[i - 1][_nxt[i - 1][j]]);
@@ -77,7 +77,7 @@ namespace suisen {
         }
 
         template <typename T, T(*op)(T, T), T(*e)()>
-        DoublingSum<T, op, e> doubling(long long max_step, std::vector<T> &dat) const {
+        DoublingSum<T, op, e> doubling(long long max_step, std::vector<T>& dat) const {
             return DoublingSum<T, op, e>(_nxt, max_step, dat);
         }
 
@@ -119,6 +119,46 @@ namespace suisen {
                 }
             };
             for (int i = 0; i < _n; ++i, ++time) if (vis[i] == _n) dfs(dfs, i);
+            return res;
+        }
+
+        /**
+         * Calculates k'th iterate: f(f(f(...f(i)))) for all 0 <= i < N in O(N) time.
+         * Reference: https://noshi91.hatenablog.com/entry/2019/09/22/114149
+         */
+        std::vector<int> kth_iterate(const long long k) {
+            assert(k >= 0);
+            std::vector<int> res(_n);
+            std::vector<int> forest_roots;
+            std::vector<std::vector<int>> forest(_n);
+            std::vector<std::vector<std::pair<long long, int>>> qs(_n);
+            for (const auto& path : infinite_paths()) {
+                const int v = path.head_v;
+                (path.head_len == 0 ? forest_roots : forest[_nxt[v]]).push_back(v);
+                if (path.head_len >= k) continue;
+                qs[path.loop_v].emplace_back(k - path.head_len, v);
+            }
+            std::vector<int> dfs_path(_n);
+            auto dfs = [&](auto dfs, int u, int d) -> void {
+                dfs_path[d] = u;
+                if (d >= k) res[u] = dfs_path[d - k];
+                for (int v : forest[u]) dfs(dfs, v, d + 1);
+            };
+            for (int root : forest_roots) dfs(dfs, root, 0);
+            std::vector<int8_t> seen(_n, false);
+            for (int root : forest_roots) {
+                if (seen[root]) continue;
+                std::vector<int> cycle{ root };
+                for (int v = _nxt[root]; v != root; v = _nxt[v]) cycle.push_back(v);
+                const int len = cycle.size();
+                for (int i = 0; i < len; ++i) {
+                    const int s = cycle[i];
+                    seen[s] = true;
+                    for (const auto& [rem, res_index] : qs[s]) {
+                        res[res_index] = cycle[(i + rem) % len];
+                    }
+                }
+            }
             return res;
         }
 
