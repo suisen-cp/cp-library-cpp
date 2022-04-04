@@ -2,6 +2,7 @@
 #define SUISEN_PERMUTATION
 
 #include <algorithm>
+#include <cassert>
 #include <numeric>
 #include <vector>
 
@@ -49,11 +50,20 @@ namespace suisen {
             return res;
         }
         Permutation pow(long long k) const {
+            assert(k >= 0);
             const int n = size();
-            Permutation res(n), p = *this;
-            for (; k; k >>= 1) {
-                if (k & 1) res *= p;
-                p *= p;
+            std::vector<int8_t> seen(n, false);
+            Permutation res(n);
+            for (int s = 0; s < n; ++s) {
+                if (seen[s]) continue;
+                std::vector<int> cycle { s };
+                for (int v = (*this)[s]; v != s; v = (*this)[v]) cycle.push_back(v);
+                const int l = cycle.size();
+                for (int j = 0; j < l; ++j) {
+                    int v = cycle[j];
+                    seen[v] = true;
+                    res[v] = cycle[(j + k) % l];
+                }
             }
             return res;
         }
