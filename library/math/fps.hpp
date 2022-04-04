@@ -18,18 +18,11 @@ class FPS : public std::vector<mint> {
         using std::vector<mint>::vector;
 
         FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l) {}
+        FPS(const std::vector<mint> &v) : std::vector<mint>::vector(v) {}
+        FPS(std::vector<mint> &&v) : std::vector<mint>::vector(std::move(v)) {}
 
         static void set_multiplication(convolution_t<mint> multiplication) {
             FPS<mint>::mult = multiplication;
-        }
-
-        inline FPS& operator=(const std::vector<mint> &&f) & noexcept {
-            std::vector<mint>::operator=(std::move(f));
-            return *this;
-        }
-        inline FPS& operator=(const std::vector<mint>  &f) & {
-            std::vector<mint>::operator=(f);
-            return *this;
         }
 
         inline const mint  operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) : 0; }
@@ -185,7 +178,7 @@ class FPS : public std::vector<mint> {
         inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k, max_deg); }
 
     private:
-        static inv_mods<mint> invs;
+        static inline inv_mods<mint> invs;
         static convolution_t<mint> mult;
         inline void ensure_deg(int d) { if (deg() < d) this->resize(d + 1, 0); }
         inline const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i); }
