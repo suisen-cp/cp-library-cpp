@@ -267,9 +267,9 @@ data:
   timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/number/util/same_div_dens.test.cpp
   - test/src/number/util/divide_both.test.cpp
   - test/src/number/util/abc222_g.test.cpp
-  - test/src/number/util/same_div_dens.test.cpp
 documentation_of: library/number/util.hpp
 layout: document
 title: Util

@@ -2,19 +2,24 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree/persistent_segment_tree.hpp
+    title: Persistent Segment Tree
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
-    title: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/datastructure/segment_tree/persistent_segment_tree.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp\"\
+    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n\n#include <iostream>\n#include <limits>\n\n#line 1 \"library/datastructure/segment_tree/persistent_segment_tree.hpp\"\
     \n\n\n\n#include <cassert>\n\n#line 1 \"library/util/object_pool.hpp\"\n\n\n\n\
     #include <deque>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
     \ T, bool auto_extend = false>\n    struct ObjectPool {\n        using value_type\
@@ -148,135 +153,135 @@ data:
     \ it) {\n            node_type::dump(_root, it);\n        }\n        std::vector<value_type>\
     \ dump() {\n            return node_type::dump(_root);\n        }\n\n    private:\n\
     \        int _n;\n        node_pointer_type _root;\n        PersistentSegmentTree(int\
-    \ n, node_pointer_type root) : _n(n), _root(root) {}\n    };\n}\n\n\n"
-  code: "#ifndef SUISEN_PERSISTENT_SEGMENT_TREE\n#define SUISEN_PERSISTENT_SEGMENT_TREE\n\
-    \n#include <cassert>\n\n#include \"library/util/object_pool.hpp\"\n\nnamespace\
-    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)()>\n    struct PersistentSegmentTree\
-    \ {\n        struct Node;\n\n        using value_type = T;\n\n        using node_type\
-    \ = Node;\n        using node_pointer_type = node_type*;\n\n        struct Node\
-    \ {\n            static inline ObjectPool<node_type> _pool;\n\n            node_pointer_type\
-    \ _ch[2]{ nullptr, nullptr };\n            value_type _dat;\n\n            Node()\
-    \ : _dat(e()) {}\n\n            static node_pointer_type clone(node_pointer_type\
-    \ node) {\n                return &(*_pool.alloc() = *node);\n            }\n\n\
-    \            static void update(node_pointer_type node) {\n                node->_dat\
-    \ = op(node->_ch[0]->_dat, node->_ch[1]->_dat);\n            }\n\n           \
-    \ static bool is_leaf(node_pointer_type node) {\n                return not node->_ch[0];\n\
-    \            }\n\n            static node_pointer_type build(const std::vector<value_type>&\
-    \ dat) {\n                auto rec = [&](auto rec, int l, int r) -> node_pointer_type\
-    \ {\n                    node_pointer_type res = _pool.alloc();\n            \
-    \        if (r - l == 1) {\n                        res->_dat = dat[l];\n    \
-    \                } else {\n                        int m = (l + r) >> 1;\n   \
-    \                     res->_ch[0] = rec(rec, l, m), res->_ch[1] = rec(rec, m,\
-    \ r);\n                        update(res);\n                    }\n         \
-    \           return res;\n                };\n                return rec(rec, 0,\
-    \ dat.size());\n            }\n\n            static value_type prod_all(node_pointer_type\
-    \ node) {\n                return node ? node->_dat : e();\n            }\n  \
-    \          static value_type prod(node_pointer_type node, int tl, int tr, int\
-    \ ql, int qr) {\n                if (tr <= ql or qr <= tl) return e();\n     \
-    \           if (ql <= tl and tr <= qr) return node->_dat;\n                int\
-    \ tm = (tl + tr) >> 1;\n                return op(prod(node->_ch[0], tl, tm, ql,\
-    \ qr), prod(node->_ch[1], tm, tr, ql, qr));\n            }\n\n            template\
-    \ <bool do_update, typename F>\n            static auto search_node(node_pointer_type\
-    \ node, int siz, int i, F &&f) {\n                static std::vector<node_pointer_type>\
-    \ path;\n\n                node_pointer_type res = node;\n                if constexpr\
-    \ (do_update) res = clone(res);\n                node_pointer_type cur = res;\n\
-    \n                for (int l = 0, r = siz; r - l > 1;) {\n                   \
-    \ if constexpr (do_update) path.push_back(cur);\n                    int m = (l\
-    \ + r) >> 1;\n                    if (i < m) {\n                        if constexpr\
-    \ (do_update) cur->_ch[0] = clone(cur->_ch[0]);\n                        cur =\
-    \ cur->_ch[0];\n                        r = m;\n                    } else {\n\
-    \                        if constexpr (do_update) cur->_ch[1] = clone(cur->_ch[1]);\n\
-    \                        cur = cur->_ch[1];\n                        l = m;\n\
-    \                    }\n                }\n                f(cur);\n\n       \
-    \         if constexpr (do_update) {\n                    while (path.size())\
-    \ update(path.back()), path.pop_back();\n                    return res;\n   \
-    \             } else {\n                    return;\n                }\n     \
-    \       }\n\n            static value_type get(node_pointer_type node, int siz,\
-    \ int i) {\n                value_type res;\n                search_node</* do_update\
-    \ = */false>(node, siz, i, [&](node_pointer_type i_th_node) { res = i_th_node->_dat;\
-    \ });\n                return res;\n            }\n            template <typename\
-    \ F>\n            static node_pointer_type apply(node_pointer_type node, int siz,\
-    \ int i, F&& f) {\n                return search_node</* do_update = */true>(node,\
-    \ siz, i, [&](node_pointer_type i_th_node) { i_th_node->_dat = f(i_th_node->_dat);\
-    \ });\n            }\n            static node_pointer_type set(node_pointer_type\
-    \ node, int siz, int i, const value_type& dat) {\n                return apply(node,\
-    \ siz, i, [&](const value_type&) { return dat; });\n            }\n\n        \
-    \    template <typename F>\n            static int max_right(node_pointer_type\
-    \ node, int siz, int l, F&& f) {\n                assert(f(e()));\n          \
-    \      auto rec = [&](auto rec, node_pointer_type cur, int tl, int tr, value_type&\
-    \ sum) -> int {\n                    if (tr <= l) return tr;\n               \
-    \     if (l <= tl) {\n                        value_type nxt_sum = op(sum, cur->_dat);\n\
-    \                        if (f(nxt_sum)) {\n                            sum =\
-    \ std::move(nxt_sum);\n                            return tr;\n              \
-    \          }\n                        if (tr - tl == 1) return tl;\n         \
-    \           }\n                    int tm = (tl + tr) >> 1;\n                \
-    \    int res_l = rec(rec, cur->_ch[0], tl, tm, sum);\n                    return\
-    \ res_l != tm ? res_l : rec(rec, cur->_ch[1], tm, tr, sum);\n                };\n\
-    \                value_type sum = e();\n                return rec(rec, node,\
-    \ 0, siz, sum);\n            }\n            template <typename F>\n          \
-    \  static int min_left(node_pointer_type node, int siz, int r, F&& f) {\n    \
-    \            assert(f(e()));\n                auto rec = [&](auto rec, node_pointer_type\
-    \ cur, int tl, int tr, value_type& sum) -> int {\n                    if (r <=\
-    \ tl) return tl;\n                    if (tr <= r) {\n                       \
-    \ value_type nxt_sum = op(cur->_dat, sum);\n                        if (f(nxt_sum))\
-    \ {\n                            sum = std::move(nxt_sum);\n                 \
-    \           return tl;\n                        }\n                        if\
-    \ (tr - tl == 1) return tr;\n                    }\n                    int tm\
-    \ = (tl + tr) >> 1;\n                    int res_r = rec(rec, cur->_ch[1], tm,\
-    \ tr, sum);\n                    return res_r != tm ? res_r : rec(rec, cur->_ch[0],\
-    \ tl, tm, sum);\n                };\n                value_type sum = e();\n \
-    \               return rec(rec, node, 0, siz, sum);\n            }\n\n       \
-    \     template <typename OutputIterator>\n            static void dump(node_pointer_type\
-    \ node, OutputIterator it) {\n                if (not node) return;\n        \
-    \        auto rec = [&](auto rec, node_pointer_type cur) -> void {\n         \
-    \           if (is_leaf(cur)) {\n                        *it++ = cur->_dat;\n\
-    \                    } else {\n                        rec(rec, cur->_ch[0]),\
-    \ rec(rec, cur->_ch[1]);\n                    }\n                };\n        \
-    \        rec(rec, node);\n            }\n            static std::vector<value_type>\
-    \ dump(node_pointer_type node) {\n                std::vector<value_type> res;\n\
-    \                dump(node, std::back_inserter(res));\n                return\
-    \ res;\n            }\n        };\n\n        PersistentSegmentTree() : _n(0),\
-    \ _root(nullptr) {}\n        explicit PersistentSegmentTree(int n) : PersistentSegmentTree(std::vector<value_type>(n,\
-    \ e())) {}\n        PersistentSegmentTree(const std::vector<value_type>& dat)\
-    \ : _n(dat.size()), _root(node_type::build(dat)) {}\n\n        static void init_pool(int\
-    \ siz) {\n            node_type::_pool = ObjectPool<node_type>(siz);\n       \
-    \ }\n        static void clear_pool() {\n            node_type::_pool.clear();\n\
-    \        }\n\n        value_type prod_all() {\n            return node_type::prod_all(_root);\n\
-    \        }\n        value_type prod(int l, int r) {\n            assert(0 <= l\
-    \ and l <= r and r <= _n);\n            return node_type::prod(_root, 0, _n, l,\
-    \ r);\n        }\n        value_type operator()(int l, int r) {\n            return\
-    \ prod(l, r);\n        }\n\n        value_type get(int i) {\n            assert(0\
-    \ <= i and i < _n);\n            return node_type::get(_root, _n, i);\n      \
-    \  }\n        value_type operator[](int i) {\n            return get(i);\n   \
-    \     }\n\n        template <typename F>\n        PersistentSegmentTree apply(int\
-    \ i, F&& f) {\n            assert(0 <= i and i < _n);\n            return PersistentSegmentTree(_n,\
-    \ node_type::apply(_root, _n, i, std::forward<F>(f)));\n        }\n        PersistentSegmentTree\
-    \ set(int i, const value_type& v) {\n            assert(0 <= i and i < _n);\n\
-    \            return PersistentSegmentTree(_n, node_type::set(_root, _n, i, v));\n\
-    \        }\n\n        template <typename F>\n        int max_right(int l, F&&\
-    \ f) {\n            assert(0 <= l and l <= _n);\n            return node_type::max_right(_root,\
-    \ _n, l, std::forward<F>(f));\n        }\n        template <bool(*pred)(value_type)>\n\
-    \        static int max_right(int l) {\n            return max_right(l, pred);\n\
-    \        }\n        template <typename F>\n        int min_left(int r, F&& f)\
-    \ {\n            assert(0 <= r and r <= _n);\n            return node_type::min_left(_root,\
-    \ _n, r, std::forward<F>(f));\n        }\n        template <bool(*pred)(value_type)>\n\
-    \        static int min_left(int r) {\n            return min_left(r, pred);\n\
-    \        }\n\n        template <typename OutputIterator>\n        void dump(OutputIterator\
-    \ it) {\n            node_type::dump(_root, it);\n        }\n        std::vector<value_type>\
-    \ dump() {\n            return node_type::dump(_root);\n        }\n\n    private:\n\
-    \        int _n;\n        node_pointer_type _root;\n        PersistentSegmentTree(int\
-    \ n, node_pointer_type root) : _n(n), _root(root) {}\n    };\n}\n\n#endif // SUISEN_PERSISTENT_SEGMENT_TREE\n"
+    \ n, node_pointer_type root) : _n(n), _root(root) {}\n    };\n}\n\n\n#line 7 \"\
+    test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp\"\n\
+    \ntemplate <typename T, T(*op)(T, T), T(*e)()>\nstruct NaiveSolutionForSegmentTree\
+    \ {\n    NaiveSolutionForSegmentTree() = default;\n    NaiveSolutionForSegmentTree(const\
+    \ std::vector<T> &dat) : _n(dat.size()), _dat(dat) {}\n\n    T get(int i) const\
+    \ {\n        assert(0 <= i and i < _n);\n        return _dat[i];\n    }\n    void\
+    \ set(int i, const T& val) {\n        assert(0 <= i and i < _n);\n        _dat[i]\
+    \ = val;\n    }\n\n    T prod_all() const {\n        return prod(0, _n);\n   \
+    \ }\n    T prod(int l, int r) const {\n        assert(0 <= l and l <= r and r\
+    \ <= _n);\n        T res = e();\n        for (int i = l; i < r; ++i) res = op(res,\
+    \ _dat[i]);\n        return res;\n    }\n\n    template <typename Pred>\n    int\
+    \ max_right(int l, Pred &&pred) const {\n        assert(0 <= l and l <= _n);\n\
+    \        T sum = e();\n        for (int r = l; r < _n; ++r) {\n            T next_sum\
+    \ = op(sum, _dat[r]);\n            if (not pred(next_sum)) return r;\n       \
+    \     sum = std::move(next_sum);\n        }\n        return _n;\n    }\n\n   \
+    \ template <typename Pred>\n    int min_left(int r, Pred &&pred) const {\n   \
+    \     assert(0 <= r and r <= _n);\n        T sum = e();\n        for (int l =\
+    \ r; l > 0; --l) {\n            T next_sum = op(_dat[l - 1], sum);\n         \
+    \   if (not pred(next_sum)) return l;\n            sum = std::move(next_sum);\n\
+    \        }\n        return 0;\n    }\nprivate:\n    int _n;\n    std::vector<T>\
+    \ _dat;\n};\n\n/**\n * Point Set Range Min\n */\n\nconstexpr int inf = std::numeric_limits<int>::max()\
+    \ / 2;\n\nstruct S {\n    int val;\n    S() : S(inf) {}\n    S(int val) : val(val)\
+    \ {}\n\n    bool operator==(const S &other) const {\n        return val == other.val;\n\
+    \    }\n    bool operator!=(const S &other) const {\n        return not operator==(other);\n\
+    \    }\n};\n\nS op(S x, S y) {\n    return S{ std::min(x.val, y.val) };\n}\nS\
+    \ e() {\n    return S{};\n}\n\nusing Tree = suisen::PersistentSegmentTree<S, op,\
+    \ e>;\nusing Naive = NaiveSolutionForSegmentTree<S, op, e>;\n\n#include <random>\n\
+    #include <algorithm>\n\nconstexpr int Q_get = 0;\nconstexpr int Q_set = 1;\nconstexpr\
+    \ int Q_prod = 2;\nconstexpr int Q_prod_all = 3;\nconstexpr int Q_max_right =\
+    \ 4;\nconstexpr int Q_min_left = 5;\nconstexpr int QueryTypeNum = 6;\n\nvoid test()\
+    \ {\n    constexpr int N = 3000, Q = 3000, MAX_VAL = inf;\n\n    std::mt19937\
+    \ rng{std::random_device{}()};\n\n    Tree::init_pool(1000000);\n\n    std::vector<S>\
+    \ init(N);\n    for (int i = 0; i < N; ++i) init[i] = { int(rng() % MAX_VAL) };\n\
+    \    \n    std::vector<Tree> ts;\n    std::vector<Naive> naive_sols;\n\n    ts.push_back(Tree{init});\n\
+    \    naive_sols.push_back(Naive{init});\n\n    for (int i = 0; i < Q; ++i) {\n\
+    \        const int query_type = rng() % QueryTypeNum;\n        const int sequence_id\
+    \ = rng() % ts.size();\n        auto &act = ts[sequence_id];\n        auto &exp\
+    \ = naive_sols[sequence_id];\n        if (query_type == Q_get) {\n           \
+    \ const int i = rng() % N;\n            assert(act.get(i) == exp.get(i));\n  \
+    \      } else if (query_type == Q_set) {\n            const int i = rng() % N;\n\
+    \            const S v { int(rng() % MAX_VAL) };\n            ts.push_back(act.set(i,\
+    \ v));\n            naive_sols.push_back(exp);\n            naive_sols.back().set(i,\
+    \ v);\n        } else if (query_type == Q_prod) {\n            const int l = rng()\
+    \ % (N + 1);\n            const int r = l + rng() % (N - l + 1);\n           \
+    \ assert(act.prod(l, r) == exp.prod(l, r));\n        } else if (query_type ==\
+    \ Q_prod_all) {\n            assert(act.prod_all() == exp.prod_all());\n     \
+    \   } else if (query_type == Q_max_right) {\n            const int l = rng() %\
+    \ (N + 1);\n            const int r = l + rng() % (N - l + 1);\n            const\
+    \ int v = std::min(inf, exp.prod(l, r).val + int(rng() % MAX_VAL) - MAX_VAL /\
+    \ 2);\n            auto pred = [&](const S &x) { return x.val >= v; };\n     \
+    \       assert(act.max_right(l, pred) == exp.max_right(l, pred));\n        } else\
+    \ if (query_type == Q_min_left) {\n            const int l = rng() % (N + 1);\n\
+    \            const int r = l + rng() % (N - l + 1);\n            const int v =\
+    \ std::min(inf, exp.prod(l, r).val + int(rng() % MAX_VAL) - MAX_VAL / 2);\n  \
+    \          auto pred = [&](const S &x) { return x.val >= v; };\n            assert(act.min_left(r,\
+    \ pred) == exp.min_left(r, pred));\n        } else {\n            assert(false);\n\
+    \        }\n    }\n}\n\nint main() {\n    test();\n    std::cout << \"Hello World\"\
+    \ << std::endl;\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n\n#include <iostream>\n#include <limits>\n\n#include \"library/datastructure/segment_tree/persistent_segment_tree.hpp\"\
+    \n\ntemplate <typename T, T(*op)(T, T), T(*e)()>\nstruct NaiveSolutionForSegmentTree\
+    \ {\n    NaiveSolutionForSegmentTree() = default;\n    NaiveSolutionForSegmentTree(const\
+    \ std::vector<T> &dat) : _n(dat.size()), _dat(dat) {}\n\n    T get(int i) const\
+    \ {\n        assert(0 <= i and i < _n);\n        return _dat[i];\n    }\n    void\
+    \ set(int i, const T& val) {\n        assert(0 <= i and i < _n);\n        _dat[i]\
+    \ = val;\n    }\n\n    T prod_all() const {\n        return prod(0, _n);\n   \
+    \ }\n    T prod(int l, int r) const {\n        assert(0 <= l and l <= r and r\
+    \ <= _n);\n        T res = e();\n        for (int i = l; i < r; ++i) res = op(res,\
+    \ _dat[i]);\n        return res;\n    }\n\n    template <typename Pred>\n    int\
+    \ max_right(int l, Pred &&pred) const {\n        assert(0 <= l and l <= _n);\n\
+    \        T sum = e();\n        for (int r = l; r < _n; ++r) {\n            T next_sum\
+    \ = op(sum, _dat[r]);\n            if (not pred(next_sum)) return r;\n       \
+    \     sum = std::move(next_sum);\n        }\n        return _n;\n    }\n\n   \
+    \ template <typename Pred>\n    int min_left(int r, Pred &&pred) const {\n   \
+    \     assert(0 <= r and r <= _n);\n        T sum = e();\n        for (int l =\
+    \ r; l > 0; --l) {\n            T next_sum = op(_dat[l - 1], sum);\n         \
+    \   if (not pred(next_sum)) return l;\n            sum = std::move(next_sum);\n\
+    \        }\n        return 0;\n    }\nprivate:\n    int _n;\n    std::vector<T>\
+    \ _dat;\n};\n\n/**\n * Point Set Range Min\n */\n\nconstexpr int inf = std::numeric_limits<int>::max()\
+    \ / 2;\n\nstruct S {\n    int val;\n    S() : S(inf) {}\n    S(int val) : val(val)\
+    \ {}\n\n    bool operator==(const S &other) const {\n        return val == other.val;\n\
+    \    }\n    bool operator!=(const S &other) const {\n        return not operator==(other);\n\
+    \    }\n};\n\nS op(S x, S y) {\n    return S{ std::min(x.val, y.val) };\n}\nS\
+    \ e() {\n    return S{};\n}\n\nusing Tree = suisen::PersistentSegmentTree<S, op,\
+    \ e>;\nusing Naive = NaiveSolutionForSegmentTree<S, op, e>;\n\n#include <random>\n\
+    #include <algorithm>\n\nconstexpr int Q_get = 0;\nconstexpr int Q_set = 1;\nconstexpr\
+    \ int Q_prod = 2;\nconstexpr int Q_prod_all = 3;\nconstexpr int Q_max_right =\
+    \ 4;\nconstexpr int Q_min_left = 5;\nconstexpr int QueryTypeNum = 6;\n\nvoid test()\
+    \ {\n    constexpr int N = 3000, Q = 3000, MAX_VAL = inf;\n\n    std::mt19937\
+    \ rng{std::random_device{}()};\n\n    Tree::init_pool(1000000);\n\n    std::vector<S>\
+    \ init(N);\n    for (int i = 0; i < N; ++i) init[i] = { int(rng() % MAX_VAL) };\n\
+    \    \n    std::vector<Tree> ts;\n    std::vector<Naive> naive_sols;\n\n    ts.push_back(Tree{init});\n\
+    \    naive_sols.push_back(Naive{init});\n\n    for (int i = 0; i < Q; ++i) {\n\
+    \        const int query_type = rng() % QueryTypeNum;\n        const int sequence_id\
+    \ = rng() % ts.size();\n        auto &act = ts[sequence_id];\n        auto &exp\
+    \ = naive_sols[sequence_id];\n        if (query_type == Q_get) {\n           \
+    \ const int i = rng() % N;\n            assert(act.get(i) == exp.get(i));\n  \
+    \      } else if (query_type == Q_set) {\n            const int i = rng() % N;\n\
+    \            const S v { int(rng() % MAX_VAL) };\n            ts.push_back(act.set(i,\
+    \ v));\n            naive_sols.push_back(exp);\n            naive_sols.back().set(i,\
+    \ v);\n        } else if (query_type == Q_prod) {\n            const int l = rng()\
+    \ % (N + 1);\n            const int r = l + rng() % (N - l + 1);\n           \
+    \ assert(act.prod(l, r) == exp.prod(l, r));\n        } else if (query_type ==\
+    \ Q_prod_all) {\n            assert(act.prod_all() == exp.prod_all());\n     \
+    \   } else if (query_type == Q_max_right) {\n            const int l = rng() %\
+    \ (N + 1);\n            const int r = l + rng() % (N - l + 1);\n            const\
+    \ int v = std::min(inf, exp.prod(l, r).val + int(rng() % MAX_VAL) - MAX_VAL /\
+    \ 2);\n            auto pred = [&](const S &x) { return x.val >= v; };\n     \
+    \       assert(act.max_right(l, pred) == exp.max_right(l, pred));\n        } else\
+    \ if (query_type == Q_min_left) {\n            const int l = rng() % (N + 1);\n\
+    \            const int r = l + rng() % (N - l + 1);\n            const int v =\
+    \ std::min(inf, exp.prod(l, r).val + int(rng() % MAX_VAL) - MAX_VAL / 2);\n  \
+    \          auto pred = [&](const S &x) { return x.val >= v; };\n            assert(act.min_left(r,\
+    \ pred) == exp.min_left(r, pred));\n        } else {\n            assert(false);\n\
+    \        }\n    }\n}\n\nint main() {\n    test();\n    std::cout << \"Hello World\"\
+    \ << std::endl;\n    return 0;\n}"
   dependsOn:
+  - library/datastructure/segment_tree/persistent_segment_tree.hpp
   - library/util/object_pool.hpp
-  isVerificationFile: false
-  path: library/datastructure/segment_tree/persistent_segment_tree.hpp
+  isVerificationFile: true
+  path: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
   requiredBy: []
   timestamp: '2022-04-05 23:40:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
-documentation_of: library/datastructure/segment_tree/persistent_segment_tree.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
 layout: document
-title: Persistent Segment Tree
+redirect_from:
+- /verify/test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
+- /verify/test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp.html
+title: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
 ---
-## Persistent Segment Tree

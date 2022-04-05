@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/bostan_mori.hpp
     title: Bostan Mori
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: Fps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: Inv Mods
   _extendedRequiredBy: []

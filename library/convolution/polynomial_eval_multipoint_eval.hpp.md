@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: Fps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: Inv Mods
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: Multi Point Eval
   - icon: ':heavy_check_mark:'

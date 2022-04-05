@@ -194,8 +194,8 @@ data:
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree.hpp
 layout: document
 title: Segment Tree

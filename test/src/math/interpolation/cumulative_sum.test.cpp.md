@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: Fps
   - icon: ':heavy_check_mark:'
     path: library/math/interpolation.hpp
     title: Interpolation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: Inv Mods
   - icon: ':heavy_check_mark:'

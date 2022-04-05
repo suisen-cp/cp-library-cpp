@@ -250,18 +250,18 @@ data:
   isVerificationFile: false
   path: library/util/coordinate_compressor.hpp
   requiredBy:
-  - library/geom/segment_intersections.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
+  - library/geom/segment_intersections.hpp
   timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/util/range_set/DSL_4_A.test.cpp
   - test/src/util/coordinate_compressor/dummy.test.cpp
-  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - test/src/util/range_set/DSL_4_A.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
 layout: document
 title: Coordinate Compressor

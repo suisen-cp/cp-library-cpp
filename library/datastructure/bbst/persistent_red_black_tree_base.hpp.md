@@ -218,10 +218,10 @@ data:
   isVerificationFile: false
   path: library/datastructure/bbst/persistent_red_black_tree_base.hpp
   requiredBy:
-  - library/datastructure/bbst/persistent_red_black_segment_tree.hpp
   - library/datastructure/bbst/persistent_red_black_lazy_segment_tree.hpp
-  - library/datastructure/bbst/persistent_red_black_tree.hpp
   - library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
+  - library/datastructure/bbst/persistent_red_black_segment_tree.hpp
+  - library/datastructure/bbst/persistent_red_black_tree.hpp
   timestamp: '2022-03-03 17:52:43+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

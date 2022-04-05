@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: Inv Mods
   _extendedRequiredBy:
@@ -18,13 +18,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/interpolation.hpp
     title: Interpolation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: Multi Point Eval
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/subset_sum.hpp
     title: Subset Sum
   _extendedVerifiedWith:
@@ -70,18 +70,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/interpolation/polynomial_interpolation.test.cpp
     title: test/src/math/interpolation/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/subset_sum/p_subset_sum.test.cpp
     title: test/src/math/subset_sum/p_subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -359,33 +359,33 @@ data:
   isVerificationFile: false
   path: library/math/fps.hpp
   requiredBy:
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/math/common_sequences.hpp
-  - library/math/interpolation.hpp
-  - library/math/subset_sum.hpp
-  - library/math/bostan_mori.hpp
   - library/math/multi_point_eval.hpp
   - library/math/polynomial_taylor_shift.hpp
-  - library/convolution/polynomial_eval_multipoint_eval.hpp
+  - library/math/interpolation.hpp
+  - library/math/bostan_mori.hpp
+  - library/math/subset_sum.hpp
   timestamp: '2022-04-04 15:11:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/src/math/common_sequences/bernoulli_number.test.cpp
-  - test/src/math/common_sequences/stirling_number1.test.cpp
-  - test/src/math/common_sequences/partition_function.test.cpp
-  - test/src/math/common_sequences/montmort_number_mod.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/math/subset_sum/p_subset_sum.test.cpp
   - test/src/math/common_sequences/stirling_number2.test.cpp
+  - test/src/math/common_sequences/montmort_number_mod.test.cpp
+  - test/src/math/common_sequences/stirling_number1.test.cpp
+  - test/src/math/common_sequences/bernoulli_number.test.cpp
+  - test/src/math/common_sequences/partition_function.test.cpp
+  - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - test/src/math/interpolation/cumulative_sum.test.cpp
+  - test/src/math/interpolation/polynomial_interpolation.test.cpp
+  - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/src/math/fps/inv_of_fps.test.cpp
+  - test/src/math/fps/exp_of_fps.test.cpp
+  - test/src/math/fps/division_of_polynomials.test.cpp
   - test/src/math/fps/log_of_fps.test.cpp
   - test/src/math/fps/pow_of_fps.test.cpp
-  - test/src/math/fps/division_of_polynomials.test.cpp
-  - test/src/math/fps/exp_of_fps.test.cpp
-  - test/src/math/fps/inv_of_fps.test.cpp
-  - test/src/math/subset_sum/p_subset_sum.test.cpp
-  - test/src/math/interpolation/polynomial_interpolation.test.cpp
-  - test/src/math/interpolation/cumulative_sum.test.cpp
-  - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/math/fps.hpp
 layout: document
 title: Fps

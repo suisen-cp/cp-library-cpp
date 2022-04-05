@@ -170,7 +170,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/li_chao_segment_tree.hpp
       title: Li Chao Segment Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree/persistent_lazy_segment_tree.hpp
+      title: Persistent Lazy Segment Tree
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/persistent_segment_tree.hpp
       title: Persistent Segment Tree
     - icon: ':heavy_check_mark:'
@@ -305,10 +308,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: Factorial
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/fps.hpp
       title: Fps
     - icon: ':heavy_check_mark:'
@@ -317,7 +320,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/interpolation.hpp
       title: Interpolation
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv_mods.hpp
       title: Inv Mods
     - icon: ':heavy_check_mark:'
@@ -326,10 +329,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/multi_point_eval.hpp
       title: Multi Point Eval
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/polynomial_taylor_shift.hpp
       title: Polynomial Taylor Shift
     - icon: ':heavy_check_mark:'
@@ -338,7 +341,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
       title: Sps
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/subset_sum.hpp
       title: Subset Sum
     - icon: ':heavy_check_mark:'
@@ -739,6 +742,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
       title: test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
+  - name: test/src/datastructure/segment_tree/persistent_lazy_segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/persistent_lazy_segment_tree/dummy.test.cpp
+      title: test/src/datastructure/segment_tree/persistent_lazy_segment_tree/dummy.test.cpp
+  - name: test/src/datastructure/segment_tree/persistent_segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
+      title: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
   - name: test/src/datastructure/segment_tree/segment_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1005,12 +1018,12 @@ data:
       title: test/src/math/matrix/matrix_product.test.cpp
   - name: test/src/math/multi_point_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - name: test/src/math/polynomial_taylor_shift
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
       title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - name: test/src/math/sps
@@ -1026,7 +1039,7 @@ data:
       title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - name: test/src/math/subset_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/subset_sum/p_subset_sum.test.cpp
       title: test/src/math/subset_sum/p_subset_sum.test.cpp
   - name: test/src/math/util

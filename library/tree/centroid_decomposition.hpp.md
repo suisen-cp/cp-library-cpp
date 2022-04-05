@@ -151,8 +151,8 @@ data:
   timestamp: '2021-11-23 20:31:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
   - test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
+  - test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
 documentation_of: library/tree/centroid_decomposition.hpp
 layout: document
 title: Centroid Decomposition

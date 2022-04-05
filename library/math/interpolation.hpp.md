@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: Fps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: Inv Mods
   _extendedRequiredBy: []
@@ -216,8 +216,8 @@ data:
   timestamp: '2022-04-04 15:11:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/interpolation/polynomial_interpolation.test.cpp
   - test/src/math/interpolation/cumulative_sum.test.cpp
+  - test/src/math/interpolation/polynomial_interpolation.test.cpp
 documentation_of: library/math/interpolation.hpp
 layout: document
 title: Interpolation

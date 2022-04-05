@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: Factorial
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: Fps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: Inv Mods
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/polynomial_taylor_shift.hpp\"\n\n\n\n#line\
@@ -207,7 +207,7 @@ data:
   path: library/math/polynomial_taylor_shift.hpp
   requiredBy: []
   timestamp: '2022-04-04 15:11:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 documentation_of: library/math/polynomial_taylor_shift.hpp
