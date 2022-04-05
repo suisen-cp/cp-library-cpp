@@ -72,10 +72,12 @@ namespace suisen {
                     if constexpr (do_update) path.push_back(cur);
                     int m = (l + r) >> 1;
                     if (i < m) {
-                        cur = cur->_ch[0] = clone(cur->_ch[0]);
+                        if constexpr (do_update) cur->_ch[0] = clone(cur->_ch[0]);
+                        cur = cur->_ch[0];
                         r = m;
                     } else {
-                        cur = cur->_ch[1] = clone(cur->_ch[1]);
+                        if constexpr (do_update) cur->_ch[1] = clone(cur->_ch[1]);
+                        cur = cur->_ch[1];
                         l = m;
                     }
                 }
