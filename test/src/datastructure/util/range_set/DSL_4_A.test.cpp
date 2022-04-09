@@ -4,7 +4,7 @@
 #include <tuple>
 
 #include "library/util/coordinate_compressor.hpp"
-#include "library/util/range_set.hpp"
+#include "library/datastructure/util/range_set.hpp"
 using suisen::CoordinateCompressorBuilder;
 using suisen::RangeSet;
 

@@ -3,7 +3,7 @@
 #include <array>
 #include <iostream>
 
-#include "library/util/range_set.hpp"
+#include "library/datastructure/util/range_set.hpp"
 using suisen::RangeSet;
 
 constexpr int L = 31;
