@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/util/range_set.hpp
+    title: library/datastructure/util/range_set.hpp
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: Coordinate Compressor
-  - icon: ':heavy_check_mark:'
-    path: library/util/range_set.hpp
-    title: Range Set
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,20 +20,20 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A
-  bundledCode: "#line 1 \"test/src/util/range_set/DSL_4_A.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A\"\n\n#include <iostream>\n\
-    #include <tuple>\n\n#line 1 \"library/util/coordinate_compressor.hpp\"\n\n\n\n\
-    #include <algorithm>\n#include <cassert>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
-    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+  bundledCode: "#line 1 \"test/src/datastructure/util/range_set/DSL_4_A.test.cpp\"\
+    \n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A\"\n\n#include\
+    \ <iostream>\n#include <tuple>\n\n#line 1 \"library/util/coordinate_compressor.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\n#line 1\
+    \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
+    \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
+    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
+    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
+    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
+    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
+    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
+    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
+    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -138,8 +138,8 @@ data:
     \ Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>\n     \
     \   static auto build(const int n, Gen generator) {\n            return CoordinateCompressorBuilder<T>(n,\
     \ generator).build();\n        }\n    private:\n        std::vector<T> _xs;\n\
-    };\n\n} // namespace suisen\n\n\n#line 1 \"library/util/range_set.hpp\"\n\n\n\n\
-    #include <map>\n\nnamespace suisen {\n\ntemplate <typename T, bool merge_adjacent_segment\
+    };\n\n} // namespace suisen\n\n\n#line 1 \"library/datastructure/util/range_set.hpp\"\
+    \n\n\n\n#include <map>\n\nnamespace suisen {\n\ntemplate <typename T, bool merge_adjacent_segment\
     \ = true>\nstruct RangeSet : public std::map<T, T> {\n    public:\n        RangeSet()\
     \ : _size(0) {}\n\n        // returns the number of intergers in this set (not\
     \ the number of ranges). O(1)\n        T size() const { return number_of_elements();\
@@ -195,7 +195,7 @@ data:
     \ it = find_range(upper);\n            return it == this->end() ? upper : it->first\
     \ - 1;\n        }\n\n    private:\n        T _size;\n\n        bool is_mergeable(T\
     \ cur_r, T next_l) {\n            return next_l <= cur_r + merge_adjacent_segment;\n\
-    \        }\n};\n\n} // namespace suisen\n\n\n#line 8 \"test/src/util/range_set/DSL_4_A.test.cpp\"\
+    \        }\n};\n\n} // namespace suisen\n\n\n#line 8 \"test/src/datastructure/util/range_set/DSL_4_A.test.cpp\"\
     \nusing suisen::CoordinateCompressorBuilder;\nusing suisen::RangeSet;\n\nconstexpr\
     \ int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    int n;\n    std::cin >> n;\n    CoordinateCompressorBuilder<long long> builder;\n\
@@ -212,7 +212,7 @@ data:
     \    return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A\"\n\n\
     #include <iostream>\n#include <tuple>\n\n#include \"library/util/coordinate_compressor.hpp\"\
-    \n#include \"library/util/range_set.hpp\"\nusing suisen::CoordinateCompressorBuilder;\n\
+    \n#include \"library/datastructure/util/range_set.hpp\"\nusing suisen::CoordinateCompressorBuilder;\n\
     using suisen::RangeSet;\n\nconstexpr int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n    int n;\n    std::cin >> n;\n    CoordinateCompressorBuilder<long\
     \ long> builder;\n    std::vector<std::tuple<long long, long long, long long,\
@@ -229,17 +229,17 @@ data:
   dependsOn:
   - library/util/coordinate_compressor.hpp
   - library/type_traits/type_traits.hpp
-  - library/util/range_set.hpp
+  - library/datastructure/util/range_set.hpp
   isVerificationFile: true
-  path: test/src/util/range_set/DSL_4_A.test.cpp
+  path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
   requiredBy: []
-  timestamp: '2022-02-25 23:20:55+09:00'
+  timestamp: '2022-04-10 03:29:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/util/range_set/DSL_4_A.test.cpp
+documentation_of: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/util/range_set/DSL_4_A.test.cpp
-- /verify/test/src/util/range_set/DSL_4_A.test.cpp.html
-title: test/src/util/range_set/DSL_4_A.test.cpp
+- /verify/test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+- /verify/test/src/datastructure/util/range_set/DSL_4_A.test.cpp.html
+title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
 ---

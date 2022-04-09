@@ -399,8 +399,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
 documentation_of: library/datastructure/compressed_wavelet_matrix.hpp
 layout: document
 title: Compressed Wavelet Matrix

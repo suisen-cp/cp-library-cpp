@@ -208,6 +208,20 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/weighted_union_find.hpp
       title: Weighted Union Find
+  - name: library/datastructure/util
+    pages:
+    - icon: ':warning:'
+      path: library/datastructure/util/dynamic_bitset.hpp
+      title: library/datastructure/util/dynamic_bitset.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/util/priority_sum.hpp
+      title: library/datastructure/util/priority_sum.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/util/range_set.hpp
+      title: library/datastructure/util/range_set.hpp
+    - icon: ':warning:'
+      path: library/datastructure/util/static_bitset.hpp
+      title: library/datastructure/util/static_bitset.hpp
   - name: library/debug
     pages:
     - icon: ':warning:'
@@ -502,9 +516,6 @@ data:
       path: library/util/default_vector.hpp
       title: Default Vector
     - icon: ':warning:'
-      path: library/util/dynamic_bitset.hpp
-      title: Dynamic Bitset
-    - icon: ':warning:'
       path: library/util/grid_utils.hpp
       title: Grid Utils
     - icon: ':warning:'
@@ -516,18 +527,12 @@ data:
     - icon: ':warning:'
       path: library/util/pair_ops.hpp
       title: Pair Ops
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/util/permutation.hpp
       title: Permutation
-    - icon: ':heavy_check_mark:'
-      path: library/util/range_set.hpp
-      title: Range Set
     - icon: ':warning:'
       path: library/util/run_length_encoder.hpp
       title: Run Length Encoder
-    - icon: ':warning:'
-      path: library/util/static_bitset.hpp
-      title: Static Bitset
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_hash.hpp
       title: Tuple Hash
@@ -796,6 +801,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
       title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
+  - name: test/src/datastructure/util/priority_sum
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/util/priority_sum/agc018_c.test.cpp
+      title: test/src/datastructure/util/priority_sum/agc018_c.test.cpp
+  - name: test/src/datastructure/util/range_set
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
+      title: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+      title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/util/range_set/yuki674.test.cpp
+      title: test/src/datastructure/util/range_set/yuki674.test.cpp
   - name: test/src/datastructure/wavelet_matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -1200,16 +1221,5 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/util/coordinate_compressor/dummy.test.cpp
       title: test/src/util/coordinate_compressor/dummy.test.cpp
-  - name: test/src/util/range_set
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/util/range_set/DSL_2_D.test.cpp
-      title: test/src/util/range_set/DSL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/util/range_set/DSL_4_A.test.cpp
-      title: test/src/util/range_set/DSL_4_A.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/util/range_set/yuki674.test.cpp
-      title: test/src/util/range_set/yuki674.test.cpp
 layout: toppage
 ---

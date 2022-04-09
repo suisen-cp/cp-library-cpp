@@ -151,11 +151,11 @@ data:
   timestamp: '2022-03-17 16:17:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/string/palindromic_tree/abc237_h.test.cpp
   - test/src/graph/bipartite_matching/bipartite_matching.test.cpp
+  - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
-  - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
+  - test/src/string/palindromic_tree/abc237_h.test.cpp
 documentation_of: library/graph/bipartite_matching.hpp
 layout: document
 title: Bipartite Matching

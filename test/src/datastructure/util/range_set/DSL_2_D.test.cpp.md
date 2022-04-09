@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/util/range_set.hpp
-    title: Range Set
+    path: library/datastructure/util/range_set.hpp
+    title: library/datastructure/util/range_set.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -14,10 +14,10 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
-  bundledCode: "#line 1 \"test/src/util/range_set/DSL_2_D.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n\n#include <array>\n\
-    #include <iostream>\n\n#line 1 \"library/util/range_set.hpp\"\n\n\n\n#include\
-    \ <map>\n\nnamespace suisen {\n\ntemplate <typename T, bool merge_adjacent_segment\
+  bundledCode: "#line 1 \"test/src/datastructure/util/range_set/DSL_2_D.test.cpp\"\
+    \n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n\n#include\
+    \ <array>\n#include <iostream>\n\n#line 1 \"library/datastructure/util/range_set.hpp\"\
+    \n\n\n\n#include <map>\n\nnamespace suisen {\n\ntemplate <typename T, bool merge_adjacent_segment\
     \ = true>\nstruct RangeSet : public std::map<T, T> {\n    public:\n        RangeSet()\
     \ : _size(0) {}\n\n        // returns the number of intergers in this set (not\
     \ the number of ranges). O(1)\n        T size() const { return number_of_elements();\
@@ -73,7 +73,7 @@ data:
     \ it = find_range(upper);\n            return it == this->end() ? upper : it->first\
     \ - 1;\n        }\n\n    private:\n        T _size;\n\n        bool is_mergeable(T\
     \ cur_r, T next_l) {\n            return next_l <= cur_r + merge_adjacent_segment;\n\
-    \        }\n};\n\n} // namespace suisen\n\n\n#line 7 \"test/src/util/range_set/DSL_2_D.test.cpp\"\
+    \        }\n};\n\n} // namespace suisen\n\n\n#line 7 \"test/src/datastructure/util/range_set/DSL_2_D.test.cpp\"\
     \nusing suisen::RangeSet;\n\nconstexpr int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::array<RangeSet<int>,\
     \ L> bits;\n    for (int i = 0; i < L; ++i) {\n        bits[i].insert(0, n - 1);\n\
@@ -88,7 +88,7 @@ data:
     \            }\n            std::cout << res << '\\n';\n        }\n    }\n   \
     \ return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n\n\
-    #include <array>\n#include <iostream>\n\n#include \"library/util/range_set.hpp\"\
+    #include <array>\n#include <iostream>\n\n#include \"library/datastructure/util/range_set.hpp\"\
     \nusing suisen::RangeSet;\n\nconstexpr int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::array<RangeSet<int>,\
     \ L> bits;\n    for (int i = 0; i < L; ++i) {\n        bits[i].insert(0, n - 1);\n\
@@ -103,17 +103,17 @@ data:
     \            }\n            std::cout << res << '\\n';\n        }\n    }\n   \
     \ return 0;\n}"
   dependsOn:
-  - library/util/range_set.hpp
+  - library/datastructure/util/range_set.hpp
   isVerificationFile: true
-  path: test/src/util/range_set/DSL_2_D.test.cpp
+  path: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2021-10-16 19:54:37+09:00'
+  timestamp: '2022-04-10 03:29:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/util/range_set/DSL_2_D.test.cpp
+documentation_of: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/util/range_set/DSL_2_D.test.cpp
-- /verify/test/src/util/range_set/DSL_2_D.test.cpp.html
-title: test/src/util/range_set/DSL_2_D.test.cpp
+- /verify/test/src/datastructure/util/range_set/DSL_2_D.test.cpp
+- /verify/test/src/datastructure/util/range_set/DSL_2_D.test.cpp.html
+title: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
 ---

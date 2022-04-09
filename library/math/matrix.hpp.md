@@ -255,8 +255,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/matrix/matrix_product.test.cpp
-  - test/src/math/matrix/inverse_matrix.test.cpp
   - test/src/math/matrix/determinant_of_matrix.test.cpp
+  - test/src/math/matrix/inverse_matrix.test.cpp
 documentation_of: library/math/matrix.hpp
 layout: document
 title: Matrix

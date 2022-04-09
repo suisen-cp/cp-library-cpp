@@ -101,9 +101,9 @@ data:
   isVerificationFile: false
   path: library/datastructure/sparse_table.hpp
   requiredBy:
-  - library/tree/lowest_common_ancestor.hpp
-  - library/algorithm/rmq_pm1.hpp
   - library/algorithm/rmq_pm1_with_index.hpp
+  - library/algorithm/rmq_pm1.hpp
+  - library/tree/lowest_common_ancestor.hpp
   timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

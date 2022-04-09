@@ -4,30 +4,30 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/util/range_set/DSL_2_D.test.cpp
-    title: test/src/util/range_set/DSL_2_D.test.cpp
+    path: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
+    title: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/util/range_set/DSL_4_A.test.cpp
-    title: test/src/util/range_set/DSL_4_A.test.cpp
+    path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+    title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/util/range_set/yuki674.test.cpp
-    title: test/src/util/range_set/yuki674.test.cpp
+    path: test/src/datastructure/util/range_set/yuki674.test.cpp
+    title: test/src/datastructure/util/range_set/yuki674.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/util/range_set.hpp\"\n\n\n\n#include <map>\n\nnamespace\
-    \ suisen {\n\ntemplate <typename T, bool merge_adjacent_segment = true>\nstruct\
-    \ RangeSet : public std::map<T, T> {\n    public:\n        RangeSet() : _size(0)\
-    \ {}\n\n        // returns the number of intergers in this set (not the number\
-    \ of ranges). O(1)\n        T size() const { return number_of_elements(); }\n\
-    \        // returns the number of intergers in this set (not the number of ranges).\
-    \ O(1)\n        T number_of_elements() const { return _size; }\n        // returns\
-    \ the number of ranges in this set (not the number of integers). O(1)\n      \
-    \  int number_of_ranges() const { return std::map<T, T>::size(); }\n\n       \
-    \ // returns whether the given integer is in this set or not. O(log N)\n     \
-    \   bool contains(T x) const {\n            auto it = this->upper_bound(x);\n\
+  bundledCode: "#line 1 \"library/datastructure/util/range_set.hpp\"\n\n\n\n#include\
+    \ <map>\n\nnamespace suisen {\n\ntemplate <typename T, bool merge_adjacent_segment\
+    \ = true>\nstruct RangeSet : public std::map<T, T> {\n    public:\n        RangeSet()\
+    \ : _size(0) {}\n\n        // returns the number of intergers in this set (not\
+    \ the number of ranges). O(1)\n        T size() const { return number_of_elements();\
+    \ }\n        // returns the number of intergers in this set (not the number of\
+    \ ranges). O(1)\n        T number_of_elements() const { return _size; }\n    \
+    \    // returns the number of ranges in this set (not the number of integers).\
+    \ O(1)\n        int number_of_ranges() const { return std::map<T, T>::size();\
+    \ }\n\n        // returns whether the given integer is in this set or not. O(log\
+    \ N)\n        bool contains(T x) const {\n            auto it = this->upper_bound(x);\n\
     \            return it != this->begin() and x <= std::prev(it)->second;\n    \
     \    }\n\n        /**\n         * returns the iterator pointing to the range [l,\
     \ r] in this set s.t. l <= x <= r.\n         * if such a range does not exist,\
@@ -135,16 +135,18 @@ data:
     \        }\n};\n\n} // namespace suisen\n\n#endif // SUISEN_RANGE_SET\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/util/range_set.hpp
+  path: library/datastructure/util/range_set.hpp
   requiredBy: []
-  timestamp: '2021-10-16 19:54:37+09:00'
+  timestamp: '2022-04-10 03:29:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/util/range_set/DSL_2_D.test.cpp
-  - test/src/util/range_set/yuki674.test.cpp
-  - test/src/util/range_set/DSL_4_A.test.cpp
-documentation_of: library/util/range_set.hpp
+  - test/src/datastructure/util/range_set/yuki674.test.cpp
+  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+  - test/src/datastructure/util/range_set/DSL_2_D.test.cpp
+documentation_of: library/datastructure/util/range_set.hpp
 layout: document
-title: Range Set
+redirect_from:
+- /library/library/datastructure/util/range_set.hpp
+- /library/library/datastructure/util/range_set.hpp.html
+title: library/datastructure/util/range_set.hpp
 ---
-## Range Set

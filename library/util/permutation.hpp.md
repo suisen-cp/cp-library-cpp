@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/util/priority_sum/agc018_c.test.cpp
+    title: test/src/datastructure/util/priority_sum/agc018_c.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://twitter.com/noshi91/status/1452081886025555972?s=20
@@ -113,8 +116,9 @@ data:
   path: library/util/permutation.hpp
   requiredBy: []
   timestamp: '2022-04-04 15:10:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/datastructure/util/priority_sum/agc018_c.test.cpp
 documentation_of: library/util/permutation.hpp
 layout: document
 title: Permutation
