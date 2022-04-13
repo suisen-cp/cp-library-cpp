@@ -8,14 +8,17 @@
 namespace suisen {
     template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>
     struct LazySegmentTree {
+        using value_type = T;
+        using operator_type = F;
+
         LazySegmentTree() : LazySegmentTree(0) {}
-        LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, e())) {}
-        LazySegmentTree(const std::vector<T>& init) : n(init.size()), m(ceil_pow2(n)), lg(__builtin_ctz(m)), data(2 * m, e()), lazy(m, id()) {
+        LazySegmentTree(int n) : LazySegmentTree(std::vector<value_type>(n, e())) {}
+        LazySegmentTree(const std::vector<value_type>& init) : n(init.size()), m(ceil_pow2(n)), lg(__builtin_ctz(m)), data(2 * m, e()), lazy(m, id()) {
             std::copy(init.begin(), init.end(), data.begin() + m);
             for (int k = m - 1; k > 0; --k) update(k);
         }
 
-        void apply(int l, int r, const F& f) {
+        void apply(int l, int r, const operator_type& f) {
             assert(0 <= l and l <= r and r <= n);
             push_to(l, r);
             for (int l2 = l + m, r2 = r + m; l2 < r2; l2 >>= 1, r2 >>= 1) {
@@ -24,14 +27,14 @@ namespace suisen {
             }
             update_from(l, r);
         }
-        void apply(int p, const F& f) {
+        void apply(int p, const operator_type& f) {
             (*this)[p] = mapping(f, get(p));
         }
 
-        T operator()(int l, int r) {
+        value_type operator()(int l, int r) {
             assert(0 <= l and l <= r and r <= n);
             push_to(l, r);
-            T res_l = e(), res_r = e();
+            value_type res_l = e(), res_r = e();
             for (l += m, r += m; l < r; l >>= 1, r >>= 1) {
                 if (l & 1) res_l = op(res_l, data[l++]);
                 if (r & 1) res_r = op(data[--r], res_r);
@@ -39,27 +42,27 @@ namespace suisen {
             return op(res_l, res_r);
         }
 
-        T prod(int l, int r) { return (*this)(l, r); }
-        T prefix_prod(int r) { return (*this)(0, r); }
-        T suffix_prod(int l) { return (*this)(l, m); }
-        T all_prod() const { return data[1]; }
+        value_type prod(int l, int r) { return (*this)(l, r); }
+        value_type prefix_prod(int r) { return (*this)(0, r); }
+        value_type suffix_prod(int l) { return (*this)(l, m); }
+        value_type all_prod() const { return data[1]; }
 
         auto operator[](int p) {
             assert(0 <= p and p < n);
             push_to(p);
             return UpdateProxyObject{ data[p + m], [this, p] { update_from(p); } };
         }
-        T get(int p) { return (*this)[p]; }
-        void set(int p, T v) { (*this)[p] = v; }
+        value_type get(int p) { return (*this)[p]; }
+        void set(int p, value_type v) { (*this)[p] = v; }
 
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
+        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, value_type>> = nullptr>
         int max_right(int l, Pred g) {
             assert(0 <= l && l <= n);
             assert(g(e()));
             if (l == n) return n;
             l += m;
             for (int i = lg; i >= 1; --i) push(l >> i);
-            T sum = e();
+            value_type sum = e();
             do {
                 while ((l & 1) == 0) l >>= 1;
                 if (not g(op(sum, data[l]))) {
@@ -74,17 +77,17 @@ namespace suisen {
             } while ((l & -l) != l);
             return n;
         }
-        template <bool(*f)(T)>
+        template <bool(*f)(value_type)>
         int max_right(int l) { return max_right(l, f); }
 
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
+        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, value_type>> = nullptr>
         int min_left(int r, Pred g) {
             assert(0 <= r && r <= n);
             assert(g(e()));
             if (r == 0) return 0;
             r += m;
             for (int i = lg; i >= 1; --i) push(r >> i);
-            T sum = e();
+            value_type sum = e();
             do {
                 r--;
                 while (r > 1 and (r & 1)) r >>= 1;
@@ -100,12 +103,12 @@ namespace suisen {
             } while ((r & -r) != r);
             return 0;
         }
-        template <bool(*f)(T)>
+        template <bool(*f)(value_type)>
         int min_left(int l) { return min_left(l, f); }
     private:
         int n, m, lg;
-        std::vector<T> data;
-        std::vector<F> lazy;
+        std::vector<value_type> data;
+        std::vector<operator_type> lazy;
 
         static constexpr int ceil_pow2(int n) {
             int m = 1;
@@ -113,7 +116,7 @@ namespace suisen {
             return m;
         }
 
-        void all_apply(int k, const F& f) {
+        void all_apply(int k, const operator_type& f) {
             data[k] = mapping(f, data[k]);
             if (k < m) lazy[k] = composition(f, lazy[k]);
         }
