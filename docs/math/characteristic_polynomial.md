@@ -91,12 +91,12 @@ $p _ H ^ {(k)} (\lambda) = \det (\lambda E _ k - H ^ {(k)})$ を上記の式を�
   =\ & (\lambda - \alpha _ {k - 1}) p _ H ^ {(k - 1)}
   \end{aligned}$$
 
-- $\sigma(k - 1) = l \neq k - 1$ の場合
+- $\sigma(l) = k - 1,\; l \neq k - 1$ の場合
 
-  $\displaystyle \prod _ {i = 0} ^ {k - 1} (\lambda E _ k - H ^ {(k)}) _ {i, \sigma(i)} \neq 0$ を満たすためには，全ての $i = l + 1, \ldots, k - 1$ に対して $\sigma(i) = i - 1$ であることが必要である．従って，以下が成り立つ．
+  $\displaystyle \prod _ {i = 0} ^ {k - 1} (\lambda E _ k - H ^ {(k)}) _ {i, \sigma(i)} \neq 0$ を満たすためには，全ての $i = l + 1, \ldots, k - 1$ に対して $\sigma(i) = i - 1$ を満たす必要がある．従って，以下が成り立つ．
 
   $$\begin{aligned}
-  & \sum _ {\sigma \in \{\sigma \in \mathfrak{S} _ k \mid \sigma(k - 1) = l\}} \mathrm{sgn}(\sigma)\prod _ {i = 0} ^ {k - 1} (\lambda E _ k - H ^ {(k)}) _ {i, \sigma(i)} \\
+  & \sum _ {\sigma \in \{\sigma \in \mathfrak{S} _ k \mid \sigma(l) = k - 1\land l \neq k - 1\}} \mathrm{sgn}(\sigma)\prod _ {i = 0} ^ {k - 1} (\lambda E _ k - H ^ {(k)}) _ {i, \sigma(i)} \\
   =\ & \Bigl(-H _ {l, k - 1} \prod _ {i = l + 1} ^ {k - 1} -\beta _ i\Bigr) \cdot (-1) ^ {k - l - 1} \sum _ {\sigma' \in \mathfrak{S} _ l} \mathrm{sgn}(\sigma')\prod _ {i = 0} ^ {l - 1} (\lambda E _ k - H ^ {(k)}) _ {i, \sigma'(i)} \\
   =\ & -\Bigl(H _ {l, k - 1} \prod _ {i = l + 1} ^ {k - 1} \beta _ i\Bigr) \sum _ {\sigma' \in \mathfrak{S} _ l} \mathrm{sgn}(\sigma')\prod _ {i = 0} ^ {l - 1} (\lambda E _ l - H ^ {(l)}) _ {i, \sigma'(i)} \\
   =\ & -\Bigl(H _ {l, k - 1} \prod _ {i = l + 1} ^ {k - 1} \beta _ i\Bigr) p _ H ^ {(l)}
