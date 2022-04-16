@@ -194,8 +194,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/util/static_bitset.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/util/static_bitset.hpp
-- /library/library/datastructure/util/static_bitset.hpp.html
-title: library/datastructure/util/static_bitset.hpp
+title: Static Bitset
 ---
+## Static Bitset

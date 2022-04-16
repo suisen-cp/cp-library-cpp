@@ -212,16 +212,16 @@ data:
     pages:
     - icon: ':warning:'
       path: library/datastructure/util/dynamic_bitset.hpp
-      title: library/datastructure/util/dynamic_bitset.hpp
+      title: Dynamic Bitset
     - icon: ':heavy_check_mark:'
       path: library/datastructure/util/priority_sum.hpp
-      title: library/datastructure/util/priority_sum.hpp
+      title: Priority Sum
     - icon: ':heavy_check_mark:'
       path: library/datastructure/util/range_set.hpp
-      title: library/datastructure/util/range_set.hpp
+      title: Range Set
     - icon: ':warning:'
       path: library/datastructure/util/static_bitset.hpp
-      title: library/datastructure/util/static_bitset.hpp
+      title: Static Bitset
   - name: library/debug
     pages:
     - icon: ':warning:'
@@ -320,6 +320,9 @@ data:
       path: library/math/bostan_mori.hpp
       title: Bostan Mori
     - icon: ':heavy_check_mark:'
+      path: library/math/characteristic_polynomial.hpp
+      title: Characteristic Polynomial
+    - icon: ':heavy_check_mark:'
       path: library/math/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
     - icon: ':heavy_check_mark:'
@@ -331,6 +334,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/gaussian_elimination.hpp
       title: Gaussian Elimination
+    - icon: ':heavy_check_mark:'
+      path: library/math/hessenberg_reduction.hpp
+      title: Hessenberg Reduction
     - icon: ':heavy_check_mark:'
       path: library/math/interpolation.hpp
       title: Interpolation
@@ -475,6 +481,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
+    - icon: ':warning:'
+      path: library/tree/level_ancestor.hpp
+      title: Level Ancestor
     - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: Lowest Common Ancestor
@@ -979,6 +988,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - name: test/src/math/characteristic_polynomial
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
+      title: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'

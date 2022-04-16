@@ -1,8 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/math/characteristic_polynomial.hpp
+    title: Characteristic Polynomial
+  - icon: ':heavy_check_mark:'
+    path: library/math/hessenberg_reduction.hpp
+    title: Hessenberg Reduction
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
+    title: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/matrix/determinant_of_matrix.test.cpp
     title: test/src/math/matrix/determinant_of_matrix.test.cpp
@@ -250,13 +259,16 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/math/matrix.hpp
-  requiredBy: []
+  requiredBy:
+  - library/math/characteristic_polynomial.hpp
+  - library/math/hessenberg_reduction.hpp
   timestamp: '2022-01-31 13:34:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/matrix/matrix_product.test.cpp
   - test/src/math/matrix/determinant_of_matrix.test.cpp
   - test/src/math/matrix/inverse_matrix.test.cpp
+  - test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
 documentation_of: library/math/matrix.hpp
 layout: document
 title: Matrix

@@ -145,8 +145,6 @@ data:
   - test/src/datastructure/util/range_set/DSL_2_D.test.cpp
 documentation_of: library/datastructure/util/range_set.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/util/range_set.hpp
-- /library/library/datastructure/util/range_set.hpp.html
-title: library/datastructure/util/range_set.hpp
+title: Range Set
 ---
+## Range Set

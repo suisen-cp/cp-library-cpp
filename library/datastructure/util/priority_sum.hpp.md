@@ -105,8 +105,6 @@ data:
   - test/src/datastructure/util/priority_sum/agc018_c.test.cpp
 documentation_of: library/datastructure/util/priority_sum.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/util/priority_sum.hpp
-- /library/library/datastructure/util/priority_sum.hpp.html
-title: library/datastructure/util/priority_sum.hpp
+title: Priority Sum
 ---
+## Priority Sum

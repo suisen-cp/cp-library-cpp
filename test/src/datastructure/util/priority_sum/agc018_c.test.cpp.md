@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/util/priority_sum.hpp
-    title: library/datastructure/util/priority_sum.hpp
+    title: Priority Sum
   - icon: ':heavy_check_mark:'
     path: library/util/permutation.hpp
     title: Permutation
