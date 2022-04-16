@@ -4,6 +4,10 @@
 #include "library/math/hessenberg_reduction.hpp"
 
 namespace suisen {
+    /**
+     * Reference: https://ipsen.math.ncsu.edu/ps/charpoly3.pdf
+     * returns p(λ) = det(λE - A)
+     */
     template <typename T>
     std::vector<T> characteristic_polynomial(const SquareMatrix<T> &A) {
         const int n = A.row_size();
