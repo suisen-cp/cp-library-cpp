@@ -16,7 +16,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    links:
+    - https://ipsen.math.ncsu.edu/ps/charpoly3.pdf
   bundledCode: "#line 1 \"library/math/characteristic_polynomial.hpp\"\n\n\n\n#line\
     \ 1 \"library/math/hessenberg_reduction.hpp\"\n\n\n\n#line 1 \"library/math/matrix.hpp\"\
     \n\n\n\n#include <cassert>\n#include <optional>\n#include <vector>\n\nnamespace\
@@ -149,53 +150,55 @@ data:
     \ + 1][k];\n                for (int k = 0; k < n; ++k) A[k][r + 1] += coef *\
     \ A[k][r2];\n            }\n        }\n        return A;\n    }\n} // namespace\
     \ suisen\n\n\n\n#line 5 \"library/math/characteristic_polynomial.hpp\"\n\nnamespace\
-    \ suisen {\n    template <typename T>\n    std::vector<T> characteristic_polynomial(const\
-    \ SquareMatrix<T> &A) {\n        const int n = A.row_size();\n        if (n ==\
-    \ 0) return { T{1} };\n        auto H = hessenberg_reduction(A);\n        /**\n\
-    \         *     +-              -+\n         *     | a0  *  *  *  * |\n      \
-    \   *     | b1 a1  *  *  * |\n         * H = |  0 b2 a2  *  * |\n         *  \
-    \   |  0  0 b3 a3  * |\n         *     |  0  0  0 b4 a4 |\n         *     +- \
-    \             -+\n         * p_i(\u03BB) := det(\u03BB*E_i - H[:i][:i])\n    \
-    \     * p_0(\u03BB) = 1,\n         * p_1(\u03BB) = \u03BB-a_0,\n         * p_i(\u03BB\
-    ) = (\u03BB-a_{i-1}) p_{i-1}(\u03BB) - \u03A3[j=0,i-1] p_j(\u03BB) * H_{j,i} *\
-    \ \u03A0[k=j+1,i] b_k.\n         */\n        std::vector<std::vector<T>> p(n +\
-    \ 1);\n        p[0] = { T{1} }, p[1] = { { -H[0][0], T{1} } };\n        for (int\
-    \ i = 1; i < n; ++i) {\n            p[i + 1].resize(i + 2, T{0});\n          \
-    \  for (int k = 0; k < i + 1; ++k) {\n                p[i + 1][k] -= H[i][i] *\
-    \ p[i][k];\n                p[i + 1][k + 1] += p[i][k];\n            }\n     \
-    \       T prod_b = T{1};\n            for (int j = i - 1; j >= 0; --j) {\n   \
-    \             prod_b *= H[j + 1][j];\n                T coef = H[j][i] * prod_b;\n\
-    \                for (int k = 0; k < j + 1; ++k) p[i + 1][k] -= coef * p[j][k];\n\
-    \            }\n        }\n        return p[n];\n    }\n} // namespace suisen\n\
-    \n\n\n"
+    \ suisen {\n    /**\n     * Reference: https://ipsen.math.ncsu.edu/ps/charpoly3.pdf\n\
+    \     * returns p(\u03BB) = det(\u03BBE - A)\n     */\n    template <typename\
+    \ T>\n    std::vector<T> characteristic_polynomial(const SquareMatrix<T> &A) {\n\
+    \        const int n = A.row_size();\n        if (n == 0) return { T{1} };\n \
+    \       auto H = hessenberg_reduction(A);\n        /**\n         *     +-    \
+    \          -+\n         *     | a0  *  *  *  * |\n         *     | b1 a1  *  *\
+    \  * |\n         * H = |  0 b2 a2  *  * |\n         *     |  0  0 b3 a3  * |\n\
+    \         *     |  0  0  0 b4 a4 |\n         *     +-              -+\n      \
+    \   * p_i(\u03BB) := det(\u03BB*E_i - H[:i][:i])\n         * p_0(\u03BB) = 1,\n\
+    \         * p_1(\u03BB) = \u03BB-a_0,\n         * p_i(\u03BB) = (\u03BB-a_{i-1})\
+    \ p_{i-1}(\u03BB) - \u03A3[j=0,i-1] p_j(\u03BB) * H_{j,i} * \u03A0[k=j+1,i] b_k.\n\
+    \         */\n        std::vector<std::vector<T>> p(n + 1);\n        p[0] = {\
+    \ T{1} }, p[1] = { { -H[0][0], T{1} } };\n        for (int i = 1; i < n; ++i)\
+    \ {\n            p[i + 1].resize(i + 2, T{0});\n            for (int k = 0; k\
+    \ < i + 1; ++k) {\n                p[i + 1][k] -= H[i][i] * p[i][k];\n       \
+    \         p[i + 1][k + 1] += p[i][k];\n            }\n            T prod_b = T{1};\n\
+    \            for (int j = i - 1; j >= 0; --j) {\n                prod_b *= H[j\
+    \ + 1][j];\n                T coef = H[j][i] * prod_b;\n                for (int\
+    \ k = 0; k < j + 1; ++k) p[i + 1][k] -= coef * p[j][k];\n            }\n     \
+    \   }\n        return p[n];\n    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_CHARACTERISTIC_POLYNOMIAL\n#define SUISEN_CHARACTERISTIC_POLYNOMIAL\n\
     \n#include \"library/math/hessenberg_reduction.hpp\"\n\nnamespace suisen {\n \
-    \   template <typename T>\n    std::vector<T> characteristic_polynomial(const\
-    \ SquareMatrix<T> &A) {\n        const int n = A.row_size();\n        if (n ==\
-    \ 0) return { T{1} };\n        auto H = hessenberg_reduction(A);\n        /**\n\
-    \         *     +-              -+\n         *     | a0  *  *  *  * |\n      \
-    \   *     | b1 a1  *  *  * |\n         * H = |  0 b2 a2  *  * |\n         *  \
-    \   |  0  0 b3 a3  * |\n         *     |  0  0  0 b4 a4 |\n         *     +- \
-    \             -+\n         * p_i(\u03BB) := det(\u03BB*E_i - H[:i][:i])\n    \
-    \     * p_0(\u03BB) = 1,\n         * p_1(\u03BB) = \u03BB-a_0,\n         * p_i(\u03BB\
-    ) = (\u03BB-a_{i-1}) p_{i-1}(\u03BB) - \u03A3[j=0,i-1] p_j(\u03BB) * H_{j,i} *\
-    \ \u03A0[k=j+1,i] b_k.\n         */\n        std::vector<std::vector<T>> p(n +\
-    \ 1);\n        p[0] = { T{1} }, p[1] = { { -H[0][0], T{1} } };\n        for (int\
-    \ i = 1; i < n; ++i) {\n            p[i + 1].resize(i + 2, T{0});\n          \
-    \  for (int k = 0; k < i + 1; ++k) {\n                p[i + 1][k] -= H[i][i] *\
-    \ p[i][k];\n                p[i + 1][k + 1] += p[i][k];\n            }\n     \
-    \       T prod_b = T{1};\n            for (int j = i - 1; j >= 0; --j) {\n   \
-    \             prod_b *= H[j + 1][j];\n                T coef = H[j][i] * prod_b;\n\
-    \                for (int k = 0; k < j + 1; ++k) p[i + 1][k] -= coef * p[j][k];\n\
-    \            }\n        }\n        return p[n];\n    }\n} // namespace suisen\n\
-    \n\n#endif // SUISEN_CHARACTERISTIC_POLYNOMIAL\n"
+    \   /**\n     * Reference: https://ipsen.math.ncsu.edu/ps/charpoly3.pdf\n    \
+    \ * returns p(\u03BB) = det(\u03BBE - A)\n     */\n    template <typename T>\n\
+    \    std::vector<T> characteristic_polynomial(const SquareMatrix<T> &A) {\n  \
+    \      const int n = A.row_size();\n        if (n == 0) return { T{1} };\n   \
+    \     auto H = hessenberg_reduction(A);\n        /**\n         *     +-      \
+    \        -+\n         *     | a0  *  *  *  * |\n         *     | b1 a1  *  * \
+    \ * |\n         * H = |  0 b2 a2  *  * |\n         *     |  0  0 b3 a3  * |\n\
+    \         *     |  0  0  0 b4 a4 |\n         *     +-              -+\n      \
+    \   * p_i(\u03BB) := det(\u03BB*E_i - H[:i][:i])\n         * p_0(\u03BB) = 1,\n\
+    \         * p_1(\u03BB) = \u03BB-a_0,\n         * p_i(\u03BB) = (\u03BB-a_{i-1})\
+    \ p_{i-1}(\u03BB) - \u03A3[j=0,i-1] p_j(\u03BB) * H_{j,i} * \u03A0[k=j+1,i] b_k.\n\
+    \         */\n        std::vector<std::vector<T>> p(n + 1);\n        p[0] = {\
+    \ T{1} }, p[1] = { { -H[0][0], T{1} } };\n        for (int i = 1; i < n; ++i)\
+    \ {\n            p[i + 1].resize(i + 2, T{0});\n            for (int k = 0; k\
+    \ < i + 1; ++k) {\n                p[i + 1][k] -= H[i][i] * p[i][k];\n       \
+    \         p[i + 1][k + 1] += p[i][k];\n            }\n            T prod_b = T{1};\n\
+    \            for (int j = i - 1; j >= 0; --j) {\n                prod_b *= H[j\
+    \ + 1][j];\n                T coef = H[j][i] * prod_b;\n                for (int\
+    \ k = 0; k < j + 1; ++k) p[i + 1][k] -= coef * p[j][k];\n            }\n     \
+    \   }\n        return p[n];\n    }\n} // namespace suisen\n\n\n#endif // SUISEN_CHARACTERISTIC_POLYNOMIAL\n"
   dependsOn:
   - library/math/hessenberg_reduction.hpp
   - library/math/matrix.hpp
   isVerificationFile: false
   path: library/math/characteristic_polynomial.hpp
   requiredBy: []
-  timestamp: '2022-04-16 16:20:36+09:00'
+  timestamp: '2022-04-16 16:40:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
@@ -311,33 +314,4 @@ $$
 
 右辺は $\Theta(N ^ 2)$ 時間で計算できるので，結局全ての $p _ H ^ {(k)}$ を $\Theta(N ^ 3)$ 時間で計算することが出来る．
 
-上 Hessenberg 行列 $H$ の特性多項式を $\Theta(N ^ 3)$ で計算することができたので，あとは任意の $N \times N$ 行列 $A$ を相似変換により上 Hessenberg 行列へと変換することができればよいが，次のように $\Theta(N ^ 3)$ 時間で行うことが出来る．
-
-#### 上 Hessenberg 行列への相似変換
-
-Reference : http://www.phys.uri.edu/nigh/NumRec/bookfpdf/f11-5.pdf
-
-__方針__
-
-行列 $A$ に対して行基本変形を $k$ 回行った結果得られる行列 $B$ は基本変形を表す行列 $P _ 1, P_ 2, \ldots, P _ k$ により $B = P _ k P _ {k - 1} \cdots P _ 1 A$ と表される．
-
-基本変形を表す行列は正則であるから，$(P _ k P _ {k - 1} \cdots P _ 1) A (P _ k P _ {k - 1} \cdots P _ 1) ^ {-1} = P _ k (P _ {k - 1} (\cdots (P _ 1 A P _ 1 ^ {-1}) \cdots) P _ {k - 1} ^ {-1}) P _ k ^ {-1}$ は相似変換である．
-
-即ち，行基本変形とその逆行列による列基本変形をセットにして行列 $A$ を掃き出すことで上 Hessenberg 行列 $H$ を得ることが出来れば，$A$ と $H$ は相似である．
-
-__アルゴリズム__
-
-次のような，掃き出し法により上三角行列を得るアルゴリズムとよく似た手続きにより上 Hessenberg 行列へと相似変換することができる．
-
-1. $i = 0, \ldots, N - 3$ の順に以下を行う．
-   1. $i + 1\leq j \lt N$ かつ $A _ {j, i} \neq 0$ を満たす $j$ を任意に $1$ つ選ぶ．ただし，そのような $j$ が存在しない場合は，次の $i$ に進む．
-   2. $A$ の $i + 1$ 行目と $j$ 行目を swap する．
-   3. 相似変換であることを保つため，$A$ の $i + 1$ 列目と $j$ 列目を swap する．
-   4. 各 $k = i + 2, \ldots, N - 1$ に対して以下を行う．
-      1. $c := \dfrac{A _ {k, i}}{A _ {i + 1, i}}$ とする．
-      2. $A$ の $k$ 行目から $i + 1$ 行目の $c$ 倍を差し引く．
-      3. 相似変換であることを保つため，$A$ の $i + 1$ 列目に $k$ 列目の $c$ 倍を足し込む．
-
-列基本変形により以前 $0$ にした部分が再び非零になったり，あるいは $A _ {i + 1, i} = 0$ となってしまったりすると上 Hessenberg 行列への変換は失敗するが，列基本変形は $i + 1$ 列目から $N - 1$ 列目までにしか変更を加えないため，そのようなことは起こり得ない．
-
-従って，上記の手続きにより $A$ は上 Hessenberg 行列へと相似変換される．時間計算量は $\Theta(N ^ 3)$ である．
+上 Hessenberg 行列 $H$ の特性多項式を $\Theta(N ^ 3)$ で計算することができたので，あとは任意の $N \times N$ 行列 $A$ を相似変換により上 Hessenberg 行列へと変換することができればよいが，[Hessenberg Reduction](https://suisen-cp.github.io/cp-library-cpp/library/math/hessenberg_reduction.hpp) に示したように，これは $\Theta(N ^ 3)$ 時間で行うことが出来る．

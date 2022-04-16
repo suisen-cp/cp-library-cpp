@@ -157,25 +157,26 @@ data:
     \ + 1][k];\n                for (int k = 0; k < n; ++k) A[k][r + 1] += coef *\
     \ A[k][r2];\n            }\n        }\n        return A;\n    }\n} // namespace\
     \ suisen\n\n\n\n#line 5 \"library/math/characteristic_polynomial.hpp\"\n\nnamespace\
-    \ suisen {\n    template <typename T>\n    std::vector<T> characteristic_polynomial(const\
-    \ SquareMatrix<T> &A) {\n        const int n = A.row_size();\n        if (n ==\
-    \ 0) return { T{1} };\n        auto H = hessenberg_reduction(A);\n        /**\n\
-    \         *     +-              -+\n         *     | a0  *  *  *  * |\n      \
-    \   *     | b1 a1  *  *  * |\n         * H = |  0 b2 a2  *  * |\n         *  \
-    \   |  0  0 b3 a3  * |\n         *     |  0  0  0 b4 a4 |\n         *     +- \
-    \             -+\n         * p_i(\u03BB) := det(\u03BB*E_i - H[:i][:i])\n    \
-    \     * p_0(\u03BB) = 1,\n         * p_1(\u03BB) = \u03BB-a_0,\n         * p_i(\u03BB\
-    ) = (\u03BB-a_{i-1}) p_{i-1}(\u03BB) - \u03A3[j=0,i-1] p_j(\u03BB) * H_{j,i} *\
-    \ \u03A0[k=j+1,i] b_k.\n         */\n        std::vector<std::vector<T>> p(n +\
-    \ 1);\n        p[0] = { T{1} }, p[1] = { { -H[0][0], T{1} } };\n        for (int\
-    \ i = 1; i < n; ++i) {\n            p[i + 1].resize(i + 2, T{0});\n          \
-    \  for (int k = 0; k < i + 1; ++k) {\n                p[i + 1][k] -= H[i][i] *\
-    \ p[i][k];\n                p[i + 1][k + 1] += p[i][k];\n            }\n     \
-    \       T prod_b = T{1};\n            for (int j = i - 1; j >= 0; --j) {\n   \
-    \             prod_b *= H[j + 1][j];\n                T coef = H[j][i] * prod_b;\n\
-    \                for (int k = 0; k < j + 1; ++k) p[i + 1][k] -= coef * p[j][k];\n\
-    \            }\n        }\n        return p[n];\n    }\n} // namespace suisen\n\
-    \n\n\n#line 19 \"test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp\"\
+    \ suisen {\n    /**\n     * Reference: https://ipsen.math.ncsu.edu/ps/charpoly3.pdf\n\
+    \     * returns p(\u03BB) = det(\u03BBE - A)\n     */\n    template <typename\
+    \ T>\n    std::vector<T> characteristic_polynomial(const SquareMatrix<T> &A) {\n\
+    \        const int n = A.row_size();\n        if (n == 0) return { T{1} };\n \
+    \       auto H = hessenberg_reduction(A);\n        /**\n         *     +-    \
+    \          -+\n         *     | a0  *  *  *  * |\n         *     | b1 a1  *  *\
+    \  * |\n         * H = |  0 b2 a2  *  * |\n         *     |  0  0 b3 a3  * |\n\
+    \         *     |  0  0  0 b4 a4 |\n         *     +-              -+\n      \
+    \   * p_i(\u03BB) := det(\u03BB*E_i - H[:i][:i])\n         * p_0(\u03BB) = 1,\n\
+    \         * p_1(\u03BB) = \u03BB-a_0,\n         * p_i(\u03BB) = (\u03BB-a_{i-1})\
+    \ p_{i-1}(\u03BB) - \u03A3[j=0,i-1] p_j(\u03BB) * H_{j,i} * \u03A0[k=j+1,i] b_k.\n\
+    \         */\n        std::vector<std::vector<T>> p(n + 1);\n        p[0] = {\
+    \ T{1} }, p[1] = { { -H[0][0], T{1} } };\n        for (int i = 1; i < n; ++i)\
+    \ {\n            p[i + 1].resize(i + 2, T{0});\n            for (int k = 0; k\
+    \ < i + 1; ++k) {\n                p[i + 1][k] -= H[i][i] * p[i][k];\n       \
+    \         p[i + 1][k + 1] += p[i][k];\n            }\n            T prod_b = T{1};\n\
+    \            for (int j = i - 1; j >= 0; --j) {\n                prod_b *= H[j\
+    \ + 1][j];\n                T coef = H[j][i] * prod_b;\n                for (int\
+    \ k = 0; k < j + 1; ++k) p[i + 1][k] -= coef * p[j][k];\n            }\n     \
+    \   }\n        return p[n];\n    }\n} // namespace suisen\n\n\n\n#line 19 \"test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp\"\
     \n\nusing suisen::SquareMatrix;\nusing suisen::characteristic_polynomial;\n\n\
     int main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    \n    int n;\n    std::cin >> n;\n\n    SquareMatrix<mint> A(n);\n    for\
@@ -200,7 +201,7 @@ data:
   isVerificationFile: true
   path: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2022-04-16 16:20:36+09:00'
+  timestamp: '2022-04-16 16:40:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
