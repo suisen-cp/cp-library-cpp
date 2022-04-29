@@ -50,7 +50,9 @@ data:
     \ std::vector<T>& dat) const {\n            return DoublingSum<T, op, e>(_nxt,\
     \ max_step, dat);\n        }\n\n        struct InfinitePath {\n            int\
     \ head_v;\n            int head_len;\n            int loop_v;\n            int\
-    \ loop_len;\n            InfinitePath() = default;\n        };\n\n        std::vector<InfinitePath>\
+    \ loop_len;\n            InfinitePath() = default;\n            InfinitePath(int\
+    \ head_v, int head_len, int loop_v, int loop_len) : head_v(head_v), head_len(head_len),\
+    \ loop_v(loop_v), loop_len(loop_len) {}\n        };\n\n        std::vector<InfinitePath>\
     \ infinite_paths() const {\n            std::vector<InfinitePath> res(_n);\n\n\
     \            std::vector<int> vis(_n, _n);\n            std::vector<int> dep(_n,\
     \ 0);\n\n            int time = 0;\n            auto dfs = [&](auto dfs, int u)\
@@ -132,7 +134,9 @@ data:
     \ std::vector<T>& dat) const {\n            return DoublingSum<T, op, e>(_nxt,\
     \ max_step, dat);\n        }\n\n        struct InfinitePath {\n            int\
     \ head_v;\n            int head_len;\n            int loop_v;\n            int\
-    \ loop_len;\n            InfinitePath() = default;\n        };\n\n        std::vector<InfinitePath>\
+    \ loop_len;\n            InfinitePath() = default;\n            InfinitePath(int\
+    \ head_v, int head_len, int loop_v, int loop_len) : head_v(head_v), head_len(head_len),\
+    \ loop_v(loop_v), loop_len(loop_len) {}\n        };\n\n        std::vector<InfinitePath>\
     \ infinite_paths() const {\n            std::vector<InfinitePath> res(_n);\n\n\
     \            std::vector<int> vis(_n, _n);\n            std::vector<int> dep(_n,\
     \ 0);\n\n            int time = 0;\n            auto dfs = [&](auto dfs, int u)\
@@ -180,7 +184,7 @@ data:
   isVerificationFile: false
   path: library/graph/functional_graph.hpp
   requiredBy: []
-  timestamp: '2022-04-04 15:11:18+09:00'
+  timestamp: '2022-04-30 04:34:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/functional_graph/dummy.test.cpp

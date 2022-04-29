@@ -153,21 +153,21 @@ data:
   isVerificationFile: false
   path: library/transform/kronecker_power.hpp
   requiredBy:
-  - library/convolution/and_convolution.hpp
   - library/convolution/or_convolution.hpp
   - library/convolution/xor_convolution.hpp
+  - library/convolution/and_convolution.hpp
+  - library/transform/walsh_hadamard.hpp
   - library/transform/supset.hpp
   - library/transform/subset.hpp
-  - library/transform/walsh_hadamard.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/sps/connectivity2.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/and_convolution/and_convolution.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  - test/src/math/sps/connectivity2.test.cpp
   - test/src/transform/kronecker_power/agc044_c.test.cpp
 documentation_of: library/transform/kronecker_power.hpp
 layout: document

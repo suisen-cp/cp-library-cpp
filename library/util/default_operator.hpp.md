@@ -153,35 +153,35 @@ data:
   isVerificationFile: false
   path: library/util/default_operator.hpp
   requiredBy:
-  - library/math/array_matrix.hpp
-  - library/convolution/and_convolution.hpp
-  - library/convolution/or_convolution.hpp
-  - library/convolution/xor_convolution.hpp
   - library/convolution/convolution.hpp
-  - library/convolution/multi_variate_convolution.hpp
   - library/convolution/lcm_convolution.hpp
+  - library/convolution/or_convolution.hpp
   - library/convolution/gcd_convolution.hpp
-  - library/transform/supset.hpp
-  - library/transform/multiple.hpp
-  - library/transform/subset.hpp
-  - library/transform/walsh_hadamard.hpp
-  - library/transform/divisor.hpp
-  - library/transform/kronecker_power.hpp
+  - library/convolution/xor_convolution.hpp
+  - library/convolution/and_convolution.hpp
+  - library/convolution/multi_variate_convolution.hpp
   - library/util/cumulative_sum.hpp
   - library/util/cumulative_sum_2d.hpp
+  - library/math/array_matrix.hpp
+  - library/transform/walsh_hadamard.hpp
+  - library/transform/multiple.hpp
+  - library/transform/divisor.hpp
+  - library/transform/supset.hpp
+  - library/transform/subset.hpp
+  - library/transform/kronecker_power.hpp
   timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/sps/connectivity2.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
-  - test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
+  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  - test/src/math/sps/connectivity2.test.cpp
   - test/src/transform/multiple/divide_both.test.cpp
   - test/src/transform/kronecker_power/agc044_c.test.cpp
 documentation_of: library/util/default_operator.hpp

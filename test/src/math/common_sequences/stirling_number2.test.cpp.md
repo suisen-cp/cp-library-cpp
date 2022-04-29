@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: Factorial
   - icon: ':heavy_check_mark:'

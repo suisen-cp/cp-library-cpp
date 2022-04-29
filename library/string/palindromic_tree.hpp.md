@@ -247,8 +247,8 @@ data:
   timestamp: '2022-01-31 17:00:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/string/palindromic_tree/yuki263.test.cpp
   - test/src/string/palindromic_tree/abc237_h.test.cpp
+  - test/src/string/palindromic_tree/yuki263.test.cpp
 documentation_of: library/string/palindromic_tree.hpp
 layout: document
 title: Palindromic Tree

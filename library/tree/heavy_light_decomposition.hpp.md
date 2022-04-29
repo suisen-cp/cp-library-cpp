@@ -232,10 +232,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
 documentation_of: library/tree/heavy_light_decomposition.hpp
 layout: document
 title: Heavy Light Decomposition (HLD)
