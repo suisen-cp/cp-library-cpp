@@ -87,6 +87,7 @@ namespace suisen {
             int loop_v;
             int loop_len;
             InfinitePath() = default;
+            InfinitePath(int head_v, int head_len, int loop_v, int loop_len) : head_v(head_v), head_len(head_len), loop_v(loop_v), loop_len(loop_len) {}
         };
 
         std::vector<InfinitePath> infinite_paths() const {
