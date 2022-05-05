@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: library/convolution/convolution_naive.hpp
+    title: library/convolution/convolution_naive.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -12,31 +15,41 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/convolution_2_64.hpp\"\n\n\n\n#include\
-    \ <atcoder/convolution>\n#include <iostream>\n\nnamespace suisen {\n    std::vector<unsigned\
-    \ long long> convolution_mod_2_64(const std::vector<unsigned long long>& a, const\
-    \ std::vector<unsigned long long>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
-    \        if (n == 0 or m == 0) return {};\n\n        static constexpr long long\
-    \ MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2 = 167772161;\
-    \  // 2^25\n        static constexpr long long MOD3 = 469762049;  // 2^26\n  \
-    \      static constexpr long long MOD4 = 377487361;  // 2^23\n        static constexpr\
-    \ long long MOD5 = 595591169;  // 2^23\n        static constexpr long long MOD6\
-    \ = 645922817;  // 2^23\n        \n        static constexpr long long M1_MOD2\
-    \         = MOD1 % MOD2;\n        static constexpr long long M1_MOD3         =\
-    \ MOD1 % MOD3;\n        static constexpr long long M1_MOD4         = MOD1 % MOD4;\n\
-    \        static constexpr long long M1_MOD5         = MOD1 % MOD5;\n        static\
-    \ constexpr long long M1_MOD6         = MOD1 % MOD6;\n        static constexpr\
-    \ long long M1M2_MOD3       = M1_MOD3 * MOD2 % MOD3;\n        static constexpr\
-    \ long long M1M2_MOD4       = M1_MOD4 * MOD2 % MOD4;\n        static constexpr\
-    \ long long M1M2_MOD5       = M1_MOD5 * MOD2 % MOD5;\n        static constexpr\
-    \ long long M1M2_MOD6       = M1_MOD6 * MOD2 % MOD6;\n        static constexpr\
-    \ long long M1M2M3_MOD4     = M1M2_MOD4 * MOD3 % MOD4;\n        static constexpr\
-    \ long long M1M2M3_MOD5     = M1M2_MOD5 * MOD3 % MOD5;\n        static constexpr\
-    \ long long M1M2M3_MOD6     = M1M2_MOD6 * MOD3 % MOD6;\n        static constexpr\
-    \ long long M1M2M3M4_MOD5   = M1M2M3_MOD5 * MOD4 % MOD5;\n        static constexpr\
-    \ long long M1M2M3M4_MOD6   = M1M2M3_MOD6 * MOD4 % MOD6;\n        static constexpr\
-    \ long long M1M2M3M4M5_MOD6 = M1M2M3M4_MOD6 * MOD5 % MOD6;\n\n        static constexpr\
-    \ long long INV_M1_MOD2         = atcoder::internal::inv_gcd(M1_MOD2, MOD2).second;\n\
-    \        static constexpr long long INV_M1M2_MOD3       = atcoder::internal::inv_gcd(M1M2_MOD3,\
+    \ <atcoder/convolution>\n#include <iostream>\n\n#line 1 \"library/convolution/convolution_naive.hpp\"\
+    \n\n\n\n#include <vector>\n\nnamespace suisen::internal {\n    template <typename\
+    \ T>\n    std::vector<T> convolution_naive(const std::vector<T>& a, const std::vector<T>&\
+    \ b) {\n        const int n = a.size(), m = b.size();\n        std::vector<T>\
+    \ c(n + m - 1);\n        if (n < m) {\n            for (int j = 0; j < m; j++)\
+    \ for (int i = 0; i < n; i++) c[i + j] += a[i] * b[j];\n        } else {\n   \
+    \         for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j] +=\
+    \ a[i] * b[j];\n        }\n        return c;\n    }\n} // namespace suisen\n\n\
+    \n\n#line 8 \"library/convolution/convolution_2_64.hpp\"\n\nnamespace suisen {\n\
+    \    std::vector<unsigned long long> convolution_mod_2_64(const std::vector<unsigned\
+    \ long long>& a, const std::vector<unsigned long long>& b) {\n        int n =\
+    \ int(a.size()), m = int(b.size());\n        if (n == 0 or m == 0) return {};\n\
+    \        if (std::min(n, m) <= 60) return internal::convolution_naive(a, b);\n\
+    \n        static constexpr long long MOD1 = 754974721;  // 2^24\n        static\
+    \ constexpr long long MOD2 = 167772161;  // 2^25\n        static constexpr long\
+    \ long MOD3 = 469762049;  // 2^26\n        static constexpr long long MOD4 = 377487361;\
+    \  // 2^23\n        static constexpr long long MOD5 = 595591169;  // 2^23\n  \
+    \      static constexpr long long MOD6 = 645922817;  // 2^23\n        \n     \
+    \   static constexpr long long M1_MOD2         = MOD1 % MOD2;\n        static\
+    \ constexpr long long M1_MOD3         = MOD1 % MOD3;\n        static constexpr\
+    \ long long M1_MOD4         = MOD1 % MOD4;\n        static constexpr long long\
+    \ M1_MOD5         = MOD1 % MOD5;\n        static constexpr long long M1_MOD6 \
+    \        = MOD1 % MOD6;\n        static constexpr long long M1M2_MOD3       =\
+    \ M1_MOD3 * MOD2 % MOD3;\n        static constexpr long long M1M2_MOD4       =\
+    \ M1_MOD4 * MOD2 % MOD4;\n        static constexpr long long M1M2_MOD5       =\
+    \ M1_MOD5 * MOD2 % MOD5;\n        static constexpr long long M1M2_MOD6       =\
+    \ M1_MOD6 * MOD2 % MOD6;\n        static constexpr long long M1M2M3_MOD4     =\
+    \ M1M2_MOD4 * MOD3 % MOD4;\n        static constexpr long long M1M2M3_MOD5   \
+    \  = M1M2_MOD5 * MOD3 % MOD5;\n        static constexpr long long M1M2M3_MOD6\
+    \     = M1M2_MOD6 * MOD3 % MOD6;\n        static constexpr long long M1M2M3M4_MOD5\
+    \   = M1M2M3_MOD5 * MOD4 % MOD5;\n        static constexpr long long M1M2M3M4_MOD6\
+    \   = M1M2M3_MOD6 * MOD4 % MOD6;\n        static constexpr long long M1M2M3M4M5_MOD6\
+    \ = M1M2M3M4_MOD6 * MOD5 % MOD6;\n\n        static constexpr long long INV_M1_MOD2\
+    \         = atcoder::internal::inv_gcd(M1_MOD2, MOD2).second;\n        static\
+    \ constexpr long long INV_M1M2_MOD3       = atcoder::internal::inv_gcd(M1M2_MOD3,\
     \ MOD3).second;\n        static constexpr long long INV_M1M2M3_MOD4     = atcoder::internal::inv_gcd(M1M2M3_MOD4,\
     \ MOD4).second;\n        static constexpr long long INV_M1M2M3M4_MOD5   = atcoder::internal::inv_gcd(M1M2M3M4_MOD5,\
     \ MOD5).second;\n        static constexpr long long INV_M1M2M3M4M5_MOD6 = atcoder::internal::inv_gcd(M1M2M3M4M5_MOD6,\
@@ -64,31 +77,33 @@ data:
     \ x4 * m1m2m3 + x5 * m1m2m3m4 + x6 * m1m2m3m4m5;\n        }\n        return c;\n\
     \    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_CONVOLUTION_2_64\n#define SUISEN_CONVOLUTION_2_64\n\n#include\
-    \ <atcoder/convolution>\n#include <iostream>\n\nnamespace suisen {\n    std::vector<unsigned\
-    \ long long> convolution_mod_2_64(const std::vector<unsigned long long>& a, const\
-    \ std::vector<unsigned long long>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
-    \        if (n == 0 or m == 0) return {};\n\n        static constexpr long long\
-    \ MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2 = 167772161;\
-    \  // 2^25\n        static constexpr long long MOD3 = 469762049;  // 2^26\n  \
-    \      static constexpr long long MOD4 = 377487361;  // 2^23\n        static constexpr\
-    \ long long MOD5 = 595591169;  // 2^23\n        static constexpr long long MOD6\
-    \ = 645922817;  // 2^23\n        \n        static constexpr long long M1_MOD2\
-    \         = MOD1 % MOD2;\n        static constexpr long long M1_MOD3         =\
-    \ MOD1 % MOD3;\n        static constexpr long long M1_MOD4         = MOD1 % MOD4;\n\
-    \        static constexpr long long M1_MOD5         = MOD1 % MOD5;\n        static\
-    \ constexpr long long M1_MOD6         = MOD1 % MOD6;\n        static constexpr\
-    \ long long M1M2_MOD3       = M1_MOD3 * MOD2 % MOD3;\n        static constexpr\
-    \ long long M1M2_MOD4       = M1_MOD4 * MOD2 % MOD4;\n        static constexpr\
-    \ long long M1M2_MOD5       = M1_MOD5 * MOD2 % MOD5;\n        static constexpr\
-    \ long long M1M2_MOD6       = M1_MOD6 * MOD2 % MOD6;\n        static constexpr\
-    \ long long M1M2M3_MOD4     = M1M2_MOD4 * MOD3 % MOD4;\n        static constexpr\
-    \ long long M1M2M3_MOD5     = M1M2_MOD5 * MOD3 % MOD5;\n        static constexpr\
-    \ long long M1M2M3_MOD6     = M1M2_MOD6 * MOD3 % MOD6;\n        static constexpr\
-    \ long long M1M2M3M4_MOD5   = M1M2M3_MOD5 * MOD4 % MOD5;\n        static constexpr\
-    \ long long M1M2M3M4_MOD6   = M1M2M3_MOD6 * MOD4 % MOD6;\n        static constexpr\
-    \ long long M1M2M3M4M5_MOD6 = M1M2M3M4_MOD6 * MOD5 % MOD6;\n\n        static constexpr\
-    \ long long INV_M1_MOD2         = atcoder::internal::inv_gcd(M1_MOD2, MOD2).second;\n\
-    \        static constexpr long long INV_M1M2_MOD3       = atcoder::internal::inv_gcd(M1M2_MOD3,\
+    \ <atcoder/convolution>\n#include <iostream>\n\n#include \"library/convolution/convolution_naive.hpp\"\
+    \n\nnamespace suisen {\n    std::vector<unsigned long long> convolution_mod_2_64(const\
+    \ std::vector<unsigned long long>& a, const std::vector<unsigned long long>& b)\
+    \ {\n        int n = int(a.size()), m = int(b.size());\n        if (n == 0 or\
+    \ m == 0) return {};\n        if (std::min(n, m) <= 60) return internal::convolution_naive(a,\
+    \ b);\n\n        static constexpr long long MOD1 = 754974721;  // 2^24\n     \
+    \   static constexpr long long MOD2 = 167772161;  // 2^25\n        static constexpr\
+    \ long long MOD3 = 469762049;  // 2^26\n        static constexpr long long MOD4\
+    \ = 377487361;  // 2^23\n        static constexpr long long MOD5 = 595591169;\
+    \  // 2^23\n        static constexpr long long MOD6 = 645922817;  // 2^23\n  \
+    \      \n        static constexpr long long M1_MOD2         = MOD1 % MOD2;\n \
+    \       static constexpr long long M1_MOD3         = MOD1 % MOD3;\n        static\
+    \ constexpr long long M1_MOD4         = MOD1 % MOD4;\n        static constexpr\
+    \ long long M1_MOD5         = MOD1 % MOD5;\n        static constexpr long long\
+    \ M1_MOD6         = MOD1 % MOD6;\n        static constexpr long long M1M2_MOD3\
+    \       = M1_MOD3 * MOD2 % MOD3;\n        static constexpr long long M1M2_MOD4\
+    \       = M1_MOD4 * MOD2 % MOD4;\n        static constexpr long long M1M2_MOD5\
+    \       = M1_MOD5 * MOD2 % MOD5;\n        static constexpr long long M1M2_MOD6\
+    \       = M1_MOD6 * MOD2 % MOD6;\n        static constexpr long long M1M2M3_MOD4\
+    \     = M1M2_MOD4 * MOD3 % MOD4;\n        static constexpr long long M1M2M3_MOD5\
+    \     = M1M2_MOD5 * MOD3 % MOD5;\n        static constexpr long long M1M2M3_MOD6\
+    \     = M1M2_MOD6 * MOD3 % MOD6;\n        static constexpr long long M1M2M3M4_MOD5\
+    \   = M1M2M3_MOD5 * MOD4 % MOD5;\n        static constexpr long long M1M2M3M4_MOD6\
+    \   = M1M2M3_MOD6 * MOD4 % MOD6;\n        static constexpr long long M1M2M3M4M5_MOD6\
+    \ = M1M2M3M4_MOD6 * MOD5 % MOD6;\n\n        static constexpr long long INV_M1_MOD2\
+    \         = atcoder::internal::inv_gcd(M1_MOD2, MOD2).second;\n        static\
+    \ constexpr long long INV_M1M2_MOD3       = atcoder::internal::inv_gcd(M1M2_MOD3,\
     \ MOD3).second;\n        static constexpr long long INV_M1M2M3_MOD4     = atcoder::internal::inv_gcd(M1M2M3_MOD4,\
     \ MOD4).second;\n        static constexpr long long INV_M1M2M3M4_MOD5   = atcoder::internal::inv_gcd(M1M2M3M4_MOD5,\
     \ MOD5).second;\n        static constexpr long long INV_M1M2M3M4M5_MOD6 = atcoder::internal::inv_gcd(M1M2M3M4M5_MOD6,\
@@ -115,11 +130,12 @@ data:
     \ * INV_M1M2M3M4M5_MOD6).val();\n            c[i] = x1 + x2 * m1 + x3 * m1m2 +\
     \ x4 * m1m2m3 + x5 * m1m2m3m4 + x6 * m1m2m3m4m5;\n        }\n        return c;\n\
     \    }\n} // namespace suisen\n\n\n#endif // SUISEN_CONVOLUTION_2_64\n"
-  dependsOn: []
+  dependsOn:
+  - library/convolution/convolution_naive.hpp
   isVerificationFile: false
   path: library/convolution/convolution_2_64.hpp
   requiredBy: []
-  timestamp: '2022-04-30 04:33:25+09:00'
+  timestamp: '2022-05-05 17:36:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp

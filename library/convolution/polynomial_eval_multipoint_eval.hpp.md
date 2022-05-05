@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: Multi Point Eval
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

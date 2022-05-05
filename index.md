@@ -50,6 +50,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/convolution_large.hpp
       title: Convolution Large
+    - icon: ':heavy_check_mark:'
+      path: library/convolution/convolution_naive.hpp
+      title: library/convolution/convolution_naive.hpp
     - icon: ':warning:'
       path: library/convolution/dirichlet_convolution.hpp
       title: Dirichlet Convolution
@@ -268,11 +271,17 @@ data:
       path: library/graph/bfs01.hpp
       title: Bfs01
     - icon: ':heavy_check_mark:'
+      path: library/graph/biconnected_components.hpp
+      title: library/graph/biconnected_components.hpp
+    - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_graph_recognition.hpp
       title: Bipartite Graph Recognition
     - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_matching.hpp
       title: Bipartite Matching
+    - icon: ':warning:'
+      path: library/graph/block_cut_forest.hpp
+      title: library/graph/block_cut_forest.hpp
     - icon: ':heavy_check_mark:'
       path: library/graph/cycle_detection.hpp
       title: Cycle Detection
@@ -478,6 +487,9 @@ data:
       title: "Walsh Hadamard \u5909\u63DB"
   - name: library/tree
     pages:
+    - icon: ':warning:'
+      path: library/tree/auxiliary_tree.hpp
+      title: library/tree/auxiliary_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/tree/centroid_decomposition.hpp
       title: Centroid Decomposition
@@ -490,7 +502,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
     - icon: ':warning:'
@@ -510,7 +522,7 @@ data:
       title: Rerooting
   - name: library/type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
   - name: library/util
@@ -944,6 +956,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - name: test/src/graph/biconnected_components
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/biconnected_components/biconnected_components.test.cpp
+      title: test/src/graph/biconnected_components/biconnected_components.test.cpp
   - name: test/src/graph/bipartite_matching
     pages:
     - icon: ':heavy_check_mark:'
@@ -1224,16 +1241,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/lowest_common_anceestor

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: Util
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -145,10 +145,10 @@ data:
     \        int n = vs.size();\n        T max_val = *std::max_element(vs.begin(),\
     \ vs.end());\n        assert(*std::min_element(vs.begin(), vs.end()) >= 0);\n\
     \        std::vector<std::tuple<T, T, Container>> res;\n        for (T l = 1,\
-    \ r = 1; l <= max_val; l = r + 1) {\n            Container qs;\n            if\
-    \ constexpr (std::is_same_v<Container, std::vector<T>>) qs.resize(n);\n      \
-    \      r = std::numeric_limits<T>::max();\n            for (int i = 0; i < n;\
-    \ ++i) {\n                qs[i] = vs[i] / l;\n                r = std::min(r,\
+    \ r = 1; l <= max_val; l = r + 1) {\n            Container qs{};\n           \
+    \ if constexpr (std::is_same_v<Container, std::vector<T>>) qs.resize(n);\n   \
+    \         r = std::numeric_limits<T>::max();\n            for (int i = 0; i <\
+    \ n; ++i) {\n                qs[i] = vs[i] / l;\n                r = std::min(r,\
     \ qs[i] == 0 ? std::numeric_limits<T>::max() : vs[i] / qs[i]);\n            }\n\
     \            res.emplace_back(l, r, std::move(qs));\n        }\n        return\
     \ res;\n    }\n\n} // namespace suisen\n\n\n#line 6 \"test/src/number/util/same_div_dens.test.cpp\"\
@@ -222,7 +222,7 @@ data:
   isVerificationFile: true
   path: test/src/number/util/same_div_dens.test.cpp
   requiredBy: []
-  timestamp: '2022-02-25 23:20:55+09:00'
+  timestamp: '2022-05-05 17:39:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/util/same_div_dens.test.cpp

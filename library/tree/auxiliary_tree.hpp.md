@@ -9,21 +9,15 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
-  _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
-    links:
-    - https://judge.yosupo.jp/problem/vertex_set_path_composite
-  bundledCode: "#line 1 \"test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
-    \n\n#include <iostream>\n#include <atcoder/segtree>\n#include <atcoder/modint>\n\
-    \nusing mint = atcoder::modint998244353;\n\n#line 1 \"library/tree/heavy_light_decomposition.hpp\"\
-    \n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
-    #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    links: []
+  bundledCode: "#line 1 \"library/tree/auxiliary_tree.hpp\"\n\n\n\n#include <algorithm>\n\
+    #line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
+    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
     \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
@@ -138,69 +132,80 @@ data:
     \            head[u] = p >= 0 and g[p].front() == u ? head[p] : u;\n         \
     \   for (int v : g[u]) {\n                if (v != p) hld(g, v, u, time);\n  \
     \          }\n            leave[u] = time;\n        }\n};\n} // namespace suisen\n\
-    \n\n#line 10 \"test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp\"\
-    \nusing suisen::HeavyLightDecomposition;\n\nstruct F {\n    mint a, b;\n    F(mint\
-    \ a, mint b) : a(a), b(b) {}\n    F() : F(1, 0) {}\n    mint apply(mint x) { return\
-    \ a * x + b; }\n};\n\nF op(F f, F g) { return F(g.a * f.a, g.a * f.b + g.b); }\n\
-    F op_rev(F f, F g) { return F(f.a * g.a, f.a * g.b + f.b); }\nF e() { return F{};\
-    \ }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    int n, q;\n    std::cin >> n >> q;\n    std::vector<F> fs(n);\n    for (int\
-    \ i = 0; i < n; ++i) {\n        int a, b;\n        std::cin >> a >> b;\n     \
-    \   fs[i] = F(a, b);\n    }\n    std::vector<std::vector<int>> g(n);\n    for\
-    \ (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        std::cin >> u >> v;\n\
-    \        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    HeavyLightDecomposition\
-    \ hld(g);\n    atcoder::segtree<F, op, e> seg(n);\n    atcoder::segtree<F, op_rev,\
-    \ e> seg_rev(n);\n    for (int i = 0; i < n; ++i) {\n        hld.update_point(i,\
-    \ [&](int v) {\n            seg.set(v, fs[i]);\n            seg_rev.set(v, fs[i]);\n\
-    \        });\n    }\n    for (int i = 0; i < q; ++i) {\n        int t;\n     \
-    \   std::cin >> t;\n        if (t == 0) {\n            int p, c, d;\n        \
-    \    std::cin >> p >> c >> d;\n            hld.update_point(p, [&](int v) {\n\
-    \                seg.set(v, F(c, d));\n                seg_rev.set(v, F(c, d));\n\
-    \            });\n        } else {\n            int u, v, x;\n            std::cin\
-    \ >> u >> v >> x;\n            std::cout << hld.fold_path_noncommutative(\n  \
-    \              u, v,\n                F{}, op,\n                [&](int l, int\
-    \ r) { return seg.prod(l, r); },\n                [&](int l, int r) { return seg_rev.prod(l,\
-    \ r); }\n            ).apply(x).val() << '\\n';\n        }\n        std::cout.flush();\n\
-    \    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
-    \n\n#include <iostream>\n#include <atcoder/segtree>\n#include <atcoder/modint>\n\
-    \nusing mint = atcoder::modint998244353;\n\n#include \"library/tree/heavy_light_decomposition.hpp\"\
-    \nusing suisen::HeavyLightDecomposition;\n\nstruct F {\n    mint a, b;\n    F(mint\
-    \ a, mint b) : a(a), b(b) {}\n    F() : F(1, 0) {}\n    mint apply(mint x) { return\
-    \ a * x + b; }\n};\n\nF op(F f, F g) { return F(g.a * f.a, g.a * f.b + g.b); }\n\
-    F op_rev(F f, F g) { return F(f.a * g.a, f.a * g.b + f.b); }\nF e() { return F{};\
-    \ }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    int n, q;\n    std::cin >> n >> q;\n    std::vector<F> fs(n);\n    for (int\
-    \ i = 0; i < n; ++i) {\n        int a, b;\n        std::cin >> a >> b;\n     \
-    \   fs[i] = F(a, b);\n    }\n    std::vector<std::vector<int>> g(n);\n    for\
-    \ (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        std::cin >> u >> v;\n\
-    \        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n    HeavyLightDecomposition\
-    \ hld(g);\n    atcoder::segtree<F, op, e> seg(n);\n    atcoder::segtree<F, op_rev,\
-    \ e> seg_rev(n);\n    for (int i = 0; i < n; ++i) {\n        hld.update_point(i,\
-    \ [&](int v) {\n            seg.set(v, fs[i]);\n            seg_rev.set(v, fs[i]);\n\
-    \        });\n    }\n    for (int i = 0; i < q; ++i) {\n        int t;\n     \
-    \   std::cin >> t;\n        if (t == 0) {\n            int p, c, d;\n        \
-    \    std::cin >> p >> c >> d;\n            hld.update_point(p, [&](int v) {\n\
-    \                seg.set(v, F(c, d));\n                seg_rev.set(v, F(c, d));\n\
-    \            });\n        } else {\n            int u, v, x;\n            std::cin\
-    \ >> u >> v >> x;\n            std::cout << hld.fold_path_noncommutative(\n  \
-    \              u, v,\n                F{}, op,\n                [&](int l, int\
-    \ r) { return seg.prod(l, r); },\n                [&](int l, int r) { return seg_rev.prod(l,\
-    \ r); }\n            ).apply(x).val() << '\\n';\n        }\n        std::cout.flush();\n\
-    \    }\n    return 0;\n}"
+    \n\n#line 6 \"library/tree/auxiliary_tree.hpp\"\n\nnamespace suisen {\n    struct\
+    \ AuxiliaryTree {\n        AuxiliaryTree() = default;\n        AuxiliaryTree(const\
+    \ HeavyLightDecomposition& hld) : _n(hld.size()), _aux(_n), _hld(hld) {}\n\n \
+    \       const std::vector<int>& operator[](int u) const {\n            return\
+    \ _aux[u];\n        }\n\n        void build(std::vector<int> vs) {\n         \
+    \   const int k = vs.size();\n            for (int v : _upd) _aux[v].clear();\n\
+    \            _upd.clear();\n\n            std::sort(vs.begin(), vs.end(), [this](int\
+    \ i, int j) { return _hld.get_visit_time(i) < _hld.get_visit_time(j); });\n\n\
+    \            std::copy(vs.begin(), vs.end(), std::back_inserter(_upd));\n\n  \
+    \          std::vector<int> st{ vs[0] };\n            for (int i = 0; i < k -\
+    \ 1; ++i) {\n                const int w = _hld.lca(vs[i], vs[i + 1]);\n\n   \
+    \             if (w != vs[i]) {\n                    _upd.push_back(w);\n    \
+    \                int last = st.back();\n                    st.pop_back();\n \
+    \                   while (st.size() and _hld.get_depth(w) < _hld.get_depth(st.back()))\
+    \ {\n                        int u = st.back();\n                        _aux[u].push_back(last);\n\
+    \                        _aux[last].push_back(u);\n                        last\
+    \ = st.back();\n                        st.pop_back();\n                    }\n\
+    \n                    if (st.empty() or st.back() != w) {\n                  \
+    \      st.push_back(w);\n                        vs.push_back(w);\n          \
+    \              _aux[w].push_back(last);\n                        _aux[last].push_back(w);\n\
+    \                    } else {\n                        _aux[w].push_back(last);\n\
+    \                        _aux[last].push_back(w);\n                    }\n   \
+    \             }\n\n                st.push_back(vs[i + 1]);\n            }\n \
+    \           const int siz = st.size();\n            for (int i = 0; i < siz -\
+    \ 1; ++i) {\n                _aux[st[i]].push_back(st[i + 1]);\n             \
+    \   _aux[st[i + 1]].push_back(st[i]);\n            }\n        }\n\n        const\
+    \ HeavyLightDecomposition& get_hld() const {\n            return _hld;\n     \
+    \   }\n    private:\n        int _n;\n        std::vector<std::vector<int>> _aux;\n\
+    \        HeavyLightDecomposition _hld;\n        std::vector<int> _upd;\n    };\n\
+    } // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_AUXILIARY_TREE\n#define SUISEN_AUXILIARY_TREE\n\n#include\
+    \ <algorithm>\n#include \"library/tree/heavy_light_decomposition.hpp\"\n\nnamespace\
+    \ suisen {\n    struct AuxiliaryTree {\n        AuxiliaryTree() = default;\n \
+    \       AuxiliaryTree(const HeavyLightDecomposition& hld) : _n(hld.size()), _aux(_n),\
+    \ _hld(hld) {}\n\n        const std::vector<int>& operator[](int u) const {\n\
+    \            return _aux[u];\n        }\n\n        void build(std::vector<int>\
+    \ vs) {\n            const int k = vs.size();\n            for (int v : _upd)\
+    \ _aux[v].clear();\n            _upd.clear();\n\n            std::sort(vs.begin(),\
+    \ vs.end(), [this](int i, int j) { return _hld.get_visit_time(i) < _hld.get_visit_time(j);\
+    \ });\n\n            std::copy(vs.begin(), vs.end(), std::back_inserter(_upd));\n\
+    \n            std::vector<int> st{ vs[0] };\n            for (int i = 0; i < k\
+    \ - 1; ++i) {\n                const int w = _hld.lca(vs[i], vs[i + 1]);\n\n \
+    \               if (w != vs[i]) {\n                    _upd.push_back(w);\n  \
+    \                  int last = st.back();\n                    st.pop_back();\n\
+    \                    while (st.size() and _hld.get_depth(w) < _hld.get_depth(st.back()))\
+    \ {\n                        int u = st.back();\n                        _aux[u].push_back(last);\n\
+    \                        _aux[last].push_back(u);\n                        last\
+    \ = st.back();\n                        st.pop_back();\n                    }\n\
+    \n                    if (st.empty() or st.back() != w) {\n                  \
+    \      st.push_back(w);\n                        vs.push_back(w);\n          \
+    \              _aux[w].push_back(last);\n                        _aux[last].push_back(w);\n\
+    \                    } else {\n                        _aux[w].push_back(last);\n\
+    \                        _aux[last].push_back(w);\n                    }\n   \
+    \             }\n\n                st.push_back(vs[i + 1]);\n            }\n \
+    \           const int siz = st.size();\n            for (int i = 0; i < siz -\
+    \ 1; ++i) {\n                _aux[st[i]].push_back(st[i + 1]);\n             \
+    \   _aux[st[i + 1]].push_back(st[i]);\n            }\n        }\n\n        const\
+    \ HeavyLightDecomposition& get_hld() const {\n            return _hld;\n     \
+    \   }\n    private:\n        int _n;\n        std::vector<std::vector<int>> _aux;\n\
+    \        HeavyLightDecomposition _hld;\n        std::vector<int> _upd;\n    };\n\
+    } // namespace suisen\n\n#endif // SUISEN_AUXILIARY_TREE\n"
   dependsOn:
   - library/tree/heavy_light_decomposition.hpp
   - library/type_traits/type_traits.hpp
-  isVerificationFile: true
-  path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+  isVerificationFile: false
+  path: library/tree/auxiliary_tree.hpp
   requiredBy: []
   timestamp: '2022-05-05 17:40:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+documentation_of: library/tree/auxiliary_tree.hpp
 layout: document
 redirect_from:
-- /verify/test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-- /verify/test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp.html
-title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+- /library/library/tree/auxiliary_tree.hpp
+- /library/library/tree/auxiliary_tree.hpp.html
+title: library/tree/auxiliary_tree.hpp
 ---

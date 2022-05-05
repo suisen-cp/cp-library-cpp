@@ -4,6 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: Arbitrary Mod Convolution
+  - icon: ':heavy_check_mark:'
+    path: library/convolution/convolution_naive.hpp
+    title: library/convolution/convolution_naive.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,11 +21,20 @@ data:
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
     \n\n#include <iostream>\n#line 1 \"library/convolution/arbitrary_mod_convolution.hpp\"\
     \n\n\n\n#include <atcoder/convolution>\n#line 6 \"library/convolution/arbitrary_mod_convolution.hpp\"\
+    \n\n#line 1 \"library/convolution/convolution_naive.hpp\"\n\n\n\n#include <vector>\n\
+    \nnamespace suisen::internal {\n    template <typename T>\n    std::vector<T>\
+    \ convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {\n    \
+    \    const int n = a.size(), m = b.size();\n        std::vector<T> c(n + m - 1);\n\
+    \        if (n < m) {\n            for (int j = 0; j < m; j++) for (int i = 0;\
+    \ i < n; i++) c[i + j] += a[i] * b[j];\n        } else {\n            for (int\
+    \ i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j] += a[i] * b[j];\n  \
+    \      }\n        return c;\n    }\n} // namespace suisen\n\n\n\n#line 8 \"library/convolution/arbitrary_mod_convolution.hpp\"\
     \n\nnamespace suisen {\n    template <typename mint, atcoder::internal::is_modint_t<mint>*\
     \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
-    \        if (n == 0 or m == 0) return {};\n\n        static constexpr long long\
-    \ MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2 = 167772161;\
+    \        if (n == 0 or m == 0) return {};\n        if (std::min(n, m) <= 60) return\
+    \ internal::convolution_naive(a, b);\n\n        static constexpr long long MOD1\
+    \ = 754974721;  // 2^24\n        static constexpr long long MOD2 = 167772161;\
     \  // 2^25\n        static constexpr long long MOD3 = 469762049;  // 2^26\n  \
     \      static constexpr long long M1M2 = MOD1 * MOD2;\n        static constexpr\
     \ long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1, MOD2).second;\n   \
@@ -60,10 +72,11 @@ data:
     \ == n + m - 2];\n    }\n    return 0;\n}"
   dependsOn:
   - library/convolution/arbitrary_mod_convolution.hpp
+  - library/convolution/convolution_naive.hpp
   isVerificationFile: true
   path: test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2022-04-30 04:33:51+09:00'
+  timestamp: '2022-05-05 17:36:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
