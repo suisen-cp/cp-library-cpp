@@ -28,6 +28,12 @@ namespace suisen {
             int l = not accept_fragment and n % p ? n : p;
             while (l --> 0) *result++ = *start++;
         }
+        template <typename RandomAccessibleContainer>
+        RandomAccessibleContainer min_period(RandomAccessibleContainer s, bool accept_fragment = true) {
+            RandomAccessibleContainer res;
+            min_period(res.begin(), res.end(), std::back_inserter(res), accept_fragment);
+            return res;
+        }
 
         template <typename RandomAccessibleContainer>
         struct MatcherMP {
