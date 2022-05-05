@@ -4,10 +4,13 @@
 #include <atcoder/convolution>
 #include <iostream>
 
+#include "library/convolution/convolution_naive.hpp"
+
 namespace suisen {
     std::vector<unsigned long long> convolution_mod_2_64(const std::vector<unsigned long long>& a, const std::vector<unsigned long long>& b) {
         int n = int(a.size()), m = int(b.size());
         if (n == 0 or m == 0) return {};
+        if (std::min(n, m) <= 60) return internal::convolution_naive(a, b);
 
         static constexpr long long MOD1 = 754974721;  // 2^24
         static constexpr long long MOD2 = 167772161;  // 2^25

@@ -3,6 +3,8 @@
 
 #include <atcoder/convolution>
 
+#include "library/convolution/convolution_naive.hpp"
+
 namespace suisen {
     template <typename mint, atcoder::internal::is_static_modint_t<mint>* = nullptr>
     std::vector<mint> convolution_large(const std::vector<mint>& a, const std::vector<mint>& b) {
@@ -13,6 +15,7 @@ namespace suisen {
         const int n = int(a.size()), m = int(b.size());
         if (n + m - 1 <= max_size) return atcoder::convolution(a, b);
         if (n == 0 or m == 0) return {};
+        if (std::min(n, m) <= 60) return internal::convolution_naive(a, b);
 
         const int dn = (n + half_size - 1) / half_size;
         const int dm = (m + half_size - 1) / half_size;

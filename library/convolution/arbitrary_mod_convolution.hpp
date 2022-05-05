@@ -4,11 +4,14 @@
 #include <atcoder/convolution>
 #include <iostream>
 
+#include "library/convolution/convolution_naive.hpp"
+
 namespace suisen {
     template <typename mint, atcoder::internal::is_modint_t<mint>* = nullptr>
     std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>& a, const std::vector<mint>& b) {
         int n = int(a.size()), m = int(b.size());
         if (n == 0 or m == 0) return {};
+        if (std::min(n, m) <= 60) return internal::convolution_naive(a, b);
 
         static constexpr long long MOD1 = 754974721;  // 2^24
         static constexpr long long MOD2 = 167772161;  // 2^25
