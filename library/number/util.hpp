@@ -203,7 +203,7 @@ namespace suisen {
         assert(*std::min_element(vs.begin(), vs.end()) >= 0);
         std::vector<std::tuple<T, T, Container>> res;
         for (T l = 1, r = 1; l <= max_val; l = r + 1) {
-            Container qs;
+            Container qs{};
             if constexpr (std::is_same_v<Container, std::vector<T>>) qs.resize(n);
             r = std::numeric_limits<T>::max();
             for (int i = 0; i < n; ++i) {
