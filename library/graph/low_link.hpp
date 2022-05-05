@@ -1,64 +1,96 @@
 #ifndef SUISEN_LOW_LINK
 #define SUISEN_LOW_LINK
 
+#include <cassert>
 #include <vector>
 
 namespace suisen {
     struct LowLink {
-        using Graph = std::vector<std::vector<std::pair<int, int>>>;
+        LowLink() : LowLink(0) {}
+        LowLink(const int n) : _n(n), _m(0), _g(n), _pre_order(n, -1), _low_link(n), _built(false) {}
+        LowLink(const int n, const std::vector<std::pair<int, int>> &edges) : LowLink(n) {
+            for (const auto &[u, v] : edges) add_edge(u, v);
+            build();
+        }
+        
+        int add_edge(int u, int v) {
+            _built = false;
+            _edges.emplace_back(u, v);
+            _g[u].emplace_back(v, _m);
+            _g[v].emplace_back(u, _m);
+            return _m++;
+        }
 
-        int n, m;
-        // vertex -> list of (adjacent vertex, edge id)
-        Graph g;
-        // vertex -> pre order
-        std::vector<int> pre_order;
-        std::vector<int> low_link;
-        // list of ids of bridges
-        std::vector<int> bridges;
-        std::vector<int> articulation_points;
-
-        LowLink() : LowLink(0, {}) {}
-        LowLink(const int n, const std::vector<std::pair<int, int>> &edges) : LowLink(n, edges.size(), [&edges](int i) { return edges[i]; }) {}
-        template <typename EdgeGenerator>
-        LowLink(const int n, const int m, EdgeGenerator edge_gen) : n(n), m(m), g(n), pre_order(n, -1), low_link(n) {
-            build_graph(edge_gen);
+        void build() {
             dfs_for_all_connected_components();
-        }
-    private:
-        template <typename EdgeGenerator>
-        void build_graph(EdgeGenerator edge_gen) {
-            for (int i = 0; i < m; ++i) {
-                auto&& [u, v] = edge_gen(i);
-                g[u].emplace_back(v, i);
-                g[v].emplace_back(u, i);
-            }
+            _built = true;
         }
 
+        int vertex_num() const { return _n; }
+        int edge_num()   const { return _m; }
+
+        const std::pair<int, int>& edge(int edge_id) const { return _edges[edge_id]; }
+        const std::vector<std::pair<int, int>>& edges() const { return _edges; }
+        
+        int pre_order(int v) const {
+            assert(_built);
+            return _pre_order[v];
+        }
+        int low_link(int v) const {
+            assert(_built);
+            return _low_link[v];
+        }
+
+        const std::vector<int>& bridge_ids() const {
+            assert(_built);
+            return _bridges;
+        }
+        const std::vector<int>& articulation_points() const {
+            assert(_built);
+            return _articulation_points;
+        }
+
+    protected:
+        int _n, _m;
+        // list of edges
+        std::vector<std::pair<int, int>> _edges;
+        // vertex -> list of (adjacent vertex, edge id)
+        std::vector<std::vector<std::pair<int, int>>> _g;
+        // vertex -> pre order
+        std::vector<int> _pre_order;
+        std::vector<int> _low_link;
+        // list of ids of bridges
+        std::vector<int> _bridges;
+        std::vector<int> _articulation_points;
+
+        bool _built;
+
+    private:
         void dfs(int u, int id, int& ord) {
             bool is_root = id < 0;
             bool is_articulation_point = false;
             int ch_cnt = 0;
-            pre_order[u] = low_link[u] = ord++;
-            for (const auto& [v, id2] : g[u]) {
+            _pre_order[u] = _low_link[u] = ord++;
+            for (const auto& [v, id2] : _g[u]) {
                 if (id == id2) continue;
-                if (pre_order[v] < 0) {
+                if (_pre_order[v] < 0) {
                     ++ch_cnt;
                     dfs(v, id2, ord);
-                    low_link[u] = std::min(low_link[u], low_link[v]);
-                    if (pre_order[u] <= low_link[v]) {
+                    _low_link[u] = std::min(_low_link[u], _low_link[v]);
+                    if (_pre_order[u] <= _low_link[v]) {
                         is_articulation_point = not is_root;
-                        if (pre_order[u] != low_link[v]) bridges.push_back(id2);
+                        if (_pre_order[u] != _low_link[v]) _bridges.push_back(id2);
                     }
                 } else {
-                    low_link[u] = std::min(low_link[u], pre_order[v]);
+                    _low_link[u] = std::min(_low_link[u], _pre_order[v]);
                 }
             }
-            if (is_articulation_point or (is_root and ch_cnt > 1)) articulation_points.push_back(u);
+            if (is_articulation_point or (is_root and ch_cnt > 1)) _articulation_points.push_back(u);
         }
 
         void dfs_for_all_connected_components() {
-            for (int i = 0, ord = 0; i < n; ++i) {
-                if (pre_order[i] < 0) dfs(i, -1, ord);
+            for (int i = 0, ord = 0; i < _n; ++i) {
+                if (_pre_order[i] < 0) dfs(i, -1, ord);
             }
         }
     };

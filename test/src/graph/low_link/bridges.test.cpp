@@ -6,6 +6,30 @@
 #include "library/graph/low_link.hpp"
 using suisen::LowLink;
 
+std::vector<std::pair<int, int>> solve1(int n, int m, std::vector<std::pair<int, int>> edges) {
+    std::vector<int> bridge_ids = LowLink(n, edges).bridge_ids();
+    std::vector<std::pair<int, int>> bridges;
+    for (auto id : bridge_ids) {
+        bridges.push_back(edges[id]);
+    }
+    std::sort(bridges.begin(), bridges.end());
+    return bridges;
+}
+
+std::vector<std::pair<int, int>> solve2(int n, int m, std::vector<std::pair<int, int>> edges) {
+    LowLink low_link(n);
+    for (auto &[u, v] : edges) low_link.add_edge(u, v);
+    low_link.build();
+
+    std::vector<int> bridge_ids = low_link.bridge_ids();
+    std::vector<std::pair<int, int>> bridges;
+    for (auto id : bridge_ids) {
+        bridges.push_back(edges[id]);
+    }
+    std::sort(bridges.begin(), bridges.end());
+    return bridges;
+}
+
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
@@ -18,12 +42,12 @@ int main() {
         if (u > v) std::swap(u, v);
     }
 
-    std::vector<std::pair<int, int>> bridges;
-    for (int edge_id : LowLink(n, edges).bridges) {
-        bridges.push_back(edges[edge_id]);
-    }
-    std::sort(bridges.begin(), bridges.end());
-    for (const auto &[u, v] : bridges) {
+    auto ans1 = solve1(n, m, edges);
+    auto ans2 = solve2(n, m, edges);
+
+    assert(ans1 == ans2);
+
+    for (auto [u, v] : ans1) {
         std::cout << u << ' ' << v << '\n';
     }
     return 0;
