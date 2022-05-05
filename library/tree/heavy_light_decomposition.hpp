@@ -24,13 +24,16 @@ class HeavyLightDecomposition {
             int time = 0;
             for (int i = 0; i < n; ++i) if (par[i] < 0) hld(g, i, -1, time);
         }
-        int lca(int u, int v) {
+        int size() const {
+            return n;
+        }
+        int lca(int u, int v) const {
             for (;; v = par[head[v]]) {
                 if (visit[u] > visit[v]) std::swap(u, v);
                 if (head[u] == head[v]) return u;
             }
         }
-        int la(int u, int k, int default_value = -1) {
+        int la(int u, int k, int default_value = -1) const {
             if (k < 0) return default_value;
             while (u >= 0) {
                 int h = head[u];
@@ -40,7 +43,7 @@ class HeavyLightDecomposition {
             }
             return default_value;
         }
-        int move_to(int u, int v, int d, int default_value = -1) {
+        int move_to(int u, int v, int d, int default_value = -1) const {
             if (d < 0) return default_value;
             const int w = lca(u, v);
             int uw = dep[u] - dep[w];
@@ -48,11 +51,11 @@ class HeavyLightDecomposition {
             int vw = dep[v] - dep[w];
             return d <= uw + vw ? la(v, (uw + vw) - d) : default_value;
         }
-        int dist(int u, int v) {
+        int dist(int u, int v) const {
             return dep[u] + dep[v] - 2 * dep[lca(u, v)];
         }
         template <typename T, typename Q, typename F, constraints_t<is_range_fold_query<Q, T>, is_bin_op<F, T>> = nullptr>
-        T fold_path(int u, int v, T identity, F bin_op, Q fold_query, bool is_edge_query = false) {
+        T fold_path(int u, int v, T identity, F bin_op, Q fold_query, bool is_edge_query = false) const {
             T res = identity;
             for (;; v = par[head[v]]) {
                 if (visit[u] > visit[v]) std::swap(u, v);
@@ -65,7 +68,7 @@ class HeavyLightDecomposition {
             typename T, typename Q1, typename Q2, typename F,
             constraints_t<is_range_fold_query<Q1, T>, is_range_fold_query<Q2, T>, is_bin_op<F, T>> = nullptr
         >
-        T fold_path_noncommutative(int u, int v, T identity, F bin_op, Q1 fold_query, Q2 fold_query_rev, bool is_edge_query = false) {
+        T fold_path_noncommutative(int u, int v, T identity, F bin_op, Q1 fold_query, Q2 fold_query_rev, bool is_edge_query = false) const {
             T res_u = identity, res_v = identity;
             // a := lca(u, v)
             // res = fold(u -> a) + fold(a -> v)
@@ -86,7 +89,7 @@ class HeavyLightDecomposition {
             return bin_op(res_u, res_v);
         }
         template <typename Q, constraints_t<is_range_update_query<Q>> = nullptr>
-        void update_path(int u, int v, Q update_query, bool is_edge_query = false) {
+        void update_path(int u, int v, Q update_query, bool is_edge_query = false) const {
             for (;; v = par[head[v]]) {
                 if (visit[u] > visit[v]) std::swap(u, v);
                 if (head[u] == head[v]) break;
@@ -95,19 +98,19 @@ class HeavyLightDecomposition {
             update_query(visit[u] + is_edge_query, visit[v] + 1);
         }
         template <typename T, typename Q, constraints_t<is_range_fold_query<Q, T>> = nullptr>
-        T fold_subtree(int u, Q fold_query, bool is_edge_query = false) {
+        T fold_subtree(int u, Q fold_query, bool is_edge_query = false) const {
             return fold_query(visit[u] + is_edge_query, leave[u]);
         }
         template <typename Q, constraints_t<is_range_update_query<Q>> = nullptr>
-        void update_subtree(int u, Q update_query, bool is_edge_query = false) {
+        void update_subtree(int u, Q update_query, bool is_edge_query = false) const {
             update_query(visit[u] + is_edge_query, leave[u]);
         }
         template <typename T, typename Q, constraints_t<is_point_get_query<Q, T>> = nullptr>
-        T get_point(int u, Q get_query) {
+        T get_point(int u, Q get_query) const {
             return get_query(visit[u]);
         }
         template <typename Q, constraints_t<is_point_update_query<Q>> = nullptr>
-        void update_point(int u, Q update_query) {
+        void update_point(int u, Q update_query) const {
             update_query(visit[u]);
         }
         std::vector<int> inv_ids() const {
@@ -115,14 +118,26 @@ class HeavyLightDecomposition {
             for (int i = 0; i < n; ++i) inv[visit[i]] = i;
             return inv;
         }
+        int get_visit_time(int u) const {
+            return visit[u];
+        }
+        int get_leave_time(int u) const {
+            return leave[u];
+        }
         int get_head(int u) const {
             return head[u];
+        }
+        int get_kth_visited(int k) const {
+            return ord[k];
+        }
+        int get_subtree_size(int u) const {
+            return siz[u];
         }
         int get_parent(int u) const {
             return par[u];
         }
-        int get_subtree_size(int u) const {
-            return siz[u];
+        int get_depth(int u) const {
+            return dep[u];
         }
         std::vector<int> get_roots() const {
             std::vector<int> res;
