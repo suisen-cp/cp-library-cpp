@@ -167,78 +167,78 @@ data:
     \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
     \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
     \  {\n    return a.inv(a.deg());\n}\n\n\n#line 1 \"library/math/factorial.hpp\"\
-    \n\n\n\n#line 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\ntemplate\
-    \ <typename T, typename U = T>\nclass factorial {\n    public:\n        factorial()\
-    \ {}\n        factorial(int n) { ensure(n); }\n        const T& fac(const int\
-    \ i) {\n            ensure(i);\n            return fac_[i];\n        }\n     \
-    \   const T& operator()(int i) {\n            return fac(i);\n        }\n    \
-    \    const U& inv(const int i) {\n            ensure(i);\n            return inv_[i];\n\
-    \        }\n        U binom(const int n, const int r) {\n            if (n < 0\
-    \ or r < 0 or n < r) return 0;\n            ensure(n);\n            return fac_[n]\
-    \ * inv_[r] * inv_[n - r];\n        }\n        U perm(const int n, const int r)\
-    \ {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
-    \            return fac_[n] * inv_[n - r];\n        }\n    private:\n        static\
-    \ std::vector<T> fac_;\n        static std::vector<U> inv_;\n        static void\
-    \ ensure(const int n) {\n            int sz = fac_.size();\n            if (n\
-    \ + 1 <= sz) return;\n            int new_size = std::max(n + 1, sz * 2);\n  \
-    \          fac_.resize(new_size), inv_.resize(new_size);\n            for (int\
-    \ i = sz; i < new_size; ++i) fac_[i] = fac_[i - 1] * i;\n            inv_[new_size\
-    \ - 1] = U(1) / fac_[new_size - 1];\n            for (int i = new_size - 1; i\
-    \ > sz; --i) inv_[i - 1] = inv_[i] * i;\n        }\n};\ntemplate <typename T,\
-    \ typename U>\nstd::vector<T> factorial<T, U>::fac_ {1};\ntemplate <typename T,\
-    \ typename U>\nstd::vector<U> factorial<T, U>::inv_ {1};\n} // namespace suisen\n\
-    \n\n#line 6 \"library/math/common_sequences.hpp\"\n\nnamespace suisen {\n/**\n\
-    \ * return:\n *   vector<mint> v s.t. v[i] = S1[n,n-i] for i=0,...,k (unsigned)\n\
-    \ * constraints:\n *   0 <= n <= 10^6\n */\ntemplate <typename mint>\nstd::vector<mint>\
-    \ stirling_number1_reversed(int n) {\n    factorial<mint> fac(n);\n    int l =\
-    \ 0;\n    while ((n >> l) != 0) ++l;\n    FPS<mint> a {1};\n    int m = 0;\n \
-    \   while (l --> 0) {\n        FPS<mint> f(m + 1), g(m + 1);\n        mint powm\
-    \ = 1;\n        for (int i = 0; i <= m; ++i, powm *= m) {\n            f[i] =\
-    \ powm * fac.inv(i);\n            g[i] = a[i] * fac(m - i);\n        }\n     \
-    \   f *= g, f.pre_inplace(m);\n        for (int i = 0; i <= m; ++i) f[i] *= fac.inv(m\
-    \ - i);\n        a *= f, m *= 2, a.pre_inplace(m);\n        if ((n >> l) & 1)\
-    \ {\n            a.push_back(0);\n            for (int i = m; i > 0; --i) a[i]\
-    \ += m * a[i - 1];\n            ++m;\n        }\n    }\n    return a;\n}\ntemplate\
-    \ <typename mint>\nstd::vector<mint> stirling_number1(int n) {\n    auto a(stirling_number1_reversed<mint>(n));\n\
-    \    std::reverse(a.begin(), a.end());\n    return a;\n}\n/**\n * return:\n *\
-    \   vector<mint> v s.t. v[i] = S1[n,n-i] for i=0,...,k, where S1 is the stirling\
-    \ number of the first kind (unsigned).\n * constraints:\n * - 0 <= n <= 10^18\n\
-    \ * - 0 <= k <= 5000\n * - k < mod\n */\ntemplate <typename mint>\nstd::vector<mint>\
-    \ stirling_number1_reversed(const long long n, const int k) {\n    inv_mods<mint>\
-    \ invs(k + 1);\n    std::vector<mint> a(k + 1, 0);\n    a[0] = 1;\n    int l =\
-    \ 0;\n    while (n >> l) ++l;\n    mint m = 0;\n    while (l --> 0) {\n      \
-    \  std::vector<mint> b(k + 1, 0);\n        for (int j = 0; j <= k; ++j) {\n  \
-    \          mint tmp = 1;\n            for (int i = j; i <= k; ++i) {\n       \
-    \         b[i] += a[j] * tmp;\n                tmp *= (m - i) * invs[i - j + 1]\
-    \ * m;\n            }\n        }\n        for (int i = k + 1; i --> 0;) {\n  \
-    \          mint sum = 0;\n            for (int j = 0; j <= i; ++j) sum += a[j]\
-    \ * b[i - j];\n            a[i] = sum;\n        }\n        m *= 2;\n        if\
-    \ ((n >> l) & 1) {\n            for (int i = k; i > 0; --i) a[i] += m * a[i -\
-    \ 1];\n            ++m;\n        }\n    }\n    return a;\n}\n\n/**\n * return:\n\
-    \ *   vector<mint> v s.t. v[i] = S2[n,i] for i=0,...,k\n * constraints:\n *  \
-    \ 0 <= n <= 10^6\n */\ntemplate <typename mint>\nstd::vector<mint> stirling_number2(int\
-    \ n) {\n    factorial<mint> fac(n);\n    FPS<mint> a(n + 1), b(n + 1);\n    for\
-    \ (int i = 0; i <= n; ++i) {\n        a[i] = mint(i).pow(n) * fac.inv(i);\n  \
-    \      b[i] = i & 1 ? -fac.inv(i) : fac.inv(i);\n    }\n    a *= b, a.pre_inplace(n);\n\
-    \    return a;\n}\n\n/**\n * return:\n *   vector<mint> v s.t. v[i] = B_i = \u03A3\
-    _j S2[i,j] for i=0,...,n\n * constraints:\n *   0 <= n <= 10^6\n * note:\n * \
-    \  EGF of B is e^(e^x-1)\n */\ntemplate <typename mint>\nstd::vector<mint> bell_number(int\
-    \ n) {\n    factorial<mint> fac(n);\n    FPS<mint> f(n + 1);\n    for (int i =\
-    \ 1; i <= n; ++i) f[i] = fac.inv(i);\n    f.exp_inplace(n);\n    for (int i =\
-    \ 0; i <= n; ++i) f[i] *= fac.fac(i);\n    return f;\n}\n\ntemplate <typename\
-    \ mint>\nstd::vector<mint> bernoulli_number(int n) {\n    factorial<mint> fac(n);\n\
-    \    FPS<mint> a(n + 1);\n    for (int i = 0; i <= n; ++i) a[i] = fac.inv(i +\
-    \ 1);\n    a.inv_inplace(n), a.resize(n + 1);\n    for (int i = 2; i <= n; ++i)\
-    \ a[i] *= fac(i);\n    return a;\n}\n\ntemplate <typename mint>\nstd::vector<mint>\
-    \ partition_number(int n) {\n    FPS<mint> inv(n + 1);\n    inv[0] = 1;\n    for\
-    \ (int i = 1, k = 1; k <= n; k += 3 * i + 1, i++) {\n        if (i & 1) --inv[k];\n\
-    \        else ++inv[k];\n    }\n    for (int i = 1, k = 2; k <= n; k += 3 * i\
-    \ + 2, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
-    \   inv.inv_inplace(n), inv.resize(n + 1);\n    return inv;\n}\n\ntemplate <typename\
-    \ mint>\nstd::vector<mint> montmort_number(int n) {\n    std::vector<mint> res\
-    \ { 1, 0 };\n    for (int i = 2; i <= n; ++i) res.push_back((i - 1) * (res[i -\
-    \ 1] + res[i - 2]));\n    res.resize(n + 1);\n    return res;\n}\n} // namespace\
-    \ suisen\n\n\n#line 8 \"test/src/math/common_sequences/stirling_number2.test.cpp\"\
+    \n\n\n\n#line 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename T, typename U = T>\n    struct factorial {\n        factorial() {}\n\
+    \        factorial(int n) { ensure(n); }\n\n        static void ensure(const int\
+    \ n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
+    \            int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
+    \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
+    \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
+    \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
+    \ _fac_inv[i] * i;\n        }\n\n        const T& fac(const int i) {\n       \
+    \     ensure(i);\n            return _fac[i];\n        }\n        const T& operator()(int\
+    \ i) {\n            return fac(i);\n        }\n        const U& fac_inv(const\
+    \ int i) {\n            ensure(i);\n            return _fac_inv[i];\n        }\n\
+    \        U binom(const int n, const int r) {\n            if (n < 0 or r < 0 or\
+    \ n < r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[r]\
+    \ * _fac_inv[n - r];\n        }\n        U perm(const int n, const int r) {\n\
+    \            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
+    \            return _fac[n] * _fac_inv[n - r];\n        }\n    private:\n    \
+    \    static std::vector<T> _fac;\n        static std::vector<U> _fac_inv;\n  \
+    \  };\n    template <typename T, typename U>\n    std::vector<T> factorial<T,\
+    \ U>::_fac{ 1 };\n    template <typename T, typename U>\n    std::vector<U> factorial<T,\
+    \ U>::_fac_inv{ 1 };\n} // namespace suisen\n\n\n#line 6 \"library/math/common_sequences.hpp\"\
+    \n\nnamespace suisen {\n/**\n * return:\n *   vector<mint> v s.t. v[i] = S1[n,n-i]\
+    \ for i=0,...,k (unsigned)\n * constraints:\n *   0 <= n <= 10^6\n */\ntemplate\
+    \ <typename mint>\nstd::vector<mint> stirling_number1_reversed(int n) {\n    factorial<mint>\
+    \ fac(n);\n    int l = 0;\n    while ((n >> l) != 0) ++l;\n    FPS<mint> a {1};\n\
+    \    int m = 0;\n    while (l --> 0) {\n        FPS<mint> f(m + 1), g(m + 1);\n\
+    \        mint powm = 1;\n        for (int i = 0; i <= m; ++i, powm *= m) {\n \
+    \           f[i] = powm * fac.fac_inv(i);\n            g[i] = a[i] * fac(m - i);\n\
+    \        }\n        f *= g, f.pre_inplace(m);\n        for (int i = 0; i <= m;\
+    \ ++i) f[i] *= fac.fac_inv(m - i);\n        a *= f, m *= 2, a.pre_inplace(m);\n\
+    \        if ((n >> l) & 1) {\n            a.push_back(0);\n            for (int\
+    \ i = m; i > 0; --i) a[i] += m * a[i - 1];\n            ++m;\n        }\n    }\n\
+    \    return a;\n}\ntemplate <typename mint>\nstd::vector<mint> stirling_number1(int\
+    \ n) {\n    auto a(stirling_number1_reversed<mint>(n));\n    std::reverse(a.begin(),\
+    \ a.end());\n    return a;\n}\n/**\n * return:\n *   vector<mint> v s.t. v[i]\
+    \ = S1[n,n-i] for i=0,...,k, where S1 is the stirling number of the first kind\
+    \ (unsigned).\n * constraints:\n * - 0 <= n <= 10^18\n * - 0 <= k <= 5000\n *\
+    \ - k < mod\n */\ntemplate <typename mint>\nstd::vector<mint> stirling_number1_reversed(const\
+    \ long long n, const int k) {\n    inv_mods<mint> invs(k + 1);\n    std::vector<mint>\
+    \ a(k + 1, 0);\n    a[0] = 1;\n    int l = 0;\n    while (n >> l) ++l;\n    mint\
+    \ m = 0;\n    while (l --> 0) {\n        std::vector<mint> b(k + 1, 0);\n    \
+    \    for (int j = 0; j <= k; ++j) {\n            mint tmp = 1;\n            for\
+    \ (int i = j; i <= k; ++i) {\n                b[i] += a[j] * tmp;\n          \
+    \      tmp *= (m - i) * invs[i - j + 1] * m;\n            }\n        }\n     \
+    \   for (int i = k + 1; i --> 0;) {\n            mint sum = 0;\n            for\
+    \ (int j = 0; j <= i; ++j) sum += a[j] * b[i - j];\n            a[i] = sum;\n\
+    \        }\n        m *= 2;\n        if ((n >> l) & 1) {\n            for (int\
+    \ i = k; i > 0; --i) a[i] += m * a[i - 1];\n            ++m;\n        }\n    }\n\
+    \    return a;\n}\n\n/**\n * return:\n *   vector<mint> v s.t. v[i] = S2[n,i]\
+    \ for i=0,...,k\n * constraints:\n *   0 <= n <= 10^6\n */\ntemplate <typename\
+    \ mint>\nstd::vector<mint> stirling_number2(int n) {\n    factorial<mint> fac(n);\n\
+    \    FPS<mint> a(n + 1), b(n + 1);\n    for (int i = 0; i <= n; ++i) {\n     \
+    \   a[i] = mint(i).pow(n) * fac.fac_inv(i);\n        b[i] = i & 1 ? -fac.fac_inv(i)\
+    \ : fac.fac_inv(i);\n    }\n    a *= b, a.pre_inplace(n);\n    return a;\n}\n\n\
+    /**\n * return:\n *   vector<mint> v s.t. v[i] = B_i = \u03A3_j S2[i,j] for i=0,...,n\n\
+    \ * constraints:\n *   0 <= n <= 10^6\n * note:\n *   EGF of B is e^(e^x-1)\n\
+    \ */\ntemplate <typename mint>\nstd::vector<mint> bell_number(int n) {\n    factorial<mint>\
+    \ fac(n);\n    FPS<mint> f(n + 1);\n    for (int i = 1; i <= n; ++i) f[i] = fac.fac_inv(i);\n\
+    \    f.exp_inplace(n);\n    for (int i = 0; i <= n; ++i) f[i] *= fac.fac(i);\n\
+    \    return f;\n}\n\ntemplate <typename mint>\nstd::vector<mint> bernoulli_number(int\
+    \ n) {\n    factorial<mint> fac(n);\n    FPS<mint> a(n + 1);\n    for (int i =\
+    \ 0; i <= n; ++i) a[i] = fac.fac_inv(i + 1);\n    a.inv_inplace(n), a.resize(n\
+    \ + 1);\n    for (int i = 2; i <= n; ++i) a[i] *= fac(i);\n    return a;\n}\n\n\
+    template <typename mint>\nstd::vector<mint> partition_number(int n) {\n    FPS<mint>\
+    \ inv(n + 1);\n    inv[0] = 1;\n    for (int i = 1, k = 1; k <= n; k += 3 * i\
+    \ + 1, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
+    \   for (int i = 1, k = 2; k <= n; k += 3 * i + 2, i++) {\n        if (i & 1)\
+    \ --inv[k];\n        else ++inv[k];\n    }\n    inv.inv_inplace(n), inv.resize(n\
+    \ + 1);\n    return inv;\n}\n\ntemplate <typename mint>\nstd::vector<mint> montmort_number(int\
+    \ n) {\n    std::vector<mint> res { 1, 0 };\n    for (int i = 2; i <= n; ++i)\
+    \ res.push_back((i - 1) * (res[i - 1] + res[i - 2]));\n    res.resize(n + 1);\n\
+    \    return res;\n}\n} // namespace suisen\n\n\n#line 8 \"test/src/math/common_sequences/stirling_number2.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
     \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
     \ n;\n    std::cin >> n;\n    auto ans = suisen::stirling_number2<mint>(n);\n\
@@ -260,7 +260,7 @@ data:
   isVerificationFile: true
   path: test/src/math/common_sequences/stirling_number2.test.cpp
   requiredBy: []
-  timestamp: '2022-04-04 15:11:06+09:00'
+  timestamp: '2022-05-07 15:41:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/common_sequences/stirling_number2.test.cpp
