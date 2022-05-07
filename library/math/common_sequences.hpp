@@ -22,11 +22,11 @@ std::vector<mint> stirling_number1_reversed(int n) {
         FPS<mint> f(m + 1), g(m + 1);
         mint powm = 1;
         for (int i = 0; i <= m; ++i, powm *= m) {
-            f[i] = powm * fac.inv(i);
+            f[i] = powm * fac.fac_inv(i);
             g[i] = a[i] * fac(m - i);
         }
         f *= g, f.pre_inplace(m);
-        for (int i = 0; i <= m; ++i) f[i] *= fac.inv(m - i);
+        for (int i = 0; i <= m; ++i) f[i] *= fac.fac_inv(m - i);
         a *= f, m *= 2, a.pre_inplace(m);
         if ((n >> l) & 1) {
             a.push_back(0);
@@ -92,8 +92,8 @@ std::vector<mint> stirling_number2(int n) {
     factorial<mint> fac(n);
     FPS<mint> a(n + 1), b(n + 1);
     for (int i = 0; i <= n; ++i) {
-        a[i] = mint(i).pow(n) * fac.inv(i);
-        b[i] = i & 1 ? -fac.inv(i) : fac.inv(i);
+        a[i] = mint(i).pow(n) * fac.fac_inv(i);
+        b[i] = i & 1 ? -fac.fac_inv(i) : fac.fac_inv(i);
     }
     a *= b, a.pre_inplace(n);
     return a;
@@ -111,7 +111,7 @@ template <typename mint>
 std::vector<mint> bell_number(int n) {
     factorial<mint> fac(n);
     FPS<mint> f(n + 1);
-    for (int i = 1; i <= n; ++i) f[i] = fac.inv(i);
+    for (int i = 1; i <= n; ++i) f[i] = fac.fac_inv(i);
     f.exp_inplace(n);
     for (int i = 0; i <= n; ++i) f[i] *= fac.fac(i);
     return f;
@@ -121,7 +121,7 @@ template <typename mint>
 std::vector<mint> bernoulli_number(int n) {
     factorial<mint> fac(n);
     FPS<mint> a(n + 1);
-    for (int i = 0; i <= n; ++i) a[i] = fac.inv(i + 1);
+    for (int i = 0; i <= n; ++i) a[i] = fac.fac_inv(i + 1);
     a.inv_inplace(n), a.resize(n + 1);
     for (int i = 2; i <= n; ++i) a[i] *= fac(i);
     return a;
