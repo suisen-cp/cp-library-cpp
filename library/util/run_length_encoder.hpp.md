@@ -94,6 +94,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/run_length_encoder.hpp
 layout: document
-title: Run Length Encoder
+title: "Run Length Encoder (\u30E9\u30F3\u30EC\u30F3\u30AF\u30B9\u5727\u7E2E)"
 ---
 ## Run Length Encoder

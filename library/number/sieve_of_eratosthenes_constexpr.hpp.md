@@ -206,6 +206,9 @@ data:
   - test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
 documentation_of: library/number/sieve_of_eratosthenes_constexpr.hpp
 layout: document
-title: Sieve Of Eratosthenes Constexpr
+title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9 (\u30B3\u30F3\u30D1\
+  \u30A4\u30EB\u6642\u8A08\u7B97)"
 ---
-## Sieve Of Eratosthenes Constexpr
+## エラトステネスの篩 (コンパイル時計算)
+
+コンパイル時に計算できるくらいの計算量なので、高速化は望めなさそう。

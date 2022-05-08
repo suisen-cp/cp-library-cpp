@@ -209,9 +209,10 @@ data:
   - test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
 documentation_of: library/tree/range_contour_aggregation_query_on_tree.hpp
 layout: document
-title: Range Contour Aggregation Query On Tree
+title: "Range Contour Aggregation Query On Tree (\u6728\u4E0A\u306E\u7B49\u9AD8\u7DDA\
+  \u96C6\u7D04\u30AF\u30A8\u30EA)"
 ---
-## Range Contour Aggregation Query On Tree
+## Range Contour Aggregation Query On Tree (木上の等高線集約クエリ)
 
 以下のような問題を考えます。
 

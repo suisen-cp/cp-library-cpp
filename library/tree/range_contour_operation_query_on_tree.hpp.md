@@ -221,10 +221,11 @@ data:
   - test/src/tree/range_contour_operation_query_on_tree/yuki1038.test.cpp
 documentation_of: library/tree/range_contour_operation_query_on_tree.hpp
 layout: document
-title: Range Contour Operation Query On Tree
+title: "Range Contour Operation Query On Tree (\u6728\u4E0A\u306E\u7B49\u9AD8\u7DDA\
+  \u4F5C\u7528\u30AF\u30A8\u30EA)"
 ---
 
-## Range Contour Operation Query On Tree
+## Range Contour Operation Query On Tree (木上の等高線作用クエリ)
 
 以下のような問題を考えます。
 

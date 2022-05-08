@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/number/anymod_binom.hpp
-    title: Anymod Binom
+    title: "\u4EFB\u610F mod \u3067\u306E\u4E8C\u9805\u4FC2\u6570\u5217\u6319"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/math/interpolation/cumulative_sum.test.cpp
@@ -75,6 +75,6 @@ data:
   - test/src/math/interpolation/cumulative_sum.test.cpp
 documentation_of: library/number/linear_sieve.hpp
 layout: document
-title: Linear Sieve
+title: "\u7DDA\u5F62\u7BE9"
 ---
-## Linear Sieve
+## 線形篩

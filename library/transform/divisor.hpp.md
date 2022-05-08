@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/lcm_convolution.hpp
-    title: Lcm Convolution
+    title: LCM Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/lcm_convolution/lcm_convolution.test.cpp

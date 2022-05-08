@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/graph/block_cut_forest.hpp
-    title: library/graph/block_cut_forest.hpp
+    title: Block Cut Forest
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/biconnected_components/biconnected_components.test.cpp
@@ -129,8 +129,8 @@ data:
   - test/src/graph/biconnected_components/biconnected_components.test.cpp
 documentation_of: library/graph/biconnected_components.hpp
 layout: document
-redirect_from:
-- /library/library/graph/biconnected_components.hpp
-- /library/library/graph/biconnected_components.hpp.html
-title: library/graph/biconnected_components.hpp
+title: "\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\u5206\u89E3"
 ---
+## 二重頂点連結成分分解
+
+多重辺があったり、非連結でも動きます。

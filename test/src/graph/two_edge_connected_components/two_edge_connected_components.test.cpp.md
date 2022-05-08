@@ -6,7 +6,7 @@ data:
     title: Low Link
   - icon: ':heavy_check_mark:'
     path: library/graph/two_edge_connected_components.hpp
-    title: Two Edge Connected Components
+    title: "\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

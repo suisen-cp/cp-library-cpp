@@ -7,10 +7,12 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/algorithm/rmq_pm1.hpp
-    title: Rmq Pm1
+    title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
+      \u306E RMQ"
   - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
-    title: Rmq Pm1 With Index
+    title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
+      \u306E RMQ (\u6DFB\u5B57\u306E\u5FA9\u5143\u4ED8\u304D)"
   - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
     title: Lowest Common Ancestor

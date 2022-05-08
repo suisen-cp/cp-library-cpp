@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: library/math/circulant_matrix.hpp
-    title: Circulant Matrix
+    title: "Circulant Matrix (\u5DE1\u56DE\u884C\u5217)"
   - icon: ':question:'
     path: library/math/factorial.hpp
-    title: Factorial
+    title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

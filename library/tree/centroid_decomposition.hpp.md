@@ -155,6 +155,7 @@ data:
   - test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
 documentation_of: library/tree/centroid_decomposition.hpp
 layout: document
-title: Centroid Decomposition
+title: "\u91CD\u5FC3\u5206\u89E3"
 ---
-## Centroid Decomposition
+## 重心分解
+

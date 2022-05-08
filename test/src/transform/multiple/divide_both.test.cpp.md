@@ -6,7 +6,7 @@ data:
     title: Internal Eratosthenes
   - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
-    title: Sieve Of Eratosthenes
+    title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':heavy_check_mark:'
     path: library/transform/divisor.hpp
     title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\

@@ -6,7 +6,8 @@ data:
     title: Persistent Red Black Tree Base
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_reversible_lazy_segment_tree.hpp
-    title: Red Black Reversible Lazy Segment Tree
+    title: "\u53CD\u8EE2\u30FB\u533A\u9593\u4F5C\u7528\u30FB\u533A\u9593\u548C\u53D6\
+      \u5F97\u304C\u53EF\u80FD\u306A\u8D64\u9ED2\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base
@@ -258,6 +259,7 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
 layout: document
-title: Persistent Red Black Reversible Lazy Segment Tree
+title: "\u53CD\u8EE2\u30FB\u533A\u9593\u4F5C\u7528\u30FB\u533A\u9593\u548C\u53D6\u5F97\
+  \u304C\u53EF\u80FD\u306A\u6C38\u7D9A\u8D64\u9ED2\u6728"
 ---
-## Persistent Red Black Reversible Lazy Segment Tree
+## 反転可能な遅延評価機能付き永続赤黒木

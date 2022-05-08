@@ -367,6 +367,6 @@ data:
   - test/src/geom/closest_pair/CGL_5_A.test.cpp
 documentation_of: library/geom/closest_pair.hpp
 layout: document
-title: Closest Pair
+title: "\u6700\u8FD1\u70B9\u5BFE"
 ---
-## Closest Pair
+## 最近点対

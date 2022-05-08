@@ -197,3 +197,5 @@ layout: document
 title: Static Bitset
 ---
 ## Static Bitset
+
+bit 長が固定の bitset。`std::bitset` にない機能を追加していく予定。

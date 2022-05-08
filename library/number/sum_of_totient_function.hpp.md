@@ -80,6 +80,6 @@ data:
   - test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
 documentation_of: library/number/sum_of_totient_function.hpp
 layout: document
-title: Sum Of Totient Function
+title: Prefix Sum of Totient Function
 ---
-## Sum Of Totient Function
+## Prefix Sum of Totient Function

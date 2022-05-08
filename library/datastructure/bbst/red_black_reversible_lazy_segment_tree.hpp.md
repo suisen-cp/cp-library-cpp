@@ -10,7 +10,8 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
-    title: Persistent Red Black Reversible Lazy Segment Tree
+    title: "\u53CD\u8EE2\u30FB\u533A\u9593\u4F5C\u7528\u30FB\u533A\u9593\u548C\u53D6\
+      \u5F97\u304C\u53EF\u80FD\u306A\u6C38\u7D9A\u8D64\u9ED2\u6728"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
@@ -269,6 +270,7 @@ data:
   - test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/datastructure/bbst/red_black_reversible_lazy_segment_tree.hpp
 layout: document
-title: Red Black Reversible Lazy Segment Tree
+title: "\u53CD\u8EE2\u30FB\u533A\u9593\u4F5C\u7528\u30FB\u533A\u9593\u548C\u53D6\u5F97\
+  \u304C\u53EF\u80FD\u306A\u8D64\u9ED2\u6728"
 ---
-## Red Black Reversible Lazy Segment Tree
+## 反転・区間作用・区間和取得が可能な赤黒木

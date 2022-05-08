@@ -77,8 +77,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/tuple_ops.hpp
 layout: document
-redirect_from:
-- /library/library/util/tuple_ops.hpp
-- /library/library/util/tuple_ops.hpp.html
-title: library/util/tuple_ops.hpp
+title: Tuple Ops
 ---
+## Tuple Ops

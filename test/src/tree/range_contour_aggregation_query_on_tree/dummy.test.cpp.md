@@ -3,7 +3,8 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/tree/range_contour_aggregation_query_on_tree.hpp
-    title: Range Contour Aggregation Query On Tree
+    title: "Range Contour Aggregation Query On Tree (\u6728\u4E0A\u306E\u7B49\u9AD8\
+      \u7DDA\u96C6\u7D04\u30AF\u30A8\u30EA)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

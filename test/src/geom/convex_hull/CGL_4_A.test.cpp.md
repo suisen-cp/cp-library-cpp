@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/geom/convex_hull.hpp
-    title: Convex Hull
+    title: "\u51F8\u5305"
   - icon: ':heavy_check_mark:'
     path: library/geom/geometry.hpp
     title: Geometry

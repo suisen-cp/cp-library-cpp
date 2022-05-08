@@ -66,6 +66,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/cumulative_sum.hpp
 layout: document
-title: Cumulative Sum
+title: "\u7D2F\u7A4D\u548C"
 ---
-## Cumulative Sum
+## 累積和

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: Inv Mods
+    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
@@ -20,7 +20,7 @@ data:
     title: Interpolation
   - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
-    title: Multi Point Eval
+    title: Multi Point Evaluation
   - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
@@ -388,6 +388,6 @@ data:
   - test/src/math/interpolation/polynomial_interpolation.test.cpp
 documentation_of: library/math/fps.hpp
 layout: document
-title: Fps
+title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
 ---
-## Fps
+## 形式的冪級数

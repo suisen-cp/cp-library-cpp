@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/graph/dulmage_mendelsohn_decomposition.hpp
-    title: Dulmage Mendelsohn Decomposition
+    title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
@@ -158,6 +158,8 @@ data:
   - test/src/string/palindromic_tree/abc237_h.test.cpp
 documentation_of: library/graph/bipartite_matching.hpp
 layout: document
-title: Bipartite Matching
+title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
 ---
-## Bipartite Matching
+## 二部マッチング
+
+最小辺被覆、最小頂点被覆、最大独立集合を求めることもできる。

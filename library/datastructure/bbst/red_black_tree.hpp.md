@@ -10,7 +10,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/datastructure/bbst/persistent_red_black_tree.hpp
-    title: Persistent Red Black Tree
+    title: "\u6C38\u7D9A\u8D64\u9ED2\u6728"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
@@ -187,6 +187,6 @@ data:
   - test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
 documentation_of: library/datastructure/bbst/red_black_tree.hpp
 layout: document
-title: Red Black Tree
+title: "\u8D64\u9ED2\u6728"
 ---
-## Red Black Tree
+## 赤黒木

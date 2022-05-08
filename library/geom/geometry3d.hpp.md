@@ -307,3 +307,5 @@ layout: document
 title: Geometry3d
 ---
 ## Geometry3d
+
+3次元幾何ライブラリ。verify はほとんどできてません。

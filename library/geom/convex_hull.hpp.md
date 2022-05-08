@@ -348,6 +348,6 @@ data:
   - test/src/geom/convex_hull/CGL_4_A.test.cpp
 documentation_of: library/geom/convex_hull.hpp
 layout: document
-title: Convex Hull
+title: "\u51F8\u5305"
 ---
-## Convex Hull
+## 凸包

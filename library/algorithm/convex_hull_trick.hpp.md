@@ -132,6 +132,7 @@ data:
   - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
 documentation_of: library/algorithm/convex_hull_trick.hpp
 layout: document
-title: Convex Hull Trick
+title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3057\u306A\u3044 Convex\
+  \ Hull Trick"
 ---
-## Convex Hull Trick
+## 傾きの単調性を仮定しない Convex Hull Trick

@@ -143,3 +143,5 @@ layout: document
 title: Merge History Forest
 ---
 ## Merge History Forest
+
+いわゆる「マージ過程を表す木」。

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/bigint.hpp
-    title: Bigint
+    title: "\u591A\u500D\u9577\u6574\u6570"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

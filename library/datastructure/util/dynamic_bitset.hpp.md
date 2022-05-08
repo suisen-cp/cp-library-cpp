@@ -208,3 +208,5 @@ layout: document
 title: Dynamic Bitset
 ---
 ## Dynamic Bitset
+
+bit 長を動的に管理する bitset。あんまりテストできてなかったはず。

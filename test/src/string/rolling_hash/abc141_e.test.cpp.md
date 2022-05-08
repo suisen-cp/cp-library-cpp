@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/pow_mods.hpp
-    title: Pow Mods
+    title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
     path: library/string/rolling_hash.hpp
     title: Rolling Hash

@@ -231,6 +231,6 @@ data:
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
 documentation_of: library/datastructure/segment_tree/lazy_segment_tree.hpp
 layout: document
-title: Lazy Segment Tree
+title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
 ---
-## Lazy Segment Tree
+## 遅延伝播セグメント木

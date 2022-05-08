@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
-    title: Bipartite Matching
+    title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -159,6 +159,6 @@ data:
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
 documentation_of: library/graph/dulmage_mendelsohn_decomposition.hpp
 layout: document
-title: Dulmage Mendelsohn Decomposition
+title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
 ---
-## Dulmage Mendelsohn Decomposition
+## Dulmage Mendelsohn Decomposition (DM 分解)

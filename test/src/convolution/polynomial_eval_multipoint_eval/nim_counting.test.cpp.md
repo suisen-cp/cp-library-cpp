@@ -7,13 +7,13 @@ data:
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: Fps
+    title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: Inv Mods
+    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
-    title: Multi Point Eval
+    title: Multi Point Evaluation
   - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\

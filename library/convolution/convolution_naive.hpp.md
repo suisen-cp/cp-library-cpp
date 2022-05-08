@@ -4,13 +4,13 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
-    title: Arbitrary Mod Convolution
+    title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_2_64.hpp
-    title: Convolution 2 64
+    title: Convolution $(\mathrm{mod}\ 2 ^ {64})$
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_large.hpp
-    title: Convolution Large
+    title: Convolution (Large)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp
     title: test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
+    title: test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/convolution_large/convolution_large.test.cpp
     title: test/src/convolution/convolution_large/convolution_large.test.cpp
@@ -53,12 +56,13 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp
+  - test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
   - test/src/convolution/convolution_large/convolution_large.test.cpp
   - test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
 documentation_of: library/convolution/convolution_naive.hpp
 layout: document
-redirect_from:
-- /library/library/convolution/convolution_naive.hpp
-- /library/library/convolution/convolution_naive.hpp.html
-title: library/convolution/convolution_naive.hpp
+title: Naive Convolution
 ---
+## Naive Convolution
+
+愚直な畳み込みの実装です。列の一方の次数が小さい場合は、こちらを用いる方が高速な場合があります。

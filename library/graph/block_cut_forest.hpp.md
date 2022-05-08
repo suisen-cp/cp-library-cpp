@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/biconnected_components.hpp
-    title: library/graph/biconnected_components.hpp
+    title: "\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\u5206\u89E3"
   - icon: ':heavy_check_mark:'
     path: library/graph/low_link.hpp
     title: Low Link
   - icon: ':warning:'
     path: library/graph/remove_multiedges.hpp
-    title: Remove Multiedges
+    title: "\u591A\u91CD\u8FBA\u9664\u53BB"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -159,8 +159,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/block_cut_forest.hpp
 layout: document
-redirect_from:
-- /library/library/graph/block_cut_forest.hpp
-- /library/library/graph/block_cut_forest.hpp.html
-title: library/graph/block_cut_forest.hpp
+title: Block Cut Forest
 ---
+## Block Cut Forest

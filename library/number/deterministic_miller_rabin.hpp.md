@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
-    title: Fast Factorize
+    title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/number/fast_factorize/factorize.test.cpp

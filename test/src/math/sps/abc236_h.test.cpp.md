@@ -9,7 +9,7 @@ data:
     title: Modint Extension
   - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
-    title: Sps
+    title: Set Power Series
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

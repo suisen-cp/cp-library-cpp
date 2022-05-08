@@ -69,6 +69,6 @@ data:
   verifiedWith: []
 documentation_of: library/math/xor_base.hpp
 layout: document
-title: Xor Base
+title: "XOR \u57FA\u5E95"
 ---
-## Xor Base
+## XOR 基底

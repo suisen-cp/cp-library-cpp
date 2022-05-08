@@ -15,7 +15,7 @@ data:
     title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
-    title: Coordinate Compressor
+    title: "\u5EA7\u6A19\u5727\u7E2E"
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object

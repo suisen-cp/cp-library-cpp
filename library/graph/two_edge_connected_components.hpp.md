@@ -128,6 +128,8 @@ data:
   - test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
 documentation_of: library/graph/two_edge_connected_components.hpp
 layout: document
-title: Two Edge Connected Components
+title: "\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3"
 ---
-## Two Edge Connected Components
+## 二重辺連結成分分解
+
+多重辺があったり、非連結でも動きます。

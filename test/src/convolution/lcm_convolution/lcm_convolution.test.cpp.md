@@ -6,7 +6,7 @@ data:
     title: Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/lcm_convolution.hpp
-    title: Lcm Convolution
+    title: LCM Convolution
   - icon: ':heavy_check_mark:'
     path: library/transform/divisor.hpp
     title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\

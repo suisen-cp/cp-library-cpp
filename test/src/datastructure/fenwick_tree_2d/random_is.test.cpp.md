@@ -6,10 +6,10 @@ data:
     title: Fenwick Tree 2d
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
-    title: Segment Tree
+    title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: Inv Mods
+    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits

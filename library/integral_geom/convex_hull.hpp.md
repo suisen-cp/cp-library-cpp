@@ -65,6 +65,6 @@ data:
   verifiedWith: []
 documentation_of: library/integral_geom/convex_hull.hpp
 layout: document
-title: Convex Hull
+title: "Convex Hull (\u6574\u6570\u5EA7\u6A19)"
 ---
-## Convex Hull
+## Convex Hull (整数座標)

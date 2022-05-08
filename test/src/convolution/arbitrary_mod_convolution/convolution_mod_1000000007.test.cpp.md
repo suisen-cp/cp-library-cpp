@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
-    title: Arbitrary Mod Convolution
+    title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
-    title: library/convolution/convolution_naive.hpp
+    title: Naive Convolution
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

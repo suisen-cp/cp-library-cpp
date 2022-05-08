@@ -13,7 +13,7 @@ data:
     title: GCD Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/lcm_convolution.hpp
-    title: Lcm Convolution
+    title: LCM Convolution
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution

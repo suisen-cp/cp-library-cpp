@@ -105,6 +105,6 @@ data:
   - test/src/math/common_sequences/montmort_number_mod.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document
-title: Factorial
+title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
 ---
-## Factorial
+## 階乗テーブル

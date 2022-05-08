@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/tree/centroid_decomposition.hpp
-    title: Centroid Decomposition
+    title: "\u91CD\u5FC3\u5206\u89E3"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

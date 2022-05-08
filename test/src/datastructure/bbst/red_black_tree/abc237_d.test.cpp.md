@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree.hpp
-    title: Red Black Tree
+    title: "\u8D64\u9ED2\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base

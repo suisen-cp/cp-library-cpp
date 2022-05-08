@@ -67,6 +67,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/union_find/undo_union_find.hpp
 layout: document
-title: Undo Union Find
+title: "Undo \u53EF\u80FD Union Find"
 ---
-## Undo Union Find
+## Undo 可能 Union Find

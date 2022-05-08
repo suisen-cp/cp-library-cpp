@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: Fps
+    title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: Inv Mods
+    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
@@ -199,6 +199,6 @@ data:
   - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
 documentation_of: library/math/multi_point_eval.hpp
 layout: document
-title: Multi Point Eval
+title: Multi Point Evaluation
 ---
-## Multi Point Eval
+## Multi Point Evaluation

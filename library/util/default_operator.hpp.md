@@ -13,10 +13,10 @@ data:
     title: GCD Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/lcm_convolution.hpp
-    title: Lcm Convolution
+    title: LCM Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution.hpp
-    title: Multi Variate Convolution
+    title: "\u591A\u5909\u6570\u7573\u307F\u8FBC\u307F (\u5207\u308A\u6368\u3066)"
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
@@ -51,10 +51,10 @@ data:
     title: "Walsh Hadamard \u5909\u63DB"
   - icon: ':warning:'
     path: library/util/cumulative_sum.hpp
-    title: Cumulative Sum
+    title: "\u7D2F\u7A4D\u548C"
   - icon: ':warning:'
     path: library/util/cumulative_sum_2d.hpp
-    title: Cumulative Sum 2d
+    title: "2D \u7D2F\u7A4D\u548C"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/and_convolution/and_convolution.test.cpp

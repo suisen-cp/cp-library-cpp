@@ -40,6 +40,9 @@ data:
   verifiedWith: []
 documentation_of: library/geom/count_lattice_point.hpp
 layout: document
-title: Count Lattice Point
+title: "\u591A\u89D2\u5F62\u306E\u5185\u90E8\u307E\u305F\u306F\u8FBA\u4E0A\u306B\u3042\
+  \u308B\u683C\u5B50\u70B9\u306E\u500B\u6570\u3092\u6570\u3048\u308B\u3084\u3064"
 ---
-## Count Lattice Point
+## 多角形の内部または辺上にある格子点の個数を数えるやつ
+
+[ピックの定理](https://ja.wikipedia.org/wiki/%E3%83%94%E3%83%83%E3%82%AF%E3%81%AE%E5%AE%9A%E7%90%86) を使うとできる。

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/number/linear_sieve.hpp
-    title: Linear Sieve
+    title: "\u7DDA\u5F62\u7BE9"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -132,6 +132,12 @@ data:
   verifiedWith: []
 documentation_of: library/number/anymod_binom.hpp
 layout: document
-title: Anymod Binom
+title: "\u4EFB\u610F mod \u3067\u306E\u4E8C\u9805\u4FC2\u6570\u5217\u6319"
 ---
-## Anymod Binom
+## 任意 mod での二項係数列挙
+
+$$
+\binom{n}{k} \bmod M = \dfrac{n!}{k!(n-k)!} \bmod M
+$$
+
+を全ての $k=0,\ldots,n$ に対して $\Theta\left(\dfrac{N \log M}{\log \log M}\right)$ 時間で求める。$M$ は合成数でも $M \leq n$ でもよい。

@@ -7,11 +7,16 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/tree/auxiliary_tree.hpp
-    title: library/tree/auxiliary_tree.hpp
+    title: "\u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u305F\u3061\u306E\u6700\u5C0F\
+      \u5171\u901A\u7956\u5148\u95A2\u4FC2\u3092\u4FDD\u3063\u3066\u6728\u3092\u5727\
+      \u7E2E\u3057\u3066\u3067\u304D\u308B\u88DC\u52A9\u7684\u306A\u6728"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
+    title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
@@ -251,6 +256,7 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
 documentation_of: library/tree/heavy_light_decomposition.hpp
 layout: document

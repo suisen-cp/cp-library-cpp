@@ -89,6 +89,8 @@ data:
   - test/src/datastructure/segment_tree/segment_tree_2d/point_add_range_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree_2d.hpp
 layout: document
-title: Segment Tree 2d
+title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
 ---
-## Segment Tree 2d
+## 2D セグメント木
+
+$H\times W$ の領域に対して空間計算量が $\Theta(HW)$ となるので注意。

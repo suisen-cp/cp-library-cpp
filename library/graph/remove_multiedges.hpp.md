@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/graph/block_cut_forest.hpp
-    title: library/graph/block_cut_forest.hpp
+    title: Block Cut Forest
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -34,6 +34,8 @@ data:
   verifiedWith: []
 documentation_of: library/graph/remove_multiedges.hpp
 layout: document
-title: Remove Multiedges
+title: "\u591A\u91CD\u8FBA\u9664\u53BB"
 ---
-## Remove Multiedges
+## 多重辺除去
+
+$\Theta(V+E)$ で多重辺を除去する。

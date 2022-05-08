@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/math/characteristic_polynomial.hpp
-    title: Characteristic Polynomial
+    title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
   - icon: ':heavy_check_mark:'
     path: library/math/hessenberg_reduction.hpp
     title: Hessenberg Reduction

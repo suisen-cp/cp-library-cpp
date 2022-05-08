@@ -204,10 +204,10 @@ data:
   - test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
 documentation_of: library/math/characteristic_polynomial.hpp
 layout: document
-title: Characteristic Polynomial
+title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
 ---
 
-## Characteristic Polynomial
+## Characteristic Polynomial (特性多項式)
 
 $N\times N$ 行列 $A$ の特性多項式 $p_A(\lambda) := \det(\lambda E _ N - A)$ を $\Theta(N ^ 3)$ 時間で計算するアルゴリズムの実装です．
 

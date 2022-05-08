@@ -113,6 +113,12 @@ data:
   - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
 documentation_of: library/convolution/multi_variate_convolution.hpp
 layout: document
-title: Multi Variate Convolution
+title: "\u591A\u5909\u6570\u7573\u307F\u8FBC\u307F (\u5207\u308A\u6368\u3066)"
 ---
-## Multi Variate Convolution
+## 多変数畳み込み (切り捨て)
+
+[Multivariate Convolution](https://judge.yosupo.jp/problem/multivariate_convolution) を解きます。
+
+## 参考文献
+
+- [多変数畳み込み（切り捨て）のアルゴリズム](https://37zigen.com/truncated-multivariate-convolution/)

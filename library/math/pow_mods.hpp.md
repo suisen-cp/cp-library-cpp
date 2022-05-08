@@ -61,6 +61,6 @@ data:
   - test/src/string/rolling_hash/abc141_e.test.cpp
 documentation_of: library/math/pow_mods.hpp
 layout: document
-title: Pow Mods
+title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
 ---
-## Pow Mods
+## 冪乗テーブル

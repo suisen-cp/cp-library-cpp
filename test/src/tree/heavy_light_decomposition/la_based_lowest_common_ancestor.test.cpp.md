@@ -10,12 +10,16 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/tree/auxiliary_tree.hpp\"\n\n\n\n#include <algorithm>\n\
-    #line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/lca
+    links:
+    - https://judge.yosupo.jp/problem/lca
+  bundledCode: "#line 1 \"test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include <iostream>\n\
+    \n#line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
@@ -132,82 +136,46 @@ data:
     \            head[u] = p >= 0 and g[p].front() == u ? head[p] : u;\n         \
     \   for (int v : g[u]) {\n                if (v != p) hld(g, v, u, time);\n  \
     \          }\n            leave[u] = time;\n        }\n};\n} // namespace suisen\n\
-    \n\n#line 6 \"library/tree/auxiliary_tree.hpp\"\n\nnamespace suisen {\n    struct\
-    \ AuxiliaryTree {\n        AuxiliaryTree() = default;\n        AuxiliaryTree(const\
-    \ HeavyLightDecomposition& hld) : _n(hld.size()), _aux(_n), _hld(hld) {}\n\n \
-    \       const std::vector<int>& operator[](int u) const {\n            return\
-    \ _aux[u];\n        }\n\n        void build(std::vector<int> vs) {\n         \
-    \   const int k = vs.size();\n            for (int v : _upd) _aux[v].clear();\n\
-    \            _upd.clear();\n\n            std::sort(vs.begin(), vs.end(), [this](int\
-    \ i, int j) { return _hld.get_visit_time(i) < _hld.get_visit_time(j); });\n\n\
-    \            std::copy(vs.begin(), vs.end(), std::back_inserter(_upd));\n\n  \
-    \          std::vector<int> st{ vs[0] };\n            for (int i = 0; i < k -\
-    \ 1; ++i) {\n                const int w = _hld.lca(vs[i], vs[i + 1]);\n\n   \
-    \             if (w != vs[i]) {\n                    _upd.push_back(w);\n    \
-    \                int last = st.back();\n                    st.pop_back();\n \
-    \                   while (st.size() and _hld.get_depth(w) < _hld.get_depth(st.back()))\
-    \ {\n                        int u = st.back();\n                        _aux[u].push_back(last);\n\
-    \                        _aux[last].push_back(u);\n                        last\
-    \ = st.back();\n                        st.pop_back();\n                    }\n\
-    \n                    if (st.empty() or st.back() != w) {\n                  \
-    \      st.push_back(w);\n                        vs.push_back(w);\n          \
-    \              _aux[w].push_back(last);\n                        _aux[last].push_back(w);\n\
-    \                    } else {\n                        _aux[w].push_back(last);\n\
-    \                        _aux[last].push_back(w);\n                    }\n   \
-    \             }\n\n                st.push_back(vs[i + 1]);\n            }\n \
-    \           const int siz = st.size();\n            for (int i = 0; i < siz -\
-    \ 1; ++i) {\n                _aux[st[i]].push_back(st[i + 1]);\n             \
-    \   _aux[st[i + 1]].push_back(st[i]);\n            }\n        }\n\n        const\
-    \ HeavyLightDecomposition& get_hld() const {\n            return _hld;\n     \
-    \   }\n    private:\n        int _n;\n        std::vector<std::vector<int>> _aux;\n\
-    \        HeavyLightDecomposition _hld;\n        std::vector<int> _upd;\n    };\n\
-    } // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_AUXILIARY_TREE\n#define SUISEN_AUXILIARY_TREE\n\n#include\
-    \ <algorithm>\n#include \"library/tree/heavy_light_decomposition.hpp\"\n\nnamespace\
-    \ suisen {\n    struct AuxiliaryTree {\n        AuxiliaryTree() = default;\n \
-    \       AuxiliaryTree(const HeavyLightDecomposition& hld) : _n(hld.size()), _aux(_n),\
-    \ _hld(hld) {}\n\n        const std::vector<int>& operator[](int u) const {\n\
-    \            return _aux[u];\n        }\n\n        void build(std::vector<int>\
-    \ vs) {\n            const int k = vs.size();\n            for (int v : _upd)\
-    \ _aux[v].clear();\n            _upd.clear();\n\n            std::sort(vs.begin(),\
-    \ vs.end(), [this](int i, int j) { return _hld.get_visit_time(i) < _hld.get_visit_time(j);\
-    \ });\n\n            std::copy(vs.begin(), vs.end(), std::back_inserter(_upd));\n\
-    \n            std::vector<int> st{ vs[0] };\n            for (int i = 0; i < k\
-    \ - 1; ++i) {\n                const int w = _hld.lca(vs[i], vs[i + 1]);\n\n \
-    \               if (w != vs[i]) {\n                    _upd.push_back(w);\n  \
-    \                  int last = st.back();\n                    st.pop_back();\n\
-    \                    while (st.size() and _hld.get_depth(w) < _hld.get_depth(st.back()))\
-    \ {\n                        int u = st.back();\n                        _aux[u].push_back(last);\n\
-    \                        _aux[last].push_back(u);\n                        last\
-    \ = st.back();\n                        st.pop_back();\n                    }\n\
-    \n                    if (st.empty() or st.back() != w) {\n                  \
-    \      st.push_back(w);\n                        vs.push_back(w);\n          \
-    \              _aux[w].push_back(last);\n                        _aux[last].push_back(w);\n\
-    \                    } else {\n                        _aux[w].push_back(last);\n\
-    \                        _aux[last].push_back(w);\n                    }\n   \
-    \             }\n\n                st.push_back(vs[i + 1]);\n            }\n \
-    \           const int siz = st.size();\n            for (int i = 0; i < siz -\
-    \ 1; ++i) {\n                _aux[st[i]].push_back(st[i + 1]);\n             \
-    \   _aux[st[i + 1]].push_back(st[i]);\n            }\n        }\n\n        const\
-    \ HeavyLightDecomposition& get_hld() const {\n            return _hld;\n     \
-    \   }\n    private:\n        int _n;\n        std::vector<std::vector<int>> _aux;\n\
-    \        HeavyLightDecomposition _hld;\n        std::vector<int> _upd;\n    };\n\
-    } // namespace suisen\n\n#endif // SUISEN_AUXILIARY_TREE\n"
+    \n\n#line 6 \"test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp\"\
+    \nusing suisen::HeavyLightDecomposition;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<std::vector<int>>\
+    \ g(n);\n    for (int i = 1; i < n; ++i) {\n        int p;\n        std::cin >>\
+    \ p;\n        g[p].push_back(i);\n        g[i].push_back(p);\n    }\n\n    HeavyLightDecomposition\
+    \ hld(g);\n\n    auto lca = [&](int u, int v) -> int {\n        int du = hld.get_depth(u);\n\
+    \        int dv = hld.get_depth(v);\n        if (du < dv) {\n            std::swap(u,\
+    \ v);\n            std::swap(du, dv);\n        }\n\n        int l = -1, r = dv;\n\
+    \        while (r - l > 1) {\n            int k = (l + r) >> 1;\n            (hld.la(u,\
+    \ k + (du - dv)) == hld.la(v, k) ? r : l) = k;\n        }\n        return hld.la(v,\
+    \ r);\n    };\n\n    for (int query_id = 0; query_id < q; ++query_id) {\n    \
+    \    int u, v;\n        std::cin >> u >> v;\n        \n        std::cout << lca(u,\
+    \ v) << '\\n';\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include <iostream>\n\
+    \n#include \"library/tree/heavy_light_decomposition.hpp\"\nusing suisen::HeavyLightDecomposition;\n\
+    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<std::vector<int>>\
+    \ g(n);\n    for (int i = 1; i < n; ++i) {\n        int p;\n        std::cin >>\
+    \ p;\n        g[p].push_back(i);\n        g[i].push_back(p);\n    }\n\n    HeavyLightDecomposition\
+    \ hld(g);\n\n    auto lca = [&](int u, int v) -> int {\n        int du = hld.get_depth(u);\n\
+    \        int dv = hld.get_depth(v);\n        if (du < dv) {\n            std::swap(u,\
+    \ v);\n            std::swap(du, dv);\n        }\n\n        int l = -1, r = dv;\n\
+    \        while (r - l > 1) {\n            int k = (l + r) >> 1;\n            (hld.la(u,\
+    \ k + (du - dv)) == hld.la(v, k) ? r : l) = k;\n        }\n        return hld.la(v,\
+    \ r);\n    };\n\n    for (int query_id = 0; query_id < q; ++query_id) {\n    \
+    \    int u, v;\n        std::cin >> u >> v;\n        \n        std::cout << lca(u,\
+    \ v) << '\\n';\n    }\n\n    return 0;\n}"
   dependsOn:
   - library/tree/heavy_light_decomposition.hpp
   - library/type_traits/type_traits.hpp
-  isVerificationFile: false
-  path: library/tree/auxiliary_tree.hpp
+  isVerificationFile: true
+  path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 17:40:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-05-08 15:48:37+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: library/tree/auxiliary_tree.hpp
+documentation_of: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
 layout: document
-title: "\u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u305F\u3061\u306E\u6700\u5C0F\u5171\
-  \u901A\u7956\u5148\u95A2\u4FC2\u3092\u4FDD\u3063\u3066\u6728\u3092\u5727\u7E2E\u3057\
-  \u3066\u3067\u304D\u308B\u88DC\u52A9\u7684\u306A\u6728"
+redirect_from:
+- /verify/test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
+- /verify/test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp.html
+title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
 ---
-## 指定された頂点たちの最小共通祖先関係を保って木を圧縮してできる補助的な木
-
-名称は [ア辞典](https://dic.kimiyuki.net/auxiliary-tree) から拝借しました。

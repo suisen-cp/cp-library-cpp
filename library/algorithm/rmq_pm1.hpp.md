@@ -151,6 +151,7 @@ data:
   verifiedWith: []
 documentation_of: library/algorithm/rmq_pm1.hpp
 layout: document
-title: Rmq Pm1
+title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\u306E\
+  \ RMQ"
 ---
-## Rmq Pm1
+## 隣接要素の差が $\pm 1$ の場合の RMQ

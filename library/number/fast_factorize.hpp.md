@@ -171,6 +171,6 @@ data:
   - test/src/number/fast_factorize/factorize.test.cpp
 documentation_of: library/number/fast_factorize.hpp
 layout: document
-title: Fast Factorize
+title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
 ---
-## Fast Factorize
+## 高速素因数分解

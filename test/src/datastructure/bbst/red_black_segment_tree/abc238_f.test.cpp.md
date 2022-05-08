@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_segment_tree.hpp
-    title: Red Black Segment Tree
+    title: "\u533A\u9593\u548C\u53D6\u5F97\u304C\u53EF\u80FD\u306A\u8D64\u9ED2\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base

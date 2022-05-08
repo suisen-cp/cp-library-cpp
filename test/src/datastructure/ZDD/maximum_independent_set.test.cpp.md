@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/ZDD.hpp
-    title: Zdd
+    title: ZDD
   - icon: ':heavy_check_mark:'
     path: library/util/tuple_hash.hpp
     title: Tuple Hash

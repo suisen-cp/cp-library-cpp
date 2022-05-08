@@ -6,7 +6,7 @@ data:
     title: Persistent Red Black Tree Base
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree.hpp
-    title: Red Black Tree
+    title: "\u8D64\u9ED2\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base
@@ -210,6 +210,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/bbst/persistent_red_black_tree.hpp
 layout: document
-title: Persistent Red Black Tree
+title: "\u6C38\u7D9A\u8D64\u9ED2\u6728"
 ---
-## Persistent Red Black Tree
+## 永続赤黒木

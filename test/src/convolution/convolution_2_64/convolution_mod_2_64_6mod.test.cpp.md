@@ -17,7 +17,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_2_64
     links:
     - https://judge.yosupo.jp/problem/convolution_mod_2_64
-  bundledCode: "#line 1 \"test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_2_64\"\n\n\
     #include <iostream>\n#line 1 \"library/convolution/convolution_2_64.hpp\"\n\n\n\
     \n#include <atcoder/convolution>\n#line 6 \"library/convolution/convolution_2_64.hpp\"\
@@ -127,11 +127,11 @@ data:
     \ b);\n\n        if (n + m - 1 <= 1 << 22) {\n            return internal::convolution_2_64::convolution_5mod(a,\
     \ b);\n        } else {\n            assert(n + m - 1 <= 1 << 23);\n         \
     \   return internal::convolution_2_64::convolution_6mod(a, b);\n        }\n  \
-    \  }\n} // namespace suisen\n\n\n\n#line 5 \"test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp\"\
+    \  }\n} // namespace suisen\n\n\n\n#line 5 \"test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp\"\
     \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    std::size_t n, m;\n    std::cin >> n >> m;\n\n    std::vector<unsigned long\
     \ long> a(n), b(m);\n    for (auto &e : a) std::cin >> e;\n    for (auto &e :\
-    \ b) std::cin >> e;\n\n    std::vector<unsigned long long> c = suisen::convolution_mod_2_64(a,\
+    \ b) std::cin >> e;\n\n    std::vector<unsigned long long> c = suisen::internal::convolution_2_64::convolution_6mod(a,\
     \ b);\n    for (std::size_t i = 0; i < n + m - 1; ++i) {\n        std::cout <<\
     \ c[i] << \" \\n\"[i == n + m - 2];\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_2_64\"\n\
@@ -139,22 +139,22 @@ data:
     \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    std::size_t n, m;\n    std::cin >> n >> m;\n\n    std::vector<unsigned long\
     \ long> a(n), b(m);\n    for (auto &e : a) std::cin >> e;\n    for (auto &e :\
-    \ b) std::cin >> e;\n\n    std::vector<unsigned long long> c = suisen::convolution_mod_2_64(a,\
+    \ b) std::cin >> e;\n\n    std::vector<unsigned long long> c = suisen::internal::convolution_2_64::convolution_6mod(a,\
     \ b);\n    for (std::size_t i = 0; i < n + m - 1; ++i) {\n        std::cout <<\
     \ c[i] << \" \\n\"[i == n + m - 2];\n    }\n    return 0;\n}"
   dependsOn:
   - library/convolution/convolution_2_64.hpp
   - library/convolution/convolution_naive.hpp
   isVerificationFile: true
-  path: test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp
+  path: test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
   requiredBy: []
   timestamp: '2022-05-08 18:26:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp
+documentation_of: test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp
-- /verify/test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp.html
-title: test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp
+- /verify/test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
+- /verify/test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp.html
+title: test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
 ---

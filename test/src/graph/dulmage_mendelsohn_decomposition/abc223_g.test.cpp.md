@@ -6,10 +6,10 @@ data:
     title: Bipartite Graph Recognition
   - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
-    title: Bipartite Matching
+    title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
   - icon: ':heavy_check_mark:'
     path: library/graph/dulmage_mendelsohn_decomposition.hpp
-    title: Dulmage Mendelsohn Decomposition
+    title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

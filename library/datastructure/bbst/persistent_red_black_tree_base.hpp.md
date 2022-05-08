@@ -10,16 +10,19 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/datastructure/bbst/persistent_red_black_lazy_segment_tree.hpp
-    title: Persistent Red Black Lazy Segment Tree
+    title: "\u533A\u9593\u4F5C\u7528\u30FB\u533A\u9593\u548C\u53D6\u5F97\u304C\u53EF\
+      \u80FD\u306A\u6C38\u7D9A\u8D64\u9ED2\u6728"
   - icon: ':warning:'
     path: library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
-    title: Persistent Red Black Reversible Lazy Segment Tree
+    title: "\u53CD\u8EE2\u30FB\u533A\u9593\u4F5C\u7528\u30FB\u533A\u9593\u548C\u53D6\
+      \u5F97\u304C\u53EF\u80FD\u306A\u6C38\u7D9A\u8D64\u9ED2\u6728"
   - icon: ':warning:'
     path: library/datastructure/bbst/persistent_red_black_segment_tree.hpp
-    title: Persistent Red Black Segment Tree
+    title: "\u533A\u9593\u548C\u53D6\u5F97\u304C\u53EF\u80FD\u306A\u6C38\u7D9A\u8D64\
+      \u9ED2\u6728"
   - icon: ':warning:'
     path: library/datastructure/bbst/persistent_red_black_tree.hpp
-    title: Persistent Red Black Tree
+    title: "\u6C38\u7D9A\u8D64\u9ED2\u6728"
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp

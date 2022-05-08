@@ -157,6 +157,9 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/segment_tree/sparse_segment_tree.hpp
 layout: document
-title: Sparse Segment Tree
+title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\u758E\
+  \u306A\u5834\u5408)"
 ---
-## Sparse Segment Tree
+## セグメント木 (添字集合が疎な場合)
+
+予め添字集合が分かっている場合は座標圧縮により通常のセグメント木で対応できるが、そうでない場合は本ライブラリを用いる。

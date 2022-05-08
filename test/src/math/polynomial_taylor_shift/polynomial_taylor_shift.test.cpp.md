@@ -3,13 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/math/factorial.hpp
-    title: Factorial
+    title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: Fps
+    title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
-    title: Inv Mods
+    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift

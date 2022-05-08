@@ -74,6 +74,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/cumulative_sum_2d.hpp
 layout: document
-title: Cumulative Sum 2d
+title: "2D \u7D2F\u7A4D\u548C"
 ---
-## Cumulative Sum 2d
+## 2D 累積和

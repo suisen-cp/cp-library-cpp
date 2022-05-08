@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/ZDD.hpp
-    title: Zdd
+    title: ZDD
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/ZDD/maximum_independent_set.test.cpp

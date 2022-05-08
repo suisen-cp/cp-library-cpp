@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
-    title: Bipartite Matching
+    title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
   - icon: ':heavy_check_mark:'
     path: library/string/palindromic_tree.hpp
     title: Palindromic Tree

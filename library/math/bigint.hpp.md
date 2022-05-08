@@ -221,6 +221,7 @@ data:
   - test/src/math/bigint/NTL_2_A.test.cpp
 documentation_of: library/math/bigint.hpp
 layout: document
-title: Bigint
+title: "\u591A\u500D\u9577\u6574\u6570"
 ---
-## Bigint
+## 多倍長整数
+

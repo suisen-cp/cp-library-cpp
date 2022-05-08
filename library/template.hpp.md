@@ -14,18 +14,18 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/template.hpp\"\n// #pragma comment(linker, \"/stack:200000000\"\
-    )\n\n#include <bits/stdc++.h>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <type_traits>\n\
-    \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
-    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
-    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
-    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
-    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
-    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
-    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
-    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+  bundledCode: "#line 1 \"library/template.hpp\"\n#include <bits/stdc++.h>\n\n#line\
+    \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\
+    \n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
+    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -42,16 +42,12 @@ data:
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
     \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 6 \"library/template.hpp\"\n\n// ! type aliases\nusing i128 = __int128_t;\n\
-    using u128 = __uint128_t;\nusing ll = long long;\nusing uint = unsigned int;\n\
-    using ull  = unsigned long long;\n\ntemplate <typename T> using vec  = std::vector<T>;\n\
-    template <typename T> using vec2 = vec<vec <T>>;\ntemplate <typename T> using\
-    \ vec3 = vec<vec2<T>>;\ntemplate <typename T> using vec4 = vec<vec3<T>>;\n\ntemplate\
-    \ <typename T>\nusing pq_greater = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    template <typename T, typename U>\nusing umap = std::unordered_map<T, U>;\n\n\
-    // ! macros (capital: internal macro)\n#define OVERLOAD2(_1,_2,name,...) name\n\
-    #define OVERLOAD3(_1,_2,_3,name,...) name\n#define OVERLOAD4(_1,_2,_3,_4,name,...)\
-    \ name\n\n#define REP4(i,l,r,s)  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
+    \ 4 \"library/template.hpp\"\n\n// ! type aliases\nusing i128 = __int128_t;\n\
+    using u128 = __uint128_t;\n\ntemplate <typename T>\nusing pq_greater = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\ntemplate <typename T, typename U>\nusing\
+    \ umap = std::unordered_map<T, U>;\n\n// ! macros (capital: internal macro)\n\
+    #define OVERLOAD2(_1,_2,name,...) name\n#define OVERLOAD3(_1,_2,_3,name,...) name\n\
+    #define OVERLOAD4(_1,_2,_3,_4,name,...) name\n\n#define REP4(i,l,r,s)  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
     #define REP3(i,l,r)    REP4(i,l,r,1)\n#define REP2(i,n)      REP3(i,0,n)\n#define\
     \ REPINF3(i,l,s) for(std::remove_reference_t<std::remove_const_t<decltype(l)>>i=(l);;i+=(s))\n\
     #define REPINF2(i,l)   REPINF3(i,l,1)\n#define REPINF1(i)     REPINF2(i,0)\n#define\
@@ -63,12 +59,20 @@ data:
     \n#define CAT_I(a, b) a##b\n#define CAT(a, b) CAT_I(a, b)\n#define UNIQVAR(tag)\
     \ CAT(tag, __LINE__)\n#define loop(n) for (std::remove_reference_t<std::remove_const_t<decltype(n)>>\
     \ UNIQVAR(loop_variable) = n; UNIQVAR(loop_variable) --> 0;)\n\n#define all(iterable)\
-    \ (iterable).begin(), (iterable).end()\n#define input(type, ...) type __VA_ARGS__;\
-    \ read(__VA_ARGS__)\n\n// ! I/O utilities\n\n// pair\ntemplate <typename T, typename\
-    \ U>\nstd::ostream& operator<<(std::ostream& out, const std::pair<T, U> &a) {\n\
-    \    return out << a.first << ' ' << a.second;\n}\n// tuple\ntemplate <unsigned\
-    \ int N = 0, typename ...Args>\nstd::ostream& operator<<(std::ostream& out, const\
-    \ std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
+    \ std::begin(iterable), std::end(iterable)\n#define input(type, ...) type __VA_ARGS__;\
+    \ read(__VA_ARGS__)\n\n#ifdef LOCAL\n#  define debug(...) debug_internal(#__VA_ARGS__,\
+    \ __VA_ARGS__)\n\ntemplate <class T, class... Args>\nvoid debug_internal(const\
+    \ char* s, T&& first, Args&&... args) {\n    constexpr const char* prefix = \"\
+    [\\033[32mDEBUG\\033[m] \";\n    constexpr const char* open_brakets = sizeof...(args)\
+    \ == 0 ? \"\" : \"(\";\n    constexpr const char* close_brakets = sizeof...(args)\
+    \ == 0 ? \"\" : \")\";\n    std::cerr << prefix << open_brakets << s << close_brakets\
+    \ << \": \" << open_brakets << std::forward<T>(first);\n    ((std::cerr << \"\
+    , \" << std::forward<Args>(args)), ...);\n    std::cerr << close_brakets << \"\
+    \\n\";\n}\n\n#else\n#  define debug(...) void(0)\n#endif\n\n// ! I/O utilities\n\
+    \n// pair\ntemplate <typename T, typename U>\nstd::ostream& operator<<(std::ostream&\
+    \ out, const std::pair<T, U> &a) {\n    return out << a.first << ' ' << a.second;\n\
+    }\n// tuple\ntemplate <unsigned int N = 0, typename ...Args>\nstd::ostream& operator<<(std::ostream&\
+    \ out, const std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
     \ {\n        return out;\n    } else {\n        out << std::get<N>(a);\n     \
     \   if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>) {\n        \
     \    out << ' ';\n        }\n        return operator<<<N + 1>(out, a);\n    }\n\
@@ -158,17 +162,13 @@ data:
     \ iff `x` has chenged.\ntemplate <typename T>\ninline bool chmax(T &x, const T\
     \ &y) {\n    if (y <= x) return false;\n    x = y;\n    return true;\n}\n\nnamespace\
     \ suisen {}\nusing namespace suisen;\nusing namespace std;\n"
-  code: "// #pragma comment(linker, \"/stack:200000000\")\n\n#include <bits/stdc++.h>\n\
-    \n#include \"library/type_traits/type_traits.hpp\"\n\n// ! type aliases\nusing\
-    \ i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ll = long long;\nusing\
-    \ uint = unsigned int;\nusing ull  = unsigned long long;\n\ntemplate <typename\
-    \ T> using vec  = std::vector<T>;\ntemplate <typename T> using vec2 = vec<vec\
-    \ <T>>;\ntemplate <typename T> using vec3 = vec<vec2<T>>;\ntemplate <typename\
-    \ T> using vec4 = vec<vec3<T>>;\n\ntemplate <typename T>\nusing pq_greater = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\ntemplate <typename T, typename U>\nusing\
-    \ umap = std::unordered_map<T, U>;\n\n// ! macros (capital: internal macro)\n\
-    #define OVERLOAD2(_1,_2,name,...) name\n#define OVERLOAD3(_1,_2,_3,name,...) name\n\
-    #define OVERLOAD4(_1,_2,_3,_4,name,...) name\n\n#define REP4(i,l,r,s)  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
+  code: "#include <bits/stdc++.h>\n\n#include \"library/type_traits/type_traits.hpp\"\
+    \n\n// ! type aliases\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\n\
+    template <typename T>\nusing pq_greater = std::priority_queue<T, std::vector<T>,\
+    \ std::greater<T>>;\ntemplate <typename T, typename U>\nusing umap = std::unordered_map<T,\
+    \ U>;\n\n// ! macros (capital: internal macro)\n#define OVERLOAD2(_1,_2,name,...)\
+    \ name\n#define OVERLOAD3(_1,_2,_3,name,...) name\n#define OVERLOAD4(_1,_2,_3,_4,name,...)\
+    \ name\n\n#define REP4(i,l,r,s)  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
     #define REP3(i,l,r)    REP4(i,l,r,1)\n#define REP2(i,n)      REP3(i,0,n)\n#define\
     \ REPINF3(i,l,s) for(std::remove_reference_t<std::remove_const_t<decltype(l)>>i=(l);;i+=(s))\n\
     #define REPINF2(i,l)   REPINF3(i,l,1)\n#define REPINF1(i)     REPINF2(i,0)\n#define\
@@ -180,12 +180,20 @@ data:
     \n#define CAT_I(a, b) a##b\n#define CAT(a, b) CAT_I(a, b)\n#define UNIQVAR(tag)\
     \ CAT(tag, __LINE__)\n#define loop(n) for (std::remove_reference_t<std::remove_const_t<decltype(n)>>\
     \ UNIQVAR(loop_variable) = n; UNIQVAR(loop_variable) --> 0;)\n\n#define all(iterable)\
-    \ (iterable).begin(), (iterable).end()\n#define input(type, ...) type __VA_ARGS__;\
-    \ read(__VA_ARGS__)\n\n// ! I/O utilities\n\n// pair\ntemplate <typename T, typename\
-    \ U>\nstd::ostream& operator<<(std::ostream& out, const std::pair<T, U> &a) {\n\
-    \    return out << a.first << ' ' << a.second;\n}\n// tuple\ntemplate <unsigned\
-    \ int N = 0, typename ...Args>\nstd::ostream& operator<<(std::ostream& out, const\
-    \ std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
+    \ std::begin(iterable), std::end(iterable)\n#define input(type, ...) type __VA_ARGS__;\
+    \ read(__VA_ARGS__)\n\n#ifdef LOCAL\n#  define debug(...) debug_internal(#__VA_ARGS__,\
+    \ __VA_ARGS__)\n\ntemplate <class T, class... Args>\nvoid debug_internal(const\
+    \ char* s, T&& first, Args&&... args) {\n    constexpr const char* prefix = \"\
+    [\\033[32mDEBUG\\033[m] \";\n    constexpr const char* open_brakets = sizeof...(args)\
+    \ == 0 ? \"\" : \"(\";\n    constexpr const char* close_brakets = sizeof...(args)\
+    \ == 0 ? \"\" : \")\";\n    std::cerr << prefix << open_brakets << s << close_brakets\
+    \ << \": \" << open_brakets << std::forward<T>(first);\n    ((std::cerr << \"\
+    , \" << std::forward<Args>(args)), ...);\n    std::cerr << close_brakets << \"\
+    \\n\";\n}\n\n#else\n#  define debug(...) void(0)\n#endif\n\n// ! I/O utilities\n\
+    \n// pair\ntemplate <typename T, typename U>\nstd::ostream& operator<<(std::ostream&\
+    \ out, const std::pair<T, U> &a) {\n    return out << a.first << ' ' << a.second;\n\
+    }\n// tuple\ntemplate <unsigned int N = 0, typename ...Args>\nstd::ostream& operator<<(std::ostream&\
+    \ out, const std::tuple<Args...> &a) {\n    if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>)\
     \ {\n        return out;\n    } else {\n        out << std::get<N>(a);\n     \
     \   if constexpr (N + 1 < std::tuple_size_v<std::tuple<Args...>>) {\n        \
     \    out << ' ';\n        }\n        return operator<<<N + 1>(out, a);\n    }\n\
@@ -281,7 +289,7 @@ data:
   path: library/template.hpp
   requiredBy:
   - library/template.cpp
-  timestamp: '2022-02-25 23:20:55+09:00'
+  timestamp: '2022-05-08 15:47:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.hpp

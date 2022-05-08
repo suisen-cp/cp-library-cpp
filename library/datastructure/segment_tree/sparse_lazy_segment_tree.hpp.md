@@ -193,6 +193,9 @@ data:
   - test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
 documentation_of: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
 layout: document
-title: Sparse Lazy Segment Tree
+title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\
+  \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
 ---
-## Sparse Lazy Segment Tree
+## 遅延伝播セグメント木 (添字集合が疎な場合)
+
+予め添字集合が分かっている場合は座標圧縮により通常の遅延伝播セグメント木で対応できるが、そうでない場合は本ライブラリを用いる。

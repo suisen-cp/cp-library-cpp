@@ -193,3 +193,5 @@ layout: document
 title: Functional Graph
 ---
 ## Functional Graph
+
+全ての頂点の出次数がちょうど $1$ のグラフ。

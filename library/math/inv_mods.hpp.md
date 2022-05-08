@@ -14,13 +14,13 @@ data:
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
-    title: Fps
+    title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: library/math/interpolation.hpp
     title: Interpolation
   - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
-    title: Multi Point Eval
+    title: Multi Point Evaluation
   - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
@@ -144,6 +144,6 @@ data:
   - test/src/math/interpolation/polynomial_interpolation.test.cpp
 documentation_of: library/math/inv_mods.hpp
 layout: document
-title: Inv Mods
+title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
 ---
-## Inv Mods
+## 逆元テーブル

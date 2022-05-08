@@ -4,13 +4,13 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/graph/biconnected_components.hpp
-    title: library/graph/biconnected_components.hpp
+    title: "\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\u5206\u89E3"
   - icon: ':warning:'
     path: library/graph/block_cut_forest.hpp
-    title: library/graph/block_cut_forest.hpp
+    title: Block Cut Forest
   - icon: ':heavy_check_mark:'
     path: library/graph/two_edge_connected_components.hpp
-    title: Two Edge Connected Components
+    title: "\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/biconnected_components/biconnected_components.test.cpp
@@ -130,3 +130,5 @@ layout: document
 title: Low Link
 ---
 ## Low Link
+
+橋や関節点を求めるのに用いる。

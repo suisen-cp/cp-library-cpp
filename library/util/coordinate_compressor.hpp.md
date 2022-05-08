@@ -264,6 +264,6 @@ data:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
 layout: document
-title: Coordinate Compressor
+title: "\u5EA7\u6A19\u5727\u7E2E"
 ---
-## Coordinate Compressor
+## 座標圧縮

@@ -343,6 +343,8 @@ data:
   - test/src/datastructure/ZDD/maximum_independent_set.test.cpp
 documentation_of: library/datastructure/ZDD.hpp
 layout: document
-title: Zdd
+title: ZDD
 ---
-## Zdd
+## ZDD
+
+ゼロサプレス型二分決定グラフ。BDD の派生として考案されたデータ構造であり、組合せ集合を圧縮して表現する。

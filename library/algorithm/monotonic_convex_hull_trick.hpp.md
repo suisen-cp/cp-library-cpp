@@ -172,6 +172,9 @@ data:
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
 documentation_of: library/algorithm/monotonic_convex_hull_trick.hpp
 layout: document
-title: Monotonic Convex Hull Trick
+title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3059\u308B Convex\
+  \ Hull Trick"
 ---
-## Monotonic Convex Hull Trick
+## 傾きの単調性を仮定する Convex Hull Trick
+
+クエリの $x$ は単調でなくてもよい。$x$ も単調な場合は、それに応じた関数を呼ぶことで計算量のよい方で解く。

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/number/sum_of_totient_function.hpp
-    title: Sum Of Totient Function
+    title: Prefix Sum of Totient Function
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

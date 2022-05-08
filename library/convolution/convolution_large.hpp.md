@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
-    title: library/convolution/convolution_naive.hpp
+    title: Naive Convolution
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -91,6 +91,8 @@ data:
   - test/src/convolution/convolution_large/convolution_large.test.cpp
 documentation_of: library/convolution/convolution_large.hpp
 layout: document
-title: Convolution Large
+title: Convolution (Large)
 ---
-## Convolution Large
+## Convolution (Large)
+
+$\mathrm{mod}\ p$ における $1$ の $2 ^ k$ 乗根が存在しない場合に、列を分割して畳み込む。

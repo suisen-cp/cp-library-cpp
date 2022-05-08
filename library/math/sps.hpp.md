@@ -394,6 +394,6 @@ data:
   - test/src/math/sps/abc236_h.test.cpp
 documentation_of: library/math/sps.hpp
 layout: document
-title: Sps
+title: Set Power Series
 ---
-## Sps
+## Set Power Series

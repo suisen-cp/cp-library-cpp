@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/geom/closest_pair.hpp
-    title: Closest Pair
+    title: "\u6700\u8FD1\u70B9\u5BFE"
   - icon: ':heavy_check_mark:'
     path: library/geom/convex_hull.hpp
-    title: Convex Hull
+    title: "\u51F8\u5305"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/closest_pair/CGL_5_A.test.cpp
@@ -719,3 +719,5 @@ layout: document
 title: Geometry
 ---
 ## Geometry
+
+幾何ライブラリ詰め合わせ

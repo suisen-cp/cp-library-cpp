@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
-    title: Dual Segment Tree
+    title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
@@ -75,6 +75,9 @@ data:
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
 documentation_of: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
 layout: document
-title: Commutative Dual Segment Tree
+title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\u53EF\
+  \u63DB\u306A\u5834\u5408)"
 ---
-## Commutative Dual Segment Tree
+## 双対セグメント木 (作用が可換な場合)
+
+作用の可換性を仮定した場合、作用を伝播させる必要がないため、伝播処理をサボることで定数倍改善を測ることができる。

@@ -4,16 +4,20 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/convex_hull_trick.hpp
-    title: Convex Hull Trick
+    title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3057\u306A\u3044\
+      \ Convex Hull Trick"
   - icon: ':heavy_check_mark:'
     path: library/algorithm/monotonic_convex_hull_trick.hpp
-    title: Monotonic Convex Hull Trick
+    title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3059\u308B Convex\
+      \ Hull Trick"
   - icon: ':warning:'
     path: library/algorithm/rmq_pm1.hpp
-    title: Rmq Pm1
+    title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
+      \u306E RMQ"
   - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
-    title: Rmq Pm1 With Index
+    title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
+      \u306E RMQ (\u6DFB\u5B57\u306E\u5FA9\u5143\u4ED8\u304D)"
   - icon: ':heavy_check_mark:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: Sliding Window Minimum
@@ -55,25 +59,29 @@ data:
     title: Range Foldable Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
-    title: Commutative Dual Segment Tree
+    title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\u53EF\
+      \u63DB\u306A\u5834\u5408)"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
-    title: Dual Segment Tree
+    title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
-    title: Lazy Segment Tree
+    title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
-    title: Segment Tree
+    title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-    title: Segment Tree 2d Sparse
+    title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
+      \u5834\u5408)"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
-    title: Sparse Lazy Segment Tree
+    title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\
+      \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
   - icon: ':warning:'
     path: library/datastructure/segment_tree/sparse_segment_tree.hpp
-    title: Sparse Segment Tree
+    title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\u758E\
+      \u306A\u5834\u5408)"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
     title: Sparse Table
@@ -91,7 +99,7 @@ data:
     title: Deterministic Miller Rabin
   - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
-    title: Fast Factorize
+    title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
   - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: Util
@@ -103,7 +111,9 @@ data:
     title: Template
   - icon: ':warning:'
     path: library/tree/auxiliary_tree.hpp
-    title: library/tree/auxiliary_tree.hpp
+    title: "\u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u305F\u3061\u306E\u6700\u5C0F\
+      \u5171\u901A\u7956\u5148\u95A2\u4FC2\u3092\u4FDD\u3063\u3066\u6728\u3092\u5727\
+      \u7E2E\u3057\u3066\u3067\u304D\u308B\u88DC\u52A9\u7684\u306A\u6728"
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
@@ -112,7 +122,7 @@ data:
     title: Lowest Common Ancestor
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
-    title: Coordinate Compressor
+    title: "\u5EA7\u6A19\u5727\u7E2E"
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
@@ -237,6 +247,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
+    title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
@@ -399,6 +412,7 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp

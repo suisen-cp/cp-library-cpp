@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/tree/centroid_decomposition.hpp
-    title: Centroid Decomposition
+    title: "\u91CD\u5FC3\u5206\u89E3"
   - icon: ':heavy_check_mark:'
     path: library/tree/contour_aggregation_query_on_tree.hpp
     title: Contour Aggregation Query On Tree

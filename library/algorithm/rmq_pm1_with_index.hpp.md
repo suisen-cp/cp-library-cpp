@@ -182,6 +182,7 @@ data:
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
 documentation_of: library/algorithm/rmq_pm1_with_index.hpp
 layout: document
-title: Rmq Pm1 With Index
+title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\u306E\
+  \ RMQ (\u6DFB\u5B57\u306E\u5FA9\u5143\u4ED8\u304D)"
 ---
-## Rmq Pm1 With Index
+## 隣接要素の差が $\pm 1$ の場合の RMQ (添字の復元付き)

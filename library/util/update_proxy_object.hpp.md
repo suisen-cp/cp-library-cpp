@@ -20,19 +20,22 @@ data:
     title: Range Foldable Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
-    title: Lazy Segment Tree
+    title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
-    title: Segment Tree
+    title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-    title: Segment Tree 2d Sparse
+    title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
+      \u5834\u5408)"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
-    title: Sparse Lazy Segment Tree
+    title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\
+      \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
   - icon: ':warning:'
     path: library/datastructure/segment_tree/sparse_segment_tree.hpp
-    title: Sparse Segment Tree
+    title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\u758E\
+      \u306A\u5834\u5408)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp

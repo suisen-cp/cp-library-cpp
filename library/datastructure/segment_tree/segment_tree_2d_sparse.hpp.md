@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
-    title: Segment Tree
+    title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
@@ -275,6 +275,7 @@ data:
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
 layout: document
-title: Segment Tree 2d Sparse
+title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\u5834\
+  \u5408)"
 ---
-## Segment Tree 2d Sparse
+## 2D セグメント木 (点群が疎な場合)

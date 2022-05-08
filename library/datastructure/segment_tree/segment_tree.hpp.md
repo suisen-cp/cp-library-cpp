@@ -10,7 +10,8 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-    title: Segment Tree 2d Sparse
+    title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
+      \u5834\u5408)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
@@ -198,6 +199,6 @@ data:
   - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree.hpp
 layout: document
-title: Segment Tree
+title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
 ---
-## Segment Tree
+## セグメント木
