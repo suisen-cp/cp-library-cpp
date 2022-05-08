@@ -1,5 +1,7 @@
 ---
-title: Sieve Of Eratosthenes Constexpr
+title: エラトステネスの篩 (コンパイル時計算)
 documentation_of: //library/number/sieve_of_eratosthenes_constexpr.hpp
 ---
-## Sieve Of Eratosthenes Constexpr
+## エラトステネスの篩 (コンパイル時計算)
+
+コンパイル時に計算できるくらいの計算量なので、高速化は望めなさそう。

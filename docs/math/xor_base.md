@@ -1,5 +1,5 @@
 ---
-title: Xor Base
+title: XOR 基底
 documentation_of: //library/math/xor_base.hpp
 ---
-## Xor Base
+## XOR 基底

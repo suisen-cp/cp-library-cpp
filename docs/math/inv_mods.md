@@ -1,5 +1,5 @@
 ---
-title: Inv Mods
+title: 逆元テーブル
 documentation_of: //library/math/inv_mods.hpp
 ---
-## Inv Mods
+## 逆元テーブル

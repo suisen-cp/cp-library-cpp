@@ -1,5 +1,5 @@
 ---
-title: Cumulative Sum
+title: 累積和
 documentation_of: //library/util/cumulative_sum.hpp
 ---
-## Cumulative Sum
+## 累積和

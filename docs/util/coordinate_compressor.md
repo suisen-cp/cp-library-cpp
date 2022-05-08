@@ -1,5 +1,5 @@
 ---
-title: Coordinate Compressor
+title: 座標圧縮
 documentation_of: //library/util/coordinate_compressor.hpp
 ---
-## Coordinate Compressor
+## 座標圧縮

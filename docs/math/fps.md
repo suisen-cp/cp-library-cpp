@@ -1,5 +1,5 @@
 ---
-title: Fps
+title: 形式的冪級数
 documentation_of: //library/math/fps.hpp
 ---
-## Fps
+## 形式的冪級数

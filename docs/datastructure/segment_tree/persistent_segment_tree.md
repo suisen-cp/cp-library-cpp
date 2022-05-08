@@ -1,5 +1,5 @@
 ---
-title: Persistent Segment Tree
+title: 永続セグメント木
 documentation_of: //library/datastructure/segment_tree/persistent_segment_tree.hpp
 ---
-## Persistent Segment Tree
+## 永続セグメント木

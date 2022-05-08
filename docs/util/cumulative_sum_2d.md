@@ -1,5 +1,5 @@
 ---
-title: Cumulative Sum 2d
+title: 2D 累積和
 documentation_of: //library/util/cumulative_sum_2d.hpp
 ---
-## Cumulative Sum 2d
+## 2D 累積和

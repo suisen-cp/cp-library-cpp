@@ -1,9 +1,9 @@
 ---
-title: Range Contour Operation Query On Tree
+title: Range Contour Operation Query On Tree (木上の等高線作用クエリ)
 documentation_of: //library/tree/range_contour_operation_query_on_tree.hpp
 ---
 
-## Range Contour Operation Query On Tree
+## Range Contour Operation Query On Tree (木上の等高線作用クエリ)
 
 以下のような問題を考えます。
 

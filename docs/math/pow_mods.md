@@ -1,5 +1,5 @@
 ---
-title: Pow Mods
+title: 冪乗テーブル
 documentation_of: //library/math/pow_mods.hpp
 ---
-## Pow Mods
+## 冪乗テーブル

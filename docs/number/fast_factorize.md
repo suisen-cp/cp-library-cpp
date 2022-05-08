@@ -1,5 +1,5 @@
 ---
-title: Fast Factorize
+title: 高速素因数分解
 documentation_of: //library/number/fast_factorize.hpp
 ---
-## Fast Factorize
+## 高速素因数分解

@@ -1,5 +1,6 @@
 ---
-title: Centroid Decomposition
+title: 重心分解
 documentation_of: //library/tree/centroid_decomposition.hpp
 ---
-## Centroid Decomposition
+## 重心分解
+

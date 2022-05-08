@@ -1,5 +1,5 @@
 ---
-title: Sps
+title: Set Power Series
 documentation_of: //library/math/sps.hpp
 ---
-## Sps
+## Set Power Series

@@ -1,8 +1,8 @@
 ---
-title: Range Contour Aggregation Query On Tree
+title: Range Contour Aggregation Query On Tree (木上の等高線集約クエリ)
 documentation_of: //library/tree/range_contour_aggregation_query_on_tree.hpp
 ---
-## Range Contour Aggregation Query On Tree
+## Range Contour Aggregation Query On Tree (木上の等高線集約クエリ)
 
 以下のような問題を考えます。
 

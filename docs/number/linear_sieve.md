@@ -1,5 +1,5 @@
 ---
-title: Linear Sieve
+title: 線形篩
 documentation_of: //library/number/linear_sieve.hpp
 ---
-## Linear Sieve
+## 線形篩

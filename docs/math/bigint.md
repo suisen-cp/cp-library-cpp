@@ -1,5 +1,6 @@
 ---
-title: Bigint
+title: 多倍長整数
 documentation_of: //library/math/bigint.hpp
 ---
-## Bigint
+## 多倍長整数
+

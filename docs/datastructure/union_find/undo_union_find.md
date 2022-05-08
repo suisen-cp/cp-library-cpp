@@ -1,5 +1,5 @@
 ---
-title: Undo Union Find
+title: Undo 可能 Union Find
 documentation_of: //library/datastructure/union_find/undo_union_find.hpp
 ---
-## Undo Union Find
+## Undo 可能 Union Find

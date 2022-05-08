@@ -1,5 +1,5 @@
 ---
-title: Factorial
+title: 階乗テーブル
 documentation_of: //library/math/factorial.hpp
 ---
-## Factorial
+## 階乗テーブル

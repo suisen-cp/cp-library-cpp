@@ -1,5 +1,5 @@
 ---
-title: Convex Hull
+title: 凸包
 documentation_of: //library/geom/convex_hull.hpp
 ---
-## Convex Hull
+## 凸包
