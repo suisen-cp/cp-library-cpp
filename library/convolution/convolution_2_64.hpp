@@ -40,6 +40,12 @@ namespace suisen {
             static constexpr long long INV_M1M2M3M4_MOD5 = atcoder::internal::inv_gcd(M1M2M3M4_MOD5, MOD5).second;
             static constexpr long long INV_M1M2M3M4M5_MOD6 = atcoder::internal::inv_gcd(M1M2M3M4M5_MOD6, MOD6).second;
 
+            static constexpr unsigned long long M1 = MOD1;
+            static constexpr unsigned long long M1M2 = M1 * MOD2;
+            static constexpr unsigned long long M1M2M3 = M1M2 * MOD3;
+            static constexpr unsigned long long M1M2M3M4 = M1M2M3 * MOD4;
+            static constexpr unsigned long long M1M2M3M4M5 = M1M2M3M4 * MOD5;
+
             std::vector<unsigned long long> a2(n), b2(m);
             for (int i = 0; i < n; ++i) a2[i] = a[i];
             for (int i = 0; i < m; ++i) b2[i] = b[i];
@@ -51,12 +57,6 @@ namespace suisen {
             auto c5 = atcoder::convolution<MOD5>(a2, b2);
             auto c6 = atcoder::convolution<MOD6>(a2, b2);
 
-            const unsigned long long m1 = MOD1;
-            const unsigned long long m1m2 = m1 * MOD2;
-            const unsigned long long m1m2m3 = m1m2 * MOD3;
-            const unsigned long long m1m2m3m4 = m1m2m3 * MOD4;
-            const unsigned long long m1m2m3m4m5 = m1m2m3m4 * MOD5;
-
             std::vector<unsigned long long> c(n + m - 1);
             for (int i = 0; i < n + m - 1; ++i) {
                 // Garner's Algorithm
@@ -66,7 +66,7 @@ namespace suisen {
                 long long x4 = (atcoder::static_modint<MOD4>((long long) c4[i] - x1 - x2 * M1_MOD4 - x3 * M1M2_MOD4) * INV_M1M2M3_MOD4).val();
                 long long x5 = (atcoder::static_modint<MOD5>((long long) c5[i] - x1 - x2 * M1_MOD5 - x3 * M1M2_MOD5 - x4 * M1M2M3_MOD5) * INV_M1M2M3M4_MOD5).val();
                 long long x6 = (atcoder::static_modint<MOD6>((long long) c6[i] - x1 - x2 * M1_MOD6 - x3 * M1M2_MOD6 - x4 * M1M2M3_MOD6 - x5 * M1M2M3M4_MOD6) * INV_M1M2M3M4M5_MOD6).val();
-                c[i] = x1 + x2 * m1 + x3 * m1m2 + x4 * m1m2m3 + x5 * m1m2m3m4 + x6 * m1m2m3m4m5;
+                c[i] = x1 + x2 * M1 + x3 * M1M2 + x4 * M1M2M3 + x5 * M1M2M3M4 + x6 * M1M2M3M4M5;
             }
             return c;
         }
@@ -96,6 +96,11 @@ namespace suisen {
             static constexpr long long INV_M1M2M3_MOD4 = atcoder::internal::inv_gcd(M1M2M3_MOD4, MOD4).second;
             static constexpr long long INV_M1M2M3M4_MOD5 = atcoder::internal::inv_gcd(M1M2M3M4_MOD5, MOD5).second;
 
+            static constexpr unsigned long long M1 = MOD1;
+            static constexpr unsigned long long M1M2 = M1 * MOD2;
+            static constexpr unsigned long long M1M2M3 = M1M2 * MOD3;
+            static constexpr unsigned long long M1M2M3M4 = M1M2M3 * MOD4;
+
             std::vector<unsigned long long> a2(n), b2(m);
             for (int i = 0; i < n; ++i) a2[i] = a[i];
             for (int i = 0; i < m; ++i) b2[i] = b[i];
@@ -106,11 +111,6 @@ namespace suisen {
             auto c4 = atcoder::convolution<MOD4>(a2, b2);
             auto c5 = atcoder::convolution<MOD5>(a2, b2);
 
-            const unsigned long long m1 = MOD1;
-            const unsigned long long m1m2 = m1 * MOD2;
-            const unsigned long long m1m2m3 = m1m2 * MOD3;
-            const unsigned long long m1m2m3m4 = m1m2m3 * MOD4;
-
             std::vector<unsigned long long> c(n + m - 1);
             for (int i = 0; i < n + m - 1; ++i) {
                 // Garner's Algorithm
@@ -119,7 +119,7 @@ namespace suisen {
                 long long x3 = (atcoder::static_modint<MOD3>((long long) c3[i] - x1 - x2 * M1_MOD3) * INV_M1M2_MOD3).val();
                 long long x4 = (atcoder::static_modint<MOD4>((long long) c4[i] - x1 - x2 * M1_MOD4 - x3 * M1M2_MOD4) * INV_M1M2M3_MOD4).val();
                 long long x5 = (atcoder::static_modint<MOD5>((long long) c5[i] - x1 - x2 * M1_MOD5 - x3 * M1M2_MOD5 - x4 * M1M2M3_MOD5) * INV_M1M2M3M4_MOD5).val();
-                c[i] = x1 + x2 * m1 + x3 * m1m2 + x4 * m1m2m3 + x5 * m1m2m3m4;
+                c[i] = x1 + x2 * M1 + x3 * M1M2 + x4 * M1M2M3 + x5 * M1M2M3M4;
             }
             return c;
         }
