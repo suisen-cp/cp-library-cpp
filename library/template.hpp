@@ -1,5 +1,3 @@
-// #pragma comment(linker, "/stack:200000000")
-
 #include <bits/stdc++.h>
 
 #include "library/type_traits/type_traits.hpp"
@@ -7,14 +5,6 @@
 // ! type aliases
 using i128 = __int128_t;
 using u128 = __uint128_t;
-using ll = long long;
-using uint = unsigned int;
-using ull  = unsigned long long;
-
-template <typename T> using vec  = std::vector<T>;
-template <typename T> using vec2 = vec<vec <T>>;
-template <typename T> using vec3 = vec<vec2<T>>;
-template <typename T> using vec4 = vec<vec3<T>>;
 
 template <typename T>
 using pq_greater = std::priority_queue<T, std::vector<T>, std::greater<T>>;
@@ -45,8 +35,25 @@ using umap = std::unordered_map<T, U>;
 #define UNIQVAR(tag) CAT(tag, __LINE__)
 #define loop(n) for (std::remove_reference_t<std::remove_const_t<decltype(n)>> UNIQVAR(loop_variable) = n; UNIQVAR(loop_variable) --> 0;)
 
-#define all(iterable) (iterable).begin(), (iterable).end()
+#define all(iterable) std::begin(iterable), std::end(iterable)
 #define input(type, ...) type __VA_ARGS__; read(__VA_ARGS__)
+
+#ifdef LOCAL
+#  define debug(...) debug_internal(#__VA_ARGS__, __VA_ARGS__)
+
+template <class T, class... Args>
+void debug_internal(const char* s, T&& first, Args&&... args) {
+    constexpr const char* prefix = "[\033[32mDEBUG\033[m] ";
+    constexpr const char* open_brakets = sizeof...(args) == 0 ? "" : "(";
+    constexpr const char* close_brakets = sizeof...(args) == 0 ? "" : ")";
+    std::cerr << prefix << open_brakets << s << close_brakets << ": " << open_brakets << std::forward<T>(first);
+    ((std::cerr << ", " << std::forward<Args>(args)), ...);
+    std::cerr << close_brakets << "\n";
+}
+
+#else
+#  define debug(...) void(0)
+#endif
 
 // ! I/O utilities
 
