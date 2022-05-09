@@ -14,6 +14,10 @@ namespace suisen {
         public:
             FenwickTreeBase() {}
             explicit FenwickTreeBase(index_t n) : n(n) {}
+
+            int size() const {
+                return n;
+            }
             void add(index_t i, T v) {
                 for (++i; i <= n; i += (i & -i)) data[i - 1] += v;
             }
@@ -37,6 +41,8 @@ namespace suisen {
                 return obj;
             }
             T operator()(int l, int r) const { return sum(l, r); }
+
+            Container& get_internal_container() { return data; }
         protected:
             index_t n;
             Container data;
