@@ -94,7 +94,7 @@ data:
   - icon: ':warning:'
     path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
     title: library/datastructure/static_rectangle_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
   - icon: ':question:'
@@ -229,16 +229,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
     title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
   - icon: ':x:'

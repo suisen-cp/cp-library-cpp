@@ -240,7 +240,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/union_find.hpp
       title: Union Find
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/datastructure/union_find/weighted_union_find.hpp
       title: Weighted Union Find
   - name: library/datastructure/util
@@ -251,7 +251,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/util/priority_sum.hpp
       title: Priority Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/util/range_set.hpp
       title: Range Set
     - icon: ':warning:'
@@ -891,7 +891,7 @@ data:
       title: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
   - name: test/src/datastructure/union_find/weighted_union_find
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
       title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   - name: test/src/datastructure/util/priority_sum
@@ -904,7 +904,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
       title: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
       title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -912,10 +912,10 @@ data:
       title: test/src/datastructure/util/range_set/yuki674.test.cpp
   - name: test/src/datastructure/wavelet_matrix
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
     - icon: ':x:'

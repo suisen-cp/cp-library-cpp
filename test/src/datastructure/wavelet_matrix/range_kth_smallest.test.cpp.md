@@ -12,9 +12,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -196,7 +196,7 @@ data:
   path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   requiredBy: []
   timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
 layout: document
