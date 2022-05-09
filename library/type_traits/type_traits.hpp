@@ -46,6 +46,8 @@ struct safely_multipliable<long long> { using type = __int128_t; };
 template <>
 struct safely_multipliable<unsigned int> { using type = unsigned long long; };
 template <>
+struct safely_multipliable<unsigned long int> { using type = __uint128_t; };
+template <>
 struct safely_multipliable<unsigned long long> { using type = __uint128_t; };
 template <>
 struct safely_multipliable<float> { using type = float; };

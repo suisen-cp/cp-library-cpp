@@ -44,7 +44,7 @@ namespace suisen {
             FenwickTreeBase(index_t n, Args &&...args) : n(n), data(std::forward<Args>(args)...) {}
         private:
             T sum(int r) const {
-                T s(0);
+                T s{};
                 for (; r; r -= r & -r) s += data[r - 1];
                 return s;
             }
@@ -58,7 +58,7 @@ namespace suisen {
     template <typename T>
     struct FenwickTree : public internal::FenwickTreeBase<T> {
         FenwickTree() : FenwickTree(0) {}
-        explicit FenwickTree(int n) : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T(0)) {}
+        explicit FenwickTree(int n) : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T{}) {}
         explicit FenwickTree(std::vector<T>&& a) : internal::FenwickTreeBase<T>::FenwickTreeBase(a.size(), std::move(a)) {
             for (int i = 1; i <= this->n; ++i) {
                 int p = i + (i & -i);

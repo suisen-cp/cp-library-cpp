@@ -9,7 +9,7 @@ namespace suisen {
     class FenwickTree2D {
     public:
         FenwickTree2D() {}
-        explicit FenwickTree2D(int n, int m) : n(n), m(m), data(n, std::vector<T>(m, T(0))) {}
+        explicit FenwickTree2D(int n, int m) : n(n), m(m), data(n, std::vector<T>(m, T{})) {}
         void add(int i, int j, T v) {
             for (int x = i + 1; x <= n; x += (x & -x)) for (int y = j + 1; y <= m; y += (y & -y)) {
                 data[x - 1][y - 1] += v;
@@ -42,7 +42,7 @@ namespace suisen {
         std::vector<std::vector<T>> data;
 
         T sum(int xr, int yr) const {
-            T s(0);
+            T s{};
             for (int x = xr; x; x -= x & -x) for (int y = yr; y; y -= y & -y) {
                 s += data[x - 1][y - 1];
             }
