@@ -38,39 +38,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/dynamic_sequence.hpp
     title: Dynamic Sequence
   - icon: ':question:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree_2d_sparse.hpp
     title: library/datastructure/fenwick_tree_2d_sparse.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_map.hpp
     title: Lazy Eval Map
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: Range Foldable Dynamic Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_map.hpp
     title: Range Foldable Map
   - icon: ':warning:'
     path: library/datastructure/rectangle_add_rectangle_sum.hpp
     title: library/datastructure/rectangle_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\u53EF\
       \u63DB\u306A\u5834\u5408)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':question:'
@@ -172,37 +172,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
   - icon: ':x:'
     path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
   - icon: ':x:'

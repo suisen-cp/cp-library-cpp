@@ -5,20 +5,20 @@ data:
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_map.hpp
     title: Lazy Eval Map
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: Range Foldable Dynamic Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_map.hpp
     title: Range Foldable Map
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':question:'
@@ -40,16 +40,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
   - icon: ':x:'

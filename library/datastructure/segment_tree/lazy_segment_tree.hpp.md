@@ -9,10 +9,10 @@ data:
     title: Update Proxy Object
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
@@ -224,7 +224,7 @@ data:
   path: library/datastructure/segment_tree/lazy_segment_tree.hpp
   requiredBy: []
   timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
