@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -170,8 +170,8 @@ data:
   isVerificationFile: true
   path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-05-08 15:48:37+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
 layout: document

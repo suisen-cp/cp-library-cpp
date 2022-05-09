@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'
@@ -206,7 +206,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp

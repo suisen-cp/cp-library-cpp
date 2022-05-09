@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -66,7 +66,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp

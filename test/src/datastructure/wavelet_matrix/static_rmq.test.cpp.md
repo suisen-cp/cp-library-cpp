@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -193,8 +193,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-25 23:20:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
 layout: document

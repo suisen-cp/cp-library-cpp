@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
     title: library/datastructure/static_rectangle_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
@@ -27,18 +27,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/coordinate_compressor.hpp\"\n\n\n\n#include\
@@ -258,7 +258,7 @@ data:
   - library/datastructure/static_rectangle_add_rectangle_sum.hpp
   - library/geom/segment_intersections.hpp
   timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp

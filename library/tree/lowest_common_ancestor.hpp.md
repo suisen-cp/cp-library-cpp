@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
     title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
       \u306E RMQ (\u6DFB\u5B57\u306E\u5FA9\u5143\u4ED8\u304D)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
     title: Sparse Table
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/lowest_common_ancestor.hpp\"\n\n\n\n#line 1\
@@ -161,7 +161,7 @@ data:
   path: library/tree/lowest_common_ancestor.hpp
   requiredBy: []
   timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
 documentation_of: library/tree/lowest_common_ancestor.hpp
