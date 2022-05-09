@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
@@ -224,7 +224,7 @@ data:
   path: library/datastructure/segment_tree/lazy_segment_tree.hpp
   requiredBy: []
   timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
