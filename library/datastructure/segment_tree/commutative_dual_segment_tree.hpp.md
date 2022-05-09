@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.4/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -65,8 +65,8 @@ data:
   path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
   requiredBy:
   - library/datastructure/segment_tree/dual_segment_tree.hpp
-  timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-09 17:42:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp

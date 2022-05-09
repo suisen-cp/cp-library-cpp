@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: Template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -37,6 +37,7 @@ data:
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
     \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
     \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
     \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
@@ -176,7 +177,7 @@ data:
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2022-05-08 15:47:26+09:00'
+  timestamp: '2022-05-09 17:42:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp

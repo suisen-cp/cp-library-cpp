@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: library/datastructure/util/range_set.hpp
-    title: Range Set
-  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':question:'
@@ -12,17 +9,13 @@ data:
     title: "\u5EA7\u6A19\u5727\u7E2E"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
-  _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A
-  bundledCode: "#line 1 \"test/src/datastructure/util/range_set/DSL_4_A.test.cpp\"\
-    \n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A\"\n\n#include\
-    \ <iostream>\n#include <tuple>\n\n#line 1 \"library/util/coordinate_compressor.hpp\"\
+    links: []
+  bundledCode: "#line 1 \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
+    \n\n\n\n#include <atcoder/lazysegtree>\n\n#line 1 \"library/util/coordinate_compressor.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\n#line 1\
     \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
     \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
@@ -139,108 +132,130 @@ data:
     \ Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>\n     \
     \   static auto build(const int n, Gen generator) {\n            return CoordinateCompressorBuilder<T>(n,\
     \ generator).build();\n        }\n    private:\n        std::vector<T> _xs;\n\
-    };\n\n} // namespace suisen\n\n\n#line 1 \"library/datastructure/util/range_set.hpp\"\
-    \n\n\n\n#include <map>\n\nnamespace suisen {\n\ntemplate <typename T, bool merge_adjacent_segment\
-    \ = true>\nstruct RangeSet : public std::map<T, T> {\n    public:\n        RangeSet()\
-    \ : _size(0) {}\n\n        // returns the number of intergers in this set (not\
-    \ the number of ranges). O(1)\n        T size() const { return number_of_elements();\
-    \ }\n        // returns the number of intergers in this set (not the number of\
-    \ ranges). O(1)\n        T number_of_elements() const { return _size; }\n    \
-    \    // returns the number of ranges in this set (not the number of integers).\
-    \ O(1)\n        int number_of_ranges() const { return std::map<T, T>::size();\
-    \ }\n\n        // returns whether the given integer is in this set or not. O(log\
-    \ N)\n        bool contains(T x) const {\n            auto it = this->upper_bound(x);\n\
-    \            return it != this->begin() and x <= std::prev(it)->second;\n    \
-    \    }\n\n        /**\n         * returns the iterator pointing to the range [l,\
-    \ r] in this set s.t. l <= x <= r.\n         * if such a range does not exist,\
-    \ returns `end()`.\n         * O(log N)\n         */\n        auto find_range(T\
-    \ x) const {\n            auto it = this->upper_bound(x);\n            return\
-    \ it != this->begin() and x <= (--it)->second ? it : this->end();\n        }\n\
-    \n        // returns whether `x` and `y` is in this set and in the same range.\
-    \ O(log N)\n        bool in_the_same_range(T x, T y) const {\n            auto\
-    \ it = get_containing_range(x);\n            return it != this->end() and it->first\
-    \ <= y and y <= it->second;\n        }\n\n        // inserts the range [x, x]\
-    \ and returns the number of integers inserted to this set. O(log N)\n        T\
-    \ insert(T x) {\n            return insert(x, x);\n        }\n        \n     \
-    \   // inserts the range [l, r] and returns the number of integers inserted to\
-    \ this set. amortized O(log N)\n        T insert(T l, T r) {\n            if (l\
-    \ > r) return 0;\n            auto it = this->upper_bound(l);\n            if\
-    \ (it != this->begin() and is_mergeable(std::prev(it)->second, l)) {\n       \
-    \         it = std::prev(it);\n                l = std::min(l, it->first);\n \
-    \           }\n            T inserted = 0;\n            for (; it != this->end()\
-    \ and is_mergeable(r, it->first); it = std::map<T, T>::erase(it)) {\n        \
-    \        auto [cl, cr] = *it; \n                r = std::max(r, cr);\n       \
-    \         inserted -= cr - cl + 1;\n            }\n            inserted += r -\
-    \ l + 1;\n            (*this)[l] = r;\n            _size += inserted;\n      \
-    \      return inserted;\n        }\n\n        // erases the range [x, x] and returns\
-    \ the number of intergers erased from this set. O(log N)\n        T erase(T x)\
-    \ {\n            return erase(x, x);\n        }\n\n        // erases the range\
-    \ [l, r] and returns the number of intergers erased from this set. amortized O(log\
-    \ N)\n        T erase(T l, T r) {\n            if (l > r) return 0;\n        \
-    \    T tl = l, tr = r;\n            auto it = this->upper_bound(l);\n        \
-    \    if (it != this->begin() and l <= std::prev(it)->second) {\n             \
-    \   it = std::prev(it);\n                tl = it->first;\n            }\n    \
-    \        T erased = 0;\n            for (; it != this->end() and it->first <=\
-    \ r; it = std::map<T, T>::erase(it)) {\n                auto [cl, cr] = *it;\n\
-    \                tr = cr;\n                erased += cr - cl + 1;\n          \
-    \  }\n            if (tl < l) {\n                (*this)[tl] = l - 1;\n      \
-    \          erased -= l - tl;\n            }\n            if (r < tr) {\n     \
-    \           (*this)[r + 1] = tr;\n                erased -= tr - r;\n        \
-    \    }\n            _size -= erased;\n            return erased;\n        }\n\n\
-    \        // returns minimum integer x s.t. x >= lower and x is NOT in this set\n\
-    \        T minimum_excluded(T lower = 0) const {\n            static_assert(merge_adjacent_segment);\n\
-    \            auto it = find_range(lower);\n            return it == this->end()\
-    \ ? lower : it->second + 1;\n        }\n\n        // returns maximum integer x\
-    \ s.t. x <= upper and x is NOT in this set\n        T maximum_excluded(T upper)\
-    \ const {\n            static_assert(merge_adjacent_segment);\n            auto\
-    \ it = find_range(upper);\n            return it == this->end() ? upper : it->first\
-    \ - 1;\n        }\n\n    private:\n        T _size;\n\n        bool is_mergeable(T\
-    \ cur_r, T next_l) {\n            return next_l <= cur_r + merge_adjacent_segment;\n\
-    \        }\n};\n\n} // namespace suisen\n\n\n#line 8 \"test/src/datastructure/util/range_set/DSL_4_A.test.cpp\"\
-    \nusing suisen::CoordinateCompressorBuilder;\nusing suisen::RangeSet;\n\nconstexpr\
-    \ int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    int n;\n    std::cin >> n;\n    CoordinateCompressorBuilder<long long> builder;\n\
-    \    std::vector<std::tuple<long long, long long, long long, long long>> rectangles(n);\n\
-    \    for (int i = 0; i < n; ++i) {\n        int xl, yl, xr, yr;\n        std::cin\
-    \ >> xl >> yl >> xr >> yr;\n        rectangles[i] = { xl, yl, xr, yr };\n    \
-    \    builder.push(yl);\n        builder.push(yr);\n    }\n    auto comp_y = builder.build();\n\
-    \    int m = comp_y.size();\n    std::vector<RangeSet<long long>> sets(m);\n \
-    \   for (const auto &[xl, yl, xr, yr] : rectangles) {\n        int cyl = comp_y[yl],\
-    \ cyr = comp_y[yr];\n        for (int i = cyl; i < cyr; ++i) {\n            sets[i].insert(xl,\
-    \ xr - 1);\n        }\n    }\n    long long ans = 0;\n    for (int i = 0; i <\
-    \ m - 1; ++i) {\n        long long hight = comp_y.decomp(i + 1) -comp_y.decomp(i);\n\
-    \        ans += hight * sets[i].size();\n    }\n    std::cout << ans << std::endl;\n\
-    \    return 0;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_4_A\"\n\n\
-    #include <iostream>\n#include <tuple>\n\n#include \"library/util/coordinate_compressor.hpp\"\
-    \n#include \"library/datastructure/util/range_set.hpp\"\nusing suisen::CoordinateCompressorBuilder;\n\
-    using suisen::RangeSet;\n\nconstexpr int L = 31;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n;\n    std::cin >> n;\n    CoordinateCompressorBuilder<long\
-    \ long> builder;\n    std::vector<std::tuple<long long, long long, long long,\
-    \ long long>> rectangles(n);\n    for (int i = 0; i < n; ++i) {\n        int xl,\
-    \ yl, xr, yr;\n        std::cin >> xl >> yl >> xr >> yr;\n        rectangles[i]\
-    \ = { xl, yl, xr, yr };\n        builder.push(yl);\n        builder.push(yr);\n\
-    \    }\n    auto comp_y = builder.build();\n    int m = comp_y.size();\n    std::vector<RangeSet<long\
-    \ long>> sets(m);\n    for (const auto &[xl, yl, xr, yr] : rectangles) {\n   \
-    \     int cyl = comp_y[yl], cyr = comp_y[yr];\n        for (int i = cyl; i < cyr;\
-    \ ++i) {\n            sets[i].insert(xl, xr - 1);\n        }\n    }\n    long\
-    \ long ans = 0;\n    for (int i = 0; i < m - 1; ++i) {\n        long long hight\
-    \ = comp_y.decomp(i + 1) -comp_y.decomp(i);\n        ans += hight * sets[i].size();\n\
-    \    }\n    std::cout << ans << std::endl;\n    return 0;\n}"
+    };\n\n} // namespace suisen\n\n\n#line 7 \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T>\n    struct AddQuery {\n   \
+    \     int l, r, d, u;\n        T val;\n    };\n    struct SumQuery {\n       \
+    \ int l, r, d, u;\n    };\n\n    namespace internal::static_rectangle_add_rectangle_sum\
+    \ {\n        template <typename T>\n        struct LinearFunction { T a, b; };\n\
+    \n        template <typename T>\n        struct Data {\n            LinearFunction<T>\
+    \ f;\n            int len;\n        };\n        template <typename T>\n      \
+    \  Data<T> op(Data<T> x, Data<T> y) {\n            return Data<T>{ LinearFunction<T>\
+    \ { x.f.a + y.f.a, x.f.b + y.f.b }, x.len + y.len };\n        }\n        template\
+    \ <typename T>\n        Data<T> e() {\n            return Data<T>{ LinearFunction<T>\
+    \ { T{ 0 }, T{ 0 } }, 0 };\n        }\n        template <typename T>\n       \
+    \ Data<T> mapping(LinearFunction<T> f, Data<T> x) {\n            return Data<T>{\
+    \ LinearFunction<T> { x.f.a + x.len * f.a, x.f.b + x.len * f.b }, x.len };\n \
+    \       }\n        template <typename T>\n        LinearFunction<T> composition(LinearFunction<T>\
+    \ f, LinearFunction<T> g) {\n            return LinearFunction<T>{ f.a + g.a,\
+    \ f.b + g.b };\n        }\n        template <typename T>\n        LinearFunction<T>\
+    \ id() {\n            return LinearFunction<T>{ T{ 0 }, T{ 0 } };\n        };\n\
+    \    }\n\n    template <typename T>\n    std::vector<T> static_rectangle_add_rectangle_sum(std::vector<AddQuery<T>>\
+    \ add_queries, std::vector<SumQuery> sum_queries) {\n        using namespace internal::static_rectangle_add_rectangle_sum;\n\
+    \n        const int add_query_num = add_queries.size(), sum_query_num = sum_queries.size();\n\
+    \n        CoordinateCompressorBuilder<int> bx, by;\n        for (const auto& add_query\
+    \ : add_queries) {\n            bx.push(add_query.l), bx.push(add_query.r);\n\
+    \            by.push(add_query.d), by.push(add_query.u);\n        }\n        for\
+    \ (const auto& sum_query : sum_queries) {\n            bx.push(sum_query.l), bx.push(sum_query.r);\n\
+    \            by.push(sum_query.d), by.push(sum_query.u);\n        }\n        const\
+    \ auto cmp_x = bx.build(), cmp_y = by.build();\n\n        const int siz_x = cmp_x.size(),\
+    \ siz_y = cmp_y.size();\n\n        std::vector<std::vector<std::tuple<int, int,\
+    \ LinearFunction<T>>>> add_query_bucket(siz_x);\n        std::vector<std::vector<std::tuple<int,\
+    \ int, bool, int>>> sum_query_bucket(siz_x);\n        for (int i = 0; i < add_query_num;\
+    \ ++i) {\n            auto& add_query = add_queries[i];\n            add_query.l\
+    \ = cmp_x[add_query.l], add_query.r = cmp_x[add_query.r];\n            add_query.d\
+    \ = cmp_y[add_query.d], add_query.u = cmp_y[add_query.u];\n            add_query_bucket[add_query.l].emplace_back(\n\
+    \                add_query.d, add_query.u,\n                LinearFunction<T>{\
+    \ add_query.val, add_query.val * -cmp_x.decomp(add_query.l) }\n            );\n\
+    \            add_query_bucket[add_query.r].emplace_back(\n                add_query.d,\
+    \ add_query.u,\n                LinearFunction<T>{ -add_query.val, add_query.val\
+    \ * cmp_x.decomp(add_query.r) }\n            );\n        }\n        for (int i\
+    \ = 0; i < sum_query_num; ++i) {\n            auto& sum_query = sum_queries[i];\n\
+    \            sum_query.l = cmp_x[sum_query.l], sum_query.r = cmp_x[sum_query.r];\n\
+    \            sum_query.d = cmp_y[sum_query.d], sum_query.u = cmp_y[sum_query.u];\n\
+    \            sum_query_bucket[sum_query.l].emplace_back(sum_query.d, sum_query.u,\
+    \ /* is_add = */false, i);\n            sum_query_bucket[sum_query.r].emplace_back(sum_query.d,\
+    \ sum_query.u, /* is_add = */true, i);\n        }\n\n        std::vector<Data<T>>\
+    \ init(siz_y - 1, Data<T>{ id<T>(), 0 });\n        for (int i = 0; i < siz_y -\
+    \ 1; ++i) init[i].len = cmp_y.decomp(i + 1) - cmp_y.decomp(i);\n\n        atcoder::lazy_segtree<Data<T>,\
+    \ op<T>, e<T>, LinearFunction<T>, mapping<T>, composition<T>, id<T>> seg(init);\n\
+    \n        std::vector<T> res(sum_query_num, T{ 0 });\n        for (int i = 0;\
+    \ i < siz_x; ++i) {\n            for (const auto& [l, r, is_add, id] : sum_query_bucket[i])\
+    \ {\n                Data<T> dat = seg.prod(l, r);\n                T val = dat.f.a\
+    \ * cmp_x.decomp(i) + dat.f.b;\n                if (is_add) {\n              \
+    \      res[id] += val;\n                } else {\n                    res[id]\
+    \ -= val;\n                }\n            }\n            for (const auto& [l,\
+    \ r, f] : add_query_bucket[i]) {\n                seg.apply(l, r, f);\n      \
+    \      }\n        }\n\n        return res;\n    }\n} // namespace suisen\n\n\n\
+    \n"
+  code: "#ifndef SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM\n#define SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM\n\
+    \n#include <atcoder/lazysegtree>\n\n#include \"library/util/coordinate_compressor.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T>\n    struct AddQuery {\n   \
+    \     int l, r, d, u;\n        T val;\n    };\n    struct SumQuery {\n       \
+    \ int l, r, d, u;\n    };\n\n    namespace internal::static_rectangle_add_rectangle_sum\
+    \ {\n        template <typename T>\n        struct LinearFunction { T a, b; };\n\
+    \n        template <typename T>\n        struct Data {\n            LinearFunction<T>\
+    \ f;\n            int len;\n        };\n        template <typename T>\n      \
+    \  Data<T> op(Data<T> x, Data<T> y) {\n            return Data<T>{ LinearFunction<T>\
+    \ { x.f.a + y.f.a, x.f.b + y.f.b }, x.len + y.len };\n        }\n        template\
+    \ <typename T>\n        Data<T> e() {\n            return Data<T>{ LinearFunction<T>\
+    \ { T{ 0 }, T{ 0 } }, 0 };\n        }\n        template <typename T>\n       \
+    \ Data<T> mapping(LinearFunction<T> f, Data<T> x) {\n            return Data<T>{\
+    \ LinearFunction<T> { x.f.a + x.len * f.a, x.f.b + x.len * f.b }, x.len };\n \
+    \       }\n        template <typename T>\n        LinearFunction<T> composition(LinearFunction<T>\
+    \ f, LinearFunction<T> g) {\n            return LinearFunction<T>{ f.a + g.a,\
+    \ f.b + g.b };\n        }\n        template <typename T>\n        LinearFunction<T>\
+    \ id() {\n            return LinearFunction<T>{ T{ 0 }, T{ 0 } };\n        };\n\
+    \    }\n\n    template <typename T>\n    std::vector<T> static_rectangle_add_rectangle_sum(std::vector<AddQuery<T>>\
+    \ add_queries, std::vector<SumQuery> sum_queries) {\n        using namespace internal::static_rectangle_add_rectangle_sum;\n\
+    \n        const int add_query_num = add_queries.size(), sum_query_num = sum_queries.size();\n\
+    \n        CoordinateCompressorBuilder<int> bx, by;\n        for (const auto& add_query\
+    \ : add_queries) {\n            bx.push(add_query.l), bx.push(add_query.r);\n\
+    \            by.push(add_query.d), by.push(add_query.u);\n        }\n        for\
+    \ (const auto& sum_query : sum_queries) {\n            bx.push(sum_query.l), bx.push(sum_query.r);\n\
+    \            by.push(sum_query.d), by.push(sum_query.u);\n        }\n        const\
+    \ auto cmp_x = bx.build(), cmp_y = by.build();\n\n        const int siz_x = cmp_x.size(),\
+    \ siz_y = cmp_y.size();\n\n        std::vector<std::vector<std::tuple<int, int,\
+    \ LinearFunction<T>>>> add_query_bucket(siz_x);\n        std::vector<std::vector<std::tuple<int,\
+    \ int, bool, int>>> sum_query_bucket(siz_x);\n        for (int i = 0; i < add_query_num;\
+    \ ++i) {\n            auto& add_query = add_queries[i];\n            add_query.l\
+    \ = cmp_x[add_query.l], add_query.r = cmp_x[add_query.r];\n            add_query.d\
+    \ = cmp_y[add_query.d], add_query.u = cmp_y[add_query.u];\n            add_query_bucket[add_query.l].emplace_back(\n\
+    \                add_query.d, add_query.u,\n                LinearFunction<T>{\
+    \ add_query.val, add_query.val * -cmp_x.decomp(add_query.l) }\n            );\n\
+    \            add_query_bucket[add_query.r].emplace_back(\n                add_query.d,\
+    \ add_query.u,\n                LinearFunction<T>{ -add_query.val, add_query.val\
+    \ * cmp_x.decomp(add_query.r) }\n            );\n        }\n        for (int i\
+    \ = 0; i < sum_query_num; ++i) {\n            auto& sum_query = sum_queries[i];\n\
+    \            sum_query.l = cmp_x[sum_query.l], sum_query.r = cmp_x[sum_query.r];\n\
+    \            sum_query.d = cmp_y[sum_query.d], sum_query.u = cmp_y[sum_query.u];\n\
+    \            sum_query_bucket[sum_query.l].emplace_back(sum_query.d, sum_query.u,\
+    \ /* is_add = */false, i);\n            sum_query_bucket[sum_query.r].emplace_back(sum_query.d,\
+    \ sum_query.u, /* is_add = */true, i);\n        }\n\n        std::vector<Data<T>>\
+    \ init(siz_y - 1, Data<T>{ id<T>(), 0 });\n        for (int i = 0; i < siz_y -\
+    \ 1; ++i) init[i].len = cmp_y.decomp(i + 1) - cmp_y.decomp(i);\n\n        atcoder::lazy_segtree<Data<T>,\
+    \ op<T>, e<T>, LinearFunction<T>, mapping<T>, composition<T>, id<T>> seg(init);\n\
+    \n        std::vector<T> res(sum_query_num, T{ 0 });\n        for (int i = 0;\
+    \ i < siz_x; ++i) {\n            for (const auto& [l, r, is_add, id] : sum_query_bucket[i])\
+    \ {\n                Data<T> dat = seg.prod(l, r);\n                T val = dat.f.a\
+    \ * cmp_x.decomp(i) + dat.f.b;\n                if (is_add) {\n              \
+    \      res[id] += val;\n                } else {\n                    res[id]\
+    \ -= val;\n                }\n            }\n            for (const auto& [l,\
+    \ r, f] : add_query_bucket[i]) {\n                seg.apply(l, r, f);\n      \
+    \      }\n        }\n\n        return res;\n    }\n} // namespace suisen\n\n\n\
+    #endif // SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM\n"
   dependsOn:
   - library/util/coordinate_compressor.hpp
   - library/type_traits/type_traits.hpp
-  - library/datastructure/util/range_set.hpp
-  isVerificationFile: true
-  path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+  isVerificationFile: false
+  path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
   requiredBy: []
   timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+documentation_of: library/datastructure/static_rectangle_add_rectangle_sum.hpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-- /verify/test/src/datastructure/util/range_set/DSL_4_A.test.cpp.html
-title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+- /library/library/datastructure/static_rectangle_add_rectangle_sum.hpp
+- /library/library/datastructure/static_rectangle_add_rectangle_sum.hpp.html
+title: library/datastructure/static_rectangle_add_rectangle_sum.hpp
 ---

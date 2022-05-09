@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
   _extendedRequiredBy: []
@@ -55,6 +55,7 @@ data:
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
     \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
     \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
     \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
@@ -395,7 +396,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/compressed_wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2022-02-25 23:20:55+09:00'
+  timestamp: '2022-05-09 17:42:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp

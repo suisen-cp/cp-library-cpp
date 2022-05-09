@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+    title: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
@@ -21,21 +24,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/coordinate_compressor.hpp\"\n\n\n\n#include\
@@ -61,6 +64,7 @@ data:
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
     \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
     \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
     \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
@@ -251,9 +255,10 @@ data:
   path: library/util/coordinate_compressor.hpp
   requiredBy:
   - library/datastructure/compressed_wavelet_matrix.hpp
+  - library/datastructure/static_rectangle_add_rectangle_sum.hpp
   - library/geom/segment_intersections.hpp
-  timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-09 17:42:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp

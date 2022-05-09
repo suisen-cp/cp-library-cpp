@@ -5,7 +5,7 @@ data:
     path: library/algorithm/convex_hull_trick.hpp
     title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3057\u306A\u3044\
       \ Convex Hull Trick"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -43,6 +43,7 @@ data:
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
     \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
     \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
     \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
@@ -111,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
   requiredBy: []
-  timestamp: '2022-02-25 23:20:55+09:00'
+  timestamp: '2022-05-09 17:42:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp

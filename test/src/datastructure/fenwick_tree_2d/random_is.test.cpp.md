@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree_2d.hpp
     title: Fenwick Tree 2d
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []
@@ -62,6 +62,7 @@ data:
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
     \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
     \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
     \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
@@ -136,7 +137,7 @@ data:
     #line 5 \"library/datastructure/fenwick_tree_2d.hpp\"\n\nnamespace suisen {\n\n\
     \    template <typename T>\n    class FenwickTree2D {\n    public:\n        FenwickTree2D()\
     \ {}\n        explicit FenwickTree2D(int n, int m) : n(n), m(m), data(n, std::vector<T>(m,\
-    \ T(0))) {}\n        void add(int i, int j, T v) {\n            for (int x = i\
+    \ T{})) {}\n        void add(int i, int j, T v) {\n            for (int x = i\
     \ + 1; x <= n; x += (x & -x)) for (int y = j + 1; y <= m; y += (y & -y)) {\n \
     \               data[x - 1][y - 1] += v;\n            }\n        }\n        T\
     \ sum(int xl, int xr, int yl, int yr) const {\n            return sum(xr, yr)\
@@ -156,9 +157,9 @@ data:
     \ obj;\n        }\n        T operator()(int xl, int xr, int yl, int yr) const\
     \ { return sum(xl, xr, yl, yr); }\n\n    private:\n        int n, m;\n       \
     \ std::vector<std::vector<T>> data;\n\n        T sum(int xr, int yr) const {\n\
-    \            T s(0);\n            for (int x = xr; x; x -= x & -x) for (int y\
-    \ = yr; y; y -= y & -y) {\n                s += data[x - 1][y - 1];\n        \
-    \    }\n            return s;\n        }\n    };\n\n} // namespace suisen\n\n\n\
+    \            T s{};\n            for (int x = xr; x; x -= x & -x) for (int y =\
+    \ yr; y; y -= y & -y) {\n                s += data[x - 1][y - 1];\n          \
+    \  }\n            return s;\n        }\n    };\n\n} // namespace suisen\n\n\n\
     #line 9 \"test/src/datastructure/fenwick_tree_2d/random_is.test.cpp\"\n\nusing\
     \ namespace suisen;\nusing mint = atcoder::modint1000000007;\n\nmint op(mint x,\
     \ mint y) {\n    return x + y;\n}\nmint e() {\n    return 0;\n}\n\nint main()\
@@ -205,7 +206,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   requiredBy: []
-  timestamp: '2022-02-25 23:20:55+09:00'
+  timestamp: '2022-05-09 17:42:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp

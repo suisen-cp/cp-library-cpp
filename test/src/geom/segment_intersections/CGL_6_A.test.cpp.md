@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_6_A
@@ -49,6 +49,7 @@ data:
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
     \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
     \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
     \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
@@ -168,14 +169,14 @@ data:
     \ return sum(l, r); }\n        protected:\n            index_t n;\n          \
     \  Container data;\n            template <typename ...Args>\n            FenwickTreeBase(index_t\
     \ n, Args &&...args) : n(n), data(std::forward<Args>(args)...) {}\n        private:\n\
-    \            T sum(int r) const {\n                T s(0);\n                for\
+    \            T sum(int r) const {\n                T s{};\n                for\
     \ (; r; r -= r & -r) s += data[r - 1];\n                return s;\n          \
     \  }\n        };\n\n        template <typename Key, typename Value, bool unordered>\n\
     \        using cond_map_t = std::conditional_t<unordered, std::unordered_map<Key,\
     \ Value>, std::map<Key, Value>>;\n\n    } // namespace internal\n\n    template\
     \ <typename T>\n    struct FenwickTree : public internal::FenwickTreeBase<T> {\n\
     \        FenwickTree() : FenwickTree(0) {}\n        explicit FenwickTree(int n)\
-    \ : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T(0)) {}\n        explicit\
+    \ : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T{}) {}\n        explicit\
     \ FenwickTree(std::vector<T>&& a) : internal::FenwickTreeBase<T>::FenwickTreeBase(a.size(),\
     \ std::move(a)) {\n            for (int i = 1; i <= this->n; ++i) {\n        \
     \        int p = i + (i & -i);\n                if (p <= this->n) this->data[p\
@@ -226,8 +227,8 @@ data:
   isVerificationFile: true
   path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-09 17:42:38+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/geom/segment_intersections/CGL_6_A.test.cpp
 layout: document

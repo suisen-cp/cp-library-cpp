@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: library/datastructure/fenwick_tree_2d_sparse.hpp
+    title: library/datastructure/fenwick_tree_2d_sparse.hpp
+  - icon: ':warning:'
+    path: library/datastructure/rectangle_add_rectangle_sum.hpp
+    title: library/datastructure/rectangle_add_rectangle_sum.hpp
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
@@ -15,12 +21,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - icon: ':x:'
+    path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree.hpp\"\n\n\n\n#include\
@@ -46,6 +58,7 @@ data:
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
     \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
     \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
     \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
@@ -75,14 +88,14 @@ data:
     \ return sum(l, r); }\n        protected:\n            index_t n;\n          \
     \  Container data;\n            template <typename ...Args>\n            FenwickTreeBase(index_t\
     \ n, Args &&...args) : n(n), data(std::forward<Args>(args)...) {}\n        private:\n\
-    \            T sum(int r) const {\n                T s(0);\n                for\
+    \            T sum(int r) const {\n                T s{};\n                for\
     \ (; r; r -= r & -r) s += data[r - 1];\n                return s;\n          \
     \  }\n        };\n\n        template <typename Key, typename Value, bool unordered>\n\
     \        using cond_map_t = std::conditional_t<unordered, std::unordered_map<Key,\
     \ Value>, std::map<Key, Value>>;\n\n    } // namespace internal\n\n    template\
     \ <typename T>\n    struct FenwickTree : public internal::FenwickTreeBase<T> {\n\
     \        FenwickTree() : FenwickTree(0) {}\n        explicit FenwickTree(int n)\
-    \ : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T(0)) {}\n        explicit\
+    \ : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T{}) {}\n        explicit\
     \ FenwickTree(std::vector<T>&& a) : internal::FenwickTreeBase<T>::FenwickTreeBase(a.size(),\
     \ std::move(a)) {\n            for (int i = 1; i <= this->n; ++i) {\n        \
     \        int p = i + (i & -i);\n                if (p <= this->n) this->data[p\
@@ -116,14 +129,14 @@ data:
     \        T operator()(int l, int r) const { return sum(l, r); }\n        protected:\n\
     \            index_t n;\n            Container data;\n            template <typename\
     \ ...Args>\n            FenwickTreeBase(index_t n, Args &&...args) : n(n), data(std::forward<Args>(args)...)\
-    \ {}\n        private:\n            T sum(int r) const {\n                T s(0);\n\
+    \ {}\n        private:\n            T sum(int r) const {\n                T s{};\n\
     \                for (; r; r -= r & -r) s += data[r - 1];\n                return\
     \ s;\n            }\n        };\n\n        template <typename Key, typename Value,\
     \ bool unordered>\n        using cond_map_t = std::conditional_t<unordered, std::unordered_map<Key,\
     \ Value>, std::map<Key, Value>>;\n\n    } // namespace internal\n\n    template\
     \ <typename T>\n    struct FenwickTree : public internal::FenwickTreeBase<T> {\n\
     \        FenwickTree() : FenwickTree(0) {}\n        explicit FenwickTree(int n)\
-    \ : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T(0)) {}\n        explicit\
+    \ : internal::FenwickTreeBase<T>::FenwickTreeBase(n, n, T{}) {}\n        explicit\
     \ FenwickTree(std::vector<T>&& a) : internal::FenwickTreeBase<T>::FenwickTreeBase(a.size(),\
     \ std::move(a)) {\n            for (int i = 1; i <= this->n; ++i) {\n        \
     \        int p = i + (i & -i);\n                if (p <= this->n) this->data[p\
@@ -137,12 +150,16 @@ data:
   isVerificationFile: false
   path: library/datastructure/fenwick_tree.hpp
   requiredBy:
+  - library/datastructure/fenwick_tree_2d_sparse.hpp
+  - library/datastructure/rectangle_add_rectangle_sum.hpp
   - library/geom/segment_intersections.hpp
-  timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-09 17:42:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/datastructure/fenwick_tree.hpp
 layout: document

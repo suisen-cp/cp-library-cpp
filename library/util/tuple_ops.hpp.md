@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/datastructure/rectangle_add_rectangle_sum.hpp
+    title: library/datastructure/rectangle_add_rectangle_sum.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -71,7 +74,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/util/tuple_ops.hpp
-  requiredBy: []
+  requiredBy:
+  - library/datastructure/rectangle_add_rectangle_sum.hpp
   timestamp: '2022-05-07 15:41:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_map.hpp
     title: Lazy Eval Map
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: Range Foldable Dynamic Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_map.hpp
     title: Range Foldable Map
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
     title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
       \u5834\u5408)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\
       \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
@@ -40,45 +40,45 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
     title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/update_proxy_object.hpp\"\n\n\n\n#line 1 \"\
@@ -103,6 +103,7 @@ data:
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
     \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
     \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
     \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
@@ -158,8 +159,8 @@ data:
   - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
   - library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
   - library/datastructure/range_foldable_dynamic_sequence.hpp
-  timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-09 17:42:38+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
