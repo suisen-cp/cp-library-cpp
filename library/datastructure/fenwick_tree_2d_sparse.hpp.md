@@ -8,9 +8,9 @@ data:
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/rectangle_add_rectangle_sum.hpp
-    title: library/datastructure/rectangle_add_rectangle_sum.hpp
+    title: Rectangle Add Rectangle Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
+    title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -176,12 +179,11 @@ data:
   timestamp: '2022-05-09 18:17:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
 documentation_of: library/datastructure/fenwick_tree_2d_sparse.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/fenwick_tree_2d_sparse.hpp
-- /library/library/datastructure/fenwick_tree_2d_sparse.hpp.html
-title: library/datastructure/fenwick_tree_2d_sparse.hpp
+title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
 ---
+## 2D Binary Indexed Tree (点群が疎な場合)

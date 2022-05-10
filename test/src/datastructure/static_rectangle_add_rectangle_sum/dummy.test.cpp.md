@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+    title: Static Rectangle Add Rectangle Sum
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
@@ -11,16 +14,19 @@ data:
     path: library/util/tuple_ops.hpp
     title: Tuple Ops
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-    title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+  bundledCode: "#line 1 \"test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp\"\
+    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n\n#include <iostream>\n#include <random>\n\n#include <atcoder/modint>\nusing\
+    \ mint = atcoder::modint998244353;\n\n#line 1 \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
     \n\n\n\n#include <algorithm>\n\n#line 1 \"library/datastructure/fenwick_tree.hpp\"\
     \n\n\n\n#include <vector>\n#include <map>\n#include <unordered_map>\n\n#line 1\
     \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
@@ -159,62 +165,77 @@ data:
     \                auto [a, b, c, d] = ft.sum(0, compress(y));\n               \
     \ const T sum = a * x * y + b * x + c * y + d;\n                if (is_add) res[qid]\
     \ += sum;\n                else        res[qid] -= sum;\n            }\n     \
-    \   }\n        return res;\n    }\n} // namespace suisen\n\n\n\n"
-  code: "#ifndef SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM\n#define SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM\n\
-    \n#include <algorithm>\n\n#include \"library/datastructure/fenwick_tree.hpp\"\n\
-    #include \"library/util/tuple_ops.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ T>\n    struct AddQuery {\n        int l, r, d, u;\n        T val;\n       \
-    \ AddQuery() = default;\n        AddQuery(int l, int r, int d, int u, const T\
-    \ &val) : l(l), r(r), d(d), u(u), val(val) {}\n    };\n    struct SumQuery {\n\
-    \        int l, r, d, u;\n        SumQuery() = default;\n        SumQuery(int\
-    \ l, int r, int d, int u) : l(l), r(r), d(d), u(u) {}\n    };\n\n    template\
-    \ <typename T>\n    std::vector<T> static_rectangle_add_rectangle_sum(const std::vector<AddQuery<T>>&\
-    \ add_queries, const std::vector<SumQuery>& sum_queries) {\n        using suffix_add_query_type\
-    \ = std::tuple<int, int, T>;         // l, d, val\n        using prefix_sum_query_type\
-    \ = std::tuple<int, int, int, bool>; // r, u, query_id, sign\n\n        std::vector<int>\
-    \ ys;\n        std::vector<suffix_add_query_type> suf_add_queries;\n        for\
-    \ (const auto& q : add_queries) {\n            ys.push_back(q.d), ys.push_back(q.u);\n\
-    \            suf_add_queries.emplace_back(q.l, q.d, q.val), suf_add_queries.emplace_back(q.r,\
-    \ q.d, -q.val);\n            suf_add_queries.emplace_back(q.l, q.u, -q.val), suf_add_queries.emplace_back(q.r,\
-    \ q.u, q.val);\n        }\n\n        std::sort(ys.begin(), ys.end());\n      \
-    \  ys.erase(std::unique(ys.begin(), ys.end()), ys.end());\n        auto compress\
-    \ = [&ys](int y) -> int { return std::lower_bound(ys.begin(), ys.end(), y) - ys.begin();\
-    \ };\n\n        std::vector<prefix_sum_query_type> pre_sum_queries;\n        for\
-    \ (std::size_t i = 0; i < sum_queries.size(); ++i) {\n            const auto&\
-    \ q = sum_queries[i];\n            pre_sum_queries.emplace_back(q.l, q.d, i, true),\
-    \ pre_sum_queries.emplace_back(q.r, q.d, i, false);\n            pre_sum_queries.emplace_back(q.l,\
-    \ q.u, i, false), pre_sum_queries.emplace_back(q.r, q.u, i, true);\n        }\n\
-    \n        static constexpr auto x_comparator = [](const auto& q1, const auto&\
-    \ q2) { return std::get<0>(q1) < std::get<0>(q2); };\n        std::sort(suf_add_queries.begin(),\
-    \ suf_add_queries.end(), x_comparator);\n        std::sort(pre_sum_queries.begin(),\
-    \ pre_sum_queries.end(), x_comparator);\n\n        using data_type = std::tuple<T,\
-    \ T, T, T>;\n        FenwickTree<data_type> ft(ys.size());\n\n        std::vector<T>\
-    \ res(sum_queries.size(), T{ 0 });\n        const int n = suf_add_queries.size(),\
-    \ m = pre_sum_queries.size();\n        for (int i = 0, j = 0; i < n or j < m;)\
-    \ {\n            if (j == m or (i < n and std::get<0>(suf_add_queries[i]) < std::get<0>(pre_sum_queries[j])))\
-    \ {\n                const auto& [l, d, v] = suf_add_queries[i++];\n         \
-    \       // v * (x - l) * (y - d) = v * xy - vd * x - vl * y + vld\n          \
-    \      ft.add(compress(d), data_type{ v, -v * d, -v * l, v * l * d });\n     \
-    \       } else {\n                const auto& [x, y, qid, is_add] = pre_sum_queries[j++];\n\
-    \                auto [a, b, c, d] = ft.sum(0, compress(y));\n               \
-    \ const T sum = a * x * y + b * x + c * y + d;\n                if (is_add) res[qid]\
-    \ += sum;\n                else        res[qid] -= sum;\n            }\n     \
-    \   }\n        return res;\n    }\n} // namespace suisen\n\n\n#endif // SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM\n"
+    \   }\n        return res;\n    }\n} // namespace suisen\n\n\n\n#line 10 \"test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp\"\
+    \nusing namespace suisen;\n\ntemplate <typename T, int H, int W>\nstd::vector<T>\
+    \ static_rectangle_add_rectangle_sum_naive(const std::vector<AddQuery<T>>& add_queries,\
+    \ const std::vector<SumQuery>& sum_queries) {\n    std::array<std::array<T, H>,\
+    \ W> dat;\n    for (auto& row : dat) row.fill(T{ 0 });\n    for (const auto& q\
+    \ : add_queries) {\n        for (int x = q.l; x < q.r; ++x) for (int y = q.d;\
+    \ y < q.u; ++y) {\n            dat[x][y] += q.val;\n        }\n    }\n    std::vector<T>\
+    \ res(sum_queries.size(), T{ 0 });\n    for (std::size_t query_id = 0; query_id\
+    \ < sum_queries.size(); ++query_id) {\n        const auto& q = sum_queries[query_id];\n\
+    \        mint& ans = res[query_id];\n        for (int x = q.l; x < q.r; ++x) for\
+    \ (int y = q.d; y < q.u; ++y) {\n            ans += dat[x][y];\n        }\n  \
+    \  }\n    return res;\n}\n\ntemplate <int H, int W, int AddQ, int SumQ>\nvoid\
+    \ random_test(uint32_t seed = ~uint32_t(0)) {\n    std::mt19937 rng{ seed != ~uint32_t(0)\
+    \ ? seed : std::random_device{}() };\n\n    std::vector<AddQuery<mint>> add_queries(AddQ);\n\
+    \    std::vector<SumQuery> sum_queries(SumQ);\n\n    std::uniform_int_distribution<int>\
+    \ dist_x(0, H - 1), dist_y(0, W - 1), dist_val(0, mint::mod() - 1);\n\n    for\
+    \ (int i = 0; i < AddQ; ++i) {\n        int l = dist_x(rng), r = dist_x(rng);\n\
+    \        if (l > r) std::swap(l, r);\n        int d = dist_y(rng), u = dist_y(rng);\n\
+    \        if (d > u) std::swap(d, u);\n        int val = dist_val(rng);\n     \
+    \   add_queries[i] = { l, r, d, u, val };\n    }\n    for (int i = 0; i < SumQ;\
+    \ ++i) {\n        int l = dist_x(rng), r = dist_x(rng);\n        if (l > r) std::swap(l,\
+    \ r);\n        int d = dist_y(rng), u = dist_y(rng);\n        if (d > u) std::swap(d,\
+    \ u);\n        sum_queries[i] = { l, r, d, u };\n    }\n\n    auto actual = static_rectangle_add_rectangle_sum(add_queries,\
+    \ sum_queries);\n    auto expected = static_rectangle_add_rectangle_sum_naive<mint,\
+    \ H, W>(add_queries, sum_queries);\n    assert(actual == expected);\n}\n\nint\
+    \ main() {\n    random_test<1000, 1000, 1000, 1000>();\n    std::cout << \"Hello\
+    \ World\" << std::endl;\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n\n#include <iostream>\n#include <random>\n\n#include <atcoder/modint>\nusing\
+    \ mint = atcoder::modint998244353;\n\n#include \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
+    \nusing namespace suisen;\n\ntemplate <typename T, int H, int W>\nstd::vector<T>\
+    \ static_rectangle_add_rectangle_sum_naive(const std::vector<AddQuery<T>>& add_queries,\
+    \ const std::vector<SumQuery>& sum_queries) {\n    std::array<std::array<T, H>,\
+    \ W> dat;\n    for (auto& row : dat) row.fill(T{ 0 });\n    for (const auto& q\
+    \ : add_queries) {\n        for (int x = q.l; x < q.r; ++x) for (int y = q.d;\
+    \ y < q.u; ++y) {\n            dat[x][y] += q.val;\n        }\n    }\n    std::vector<T>\
+    \ res(sum_queries.size(), T{ 0 });\n    for (std::size_t query_id = 0; query_id\
+    \ < sum_queries.size(); ++query_id) {\n        const auto& q = sum_queries[query_id];\n\
+    \        mint& ans = res[query_id];\n        for (int x = q.l; x < q.r; ++x) for\
+    \ (int y = q.d; y < q.u; ++y) {\n            ans += dat[x][y];\n        }\n  \
+    \  }\n    return res;\n}\n\ntemplate <int H, int W, int AddQ, int SumQ>\nvoid\
+    \ random_test(uint32_t seed = ~uint32_t(0)) {\n    std::mt19937 rng{ seed != ~uint32_t(0)\
+    \ ? seed : std::random_device{}() };\n\n    std::vector<AddQuery<mint>> add_queries(AddQ);\n\
+    \    std::vector<SumQuery> sum_queries(SumQ);\n\n    std::uniform_int_distribution<int>\
+    \ dist_x(0, H - 1), dist_y(0, W - 1), dist_val(0, mint::mod() - 1);\n\n    for\
+    \ (int i = 0; i < AddQ; ++i) {\n        int l = dist_x(rng), r = dist_x(rng);\n\
+    \        if (l > r) std::swap(l, r);\n        int d = dist_y(rng), u = dist_y(rng);\n\
+    \        if (d > u) std::swap(d, u);\n        int val = dist_val(rng);\n     \
+    \   add_queries[i] = { l, r, d, u, val };\n    }\n    for (int i = 0; i < SumQ;\
+    \ ++i) {\n        int l = dist_x(rng), r = dist_x(rng);\n        if (l > r) std::swap(l,\
+    \ r);\n        int d = dist_y(rng), u = dist_y(rng);\n        if (d > u) std::swap(d,\
+    \ u);\n        sum_queries[i] = { l, r, d, u };\n    }\n\n    auto actual = static_rectangle_add_rectangle_sum(add_queries,\
+    \ sum_queries);\n    auto expected = static_rectangle_add_rectangle_sum_naive<mint,\
+    \ H, W>(add_queries, sum_queries);\n    assert(actual == expected);\n}\n\nint\
+    \ main() {\n    random_test<1000, 1000, 1000, 1000>();\n    std::cout << \"Hello\
+    \ World\" << std::endl;\n    return 0;\n}"
   dependsOn:
+  - library/datastructure/static_rectangle_add_rectangle_sum.hpp
   - library/datastructure/fenwick_tree.hpp
   - library/type_traits/type_traits.hpp
   - library/util/tuple_ops.hpp
-  isVerificationFile: false
-  path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+  isVerificationFile: true
+  path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   requiredBy: []
   timestamp: '2022-05-10 16:37:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-documentation_of: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
 layout: document
-title: Static Rectangle Add Rectangle Sum
+redirect_from:
+- /verify/test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+- /verify/test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp.html
+title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
 ---
-## Static Rectangle Add Rectangle Sum
-
-$Q$ 個の矩形加算・矩形和取得クエリであって、取得クエリのあとに加算クエリが来ないような場合に $\Theta(Q)$ space, $\Theta(Q \log Q)$ time で処理します。ただし、クエリ先読みが可能であることを仮定します。

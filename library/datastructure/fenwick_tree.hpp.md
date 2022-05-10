@@ -7,13 +7,13 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree_2d_sparse.hpp
-    title: library/datastructure/fenwick_tree_2d_sparse.hpp
-  - icon: ':warning:'
+    title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/rectangle_add_rectangle_sum.hpp
-    title: library/datastructure/rectangle_add_rectangle_sum.hpp
-  - icon: ':warning:'
+    title: Rectangle Add Rectangle Sum
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
-    title: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+    title: Static Rectangle Add Rectangle Sum
   - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
@@ -30,6 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
+    title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+    title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
@@ -166,6 +172,8 @@ data:
   verifiedWith:
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
