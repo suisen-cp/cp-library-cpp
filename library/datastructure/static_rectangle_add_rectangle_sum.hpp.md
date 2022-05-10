@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'
@@ -218,3 +218,4 @@ title: Static Rectangle Add Rectangle Sum
 ## Static Rectangle Add Rectangle Sum
 
 $Q$ 個の矩形加算・矩形和取得クエリであって、取得クエリのあとに加算クエリが来ないような場合に $\Theta(Q)$ space, $\Theta(Q \log Q)$ time で処理します。ただし、クエリ先読みが可能であることを仮定します。
+

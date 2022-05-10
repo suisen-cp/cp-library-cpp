@@ -14,7 +14,7 @@ data:
     path: library/algorithm/rmq_pm1.hpp
     title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
       \u306E RMQ"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/rmq_pm1_with_index.hpp
     title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
       \u306E RMQ (\u6DFB\u5B57\u306E\u5FA9\u5143\u4ED8\u304D)"
@@ -29,7 +29,7 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
   - icon: ':heavy_check_mark:'
@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/dynamic_sequence.hpp
     title: Dynamic Sequence
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':heavy_check_mark:'
@@ -88,7 +88,7 @@ data:
     path: library/datastructure/segment_tree/sparse_segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\u758E\
       \u306A\u5834\u5408)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/sparse_table.hpp
     title: Sparse Table
   - icon: ':heavy_check_mark:'
@@ -97,19 +97,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: Util
   - icon: ':warning:'
@@ -123,13 +123,13 @@ data:
     title: "\u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u305F\u3061\u306E\u6700\u5C0F\
       \u5171\u901A\u7956\u5148\u95A2\u4FC2\u3092\u4FDD\u3063\u3066\u6728\u3092\u5727\
       \u7E2E\u3057\u3066\u3067\u304D\u308B\u88DC\u52A9\u7684\u306A\u6728"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
     title: Lowest Common Ancestor
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
   - icon: ':heavy_check_mark:'
@@ -238,60 +238,60 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/util/abc222_g.test.cpp
     title: test/src/number/util/abc222_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/util/divide_both.test.cpp
     title: test/src/number/util/divide_both.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/util/same_div_dens.test.cpp
     title: test/src/number/util/same_div_dens.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
@@ -396,7 +396,7 @@ data:
   - library/algorithm/rmq_pm1_with_index.hpp
   - library/template.cpp
   timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/util/abc222_g.test.cpp

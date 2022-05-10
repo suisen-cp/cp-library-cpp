@@ -5,7 +5,7 @@ data:
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\
       \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'

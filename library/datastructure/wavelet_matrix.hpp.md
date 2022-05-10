@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
@@ -21,18 +21,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/wavelet_matrix.hpp\"\n\n\n\n#include\
@@ -276,7 +276,7 @@ data:
   requiredBy:
   - library/datastructure/compressed_wavelet_matrix.hpp
   timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
