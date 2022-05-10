@@ -1,6 +1,8 @@
 #ifndef SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM
 #define SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM
 
+#include <algorithm>
+
 #include "library/datastructure/fenwick_tree.hpp"
 #include "library/util/tuple_ops.hpp"
 
