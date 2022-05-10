@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/transform/walsh_hadamard.hpp
     title: "Walsh Hadamard \u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'
@@ -339,7 +339,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2022-04-04 15:11:06+09:00'
+  timestamp: '2022-05-09 17:42:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

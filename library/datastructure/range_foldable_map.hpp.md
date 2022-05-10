@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/splay_tree_map.hpp
     title: Splay Tree Map
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy:

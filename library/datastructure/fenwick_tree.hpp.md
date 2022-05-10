@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
@@ -11,7 +11,10 @@ data:
   - icon: ':warning:'
     path: library/datastructure/rectangle_add_rectangle_sum.hpp
     title: library/datastructure/rectangle_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+    title: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
@@ -27,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree.hpp\"\n\n\n\n#include\
@@ -154,11 +157,12 @@ data:
   isVerificationFile: false
   path: library/datastructure/fenwick_tree.hpp
   requiredBy:
+  - library/datastructure/static_rectangle_add_rectangle_sum.hpp
   - library/datastructure/fenwick_tree_2d_sparse.hpp
   - library/datastructure/rectangle_add_rectangle_sum.hpp
   - library/geom/segment_intersections.hpp
   timestamp: '2022-05-09 18:17:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
