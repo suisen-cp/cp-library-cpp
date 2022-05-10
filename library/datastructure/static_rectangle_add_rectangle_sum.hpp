@@ -1,114 +1,69 @@
 #ifndef SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM
 #define SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM
 
-#include <atcoder/lazysegtree>
-
-#include "library/util/coordinate_compressor.hpp"
+#include "library/datastructure/fenwick_tree.hpp"
+#include "library/util/tuple_ops.hpp"
 
 namespace suisen {
     template <typename T>
     struct AddQuery {
         int l, r, d, u;
         T val;
+        AddQuery() = default;
+        AddQuery(int l, int r, int d, int u, const T &val) : l(l), r(r), d(d), u(u), val(val) {}
     };
     struct SumQuery {
         int l, r, d, u;
+        SumQuery() = default;
+        SumQuery(int l, int r, int d, int u) : l(l), r(r), d(d), u(u) {}
     };
 
-    namespace internal::static_rectangle_add_rectangle_sum {
-        template <typename T>
-        struct LinearFunction { T a, b; };
-
-        template <typename T>
-        struct Data {
-            LinearFunction<T> f;
-            int len;
-        };
-        template <typename T>
-        Data<T> op(Data<T> x, Data<T> y) {
-            return Data<T>{ LinearFunction<T> { x.f.a + y.f.a, x.f.b + y.f.b }, x.len + y.len };
-        }
-        template <typename T>
-        Data<T> e() {
-            return Data<T>{ LinearFunction<T> { T{ 0 }, T{ 0 } }, 0 };
-        }
-        template <typename T>
-        Data<T> mapping(LinearFunction<T> f, Data<T> x) {
-            return Data<T>{ LinearFunction<T> { x.f.a + x.len * f.a, x.f.b + x.len * f.b }, x.len };
-        }
-        template <typename T>
-        LinearFunction<T> composition(LinearFunction<T> f, LinearFunction<T> g) {
-            return LinearFunction<T>{ f.a + g.a, f.b + g.b };
-        }
-        template <typename T>
-        LinearFunction<T> id() {
-            return LinearFunction<T>{ T{ 0 }, T{ 0 } };
-        };
-    }
-
     template <typename T>
-    std::vector<T> static_rectangle_add_rectangle_sum(std::vector<AddQuery<T>> add_queries, std::vector<SumQuery> sum_queries) {
-        using namespace internal::static_rectangle_add_rectangle_sum;
+    std::vector<T> static_rectangle_add_rectangle_sum(const std::vector<AddQuery<T>>& add_queries, const std::vector<SumQuery>& sum_queries) {
+        using suffix_add_query_type = std::tuple<int, int, T>;         // l, d, val
+        using prefix_sum_query_type = std::tuple<int, int, int, bool>; // r, u, query_id, sign
 
-        const int add_query_num = add_queries.size(), sum_query_num = sum_queries.size();
-
-        CoordinateCompressorBuilder<int> bx, by;
-        for (const auto& add_query : add_queries) {
-            bx.push(add_query.l), bx.push(add_query.r);
-            by.push(add_query.d), by.push(add_query.u);
-        }
-        for (const auto& sum_query : sum_queries) {
-            bx.push(sum_query.l), bx.push(sum_query.r);
-            by.push(sum_query.d), by.push(sum_query.u);
-        }
-        const auto cmp_x = bx.build(), cmp_y = by.build();
-
-        const int siz_x = cmp_x.size(), siz_y = cmp_y.size();
-
-        std::vector<std::vector<std::tuple<int, int, LinearFunction<T>>>> add_query_bucket(siz_x);
-        std::vector<std::vector<std::tuple<int, int, bool, int>>> sum_query_bucket(siz_x);
-        for (int i = 0; i < add_query_num; ++i) {
-            auto& add_query = add_queries[i];
-            add_query.l = cmp_x[add_query.l], add_query.r = cmp_x[add_query.r];
-            add_query.d = cmp_y[add_query.d], add_query.u = cmp_y[add_query.u];
-            add_query_bucket[add_query.l].emplace_back(
-                add_query.d, add_query.u,
-                LinearFunction<T>{ add_query.val, add_query.val * -cmp_x.decomp(add_query.l) }
-            );
-            add_query_bucket[add_query.r].emplace_back(
-                add_query.d, add_query.u,
-                LinearFunction<T>{ -add_query.val, add_query.val * cmp_x.decomp(add_query.r) }
-            );
-        }
-        for (int i = 0; i < sum_query_num; ++i) {
-            auto& sum_query = sum_queries[i];
-            sum_query.l = cmp_x[sum_query.l], sum_query.r = cmp_x[sum_query.r];
-            sum_query.d = cmp_y[sum_query.d], sum_query.u = cmp_y[sum_query.u];
-            sum_query_bucket[sum_query.l].emplace_back(sum_query.d, sum_query.u, /* is_add = */false, i);
-            sum_query_bucket[sum_query.r].emplace_back(sum_query.d, sum_query.u, /* is_add = */true, i);
+        std::vector<int> ys;
+        std::vector<suffix_add_query_type> suf_add_queries;
+        for (const auto& q : add_queries) {
+            ys.push_back(q.d), ys.push_back(q.u);
+            suf_add_queries.emplace_back(q.l, q.d, q.val), suf_add_queries.emplace_back(q.r, q.d, -q.val);
+            suf_add_queries.emplace_back(q.l, q.u, -q.val), suf_add_queries.emplace_back(q.r, q.u, q.val);
         }
 
-        std::vector<Data<T>> init(siz_y - 1, Data<T>{ id<T>(), 0 });
-        for (int i = 0; i < siz_y - 1; ++i) init[i].len = cmp_y.decomp(i + 1) - cmp_y.decomp(i);
+        std::sort(ys.begin(), ys.end());
+        ys.erase(std::unique(ys.begin(), ys.end()), ys.end());
+        auto compress = [&ys](int y) -> int { return std::lower_bound(ys.begin(), ys.end(), y) - ys.begin(); };
 
-        atcoder::lazy_segtree<Data<T>, op<T>, e<T>, LinearFunction<T>, mapping<T>, composition<T>, id<T>> seg(init);
+        std::vector<prefix_sum_query_type> pre_sum_queries;
+        for (std::size_t i = 0; i < sum_queries.size(); ++i) {
+            const auto& q = sum_queries[i];
+            pre_sum_queries.emplace_back(q.l, q.d, i, true), pre_sum_queries.emplace_back(q.r, q.d, i, false);
+            pre_sum_queries.emplace_back(q.l, q.u, i, false), pre_sum_queries.emplace_back(q.r, q.u, i, true);
+        }
 
-        std::vector<T> res(sum_query_num, T{ 0 });
-        for (int i = 0; i < siz_x; ++i) {
-            for (const auto& [l, r, is_add, id] : sum_query_bucket[i]) {
-                Data<T> dat = seg.prod(l, r);
-                T val = dat.f.a * cmp_x.decomp(i) + dat.f.b;
-                if (is_add) {
-                    res[id] += val;
-                } else {
-                    res[id] -= val;
-                }
-            }
-            for (const auto& [l, r, f] : add_query_bucket[i]) {
-                seg.apply(l, r, f);
+        static constexpr auto x_comparator = [](const auto& q1, const auto& q2) { return std::get<0>(q1) < std::get<0>(q2); };
+        std::sort(suf_add_queries.begin(), suf_add_queries.end(), x_comparator);
+        std::sort(pre_sum_queries.begin(), pre_sum_queries.end(), x_comparator);
+
+        using data_type = std::tuple<T, T, T, T>;
+        FenwickTree<data_type> ft(ys.size());
+
+        std::vector<T> res(sum_queries.size(), T{ 0 });
+        const int n = suf_add_queries.size(), m = pre_sum_queries.size();
+        for (int i = 0, j = 0; i < n or j < m;) {
+            if (j == m or (i < n and std::get<0>(suf_add_queries[i]) < std::get<0>(pre_sum_queries[j]))) {
+                const auto& [l, d, v] = suf_add_queries[i++];
+                // v * (x - l) * (y - d) = v * xy - vd * x - vl * y + vld
+                ft.add(compress(d), data_type{ v, -v * d, -v * l, v * l * d });
+            } else {
+                const auto& [x, y, qid, is_add] = pre_sum_queries[j++];
+                auto [a, b, c, d] = ft.sum(0, compress(y));
+                const T sum = a * x * y + b * x + c * y + d;
+                if (is_add) res[qid] += sum;
+                else        res[qid] -= sum;
             }
         }
-
         return res;
     }
 } // namespace suisen
