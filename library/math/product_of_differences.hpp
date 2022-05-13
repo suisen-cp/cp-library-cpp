@@ -2,7 +2,7 @@
 #define SUISEN_PRODUCT_OF_DIFFERNCES
 
 #include <deque>
-#include "library/math/multi_point_eval.hpp"
+#include "library/polynomial/multi_point_eval.hpp"
 
 namespace suisen {
     /**
