@@ -7,7 +7,7 @@
 using mint = atcoder::modint998244353;
 
 #include "library/math/factorial.hpp"
-#include "library/math/circulant_matrix.hpp"
+#include "library/linear_algebra/circulant_matrix.hpp"
 
 using suisen::factorial;
 using suisen::CirculantMatrix;

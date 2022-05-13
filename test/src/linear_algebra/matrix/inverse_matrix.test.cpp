@@ -3,7 +3,7 @@
 #include <iostream>
 #include <atcoder/modint>
 
-#include "library/math/matrix.hpp"
+#include "library/linear_algebra/matrix.hpp"
 
 using mint = atcoder::modint998244353;
 using suisen::SquareMatrix;

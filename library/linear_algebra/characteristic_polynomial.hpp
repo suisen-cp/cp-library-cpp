@@ -1,7 +1,7 @@
 #ifndef SUISEN_CHARACTERISTIC_POLYNOMIAL
 #define SUISEN_CHARACTERISTIC_POLYNOMIAL
 
-#include "library/math/hessenberg_reduction.hpp"
+#include "library/linear_algebra/hessenberg_reduction.hpp"
 
 namespace suisen {
     /**

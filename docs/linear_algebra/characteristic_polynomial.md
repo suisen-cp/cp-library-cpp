@@ -1,6 +1,6 @@
 ---
 title: Characteristic Polynomial (特性多項式)
-documentation_of: //library/math/characteristic_polynomial.hpp
+documentation_of: //library/linear_algebra/characteristic_polynomial.hpp
 ---
 
 ## Characteristic Polynomial (特性多項式)

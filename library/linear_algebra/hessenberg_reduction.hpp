@@ -1,7 +1,7 @@
 #ifndef SUISEN_HESSENBERG_REDUCTION
 #define SUISEN_HESSENBERG_REDUCTION
 
-#include "library/math/matrix.hpp"
+#include "library/linear_algebra/matrix.hpp"
 
 namespace suisen {
     /**

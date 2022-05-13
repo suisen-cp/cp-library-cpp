@@ -1,6 +1,6 @@
 ---
 title: Circulant Matrix (巡回行列)
-documentation_of: //library/math/circulant_matrix.hpp
+documentation_of: //library/linear_algebra/circulant_matrix.hpp
 ---
 ## Circulant Matrix (巡回行列)
 

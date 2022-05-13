@@ -1,6 +1,6 @@
 ---
 title: Hessenberg Reduction
-documentation_of: //library/math/hessenberg_reduction.hpp
+documentation_of: //library/linear_algebra/hessenberg_reduction.hpp
 ---
 ## Hessenberg Reduction
 

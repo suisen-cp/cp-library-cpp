@@ -15,7 +15,7 @@ std::ostream& operator<<(std::ostream& out, const mint &a) {
     return out;
 }
 
-#include "library/math/characteristic_polynomial.hpp"
+#include "library/linear_algebra/characteristic_polynomial.hpp"
 
 using suisen::SquareMatrix;
 using suisen::characteristic_polynomial;

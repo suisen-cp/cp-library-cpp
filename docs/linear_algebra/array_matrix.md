@@ -1,6 +1,6 @@
 ---
 title: Array Matrix
-documentation_of: //library/math/array_matrix.hpp
+documentation_of: //library/linear_algebra/array_matrix.hpp
 ---
 ## Array Matrix
 

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <atcoder/modint>
 
-#include "library/math/gaussian_elimination.hpp"
+#include "library/linear_algebra/gaussian_elimination.hpp"
 
 using mint = atcoder::modint998244353;
 
