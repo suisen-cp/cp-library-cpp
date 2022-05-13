@@ -7,30 +7,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/convolution/polynomial_eval_multipoint_eval.hpp
-    title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
-      \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
+    path: library/math/multi_point_eval.hpp
+    title: Multi Point Evaluation
+  _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/math/lagrange_interpolation.hpp
     title: library/math/lagrange_interpolation.hpp
-  - icon: ':heavy_check_mark:'
-    path: library/math/product_of_differences.hpp
-    title: library/math/product_of_differences.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-    title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/lagrange_interpolation/dummy.test.cpp
     title: test/src/math/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-    title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
@@ -39,7 +29,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
+  bundledCode: "#line 1 \"library/math/product_of_differences.hpp\"\n\n\n\n#include\
+    \ <deque>\n#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
     \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
     \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
@@ -188,37 +179,51 @@ data:
     \ i> 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n    seg[1] = f % seg[1];\n\
     \    for (int i = 2; i < k + m; ++i) seg[i] = seg[i / 2] % seg[i];\n    std::vector<mint>\
     \ ys(m);\n    for (int i = 0; i < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n\
-    }\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_MULTI_POINT_EVALUATION\n#define SUISEN_MULTI_POINT_EVALUATION\n\
-    \n#include \"library/math/fps.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ mint>\nstd::vector<mint> multi_point_eval(const FPS<mint> &f, const std::vector<mint>\
-    \ &xs) {\n    int m = xs.size();\n    int k = 1;\n    while (k < m) k <<= 1;\n\
-    \    std::vector<FPS<mint>> seg(2 * k);\n    for (int i = 0; i < m; ++i) seg[k\
-    \ + i] = FPS<mint> {-xs[i], 1};\n    for (int i = m; i < k; ++i) seg[k + i] =\
-    \ FPS<mint> {1};\n    for (int i = k - 1; i> 0; --i) seg[i] = seg[i * 2] * seg[i\
-    \ * 2 + 1];\n    seg[1] = f % seg[1];\n    for (int i = 2; i < k + m; ++i) seg[i]\
-    \ = seg[i / 2] % seg[i];\n    std::vector<mint> ys(m);\n    for (int i = 0; i\
-    \ < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n}\n} // namespace suisen\n\
-    \n#endif // SUISEN_MULTI_POINT_EVALUATION"
+    }\n} // namespace suisen\n\n\n#line 6 \"library/math/product_of_differences.hpp\"\
+    \n\nnamespace suisen {\n    /**\n     * O(N(logN)^2)\n     * return the vector\
+    \ p of length xs.size() s.t. p[i]=\u03A0[j!=i](x[i]-x[j])\n     */\n    template\
+    \ <typename mint>\n    std::vector<mint> product_of_differences(const std::vector<mint>&\
+    \ xs) {\n        // f(x):=\u03A0_i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0\
+    [j!=i](x-x[j])\n        // => f'(x[i])=\u03A0[j!=i](x[i]-x[j])\n        const\
+    \ int n = xs.size();\n        std::deque<FPS<mint>> dq;\n        for (int i =\
+    \ 0; i < n; ++i) dq.push_back(FPS<mint>{ -xs[i], mint{ 1 } });\n        while\
+    \ (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n          \
+    \  dq.pop_front();\n            auto g = std::move(dq.front());\n            dq.pop_front();\n\
+    \            dq.push_back(f * g);\n        }\n        auto f = std::move(dq.front());\n\
+    \        f.diff_inplace();\n        return multi_point_eval(f, xs);\n    }\n}\
+    \ // namespace suisen\n\n\n\n"
+  code: "#ifndef SUISEN_PRODUCT_OF_DIFFERNCES\n#define SUISEN_PRODUCT_OF_DIFFERNCES\n\
+    \n#include <deque>\n#include \"library/math/multi_point_eval.hpp\"\n\nnamespace\
+    \ suisen {\n    /**\n     * O(N(logN)^2)\n     * return the vector p of length\
+    \ xs.size() s.t. p[i]=\u03A0[j!=i](x[i]-x[j])\n     */\n    template <typename\
+    \ mint>\n    std::vector<mint> product_of_differences(const std::vector<mint>&\
+    \ xs) {\n        // f(x):=\u03A0_i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0\
+    [j!=i](x-x[j])\n        // => f'(x[i])=\u03A0[j!=i](x[i]-x[j])\n        const\
+    \ int n = xs.size();\n        std::deque<FPS<mint>> dq;\n        for (int i =\
+    \ 0; i < n; ++i) dq.push_back(FPS<mint>{ -xs[i], mint{ 1 } });\n        while\
+    \ (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n          \
+    \  dq.pop_front();\n            auto g = std::move(dq.front());\n            dq.pop_front();\n\
+    \            dq.push_back(f * g);\n        }\n        auto f = std::move(dq.front());\n\
+    \        f.diff_inplace();\n        return multi_point_eval(f, xs);\n    }\n}\
+    \ // namespace suisen\n\n\n#endif // SUISEN_PRODUCT_OF_DIFFERNCES\n"
   dependsOn:
+  - library/math/multi_point_eval.hpp
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
   isVerificationFile: false
-  path: library/math/multi_point_eval.hpp
+  path: library/math/product_of_differences.hpp
   requiredBy:
   - library/math/lagrange_interpolation.hpp
-  - library/math/product_of_differences.hpp
-  - library/convolution/polynomial_eval_multipoint_eval.hpp
-  timestamp: '2022-04-04 15:11:06+09:00'
+  timestamp: '2022-05-14 00:56:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
   - test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/math/lagrange_interpolation/dummy.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-documentation_of: library/math/multi_point_eval.hpp
+documentation_of: library/math/product_of_differences.hpp
 layout: document
-title: Multi Point Evaluation
+redirect_from:
+- /library/library/math/product_of_differences.hpp
+- /library/library/math/product_of_differences.hpp.html
+title: library/math/product_of_differences.hpp
 ---
-## Multi Point Evaluation

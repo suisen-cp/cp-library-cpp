@@ -355,99 +355,99 @@ data:
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
   requiredBy:
+  - library/tree/lowest_common_ancestor.hpp
+  - library/tree/auxiliary_tree.hpp
+  - library/tree/heavy_light_decomposition.hpp
   - library/number/util.hpp
   - library/number/deterministic_miller_rabin.hpp
   - library/number/fast_factorize.hpp
-  - library/convolution/polynomial_eval.hpp
-  - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/wavelet_matrix.hpp
-  - library/datastructure/dynamic_sequence.hpp
-  - library/datastructure/range_foldable_map.hpp
-  - library/datastructure/sparse_table.hpp
-  - library/datastructure/cartesian_tree.hpp
-  - library/datastructure/lazy_eval_dynamic_sequence.hpp
-  - library/datastructure/static_rectangle_add_rectangle_sum.hpp
-  - library/datastructure/lazy_eval_map.hpp
-  - library/datastructure/bit_vector.hpp
-  - library/datastructure/segment_tree/sparse_segment_tree.hpp
+  - library/datastructure/fenwick_tree.hpp
+  - library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
+  - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
   - library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
+  - library/datastructure/segment_tree/sparse_segment_tree.hpp
   - library/datastructure/segment_tree/dual_segment_tree.hpp
   - library/datastructure/segment_tree/segment_tree.hpp
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
-  - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-  - library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
-  - library/datastructure/fenwick_tree.hpp
-  - library/datastructure/union_find/weighted_union_find.hpp
-  - library/datastructure/range_foldable_dynamic_sequence.hpp
-  - library/datastructure/fenwick_tree_2d_sparse.hpp
   - library/datastructure/rectangle_add_rectangle_sum.hpp
+  - library/datastructure/lazy_eval_map.hpp
+  - library/datastructure/range_foldable_dynamic_sequence.hpp
+  - library/datastructure/sparse_table.hpp
+  - library/datastructure/static_rectangle_add_rectangle_sum.hpp
+  - library/datastructure/cartesian_tree.hpp
+  - library/datastructure/dynamic_sequence.hpp
+  - library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - library/datastructure/union_find/weighted_union_find.hpp
+  - library/datastructure/fenwick_tree_2d_sparse.hpp
+  - library/datastructure/range_foldable_map.hpp
+  - library/datastructure/bit_vector.hpp
   - library/template.hpp
+  - library/geom/segment_intersections.hpp
   - library/util/update_proxy_object.hpp
   - library/util/coordinate_compressor.hpp
-  - library/tree/lowest_common_ancestor.hpp
-  - library/tree/heavy_light_decomposition.hpp
-  - library/tree/auxiliary_tree.hpp
-  - library/geom/segment_intersections.hpp
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
+  - library/convolution/polynomial_eval.hpp
+  - library/template.cpp
   - library/algorithm/rmq_pm1.hpp
   - library/algorithm/convex_hull_trick.hpp
-  - library/algorithm/sliding_window_minimum.hpp
-  - library/algorithm/monotonic_convex_hull_trick.hpp
   - library/algorithm/rmq_pm1_with_index.hpp
-  - library/template.cpp
+  - library/algorithm/monotonic_convex_hull_trick.hpp
+  - library/algorithm/sliding_window_minimum.hpp
   timestamp: '2022-05-09 17:42:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/number/fast_factorize/factorize.test.cpp
+  - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
+  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/number/util/abc222_g.test.cpp
   - test/src/number/util/same_div_dens.test.cpp
   - test/src/number/util/divide_both.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
-  - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
-  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
-  - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
-  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/number/fast_factorize/factorize.test.cpp
+  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
+  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
-  - test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
+  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+  - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
-  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - test/src/util/coordinate_compressor/dummy.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-  - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
+  - test/src/util/coordinate_compressor/dummy.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
+  - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document

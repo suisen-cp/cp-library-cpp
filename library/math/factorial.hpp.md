@@ -95,14 +95,14 @@ data:
   timestamp: '2022-05-07 15:41:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/math/circulant_matrix/arc139_e.test.cpp
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/math/util/abc240_g.test.cpp
-  - test/src/math/circulant_matrix/arc139_e.test.cpp
-  - test/src/math/common_sequences/bernoulli_number.test.cpp
-  - test/src/math/common_sequences/stirling_number2.test.cpp
-  - test/src/math/common_sequences/stirling_number1.test.cpp
-  - test/src/math/common_sequences/partition_function.test.cpp
   - test/src/math/common_sequences/montmort_number_mod.test.cpp
+  - test/src/math/common_sequences/stirling_number2.test.cpp
+  - test/src/math/common_sequences/partition_function.test.cpp
+  - test/src/math/common_sequences/bernoulli_number.test.cpp
+  - test/src/math/common_sequences/stirling_number1.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document
 title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"

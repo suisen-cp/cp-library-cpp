@@ -76,8 +76,8 @@ data:
   timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/number/sum_of_totient_function/abc162_e.test.cpp
   - test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
+  - test/src/number/sum_of_totient_function/abc162_e.test.cpp
 documentation_of: library/number/sum_of_totient_function.hpp
 layout: document
 title: Prefix Sum of Totient Function

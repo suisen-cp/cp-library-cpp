@@ -289,8 +289,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/dynamic_sequence.hpp
   requiredBy:
-  - library/datastructure/lazy_eval_dynamic_sequence.hpp
   - library/datastructure/range_foldable_dynamic_sequence.hpp
+  - library/datastructure/lazy_eval_dynamic_sequence.hpp
   timestamp: '2022-05-09 17:42:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

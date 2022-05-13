@@ -272,8 +272,8 @@ data:
   timestamp: '2022-05-09 17:42:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
 layout: document
 title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\u5834\

@@ -16,14 +16,20 @@ data:
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':heavy_check_mark:'
-    path: library/math/interpolation.hpp
-    title: Interpolation
+    path: library/math/lagrange_interpolation.hpp
+    title: library/math/lagrange_interpolation.hpp
   - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':heavy_check_mark:'
+    path: library/math/polynomial_interpolation.hpp
+    title: library/math/polynomial_interpolation.hpp
+  - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
+  - icon: ':heavy_check_mark:'
+    path: library/math/product_of_differences.hpp
+    title: library/math/product_of_differences.hpp
   - icon: ':heavy_check_mark:'
     path: library/math/subset_sum.hpp
     title: Subset Sum
@@ -65,17 +71,23 @@ data:
     path: test/src/math/fps/pow_of_fps.test.cpp
     title: test/src/math/fps/pow_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/math/interpolation/cumulative_sum.test.cpp
-    title: test/src/math/interpolation/cumulative_sum.test.cpp
+    path: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
+    title: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/math/interpolation/polynomial_interpolation.test.cpp
-    title: test/src/math/interpolation/polynomial_interpolation.test.cpp
+    path: test/src/math/lagrange_interpolation/dummy.test.cpp
+    title: test/src/math/lagrange_interpolation/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
+    title: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/product_of_differences/yuki1938.test.cpp
+    title: test/src/math/product_of_differences/yuki1938.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/subset_sum/p_subset_sum.test.cpp
     title: test/src/math/subset_sum/p_subset_sum.test.cpp
@@ -359,33 +371,37 @@ data:
   isVerificationFile: false
   path: library/math/fps.hpp
   requiredBy:
-  - library/convolution/polynomial_eval_multipoint_eval.hpp
+  - library/math/lagrange_interpolation.hpp
+  - library/math/multi_point_eval.hpp
+  - library/math/product_of_differences.hpp
+  - library/math/polynomial_interpolation.hpp
   - library/math/polynomial_taylor_shift.hpp
   - library/math/bostan_mori.hpp
-  - library/math/interpolation.hpp
-  - library/math/multi_point_eval.hpp
   - library/math/common_sequences.hpp
   - library/math/subset_sum.hpp
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
   timestamp: '2022-04-04 15:11:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/math/subset_sum/p_subset_sum.test.cpp
-  - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/src/math/common_sequences/bernoulli_number.test.cpp
-  - test/src/math/common_sequences/stirling_number2.test.cpp
-  - test/src/math/common_sequences/stirling_number1.test.cpp
-  - test/src/math/common_sequences/partition_function.test.cpp
-  - test/src/math/common_sequences/montmort_number_mod.test.cpp
-  - test/src/math/fps/inv_of_fps.test.cpp
+  - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
   - test/src/math/fps/log_of_fps.test.cpp
-  - test/src/math/fps/exp_of_fps.test.cpp
   - test/src/math/fps/pow_of_fps.test.cpp
+  - test/src/math/fps/inv_of_fps.test.cpp
   - test/src/math/fps/division_of_polynomials.test.cpp
-  - test/src/math/interpolation/cumulative_sum.test.cpp
-  - test/src/math/interpolation/polynomial_interpolation.test.cpp
+  - test/src/math/fps/exp_of_fps.test.cpp
+  - test/src/math/product_of_differences/yuki1938.test.cpp
+  - test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/src/math/common_sequences/montmort_number_mod.test.cpp
+  - test/src/math/common_sequences/stirling_number2.test.cpp
+  - test/src/math/common_sequences/partition_function.test.cpp
+  - test/src/math/common_sequences/bernoulli_number.test.cpp
+  - test/src/math/common_sequences/stirling_number1.test.cpp
+  - test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/math/lagrange_interpolation/dummy.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/math/fps.hpp
 layout: document
 title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"

@@ -265,10 +265,10 @@ data:
   timestamp: '2022-01-31 13:34:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
-  - test/src/math/matrix/matrix_product.test.cpp
-  - test/src/math/matrix/determinant_of_matrix.test.cpp
   - test/src/math/matrix/inverse_matrix.test.cpp
+  - test/src/math/matrix/determinant_of_matrix.test.cpp
+  - test/src/math/matrix/matrix_product.test.cpp
+  - test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
 documentation_of: library/math/matrix.hpp
 layout: document
 title: Matrix

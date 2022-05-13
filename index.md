@@ -384,11 +384,11 @@ data:
       path: library/math/hessenberg_reduction.hpp
       title: Hessenberg Reduction
     - icon: ':heavy_check_mark:'
-      path: library/math/interpolation.hpp
-      title: Interpolation
-    - icon: ':heavy_check_mark:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
+    - icon: ':heavy_check_mark:'
+      path: library/math/lagrange_interpolation.hpp
+      title: library/math/lagrange_interpolation.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/matrix.hpp
       title: Matrix
@@ -399,11 +399,17 @@ data:
       path: library/math/multi_point_eval.hpp
       title: Multi Point Evaluation
     - icon: ':heavy_check_mark:'
+      path: library/math/polynomial_interpolation.hpp
+      title: library/math/polynomial_interpolation.hpp
+    - icon: ':heavy_check_mark:'
       path: library/math/polynomial_taylor_shift.hpp
       title: Polynomial Taylor Shift
     - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
+    - icon: ':heavy_check_mark:'
+      path: library/math/product_of_differences.hpp
+      title: library/math/product_of_differences.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
       title: Set Power Series
@@ -1136,14 +1142,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
       title: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
-  - name: test/src/math/interpolation
+  - name: test/src/math/lagrange_interpolation
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/math/interpolation/cumulative_sum.test.cpp
-      title: test/src/math/interpolation/cumulative_sum.test.cpp
+      path: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
+      title: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/src/math/interpolation/polynomial_interpolation.test.cpp
-      title: test/src/math/interpolation/polynomial_interpolation.test.cpp
+      path: test/src/math/lagrange_interpolation/dummy.test.cpp
+      title: test/src/math/lagrange_interpolation/dummy.test.cpp
   - name: test/src/math/matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -1160,11 +1166,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
+  - name: test/src/math/polynomial_interpolation
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
+      title: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
   - name: test/src/math/polynomial_taylor_shift
     pages:
     - icon: ':heavy_check_mark:'
       path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
       title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - name: test/src/math/product_of_differences
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/product_of_differences/yuki1938.test.cpp
+      title: test/src/math/product_of_differences/yuki1938.test.cpp
   - name: test/src/math/sps
     pages:
     - icon: ':heavy_check_mark:'

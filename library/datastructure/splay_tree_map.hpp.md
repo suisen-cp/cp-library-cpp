@@ -312,9 +312,9 @@ data:
   isVerificationFile: false
   path: library/datastructure/splay_tree_map.hpp
   requiredBy:
-  - library/datastructure/range_foldable_map.hpp
   - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/splay_tree_set.hpp
+  - library/datastructure/range_foldable_map.hpp
   timestamp: '2021-09-21 22:11:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

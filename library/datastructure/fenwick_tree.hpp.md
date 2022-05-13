@@ -163,19 +163,19 @@ data:
   isVerificationFile: false
   path: library/datastructure/fenwick_tree.hpp
   requiredBy:
+  - library/datastructure/rectangle_add_rectangle_sum.hpp
   - library/datastructure/static_rectangle_add_rectangle_sum.hpp
   - library/datastructure/fenwick_tree_2d_sparse.hpp
-  - library/datastructure/rectangle_add_rectangle_sum.hpp
   - library/geom/segment_intersections.hpp
   timestamp: '2022-05-09 18:17:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-  - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/datastructure/fenwick_tree.hpp
 layout: document
