@@ -77,7 +77,7 @@ data:
       path: library/convolution/polynomial_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1"
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: library/convolution/polynomial_eval_multipoint_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
@@ -379,36 +379,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
-    - icon: ':heavy_check_mark:'
-      path: library/math/bostan_mori.hpp
-      title: Bostan Mori
-    - icon: ':heavy_check_mark:'
-      path: library/math/common_sequences.hpp
-      title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
     - icon: ':question:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':heavy_check_mark:'
-      path: library/math/fps.hpp
-      title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
     - icon: ':heavy_check_mark:'
-      path: library/math/lagrange_interpolation.hpp
-      title: library/math/lagrange_interpolation.hpp
-    - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
-    - icon: ':heavy_check_mark:'
-      path: library/math/multi_point_eval.hpp
-      title: Multi Point Evaluation
-    - icon: ':heavy_check_mark:'
-      path: library/math/polynomial_interpolation.hpp
-      title: library/math/polynomial_interpolation.hpp
-    - icon: ':heavy_check_mark:'
-      path: library/math/polynomial_taylor_shift.hpp
-      title: Polynomial Taylor Shift
     - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
@@ -419,14 +398,8 @@ data:
       path: library/math/sps.hpp
       title: Set Power Series
     - icon: ':heavy_check_mark:'
-      path: library/math/subset_sum.hpp
-      title: Subset Sum
-    - icon: ':heavy_check_mark:'
       path: library/math/util.hpp
       title: Util
-    - icon: ':warning:'
-      path: library/math/vec_sparse_fps.hpp
-      title: Vec Sparse Fps
   - name: library/number
     pages:
     - icon: ':warning:'
@@ -466,6 +439,35 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: Util
+  - name: library/polynomial
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/polynomial/bostan_mori.hpp
+      title: Bostan Mori
+    - icon: ':heavy_check_mark:'
+      path: library/polynomial/common_sequences.hpp
+      title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
+    - icon: ':question:'
+      path: library/polynomial/fps.hpp
+      title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
+    - icon: ':heavy_check_mark:'
+      path: library/polynomial/lagrange_interpolation.hpp
+      title: library/polynomial/lagrange_interpolation.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/polynomial/multi_point_eval.hpp
+      title: Multi Point Evaluation
+    - icon: ':heavy_check_mark:'
+      path: library/polynomial/polynomial_interpolation.hpp
+      title: library/polynomial/polynomial_interpolation.hpp
+    - icon: ':x:'
+      path: library/polynomial/polynomial_taylor_shift.hpp
+      title: Polynomial Taylor Shift
+    - icon: ':x:'
+      path: library/polynomial/subset_sum.hpp
+      title: Subset Sum
+    - icon: ':warning:'
+      path: library/polynomial/vec_sparse_fps.hpp
+      title: Vec Sparse Fps
   - name: library/string
     pages:
     - icon: ':heavy_check_mark:'
@@ -717,7 +719,7 @@ data:
       title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - name: test/src/convolution/polynomial_eval_multipoint_eval
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
       title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - name: test/src/convolution/subset_convolution
@@ -1119,68 +1121,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/bigint/NTL_2_F.test.cpp
       title: test/src/math/bigint/NTL_2_F.test.cpp
-  - name: test/src/math/bostan_mori
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-      title: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - name: test/src/math/common_sequences
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/common_sequences/bernoulli_number.test.cpp
-      title: test/src/math/common_sequences/bernoulli_number.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/common_sequences/montmort_number_mod.test.cpp
-      title: test/src/math/common_sequences/montmort_number_mod.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/common_sequences/partition_function.test.cpp
-      title: test/src/math/common_sequences/partition_function.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/common_sequences/stirling_number1.test.cpp
-      title: test/src/math/common_sequences/stirling_number1.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/common_sequences/stirling_number2.test.cpp
-      title: test/src/math/common_sequences/stirling_number2.test.cpp
-  - name: test/src/math/fps
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/fps/division_of_polynomials.test.cpp
-      title: test/src/math/fps/division_of_polynomials.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/fps/exp_of_fps.test.cpp
-      title: test/src/math/fps/exp_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/fps/inv_of_fps.test.cpp
-      title: test/src/math/fps/inv_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/fps/log_of_fps.test.cpp
-      title: test/src/math/fps/log_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/fps/pow_of_fps.test.cpp
-      title: test/src/math/fps/pow_of_fps.test.cpp
-  - name: test/src/math/lagrange_interpolation
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
-      title: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/lagrange_interpolation/dummy.test.cpp
-      title: test/src/math/lagrange_interpolation/dummy.test.cpp
-  - name: test/src/math/multi_point_eval
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-      title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
-  - name: test/src/math/polynomial_interpolation
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
-      title: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - name: test/src/math/polynomial_taylor_shift
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-      title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - name: test/src/math/product_of_differences
     pages:
     - icon: ':heavy_check_mark:'
@@ -1197,11 +1137,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
       title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - name: test/src/math/subset_sum
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/subset_sum/p_subset_sum.test.cpp
-      title: test/src/math/subset_sum/p_subset_sum.test.cpp
   - name: test/src/math/util
     pages:
     - icon: ':heavy_check_mark:'
@@ -1250,6 +1185,73 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/same_div_dens.test.cpp
       title: test/src/number/util/same_div_dens.test.cpp
+  - name: test/src/polynomial/bostan_mori
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+      title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - name: test/src/polynomial/common_sequences
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
+      title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+      title: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/common_sequences/partition_function.test.cpp
+      title: test/src/polynomial/common_sequences/partition_function.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/common_sequences/stirling_number1.test.cpp
+      title: test/src/polynomial/common_sequences/stirling_number1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/common_sequences/stirling_number2.test.cpp
+      title: test/src/polynomial/common_sequences/stirling_number2.test.cpp
+  - name: test/src/polynomial/fps
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/fps/division_of_polynomials.test.cpp
+      title: test/src/polynomial/fps/division_of_polynomials.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/fps/exp_of_fps.test.cpp
+      title: test/src/polynomial/fps/exp_of_fps.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/fps/inv_of_fps.test.cpp
+      title: test/src/polynomial/fps/inv_of_fps.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/fps/log_of_fps.test.cpp
+      title: test/src/polynomial/fps/log_of_fps.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/fps/pow_of_fps.test.cpp
+      title: test/src/polynomial/fps/pow_of_fps.test.cpp
+  - name: test/src/polynomial/lagrange_interpolation
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+      title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+      title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - name: test/src/polynomial/multi_point_eval
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
+      title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
+  - name: test/src/polynomial/polynomial_interpolation
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
+      title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
+  - name: test/src/polynomial/polynomial_taylor_shift
+    pages:
+    - icon: ':x:'
+      path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+      title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - name: test/src/polynomial/subset_sum
+    pages:
+    - icon: ':x:'
+      path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
+      title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
   - name: test/src/string/manacher
     pages:
     - icon: ':heavy_check_mark:'

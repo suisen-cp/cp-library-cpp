@@ -33,9 +33,6 @@ data:
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-    title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
     title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -166,7 +163,6 @@ data:
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
   - test/src/convolution/and_convolution/and_convolution.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
 documentation_of: library/transform/kronecker_power.hpp

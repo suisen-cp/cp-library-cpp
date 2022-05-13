@@ -7,8 +7,8 @@ data:
     title: "\u4EFB\u610F mod \u3067\u306E\u4E8C\u9805\u4FC2\u6570\u5217\u6319"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
-    title: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
+    path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+    title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -72,7 +72,7 @@ data:
   timestamp: '2021-08-04 13:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
 documentation_of: library/number/linear_sieve.hpp
 layout: document
 title: "\u7DDA\u5F62\u7BE9"

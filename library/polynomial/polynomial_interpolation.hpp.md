@@ -4,43 +4,32 @@ data:
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
-    path: library/math/product_of_differences.hpp
-    title: library/math/product_of_differences.hpp
   - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
-    path: library/polynomial/multi_point_eval.hpp
-    title: Multi Point Evaluation
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
+    title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1938
-    links:
-    - https://yukicoder.me/problems/no/1938
-  bundledCode: "#line 1 \"test/src/math/product_of_differences/yuki1938.test.cpp\"\
-    \n#define PROBLEM \"https://yukicoder.me/problems/no/1938\"\n\n#include <iostream>\n\
-    \n#include <atcoder/modint>\n#include <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\
-    \nstd::istream& operator>>(std::istream& in, mint &a) {\n    long long e; in >>\
-    \ e; a = e;\n    return in;\n}\n\n#line 1 \"library/math/product_of_differences.hpp\"\
-    \n\n\n\n#include <deque>\n#line 1 \"library/polynomial/multi_point_eval.hpp\"\n\
-    \n\n\n#line 1 \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#line 7 \"library/polynomial/fps.hpp\"\n\n#line 1 \"library/math/inv_mods.hpp\"\
-    \n\n\n\n#include <vector>\n\nnamespace suisen {\ntemplate <typename mint>\nclass\
-    \ inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int n) { ensure(n);\
-    \ }\n        const mint& operator[](int i) const {\n            ensure(i);\n \
-    \           return invs[i];\n        }\n        static void ensure(int n) {\n\
-    \            int sz = invs.size();\n            if (sz < 2) invs = {0, 1}, sz\
-    \ = 2;\n            if (sz < n + 1) {\n                invs.resize(n + 1);\n \
-    \               for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) *\
-    \ invs[mod % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
-    \ invs;\n        static constexpr int mod = mint::mod();\n};\ntemplate <typename\
-    \ mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 9 \"library/polynomial/fps.hpp\"\
+    links: []
+  bundledCode: "#line 1 \"library/polynomial/polynomial_interpolation.hpp\"\n\n\n\n\
+    #line 1 \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
+    #include <iostream>\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\
+    \nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n\
+    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
+    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
+    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
+    \ = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n           \
+    \ if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
+    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
+    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
+    \        static constexpr int mod = mint::mod();\n};\ntemplate <typename mint>\n\
+    std::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 9 \"library/polynomial/fps.hpp\"\
     \n\nnamespace suisen {\n\ntemplate <typename mint>\nusing convolution_t = std::vector<mint>\
     \ (*)(const std::vector<mint> &, const std::vector<mint> &);\n\ntemplate <typename\
     \ mint>\nclass FPS : public std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
@@ -170,68 +159,47 @@ data:
     }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
     \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
     \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
-    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/polynomial/multi_point_eval.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> multi_point_eval(const\
-    \ FPS<mint>& f, const std::vector<mint>& xs) {\n        int n = xs.size();\n \
-    \       std::vector<FPS<mint>> seg(2 * n);\n        for (int i = 0; i < n; ++i)\
-    \ seg[n + i] = FPS<mint>{ -xs[i], 1 };\n        for (int i = n - 1; i > 0; --i)\
-    \ seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        seg[1] = f % seg[1];\n      \
-    \  for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];\n        std::vector<mint>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
-    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 6 \"library/math/product_of_differences.hpp\"\
-    \n\nnamespace suisen {\n    /**\n     * O(N(logN)^2)\n     * return the vector\
-    \ p of length xs.size() s.t. p[i]=\u03A0[j!=i](x[i]-x[j])\n     */\n    template\
-    \ <typename mint>\n    std::vector<mint> product_of_differences(const std::vector<mint>&\
-    \ xs) {\n        // f(x):=\u03A0_i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0\
-    [j!=i](x-x[j])\n        // => f'(x[i])=\u03A0[j!=i](x[i]-x[j])\n        const\
-    \ int n = xs.size();\n        std::deque<FPS<mint>> dq;\n        for (int i =\
-    \ 0; i < n; ++i) dq.push_back(FPS<mint>{ -xs[i], mint{ 1 } });\n        while\
-    \ (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n          \
-    \  dq.pop_front();\n            auto g = std::move(dq.front());\n            dq.pop_front();\n\
-    \            dq.push_back(f * g);\n        }\n        auto f = std::move(dq.front());\n\
-    \        f.diff_inplace();\n        return multi_point_eval(f, xs);\n    }\n}\
-    \ // namespace suisen\n\n\n\n#line 16 \"test/src/math/product_of_differences/yuki1938.test.cpp\"\
-    \n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a,\
-    \ const auto &b) { return atcoder::convolution(a, b); });\n\n    int n;\n    mint\
-    \ x;\n    std::cin >> n >> x;\n\n    std::vector<mint> xs(n), ys(n);\n    for\
-    \ (int i = 0; i < n; ++i) {\n        std::cin >> xs[i] >> ys[i];\n    }\n\n  \
-    \  std::vector<mint> w = suisen::product_of_differences(xs);\n\n    mint s = 0;\n\
-    \    for (int i = 0; i < n; ++i) {\n        s += ys[i] / w[i];\n    }\n\n    mint\
-    \ p = 1;\n    for (int i = 0; i < n; ++i) {\n        p *= x - xs[i];\n    }\n\n\
-    \    mint ans = 0;\n    for (int i = 0; i < n; ++i) {\n        if (x == xs[i])\
-    \ {\n            ans += n * ys[i] - s * w[i];\n        } else {\n            ans\
-    \ += n * ys[i] * p / (w[i] * (x - xs[i])) - s * p / (x - xs[i]);\n        }\n\
-    \    }\n\n    std::cout << ans.val() << std::endl;\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1938\"\n\n#include <iostream>\n\
-    \n#include <atcoder/modint>\n#include <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\
-    \nstd::istream& operator>>(std::istream& in, mint &a) {\n    long long e; in >>\
-    \ e; a = e;\n    return in;\n}\n\n#include \"library/math/product_of_differences.hpp\"\
-    \n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a,\
-    \ const auto &b) { return atcoder::convolution(a, b); });\n\n    int n;\n    mint\
-    \ x;\n    std::cin >> n >> x;\n\n    std::vector<mint> xs(n), ys(n);\n    for\
-    \ (int i = 0; i < n; ++i) {\n        std::cin >> xs[i] >> ys[i];\n    }\n\n  \
-    \  std::vector<mint> w = suisen::product_of_differences(xs);\n\n    mint s = 0;\n\
-    \    for (int i = 0; i < n; ++i) {\n        s += ys[i] / w[i];\n    }\n\n    mint\
-    \ p = 1;\n    for (int i = 0; i < n; ++i) {\n        p *= x - xs[i];\n    }\n\n\
-    \    mint ans = 0;\n    for (int i = 0; i < n; ++i) {\n        if (x == xs[i])\
-    \ {\n            ans += n * ys[i] - s * w[i];\n        } else {\n            ans\
-    \ += n * ys[i] * p / (w[i] * (x - xs[i])) - s * p / (x - xs[i]);\n        }\n\
-    \    }\n\n    std::cout << ans.val() << std::endl;\n\n    return 0;\n}"
+    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/polynomial/polynomial_interpolation.hpp\"\
+    \n\nnamespace suisen {\n    template <typename mint>\n    FPS<mint> polynomial_interpolation(const\
+    \ std::vector<mint>& xs, const std::vector<mint>& ys) {\n        assert(xs.size()\
+    \ == ys.size());\n        int n = xs.size();\n        std::vector<FPS<mint>> seg(2\
+    \ * n), g(2 * n);\n        for (int i = 0; i < n; ++i) seg[n + i] = FPS<mint>{\
+    \ -xs[i], 1 };\n        for (int i = n - 1; i > 0; --i) {\n            seg[i]\
+    \ = seg[i * 2] * seg[i * 2 + 1];\n        }\n        g[1] = std::move(seg[1].diff_inplace());\n\
+    \        for (int i = 1; i < n; ++i) {\n            int l = 2 * i, r = l + 1;\n\
+    \            g[l] = g[i] % seg[l], g[r] = g[i] % seg[r];\n        }\n        for\
+    \ (int i = 0; i < n; ++i) g[n + i] = FPS<mint>{ ys[i] / g[n + i][0] };\n     \
+    \   for (int i = n - 1; i > 0; --i) {\n            int l = 2 * i, r = l + 1;\n\
+    \            g[i] = g[l] * seg[r] + g[r] * seg[l];\n        }\n        return\
+    \ g[1];\n    }\n\n} // namespace suisen\n\n\n\n"
+  code: "#ifndef SUISEN_POLYNOMIAL_INTERPOLATION\n#define SUISEN_POLYNOMIAL_INTERPOLATION\n\
+    \n#include \"library/polynomial/fps.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename mint>\n    FPS<mint> polynomial_interpolation(const std::vector<mint>&\
+    \ xs, const std::vector<mint>& ys) {\n        assert(xs.size() == ys.size());\n\
+    \        int n = xs.size();\n        std::vector<FPS<mint>> seg(2 * n), g(2 *\
+    \ n);\n        for (int i = 0; i < n; ++i) seg[n + i] = FPS<mint>{ -xs[i], 1 };\n\
+    \        for (int i = n - 1; i > 0; --i) {\n            seg[i] = seg[i * 2] *\
+    \ seg[i * 2 + 1];\n        }\n        g[1] = std::move(seg[1].diff_inplace());\n\
+    \        for (int i = 1; i < n; ++i) {\n            int l = 2 * i, r = l + 1;\n\
+    \            g[l] = g[i] % seg[l], g[r] = g[i] % seg[r];\n        }\n        for\
+    \ (int i = 0; i < n; ++i) g[n + i] = FPS<mint>{ ys[i] / g[n + i][0] };\n     \
+    \   for (int i = n - 1; i > 0; --i) {\n            int l = 2 * i, r = l + 1;\n\
+    \            g[i] = g[l] * seg[r] + g[r] * seg[l];\n        }\n        return\
+    \ g[1];\n    }\n\n} // namespace suisen\n\n\n#endif // SUISEN_POLYNOMIAL_INTERPOLATION\n"
   dependsOn:
-  - library/math/product_of_differences.hpp
-  - library/polynomial/multi_point_eval.hpp
   - library/polynomial/fps.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: true
-  path: test/src/math/product_of_differences/yuki1938.test.cpp
+  isVerificationFile: false
+  path: library/polynomial/polynomial_interpolation.hpp
   requiredBy: []
   timestamp: '2022-05-14 03:01:53+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/src/math/product_of_differences/yuki1938.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
+documentation_of: library/polynomial/polynomial_interpolation.hpp
 layout: document
 redirect_from:
-- /verify/test/src/math/product_of_differences/yuki1938.test.cpp
-- /verify/test/src/math/product_of_differences/yuki1938.test.cpp.html
-title: test/src/math/product_of_differences/yuki1938.test.cpp
+- /library/library/polynomial/polynomial_interpolation.hpp
+- /library/library/polynomial/polynomial_interpolation.hpp.html
+title: library/polynomial/polynomial_interpolation.hpp
 ---

@@ -11,6 +11,9 @@ data:
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
+    path: library/polynomial/lagrange_interpolation.hpp
+    title: library/polynomial/lagrange_interpolation.hpp
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   _extendedRequiredBy: []
@@ -20,14 +23,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1938
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
     links:
-    - https://yukicoder.me/problems/no/1938
-  bundledCode: "#line 1 \"test/src/math/product_of_differences/yuki1938.test.cpp\"\
-    \n#define PROBLEM \"https://yukicoder.me/problems/no/1938\"\n\n#include <iostream>\n\
-    \n#include <atcoder/modint>\n#include <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\
-    \nstd::istream& operator>>(std::istream& in, mint &a) {\n    long long e; in >>\
-    \ e; a = e;\n    return in;\n}\n\n#line 1 \"library/math/product_of_differences.hpp\"\
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+  bundledCode: "#line 1 \"test/src/polynomial/lagrange_interpolation/dummy.test.cpp\"\
+    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n\n#include <iostream>\n#include <random>\n\n#include <atcoder/modint>\n#include\
+    \ <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\n#line 1 \"\
+    library/polynomial/lagrange_interpolation.hpp\"\n\n\n\n#line 1 \"library/math/product_of_differences.hpp\"\
     \n\n\n\n#include <deque>\n#line 1 \"library/polynomial/multi_point_eval.hpp\"\n\
     \n\n\n#line 1 \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
     \ <cassert>\n#line 7 \"library/polynomial/fps.hpp\"\n\n#line 1 \"library/math/inv_mods.hpp\"\
@@ -190,48 +193,90 @@ data:
     \  dq.pop_front();\n            auto g = std::move(dq.front());\n            dq.pop_front();\n\
     \            dq.push_back(f * g);\n        }\n        auto f = std::move(dq.front());\n\
     \        f.diff_inplace();\n        return multi_point_eval(f, xs);\n    }\n}\
-    \ // namespace suisen\n\n\n\n#line 16 \"test/src/math/product_of_differences/yuki1938.test.cpp\"\
-    \n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a,\
-    \ const auto &b) { return atcoder::convolution(a, b); });\n\n    int n;\n    mint\
-    \ x;\n    std::cin >> n >> x;\n\n    std::vector<mint> xs(n), ys(n);\n    for\
-    \ (int i = 0; i < n; ++i) {\n        std::cin >> xs[i] >> ys[i];\n    }\n\n  \
-    \  std::vector<mint> w = suisen::product_of_differences(xs);\n\n    mint s = 0;\n\
-    \    for (int i = 0; i < n; ++i) {\n        s += ys[i] / w[i];\n    }\n\n    mint\
-    \ p = 1;\n    for (int i = 0; i < n; ++i) {\n        p *= x - xs[i];\n    }\n\n\
-    \    mint ans = 0;\n    for (int i = 0; i < n; ++i) {\n        if (x == xs[i])\
-    \ {\n            ans += n * ys[i] - s * w[i];\n        } else {\n            ans\
-    \ += n * ys[i] * p / (w[i] * (x - xs[i])) - s * p / (x - xs[i]);\n        }\n\
-    \    }\n\n    std::cout << ans.val() << std::endl;\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1938\"\n\n#include <iostream>\n\
-    \n#include <atcoder/modint>\n#include <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\
-    \nstd::istream& operator>>(std::istream& in, mint &a) {\n    long long e; in >>\
-    \ e; a = e;\n    return in;\n}\n\n#include \"library/math/product_of_differences.hpp\"\
-    \n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a,\
-    \ const auto &b) { return atcoder::convolution(a, b); });\n\n    int n;\n    mint\
-    \ x;\n    std::cin >> n >> x;\n\n    std::vector<mint> xs(n), ys(n);\n    for\
-    \ (int i = 0; i < n; ++i) {\n        std::cin >> xs[i] >> ys[i];\n    }\n\n  \
-    \  std::vector<mint> w = suisen::product_of_differences(xs);\n\n    mint s = 0;\n\
-    \    for (int i = 0; i < n; ++i) {\n        s += ys[i] / w[i];\n    }\n\n    mint\
-    \ p = 1;\n    for (int i = 0; i < n; ++i) {\n        p *= x - xs[i];\n    }\n\n\
-    \    mint ans = 0;\n    for (int i = 0; i < n; ++i) {\n        if (x == xs[i])\
-    \ {\n            ans += n * ys[i] - s * w[i];\n        } else {\n            ans\
-    \ += n * ys[i] * p / (w[i] * (x - xs[i])) - s * p / (x - xs[i]);\n        }\n\
-    \    }\n\n    std::cout << ans.val() << std::endl;\n\n    return 0;\n}"
+    \ // namespace suisen\n\n\n\n#line 5 \"library/polynomial/lagrange_interpolation.hpp\"\
+    \n\nnamespace suisen {\n    // O(N^2+NlogP)\n    template <typename T>\n    T\
+    \ lagrange_interpolation_naive(const std::vector<T>& xs, const std::vector<T>&\
+    \ ys, const T t) {\n        const int n = xs.size();\n        assert(int(ys.size())\
+    \ == n);\n\n        T p{ 1 };\n        for (int i = 0; i < n; ++i) p *= t - xs[i];\n\
+    \n        T res{ 0 };\n        for (int i = 0; i < n; ++i) {\n            T w\
+    \ = 1;\n            for (int j = 0; j < n; ++j) if (j != i) w *= xs[i] - xs[j];\n\
+    \            res += ys[i] * (t == xs[i] ? 1 : p / (w * (t - xs[i])));\n      \
+    \  }\n        return res;\n    }\n\n    // O(N(logN)^2+NlogP)\n    template <typename\
+    \ mint>\n    mint lagrange_interpolation(const std::vector<mint>& xs, const std::vector<mint>&\
+    \ ys, const mint t) {\n        const int n = xs.size();\n        assert(int(ys.size())\
+    \ == n);\n\n        std::vector<FPS<mint>> seg(2 * n);\n        for (int i = 0;\
+    \ i < n; ++i) seg[n + i] = FPS<mint> {-xs[i], 1};\n        for (int i = n - 1;\
+    \ i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        seg[1] = seg[1].diff()\
+    \ % seg[1];\n        for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];\n\
+    \n        mint p{ 1 };\n        for (int i = 0; i < n; ++i) p *= t - xs[i];\n\n\
+    \        mint res{ 0 };\n        for (int i = 0; i < n; ++i) {\n            mint\
+    \ w = seg[n + i][0];\n            res += ys[i] * (t == xs[i] ? 1 : p / (w * (t\
+    \ - xs[i])));\n        }\n        return res;\n    }\n\n    // x = 0, 1, ...\n\
+    \    template <typename T>\n    T lagrange_interpolation(const std::vector<T>&\
+    \ ys, const T t) {\n        const int n = ys.size();\n        T fac = 1;\n   \
+    \     for (int i = 1; i < n; ++i) fac *= i;\n        std::vector<T> fci(n), suf(n);\n\
+    \        fci[n - 1] = T(1) / fac;\n        suf[n - 1] = 1;\n        for (int i\
+    \ = n - 1; i > 0; --i) {\n            fci[i - 1] = fci[i] * i;\n            suf[i\
+    \ - 1] = suf[i] * (t - i);\n        }\n        T prf = 1, res = 0;\n        for\
+    \ (int i = 0; i < n; ++i) {\n            T val = ys[i] * prf * suf[i] * fci[i]\
+    \ * fci[n - i - 1];\n            if ((n - 1 - i) & 1) res -= val;\n          \
+    \  else                 res += val;\n            prf *= t - i;\n        }\n  \
+    \      return res;\n    }\n} // namespace suisen\n\n\n\n#line 12 \"test/src/polynomial/lagrange_interpolation/dummy.test.cpp\"\
+    \n\ntemplate <int N>\nvoid test() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto& a, const auto& b) { return atcoder::convolution(a, b); });\n\n    std::mt19937\
+    \ rng{ std::random_device{}() };\n    std::uniform_int_distribution<int> dist(0,\
+    \ mint::mod() - 1);\n\n    std::vector<mint> f(N);\n    for (int i = 0; i < N;\
+    \ ++i) f[i] = dist(rng);\n\n    auto eval = [&f](mint x) -> mint {\n        mint\
+    \ y = 0;\n        for (int i = N - 1; i >= 0; --i) y = y * x + f[i];\n       \
+    \ return y;\n    };\n\n    std::vector<mint> xs(N), ys(N);\n\n    for (int i =\
+    \ 0; i < N; ++i) {\n        auto is_valid = [&] {\n            for (int j = 0;\
+    \ j < i; ++j) if (xs[i] == xs[j]) return false;\n            return true;\n  \
+    \      };\n        do xs[i] = dist(rng); while (not is_valid());\n        ys[i]\
+    \ = eval(xs[i]);\n    }\n\n    auto check = [&](mint t) {\n        mint expected\
+    \ = eval(t);\n        mint actual_fast = suisen::lagrange_interpolation(xs, ys,\
+    \ t);\n        mint actual_naive = suisen::lagrange_interpolation_naive(xs, ys,\
+    \ t);\n        assert(expected == actual_naive);\n        assert(expected == actual_fast);\n\
+    \    };\n\n    for (int i = 0; i < N; ++i) {\n        check(xs[i]);\n    }\n \
+    \   for (int i = 0; i < N; ++i) {\n        check(dist(rng));\n    }\n}\n\nint\
+    \ main() {\n    test<100>();\n    std::cout << \"Hello World\" << std::endl;\n\
+    \    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n\n#include <iostream>\n#include <random>\n\n#include <atcoder/modint>\n#include\
+    \ <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\n#include\
+    \ \"library/polynomial/lagrange_interpolation.hpp\"\n\ntemplate <int N>\nvoid\
+    \ test() {\n    suisen::FPS<mint>::set_multiplication([](const auto& a, const\
+    \ auto& b) { return atcoder::convolution(a, b); });\n\n    std::mt19937 rng{ std::random_device{}()\
+    \ };\n    std::uniform_int_distribution<int> dist(0, mint::mod() - 1);\n\n   \
+    \ std::vector<mint> f(N);\n    for (int i = 0; i < N; ++i) f[i] = dist(rng);\n\
+    \n    auto eval = [&f](mint x) -> mint {\n        mint y = 0;\n        for (int\
+    \ i = N - 1; i >= 0; --i) y = y * x + f[i];\n        return y;\n    };\n\n   \
+    \ std::vector<mint> xs(N), ys(N);\n\n    for (int i = 0; i < N; ++i) {\n     \
+    \   auto is_valid = [&] {\n            for (int j = 0; j < i; ++j) if (xs[i] ==\
+    \ xs[j]) return false;\n            return true;\n        };\n        do xs[i]\
+    \ = dist(rng); while (not is_valid());\n        ys[i] = eval(xs[i]);\n    }\n\n\
+    \    auto check = [&](mint t) {\n        mint expected = eval(t);\n        mint\
+    \ actual_fast = suisen::lagrange_interpolation(xs, ys, t);\n        mint actual_naive\
+    \ = suisen::lagrange_interpolation_naive(xs, ys, t);\n        assert(expected\
+    \ == actual_naive);\n        assert(expected == actual_fast);\n    };\n\n    for\
+    \ (int i = 0; i < N; ++i) {\n        check(xs[i]);\n    }\n    for (int i = 0;\
+    \ i < N; ++i) {\n        check(dist(rng));\n    }\n}\n\nint main() {\n    test<100>();\n\
+    \    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}"
   dependsOn:
+  - library/polynomial/lagrange_interpolation.hpp
   - library/math/product_of_differences.hpp
   - library/polynomial/multi_point_eval.hpp
   - library/polynomial/fps.hpp
   - library/math/inv_mods.hpp
   isVerificationFile: true
-  path: test/src/math/product_of_differences/yuki1938.test.cpp
+  path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   requiredBy: []
   timestamp: '2022-05-14 03:01:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/math/product_of_differences/yuki1938.test.cpp
+documentation_of: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/math/product_of_differences/yuki1938.test.cpp
-- /verify/test/src/math/product_of_differences/yuki1938.test.cpp.html
-title: test/src/math/product_of_differences/yuki1938.test.cpp
+- /verify/test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+- /verify/test/src/polynomial/lagrange_interpolation/dummy.test.cpp.html
+title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
 ---

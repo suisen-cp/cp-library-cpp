@@ -1,51 +1,51 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: library/math/fps.hpp
-    title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
+  - icon: ':question:'
+    path: library/polynomial/fps.hpp
+    title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
-    path: library/math/multi_point_eval.hpp
+    path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/math/lagrange_interpolation.hpp
-    title: library/math/lagrange_interpolation.hpp
+    path: library/polynomial/lagrange_interpolation.hpp
+    title: library/polynomial/lagrange_interpolation.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
-    title: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/lagrange_interpolation/dummy.test.cpp
-    title: test/src/math/lagrange_interpolation/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+    title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+    title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/product_of_differences.hpp\"\n\n\n\n#include\
-    \ <deque>\n#line 1 \"library/math/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <iostream>\n\n#line\
-    \ 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen\
-    \ {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
-    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
-    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
-    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
-    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
-    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
-    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
-    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
-    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
-    }\n\n\n#line 9 \"library/math/fps.hpp\"\n\nnamespace suisen {\n\ntemplate <typename\
-    \ mint>\nusing convolution_t = std::vector<mint> (*)(const std::vector<mint> &,\
-    \ const std::vector<mint> &);\n\ntemplate <typename mint>\nclass FPS : public\
-    \ std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
+    \ <deque>\n#line 1 \"library/polynomial/multi_point_eval.hpp\"\n\n\n\n#line 1\
+    \ \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
+    #include <iostream>\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\
+    \nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n\
+    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
+    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
+    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
+    \ = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n           \
+    \ if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
+    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
+    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
+    \        static constexpr int mod = mint::mod();\n};\ntemplate <typename mint>\n\
+    std::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 9 \"library/polynomial/fps.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename mint>\nusing convolution_t = std::vector<mint>\
+    \ (*)(const std::vector<mint> &, const std::vector<mint> &);\n\ntemplate <typename\
+    \ mint>\nclass FPS : public std::vector<mint> {\n    public:\n        using std::vector<mint>::vector;\n\
     \n        FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l)\
     \ {}\n        FPS(const std::vector<mint> &v) : std::vector<mint>::vector(v) {}\n\
     \        FPS(std::vector<mint> &&v) : std::vector<mint>::vector(std::move(v))\
@@ -172,7 +172,7 @@ data:
     }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
     \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
     \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
-    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/math/multi_point_eval.hpp\"\
+    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/polynomial/multi_point_eval.hpp\"\
     \n\nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> multi_point_eval(const\
     \ FPS<mint>& f, const std::vector<mint>& xs) {\n        int n = xs.size();\n \
     \       std::vector<FPS<mint>> seg(2 * n);\n        for (int i = 0; i < n; ++i)\
@@ -194,7 +194,7 @@ data:
     \        f.diff_inplace();\n        return multi_point_eval(f, xs);\n    }\n}\
     \ // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_PRODUCT_OF_DIFFERNCES\n#define SUISEN_PRODUCT_OF_DIFFERNCES\n\
-    \n#include <deque>\n#include \"library/math/multi_point_eval.hpp\"\n\nnamespace\
+    \n#include <deque>\n#include \"library/polynomial/multi_point_eval.hpp\"\n\nnamespace\
     \ suisen {\n    /**\n     * O(N(logN)^2)\n     * return the vector p of length\
     \ xs.size() s.t. p[i]=\u03A0[j!=i](x[i]-x[j])\n     */\n    template <typename\
     \ mint>\n    std::vector<mint> product_of_differences(const std::vector<mint>&\
@@ -208,19 +208,19 @@ data:
     \        f.diff_inplace();\n        return multi_point_eval(f, xs);\n    }\n}\
     \ // namespace suisen\n\n\n#endif // SUISEN_PRODUCT_OF_DIFFERNCES\n"
   dependsOn:
-  - library/math/multi_point_eval.hpp
-  - library/math/fps.hpp
+  - library/polynomial/multi_point_eval.hpp
+  - library/polynomial/fps.hpp
   - library/math/inv_mods.hpp
   isVerificationFile: false
   path: library/math/product_of_differences.hpp
   requiredBy:
-  - library/math/lagrange_interpolation.hpp
-  timestamp: '2022-05-14 02:35:26+09:00'
+  - library/polynomial/lagrange_interpolation.hpp
+  timestamp: '2022-05-14 03:01:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
-  - test/src/math/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
 documentation_of: library/math/product_of_differences.hpp
 layout: document
 redirect_from:
