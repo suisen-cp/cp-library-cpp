@@ -177,6 +177,12 @@ class FPS : public std::vector<mint> {
         inline FPS exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg); }
         inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k, max_deg); }
 
+        mint eval(mint x) const {
+            mint y = 0;
+            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);
+            return y;
+        }
+
     private:
         static inline inv_mods<mint> invs;
         static convolution_t<mint> mult;

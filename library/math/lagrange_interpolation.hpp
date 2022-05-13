@@ -23,18 +23,24 @@ namespace suisen {
     }
 
     // O(N(logN)^2+NlogP)
-    template <typename T>
-    T lagrange_interpolation(const std::vector<T>& xs, const std::vector<T>& ys, const T t) {
+    template <typename mint>
+    mint lagrange_interpolation(const std::vector<mint>& xs, const std::vector<mint>& ys, const mint t) {
         const int n = xs.size();
         assert(int(ys.size()) == n);
 
-        T p{ 1 };
+        std::vector<FPS<mint>> seg(2 * n);
+        for (int i = 0; i < n; ++i) seg[n + i] = FPS<mint> {-xs[i], 1};
+        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];
+        seg[1] = seg[1].diff() % seg[1];
+        for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];
+
+        mint p{ 1 };
         for (int i = 0; i < n; ++i) p *= t - xs[i];
 
-        std::vector<T> w = product_of_differences(xs);
-        T res{ 0 };
+        mint res{ 0 };
         for (int i = 0; i < n; ++i) {
-            res += ys[i] * (t == xs[i] ? 1 : p / (w[i] * (t - xs[i])));
+            mint w = seg[n + i][0];
+            res += ys[i] * (t == xs[i] ? 1 : p / (w * (t - xs[i])));
         }
         return res;
     }
