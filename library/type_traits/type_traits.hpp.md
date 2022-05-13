@@ -140,6 +140,9 @@ data:
     path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
     title: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
+    title: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
     title: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
   - icon: ':heavy_check_mark:'
@@ -449,6 +452,7 @@ data:
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
+  - test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 title: Type Traits

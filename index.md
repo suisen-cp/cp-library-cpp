@@ -374,7 +374,7 @@ data:
     - icon: ':question:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
     - icon: ':heavy_check_mark:'
@@ -383,10 +383,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/hessenberg_reduction.hpp
       title: Hessenberg Reduction
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/lagrange_interpolation.hpp
       title: library/math/lagrange_interpolation.hpp
     - icon: ':heavy_check_mark:'
@@ -395,25 +395,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/multi_point_eval.hpp
       title: Multi Point Evaluation
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/polynomial_interpolation.hpp
       title: library/math/polynomial_interpolation.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/polynomial_taylor_shift.hpp
       title: Polynomial Taylor Shift
     - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/product_of_differences.hpp
       title: library/math/product_of_differences.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
       title: Set Power Series
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/subset_sum.hpp
       title: Subset Sum
     - icon: ':heavy_check_mark:'
@@ -627,6 +627,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
       title: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
+      title: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
   - name: test/src/algorithm/dynamic_convex_hull_offline
     pages:
     - icon: ':heavy_check_mark:'
@@ -1147,7 +1150,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
       title: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/lagrange_interpolation/dummy.test.cpp
       title: test/src/math/lagrange_interpolation/dummy.test.cpp
   - name: test/src/math/matrix
@@ -1163,22 +1166,22 @@ data:
       title: test/src/math/matrix/matrix_product.test.cpp
   - name: test/src/math/multi_point_eval
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - name: test/src/math/polynomial_interpolation
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
       title: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
   - name: test/src/math/polynomial_taylor_shift
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
       title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - name: test/src/math/product_of_differences
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/product_of_differences/yuki1938.test.cpp
       title: test/src/math/product_of_differences/yuki1938.test.cpp
   - name: test/src/math/sps
@@ -1194,7 +1197,7 @@ data:
       title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - name: test/src/math/subset_sum
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/subset_sum/p_subset_sum.test.cpp
       title: test/src/math/subset_sum/p_subset_sum.test.cpp
   - name: test/src/math/util

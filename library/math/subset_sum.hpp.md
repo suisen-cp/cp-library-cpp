@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/subset_sum/p_subset_sum.test.cpp
     title: test/src/math/subset_sum/p_subset_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/subset_sum.hpp\"\n\n\n\n#line 1 \"library/math/fps.hpp\"\
@@ -135,9 +135,11 @@ data:
     \ max_deg) const { return FPS(*this).log_inplace(max_deg); }\n        inline FPS\
     \ exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg); }\n \
     \       inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k,\
-    \ max_deg); }\n\n    private:\n        static inline inv_mods<mint> invs;\n  \
-    \      static convolution_t<mint> mult;\n        inline void ensure_deg(int d)\
-    \ { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
+    \ max_deg); }\n\n        mint eval(mint x) const {\n            mint y = 0;\n\
+    \            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
+    \            return y;\n        }\n\n    private:\n        static inline inv_mods<mint>\
+    \ invs;\n        static convolution_t<mint> mult;\n        inline void ensure_deg(int\
+    \ d) { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
     \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
     \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
     \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
@@ -183,8 +185,8 @@ data:
   isVerificationFile: false
   path: library/math/subset_sum.hpp
   requiredBy: []
-  timestamp: '2022-04-04 15:11:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-14 02:35:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/math/subset_sum/p_subset_sum.test.cpp
 documentation_of: library/math/subset_sum.hpp

@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
@@ -150,9 +150,11 @@ data:
     \ max_deg) const { return FPS(*this).log_inplace(max_deg); }\n        inline FPS\
     \ exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg); }\n \
     \       inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k,\
-    \ max_deg); }\n\n    private:\n        static inline inv_mods<mint> invs;\n  \
-    \      static convolution_t<mint> mult;\n        inline void ensure_deg(int d)\
-    \ { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
+    \ max_deg); }\n\n        mint eval(mint x) const {\n            mint y = 0;\n\
+    \            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
+    \            return y;\n        }\n\n    private:\n        static inline inv_mods<mint>\
+    \ invs;\n        static convolution_t<mint> mult;\n        inline void ensure_deg(int\
+    \ d) { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
     \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
     \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
     \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
@@ -305,7 +307,7 @@ data:
   isVerificationFile: false
   path: library/math/common_sequences.hpp
   requiredBy: []
-  timestamp: '2022-05-07 15:41:34+09:00'
+  timestamp: '2022-05-14 02:35:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/common_sequences/montmort_number_mod.test.cpp

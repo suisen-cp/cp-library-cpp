@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
     title: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/polynomial_interpolation.hpp\"\n\n\n\n#line\
@@ -135,9 +135,11 @@ data:
     \ max_deg) const { return FPS(*this).log_inplace(max_deg); }\n        inline FPS\
     \ exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg); }\n \
     \       inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k,\
-    \ max_deg); }\n\n    private:\n        static inline inv_mods<mint> invs;\n  \
-    \      static convolution_t<mint> mult;\n        inline void ensure_deg(int d)\
-    \ { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
+    \ max_deg); }\n\n        mint eval(mint x) const {\n            mint y = 0;\n\
+    \            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
+    \            return y;\n        }\n\n    private:\n        static inline inv_mods<mint>\
+    \ invs;\n        static convolution_t<mint> mult;\n        inline void ensure_deg(int\
+    \ d) { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
     \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
     \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
     \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
@@ -160,44 +162,38 @@ data:
     \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/math/polynomial_interpolation.hpp\"\
     \n\nnamespace suisen {\n    template <typename mint>\n    FPS<mint> polynomial_interpolation(const\
     \ std::vector<mint>& xs, const std::vector<mint>& ys) {\n        assert(xs.size()\
-    \ == ys.size());\n        int n = xs.size();\n        int k = 1;\n        while\
-    \ (k < n) k <<= 1;\n        std::vector<FPS<mint>> seg(k << 1), g(k << 1);\n \
-    \       for (int i = 0; i < n; ++i) seg[k + i] = FPS<mint>{ -xs[i], 1 };\n   \
-    \     for (int i = n; i < k; ++i) seg[k + i] = FPS<mint>{ 1 };\n        for (int\
-    \ i = k - 1; i > 0; --i) {\n            seg[i] = seg[i * 2] * seg[i * 2 + 1];\n\
-    \        }\n        g[1] = std::move(seg[1].diff_inplace());\n        for (int\
-    \ i = 1; i < k; ++i) {\n            int l = 2 * i, r = l + 1;\n            g[l]\
-    \ = g[i] % seg[l], g[r] = g[i] % seg[r];\n        }\n        for (int i = 0; i\
-    \ < n; ++i) g[k + i] = FPS<mint>{ ys[i] / g[k + i][0] };\n        for (int i =\
-    \ n; i < k; ++i) g[k + i] = FPS<mint>{ 0 };\n        for (int i = k - 1; i > 0;\
-    \ --i) {\n            int l = 2 * i, r = l + 1;\n            g[i] = g[l] * seg[r]\
-    \ + g[r] * seg[l];\n        }\n        return g[1];\n    }\n\n} // namespace suisen\n\
-    \n\n\n"
+    \ == ys.size());\n        int n = xs.size();\n        std::vector<FPS<mint>> seg(2\
+    \ * n), g(2 * n);\n        for (int i = 0; i < n; ++i) seg[n + i] = FPS<mint>{\
+    \ -xs[i], 1 };\n        for (int i = n - 1; i > 0; --i) {\n            seg[i]\
+    \ = seg[i * 2] * seg[i * 2 + 1];\n        }\n        g[1] = std::move(seg[1].diff_inplace());\n\
+    \        for (int i = 1; i < n; ++i) {\n            int l = 2 * i, r = l + 1;\n\
+    \            g[l] = g[i] % seg[l], g[r] = g[i] % seg[r];\n        }\n        for\
+    \ (int i = 0; i < n; ++i) g[n + i] = FPS<mint>{ ys[i] / g[n + i][0] };\n     \
+    \   for (int i = n - 1; i > 0; --i) {\n            int l = 2 * i, r = l + 1;\n\
+    \            g[i] = g[l] * seg[r] + g[r] * seg[l];\n        }\n        return\
+    \ g[1];\n    }\n\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_POLYNOMIAL_INTERPOLATION\n#define SUISEN_POLYNOMIAL_INTERPOLATION\n\
     \n#include \"library/math/fps.hpp\"\n\nnamespace suisen {\n    template <typename\
     \ mint>\n    FPS<mint> polynomial_interpolation(const std::vector<mint>& xs, const\
     \ std::vector<mint>& ys) {\n        assert(xs.size() == ys.size());\n        int\
-    \ n = xs.size();\n        int k = 1;\n        while (k < n) k <<= 1;\n       \
-    \ std::vector<FPS<mint>> seg(k << 1), g(k << 1);\n        for (int i = 0; i <\
-    \ n; ++i) seg[k + i] = FPS<mint>{ -xs[i], 1 };\n        for (int i = n; i < k;\
-    \ ++i) seg[k + i] = FPS<mint>{ 1 };\n        for (int i = k - 1; i > 0; --i) {\n\
-    \            seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        }\n        g[1] =\
-    \ std::move(seg[1].diff_inplace());\n        for (int i = 1; i < k; ++i) {\n \
-    \           int l = 2 * i, r = l + 1;\n            g[l] = g[i] % seg[l], g[r]\
-    \ = g[i] % seg[r];\n        }\n        for (int i = 0; i < n; ++i) g[k + i] =\
-    \ FPS<mint>{ ys[i] / g[k + i][0] };\n        for (int i = n; i < k; ++i) g[k +\
-    \ i] = FPS<mint>{ 0 };\n        for (int i = k - 1; i > 0; --i) {\n          \
-    \  int l = 2 * i, r = l + 1;\n            g[i] = g[l] * seg[r] + g[r] * seg[l];\n\
-    \        }\n        return g[1];\n    }\n\n} // namespace suisen\n\n\n#endif //\
-    \ SUISEN_POLYNOMIAL_INTERPOLATION\n"
+    \ n = xs.size();\n        std::vector<FPS<mint>> seg(2 * n), g(2 * n);\n     \
+    \   for (int i = 0; i < n; ++i) seg[n + i] = FPS<mint>{ -xs[i], 1 };\n       \
+    \ for (int i = n - 1; i > 0; --i) {\n            seg[i] = seg[i * 2] * seg[i *\
+    \ 2 + 1];\n        }\n        g[1] = std::move(seg[1].diff_inplace());\n     \
+    \   for (int i = 1; i < n; ++i) {\n            int l = 2 * i, r = l + 1;\n   \
+    \         g[l] = g[i] % seg[l], g[r] = g[i] % seg[r];\n        }\n        for\
+    \ (int i = 0; i < n; ++i) g[n + i] = FPS<mint>{ ys[i] / g[n + i][0] };\n     \
+    \   for (int i = n - 1; i > 0; --i) {\n            int l = 2 * i, r = l + 1;\n\
+    \            g[i] = g[l] * seg[r] + g[r] * seg[l];\n        }\n        return\
+    \ g[1];\n    }\n\n} // namespace suisen\n\n\n#endif // SUISEN_POLYNOMIAL_INTERPOLATION\n"
   dependsOn:
   - library/math/fps.hpp
   - library/math/inv_mods.hpp
   isVerificationFile: false
   path: library/math/polynomial_interpolation.hpp
   requiredBy: []
-  timestamp: '2022-05-14 00:56:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-14 02:35:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
 documentation_of: library/math/polynomial_interpolation.hpp

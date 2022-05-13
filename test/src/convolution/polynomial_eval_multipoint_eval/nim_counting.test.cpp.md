@@ -5,13 +5,13 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':heavy_check_mark:'
@@ -239,9 +239,11 @@ data:
     \ max_deg) const { return FPS(*this).log_inplace(max_deg); }\n        inline FPS\
     \ exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg); }\n \
     \       inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k,\
-    \ max_deg); }\n\n    private:\n        static inline inv_mods<mint> invs;\n  \
-    \      static convolution_t<mint> mult;\n        inline void ensure_deg(int d)\
-    \ { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
+    \ max_deg); }\n\n        mint eval(mint x) const {\n            mint y = 0;\n\
+    \            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
+    \            return y;\n        }\n\n    private:\n        static inline inv_mods<mint>\
+    \ invs;\n        static convolution_t<mint> mult;\n        inline void ensure_deg(int\
+    \ d) { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
     \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
     \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
     \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
@@ -262,17 +264,16 @@ data:
     \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
     \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
     \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/math/multi_point_eval.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nstd::vector<mint> multi_point_eval(const\
-    \ FPS<mint> &f, const std::vector<mint> &xs) {\n    int m = xs.size();\n    int\
-    \ k = 1;\n    while (k < m) k <<= 1;\n    std::vector<FPS<mint>> seg(2 * k);\n\
-    \    for (int i = 0; i < m; ++i) seg[k + i] = FPS<mint> {-xs[i], 1};\n    for\
-    \ (int i = m; i < k; ++i) seg[k + i] = FPS<mint> {1};\n    for (int i = k - 1;\
-    \ i> 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n    seg[1] = f % seg[1];\n\
-    \    for (int i = 2; i < k + m; ++i) seg[i] = seg[i / 2] % seg[i];\n    std::vector<mint>\
-    \ ys(m);\n    for (int i = 0; i < m; ++i) ys[i] = seg[k + i][0];\n    return ys;\n\
-    }\n} // namespace suisen\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\
-    \n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\n\
-    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \n\nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> multi_point_eval(const\
+    \ FPS<mint>& f, const std::vector<mint>& xs) {\n        int n = xs.size();\n \
+    \       std::vector<FPS<mint>> seg(2 * n);\n        for (int i = 0; i < n; ++i)\
+    \ seg[n + i] = FPS<mint>{ -xs[i], 1 };\n        for (int i = n - 1; i > 0; --i)\
+    \ seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        seg[1] = f % seg[1];\n      \
+    \  for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];\n        std::vector<mint>\
+    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
+    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
+    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
     \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
@@ -339,7 +340,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-05-14 02:35:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
