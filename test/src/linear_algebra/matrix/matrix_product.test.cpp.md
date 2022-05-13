@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/math/matrix.hpp
+    path: library/linear_algebra/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -14,11 +14,11 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
     links:
     - https://judge.yosupo.jp/problem/matrix_product
-  bundledCode: "#line 1 \"test/src/math/matrix/matrix_product.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include <iostream>\n\
-    #include <atcoder/modint>\n\n#line 1 \"library/math/matrix.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#include <optional>\n#include <vector>\n\nnamespace suisen {\n  \
-    \  template <typename T>\n    struct Matrix {\n        std::vector<std::vector<T>>\
+  bundledCode: "#line 1 \"test/src/linear_algebra/matrix/matrix_product.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
+    \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/linear_algebra/matrix.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <optional>\n#include <vector>\n\nnamespace\
+    \ suisen {\n    template <typename T>\n    struct Matrix {\n        std::vector<std::vector<T>>\
     \ data;\n\n        Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0))\
     \ : data(n, std::vector<T>(m, fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>&\
     \ data) noexcept : data(data) {}\n        Matrix(std::vector<std::vector<T>>&&\
@@ -131,17 +131,17 @@ data:
     \            }\n            return res;\n        }\n    private:\n        SquareMatrix(int\
     \ n, bool mult_identity) : Matrix<T>::Matrix(n, n) {\n            if (mult_identity)\
     \ for (int i = 0; i < n; ++i) this->data[i][i] = 1;\n        }\n    };\n} // namespace\
-    \ suisen\n\n\n#line 7 \"test/src/math/matrix/matrix_product.test.cpp\"\n\nusing\
-    \ mint = atcoder::modint998244353;\nusing suisen::Matrix;\n\nint main() {\n  \
-    \  int n, m, k;\n    std::cin >> n >> m >> k;\n    Matrix<mint> A(n, m), B(m,\
-    \ k);\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n       \
-    \ int val;\n        std::cin >> val;\n        A[i][j] = val;\n    }\n    for (int\
-    \ i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n        int val;\n       \
-    \ std::cin >> val;\n        B[i][j] = val;\n    }\n    A *= B;\n    for (int i\
-    \ = 0; i < n; ++i) for (int j = 0; j < k; ++j) {\n        std::cout << A[i][j].val()\
-    \ << \" \\n\"[j == k - 1];\n    }\n    return 0;\n}\n"
+    \ suisen\n\n\n#line 7 \"test/src/linear_algebra/matrix/matrix_product.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\nusing suisen::Matrix;\n\nint main()\
+    \ {\n    int n, m, k;\n    std::cin >> n >> m >> k;\n    Matrix<mint> A(n, m),\
+    \ B(m, k);\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n  \
+    \      int val;\n        std::cin >> val;\n        A[i][j] = val;\n    }\n   \
+    \ for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n        int val;\n\
+    \        std::cin >> val;\n        B[i][j] = val;\n    }\n    A *= B;\n    for\
+    \ (int i = 0; i < n; ++i) for (int j = 0; j < k; ++j) {\n        std::cout <<\
+    \ A[i][j].val() << \" \\n\"[j == k - 1];\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
-    \ <iostream>\n#include <atcoder/modint>\n\n#include \"library/math/matrix.hpp\"\
+    \ <iostream>\n#include <atcoder/modint>\n\n#include \"library/linear_algebra/matrix.hpp\"\
     \n\nusing mint = atcoder::modint998244353;\nusing suisen::Matrix;\n\nint main()\
     \ {\n    int n, m, k;\n    std::cin >> n >> m >> k;\n    Matrix<mint> A(n, m),\
     \ B(m, k);\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n  \
@@ -151,17 +151,17 @@ data:
     \ (int i = 0; i < n; ++i) for (int j = 0; j < k; ++j) {\n        std::cout <<\
     \ A[i][j].val() << \" \\n\"[j == k - 1];\n    }\n    return 0;\n}"
   dependsOn:
-  - library/math/matrix.hpp
+  - library/linear_algebra/matrix.hpp
   isVerificationFile: true
-  path: test/src/math/matrix/matrix_product.test.cpp
+  path: test/src/linear_algebra/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 13:34:44+09:00'
+  timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/math/matrix/matrix_product.test.cpp
+documentation_of: test/src/linear_algebra/matrix/matrix_product.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/math/matrix/matrix_product.test.cpp
-- /verify/test/src/math/matrix/matrix_product.test.cpp.html
-title: test/src/math/matrix/matrix_product.test.cpp
+- /verify/test/src/linear_algebra/matrix/matrix_product.test.cpp
+- /verify/test/src/linear_algebra/matrix/matrix_product.test.cpp.html
+title: test/src/linear_algebra/matrix/matrix_product.test.cpp
 ---

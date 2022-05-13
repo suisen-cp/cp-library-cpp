@@ -2,50 +2,50 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/math/hessenberg_reduction.hpp
+    path: library/linear_algebra/hessenberg_reduction.hpp
     title: Hessenberg Reduction
   - icon: ':heavy_check_mark:'
-    path: library/math/matrix.hpp
+    path: library/linear_algebra/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
-    title: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
+    path: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
+    title: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://ipsen.math.ncsu.edu/ps/charpoly3.pdf
-  bundledCode: "#line 1 \"library/math/characteristic_polynomial.hpp\"\n\n\n\n#line\
-    \ 1 \"library/math/hessenberg_reduction.hpp\"\n\n\n\n#line 1 \"library/math/matrix.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <optional>\n#include <vector>\n\nnamespace\
-    \ suisen {\n    template <typename T>\n    struct Matrix {\n        std::vector<std::vector<T>>\
-    \ data;\n\n        Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0))\
-    \ : data(n, std::vector<T>(m, fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>&\
-    \ data) noexcept : data(data) {}\n        Matrix(std::vector<std::vector<T>>&&\
-    \ data) noexcept : data(std::move(data)) {}\n        Matrix(const Matrix<T>& other)\
-    \ noexcept : data(other.data) {}\n        Matrix(Matrix<T>&& other) noexcept :\
-    \ data(std::move(other.data)) {}\n\n        Matrix<T>& operator=(const Matrix<T>&\
-    \ other) noexcept {\n            data = other.data;\n            return *this;\n\
-    \        }\n        Matrix<T>& operator=(Matrix<T>&& other) noexcept {\n     \
-    \       data = std::move(other.data);\n            return *this;\n        }\n\n\
-    \        const std::vector<T>& operator[](int i) const { return data[i]; }\n \
-    \       std::vector<T>& operator[](int i) { return data[i]; }\n\n        std::pair<int,\
-    \ int> size() const {\n            if (data.empty()) {\n                return\
-    \ { 0, 0 };\n            } else {\n                return { data.size(), data[0].size()\
-    \ };\n            }\n        }\n        int row_size() const {\n            return\
-    \ data.size();\n        }\n        int col_size() const {\n            return\
-    \ data.empty() ? 0 : data[0].size();\n        }\n\n        Matrix<T>& operator+=(const\
-    \ Matrix<T>& other) {\n            assert(size() == other.size());\n         \
-    \   auto [n, m] = size();\n            for (int i = 0; i < n; ++i) for (int j\
-    \ = 0; j < m; ++j) {\n                data[i][j] += other[i][j];\n           \
-    \ }\n            return *this;\n        }\n        Matrix<T>& operator-=(const\
-    \ Matrix<T>& other) {\n            assert(size() == other.size());\n         \
-    \   auto [n, m] = size();\n            for (int i = 0; i < n; ++i) for (int j\
-    \ = 0; j < m; ++j) {\n                data[i][j] -= other[i][j];\n           \
-    \ }\n            return *this;\n        }\n        Matrix<T>& operator*=(const\
+  bundledCode: "#line 1 \"library/linear_algebra/characteristic_polynomial.hpp\"\n\
+    \n\n\n#line 1 \"library/linear_algebra/hessenberg_reduction.hpp\"\n\n\n\n#line\
+    \ 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <optional>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
+    \ T>\n    struct Matrix {\n        std::vector<std::vector<T>> data;\n\n     \
+    \   Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0)) : data(n, std::vector<T>(m,\
+    \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& data) noexcept\
+    \ : data(data) {}\n        Matrix(std::vector<std::vector<T>>&& data) noexcept\
+    \ : data(std::move(data)) {}\n        Matrix(const Matrix<T>& other) noexcept\
+    \ : data(other.data) {}\n        Matrix(Matrix<T>&& other) noexcept : data(std::move(other.data))\
+    \ {}\n\n        Matrix<T>& operator=(const Matrix<T>& other) noexcept {\n    \
+    \        data = other.data;\n            return *this;\n        }\n        Matrix<T>&\
+    \ operator=(Matrix<T>&& other) noexcept {\n            data = std::move(other.data);\n\
+    \            return *this;\n        }\n\n        const std::vector<T>& operator[](int\
+    \ i) const { return data[i]; }\n        std::vector<T>& operator[](int i) { return\
+    \ data[i]; }\n\n        std::pair<int, int> size() const {\n            if (data.empty())\
+    \ {\n                return { 0, 0 };\n            } else {\n                return\
+    \ { data.size(), data[0].size() };\n            }\n        }\n        int row_size()\
+    \ const {\n            return data.size();\n        }\n        int col_size()\
+    \ const {\n            return data.empty() ? 0 : data[0].size();\n        }\n\n\
+    \        Matrix<T>& operator+=(const Matrix<T>& other) {\n            assert(size()\
+    \ == other.size());\n            auto [n, m] = size();\n            for (int i\
+    \ = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n                data[i][j] +=\
+    \ other[i][j];\n            }\n            return *this;\n        }\n        Matrix<T>&\
+    \ operator-=(const Matrix<T>& other) {\n            assert(size() == other.size());\n\
+    \            auto [n, m] = size();\n            for (int i = 0; i < n; ++i) for\
+    \ (int j = 0; j < m; ++j) {\n                data[i][j] -= other[i][j];\n    \
+    \        }\n            return *this;\n        }\n        Matrix<T>& operator*=(const\
     \ Matrix<T>& other) {\n            return *this = *this * other;\n        }\n\
     \        Matrix<T>& operator*=(const T& val) {\n            auto [n, m] = size();\n\
     \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n     \
@@ -134,8 +134,8 @@ data:
     \            }\n            return res;\n        }\n    private:\n        SquareMatrix(int\
     \ n, bool mult_identity) : Matrix<T>::Matrix(n, n) {\n            if (mult_identity)\
     \ for (int i = 0; i < n; ++i) this->data[i][i] = 1;\n        }\n    };\n} // namespace\
-    \ suisen\n\n\n#line 5 \"library/math/hessenberg_reduction.hpp\"\n\nnamespace suisen\
-    \ {\n    /**\n     * Reference: http://www.phys.uri.edu/nigh/NumRec/bookfpdf/f11-5.pdf\n\
+    \ suisen\n\n\n#line 5 \"library/linear_algebra/hessenberg_reduction.hpp\"\n\n\
+    namespace suisen {\n    /**\n     * Reference: http://www.phys.uri.edu/nigh/NumRec/bookfpdf/f11-5.pdf\n\
     \     * returns H := P^(-1) A P, where H is hessenberg matrix\n     */\n    template\
     \ <typename T>\n    SquareMatrix<T> hessenberg_reduction(SquareMatrix<T> A) {\n\
     \        const int n = A.row_size();\n        for (int r = 0; r < n - 2; ++r)\
@@ -149,8 +149,8 @@ data:
     \ != 0) {\n                for (int k = r; k < n; ++k) A[r2][k] -= coef * A[r\
     \ + 1][k];\n                for (int k = 0; k < n; ++k) A[k][r + 1] += coef *\
     \ A[k][r2];\n            }\n        }\n        return A;\n    }\n} // namespace\
-    \ suisen\n\n\n\n#line 5 \"library/math/characteristic_polynomial.hpp\"\n\nnamespace\
-    \ suisen {\n    /**\n     * Reference: https://ipsen.math.ncsu.edu/ps/charpoly3.pdf\n\
+    \ suisen\n\n\n\n#line 5 \"library/linear_algebra/characteristic_polynomial.hpp\"\
+    \n\nnamespace suisen {\n    /**\n     * Reference: https://ipsen.math.ncsu.edu/ps/charpoly3.pdf\n\
     \     * returns p(\u03BB) = det(\u03BBE - A)\n     */\n    template <typename\
     \ T>\n    std::vector<T> characteristic_polynomial(const SquareMatrix<T> &A) {\n\
     \        const int n = A.row_size();\n        if (n == 0) return { T{1} };\n \
@@ -171,14 +171,14 @@ data:
     \ k = 0; k < j + 1; ++k) p[i + 1][k] -= coef * p[j][k];\n            }\n     \
     \   }\n        return p[n];\n    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_CHARACTERISTIC_POLYNOMIAL\n#define SUISEN_CHARACTERISTIC_POLYNOMIAL\n\
-    \n#include \"library/math/hessenberg_reduction.hpp\"\n\nnamespace suisen {\n \
-    \   /**\n     * Reference: https://ipsen.math.ncsu.edu/ps/charpoly3.pdf\n    \
-    \ * returns p(\u03BB) = det(\u03BBE - A)\n     */\n    template <typename T>\n\
-    \    std::vector<T> characteristic_polynomial(const SquareMatrix<T> &A) {\n  \
-    \      const int n = A.row_size();\n        if (n == 0) return { T{1} };\n   \
-    \     auto H = hessenberg_reduction(A);\n        /**\n         *     +-      \
-    \        -+\n         *     | a0  *  *  *  * |\n         *     | b1 a1  *  * \
-    \ * |\n         * H = |  0 b2 a2  *  * |\n         *     |  0  0 b3 a3  * |\n\
+    \n#include \"library/linear_algebra/hessenberg_reduction.hpp\"\n\nnamespace suisen\
+    \ {\n    /**\n     * Reference: https://ipsen.math.ncsu.edu/ps/charpoly3.pdf\n\
+    \     * returns p(\u03BB) = det(\u03BBE - A)\n     */\n    template <typename\
+    \ T>\n    std::vector<T> characteristic_polynomial(const SquareMatrix<T> &A) {\n\
+    \        const int n = A.row_size();\n        if (n == 0) return { T{1} };\n \
+    \       auto H = hessenberg_reduction(A);\n        /**\n         *     +-    \
+    \          -+\n         *     | a0  *  *  *  * |\n         *     | b1 a1  *  *\
+    \  * |\n         * H = |  0 b2 a2  *  * |\n         *     |  0  0 b3 a3  * |\n\
     \         *     |  0  0  0 b4 a4 |\n         *     +-              -+\n      \
     \   * p_i(\u03BB) := det(\u03BB*E_i - H[:i][:i])\n         * p_0(\u03BB) = 1,\n\
     \         * p_1(\u03BB) = \u03BB-a_0,\n         * p_i(\u03BB) = (\u03BB-a_{i-1})\
@@ -193,16 +193,16 @@ data:
     \ k = 0; k < j + 1; ++k) p[i + 1][k] -= coef * p[j][k];\n            }\n     \
     \   }\n        return p[n];\n    }\n} // namespace suisen\n\n\n#endif // SUISEN_CHARACTERISTIC_POLYNOMIAL\n"
   dependsOn:
-  - library/math/hessenberg_reduction.hpp
-  - library/math/matrix.hpp
+  - library/linear_algebra/hessenberg_reduction.hpp
+  - library/linear_algebra/matrix.hpp
   isVerificationFile: false
-  path: library/math/characteristic_polynomial.hpp
+  path: library/linear_algebra/characteristic_polynomial.hpp
   requiredBy: []
-  timestamp: '2022-04-16 16:40:48+09:00'
+  timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
-documentation_of: library/math/characteristic_polynomial.hpp
+  - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
+documentation_of: library/linear_algebra/characteristic_polynomial.hpp
 layout: document
 title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
 ---

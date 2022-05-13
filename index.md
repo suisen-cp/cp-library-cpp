@@ -351,11 +351,31 @@ data:
     - icon: ':warning:'
       path: library/integral_geom/convex_hull.hpp
       title: "Convex Hull (\u6574\u6570\u5EA7\u6A19)"
-  - name: library/math
+  - name: library/linear_algebra
     pages:
     - icon: ':warning:'
-      path: library/math/array_matrix.hpp
+      path: library/linear_algebra/array_matrix.hpp
       title: Array Matrix
+    - icon: ':heavy_check_mark:'
+      path: library/linear_algebra/characteristic_polynomial.hpp
+      title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
+    - icon: ':x:'
+      path: library/linear_algebra/circulant_matrix.hpp
+      title: "Circulant Matrix (\u5DE1\u56DE\u884C\u5217)"
+    - icon: ':heavy_check_mark:'
+      path: library/linear_algebra/gaussian_elimination.hpp
+      title: Gaussian Elimination
+    - icon: ':heavy_check_mark:'
+      path: library/linear_algebra/hessenberg_reduction.hpp
+      title: Hessenberg Reduction
+    - icon: ':heavy_check_mark:'
+      path: library/linear_algebra/matrix.hpp
+      title: Matrix
+    - icon: ':warning:'
+      path: library/linear_algebra/xor_base.hpp
+      title: "XOR \u57FA\u5E95"
+  - name: library/math
+    pages:
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
@@ -363,57 +383,42 @@ data:
       path: library/math/bostan_mori.hpp
       title: Bostan Mori
     - icon: ':heavy_check_mark:'
-      path: library/math/characteristic_polynomial.hpp
-      title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
-    - icon: ':x:'
-      path: library/math/circulant_matrix.hpp
-      title: "Circulant Matrix (\u5DE1\u56DE\u884C\u5217)"
-    - icon: ':heavy_check_mark:'
       path: library/math/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
     - icon: ':question:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
     - icon: ':heavy_check_mark:'
-      path: library/math/gaussian_elimination.hpp
-      title: Gaussian Elimination
-    - icon: ':heavy_check_mark:'
-      path: library/math/hessenberg_reduction.hpp
-      title: Hessenberg Reduction
-    - icon: ':question:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/lagrange_interpolation.hpp
       title: library/math/lagrange_interpolation.hpp
     - icon: ':heavy_check_mark:'
-      path: library/math/matrix.hpp
-      title: Matrix
-    - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/multi_point_eval.hpp
       title: Multi Point Evaluation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/polynomial_interpolation.hpp
       title: library/math/polynomial_interpolation.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/polynomial_taylor_shift.hpp
       title: Polynomial Taylor Shift
     - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/product_of_differences.hpp
       title: library/math/product_of_differences.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
       title: Set Power Series
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/subset_sum.hpp
       title: Subset Sum
     - icon: ':heavy_check_mark:'
@@ -422,9 +427,6 @@ data:
     - icon: ':warning:'
       path: library/math/vec_sparse_fps.hpp
       title: Vec Sparse Fps
-    - icon: ':warning:'
-      path: library/math/xor_base.hpp
-      title: "XOR \u57FA\u5E95"
   - name: library/number
     pages:
     - icon: ':warning:'
@@ -1080,6 +1082,32 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
       title: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
+  - name: test/src/linear_algebra/characteristic_polynomial
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
+      title: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
+  - name: test/src/linear_algebra/circulant_matrix
+    pages:
+    - icon: ':x:'
+      path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
+      title: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
+  - name: test/src/linear_algebra/gaussian_elimination
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
+      title: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
+  - name: test/src/linear_algebra/matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/linear_algebra/matrix/determinant_of_matrix.test.cpp
+      title: test/src/linear_algebra/matrix/determinant_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/linear_algebra/matrix/inverse_matrix.test.cpp
+      title: test/src/linear_algebra/matrix/inverse_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/linear_algebra/matrix/matrix_product.test.cpp
+      title: test/src/linear_algebra/matrix/matrix_product.test.cpp
   - name: test/src/math/bigint
     pages:
     - icon: ':heavy_check_mark:'
@@ -1096,16 +1124,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/src/math/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - name: test/src/math/characteristic_polynomial
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
-      title: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
-  - name: test/src/math/circulant_matrix
-    pages:
-    - icon: ':x:'
-      path: test/src/math/circulant_matrix/arc139_e.test.cpp
-      title: test/src/math/circulant_matrix/arc139_e.test.cpp
   - name: test/src/math/common_sequences
     pages:
     - icon: ':heavy_check_mark:'
@@ -1140,48 +1158,32 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/fps/pow_of_fps.test.cpp
       title: test/src/math/fps/pow_of_fps.test.cpp
-  - name: test/src/math/gaussian_elimination
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
-      title: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
   - name: test/src/math/lagrange_interpolation
     pages:
     - icon: ':heavy_check_mark:'
       path: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
       title: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/lagrange_interpolation/dummy.test.cpp
       title: test/src/math/lagrange_interpolation/dummy.test.cpp
-  - name: test/src/math/matrix
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/matrix/determinant_of_matrix.test.cpp
-      title: test/src/math/matrix/determinant_of_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/matrix/inverse_matrix.test.cpp
-      title: test/src/math/matrix/inverse_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/math/matrix/matrix_product.test.cpp
-      title: test/src/math/matrix/matrix_product.test.cpp
   - name: test/src/math/multi_point_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/math/multi_point_eval/multi_point_evaluation.test.cpp
   - name: test/src/math/polynomial_interpolation
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
       title: test/src/math/polynomial_interpolation/polynomial_interpolation.test.cpp
   - name: test/src/math/polynomial_taylor_shift
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
       title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - name: test/src/math/product_of_differences
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/product_of_differences/yuki1938.test.cpp
       title: test/src/math/product_of_differences/yuki1938.test.cpp
   - name: test/src/math/sps
@@ -1197,7 +1199,7 @@ data:
       title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - name: test/src/math/subset_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/subset_sum/p_subset_sum.test.cpp
       title: test/src/math/subset_sum/p_subset_sum.test.cpp
   - name: test/src/math/util

@@ -2,33 +2,33 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/math/matrix.hpp
+    path: library/linear_algebra/matrix.hpp
     title: Matrix
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/math/characteristic_polynomial.hpp
+    path: library/linear_algebra/characteristic_polynomial.hpp
     title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
-    title: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
+    path: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
+    title: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - http://www.phys.uri.edu/nigh/NumRec/bookfpdf/f11-5.pdf
-  bundledCode: "#line 1 \"library/math/hessenberg_reduction.hpp\"\n\n\n\n#line 1 \"\
-    library/math/matrix.hpp\"\n\n\n\n#include <cassert>\n#include <optional>\n#include\
-    \ <vector>\n\nnamespace suisen {\n    template <typename T>\n    struct Matrix\
-    \ {\n        std::vector<std::vector<T>> data;\n\n        Matrix() {}\n      \
-    \  Matrix(int n, int m, T fill_value = T(0)) : data(n, std::vector<T>(m, fill_value))\
-    \ {}\n        Matrix(const std::vector<std::vector<T>>& data) noexcept : data(data)\
-    \ {}\n        Matrix(std::vector<std::vector<T>>&& data) noexcept : data(std::move(data))\
-    \ {}\n        Matrix(const Matrix<T>& other) noexcept : data(other.data) {}\n\
-    \        Matrix(Matrix<T>&& other) noexcept : data(std::move(other.data)) {}\n\
-    \n        Matrix<T>& operator=(const Matrix<T>& other) noexcept {\n          \
-    \  data = other.data;\n            return *this;\n        }\n        Matrix<T>&\
+  bundledCode: "#line 1 \"library/linear_algebra/hessenberg_reduction.hpp\"\n\n\n\n\
+    #line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <optional>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
+    \ T>\n    struct Matrix {\n        std::vector<std::vector<T>> data;\n\n     \
+    \   Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0)) : data(n, std::vector<T>(m,\
+    \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& data) noexcept\
+    \ : data(data) {}\n        Matrix(std::vector<std::vector<T>>&& data) noexcept\
+    \ : data(std::move(data)) {}\n        Matrix(const Matrix<T>& other) noexcept\
+    \ : data(other.data) {}\n        Matrix(Matrix<T>&& other) noexcept : data(std::move(other.data))\
+    \ {}\n\n        Matrix<T>& operator=(const Matrix<T>& other) noexcept {\n    \
+    \        data = other.data;\n            return *this;\n        }\n        Matrix<T>&\
     \ operator=(Matrix<T>&& other) noexcept {\n            data = std::move(other.data);\n\
     \            return *this;\n        }\n\n        const std::vector<T>& operator[](int\
     \ i) const { return data[i]; }\n        std::vector<T>& operator[](int i) { return\
@@ -133,8 +133,8 @@ data:
     \            }\n            return res;\n        }\n    private:\n        SquareMatrix(int\
     \ n, bool mult_identity) : Matrix<T>::Matrix(n, n) {\n            if (mult_identity)\
     \ for (int i = 0; i < n; ++i) this->data[i][i] = 1;\n        }\n    };\n} // namespace\
-    \ suisen\n\n\n#line 5 \"library/math/hessenberg_reduction.hpp\"\n\nnamespace suisen\
-    \ {\n    /**\n     * Reference: http://www.phys.uri.edu/nigh/NumRec/bookfpdf/f11-5.pdf\n\
+    \ suisen\n\n\n#line 5 \"library/linear_algebra/hessenberg_reduction.hpp\"\n\n\
+    namespace suisen {\n    /**\n     * Reference: http://www.phys.uri.edu/nigh/NumRec/bookfpdf/f11-5.pdf\n\
     \     * returns H := P^(-1) A P, where H is hessenberg matrix\n     */\n    template\
     \ <typename T>\n    SquareMatrix<T> hessenberg_reduction(SquareMatrix<T> A) {\n\
     \        const int n = A.row_size();\n        for (int r = 0; r < n - 2; ++r)\
@@ -150,33 +150,33 @@ data:
     \ A[k][r2];\n            }\n        }\n        return A;\n    }\n} // namespace\
     \ suisen\n\n\n\n"
   code: "#ifndef SUISEN_HESSENBERG_REDUCTION\n#define SUISEN_HESSENBERG_REDUCTION\n\
-    \n#include \"library/math/matrix.hpp\"\n\nnamespace suisen {\n    /**\n     *\
-    \ Reference: http://www.phys.uri.edu/nigh/NumRec/bookfpdf/f11-5.pdf\n     * returns\
-    \ H := P^(-1) A P, where H is hessenberg matrix\n     */\n    template <typename\
-    \ T>\n    SquareMatrix<T> hessenberg_reduction(SquareMatrix<T> A) {\n        const\
-    \ int n = A.row_size();\n        for (int r = 0; r < n - 2; ++r) {\n         \
-    \   int pivot = -1;\n            for (int r2 = r + 1; r2 < n; ++r2) if (A[r2][r]\
-    \ != 0) {\n                pivot = r2;\n                break;\n            }\n\
-    \            if (pivot < 0) continue;\n            if (pivot != r + 1) {\n   \
-    \             for (int k = 0; k < n; ++k) std::swap(A[r + 1][k], A[pivot][k]);\n\
-    \                for (int k = 0; k < n; ++k) std::swap(A[k][r + 1], A[k][pivot]);\n\
-    \            }\n            const T den = T{1} / A[r + 1][r];\n            for\
-    \ (int r2 = r + 2; r2 < n; ++r2) if (T coef = A[r2][r] * den; coef != 0) {\n \
-    \               for (int k = r; k < n; ++k) A[r2][k] -= coef * A[r + 1][k];\n\
-    \                for (int k = 0; k < n; ++k) A[k][r + 1] += coef * A[k][r2];\n\
-    \            }\n        }\n        return A;\n    }\n} // namespace suisen\n\n\
-    \n#endif // SUISEN_HESSENBERG_REDUCTION\n"
+    \n#include \"library/linear_algebra/matrix.hpp\"\n\nnamespace suisen {\n    /**\n\
+    \     * Reference: http://www.phys.uri.edu/nigh/NumRec/bookfpdf/f11-5.pdf\n  \
+    \   * returns H := P^(-1) A P, where H is hessenberg matrix\n     */\n    template\
+    \ <typename T>\n    SquareMatrix<T> hessenberg_reduction(SquareMatrix<T> A) {\n\
+    \        const int n = A.row_size();\n        for (int r = 0; r < n - 2; ++r)\
+    \ {\n            int pivot = -1;\n            for (int r2 = r + 1; r2 < n; ++r2)\
+    \ if (A[r2][r] != 0) {\n                pivot = r2;\n                break;\n\
+    \            }\n            if (pivot < 0) continue;\n            if (pivot !=\
+    \ r + 1) {\n                for (int k = 0; k < n; ++k) std::swap(A[r + 1][k],\
+    \ A[pivot][k]);\n                for (int k = 0; k < n; ++k) std::swap(A[k][r\
+    \ + 1], A[k][pivot]);\n            }\n            const T den = T{1} / A[r + 1][r];\n\
+    \            for (int r2 = r + 2; r2 < n; ++r2) if (T coef = A[r2][r] * den; coef\
+    \ != 0) {\n                for (int k = r; k < n; ++k) A[r2][k] -= coef * A[r\
+    \ + 1][k];\n                for (int k = 0; k < n; ++k) A[k][r + 1] += coef *\
+    \ A[k][r2];\n            }\n        }\n        return A;\n    }\n} // namespace\
+    \ suisen\n\n\n#endif // SUISEN_HESSENBERG_REDUCTION\n"
   dependsOn:
-  - library/math/matrix.hpp
+  - library/linear_algebra/matrix.hpp
   isVerificationFile: false
-  path: library/math/hessenberg_reduction.hpp
+  path: library/linear_algebra/hessenberg_reduction.hpp
   requiredBy:
-  - library/math/characteristic_polynomial.hpp
-  timestamp: '2022-04-16 16:20:36+09:00'
+  - library/linear_algebra/characteristic_polynomial.hpp
+  timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
-documentation_of: library/math/hessenberg_reduction.hpp
+  - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
+documentation_of: library/linear_algebra/hessenberg_reduction.hpp
 layout: document
 title: Hessenberg Reduction
 ---

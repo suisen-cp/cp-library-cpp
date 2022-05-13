@@ -3,31 +3,31 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/math/characteristic_polynomial.hpp
+    path: library/linear_algebra/characteristic_polynomial.hpp
     title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
   - icon: ':heavy_check_mark:'
-    path: library/math/hessenberg_reduction.hpp
+    path: library/linear_algebra/hessenberg_reduction.hpp
     title: Hessenberg Reduction
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
-    title: test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
+    path: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
+    title: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/math/matrix/determinant_of_matrix.test.cpp
-    title: test/src/math/matrix/determinant_of_matrix.test.cpp
+    path: test/src/linear_algebra/matrix/determinant_of_matrix.test.cpp
+    title: test/src/linear_algebra/matrix/determinant_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/math/matrix/inverse_matrix.test.cpp
-    title: test/src/math/matrix/inverse_matrix.test.cpp
+    path: test/src/linear_algebra/matrix/inverse_matrix.test.cpp
+    title: test/src/linear_algebra/matrix/inverse_matrix.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/math/matrix/matrix_product.test.cpp
-    title: test/src/math/matrix/matrix_product.test.cpp
+    path: test/src/linear_algebra/matrix/matrix_product.test.cpp
+    title: test/src/linear_algebra/matrix/matrix_product.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/math/matrix.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <optional>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
+  bundledCode: "#line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#include <cassert>\n\
+    #include <optional>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
     \ T>\n    struct Matrix {\n        std::vector<std::vector<T>> data;\n\n     \
     \   Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0)) : data(n, std::vector<T>(m,\
     \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& data) noexcept\
@@ -258,18 +258,18 @@ data:
     \ suisen\n\n#endif // SUISEN_MATRIX\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/math/matrix.hpp
+  path: library/linear_algebra/matrix.hpp
   requiredBy:
-  - library/math/characteristic_polynomial.hpp
-  - library/math/hessenberg_reduction.hpp
-  timestamp: '2022-01-31 13:34:44+09:00'
+  - library/linear_algebra/characteristic_polynomial.hpp
+  - library/linear_algebra/hessenberg_reduction.hpp
+  timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/matrix/inverse_matrix.test.cpp
-  - test/src/math/matrix/determinant_of_matrix.test.cpp
-  - test/src/math/matrix/matrix_product.test.cpp
-  - test/src/math/characteristic_polynomial/characteristic_polynomial.test.cpp
-documentation_of: library/math/matrix.hpp
+  - test/src/linear_algebra/matrix/inverse_matrix.test.cpp
+  - test/src/linear_algebra/matrix/determinant_of_matrix.test.cpp
+  - test/src/linear_algebra/matrix/matrix_product.test.cpp
+  - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
+documentation_of: library/linear_algebra/matrix.hpp
 layout: document
 title: Matrix
 ---

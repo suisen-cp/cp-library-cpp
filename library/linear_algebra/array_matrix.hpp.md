@@ -11,8 +11,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/math/array_matrix.hpp\"\n\n\n\n#include <array>\n\
-    #include <cassert>\n#include <optional>\n\n#line 1 \"library/util/default_operator.hpp\"\
+  bundledCode: "#line 1 \"library/linear_algebra/array_matrix.hpp\"\n\n\n\n#include\
+    \ <array>\n#include <cassert>\n#include <optional>\n\n#line 1 \"library/util/default_operator.hpp\"\
     \n\n\n\nnamespace suisen {\n    namespace default_operator {\n        template\
     \ <typename T>\n        auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n\
     \        template <typename T>\n        auto one()  -> decltype(T { 1 }) { return\
@@ -38,35 +38,35 @@ data:
     \ }\n        template <typename T>\n        auto neg(T x) -> decltype(-x) { return\
     \ -x; }\n        template <typename T>\n        auto inv(T x) -> decltype(one<T>()\
     \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
-    \n\n#line 9 \"library/math/array_matrix.hpp\"\n\nnamespace suisen {\n    template\
-    \ <\n        typename T,\n        size_t N,\n        size_t M,\n        T(*_add)(T,\
-    \ T) = default_operator_noref::add<T>,\n        T(*_neg)(T) = default_operator_noref::neg<T>,\n\
-    \        T(*_zero)() = default_operator_noref::zero<T>,\n        T(*_mul)(T, T)\
-    \ = default_operator_noref::mul<T>,\n        T(*_inv)(T) = default_operator_noref::inv<T>,\n\
-    \        T(*_one)()  = default_operator_noref::one<T>\n    >\n    struct ArrayMatrix\
-    \ : public std::array<std::array<T, M>, N> {\n#define MatrixType(N, M) ArrayMatrix<T,\
-    \ N, M, _add, _neg, _zero, _mul, _inv, _one>\n        using base_type = std::array<std::array<T,\
-    \ M>, N>;\n        using container_type = base_type;\n        using row_type =\
-    \ std::array<T, M>;\n\n        using base_type::base_type;\n        constexpr\
-    \ ArrayMatrix() : ArrayMatrix(_zero()) {}\n        constexpr ArrayMatrix(T fill_value)\
-    \ {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j)\
-    \ (*this)[i][j] = fill_value;\n        }\n        constexpr ArrayMatrix(const\
-    \ container_type &c) {\n            for (size_t i = 0; i < N; ++i) for (size_t\
-    \ j = 0; j < M; ++j) (*this)[i][j] = c[i][j];\n        }\n\n        constexpr\
-    \ std::pair<int, int> shape() const {\n            return { N, M };\n        }\n\
-    \        constexpr int row_size() const {\n            return N;\n        }\n\
-    \        constexpr int col_size() const {\n            return M;\n        }\n\n\
-    \        constexpr MatrixType(N, M) operator+() {\n            return *this;\n\
-    \        }\n        constexpr MatrixType(N, M) operator-() {\n            ArrayMatrix\
-    \ res;\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j)\
-    \ res[i][j] = _add(res[i][j], _neg((*this)[i][j]));\n            return res;\n\
-    \        }\n        constexpr MatrixType(N, M)& operator+=(const MatrixType(N,\
-    \ M)& other) {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0;\
-    \ j < M; ++j) (*this)[i][j] = _add((*this)[i][j], other[i][j]);\n            return\
-    \ *this;\n        }\n        constexpr MatrixType(N, M)& operator-=(const MatrixType(N,\
-    \ M)& other) {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0;\
-    \ j < M; ++j) (*this)[i][j] = _add((*this)[i][j], _neg(other[i][j]));\n      \
-    \      return *this;\n        }\n        template <size_t K>\n        constexpr\
+    \n\n#line 9 \"library/linear_algebra/array_matrix.hpp\"\n\nnamespace suisen {\n\
+    \    template <\n        typename T,\n        size_t N,\n        size_t M,\n \
+    \       T(*_add)(T, T) = default_operator_noref::add<T>,\n        T(*_neg)(T)\
+    \ = default_operator_noref::neg<T>,\n        T(*_zero)() = default_operator_noref::zero<T>,\n\
+    \        T(*_mul)(T, T) = default_operator_noref::mul<T>,\n        T(*_inv)(T)\
+    \ = default_operator_noref::inv<T>,\n        T(*_one)()  = default_operator_noref::one<T>\n\
+    \    >\n    struct ArrayMatrix : public std::array<std::array<T, M>, N> {\n#define\
+    \ MatrixType(N, M) ArrayMatrix<T, N, M, _add, _neg, _zero, _mul, _inv, _one>\n\
+    \        using base_type = std::array<std::array<T, M>, N>;\n        using container_type\
+    \ = base_type;\n        using row_type = std::array<T, M>;\n\n        using base_type::base_type;\n\
+    \        constexpr ArrayMatrix() : ArrayMatrix(_zero()) {}\n        constexpr\
+    \ ArrayMatrix(T fill_value) {\n            for (size_t i = 0; i < N; ++i) for\
+    \ (size_t j = 0; j < M; ++j) (*this)[i][j] = fill_value;\n        }\n        constexpr\
+    \ ArrayMatrix(const container_type &c) {\n            for (size_t i = 0; i < N;\
+    \ ++i) for (size_t j = 0; j < M; ++j) (*this)[i][j] = c[i][j];\n        }\n\n\
+    \        constexpr std::pair<int, int> shape() const {\n            return { N,\
+    \ M };\n        }\n        constexpr int row_size() const {\n            return\
+    \ N;\n        }\n        constexpr int col_size() const {\n            return\
+    \ M;\n        }\n\n        constexpr MatrixType(N, M) operator+() {\n        \
+    \    return *this;\n        }\n        constexpr MatrixType(N, M) operator-()\
+    \ {\n            ArrayMatrix res;\n            for (size_t i = 0; i < N; ++i)\
+    \ for (size_t j = 0; j < M; ++j) res[i][j] = _add(res[i][j], _neg((*this)[i][j]));\n\
+    \            return res;\n        }\n        constexpr MatrixType(N, M)& operator+=(const\
+    \ MatrixType(N, M)& other) {\n            for (size_t i = 0; i < N; ++i) for (size_t\
+    \ j = 0; j < M; ++j) (*this)[i][j] = _add((*this)[i][j], other[i][j]);\n     \
+    \       return *this;\n        }\n        constexpr MatrixType(N, M)& operator-=(const\
+    \ MatrixType(N, M)& other) {\n            for (size_t i = 0; i < N; ++i) for (size_t\
+    \ j = 0; j < M; ++j) (*this)[i][j] = _add((*this)[i][j], _neg(other[i][j]));\n\
+    \            return *this;\n        }\n        template <size_t K>\n        constexpr\
     \ MatrixType(N, M)& operator*=(const MatrixType(M, K)& other) {\n            return\
     \ *this = *this * other;\n        }\n        constexpr MatrixType(N, M)& operator*=(const\
     \ T& val) {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j <\
@@ -317,12 +317,12 @@ data:
   dependsOn:
   - library/util/default_operator.hpp
   isVerificationFile: false
-  path: library/math/array_matrix.hpp
+  path: library/linear_algebra/array_matrix.hpp
   requiredBy: []
-  timestamp: '2022-01-31 13:34:44+09:00'
+  timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: library/math/array_matrix.hpp
+documentation_of: library/linear_algebra/array_matrix.hpp
 layout: document
 title: Array Matrix
 ---

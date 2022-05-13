@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
   - icon: ':heavy_check_mark:'
@@ -13,8 +13,8 @@ data:
     title: Util
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/src/math/circulant_matrix/arc139_e.test.cpp
-    title: test/src/math/circulant_matrix/arc139_e.test.cpp
+    path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
+    title: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/bernoulli_number.test.cpp
     title: test/src/math/common_sequences/bernoulli_number.test.cpp
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/common_sequences/stirling_number2.test.cpp
     title: test/src/math/common_sequences/stirling_number2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - icon: ':heavy_check_mark:'
@@ -95,7 +95,7 @@ data:
   timestamp: '2022-05-07 15:41:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/math/circulant_matrix/arc139_e.test.cpp
+  - test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
   - test/src/math/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/math/util/abc240_g.test.cpp
   - test/src/math/common_sequences/montmort_number_mod.test.cpp

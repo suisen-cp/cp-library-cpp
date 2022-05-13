@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
-    path: library/math/circulant_matrix.hpp
+    path: library/linear_algebra/circulant_matrix.hpp
     title: "Circulant Matrix (\u5DE1\u56DE\u884C\u5217)"
   - icon: ':question:'
     path: library/math/factorial.hpp
@@ -15,35 +15,35 @@ data:
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     links: []
-  bundledCode: "#line 1 \"test/src/math/circulant_matrix/arc139_e.test.cpp\"\n#include\
-    \ <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
-    \nusing mint = atcoder::modint998244353;\n\n#line 1 \"library/math/factorial.hpp\"\
-    \n\n\n\n#include <cassert>\n#line 6 \"library/math/factorial.hpp\"\n\nnamespace\
-    \ suisen {\n    template <typename T, typename U = T>\n    struct factorial {\n\
-    \        factorial() {}\n        factorial(int n) { ensure(n); }\n\n        static\
-    \ void ensure(const int n) {\n            int sz = _fac.size();\n            if\
-    \ (n + 1 <= sz) return;\n            int new_size = std::max(n + 1, sz * 2);\n\
-    \            _fac.resize(new_size), _fac_inv.resize(new_size);\n            for\
-    \ (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size\
-    \ - 1] = U(1) / _fac[new_size - 1];\n            for (int i = new_size - 1; i\
-    \ > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n        }\n\n        const T&\
-    \ fac(const int i) {\n            ensure(i);\n            return _fac[i];\n  \
-    \      }\n        const T& operator()(int i) {\n            return fac(i);\n \
-    \       }\n        const U& fac_inv(const int i) {\n            ensure(i);\n \
-    \           return _fac_inv[i];\n        }\n        U binom(const int n, const\
-    \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
-    \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
-    \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
-    \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
-    \ - r];\n        }\n    private:\n        static std::vector<T> _fac;\n      \
-    \  static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
-    \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
-    \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
-    \ suisen\n\n\n#line 1 \"library/math/circulant_matrix.hpp\"\n\n\n\n#line 7 \"\
-    library/math/circulant_matrix.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ T>\n    struct CirculantMatrix {\n        using value_type = T;\n        using\
-    \ convolution_t = std::vector<value_type>(*)(const std::vector<value_type>&, const\
-    \ std::vector<value_type>&);\n\n        // empty matrix\n        CirculantMatrix()\
+  bundledCode: "#line 1 \"test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp\"\
+    \n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
+    \ <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\n#line 1 \"\
+    library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n#line 6 \"library/math/factorial.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T, typename U = T>\n    struct\
+    \ factorial {\n        factorial() {}\n        factorial(int n) { ensure(n); }\n\
+    \n        static void ensure(const int n) {\n            int sz = _fac.size();\n\
+    \            if (n + 1 <= sz) return;\n            int new_size = std::max(n +\
+    \ 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
+    \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
+    \            _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n           \
+    \ for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n\
+    \        }\n\n        const T& fac(const int i) {\n            ensure(i);\n  \
+    \          return _fac[i];\n        }\n        const T& operator()(int i) {\n\
+    \            return fac(i);\n        }\n        const U& fac_inv(const int i)\
+    \ {\n            ensure(i);\n            return _fac_inv[i];\n        }\n    \
+    \    U binom(const int n, const int r) {\n            if (n < 0 or r < 0 or n\
+    \ < r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[r]\
+    \ * _fac_inv[n - r];\n        }\n        U perm(const int n, const int r) {\n\
+    \            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
+    \            return _fac[n] * _fac_inv[n - r];\n        }\n    private:\n    \
+    \    static std::vector<T> _fac;\n        static std::vector<U> _fac_inv;\n  \
+    \  };\n    template <typename T, typename U>\n    std::vector<T> factorial<T,\
+    \ U>::_fac{ 1 };\n    template <typename T, typename U>\n    std::vector<U> factorial<T,\
+    \ U>::_fac_inv{ 1 };\n} // namespace suisen\n\n\n#line 1 \"library/linear_algebra/circulant_matrix.hpp\"\
+    \n\n\n\n#line 7 \"library/linear_algebra/circulant_matrix.hpp\"\n\nnamespace suisen\
+    \ {\n    template <typename T>\n    struct CirculantMatrix {\n        using value_type\
+    \ = T;\n        using convolution_t = std::vector<value_type>(*)(const std::vector<value_type>&,\
+    \ const std::vector<value_type>&);\n\n        // empty matrix\n        CirculantMatrix()\
     \ : CirculantMatrix(std::vector<value_type>{}) {}\n\n        /**\n         * +-\
     \                        -+\n         * | a[0] a[4] a[3] a[2] a[1] |\n       \
     \  * | a[1] a[0] a[4] a[3] a[2] |\n         * | a[2] a[1] a[0] a[4] a[3] |\n \
@@ -106,7 +106,7 @@ data:
     \ auto&) {\n                std::cerr << \"convolution function is not available.\"\
     \ << std::endl;\n                assert(false);\n                return std::vector<value_type>{};\n\
     \            }\n        };\n\n        std::vector<value_type> _dat;\n    };\n\
-    } // namespace suisen\n\n\n#line 11 \"test/src/math/circulant_matrix/arc139_e.test.cpp\"\
+    } // namespace suisen\n\n\n#line 11 \"test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp\"\
     \n\nusing suisen::factorial;\nusing suisen::CirculantMatrix;\n\nvoid solve(long\
     \ long n, long long m) {\n    if (n % 2 == 0 and m % 2 == 0) {\n        std::cout\
     \ << 2 << std::endl;\n    } else if (n % 2 == 0) {\n        factorial<mint> fac(n\
@@ -121,7 +121,7 @@ data:
     \    std::cin >> n >> m;\n    solve(n, m);\n    return 0;\n}\n"
   code: "#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
     \ <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\n#include\
-    \ \"library/math/factorial.hpp\"\n#include \"library/math/circulant_matrix.hpp\"\
+    \ \"library/math/factorial.hpp\"\n#include \"library/linear_algebra/circulant_matrix.hpp\"\
     \n\nusing suisen::factorial;\nusing suisen::CirculantMatrix;\n\nvoid solve(long\
     \ long n, long long m) {\n    if (n % 2 == 0 and m % 2 == 0) {\n        std::cout\
     \ << 2 << std::endl;\n    } else if (n % 2 == 0) {\n        factorial<mint> fac(n\
@@ -136,17 +136,17 @@ data:
     \    std::cin >> n >> m;\n    solve(n, m);\n    return 0;\n}"
   dependsOn:
   - library/math/factorial.hpp
-  - library/math/circulant_matrix.hpp
+  - library/linear_algebra/circulant_matrix.hpp
   isVerificationFile: true
-  path: test/src/math/circulant_matrix/arc139_e.test.cpp
+  path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
   requiredBy: []
-  timestamp: '2022-05-07 15:41:34+09:00'
+  timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/math/circulant_matrix/arc139_e.test.cpp
+documentation_of: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/math/circulant_matrix/arc139_e.test.cpp
-- /verify/test/src/math/circulant_matrix/arc139_e.test.cpp.html
-title: test/src/math/circulant_matrix/arc139_e.test.cpp
+- /verify/test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
+- /verify/test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp.html
+title: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
 ---

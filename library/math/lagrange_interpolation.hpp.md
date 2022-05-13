@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/product_of_differences.hpp
     title: library/math/product_of_differences.hpp
   _extendedRequiredBy: []
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/lagrange_interpolation/dummy.test.cpp
     title: test/src/math/lagrange_interpolation/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/lagrange_interpolation.hpp\"\n\n\n\n#line 1\
@@ -258,7 +258,7 @@ data:
   path: library/math/lagrange_interpolation.hpp
   requiredBy: []
   timestamp: '2022-05-14 02:35:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/math/lagrange_interpolation/dummy.test.cpp

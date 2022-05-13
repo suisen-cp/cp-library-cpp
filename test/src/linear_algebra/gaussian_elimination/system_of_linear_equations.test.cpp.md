@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/math/gaussian_elimination.hpp
+    path: library/linear_algebra/gaussian_elimination.hpp
     title: Gaussian Elimination
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
@@ -14,9 +14,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
     links:
     - https://judge.yosupo.jp/problem/system_of_linear_equations
-  bundledCode: "#line 1 \"test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
-    \n\n#include <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/math/gaussian_elimination.hpp\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/linear_algebra/gaussian_elimination.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <cmath>\n#include <optional>\n#include\
     \ <vector>\n\nnamespace suisen {\n    namespace internal::gauss_jordan {\n   \
     \     template <typename T, typename EqZero, std::enable_if_t<std::negation_v<std::is_floating_point<T>>,\
@@ -95,7 +95,7 @@ data:
     \ GaussianEliminationArithmetic = GaussianElimination<\n        T,\n        internal::gauss_jordan::add_fp_arithmetic,\
     \ internal::gauss_jordan::add_inv_fp_arithmetic,\n        internal::gauss_jordan::mul_fp_arithmetic,\
     \ internal::gauss_jordan::mul_inv_fp_arithmetic>;\n} // namespace suisen\n\n\n\
-    #line 7 \"test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp\"\
+    #line 7 \"test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, m;\n    std::cin >> n >> m;\n    std::vector\
     \ A(n, std::vector(m, mint(0)));\n    for (int i = 0; i < n; ++i) {\n        for\
@@ -112,7 +112,7 @@ data:
     \ == m - 1];\n            }\n        }\n    } else {\n        std::cout << -1\
     \ << '\\n';\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
-    \n\n#include <iostream>\n#include <atcoder/modint>\n\n#include \"library/math/gaussian_elimination.hpp\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n\n#include \"library/linear_algebra/gaussian_elimination.hpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, m;\n    std::cin >> n >> m;\n    std::vector\
     \ A(n, std::vector(m, mint(0)));\n    for (int i = 0; i < n; ++i) {\n        for\
@@ -129,17 +129,17 @@ data:
     \ == m - 1];\n            }\n        }\n    } else {\n        std::cout << -1\
     \ << '\\n';\n    }\n    return 0;\n}"
   dependsOn:
-  - library/math/gaussian_elimination.hpp
+  - library/linear_algebra/gaussian_elimination.hpp
   isVerificationFile: true
-  path: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
+  path: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2022-01-18 01:22:47+09:00'
+  timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
+documentation_of: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
-- /verify/test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp.html
-title: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
+- /verify/test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
+- /verify/test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp.html
+title: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
 ---

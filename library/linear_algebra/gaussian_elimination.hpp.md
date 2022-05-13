@@ -4,17 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
-    title: test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
+    path: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
+    title: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/math/gaussian_elimination.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <cmath>\n#include <optional>\n#include <vector>\n\nnamespace\
-    \ suisen {\n    namespace internal::gauss_jordan {\n        template <typename\
-    \ T, typename EqZero, std::enable_if_t<std::negation_v<std::is_floating_point<T>>,\
+  bundledCode: "#line 1 \"library/linear_algebra/gaussian_elimination.hpp\"\n\n\n\n\
+    #include <algorithm>\n#include <cmath>\n#include <optional>\n#include <vector>\n\
+    \nnamespace suisen {\n    namespace internal::gauss_jordan {\n        template\
+    \ <typename T, typename EqZero, std::enable_if_t<std::negation_v<std::is_floating_point<T>>,\
     \ std::nullptr_t> = nullptr>\n        std::pair<size_t, size_t> pivoting(const\
     \ std::vector<std::vector<T>>& Ab, const size_t i, EqZero equals_zero) {\n   \
     \         const size_t n = Ab.size(), m = Ab[0].size() - 1;\n            size_t\
@@ -172,13 +172,13 @@ data:
     \ // SUISEN_GAUSSIAN_ELIMINATION"
   dependsOn: []
   isVerificationFile: false
-  path: library/math/gaussian_elimination.hpp
+  path: library/linear_algebra/gaussian_elimination.hpp
   requiredBy: []
-  timestamp: '2022-01-18 01:22:47+09:00'
+  timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/gaussian_elimination/system_of_linear_equations.test.cpp
-documentation_of: library/math/gaussian_elimination.hpp
+  - test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
+documentation_of: library/linear_algebra/gaussian_elimination.hpp
 layout: document
 title: Gaussian Elimination
 ---

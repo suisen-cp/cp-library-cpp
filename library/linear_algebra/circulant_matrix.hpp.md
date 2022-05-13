@@ -4,18 +4,18 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/src/math/circulant_matrix/arc139_e.test.cpp
-    title: test/src/math/circulant_matrix/arc139_e.test.cpp
+    path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
+    title: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/math/circulant_matrix.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <iostream>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
-    \ T>\n    struct CirculantMatrix {\n        using value_type = T;\n        using\
-    \ convolution_t = std::vector<value_type>(*)(const std::vector<value_type>&, const\
-    \ std::vector<value_type>&);\n\n        // empty matrix\n        CirculantMatrix()\
+  bundledCode: "#line 1 \"library/linear_algebra/circulant_matrix.hpp\"\n\n\n\n#include\
+    \ <cassert>\n#include <iostream>\n#include <vector>\n\nnamespace suisen {\n  \
+    \  template <typename T>\n    struct CirculantMatrix {\n        using value_type\
+    \ = T;\n        using convolution_t = std::vector<value_type>(*)(const std::vector<value_type>&,\
+    \ const std::vector<value_type>&);\n\n        // empty matrix\n        CirculantMatrix()\
     \ : CirculantMatrix(std::vector<value_type>{}) {}\n\n        /**\n         * +-\
     \                        -+\n         * | a[0] a[4] a[3] a[2] a[1] |\n       \
     \  * | a[1] a[0] a[4] a[3] a[2] |\n         * | a[2] a[1] a[0] a[4] a[3] |\n \
@@ -149,13 +149,13 @@ data:
     } // namespace suisen\n\n#endif // SUISEN_CIRCULANT_MATRIX\n"
   dependsOn: []
   isVerificationFile: false
-  path: library/math/circulant_matrix.hpp
+  path: library/linear_algebra/circulant_matrix.hpp
   requiredBy: []
-  timestamp: '2022-04-30 04:34:32+09:00'
+  timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/math/circulant_matrix/arc139_e.test.cpp
-documentation_of: library/math/circulant_matrix.hpp
+  - test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
+documentation_of: library/linear_algebra/circulant_matrix.hpp
 layout: document
 title: "Circulant Matrix (\u5DE1\u56DE\u884C\u5217)"
 ---

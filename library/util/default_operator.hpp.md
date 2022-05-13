@@ -24,7 +24,7 @@ data:
     path: library/convolution/xor_convolution.hpp
     title: Bitwise Xor Convolution
   - icon: ':warning:'
-    path: library/math/array_matrix.hpp
+    path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
   - icon: ':heavy_check_mark:'
     path: library/transform/divisor.hpp
@@ -159,9 +159,9 @@ data:
   - library/transform/multiple.hpp
   - library/transform/walsh_hadamard.hpp
   - library/transform/kronecker_power.hpp
+  - library/linear_algebra/array_matrix.hpp
   - library/util/cumulative_sum_2d.hpp
   - library/util/cumulative_sum.hpp
-  - library/math/array_matrix.hpp
   - library/convolution/and_convolution.hpp
   - library/convolution/convolution.hpp
   - library/convolution/xor_convolution.hpp
