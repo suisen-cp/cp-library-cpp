@@ -1,13 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/convolution/polynomial_eval_multipoint_eval.hpp
+    title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
+      \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
     path: library/math/product_of_differences.hpp
     title: library/math/product_of_differences.hpp
@@ -15,6 +19,9 @@ data:
     path: library/polynomial/lagrange_interpolation.hpp
     title: library/polynomial/lagrange_interpolation.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+    title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
@@ -200,11 +207,13 @@ data:
   path: library/polynomial/multi_point_eval.hpp
   requiredBy:
   - library/math/product_of_differences.hpp
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/polynomial/lagrange_interpolation.hpp
   timestamp: '2022-05-14 03:01:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/product_of_differences/yuki1938.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp

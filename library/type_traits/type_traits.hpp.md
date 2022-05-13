@@ -26,6 +26,10 @@ data:
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
   - icon: ':heavy_check_mark:'
+    path: library/convolution/polynomial_eval_multipoint_eval.hpp
+    title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
+      \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
   - icon: ':heavy_check_mark:'
@@ -147,6 +151,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+    title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
     title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
@@ -383,6 +390,7 @@ data:
   - library/geom/segment_intersections.hpp
   - library/util/update_proxy_object.hpp
   - library/util/coordinate_compressor.hpp
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/convolution/polynomial_eval.hpp
   - library/template.cpp
   - library/algorithm/rmq_pm1.hpp
@@ -439,6 +447,7 @@ data:
   - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/util/coordinate_compressor/dummy.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
