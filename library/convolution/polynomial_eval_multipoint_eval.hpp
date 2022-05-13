@@ -1,7 +1,7 @@
 #ifndef SUISEN_APPLY_POLYNOMIAL_MULTIPOINT_EVAL
 #define SUISEN_APPLY_POLYNOMIAL_MULTIPOINT_EVAL
 
-#include "library/math/multi_point_eval.hpp"
+#include "library/polynomial/multi_point_eval.hpp"
 #include "library/type_traits/type_traits.hpp"
 
 namespace suisen {
