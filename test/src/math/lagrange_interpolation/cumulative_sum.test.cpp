@@ -3,7 +3,7 @@
 #include <iostream>
 #include <atcoder/modint>
 
-#include "library/math/interpolation.hpp"
+#include "library/math/lagrange_interpolation.hpp"
 #include "library/number/linear_sieve.hpp"
 
 using mint = atcoder::modint1000000007;

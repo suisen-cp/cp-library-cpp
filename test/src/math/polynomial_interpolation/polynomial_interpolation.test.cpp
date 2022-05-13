@@ -4,7 +4,7 @@
 #include <atcoder/modint>
 #include <atcoder/convolution>
 
-#include "library/math/interpolation.hpp"
+#include "library/math/polynomial_interpolation.hpp"
 
 using mint = atcoder::modint998244353;
 
