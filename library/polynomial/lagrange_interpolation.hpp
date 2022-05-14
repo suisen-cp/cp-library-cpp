@@ -45,27 +45,33 @@ namespace suisen {
         return res;
     }
 
-    // x = 0, 1, ...
+    // xs[i] = ai + b
+    // requirement: for all 0≤i<j<n, ai+b ≢ aj+b mod p
     template <typename T>
-    T lagrange_interpolation(const std::vector<T>& ys, const T t) {
+    T lagrange_interpolation_arithmetic_progression(T a, T b, const std::vector<T>& ys, const T t) {
         const int n = ys.size();
         T fac = 1;
         for (int i = 1; i < n; ++i) fac *= i;
-        std::vector<T> fci(n), suf(n);
-        fci[n - 1] = T(1) / fac;
+        std::vector<T> fac_inv(n), suf(n);
+        fac_inv[n - 1] = T(1) / fac;
         suf[n - 1] = 1;
         for (int i = n - 1; i > 0; --i) {
-            fci[i - 1] = fci[i] * i;
-            suf[i - 1] = suf[i] * (t - i);
+            fac_inv[i - 1] = fac_inv[i] * i;
+            suf[i - 1] = suf[i] * (t - (a * i + b));
         }
-        T prf = 1, res = 0;
+        T pre = 1, res = 0;
         for (int i = 0; i < n; ++i) {
-            T val = ys[i] * prf * suf[i] * fci[i] * fci[n - i - 1];
+            T val = ys[i] * pre * suf[i] * fac_inv[i] * fac_inv[n - i - 1];
             if ((n - 1 - i) & 1) res -= val;
             else                 res += val;
-            prf *= t - i;
+            pre *= t - (a * i + b);
         }
-        return res;
+        return res / a.pow(n - 1);
+    }
+    // x = 0, 1, ...
+    template <typename T>
+    T lagrange_interpolation_arithmetic_progression(const std::vector<T>& ys, const T t) {
+        return lagrange_interpolation_arithmetic_progression(T{1}, T{0}, ys, t);
     }
 } // namespace suisen
 

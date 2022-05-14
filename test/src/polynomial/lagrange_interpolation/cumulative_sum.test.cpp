@@ -28,6 +28,6 @@ int main() {
             f[i] += f[i - 1];
         }
     }
-    std::cout << suisen::lagrange_interpolation(f, mint(n)).val() << '\n';
+    std::cout << suisen::lagrange_interpolation_arithmetic_progression<mint>(f, n).val() << '\n';
     return 0;
 }
