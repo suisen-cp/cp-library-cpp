@@ -4,7 +4,7 @@ documentation_of: //library/polynomial/multi_point_eval.hpp
 ---
 ## Multi Point Evaluation
 
-多項式 $f(x)$ に対して、$f(t _ 0), \ldots, f(t _ {N - 1})$ の値を求める。
+$d$ 次多項式 $f(x)$ に対して、$f(t _ 0), \ldots, f(t _ {N - 1})$ の値を $\Theta(N (\log N) ^ 2 + (d + N) \log (d + N))$ 時間で求める。
 
 ## アルゴリズム
 
@@ -60,6 +60,6 @@ http://homepages.math.uic.edu/~leon/cs-mcs401-s08/handouts/extended_master_theor
 
 $\displaystyle \prod _ {i = l} ^ {r - 1} (x - t _ i)$ に関しては、再帰の終端から根に向かって求めることで全体 $\Theta(N (\log N) ^ 2)$ 時間で計算可能である (マージテク)。
 
-$R _ {0, N}(x)$ は $\Theta((d + N) \log (d + N))$ 時間で計算可能である。ここで、$d$ は $f$ の次数である。
+$R _ {0, N}(x)$ は $\Theta((d + N) \log (d + N))$ 時間で計算可能である。
 
 結局、全体 $\Theta(N (\log N) ^ 2 + (d + N) \log (d + N))$ 時間でこのアルゴリズムは動作する。
