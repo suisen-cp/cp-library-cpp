@@ -15,7 +15,7 @@ data:
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: library/polynomial/lagrange_interpolation.hpp
-    title: library/polynomial/lagrange_interpolation.hpp
+    title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   - icon: ':heavy_check_mark:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
@@ -213,17 +213,22 @@ data:
     \n        mint p{ 1 };\n        for (int i = 0; i < n; ++i) p *= t - xs[i];\n\n\
     \        mint res{ 0 };\n        for (int i = 0; i < n; ++i) {\n            mint\
     \ w = seg[n + i][0];\n            res += ys[i] * (t == xs[i] ? 1 : p / (w * (t\
-    \ - xs[i])));\n        }\n        return res;\n    }\n\n    // x = 0, 1, ...\n\
-    \    template <typename T>\n    T lagrange_interpolation(const std::vector<T>&\
-    \ ys, const T t) {\n        const int n = ys.size();\n        T fac = 1;\n   \
-    \     for (int i = 1; i < n; ++i) fac *= i;\n        std::vector<T> fci(n), suf(n);\n\
-    \        fci[n - 1] = T(1) / fac;\n        suf[n - 1] = 1;\n        for (int i\
-    \ = n - 1; i > 0; --i) {\n            fci[i - 1] = fci[i] * i;\n            suf[i\
-    \ - 1] = suf[i] * (t - i);\n        }\n        T prf = 1, res = 0;\n        for\
-    \ (int i = 0; i < n; ++i) {\n            T val = ys[i] * prf * suf[i] * fci[i]\
-    \ * fci[n - i - 1];\n            if ((n - 1 - i) & 1) res -= val;\n          \
-    \  else                 res += val;\n            prf *= t - i;\n        }\n  \
-    \      return res;\n    }\n} // namespace suisen\n\n\n\n#line 1 \"library/number/linear_sieve.hpp\"\
+    \ - xs[i])));\n        }\n        return res;\n    }\n\n    // xs[i] = ai + b\n\
+    \    // requirement: for all 0\u2264i<j<n, ai+b \u2262 aj+b mod p\n    template\
+    \ <typename T>\n    T lagrange_interpolation_arithmetic_progression(T a, T b,\
+    \ const std::vector<T>& ys, const T t) {\n        const int n = ys.size();\n \
+    \       T fac = 1;\n        for (int i = 1; i < n; ++i) fac *= i;\n        std::vector<T>\
+    \ fac_inv(n), suf(n);\n        fac_inv[n - 1] = T(1) / fac;\n        suf[n - 1]\
+    \ = 1;\n        for (int i = n - 1; i > 0; --i) {\n            fac_inv[i - 1]\
+    \ = fac_inv[i] * i;\n            suf[i - 1] = suf[i] * (t - (a * i + b));\n  \
+    \      }\n        T pre = 1, res = 0;\n        for (int i = 0; i < n; ++i) {\n\
+    \            T val = ys[i] * pre * suf[i] * fac_inv[i] * fac_inv[n - i - 1];\n\
+    \            if ((n - 1 - i) & 1) res -= val;\n            else              \
+    \   res += val;\n            pre *= t - (a * i + b);\n        }\n        return\
+    \ res / a.pow(n - 1);\n    }\n    // x = 0, 1, ...\n    template <typename T>\n\
+    \    T lagrange_interpolation_arithmetic_progression(const std::vector<T>& ys,\
+    \ const T t) {\n        return lagrange_interpolation_arithmetic_progression(T{1},\
+    \ T{0}, ys, t);\n    }\n} // namespace suisen\n\n\n\n#line 1 \"library/number/linear_sieve.hpp\"\
     \n\n\n\n#line 5 \"library/number/linear_sieve.hpp\"\n#include <numeric>\n#line\
     \ 7 \"library/number/linear_sieve.hpp\"\n\nnamespace suisen {\n// referece: https://37zigen.com/linear-sieve/\n\
     class LinearSieve {\n    public:\n        LinearSieve(const int n) : _n(n), min_prime_factor(std::vector<int>(n\
@@ -257,8 +262,8 @@ data:
     \ } else {\n            f[i] = f[mpf[i]] * f[i / mpf[i]];\n        }\n    }\n\
     \    for (int loop = 0; loop < m; ++loop) {\n        for (int i = 1; i <= k +\
     \ m; ++i) {\n            f[i] += f[i - 1];\n        }\n    }\n    std::cout <<\
-    \ suisen::lagrange_interpolation(f, mint(n)).val() << '\\n';\n    return 0;\n\
-    }\n"
+    \ suisen::lagrange_interpolation_arithmetic_progression<mint>(f, n).val() << '\\\
+    n';\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc208/tasks/abc208_f\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\n\n#include \"library/polynomial/lagrange_interpolation.hpp\"\
     \n#include \"library/number/linear_sieve.hpp\"\n\nusing mint = atcoder::modint1000000007;\n\
@@ -269,8 +274,8 @@ data:
     \            f[i] = mint(i).pow(k);\n        } else {\n            f[i] = f[mpf[i]]\
     \ * f[i / mpf[i]];\n        }\n    }\n    for (int loop = 0; loop < m; ++loop)\
     \ {\n        for (int i = 1; i <= k + m; ++i) {\n            f[i] += f[i - 1];\n\
-    \        }\n    }\n    std::cout << suisen::lagrange_interpolation(f, mint(n)).val()\
-    \ << '\\n';\n    return 0;\n}\n"
+    \        }\n    }\n    std::cout << suisen::lagrange_interpolation_arithmetic_progression<mint>(f,\
+    \ n).val() << '\\n';\n    return 0;\n}\n"
   dependsOn:
   - library/polynomial/lagrange_interpolation.hpp
   - library/math/product_of_differences.hpp
@@ -281,7 +286,7 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 03:01:53+09:00'
+  timestamp: '2022-05-14 19:59:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp

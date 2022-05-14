@@ -9,7 +9,7 @@ data:
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: library/polynomial/polynomial_interpolation.hpp
-    title: library/polynomial/polynomial_interpolation.hpp
+    title: "\u88DC\u9593\u591A\u9805\u5F0F"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
