@@ -27,7 +27,7 @@ namespace suisen {
         CompareSubstring(const std::vector<T> &s, const T& upper) : CompareSubstring(s, atcoder::suffix_array(s, upper), DUMMY_PARAMETER) {}
         CompareSubstring(const std::string &s) : CompareSubstring(s, atcoder::suffix_array(s), DUMMY_PARAMETER) {}
 
-        int operator()(int l1, int r1, int l2, int r2) {
+        int operator()(int l1, int r1, int l2, int r2) const {
             assert(0 <= l1 and l1 <= r1 and r1 <= _n);
             assert(0 <= l2 and l2 <= r2 and r2 <= _n);
             if (l1 == r1) return -(l2 != r2);
@@ -38,8 +38,33 @@ namespace suisen {
             const int len = std::min(std::min(w1, w2), _lcp_min(i1, i2));
             return len >= w1 and len >= w2 ? 0 : len >= w1 ? -1 : len >= w2 ? 1 : _sa_inv[l1 + len] < _sa_inv[l2 + len] ? -1 : 1;
         }
-        int compare(int l1, int r1, int l2, int r2) {
+        int compare(int l1, int r1, int l2, int r2) const {
             return (*this)(l1, r1, l2, r2);
+        }
+
+        struct Substring {
+            int l, r;
+            Substring() = default;
+            Substring(int l, int r, CompareSubstring<RmQ> const * ptr) : l(l), r(r), _ptr(ptr) {}
+
+            int size() const { return r - l; }
+
+            int compare(const Substring &rhs) const {
+                assert(rhs._ptr == _ptr);
+                return _ptr->compare(l, r, rhs.l, rhs.r);
+            }
+            bool operator==(const Substring &rhs) const { return compare(rhs) == 0; }
+            bool operator!=(const Substring &rhs) const { return compare(rhs) != 0; }
+            bool operator< (const Substring &rhs) const { return compare(rhs) <  0; }
+            bool operator<=(const Substring &rhs) const { return compare(rhs) <= 0; }
+            bool operator> (const Substring &rhs) const { return compare(rhs) >  0; }
+            bool operator>=(const Substring &rhs) const { return compare(rhs) >= 0; }
+        private:
+            CompareSubstring<RmQ> const * _ptr;
+        };
+
+        Substring substr(int l, int r) const {
+            return Substring(l, r, this);
         }
     private:
         static constexpr bool DUMMY_PARAMETER{};
