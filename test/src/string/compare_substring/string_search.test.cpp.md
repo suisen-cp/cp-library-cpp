@@ -5,26 +5,25 @@ data:
     path: library/datastructure/sparse_table.hpp
     title: Sparse Table
   - icon: ':heavy_check_mark:'
+    path: library/string/compare_substring.hpp
+    title: Compare Substring
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/string/compare_substring/dummy.test.cpp
-    title: test/src/string/compare_substring/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/string/compare_substring/string_search.test.cpp
-    title: test/src/string/compare_substring/string_search.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/string/compare_substring/substring.test.cpp
-    title: test/src/string/compare_substring/substring.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/string/compare_substring.hpp\"\n\n\n\n#include <atcoder/segtree>\n\
-    #include <atcoder/string>\n\n#line 1 \"library/datastructure/sparse_table.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B&lang=ja
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B&lang=ja
+  bundledCode: "#line 1 \"test/src/string/compare_substring/string_search.test.cpp\"\
+    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B&lang=ja\"\
+    \n\n#include <iostream>\n\n#line 1 \"library/string/compare_substring.hpp\"\n\n\
+    \n\n#include <atcoder/segtree>\n#include <atcoder/string>\n\n#line 1 \"library/datastructure/sparse_table.hpp\"\
     \n\n\n\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\
     \n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\n\
     template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -116,67 +115,35 @@ data:
     \ DUMMY_PARAMETER{};\n        int _n;\n        std::vector<int> _sa_inv;\n   \
     \     RmQ _lcp_min;\n\n        template <typename Container>\n        CompareSubstring(const\
     \ Container &s, const std::vector<int> &sa, bool) : CompareSubstring(sa, atcoder::lcp_array(s,\
-    \ sa)) {}\n    };\n} // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_COMPARE_SUBSTRING\n#define SUISEN_COMPARE_SUBSTRING\n\n#include\
-    \ <atcoder/segtree>\n#include <atcoder/string>\n\n#include \"library/datastructure/sparse_table.hpp\"\
-    \n\nnamespace suisen {\n    namespace internal::compare_substring {\n        constexpr\
-    \ int op(int x, int y) { return std::min(x, y); }\n        constexpr int e() {\
-    \ return std::numeric_limits<int>::max(); }\n    }\n    namespace compare_substring_rmq\
-    \ {\n        using SegmentTreeRmQ = atcoder::segtree<int, internal::compare_substring::op,\
-    \ internal::compare_substring::e>;\n        using SparseTableRmQ = SparseTable<int,\
-    \ internal::compare_substring::op, internal::compare_substring::e>;\n    }\n \
-    \   template <typename RmQ = compare_substring_rmq::SparseTableRmQ>\n    struct\
-    \ CompareSubstring {\n        CompareSubstring() = default;\n        CompareSubstring(const\
-    \ std::vector<int> &sa, const std::vector<int> &lcp) : _n(sa.size()), _sa_inv(_n),\
-    \ _lcp_min(lcp) {\n            for (int i = 0; i < _n; ++i) _sa_inv[sa[i]] = i;\n\
-    \        }\n        template <typename T>\n        CompareSubstring(const std::vector<T>\
-    \ &s) : CompareSubstring(s, atcoder::suffix_array(s), DUMMY_PARAMETER) {}\n  \
-    \      template <typename T>\n        CompareSubstring(const std::vector<T> &s,\
-    \ const T& upper) : CompareSubstring(s, atcoder::suffix_array(s, upper), DUMMY_PARAMETER)\
-    \ {}\n        CompareSubstring(const std::string &s) : CompareSubstring(s, atcoder::suffix_array(s),\
-    \ DUMMY_PARAMETER) {}\n\n        int operator()(int l1, int r1, int l2, int r2)\
-    \ const {\n            assert(0 <= l1 and l1 <= r1 and r1 <= _n);\n          \
-    \  assert(0 <= l2 and l2 <= r2 and r2 <= _n);\n            if (l1 == r1) return\
-    \ -(l2 != r2);\n            if (l2 == r2) return l1 != r1;\n            const\
-    \ int i1 = _sa_inv[l1], i2 = _sa_inv[l2];\n            if (i1 > i2) return -(*this)(l2,\
-    \ r2, l1, r1);\n            const int w1 = r1 - l1, w2 = r2 - l2;\n          \
-    \  const int len = std::min(std::min(w1, w2), _lcp_min(i1, i2));\n           \
-    \ return len >= w1 and len >= w2 ? 0 : len >= w1 ? -1 : len >= w2 ? 1 : _sa_inv[l1\
-    \ + len] < _sa_inv[l2 + len] ? -1 : 1;\n        }\n        int compare(int l1,\
-    \ int r1, int l2, int r2) const {\n            return (*this)(l1, r1, l2, r2);\n\
-    \        }\n\n        struct Substring {\n            int l, r;\n            Substring()\
-    \ = default;\n            Substring(int l, int r, CompareSubstring<RmQ> const\
-    \ * ptr) : l(l), r(r), _ptr(ptr) {}\n\n            int size() const { return r\
-    \ - l; }\n\n            int compare(const Substring &rhs) const {\n          \
-    \      assert(rhs._ptr == _ptr);\n                return _ptr->compare(l, r, rhs.l,\
-    \ rhs.r);\n            }\n            bool operator==(const Substring &rhs) const\
-    \ { return compare(rhs) == 0; }\n            bool operator!=(const Substring &rhs)\
-    \ const { return compare(rhs) != 0; }\n            bool operator< (const Substring\
-    \ &rhs) const { return compare(rhs) <  0; }\n            bool operator<=(const\
-    \ Substring &rhs) const { return compare(rhs) <= 0; }\n            bool operator>\
-    \ (const Substring &rhs) const { return compare(rhs) >  0; }\n            bool\
-    \ operator>=(const Substring &rhs) const { return compare(rhs) >= 0; }\n     \
-    \   private:\n            CompareSubstring<RmQ> const * _ptr;\n        };\n\n\
-    \        Substring substr(int l, int r) const {\n            return Substring(l,\
-    \ r, this);\n        }\n    private:\n        static constexpr bool DUMMY_PARAMETER{};\n\
-    \        int _n;\n        std::vector<int> _sa_inv;\n        RmQ _lcp_min;\n\n\
-    \        template <typename Container>\n        CompareSubstring(const Container\
-    \ &s, const std::vector<int> &sa, bool) : CompareSubstring(sa, atcoder::lcp_array(s,\
-    \ sa)) {}\n    };\n} // namespace suisen\n\n#endif // SUISEN_COMPARE_SUBSTRING\n"
+    \ sa)) {}\n    };\n} // namespace suisen\n\n\n#line 6 \"test/src/string/compare_substring/string_search.test.cpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    std::string s, t;\n    std::cin >> s >> t;\n    std::string st = s + '$'\
+    \ + t;\n\n    suisen::CompareSubstring cmp(st);\n\n    int n = s.size(), m = t.size();\n\
+    \    for (int i = 0; i + m <= n; ++i) {\n        if (cmp.substr(i, i + m) == cmp.substr(n\
+    \ + 1, n + 1 + m)) {\n            std::cout << i << '\\n';\n        }\n    }\n\
+    \n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B&lang=ja\"\
+    \n\n#include <iostream>\n\n#include \"library/string/compare_substring.hpp\"\n\
+    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    std::string s, t;\n    std::cin >> s >> t;\n    std::string st = s + '$'\
+    \ + t;\n\n    suisen::CompareSubstring cmp(st);\n\n    int n = s.size(), m = t.size();\n\
+    \    for (int i = 0; i + m <= n; ++i) {\n        if (cmp.substr(i, i + m) == cmp.substr(n\
+    \ + 1, n + 1 + m)) {\n            std::cout << i << '\\n';\n        }\n    }\n\
+    \n    return 0;\n}"
   dependsOn:
+  - library/string/compare_substring.hpp
   - library/datastructure/sparse_table.hpp
   - library/type_traits/type_traits.hpp
-  isVerificationFile: false
-  path: library/string/compare_substring.hpp
+  isVerificationFile: true
+  path: test/src/string/compare_substring/string_search.test.cpp
   requiredBy: []
   timestamp: '2022-05-28 01:05:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/string/compare_substring/dummy.test.cpp
-  - test/src/string/compare_substring/substring.test.cpp
-  - test/src/string/compare_substring/string_search.test.cpp
-documentation_of: library/string/compare_substring.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/string/compare_substring/string_search.test.cpp
 layout: document
-title: Compare Substring
+redirect_from:
+- /verify/test/src/string/compare_substring/string_search.test.cpp
+- /verify/test/src/string/compare_substring/string_search.test.cpp.html
+title: test/src/string/compare_substring/string_search.test.cpp
 ---
-## Compare Substring

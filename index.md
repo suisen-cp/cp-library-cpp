@@ -1263,6 +1263,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/string/compare_substring/dummy.test.cpp
       title: test/src/string/compare_substring/dummy.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/string/compare_substring/string_search.test.cpp
+      title: test/src/string/compare_substring/string_search.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/string/compare_substring/substring.test.cpp
+      title: test/src/string/compare_substring/substring.test.cpp
   - name: test/src/string/manacher
     pages:
     - icon: ':heavy_check_mark:'

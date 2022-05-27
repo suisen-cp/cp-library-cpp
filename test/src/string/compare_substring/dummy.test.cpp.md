@@ -88,18 +88,32 @@ data:
     \ std::vector<T> &s, const T& upper) : CompareSubstring(s, atcoder::suffix_array(s,\
     \ upper), DUMMY_PARAMETER) {}\n        CompareSubstring(const std::string &s)\
     \ : CompareSubstring(s, atcoder::suffix_array(s), DUMMY_PARAMETER) {}\n\n    \
-    \    int operator()(int l1, int r1, int l2, int r2) {\n            assert(0 <=\
-    \ l1 and l1 <= r1 and r1 <= _n);\n            assert(0 <= l2 and l2 <= r2 and\
+    \    int operator()(int l1, int r1, int l2, int r2) const {\n            assert(0\
+    \ <= l1 and l1 <= r1 and r1 <= _n);\n            assert(0 <= l2 and l2 <= r2 and\
     \ r2 <= _n);\n            if (l1 == r1) return -(l2 != r2);\n            if (l2\
     \ == r2) return l1 != r1;\n            const int i1 = _sa_inv[l1], i2 = _sa_inv[l2];\n\
     \            if (i1 > i2) return -(*this)(l2, r2, l1, r1);\n            const\
     \ int w1 = r1 - l1, w2 = r2 - l2;\n            const int len = std::min(std::min(w1,\
     \ w2), _lcp_min(i1, i2));\n            return len >= w1 and len >= w2 ? 0 : len\
     \ >= w1 ? -1 : len >= w2 ? 1 : _sa_inv[l1 + len] < _sa_inv[l2 + len] ? -1 : 1;\n\
-    \        }\n        int compare(int l1, int r1, int l2, int r2) {\n          \
-    \  return (*this)(l1, r1, l2, r2);\n        }\n    private:\n        static constexpr\
-    \ bool DUMMY_PARAMETER{};\n        int _n;\n        std::vector<int> _sa_inv;\n\
-    \        RmQ _lcp_min;\n\n        template <typename Container>\n        CompareSubstring(const\
+    \        }\n        int compare(int l1, int r1, int l2, int r2) const {\n    \
+    \        return (*this)(l1, r1, l2, r2);\n        }\n\n        struct Substring\
+    \ {\n            int l, r;\n            Substring() = default;\n            Substring(int\
+    \ l, int r, CompareSubstring<RmQ> const * ptr) : l(l), r(r), _ptr(ptr) {}\n\n\
+    \            int size() const { return r - l; }\n\n            int compare(const\
+    \ Substring &rhs) const {\n                assert(rhs._ptr == _ptr);\n       \
+    \         return _ptr->compare(l, r, rhs.l, rhs.r);\n            }\n         \
+    \   bool operator==(const Substring &rhs) const { return compare(rhs) == 0; }\n\
+    \            bool operator!=(const Substring &rhs) const { return compare(rhs)\
+    \ != 0; }\n            bool operator< (const Substring &rhs) const { return compare(rhs)\
+    \ <  0; }\n            bool operator<=(const Substring &rhs) const { return compare(rhs)\
+    \ <= 0; }\n            bool operator> (const Substring &rhs) const { return compare(rhs)\
+    \ >  0; }\n            bool operator>=(const Substring &rhs) const { return compare(rhs)\
+    \ >= 0; }\n        private:\n            CompareSubstring<RmQ> const * _ptr;\n\
+    \        };\n\n        Substring substr(int l, int r) const {\n            return\
+    \ Substring(l, r, this);\n        }\n    private:\n        static constexpr bool\
+    \ DUMMY_PARAMETER{};\n        int _n;\n        std::vector<int> _sa_inv;\n   \
+    \     RmQ _lcp_min;\n\n        template <typename Container>\n        CompareSubstring(const\
     \ Container &s, const std::vector<int> &sa, bool) : CompareSubstring(sa, atcoder::lcp_array(s,\
     \ sa)) {}\n    };\n} // namespace suisen\n\n\n#line 7 \"test/src/string/compare_substring/dummy.test.cpp\"\
     \n\ntemplate <typename T>\nstd::ostream& operator<<(std::ostream& out, const std::vector<T>&\
@@ -207,7 +221,7 @@ data:
   isVerificationFile: true
   path: test/src/string/compare_substring/dummy.test.cpp
   requiredBy: []
-  timestamp: '2022-05-27 16:11:49+09:00'
+  timestamp: '2022-05-28 01:05:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/string/compare_substring/dummy.test.cpp

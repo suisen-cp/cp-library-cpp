@@ -177,19 +177,19 @@ data:
     \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
     \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
     \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
-    \ _fac_inv[i] * i;\n        }\n\n        const T& fac(const int i) {\n       \
-    \     ensure(i);\n            return _fac[i];\n        }\n        const T& operator()(int\
-    \ i) {\n            return fac(i);\n        }\n        const U& fac_inv(const\
-    \ int i) {\n            ensure(i);\n            return _fac_inv[i];\n        }\n\
-    \        U binom(const int n, const int r) {\n            if (n < 0 or r < 0 or\
-    \ n < r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[r]\
-    \ * _fac_inv[n - r];\n        }\n        U perm(const int n, const int r) {\n\
-    \            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
-    \            return _fac[n] * _fac_inv[n - r];\n        }\n    private:\n    \
-    \    static std::vector<T> _fac;\n        static std::vector<U> _fac_inv;\n  \
-    \  };\n    template <typename T, typename U>\n    std::vector<T> factorial<T,\
-    \ U>::_fac{ 1 };\n    template <typename T, typename U>\n    std::vector<U> factorial<T,\
-    \ U>::_fac_inv{ 1 };\n} // namespace suisen\n\n\n#line 6 \"library/polynomial/common_sequences.hpp\"\
+    \ _fac_inv[i] * i;\n        }\n\n        T fac(const int i) {\n            ensure(i);\n\
+    \            return _fac[i];\n        }\n        T operator()(int i) {\n     \
+    \       return fac(i);\n        }\n        U fac_inv(const int i) {\n        \
+    \    ensure(i);\n            return _fac_inv[i];\n        }\n        U binom(const\
+    \ int n, const int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n\
+    \            ensure(n);\n            return _fac[n] * _fac_inv[r] * _fac_inv[n\
+    \ - r];\n        }\n        U perm(const int n, const int r) {\n            if\
+    \ (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n            return\
+    \ _fac[n] * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T>\
+    \ _fac;\n        static std::vector<U> _fac_inv;\n    };\n    template <typename\
+    \ T, typename U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template\
+    \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
+    } // namespace suisen\n\n\n#line 6 \"library/polynomial/common_sequences.hpp\"\
     \n\nnamespace suisen {\n/**\n * return:\n *   vector<mint> v s.t. v[i] = S1[n,n-i]\
     \ for i=0,...,k (unsigned)\n * constraints:\n *   0 <= n <= 10^6\n */\ntemplate\
     \ <typename mint>\nstd::vector<mint> stirling_number1_reversed(int n) {\n    factorial<mint>\
@@ -260,7 +260,7 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 03:01:53+09:00'
+  timestamp: '2022-05-28 01:05:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp

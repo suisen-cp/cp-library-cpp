@@ -24,6 +24,12 @@ data:
     path: test/src/string/compare_substring/dummy.test.cpp
     title: test/src/string/compare_substring/dummy.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/string/compare_substring/string_search.test.cpp
+    title: test/src/string/compare_substring/string_search.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/string/compare_substring/substring.test.cpp
+    title: test/src/string/compare_substring/substring.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   _isVerificationFailed: false
@@ -117,6 +123,8 @@ data:
   verifiedWith:
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - test/src/string/compare_substring/dummy.test.cpp
+  - test/src/string/compare_substring/substring.test.cpp
+  - test/src/string/compare_substring/string_search.test.cpp
 documentation_of: library/datastructure/sparse_table.hpp
 layout: document
 title: Sparse Table

@@ -50,19 +50,19 @@ data:
     \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
     \            _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n           \
     \ for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n\
-    \        }\n\n        const T& fac(const int i) {\n            ensure(i);\n  \
-    \          return _fac[i];\n        }\n        const T& operator()(int i) {\n\
-    \            return fac(i);\n        }\n        const U& fac_inv(const int i)\
-    \ {\n            ensure(i);\n            return _fac_inv[i];\n        }\n    \
-    \    U binom(const int n, const int r) {\n            if (n < 0 or r < 0 or n\
-    \ < r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[r]\
-    \ * _fac_inv[n - r];\n        }\n        U perm(const int n, const int r) {\n\
-    \            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
-    \            return _fac[n] * _fac_inv[n - r];\n        }\n    private:\n    \
-    \    static std::vector<T> _fac;\n        static std::vector<U> _fac_inv;\n  \
-    \  };\n    template <typename T, typename U>\n    std::vector<T> factorial<T,\
-    \ U>::_fac{ 1 };\n    template <typename T, typename U>\n    std::vector<U> factorial<T,\
-    \ U>::_fac_inv{ 1 };\n} // namespace suisen\n\n\n"
+    \        }\n\n        T fac(const int i) {\n            ensure(i);\n         \
+    \   return _fac[i];\n        }\n        T operator()(int i) {\n            return\
+    \ fac(i);\n        }\n        U fac_inv(const int i) {\n            ensure(i);\n\
+    \            return _fac_inv[i];\n        }\n        U binom(const int n, const\
+    \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
+    \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
+    \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
+    \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
+    \ - r];\n        }\n    private:\n        static std::vector<T> _fac;\n      \
+    \  static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
+    \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
+    \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
+    \ suisen\n\n\n"
   code: "#ifndef SUISEN_FACTORIAL\n#define SUISEN_FACTORIAL\n\n#include <cassert>\n\
     #include <vector>\n\nnamespace suisen {\n    template <typename T, typename U\
     \ = T>\n    struct factorial {\n        factorial() {}\n        factorial(int\
@@ -72,19 +72,19 @@ data:
     \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
     \            _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n           \
     \ for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n\
-    \        }\n\n        const T& fac(const int i) {\n            ensure(i);\n  \
-    \          return _fac[i];\n        }\n        const T& operator()(int i) {\n\
-    \            return fac(i);\n        }\n        const U& fac_inv(const int i)\
-    \ {\n            ensure(i);\n            return _fac_inv[i];\n        }\n    \
-    \    U binom(const int n, const int r) {\n            if (n < 0 or r < 0 or n\
-    \ < r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[r]\
-    \ * _fac_inv[n - r];\n        }\n        U perm(const int n, const int r) {\n\
-    \            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
-    \            return _fac[n] * _fac_inv[n - r];\n        }\n    private:\n    \
-    \    static std::vector<T> _fac;\n        static std::vector<U> _fac_inv;\n  \
-    \  };\n    template <typename T, typename U>\n    std::vector<T> factorial<T,\
-    \ U>::_fac{ 1 };\n    template <typename T, typename U>\n    std::vector<U> factorial<T,\
-    \ U>::_fac_inv{ 1 };\n} // namespace suisen\n\n#endif // SUISEN_FACTORIAL\n"
+    \        }\n\n        T fac(const int i) {\n            ensure(i);\n         \
+    \   return _fac[i];\n        }\n        T operator()(int i) {\n            return\
+    \ fac(i);\n        }\n        U fac_inv(const int i) {\n            ensure(i);\n\
+    \            return _fac_inv[i];\n        }\n        U binom(const int n, const\
+    \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
+    \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
+    \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
+    \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
+    \ - r];\n        }\n    private:\n        static std::vector<T> _fac;\n      \
+    \  static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
+    \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
+    \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
+    \ suisen\n\n#endif // SUISEN_FACTORIAL\n"
   dependsOn: []
   isVerificationFile: false
   path: library/math/factorial.hpp
@@ -92,7 +92,7 @@ data:
   - library/math/util.hpp
   - library/polynomial/common_sequences.hpp
   - library/polynomial/polynomial_taylor_shift.hpp
-  timestamp: '2022-05-07 15:41:34+09:00'
+  timestamp: '2022-05-28 01:05:03+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/util/abc240_g.test.cpp

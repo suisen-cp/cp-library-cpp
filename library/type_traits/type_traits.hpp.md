@@ -275,6 +275,12 @@ data:
     path: test/src/string/compare_substring/dummy.test.cpp
     title: test/src/string/compare_substring/dummy.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/string/compare_substring/string_search.test.cpp
+    title: test/src/string/compare_substring/string_search.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/string/compare_substring/substring.test.cpp
+    title: test/src/string/compare_substring/substring.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -425,6 +431,8 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - test/src/string/compare_substring/dummy.test.cpp
+  - test/src/string/compare_substring/substring.test.cpp
+  - test/src/string/compare_substring/string_search.test.cpp
   - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
