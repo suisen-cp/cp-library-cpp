@@ -20,14 +20,14 @@ namespace suisen {
             for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;
         }
 
-        const T& fac(const int i) {
+        T fac(const int i) {
             ensure(i);
             return _fac[i];
         }
-        const T& operator()(int i) {
+        T operator()(int i) {
             return fac(i);
         }
-        const U& fac_inv(const int i) {
+        U fac_inv(const int i) {
             ensure(i);
             return _fac_inv[i];
         }
