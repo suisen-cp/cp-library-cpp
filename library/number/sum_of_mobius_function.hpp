@@ -1,5 +1,5 @@
-#ifndef SUISEN_SUM_OF_TOTIENT_FUNCTION
-#define SUISEN_SUM_OF_TOTIENT_FUNCTION
+#ifndef SUISEN_SUM_OF_MOBIUS_FUNCTION
+#define SUISEN_SUM_OF_MOBIUS_FUNCTION
 
 #include <cstdint>
 #include <cmath>
@@ -9,22 +9,25 @@
 namespace suisen {
     // reference: https://yukicoder.me/wiki/sum_totient
     template <typename T>
-    struct SumOfTotientFunction {
-        SumOfTotientFunction() : SumOfTotientFunction(1) {}
-        SumOfTotientFunction(uint64_t n) : _n(n), _sz_s(threshold(_n) + 1), _sz_l(_n / _sz_s + 1), _dp_s(_sz_s), _dp_l(_sz_l) {
-            std::vector<uint32_t> phi(_sz_s);
-            std::iota(phi.begin(), phi.end(), 0);
-            for (uint32_t p = 2; p < _sz_s; ++p) {
-                if (phi[p] != p) continue;
-                for (uint32_t q = p; q < _sz_s; q += p) phi[q] = phi[q] / p * (p - 1);
+    struct SumOfMobiusFunction {
+        SumOfMobiusFunction() : SumOfMobiusFunction(1) {}
+        SumOfMobiusFunction(uint64_t n) : _n(n), _sz_s(threshold(_n) + 1), _sz_l(_n / _sz_s + 1), _dp_s(_sz_s), _dp_l(_sz_l) {
+            std::vector<int32_t> mpf(_sz_s), mobius(_sz_s, 1);
+            for (long long p = 2; p < _sz_s; ++p) {
+                if (mpf[p]) continue;
+                mpf[p] = p;
+                dat[p] = -1;
+                for (long long q = p * 2; q < _sz_s; q += p) {
+                    if (not mpf[q]) mpf[q] = p;
+                    dat[q] = q % (p * p) ? -dat[q] : 0;
+                }
             }
-            for (uint32_t i = 1; i < _sz_s; ++i) _dp_s[i] = phi[i] + _dp_s[i - 1];
+            for (uint32_t i = 1; i < _sz_s; ++i) _dp_s[i] = mobius[i] + _dp_s[i - 1];
 
             for (uint32_t d = _sz_l - 1; d > 0; --d) {
                 uint64_t i = _n / d;
-                // avoid overflow
-                if (i & 1) _dp_l[d] = (i + 1) / 2, _dp_l[d] *= i;
-                else       _dp_l[d] = i / 2, _dp_l[d] *= i + 1;
+                // sum_{i=1,d}\sum_{j|d}mu(j)=1
+                _dp_l[d] = 1;
                 for (uint64_t l = 2; l <= i;) {
                     uint64_t q = i / l, r = i / q;
                     _dp_l[d] -= (q < _sz_s ? _dp_s[q] : _dp_l[d * l]) * (r - l + 1);
@@ -53,4 +56,4 @@ namespace suisen {
 } // namespace suisen
 
 
-#endif // SUISEN_SUM_OF_TOTIENT_FUNCTION
+#endif // SUISEN_SUM_OF_MOBIUS_FUNCTION
