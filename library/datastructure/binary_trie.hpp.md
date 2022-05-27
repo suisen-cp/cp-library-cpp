@@ -233,8 +233,8 @@ data:
   timestamp: '2022-03-28 17:49:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/binary_trie/set_xor_min.test.cpp
   - test/src/datastructure/binary_trie/xor_game.test.cpp
+  - test/src/datastructure/binary_trie/set_xor_min.test.cpp
 documentation_of: library/datastructure/binary_trie.hpp
 layout: document
 title: Binary Trie

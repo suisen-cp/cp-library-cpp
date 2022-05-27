@@ -179,9 +179,9 @@ data:
   timestamp: '2022-05-09 18:17:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
 documentation_of: library/datastructure/fenwick_tree_2d_sparse.hpp
 layout: document
 title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"

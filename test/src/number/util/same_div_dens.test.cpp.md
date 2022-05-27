@@ -90,36 +90,41 @@ data:
     \ = nullptr>\n    std::vector<T> divisors(T n) {\n        return divisors(factorize(n));\n\
     \    }\n\n    template <typename T>\n    T totient(T n) {\n        for (const\
     \ auto& [p, _] : factorize(n)) n /= p, n *= p - 1;\n        return n;\n    }\n\
-    \n    // Returns { l, r } := min_max { x>0 | fld(n,x)=q }.\n    template <typename\
-    \ T, constraints_t<std::is_integral<T>> = nullptr>\n    std::optional<std::pair<T,\
-    \ T>> same_fld_denominators_positive(T n, T q, T max_val = std::numeric_limits<T>::max())\
-    \ {\n        T l, r;\n        if (q >= 0) {\n            if (n < 0) return std::nullopt;\n\
-    \            // cld(n + 1, q + 1) <= x <= fld(n, q)\n            l = (n + 1 +\
-    \ q) / (q + 1), r = q == 0 ? max_val : std::min(max_val, n / q);\n        } else\
-    \ {\n            if (n >= 0) return std::nullopt;\n            // cld(n, q) <=\
-    \ x <= fld(n + 1, q + 1)\n            l = (n + q + 1) / q, r = q == -1 ? max_val\
-    \ : std::min(max_val, (n + 1) / (q + 1));\n        }\n        if (l <= r) return\
-    \ std::make_pair(l, r);\n        else        return std::nullopt;\n    }\n   \
-    \ // Returns { l, r } := min_max { x<0 | fld(n,x)=q }.\n    template <typename\
-    \ T, constraints_t<std::is_integral<T>> = nullptr>\n    std::optional<std::pair<T,\
-    \ T>> same_fld_denominators_negative(T n, T q, T min_val = std::numeric_limits<T>::min())\
-    \ {\n        T l, r;\n        if (q >= 0) {\n            if (n > 0) return std::nullopt;\n\
-    \            // cld(n, q) <= x <= fld(n - 1, q + 1)\n            l = q == 0 ?\
-    \ min_val : std::max(min_val, n / q), r = (n - 1 - q) / (q + 1);\n        } else\
-    \ {\n            if (n <= 0) return std::nullopt;\n            // cld(n - 1, q\
-    \ + 1) <= x <= fld(n, q)\n            l = q == -1 ? min_val : std::max(min_val,\
-    \ (n - 1) / (q + 1)), r = (n - q - 1) / q;\n        }\n        if (l <= r) return\
-    \ std::make_pair(l, r);\n        else        return std::nullopt;\n    }\n   \
-    \ // Returns { l, r } := min_max { x>0 | cld(n,x)=q }.\n    template <typename\
-    \ T, constraints_t<std::is_integral<T>> = nullptr>\n    std::optional<std::pair<T,\
-    \ T>> same_cld_denominators_positive(T n, T q, T max_val = std::numeric_limits<T>::max())\
-    \ {\n        T l, r;\n        if (q > 0) {\n            if (n <= 0) return std::nullopt;\n\
-    \            l = (n + q - 1) / q, r = q == 1 ? max_val : std::min(max_val, (n\
-    \ - 1) / (q - 1));\n        } else {\n            if (n > 0) return std::nullopt;\n\
-    \            l = (n - 1 + q) / (q - 1), r = q == 0 ? max_val : std::min(max_val,\
-    \ n / q);\n        }\n        if (l <= r) return std::make_pair(l, r);\n     \
-    \   else        return std::nullopt;\n    }\n    // Returns { l, r } := min_max\
-    \ { x<0 | cld(n,x)=q }.\n    template <typename T, constraints_t<std::is_integral<T>>\
+    \    std::vector<int> totient_table(int n) {\n        std::vector<int> res(n +\
+    \ 1);\n        for (int i = 0; i <= n; ++i) res[i] = (i & 1) == 0 ? i >> 1 : i;\n\
+    \        for (int p = 3; p * p <= n; p += 2) {\n            if (res[p] != p) continue;\n\
+    \            for (int q = p; q <= n; q += p) res[q] /= p, res[q] *= p - 1;\n \
+    \       }\n        return res;\n    }\n\n    // Returns { l, r } := min_max {\
+    \ x>0 | fld(n,x)=q }.\n    template <typename T, constraints_t<std::is_integral<T>>\
+    \ = nullptr>\n    std::optional<std::pair<T, T>> same_fld_denominators_positive(T\
+    \ n, T q, T max_val = std::numeric_limits<T>::max()) {\n        T l, r;\n    \
+    \    if (q >= 0) {\n            if (n < 0) return std::nullopt;\n            //\
+    \ cld(n + 1, q + 1) <= x <= fld(n, q)\n            l = (n + 1 + q) / (q + 1),\
+    \ r = q == 0 ? max_val : std::min(max_val, n / q);\n        } else {\n       \
+    \     if (n >= 0) return std::nullopt;\n            // cld(n, q) <= x <= fld(n\
+    \ + 1, q + 1)\n            l = (n + q + 1) / q, r = q == -1 ? max_val : std::min(max_val,\
+    \ (n + 1) / (q + 1));\n        }\n        if (l <= r) return std::make_pair(l,\
+    \ r);\n        else        return std::nullopt;\n    }\n    // Returns { l, r\
+    \ } := min_max { x<0 | fld(n,x)=q }.\n    template <typename T, constraints_t<std::is_integral<T>>\
+    \ = nullptr>\n    std::optional<std::pair<T, T>> same_fld_denominators_negative(T\
+    \ n, T q, T min_val = std::numeric_limits<T>::min()) {\n        T l, r;\n    \
+    \    if (q >= 0) {\n            if (n > 0) return std::nullopt;\n            //\
+    \ cld(n, q) <= x <= fld(n - 1, q + 1)\n            l = q == 0 ? min_val : std::max(min_val,\
+    \ n / q), r = (n - 1 - q) / (q + 1);\n        } else {\n            if (n <= 0)\
+    \ return std::nullopt;\n            // cld(n - 1, q + 1) <= x <= fld(n, q)\n \
+    \           l = q == -1 ? min_val : std::max(min_val, (n - 1) / (q + 1)), r =\
+    \ (n - q - 1) / q;\n        }\n        if (l <= r) return std::make_pair(l, r);\n\
+    \        else        return std::nullopt;\n    }\n    // Returns { l, r } := min_max\
+    \ { x>0 | cld(n,x)=q }.\n    template <typename T, constraints_t<std::is_integral<T>>\
+    \ = nullptr>\n    std::optional<std::pair<T, T>> same_cld_denominators_positive(T\
+    \ n, T q, T max_val = std::numeric_limits<T>::max()) {\n        T l, r;\n    \
+    \    if (q > 0) {\n            if (n <= 0) return std::nullopt;\n            l\
+    \ = (n + q - 1) / q, r = q == 1 ? max_val : std::min(max_val, (n - 1) / (q - 1));\n\
+    \        } else {\n            if (n > 0) return std::nullopt;\n            l\
+    \ = (n - 1 + q) / (q - 1), r = q == 0 ? max_val : std::min(max_val, n / q);\n\
+    \        }\n        if (l <= r) return std::make_pair(l, r);\n        else   \
+    \     return std::nullopt;\n    }\n    // Returns { l, r } := min_max { x<0 |\
+    \ cld(n,x)=q }.\n    template <typename T, constraints_t<std::is_integral<T>>\
     \ = nullptr>\n    std::optional<std::pair<T, T>> same_cld_denominators_negative(T\
     \ n, T q, T min_val = std::numeric_limits<T>::min()) {\n        T l, r;\n    \
     \    if (q > 0) {\n            if (n >= 0) return std::nullopt;\n            l\
@@ -223,7 +228,7 @@ data:
   isVerificationFile: true
   path: test/src/number/util/same_div_dens.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-05-27 16:10:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/util/same_div_dens.test.cpp

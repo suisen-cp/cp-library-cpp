@@ -84,13 +84,13 @@ data:
   isVerificationFile: false
   path: library/util/tuple_ops.hpp
   requiredBy:
-  - library/datastructure/rectangle_add_rectangle_sum.hpp
   - library/datastructure/static_rectangle_add_rectangle_sum.hpp
+  - library/datastructure/rectangle_add_rectangle_sum.hpp
   timestamp: '2022-05-07 15:41:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
 documentation_of: library/util/tuple_ops.hpp
 layout: document
 title: Tuple Ops

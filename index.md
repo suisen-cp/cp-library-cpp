@@ -433,6 +433,9 @@ data:
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
       title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9 (\u30B3\u30F3\
         \u30D1\u30A4\u30EB\u6642\u8A08\u7B97)"
+    - icon: ':warning:'
+      path: library/number/sum_of_mobius_function.hpp
+      title: library/number/sum_of_mobius_function.hpp
     - icon: ':heavy_check_mark:'
       path: library/number/sum_of_totient_function.hpp
       title: Prefix Sum of Totient Function
@@ -470,6 +473,9 @@ data:
       title: Vec Sparse Fps
   - name: library/string
     pages:
+    - icon: ':heavy_check_mark:'
+      path: library/string/compare_substring.hpp
+      title: library/string/compare_substring.hpp
     - icon: ':heavy_check_mark:'
       path: library/string/manacher.hpp
       title: Manacher
@@ -1252,6 +1258,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
       title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
+  - name: test/src/string/compare_substring
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/string/compare_substring/dummy.test.cpp
+      title: test/src/string/compare_substring/dummy.test.cpp
   - name: test/src/string/manacher
     pages:
     - icon: ':heavy_check_mark:'

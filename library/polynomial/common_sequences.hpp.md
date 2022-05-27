@@ -310,11 +310,11 @@ data:
   timestamp: '2022-05-14 03:01:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-  - test/src/polynomial/common_sequences/stirling_number2.test.cpp
-  - test/src/polynomial/common_sequences/partition_function.test.cpp
   - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
+  - test/src/polynomial/common_sequences/partition_function.test.cpp
+  - test/src/polynomial/common_sequences/stirling_number2.test.cpp
   - test/src/polynomial/common_sequences/stirling_number1.test.cpp
+  - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
 documentation_of: library/polynomial/common_sequences.hpp
 layout: document
 title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"

@@ -27,13 +27,12 @@ data:
     \ _sz_s; q += p) phi[q] = phi[q] / p * (p - 1);\n            }\n            for\
     \ (uint32_t i = 1; i < _sz_s; ++i) _dp_s[i] = phi[i] + _dp_s[i - 1];\n\n     \
     \       for (uint32_t d = _sz_l - 1; d > 0; --d) {\n                uint64_t i\
-    \ = _n / d;\n                // avoid overflow\n                if (i & 1) {\n\
-    \                    _dp_l[d] = (i + 1) / 2, _dp_l[d] *= i;\n                }\
-    \ else {\n                    _dp_l[d] = i / 2, _dp_l[d] *= i + 1;\n         \
-    \       }\n                for (uint64_t l = 2; l <= i;) {\n                 \
-    \   uint64_t q = i / l, r = i / q;\n                    _dp_l[d] -= (q < _sz_s\
-    \ ? _dp_s[q] : _dp_l[d * l]) * (r - l + 1);\n                    l = r + 1;\n\
-    \                }\n            }\n        }\n\n        T operator()(uint64_t\
+    \ = _n / d;\n                // avoid overflow\n                if (i & 1) _dp_l[d]\
+    \ = (i + 1) / 2, _dp_l[d] *= i;\n                else       _dp_l[d] = i / 2,\
+    \ _dp_l[d] *= i + 1;\n                for (uint64_t l = 2; l <= i;) {\n      \
+    \              uint64_t q = i / l, r = i / q;\n                    _dp_l[d] -=\
+    \ (q < _sz_s ? _dp_s[q] : _dp_l[d * l]) * (r - l + 1);\n                    l\
+    \ = r + 1;\n                }\n            }\n        }\n\n        T operator()(uint64_t\
     \ denominator = 1) const {\n            uint64_t q = _n / denominator;\n     \
     \       return q < _sz_s ? _dp_s[q] : _dp_l[_n / (q + 1) + 1];\n        }\n\n\
     \    private:\n        uint64_t _n;\n        uint32_t _sz_s, _sz_l;\n        std::vector<T>\
@@ -54,13 +53,12 @@ data:
     \ _sz_s; q += p) phi[q] = phi[q] / p * (p - 1);\n            }\n            for\
     \ (uint32_t i = 1; i < _sz_s; ++i) _dp_s[i] = phi[i] + _dp_s[i - 1];\n\n     \
     \       for (uint32_t d = _sz_l - 1; d > 0; --d) {\n                uint64_t i\
-    \ = _n / d;\n                // avoid overflow\n                if (i & 1) {\n\
-    \                    _dp_l[d] = (i + 1) / 2, _dp_l[d] *= i;\n                }\
-    \ else {\n                    _dp_l[d] = i / 2, _dp_l[d] *= i + 1;\n         \
-    \       }\n                for (uint64_t l = 2; l <= i;) {\n                 \
-    \   uint64_t q = i / l, r = i / q;\n                    _dp_l[d] -= (q < _sz_s\
-    \ ? _dp_s[q] : _dp_l[d * l]) * (r - l + 1);\n                    l = r + 1;\n\
-    \                }\n            }\n        }\n\n        T operator()(uint64_t\
+    \ = _n / d;\n                // avoid overflow\n                if (i & 1) _dp_l[d]\
+    \ = (i + 1) / 2, _dp_l[d] *= i;\n                else       _dp_l[d] = i / 2,\
+    \ _dp_l[d] *= i + 1;\n                for (uint64_t l = 2; l <= i;) {\n      \
+    \              uint64_t q = i / l, r = i / q;\n                    _dp_l[d] -=\
+    \ (q < _sz_s ? _dp_s[q] : _dp_l[d * l]) * (r - l + 1);\n                    l\
+    \ = r + 1;\n                }\n            }\n        }\n\n        T operator()(uint64_t\
     \ denominator = 1) const {\n            uint64_t q = _n / denominator;\n     \
     \       return q < _sz_s ? _dp_s[q] : _dp_l[_n / (q + 1) + 1];\n        }\n\n\
     \    private:\n        uint64_t _n;\n        uint32_t _sz_s, _sz_l;\n        std::vector<T>\
@@ -73,11 +71,11 @@ data:
   isVerificationFile: false
   path: library/number/sum_of_totient_function.hpp
   requiredBy: []
-  timestamp: '2022-02-25 23:20:55+09:00'
+  timestamp: '2022-05-27 16:10:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
   - test/src/number/sum_of_totient_function/abc162_e.test.cpp
+  - test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
 documentation_of: library/number/sum_of_totient_function.hpp
 layout: document
 title: Prefix Sum of Totient Function

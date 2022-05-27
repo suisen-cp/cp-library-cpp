@@ -27,9 +27,9 @@ data:
     \ suisen {\n    template <typename mint, atcoder::internal::is_modint_t<mint>*\
     \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
-    \        if (n == 0 or m == 0) return {};\n        if (std::min(n, m) <= 60) return\
-    \ internal::convolution_naive(a, b);\n\n        static constexpr long long MOD1\
-    \ = 754974721;  // 2^24\n        static constexpr long long MOD2 = 167772161;\
+    \        if (n == 0 or m == 0) return {};\n        if (std::min(n, m) <= 120)\
+    \ return internal::convolution_naive(a, b);\n\n        static constexpr long long\
+    \ MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2 = 167772161;\
     \  // 2^25\n        static constexpr long long MOD3 = 469762049;  // 2^26\n  \
     \      static constexpr long long M1M2 = MOD1 * MOD2;\n        static constexpr\
     \ long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1, MOD2).second;\n   \
@@ -52,9 +52,9 @@ data:
     \n\nnamespace suisen {\n    template <typename mint, atcoder::internal::is_modint_t<mint>*\
     \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
-    \        if (n == 0 or m == 0) return {};\n        if (std::min(n, m) <= 60) return\
-    \ internal::convolution_naive(a, b);\n\n        static constexpr long long MOD1\
-    \ = 754974721;  // 2^24\n        static constexpr long long MOD2 = 167772161;\
+    \        if (n == 0 or m == 0) return {};\n        if (std::min(n, m) <= 120)\
+    \ return internal::convolution_naive(a, b);\n\n        static constexpr long long\
+    \ MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2 = 167772161;\
     \  // 2^25\n        static constexpr long long MOD3 = 469762049;  // 2^26\n  \
     \      static constexpr long long M1M2 = MOD1 * MOD2;\n        static constexpr\
     \ long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1, MOD2).second;\n   \
@@ -77,7 +77,7 @@ data:
   isVerificationFile: false
   path: library/convolution/arbitrary_mod_convolution.hpp
   requiredBy: []
-  timestamp: '2022-05-05 17:36:05+09:00'
+  timestamp: '2022-05-27 16:09:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp

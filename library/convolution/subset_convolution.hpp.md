@@ -121,8 +121,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
+  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
 documentation_of: library/convolution/subset_convolution.hpp
 layout: document

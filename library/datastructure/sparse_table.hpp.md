@@ -14,9 +14,15 @@ data:
     title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
       \u306E RMQ (\u6DFB\u5B57\u306E\u5FA9\u5143\u4ED8\u304D)"
   - icon: ':heavy_check_mark:'
+    path: library/string/compare_substring.hpp
+    title: library/string/compare_substring.hpp
+  - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
     title: Lowest Common Ancestor
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/string/compare_substring/dummy.test.cpp
+    title: test/src/string/compare_substring/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
@@ -54,63 +60,63 @@ data:
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
     \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 7 \"library/datastructure/sparse_table.hpp\"\n\nnamespace suisen {\ntemplate\
-    \ <typename T, typename Op, constraints_t<is_bin_op<Op, T>> = nullptr>\nclass\
-    \ SparseTable {\n    public:\n        SparseTable() {}\n        SparseTable(std::vector<T>\
-    \ &&a, T e, Op op) : n(a.size()), log(floor_log2(n)), e(e), op(op), table(log\
-    \ + 1), flog(n + 1, 0) {\n            build_table(std::move(a));\n           \
-    \ build_flog_table();\n        }\n        SparseTable(const std::vector<T> &a,\
-    \ T e, Op op) : SparseTable(std::vector<T>(a), e, op) {}\n        T operator()(int\
-    \ l, int r) const {\n            if (l >= r) return e;\n            int i = flog[r\
-    \ - l];\n            return op(table[i][l], table[i][r - (1 << i)]);\n       \
-    \ }\n        T prod(int l, int r) const {\n            return (*this)(l, r);\n\
-    \        }\n    private:\n        int n;\n        int log;\n        T e;\n   \
-    \     Op op;\n        std::vector<std::vector<T>> table;\n        std::vector<int>\
-    \ flog;\n\n        void build_table(std::vector<T> &&a) {\n            table[0]\
-    \ = std::move(a);\n            for (int i = 0; i < log; ++i) {\n             \
-    \   int lmax = n - (1 << (i + 1));\n                table[i + 1].resize(lmax +\
-    \ 1);\n                for (int l = 0; l <= lmax; ++l) table[i + 1][l] = op(table[i][l],\
-    \ table[i][l + (1 << i)]);\n            }\n        }\n        void build_flog_table()\
-    \ {\n            for (int l = 0; l < log; ++l) {\n                std::fill(flog.begin()\
-    \ + (1 << l), flog.begin() + (1 << (l + 1)), l);\n            }\n            std::fill(flog.begin()\
-    \ + (1 << log), flog.end(), log);\n        }\n        static int floor_log2(int\
-    \ i) {\n            return 31 - __builtin_clz(i);\n        }\n};\n} // namespace\
+    \ 7 \"library/datastructure/sparse_table.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename T, T(*op)(T, T), T(*e)()>\n    struct SparseTable {\n        SparseTable()\
+    \ = default;\n        SparseTable(std::vector<T>&& a) : n(a.size()), log(floor_log2(n)),\
+    \ table(log + 1), flog(n + 1, 0) {\n            build_table(std::move(a));\n \
+    \           build_flog_table();\n        }\n        SparseTable(const std::vector<T>&\
+    \ a) : SparseTable(std::vector<T>(a)) {}\n        T operator()(int l, int r) const\
+    \ {\n            if (l >= r) return e();\n            int i = flog[r - l];\n \
+    \           return op(table[i][l], table[i][r - (1 << i)]);\n        }\n     \
+    \   T prod(int l, int r) const {\n            return (*this)(l, r);\n        }\n\
+    \    private:\n        int n;\n        int log;\n        std::vector<std::vector<T>>\
+    \ table;\n        std::vector<int> flog;\n\n        void build_table(std::vector<T>&&\
+    \ a) {\n            table[0] = std::move(a);\n            for (int i = 0; i <\
+    \ log; ++i) {\n                int lmax = n - (1 << (i + 1));\n              \
+    \  table[i + 1].resize(lmax + 1);\n                for (int l = 0; l <= lmax;\
+    \ ++l) table[i + 1][l] = op(table[i][l], table[i][l + (1 << i)]);\n          \
+    \  }\n        }\n        void build_flog_table() {\n            for (int l = 0;\
+    \ l < log; ++l) {\n                std::fill(flog.begin() + (1 << l), flog.begin()\
+    \ + (1 << (l + 1)), l);\n            }\n            std::fill(flog.begin() + (1\
+    \ << log), flog.end(), log);\n        }\n        static int floor_log2(int i)\
+    \ {\n            return 31 - __builtin_clz(i);\n        }\n    };\n} // namespace\
     \ suisen\n\n\n"
   code: "#ifndef SUISEN_SPARSE_TABLE\n#define SUISEN_SPARSE_TABLE\n\n#include <vector>\n\
-    \n#include \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\ntemplate\
-    \ <typename T, typename Op, constraints_t<is_bin_op<Op, T>> = nullptr>\nclass\
-    \ SparseTable {\n    public:\n        SparseTable() {}\n        SparseTable(std::vector<T>\
-    \ &&a, T e, Op op) : n(a.size()), log(floor_log2(n)), e(e), op(op), table(log\
-    \ + 1), flog(n + 1, 0) {\n            build_table(std::move(a));\n           \
-    \ build_flog_table();\n        }\n        SparseTable(const std::vector<T> &a,\
-    \ T e, Op op) : SparseTable(std::vector<T>(a), e, op) {}\n        T operator()(int\
-    \ l, int r) const {\n            if (l >= r) return e;\n            int i = flog[r\
-    \ - l];\n            return op(table[i][l], table[i][r - (1 << i)]);\n       \
-    \ }\n        T prod(int l, int r) const {\n            return (*this)(l, r);\n\
-    \        }\n    private:\n        int n;\n        int log;\n        T e;\n   \
-    \     Op op;\n        std::vector<std::vector<T>> table;\n        std::vector<int>\
-    \ flog;\n\n        void build_table(std::vector<T> &&a) {\n            table[0]\
-    \ = std::move(a);\n            for (int i = 0; i < log; ++i) {\n             \
-    \   int lmax = n - (1 << (i + 1));\n                table[i + 1].resize(lmax +\
-    \ 1);\n                for (int l = 0; l <= lmax; ++l) table[i + 1][l] = op(table[i][l],\
-    \ table[i][l + (1 << i)]);\n            }\n        }\n        void build_flog_table()\
-    \ {\n            for (int l = 0; l < log; ++l) {\n                std::fill(flog.begin()\
-    \ + (1 << l), flog.begin() + (1 << (l + 1)), l);\n            }\n            std::fill(flog.begin()\
-    \ + (1 << log), flog.end(), log);\n        }\n        static int floor_log2(int\
-    \ i) {\n            return 31 - __builtin_clz(i);\n        }\n};\n} // namespace\
+    \n#include \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n   \
+    \ template <typename T, T(*op)(T, T), T(*e)()>\n    struct SparseTable {\n   \
+    \     SparseTable() = default;\n        SparseTable(std::vector<T>&& a) : n(a.size()),\
+    \ log(floor_log2(n)), table(log + 1), flog(n + 1, 0) {\n            build_table(std::move(a));\n\
+    \            build_flog_table();\n        }\n        SparseTable(const std::vector<T>&\
+    \ a) : SparseTable(std::vector<T>(a)) {}\n        T operator()(int l, int r) const\
+    \ {\n            if (l >= r) return e();\n            int i = flog[r - l];\n \
+    \           return op(table[i][l], table[i][r - (1 << i)]);\n        }\n     \
+    \   T prod(int l, int r) const {\n            return (*this)(l, r);\n        }\n\
+    \    private:\n        int n;\n        int log;\n        std::vector<std::vector<T>>\
+    \ table;\n        std::vector<int> flog;\n\n        void build_table(std::vector<T>&&\
+    \ a) {\n            table[0] = std::move(a);\n            for (int i = 0; i <\
+    \ log; ++i) {\n                int lmax = n - (1 << (i + 1));\n              \
+    \  table[i + 1].resize(lmax + 1);\n                for (int l = 0; l <= lmax;\
+    \ ++l) table[i + 1][l] = op(table[i][l], table[i][l + (1 << i)]);\n          \
+    \  }\n        }\n        void build_flog_table() {\n            for (int l = 0;\
+    \ l < log; ++l) {\n                std::fill(flog.begin() + (1 << l), flog.begin()\
+    \ + (1 << (l + 1)), l);\n            }\n            std::fill(flog.begin() + (1\
+    \ << log), flog.end(), log);\n        }\n        static int floor_log2(int i)\
+    \ {\n            return 31 - __builtin_clz(i);\n        }\n    };\n} // namespace\
     \ suisen\n\n#endif // SUISEN_SPARSE_TABLE\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/datastructure/sparse_table.hpp
   requiredBy:
-  - library/tree/lowest_common_ancestor.hpp
-  - library/algorithm/rmq_pm1.hpp
   - library/algorithm/rmq_pm1_with_index.hpp
-  timestamp: '2022-05-09 17:42:38+09:00'
+  - library/algorithm/rmq_pm1.hpp
+  - library/tree/lowest_common_ancestor.hpp
+  - library/string/compare_substring.hpp
+  timestamp: '2022-05-27 16:09:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - test/src/string/compare_substring/dummy.test.cpp
 documentation_of: library/datastructure/sparse_table.hpp
 layout: document
 title: Sparse Table
