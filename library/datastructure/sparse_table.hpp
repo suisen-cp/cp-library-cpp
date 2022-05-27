@@ -6,17 +6,16 @@
 #include "library/type_traits/type_traits.hpp"
 
 namespace suisen {
-template <typename T, typename Op, constraints_t<is_bin_op<Op, T>> = nullptr>
-class SparseTable {
-    public:
-        SparseTable() {}
-        SparseTable(std::vector<T> &&a, T e, Op op) : n(a.size()), log(floor_log2(n)), e(e), op(op), table(log + 1), flog(n + 1, 0) {
+    template <typename T, T(*op)(T, T), T(*e)()>
+    struct SparseTable {
+        SparseTable() = default;
+        SparseTable(std::vector<T>&& a) : n(a.size()), log(floor_log2(n)), table(log + 1), flog(n + 1, 0) {
             build_table(std::move(a));
             build_flog_table();
         }
-        SparseTable(const std::vector<T> &a, T e, Op op) : SparseTable(std::vector<T>(a), e, op) {}
+        SparseTable(const std::vector<T>& a) : SparseTable(std::vector<T>(a)) {}
         T operator()(int l, int r) const {
-            if (l >= r) return e;
+            if (l >= r) return e();
             int i = flog[r - l];
             return op(table[i][l], table[i][r - (1 << i)]);
         }
@@ -26,12 +25,10 @@ class SparseTable {
     private:
         int n;
         int log;
-        T e;
-        Op op;
         std::vector<std::vector<T>> table;
         std::vector<int> flog;
 
-        void build_table(std::vector<T> &&a) {
+        void build_table(std::vector<T>&& a) {
             table[0] = std::move(a);
             for (int i = 0; i < log; ++i) {
                 int lmax = n - (1 << (i + 1));
@@ -48,7 +45,7 @@ class SparseTable {
         static int floor_log2(int i) {
             return 31 - __builtin_clz(i);
         }
-};
+    };
 } // namespace suisen
 
 #endif // SUISEN_SPARSE_TABLE
