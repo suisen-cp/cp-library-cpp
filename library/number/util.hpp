@@ -106,6 +106,15 @@ namespace suisen {
         for (const auto& [p, _] : factorize(n)) n /= p, n *= p - 1;
         return n;
     }
+    std::vector<int> totient_table(int n) {
+        std::vector<int> res(n + 1);
+        for (int i = 0; i <= n; ++i) res[i] = (i & 1) == 0 ? i >> 1 : i;
+        for (int p = 3; p * p <= n; p += 2) {
+            if (res[p] != p) continue;
+            for (int q = p; q <= n; q += p) res[q] /= p, res[q] *= p - 1;
+        }
+        return res;
+    }
 
     // Returns { l, r } := min_max { x>0 | fld(n,x)=q }.
     template <typename T, constraints_t<std::is_integral<T>> = nullptr>
