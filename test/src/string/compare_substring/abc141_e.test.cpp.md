@@ -17,13 +17,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B&lang=ja
+    PROBLEM: https://atcoder.jp/contests/abc141/tasks/abc141_e
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B&lang=ja
-  bundledCode: "#line 1 \"test/src/string/compare_substring/string_search.test.cpp\"\
-    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B&lang=ja\"\
-    \n\n#include <iostream>\n\n#line 1 \"library/string/compare_substring.hpp\"\n\n\
-    \n\n#include <atcoder/segtree>\n#include <atcoder/string>\n\n#line 1 \"library/datastructure/sparse_table.hpp\"\
+    - https://atcoder.jp/contests/abc141/tasks/abc141_e
+  bundledCode: "#line 1 \"test/src/string/compare_substring/abc141_e.test.cpp\"\n\
+    #define PROBLEM \"https://atcoder.jp/contests/abc141/tasks/abc141_e\"\n\n#include\
+    \ <iostream>\n#include <map>\n\n#line 1 \"library/string/compare_substring.hpp\"\
+    \n\n\n\n#include <atcoder/segtree>\n#include <atcoder/string>\n\n#line 1 \"library/datastructure/sparse_table.hpp\"\
     \n\n\n\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\
     \n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\n\
     template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -125,35 +125,43 @@ data:
     \        int _n;\n        std::vector<int> _sa_inv;\n        RmQ _lcp_min;\n\n\
     \        template <typename Container>\n        CompareSubstring(const Container\
     \ &s, const std::vector<int> &sa, bool) : CompareSubstring(sa, atcoder::lcp_array(s,\
-    \ sa)) {}\n    };\n} // namespace suisen\n\n\n#line 6 \"test/src/string/compare_substring/string_search.test.cpp\"\
-    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    std::string s, t;\n    std::cin >> s >> t;\n    std::string st = s + '$'\
-    \ + t;\n\n    suisen::CompareSubstring cmp(st);\n\n    int n = s.size(), m = t.size();\n\
-    \    for (int i = 0; i + m <= n; ++i) {\n        if (cmp.substr(i, i + m) == cmp.substr(n\
-    \ + 1, n + 1 + m)) {\n            std::cout << i << '\\n';\n        }\n    }\n\
-    \n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_B&lang=ja\"\
-    \n\n#include <iostream>\n\n#include \"library/string/compare_substring.hpp\"\n\
-    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    std::string s, t;\n    std::cin >> s >> t;\n    std::string st = s + '$'\
-    \ + t;\n\n    suisen::CompareSubstring cmp(st);\n\n    int n = s.size(), m = t.size();\n\
-    \    for (int i = 0; i + m <= n; ++i) {\n        if (cmp.substr(i, i + m) == cmp.substr(n\
-    \ + 1, n + 1 + m)) {\n            std::cout << i << '\\n';\n        }\n    }\n\
-    \n    return 0;\n}"
+    \ sa)) {}\n    };\n} // namespace suisen\n\n\n#line 7 \"test/src/string/compare_substring/abc141_e.test.cpp\"\
+    \n\nint main() {\n    int n;\n    std::cin >> n;\n\n    std::string s;\n    std::cin\
+    \ >> s;\n\n    suisen::CompareSubstring cmp(s);\n    using Substring = decltype(cmp.substr(0,\
+    \ 0));\n    \n    auto is_ok = [&](int w) {\n        std::map<Substring, int>\
+    \ st;\n        for (int i = 0; i + w <= n; ++i) {\n            Substring sub =\
+    \ cmp.substr(i, i + w);\n            if (auto it = st.find(sub); it != st.end())\
+    \ {\n                if (it->second + w <= i) return true;\n            } else\
+    \ {\n                st[sub] = i;\n            }\n        }\n        return false;\n\
+    \    };\n\n    int l = 0, r = n / 2 + 1;\n    while (r - l > 1) {\n        int\
+    \ w = (l + r) >> 1;\n        (is_ok(w) ? l : r) = w;\n    }\n    std::cout <<\
+    \ l << std::endl;\n    \n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc141/tasks/abc141_e\"\n\n\
+    #include <iostream>\n#include <map>\n\n#include \"library/string/compare_substring.hpp\"\
+    \n\nint main() {\n    int n;\n    std::cin >> n;\n\n    std::string s;\n    std::cin\
+    \ >> s;\n\n    suisen::CompareSubstring cmp(s);\n    using Substring = decltype(cmp.substr(0,\
+    \ 0));\n    \n    auto is_ok = [&](int w) {\n        std::map<Substring, int>\
+    \ st;\n        for (int i = 0; i + w <= n; ++i) {\n            Substring sub =\
+    \ cmp.substr(i, i + w);\n            if (auto it = st.find(sub); it != st.end())\
+    \ {\n                if (it->second + w <= i) return true;\n            } else\
+    \ {\n                st[sub] = i;\n            }\n        }\n        return false;\n\
+    \    };\n\n    int l = 0, r = n / 2 + 1;\n    while (r - l > 1) {\n        int\
+    \ w = (l + r) >> 1;\n        (is_ok(w) ? l : r) = w;\n    }\n    std::cout <<\
+    \ l << std::endl;\n    \n    return 0;\n}"
   dependsOn:
   - library/string/compare_substring.hpp
   - library/datastructure/sparse_table.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
-  path: test/src/string/compare_substring/string_search.test.cpp
+  path: test/src/string/compare_substring/abc141_e.test.cpp
   requiredBy: []
   timestamp: '2022-05-28 01:38:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/string/compare_substring/string_search.test.cpp
+documentation_of: test/src/string/compare_substring/abc141_e.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/string/compare_substring/string_search.test.cpp
-- /verify/test/src/string/compare_substring/string_search.test.cpp.html
-title: test/src/string/compare_substring/string_search.test.cpp
+- /verify/test/src/string/compare_substring/abc141_e.test.cpp
+- /verify/test/src/string/compare_substring/abc141_e.test.cpp.html
+title: test/src/string/compare_substring/abc141_e.test.cpp
 ---

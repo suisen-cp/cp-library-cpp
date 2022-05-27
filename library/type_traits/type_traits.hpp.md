@@ -272,6 +272,9 @@ data:
     path: test/src/number/util/same_div_dens.test.cpp
     title: test/src/number/util/same_div_dens.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/string/compare_substring/abc141_e.test.cpp
+    title: test/src/string/compare_substring/abc141_e.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/string/compare_substring/dummy.test.cpp
     title: test/src/string/compare_substring/dummy.test.cpp
   - icon: ':heavy_check_mark:'
@@ -430,6 +433,7 @@ data:
   - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - test/src/string/compare_substring/abc141_e.test.cpp
   - test/src/string/compare_substring/dummy.test.cpp
   - test/src/string/compare_substring/substring.test.cpp
   - test/src/string/compare_substring/string_search.test.cpp
