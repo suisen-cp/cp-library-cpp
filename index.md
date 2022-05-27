@@ -393,7 +393,7 @@ data:
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
     - icon: ':heavy_check_mark:'
       path: library/math/product_of_differences.hpp
-      title: library/math/product_of_differences.hpp
+      title: Product Of Differences
     - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
       title: Set Power Series
@@ -435,7 +435,7 @@ data:
         \u30D1\u30A4\u30EB\u6642\u8A08\u7B97)"
     - icon: ':warning:'
       path: library/number/sum_of_mobius_function.hpp
-      title: library/number/sum_of_mobius_function.hpp
+      title: Sum Of Mobius Function
     - icon: ':heavy_check_mark:'
       path: library/number/sum_of_totient_function.hpp
       title: Prefix Sum of Totient Function
@@ -475,7 +475,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/string/compare_substring.hpp
-      title: library/string/compare_substring.hpp
+      title: Compare Substring
     - icon: ':heavy_check_mark:'
       path: library/string/manacher.hpp
       title: Manacher

@@ -141,8 +141,6 @@ data:
   - test/src/string/compare_substring/dummy.test.cpp
 documentation_of: library/string/compare_substring.hpp
 layout: document
-redirect_from:
-- /library/library/string/compare_substring.hpp
-- /library/library/string/compare_substring.hpp.html
-title: library/string/compare_substring.hpp
+title: Compare Substring
 ---
+## Compare Substring

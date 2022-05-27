@@ -6,7 +6,7 @@ data:
     title: Sparse Table
   - icon: ':heavy_check_mark:'
     path: library/string/compare_substring.hpp
-    title: library/string/compare_substring.hpp
+    title: Compare Substring
   - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits

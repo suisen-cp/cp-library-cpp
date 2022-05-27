@@ -70,8 +70,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/sum_of_mobius_function.hpp
 layout: document
-redirect_from:
-- /library/library/number/sum_of_mobius_function.hpp
-- /library/library/number/sum_of_mobius_function.hpp.html
-title: library/number/sum_of_mobius_function.hpp
+title: Sum Of Mobius Function
 ---
+## Sum Of Mobius Function

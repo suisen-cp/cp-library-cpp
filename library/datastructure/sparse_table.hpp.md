@@ -15,7 +15,7 @@ data:
       \u306E RMQ (\u6DFB\u5B57\u306E\u5FA9\u5143\u4ED8\u304D)"
   - icon: ':heavy_check_mark:'
     path: library/string/compare_substring.hpp
-    title: library/string/compare_substring.hpp
+    title: Compare Substring
   - icon: ':heavy_check_mark:'
     path: library/tree/lowest_common_ancestor.hpp
     title: Lowest Common Ancestor

@@ -14,7 +14,7 @@ data:
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
     path: library/math/product_of_differences.hpp
-    title: library/math/product_of_differences.hpp
+    title: Product Of Differences
   - icon: ':heavy_check_mark:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"

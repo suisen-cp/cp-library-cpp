@@ -8,7 +8,7 @@ data:
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
   - icon: ':heavy_check_mark:'
     path: library/math/product_of_differences.hpp
-    title: library/math/product_of_differences.hpp
+    title: Product Of Differences
   - icon: ':heavy_check_mark:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori

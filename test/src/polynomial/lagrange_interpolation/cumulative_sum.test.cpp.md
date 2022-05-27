@@ -6,7 +6,7 @@ data:
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
     path: library/math/product_of_differences.hpp
-    title: library/math/product_of_differences.hpp
+    title: Product Of Differences
   - icon: ':heavy_check_mark:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"

@@ -114,7 +114,7 @@ data:
     title: Util
   - icon: ':heavy_check_mark:'
     path: library/string/compare_substring.hpp
-    title: library/string/compare_substring.hpp
+    title: Compare Substring
   - icon: ':warning:'
     path: library/template.cpp
     title: library/template.cpp
