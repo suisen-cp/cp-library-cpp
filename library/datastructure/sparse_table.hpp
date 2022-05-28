@@ -3,8 +3,6 @@
 
 #include <vector>
 
-#include "library/type_traits/type_traits.hpp"
-
 namespace suisen {
     template <typename T, T(*op)(T, T), T(*e)()>
     struct SparseTable {
