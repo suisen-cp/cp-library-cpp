@@ -126,6 +126,9 @@ data:
     - icon: ':warning:'
       path: library/datastructure/permutation_tree.hpp
       title: Permutation Tree
+    - icon: ':question:'
+      path: library/datastructure/persistent_fenwick_tree.hpp
+      title: Persistent Fenwick Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: Range Foldable Dynamic Sequence
@@ -202,10 +205,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/li_chao_segment_tree.hpp
       title: Li Chao Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: library/datastructure/segment_tree/persistent_commutative_dual_segment_tree.hpp
+      title: Persistent Commutative Dual Segment Tree
+    - icon: ':x:'
+      path: library/datastructure/segment_tree/persistent_dual_segment_tree.hpp
+      title: Persistent Dual Segment Tree
+    - icon: ':question:'
       path: library/datastructure/segment_tree/persistent_lazy_segment_tree.hpp
       title: "\u6C38\u7D9A\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/persistent_segment_tree.hpp
       title: "\u6C38\u7D9A\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -600,7 +609,7 @@ data:
     - icon: ':warning:'
       path: library/util/iter_util.hpp
       title: Iter Util
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/util/object_pool.hpp
       title: Object Pool
     - icon: ':warning:'
@@ -830,6 +839,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
       title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - name: test/src/datastructure/persistent_fenwick_tree
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
+      title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
+      title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
   - name: test/src/datastructure/rectangle_add_rectangle_sum
     pages:
     - icon: ':heavy_check_mark:'
@@ -876,16 +893,35 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
       title: test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
+  - name: test/src/datastructure/segment_tree/persistent_commutative_dual_segment_tree
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/persistent_commutative_dual_segment_tree/abc253.test.cpp
+      title: test/src/datastructure/segment_tree/persistent_commutative_dual_segment_tree/abc253.test.cpp
+  - name: test/src/datastructure/segment_tree/persistent_dual_segment_tree
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/persistent_dual_segment_tree/abc253.test.cpp
+      title: test/src/datastructure/segment_tree/persistent_dual_segment_tree/abc253.test.cpp
   - name: test/src/datastructure/segment_tree/persistent_lazy_segment_tree
     pages:
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/persistent_lazy_segment_tree/abc253.test.cpp
+      title: test/src/datastructure/segment_tree/persistent_lazy_segment_tree/abc253.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/persistent_lazy_segment_tree/dummy.test.cpp
       title: test/src/datastructure/segment_tree/persistent_lazy_segment_tree/dummy.test.cpp
   - name: test/src/datastructure/segment_tree/persistent_segment_tree
     pages:
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/persistent_segment_tree/abc253_f.test.cpp
+      title: test/src/datastructure/segment_tree/persistent_segment_tree/abc253_f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
       title: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
+      title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   - name: test/src/datastructure/segment_tree/segment_tree
     pages:
     - icon: ':heavy_check_mark:'

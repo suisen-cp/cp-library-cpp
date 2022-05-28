@@ -10,14 +10,6 @@ data:
     path: library/algorithm/monotonic_convex_hull_trick.hpp
     title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3059\u308B Convex\
       \ Hull Trick"
-  - icon: ':warning:'
-    path: library/algorithm/rmq_pm1.hpp
-    title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
-      \u306E RMQ"
-  - icon: ':heavy_check_mark:'
-    path: library/algorithm/rmq_pm1_with_index.hpp
-    title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
-      \u306E RMQ (\u6DFB\u5B57\u306E\u5FA9\u5143\u4ED8\u304D)"
   - icon: ':heavy_check_mark:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: Sliding Window Minimum
@@ -89,9 +81,6 @@ data:
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\u758E\
       \u306A\u5834\u5408)"
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/sparse_table.hpp
-    title: Sparse Table
-  - icon: ':heavy_check_mark:'
     path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
     title: Static Rectangle Add Rectangle Sum
   - icon: ':heavy_check_mark:'
@@ -112,9 +101,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: Util
-  - icon: ':heavy_check_mark:'
-    path: library/string/compare_substring.hpp
-    title: Compare Substring
   - icon: ':warning:'
     path: library/template.cpp
     title: library/template.cpp
@@ -129,9 +115,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':heavy_check_mark:'
-    path: library/tree/lowest_common_ancestor.hpp
-    title: Lowest Common Ancestor
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
@@ -191,6 +174,9 @@ data:
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
+    title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
     title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - icon: ':heavy_check_mark:'
@@ -220,6 +206,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
+    title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
@@ -272,18 +261,6 @@ data:
     path: test/src/number/util/same_div_dens.test.cpp
     title: test/src/number/util/same_div_dens.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/string/compare_substring/abc141_e.test.cpp
-    title: test/src/string/compare_substring/abc141_e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/string/compare_substring/dummy.test.cpp
-    title: test/src/string/compare_substring/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/string/compare_substring/string_search.test.cpp
-    title: test/src/string/compare_substring/string_search.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/string/compare_substring/substring.test.cpp
-    title: test/src/string/compare_substring/substring.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -301,9 +278,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
-    title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
@@ -377,22 +351,17 @@ data:
   - library/number/fast_factorize.hpp
   - library/number/util.hpp
   - library/algorithm/sliding_window_minimum.hpp
-  - library/algorithm/rmq_pm1_with_index.hpp
-  - library/algorithm/rmq_pm1.hpp
   - library/algorithm/convex_hull_trick.hpp
   - library/algorithm/monotonic_convex_hull_trick.hpp
   - library/geom/segment_intersections.hpp
   - library/tree/heavy_light_decomposition.hpp
-  - library/tree/lowest_common_ancestor.hpp
   - library/tree/auxiliary_tree.hpp
   - library/template.hpp
-  - library/string/compare_substring.hpp
   - library/template.cpp
   - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/union_find/weighted_union_find.hpp
   - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/cartesian_tree.hpp
-  - library/datastructure/sparse_table.hpp
   - library/datastructure/segment_tree/sparse_segment_tree.hpp
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
   - library/datastructure/segment_tree/dual_segment_tree.hpp
@@ -432,11 +401,6 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
-  - test/src/string/compare_substring/abc141_e.test.cpp
-  - test/src/string/compare_substring/dummy.test.cpp
-  - test/src/string/compare_substring/substring.test.cpp
-  - test/src/string/compare_substring/string_search.test.cpp
   - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
@@ -444,6 +408,7 @@ data:
   - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
   - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
@@ -466,6 +431,7 @@ data:
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+  - test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp

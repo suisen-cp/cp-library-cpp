@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy:
