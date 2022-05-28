@@ -1,5 +1,11 @@
 #include <bits/stdc++.h>
 
+#ifdef _MSC_VER
+#  include <intrin.h>
+#else
+#  include <x86intrin.h>
+#endif
+
 #include "library/type_traits/type_traits.hpp"
 
 // ! type aliases
@@ -164,11 +170,11 @@ constexpr inline T cld(const T x, const T y) {
 }
 
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>
-constexpr inline int popcount(const T x) { return __builtin_popcount(x); }
+__attribute__((target("popcnt"))) constexpr inline int popcount(const T x) { return _mm_popcnt_u32(x); }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
-constexpr inline int popcount(const T x) { return __builtin_popcount(x); }
+__attribute__((target("popcnt"))) constexpr inline int popcount(const T x) { return _mm_popcnt_u32(x); }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
-constexpr inline int popcount(const T x) { return __builtin_popcountll(x); }
+__attribute__((target("popcnt"))) constexpr inline int popcount(const T x) { return _mm_popcnt_u64(x); }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>
 constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
@@ -189,20 +195,6 @@ template <typename T>
 constexpr inline int kth_bit(const T x, const unsigned int k) { return (x >> k) & 1; }
 template <typename T>
 constexpr inline int parity(const T x) { return popcount(x) & 1; }
-
-struct all_subset {
-    struct all_subset_iter {
-        const int s; int t;
-        constexpr all_subset_iter(int s) : s(s), t(s + 1) {}
-        constexpr auto operator*() const { return t; }
-        constexpr auto operator++() {}
-        constexpr auto operator!=(std::nullptr_t) { return t ? (--t &= s, true) : false; }
-    };
-    int s;
-    constexpr all_subset(int s) : s(s) {}
-    constexpr auto begin() { return all_subset_iter(s); }
-    constexpr auto end()   { return nullptr; }
-};
 
 // ! container
 
@@ -262,6 +254,43 @@ inline bool chmax(T &x, const T &y) {
     if (y <= x) return false;
     x = y;
     return true;
+}
+
+template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+std::string bin(T val, int bit_num = -1) {
+    std::string res;
+    if (bit_num >= 0) {
+        for (int bit = bit_num; bit --> 0;) res += '0' + ((val >> bit) & 1);
+    } else {
+        for (; val; val >>= 1) res += '0' + (val & 1);
+        std::reverse(res.begin(), res.end());
+    }
+    return res;
+}
+
+template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+std::vector<T> digits_low_to_high(T val, T base = 10) {
+    std::vector<T> res;
+    for (; val; val /= base) res.push_back(val % base);
+    if (res.empty()) res.push_back(T{0});
+    return res;
+}
+template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+std::vector<T> digits_high_to_low(T val, T base = 10) {
+    auto res = digits_low_to_high(val, base);
+    std::reverse(res.begin(), res.end());
+    return res;
+}
+
+template <typename T>
+std::string join(const std::vector<T> &v, const std::string &sep, const std::string &end) {
+    std::ostringstream ss;
+    for (auto it = v.begin(); it != v.end();) {
+        ss << *it;
+        if (++it != v.end()) ss << sep;
+    }
+    ss << end;
+    return ss.str();
 }
 
 namespace suisen {}
