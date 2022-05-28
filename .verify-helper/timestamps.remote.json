@@ -183,5 +183,7 @@
 "test/src/tree/rerooting/abc160_f.test.cpp": "2021-10-12 21:48:57 +0900",
 "test/src/tree/rerooting/abc222_f.test.cpp": "2021-10-12 21:48:57 +0900",
 "test/src/tree/rerooting/edpc_v.test.cpp": "2021-10-12 21:48:57 +0900",
-"test/src/util/coordinate_compressor/dummy.test.cpp": "2022-05-09 17:42:38 +0900"
+"test/src/util/coordinate_compressor/dummy.test.cpp": "2022-05-09 17:42:38 +0900",
+"test/src/util/subset_iterator/dummy_all_subset.test.cpp": "2022-05-28 20:11:45 +0900",
+"test/src/util/subset_iterator/dummy_all_subset_k.test.cpp": "2022-05-28 20:11:45 +0900"
 }
