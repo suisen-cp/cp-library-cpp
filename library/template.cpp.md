@@ -14,8 +14,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/template.hpp\"\n#include <bits/stdc++.h>\n\n#line\
-    \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\
+  bundledCode: "#line 1 \"library/template.hpp\"\n#include <bits/stdc++.h>\n\n#ifdef\
+    \ _MSC_VER\n#  include <intrin.h>\n#else\n#  include <x86intrin.h>\n#endif\n\n\
+    #line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\
     \n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
     \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
@@ -43,7 +44,7 @@ data:
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
     \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 4 \"library/template.hpp\"\n\n// ! type aliases\nusing i128 = __int128_t;\n\
+    \ 10 \"library/template.hpp\"\n\n// ! type aliases\nusing i128 = __int128_t;\n\
     using u128 = __uint128_t;\n\ntemplate <typename T>\nusing pq_greater = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\ntemplate <typename T, typename U>\nusing\
     \ umap = std::unordered_map<T, U>;\n\n// ! macros (capital: internal macro)\n\
@@ -110,36 +111,30 @@ data:
     \ / y;\n}\ntemplate <typename T>\nconstexpr inline T cld(const T x, const T y)\
     \ {\n    return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;\n}\n\n\
     template <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>\n\
-    constexpr inline int popcount(const T x) { return __builtin_popcount(x); }\ntemplate\
-    \ <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\nconstexpr\
-    \ inline int popcount(const T x) { return __builtin_popcount(x); }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\nconstexpr inline\
-    \ int popcount(const T x) { return __builtin_popcountll(x); }\ntemplate <typename\
-    \ T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>\nconstexpr inline\
-    \ int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>;\
-    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
-    constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>;\
-    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\n\
-    constexpr inline int count_lz(const T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>;\
-    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>\n\
-    constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>;\
-    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>\n\
-    constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>;\
-    \ }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>\n\
-    constexpr inline int count_tz(const T x) { return x ? __builtin_ctzll(x) : suisen::bit_num<T>;\
-    \ }\ntemplate <typename T>\nconstexpr inline int floor_log2(const T x) { return\
-    \ suisen::bit_num<T> - 1 - count_lz(x); }\ntemplate <typename T>\nconstexpr inline\
-    \ int ceil_log2(const T x)  { return floor_log2(x) + ((x & -x) != x); }\ntemplate\
-    \ <typename T>\nconstexpr inline int kth_bit(const T x, const unsigned int k)\
-    \ { return (x >> k) & 1; }\ntemplate <typename T>\nconstexpr inline int parity(const\
-    \ T x) { return popcount(x) & 1; }\n\nstruct all_subset {\n    struct all_subset_iter\
-    \ {\n        const int s; int t;\n        constexpr all_subset_iter(int s) : s(s),\
-    \ t(s + 1) {}\n        constexpr auto operator*() const { return t; }\n      \
-    \  constexpr auto operator++() {}\n        constexpr auto operator!=(std::nullptr_t)\
-    \ { return t ? (--t &= s, true) : false; }\n    };\n    int s;\n    constexpr\
-    \ all_subset(int s) : s(s) {}\n    constexpr auto begin() { return all_subset_iter(s);\
-    \ }\n    constexpr auto end()   { return nullptr; }\n};\n\n// ! container\n\n\
-    template <typename T, typename Comparator, suisen::constraints_t<suisen::is_comparator<Comparator,\
+    __attribute__((target(\"popcnt\"))) constexpr inline int popcount(const T x) {\
+    \ return _mm_popcnt_u32(x); }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T,\
+    \ 32>> = nullptr>\n__attribute__((target(\"popcnt\"))) constexpr inline int popcount(const\
+    \ T x) { return _mm_popcnt_u32(x); }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T,\
+    \ 64>> = nullptr>\n__attribute__((target(\"popcnt\"))) constexpr inline int popcount(const\
+    \ T x) { return _mm_popcnt_u64(x); }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T,\
+    \ 16>> = nullptr>\nconstexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)\
+    \   : suisen::bit_num<T>; }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T,\
+    \ 32>> = nullptr>\nconstexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)\
+    \   : suisen::bit_num<T>; }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T,\
+    \ 64>> = nullptr>\nconstexpr inline int count_lz(const T x) { return x ? __builtin_clzll(x)\
+    \ : suisen::bit_num<T>; }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T,\
+    \ 16>> = nullptr>\nconstexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)\
+    \   : suisen::bit_num<T>; }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T,\
+    \ 32>> = nullptr>\nconstexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)\
+    \   : suisen::bit_num<T>; }\ntemplate <typename T, suisen::constraints_t<suisen::is_nbit<T,\
+    \ 64>> = nullptr>\nconstexpr inline int count_tz(const T x) { return x ? __builtin_ctzll(x)\
+    \ : suisen::bit_num<T>; }\ntemplate <typename T>\nconstexpr inline int floor_log2(const\
+    \ T x) { return suisen::bit_num<T> - 1 - count_lz(x); }\ntemplate <typename T>\n\
+    constexpr inline int ceil_log2(const T x)  { return floor_log2(x) + ((x & -x)\
+    \ != x); }\ntemplate <typename T>\nconstexpr inline int kth_bit(const T x, const\
+    \ unsigned int k) { return (x >> k) & 1; }\ntemplate <typename T>\nconstexpr inline\
+    \ int parity(const T x) { return popcount(x) & 1; }\n\n// ! container\n\ntemplate\
+    \ <typename T, typename Comparator, suisen::constraints_t<suisen::is_comparator<Comparator,\
     \ T>> = nullptr>\nauto priqueue_comp(const Comparator comparator) {\n    return\
     \ std::priority_queue<T, std::vector<T>, Comparator>(comparator);\n}\n\ntemplate\
     \ <typename Iterable>\nauto isize(const Iterable &iterable) -> decltype(int(iterable.size()))\
@@ -161,12 +156,27 @@ data:
     template <typename T>\ninline bool chmin(T &x, const T &y) {\n    if (y >= x)\
     \ return false;\n    x = y;\n    return true;\n}\n// x <- max(x, y). returns true\
     \ iff `x` has chenged.\ntemplate <typename T>\ninline bool chmax(T &x, const T\
-    \ &y) {\n    if (y <= x) return false;\n    x = y;\n    return true;\n}\n\nnamespace\
-    \ suisen {}\nusing namespace suisen;\nusing namespace std;\n#line 2 \"library/template.cpp\"\
-    \n\nstruct io_setup {\n    io_setup(int precision = 20) {\n        std::ios::sync_with_stdio(false);\n\
-    \        std::cin.tie(nullptr);\n        std::cout << std::fixed << std::setprecision(precision);\n\
-    \    }\n} io_setup_ {};\n\n// ! code from here\n\nint main() {\n    \n    return\
-    \ 0;\n}\n"
+    \ &y) {\n    if (y <= x) return false;\n    x = y;\n    return true;\n}\n\ntemplate\
+    \ <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>\n\
+    std::string bin(T val, int bit_num = -1) {\n    std::string res;\n    if (bit_num\
+    \ >= 0) {\n        for (int bit = bit_num; bit --> 0;) res += '0' + ((val >> bit)\
+    \ & 1);\n    } else {\n        for (; val; val >>= 1) res += '0' + (val & 1);\n\
+    \        std::reverse(res.begin(), res.end());\n    }\n    return res;\n}\n\n\
+    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
+    \ = nullptr>\nstd::vector<T> digits_low_to_high(T val, T base = 10) {\n    std::vector<T>\
+    \ res;\n    for (; val; val /= base) res.push_back(val % base);\n    if (res.empty())\
+    \ res.push_back(T{0});\n    return res;\n}\ntemplate <typename T, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\nstd::vector<T> digits_high_to_low(T val, T base\
+    \ = 10) {\n    auto res = digits_low_to_high(val, base);\n    std::reverse(res.begin(),\
+    \ res.end());\n    return res;\n}\n\ntemplate <typename T>\nstd::string join(const\
+    \ std::vector<T> &v, const std::string &sep, const std::string &end) {\n    std::ostringstream\
+    \ ss;\n    for (auto it = v.begin(); it != v.end();) {\n        ss << *it;\n \
+    \       if (++it != v.end()) ss << sep;\n    }\n    ss << end;\n    return ss.str();\n\
+    }\n\nnamespace suisen {}\nusing namespace suisen;\nusing namespace std;\n#line\
+    \ 2 \"library/template.cpp\"\n\nstruct io_setup {\n    io_setup(int precision\
+    \ = 20) {\n        std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);\n\
+    \        std::cout << std::fixed << std::setprecision(precision);\n    }\n} io_setup_\
+    \ {};\n\n// ! code from here\n\nint main() {\n    \n    return 0;\n}\n"
   code: "#include \"library/template.hpp\"\n\nstruct io_setup {\n    io_setup(int\
     \ precision = 20) {\n        std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);\n\
     \        std::cout << std::fixed << std::setprecision(precision);\n    }\n} io_setup_\
@@ -177,7 +187,7 @@ data:
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-05-28 20:11:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp

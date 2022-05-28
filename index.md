@@ -610,9 +610,21 @@ data:
       path: library/util/permutation.hpp
       title: Permutation
     - icon: ':warning:'
+      path: library/util/rot90.hpp
+      title: Rot90
+    - icon: ':warning:'
       path: library/util/run_length_encoder.hpp
       title: "Run Length Encoder (\u30E9\u30F3\u30EC\u30F3\u30AF\u30B9\u5727\u7E2E\
         )"
+    - icon: ':heavy_check_mark:'
+      path: library/util/subset_iterator.hpp
+      title: Subset Iterator
+    - icon: ':warning:'
+      path: library/util/timer.hpp
+      title: Timer
+    - icon: ':warning:'
+      path: library/util/transpose.hpp
+      title: Transpose
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_hash.hpp
       title: Tuple Hash
@@ -1390,5 +1402,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/util/coordinate_compressor/dummy.test.cpp
       title: test/src/util/coordinate_compressor/dummy.test.cpp
+  - name: test/src/util/subset_iterator
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/util/subset_iterator/dummy_all_subset.test.cpp
+      title: test/src/util/subset_iterator/dummy_all_subset.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
+      title: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
 layout: toppage
 ---
