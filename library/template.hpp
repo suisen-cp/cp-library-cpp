@@ -63,14 +63,56 @@ void debug_internal(const char* s, T&& first, Args&&... args) {
 
 // ! I/O utilities
 
+// __int128_t
+std::ostream& operator<<(std::ostream& dest, __int128_t value) {
+    std::ostream::sentry s(dest);
+    if (s) {
+        __uint128_t tmp = value < 0 ? -value : value;
+        char buffer[128];
+        char* d = std::end(buffer);
+        do {
+            --d;
+            *d = "0123456789"[tmp % 10];
+            tmp /= 10;
+        } while (tmp != 0);
+        if (value < 0) {
+            --d;
+            *d = '-';
+        }
+        int len = std::end(buffer) - d;
+        if (dest.rdbuf()->sputn(d, len) != len) {
+            dest.setstate(std::ios_base::badbit);
+        }
+    }
+    return dest;
+}
+// __uint128_t
+std::ostream& operator<<(std::ostream& dest, __uint128_t value) {
+    std::ostream::sentry s(dest);
+    if (s) {
+        char buffer[128];
+        char* d = std::end(buffer);
+        do {
+            --d;
+            *d = "0123456789"[value % 10];
+            value /= 10;
+        } while (value != 0);
+        int len = std::end(buffer) - d;
+        if (dest.rdbuf()->sputn(d, len) != len) {
+            dest.setstate(std::ios_base::badbit);
+        }
+    }
+    return dest;
+}
+
 // pair
 template <typename T, typename U>
-std::ostream& operator<<(std::ostream& out, const std::pair<T, U> &a) {
+std::ostream& operator<<(std::ostream& out, const std::pair<T, U>& a) {
     return out << a.first << ' ' << a.second;
 }
 // tuple
 template <unsigned int N = 0, typename ...Args>
-std::ostream& operator<<(std::ostream& out, const std::tuple<Args...> &a) {
+std::ostream& operator<<(std::ostream& out, const std::tuple<Args...>& a) {
     if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) {
         return out;
     } else {
@@ -83,7 +125,7 @@ std::ostream& operator<<(std::ostream& out, const std::tuple<Args...> &a) {
 }
 // vector
 template <typename T>
-std::ostream& operator<<(std::ostream& out, const std::vector<T> &a) {
+std::ostream& operator<<(std::ostream& out, const std::vector<T>& a) {
     for (auto it = a.begin(); it != a.end();) {
         out << *it;
         if (++it != a.end()) out << ' ';
@@ -92,7 +134,7 @@ std::ostream& operator<<(std::ostream& out, const std::vector<T> &a) {
 }
 // array
 template <typename T, size_t N>
-std::ostream& operator<<(std::ostream& out, const std::array<T, N> &a) {
+std::ostream& operator<<(std::ostream& out, const std::array<T, N>& a) {
     for (auto it = a.begin(); it != a.end();) {
         out << *it;
         if (++it != a.end()) out << ' ';
@@ -101,7 +143,7 @@ std::ostream& operator<<(std::ostream& out, const std::array<T, N> &a) {
 }
 inline void print() { std::cout << '\n'; }
 template <typename Head, typename... Tail>
-inline void print(const Head &head, const Tail &...tails) {
+inline void print(const Head& head, const Tail &...tails) {
     std::cout << head;
     if (sizeof...(tails)) std::cout << ' ';
     print(tails...);
@@ -115,14 +157,39 @@ auto print_all(const Iterable& v, std::string sep = " ", std::string end = "\n")
     std::cout << end;
 }
 
+__int128_t parse_i128(std::string& s) {
+    __int128_t ret = 0;
+    for (int i = 0; i < int(s.size()); i++) if ('0' <= s[i] and s[i] <= '9') ret = 10 * ret + s[i] - '0';
+    if (s[0] == '-') ret = -ret;
+    return ret;
+}
+__uint128_t parse_u128(std::string& s) {
+    __uint128_t ret = 0;
+    for (int i = 0; i < int(s.size()); i++) if ('0' <= s[i] and s[i] <= '9') ret = 10 * ret + s[i] - '0';
+    return ret;
+}
+// __int128_t
+std::istream& operator>>(std::istream& in, __int128_t& v) {
+    std::string s;
+    in >> s;
+    v = parse_i128(s);
+    return in;
+}
+// __uint128_t
+std::istream& operator>>(std::istream& in, __uint128_t& v) {
+    std::string s;
+    in >> s;
+    v = parse_u128(s);
+    return in;
+}
 // pair
 template <typename T, typename U>
-std::istream& operator>>(std::istream& in, std::pair<T, U> &a) {
+std::istream& operator>>(std::istream& in, std::pair<T, U>& a) {
     return in >> a.first >> a.second;
 }
 // tuple
 template <unsigned int N = 0, typename ...Args>
-std::istream& operator>>(std::istream& in, std::tuple<Args...> &a) {
+std::istream& operator>>(std::istream& in, std::tuple<Args...>& a) {
     if constexpr (N >= std::tuple_size_v<std::tuple<Args...>>) {
         return in;
     } else {
@@ -131,19 +198,19 @@ std::istream& operator>>(std::istream& in, std::tuple<Args...> &a) {
 }
 // vector
 template <typename T>
-std::istream& operator>>(std::istream& in, std::vector<T> &a) {
+std::istream& operator>>(std::istream& in, std::vector<T>& a) {
     for (auto it = a.begin(); it != a.end(); ++it) in >> *it;
     return in;
 }
 // array
 template <typename T, size_t N>
-std::istream& operator>>(std::istream& in, std::array<T, N> &a) {
+std::istream& operator>>(std::istream& in, std::array<T, N>& a) {
     for (auto it = a.begin(); it != a.end(); ++it) in >> *it;
     return in;
 }
 template <typename ...Args>
 void read(Args &...args) {
-    ( std::cin >> ... >> args );
+    (std::cin >> ... >> args);
 }
 
 // ! integral utilities
@@ -176,21 +243,21 @@ __attribute__((target("popcnt"))) constexpr inline int popcount(const T x) { ret
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
 __attribute__((target("popcnt"))) constexpr inline int popcount(const T x) { return _mm_popcnt_u64(x); }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>
-constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>; }
+constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x) : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
-constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x)   : suisen::bit_num<T>; }
+constexpr inline int count_lz(const T x) { return x ? __builtin_clz(x) : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
 constexpr inline int count_lz(const T x) { return x ? __builtin_clzll(x) : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 16>> = nullptr>
-constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>; }
+constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x) : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 32>> = nullptr>
-constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x)   : suisen::bit_num<T>; }
+constexpr inline int count_tz(const T x) { return x ? __builtin_ctz(x) : suisen::bit_num<T>; }
 template <typename T, suisen::constraints_t<suisen::is_nbit<T, 64>> = nullptr>
 constexpr inline int count_tz(const T x) { return x ? __builtin_ctzll(x) : suisen::bit_num<T>; }
 template <typename T>
-constexpr inline int floor_log2(const T x) { return suisen::bit_num<T> - 1 - count_lz(x); }
+constexpr inline int floor_log2(const T x) { return suisen::bit_num<T> -1 - count_lz(x); }
 template <typename T>
-constexpr inline int ceil_log2(const T x)  { return floor_log2(x) + ((x & -x) != x); }
+constexpr inline int ceil_log2(const T x) { return floor_log2(x) + ((x & -x) != x); }
 template <typename T>
 constexpr inline int kth_bit(const T x, const unsigned int k) { return (x >> k) & 1; }
 template <typename T>
@@ -204,7 +271,7 @@ auto priqueue_comp(const Comparator comparator) {
 }
 
 template <typename Iterable>
-auto isize(const Iterable &iterable) -> decltype(int(iterable.size())) {
+auto isize(const Iterable& iterable) -> decltype(int(iterable.size())) {
     return iterable.size();
 }
 
@@ -224,7 +291,7 @@ auto generate_range_vector(T n) {
 }
 
 template <typename T>
-void sort_unique_erase(std::vector<T> &a) {
+void sort_unique_erase(std::vector<T>& a) {
     std::sort(a.begin(), a.end());
     a.erase(std::unique(a.begin(), a.end()), a.end());
 }
@@ -234,7 +301,7 @@ auto foreach_adjacent_values(InputIterator first, InputIterator last, BiConsumer
     if (first != last) for (auto itr = first, itl = itr++; itr != last; itl = itr++) f(*itl, *itr);
 }
 template <typename Container, typename BiConsumer>
-auto foreach_adjacent_values(Container c, BiConsumer f) -> decltype(c.begin(), c.end(), void()){
+auto foreach_adjacent_values(Container c, BiConsumer f) -> decltype(c.begin(), c.end(), void()) {
     foreach_adjacent_values(c.begin(), c.end(), f);
 }
 
@@ -243,14 +310,14 @@ auto foreach_adjacent_values(Container c, BiConsumer f) -> decltype(c.begin(), c
 
 // x <- min(x, y). returns true iff `x` has chenged.
 template <typename T>
-inline bool chmin(T &x, const T &y) {
+inline bool chmin(T& x, const T& y) {
     if (y >= x) return false;
     x = y;
     return true;
 }
 // x <- max(x, y). returns true iff `x` has chenged.
 template <typename T>
-inline bool chmax(T &x, const T &y) {
+inline bool chmax(T& x, const T& y) {
     if (y <= x) return false;
     x = y;
     return true;
@@ -260,7 +327,7 @@ template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = 
 std::string bin(T val, int bit_num = -1) {
     std::string res;
     if (bit_num >= 0) {
-        for (int bit = bit_num; bit --> 0;) res += '0' + ((val >> bit) & 1);
+        for (int bit = bit_num; bit-- > 0;) res += '0' + ((val >> bit) & 1);
     } else {
         for (; val; val >>= 1) res += '0' + (val & 1);
         std::reverse(res.begin(), res.end());
@@ -272,7 +339,7 @@ template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = 
 std::vector<T> digits_low_to_high(T val, T base = 10) {
     std::vector<T> res;
     for (; val; val /= base) res.push_back(val % base);
-    if (res.empty()) res.push_back(T{0});
+    if (res.empty()) res.push_back(T{ 0 });
     return res;
 }
 template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
@@ -283,7 +350,7 @@ std::vector<T> digits_high_to_low(T val, T base = 10) {
 }
 
 template <typename T>
-std::string join(const std::vector<T> &v, const std::string &sep, const std::string &end) {
+std::string join(const std::vector<T>& v, const std::string& sep, const std::string& end) {
     std::ostringstream ss;
     for (auto it = v.begin(); it != v.end();) {
         ss << *it;
