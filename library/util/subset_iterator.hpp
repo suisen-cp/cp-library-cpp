@@ -9,7 +9,7 @@
 
 #include <cstdint>
 #include <iostream>
-#include <vector>
+#include <limits>
 
 namespace suisen {
     struct all_subset {
@@ -29,21 +29,22 @@ namespace suisen {
     // iterator over T s.t. T is subset of S and |T| = k
     struct all_subset_k {
         struct all_subset_k_iter {
-            const uint32_t s;
-            uint32_t t, y;
-            std::vector<uint32_t> tab;
-            all_subset_k_iter(uint32_t s, uint32_t k) : s(s), t(0) {
-                for (uint64_t i = 1; i <= s; i <<= 1) if (s & i) tab.push_back(i);
-                if (y = tab.size() >= k; y) {
-                    for (uint32_t i = 0; i < k; ++i) t |= tab[i];
-                    for (auto &e : tab) --e &= s;
-                    tab.insert(tab.begin(), 2, 0); // for k = 0, 1
+            const uint32_t n, k, s;
+            uint32_t t;
+            __attribute__((target("avx2")))
+            all_subset_k_iter(uint32_t s, uint32_t k) : n(uint32_t(1) << _mm_popcnt_u32(s)), k(k), s(s), t((uint32_t(1) << k) - 1) {}
+            __attribute__((target("bmi2")))
+            auto operator*() const { return _pdep_u32(t, s); }
+            __attribute__((target("bmi")))
+            auto operator++() {
+                if (k == 0) {
+                    t = std::numeric_limits<uint32_t>::max();
+                } else {
+                    uint32_t y = t + (t & -t);
+                    t = y | ((y ^ t) >> _tzcnt_u32(t << 2));
                 }
             }
-            auto operator*() const { return t; }
-            __attribute__((target("popcnt")))
-            auto operator++() { y = (t + (~s | (-t & t))) & s, t = y | tab[_mm_popcnt_u32(y ^ t)]; }
-            auto operator!=(std::nullptr_t) const { return y != 0; }
+            auto operator!=(std::nullptr_t) const { return t < n; }
         };
         uint32_t s, k;
         all_subset_k(uint32_t s, uint32_t k) : s(s), k(k) {}
