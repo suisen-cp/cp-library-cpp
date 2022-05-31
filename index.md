@@ -104,7 +104,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: Compressed Wavelet Matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
       title: Dynamic Sequence
     - icon: ':question:'
@@ -113,10 +113,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree_2d.hpp
       title: Fenwick Tree 2d
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/fenwick_tree_2d_sparse.hpp
       title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_dynamic_sequence.hpp
       title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
         \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
@@ -129,7 +129,7 @@ data:
     - icon: ':x:'
       path: library/datastructure/persistent_fenwick_tree.hpp
       title: Persistent Fenwick Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: Range Foldable Dynamic Sequence
     - icon: ':x:'
@@ -830,15 +830,15 @@ data:
       title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - name: test/src/datastructure/fenwick_tree_2d_sparse
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
       title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
       title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   - name: test/src/datastructure/lazy_eval_dynamic_sequence
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/lazy_eval_map
