@@ -37,7 +37,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/persistent_fenwick_tree.hpp
     title: Persistent Fenwick Tree
   - icon: ':x:'
@@ -68,7 +68,7 @@ data:
   - icon: ':x:'
     path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
     title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
   - icon: ':x:'
@@ -89,7 +89,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   _isVerificationFailed: true

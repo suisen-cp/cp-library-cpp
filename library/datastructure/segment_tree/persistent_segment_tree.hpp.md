@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   _isVerificationFailed: true

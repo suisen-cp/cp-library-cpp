@@ -6,18 +6,18 @@ data:
   - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
     title: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/util/subset_iterator/dummy_all_subset.test.cpp
     title: test/src/util/subset_iterator/dummy_all_subset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
     title: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/subset_iterator.hpp\"\n\n\n\n#ifdef _MSC_VER\n\
@@ -136,7 +136,7 @@ data:
   path: library/util/subset_iterator.hpp
   requiredBy: []
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/sps/abc253_h.test.cpp
   - test/src/util/subset_iterator/dummy_all_setbit.test.cpp

@@ -5,36 +5,27 @@ data:
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':question:'
-    path: library/math/inv_mods.hpp
-    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':question:'
-    path: library/polynomial/fps_naive.hpp
-    title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-  - icon: ':question:'
-    path: library/type_traits/type_traits.hpp
-    title: Type Traits
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc105/tasks/arc105_f
@@ -469,19 +460,16 @@ data:
     \  std::cout << q.sqrt().log().back().val() << std::endl;\n    return 0;\n}"
   dependsOn:
   - library/math/sps.hpp
-  - library/convolution/subset_convolution.hpp
-  - library/polynomial/fps_naive.hpp
-  - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
-  - library/math/inv_mods.hpp
+  - library/convolution/subset_convolution.hpp
   - library/transform/subset.hpp
   - library/transform/kronecker_power.hpp
   - library/util/default_operator.hpp
   isVerificationFile: true
   path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-21 02:24:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/lights_out_on_connected_graph.test.cpp
 layout: document

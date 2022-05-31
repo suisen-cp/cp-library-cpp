@@ -5,25 +5,16 @@ data:
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':question:'
-    path: library/math/inv_mods.hpp
-    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':question:'
-    path: library/polynomial/fps_naive.hpp
-    title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
-    path: library/type_traits/type_traits.hpp
-    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc236/tasks/abc236_Ex
@@ -384,16 +375,13 @@ data:
     \    return 0;\n}"
   dependsOn:
   - library/math/sps.hpp
-  - library/convolution/subset_convolution.hpp
-  - library/polynomial/fps_naive.hpp
-  - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
-  - library/math/inv_mods.hpp
+  - library/convolution/subset_convolution.hpp
   isVerificationFile: true
   path: test/src/math/sps/abc236_h.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-03 18:13:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/abc236_h.test.cpp
 layout: document

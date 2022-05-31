@@ -4,18 +4,6 @@ data:
   - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
-    path: library/math/inv_mods.hpp
-    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
-    path: library/math/modint_extension.hpp
-    title: Modint Extension
-  - icon: ':question:'
-    path: library/polynomial/fps_naive.hpp
-    title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
-    path: library/type_traits/type_traits.hpp
-    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -289,14 +277,10 @@ data:
     \    return 0;\n}"
   dependsOn:
   - library/convolution/subset_convolution.hpp
-  - library/polynomial/fps_naive.hpp
-  - library/type_traits/type_traits.hpp
-  - library/math/modint_extension.hpp
-  - library/math/inv_mods.hpp
   isVerificationFile: true
   path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2021-09-29 01:36:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/subset_convolution/subset_convolution.test.cpp

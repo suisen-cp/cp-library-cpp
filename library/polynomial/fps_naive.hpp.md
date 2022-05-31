@@ -14,28 +14,16 @@ data:
   - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-    title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - icon: ':x:'
-    path: test/src/math/sps/abc236_h.test.cpp
-    title: test/src/math/sps/abc236_h.test.cpp
   - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':x:'
-    path: test/src/math/sps/connectivity2.test.cpp
-    title: test/src/math/sps/connectivity2.test.cpp
-  - icon: ':x:'
-    path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-    title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n\
@@ -393,13 +381,9 @@ data:
   - library/math/sps.hpp
   - library/convolution/subset_convolution.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/math/sps/abc253_h.test.cpp
-  - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/sps/connectivity2.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
 documentation_of: library/polynomial/fps_naive.hpp
 layout: document
 title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"

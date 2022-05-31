@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/persistent_fenwick_tree.hpp
     title: Persistent Fenwick Tree
   - icon: ':question:'
