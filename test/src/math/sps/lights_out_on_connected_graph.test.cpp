@@ -32,7 +32,7 @@ int main() {
     for (int i = 0; i < 1 << n; ++i) {
         p[i] = pow_inv_2[c[i]];
     }
-    SPS<mint> q = p * p;
+    SPS<mint> q = p.pow(2);
     for (int i = 0; i < 1 << n; ++i) {
         q[i] *= pow_2[c[i]];
     }

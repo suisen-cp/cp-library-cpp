@@ -157,6 +157,7 @@ class FPS : public std::vector<mint> {
             return *this;
         }
         FPS& exp_inplace(const int max_deg) {
+            if (max_deg <= 60) return *this = naive_exp(max_deg);
             FPS res {1};
             for (int k = 1; k <= max_deg; k *= 2) res *= ++(pre(k * 2) - res.log(k * 2)), res.pre_inplace(k * 2);
             return *this = std::move(res), pre_inplace(max_deg);
@@ -201,6 +202,16 @@ class FPS : public std::vector<mint> {
             }
             return {q, pre_inplace(gd - 1)};
         }
+
+        FPS<mint> naive_exp(const int max_deg) const {
+            FPS<mint> g(max_deg + 1);
+            g[0] = 1;
+            for (int i = 1; i <= max_deg; ++i) {
+                for (int j = 0; j < i; ++j) g[i] += g[j] * (i - j) * (*this)[i - j];
+                g[i] *= invs[i];
+            }
+            return g;
+        }
 };
 
 template <typename mint>
@@ -221,11 +232,11 @@ auto log(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {
     return a.log(a.deg());
 }
 template <typename mint>
-auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {
+auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {
     return a.exp(a.deg());
 }
 template <typename mint, typename T>
-auto pow(suisen::FPS<mint> a, T b) -> decltype(mint::mod(), mint()) {
+auto pow(suisen::FPS<mint> a, T b) -> decltype(mint::mod(), suisen::FPS<mint>{}) {
     return a.pow(b, a.deg());
 }
 template <typename mint>

@@ -58,6 +58,17 @@ struct safely_multipliable<long double> { using type = long double; };
 template <typename T>
 using safely_multipliable_t = typename safely_multipliable<T>::type;
 
+template <typename T, typename = void>
+struct rec_value_type {
+    using type = T;
+};
+template <typename T>
+struct rec_value_type<T, std::void_t<typename T::value_type>> {
+    using type = typename rec_value_type<typename T::value_type>::type;
+};
+template <typename T>
+using rec_value_type_t = typename rec_value_type<T>::type;
+
 } // namespace suisen
 
 #endif // SUISEN_TYPE_TRITS
