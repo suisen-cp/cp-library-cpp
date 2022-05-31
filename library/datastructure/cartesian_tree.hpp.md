@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -42,20 +42,24 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 10 \"library/datastructure/cartesian_tree.hpp\"\n\nnamespace suisen {\n    struct\
-    \ CartesianTree : public std::vector<std::array<int, 2>> {\n        using base_type\
-    \ = std::vector<std::array<int, 2>>;\n\n        static constexpr int absent =\
-    \ -1;\n\n        const int root;\n\n        CartesianTree() : base_type(), root(0)\
-    \ {}\n        CartesianTree(int root, const base_type& g) : base_type(g), root(root)\
-    \ {}\n        CartesianTree(int root, base_type&& g) : base_type(std::move(g)),\
-    \ root(root) {}\n\n        auto ranges() const {\n            std::vector<std::pair<int,\
-    \ int>> res;\n            res.reserve(size());\n            auto rec = [&](auto\
-    \ rec, int l, int m, int r) -> void {\n                if (m == absent) return;\n\
-    \                const auto& [lm, rm] = (*this)[m];\n                rec(rec,\
-    \ l, lm, m), res.emplace_back(l, r), rec(rec, m + 1, rm, r);\n            };\n\
-    \            rec(rec, 0, root, size());\n            return res;\n        }\n\
-    \    };\n\n    template <typename T, typename Comparator, constraints_t<is_comparator<Comparator,\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 10 \"library/datastructure/cartesian_tree.hpp\"\
+    \n\nnamespace suisen {\n    struct CartesianTree : public std::vector<std::array<int,\
+    \ 2>> {\n        using base_type = std::vector<std::array<int, 2>>;\n\n      \
+    \  static constexpr int absent = -1;\n\n        const int root;\n\n        CartesianTree()\
+    \ : base_type(), root(0) {}\n        CartesianTree(int root, const base_type&\
+    \ g) : base_type(g), root(root) {}\n        CartesianTree(int root, base_type&&\
+    \ g) : base_type(std::move(g)), root(root) {}\n\n        auto ranges() const {\n\
+    \            std::vector<std::pair<int, int>> res;\n            res.reserve(size());\n\
+    \            auto rec = [&](auto rec, int l, int m, int r) -> void {\n       \
+    \         if (m == absent) return;\n                const auto& [lm, rm] = (*this)[m];\n\
+    \                rec(rec, l, lm, m), res.emplace_back(l, r), rec(rec, m + 1, rm,\
+    \ r);\n            };\n            rec(rec, 0, root, size());\n            return\
+    \ res;\n        }\n    };\n\n    template <typename T, typename Comparator, constraints_t<is_comparator<Comparator,\
     \ T>> = nullptr>\n    struct CartesianTreeBuilder {\n        CartesianTreeBuilder()\
     \ {}\n        template <typename RandomAccessibleContainer>\n        CartesianTreeBuilder(const\
     \ RandomAccessibleContainer& a, Comparator comp = Comparator{}) : n(a.size()),\
@@ -119,7 +123,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/cartesian_tree.hpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp

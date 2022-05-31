@@ -5,17 +5,17 @@ data:
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
   - icon: ':heavy_check_mark:'
     path: library/transform/walsh_hadamard.hpp
     title: "Walsh Hadamard \u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
@@ -139,22 +139,27 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 7 \"library/convolution/polynomial_eval.hpp\"\n\nnamespace suisen {\n    template\
-    \ <typename T, auto transform, auto transform_inv, typename F, constraints_t<is_same_as_invoke_result<T,\
-    \ F, T>> = nullptr>\n    std::vector<T> polynomial_eval(std::vector<T> &&a, F\
-    \ f) {\n        transform(a);\n        for (auto &x : a) x = f(x);\n        transform_inv(a);\n\
-    \        return a;\n    }\n\n    template <typename T, auto transform, auto transform_inv,\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 7 \"library/convolution/polynomial_eval.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T, auto transform, auto transform_inv,\
     \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\n  \
-    \  std::vector<T> polynomial_eval(const std::vector<T> &a, F f) {\n        return\
-    \ polynomial_eval<T, transform, transform_inv>(std::vector<T>(a), f);\n    }\n\
-    } // namespace suisen\n\n\n#line 8 \"test/src/convolution/polynomial_eval/nim_counting.test.cpp\"\
-    \nusing namespace suisen;\n\nusing mint = atcoder::modint998244353;\n\nconstexpr\
-    \ int M = 1 << 16;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n  \
-    \  std::cin.tie(nullptr);\n\n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint>\
-    \ c(M, 0);\n    for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin\
-    \ >> v;\n        ++c[v];\n    }\n\n    using namespace walsh_hadamard_transform;\n\
-    \n    auto res = suisen::polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c,\
+    \  std::vector<T> polynomial_eval(std::vector<T> &&a, F f) {\n        transform(a);\n\
+    \        for (auto &x : a) x = f(x);\n        transform_inv(a);\n        return\
+    \ a;\n    }\n\n    template <typename T, auto transform, auto transform_inv, typename\
+    \ F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\n    std::vector<T>\
+    \ polynomial_eval(const std::vector<T> &a, F f) {\n        return polynomial_eval<T,\
+    \ transform, transform_inv>(std::vector<T>(a), f);\n    }\n} // namespace suisen\n\
+    \n\n#line 8 \"test/src/convolution/polynomial_eval/nim_counting.test.cpp\"\nusing\
+    \ namespace suisen;\n\nusing mint = atcoder::modint998244353;\n\nconstexpr int\
+    \ M = 1 << 16;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint> c(M, 0);\n \
+    \   for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin >> v;\n  \
+    \      ++c[v];\n    }\n\n    using namespace walsh_hadamard_transform;\n\n   \
+    \ auto res = suisen::polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c,\
     \ [n](mint x) {\n        return x == 1 ? n : x * (x.pow(n) - 1) / (x - 1);\n \
     \       });\n\n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
     \ << std::endl;\n\n    return 0;\n}\n"
@@ -179,7 +184,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval/nim_counting.test.cpp

@@ -2,22 +2,34 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: library/convolution/subset_convolution.hpp
+    title: Subset Convolution
+  - icon: ':x:'
     path: library/math/sps.hpp
     title: Set Power Series
+  - icon: ':question:'
+    path: library/polynomial/fps_naive.hpp
+    title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+    title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - icon: ':x:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/math/sps/abc253_h.test.cpp
+    title: test/src/math/sps/abc253_h.test.cpp
+  - icon: ':x:'
     path: test/src/math/sps/connectivity2.test.cpp
     title: test/src/math/sps/connectivity2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
     title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://37zigen.com/tonelli-shanks-algorithm/
@@ -66,12 +78,16 @@ data:
   path: library/math/modint_extension.hpp
   requiredBy:
   - library/math/sps.hpp
+  - library/convolution/subset_convolution.hpp
+  - library/polynomial/fps_naive.hpp
   timestamp: '2021-08-13 19:00:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/math/sps/abc253_h.test.cpp
   - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/sps/connectivity2.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
 documentation_of: library/math/modint_extension.hpp
 layout: document
 title: Modint Extension

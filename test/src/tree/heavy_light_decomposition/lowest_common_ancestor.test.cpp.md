@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -46,43 +46,47 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 5 \"library/tree/heavy_light_decomposition.hpp\"\n#include <vector>\n\nnamespace\
-    \ suisen {\nclass HeavyLightDecomposition {\n    public:\n        template <typename\
-    \ Q>\n        using is_point_update_query = std::is_invocable<Q, int>;\n     \
-    \   template <typename Q>\n        using is_range_update_query = std::is_invocable<Q,\
-    \ int, int>;\n        template <typename Q, typename T>\n        using is_point_get_query\
-    \  = std::is_same<std::invoke_result_t<Q, int>, T>;\n        template <typename\
-    \ Q, typename T>\n        using is_range_fold_query = std::is_same<std::invoke_result_t<Q,\
-    \ int, int>, T>;\n\n        using Graph = std::vector<std::vector<int>>;\n\n \
-    \       HeavyLightDecomposition() = default;\n        HeavyLightDecomposition(Graph\
-    \ &g) : n(g.size()), visit(n), leave(n), head(n), ord(n), siz(n), par(n, -1),\
-    \ dep(n, 0) {\n            for (int i = 0; i < n; ++i) if (par[i] < 0) dfs(g,\
-    \ i, -1);\n            int time = 0;\n            for (int i = 0; i < n; ++i)\
-    \ if (par[i] < 0) hld(g, i, -1, time);\n        }\n        int size() const {\n\
-    \            return n;\n        }\n        int lca(int u, int v) const {\n   \
-    \         for (;; v = par[head[v]]) {\n                if (visit[u] > visit[v])\
-    \ std::swap(u, v);\n                if (head[u] == head[v]) return u;\n      \
-    \      }\n        }\n        int la(int u, int k, int default_value = -1) const\
-    \ {\n            if (k < 0) return default_value;\n            while (u >= 0)\
-    \ {\n                int h = head[u];\n                if (visit[u] - k >= visit[h])\
-    \ return ord[visit[u] - k];\n                k -= visit[u] - visit[h] + 1;\n \
-    \               u = par[h];\n            }\n            return default_value;\n\
-    \        }\n        int move_to(int u, int v, int d, int default_value = -1) const\
-    \ {\n            if (d < 0) return default_value;\n            const int w = lca(u,\
-    \ v);\n            int uw = dep[u] - dep[w];\n            if (d <= uw) return\
-    \ la(u, d);\n            int vw = dep[v] - dep[w];\n            return d <= uw\
-    \ + vw ? la(v, (uw + vw) - d) : default_value;\n        }\n        int dist(int\
-    \ u, int v) const {\n            return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n\
-    \        }\n        template <typename T, typename Q, typename F, constraints_t<is_range_fold_query<Q,\
-    \ T>, is_bin_op<F, T>> = nullptr>\n        T fold_path(int u, int v, T identity,\
-    \ F bin_op, Q fold_query, bool is_edge_query = false) const {\n            T res\
-    \ = identity;\n            for (;; v = par[head[v]]) {\n                if (visit[u]\
-    \ > visit[v]) std::swap(u, v);\n                if (head[u] == head[v]) break;\n\
-    \                res = bin_op(fold_query(visit[head[v]], visit[v] + 1), res);\n\
-    \            }\n            return bin_op(fold_query(visit[u] + is_edge_query,\
-    \ visit[v] + 1), res);\n        }\n        template <\n            typename T,\
-    \ typename Q1, typename Q2, typename F,\n            constraints_t<is_range_fold_query<Q1,\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 5 \"library/tree/heavy_light_decomposition.hpp\"\
+    \n#include <vector>\n\nnamespace suisen {\nclass HeavyLightDecomposition {\n \
+    \   public:\n        template <typename Q>\n        using is_point_update_query\
+    \ = std::is_invocable<Q, int>;\n        template <typename Q>\n        using is_range_update_query\
+    \ = std::is_invocable<Q, int, int>;\n        template <typename Q, typename T>\n\
+    \        using is_point_get_query  = std::is_same<std::invoke_result_t<Q, int>,\
+    \ T>;\n        template <typename Q, typename T>\n        using is_range_fold_query\
+    \ = std::is_same<std::invoke_result_t<Q, int, int>, T>;\n\n        using Graph\
+    \ = std::vector<std::vector<int>>;\n\n        HeavyLightDecomposition() = default;\n\
+    \        HeavyLightDecomposition(Graph &g) : n(g.size()), visit(n), leave(n),\
+    \ head(n), ord(n), siz(n), par(n, -1), dep(n, 0) {\n            for (int i = 0;\
+    \ i < n; ++i) if (par[i] < 0) dfs(g, i, -1);\n            int time = 0;\n    \
+    \        for (int i = 0; i < n; ++i) if (par[i] < 0) hld(g, i, -1, time);\n  \
+    \      }\n        int size() const {\n            return n;\n        }\n     \
+    \   int lca(int u, int v) const {\n            for (;; v = par[head[v]]) {\n \
+    \               if (visit[u] > visit[v]) std::swap(u, v);\n                if\
+    \ (head[u] == head[v]) return u;\n            }\n        }\n        int la(int\
+    \ u, int k, int default_value = -1) const {\n            if (k < 0) return default_value;\n\
+    \            while (u >= 0) {\n                int h = head[u];\n            \
+    \    if (visit[u] - k >= visit[h]) return ord[visit[u] - k];\n               \
+    \ k -= visit[u] - visit[h] + 1;\n                u = par[h];\n            }\n\
+    \            return default_value;\n        }\n        int move_to(int u, int\
+    \ v, int d, int default_value = -1) const {\n            if (d < 0) return default_value;\n\
+    \            const int w = lca(u, v);\n            int uw = dep[u] - dep[w];\n\
+    \            if (d <= uw) return la(u, d);\n            int vw = dep[v] - dep[w];\n\
+    \            return d <= uw + vw ? la(v, (uw + vw) - d) : default_value;\n   \
+    \     }\n        int dist(int u, int v) const {\n            return dep[u] + dep[v]\
+    \ - 2 * dep[lca(u, v)];\n        }\n        template <typename T, typename Q,\
+    \ typename F, constraints_t<is_range_fold_query<Q, T>, is_bin_op<F, T>> = nullptr>\n\
+    \        T fold_path(int u, int v, T identity, F bin_op, Q fold_query, bool is_edge_query\
+    \ = false) const {\n            T res = identity;\n            for (;; v = par[head[v]])\
+    \ {\n                if (visit[u] > visit[v]) std::swap(u, v);\n             \
+    \   if (head[u] == head[v]) break;\n                res = bin_op(fold_query(visit[head[v]],\
+    \ visit[v] + 1), res);\n            }\n            return bin_op(fold_query(visit[u]\
+    \ + is_edge_query, visit[v] + 1), res);\n        }\n        template <\n     \
+    \       typename T, typename Q1, typename Q2, typename F,\n            constraints_t<is_range_fold_query<Q1,\
     \ T>, is_range_fold_query<Q2, T>, is_bin_op<F, T>> = nullptr\n        >\n    \
     \    T fold_path_noncommutative(int u, int v, T identity, F bin_op, Q1 fold_query,\
     \ Q2 fold_query_rev, bool is_edge_query = false) const {\n            T res_u\
@@ -160,8 +164,8 @@ data:
   isVerificationFile: true
   path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-31 16:25:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
 layout: document

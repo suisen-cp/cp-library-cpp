@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/number/util.hpp
     title: Util
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc206/tasks/abc206_e
@@ -48,31 +48,35 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 11 \"library/number/util.hpp\"\n\nnamespace suisen {\n\n    // // Returns pow(-1,\
-    \ n)\n    // template <typename T>\n    // constexpr inline int pow_m1(T n) {\n\
-    \    //     return -(n & 1) | 1;\n    // }\n    // // Returns pow(-1, n)\n   \
-    \ // template <>\n    // constexpr inline int pow_m1<bool>(bool n) {\n    // \
-    \    return -int(n) | 1;\n    // }\n\n    // // Returns floor(x / y)\n    // template\
-    \ <typename T>\n    // constexpr inline T fld(const T x, const T y) {\n    //\
-    \     return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y >= 0))) / y;\n    // }\n\
-    \    // // Returns ceil(x / y)\n    // template <typename T>\n    // constexpr\
-    \ inline T cld(const T x, const T y) {\n    //     return (x ^ y) <= 0 ? x / y\
-    \ : (x + (y + pow_m1(y >= 0))) / y;\n    // }\n\n    /**\n     * O(sqrt(n))\n\
-    \     * Returns a vector of { prime, index }.\n     * It is guaranteed that `prime`\
-    \ is ascending.\n     */\n    template <typename T>\n    std::vector<std::pair<T,\
-    \ int>> factorize(T n) {\n        static constexpr std::array primes{ 2, 3, 5,\
-    \ 7, 11, 13 };\n        static constexpr int next_prime = 17;\n        static\
-    \ constexpr int siz = std::array{ 1, 2, 8, 48, 480, 5760, 92160 } [primes.size()\
-    \ - 1] ;\n        static constexpr int period = [] {\n            int res = 1;\n\
-    \            for (auto e : primes) res *= e;\n            return res;\n      \
-    \  }();\n        static constexpr struct S : public std::array<int, siz> {\n \
-    \           constexpr S() {\n                for (int i = next_prime, j = 0; i\
-    \ < period + next_prime; i += 2) {\n                    bool ok = true;\n    \
-    \                for (int p : primes) ok &= i % p > 0;\n                    if\
-    \ (ok) (*this)[j++] = i - next_prime;\n                }\n            }\n    \
-    \    } s{};\n\n        assert(n > 0);\n        std::vector<std::pair<T, int>>\
-    \ res;\n        auto f = [&res, &n](int p) {\n            if (n % p) return;\n\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 11 \"library/number/util.hpp\"\n\nnamespace suisen\
+    \ {\n\n    // // Returns pow(-1, n)\n    // template <typename T>\n    // constexpr\
+    \ inline int pow_m1(T n) {\n    //     return -(n & 1) | 1;\n    // }\n    //\
+    \ // Returns pow(-1, n)\n    // template <>\n    // constexpr inline int pow_m1<bool>(bool\
+    \ n) {\n    //     return -int(n) | 1;\n    // }\n\n    // // Returns floor(x\
+    \ / y)\n    // template <typename T>\n    // constexpr inline T fld(const T x,\
+    \ const T y) {\n    //     return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y >=\
+    \ 0))) / y;\n    // }\n    // // Returns ceil(x / y)\n    // template <typename\
+    \ T>\n    // constexpr inline T cld(const T x, const T y) {\n    //     return\
+    \ (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;\n    // }\n\n    /**\n\
+    \     * O(sqrt(n))\n     * Returns a vector of { prime, index }.\n     * It is\
+    \ guaranteed that `prime` is ascending.\n     */\n    template <typename T>\n\
+    \    std::vector<std::pair<T, int>> factorize(T n) {\n        static constexpr\
+    \ std::array primes{ 2, 3, 5, 7, 11, 13 };\n        static constexpr int next_prime\
+    \ = 17;\n        static constexpr int siz = std::array{ 1, 2, 8, 48, 480, 5760,\
+    \ 92160 } [primes.size() - 1] ;\n        static constexpr int period = [] {\n\
+    \            int res = 1;\n            for (auto e : primes) res *= e;\n     \
+    \       return res;\n        }();\n        static constexpr struct S : public\
+    \ std::array<int, siz> {\n            constexpr S() {\n                for (int\
+    \ i = next_prime, j = 0; i < period + next_prime; i += 2) {\n                \
+    \    bool ok = true;\n                    for (int p : primes) ok &= i % p > 0;\n\
+    \                    if (ok) (*this)[j++] = i - next_prime;\n                }\n\
+    \            }\n        } s{};\n\n        assert(n > 0);\n        std::vector<std::pair<T,\
+    \ int>> res;\n        auto f = [&res, &n](int p) {\n            if (n % p) return;\n\
     \            int cnt = 0;\n            do n /= p, ++cnt; while (n % p == 0);\n\
     \            res.emplace_back(p, cnt);\n        };\n        for (int p : primes)\
     \ f(p);\n        for (T b = next_prime; b * b <= n; b += period) {\n         \
@@ -198,8 +202,8 @@ data:
   isVerificationFile: true
   path: test/src/number/util/divide_both.test.cpp
   requiredBy: []
-  timestamp: '2022-05-27 16:10:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-31 16:25:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/number/util/divide_both.test.cpp
 layout: document

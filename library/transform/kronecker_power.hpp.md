@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/xor_convolution.hpp
     title: Bitwise Xor Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -38,18 +38,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
     title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/connectivity2.test.cpp
     title: test/src/math/sps/connectivity2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
     title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/transform/kronecker_power/agc044_c.test.cpp
     title: test/src/transform/kronecker_power/agc044_c.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#include\
@@ -160,7 +160,7 @@ data:
   - library/convolution/and_convolution.hpp
   - library/convolution/xor_convolution.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/sps/connectivity2.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp

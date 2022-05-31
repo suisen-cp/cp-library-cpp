@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n\
@@ -46,17 +46,22 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 9 \"library/number/deterministic_miller_rabin.hpp\"\n\nnamespace suisen::miller_rabin\
-    \ {\n    namespace internal {\n        constexpr uint32_t THRESHOLD_1 = 341531U;\n\
-    \        constexpr uint64_t BASE_1[] { 9345883071009581737ULL };\n\n        constexpr\
-    \ uint32_t THRESHOLD_2 = 1050535501U;\n        constexpr uint64_t BASE_2[] { 336781006125ULL,\
-    \ 9639812373923155ULL };\n\n        constexpr uint64_t THRESHOLD_3 = 350269456337ULL;\n\
-    \        constexpr uint64_t BASE_3[] { 4230279247111683200ULL, 14694767155120705706ULL,\
-    \ 16641139526367750375ULL };\n\n        constexpr uint64_t THRESHOLD_4 = 55245642489451ULL;\n\
-    \        constexpr uint64_t BASE_4[] { 2ULL, 141889084524735ULL, 1199124725622454117ULL,\
-    \ 11096072698276303650ULL };\n\n        constexpr uint64_t THRESHOLD_5 = 7999252175582851ULL;\n\
-    \        constexpr uint64_t BASE_5[] { 2ULL, 4130806001517ULL, 149795463772692060ULL,\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 9 \"library/number/deterministic_miller_rabin.hpp\"\
+    \n\nnamespace suisen::miller_rabin {\n    namespace internal {\n        constexpr\
+    \ uint32_t THRESHOLD_1 = 341531U;\n        constexpr uint64_t BASE_1[] { 9345883071009581737ULL\
+    \ };\n\n        constexpr uint32_t THRESHOLD_2 = 1050535501U;\n        constexpr\
+    \ uint64_t BASE_2[] { 336781006125ULL, 9639812373923155ULL };\n\n        constexpr\
+    \ uint64_t THRESHOLD_3 = 350269456337ULL;\n        constexpr uint64_t BASE_3[]\
+    \ { 4230279247111683200ULL, 14694767155120705706ULL, 16641139526367750375ULL };\n\
+    \n        constexpr uint64_t THRESHOLD_4 = 55245642489451ULL;\n        constexpr\
+    \ uint64_t BASE_4[] { 2ULL, 141889084524735ULL, 1199124725622454117ULL, 11096072698276303650ULL\
+    \ };\n\n        constexpr uint64_t THRESHOLD_5 = 7999252175582851ULL;\n      \
+    \  constexpr uint64_t BASE_5[] { 2ULL, 4130806001517ULL, 149795463772692060ULL,\
     \ 186635894390467037ULL, 3967304179347715805ULL };\n\n        constexpr uint64_t\
     \ THRESHOLD_6 = 585226005592931977ULL;\n        constexpr uint64_t BASE_6[] {\
     \ 2ULL, 123635709730000ULL, 9233062284813009ULL, 43835965440333360ULL, 761179012939631437ULL,\
@@ -166,8 +171,8 @@ data:
   isVerificationFile: false
   path: library/number/fast_factorize.hpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-31 16:25:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/number/fast_factorize/factorize.test.cpp
 documentation_of: library/number/fast_factorize.hpp

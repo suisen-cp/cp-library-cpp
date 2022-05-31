@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -42,16 +42,21 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 7 \"library/convolution/polynomial_eval.hpp\"\n\nnamespace suisen {\n    template\
-    \ <typename T, auto transform, auto transform_inv, typename F, constraints_t<is_same_as_invoke_result<T,\
-    \ F, T>> = nullptr>\n    std::vector<T> polynomial_eval(std::vector<T> &&a, F\
-    \ f) {\n        transform(a);\n        for (auto &x : a) x = f(x);\n        transform_inv(a);\n\
-    \        return a;\n    }\n\n    template <typename T, auto transform, auto transform_inv,\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 7 \"library/convolution/polynomial_eval.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T, auto transform, auto transform_inv,\
     \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\n  \
-    \  std::vector<T> polynomial_eval(const std::vector<T> &a, F f) {\n        return\
-    \ polynomial_eval<T, transform, transform_inv>(std::vector<T>(a), f);\n    }\n\
-    } // namespace suisen\n\n\n"
+    \  std::vector<T> polynomial_eval(std::vector<T> &&a, F f) {\n        transform(a);\n\
+    \        for (auto &x : a) x = f(x);\n        transform_inv(a);\n        return\
+    \ a;\n    }\n\n    template <typename T, auto transform, auto transform_inv, typename\
+    \ F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\n    std::vector<T>\
+    \ polynomial_eval(const std::vector<T> &a, F f) {\n        return polynomial_eval<T,\
+    \ transform, transform_inv>(std::vector<T>(a), f);\n    }\n} // namespace suisen\n\
+    \n\n"
   code: "#ifndef SUISEN_APPLY_POLYNOMIAL\n#define SUISEN_APPLY_POLYNOMIAL\n\n#include\
     \ <vector>\n\n#include \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen\
     \ {\n    template <typename T, auto transform, auto transform_inv, typename F,\
@@ -67,7 +72,7 @@ data:
   isVerificationFile: false
   path: library/convolution/polynomial_eval.hpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp

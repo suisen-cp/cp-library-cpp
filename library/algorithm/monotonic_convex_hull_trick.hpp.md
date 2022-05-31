@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -42,19 +42,23 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 9 \"library/algorithm/monotonic_convex_hull_trick.hpp\"\n\nnamespace suisen\
-    \ {\n\ntemplate <typename T, bool is_min_query = true>\nclass MonotonicCHT {\n\
-    \    using MultT = safely_multipliable_t<T>;\n\n    public:\n        MonotonicCHT()\
-    \ {}\n    \n        void add_line(T slope, T intercept) {\n            if constexpr\
-    \ (not is_min_query) {\n                slope = -slope;\n                intercept\
-    \ = -intercept;\n            }\n            if (slope <= min_slope) {\n      \
-    \          min_slope = slope;\n                max_slope = std::max(max_slope,\
-    \ slope);\n                add_right(slope, intercept);\n            } else if\
-    \ (slope >= max_slope) {\n                max_slope = slope;\n               \
-    \ min_slope = std::min(min_slope, slope);\n                add_left(slope, intercept);\n\
-    \            } else assert(false);\n        }\n\n        MultT query(T x) const\
-    \ {\n            assert(not (called_ascending_query or called_descending_query));\n\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 9 \"library/algorithm/monotonic_convex_hull_trick.hpp\"\
+    \n\nnamespace suisen {\n\ntemplate <typename T, bool is_min_query = true>\nclass\
+    \ MonotonicCHT {\n    using MultT = safely_multipliable_t<T>;\n\n    public:\n\
+    \        MonotonicCHT() {}\n    \n        void add_line(T slope, T intercept)\
+    \ {\n            if constexpr (not is_min_query) {\n                slope = -slope;\n\
+    \                intercept = -intercept;\n            }\n            if (slope\
+    \ <= min_slope) {\n                min_slope = slope;\n                max_slope\
+    \ = std::max(max_slope, slope);\n                add_right(slope, intercept);\n\
+    \            } else if (slope >= max_slope) {\n                max_slope = slope;\n\
+    \                min_slope = std::min(min_slope, slope);\n                add_left(slope,\
+    \ intercept);\n            } else assert(false);\n        }\n\n        MultT query(T\
+    \ x) const {\n            assert(not (called_ascending_query or called_descending_query));\n\
     \            called_general_query = true;\n            assert(lines.size() > 0);\n\
     \            int l = -1, r = lines.size();\n            while (r - l >= 3) {\n\
     \                int ml = l + (r - l) / 3;\n                int mr = r - (r -\
@@ -167,7 +171,7 @@ data:
   isVerificationFile: false
   path: library/algorithm/monotonic_convex_hull_trick.hpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp

@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc208/tasks/abc208_f
@@ -136,47 +136,52 @@ data:
     \ int max_deg) {\n            FPS f_inv = inv(max_deg);\n            diff_inplace(),\
     \ *this *= f_inv, pre_inplace(max_deg - 1), intg_inplace();\n            return\
     \ *this;\n        }\n        FPS& exp_inplace(const int max_deg) {\n         \
-    \   FPS res {1};\n            for (int k = 1; k <= max_deg; k *= 2) res *= ++(pre(k\
-    \ * 2) - res.log(k * 2)), res.pre_inplace(k * 2);\n            return *this =\
-    \ std::move(res), pre_inplace(max_deg);\n        }\n        FPS& pow_inplace(const\
-    \ long long k, const int max_deg) {\n            int tlz = 0;\n            while\
-    \ (tlz <= deg() and unsafe_get(tlz) == 0) ++tlz;\n            if (tlz * k > max_deg)\
-    \ { this->clear(); return *this; }\n            *this >>= tlz;\n            mint\
-    \ base = (*this)[0];\n            *this *= base.inv(), log_inplace(max_deg), *this\
-    \ *= k, exp_inplace(max_deg), *this *= base.pow(k);\n            return *this\
-    \ <<= tlz * k, pre_inplace(max_deg);\n        }\n        inline FPS diff() const\
-    \ { return FPS(*this).diff_inplace(); }\n        inline FPS intg() const { return\
-    \ FPS(*this).intg_inplace(); }\n        inline FPS inv(const int max_deg) const\
-    \ { return FPS(*this).inv_inplace(max_deg); }\n        inline FPS log(const int\
-    \ max_deg) const { return FPS(*this).log_inplace(max_deg); }\n        inline FPS\
-    \ exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg); }\n \
-    \       inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k,\
-    \ max_deg); }\n\n        mint eval(mint x) const {\n            mint y = 0;\n\
-    \            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
-    \            return y;\n        }\n\n    private:\n        static inline inv_mods<mint>\
-    \ invs;\n        static convolution_t<mint> mult;\n        inline void ensure_deg(int\
-    \ d) { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
-    \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
-    \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
-    \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
-    \          const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
+    \   if (max_deg <= 60) return *this = naive_exp(max_deg);\n            FPS res\
+    \ {1};\n            for (int k = 1; k <= max_deg; k *= 2) res *= ++(pre(k * 2)\
+    \ - res.log(k * 2)), res.pre_inplace(k * 2);\n            return *this = std::move(res),\
+    \ pre_inplace(max_deg);\n        }\n        FPS& pow_inplace(const long long k,\
+    \ const int max_deg) {\n            int tlz = 0;\n            while (tlz <= deg()\
+    \ and unsafe_get(tlz) == 0) ++tlz;\n            if (tlz * k > max_deg) { this->clear();\
+    \ return *this; }\n            *this >>= tlz;\n            mint base = (*this)[0];\n\
+    \            *this *= base.inv(), log_inplace(max_deg), *this *= k, exp_inplace(max_deg),\
+    \ *this *= base.pow(k);\n            return *this <<= tlz * k, pre_inplace(max_deg);\n\
+    \        }\n        inline FPS diff() const { return FPS(*this).diff_inplace();\
+    \ }\n        inline FPS intg() const { return FPS(*this).intg_inplace(); }\n \
+    \       inline FPS inv(const int max_deg) const { return FPS(*this).inv_inplace(max_deg);\
+    \ }\n        inline FPS log(const int max_deg) const { return FPS(*this).log_inplace(max_deg);\
+    \ }\n        inline FPS exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg);\
+    \ }\n        inline FPS pow(const long long k, const int max_deg) const { return\
+    \ FPS(*this).pow_inplace(k, max_deg); }\n\n        mint eval(mint x) const {\n\
+    \            mint y = 0;\n            for (int i = size() - 1; i >= 0; --i) y\
+    \ = y * x + unsafe_get(i);\n            return y;\n        }\n\n    private:\n\
+    \        static inline inv_mods<mint> invs;\n        static convolution_t<mint>\
+    \ mult;\n        inline void ensure_deg(int d) { if (deg() < d) this->resize(d\
+    \ + 1, 0); }\n        inline const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i);\
+    \ }\n        inline       mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i);\
+    \ }\n\n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n\
+    \            const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
     \            FPS q(k + 1);\n            for (int i = k; i >= 0; --i) {\n     \
     \           mint div = this->unsafe_get(i + gd) * head_inv;\n                q.unsafe_get(i)\
     \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
     \ -= div * g.unsafe_get(j);\n            }\n            return {q, pre_inplace(gd\
-    \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
-    \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
-    \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
-    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    assert(false);\n}\n\
-    template <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
-    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
-    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {\n    return a.exp(a.deg());\n\
-    }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
-    \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
-    \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
-    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/polynomial/multi_point_eval.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> multi_point_eval(const\
+    \ - 1)};\n        }\n\n        FPS<mint> naive_exp(const int max_deg) const {\n\
+    \            FPS<mint> g(max_deg + 1);\n            g[0] = 1;\n            for\
+    \ (int i = 1; i <= max_deg; ++i) {\n                for (int j = 0; j < i; ++j)\
+    \ g[i] += g[j] * (i - j) * (*this)[i - j];\n                g[i] *= invs[i];\n\
+    \            }\n            return g;\n        }\n};\n\ntemplate <typename mint>\n\
+    convolution_t<mint> FPS<mint>::mult = [](const auto &, const auto &) {\n    std::cerr\
+    \ << \"convolution function is not available.\" << std::endl;\n    assert(false);\n\
+    \    return std::vector<mint>{};\n};\n\n} // namespace suisen\n\ntemplate <typename\
+    \ mint>\nauto sqrt(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \  {\n    assert(false);\n}\ntemplate <typename mint>\nauto log(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n\
+    }\ntemplate <typename mint>\nauto exp(suisen::FPS<mint> a) -> decltype(mint::mod(),\
+    \ suisen::FPS<mint>{}) {\n    return a.exp(a.deg());\n}\ntemplate <typename mint,\
+    \ typename T>\nauto pow(suisen::FPS<mint> a, T b) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \ {\n    return a.pow(b, a.deg());\n}\ntemplate <typename mint>\nauto inv(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    return a.inv(a.deg());\n\
+    }\n\n\n#line 5 \"library/polynomial/multi_point_eval.hpp\"\n\nnamespace suisen\
+    \ {\n    template <typename mint>\n    std::vector<mint> multi_point_eval(const\
     \ FPS<mint>& f, const std::vector<mint>& xs) {\n        int n = xs.size();\n \
     \       std::vector<FPS<mint>> seg(2 * n);\n        for (int i = 0; i < n; ++i)\
     \ seg[n + i] = FPS<mint>{ -xs[i], 1 };\n        for (int i = n - 1; i > 0; --i)\
@@ -286,8 +291,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 19:59:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-31 16:25:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
 layout: document

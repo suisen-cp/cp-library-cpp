@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: Template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -43,13 +43,18 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 10 \"library/template.hpp\"\n\n// ! type aliases\nusing i128 = __int128_t;\n\
-    using u128 = __uint128_t;\n\ntemplate <typename T>\nusing pq_greater = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\ntemplate <typename T, typename U>\nusing\
-    \ umap = std::unordered_map<T, U>;\n\n// ! macros (capital: internal macro)\n\
-    #define OVERLOAD2(_1,_2,name,...) name\n#define OVERLOAD3(_1,_2,_3,name,...) name\n\
-    #define OVERLOAD4(_1,_2,_3,_4,name,...) name\n\n#define REP4(i,l,r,s)  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 10 \"library/template.hpp\"\n\n// ! type aliases\n\
+    using i128 = __int128_t;\nusing u128 = __uint128_t;\n\ntemplate <typename T>\n\
+    using pq_greater = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    template <typename T, typename U>\nusing umap = std::unordered_map<T, U>;\n\n\
+    // ! macros (capital: internal macro)\n#define OVERLOAD2(_1,_2,name,...) name\n\
+    #define OVERLOAD3(_1,_2,_3,name,...) name\n#define OVERLOAD4(_1,_2,_3,_4,name,...)\
+    \ name\n\n#define REP4(i,l,r,s)  for(std::remove_reference_t<std::remove_const_t<decltype(r)>>i=(l);i<(r);i+=(s))\n\
     #define REP3(i,l,r)    REP4(i,l,r,1)\n#define REP2(i,n)      REP3(i,0,n)\n#define\
     \ REPINF3(i,l,s) for(std::remove_reference_t<std::remove_const_t<decltype(l)>>i=(l);;i+=(s))\n\
     #define REPINF2(i,l)   REPINF3(i,l,1)\n#define REPINF1(i)     REPINF2(i,0)\n#define\
@@ -211,7 +216,7 @@ data:
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2022-05-30 16:24:36+09:00'
+  timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp

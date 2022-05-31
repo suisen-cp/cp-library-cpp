@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -42,13 +42,18 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 8 \"library/algorithm/sliding_window_minimum.hpp\"\n\nnamespace suisen {\nnamespace\
-    \ prioritizing_mode {\n    template <typename T>\n    using left_most_min  = std::greater<T>;\n\
-    \    template <typename T>\n    using right_most_min = std::greater_equal<T>;\n\
-    \    template <typename T>\n    using left_most_max  = std::less<T>;\n    template\
-    \ <typename T>\n    using right_most_max = std::less_equal<T>;\n}\n\ntemplate\
-    \ <typename T, typename Comparator = prioritizing_mode::left_most_min<T>, constraints_t<is_comparator<Comparator,\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 8 \"library/algorithm/sliding_window_minimum.hpp\"\
+    \n\nnamespace suisen {\nnamespace prioritizing_mode {\n    template <typename\
+    \ T>\n    using left_most_min  = std::greater<T>;\n    template <typename T>\n\
+    \    using right_most_min = std::greater_equal<T>;\n    template <typename T>\n\
+    \    using left_most_max  = std::less<T>;\n    template <typename T>\n    using\
+    \ right_most_max = std::less_equal<T>;\n}\n\ntemplate <typename T, typename Comparator\
+    \ = prioritizing_mode::left_most_min<T>, constraints_t<is_comparator<Comparator,\
     \ T>> = nullptr>\nclass sliding_window_minimum {\n    public:\n        template\
     \ <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>\n\
     \        sliding_window_minimum(int n, Gen gen) : _n(n), _a(n) {\n           \
@@ -102,7 +107,7 @@ data:
   isVerificationFile: false
   path: library/algorithm/sliding_window_minimum.hpp
   requiredBy: []
-  timestamp: '2022-05-09 17:42:38+09:00'
+  timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp

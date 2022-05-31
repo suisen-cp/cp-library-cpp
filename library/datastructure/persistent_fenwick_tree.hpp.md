@@ -9,12 +9,12 @@ data:
   - icon: ':x:'
     path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
     title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/persistent_fenwick_tree.hpp\"\n\n\n\
@@ -147,7 +147,7 @@ data:
   path: library/datastructure/persistent_fenwick_tree.hpp
   requiredBy: []
   timestamp: '2022-05-29 02:47:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
   - test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp

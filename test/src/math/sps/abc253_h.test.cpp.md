@@ -4,6 +4,16 @@ data:
   - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
+  - icon: ':x:'
+    path: library/linear_algebra/count_spanning_trees.hpp
+    title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
+      \u6570\u3048\u4E0A\u3052"
+  - icon: ':question:'
+    path: library/linear_algebra/matrix.hpp
+    title: Matrix
+  - icon: ':question:'
+    path: library/math/factorial.hpp
+    title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
@@ -17,19 +27,11 @@ data:
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
-    path: library/transform/kronecker_power.hpp
-    title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
-      \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':x:'
-    path: library/transform/subset.hpp
-    title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
-      \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
-    path: library/util/default_operator.hpp
-    title: Default Operator
+  - icon: ':x:'
+    path: library/util/subset_iterator.hpp
+    title: Subset Iterator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -37,16 +39,214 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/arc105/tasks/arc105_f
+    PROBLEM: https://atcoder.jp/contests/abc253/tasks/abc253_Ex
     links:
-    - https://atcoder.jp/contests/arc105/tasks/arc105_f
-  bundledCode: "#line 1 \"test/src/math/sps/lights_out_on_connected_graph.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/arc105/tasks/arc105_f\"\n\n#include\
-    \ <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
-    \n#line 1 \"library/math/sps.hpp\"\n\n\n\n#line 1 \"library/convolution/subset_convolution.hpp\"\
-    \n\n\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n\
-    #include <cmath>\n#include <limits>\n#include <type_traits>\n#include <vector>\n\
-    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
+    - https://atcoder.jp/contests/abc253/tasks/abc253_Ex
+  bundledCode: "#line 1 \"test/src/math/sps/abc253_h.test.cpp\"\n#define PROBLEM \"\
+    https://atcoder.jp/contests/abc253/tasks/abc253_Ex\"\n\n#include <iostream>\n\n\
+    #include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\n#line 1 \"\
+    library/util/subset_iterator.hpp\"\n\n\n\n#ifdef _MSC_VER\n#  include <intrin.h>\n\
+    #else\n#  include <x86intrin.h>\n#endif\n\n#include <cassert>\n#include <cstdint>\n\
+    #line 13 \"library/util/subset_iterator.hpp\"\n#include <limits>\n\nnamespace\
+    \ suisen {\n    struct all_subset {\n        struct all_subset_iter {\n      \
+    \      const uint32_t s; uint32_t t;\n            constexpr all_subset_iter(uint32_t\
+    \ s) : s(s), t(s + 1) {}\n            constexpr auto operator*() const { return\
+    \ t; }\n            constexpr auto operator++() {}\n            constexpr auto\
+    \ operator!=(std::nullptr_t) { return t ? (--t &= s, true) : false; }\n      \
+    \  };\n        uint32_t s;\n        constexpr all_subset(uint32_t s) : s(s) {}\n\
+    \        constexpr auto begin() { return all_subset_iter(s); }\n        constexpr\
+    \ auto end() { return nullptr; }\n    };\n\n    // iterator over T s.t. T is subset\
+    \ of S and |T| = k\n    struct all_subset_k {\n        struct all_subset_k_iter\
+    \ {\n            const uint32_t n, k, s;\n            uint32_t t;\n          \
+    \  __attribute__((target(\"avx2\")))\n            all_subset_k_iter(uint32_t s,\
+    \ uint32_t k) : n(uint32_t(1) << _mm_popcnt_u32(s)), k(k), s(s), t((uint32_t(1)\
+    \ << k) - 1) {}\n            __attribute__((target(\"bmi2\")))\n            auto\
+    \ operator*() const { return _pdep_u32(t, s); }\n            __attribute__((target(\"\
+    bmi\")))\n            auto operator++() {\n                if (k == 0) {\n   \
+    \                 t = std::numeric_limits<uint32_t>::max();\n                }\
+    \ else {\n                    uint32_t y = t + _blsi_u32(t); // t + (-t & t)\n\
+    \                    t = y | ((y ^ t) >> _tzcnt_u32(t << 2));\n              \
+    \  }\n            }\n            auto operator!=(std::nullptr_t) const { return\
+    \ t < n; }\n        };\n        uint32_t s, k;\n        all_subset_k(uint32_t\
+    \ s, uint32_t k) : s(s), k(k) {\n            assert(s != std::numeric_limits<uint32_t>::max());\n\
+    \        }\n        auto begin() { return all_subset_k_iter(s, k); }\n       \
+    \ auto end() { return nullptr; }\n    };\n\n    struct all_subset_k_64 {\n   \
+    \     struct all_subset_k_iter_64 {\n            const uint64_t n, s;\n      \
+    \      const uint32_t k;\n            uint64_t t;\n            __attribute__((target(\"\
+    avx2\")))\n            all_subset_k_iter_64(uint64_t s, uint32_t k) : n(uint64_t(1)\
+    \ << _mm_popcnt_u64(s)), s(s), k(k), t((uint64_t(1) << k) - 1) {}\n          \
+    \  __attribute__((target(\"bmi2\")))\n            auto operator*() const { return\
+    \ _pdep_u64(t, s); }\n            __attribute__((target(\"bmi\")))\n         \
+    \   auto operator++() {\n                if (k == 0) {\n                    t\
+    \ = std::numeric_limits<uint64_t>::max();\n                } else {\n        \
+    \            uint64_t y = t + _blsi_u64(t);\n                    t = y | ((y ^\
+    \ t) >> _tzcnt_u64(t << 2));\n                }\n            }\n            auto\
+    \ operator!=(std::nullptr_t) const { return t < n; }\n        };\n        uint64_t\
+    \ s;\n        uint32_t k;\n        all_subset_k_64(uint64_t s, uint32_t k) : s(s),\
+    \ k(k) {\n            assert(s != std::numeric_limits<uint64_t>::max());\n   \
+    \     }\n        auto begin() { return all_subset_k_iter_64(s, k); }\n       \
+    \ auto end() { return nullptr; }\n    };\n\n    struct all_setbit {\n        struct\
+    \ all_setbit_iter {\n            uint32_t s;\n            all_setbit_iter(uint32_t\
+    \ s) : s(s) {}\n            __attribute__((target(\"bmi\")))\n            auto\
+    \ operator*() { return _tzcnt_u32(s); }\n            __attribute__((target(\"\
+    bmi\")))\n            auto operator++() { s = __blsr_u32(s); }\n            auto\
+    \ operator!=(std::nullptr_t) { return s; }\n        };\n        uint32_t s;\n\
+    \        all_setbit(uint32_t s) : s(s) {}\n        auto begin() { return all_setbit_iter(s);\
+    \ }\n        auto end() { return nullptr; }\n    };\n\n    struct all_setbit_64\
+    \ {\n        struct all_setbit_iter_64 {\n            uint64_t s;\n          \
+    \  all_setbit_iter_64(uint64_t s) : s(s) {}\n            __attribute__((target(\"\
+    bmi\")))\n            auto operator*() { return _tzcnt_u64(s); }\n           \
+    \ __attribute__((target(\"bmi\")))\n            auto operator++() { s = __blsr_u64(s);\
+    \ }\n            auto operator!=(std::nullptr_t) { return s; }\n        };\n \
+    \       uint64_t s;\n        all_setbit_64(uint64_t s) : s(s) {}\n        auto\
+    \ begin() { return all_setbit_iter_64(s); }\n        auto end() { return nullptr;\
+    \ }\n    };\n} // namespace suisen\n\n\n#line 1 \"library/linear_algebra/count_spanning_trees.hpp\"\
+    \n\n\n\n#line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#line 5 \"library/linear_algebra/matrix.hpp\"\
+    \n#include <optional>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
+    \ T>\n    struct Matrix {\n        std::vector<std::vector<T>> data;\n\n     \
+    \   Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0)) : data(n, std::vector<T>(m,\
+    \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& data) noexcept\
+    \ : data(data) {}\n        Matrix(std::vector<std::vector<T>>&& data) noexcept\
+    \ : data(std::move(data)) {}\n        Matrix(const Matrix<T>& other) noexcept\
+    \ : data(other.data) {}\n        Matrix(Matrix<T>&& other) noexcept : data(std::move(other.data))\
+    \ {}\n\n        Matrix<T>& operator=(const Matrix<T>& other) noexcept {\n    \
+    \        data = other.data;\n            return *this;\n        }\n        Matrix<T>&\
+    \ operator=(Matrix<T>&& other) noexcept {\n            data = std::move(other.data);\n\
+    \            return *this;\n        }\n\n        const std::vector<T>& operator[](int\
+    \ i) const { return data[i]; }\n        std::vector<T>& operator[](int i) { return\
+    \ data[i]; }\n\n        std::pair<int, int> size() const {\n            if (data.empty())\
+    \ {\n                return { 0, 0 };\n            } else {\n                return\
+    \ { data.size(), data[0].size() };\n            }\n        }\n        int row_size()\
+    \ const {\n            return data.size();\n        }\n        int col_size()\
+    \ const {\n            return data.empty() ? 0 : data[0].size();\n        }\n\n\
+    \        Matrix<T>& operator+=(const Matrix<T>& other) {\n            assert(size()\
+    \ == other.size());\n            auto [n, m] = size();\n            for (int i\
+    \ = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n                data[i][j] +=\
+    \ other[i][j];\n            }\n            return *this;\n        }\n        Matrix<T>&\
+    \ operator-=(const Matrix<T>& other) {\n            assert(size() == other.size());\n\
+    \            auto [n, m] = size();\n            for (int i = 0; i < n; ++i) for\
+    \ (int j = 0; j < m; ++j) {\n                data[i][j] -= other[i][j];\n    \
+    \        }\n            return *this;\n        }\n        Matrix<T>& operator*=(const\
+    \ Matrix<T>& other) {\n            return *this = *this * other;\n        }\n\
+    \        Matrix<T>& operator*=(const T& val) {\n            auto [n, m] = size();\n\
+    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n     \
+    \           data[i][j] *= val;\n            }\n            return *this;\n   \
+    \     }\n        Matrix<T>& operator/=(const T& val) {\n            return *this\
+    \ *= T(1) / val;\n        }\n        Matrix<T> operator+(const Matrix<T>& other)\
+    \ const {\n            return Matrix<T>(*this) += other;\n        }\n        Matrix<T>\
+    \ operator-(const Matrix<T>& other) const {\n            return Matrix<T>(*this)\
+    \ -= other;\n        }\n        Matrix<T> operator*(const Matrix<T>& other) const\
+    \ {\n            auto [n, m] = size();\n            auto [m2, l] = other.size();\n\
+    \            assert(m == m2);\n            std::vector res(n, std::vector(l, T(0)));\n\
+    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) for (int\
+    \ k = 0; k < l; ++k) {\n                res[i][k] += (*this)[i][j] * other[j][k];\n\
+    \            }\n            return res;\n        }\n        Matrix<T> operator*(const\
+    \ T& val) const {\n            return Matrix<T>(*this) *= val;\n        }\n  \
+    \      Matrix<T> operator/(const T& val) const {\n            return Matrix<T>(*this)\
+    \ /= val;\n        }\n\n        std::vector<T> operator*(const std::vector<T>&\
+    \ x) const {\n            auto [n, m] = size();\n            assert(m == int(x.size()));\n\
+    \            std::vector<T> b(n, T(0));\n            for (int i = 0; i < n; ++i)\
+    \ for (int j = 0; j < m; ++j) {\n                b[i] += data[i][j] * x[j];\n\
+    \            }\n            return b;\n        }\n    };\n\n    template <typename\
+    \ T>\n    class SquareMatrix : public Matrix<T> {\n    public:\n        SquareMatrix()\
+    \ {}\n        SquareMatrix(int n, T fill_value = T(0)) : Matrix<T>::Matrix(n,\
+    \ n, fill_value) {}\n        SquareMatrix(const std::vector<std::vector<T>>& data)\
+    \ : Matrix<T>::Matrix(data) {\n            auto [n, m] = this->size();\n     \
+    \       assert(n == m);\n        }\n        SquareMatrix(std::vector<std::vector<T>>&&\
+    \ data) : Matrix<T>::Matrix(std::move(data)) {\n            auto [n, m] = this->size();\n\
+    \            assert(n == m);\n        }\n        SquareMatrix(const SquareMatrix<T>&\
+    \ other) : SquareMatrix(other.data) {}\n        SquareMatrix(SquareMatrix<T>&&\
+    \ other) : SquareMatrix(std::move(other.data)) {}\n        SquareMatrix(const\
+    \ Matrix<T>& other) : Matrix<T>::Matrix(other.data) {}\n        SquareMatrix(Matrix<T>&&\
+    \ other) : Matrix<T>::Matrix(std::move(other.data)) {}\n\n        SquareMatrix<T>&\
+    \ operator=(const SquareMatrix<T>& other) noexcept {\n            this->data =\
+    \ other.data;\n            return *this;\n        }\n        SquareMatrix<T>&\
+    \ operator=(SquareMatrix<T>&& other) noexcept {\n            this->data = std::move(other.data);\n\
+    \            return *this;\n        }\n\n        bool operator==(const SquareMatrix<T>&\
+    \ other) noexcept {\n            return this->data == other.data;\n        }\n\
+    \        bool operator!=(const SquareMatrix<T>& other) noexcept {\n          \
+    \  return this->data != other.data;\n        }\n\n        static SquareMatrix<T>\
+    \ e0(int n) { return SquareMatrix<T>(n, false); }\n        static SquareMatrix<T>\
+    \ e1(int n) { return SquareMatrix<T>(n, true); }\n\n        static std::optional<SquareMatrix<T>>\
+    \ inv(SquareMatrix<T>&& A) {\n            auto& data = A.data;\n            int\
+    \ n = data.size();\n            for (int i = 0; i < n; ++i) {\n              \
+    \  data[i].resize(2 * n, T{ 0 });\n                data[i][n + i] = T{ 1 };\n\
+    \            }\n            for (int i = 0; i < n; ++i) {\n                int\
+    \ pivot = -1;\n                for (int k = i; k < n; ++k) {\n               \
+    \     if (data[k][i] != T{ 0 }) {\n                        pivot = k;\n      \
+    \                  break;\n                    }\n                }\n        \
+    \        if (pivot < 0) return std::nullopt;\n                data[i].swap(data[pivot]);\n\
+    \                T coef = T{ 1 } / data[i][i];\n                for (int j = i;\
+    \ j < 2 * n; ++j) data[i][j] *= coef;\n                for (int k = 0; k < n;\
+    \ ++k) {\n                    if (k == i or data[k][i] == T{ 0 }) continue;\n\
+    \                    T c = data[k][i];\n                    for (int j = i; j\
+    \ < 2 * n; ++j) data[k][j] -= c * data[i][j];\n                }\n           \
+    \ }\n            for (auto& row : data) row.erase(row.begin(), row.begin() + n);\n\
+    \            return std::make_optional(std::move(A));\n        }\n        static\
+    \ std::optional<SquareMatrix<T>> inv(const SquareMatrix<T>& A) {\n           \
+    \ return SquareMatrix<T>::inv(SquareMatrix<T>(A));\n        }\n        static\
+    \ T det(SquareMatrix<T>&& A) {\n            auto& data = A.data;\n           \
+    \ T det_inv = T{ 1 };\n            int n = data.size();\n            for (int\
+    \ i = 0; i < n; ++i) {\n                int pivot = -1;\n                for (int\
+    \ k = i; k < n; ++k) {\n                    if (data[k][i] != T{ 0 }) {\n    \
+    \                    pivot = k;\n                        break;\n            \
+    \        }\n                }\n                if (pivot < 0) return T{ 0 };\n\
+    \                data[i].swap(data[pivot]);\n                if (pivot != i) det_inv\
+    \ *= T{ -1 };\n                T coef = T{ 1 } / data[i][i];\n               \
+    \ for (int j = i; j < n; ++j) data[i][j] *= coef;\n                det_inv *=\
+    \ coef;\n                for (int k = i + 1; k < n; ++k) {\n                 \
+    \   if (data[k][i] == T(0)) continue;\n                    T c = data[k][i];\n\
+    \                    for (int j = i; j < n; ++j) data[k][j] -= c * data[i][j];\n\
+    \                }\n            }\n            return T{ 1 } / det_inv;\n    \
+    \    }\n        static T det(const SquareMatrix<T>& A) {\n            return SquareMatrix<T>::det(SquareMatrix<T>(A));\n\
+    \        }\n        SquareMatrix<T>& inv_inplace() {\n            return *this\
+    \ = *SquareMatrix<T>::inv(std::move(*this));\n        }\n        SquareMatrix<T>\
+    \ inv() const {\n            return *SquareMatrix<T>::inv(*this);\n        }\n\
+    \        T det() const {\n            return SquareMatrix<T>::det(SquareMatrix<T>(*this));\n\
+    \        }\n\n        SquareMatrix<T>& operator/=(const SquareMatrix<T>& other)\
+    \ { return *this *= other.inv(); }\n        SquareMatrix<T>& operator/=(SquareMatrix<T>&&\
+    \ other) { return *this *= other.inv_inplace(); }\n        SquareMatrix<T>  operator/\
+    \ (const SquareMatrix<T>& other) const { return SquareMatrix<T>(*this) *= other.inv();\
+    \ }\n        SquareMatrix<T>  operator/ (SquareMatrix<T>&& other) const { return\
+    \ SquareMatrix<T>(*this) *= other.inv_inplace(); }\n\n        SquareMatrix<T>\
+    \ pow(long long b) {\n            assert(b >= 0);\n            SquareMatrix<T>\
+    \ res(SquareMatrix<T>::e1(this->data.size())), p(*this);\n            for (; b;\
+    \ b >>= 1) {\n                if (b & 1) res *= p;\n                p *= p;\n\
+    \            }\n            return res;\n        }\n    private:\n        SquareMatrix(int\
+    \ n, bool mult_identity) : Matrix<T>::Matrix(n, n) {\n            if (mult_identity)\
+    \ for (int i = 0; i < n; ++i) this->data[i][i] = 1;\n        }\n    };\n} // namespace\
+    \ suisen\n\n\n#line 5 \"library/linear_algebra/count_spanning_trees.hpp\"\n\n\
+    namespace suisen {\n    template <typename T, typename Edge>\n    T count_spanning_trees(const\
+    \ int n, const std::vector<Edge> &edges) {\n        SquareMatrix<T> A(n - 1);\n\
+    \        for (auto [u, v] : edges) if (u != v) {\n            if (u > v) std::swap(u,\
+    \ v);\n            ++A[u][u];\n            if (v != n - 1) ++A[v][v], --A[u][v],\
+    \ --A[v][u];\n        }\n        return SquareMatrix<T>::det(std::move(A));\n\
+    \    }\n} // namespace suisen\n\n\n\n#line 1 \"library/math/factorial.hpp\"\n\n\
+    \n\n#line 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename T, typename U = T>\n    struct factorial {\n        factorial() {}\n\
+    \        factorial(int n) { ensure(n); }\n\n        static void ensure(const int\
+    \ n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
+    \            int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
+    \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
+    \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
+    \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
+    \ _fac_inv[i] * i;\n        }\n\n        T fac(const int i) {\n            ensure(i);\n\
+    \            return _fac[i];\n        }\n        T operator()(int i) {\n     \
+    \       return fac(i);\n        }\n        U fac_inv(const int i) {\n        \
+    \    ensure(i);\n            return _fac_inv[i];\n        }\n        U binom(const\
+    \ int n, const int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n\
+    \            ensure(n);\n            return _fac[n] * _fac_inv[r] * _fac_inv[n\
+    \ - r];\n        }\n        U perm(const int n, const int r) {\n            if\
+    \ (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n            return\
+    \ _fac[n] * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T>\
+    \ _fac;\n        static std::vector<U> _fac_inv;\n    };\n    template <typename\
+    \ T, typename U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template\
+    \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
+    } // namespace suisen\n\n\n#line 1 \"library/math/sps.hpp\"\n\n\n\n#line 1 \"\
+    library/convolution/subset_convolution.hpp\"\n\n\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
+    \n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\n#include <cmath>\n#line\
+    \ 7 \"library/polynomial/fps_naive.hpp\"\n#include <type_traits>\n#line 9 \"library/polynomial/fps_naive.hpp\"\
+    \n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
     \n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
     \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
     \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
@@ -78,8 +278,8 @@ data:
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
     } // namespace suisen\n\n\n#line 11 \"library/polynomial/fps_naive.hpp\"\n\n#line\
-    \ 1 \"library/math/modint_extension.hpp\"\n\n\n\n#line 5 \"library/math/modint_extension.hpp\"\
-    \n#include <optional>\n\nnamespace suisen {\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
+    \ 1 \"library/math/modint_extension.hpp\"\n\n\n\n#line 6 \"library/math/modint_extension.hpp\"\
+    \n\nnamespace suisen {\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
     \ * calculates x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename\
     \ mint>\nstd::optional<mint> optional_sqrt(mint a) {\n    static int p = mint::mod();\n\
     \    if (a == 0) return std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n\
@@ -367,126 +567,56 @@ data:
     \ auto rf = ZetaSPS(*this);\n                return subset_transform::deranked_mobius<value_type>(rf);\n\
     \            }\n        private:\n            int _d;\n        };\n\n        ZetaSPS\
     \ zeta() const {\n            return ZetaSPS(*this);\n        }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 1 \"library/transform/subset.hpp\"\n\n\n\n#line\
-    \ 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#line 5 \"library/transform/kronecker_power.hpp\"\
-    \n#include <utility>\n#line 7 \"library/transform/kronecker_power.hpp\"\n\n#line\
-    \ 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n    namespace\
-    \ default_operator {\n        template <typename T>\n        auto zero() -> decltype(T\
-    \ { 0 }) { return T { 0 }; }\n        template <typename T>\n        auto one()\
-    \  -> decltype(T { 1 }) { return T { 1 }; }\n        template <typename T>\n \
-    \       auto add(const T &x, const T &y) -> decltype(x + y) { return x + y; }\n\
-    \        template <typename T>\n        auto sub(const T &x, const T &y) -> decltype(x\
-    \ - y) { return x - y; }\n        template <typename T>\n        auto mul(const\
-    \ T &x, const T &y) -> decltype(x * y) { return x * y; }\n        template <typename\
-    \ T>\n        auto div(const T &x, const T &y) -> decltype(x / y) { return x /\
-    \ y; }\n        template <typename T>\n        auto mod(const T &x, const T &y)\
-    \ -> decltype(x % y) { return x % y; }\n        template <typename T>\n      \
-    \  auto neg(const T &x) -> decltype(-x) { return -x; }\n        template <typename\
-    \ T>\n        auto inv(const T &x) -> decltype(one<T>() / x)  { return one<T>()\
-    \ / x; }\n    } // default_operator\n    namespace default_operator_noref {\n\
-    \        template <typename T>\n        auto zero() -> decltype(T { 0 }) { return\
-    \ T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
-    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(T\
-    \ x, T y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
-    \        auto sub(T x, T y) -> decltype(x - y) { return x - y; }\n        template\
-    \ <typename T>\n        auto mul(T x, T y) -> decltype(x * y) { return x * y;\
-    \ }\n        template <typename T>\n        auto div(T x, T y) -> decltype(x /\
-    \ y) { return x / y; }\n        template <typename T>\n        auto mod(T x, T\
-    \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
-    \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
-    \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
-    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 9 \"library/transform/kronecker_power.hpp\"\
-    \n\nnamespace suisen {\n    namespace kronecker_power_transform {\n        namespace\
-    \ internal {\n            template <typename UnitTransform, typename ReferenceGetter,\
-    \ std::size_t... Seq>\n            void unit_transform(UnitTransform transform,\
-    \ ReferenceGetter ref_getter, std::index_sequence<Seq...>) {\n               \
-    \ transform(ref_getter(Seq)...);\n            }\n        }\n\n        template\
-    \ <typename T, std::size_t D, auto unit_transform>\n        void kronecker_power_transform(std::vector<T>\
-    \ &x) {\n            const std::size_t n = x.size();\n            for (std::size_t\
-    \ block = 1; block < n; block *= D) {\n                for (std::size_t l = 0;\
-    \ l < n; l += D * block) {\n                    for (std::size_t offset = l; offset\
-    \ < l + block; ++offset) {\n                        const auto ref_getter = [&](std::size_t\
-    \ i) -> T& { return x[offset + i * block]; };\n                        internal::unit_transform(unit_transform,\
-    \ ref_getter, std::make_index_sequence<D>());\n                    }\n       \
-    \         }\n            }\n        }\n\n        template <typename T, typename\
-    \ UnitTransform>\n        void kronecker_power_transform(std::vector<T> &x, const\
-    \ std::size_t D, UnitTransform unit_transform) {\n            const std::size_t\
-    \ n = x.size();\n            std::vector<T> work(D);\n            for (std::size_t\
-    \ block = 1; block < n; block *= D) {\n                for (std::size_t l = 0;\
-    \ l < n; l += D * block) {\n                    for (std::size_t offset = l; offset\
-    \ < l + block; ++offset) {\n                        for (std::size_t i = 0; i\
-    \ < D; ++i) work[i] = x[offset + i * block];\n                        unit_transform(work);\n\
-    \                        for (std::size_t i = 0; i < D; ++i) x[offset + i * block]\
-    \ = work[i];\n                    }\n                }\n            }\n      \
-    \  }\n\n        template <typename T, auto e = default_operator::zero<T>, auto\
-    \ add = default_operator::add<T>, auto mul = default_operator::mul<T>>\n     \
-    \   auto kronecker_power_transform(std::vector<T> &x, const std::vector<std::vector<T>>\
-    \ &A) -> decltype(e(), add(std::declval<T>(), std::declval<T>()), mul(std::declval<T>(),\
-    \ std::declval<T>()), void()) {\n            const std::size_t D = A.size();\n\
-    \            assert(D == A[0].size());\n            auto unit_transform = [&](std::vector<T>\
-    \ &x) {\n                std::vector<T> y(D, e());\n                for (std::size_t\
-    \ i = 0; i < D; ++i) for (std::size_t j = 0; j < D; ++j) {\n                 \
-    \   y[i] = add(y[i], mul(A[i][j], x[j]));\n                }\n               \
-    \ x.swap(y);\n            };\n            kronecker_power_transform<T>(x, D, unit_transform);\n\
-    \        }\n    }\n} // namespace suisen\n\n\n\n#line 5 \"library/transform/subset.hpp\"\
-    \n\nnamespace suisen::subset_transform {\n    namespace internal {\n        template\
-    \ <typename T, auto add = default_operator::add<T>>\n        void zeta_unit_transform(T\
-    \ &x0, T &x1) {\n                                // 1, 0\n            x1 = add(x1,\
-    \ x0);   // 1, 1\n        }\n        template <typename T, auto sub = default_operator::sub<T>>\n\
-    \        void mobius_unit_transform(T &x0, T &x1) {\n                        \
-    \        //  1, 0\n            x1 = sub(x1, x0);   // -1, 1\n        }\n    }\
-    \ // namespace internal\n\n    using kronecker_power_transform::kronecker_power_transform;\n\
-    \n    template <typename T, auto add = default_operator::add<T>>\n    void zeta(std::vector<T>\
-    \ &a) {\n        kronecker_power_transform<T, 2, internal::zeta_unit_transform<T,\
-    \ add>>(a);\n    }\n    template <typename T, auto sub = default_operator::sub<T>>\n\
-    \    void mobius(std::vector<T> &a) {\n        kronecker_power_transform<T, 2,\
-    \ internal::mobius_unit_transform<T, sub>>(a);\n    }\n} // namespace suisen::subset_transform\n\
-    \n\n#line 10 \"test/src/math/sps/lights_out_on_connected_graph.test.cpp\"\n\n\
-    using namespace suisen;\n\nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\
-    \    int k = n;\n    std::vector<int> c(1 << k, 0);\n    for (int i = 0; i < m;\
-    \ ++i) {\n        int u, v;\n        std::cin >> u >> v;\n        c[(1 << --u)\
-    \ | (1 << --v)] = 1;\n    }\n    subset_transform::zeta<int>(c);\n    mint inv_2\
-    \ = mint(2).inv();\n    std::vector<mint> pow_2(m + 1, 0), pow_inv_2(m + 1, 0);\n\
-    \    pow_2[0] = pow_inv_2[0] = 1;\n    for (int i = 1; i <= m ;++i) {\n      \
-    \  pow_inv_2[i] = pow_inv_2[i - 1] * inv_2;\n        pow_2[i] = pow_2[i - 1] *\
-    \ 2;\n    }\n    SPS<mint> p(n);\n    for (int i = 0; i < 1 << n; ++i) {\n   \
-    \     p[i] = pow_inv_2[c[i]];\n    }\n    SPS<mint> q = p.pow(2);\n    for (int\
-    \ i = 0; i < 1 << n; ++i) {\n        q[i] *= pow_2[c[i]];\n    }\n    std::cout\
-    \ << q.sqrt().log().back().val() << std::endl;\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/arc105/tasks/arc105_f\"\n\n\
-    #include <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
-    \n#include \"library/math/sps.hpp\"\n#include \"library/transform/subset.hpp\"\
-    \n\nusing namespace suisen;\n\nint main() {\n    int n, m;\n    std::cin >> n\
-    \ >> m;\n    int k = n;\n    std::vector<int> c(1 << k, 0);\n    for (int i =\
-    \ 0; i < m; ++i) {\n        int u, v;\n        std::cin >> u >> v;\n        c[(1\
-    \ << --u) | (1 << --v)] = 1;\n    }\n    subset_transform::zeta<int>(c);\n   \
-    \ mint inv_2 = mint(2).inv();\n    std::vector<mint> pow_2(m + 1, 0), pow_inv_2(m\
-    \ + 1, 0);\n    pow_2[0] = pow_inv_2[0] = 1;\n    for (int i = 1; i <= m ;++i)\
-    \ {\n        pow_inv_2[i] = pow_inv_2[i - 1] * inv_2;\n        pow_2[i] = pow_2[i\
-    \ - 1] * 2;\n    }\n    SPS<mint> p(n);\n    for (int i = 0; i < 1 << n; ++i)\
-    \ {\n        p[i] = pow_inv_2[c[i]];\n    }\n    SPS<mint> q = p.pow(2);\n   \
-    \ for (int i = 0; i < 1 << n; ++i) {\n        q[i] *= pow_2[c[i]];\n    }\n  \
-    \  std::cout << q.sqrt().log().back().val() << std::endl;\n    return 0;\n}"
+    \ namespace suisen\n\n\n#line 12 \"test/src/math/sps/abc253_h.test.cpp\"\n\nint\
+    \ main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    std::vector<std::pair<int,\
+    \ int>> edges(m);\n\n    for (auto& [u, v] : edges) {\n        std::cin >> u >>\
+    \ v;\n        --u, --v;\n    }\n\n    suisen::FPSNaive<mint>::set_max_deg(n);\n\
+    \n    suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));\n \
+    \   for (int s = 1; s < 1 << n; ++s) {\n        std::vector<int> ids(n, -1);\n\
+    \        int id = 0;\n        for (int i : suisen::all_setbit(s)) ids[i] = id++;\n\
+    \        std::vector<std::pair<int, int>> Es;\n        for (const auto& [u, v]\
+    \ : edges) if (ids[u] >= 0 and ids[v] >= 0) {\n            Es.emplace_back(ids[u],\
+    \ ids[v]);\n        }\n        f[s] = { 0, suisen::count_spanning_trees<mint>(id,\
+    \ Es) };\n    }\n\n    suisen::factorial<mint> fac(n);\n\n    auto g = f.exp().back();\n\
+    \n    for (int k = 1; k < n; ++k) {\n        std::cout << (fac.fac(k) * g[n -\
+    \ k] / mint(m).pow(k)).val() << std::endl;\n    }\n\n    return 0;\n}\n\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc253/tasks/abc253_Ex\"\n\n\
+    #include <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
+    \n#include \"library/util/subset_iterator.hpp\"\n#include \"library/linear_algebra/count_spanning_trees.hpp\"\
+    \n#include \"library/math/factorial.hpp\"\n#include \"library/math/sps.hpp\"\n\
+    \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    std::vector<std::pair<int,\
+    \ int>> edges(m);\n\n    for (auto& [u, v] : edges) {\n        std::cin >> u >>\
+    \ v;\n        --u, --v;\n    }\n\n    suisen::FPSNaive<mint>::set_max_deg(n);\n\
+    \n    suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));\n \
+    \   for (int s = 1; s < 1 << n; ++s) {\n        std::vector<int> ids(n, -1);\n\
+    \        int id = 0;\n        for (int i : suisen::all_setbit(s)) ids[i] = id++;\n\
+    \        std::vector<std::pair<int, int>> Es;\n        for (const auto& [u, v]\
+    \ : edges) if (ids[u] >= 0 and ids[v] >= 0) {\n            Es.emplace_back(ids[u],\
+    \ ids[v]);\n        }\n        f[s] = { 0, suisen::count_spanning_trees<mint>(id,\
+    \ Es) };\n    }\n\n    suisen::factorial<mint> fac(n);\n\n    auto g = f.exp().back();\n\
+    \n    for (int k = 1; k < n; ++k) {\n        std::cout << (fac.fac(k) * g[n -\
+    \ k] / mint(m).pow(k)).val() << std::endl;\n    }\n\n    return 0;\n}\n\n"
   dependsOn:
+  - library/util/subset_iterator.hpp
+  - library/linear_algebra/count_spanning_trees.hpp
+  - library/linear_algebra/matrix.hpp
+  - library/math/factorial.hpp
   - library/math/sps.hpp
   - library/convolution/subset_convolution.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
-  - library/transform/subset.hpp
-  - library/transform/kronecker_power.hpp
-  - library/util/default_operator.hpp
   isVerificationFile: true
-  path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  path: test/src/math/sps/abc253_h.test.cpp
   requiredBy: []
   timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+documentation_of: test/src/math/sps/abc253_h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/math/sps/lights_out_on_connected_graph.test.cpp
-- /verify/test/src/math/sps/lights_out_on_connected_graph.test.cpp.html
-title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+- /verify/test/src/math/sps/abc253_h.test.cpp
+- /verify/test/src/math/sps/abc253_h.test.cpp.html
+title: test/src/math/sps/abc253_h.test.cpp
 ---

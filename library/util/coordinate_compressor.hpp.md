@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
@@ -21,27 +21,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/coordinate_compressor.hpp\"\n\n\n\n#include\
@@ -72,35 +72,39 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 9 \"library/util/coordinate_compressor.hpp\"\n\nnamespace suisen {\ntemplate\
-    \ <typename T>\nclass CoordinateCompressorBuilder {\n    public:\n        struct\
-    \ Compressor {\n            public:\n                static constexpr int absent\
-    \ = -1;\n\n                // default constructor\n                Compressor()\
-    \ : _xs(std::vector<T>{}) {}\n                // Construct from strictly sorted\
-    \ vector\n                Compressor(const std::vector<T> &xs) : _xs(xs) {\n \
-    \                   assert(is_strictly_sorted(xs));\n                }\n\n   \
-    \             // Return the number of distinct keys.\n                int size()\
-    \ const {\n                    return _xs.size();\n                }\n       \
-    \         // Check if the element is registered.\n                bool has_key(const\
-    \ T &e) const {\n                    return std::binary_search(_xs.begin(), _xs.end(),\
-    \ e);\n                }\n                // Compress the element. if not registered,\
-    \ returns `default_value`. (default: Compressor::absent)\n                int\
-    \ comp(const T &e, int default_value = absent) const {\n                    const\
-    \ int res = min_geq_index(e);\n                    return res != size() and _xs[res]\
-    \ == e ? res : default_value;\n                }\n                // Restore the\
-    \ element from the index.\n                T decomp(const int compressed_index)\
-    \ const {\n                    return _xs[compressed_index];\n               \
-    \ }\n                // Compress the element. Equivalent to call `comp(e)`\n \
-    \               int operator[](const T &e) const {\n                    return\
-    \ comp(e);\n                }\n                // Return the minimum registered\
-    \ value greater than `e`. if not exists, return `default_value`.\n           \
-    \     T min_gt(const T &e, const T &default_value) const {\n                 \
-    \   auto it = std::upper_bound(_xs.begin(), _xs.end(), e);\n                 \
-    \   return it == _xs.end() ? default_value : *it;\n                }\n       \
-    \         // Return the minimum registered value greater than or equal to `e`.\
-    \ if not exists, return `default_value`.\n                T min_geq(const T &e,\
-    \ const T &default_value) const {\n                    auto it = std::lower_bound(_xs.begin(),\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 9 \"library/util/coordinate_compressor.hpp\"\n\
+    \nnamespace suisen {\ntemplate <typename T>\nclass CoordinateCompressorBuilder\
+    \ {\n    public:\n        struct Compressor {\n            public:\n         \
+    \       static constexpr int absent = -1;\n\n                // default constructor\n\
+    \                Compressor() : _xs(std::vector<T>{}) {}\n                // Construct\
+    \ from strictly sorted vector\n                Compressor(const std::vector<T>\
+    \ &xs) : _xs(xs) {\n                    assert(is_strictly_sorted(xs));\n    \
+    \            }\n\n                // Return the number of distinct keys.\n   \
+    \             int size() const {\n                    return _xs.size();\n   \
+    \             }\n                // Check if the element is registered.\n    \
+    \            bool has_key(const T &e) const {\n                    return std::binary_search(_xs.begin(),\
+    \ _xs.end(), e);\n                }\n                // Compress the element.\
+    \ if not registered, returns `default_value`. (default: Compressor::absent)\n\
+    \                int comp(const T &e, int default_value = absent) const {\n  \
+    \                  const int res = min_geq_index(e);\n                    return\
+    \ res != size() and _xs[res] == e ? res : default_value;\n                }\n\
+    \                // Restore the element from the index.\n                T decomp(const\
+    \ int compressed_index) const {\n                    return _xs[compressed_index];\n\
+    \                }\n                // Compress the element. Equivalent to call\
+    \ `comp(e)`\n                int operator[](const T &e) const {\n            \
+    \        return comp(e);\n                }\n                // Return the minimum\
+    \ registered value greater than `e`. if not exists, return `default_value`.\n\
+    \                T min_gt(const T &e, const T &default_value) const {\n      \
+    \              auto it = std::upper_bound(_xs.begin(), _xs.end(), e);\n      \
+    \              return it == _xs.end() ? default_value : *it;\n               \
+    \ }\n                // Return the minimum registered value greater than or equal\
+    \ to `e`. if not exists, return `default_value`.\n                T min_geq(const\
+    \ T &e, const T &default_value) const {\n                    auto it = std::lower_bound(_xs.begin(),\
     \ _xs.end(), e);\n                    return it == _xs.end() ? default_value :\
     \ *it;\n                }\n                // Return the maximum registered value\
     \ less than `e`. if not exists, return `default_value`\n                T max_lt(const\
@@ -259,8 +263,8 @@ data:
   requiredBy:
   - library/geom/segment_intersections.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
-  timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-31 16:25:25+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp

@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: Range Foldable Dynamic Sequence
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include\
@@ -49,20 +49,24 @@ data:
     \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
     \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
     \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\n} // namespace suisen\n\n\n#line\
-    \ 10 \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace suisen {\n\n\
-    namespace internal::dynamic_sequence {\n\ntemplate <typename T, typename Derived>\n\
-    struct DynamicSequenceNodeBase {\n    using node_ptr_t = Derived *;\n\n    T val;\n\
-    \    int siz;\n    bool rev;\n    node_ptr_t ch[2] {nullptr, nullptr};\n\n   \
-    \ DynamicSequenceNodeBase() : val(), siz(1), rev(false) {}\n    DynamicSequenceNodeBase(const\
-    \ T &val) : val(val), siz(1), rev(false) {}\n\n    ~DynamicSequenceNodeBase()\
-    \ {\n        delete ch[0];\n        delete ch[1];\n    }\n\n    void update()\
-    \ {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n    }\n    void push() {\n\
-    \        reverse_all(this->ch[0], rev), reverse_all(this->ch[1], rev);\n     \
-    \   rev = false;\n    }\n    static int size(node_ptr_t node) {\n        return\
-    \ node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t rotate(node_ptr_t\
-    \ node, bool is_right) {\n        node_ptr_t root = node->ch[is_right ^ true];\n\
-    \        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 10 \"library/datastructure/dynamic_sequence.hpp\"\
+    \n\nnamespace suisen {\n\nnamespace internal::dynamic_sequence {\n\ntemplate <typename\
+    \ T, typename Derived>\nstruct DynamicSequenceNodeBase {\n    using node_ptr_t\
+    \ = Derived *;\n\n    T val;\n    int siz;\n    bool rev;\n    node_ptr_t ch[2]\
+    \ {nullptr, nullptr};\n\n    DynamicSequenceNodeBase() : val(), siz(1), rev(false)\
+    \ {}\n    DynamicSequenceNodeBase(const T &val) : val(val), siz(1), rev(false)\
+    \ {}\n\n    ~DynamicSequenceNodeBase() {\n        delete ch[0];\n        delete\
+    \ ch[1];\n    }\n\n    void update() {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n\
+    \    }\n    void push() {\n        reverse_all(this->ch[0], rev), reverse_all(this->ch[1],\
+    \ rev);\n        rev = false;\n    }\n    static int size(node_ptr_t node) {\n\
+    \        return node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t\
+    \ rotate(node_ptr_t node, bool is_right) {\n        node_ptr_t root = node->ch[is_right\
+    \ ^ true];\n        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
     \ = node;\n        node->update(), root->update();\n        return root;\n   \
     \ }\n\n    static node_ptr_t splay(node_ptr_t node, int index) {\n        std::vector<node_ptr_t>\
     \ path;\n        node_ptr_t work_root = new Derived();\n        node_ptr_t work_leaf[2]\
@@ -291,8 +295,8 @@ data:
   requiredBy:
   - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
-  timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-31 16:25:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/datastructure/dynamic_sequence.hpp

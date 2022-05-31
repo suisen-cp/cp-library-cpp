@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/bostan_mori.hpp\"\n\n\n\n#line 1 \"library/polynomial/fps.hpp\"\
@@ -120,54 +120,59 @@ data:
     \ int max_deg) {\n            FPS f_inv = inv(max_deg);\n            diff_inplace(),\
     \ *this *= f_inv, pre_inplace(max_deg - 1), intg_inplace();\n            return\
     \ *this;\n        }\n        FPS& exp_inplace(const int max_deg) {\n         \
-    \   FPS res {1};\n            for (int k = 1; k <= max_deg; k *= 2) res *= ++(pre(k\
-    \ * 2) - res.log(k * 2)), res.pre_inplace(k * 2);\n            return *this =\
-    \ std::move(res), pre_inplace(max_deg);\n        }\n        FPS& pow_inplace(const\
-    \ long long k, const int max_deg) {\n            int tlz = 0;\n            while\
-    \ (tlz <= deg() and unsafe_get(tlz) == 0) ++tlz;\n            if (tlz * k > max_deg)\
-    \ { this->clear(); return *this; }\n            *this >>= tlz;\n            mint\
-    \ base = (*this)[0];\n            *this *= base.inv(), log_inplace(max_deg), *this\
-    \ *= k, exp_inplace(max_deg), *this *= base.pow(k);\n            return *this\
-    \ <<= tlz * k, pre_inplace(max_deg);\n        }\n        inline FPS diff() const\
-    \ { return FPS(*this).diff_inplace(); }\n        inline FPS intg() const { return\
-    \ FPS(*this).intg_inplace(); }\n        inline FPS inv(const int max_deg) const\
-    \ { return FPS(*this).inv_inplace(max_deg); }\n        inline FPS log(const int\
-    \ max_deg) const { return FPS(*this).log_inplace(max_deg); }\n        inline FPS\
-    \ exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg); }\n \
-    \       inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k,\
-    \ max_deg); }\n\n        mint eval(mint x) const {\n            mint y = 0;\n\
-    \            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
-    \            return y;\n        }\n\n    private:\n        static inline inv_mods<mint>\
-    \ invs;\n        static convolution_t<mint> mult;\n        inline void ensure_deg(int\
-    \ d) { if (deg() < d) this->resize(d + 1, 0); }\n        inline const mint& unsafe_get(int\
-    \ i) const { return std::vector<mint>::operator[](i); }\n        inline      \
-    \ mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }\n\
-    \n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n  \
-    \          const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
+    \   if (max_deg <= 60) return *this = naive_exp(max_deg);\n            FPS res\
+    \ {1};\n            for (int k = 1; k <= max_deg; k *= 2) res *= ++(pre(k * 2)\
+    \ - res.log(k * 2)), res.pre_inplace(k * 2);\n            return *this = std::move(res),\
+    \ pre_inplace(max_deg);\n        }\n        FPS& pow_inplace(const long long k,\
+    \ const int max_deg) {\n            int tlz = 0;\n            while (tlz <= deg()\
+    \ and unsafe_get(tlz) == 0) ++tlz;\n            if (tlz * k > max_deg) { this->clear();\
+    \ return *this; }\n            *this >>= tlz;\n            mint base = (*this)[0];\n\
+    \            *this *= base.inv(), log_inplace(max_deg), *this *= k, exp_inplace(max_deg),\
+    \ *this *= base.pow(k);\n            return *this <<= tlz * k, pre_inplace(max_deg);\n\
+    \        }\n        inline FPS diff() const { return FPS(*this).diff_inplace();\
+    \ }\n        inline FPS intg() const { return FPS(*this).intg_inplace(); }\n \
+    \       inline FPS inv(const int max_deg) const { return FPS(*this).inv_inplace(max_deg);\
+    \ }\n        inline FPS log(const int max_deg) const { return FPS(*this).log_inplace(max_deg);\
+    \ }\n        inline FPS exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg);\
+    \ }\n        inline FPS pow(const long long k, const int max_deg) const { return\
+    \ FPS(*this).pow_inplace(k, max_deg); }\n\n        mint eval(mint x) const {\n\
+    \            mint y = 0;\n            for (int i = size() - 1; i >= 0; --i) y\
+    \ = y * x + unsafe_get(i);\n            return y;\n        }\n\n    private:\n\
+    \        static inline inv_mods<mint> invs;\n        static convolution_t<mint>\
+    \ mult;\n        inline void ensure_deg(int d) { if (deg() < d) this->resize(d\
+    \ + 1, 0); }\n        inline const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i);\
+    \ }\n        inline       mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i);\
+    \ }\n\n        std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {\n\
+    \            const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
     \            FPS q(k + 1);\n            for (int i = k; i >= 0; --i) {\n     \
     \           mint div = this->unsafe_get(i + gd) * head_inv;\n                q.unsafe_get(i)\
     \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
     \ -= div * g.unsafe_get(j);\n            }\n            return {q, pre_inplace(gd\
-    \ - 1)};\n        }\n};\n\ntemplate <typename mint>\nconvolution_t<mint> FPS<mint>::mult\
-    \ = [](const auto &, const auto &) {\n    std::cerr << \"convolution function\
-    \ is not available.\" << std::endl;\n    assert(false);\n    return std::vector<mint>{};\n\
-    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
-    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    assert(false);\n}\n\
-    template <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
-    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
-    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), mint()) {\n    return a.exp(a.deg());\n\
-    }\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint> a, T b) ->\
-    \ decltype(mint::mod(), mint()) {\n    return a.pow(b, a.deg());\n}\ntemplate\
-    \ <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
-    \  {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/polynomial/bostan_mori.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nmint bostan_mori(FPS<mint> P,\
-    \ FPS<mint> Q, unsigned long long n) {\n    auto alternate = [](FPS<mint> &&a,\
-    \ bool odd) -> FPS<mint>&& {\n        int i = 0;\n        for (int j = odd; j\
-    \ < a.size(); j += 2) a[i++] = a[j];\n        a.erase(a.begin() + i, a.end());\n\
-    \        return std::move(a);\n    };\n    for (; n; n >>= 1) {\n        FPS<mint>\
-    \ mQ(Q);\n        for (int i = 1; i < Q.size(); i += 2) mQ[i] = -mQ[i];\n    \
-    \    P = alternate(P * mQ, n & 1);\n        Q = alternate(Q * mQ,     0);\n  \
-    \  }\n    return P[0];\n}\n\ntemplate <typename mint>\nmint nth_term_of_linearly_recurrent_sequence(const\
+    \ - 1)};\n        }\n\n        FPS<mint> naive_exp(const int max_deg) const {\n\
+    \            FPS<mint> g(max_deg + 1);\n            g[0] = 1;\n            for\
+    \ (int i = 1; i <= max_deg; ++i) {\n                for (int j = 0; j < i; ++j)\
+    \ g[i] += g[j] * (i - j) * (*this)[i - j];\n                g[i] *= invs[i];\n\
+    \            }\n            return g;\n        }\n};\n\ntemplate <typename mint>\n\
+    convolution_t<mint> FPS<mint>::mult = [](const auto &, const auto &) {\n    std::cerr\
+    \ << \"convolution function is not available.\" << std::endl;\n    assert(false);\n\
+    \    return std::vector<mint>{};\n};\n\n} // namespace suisen\n\ntemplate <typename\
+    \ mint>\nauto sqrt(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \  {\n    assert(false);\n}\ntemplate <typename mint>\nauto log(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n\
+    }\ntemplate <typename mint>\nauto exp(suisen::FPS<mint> a) -> decltype(mint::mod(),\
+    \ suisen::FPS<mint>{}) {\n    return a.exp(a.deg());\n}\ntemplate <typename mint,\
+    \ typename T>\nauto pow(suisen::FPS<mint> a, T b) -> decltype(mint::mod(), suisen::FPS<mint>{})\
+    \ {\n    return a.pow(b, a.deg());\n}\ntemplate <typename mint>\nauto inv(suisen::FPS<mint>\
+    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{})  {\n    return a.inv(a.deg());\n\
+    }\n\n\n#line 5 \"library/polynomial/bostan_mori.hpp\"\n\nnamespace suisen {\n\
+    template <typename mint>\nmint bostan_mori(FPS<mint> P, FPS<mint> Q, unsigned\
+    \ long long n) {\n    auto alternate = [](FPS<mint> &&a, bool odd) -> FPS<mint>&&\
+    \ {\n        int i = 0;\n        for (int j = odd; j < a.size(); j += 2) a[i++]\
+    \ = a[j];\n        a.erase(a.begin() + i, a.end());\n        return std::move(a);\n\
+    \    };\n    for (; n; n >>= 1) {\n        FPS<mint> mQ(Q);\n        for (int\
+    \ i = 1; i < Q.size(); i += 2) mQ[i] = -mQ[i];\n        P = alternate(P * mQ,\
+    \ n & 1);\n        Q = alternate(Q * mQ,     0);\n    }\n    return P[0];\n}\n\
+    \ntemplate <typename mint>\nmint nth_term_of_linearly_recurrent_sequence(const\
     \ FPS<mint> &a, const FPS<mint> &c, const unsigned long long n) {\n    const int\
     \ K = c.size();\n    assert(K <= a.size());\n    FPS<mint> Q(K + 1);\n    Q[0]\
     \ = 1;\n    for (int i = 0; i < K; ++i) {\n        Q[i + 1] = -c[i];\n    }\n\
@@ -193,8 +198,8 @@ data:
   isVerificationFile: false
   path: library/polynomial/bostan_mori.hpp
   requiredBy: []
-  timestamp: '2022-05-14 03:01:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-31 16:25:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: library/polynomial/bostan_mori.hpp

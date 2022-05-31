@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
@@ -13,15 +13,15 @@ data:
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/connectivity2.test.cpp
     title: test/src/math/sps/connectivity2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
     title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/subset.hpp\"\n\n\n\n#line 1 \"library/transform/kronecker_power.hpp\"\
@@ -120,7 +120,7 @@ data:
   requiredBy:
   - library/convolution/or_convolution.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/math/sps/connectivity2.test.cpp
   - test/src/math/sps/lights_out_on_connected_graph.test.cpp
