@@ -91,9 +91,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
-  - test/src/string/compare_substring/abc141_e.test.cpp
-  - test/src/string/compare_substring/dummy.test.cpp
   - test/src/string/compare_substring/substring.test.cpp
+  - test/src/string/compare_substring/dummy.test.cpp
+  - test/src/string/compare_substring/abc141_e.test.cpp
   - test/src/string/compare_substring/string_search.test.cpp
 documentation_of: library/datastructure/sparse_table.hpp
 layout: document

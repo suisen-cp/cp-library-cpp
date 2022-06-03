@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   _isVerificationFailed: true
@@ -280,9 +280,9 @@ data:
   timestamp: '2022-04-05 23:40:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/segment_tree/persistent_segment_tree/abc253_f.test.cpp
-  - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
+  - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/persistent_segment_tree/abc253_f.test.cpp
 documentation_of: library/datastructure/segment_tree/persistent_segment_tree.hpp
 layout: document
 title: "\u6C38\u7D9A\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"

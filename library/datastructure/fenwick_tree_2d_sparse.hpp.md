@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/rectangle_add_rectangle_sum.hpp
     title: Rectangle Add Rectangle Sum
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
     title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree_2d_sparse.hpp\"\n\n\n\
@@ -181,11 +181,11 @@ data:
   requiredBy:
   - library/datastructure/rectangle_add_rectangle_sum.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
 documentation_of: library/datastructure/fenwick_tree_2d_sparse.hpp
 layout: document
 title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"

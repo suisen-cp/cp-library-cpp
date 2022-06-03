@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/rectangle_add_rectangle_sum.hpp
     title: Rectangle Add Rectangle Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
     title: Static Rectangle Add Rectangle Sum
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
     title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
     title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/tuple_ops.hpp\"\n\n\n\n#include <tuple>\n\n\
@@ -87,7 +87,7 @@ data:
   - library/datastructure/static_rectangle_add_rectangle_sum.hpp
   - library/datastructure/rectangle_add_rectangle_sum.hpp
   timestamp: '2022-05-07 15:41:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp

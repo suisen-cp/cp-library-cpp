@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':x:'
@@ -14,13 +14,13 @@ data:
   - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':x:'
@@ -344,23 +344,24 @@ data:
     \ shamt, 0);\n            return *this;\n        }\n        FPSNaive& operator>>=(const\
     \ int shamt) {\n            if (shamt > size()) this->clear();\n            else\
     \ this->erase(this->begin(), this->begin() + shamt);\n            return *this;\n\
-    \        }\n\n        FPSNaive operator+(const FPSNaive& g) const { return FPSNaive(*this)\
-    \ += g; }\n        FPSNaive operator+(const value_type x) const { return FPSNaive(*this)\
-    \ += x; }\n        FPSNaive operator-(const FPSNaive& g) const { return FPSNaive(*this)\
-    \ -= g; }\n        FPSNaive operator-(const value_type x) const { return FPSNaive(*this)\
-    \ -= x; }\n        FPSNaive operator*(const FPSNaive& g) const {\n           \
-    \ if (this->empty() or g.empty()) return FPSNaive{};\n            const int n\
-    \ = size(), m = g.size();\n            FPSNaive h(std::min(MAX_DEG + 1, n + m\
-    \ - 1));\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j)\
-    \ {\n                if (i + j > MAX_DEG) break;\n                h.unsafe_get(i\
-    \ + j) += unsafe_get(i) * g.unsafe_get(j);\n            }\n            return\
-    \ h;\n        }\n        FPSNaive operator*(const value_type x) const { return\
-    \ FPSNaive(*this) *= x; }\n        FPSNaive operator/(const FPSNaive& g) const\
-    \ { return div_mod(*this, g).first; }\n        FPSNaive operator%(const FPSNaive&\
-    \ g) const { return div_mod(*this, g).second; }\n        friend FPSNaive operator*(const\
-    \ value_type x, const FPSNaive& f) { return f * x; }\n        FPSNaive operator<<(const\
-    \ int shamt) { return FPSNaive(*this) <<= shamt; }\n        FPSNaive operator>>(const\
-    \ int shamt) { return FPSNaive(*this) >>= shamt; }\n\n        friend std::pair<FPSNaive,\
+    \        }\n\n        friend FPSNaive operator+(FPSNaive f, const FPSNaive& g)\
+    \   { f += g; return f; }\n        friend FPSNaive operator+(FPSNaive f, const\
+    \ value_type &x) { f += x; return f; }\n        friend FPSNaive operator-(FPSNaive\
+    \ f, const FPSNaive& g)   { f -= g; return f; }\n        friend FPSNaive operator-(FPSNaive\
+    \ f, const value_type &x) { f -= x; return f; }\n        friend FPSNaive operator*(const\
+    \ FPSNaive &f, const FPSNaive& g) {\n            if (f.empty() or g.empty()) return\
+    \ FPSNaive{};\n            const int n = f.size(), m = g.size();\n           \
+    \ FPSNaive h(std::min(MAX_DEG + 1, n + m - 1));\n            for (int i = 0; i\
+    \ < n; ++i) for (int j = 0; j < m; ++j) {\n                if (i + j > MAX_DEG)\
+    \ break;\n                h.unsafe_get(i + j) += f.unsafe_get(i) * g.unsafe_get(j);\n\
+    \            }\n            return h;\n        }\n        friend FPSNaive operator*(FPSNaive\
+    \ f, const value_type &x) { f *= x; return f; }\n        friend FPSNaive operator/(FPSNaive\
+    \ f, FPSNaive g) { return std::move(div_mod(std::move(f), std::move(g)).first);\
+    \ }\n        friend FPSNaive operator%(FPSNaive f, FPSNaive g) { return std::move(div_mod(std::move(f),\
+    \ std::move(g)).second); }\n        friend FPSNaive operator*(const value_type\
+    \ x, FPSNaive f) { f *= x; return f; }\n        friend FPSNaive operator<<(FPSNaive\
+    \ f, const int shamt)   { f <<= shamt; return f; }\n        friend FPSNaive operator>>(FPSNaive\
+    \ f, const int shamt)   { f >>= shamt; return f; }\n\n        friend std::pair<FPSNaive,\
     \ FPSNaive> div_mod(FPSNaive f, FPSNaive g) {\n            const int fd = f.normalize(),\
     \ gd = g.normalize();\n            assert(gd >= 0);\n            if (fd < gd)\
     \ return { FPSNaive{}, f };\n            if (gd == 0) return { f *= g.unsafe_get(0).inv(),\
@@ -502,20 +503,19 @@ data:
     \ *this;\n        }\n        SPS& operator-=(const SPS& g) {\n            for\
     \ (size_type i = 0; i < g.size(); ++i) (*this)[i] -= g[i];\n            return\
     \ *this;\n        }\n        SPS& operator*=(const SPS& g) {\n            return\
-    \ *this = (zeta() *= g).mobius_inplace();\n        }\n        SPS& operator*=(value_type\
-    \ c) {\n            for (auto& e : *this) e *= c;\n            return *this;\n\
-    \        }\n        SPS& operator/=(value_type c) {\n            value_type inv_c\
-    \ = ::inv(c);\n            for (auto& e : *this) e *= inv_c;\n            return\
-    \ *this;\n        }\n        friend SPS operator+(const SPS& f, const SPS& g)\
-    \ { return SPS(f) += g; }\n        friend SPS operator-(const SPS& f, const SPS&\
-    \ g) { return SPS(f) -= g; }\n        friend SPS operator*(const SPS& f, const\
-    \ SPS& g) { return SPS(f) *= g; }\n        friend SPS operator*(const SPS& f,\
-    \ value_type c) { return SPS(f) *= c; }\n        friend SPS operator*(value_type\
-    \ c, const SPS& f) { return SPS(f) *= c; }\n        friend SPS operator/(const\
-    \ SPS& f, value_type c) { return SPS(f) /= c; }\n\n        SPS inv() {\n     \
-    \       return zeta().inv_inplace().mobius_inplace();\n        }\n        SPS\
-    \ sqrt() {\n            return zeta().sqrt_inplace().mobius_inplace();\n     \
-    \   }\n        SPS exp() {\n            return zeta().exp_inplace().mobius_inplace();\n\
+    \ *this = (zeta() *= g).mobius_inplace();\n        }\n        SPS& operator*=(const\
+    \ value_type &c) {\n            for (auto& e : *this) e *= c;\n            return\
+    \ *this;\n        }\n        SPS& operator/=(const value_type &c) {\n        \
+    \    value_type inv_c = ::inv(c);\n            for (auto& e : *this) e *= inv_c;\n\
+    \            return *this;\n        }\n        friend SPS operator+(SPS f, const\
+    \ SPS& g) { f += g; return f; }\n        friend SPS operator-(SPS f, const SPS&\
+    \ g) { f -= g; return f; }\n        friend SPS operator*(SPS f, const SPS& g)\
+    \ { f *= g; return f; }\n        friend SPS operator*(SPS f, const value_type\
+    \ &c) { f *= c; return f; }\n        friend SPS operator*(const value_type &c,\
+    \ SPS f) { f *= c; return f; }\n        friend SPS operator/(SPS f, const value_type\
+    \ &c) { f /= c; return f; }\n\n        SPS inv() {\n            return zeta().inv_inplace().mobius_inplace();\n\
+    \        }\n        SPS sqrt() {\n            return zeta().sqrt_inplace().mobius_inplace();\n\
+    \        }\n        SPS exp() {\n            return zeta().exp_inplace().mobius_inplace();\n\
     \        }\n        SPS log() {\n            return zeta().log_inplace().mobius_inplace();\n\
     \        }\n        SPS pow(long long k) {\n            return zeta().pow_inplace(k).mobius_inplace();\n\
     \        }\n\n        struct ZetaSPS : public std::vector<polynomial_type> {\n\
@@ -524,16 +524,14 @@ data:
     \ _d(f.cardinality()) {}\n\n            ZetaSPS operator+() const {\n        \
     \        return *this;\n            }\n            ZetaSPS operator-() const {\n\
     \                ZetaSPS res(*this);\n                for (auto& f : res) f =\
-    \ -f;\n                return res;\n            }\n            ZetaSPS operator+(const\
-    \ ZetaSPS& rhs) const {\n                return ZetaSPS(*this) += rhs;\n     \
-    \       }\n            ZetaSPS operator-(const ZetaSPS& rhs) const {\n       \
-    \         return ZetaSPS(*this) -= rhs;\n            }\n            ZetaSPS operator*(const\
-    \ value_type& c) const {\n                return ZetaSPS(*this) *= c;\n      \
-    \      }\n            friend ZetaSPS operator*(const value_type& c, const ZetaSPS&\
-    \ f) {\n                return f * c;\n            }\n            ZetaSPS operator/(const\
-    \ value_type& c) const {\n                return ZetaSPS(*this) /= c;\n      \
-    \      }\n            ZetaSPS operator*(const ZetaSPS& rhs) const {\n        \
-    \        return ZetaSPS(*this) *= rhs;\n            }\n            ZetaSPS& operator+=(const\
+    \ -f;\n                return res;\n            }\n            friend ZetaSPS\
+    \ operator+(ZetaSPS f, const ZetaSPS& g) { f += g; return f; }\n            friend\
+    \ ZetaSPS operator-(ZetaSPS f, const ZetaSPS& g) { f -= g; return f; }\n     \
+    \       friend ZetaSPS operator*(ZetaSPS f, const ZetaSPS& g) { f *= g; return\
+    \ f; }\n            friend ZetaSPS operator*(ZetaSPS f, const value_type &c) {\
+    \ f *= c; return f; }\n            friend ZetaSPS operator*(const value_type &c,\
+    \ ZetaSPS f) { f *= c; return f; }\n            friend ZetaSPS operator/(ZetaSPS\
+    \ f, const value_type &c) { f /= c; return f; }\n\n            ZetaSPS& operator+=(const\
     \ ZetaSPS& rhs) {\n                assert(_d == rhs._d);\n                for\
     \ (int i = 0; i < 1 << _d; ++i) (*this)[i] += rhs[i];\n                return\
     \ *this;\n            }\n            ZetaSPS& operator-=(const ZetaSPS& rhs) {\n\
@@ -610,7 +608,7 @@ data:
   isVerificationFile: true
   path: test/src/math/sps/abc253_h.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-03 19:04:31+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/sps/abc253_h.test.cpp

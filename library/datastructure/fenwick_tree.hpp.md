@@ -5,43 +5,43 @@ data:
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/fenwick_tree_2d_sparse.hpp
     title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/rectangle_add_rectangle_sum.hpp
     title: Rectangle Add Rectangle Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
     title: Static Rectangle Add Rectangle Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
     title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
     title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
     title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree.hpp\"\n\n\n\n#include\
@@ -167,20 +167,20 @@ data:
   isVerificationFile: false
   path: library/datastructure/fenwick_tree.hpp
   requiredBy:
-  - library/geom/segment_intersections.hpp
   - library/datastructure/static_rectangle_add_rectangle_sum.hpp
-  - library/datastructure/fenwick_tree_2d_sparse.hpp
   - library/datastructure/rectangle_add_rectangle_sum.hpp
+  - library/datastructure/fenwick_tree_2d_sparse.hpp
+  - library/geom/segment_intersections.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
-  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/datastructure/fenwick_tree.hpp
 layout: document
 title: Fenwick Tree

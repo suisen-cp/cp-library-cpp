@@ -9,10 +9,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
     title: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/util/subset_iterator/dummy_all_subset.test.cpp
     title: test/src/util/subset_iterator/dummy_all_subset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
     title: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
   _isVerificationFailed: true
@@ -140,8 +140,8 @@ data:
   verifiedWith:
   - test/src/math/sps/abc253_h.test.cpp
   - test/src/util/subset_iterator/dummy_all_setbit.test.cpp
-  - test/src/util/subset_iterator/dummy_all_subset.test.cpp
   - test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
+  - test/src/util/subset_iterator/dummy_all_subset.test.cpp
 documentation_of: library/util/subset_iterator.hpp
 layout: document
 title: Subset Iterator

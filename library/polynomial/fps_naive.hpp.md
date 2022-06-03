@@ -1,26 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/sps.hpp
     title: Set Power Series
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+    title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc236_h.test.cpp
+    title: test/src/math/sps/abc236_h.test.cpp
+  - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/connectivity2.test.cpp
+    title: test/src/math/sps/connectivity2.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+    title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -126,23 +138,24 @@ data:
     \ shamt, 0);\n            return *this;\n        }\n        FPSNaive& operator>>=(const\
     \ int shamt) {\n            if (shamt > size()) this->clear();\n            else\
     \ this->erase(this->begin(), this->begin() + shamt);\n            return *this;\n\
-    \        }\n\n        FPSNaive operator+(const FPSNaive& g) const { return FPSNaive(*this)\
-    \ += g; }\n        FPSNaive operator+(const value_type x) const { return FPSNaive(*this)\
-    \ += x; }\n        FPSNaive operator-(const FPSNaive& g) const { return FPSNaive(*this)\
-    \ -= g; }\n        FPSNaive operator-(const value_type x) const { return FPSNaive(*this)\
-    \ -= x; }\n        FPSNaive operator*(const FPSNaive& g) const {\n           \
-    \ if (this->empty() or g.empty()) return FPSNaive{};\n            const int n\
-    \ = size(), m = g.size();\n            FPSNaive h(std::min(MAX_DEG + 1, n + m\
-    \ - 1));\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j)\
-    \ {\n                if (i + j > MAX_DEG) break;\n                h.unsafe_get(i\
-    \ + j) += unsafe_get(i) * g.unsafe_get(j);\n            }\n            return\
-    \ h;\n        }\n        FPSNaive operator*(const value_type x) const { return\
-    \ FPSNaive(*this) *= x; }\n        FPSNaive operator/(const FPSNaive& g) const\
-    \ { return div_mod(*this, g).first; }\n        FPSNaive operator%(const FPSNaive&\
-    \ g) const { return div_mod(*this, g).second; }\n        friend FPSNaive operator*(const\
-    \ value_type x, const FPSNaive& f) { return f * x; }\n        FPSNaive operator<<(const\
-    \ int shamt) { return FPSNaive(*this) <<= shamt; }\n        FPSNaive operator>>(const\
-    \ int shamt) { return FPSNaive(*this) >>= shamt; }\n\n        friend std::pair<FPSNaive,\
+    \        }\n\n        friend FPSNaive operator+(FPSNaive f, const FPSNaive& g)\
+    \   { f += g; return f; }\n        friend FPSNaive operator+(FPSNaive f, const\
+    \ value_type &x) { f += x; return f; }\n        friend FPSNaive operator-(FPSNaive\
+    \ f, const FPSNaive& g)   { f -= g; return f; }\n        friend FPSNaive operator-(FPSNaive\
+    \ f, const value_type &x) { f -= x; return f; }\n        friend FPSNaive operator*(const\
+    \ FPSNaive &f, const FPSNaive& g) {\n            if (f.empty() or g.empty()) return\
+    \ FPSNaive{};\n            const int n = f.size(), m = g.size();\n           \
+    \ FPSNaive h(std::min(MAX_DEG + 1, n + m - 1));\n            for (int i = 0; i\
+    \ < n; ++i) for (int j = 0; j < m; ++j) {\n                if (i + j > MAX_DEG)\
+    \ break;\n                h.unsafe_get(i + j) += f.unsafe_get(i) * g.unsafe_get(j);\n\
+    \            }\n            return h;\n        }\n        friend FPSNaive operator*(FPSNaive\
+    \ f, const value_type &x) { f *= x; return f; }\n        friend FPSNaive operator/(FPSNaive\
+    \ f, FPSNaive g) { return std::move(div_mod(std::move(f), std::move(g)).first);\
+    \ }\n        friend FPSNaive operator%(FPSNaive f, FPSNaive g) { return std::move(div_mod(std::move(f),\
+    \ std::move(g)).second); }\n        friend FPSNaive operator*(const value_type\
+    \ x, FPSNaive f) { f *= x; return f; }\n        friend FPSNaive operator<<(FPSNaive\
+    \ f, const int shamt)   { f <<= shamt; return f; }\n        friend FPSNaive operator>>(FPSNaive\
+    \ f, const int shamt)   { f >>= shamt; return f; }\n\n        friend std::pair<FPSNaive,\
     \ FPSNaive> div_mod(FPSNaive f, FPSNaive g) {\n            const int fd = f.normalize(),\
     \ gd = g.normalize();\n            assert(gd >= 0);\n            if (fd < gd)\
     \ return { FPSNaive{}, f };\n            if (gd == 0) return { f *= g.unsafe_get(0).inv(),\
@@ -268,23 +281,24 @@ data:
     \ shamt, 0);\n            return *this;\n        }\n        FPSNaive& operator>>=(const\
     \ int shamt) {\n            if (shamt > size()) this->clear();\n            else\
     \ this->erase(this->begin(), this->begin() + shamt);\n            return *this;\n\
-    \        }\n\n        FPSNaive operator+(const FPSNaive& g) const { return FPSNaive(*this)\
-    \ += g; }\n        FPSNaive operator+(const value_type x) const { return FPSNaive(*this)\
-    \ += x; }\n        FPSNaive operator-(const FPSNaive& g) const { return FPSNaive(*this)\
-    \ -= g; }\n        FPSNaive operator-(const value_type x) const { return FPSNaive(*this)\
-    \ -= x; }\n        FPSNaive operator*(const FPSNaive& g) const {\n           \
-    \ if (this->empty() or g.empty()) return FPSNaive{};\n            const int n\
-    \ = size(), m = g.size();\n            FPSNaive h(std::min(MAX_DEG + 1, n + m\
-    \ - 1));\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j)\
-    \ {\n                if (i + j > MAX_DEG) break;\n                h.unsafe_get(i\
-    \ + j) += unsafe_get(i) * g.unsafe_get(j);\n            }\n            return\
-    \ h;\n        }\n        FPSNaive operator*(const value_type x) const { return\
-    \ FPSNaive(*this) *= x; }\n        FPSNaive operator/(const FPSNaive& g) const\
-    \ { return div_mod(*this, g).first; }\n        FPSNaive operator%(const FPSNaive&\
-    \ g) const { return div_mod(*this, g).second; }\n        friend FPSNaive operator*(const\
-    \ value_type x, const FPSNaive& f) { return f * x; }\n        FPSNaive operator<<(const\
-    \ int shamt) { return FPSNaive(*this) <<= shamt; }\n        FPSNaive operator>>(const\
-    \ int shamt) { return FPSNaive(*this) >>= shamt; }\n\n        friend std::pair<FPSNaive,\
+    \        }\n\n        friend FPSNaive operator+(FPSNaive f, const FPSNaive& g)\
+    \   { f += g; return f; }\n        friend FPSNaive operator+(FPSNaive f, const\
+    \ value_type &x) { f += x; return f; }\n        friend FPSNaive operator-(FPSNaive\
+    \ f, const FPSNaive& g)   { f -= g; return f; }\n        friend FPSNaive operator-(FPSNaive\
+    \ f, const value_type &x) { f -= x; return f; }\n        friend FPSNaive operator*(const\
+    \ FPSNaive &f, const FPSNaive& g) {\n            if (f.empty() or g.empty()) return\
+    \ FPSNaive{};\n            const int n = f.size(), m = g.size();\n           \
+    \ FPSNaive h(std::min(MAX_DEG + 1, n + m - 1));\n            for (int i = 0; i\
+    \ < n; ++i) for (int j = 0; j < m; ++j) {\n                if (i + j > MAX_DEG)\
+    \ break;\n                h.unsafe_get(i + j) += f.unsafe_get(i) * g.unsafe_get(j);\n\
+    \            }\n            return h;\n        }\n        friend FPSNaive operator*(FPSNaive\
+    \ f, const value_type &x) { f *= x; return f; }\n        friend FPSNaive operator/(FPSNaive\
+    \ f, FPSNaive g) { return std::move(div_mod(std::move(f), std::move(g)).first);\
+    \ }\n        friend FPSNaive operator%(FPSNaive f, FPSNaive g) { return std::move(div_mod(std::move(f),\
+    \ std::move(g)).second); }\n        friend FPSNaive operator*(const value_type\
+    \ x, FPSNaive f) { f *= x; return f; }\n        friend FPSNaive operator<<(FPSNaive\
+    \ f, const int shamt)   { f <<= shamt; return f; }\n        friend FPSNaive operator>>(FPSNaive\
+    \ f, const int shamt)   { f >>= shamt; return f; }\n\n        friend std::pair<FPSNaive,\
     \ FPSNaive> div_mod(FPSNaive f, FPSNaive g) {\n            const int fd = f.normalize(),\
     \ gd = g.normalize();\n            assert(gd >= 0);\n            if (fd < gd)\
     \ return { FPSNaive{}, f };\n            if (gd == 0) return { f *= g.unsafe_get(0).inv(),\
@@ -378,12 +392,16 @@ data:
   isVerificationFile: false
   path: library/polynomial/fps_naive.hpp
   requiredBy:
-  - library/math/sps.hpp
   - library/convolution/subset_convolution.hpp
-  timestamp: '2022-05-31 16:25:25+09:00'
+  - library/math/sps.hpp
+  timestamp: '2022-06-03 19:04:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/math/sps/abc236_h.test.cpp
+  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/sps/connectivity2.test.cpp
 documentation_of: library/polynomial/fps_naive.hpp
 layout: document
 title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"

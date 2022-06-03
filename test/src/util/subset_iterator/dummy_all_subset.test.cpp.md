@@ -6,9 +6,9 @@ data:
     title: Subset Iterator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -97,8 +97,8 @@ data:
   isVerificationFile: true
   path: test/src/util/subset_iterator/dummy_all_subset.test.cpp
   requiredBy: []
-  timestamp: '2022-05-30 16:24:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-31 16:25:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/util/subset_iterator/dummy_all_subset.test.cpp
 layout: document
