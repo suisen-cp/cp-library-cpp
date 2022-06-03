@@ -25,31 +25,31 @@ class FPS : public std::vector<mint> {
             FPS<mint>::mult = multiplication;
         }
 
-        inline const mint  operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) : 0; }
-        inline       mint& operator[](int n)       noexcept { ensure_deg(n); return unsafe_get(n); }
+        const mint  operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) : 0; }
+              mint& operator[](int n)       noexcept { ensure_deg(n); return unsafe_get(n); }
 
-        inline int size() const noexcept { return std::vector<mint>::size(); }
-        inline int deg()  const noexcept { return size() - 1; }
-        inline int normalize() {
+        int size() const noexcept { return std::vector<mint>::size(); }
+        int deg()  const noexcept { return size() - 1; }
+        int normalize() {
             while (this->size() and this->back() == 0) this->pop_back();
             return deg();
         }
-        inline FPS& pre_inplace(int max_deg) noexcept {
+        FPS& pre_inplace(int max_deg) noexcept {
             if (deg() > max_deg) this->resize(std::max(0, max_deg + 1));
             return *this;
         }
-        inline FPS pre(int max_deg) const noexcept { return FPS(*this).pre_inplace(max_deg); }
+        FPS pre(int max_deg) const noexcept { return FPS(*this).pre_inplace(max_deg); }
 
-        inline FPS operator+() const { return FPS(*this); }
+        FPS operator+() const { return FPS(*this); }
         FPS operator-() const {
             FPS f(*this);
             for (auto &e : f) e = mint::mod() - e;
             return f;
         }
-        inline FPS& operator++() { ++(*this)[0]; return *this; }
-        inline FPS& operator--() { --(*this)[0]; return *this; }
-        inline FPS& operator+=(const mint x) { (*this)[0] += x; return *this; }
-        inline FPS& operator-=(const mint x) { (*this)[0] -= x; return *this; }
+        FPS& operator++() { ++(*this)[0]; return *this; }
+        FPS& operator--() { --(*this)[0]; return *this; }
+        FPS& operator+=(const mint x) { (*this)[0] += x; return *this; }
+        FPS& operator-=(const mint x) { (*this)[0] -= x; return *this; }
         FPS& operator+=(const FPS &g) {
             ensure_deg(g.deg());
             for (int i = 0; i <= g.deg(); ++i) unsafe_get(i) += g.unsafe_get(i);
@@ -60,9 +60,9 @@ class FPS : public std::vector<mint> {
             for (int i = 0; i <= g.deg(); ++i) unsafe_get(i) -= g.unsafe_get(i);
             return *this;
         }
-        inline FPS& operator*=(const FPS  &g) { return *this = FPS<mint>::mult(*this, g); }
-        inline FPS& operator*=(      FPS &&g) { return *this = FPS<mint>::mult(*this, g); }
-        inline FPS& operator*=(const mint x) {
+        FPS& operator*=(const FPS  &g) { return *this = FPS<mint>::mult(*this, g); }
+        FPS& operator*=(      FPS &&g) { return *this = FPS<mint>::mult(*this, g); }
+        FPS& operator*=(const mint x) {
             for (auto &e : *this) e *= x;
             return *this;
         }
@@ -92,8 +92,8 @@ class FPS : public std::vector<mint> {
             *this -= g * (*this / g);
             return pre_inplace(gd - 1);
         }
-        inline FPS& operator/=(const FPS &g) { return *this /= FPS(g); }
-        inline FPS& operator%=(const FPS &g) { return *this %= FPS(g); }
+        FPS& operator/=(const FPS &g) { return *this /= FPS(g); }
+        FPS& operator%=(const FPS &g) { return *this %= FPS(g); }
         FPS& operator<<=(const int shamt) {
             this->insert(this->begin(), shamt, 0);
             return *this;
@@ -104,23 +104,17 @@ class FPS : public std::vector<mint> {
             return *this;
         }
 
-        inline FPS operator+(FPS &&g) const { return FPS(*this) += std::move(g); }
-        inline FPS operator-(FPS &&g) const { return FPS(*this) -= std::move(g); }
-        inline FPS operator*(FPS &&g) const { return FPS(*this) *= std::move(g); }
-        inline FPS operator/(FPS &&g) const { return FPS(*this) /= std::move(g); }
-        inline FPS operator%(FPS &&g) const { return FPS(*this) %= std::move(g); }
-        inline FPS operator+(const FPS &g) const { return FPS(*this) += g; }
-        inline FPS operator+(const mint x) const { return FPS(*this) += x; }
-        inline FPS operator-(const FPS &g) const { return FPS(*this) -= g; }
-        inline FPS operator-(const mint x) const { return FPS(*this) -= x; }
-        inline FPS operator*(const FPS &g) const { return FPS(*this) *= g; }
-        inline FPS operator*(const mint x) const { return FPS(*this) *= x; }
-        inline FPS operator/(const FPS &g) const { return FPS(*this) /= g; }
-        inline FPS operator%(const FPS &g) const { return FPS(*this) %= g; }
-        inline friend FPS operator*(const mint x, const FPS  &f) { return f * x; }
-        inline friend FPS operator*(const mint x,       FPS &&f) { return f *= x; }
-        inline FPS operator<<(const int shamt) { return FPS(*this) <<= shamt; }
-        inline FPS operator>>(const int shamt) { return FPS(*this) >>= shamt; }
+        friend FPS operator+(FPS f, const FPS &g) { f += g; return f; }
+        friend FPS operator+(FPS f, const mint x) { f += x; return f; }
+        friend FPS operator-(FPS f, const FPS &g) { f -= g; return f; }
+        friend FPS operator-(FPS f, const mint x) { f -= x; return f; }
+        friend FPS operator*(FPS f, const FPS &g) { f *= g; return f; }
+        friend FPS operator*(FPS f, const mint x) { f *= x; return f; }
+        friend FPS operator/(FPS f, const FPS &g) { f /= g; return f; }
+        friend FPS operator%(FPS f, const FPS &g) { f %= g; return f; }
+        friend FPS operator*(const mint x, FPS f) { f *= x; return f; }
+        friend FPS operator<<(FPS f, const int shamt) { f <<= shamt; return f; }
+        friend FPS operator>>(FPS f, const int shamt) { f >>= shamt; return f; }
 
         friend bool operator==(const FPS &f, const FPS &g) {
             int n = f.size(), m = g.size();
@@ -171,12 +165,12 @@ class FPS : public std::vector<mint> {
             *this *= base.inv(), log_inplace(max_deg), *this *= k, exp_inplace(max_deg), *this *= base.pow(k);
             return *this <<= tlz * k, pre_inplace(max_deg);
         }
-        inline FPS diff() const { return FPS(*this).diff_inplace(); }
-        inline FPS intg() const { return FPS(*this).intg_inplace(); }
-        inline FPS inv(const int max_deg) const { return FPS(*this).inv_inplace(max_deg); }
-        inline FPS log(const int max_deg) const { return FPS(*this).log_inplace(max_deg); }
-        inline FPS exp(const int max_deg) const { return FPS(*this).exp_inplace(max_deg); }
-        inline FPS pow(const long long k, const int max_deg) const { return FPS(*this).pow_inplace(k, max_deg); }
+        FPS diff() const { FPS f{*this}; f.diff_inplace(); return f; }
+        FPS intg() const { FPS f{*this}; f.intg_inplace(); return f; }
+        FPS inv(const int max_deg) const { FPS f{*this}; f.inv_inplace(max_deg); return f; }
+        FPS log(const int max_deg) const { FPS f{*this}; f.log_inplace(max_deg); return f; }
+        FPS exp(const int max_deg) const { FPS f{*this}; f.exp_inplace(max_deg); return f; }
+        FPS pow(const long long k, const int max_deg) const { FPS f{*this}; f.pow_inplace(k, max_deg); return f; }
 
         mint eval(mint x) const {
             mint y = 0;
@@ -187,9 +181,9 @@ class FPS : public std::vector<mint> {
     private:
         static inline inv_mods<mint> invs;
         static convolution_t<mint> mult;
-        inline void ensure_deg(int d) { if (deg() < d) this->resize(d + 1, 0); }
-        inline const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i); }
-        inline       mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }
+        void ensure_deg(int d) { if (deg() < d) this->resize(d + 1, 0); }
+        const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i); }
+              mint& unsafe_get(int i)       { return std::vector<mint>::operator[](i); }
 
         std::pair<FPS, FPS&> naive_div_inplace(FPS &&g, const int gd) {
             const int k = deg() - gd;
@@ -201,16 +195,6 @@ class FPS : public std::vector<mint> {
                 for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j) -= div * g.unsafe_get(j);
             }
             return {q, pre_inplace(gd - 1)};
-        }
-
-        FPS<mint> naive_exp(const int max_deg) const {
-            FPS<mint> g(max_deg + 1);
-            g[0] = 1;
-            for (int i = 1; i <= max_deg; ++i) {
-                for (int j = 0; j < i; ++j) g[i] += g[j] * (i - j) * (*this)[i - j];
-                g[i] *= invs[i];
-            }
-            return g;
         }
 };
 

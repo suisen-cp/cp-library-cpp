@@ -91,26 +91,26 @@ namespace suisen {
             return *this;
         }
 
-        FPSNaive operator+(const FPSNaive& g) const { return FPSNaive(*this) += g; }
-        FPSNaive operator+(const value_type x) const { return FPSNaive(*this) += x; }
-        FPSNaive operator-(const FPSNaive& g) const { return FPSNaive(*this) -= g; }
-        FPSNaive operator-(const value_type x) const { return FPSNaive(*this) -= x; }
-        FPSNaive operator*(const FPSNaive& g) const {
-            if (this->empty() or g.empty()) return FPSNaive{};
-            const int n = size(), m = g.size();
+        friend FPSNaive operator+(FPSNaive f, const FPSNaive& g)   { f += g; return f; }
+        friend FPSNaive operator+(FPSNaive f, const value_type &x) { f += x; return f; }
+        friend FPSNaive operator-(FPSNaive f, const FPSNaive& g)   { f -= g; return f; }
+        friend FPSNaive operator-(FPSNaive f, const value_type &x) { f -= x; return f; }
+        friend FPSNaive operator*(const FPSNaive &f, const FPSNaive& g) {
+            if (f.empty() or g.empty()) return FPSNaive{};
+            const int n = f.size(), m = g.size();
             FPSNaive h(std::min(MAX_DEG + 1, n + m - 1));
             for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
                 if (i + j > MAX_DEG) break;
-                h.unsafe_get(i + j) += unsafe_get(i) * g.unsafe_get(j);
+                h.unsafe_get(i + j) += f.unsafe_get(i) * g.unsafe_get(j);
             }
             return h;
         }
-        FPSNaive operator*(const value_type x) const { return FPSNaive(*this) *= x; }
-        FPSNaive operator/(const FPSNaive& g) const { return div_mod(*this, g).first; }
-        FPSNaive operator%(const FPSNaive& g) const { return div_mod(*this, g).second; }
-        friend FPSNaive operator*(const value_type x, const FPSNaive& f) { return f * x; }
-        FPSNaive operator<<(const int shamt) { return FPSNaive(*this) <<= shamt; }
-        FPSNaive operator>>(const int shamt) { return FPSNaive(*this) >>= shamt; }
+        friend FPSNaive operator*(FPSNaive f, const value_type &x) { f *= x; return f; }
+        friend FPSNaive operator/(FPSNaive f, FPSNaive g) { return std::move(div_mod(std::move(f), std::move(g)).first); }
+        friend FPSNaive operator%(FPSNaive f, FPSNaive g) { return std::move(div_mod(std::move(f), std::move(g)).second); }
+        friend FPSNaive operator*(const value_type x, FPSNaive f) { f *= x; return f; }
+        friend FPSNaive operator<<(FPSNaive f, const int shamt)   { f <<= shamt; return f; }
+        friend FPSNaive operator>>(FPSNaive f, const int shamt)   { f >>= shamt; return f; }
 
         friend std::pair<FPSNaive, FPSNaive> div_mod(FPSNaive f, FPSNaive g) {
             const int fd = f.normalize(), gd = g.normalize();

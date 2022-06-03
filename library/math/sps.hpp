@@ -68,21 +68,21 @@ namespace suisen {
         SPS& operator*=(const SPS& g) {
             return *this = (zeta() *= g).mobius_inplace();
         }
-        SPS& operator*=(value_type c) {
+        SPS& operator*=(const value_type &c) {
             for (auto& e : *this) e *= c;
             return *this;
         }
-        SPS& operator/=(value_type c) {
+        SPS& operator/=(const value_type &c) {
             value_type inv_c = ::inv(c);
             for (auto& e : *this) e *= inv_c;
             return *this;
         }
-        friend SPS operator+(const SPS& f, const SPS& g) { return SPS(f) += g; }
-        friend SPS operator-(const SPS& f, const SPS& g) { return SPS(f) -= g; }
-        friend SPS operator*(const SPS& f, const SPS& g) { return SPS(f) *= g; }
-        friend SPS operator*(const SPS& f, value_type c) { return SPS(f) *= c; }
-        friend SPS operator*(value_type c, const SPS& f) { return SPS(f) *= c; }
-        friend SPS operator/(const SPS& f, value_type c) { return SPS(f) /= c; }
+        friend SPS operator+(SPS f, const SPS& g) { f += g; return f; }
+        friend SPS operator-(SPS f, const SPS& g) { f -= g; return f; }
+        friend SPS operator*(SPS f, const SPS& g) { f *= g; return f; }
+        friend SPS operator*(SPS f, const value_type &c) { f *= c; return f; }
+        friend SPS operator*(const value_type &c, SPS f) { f *= c; return f; }
+        friend SPS operator/(SPS f, const value_type &c) { f /= c; return f; }
 
         SPS inv() {
             return zeta().inv_inplace().mobius_inplace();
@@ -113,24 +113,13 @@ namespace suisen {
                 for (auto& f : res) f = -f;
                 return res;
             }
-            ZetaSPS operator+(const ZetaSPS& rhs) const {
-                return ZetaSPS(*this) += rhs;
-            }
-            ZetaSPS operator-(const ZetaSPS& rhs) const {
-                return ZetaSPS(*this) -= rhs;
-            }
-            ZetaSPS operator*(const value_type& c) const {
-                return ZetaSPS(*this) *= c;
-            }
-            friend ZetaSPS operator*(const value_type& c, const ZetaSPS& f) {
-                return f * c;
-            }
-            ZetaSPS operator/(const value_type& c) const {
-                return ZetaSPS(*this) /= c;
-            }
-            ZetaSPS operator*(const ZetaSPS& rhs) const {
-                return ZetaSPS(*this) *= rhs;
-            }
+            friend ZetaSPS operator+(ZetaSPS f, const ZetaSPS& g) { f += g; return f; }
+            friend ZetaSPS operator-(ZetaSPS f, const ZetaSPS& g) { f -= g; return f; }
+            friend ZetaSPS operator*(ZetaSPS f, const ZetaSPS& g) { f *= g; return f; }
+            friend ZetaSPS operator*(ZetaSPS f, const value_type &c) { f *= c; return f; }
+            friend ZetaSPS operator*(const value_type &c, ZetaSPS f) { f *= c; return f; }
+            friend ZetaSPS operator/(ZetaSPS f, const value_type &c) { f /= c; return f; }
+
             ZetaSPS& operator+=(const ZetaSPS& rhs) {
                 assert(_d == rhs._d);
                 for (int i = 0; i < 1 << _d; ++i) (*this)[i] += rhs[i];
