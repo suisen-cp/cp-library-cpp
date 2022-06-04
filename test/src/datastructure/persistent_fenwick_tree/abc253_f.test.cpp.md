@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/persistent_fenwick_tree.hpp
     title: Persistent Fenwick Tree
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Object Pool
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc253/tasks/abc253_f
@@ -127,7 +127,7 @@ data:
   path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
   requiredBy: []
   timestamp: '2022-05-29 02:47:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
 layout: document

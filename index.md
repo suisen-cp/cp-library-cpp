@@ -45,6 +45,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/arbitrary_mod_convolution.hpp
       title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
+    - icon: ':x:'
+      path: library/convolution/array_subset_convolution.hpp
+      title: library/convolution/array_subset_convolution.hpp
     - icon: ':heavy_check_mark:'
       path: library/convolution/convolution.hpp
       title: Convolution
@@ -73,7 +76,7 @@ data:
     - icon: ':warning:'
       path: library/convolution/or_convolution.hpp
       title: Bitwise Or Convolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/polynomial_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1"
@@ -81,7 +84,7 @@ data:
       path: library/convolution/polynomial_eval_multipoint_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -95,44 +98,44 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/binary_trie.hpp
       title: Binary Trie
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/bit_vector.hpp
       title: Bit Vector
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/cartesian_tree.hpp
       title: Cartesian Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: Compressed Wavelet Matrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
       title: Dynamic Sequence
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/fenwick_tree.hpp
       title: Fenwick Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree_2d.hpp
       title: Fenwick Tree 2d
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/fenwick_tree_2d_sparse.hpp
       title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_dynamic_sequence.hpp
       title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
         \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_map.hpp
       title: Lazy Eval Map
     - icon: ':warning:'
       path: library/datastructure/permutation_tree.hpp
       title: Permutation Tree
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/persistent_fenwick_tree.hpp
       title: Persistent Fenwick Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: Range Foldable Dynamic Sequence
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_map.hpp
       title: Range Foldable Map
     - icon: ':x:'
@@ -141,7 +144,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: Sparse Table
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/splay_tree_map.hpp
       title: Splay Tree Map
     - icon: ':warning:'
@@ -150,7 +153,7 @@ data:
     - icon: ':x:'
       path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
       title: Static Rectangle Add Rectangle Sum
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
   - name: library/datastructure/bbst
@@ -217,7 +220,7 @@ data:
     - icon: ':question:'
       path: library/datastructure/segment_tree/persistent_segment_tree.hpp
       title: "\u6C38\u7D9A\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/segment_tree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -389,16 +392,19 @@ data:
       title: "XOR \u57FA\u5E95"
   - name: library/math
     pages:
+    - icon: ':x:'
+      path: library/math/array_sps.hpp
+      title: library/math/array_sps.hpp
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
     - icon: ':question:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
     - icon: ':heavy_check_mark:'
@@ -458,6 +464,9 @@ data:
   - name: library/polynomial
     pages:
     - icon: ':x:'
+      path: library/polynomial/array_fps_naive.hpp
+      title: library/polynomial/array_fps_naive.hpp
+    - icon: ':x:'
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
     - icon: ':x:'
@@ -466,7 +475,7 @@ data:
     - icon: ':x:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
     - icon: ':x:'
@@ -532,7 +541,7 @@ data:
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/transform/subset.hpp
       title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -595,7 +604,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: Container Utils
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/util/coordinate_compressor.hpp
       title: "\u5EA7\u6A19\u5727\u7E2E"
     - icon: ':warning:'
@@ -647,7 +656,7 @@ data:
     - icon: ':x:'
       path: library/util/tuple_ops.hpp
       title: Tuple Ops
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/util/update_proxy_object.hpp
       title: Update Proxy Object
     - icon: ':warning:'
@@ -748,7 +757,7 @@ data:
       title: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
   - name: test/src/convolution/polynomial_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
       title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - name: test/src/convolution/polynomial_eval_multipoint_eval
@@ -758,7 +767,7 @@ data:
       title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - name: test/src/convolution/subset_convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
       title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - name: test/src/convolution/xor_convolution
@@ -801,54 +810,54 @@ data:
       title: test/src/datastructure/binary_trie/xor_game.test.cpp
   - name: test/src/datastructure/cartesian_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
       title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   - name: test/src/datastructure/compressed_wavelet_matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - name: test/src/datastructure/fenwick_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
       title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
   - name: test/src/datastructure/fenwick_tree_2d
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
       title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - name: test/src/datastructure/fenwick_tree_2d_sparse
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
       title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
       title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   - name: test/src/datastructure/lazy_eval_dynamic_sequence
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/lazy_eval_map
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
       title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - name: test/src/datastructure/persistent_fenwick_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
       title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
     - icon: ':x:'
@@ -1171,6 +1180,23 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/matrix/matrix_product.test.cpp
       title: test/src/linear_algebra/matrix/matrix_product.test.cpp
+  - name: test/src/math/array_sps
+    pages:
+    - icon: ':x:'
+      path: test/src/math/array_sps/abc213_g.test.cpp
+      title: test/src/math/array_sps/abc213_g.test.cpp
+    - icon: ':x:'
+      path: test/src/math/array_sps/abc236_h.test.cpp
+      title: test/src/math/array_sps/abc236_h.test.cpp
+    - icon: ':x:'
+      path: test/src/math/array_sps/abc253_h.test.cpp
+      title: test/src/math/array_sps/abc253_h.test.cpp
+    - icon: ':x:'
+      path: test/src/math/array_sps/abc253_h_2.test.cpp
+      title: test/src/math/array_sps/abc253_h_2.test.cpp
+    - icon: ':x:'
+      path: test/src/math/array_sps/arc105_f.test.cpp
+      title: test/src/math/array_sps/arc105_f.test.cpp
   - name: test/src/math/bigint
     pages:
     - icon: ':heavy_check_mark:'
@@ -1190,17 +1216,20 @@ data:
   - name: test/src/math/sps
     pages:
     - icon: ':x:'
+      path: test/src/math/sps/abc213_g.test.cpp
+      title: test/src/math/sps/abc213_g.test.cpp
+    - icon: ':x:'
       path: test/src/math/sps/abc236_h.test.cpp
       title: test/src/math/sps/abc236_h.test.cpp
     - icon: ':x:'
       path: test/src/math/sps/abc253_h.test.cpp
       title: test/src/math/sps/abc253_h.test.cpp
     - icon: ':x:'
-      path: test/src/math/sps/connectivity2.test.cpp
-      title: test/src/math/sps/connectivity2.test.cpp
+      path: test/src/math/sps/abc253_h_2.test.cpp
+      title: test/src/math/sps/abc253_h_2.test.cpp
     - icon: ':x:'
-      path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-      title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+      path: test/src/math/sps/arc105_f.test.cpp
+      title: test/src/math/sps/arc105_f.test.cpp
   - name: test/src/math/util
     pages:
     - icon: ':heavy_check_mark:'

@@ -3,18 +3,45 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':x:'
+    path: library/convolution/array_subset_convolution.hpp
+    title: library/convolution/array_subset_convolution.hpp
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
+  - icon: ':x:'
+    path: library/math/array_sps.hpp
+    title: library/math/array_sps.hpp
   - icon: ':x:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':x:'
+    path: library/polynomial/array_fps_naive.hpp
+    title: library/polynomial/array_fps_naive.hpp
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc213_g.test.cpp
+    title: test/src/math/array_sps/abc213_g.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc236_h.test.cpp
+    title: test/src/math/array_sps/abc236_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h.test.cpp
+    title: test/src/math/array_sps/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h_2.test.cpp
+    title: test/src/math/array_sps/abc253_h_2.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/arc105_f.test.cpp
+    title: test/src/math/array_sps/arc105_f.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc213_g.test.cpp
+    title: test/src/math/sps/abc213_g.test.cpp
   - icon: ':x:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
@@ -22,14 +49,14 @@ data:
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/connectivity2.test.cpp
-    title: test/src/math/sps/connectivity2.test.cpp
+    path: test/src/math/sps/abc253_h_2.test.cpp
+    title: test/src/math/sps/abc253_h_2.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-    title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+    path: test/src/math/sps/arc105_f.test.cpp
+    title: test/src/math/sps/arc105_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://37zigen.com/tonelli-shanks-algorithm/
@@ -77,17 +104,26 @@ data:
   isVerificationFile: false
   path: library/math/modint_extension.hpp
   requiredBy:
+  - library/convolution/array_subset_convolution.hpp
   - library/convolution/subset_convolution.hpp
   - library/math/sps.hpp
+  - library/math/array_sps.hpp
   - library/polynomial/fps_naive.hpp
+  - library/polynomial/array_fps_naive.hpp
   timestamp: '2021-08-13 19:00:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  - test/src/math/sps/arc105_f.test.cpp
+  - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
-  - test/src/math/sps/connectivity2.test.cpp
+  - test/src/math/sps/abc213_g.test.cpp
+  - test/src/math/array_sps/abc236_h.test.cpp
+  - test/src/math/array_sps/arc105_f.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
+  - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/array_sps/abc213_g.test.cpp
 documentation_of: library/math/modint_extension.hpp
 layout: document
 title: Modint Extension

@@ -14,6 +14,9 @@ data:
     path: library/algorithm/sliding_window_minimum.hpp
     title: Sliding Window Minimum
   - icon: ':x:'
+    path: library/convolution/array_subset_convolution.hpp
+    title: library/convolution/array_subset_convolution.hpp
+  - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
@@ -21,38 +24,38 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/cartesian_tree.hpp
     title: Cartesian Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/dynamic_sequence.hpp
     title: Dynamic Sequence
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree_2d_sparse.hpp
     title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_map.hpp
     title: Lazy Eval Map
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: Range Foldable Dynamic Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_map.hpp
     title: Range Foldable Map
   - icon: ':x:'
@@ -68,7 +71,7 @@ data:
   - icon: ':x:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':x:'
@@ -89,12 +92,15 @@ data:
   - icon: ':x:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
+  - icon: ':x:'
+    path: library/math/array_sps.hpp
+    title: library/math/array_sps.hpp
   - icon: ':x:'
     path: library/math/sps.hpp
     title: Set Power Series
@@ -108,6 +114,9 @@ data:
     path: library/number/util.hpp
     title: Util
   - icon: ':x:'
+    path: library/polynomial/array_fps_naive.hpp
+    title: library/polynomial/array_fps_naive.hpp
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':warning:'
@@ -124,10 +133,10 @@ data:
   - icon: ':x:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedVerifiedWith:
@@ -143,46 +152,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
     title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
     title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
     title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - icon: ':x:'
@@ -261,17 +270,35 @@ data:
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - icon: ':x:'
+    path: test/src/math/array_sps/abc213_g.test.cpp
+    title: test/src/math/array_sps/abc213_g.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc236_h.test.cpp
+    title: test/src/math/array_sps/abc236_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h.test.cpp
+    title: test/src/math/array_sps/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h_2.test.cpp
+    title: test/src/math/array_sps/abc253_h_2.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/arc105_f.test.cpp
+    title: test/src/math/array_sps/arc105_f.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc213_g.test.cpp
+    title: test/src/math/sps/abc213_g.test.cpp
+  - icon: ':x:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
   - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/connectivity2.test.cpp
-    title: test/src/math/sps/connectivity2.test.cpp
+    path: test/src/math/sps/abc253_h_2.test.cpp
+    title: test/src/math/sps/abc253_h_2.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-    title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+    path: test/src/math/sps/arc105_f.test.cpp
+    title: test/src/math/sps/arc105_f.test.cpp
   - icon: ':x:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
@@ -383,11 +410,13 @@ data:
   - library/algorithm/monotonic_convex_hull_trick.hpp
   - library/algorithm/sliding_window_minimum.hpp
   - library/algorithm/convex_hull_trick.hpp
+  - library/convolution/array_subset_convolution.hpp
   - library/convolution/polynomial_eval.hpp
   - library/convolution/subset_convolution.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/template.cpp
   - library/math/sps.hpp
+  - library/math/array_sps.hpp
   - library/number/util.hpp
   - library/number/fast_factorize.hpp
   - library/number/deterministic_miller_rabin.hpp
@@ -416,6 +445,7 @@ data:
   - library/datastructure/union_find/weighted_union_find.hpp
   - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/polynomial/fps_naive.hpp
+  - library/polynomial/array_fps_naive.hpp
   - library/util/update_proxy_object.hpp
   - library/util/coordinate_compressor.hpp
   - library/geom/segment_intersections.hpp
@@ -430,9 +460,15 @@ data:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  - test/src/math/sps/arc105_f.test.cpp
+  - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
-  - test/src/math/sps/connectivity2.test.cpp
+  - test/src/math/sps/abc213_g.test.cpp
+  - test/src/math/array_sps/abc236_h.test.cpp
+  - test/src/math/array_sps/arc105_f.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
+  - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/array_sps/abc213_g.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/util/divide_both.test.cpp
   - test/src/number/util/same_div_dens.test.cpp

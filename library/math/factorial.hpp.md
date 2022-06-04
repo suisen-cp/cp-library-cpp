@@ -16,8 +16,17 @@ data:
     path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
     title: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
   - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h.test.cpp
+    title: test/src/math/array_sps/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h_2.test.cpp
+    title: test/src/math/array_sps/abc253_h_2.test.cpp
+  - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc253_h_2.test.cpp
+    title: test/src/math/sps/abc253_h_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/util/abc240_g.test.cpp
     title: test/src/math/util/abc240_g.test.cpp
@@ -98,7 +107,10 @@ data:
   timestamp: '2022-05-28 01:05:03+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
+  - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/util/abc240_g.test.cpp
   - test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp

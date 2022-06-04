@@ -6,7 +6,7 @@ data:
     title: Object Pool
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
     title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/persistent_fenwick_tree.hpp\"\n\n\n\
@@ -147,7 +147,7 @@ data:
   path: library/datastructure/persistent_fenwick_tree.hpp
   requiredBy: []
   timestamp: '2022-05-29 02:47:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
   - test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp

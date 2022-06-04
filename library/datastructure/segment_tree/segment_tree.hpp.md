@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy:
@@ -13,7 +13,7 @@ data:
     title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
       \u5834\u5408)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - icon: ':x:'
@@ -33,7 +33,7 @@ data:
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/segment_tree.hpp\"\n\n\
@@ -194,7 +194,7 @@ data:
   requiredBy:
   - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp

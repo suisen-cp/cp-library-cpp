@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree_2d_sparse.hpp
     title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
   - icon: ':question:'

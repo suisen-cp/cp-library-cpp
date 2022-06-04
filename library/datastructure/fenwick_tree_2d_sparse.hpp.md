@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':question:'
@@ -12,10 +12,10 @@ data:
     path: library/datastructure/rectangle_add_rectangle_sum.hpp
     title: Rectangle Add Rectangle Sum
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree_2d_sparse.hpp\"\n\n\n\
@@ -181,7 +181,7 @@ data:
   requiredBy:
   - library/datastructure/rectangle_add_rectangle_sum.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp

@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':x:'
     path: library/math/sps.hpp
     title: Set Power Series
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc213_g.test.cpp
+    title: test/src/math/sps/abc213_g.test.cpp
   - icon: ':x:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
@@ -28,14 +31,14 @@ data:
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/connectivity2.test.cpp
-    title: test/src/math/sps/connectivity2.test.cpp
+    path: test/src/math/sps/abc253_h_2.test.cpp
+    title: test/src/math/sps/abc253_h_2.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-    title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+    path: test/src/math/sps/arc105_f.test.cpp
+    title: test/src/math/sps/arc105_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n\
@@ -135,12 +138,12 @@ data:
     \        }\n        FPSNaive& operator/=(const FPSNaive& g) { return *this = *this\
     \ / g; }\n        FPSNaive& operator%=(const FPSNaive& g) { return *this = *this\
     \ % g; }\n        FPSNaive& operator<<=(const int shamt) {\n            this->insert(this->begin(),\
-    \ shamt, 0);\n            return *this;\n        }\n        FPSNaive& operator>>=(const\
-    \ int shamt) {\n            if (shamt > size()) this->clear();\n            else\
-    \ this->erase(this->begin(), this->begin() + shamt);\n            return *this;\n\
-    \        }\n\n        friend FPSNaive operator+(FPSNaive f, const FPSNaive& g)\
-    \   { f += g; return f; }\n        friend FPSNaive operator+(FPSNaive f, const\
-    \ value_type &x) { f += x; return f; }\n        friend FPSNaive operator-(FPSNaive\
+    \ shamt, value_type { 0 });\n            return *this;\n        }\n        FPSNaive&\
+    \ operator>>=(const int shamt) {\n            if (shamt > size()) this->clear();\n\
+    \            else this->erase(this->begin(), this->begin() + shamt);\n       \
+    \     return *this;\n        }\n\n        friend FPSNaive operator+(FPSNaive f,\
+    \ const FPSNaive& g)   { f += g; return f; }\n        friend FPSNaive operator+(FPSNaive\
+    \ f, const value_type &x) { f += x; return f; }\n        friend FPSNaive operator-(FPSNaive\
     \ f, const FPSNaive& g)   { f -= g; return f; }\n        friend FPSNaive operator-(FPSNaive\
     \ f, const value_type &x) { f -= x; return f; }\n        friend FPSNaive operator*(const\
     \ FPSNaive &f, const FPSNaive& g) {\n            if (f.empty() or g.empty()) return\
@@ -171,30 +174,30 @@ data:
     \ return false;\n            for (int i = m; i < n; ++i) if (f.unsafe_get(i) !=\
     \ 0) return false;\n            return true;\n        }\n        friend bool operator!=(const\
     \ FPSNaive& f, const FPSNaive& g) {\n            return not (f == g);\n      \
-    \  }\n\n        FPSNaive mul(const FPSNaive& g, int max_deg) {\n            if\
-    \ (this->empty() or g.empty()) return FPSNaive{};\n            const int n = size(),\
-    \ m = g.size();\n            FPSNaive h(std::min(max_deg + 1, n + m - 1));\n \
-    \           for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n      \
-    \          if (i + j > max_deg) break;\n                h.unsafe_get(i + j) +=\
-    \ unsafe_get(i) * g.unsafe_get(j);\n            }\n            return h;\n   \
-    \     }\n        FPSNaive diff() {\n            if (this->empty()) return {};\n\
-    \            FPSNaive g(size() - 1);\n            for (int i = 1; i <= deg();\
-    \ ++i) g.unsafe_get(i - 1) = unsafe_get(i) * i;\n            return g;\n     \
-    \   }\n        FPSNaive intg() {\n            const int n = size();\n        \
-    \    FPSNaive g(n + 1);\n            for (int i = 0; i < n; ++i) g.unsafe_get(i\
+    \  }\n\n        FPSNaive mul(const FPSNaive& g, int max_deg) const {\n       \
+    \     if (this->empty() or g.empty()) return FPSNaive{};\n            const int\
+    \ n = size(), m = g.size();\n            FPSNaive h(std::min(max_deg + 1, n +\
+    \ m - 1));\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j)\
+    \ {\n                if (i + j > max_deg) break;\n                h.unsafe_get(i\
+    \ + j) += unsafe_get(i) * g.unsafe_get(j);\n            }\n            return\
+    \ h;\n        }\n        FPSNaive diff() const {\n            if (this->empty())\
+    \ return {};\n            FPSNaive g(size() - 1);\n            for (int i = 1;\
+    \ i <= deg(); ++i) g.unsafe_get(i - 1) = unsafe_get(i) * i;\n            return\
+    \ g;\n        }\n        FPSNaive intg() const {\n            const int n = size();\n\
+    \            FPSNaive g(n + 1);\n            for (int i = 0; i < n; ++i) g.unsafe_get(i\
     \ + 1) = unsafe_get(i) * invs[i + 1];\n            if (g.deg() > MAX_DEG) g.cut_inplace(MAX_DEG);\n\
     \            return g;\n        }\n        FPSNaive inv(int max_deg) const {\n\
-    \            FPSNaive g(max_deg + 1);\n            const value_type inv_f0 = value_type{\
-    \ 1 } / unsafe_get(0);\n            g.unsafe_get(0) = inv_f0;\n            for\
-    \ (int i = 1; i <= max_deg; ++i) {\n                for (int j = 1; j <= i; ++j)\
-    \ g.unsafe_get(i) -= g.unsafe_get(i - j) * (*this)[j];\n                g.unsafe_get(i)\
-    \ *= inv_f0;\n            }\n            return g;\n        }\n        FPSNaive\
-    \ exp(int max_deg) const {\n            assert(unsafe_get(0) == value_type{ 0\
-    \ });\n            FPSNaive g(max_deg + 1);\n            g.unsafe_get(0) = value_type{\
-    \ 1 };\n            for (int i = 1; i <= max_deg; ++i) {\n                for\
-    \ (int j = 1; j <= i; ++j) g.unsafe_get(i) += j * g.unsafe_get(i - j) * (*this)[j];\n\
-    \                g.unsafe_get(i) *= invs[i];\n            }\n            return\
-    \ g;\n        }\n        FPSNaive log(int max_deg) const {\n            assert(unsafe_get(0)\
+    \            FPSNaive g(max_deg + 1);\n            const value_type inv_f0 = ::inv(unsafe_get(0));\n\
+    \            g.unsafe_get(0) = inv_f0;\n            for (int i = 1; i <= max_deg;\
+    \ ++i) {\n                for (int j = 1; j <= i; ++j) g.unsafe_get(i) -= g.unsafe_get(i\
+    \ - j) * (*this)[j];\n                g.unsafe_get(i) *= inv_f0;\n           \
+    \ }\n            return g;\n        }\n        FPSNaive exp(int max_deg) const\
+    \ {\n            assert(unsafe_get(0) == value_type{ 0 });\n            FPSNaive\
+    \ g(max_deg + 1);\n            g.unsafe_get(0) = value_type{ 1 };\n          \
+    \  for (int i = 1; i <= max_deg; ++i) {\n                for (int j = 1; j <=\
+    \ i; ++j) g.unsafe_get(i) += j * g.unsafe_get(i - j) * (*this)[j];\n         \
+    \       g.unsafe_get(i) *= invs[i];\n            }\n            return g;\n  \
+    \      }\n        FPSNaive log(int max_deg) const {\n            assert(unsafe_get(0)\
     \ == value_type{ 1 });\n            FPSNaive g(max_deg + 1);\n            g.unsafe_get(0)\
     \ = value_type{ 0 };\n            for (int i = 1; i <= max_deg; ++i) {\n     \
     \           g.unsafe_get(i) = i * (*this)[i];\n                for (int j = 1;\
@@ -204,28 +207,29 @@ data:
     \            if (k == 0) return { value_type{ 1 } };\n            int z = 0;\n\
     \            while (z < size() and unsafe_get(z) == value_type{ 0 }) ++z;\n  \
     \          if (z >= max_deg / k + 1) return FPSNaive{};\n            const int\
-    \ d = max_deg - z * k;\n\n            FPSNaive g(d + 1);\n            g.unsafe_get(0)\
-    \ = (*this)[z].pow(k);\n            for (int i = 1; i <= d; ++i) {\n         \
-    \       for (int j = 1; j <= i; ++j) g.unsafe_get(i) += (value_type{ k } *j -\
-    \ value_type{ i - j }) * g.unsafe_get(i - j) * (*this)[z + j];\n             \
-    \   g.unsafe_get(i) *= invs[i];\n            }\n            g <<= z * k;\n   \
-    \         return g;\n        }\n\n        FPSNaive sqrt(int max_deg) const {\n\
-    \            int dl = 0;\n            while (dl < size() and unsafe_get(dl) ==\
-    \ value_type{ 0 }) ++dl;\n            if (dl == size()) return FPSNaive{};\n \
-    \           if (dl & 1) assert(false);\n\n            const int d = max_deg -\
-    \ dl / 2;\n\n            FPSNaive g(d + 1);\n            g.unsafe_get(0) = ::sqrt((*this)[dl]);\n\
-    \            value_type inv_2g0 = value_type{ 1 } / (2 * g.unsafe_get(0));\n \
-    \           for (int i = 1; i <= d; ++i) {\n                g.unsafe_get(i) =\
-    \ unsafe_get(dl + i);\n                for (int j = 1; j < i; ++j) g.unsafe_get(i)\
-    \ -= g.unsafe_get(j) * g.unsafe_get(i - j);\n                g.unsafe_get(i) *=\
-    \ inv_2g0;\n            }\n            g <<= dl / 2;\n            return g;\n\
-    \        }\n\n        value_type eval(value_type x) const {\n            value_type\
-    \ y = 0;\n            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
-    \            return y;\n        }\n\n    private:\n        static inline inv_mods<element_type>\
-    \ invs;\n\n        void ensure_deg(int d) {\n            if (deg() < d) this->resize(d\
-    \ + 1, value_type{ 0 });\n        }\n        const value_type& unsafe_get(int\
-    \ i) const {\n            return std::vector<value_type>::operator[](i);\n   \
-    \     }\n        value_type& unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
+    \ d = max_deg - z * k;\n\n            FPSNaive g(d + 1);\n            const value_type\
+    \ inv_f0 = ::inv(unsafe_get(z));\n            g.unsafe_get(0) = unsafe_get(z).pow(k);\n\
+    \            for (int i = 1; i <= d; ++i) {\n                for (int j = 1; j\
+    \ <= i; ++j) g.unsafe_get(i) += (element_type{ k } * j - (i - j)) * g.unsafe_get(i\
+    \ - j) * (*this)[z + j];\n                g.unsafe_get(i) *= inv_f0 * invs[i];\n\
+    \            }\n            g <<= z * k;\n            return g;\n        }\n\n\
+    \        FPSNaive sqrt(int max_deg) const {\n            int dl = 0;\n       \
+    \     while (dl < size() and unsafe_get(dl) == value_type{ 0 }) ++dl;\n      \
+    \      if (dl == size()) return FPSNaive{};\n            if (dl & 1) assert(false);\n\
+    \n            const int d = max_deg - dl / 2;\n\n            FPSNaive g(d + 1);\n\
+    \            g.unsafe_get(0) = ::sqrt((*this)[dl]);\n            value_type inv_2g0\
+    \ = ::inv(2 * g.unsafe_get(0));\n            for (int i = 1; i <= d; ++i) {\n\
+    \                g.unsafe_get(i) = unsafe_get(dl + i);\n                for (int\
+    \ j = 1; j < i; ++j) g.unsafe_get(i) -= g.unsafe_get(j) * g.unsafe_get(i - j);\n\
+    \                g.unsafe_get(i) *= inv_2g0;\n            }\n            g <<=\
+    \ dl / 2;\n            return g;\n        }\n\n        value_type eval(value_type\
+    \ x) const {\n            value_type y = 0;\n            for (int i = size() -\
+    \ 1; i >= 0; --i) y = y * x + unsafe_get(i);\n            return y;\n        }\n\
+    \n    private:\n        static inline inv_mods<element_type> invs;\n\n       \
+    \ void ensure_deg(int d) {\n            if (deg() < d) this->resize(d + 1, value_type{\
+    \ 0 });\n        }\n        const value_type& unsafe_get(int i) const {\n    \
+    \        return std::vector<value_type>::operator[](i);\n        }\n        value_type&\
+    \ unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
     \        }\n    };\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPSNaive<mint>\
     \ a) -> decltype(mint::mod(), suisen::FPSNaive<mint>{}) {\n    return a.sqrt(suisen::FPSNaive<mint>::MAX_DEG\
     \ == std::numeric_limits<int>::max() / 2 ? suisen::FPSNaive<mint>::MAX_DEG : a.deg());\n\
@@ -278,12 +282,12 @@ data:
     \        }\n        FPSNaive& operator/=(const FPSNaive& g) { return *this = *this\
     \ / g; }\n        FPSNaive& operator%=(const FPSNaive& g) { return *this = *this\
     \ % g; }\n        FPSNaive& operator<<=(const int shamt) {\n            this->insert(this->begin(),\
-    \ shamt, 0);\n            return *this;\n        }\n        FPSNaive& operator>>=(const\
-    \ int shamt) {\n            if (shamt > size()) this->clear();\n            else\
-    \ this->erase(this->begin(), this->begin() + shamt);\n            return *this;\n\
-    \        }\n\n        friend FPSNaive operator+(FPSNaive f, const FPSNaive& g)\
-    \   { f += g; return f; }\n        friend FPSNaive operator+(FPSNaive f, const\
-    \ value_type &x) { f += x; return f; }\n        friend FPSNaive operator-(FPSNaive\
+    \ shamt, value_type { 0 });\n            return *this;\n        }\n        FPSNaive&\
+    \ operator>>=(const int shamt) {\n            if (shamt > size()) this->clear();\n\
+    \            else this->erase(this->begin(), this->begin() + shamt);\n       \
+    \     return *this;\n        }\n\n        friend FPSNaive operator+(FPSNaive f,\
+    \ const FPSNaive& g)   { f += g; return f; }\n        friend FPSNaive operator+(FPSNaive\
+    \ f, const value_type &x) { f += x; return f; }\n        friend FPSNaive operator-(FPSNaive\
     \ f, const FPSNaive& g)   { f -= g; return f; }\n        friend FPSNaive operator-(FPSNaive\
     \ f, const value_type &x) { f -= x; return f; }\n        friend FPSNaive operator*(const\
     \ FPSNaive &f, const FPSNaive& g) {\n            if (f.empty() or g.empty()) return\
@@ -314,30 +318,30 @@ data:
     \ return false;\n            for (int i = m; i < n; ++i) if (f.unsafe_get(i) !=\
     \ 0) return false;\n            return true;\n        }\n        friend bool operator!=(const\
     \ FPSNaive& f, const FPSNaive& g) {\n            return not (f == g);\n      \
-    \  }\n\n        FPSNaive mul(const FPSNaive& g, int max_deg) {\n            if\
-    \ (this->empty() or g.empty()) return FPSNaive{};\n            const int n = size(),\
-    \ m = g.size();\n            FPSNaive h(std::min(max_deg + 1, n + m - 1));\n \
-    \           for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n      \
-    \          if (i + j > max_deg) break;\n                h.unsafe_get(i + j) +=\
-    \ unsafe_get(i) * g.unsafe_get(j);\n            }\n            return h;\n   \
-    \     }\n        FPSNaive diff() {\n            if (this->empty()) return {};\n\
-    \            FPSNaive g(size() - 1);\n            for (int i = 1; i <= deg();\
-    \ ++i) g.unsafe_get(i - 1) = unsafe_get(i) * i;\n            return g;\n     \
-    \   }\n        FPSNaive intg() {\n            const int n = size();\n        \
-    \    FPSNaive g(n + 1);\n            for (int i = 0; i < n; ++i) g.unsafe_get(i\
+    \  }\n\n        FPSNaive mul(const FPSNaive& g, int max_deg) const {\n       \
+    \     if (this->empty() or g.empty()) return FPSNaive{};\n            const int\
+    \ n = size(), m = g.size();\n            FPSNaive h(std::min(max_deg + 1, n +\
+    \ m - 1));\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j)\
+    \ {\n                if (i + j > max_deg) break;\n                h.unsafe_get(i\
+    \ + j) += unsafe_get(i) * g.unsafe_get(j);\n            }\n            return\
+    \ h;\n        }\n        FPSNaive diff() const {\n            if (this->empty())\
+    \ return {};\n            FPSNaive g(size() - 1);\n            for (int i = 1;\
+    \ i <= deg(); ++i) g.unsafe_get(i - 1) = unsafe_get(i) * i;\n            return\
+    \ g;\n        }\n        FPSNaive intg() const {\n            const int n = size();\n\
+    \            FPSNaive g(n + 1);\n            for (int i = 0; i < n; ++i) g.unsafe_get(i\
     \ + 1) = unsafe_get(i) * invs[i + 1];\n            if (g.deg() > MAX_DEG) g.cut_inplace(MAX_DEG);\n\
     \            return g;\n        }\n        FPSNaive inv(int max_deg) const {\n\
-    \            FPSNaive g(max_deg + 1);\n            const value_type inv_f0 = value_type{\
-    \ 1 } / unsafe_get(0);\n            g.unsafe_get(0) = inv_f0;\n            for\
-    \ (int i = 1; i <= max_deg; ++i) {\n                for (int j = 1; j <= i; ++j)\
-    \ g.unsafe_get(i) -= g.unsafe_get(i - j) * (*this)[j];\n                g.unsafe_get(i)\
-    \ *= inv_f0;\n            }\n            return g;\n        }\n        FPSNaive\
-    \ exp(int max_deg) const {\n            assert(unsafe_get(0) == value_type{ 0\
-    \ });\n            FPSNaive g(max_deg + 1);\n            g.unsafe_get(0) = value_type{\
-    \ 1 };\n            for (int i = 1; i <= max_deg; ++i) {\n                for\
-    \ (int j = 1; j <= i; ++j) g.unsafe_get(i) += j * g.unsafe_get(i - j) * (*this)[j];\n\
-    \                g.unsafe_get(i) *= invs[i];\n            }\n            return\
-    \ g;\n        }\n        FPSNaive log(int max_deg) const {\n            assert(unsafe_get(0)\
+    \            FPSNaive g(max_deg + 1);\n            const value_type inv_f0 = ::inv(unsafe_get(0));\n\
+    \            g.unsafe_get(0) = inv_f0;\n            for (int i = 1; i <= max_deg;\
+    \ ++i) {\n                for (int j = 1; j <= i; ++j) g.unsafe_get(i) -= g.unsafe_get(i\
+    \ - j) * (*this)[j];\n                g.unsafe_get(i) *= inv_f0;\n           \
+    \ }\n            return g;\n        }\n        FPSNaive exp(int max_deg) const\
+    \ {\n            assert(unsafe_get(0) == value_type{ 0 });\n            FPSNaive\
+    \ g(max_deg + 1);\n            g.unsafe_get(0) = value_type{ 1 };\n          \
+    \  for (int i = 1; i <= max_deg; ++i) {\n                for (int j = 1; j <=\
+    \ i; ++j) g.unsafe_get(i) += j * g.unsafe_get(i - j) * (*this)[j];\n         \
+    \       g.unsafe_get(i) *= invs[i];\n            }\n            return g;\n  \
+    \      }\n        FPSNaive log(int max_deg) const {\n            assert(unsafe_get(0)\
     \ == value_type{ 1 });\n            FPSNaive g(max_deg + 1);\n            g.unsafe_get(0)\
     \ = value_type{ 0 };\n            for (int i = 1; i <= max_deg; ++i) {\n     \
     \           g.unsafe_get(i) = i * (*this)[i];\n                for (int j = 1;\
@@ -347,28 +351,29 @@ data:
     \            if (k == 0) return { value_type{ 1 } };\n            int z = 0;\n\
     \            while (z < size() and unsafe_get(z) == value_type{ 0 }) ++z;\n  \
     \          if (z >= max_deg / k + 1) return FPSNaive{};\n            const int\
-    \ d = max_deg - z * k;\n\n            FPSNaive g(d + 1);\n            g.unsafe_get(0)\
-    \ = (*this)[z].pow(k);\n            for (int i = 1; i <= d; ++i) {\n         \
-    \       for (int j = 1; j <= i; ++j) g.unsafe_get(i) += (value_type{ k } *j -\
-    \ value_type{ i - j }) * g.unsafe_get(i - j) * (*this)[z + j];\n             \
-    \   g.unsafe_get(i) *= invs[i];\n            }\n            g <<= z * k;\n   \
-    \         return g;\n        }\n\n        FPSNaive sqrt(int max_deg) const {\n\
-    \            int dl = 0;\n            while (dl < size() and unsafe_get(dl) ==\
-    \ value_type{ 0 }) ++dl;\n            if (dl == size()) return FPSNaive{};\n \
-    \           if (dl & 1) assert(false);\n\n            const int d = max_deg -\
-    \ dl / 2;\n\n            FPSNaive g(d + 1);\n            g.unsafe_get(0) = ::sqrt((*this)[dl]);\n\
-    \            value_type inv_2g0 = value_type{ 1 } / (2 * g.unsafe_get(0));\n \
-    \           for (int i = 1; i <= d; ++i) {\n                g.unsafe_get(i) =\
-    \ unsafe_get(dl + i);\n                for (int j = 1; j < i; ++j) g.unsafe_get(i)\
-    \ -= g.unsafe_get(j) * g.unsafe_get(i - j);\n                g.unsafe_get(i) *=\
-    \ inv_2g0;\n            }\n            g <<= dl / 2;\n            return g;\n\
-    \        }\n\n        value_type eval(value_type x) const {\n            value_type\
-    \ y = 0;\n            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
-    \            return y;\n        }\n\n    private:\n        static inline inv_mods<element_type>\
-    \ invs;\n\n        void ensure_deg(int d) {\n            if (deg() < d) this->resize(d\
-    \ + 1, value_type{ 0 });\n        }\n        const value_type& unsafe_get(int\
-    \ i) const {\n            return std::vector<value_type>::operator[](i);\n   \
-    \     }\n        value_type& unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
+    \ d = max_deg - z * k;\n\n            FPSNaive g(d + 1);\n            const value_type\
+    \ inv_f0 = ::inv(unsafe_get(z));\n            g.unsafe_get(0) = unsafe_get(z).pow(k);\n\
+    \            for (int i = 1; i <= d; ++i) {\n                for (int j = 1; j\
+    \ <= i; ++j) g.unsafe_get(i) += (element_type{ k } * j - (i - j)) * g.unsafe_get(i\
+    \ - j) * (*this)[z + j];\n                g.unsafe_get(i) *= inv_f0 * invs[i];\n\
+    \            }\n            g <<= z * k;\n            return g;\n        }\n\n\
+    \        FPSNaive sqrt(int max_deg) const {\n            int dl = 0;\n       \
+    \     while (dl < size() and unsafe_get(dl) == value_type{ 0 }) ++dl;\n      \
+    \      if (dl == size()) return FPSNaive{};\n            if (dl & 1) assert(false);\n\
+    \n            const int d = max_deg - dl / 2;\n\n            FPSNaive g(d + 1);\n\
+    \            g.unsafe_get(0) = ::sqrt((*this)[dl]);\n            value_type inv_2g0\
+    \ = ::inv(2 * g.unsafe_get(0));\n            for (int i = 1; i <= d; ++i) {\n\
+    \                g.unsafe_get(i) = unsafe_get(dl + i);\n                for (int\
+    \ j = 1; j < i; ++j) g.unsafe_get(i) -= g.unsafe_get(j) * g.unsafe_get(i - j);\n\
+    \                g.unsafe_get(i) *= inv_2g0;\n            }\n            g <<=\
+    \ dl / 2;\n            return g;\n        }\n\n        value_type eval(value_type\
+    \ x) const {\n            value_type y = 0;\n            for (int i = size() -\
+    \ 1; i >= 0; --i) y = y * x + unsafe_get(i);\n            return y;\n        }\n\
+    \n    private:\n        static inline inv_mods<element_type> invs;\n\n       \
+    \ void ensure_deg(int d) {\n            if (deg() < d) this->resize(d + 1, value_type{\
+    \ 0 });\n        }\n        const value_type& unsafe_get(int i) const {\n    \
+    \        return std::vector<value_type>::operator[](i);\n        }\n        value_type&\
+    \ unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
     \        }\n    };\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPSNaive<mint>\
     \ a) -> decltype(mint::mod(), suisen::FPSNaive<mint>{}) {\n    return a.sqrt(suisen::FPSNaive<mint>::MAX_DEG\
     \ == std::numeric_limits<int>::max() / 2 ? suisen::FPSNaive<mint>::MAX_DEG : a.deg());\n\
@@ -394,14 +399,15 @@ data:
   requiredBy:
   - library/convolution/subset_convolution.hpp
   - library/math/sps.hpp
-  timestamp: '2022-06-03 19:04:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-06-04 18:33:47+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
+  - test/src/math/sps/arc105_f.test.cpp
+  - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
-  - test/src/math/sps/connectivity2.test.cpp
+  - test/src/math/sps/abc213_g.test.cpp
 documentation_of: library/polynomial/fps_naive.hpp
 layout: document
 title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"

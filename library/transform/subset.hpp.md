@@ -9,19 +9,58 @@ data:
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: library/convolution/array_subset_convolution.hpp
+    title: library/convolution/array_subset_convolution.hpp
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
+  - icon: ':question:'
+    path: library/convolution/subset_convolution.hpp
+    title: Subset Convolution
+  - icon: ':x:'
+    path: library/math/array_sps.hpp
+    title: library/math/array_sps.hpp
+  - icon: ':x:'
+    path: library/math/sps.hpp
+    title: Set Power Series
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+    title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/connectivity2.test.cpp
-    title: test/src/math/sps/connectivity2.test.cpp
+    path: test/src/math/array_sps/abc213_g.test.cpp
+    title: test/src/math/array_sps/abc213_g.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-    title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+    path: test/src/math/array_sps/abc236_h.test.cpp
+    title: test/src/math/array_sps/abc236_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h.test.cpp
+    title: test/src/math/array_sps/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h_2.test.cpp
+    title: test/src/math/array_sps/abc253_h_2.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/arc105_f.test.cpp
+    title: test/src/math/array_sps/arc105_f.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc213_g.test.cpp
+    title: test/src/math/sps/abc213_g.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc236_h.test.cpp
+    title: test/src/math/sps/abc236_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc253_h.test.cpp
+    title: test/src/math/sps/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc253_h_2.test.cpp
+    title: test/src/math/sps/abc253_h_2.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/arc105_f.test.cpp
+    title: test/src/math/sps/arc105_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/subset.hpp\"\n\n\n\n#line 1 \"library/transform/kronecker_power.hpp\"\
@@ -118,12 +157,25 @@ data:
   isVerificationFile: false
   path: library/transform/subset.hpp
   requiredBy:
+  - library/convolution/array_subset_convolution.hpp
   - library/convolution/or_convolution.hpp
+  - library/convolution/subset_convolution.hpp
+  - library/math/sps.hpp
+  - library/math/array_sps.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/math/sps/connectivity2.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/math/sps/abc236_h.test.cpp
+  - test/src/math/sps/arc105_f.test.cpp
+  - test/src/math/sps/abc253_h_2.test.cpp
+  - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/sps/abc213_g.test.cpp
+  - test/src/math/array_sps/abc236_h.test.cpp
+  - test/src/math/array_sps/arc105_f.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
+  - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/array_sps/abc213_g.test.cpp
 documentation_of: library/transform/subset.hpp
 layout: document
 title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\u30BF\

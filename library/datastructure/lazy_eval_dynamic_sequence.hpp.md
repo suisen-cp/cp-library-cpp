@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/dynamic_sequence.hpp
     title: Dynamic Sequence
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: Range Foldable Dynamic Sequence
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/lazy_eval_dynamic_sequence.hpp\"\n\
@@ -368,7 +368,7 @@ data:
   path: library/datastructure/lazy_eval_dynamic_sequence.hpp
   requiredBy: []
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/datastructure/lazy_eval_dynamic_sequence.hpp

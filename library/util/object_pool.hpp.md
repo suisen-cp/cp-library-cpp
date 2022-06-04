@@ -37,7 +37,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/red_black_tree_base.hpp
     title: Red Black Tree Base
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/persistent_fenwick_tree.hpp
     title: Persistent Fenwick Tree
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
     title: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
     title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
   - icon: ':x:'

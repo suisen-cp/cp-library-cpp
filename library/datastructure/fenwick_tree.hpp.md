@@ -5,7 +5,7 @@ data:
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree_2d_sparse.hpp
     title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
   - icon: ':x:'
@@ -18,16 +18,16 @@ data:
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
     title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree.hpp\"\n\n\n\n#include\
@@ -172,7 +172,7 @@ data:
   - library/datastructure/fenwick_tree_2d_sparse.hpp
   - library/geom/segment_intersections.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
   - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp

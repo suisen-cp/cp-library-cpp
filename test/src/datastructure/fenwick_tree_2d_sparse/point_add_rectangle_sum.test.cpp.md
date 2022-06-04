@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree_2d_sparse.hpp
     title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -176,7 +176,7 @@ data:
   path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   requiredBy: []
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
 layout: document

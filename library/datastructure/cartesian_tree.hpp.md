@@ -6,12 +6,12 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
     title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/cartesian_tree.hpp\"\n\n\n\n#include\
@@ -124,7 +124,7 @@ data:
   path: library/datastructure/cartesian_tree.hpp
   requiredBy: []
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
 documentation_of: library/datastructure/cartesian_tree.hpp

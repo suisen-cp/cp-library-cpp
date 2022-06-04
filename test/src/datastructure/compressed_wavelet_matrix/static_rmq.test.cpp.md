@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -355,7 +355,7 @@ data:
   path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   requiredBy: []
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
 layout: document

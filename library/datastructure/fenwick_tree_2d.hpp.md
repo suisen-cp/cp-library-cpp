@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree_2d.hpp\"\n\n\n\n#include\
@@ -70,7 +70,7 @@ data:
   path: library/datastructure/fenwick_tree_2d.hpp
   requiredBy: []
   timestamp: '2022-05-09 17:42:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
 documentation_of: library/datastructure/fenwick_tree_2d.hpp

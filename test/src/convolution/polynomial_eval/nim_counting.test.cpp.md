@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
@@ -20,9 +20,9 @@ data:
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_h
@@ -185,7 +185,7 @@ data:
   path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   requiredBy: []
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval/nim_counting.test.cpp
 layout: document

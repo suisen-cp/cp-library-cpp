@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []

@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp
     title: Bitwise And Convolution
+  - icon: ':x:'
+    path: library/convolution/array_subset_convolution.hpp
+    title: library/convolution/array_subset_convolution.hpp
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution.hpp
     title: Convolution
@@ -20,12 +23,21 @@ data:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
+  - icon: ':question:'
+    path: library/convolution/subset_convolution.hpp
+    title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/xor_convolution.hpp
     title: Bitwise Xor Convolution
   - icon: ':warning:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
+  - icon: ':x:'
+    path: library/math/array_sps.hpp
+    title: library/math/array_sps.hpp
+  - icon: ':x:'
+    path: library/math/sps.hpp
+    title: Set Power Series
   - icon: ':heavy_check_mark:'
     path: library/transform/divisor.hpp
     title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
@@ -38,7 +50,7 @@ data:
     path: library/transform/multiple.hpp
     title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -71,21 +83,48 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+    title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
     title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/connectivity2.test.cpp
-    title: test/src/math/sps/connectivity2.test.cpp
+    path: test/src/math/array_sps/abc213_g.test.cpp
+    title: test/src/math/array_sps/abc213_g.test.cpp
   - icon: ':x:'
-    path: test/src/math/sps/lights_out_on_connected_graph.test.cpp
-    title: test/src/math/sps/lights_out_on_connected_graph.test.cpp
+    path: test/src/math/array_sps/abc236_h.test.cpp
+    title: test/src/math/array_sps/abc236_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h.test.cpp
+    title: test/src/math/array_sps/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/abc253_h_2.test.cpp
+    title: test/src/math/array_sps/abc253_h_2.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_sps/arc105_f.test.cpp
+    title: test/src/math/array_sps/arc105_f.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc213_g.test.cpp
+    title: test/src/math/sps/abc213_g.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc236_h.test.cpp
+    title: test/src/math/sps/abc236_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc253_h.test.cpp
+    title: test/src/math/sps/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/abc253_h_2.test.cpp
+    title: test/src/math/sps/abc253_h_2.test.cpp
+  - icon: ':x:'
+    path: test/src/math/sps/arc105_f.test.cpp
+    title: test/src/math/sps/arc105_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/transform/kronecker_power/agc044_c.test.cpp
     title: test/src/transform/kronecker_power/agc044_c.test.cpp
@@ -161,11 +200,15 @@ data:
   - library/transform/walsh_hadamard.hpp
   - library/convolution/multi_variate_convolution.hpp
   - library/convolution/convolution.hpp
+  - library/convolution/array_subset_convolution.hpp
   - library/convolution/or_convolution.hpp
+  - library/convolution/subset_convolution.hpp
   - library/convolution/and_convolution.hpp
   - library/convolution/lcm_convolution.hpp
   - library/convolution/xor_convolution.hpp
   - library/convolution/gcd_convolution.hpp
+  - library/math/sps.hpp
+  - library/math/array_sps.hpp
   - library/linear_algebra/array_matrix.hpp
   - library/util/cumulative_sum.hpp
   - library/util/cumulative_sum_2d.hpp
@@ -180,10 +223,19 @@ data:
   - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
   - test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/math/sps/lights_out_on_connected_graph.test.cpp
-  - test/src/math/sps/connectivity2.test.cpp
+  - test/src/math/sps/abc236_h.test.cpp
+  - test/src/math/sps/arc105_f.test.cpp
+  - test/src/math/sps/abc253_h_2.test.cpp
+  - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/sps/abc213_g.test.cpp
+  - test/src/math/array_sps/abc236_h.test.cpp
+  - test/src/math/array_sps/arc105_f.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
+  - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/array_sps/abc213_g.test.cpp
 documentation_of: library/util/default_operator.hpp
 layout: document
 title: Default Operator
