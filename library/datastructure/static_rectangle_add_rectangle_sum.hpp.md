@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/tuple_ops.hpp
     title: Tuple Ops
   _extendedRequiredBy: []

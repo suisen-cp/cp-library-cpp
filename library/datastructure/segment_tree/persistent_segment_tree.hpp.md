@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/abc253_f.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/abc253_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/persistent_segment_tree.hpp\"\
@@ -278,7 +278,7 @@ data:
   path: library/datastructure/segment_tree/persistent_segment_tree.hpp
   requiredBy: []
   timestamp: '2022-04-05 23:40:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
   - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp

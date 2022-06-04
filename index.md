@@ -80,7 +80,7 @@ data:
       path: library/convolution/polynomial_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/polynomial_eval_multipoint_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
@@ -116,7 +116,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree_2d.hpp
       title: Fenwick Tree 2d
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree_2d_sparse.hpp
       title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
     - icon: ':heavy_check_mark:'
@@ -129,7 +129,7 @@ data:
     - icon: ':warning:'
       path: library/datastructure/permutation_tree.hpp
       title: Permutation Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/persistent_fenwick_tree.hpp
       title: Persistent Fenwick Tree
     - icon: ':heavy_check_mark:'
@@ -138,7 +138,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_map.hpp
       title: Range Foldable Map
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/rectangle_add_rectangle_sum.hpp
       title: Rectangle Add Rectangle Sum
     - icon: ':heavy_check_mark:'
@@ -195,38 +195,38 @@ data:
       title: Red Black Tree Base
   - name: library/datastructure/segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\
         \u53EF\u63DB\u306A\u5834\u5408)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/li_chao_segment_tree.hpp
       title: Li Chao Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/persistent_commutative_dual_segment_tree.hpp
       title: Persistent Commutative Dual Segment Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/persistent_dual_segment_tree.hpp
       title: Persistent Dual Segment Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/persistent_lazy_segment_tree.hpp
       title: "\u6C38\u7D9A\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/persistent_segment_tree.hpp
       title: "\u6C38\u7D9A\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree_2d.hpp
       title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
       title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
         \u5834\u5408)"
@@ -472,7 +472,7 @@ data:
     - icon: ':x:'
       path: library/polynomial/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
     - icon: ':question:'
@@ -481,7 +481,7 @@ data:
     - icon: ':x:'
       path: library/polynomial/lagrange_interpolation.hpp
       title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/multi_point_eval.hpp
       title: Multi Point Evaluation
     - icon: ':x:'
@@ -549,7 +549,7 @@ data:
       path: library/transform/supset.hpp
       title: "\u4E0A\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/walsh_hadamard.hpp
       title: "Walsh Hadamard \u5909\u63DB"
   - name: library/tree
@@ -625,7 +625,7 @@ data:
     - icon: ':warning:'
       path: library/util/iter_util.hpp
       title: Iter Util
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/object_pool.hpp
       title: Object Pool
     - icon: ':warning:'
@@ -653,7 +653,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_hash.hpp
       title: Tuple Hash
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/util/tuple_ops.hpp
       title: Tuple Ops
     - icon: ':question:'
@@ -762,7 +762,7 @@ data:
       title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - name: test/src/convolution/polynomial_eval_multipoint_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
       title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - name: test/src/convolution/subset_convolution
@@ -860,45 +860,45 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
       title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
       title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
   - name: test/src/datastructure/rectangle_add_rectangle_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
       title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - name: test/src/datastructure/segment_tree/commutative_dual_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
       title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
       title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - name: test/src/datastructure/segment_tree/dual_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
   - name: test/src/datastructure/segment_tree/lazy_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
       title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
       title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
       title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
       title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
   - name: test/src/datastructure/segment_tree/li_chao_segment_tree
@@ -911,17 +911,17 @@ data:
       title: test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
   - name: test/src/datastructure/segment_tree/persistent_commutative_dual_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/persistent_commutative_dual_segment_tree/abc253.test.cpp
       title: test/src/datastructure/segment_tree/persistent_commutative_dual_segment_tree/abc253.test.cpp
   - name: test/src/datastructure/segment_tree/persistent_dual_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/persistent_dual_segment_tree/abc253.test.cpp
       title: test/src/datastructure/segment_tree/persistent_dual_segment_tree/abc253.test.cpp
   - name: test/src/datastructure/segment_tree/persistent_lazy_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/persistent_lazy_segment_tree/abc253.test.cpp
       title: test/src/datastructure/segment_tree/persistent_lazy_segment_tree/abc253.test.cpp
     - icon: ':heavy_check_mark:'
@@ -929,24 +929,24 @@ data:
       title: test/src/datastructure/segment_tree/persistent_lazy_segment_tree/dummy.test.cpp
   - name: test/src/datastructure/segment_tree/persistent_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/persistent_segment_tree/abc253_f.test.cpp
       title: test/src/datastructure/segment_tree/persistent_segment_tree/abc253_f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
       title: test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
       title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   - name: test/src/datastructure/segment_tree/segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
   - name: test/src/datastructure/segment_tree/segment_tree_2d
@@ -956,10 +956,10 @@ data:
       title: test/src/datastructure/segment_tree/segment_tree_2d/point_add_range_sum.test.cpp
   - name: test/src/datastructure/segment_tree/segment_tree_2d_sparse
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - name: test/src/datastructure/segment_tree/sparse_lazy_segment_tree
