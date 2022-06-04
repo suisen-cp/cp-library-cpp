@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp
     title: Bitwise And Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
     title: library/convolution/array_subset_convolution.hpp
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/xor_convolution.hpp
     title: Bitwise Xor Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: library/math/array_sps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -62,33 +62,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h.test.cpp
     title: test/src/math/array_sps/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h_2.test.cpp
     title: test/src/math/array_sps/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/arc105_f.test.cpp
     title: test/src/math/array_sps/arc105_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc213_g.test.cpp
     title: test/src/math/sps/abc213_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h_2.test.cpp
     title: test/src/math/sps/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/arc105_f.test.cpp
     title: test/src/math/sps/arc105_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/transform/kronecker_power/agc044_c.test.cpp
     title: test/src/transform/kronecker_power/agc044_c.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#include\
@@ -203,7 +203,7 @@ data:
   - library/math/sps.hpp
   - library/math/array_sps.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/transform/kronecker_power/agc044_c.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp

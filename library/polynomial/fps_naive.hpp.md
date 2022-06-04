@@ -15,19 +15,19 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':question:'
@@ -55,37 +55,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc213_g.test.cpp
     title: test/src/math/sps/abc213_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h_2.test.cpp
     title: test/src/math/sps/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/arc105_f.test.cpp
     title: test/src/math/sps/arc105_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
     title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
     title: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/partition_function.test.cpp
     title: test/src/polynomial/common_sequences/partition_function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/stirling_number1.test.cpp
     title: test/src/polynomial/common_sequences/stirling_number1.test.cpp
   - icon: ':x:'
@@ -106,6 +106,9 @@ data:
   - icon: ':x:'
     path: test/src/polynomial/fps/pow_of_fps.test.cpp
     title: test/src/polynomial/fps/pow_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/src/polynomial/fps_naive/abc245_d.test.cpp
+    title: test/src/polynomial/fps_naive/abc245_d.test.cpp
   - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
@@ -510,6 +513,7 @@ data:
   - test/src/math/sps/abc213_g.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/fps_naive/abc245_d.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum.test.cpp

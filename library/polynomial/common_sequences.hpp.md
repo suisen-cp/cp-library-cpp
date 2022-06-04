@@ -21,16 +21,16 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
     title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
     title: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/partition_function.test.cpp
     title: test/src/polynomial/common_sequences/partition_function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/stirling_number1.test.cpp
     title: test/src/polynomial/common_sequences/stirling_number1.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test/src/polynomial/common_sequences/stirling_number2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/common_sequences.hpp\"\n\n\n\n#line 1\
@@ -508,7 +508,7 @@ data:
   path: library/polynomial/common_sequences.hpp
   requiredBy: []
   timestamp: '2022-06-04 19:41:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/polynomial/common_sequences/stirling_number1.test.cpp
   - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
