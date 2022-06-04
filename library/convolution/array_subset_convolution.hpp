@@ -29,14 +29,14 @@ namespace suisen::array_ranked_subset_transform {
 
     template <typename T, std::size_t N>
     std::vector<polynomial_t<T, N>> ranked_zeta(const std::vector<T>& a) {
-        std::vector<polynomial_t<T, N>> ranked = internal::ranked<T, N>(a);
+        auto ranked = internal::ranked<T, N>(a);
         subset_transform::zeta(ranked);
         return ranked;
     }
     template <typename T, std::size_t N>
     std::vector<T> deranked_mobius(std::vector<polynomial_t<T, N>>& ranked) {
         subset_transform::mobius(ranked);
-        return internal::deranked<T>(ranked);
+        return internal::deranked<T, N>(ranked);
     }
 } // namespace suisen::array_ranked_subset_transform
 

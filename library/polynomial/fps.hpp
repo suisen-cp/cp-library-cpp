@@ -24,8 +24,8 @@ namespace suisen {
             FPS<mint>::mult = multiplication;
         }
 
-        const mint  operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) : 0; }
-        mint& operator[](int n)       noexcept { ensure_deg(n); return unsafe_get(n); }
+        const mint operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) : 0; }
+        mint& operator[](int n) noexcept { ensure_deg(n); return unsafe_get(n); }
 
         int size() const noexcept { return std::vector<mint>::size(); }
         int deg()  const noexcept { return size() - 1; }
