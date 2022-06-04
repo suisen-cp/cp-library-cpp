@@ -82,7 +82,7 @@ namespace suisen {
         FPSNaive& operator/=(const FPSNaive& g) { return *this = *this / g; }
         FPSNaive& operator%=(const FPSNaive& g) { return *this = *this % g; }
         FPSNaive& operator<<=(const int shamt) {
-            this->insert(this->begin(), shamt, 0);
+            this->insert(this->begin(), shamt, value_type { 0 });
             return *this;
         }
         FPSNaive& operator>>=(const int shamt) {
@@ -139,7 +139,7 @@ namespace suisen {
             return not (f == g);
         }
 
-        FPSNaive mul(const FPSNaive& g, int max_deg) {
+        FPSNaive mul(const FPSNaive& g, int max_deg) const {
             if (this->empty() or g.empty()) return FPSNaive{};
             const int n = size(), m = g.size();
             FPSNaive h(std::min(max_deg + 1, n + m - 1));
@@ -149,13 +149,13 @@ namespace suisen {
             }
             return h;
         }
-        FPSNaive diff() {
+        FPSNaive diff() const {
             if (this->empty()) return {};
             FPSNaive g(size() - 1);
             for (int i = 1; i <= deg(); ++i) g.unsafe_get(i - 1) = unsafe_get(i) * i;
             return g;
         }
-        FPSNaive intg() {
+        FPSNaive intg() const {
             const int n = size();
             FPSNaive g(n + 1);
             for (int i = 0; i < n; ++i) g.unsafe_get(i + 1) = unsafe_get(i) * invs[i + 1];
@@ -164,7 +164,7 @@ namespace suisen {
         }
         FPSNaive inv(int max_deg) const {
             FPSNaive g(max_deg + 1);
-            const value_type inv_f0 = value_type{ 1 } / unsafe_get(0);
+            const value_type inv_f0 = ::inv(unsafe_get(0));
             g.unsafe_get(0) = inv_f0;
             for (int i = 1; i <= max_deg; ++i) {
                 for (int j = 1; j <= i; ++j) g.unsafe_get(i) -= g.unsafe_get(i - j) * (*this)[j];
@@ -201,10 +201,11 @@ namespace suisen {
             const int d = max_deg - z * k;
 
             FPSNaive g(d + 1);
-            g.unsafe_get(0) = (*this)[z].pow(k);
+            const value_type inv_f0 = ::inv(unsafe_get(z));
+            g.unsafe_get(0) = unsafe_get(z).pow(k);
             for (int i = 1; i <= d; ++i) {
-                for (int j = 1; j <= i; ++j) g.unsafe_get(i) += (value_type{ k } *j - value_type{ i - j }) * g.unsafe_get(i - j) * (*this)[z + j];
-                g.unsafe_get(i) *= invs[i];
+                for (int j = 1; j <= i; ++j) g.unsafe_get(i) += (element_type{ k } * j - (i - j)) * g.unsafe_get(i - j) * (*this)[z + j];
+                g.unsafe_get(i) *= inv_f0 * invs[i];
             }
             g <<= z * k;
             return g;
@@ -220,7 +221,7 @@ namespace suisen {
 
             FPSNaive g(d + 1);
             g.unsafe_get(0) = ::sqrt((*this)[dl]);
-            value_type inv_2g0 = value_type{ 1 } / (2 * g.unsafe_get(0));
+            value_type inv_2g0 = ::inv(2 * g.unsafe_get(0));
             for (int i = 1; i <= d; ++i) {
                 g.unsafe_get(i) = unsafe_get(dl + i);
                 for (int j = 1; j < i; ++j) g.unsafe_get(i) -= g.unsafe_get(j) * g.unsafe_get(i - j);

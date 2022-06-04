@@ -1,31 +1,31 @@
-#ifndef SUISEN_SPS
-#define SUISEN_SPS
+#ifndef SUISEN_ARRAY_SPS
+#define SUISEN_ARRAY_SPS
 
-#include "library/convolution/subset_convolution.hpp"
+#include "library/convolution/array_subset_convolution.hpp"
 
 namespace suisen {
-    template <typename T>
-    struct SPS : public std::vector<T> {
+    template <typename T, std::size_t N>
+    struct ArraySPS : public std::vector<T> {
         using base_type = std::vector<T>;
         using value_type = typename base_type::value_type;
         using size_type = typename base_type::size_type;
 
-        using polynomial_type = ranked_subset_transform::polynomial_t<value_type>;
+        using polynomial_type = array_ranked_subset_transform::polynomial_t<value_type, N>;
 
         using base_type::vector;
 
-        SPS() : SPS(0) {}
-        SPS(size_type n) : SPS(n, value_type{ 0 }) {}
-        SPS(size_type n, const value_type& val) : SPS(std::vector<value_type>(1 << n, val)) {}
-        SPS(const base_type& a) : SPS(base_type(a)) {}
-        SPS(base_type&& a) : base_type(std::move(a)) {
+        ArraySPS() : ArraySPS(0) {}
+        ArraySPS(size_type n) : ArraySPS(n, value_type{ 0 }) {}
+        ArraySPS(size_type n, const value_type& val) : ArraySPS(std::vector<value_type>(1 << n, val)) {}
+        ArraySPS(const base_type& a) : ArraySPS(base_type(a)) {}
+        ArraySPS(base_type&& a) : base_type(std::move(a)) {
             const int n = this->size();
             assert(n == (-n & n));
         }
-        SPS(std::initializer_list<value_type> l) : SPS(base_type(l)) {}
+        ArraySPS(std::initializer_list<value_type> l) : ArraySPS(base_type(l)) {}
 
-        static SPS one(int n) {
-            SPS f(n, value_type{ 0 });
+        static ArraySPS one(int n) {
+            ArraySPS f(n, value_type{ 0 });
             f[0] = value_type{ 1 };
             return f;
         }
@@ -37,73 +37,73 @@ namespace suisen {
             return __builtin_ctz(this->size());
         }
 
-        SPS cut_lower(size_type p) const {
-            return SPS(this->begin(), this->begin() + p);
+        ArraySPS cut_lower(size_type p) const {
+            return ArraySPS(this->begin(), this->begin() + p);
         }
-        SPS cut_upper(size_type p) const {
-            return SPS(this->begin() + p, this->begin() + p + p);
+        ArraySPS cut_upper(size_type p) const {
+            return ArraySPS(this->begin() + p, this->begin() + p + p);
         }
 
-        void concat(const SPS& upper) {
+        void concat(const ArraySPS& upper) {
             assert(this->size() == upper.size());
             this->insert(this->end(), upper.begin(), upper.end());
         }
 
-        SPS operator+() const {
+        ArraySPS operator+() const {
             return *this;
         }
-        SPS operator-() const {
-            SPS res(*this);
+        ArraySPS operator-() const {
+            ArraySPS res(*this);
             for (auto& e : res) e = -e;
             return res;
         }
-        SPS& operator+=(const SPS& g) {
+        ArraySPS& operator+=(const ArraySPS& g) {
             for (size_type i = 0; i < g.size(); ++i) (*this)[i] += g[i];
             return *this;
         }
-        SPS& operator-=(const SPS& g) {
+        ArraySPS& operator-=(const ArraySPS& g) {
             for (size_type i = 0; i < g.size(); ++i) (*this)[i] -= g[i];
             return *this;
         }
-        SPS& operator*=(const SPS& g) {
+        ArraySPS& operator*=(const ArraySPS& g) {
             return *this = (zeta() *= g).mobius_inplace();
         }
-        SPS& operator*=(const value_type &c) {
+        ArraySPS& operator*=(const value_type &c) {
             for (auto& e : *this) e *= c;
             return *this;
         }
-        SPS& operator/=(const value_type &c) {
+        ArraySPS& operator/=(const value_type &c) {
             value_type inv_c = ::inv(c);
             for (auto& e : *this) e *= inv_c;
             return *this;
         }
-        friend SPS operator+(SPS f, const SPS& g) { f += g; return f; }
-        friend SPS operator-(SPS f, const SPS& g) { f -= g; return f; }
-        friend SPS operator*(SPS f, const SPS& g) { f *= g; return f; }
-        friend SPS operator*(SPS f, const value_type &c) { f *= c; return f; }
-        friend SPS operator*(const value_type &c, SPS f) { f *= c; return f; }
-        friend SPS operator/(SPS f, const value_type &c) { f /= c; return f; }
+        friend ArraySPS operator+(ArraySPS f, const ArraySPS& g) { f += g; return f; }
+        friend ArraySPS operator-(ArraySPS f, const ArraySPS& g) { f -= g; return f; }
+        friend ArraySPS operator*(ArraySPS f, const ArraySPS& g) { f *= g; return f; }
+        friend ArraySPS operator*(ArraySPS f, const value_type &c) { f *= c; return f; }
+        friend ArraySPS operator*(const value_type &c, ArraySPS f) { f *= c; return f; }
+        friend ArraySPS operator/(ArraySPS f, const value_type &c) { f /= c; return f; }
 
-        SPS inv() {
+        ArraySPS inv() {
             return zeta().inv_inplace().mobius_inplace();
         }
-        SPS sqrt() {
+        ArraySPS sqrt() {
             return zeta().sqrt_inplace().mobius_inplace();
         }
-        SPS exp() {
+        ArraySPS exp() {
             return zeta().exp_inplace().mobius_inplace();
         }
-        SPS log() {
+        ArraySPS log() {
             return zeta().log_inplace().mobius_inplace();
         }
-        SPS pow(long long k) {
+        ArraySPS pow(long long k) {
             return zeta().pow_inplace(k).mobius_inplace();
         }
 
         struct ZetaSPS : public std::vector<polynomial_type> {
             using base_type = std::vector<polynomial_type>;
             ZetaSPS() = default;
-            ZetaSPS(const SPS<value_type>& f) : base_type::vector(ranked_subset_transform::ranked_zeta(f)), _d(f.cardinality()) {}
+            ZetaSPS(const ArraySPS<value_type, N>& f) : base_type::vector(array_ranked_subset_transform::ranked_zeta<T, N>(f)), _d(f.cardinality()) {}
 
             ZetaSPS operator+() const {
                 return *this;
@@ -141,7 +141,7 @@ namespace suisen {
             }
             ZetaSPS& operator*=(const ZetaSPS& rhs) {
                 assert(_d == rhs._d);
-                for (size_type i = 0; i < size_type(1) << _d; ++i) (*this)[i] = (*this)[i].mul(rhs[i], _d);
+                for (size_type i = 0; i < size_type(1) << _d; ++i) (*this)[i] = (*this)[i].mul(rhs[i]);
                 return *this;
             }
             ZetaSPS inv()  const { auto f = ZetaSPS(*this).inv_inplace();  return f; }
@@ -150,31 +150,31 @@ namespace suisen {
             ZetaSPS log()  const { auto f = ZetaSPS(*this).log_inplace();  return f; }
             ZetaSPS pow(long long k) const { auto f = ZetaSPS(*this).pow_inplace(k); return f; }
             ZetaSPS& inv_inplace() {
-                for (auto& f : *this) f = f.inv(_d);
+                for (auto& f : *this) f = f.inv();
                 return *this;
             }
             ZetaSPS& sqrt_inplace() {
-                for (auto& f : *this) f = f.sqrt(_d);
+                for (auto& f : *this) f = f.sqrt();
                 return *this;
             }
             ZetaSPS& exp_inplace() {
-                for (auto& f : *this) f = f.exp(_d);
+                for (auto& f : *this) f = f.exp();
                 return *this;
             }
             ZetaSPS& log_inplace() {
-                for (auto& f : *this) f = f.log(_d);
+                for (auto& f : *this) f = f.log();
                 return *this;
             }
             ZetaSPS& pow_inplace(long long k) {
-                for (auto& f : *this) f = f.pow(k, _d);
+                for (auto& f : *this) f = f.pow(k);
                 return *this;
             }
-            SPS<value_type> mobius_inplace() {
-                return ranked_subset_transform::deranked_mobius<value_type>(*this);
+            ArraySPS<value_type, N> mobius_inplace() {
+                return array_ranked_subset_transform::deranked_mobius<value_type, N>(*this);
             }
-            SPS<value_type> mobius() const {
+            ArraySPS<value_type, N> mobius() const {
                 auto rf = ZetaSPS(*this);
-                return ranked_subset_transform::deranked_mobius<value_type>(rf);
+                return array_ranked_subset_transform::deranked_mobius<value_type, N>(rf);
             }
         private:
             int _d;
@@ -186,4 +186,4 @@ namespace suisen {
     };
 } // namespace suisen
 
-#endif // SUISEN_SPS
+#endif // SUISEN_ARRAY_SPS
