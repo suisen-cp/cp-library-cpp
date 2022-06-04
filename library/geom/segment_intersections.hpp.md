@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: "\u5EA7\u6A19\u5727\u7E2E"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/geom/segment_intersections.hpp\"\n\n\n\n#include\
@@ -229,7 +229,7 @@ data:
   path: library/geom/segment_intersections.hpp
   requiredBy: []
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/geom/segment_intersections.hpp

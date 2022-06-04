@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   - icon: ':question:'

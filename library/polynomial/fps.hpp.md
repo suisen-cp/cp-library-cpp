@@ -320,10 +320,10 @@ data:
     \        FPS(std::vector<mint>&& v) : std::vector<mint>::vector(std::move(v))\
     \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
     \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        const\
-    \ mint  operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) :\
-    \ 0; }\n        mint& operator[](int n)       noexcept { ensure_deg(n); return\
-    \ unsafe_get(n); }\n\n        int size() const noexcept { return std::vector<mint>::size();\
-    \ }\n        int deg()  const noexcept { return size() - 1; }\n        int normalize()\
+    \ mint operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) :\
+    \ 0; }\n        mint& operator[](int n) noexcept { ensure_deg(n); return unsafe_get(n);\
+    \ }\n\n        int size() const noexcept { return std::vector<mint>::size(); }\n\
+    \        int deg()  const noexcept { return size() - 1; }\n        int normalize()\
     \ {\n            while (this->size() and this->back() == 0) this->pop_back();\n\
     \            return deg();\n        }\n        FPS& pre_inplace(int max_deg) noexcept\
     \ {\n            if (deg() > max_deg) this->resize(std::max(0, max_deg + 1));\n\
@@ -446,10 +446,10 @@ data:
     \        FPS(std::vector<mint>&& v) : std::vector<mint>::vector(std::move(v))\
     \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
     \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        const\
-    \ mint  operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) :\
-    \ 0; }\n        mint& operator[](int n)       noexcept { ensure_deg(n); return\
-    \ unsafe_get(n); }\n\n        int size() const noexcept { return std::vector<mint>::size();\
-    \ }\n        int deg()  const noexcept { return size() - 1; }\n        int normalize()\
+    \ mint operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) :\
+    \ 0; }\n        mint& operator[](int n) noexcept { ensure_deg(n); return unsafe_get(n);\
+    \ }\n\n        int size() const noexcept { return std::vector<mint>::size(); }\n\
+    \        int deg()  const noexcept { return size() - 1; }\n        int normalize()\
     \ {\n            while (this->size() and this->back() == 0) this->pop_back();\n\
     \            return deg();\n        }\n        FPS& pre_inplace(int max_deg) noexcept\
     \ {\n            if (deg() > max_deg) this->resize(std::max(0, max_deg + 1));\n\
@@ -578,7 +578,7 @@ data:
   - library/polynomial/lagrange_interpolation.hpp
   - library/polynomial/bostan_mori.hpp
   - library/polynomial/subset_sum.hpp
-  timestamp: '2022-06-04 19:06:22+09:00'
+  timestamp: '2022-06-04 19:41:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

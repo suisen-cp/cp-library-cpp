@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/array_fps_naive.hpp
     title: library/polynomial/array_fps_naive.hpp
   - icon: ':question:'
@@ -25,17 +25,17 @@ data:
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/array_sps.hpp
     title: library/math/array_sps.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc236_h.test.cpp
     title: test/src/math/array_sps/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h.test.cpp
     title: test/src/math/array_sps/abc253_h.test.cpp
   - icon: ':x:'
@@ -46,7 +46,7 @@ data:
     title: test/src/math/array_sps/arc105_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/array_subset_convolution.hpp\"\n\n\n\
@@ -314,11 +314,12 @@ data:
     \ = polys[i][__builtin_popcount(i)];\n            return a;\n        }\n    }\
     \ // namespace suisen::array_ranked_subset_transform::internal\n\n    template\
     \ <typename T, std::size_t N>\n    std::vector<polynomial_t<T, N>> ranked_zeta(const\
-    \ std::vector<T>& a) {\n        std::vector<polynomial_t<T, N>> ranked = internal::ranked<T,\
-    \ N>(a);\n        subset_transform::zeta(ranked);\n        return ranked;\n  \
-    \  }\n    template <typename T, std::size_t N>\n    std::vector<T> deranked_mobius(std::vector<polynomial_t<T,\
-    \ N>>& ranked) {\n        subset_transform::mobius(ranked);\n        return internal::deranked<T>(ranked);\n\
-    \    }\n} // namespace suisen::array_ranked_subset_transform\n\n\n"
+    \ std::vector<T>& a) {\n        auto ranked = internal::ranked<T, N>(a);\n   \
+    \     subset_transform::zeta(ranked);\n        return ranked;\n    }\n    template\
+    \ <typename T, std::size_t N>\n    std::vector<T> deranked_mobius(std::vector<polynomial_t<T,\
+    \ N>>& ranked) {\n        subset_transform::mobius(ranked);\n        return internal::deranked<T,\
+    \ N>(ranked);\n    }\n} // namespace suisen::array_ranked_subset_transform\n\n\
+    \n"
   code: "#ifndef SUISEN_ARRAY_SUBSET_CONVOLUTION\n#define SUISEN_ARRAY_SUBSET_CONVOLUTION\n\
     \n#include \"library/polynomial/array_fps_naive.hpp\"\n#include \"library/transform/subset.hpp\"\
     \n\nnamespace suisen::array_ranked_subset_transform {\n    template <typename\
@@ -334,11 +335,12 @@ data:
     \ = polys[i][__builtin_popcount(i)];\n            return a;\n        }\n    }\
     \ // namespace suisen::array_ranked_subset_transform::internal\n\n    template\
     \ <typename T, std::size_t N>\n    std::vector<polynomial_t<T, N>> ranked_zeta(const\
-    \ std::vector<T>& a) {\n        std::vector<polynomial_t<T, N>> ranked = internal::ranked<T,\
-    \ N>(a);\n        subset_transform::zeta(ranked);\n        return ranked;\n  \
-    \  }\n    template <typename T, std::size_t N>\n    std::vector<T> deranked_mobius(std::vector<polynomial_t<T,\
-    \ N>>& ranked) {\n        subset_transform::mobius(ranked);\n        return internal::deranked<T>(ranked);\n\
-    \    }\n} // namespace suisen::array_ranked_subset_transform\n\n#endif // SUISEN_ARRAY_SUBSET_CONVOLUTION\n"
+    \ std::vector<T>& a) {\n        auto ranked = internal::ranked<T, N>(a);\n   \
+    \     subset_transform::zeta(ranked);\n        return ranked;\n    }\n    template\
+    \ <typename T, std::size_t N>\n    std::vector<T> deranked_mobius(std::vector<polynomial_t<T,\
+    \ N>>& ranked) {\n        subset_transform::mobius(ranked);\n        return internal::deranked<T,\
+    \ N>(ranked);\n    }\n} // namespace suisen::array_ranked_subset_transform\n\n\
+    #endif // SUISEN_ARRAY_SUBSET_CONVOLUTION\n"
   dependsOn:
   - library/polynomial/array_fps_naive.hpp
   - library/type_traits/type_traits.hpp
@@ -351,8 +353,8 @@ data:
   path: library/convolution/array_subset_convolution.hpp
   requiredBy:
   - library/math/array_sps.hpp
-  timestamp: '2022-06-04 18:33:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-06-04 19:41:35+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/array_sps/abc236_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp

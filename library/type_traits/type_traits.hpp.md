@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/sliding_window_minimum.hpp
     title: Sliding Window Minimum
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/array_subset_convolution.hpp
     title: library/convolution/array_subset_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -27,7 +27,7 @@ data:
   - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/dynamic_sequence.hpp
     title: Dynamic Sequence
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
     title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
       \u5834\u5408)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\
       \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
@@ -86,19 +86,19 @@ data:
     path: library/datastructure/segment_tree/sparse_segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\u758E\
       \u306A\u5834\u5408)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
     title: Static Rectangle Add Rectangle Sum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/array_sps.hpp
     title: library/math/array_sps.hpp
   - icon: ':x:'
@@ -116,7 +116,7 @@ data:
   - icon: ':x:'
     path: library/number/util.hpp
     title: Util
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/array_fps_naive.hpp
     title: library/polynomial/array_fps_naive.hpp
   - icon: ':x:'
@@ -163,7 +163,7 @@ data:
   - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedVerifiedWith:
@@ -272,37 +272,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
     title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
     title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc236_h.test.cpp
     title: test/src/math/array_sps/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h.test.cpp
     title: test/src/math/array_sps/abc253_h.test.cpp
   - icon: ':x:'

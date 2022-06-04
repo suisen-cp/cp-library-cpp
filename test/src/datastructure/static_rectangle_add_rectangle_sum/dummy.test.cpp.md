@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
     title: Static Rectangle Add Rectangle Sum
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/tuple_ops.hpp
     title: Tuple Ops
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -234,7 +234,7 @@ data:
   path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   requiredBy: []
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
 layout: document

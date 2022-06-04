@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp
     title: Bitwise And Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/array_subset_convolution.hpp
     title: library/convolution/array_subset_convolution.hpp
   - icon: ':warning:'
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/xor_convolution.hpp
     title: Bitwise Xor Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/array_sps.hpp
     title: library/math/array_sps.hpp
   - icon: ':x:'
@@ -53,13 +53,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
     title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc236_h.test.cpp
     title: test/src/math/array_sps/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h.test.cpp
     title: test/src/math/array_sps/abc253_h.test.cpp
   - icon: ':x:'

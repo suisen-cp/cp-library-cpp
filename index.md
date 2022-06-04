@@ -45,7 +45,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/arbitrary_mod_convolution.hpp
       title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/convolution/array_subset_convolution.hpp
       title: library/convolution/array_subset_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -98,7 +98,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/binary_trie.hpp
       title: Binary Trie
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bit_vector.hpp
       title: Bit Vector
     - icon: ':heavy_check_mark:'
@@ -110,7 +110,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
       title: Dynamic Sequence
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree.hpp
       title: Fenwick Tree
     - icon: ':heavy_check_mark:'
@@ -150,10 +150,10 @@ data:
     - icon: ':warning:'
       path: library/datastructure/splay_tree_set.hpp
       title: Splay Tree Set
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
       title: Static Rectangle Add Rectangle Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
   - name: library/datastructure/bbst
@@ -230,7 +230,7 @@ data:
       path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
       title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
         \u5834\u5408)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\
         \u5B57\u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
@@ -252,7 +252,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/union_find.hpp
       title: Union Find
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/weighted_union_find.hpp
       title: Weighted Union Find
   - name: library/datastructure/util
@@ -263,7 +263,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/util/priority_sum.hpp
       title: Priority Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/util/range_set.hpp
       title: Range Set
     - icon: ':warning:'
@@ -296,7 +296,7 @@ data:
     - icon: ':warning:'
       path: library/geom/geometry3d.hpp
       title: Geometry3d
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/segment_intersections.hpp
       title: Segment Intersections
   - name: library/graph
@@ -392,7 +392,7 @@ data:
       title: "XOR \u57FA\u5E95"
   - name: library/math
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/array_sps.hpp
       title: library/math/array_sps.hpp
     - icon: ':heavy_check_mark:'
@@ -463,7 +463,7 @@ data:
       title: Util
   - name: library/polynomial
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/array_fps_naive.hpp
       title: library/polynomial/array_fps_naive.hpp
     - icon: ':x:'
@@ -653,10 +653,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_hash.hpp
       title: Tuple Hash
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/tuple_ops.hpp
       title: Tuple Ops
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/update_proxy_object.hpp
       title: Update Proxy Object
     - icon: ':warning:'
@@ -964,12 +964,12 @@ data:
       title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - name: test/src/datastructure/segment_tree/sparse_lazy_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   - name: test/src/datastructure/static_rectangle_add_rectangle_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
       title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - name: test/src/datastructure/union_find/merge_history_forest
@@ -984,7 +984,7 @@ data:
       title: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
   - name: test/src/datastructure/union_find/weighted_union_find
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
       title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   - name: test/src/datastructure/util/priority_sum
@@ -997,7 +997,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
       title: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
       title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1005,13 +1005,13 @@ data:
       title: test/src/datastructure/util/range_set/yuki674.test.cpp
   - name: test/src/datastructure/wavelet_matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - name: test/src/geom/closest_pair
@@ -1091,7 +1091,7 @@ data:
       title: test/src/geom/geometry/CGL_7_I.test.cpp
   - name: test/src/geom/segment_intersections
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - name: test/src/graph/biconnected_components
@@ -1182,13 +1182,13 @@ data:
       title: test/src/linear_algebra/matrix/matrix_product.test.cpp
   - name: test/src/math/array_sps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/array_sps/abc213_g.test.cpp
       title: test/src/math/array_sps/abc213_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/array_sps/abc236_h.test.cpp
       title: test/src/math/array_sps/abc236_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/array_sps/abc253_h.test.cpp
       title: test/src/math/array_sps/abc253_h.test.cpp
     - icon: ':x:'
