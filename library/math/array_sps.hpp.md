@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
     title: library/convolution/array_subset_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':heavy_check_mark:'

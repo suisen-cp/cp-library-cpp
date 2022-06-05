@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':heavy_check_mark:'
@@ -52,9 +52,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
-    path: test/src/polynomial/common_sequences/abc247_f.test.cpp
-    title: test/src/polynomial/common_sequences/abc247_f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/common_sequences/abc247_h.test.cpp
+    title: test/src/polynomial/common_sequences/abc247_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
     title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
@@ -103,9 +103,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -582,7 +582,7 @@ data:
   - library/polynomial/bostan_mori.hpp
   - library/polynomial/subset_sum.hpp
   timestamp: '2022-06-04 19:41:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
@@ -599,8 +599,8 @@ data:
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
   - test/src/polynomial/common_sequences/stirling_number1.test.cpp
   - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-  - test/src/polynomial/common_sequences/abc247_f.test.cpp
   - test/src/polynomial/common_sequences/stirling_number2.test.cpp
+  - test/src/polynomial/common_sequences/abc247_h.test.cpp
   - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
   - test/src/polynomial/common_sequences/partition_function.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp

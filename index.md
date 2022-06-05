@@ -398,13 +398,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
     - icon: ':heavy_check_mark:'
@@ -469,13 +469,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
     - icon: ':heavy_check_mark:'
@@ -1288,9 +1288,9 @@ data:
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   - name: test/src/polynomial/common_sequences
     pages:
-    - icon: ':x:'
-      path: test/src/polynomial/common_sequences/abc247_f.test.cpp
-      title: test/src/polynomial/common_sequences/abc247_f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/common_sequences/abc247_h.test.cpp
+      title: test/src/polynomial/common_sequences/abc247_h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
       title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp

@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/util.hpp
     title: Util
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':heavy_check_mark:'
@@ -30,9 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/util/abc240_g.test.cpp
     title: test/src/math/util/abc240_g.test.cpp
-  - icon: ':x:'
-    path: test/src/polynomial/common_sequences/abc247_f.test.cpp
-    title: test/src/polynomial/common_sequences/abc247_f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/common_sequences/abc247_h.test.cpp
+    title: test/src/polynomial/common_sequences/abc247_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
     title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
@@ -51,9 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n\
@@ -108,7 +108,7 @@ data:
   - library/polynomial/common_sequences.hpp
   - library/polynomial/polynomial_taylor_shift.hpp
   timestamp: '2022-05-28 01:05:03+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
@@ -119,8 +119,8 @@ data:
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/common_sequences/stirling_number1.test.cpp
   - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-  - test/src/polynomial/common_sequences/abc247_f.test.cpp
   - test/src/polynomial/common_sequences/stirling_number2.test.cpp
+  - test/src/polynomial/common_sequences/abc247_h.test.cpp
   - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
   - test/src/polynomial/common_sequences/partition_function.test.cpp
 documentation_of: library/math/factorial.hpp

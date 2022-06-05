@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
@@ -24,16 +24,16 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc247/tasks/abc247_h
+    PROBLEM: https://atcoder.jp/contests/abc247/tasks/abc247_Ex
     links:
-    - https://atcoder.jp/contests/abc247/tasks/abc247_h
-  bundledCode: "#line 1 \"test/src/polynomial/common_sequences/abc247_f.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/abc247/tasks/abc247_h\"\n\n#include\
+    - https://atcoder.jp/contests/abc247/tasks/abc247_Ex
+  bundledCode: "#line 1 \"test/src/polynomial/common_sequences/abc247_h.test.cpp\"\
+    \n#define PROBLEM \"https://atcoder.jp/contests/abc247/tasks/abc247_Ex\"\n\n#include\
     \ <iostream>\n#include <queue>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
     using mint = atcoder::modint998244353;\n\n#line 1 \"library/polynomial/common_sequences.hpp\"\
     \n\n\n\n#line 1 \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
@@ -437,7 +437,7 @@ data:
     \ + 1);\n    return inv;\n}\n\ntemplate <typename mint>\nstd::vector<mint> montmort_number(int\
     \ n) {\n    std::vector<mint> res { 1, 0 };\n    for (int i = 2; i <= n; ++i)\
     \ res.push_back((i - 1) * (res[i - 1] + res[i - 2]));\n    res.resize(n + 1);\n\
-    \    return res;\n}\n} // namespace suisen\n\n\n#line 11 \"test/src/polynomial/common_sequences/abc247_f.test.cpp\"\
+    \    return res;\n}\n} // namespace suisen\n\n\n#line 11 \"test/src/polynomial/common_sequences/abc247_h.test.cpp\"\
     \n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a,\
     \ const auto &b) { return atcoder::convolution(a, b); });\n    \n    int n, k;\n\
     \    std::cin >> n >> k;\n\n    k -= std::max(0, (k - n)) / 2 * 2;\n\n    std::vector<int>\
@@ -452,7 +452,7 @@ data:
     \    }\n \n    mint ans = 0;\n    auto f = pq.top();\n    for (; k >= 0; k -=\
     \ 2) {\n        if (k < int(f.size())) ans += f[k];\n    }\n    std::cout << ans.val()\
     \ << std::endl;\n \n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc247/tasks/abc247_h\"\n\n\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc247/tasks/abc247_Ex\"\n\n\
     #include <iostream>\n#include <queue>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
     using mint = atcoder::modint998244353;\n\n#include \"library/polynomial/common_sequences.hpp\"\
     \n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a,\
@@ -478,15 +478,15 @@ data:
   - library/math/inv_mods.hpp
   - library/math/factorial.hpp
   isVerificationFile: true
-  path: test/src/polynomial/common_sequences/abc247_f.test.cpp
+  path: test/src/polynomial/common_sequences/abc247_h.test.cpp
   requiredBy: []
-  timestamp: '2022-06-05 20:27:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-05 20:40:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/polynomial/common_sequences/abc247_f.test.cpp
+documentation_of: test/src/polynomial/common_sequences/abc247_h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/polynomial/common_sequences/abc247_f.test.cpp
-- /verify/test/src/polynomial/common_sequences/abc247_f.test.cpp.html
-title: test/src/polynomial/common_sequences/abc247_f.test.cpp
+- /verify/test/src/polynomial/common_sequences/abc247_h.test.cpp
+- /verify/test/src/polynomial/common_sequences/abc247_h.test.cpp.html
+title: test/src/polynomial/common_sequences/abc247_h.test.cpp
 ---
