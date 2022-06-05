@@ -1,1 +1,1 @@
-exclude: [scripts/, ac-library/]
+exclude: [scripts/, ac-library/, library/debug/]
