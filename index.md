@@ -371,7 +371,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/characteristic_polynomial.hpp
       title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/circulant_matrix.hpp
       title: "Circulant Matrix (\u5DE1\u56DE\u884C\u5217)"
     - icon: ':heavy_check_mark:'
@@ -398,7 +398,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
     - icon: ':question:'
@@ -1164,7 +1164,7 @@ data:
       title: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
   - name: test/src/linear_algebra/circulant_matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
       title: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
   - name: test/src/linear_algebra/gaussian_elimination
