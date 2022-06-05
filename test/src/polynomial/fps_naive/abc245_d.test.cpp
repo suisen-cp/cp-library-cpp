@@ -26,12 +26,8 @@ int main() {
     auto [b, r] = div_mod(c, a);
     assert(r == suisen::FPSNaive<mint>{});
 
-    for (auto &e : b) {
-        int v = e.val();
-        if (v > 100) {
-            std::cout << v - mint::mod() << '\n';
-        } else {
-            std::cout << +v << '\n';
-        }
+    for (int i = 0; i <= m; ++i) {
+        int v = b[i].val();
+        std::cout << (v > 100 ? v - mint::mod() : v) << " \n"[i == m];
     }
 }
