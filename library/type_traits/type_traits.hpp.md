@@ -122,10 +122,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':question:'
@@ -347,6 +347,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':x:'
+    path: test/src/polynomial/common_sequences/abc247_f.test.cpp
+    title: test/src/polynomial/common_sequences/abc247_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
     title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
@@ -377,7 +380,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/pow_of_fps.test.cpp
     title: test/src/polynomial/fps/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps_naive/abc245_d.test.cpp
     title: test/src/polynomial/fps_naive/abc245_d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -626,6 +629,7 @@ data:
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
   - test/src/polynomial/common_sequences/stirling_number1.test.cpp
   - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+  - test/src/polynomial/common_sequences/abc247_f.test.cpp
   - test/src/polynomial/common_sequences/stirling_number2.test.cpp
   - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
   - test/src/polynomial/common_sequences/partition_function.test.cpp

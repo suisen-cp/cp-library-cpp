@@ -129,6 +129,9 @@ data:
     path: test/src/transform/kronecker_power/agc044_c.test.cpp
     title: test/src/transform/kronecker_power/agc044_c.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/transform/kronecker_power/arc132_f.test.cpp
+    title: test/src/transform/kronecker_power/arc132_f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
   _isVerificationFailed: false
@@ -216,6 +219,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/transform/multiple/divide_both.test.cpp
+  - test/src/transform/kronecker_power/arc132_f.test.cpp
   - test/src/transform/kronecker_power/agc044_c.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/lcm_convolution/lcm_convolution.test.cpp

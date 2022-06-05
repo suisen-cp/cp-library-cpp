@@ -15,9 +15,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc245/tasks/abc245_d
@@ -235,10 +235,9 @@ data:
     \ + 1), c(n + m + 1);\n\n    for (auto &e : a) {\n        int v;\n        std::cin\
     \ >> v;\n        e = v;\n    }\n    for (auto &e : c) {\n        int v;\n    \
     \    std::cin >> v;\n        e = v;\n    }\n\n    auto [b, r] = div_mod(c, a);\n\
-    \    assert(r == suisen::FPSNaive<mint>{});\n\n    for (auto &e : b) {\n     \
-    \   int v = e.val();\n        if (v > 100) {\n            std::cout << v - mint::mod()\
-    \ << '\\n';\n        } else {\n            std::cout << +v << '\\n';\n       \
-    \ }\n    }\n}\n"
+    \    assert(r == suisen::FPSNaive<mint>{});\n\n    for (int i = 0; i <= m; ++i)\
+    \ {\n        int v = b[i].val();\n        std::cout << (v > 100 ? v - mint::mod()\
+    \ : v) << \" \\n\"[i == m];\n    }\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc245/tasks/abc245_d\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
     \n#include \"library/polynomial/fps_naive.hpp\"\n\nint main() {\n    int n, m;\n\
@@ -246,9 +245,8 @@ data:
     \n    for (auto &e : a) {\n        int v;\n        std::cin >> v;\n        e =\
     \ v;\n    }\n    for (auto &e : c) {\n        int v;\n        std::cin >> v;\n\
     \        e = v;\n    }\n\n    auto [b, r] = div_mod(c, a);\n    assert(r == suisen::FPSNaive<mint>{});\n\
-    \n    for (auto &e : b) {\n        int v = e.val();\n        if (v > 100) {\n\
-    \            std::cout << v - mint::mod() << '\\n';\n        } else {\n      \
-    \      std::cout << +v << '\\n';\n        }\n    }\n}"
+    \n    for (int i = 0; i <= m; ++i) {\n        int v = b[i].val();\n        std::cout\
+    \ << (v > 100 ? v - mint::mod() : v) << \" \\n\"[i == m];\n    }\n}"
   dependsOn:
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
@@ -257,8 +255,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/fps_naive/abc245_d.test.cpp
   requiredBy: []
-  timestamp: '2022-06-04 19:54:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-06-05 20:12:33+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/fps_naive/abc245_d.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':question:'
@@ -21,6 +21,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/polynomial/common_sequences/abc247_f.test.cpp
+    title: test/src/polynomial/common_sequences/abc247_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
     title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
@@ -36,9 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/stirling_number2.test.cpp
     title: test/src/polynomial/common_sequences/stirling_number2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/common_sequences.hpp\"\n\n\n\n#line 1\
@@ -508,10 +511,11 @@ data:
   path: library/polynomial/common_sequences.hpp
   requiredBy: []
   timestamp: '2022-06-04 19:41:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/polynomial/common_sequences/stirling_number1.test.cpp
   - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+  - test/src/polynomial/common_sequences/abc247_f.test.cpp
   - test/src/polynomial/common_sequences/stirling_number2.test.cpp
   - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
   - test/src/polynomial/common_sequences/partition_function.test.cpp
