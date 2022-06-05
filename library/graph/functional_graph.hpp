@@ -1,7 +1,10 @@
 #ifndef SUISEN_DOUBLING
 #define SUISEN_DOUBLING
 
+#include <cassert>
 #include <cstdint>
+#include <optional>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -33,6 +36,31 @@ namespace suisen {
                 return u;
             }
 
+            struct BinarySearchResult {
+                int v;
+                long long step;
+                operator std::pair<int, long long>() { return std::pair<int, long long>{ v, step }; }
+            };
+
+            template <typename Pred>
+            auto max_step(int u, Pred &&f) {
+                assert(f(u));
+                long long step = 0;
+                for (int l = _log; l >= 0; --l) if (int nxt_u = _nxt[l][u]; f(nxt_u)) {
+                    u = nxt_u, step |= 1LL << l;
+                }
+                return BinarySearchResult{ u, step };
+            }
+
+            template <typename Pred>
+            std::optional<BinarySearchResult> step_until(int u, Pred &&f) {
+                if (f(u)) return BinarySearchResult { u, 0 };
+                auto [v, step] = max_step(u, [&](int v) { return not f(v); });
+                v = _nxt[0][v], ++step;
+                if (not f(v)) return std::nullopt;
+                return BinarySearchResult{ v, step };
+            }
+
         private:
             int _n, _log;
             std::vector<std::vector<int>> _nxt;
@@ -55,10 +83,38 @@ namespace suisen {
                 operator std::pair<int, T>() { return std::pair<int, T>{ v, sum }; }
             };
 
-            Result query(int u, long long d) {
+            auto query(int u, long long d) {
                 T sum = e();
                 for (int l = _log; l >= 0; --l) if ((d >> l) & 1) sum = op(sum, _dat[l][std::exchange(u, _nxt[l][u])]);
                 return Result{ u, sum };
+            }
+
+            struct BinarySearchResult {
+                int v;
+                T sum;
+                long long step;
+                operator std::tuple<int, T, long long>() { return std::tuple<int, T, long long>{ v, sum, step }; }
+            };
+
+            template <typename Pred>
+            auto max_step(int u, Pred &&f) {
+                assert(f(e()));
+                long long step = 0;
+                T sum = e();
+                for (int l = _log; l >= 0; --l) {
+                    if (T nxt_sum = op(sum, _dat[l][u]); f(nxt_sum)) {
+                        sum = std::move(nxt_sum), u = _nxt[l][u], step |= 1LL << l;
+                    }
+                }
+                return BinarySearchResult{ u, sum, step };
+            }
+            template <typename Pred>
+            std::optional<BinarySearchResult> step_until(int u, Pred &&f) {
+                if (f(e())) return BinarySearchResult { u, e(), 0 };
+                auto [v, sum, step] = max_step(u, [&](const T& v) { return not f(v); });
+                sum = op(sum, _dat[0][v]), v = _nxt[0][v], ++step;
+                if (not f(sum)) return std::nullopt;
+                return BinarySearchResult{ v, sum, step };
             }
 
         private:
@@ -77,7 +133,7 @@ namespace suisen {
         }
 
         template <typename T, T(*op)(T, T), T(*e)()>
-        DoublingSum<T, op, e> doubling(long long max_step, std::vector<T>& dat) const {
+        DoublingSum<T, op, e> doubling(long long max_step, const std::vector<T>& dat) const {
             return DoublingSum<T, op, e>(_nxt, max_step, dat);
         }
 
