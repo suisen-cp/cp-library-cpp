@@ -40,7 +40,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/subset_iterator.hpp
     title: Subset Iterator
   _extendedRequiredBy: []

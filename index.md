@@ -263,7 +263,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/util/priority_sum.hpp
       title: Priority Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/util/range_set.hpp
       title: Range Set
     - icon: ':warning:'
@@ -331,7 +331,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/dulmage_mendelsohn_decomposition.hpp
       title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/graph/functional_graph.hpp
       title: Functional Graph
     - icon: ':warning:'
@@ -571,7 +571,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
     - icon: ':heavy_check_mark:'
@@ -641,7 +641,7 @@ data:
       path: library/util/run_length_encoder.hpp
       title: "Run Length Encoder (\u30E9\u30F3\u30EC\u30F3\u30AF\u30B9\u5727\u7E2E\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
     - icon: ':warning:'
@@ -1125,6 +1125,9 @@ data:
       title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - name: test/src/graph/functional_graph
     pages:
+    - icon: ':x:'
+      path: test/src/graph/functional_graph/abc254_g.test.cpp
+      title: test/src/graph/functional_graph/abc254_g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/graph/functional_graph/dummy.test.cpp
       title: test/src/graph/functional_graph/dummy.test.cpp
@@ -1428,22 +1431,22 @@ data:
       title: test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/heavy_light_decomposition
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/level_ancestor
@@ -1479,7 +1482,7 @@ data:
       title: test/src/tree/rerooting/edpc_v.test.cpp
   - name: test/src/util/coordinate_compressor
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/coordinate_compressor/dummy.test.cpp
       title: test/src/util/coordinate_compressor/dummy.test.cpp
   - name: test/src/util/subset_iterator
@@ -1487,10 +1490,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
       title: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/subset_iterator/dummy_all_subset.test.cpp
       title: test/src/util/subset_iterator/dummy_all_subset.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
       title: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
 layout: toppage

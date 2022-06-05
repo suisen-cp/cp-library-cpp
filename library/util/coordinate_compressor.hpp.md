@@ -37,6 +37,9 @@ data:
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - icon: ':x:'
+    path: test/src/graph/functional_graph/abc254_g.test.cpp
+    title: test/src/graph/functional_graph/abc254_g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
   _isVerificationFailed: true
@@ -273,6 +276,7 @@ data:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
   - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+  - test/src/graph/functional_graph/abc254_g.test.cpp
   - test/src/util/coordinate_compressor/dummy.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
