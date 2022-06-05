@@ -314,4 +314,4 @@ $$
 
 右辺は $\Theta(N ^ 2)$ 時間で計算できるので，結局全ての $p _ H ^ {(k)}$ を $\Theta(N ^ 3)$ 時間で計算することが出来る．
 
-上 Hessenberg 行列 $H$ の特性多項式を $\Theta(N ^ 3)$ で計算することができたので，あとは任意の $N \times N$ 行列 $A$ を相似変換により上 Hessenberg 行列へと変換することができればよいが，[Hessenberg Reduction](https://suisen-cp.github.io/cp-library-cpp/library/math/hessenberg_reduction.hpp) に示したように，これは $\Theta(N ^ 3)$ 時間で行うことが出来る．
+上 Hessenberg 行列 $H$ の特性多項式を $\Theta(N ^ 3)$ で計算することができたので，あとは任意の $N \times N$ 行列 $A$ を相似変換により上 Hessenberg 行列へと変換することができればよいが，[Hessenberg Reduction](https://suisen-cp.github.io/cp-library-cpp/library/linear_algebra/hessenberg_reduction.hpp) に示したように，これは $\Theta(N ^ 3)$ 時間で行うことが出来る．
