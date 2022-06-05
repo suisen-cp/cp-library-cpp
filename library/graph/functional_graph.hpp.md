@@ -12,32 +12,61 @@ data:
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2019/09/22/114149
-  bundledCode: "#line 1 \"library/graph/functional_graph.hpp\"\n\n\n\n#include <cstdint>\n\
-    #include <utility>\n#include <vector>\n\nnamespace suisen {\n    struct FunctionalGraph\
-    \ {\n        struct Doubling;\n        template <typename T, T(*)(T, T), T(*)()>\n\
-    \        struct DoublingSum;\n        friend struct Doubling;\n        template\
-    \ <typename T, T(*op)(T, T), T(*e)()>\n        friend struct DoublingSum;\n\n\
-    \        FunctionalGraph() : FunctionalGraph(0) {}\n        FunctionalGraph(int\
-    \ n) : _n(n), _nxt(n) {}\n        FunctionalGraph(const std::vector<int>& nxt)\
-    \ : _n(nxt.size()), _nxt(nxt) {}\n\n        const int& operator[](int u) const\
-    \ {\n            return _nxt[u];\n        }\n        int& operator[](int u) {\n\
-    \            return _nxt[u];\n        }\n\n        struct Doubling {\n       \
-    \     friend struct FunctionalGraph;\n\n            int query(int u, long long\
-    \ d) {\n                for (int l = _log; l >= 0; --l) if ((d >> l) & 1) u =\
-    \ _nxt[l][u];\n                return u;\n            }\n\n        private:\n\
-    \            int _n, _log;\n            std::vector<std::vector<int>> _nxt;\n\n\
-    \            Doubling(const std::vector<int>& nxt, long long max_step) : _n(nxt.size()),\
-    \ _log(floor_log2(max_step)), _nxt(_log + 1, std::vector<int>(_n)) {\n       \
-    \         _nxt[0] = nxt;\n                for (int i = 1; i <= _log; ++i) for\
-    \ (int j = 0; j < _n; ++j) {\n                    _nxt[i][j] = _nxt[i - 1][_nxt[i\
-    \ - 1][j]];\n                }\n            }\n        };\n\n        template\
-    \ <typename T, T(*op)(T, T), T(*e)()>\n        struct DoublingSum : private Doubling\
-    \ {\n            friend struct FunctionalGraph;\n\n            struct Result {\n\
-    \                int v;\n                T sum;\n                operator std::pair<int,\
-    \ T>() { return std::pair<int, T>{ v, sum }; }\n            };\n\n           \
-    \ Result query(int u, long long d) {\n                T sum = e();\n         \
-    \       for (int l = _log; l >= 0; --l) if ((d >> l) & 1) sum = op(sum, _dat[l][std::exchange(u,\
-    \ _nxt[l][u])]);\n                return Result{ u, sum };\n            }\n\n\
+  bundledCode: "#line 1 \"library/graph/functional_graph.hpp\"\n\n\n\n#include <cassert>\n\
+    #include <cstdint>\n#include <optional>\n#include <tuple>\n#include <utility>\n\
+    #include <vector>\n\nnamespace suisen {\n    struct FunctionalGraph {\n      \
+    \  struct Doubling;\n        template <typename T, T(*)(T, T), T(*)()>\n     \
+    \   struct DoublingSum;\n        friend struct Doubling;\n        template <typename\
+    \ T, T(*op)(T, T), T(*e)()>\n        friend struct DoublingSum;\n\n        FunctionalGraph()\
+    \ : FunctionalGraph(0) {}\n        FunctionalGraph(int n) : _n(n), _nxt(n) {}\n\
+    \        FunctionalGraph(const std::vector<int>& nxt) : _n(nxt.size()), _nxt(nxt)\
+    \ {}\n\n        const int& operator[](int u) const {\n            return _nxt[u];\n\
+    \        }\n        int& operator[](int u) {\n            return _nxt[u];\n  \
+    \      }\n\n        struct Doubling {\n            friend struct FunctionalGraph;\n\
+    \n            int query(int u, long long d) {\n                for (int l = _log;\
+    \ l >= 0; --l) if ((d >> l) & 1) u = _nxt[l][u];\n                return u;\n\
+    \            }\n\n            struct BinarySearchResult {\n                int\
+    \ v;\n                long long step;\n                operator std::pair<int,\
+    \ long long>() { return std::pair<int, long long>{ v, step }; }\n            };\n\
+    \n            template <typename Pred>\n            auto max_step(int u, Pred\
+    \ &&f) {\n                assert(f(u));\n                long long step = 0;\n\
+    \                for (int l = _log; l >= 0; --l) if (int nxt_u = _nxt[l][u]; f(nxt_u))\
+    \ {\n                    u = nxt_u, step |= 1LL << l;\n                }\n   \
+    \             return BinarySearchResult{ u, step };\n            }\n\n       \
+    \     template <typename Pred>\n            std::optional<BinarySearchResult>\
+    \ step_until(int u, Pred &&f) {\n                if (f(u)) return BinarySearchResult\
+    \ { u, 0 };\n                auto [v, step] = max_step(u, [&](int v) { return\
+    \ not f(v); });\n                v = _nxt[0][v], ++step;\n                if (not\
+    \ f(v)) return std::nullopt;\n                return BinarySearchResult{ v, step\
+    \ };\n            }\n\n        private:\n            int _n, _log;\n         \
+    \   std::vector<std::vector<int>> _nxt;\n\n            Doubling(const std::vector<int>&\
+    \ nxt, long long max_step) : _n(nxt.size()), _log(floor_log2(max_step)), _nxt(_log\
+    \ + 1, std::vector<int>(_n)) {\n                _nxt[0] = nxt;\n             \
+    \   for (int i = 1; i <= _log; ++i) for (int j = 0; j < _n; ++j) {\n         \
+    \           _nxt[i][j] = _nxt[i - 1][_nxt[i - 1][j]];\n                }\n   \
+    \         }\n        };\n\n        template <typename T, T(*op)(T, T), T(*e)()>\n\
+    \        struct DoublingSum : private Doubling {\n            friend struct FunctionalGraph;\n\
+    \n            struct Result {\n                int v;\n                T sum;\n\
+    \                operator std::pair<int, T>() { return std::pair<int, T>{ v, sum\
+    \ }; }\n            };\n\n            auto query(int u, long long d) {\n     \
+    \           T sum = e();\n                for (int l = _log; l >= 0; --l) if ((d\
+    \ >> l) & 1) sum = op(sum, _dat[l][std::exchange(u, _nxt[l][u])]);\n         \
+    \       return Result{ u, sum };\n            }\n\n            struct BinarySearchResult\
+    \ {\n                int v;\n                T sum;\n                long long\
+    \ step;\n                operator std::tuple<int, T, long long>() { return std::tuple<int,\
+    \ T, long long>{ v, sum, step }; }\n            };\n\n            template <typename\
+    \ Pred>\n            auto max_step(int u, Pred &&f) {\n                assert(f(e()));\n\
+    \                long long step = 0;\n                T sum = e();\n         \
+    \       for (int l = _log; l >= 0; --l) {\n                    if (T nxt_sum =\
+    \ op(sum, _dat[l][u]); f(nxt_sum)) {\n                        sum = std::move(nxt_sum),\
+    \ u = _nxt[l][u], step |= 1LL << l;\n                    }\n                }\n\
+    \                return BinarySearchResult{ u, sum, step };\n            }\n \
+    \           template <typename Pred>\n            std::optional<BinarySearchResult>\
+    \ step_until(int u, Pred &&f) {\n                if (f(e())) return BinarySearchResult\
+    \ { u, e(), 0 };\n                auto [v, sum, step] = max_step(u, [&](const\
+    \ T& v) { return not f(v); });\n                sum = op(sum, _dat[0][v]), v =\
+    \ _nxt[0][v], ++step;\n                if (not f(sum)) return std::nullopt;\n\
+    \                return BinarySearchResult{ v, sum, step };\n            }\n\n\
     \        private:\n            std::vector<std::vector<T>> _dat;\n\n         \
     \   DoublingSum(const std::vector<int>& nxt, long long max_step, const std::vector<T>&\
     \ dat) : Doubling(nxt, max_step), _dat(_log + 1, std::vector<T>(_n, e())) {\n\
@@ -47,7 +76,7 @@ data:
     \     };\n\n        Doubling doubling(long long max_step) const {\n          \
     \  return Doubling(_nxt, max_step);\n        }\n\n        template <typename T,\
     \ T(*op)(T, T), T(*e)()>\n        DoublingSum<T, op, e> doubling(long long max_step,\
-    \ std::vector<T>& dat) const {\n            return DoublingSum<T, op, e>(_nxt,\
+    \ const std::vector<T>& dat) const {\n            return DoublingSum<T, op, e>(_nxt,\
     \ max_step, dat);\n        }\n\n        struct InfinitePath {\n            int\
     \ head_v;\n            int head_len;\n            int loop_v;\n            int\
     \ loop_len;\n            InfinitePath() = default;\n            InfinitePath(int\
@@ -96,32 +125,61 @@ data:
     \        static int floor_log2(long long v) {\n            int l = 0;\n      \
     \      while (1LL << (l + 1) <= v) ++l;\n            return l;\n        }\n  \
     \  };\n} // namespace suisen\n\n\n\n"
-  code: "#ifndef SUISEN_DOUBLING\n#define SUISEN_DOUBLING\n\n#include <cstdint>\n\
-    #include <utility>\n#include <vector>\n\nnamespace suisen {\n    struct FunctionalGraph\
-    \ {\n        struct Doubling;\n        template <typename T, T(*)(T, T), T(*)()>\n\
-    \        struct DoublingSum;\n        friend struct Doubling;\n        template\
-    \ <typename T, T(*op)(T, T), T(*e)()>\n        friend struct DoublingSum;\n\n\
-    \        FunctionalGraph() : FunctionalGraph(0) {}\n        FunctionalGraph(int\
-    \ n) : _n(n), _nxt(n) {}\n        FunctionalGraph(const std::vector<int>& nxt)\
-    \ : _n(nxt.size()), _nxt(nxt) {}\n\n        const int& operator[](int u) const\
-    \ {\n            return _nxt[u];\n        }\n        int& operator[](int u) {\n\
-    \            return _nxt[u];\n        }\n\n        struct Doubling {\n       \
-    \     friend struct FunctionalGraph;\n\n            int query(int u, long long\
-    \ d) {\n                for (int l = _log; l >= 0; --l) if ((d >> l) & 1) u =\
-    \ _nxt[l][u];\n                return u;\n            }\n\n        private:\n\
-    \            int _n, _log;\n            std::vector<std::vector<int>> _nxt;\n\n\
-    \            Doubling(const std::vector<int>& nxt, long long max_step) : _n(nxt.size()),\
-    \ _log(floor_log2(max_step)), _nxt(_log + 1, std::vector<int>(_n)) {\n       \
-    \         _nxt[0] = nxt;\n                for (int i = 1; i <= _log; ++i) for\
-    \ (int j = 0; j < _n; ++j) {\n                    _nxt[i][j] = _nxt[i - 1][_nxt[i\
-    \ - 1][j]];\n                }\n            }\n        };\n\n        template\
-    \ <typename T, T(*op)(T, T), T(*e)()>\n        struct DoublingSum : private Doubling\
-    \ {\n            friend struct FunctionalGraph;\n\n            struct Result {\n\
-    \                int v;\n                T sum;\n                operator std::pair<int,\
-    \ T>() { return std::pair<int, T>{ v, sum }; }\n            };\n\n           \
-    \ Result query(int u, long long d) {\n                T sum = e();\n         \
-    \       for (int l = _log; l >= 0; --l) if ((d >> l) & 1) sum = op(sum, _dat[l][std::exchange(u,\
-    \ _nxt[l][u])]);\n                return Result{ u, sum };\n            }\n\n\
+  code: "#ifndef SUISEN_DOUBLING\n#define SUISEN_DOUBLING\n\n#include <cassert>\n\
+    #include <cstdint>\n#include <optional>\n#include <tuple>\n#include <utility>\n\
+    #include <vector>\n\nnamespace suisen {\n    struct FunctionalGraph {\n      \
+    \  struct Doubling;\n        template <typename T, T(*)(T, T), T(*)()>\n     \
+    \   struct DoublingSum;\n        friend struct Doubling;\n        template <typename\
+    \ T, T(*op)(T, T), T(*e)()>\n        friend struct DoublingSum;\n\n        FunctionalGraph()\
+    \ : FunctionalGraph(0) {}\n        FunctionalGraph(int n) : _n(n), _nxt(n) {}\n\
+    \        FunctionalGraph(const std::vector<int>& nxt) : _n(nxt.size()), _nxt(nxt)\
+    \ {}\n\n        const int& operator[](int u) const {\n            return _nxt[u];\n\
+    \        }\n        int& operator[](int u) {\n            return _nxt[u];\n  \
+    \      }\n\n        struct Doubling {\n            friend struct FunctionalGraph;\n\
+    \n            int query(int u, long long d) {\n                for (int l = _log;\
+    \ l >= 0; --l) if ((d >> l) & 1) u = _nxt[l][u];\n                return u;\n\
+    \            }\n\n            struct BinarySearchResult {\n                int\
+    \ v;\n                long long step;\n                operator std::pair<int,\
+    \ long long>() { return std::pair<int, long long>{ v, step }; }\n            };\n\
+    \n            template <typename Pred>\n            auto max_step(int u, Pred\
+    \ &&f) {\n                assert(f(u));\n                long long step = 0;\n\
+    \                for (int l = _log; l >= 0; --l) if (int nxt_u = _nxt[l][u]; f(nxt_u))\
+    \ {\n                    u = nxt_u, step |= 1LL << l;\n                }\n   \
+    \             return BinarySearchResult{ u, step };\n            }\n\n       \
+    \     template <typename Pred>\n            std::optional<BinarySearchResult>\
+    \ step_until(int u, Pred &&f) {\n                if (f(u)) return BinarySearchResult\
+    \ { u, 0 };\n                auto [v, step] = max_step(u, [&](int v) { return\
+    \ not f(v); });\n                v = _nxt[0][v], ++step;\n                if (not\
+    \ f(v)) return std::nullopt;\n                return BinarySearchResult{ v, step\
+    \ };\n            }\n\n        private:\n            int _n, _log;\n         \
+    \   std::vector<std::vector<int>> _nxt;\n\n            Doubling(const std::vector<int>&\
+    \ nxt, long long max_step) : _n(nxt.size()), _log(floor_log2(max_step)), _nxt(_log\
+    \ + 1, std::vector<int>(_n)) {\n                _nxt[0] = nxt;\n             \
+    \   for (int i = 1; i <= _log; ++i) for (int j = 0; j < _n; ++j) {\n         \
+    \           _nxt[i][j] = _nxt[i - 1][_nxt[i - 1][j]];\n                }\n   \
+    \         }\n        };\n\n        template <typename T, T(*op)(T, T), T(*e)()>\n\
+    \        struct DoublingSum : private Doubling {\n            friend struct FunctionalGraph;\n\
+    \n            struct Result {\n                int v;\n                T sum;\n\
+    \                operator std::pair<int, T>() { return std::pair<int, T>{ v, sum\
+    \ }; }\n            };\n\n            auto query(int u, long long d) {\n     \
+    \           T sum = e();\n                for (int l = _log; l >= 0; --l) if ((d\
+    \ >> l) & 1) sum = op(sum, _dat[l][std::exchange(u, _nxt[l][u])]);\n         \
+    \       return Result{ u, sum };\n            }\n\n            struct BinarySearchResult\
+    \ {\n                int v;\n                T sum;\n                long long\
+    \ step;\n                operator std::tuple<int, T, long long>() { return std::tuple<int,\
+    \ T, long long>{ v, sum, step }; }\n            };\n\n            template <typename\
+    \ Pred>\n            auto max_step(int u, Pred &&f) {\n                assert(f(e()));\n\
+    \                long long step = 0;\n                T sum = e();\n         \
+    \       for (int l = _log; l >= 0; --l) {\n                    if (T nxt_sum =\
+    \ op(sum, _dat[l][u]); f(nxt_sum)) {\n                        sum = std::move(nxt_sum),\
+    \ u = _nxt[l][u], step |= 1LL << l;\n                    }\n                }\n\
+    \                return BinarySearchResult{ u, sum, step };\n            }\n \
+    \           template <typename Pred>\n            std::optional<BinarySearchResult>\
+    \ step_until(int u, Pred &&f) {\n                if (f(e())) return BinarySearchResult\
+    \ { u, e(), 0 };\n                auto [v, sum, step] = max_step(u, [&](const\
+    \ T& v) { return not f(v); });\n                sum = op(sum, _dat[0][v]), v =\
+    \ _nxt[0][v], ++step;\n                if (not f(sum)) return std::nullopt;\n\
+    \                return BinarySearchResult{ v, sum, step };\n            }\n\n\
     \        private:\n            std::vector<std::vector<T>> _dat;\n\n         \
     \   DoublingSum(const std::vector<int>& nxt, long long max_step, const std::vector<T>&\
     \ dat) : Doubling(nxt, max_step), _dat(_log + 1, std::vector<T>(_n, e())) {\n\
@@ -131,7 +189,7 @@ data:
     \     };\n\n        Doubling doubling(long long max_step) const {\n          \
     \  return Doubling(_nxt, max_step);\n        }\n\n        template <typename T,\
     \ T(*op)(T, T), T(*e)()>\n        DoublingSum<T, op, e> doubling(long long max_step,\
-    \ std::vector<T>& dat) const {\n            return DoublingSum<T, op, e>(_nxt,\
+    \ const std::vector<T>& dat) const {\n            return DoublingSum<T, op, e>(_nxt,\
     \ max_step, dat);\n        }\n\n        struct InfinitePath {\n            int\
     \ head_v;\n            int head_len;\n            int loop_v;\n            int\
     \ loop_len;\n            InfinitePath() = default;\n            InfinitePath(int\
@@ -184,7 +242,7 @@ data:
   isVerificationFile: false
   path: library/graph/functional_graph.hpp
   requiredBy: []
-  timestamp: '2022-04-30 04:34:44+09:00'
+  timestamp: '2022-06-05 19:22:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/functional_graph/dummy.test.cpp
