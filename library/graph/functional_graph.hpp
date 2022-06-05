@@ -31,7 +31,7 @@ namespace suisen {
         struct Doubling {
             friend struct FunctionalGraph;
 
-            int query(int u, long long d) {
+            int query(int u, long long d) const {
                 for (int l = _log; l >= 0; --l) if ((d >> l) & 1) u = _nxt[l][u];
                 return u;
             }
@@ -39,11 +39,11 @@ namespace suisen {
             struct BinarySearchResult {
                 int v;
                 long long step;
-                operator std::pair<int, long long>() { return std::pair<int, long long>{ v, step }; }
+                operator std::pair<int, long long>() const { return std::pair<int, long long>{ v, step }; }
             };
 
             template <typename Pred>
-            auto max_step(int u, Pred &&f) {
+            auto max_step(int u, Pred &&f) const {
                 assert(f(u));
                 long long step = 0;
                 for (int l = _log; l >= 0; --l) if (int nxt_u = _nxt[l][u]; f(nxt_u)) {
@@ -53,7 +53,7 @@ namespace suisen {
             }
 
             template <typename Pred>
-            std::optional<BinarySearchResult> step_until(int u, Pred &&f) {
+            std::optional<BinarySearchResult> step_until(int u, Pred &&f) const {
                 if (f(u)) return BinarySearchResult { u, 0 };
                 auto [v, step] = max_step(u, [&](int v) { return not f(v); });
                 v = _nxt[0][v], ++step;
@@ -80,10 +80,10 @@ namespace suisen {
             struct Result {
                 int v;
                 T sum;
-                operator std::pair<int, T>() { return std::pair<int, T>{ v, sum }; }
+                operator std::pair<int, T>() const { return std::pair<int, T>{ v, sum }; }
             };
 
-            auto query(int u, long long d) {
+            auto query(int u, long long d) const {
                 T sum = e();
                 for (int l = _log; l >= 0; --l) if ((d >> l) & 1) sum = op(sum, _dat[l][std::exchange(u, _nxt[l][u])]);
                 return Result{ u, sum };
@@ -93,11 +93,11 @@ namespace suisen {
                 int v;
                 T sum;
                 long long step;
-                operator std::tuple<int, T, long long>() { return std::tuple<int, T, long long>{ v, sum, step }; }
+                operator std::tuple<int, T, long long>() const { return std::tuple<int, T, long long>{ v, sum, step }; }
             };
 
             template <typename Pred>
-            auto max_step(int u, Pred &&f) {
+            auto max_step(int u, Pred &&f) const {
                 assert(f(e()));
                 long long step = 0;
                 T sum = e();
@@ -109,7 +109,7 @@ namespace suisen {
                 return BinarySearchResult{ u, sum, step };
             }
             template <typename Pred>
-            std::optional<BinarySearchResult> step_until(int u, Pred &&f) {
+            std::optional<BinarySearchResult> step_until(int u, Pred &&f) const {
                 if (f(e())) return BinarySearchResult { u, e(), 0 };
                 auto [v, sum, step] = max_step(u, [&](const T& v) { return not f(v); });
                 sum = op(sum, _dat[0][v]), v = _nxt[0][v], ++step;
@@ -183,7 +183,7 @@ namespace suisen {
          * Calculates k'th iterate: f(f(f(...f(i)))) for all 0 <= i < N in O(N) time.
          * Reference: https://noshi91.hatenablog.com/entry/2019/09/22/114149
          */
-        std::vector<int> kth_iterate(const long long k) {
+        std::vector<int> kth_iterate(const long long k) const {
             assert(k >= 0);
             std::vector<int> res(_n);
             std::vector<int> forest_roots;
