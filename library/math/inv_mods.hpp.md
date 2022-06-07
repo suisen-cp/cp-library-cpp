@@ -56,6 +56,9 @@ data:
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
+    title: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -203,6 +206,7 @@ data:
   verifiedWith:
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/relaxed_convolution/abc230_h.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
   - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/sps/arc105_f.test.cpp

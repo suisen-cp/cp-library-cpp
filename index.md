@@ -85,6 +85,12 @@ data:
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
     - icon: ':heavy_check_mark:'
+      path: library/convolution/relaxed_convolution.hpp
+      title: library/convolution/relaxed_convolution.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/convolution/semi_relaxed_convolution.hpp
+      title: library/convolution/semi_relaxed_convolution.hpp
+    - icon: ':heavy_check_mark:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -765,6 +771,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
       title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - name: test/src/convolution/relaxed_convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
+      title: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/relaxed_convolution/convolution_mod.test.cpp
+      title: test/src/convolution/relaxed_convolution/convolution_mod.test.cpp
+  - name: test/src/convolution/semi_relaxed_convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/semi_relaxed_convolution/abc213_h.test.cpp
+      title: test/src/convolution/semi_relaxed_convolution/abc213_h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/semi_relaxed_convolution/convolution_mod.test.cpp
+      title: test/src/convolution/semi_relaxed_convolution/convolution_mod.test.cpp
   - name: test/src/convolution/subset_convolution
     pages:
     - icon: ':heavy_check_mark:'
