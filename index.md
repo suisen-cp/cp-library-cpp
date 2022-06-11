@@ -347,6 +347,9 @@ data:
       path: library/graph/low_link.hpp
       title: Low Link
     - icon: ':heavy_check_mark:'
+      path: library/graph/maximum_independent_set.hpp
+      title: library/graph/maximum_independent_set.hpp
+    - icon: ':heavy_check_mark:'
       path: library/graph/min_cost_flow.hpp
       title: Min Cost Flow
     - icon: ':warning:'
@@ -681,6 +684,9 @@ data:
       path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
       title: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
+      title: test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
       title: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
   - name: test/src/algorithm/dynamic_convex_hull_offline
@@ -704,6 +710,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
       title: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
+      title: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
   - name: test/src/algorithm/sliding_window_minimum
     pages:
     - icon: ':heavy_check_mark:'
@@ -1161,6 +1170,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/low_link/bridges.test.cpp
       title: test/src/graph/low_link/bridges.test.cpp
+  - name: test/src/graph/maximum_independent_set
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/maximum_independent_set/maximum_independent_set.test.cpp
+      title: test/src/graph/maximum_independent_set/maximum_independent_set.test.cpp
   - name: test/src/graph/min_cost_flow
     pages:
     - icon: ':heavy_check_mark:'

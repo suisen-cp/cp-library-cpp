@@ -171,11 +171,17 @@ data:
     path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
     title: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
+    title: test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
     title: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
     title: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
+    title: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
     title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
@@ -553,7 +559,9 @@ data:
   verifiedWith:
   - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
+  - test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
   - test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
+  - test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
   - test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
