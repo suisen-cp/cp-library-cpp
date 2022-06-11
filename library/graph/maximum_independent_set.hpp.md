@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/graph/maximum_clique.hpp
+    title: library/graph/maximum_clique.hpp
+  - icon: ':warning:'
+    path: library/graph/minimum_vertex_cover.hpp
+    title: library/graph/minimum_vertex_cover.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/maximum_independent_set/maximum_independent_set.test.cpp
@@ -93,7 +99,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/graph/maximum_independent_set.hpp
-  requiredBy: []
+  requiredBy:
+  - library/graph/minimum_vertex_cover.hpp
+  - library/graph/maximum_clique.hpp
   timestamp: '2022-06-11 19:21:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

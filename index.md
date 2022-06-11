@@ -346,12 +346,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/low_link.hpp
       title: Low Link
+    - icon: ':warning:'
+      path: library/graph/maximum_clique.hpp
+      title: library/graph/maximum_clique.hpp
     - icon: ':heavy_check_mark:'
       path: library/graph/maximum_independent_set.hpp
       title: library/graph/maximum_independent_set.hpp
     - icon: ':heavy_check_mark:'
       path: library/graph/min_cost_flow.hpp
       title: Min Cost Flow
+    - icon: ':warning:'
+      path: library/graph/minimum_vertex_cover.hpp
+      title: library/graph/minimum_vertex_cover.hpp
     - icon: ':warning:'
       path: library/graph/remove_multiedges.hpp
       title: "\u591A\u91CD\u8FBA\u9664\u53BB"
