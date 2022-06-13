@@ -1,130 +1,144 @@
 #ifndef SUISEN_SPARSE_LAZY_SEGTREE
 #define SUISEN_SPARSE_LAZY_SEGTREE
 
+#include <array>
 #include <cassert>
 #include <vector>
-#include "library/util/update_proxy_object.hpp"
 
 namespace suisen {
     template <
-        typename index_t,      // type of index (integral: int, long long, etc.)
-        typename T,            // type of element
-        T(*op)(T, T),          // type of binary operator on T
-        T(*e)(),               //
-        typename F,            // type of operator which acts on T
-        T(*mapping)(F, T),     // type of action F on T
-        F(*composition)(F, F), // type of binary operator on F
-        F(*id)(),              //
-        T(*init)(int, int)     // type of function which initializes product of segment [l, r)
+        typename IndexType,                      // type of index (integral: bool, long long, etc.)
+        typename T,                              // type of element
+        T(*op)(T, T),                            // type of binary operator on T
+        T(*e)(),                                 //
+        typename F,                              // type of operator which acts on T
+        T(*mapping)(F, T, IndexType, IndexType), // type of action F on T
+        F(*composition)(F, F),                   // type of binary operator on F
+        F(*id)(),                                //
+        T(*init)(IndexType, IndexType)           // type of function which initializes product of segment [l, r)
     >
-    class SparseLazySegmentTree {
-        using unsigned_index_t = typename std::make_unsigned_t<index_t>;
+    struct SparseLazySegmentTree {
+        using index_type = IndexType;
+        using value_type = T;
+        using operator_type = F;
+    private:
+        using pool_index_type = uint32_t;
 
         struct Node {
-            Node* par;
-            Node* ch[2]{ nullptr, nullptr };
-            T dat;
-            F laz;
-            Node(Node* par, const T& dat) : par(par), dat(dat), laz(id()) {}
-            ~Node() {
-                delete ch[0];
-                delete ch[1];
-            }
+            pool_index_type ch[2]{ 0, 0 };
+            value_type dat;
+            operator_type laz;
+            Node(const value_type& dat) : dat(dat), laz(id()) {}
         };
 
+        static inline std::vector<Node> pool{ Node{ e() } };
+
+        static pool_index_type new_node(const value_type& dat) {
+            const pool_index_type res = pool.size();
+            return pool.emplace_back(dat), res;
+        }
     public:
         SparseLazySegmentTree() : SparseLazySegmentTree(0) {}
-        SparseLazySegmentTree(index_t n) : n(n), root(new Node(nullptr, init(0, n))) {}
+        explicit SparseLazySegmentTree(IndexType n) : n(n), root(new_node(init(0, n))) {}
 
-        ~SparseLazySegmentTree() {
-            delete root;
-        }
-
-        auto operator[](unsigned_index_t i) {
-            assert(i < n);
-            Node* leaf = get_or_create_leaf(i);
-            return UpdateProxyObject{ leaf->dat, [this, leaf] { update_from(leaf); } };
+        static void reserve(int siz) {
+            pool.reserve(siz);
         }
 
-        T get(unsigned_index_t i) {
-            return (*this)[i];
+        value_type get(index_type i) const {
+            assert(0 <= i and i < n);
+            operator_type f = id();
+            pool_index_type cur = root;
+            for (std::array<index_type, 2> lr { 0, n }; cur and lr[1] - lr[0] > 1;) {
+                index_type m = (lr[0] + lr[1]) >> 1;
+                bool b = i >= m;
+                f = composition(f, pool[cur].laz);
+                cur = pool[cur].ch[b], lr[not b] = m;
+            }
+            return mapping(f, cur ? pool[cur].dat : init(i, i + 1), i, i + 1);
         }
-        void set(unsigned_index_t i, const T& val) {
-            (*this)[i] = val;
+        template <typename Fun>
+        void apply_fun(index_type i, Fun &&fun) {
+            assert(0 <= i and i < n);
+            static std::vector<pool_index_type> path;
+            pool_index_type cur = root;
+            for (std::array<index_type, 2> lr { 0, n }; lr[1] - lr[0] > 1;) {
+                path.push_back(cur);
+                index_type m = (lr[0] + lr[1]) >> 1;
+                bool b = i >= m;
+                push(cur);
+                cur = pool[cur].ch[b], lr[not b] = m;
+            }
+            pool[cur].dat = fun(pool[cur].dat);
+            while (path.size()) update(path.back()), path.pop_back();
         }
-        void apply(unsigned_index_t i, const F& f) {
-            (*this)[i].apply([this, f](const T& dat) { return mapping(f, dat); });
+        void set(index_type i, const value_type& val) {
+            apply_fun(i, [&val](const value_type&) { return val; });
+        }
+        void apply(index_type i, const operator_type& f) {
+            apply_fun(i, [&f, i](const value_type& val) { return mapping(f, val, i, i + 1); });
         }
 
-        T operator()(unsigned_index_t l, unsigned_index_t r) {
-            assert(l <= r and r <= n);
-            return query(root, l, r);
+        value_type operator()(index_type l, index_type r) {
+            assert(0 <= l and l <= r and r <= n);
+            return query(root, l, r, 0, n);
         }
-        T prod(unsigned_index_t l, unsigned_index_t r) {
+        value_type prod(index_type l, index_type r) {
             return (*this)(l, r);
         }
-        T prod_all() {
-            return root->dat;
+        value_type prod_all() {
+            return pool[root].dat;
         }
 
-        void apply(unsigned_index_t l, unsigned_index_t r, const F& f) {
-            assert(l <= r and r <= n);
+        void apply(index_type l, index_type r, const operator_type& f) {
+            assert(0 <= l and l <= r and r <= n);
             apply(root, f, l, r, 0, n);
         }
-        void apply_all(const F& f) {
-            apply_all(root, f);
+        void apply_all(const operator_type& f) {
+            apply_all(root, f, 0, n);
         }
 
     private:
-        unsigned_index_t n;
-        Node* root;
+        index_type n;
+        pool_index_type root;
 
-        Node* get_or_create_leaf(unsigned_index_t i) {
-            Node* cur = root;
-            while (cur->r - cur->l > 1) {
-                push(cur);
-                cur = cur->ch[i >= (cur->l + cur->r) >> 1];
-            }
-            return cur;
-        }
-        Node* get_or_create_child(Node* node, int index, unsigned_index_t tl, unsigned_index_t tr) {
-            if (node->ch[index]) return node->ch[index];
-            return node->ch[index] = new Node(node, init(tl, tr));
+        pool_index_type get_or_create_child(pool_index_type node, int index, index_type tl, index_type tr) {
+            if (pool[node].ch[index]) return pool[node].ch[index];
+            const pool_index_type ch = new_node(init(tl, tr));
+            return pool[node].ch[index] = ch;
         }
 
-        void apply_all(Node* node, const F& f) {
-            node->dat = mapping(f, node->dat);
-            node->laz = composition(f, node->laz);
+        void apply_all(pool_index_type node, const operator_type& f, index_type tl, index_type tr) {
+            pool[node].dat = mapping(f, pool[node].dat, tl, tr);
+            pool[node].laz = composition(f, pool[node].laz);
         }
-        void push(Node* node, unsigned_index_t tl, unsigned_index_t tr) {
-            unsigned_index_t tm = (tl + tr) >> 1;
-            apply_all(get_or_create_child(node, 0, tl, tm), node->laz);
-            apply_all(get_or_create_child(node, 1, tm, tr), node->laz);
-            node->laz = id();
-        }
-
-        void update(Node* node) {
-            node->dat = op(node->ch[0]->dat, node->ch[1]->dat);
-        }
-        void update_from(Node* leaf) {
-            while (leaf->par) update(leaf = leaf->par);
+        void push(pool_index_type node, index_type tl, index_type tr) {
+            const index_type tm = (tl + tr) >> 1;
+            const operator_type laz = pool[node].laz;
+            apply_all(get_or_create_child(node, 0, tl, tm), laz, tl, tm);
+            apply_all(get_or_create_child(node, 1, tm, tr), laz, tm, tr);
+            pool[node].laz = id();
         }
 
-        T query(Node* node, unsigned_index_t ql, unsigned_index_t qr, unsigned_index_t tl, unsigned_index_t tr) {
+        void update(pool_index_type node) {
+            pool_index_type lch = pool[node].ch[0], rch = pool[node].ch[1];
+            pool[node].dat = op(pool[lch].dat, pool[rch].dat);
+        }
+
+        value_type query(pool_index_type node, index_type ql, index_type qr, index_type tl, index_type tr) {
             if (tr <= ql or qr <= tl) return e();
-            if (ql <= tl and tr <= qr) return node->dat;
+            if (ql <= tl and tr <= qr) return pool[node].dat;
             push(node, tl, tr);
-            unsigned_index_t tm = (tl + tr) >> 1;
-            return op(query(node->ch[0], ql, qr, tl, tm), query(node->ch[1], ql, qr, tm, tr));
+            const index_type tm = (tl + tr) >> 1;
+            return op(query(pool[node].ch[0], ql, qr, tl, tm), query(pool[node].ch[1], ql, qr, tm, tr));
         }
 
-        void apply(Node* node, const F& f, unsigned_index_t ql, unsigned_index_t qr, unsigned_index_t tl, unsigned_index_t tr) {
+        void apply(pool_index_type node, const operator_type& f, index_type ql, index_type qr, index_type tl, index_type tr) {
             if (tr <= ql or qr <= tl) return;
-            if (ql <= tl and tr <= qr) return apply_all(node, f);
-            unsigned_index_t tm = (tl + tr) >> 1;
+            if (ql <= tl and tr <= qr) return apply_all(node, f, tl, tr);
+            const index_type tm = (tl + tr) >> 1;
             push(node, tl, tr);
-            apply(node->ch[0], f, ql, qr, tl, tm);
-            apply(node->ch[1], f, ql, qr, tm, tr);
+            apply(pool[node].ch[0], f, ql, qr, tl, tm), apply(pool[node].ch[1], f, ql, qr, tm, tr);
             update(node);
         }
     };
