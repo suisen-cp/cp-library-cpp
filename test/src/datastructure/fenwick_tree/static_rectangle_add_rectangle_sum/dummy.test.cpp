@@ -6,7 +6,7 @@
 #include <atcoder/modint>
 using mint = atcoder::modint998244353;
 
-#include "library/datastructure/static_rectangle_add_rectangle_sum.hpp"
+#include "library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp"
 using namespace suisen;
 
 template <typename T, int H, int W>

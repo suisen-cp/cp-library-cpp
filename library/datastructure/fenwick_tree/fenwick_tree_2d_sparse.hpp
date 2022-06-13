@@ -5,7 +5,7 @@
 #include <cassert>
 #include <tuple>
 
-#include "library/datastructure/fenwick_tree.hpp"
+#include "library/datastructure/fenwick_tree/fenwick_tree.hpp"
 
 namespace suisen {
 
@@ -38,6 +38,30 @@ namespace suisen {
                 data[k] = FenwickTree<T>(pos_y[k].size());
             }
         }
+
+        // void build_and_init(const std::vector<std::tuple<int, int, T>> &points) {
+        //     build();
+        //     for (const auto &[x, y, w] : points) {
+        //         int kx = comp_x(x), ky = comp_y(kx, y);
+        //         data[kx].get_internal_container()[ky] += w;
+        //     }
+        //     for (int kx = n; kx; --kx) {
+        //         auto &data_kx = data[kx - 1].get_internal_container();
+        //         const int m = data[kx - 1].size();
+        //         for (int ky = m; ky; --ky) {
+        //             const int pky = ky + (ky & -ky);
+        //             if (pky > m) continue;
+        //             data_kx[pky - 1] += data[ky - 1];
+        //         }
+        //         const int pkx = kx + (kx & -kx);
+        //         if (pkx > n) continue;
+        //         auto &data_pkx = data[pkx - 1].get_internal_container();
+        //         for (int ky = m; ky; --ky) {
+        //             int y = pos_y[kx - 1][ky - 1];
+        //             data_pkx[comp_y(pkx - 1, y)] += data_kx[ky - 1];
+        //         }
+        //     }
+        // }
 
         T sum(int l, int r, int d, int u) const {
             return (*this)(l, r, d, u);

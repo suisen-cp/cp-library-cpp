@@ -3,7 +3,7 @@
 #include <iostream>
 #include <tuple>
 
-#include "library/datastructure/fenwick_tree_2d_sparse.hpp"
+#include "library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp"
 using suisen::FenwickTree2DSparse;
 
 int main() {

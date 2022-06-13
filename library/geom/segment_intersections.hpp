@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "library/util/coordinate_compressor.hpp"
-#include "library/datastructure/fenwick_tree.hpp"
+#include "library/datastructure/fenwick_tree/fenwick_tree.hpp"
 
 namespace suisen::geometry {
 

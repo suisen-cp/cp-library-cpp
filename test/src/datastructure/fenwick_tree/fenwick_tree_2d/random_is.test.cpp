@@ -5,7 +5,7 @@
 
 #include "library/math/inv_mods.hpp"
 #include "library/datastructure/segment_tree/segment_tree.hpp"
-#include "library/datastructure/fenwick_tree_2d.hpp"
+#include "library/datastructure/fenwick_tree/fenwick_tree_2d.hpp"
 
 using namespace suisen;
 using mint = atcoder::modint1000000007;

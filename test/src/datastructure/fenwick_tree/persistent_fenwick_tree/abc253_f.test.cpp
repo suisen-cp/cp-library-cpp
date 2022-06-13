@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "library/datastructure/persistent_fenwick_tree.hpp"
+#include "library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp"
 
 using Tree = suisen::PersistentFenwickTree<long long>;
  

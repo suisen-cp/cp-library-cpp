@@ -2,7 +2,7 @@
 #define SUISEN_RECTANGLE_ADD_RECTANGLE_SUM
 
 #include "library/util/tuple_ops.hpp"
-#include "library/datastructure/fenwick_tree_2d_sparse.hpp"
+#include "library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp"
 
 namespace suisen {
     template <typename T>

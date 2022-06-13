@@ -4,7 +4,7 @@
 #include <tuple>
 
 #include "library/util/coordinate_compressor.hpp"
-#include "library/datastructure/persistent_fenwick_tree.hpp"
+#include "library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp"
 
 using suisen::CoordinateCompressorBuilder;
 using suisen::PersistentFenwickTree;
