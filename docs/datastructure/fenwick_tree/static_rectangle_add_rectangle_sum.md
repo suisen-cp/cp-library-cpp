@@ -1,6 +1,6 @@
 ---
 title: Static Rectangle Add Rectangle Sum
-documentation_of: //library/datastructure/static_rectangle_add_rectangle_sum.hpp
+documentation_of: //library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
 ---
 ## Static Rectangle Add Rectangle Sum
 
