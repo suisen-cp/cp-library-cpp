@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
-    title: library/convolution/array_subset_convolution.hpp
+    title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
@@ -14,7 +14,7 @@ data:
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
-    title: library/math/array_sps.hpp
+    title: Array Sps
   - icon: ':heavy_check_mark:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
@@ -23,7 +23,7 @@ data:
     title: Set Power Series
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
-    title: library/polynomial/array_fps_naive.hpp
+    title: Array Fps Naive
   - icon: ':heavy_check_mark:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori

@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
-    title: library/convolution/array_subset_convolution.hpp
+    title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
-    title: library/math/array_sps.hpp
+    title: Array Sps
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
@@ -15,7 +15,7 @@ data:
     title: Modint Extension
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
-    title: library/polynomial/array_fps_naive.hpp
+    title: Array Fps Naive
   - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\

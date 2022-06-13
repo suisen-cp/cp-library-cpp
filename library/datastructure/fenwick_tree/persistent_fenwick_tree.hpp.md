@@ -7,20 +7,20 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
-    title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
+    path: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
+    title: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
-    title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
+    path: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/datastructure/persistent_fenwick_tree.hpp\"\n\n\n\
-    \n#include <cassert>\n\n#line 1 \"library/util/object_pool.hpp\"\n\n\n\n#include\
-    \ <deque>\n#include <vector>\n\nnamespace suisen {\n    template <typename T,\
-    \ bool auto_extend = false>\n    struct ObjectPool {\n        using value_type\
+  bundledCode: "#line 1 \"library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp\"\
+    \n\n\n\n#include <cassert>\n\n#line 1 \"library/util/object_pool.hpp\"\n\n\n\n\
+    #include <deque>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
+    \ T, bool auto_extend = false>\n    struct ObjectPool {\n        using value_type\
     \ = T;\n        using value_pointer_type = T*;\n\n        template <typename U>\n\
     \        using container_type = std::conditional_t<auto_extend, std::deque<U>,\
     \ std::vector<U>>;\n\n        container_type<value_type> pool;\n        container_type<value_pointer_type>\
@@ -36,7 +36,7 @@ data:
     \ return;\n            int siz = stock.size();\n            for (int i = siz;\
     \ i <= siz * 2; ++i) {\n                stock.push_back(&pool.emplace_back());\n\
     \            }\n            it = stock.begin() + siz;\n        }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 7 \"library/datastructure/persistent_fenwick_tree.hpp\"\
+    \ namespace suisen\n\n\n#line 7 \"library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp\"\
     \n\nnamespace suisen {\n    template <typename T>\n    struct PersistentFenwickTree\
     \ {\n        struct Node;\n\n        using value_type = T;\n\n        using node_type\
     \ = Node;\n        using node_pointer_type = node_type*;\n\n        struct Node\
@@ -144,14 +144,14 @@ data:
   dependsOn:
   - library/util/object_pool.hpp
   isVerificationFile: false
-  path: library/datastructure/persistent_fenwick_tree.hpp
+  path: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
   requiredBy: []
-  timestamp: '2022-05-29 02:47:47+09:00'
+  timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
-  - test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
-documentation_of: library/datastructure/persistent_fenwick_tree.hpp
+  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
+documentation_of: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
 layout: document
 title: Persistent Fenwick Tree
 ---
@@ -159,9 +159,7 @@ title: Persistent Fenwick Tree
 
 Fenwick Tree の値を二分木における in-order で配置すると，`add`, `sum` の操作が根から (葉とは限らない) ある節点までのパス上で完結する．即ち，Segment Tree 等と同様にして永続化することが出来る．
 
-サイズ $N$ の列を管理するために必要なノードは $N + O(\log N)$ 個であり，$2 N - 1$ 個必要である永続 Segment Tree よりも空間効率がよい．
-
-`add`, `sum` を非再帰で書けるので，定数倍の面でも有利?
+永続セグメント木よりも定数倍がよいか?
 
 例. [Rectangle Sum](https://judge.yosupo.jp/problem/rectangle_sum) での速度比較
 

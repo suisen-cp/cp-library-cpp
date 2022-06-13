@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/fenwick_tree.hpp
+    path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
@@ -13,15 +13,15 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-    title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+    path: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+    title: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
-    \n\n\n\n#include <algorithm>\n\n#line 1 \"library/datastructure/fenwick_tree.hpp\"\
+  bundledCode: "#line 1 \"library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp\"\
+    \n\n\n\n#include <algorithm>\n\n#line 1 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
     \n\n\n\n#include <vector>\n#include <map>\n#include <unordered_map>\n\n#line 1\
     \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
     \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
@@ -54,8 +54,8 @@ data:
     \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree.hpp\"\n\
-    \nnamespace suisen {\n    namespace internal {\n        template <typename T,\
+    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
+    \n\nnamespace suisen {\n    namespace internal {\n        template <typename T,\
     \ typename index_t = int, typename Container = std::vector<T>>\n        class\
     \ FenwickTreeBase {\n        public:\n            FenwickTreeBase() {}\n     \
     \       explicit FenwickTreeBase(index_t n) : n(n) {}\n\n            int size()\
@@ -125,7 +125,7 @@ data:
     \ V, typename ...Args>\n    std::tuple<Args...> operator*(std::tuple<Args...>\
     \ t1, const V &v) { return std::move(t1 *= v); }\n    template <typename V, typename\
     \ ...Args>\n    std::tuple<Args...> operator/(std::tuple<Args...> t1, const V\
-    \ &v) { return std::move(t1 /= v); }\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
+    \ &v) { return std::move(t1 /= v); }\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp\"\
     \n\nnamespace suisen {\n    template <typename T>\n    struct AddQuery {\n   \
     \     int l, r, d, u;\n        T val;\n        AddQuery() = default;\n       \
     \ AddQuery(int l, int r, int d, int u, const T &val) : l(l), r(r), d(d), u(u),\
@@ -165,11 +165,11 @@ data:
     \ += sum;\n                else        res[qid] -= sum;\n            }\n     \
     \   }\n        return res;\n    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM\n#define SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM\n\
-    \n#include <algorithm>\n\n#include \"library/datastructure/fenwick_tree.hpp\"\n\
-    #include \"library/util/tuple_ops.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ T>\n    struct AddQuery {\n        int l, r, d, u;\n        T val;\n       \
-    \ AddQuery() = default;\n        AddQuery(int l, int r, int d, int u, const T\
-    \ &val) : l(l), r(r), d(d), u(u), val(val) {}\n    };\n    struct SumQuery {\n\
+    \n#include <algorithm>\n\n#include \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
+    \n#include \"library/util/tuple_ops.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename T>\n    struct AddQuery {\n        int l, r, d, u;\n        T val;\n\
+    \        AddQuery() = default;\n        AddQuery(int l, int r, int d, int u, const\
+    \ T &val) : l(l), r(r), d(d), u(u), val(val) {}\n    };\n    struct SumQuery {\n\
     \        int l, r, d, u;\n        SumQuery() = default;\n        SumQuery(int\
     \ l, int r, int d, int u) : l(l), r(r), d(d), u(u) {}\n    };\n\n    template\
     \ <typename T>\n    std::vector<T> static_rectangle_add_rectangle_sum(const std::vector<AddQuery<T>>&\
@@ -205,17 +205,17 @@ data:
     \ += sum;\n                else        res[qid] -= sum;\n            }\n     \
     \   }\n        return res;\n    }\n} // namespace suisen\n\n\n#endif // SUISEN_STATIC_RECTANGLE_ADD_RECTANGLE_SUM\n"
   dependsOn:
-  - library/datastructure/fenwick_tree.hpp
+  - library/datastructure/fenwick_tree/fenwick_tree.hpp
   - library/type_traits/type_traits.hpp
   - library/util/tuple_ops.hpp
   isVerificationFile: false
-  path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+  path: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-documentation_of: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+  - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+documentation_of: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
 layout: document
 title: Static Rectangle Add Rectangle Sum
 ---

@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/fenwick_tree.hpp
+    path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+    path: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
     title: Static Rectangle Add Rectangle Sum
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
@@ -23,11 +23,11 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
-  bundledCode: "#line 1 \"test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp\"\
     \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n\n#include <iostream>\n#include <random>\n\n#include <atcoder/modint>\nusing\
-    \ mint = atcoder::modint998244353;\n\n#line 1 \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
-    \n\n\n\n#include <algorithm>\n\n#line 1 \"library/datastructure/fenwick_tree.hpp\"\
+    \ mint = atcoder::modint998244353;\n\n#line 1 \"library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp\"\
+    \n\n\n\n#include <algorithm>\n\n#line 1 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
     \n\n\n\n#include <vector>\n#include <map>\n#include <unordered_map>\n\n#line 1\
     \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
     \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
@@ -60,8 +60,8 @@ data:
     \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree.hpp\"\n\
-    \nnamespace suisen {\n    namespace internal {\n        template <typename T,\
+    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
+    \n\nnamespace suisen {\n    namespace internal {\n        template <typename T,\
     \ typename index_t = int, typename Container = std::vector<T>>\n        class\
     \ FenwickTreeBase {\n        public:\n            FenwickTreeBase() {}\n     \
     \       explicit FenwickTreeBase(index_t n) : n(n) {}\n\n            int size()\
@@ -131,7 +131,7 @@ data:
     \ V, typename ...Args>\n    std::tuple<Args...> operator*(std::tuple<Args...>\
     \ t1, const V &v) { return std::move(t1 *= v); }\n    template <typename V, typename\
     \ ...Args>\n    std::tuple<Args...> operator/(std::tuple<Args...> t1, const V\
-    \ &v) { return std::move(t1 /= v); }\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
+    \ &v) { return std::move(t1 /= v); }\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp\"\
     \n\nnamespace suisen {\n    template <typename T>\n    struct AddQuery {\n   \
     \     int l, r, d, u;\n        T val;\n        AddQuery() = default;\n       \
     \ AddQuery(int l, int r, int d, int u, const T &val) : l(l), r(r), d(d), u(u),\
@@ -169,7 +169,7 @@ data:
     \                auto [a, b, c, d] = ft.sum(0, compress(y));\n               \
     \ const T sum = a * x * y + b * x + c * y + d;\n                if (is_add) res[qid]\
     \ += sum;\n                else        res[qid] -= sum;\n            }\n     \
-    \   }\n        return res;\n    }\n} // namespace suisen\n\n\n\n#line 10 \"test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp\"\
+    \   }\n        return res;\n    }\n} // namespace suisen\n\n\n\n#line 10 \"test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp\"\
     \nusing namespace suisen;\n\ntemplate <typename T, int H, int W>\nstd::vector<T>\
     \ static_rectangle_add_rectangle_sum_naive(const std::vector<AddQuery<T>>& add_queries,\
     \ const std::vector<SumQuery>& sum_queries) {\n    std::array<std::array<T, H>,\
@@ -198,7 +198,7 @@ data:
     \ World\" << std::endl;\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n\n#include <iostream>\n#include <random>\n\n#include <atcoder/modint>\nusing\
-    \ mint = atcoder::modint998244353;\n\n#include \"library/datastructure/static_rectangle_add_rectangle_sum.hpp\"\
+    \ mint = atcoder::modint998244353;\n\n#include \"library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp\"\
     \nusing namespace suisen;\n\ntemplate <typename T, int H, int W>\nstd::vector<T>\
     \ static_rectangle_add_rectangle_sum_naive(const std::vector<AddQuery<T>>& add_queries,\
     \ const std::vector<SumQuery>& sum_queries) {\n    std::array<std::array<T, H>,\
@@ -226,20 +226,20 @@ data:
     \ main() {\n    random_test<1000, 1000, 1000, 1000>();\n    std::cout << \"Hello\
     \ World\" << std::endl;\n    return 0;\n}"
   dependsOn:
-  - library/datastructure/static_rectangle_add_rectangle_sum.hpp
-  - library/datastructure/fenwick_tree.hpp
+  - library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
+  - library/datastructure/fenwick_tree/fenwick_tree.hpp
   - library/type_traits/type_traits.hpp
   - library/util/tuple_ops.hpp
   isVerificationFile: true
-  path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+  path: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+documentation_of: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-- /verify/test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp.html
-title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp.html
+title: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
 ---

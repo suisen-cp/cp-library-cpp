@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/persistent_fenwick_tree.hpp
+    path: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
     title: Persistent Fenwick Tree
   - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
@@ -17,12 +17,12 @@ data:
     PROBLEM: https://atcoder.jp/contests/abc253/tasks/abc253_f
     links:
     - https://atcoder.jp/contests/abc253/tasks/abc253_f
-  bundledCode: "#line 1 \"test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/abc253/tasks/abc253_f\"\n\n#include\
-    \ <iostream>\n\n#line 1 \"library/datastructure/persistent_fenwick_tree.hpp\"\n\
-    \n\n\n#include <cassert>\n\n#line 1 \"library/util/object_pool.hpp\"\n\n\n\n#include\
-    \ <deque>\n#include <vector>\n\nnamespace suisen {\n    template <typename T,\
-    \ bool auto_extend = false>\n    struct ObjectPool {\n        using value_type\
+    \ <iostream>\n\n#line 1 \"library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp\"\
+    \n\n\n\n#include <cassert>\n\n#line 1 \"library/util/object_pool.hpp\"\n\n\n\n\
+    #include <deque>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
+    \ T, bool auto_extend = false>\n    struct ObjectPool {\n        using value_type\
     \ = T;\n        using value_pointer_type = T*;\n\n        template <typename U>\n\
     \        using container_type = std::conditional_t<auto_extend, std::deque<U>,\
     \ std::vector<U>>;\n\n        container_type<value_type> pool;\n        container_type<value_pointer_type>\
@@ -38,7 +38,7 @@ data:
     \ return;\n            int siz = stock.size();\n            for (int i = siz;\
     \ i <= siz * 2; ++i) {\n                stock.push_back(&pool.emplace_back());\n\
     \            }\n            it = stock.begin() + siz;\n        }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 7 \"library/datastructure/persistent_fenwick_tree.hpp\"\
+    \ namespace suisen\n\n\n#line 7 \"library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp\"\
     \n\nnamespace suisen {\n    template <typename T>\n    struct PersistentFenwickTree\
     \ {\n        struct Node;\n\n        using value_type = T;\n\n        using node_type\
     \ = Node;\n        using node_pointer_type = node_type*;\n\n        struct Node\
@@ -89,7 +89,7 @@ data:
     \       PersistentFenwickTree(int p, node_pointer_type root) : _p(p), _root(root)\
     \ {}\n\n        static constexpr int floor_pow2(int n) {\n            int x =\
     \ 31 - __builtin_clz(n);\n            return x < 0 ? 0 : 1 << x;\n        }\n\
-    \    };\n}\n\n\n#line 6 \"test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp\"\
+    \    };\n}\n\n\n#line 6 \"test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp\"\
     \n\nusing Tree = suisen::PersistentFenwickTree<long long>;\n \nint main() {\n\
     \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    int\
     \ n, m, q;\n    std::cin >> n >> m >> q;\n \n    std::vector<std::pair<int, int>>\
@@ -105,7 +105,7 @@ data:
     \      std::cout << x + segs[t - 1].sum(0, j + 1) - segs[tl].sum(0, j + 1) <<\
     \ '\\n';\n        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc253/tasks/abc253_f\"\n\n\
-    #include <iostream>\n\n#include \"library/datastructure/persistent_fenwick_tree.hpp\"\
+    #include <iostream>\n\n#include \"library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp\"\
     \n\nusing Tree = suisen::PersistentFenwickTree<long long>;\n \nint main() {\n\
     \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    int\
     \ n, m, q;\n    std::cin >> n >> m >> q;\n \n    std::vector<std::pair<int, int>>\
@@ -121,18 +121,18 @@ data:
     \      std::cout << x + segs[t - 1].sum(0, j + 1) - segs[tl].sum(0, j + 1) <<\
     \ '\\n';\n        }\n    }\n    return 0;\n}"
   dependsOn:
-  - library/datastructure/persistent_fenwick_tree.hpp
+  - library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
   - library/util/object_pool.hpp
   isVerificationFile: true
-  path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
+  path: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
   requiredBy: []
-  timestamp: '2022-05-29 02:47:47+09:00'
+  timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
+documentation_of: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
-- /verify/test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp.html
-title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp.html
+title: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
 ---

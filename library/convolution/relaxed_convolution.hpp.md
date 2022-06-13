@@ -78,8 +78,8 @@ data:
   - test/src/convolution/relaxed_convolution/abc230_h.test.cpp
 documentation_of: library/convolution/relaxed_convolution.hpp
 layout: document
-redirect_from:
-- /library/library/convolution/relaxed_convolution.hpp
-- /library/library/convolution/relaxed_convolution.hpp.html
-title: library/convolution/relaxed_convolution.hpp
+title: Relaxed Convolution
 ---
+## Relaxed Convolution
+
+[オンライン畳み込み](https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c) に詳しい．

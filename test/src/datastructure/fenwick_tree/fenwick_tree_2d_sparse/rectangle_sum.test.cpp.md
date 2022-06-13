@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/fenwick_tree.hpp
+    path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/fenwick_tree_2d_sparse.hpp
+    path: library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
     title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
@@ -20,12 +20,12 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
     links:
     - https://judge.yosupo.jp/problem/rectangle_sum
-  bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ <iostream>\n#include <tuple>\n\n#line 1 \"library/datastructure/fenwick_tree_2d_sparse.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/datastructure/fenwick_tree_2d_sparse.hpp\"\
-    \n\n#line 1 \"library/datastructure/fenwick_tree.hpp\"\n\n\n\n#include <vector>\n\
-    #include <map>\n#include <unordered_map>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \ <iostream>\n#include <tuple>\n\n#line 1 \"library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp\"\
+    \n\n#line 1 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\n\n\n\n#include\
+    \ <vector>\n#include <map>\n#include <unordered_map>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
@@ -57,8 +57,8 @@ data:
     \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree.hpp\"\n\
-    \nnamespace suisen {\n    namespace internal {\n        template <typename T,\
+    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
+    \n\nnamespace suisen {\n    namespace internal {\n        template <typename T,\
     \ typename index_t = int, typename Container = std::vector<T>>\n        class\
     \ FenwickTreeBase {\n        public:\n            FenwickTreeBase() {}\n     \
     \       explicit FenwickTreeBase(index_t n) : n(n) {}\n\n            int size()\
@@ -98,7 +98,7 @@ data:
     \ std::vector<T>& a) : FenwickTree(std::vector<T>(a)) {}\n    };\n\n    template\
     \ <typename T, typename index_t, bool use_unordered_map = false>\n    using MapFenwickTree\
     \ = internal::FenwickTreeBase<T, index_t, internal::cond_map_t<index_t, T, use_unordered_map>>;\n\
-    \n} // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree_2d_sparse.hpp\"\
+    \n} // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp\"\
     \n\nnamespace suisen {\n\n    template <typename T>\n    class FenwickTree2DSparse\
     \ {\n    public:\n        FenwickTree2DSparse() {}\n        explicit FenwickTree2DSparse(int\
     \ x_num) : n(x_num + 1), data(n), points(), pos_x(), pos_y(n) {}\n\n        void\
@@ -113,18 +113,32 @@ data:
     \ (int k = 0; k < n; ++k) {\n                pos_y[k].push_back(inf);\n      \
     \          std::sort(pos_y[k].begin(), pos_y[k].end());\n                pos_y[k].erase(std::unique(pos_y[k].begin(),\
     \ pos_y[k].end()), pos_y[k].end());\n                data[k] = FenwickTree<T>(pos_y[k].size());\n\
-    \            }\n        }\n\n        T sum(int l, int r, int d, int u) const {\n\
-    \            return (*this)(l, r, d, u);\n        }\n        T operator()(int\
-    \ l, int r, int d, int u) const {\n            assert(built);\n            return\
-    \ sum(r, d, u) - sum(l, d, u);\n        }\n\n        T get(int x, int y) const\
-    \ {\n            return (*this)(x, x + 1, y, y + 1);\n        }\n        void\
-    \ add(int x, int y, const T& val) {\n            for (int k = comp_x(x) + 1; k\
-    \ <= n; k += k & -k) data[k - 1].add(comp_y(k - 1, y), val);\n        }\n    \
-    \    template <typename F>\n        void apply(int x, int y, F &&f) {\n      \
-    \      T old_val = get(x, y);\n            add(x, y, f(old_val) - old_val);\n\
-    \        }\n        void set(int x, int y, const T &val) {\n            apply(x,\
-    \ y, [&](const T&) { return val; });\n        }\n\n    private:\n        int n,\
-    \ m;\n        std::vector<FenwickTree<T>> data;\n        std::vector<std::pair<int,\
+    \            }\n        }\n\n        // void build_and_init(const std::vector<std::tuple<int,\
+    \ int, T>> &points) {\n        //     build();\n        //     for (const auto\
+    \ &[x, y, w] : points) {\n        //         int kx = comp_x(x), ky = comp_y(kx,\
+    \ y);\n        //         data[kx].get_internal_container()[ky] += w;\n      \
+    \  //     }\n        //     for (int kx = n; kx; --kx) {\n        //         auto\
+    \ &data_kx = data[kx - 1].get_internal_container();\n        //         const\
+    \ int m = data[kx - 1].size();\n        //         for (int ky = m; ky; --ky)\
+    \ {\n        //             const int pky = ky + (ky & -ky);\n        //     \
+    \        if (pky > m) continue;\n        //             data_kx[pky - 1] += data[ky\
+    \ - 1];\n        //         }\n        //         const int pkx = kx + (kx & -kx);\n\
+    \        //         if (pkx > n) continue;\n        //         auto &data_pkx\
+    \ = data[pkx - 1].get_internal_container();\n        //         for (int ky =\
+    \ m; ky; --ky) {\n        //             int y = pos_y[kx - 1][ky - 1];\n    \
+    \    //             data_pkx[comp_y(pkx - 1, y)] += data_kx[ky - 1];\n       \
+    \ //         }\n        //     }\n        // }\n\n        T sum(int l, int r,\
+    \ int d, int u) const {\n            return (*this)(l, r, d, u);\n        }\n\
+    \        T operator()(int l, int r, int d, int u) const {\n            assert(built);\n\
+    \            return sum(r, d, u) - sum(l, d, u);\n        }\n\n        T get(int\
+    \ x, int y) const {\n            return (*this)(x, x + 1, y, y + 1);\n       \
+    \ }\n        void add(int x, int y, const T& val) {\n            for (int k =\
+    \ comp_x(x) + 1; k <= n; k += k & -k) data[k - 1].add(comp_y(k - 1, y), val);\n\
+    \        }\n        template <typename F>\n        void apply(int x, int y, F\
+    \ &&f) {\n            T old_val = get(x, y);\n            add(x, y, f(old_val)\
+    \ - old_val);\n        }\n        void set(int x, int y, const T &val) {\n   \
+    \         apply(x, y, [&](const T&) { return val; });\n        }\n\n    private:\n\
+    \        int n, m;\n        std::vector<FenwickTree<T>> data;\n        std::vector<std::pair<int,\
     \ int>> points;\n        std::vector<int> pos_x;\n        std::vector<std::vector<int>>\
     \ pos_y;\n        bool built = true;\n\n        int comp_x(int x) const {\n  \
     \          return std::lower_bound(pos_x.begin(), pos_x.end(), x) - pos_x.begin();\n\
@@ -133,8 +147,8 @@ data:
     \ d, int u) const {\n            T res{};\n            for (r = comp_x(r); r;\
     \ r -= r & -r) res += data[r - 1].sum(comp_y(r - 1, d), comp_y(r - 1, u));\n \
     \           return res;\n        }\n    };\n} // namespace suisen\n\n\n\n#line\
-    \ 7 \"test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp\"\n\
-    using suisen::FenwickTree2DSparse;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \ 7 \"test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp\"\
+    \nusing suisen::FenwickTree2DSparse;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    FenwickTree2DSparse<long\
     \ long> seg(n);\n    std::vector<std::tuple<int, int, int>> points(n);\n    for\
     \ (int i = 0; i < n; ++i) {\n        int x, y, w;\n        std::cin >> x >> y\
@@ -144,7 +158,7 @@ data:
     \     std::cin >> l >> d >> r >> u;\n        std::cout << seg.sum(l, r, d, u)\
     \ << '\\n';\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ <iostream>\n#include <tuple>\n\n#include \"library/datastructure/fenwick_tree_2d_sparse.hpp\"\
+    \ <iostream>\n#include <tuple>\n\n#include \"library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp\"\
     \nusing suisen::FenwickTree2DSparse;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    FenwickTree2DSparse<long\
     \ long> seg(n);\n    std::vector<std::tuple<int, int, int>> points(n);\n    for\
@@ -155,19 +169,19 @@ data:
     \     std::cin >> l >> d >> r >> u;\n        std::cout << seg.sum(l, r, d, u)\
     \ << '\\n';\n    }\n    return 0;\n}"
   dependsOn:
-  - library/datastructure/fenwick_tree_2d_sparse.hpp
-  - library/datastructure/fenwick_tree.hpp
+  - library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
+  - library/datastructure/fenwick_tree/fenwick_tree.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
-  path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  path: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+documentation_of: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-- /verify/test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp.html
-title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp.html
+title: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
 ---

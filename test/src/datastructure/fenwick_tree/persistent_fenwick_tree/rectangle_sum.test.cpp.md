@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/persistent_fenwick_tree.hpp
+    path: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
     title: Persistent Fenwick Tree
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
@@ -23,7 +23,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
     links:
     - https://judge.yosupo.jp/problem/rectangle_sum
-  bundledCode: "#line 1 \"test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ <iostream>\n#include <tuple>\n\n#line 1 \"library/util/coordinate_compressor.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\n#line 1\
@@ -146,26 +146,27 @@ data:
     \ Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>\n     \
     \   static auto build(const int n, Gen generator) {\n            return CoordinateCompressorBuilder<T>(n,\
     \ generator).build();\n        }\n    private:\n        std::vector<T> _xs;\n\
-    };\n\n} // namespace suisen\n\n\n#line 1 \"library/datastructure/persistent_fenwick_tree.hpp\"\
-    \n\n\n\n#line 5 \"library/datastructure/persistent_fenwick_tree.hpp\"\n\n#line\
-    \ 1 \"library/util/object_pool.hpp\"\n\n\n\n#include <deque>\n#line 6 \"library/util/object_pool.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T, bool auto_extend = false>\n\
-    \    struct ObjectPool {\n        using value_type = T;\n        using value_pointer_type\
-    \ = T*;\n\n        template <typename U>\n        using container_type = std::conditional_t<auto_extend,\
-    \ std::deque<U>, std::vector<U>>;\n\n        container_type<value_type> pool;\n\
-    \        container_type<value_pointer_type> stock;\n        decltype(stock.begin())\
-    \ it;\n\n        ObjectPool() : ObjectPool(0) {}\n        ObjectPool(int siz)\
-    \ : pool(siz), stock(siz) {\n            clear();\n        }\n\n        int capacity()\
-    \ const { return pool.size(); }\n        int size() const { return it - stock.begin();\
-    \ }\n\n        value_pointer_type alloc() {\n            if constexpr (auto_extend)\
-    \ ensure();\n            return *it++;\n        }\n\n        void free(value_pointer_type\
-    \ t) {\n            *--it = t;\n        }\n\n        void clear() {\n        \
-    \    int siz = pool.size();\n            it = stock.begin();\n            for\
-    \ (int i = 0; i < siz; i++) stock[i] = &pool[i];\n        }\n\n        void ensure()\
-    \ {\n            if (it != stock.end()) return;\n            int siz = stock.size();\n\
-    \            for (int i = siz; i <= siz * 2; ++i) {\n                stock.push_back(&pool.emplace_back());\n\
+    };\n\n} // namespace suisen\n\n\n#line 1 \"library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp\"\
+    \n\n\n\n#line 5 \"library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp\"\
+    \n\n#line 1 \"library/util/object_pool.hpp\"\n\n\n\n#include <deque>\n#line 6\
+    \ \"library/util/object_pool.hpp\"\n\nnamespace suisen {\n    template <typename\
+    \ T, bool auto_extend = false>\n    struct ObjectPool {\n        using value_type\
+    \ = T;\n        using value_pointer_type = T*;\n\n        template <typename U>\n\
+    \        using container_type = std::conditional_t<auto_extend, std::deque<U>,\
+    \ std::vector<U>>;\n\n        container_type<value_type> pool;\n        container_type<value_pointer_type>\
+    \ stock;\n        decltype(stock.begin()) it;\n\n        ObjectPool() : ObjectPool(0)\
+    \ {}\n        ObjectPool(int siz) : pool(siz), stock(siz) {\n            clear();\n\
+    \        }\n\n        int capacity() const { return pool.size(); }\n        int\
+    \ size() const { return it - stock.begin(); }\n\n        value_pointer_type alloc()\
+    \ {\n            if constexpr (auto_extend) ensure();\n            return *it++;\n\
+    \        }\n\n        void free(value_pointer_type t) {\n            *--it = t;\n\
+    \        }\n\n        void clear() {\n            int siz = pool.size();\n   \
+    \         it = stock.begin();\n            for (int i = 0; i < siz; i++) stock[i]\
+    \ = &pool[i];\n        }\n\n        void ensure() {\n            if (it != stock.end())\
+    \ return;\n            int siz = stock.size();\n            for (int i = siz;\
+    \ i <= siz * 2; ++i) {\n                stock.push_back(&pool.emplace_back());\n\
     \            }\n            it = stock.begin() + siz;\n        }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 7 \"library/datastructure/persistent_fenwick_tree.hpp\"\
+    \ namespace suisen\n\n\n#line 7 \"library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp\"\
     \n\nnamespace suisen {\n    template <typename T>\n    struct PersistentFenwickTree\
     \ {\n        struct Node;\n\n        using value_type = T;\n\n        using node_type\
     \ = Node;\n        using node_pointer_type = node_type*;\n\n        struct Node\
@@ -216,7 +217,7 @@ data:
     \       PersistentFenwickTree(int p, node_pointer_type root) : _p(p), _root(root)\
     \ {}\n\n        static constexpr int floor_pow2(int n) {\n            int x =\
     \ 31 - __builtin_clz(n);\n            return x < 0 ? 0 : 1 << x;\n        }\n\
-    \    };\n}\n\n\n#line 8 \"test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp\"\
+    \    };\n}\n\n\n#line 8 \"test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp\"\
     \n\nusing suisen::CoordinateCompressorBuilder;\nusing suisen::PersistentFenwickTree;\n\
     \nusing Tree = PersistentFenwickTree<long long>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<std::tuple<int,\
@@ -236,12 +237,12 @@ data:
     \ fts[l].sum(d, u) << '\\n';\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ <iostream>\n#include <tuple>\n\n#include \"library/util/coordinate_compressor.hpp\"\
-    \n#include \"library/datastructure/persistent_fenwick_tree.hpp\"\n\nusing suisen::CoordinateCompressorBuilder;\n\
-    using suisen::PersistentFenwickTree;\n\nusing Tree = PersistentFenwickTree<long\
-    \ long>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<std::tuple<int, int,\
-    \ int>> points(n);\n    CoordinateCompressorBuilder<int> bx, by;\n\n    for (auto\
-    \ &[x, y, w] : points) {\n        std::cin >> x >> y >> w;\n        bx.push(x);\n\
+    \n#include \"library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp\"\n\
+    \nusing suisen::CoordinateCompressorBuilder;\nusing suisen::PersistentFenwickTree;\n\
+    \nusing Tree = PersistentFenwickTree<long long>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<std::tuple<int,\
+    \ int, int>> points(n);\n    CoordinateCompressorBuilder<int> bx, by;\n\n    for\
+    \ (auto &[x, y, w] : points) {\n        std::cin >> x >> y >> w;\n        bx.push(x);\n\
     \        by.push(y);\n    }\n    auto cmp_x = bx.build(), cmp_y = by.build();\n\
     \n    const int h = cmp_x.size(), w = cmp_y.size();\n\n    std::vector<std::vector<std::pair<int,\
     \ int>>> buckets(h);\n    for (auto &[x, y, w] : points) {\n        x = cmp_x[x];\n\
@@ -257,18 +258,18 @@ data:
   dependsOn:
   - library/util/coordinate_compressor.hpp
   - library/type_traits/type_traits.hpp
-  - library/datastructure/persistent_fenwick_tree.hpp
+  - library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
   - library/util/object_pool.hpp
   isVerificationFile: true
-  path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
+  path: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
+documentation_of: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
-- /verify/test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp.html
-title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp.html
+title: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
 ---

@@ -15,7 +15,7 @@ data:
     title: Sliding Window Minimum
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
-    title: library/convolution/array_subset_convolution.hpp
+    title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
@@ -40,11 +40,17 @@ data:
     path: library/datastructure/dynamic_sequence.hpp
     title: Dynamic Sequence
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/fenwick_tree.hpp
+    path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/fenwick_tree_2d_sparse.hpp
+    path: library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
     title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/fenwick_tree/rectangle_add_rectangle_sum.hpp
+    title: Rectangle Add Rectangle Sum
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
+    title: Static Rectangle Add Rectangle Sum
   - icon: ':heavy_check_mark:'
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
@@ -58,9 +64,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_map.hpp
     title: Range Foldable Map
-  - icon: ':heavy_check_mark:'
-    path: library/datastructure/rectangle_add_rectangle_sum.hpp
-    title: Rectangle Add Rectangle Sum
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\u53EF\
@@ -79,17 +82,6 @@ data:
     title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
       \u5834\u5408)"
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
-    title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\
-      \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
-  - icon: ':warning:'
-    path: library/datastructure/segment_tree/sparse_segment_tree.hpp
-    title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\u758E\
-      \u306A\u5834\u5408)"
-  - icon: ':heavy_check_mark:'
-    path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
-    title: Static Rectangle Add Rectangle Sum
-  - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
   - icon: ':heavy_check_mark:'
@@ -100,7 +92,7 @@ data:
     title: Segment Intersections
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
-    title: library/math/array_sps.hpp
+    title: Array Sps
   - icon: ':heavy_check_mark:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
@@ -118,7 +110,7 @@ data:
     title: Util
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
-    title: library/polynomial/array_fps_naive.hpp
+    title: Array Fps Naive
   - icon: ':heavy_check_mark:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori
@@ -207,32 +199,35 @@ data:
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-    title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-    title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-    title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-    title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-    title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+    title: test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+    title: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
-    title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
-    title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
@@ -278,12 +273,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-    title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-    title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
@@ -520,23 +509,21 @@ data:
   - library/template.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/tree/auxiliary_tree.hpp
-  - library/datastructure/static_rectangle_add_rectangle_sum.hpp
-  - library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
+  - library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
+  - library/datastructure/fenwick_tree/rectangle_add_rectangle_sum.hpp
+  - library/datastructure/fenwick_tree/fenwick_tree.hpp
+  - library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
   - library/datastructure/segment_tree/dual_segment_tree.hpp
   - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-  - library/datastructure/segment_tree/sparse_segment_tree.hpp
   - library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
   - library/datastructure/segment_tree/segment_tree.hpp
   - library/datastructure/bit_vector.hpp
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
-  - library/datastructure/rectangle_add_rectangle_sum.hpp
-  - library/datastructure/fenwick_tree.hpp
   - library/datastructure/cartesian_tree.hpp
   - library/datastructure/dynamic_sequence.hpp
   - library/datastructure/wavelet_matrix.hpp
   - library/datastructure/lazy_eval_map.hpp
-  - library/datastructure/fenwick_tree_2d_sparse.hpp
   - library/datastructure/range_foldable_map.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/union_find/weighted_union_find.hpp
@@ -587,10 +574,14 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
@@ -601,13 +592,11 @@ data:
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-  - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
@@ -615,12 +604,9 @@ data:
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
-  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
   - test/src/graph/functional_graph/abc254_g.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp

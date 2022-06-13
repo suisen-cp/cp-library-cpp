@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/convolution/semi_relaxed_convolution.hpp
-    title: library/convolution/semi_relaxed_convolution.hpp
+    title: Semi Relaxed Convolution
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

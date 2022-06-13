@@ -9,7 +9,7 @@ data:
     title: Modint Extension
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
-    title: library/polynomial/array_fps_naive.hpp
+    title: Array Fps Naive
   - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
@@ -27,7 +27,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
-    title: library/math/array_sps.hpp
+    title: Array Sps
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
@@ -363,8 +363,6 @@ data:
   - test/src/math/array_sps/abc213_g.test.cpp
 documentation_of: library/convolution/array_subset_convolution.hpp
 layout: document
-redirect_from:
-- /library/library/convolution/array_subset_convolution.hpp
-- /library/library/convolution/array_subset_convolution.hpp.html
-title: library/convolution/array_subset_convolution.hpp
+title: Array Subset Convolution
 ---
+## Array Subset Convolution

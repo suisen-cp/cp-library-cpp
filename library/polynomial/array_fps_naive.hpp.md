@@ -13,10 +13,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
-    title: library/convolution/array_subset_convolution.hpp
+    title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
-    title: library/math/array_sps.hpp
+    title: Array Sps
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
@@ -350,8 +350,6 @@ data:
   - test/src/math/array_sps/abc213_g.test.cpp
 documentation_of: library/polynomial/array_fps_naive.hpp
 layout: document
-redirect_from:
-- /library/library/polynomial/array_fps_naive.hpp
-- /library/library/polynomial/array_fps_naive.hpp.html
-title: library/polynomial/array_fps_naive.hpp
+title: Array Fps Naive
 ---
+## Array Fps Naive

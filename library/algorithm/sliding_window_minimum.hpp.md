@@ -141,4 +141,4 @@ $\mathrm{proc\\_right}$ は償却 $\Theta(1)$ 時間、その他は最悪 $\Thet
   - $\mathrm{arg\\_query}$ : $\displaystyle \mathop{\underset{l\leq i\lt r}{\mathrm{arg}\max}} A _ i$ を返す。最小値を達成する添字が複数ある場合は、添字が __最小__ のものを返す。
 - `suisen::prioritizing_mode::left_most_min<T>`
   - $\mathrm{query}$ : $\displaystyle \max _ {l\leq i\lt r} A _ i$ を返す。
-  - $\mathrm{arg\_query}$ : $\displaystyle \mathop{\underset{l\leq i\lt r}{\mathrm{arg}\max}} A _ i$ を返す。最小値を達成する添字が複数ある場合は、添字が __最大__ のものを返す。
+  - $\mathrm{arg\\_query}$ : $\displaystyle \mathop{\underset{l\leq i\lt r}{\mathrm{arg}\max}} A _ i$ を返す。最小値を達成する添字が複数ある場合は、添字が __最大__ のものを返す。

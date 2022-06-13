@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/maximum_independent_set.hpp
-    title: library/graph/maximum_independent_set.hpp
+    title: "Maximum Independent Set (\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -74,8 +74,8 @@ data:
   verifiedWith: []
 documentation_of: library/graph/minimum_vertex_cover.hpp
 layout: document
-redirect_from:
-- /library/library/graph/minimum_vertex_cover.hpp
-- /library/library/graph/minimum_vertex_cover.hpp.html
-title: library/graph/minimum_vertex_cover.hpp
+title: "Minimum Vertex Cover (\u6700\u5C0F\u9802\u70B9\u88AB\u8986)"
 ---
+## Minimum Vertex Cover (最小頂点被覆)
+
+グラフ $G(V,E)$ の最小頂点被覆は，$G$ の最大独立集合の補集合であることを用いて計算する．

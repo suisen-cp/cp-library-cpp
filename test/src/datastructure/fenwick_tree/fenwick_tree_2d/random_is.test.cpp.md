@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/fenwick_tree_2d.hpp
+    path: library/datastructure/fenwick_tree/fenwick_tree_2d.hpp
     title: Fenwick Tree 2d
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
@@ -26,7 +26,7 @@ data:
     PROBLEM: https://atcoder.jp/contests/arc108/tasks/arc108_e
     links:
     - https://atcoder.jp/contests/arc108/tasks/arc108_e
-  bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree_2d/random_is.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/arc108/tasks/arc108_e\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/math/inv_mods.hpp\"\
     \n\n\n\n#include <vector>\n\nnamespace suisen {\ntemplate <typename mint>\nclass\
@@ -137,36 +137,36 @@ data:
     \ m;\n        }\n        void update_from(int k) {\n            for (k >>= 1;\
     \ k; k >>= 1) update(k);\n        }\n        void update(int k) {\n          \
     \  data[k] = op(data[k * 2], data[k * 2 + 1]);\n        }\n};\n} // namespace\
-    \ suisen\n\n\n\n#line 1 \"library/datastructure/fenwick_tree_2d.hpp\"\n\n\n\n\
-    #line 5 \"library/datastructure/fenwick_tree_2d.hpp\"\n\nnamespace suisen {\n\n\
-    \    template <typename T>\n    class FenwickTree2D {\n    public:\n        FenwickTree2D()\
-    \ {}\n        explicit FenwickTree2D(int n, int m) : n(n), m(m), data(n, std::vector<T>(m,\
-    \ T{})) {}\n        void add(int i, int j, T v) {\n            for (int x = i\
-    \ + 1; x <= n; x += (x & -x)) for (int y = j + 1; y <= m; y += (y & -y)) {\n \
-    \               data[x - 1][y - 1] += v;\n            }\n        }\n        T\
-    \ sum(int xl, int xr, int yl, int yr) const {\n            return sum(xr, yr)\
-    \ - sum(xl, yr) - sum(xr, yl) + sum(xl, yl);\n        }\n        auto operator[](std::pair<int,\
-    \ int> index) {\n            auto [i, j] = index;\n            struct {\n    \
-    \            int i, j;\n                FenwickTree2D& ft;\n                operator\
-    \ T() const { return ft.sum(i, i + 1, j, j + 1); }\n                auto& operator++()\
-    \ { return *this += 1; }\n                auto& operator--() { return *this -=\
-    \ 1; }\n                auto& operator+=(T val) { ft.add(i, j, val); return *this;\
-    \ }\n                auto& operator-=(T val) { ft.add(i, j, -val); return *this;\
-    \ }\n                auto& operator*=(T val) { T cur = *this; ft.add(i, j, cur\
-    \ * val - cur); return *this; }\n                auto& operator/=(T val) { T cur\
-    \ = *this; ft.add(i, j, cur / val - cur); return *this; }\n                auto&\
-    \ operator%=(T val) { T cur = *this; ft.add(i, j, cur % val - cur); return *this;\
-    \ }\n                auto& operator =(T val) { T cur = *this; ft.add(i, j, val\
-    \ - cur); return *this; }\n            } obj{ i, j, *this };\n            return\
-    \ obj;\n        }\n        T operator()(int xl, int xr, int yl, int yr) const\
-    \ { return sum(xl, xr, yl, yr); }\n\n    private:\n        int n, m;\n       \
-    \ std::vector<std::vector<T>> data;\n\n        T sum(int xr, int yr) const {\n\
-    \            T s{};\n            for (int x = xr; x; x -= x & -x) for (int y =\
-    \ yr; y; y -= y & -y) {\n                s += data[x - 1][y - 1];\n          \
-    \  }\n            return s;\n        }\n    };\n\n} // namespace suisen\n\n\n\
-    #line 9 \"test/src/datastructure/fenwick_tree_2d/random_is.test.cpp\"\n\nusing\
-    \ namespace suisen;\nusing mint = atcoder::modint1000000007;\n\nmint op(mint x,\
-    \ mint y) {\n    return x + y;\n}\nmint e() {\n    return 0;\n}\n\nint main()\
+    \ suisen\n\n\n\n#line 1 \"library/datastructure/fenwick_tree/fenwick_tree_2d.hpp\"\
+    \n\n\n\n#line 5 \"library/datastructure/fenwick_tree/fenwick_tree_2d.hpp\"\n\n\
+    namespace suisen {\n\n    template <typename T>\n    class FenwickTree2D {\n \
+    \   public:\n        FenwickTree2D() {}\n        explicit FenwickTree2D(int n,\
+    \ int m) : n(n), m(m), data(n, std::vector<T>(m, T{})) {}\n        void add(int\
+    \ i, int j, T v) {\n            for (int x = i + 1; x <= n; x += (x & -x)) for\
+    \ (int y = j + 1; y <= m; y += (y & -y)) {\n                data[x - 1][y - 1]\
+    \ += v;\n            }\n        }\n        T sum(int xl, int xr, int yl, int yr)\
+    \ const {\n            return sum(xr, yr) - sum(xl, yr) - sum(xr, yl) + sum(xl,\
+    \ yl);\n        }\n        auto operator[](std::pair<int, int> index) {\n    \
+    \        auto [i, j] = index;\n            struct {\n                int i, j;\n\
+    \                FenwickTree2D& ft;\n                operator T() const { return\
+    \ ft.sum(i, i + 1, j, j + 1); }\n                auto& operator++() { return *this\
+    \ += 1; }\n                auto& operator--() { return *this -= 1; }\n       \
+    \         auto& operator+=(T val) { ft.add(i, j, val); return *this; }\n     \
+    \           auto& operator-=(T val) { ft.add(i, j, -val); return *this; }\n  \
+    \              auto& operator*=(T val) { T cur = *this; ft.add(i, j, cur * val\
+    \ - cur); return *this; }\n                auto& operator/=(T val) { T cur = *this;\
+    \ ft.add(i, j, cur / val - cur); return *this; }\n                auto& operator%=(T\
+    \ val) { T cur = *this; ft.add(i, j, cur % val - cur); return *this; }\n     \
+    \           auto& operator =(T val) { T cur = *this; ft.add(i, j, val - cur);\
+    \ return *this; }\n            } obj{ i, j, *this };\n            return obj;\n\
+    \        }\n        T operator()(int xl, int xr, int yl, int yr) const { return\
+    \ sum(xl, xr, yl, yr); }\n\n    private:\n        int n, m;\n        std::vector<std::vector<T>>\
+    \ data;\n\n        T sum(int xr, int yr) const {\n            T s{};\n       \
+    \     for (int x = xr; x; x -= x & -x) for (int y = yr; y; y -= y & -y) {\n  \
+    \              s += data[x - 1][y - 1];\n            }\n            return s;\n\
+    \        }\n    };\n\n} // namespace suisen\n\n\n#line 9 \"test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp\"\
+    \n\nusing namespace suisen;\nusing mint = atcoder::modint1000000007;\n\nmint op(mint\
+    \ x, mint y) {\n    return x + y;\n}\nmint e() {\n    return 0;\n}\n\nint main()\
     \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n   \
     \ int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n\n    inv_mods<mint>\
     \ invs(n);\n\n    for (int &e : a) std::cin >> e;\n    a.insert(a.begin(), 0);\n\
@@ -184,9 +184,9 @@ data:
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc108/tasks/arc108_e\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\n\n#include \"library/math/inv_mods.hpp\"\
     \n#include \"library/datastructure/segment_tree/segment_tree.hpp\"\n#include \"\
-    library/datastructure/fenwick_tree_2d.hpp\"\n\nusing namespace suisen;\nusing\
-    \ mint = atcoder::modint1000000007;\n\nmint op(mint x, mint y) {\n    return x\
-    \ + y;\n}\nmint e() {\n    return 0;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    library/datastructure/fenwick_tree/fenwick_tree_2d.hpp\"\n\nusing namespace suisen;\n\
+    using mint = atcoder::modint1000000007;\n\nmint op(mint x, mint y) {\n    return\
+    \ x + y;\n}\nmint e() {\n    return 0;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n    std::vector<int>\
     \ a(n);\n\n    inv_mods<mint> invs(n);\n\n    for (int &e : a) std::cin >> e;\n\
     \    a.insert(a.begin(), 0);\n    a.insert(a.end(), n + 1);\n\n    std::vector\
@@ -206,17 +206,17 @@ data:
   - library/datastructure/segment_tree/segment_tree.hpp
   - library/util/update_proxy_object.hpp
   - library/type_traits/type_traits.hpp
-  - library/datastructure/fenwick_tree_2d.hpp
+  - library/datastructure/fenwick_tree/fenwick_tree_2d.hpp
   isVerificationFile: true
-  path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+documentation_of: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-- /verify/test/src/datastructure/fenwick_tree_2d/random_is.test.cpp.html
-title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp.html
+title: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
 ---

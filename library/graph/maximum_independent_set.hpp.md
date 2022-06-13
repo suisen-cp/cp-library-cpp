@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/graph/maximum_clique.hpp
-    title: library/graph/maximum_clique.hpp
+    title: "Maximum Clique (\u6700\u5927\u30AF\u30EA\u30FC\u30AF)"
   - icon: ':warning:'
     path: library/graph/minimum_vertex_cover.hpp
-    title: library/graph/minimum_vertex_cover.hpp
+    title: "Minimum Vertex Cover (\u6700\u5C0F\u9802\u70B9\u88AB\u8986)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/maximum_independent_set/maximum_independent_set.test.cpp
@@ -108,8 +108,8 @@ data:
   - test/src/graph/maximum_independent_set/maximum_independent_set.test.cpp
 documentation_of: library/graph/maximum_independent_set.hpp
 layout: document
-redirect_from:
-- /library/library/graph/maximum_independent_set.hpp
-- /library/library/graph/maximum_independent_set.hpp.html
-title: library/graph/maximum_independent_set.hpp
+title: "Maximum Independent Set (\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
 ---
+## Maximum Independent Set (最大独立集合)
+
+[最大独立集合問題のアルゴリズム](https://37zigen.com/maximum-independent-set-algorithm/) の mis2 の実装である．

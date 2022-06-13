@@ -6,36 +6,36 @@ data:
     title: Type Traits
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/fenwick_tree_2d_sparse.hpp
+    path: library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
     title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/rectangle_add_rectangle_sum.hpp
+    path: library/datastructure/fenwick_tree/rectangle_add_rectangle_sum.hpp
     title: Rectangle Add Rectangle Sum
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
+    path: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
     title: Static Rectangle Add Rectangle Sum
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-    title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-    title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-    title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-    title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
-    title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
+    path: test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+    title: test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-    title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
+    path: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+    title: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
@@ -44,18 +44,18 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/datastructure/fenwick_tree.hpp\"\n\n\n\n#include\
-    \ <vector>\n#include <map>\n#include <unordered_map>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
-    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+  bundledCode: "#line 1 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\n\n\
+    \n\n#include <vector>\n#include <map>\n#include <unordered_map>\n\n#line 1 \"\
+    library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
+    \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
+    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
+    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
+    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
+    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
+    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
+    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
+    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -77,8 +77,8 @@ data:
     \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree.hpp\"\n\
-    \nnamespace suisen {\n    namespace internal {\n        template <typename T,\
+    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
+    \n\nnamespace suisen {\n    namespace internal {\n        template <typename T,\
     \ typename index_t = int, typename Container = std::vector<T>>\n        class\
     \ FenwickTreeBase {\n        public:\n            FenwickTreeBase() {}\n     \
     \       explicit FenwickTreeBase(index_t n) : n(n) {}\n\n            int size()\
@@ -165,23 +165,23 @@ data:
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
-  path: library/datastructure/fenwick_tree.hpp
+  path: library/datastructure/fenwick_tree/fenwick_tree.hpp
   requiredBy:
-  - library/datastructure/static_rectangle_add_rectangle_sum.hpp
-  - library/datastructure/rectangle_add_rectangle_sum.hpp
-  - library/datastructure/fenwick_tree_2d_sparse.hpp
+  - library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
+  - library/datastructure/fenwick_tree/rectangle_add_rectangle_sum.hpp
+  - library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
   - library/geom/segment_intersections.hpp
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-  - test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
-documentation_of: library/datastructure/fenwick_tree.hpp
+documentation_of: library/datastructure/fenwick_tree/fenwick_tree.hpp
 layout: document
 title: Fenwick Tree
 ---

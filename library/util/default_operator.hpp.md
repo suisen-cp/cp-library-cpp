@@ -7,7 +7,7 @@ data:
     title: Bitwise And Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
-    title: library/convolution/array_subset_convolution.hpp
+    title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution.hpp
     title: Convolution
@@ -34,7 +34,7 @@ data:
     title: Array Matrix
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
-    title: library/math/array_sps.hpp
+    title: Array Sps
   - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/fenwick_tree.hpp
+    path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
@@ -17,20 +17,20 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
     - https://judge.yosupo.jp/problem/point_add_range_sum
-  bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\n\
-    #include <iostream>\n\n#line 1 \"library/datastructure/fenwick_tree.hpp\"\n\n\n\
-    \n#include <vector>\n#include <map>\n#include <unordered_map>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
-    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    #include <iostream>\n\n#line 1 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
+    \n\n\n\n#include <vector>\n#include <map>\n#include <unordered_map>\n\n#line 1\
+    \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
+    \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
+    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
+    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
+    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
+    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
+    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
+    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
+    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -52,8 +52,8 @@ data:
     \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree.hpp\"\n\
-    \nnamespace suisen {\n    namespace internal {\n        template <typename T,\
+    } // namespace suisen\n\n\n#line 9 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
+    \n\nnamespace suisen {\n    namespace internal {\n        template <typename T,\
     \ typename index_t = int, typename Container = std::vector<T>>\n        class\
     \ FenwickTreeBase {\n        public:\n            FenwickTreeBase() {}\n     \
     \       explicit FenwickTreeBase(index_t n) : n(n) {}\n\n            int size()\
@@ -93,7 +93,7 @@ data:
     \ std::vector<T>& a) : FenwickTree(std::vector<T>(a)) {}\n    };\n\n    template\
     \ <typename T, typename index_t, bool use_unordered_map = false>\n    using MapFenwickTree\
     \ = internal::FenwickTreeBase<T, index_t, internal::cond_map_t<index_t, T, use_unordered_map>>;\n\
-    \n} // namespace suisen\n\n\n#line 6 \"test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp\"\
+    \n} // namespace suisen\n\n\n#line 6 \"test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp\"\
     \n\nusing suisen::FenwickTree;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<long\
     \ long> a(n);\n    for (auto &e : a) std::cin >> e;\n    FenwickTree<long long>\
@@ -103,8 +103,8 @@ data:
     \          std::cin >> l >> r;\n            std::cout << ft(l, r) << '\\n';\n\
     \        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
-    \n#include <iostream>\n\n#include \"library/datastructure/fenwick_tree.hpp\"\n\
-    \nusing suisen::FenwickTree;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \n#include <iostream>\n\n#include \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\
+    \n\nusing suisen::FenwickTree;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<long\
     \ long> a(n);\n    for (auto &e : a) std::cin >> e;\n    FenwickTree<long long>\
     \ ft(std::move(a));\n    while (q --> 0) {\n        int t;\n        std::cin >>\
@@ -113,18 +113,18 @@ data:
     \          std::cin >> l >> r;\n            std::cout << ft(l, r) << '\\n';\n\
     \        }\n    }\n    return 0;\n}"
   dependsOn:
-  - library/datastructure/fenwick_tree.hpp
+  - library/datastructure/fenwick_tree/fenwick_tree.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
-  path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+  path: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+documentation_of: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-- /verify/test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp.html
-title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
+- /verify/test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp.html
+title: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
 ---

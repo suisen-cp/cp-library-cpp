@@ -28,18 +28,10 @@ data:
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
     title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
       \u5834\u5408)"
-  - icon: ':heavy_check_mark:'
-    path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
-    title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\
-      \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
-  - icon: ':warning:'
-    path: library/datastructure/segment_tree/sparse_segment_tree.hpp
-    title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\u758E\
-      \u306A\u5834\u5408)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-    title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
@@ -73,9 +65,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-    title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -154,10 +143,8 @@ data:
   isVerificationFile: false
   path: library/util/update_proxy_object.hpp
   requiredBy:
-  - library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
   - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-  - library/datastructure/segment_tree/sparse_segment_tree.hpp
   - library/datastructure/segment_tree/segment_tree.hpp
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
   - library/datastructure/lazy_eval_map.hpp
@@ -166,6 +153,7 @@ data:
   timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
@@ -175,10 +163,8 @@ data:
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-  - test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
 documentation_of: library/util/update_proxy_object.hpp
 layout: document
 title: Update Proxy Object

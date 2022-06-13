@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/maximum_independent_set.hpp
-    title: library/graph/maximum_independent_set.hpp
+    title: "Maximum Independent Set (\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -75,8 +75,8 @@ data:
   verifiedWith: []
 documentation_of: library/graph/maximum_clique.hpp
 layout: document
-redirect_from:
-- /library/library/graph/maximum_clique.hpp
-- /library/library/graph/maximum_clique.hpp.html
-title: library/graph/maximum_clique.hpp
+title: "Maximum Clique (\u6700\u5927\u30AF\u30EA\u30FC\u30AF)"
 ---
+## Maximum Clique (最大クリーク)
+
+グラフ $G(V,E)$ の最大クリークは $G$ の補グラフにおける最大独立集合であることを用いて計算する．

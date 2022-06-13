@@ -7,18 +7,19 @@ data:
       \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/arc115/tasks/arc115_e
+    PROBLEM: https://atcoder.jp/contests/abc255/tasks/abc255_Ex
     links:
-    - https://atcoder.jp/contests/arc115/tasks/arc115_e
-  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/arc115/tasks/arc115_e\"\n\n#include\
-    \ <algorithm>\n#include <iostream>\n#include <atcoder/modint>\n#line 1 \"library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp\"\
-    \n\n\n\n#include <array>\n#include <cassert>\n#include <vector>\n\nnamespace suisen\
+    - https://atcoder.jp/contests/abc255/tasks/abc255_Ex
+  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp\"\
+    \n#define PROBLEM \"https://atcoder.jp/contests/abc255/tasks/abc255_Ex\"\n\n#include\
+    \ <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \n#line 1 \"library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp\"\n\
+    \n\n\n#include <array>\n#include <cassert>\n#include <vector>\n\nnamespace suisen\
     \ {\n    template <\n        typename IndexType,                      // type\
     \ of index (integral: bool, long long, etc.)\n        typename T,            \
     \                  // type of element\n        T(*op)(T, T),                 \
@@ -92,50 +93,54 @@ data:
     \ tr <= qr) return apply_all(node, f, tl, tr);\n            const index_type tm\
     \ = (tl + tr) >> 1;\n            push(node, tl, tr);\n            apply(pool[node].ch[0],\
     \ f, ql, qr, tl, tm), apply(pool[node].ch[1], f, ql, qr, tm, tr);\n          \
-    \  update(node);\n        }\n    };\n}\n\n\n#line 7 \"test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp\"\
-    \n\nusing suisen::SparseLazySegmentTree;\nusing mint = atcoder::modint998244353;\n\
-    using F = std::pair<mint, mint>;\n\nmint op(mint x, mint y) {\n    return x +\
-    \ y;\n}\nmint e() {\n    return 0;\n}\nmint mapping(F f, mint x, int l, int r)\
-    \ {\n    return f.first * x + f.second * (r - l);\n}\nF composition(F f, F g)\
-    \ {\n    return { f.first * g.first, f.first * g.second + f.second };\n}\nF id()\
-    \ {\n    return { 1, 0 };\n}\nmint init(int, int) {\n    return 0;\n}\n\nusing\
-    \ SegmentTree = SparseLazySegmentTree<int, mint, op, e, F, mapping, composition,\
-    \ id, init>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for (int &e :\
-    \ a) std::cin >> e;\n    const int m = *std::max_element(a.begin(), a.end());\n\
-    \    SegmentTree seg(m);\n    SegmentTree::reserve(10000000);\n    mint sum =\
-    \ 1;\n    for (int v : a) {\n        seg.apply_all({ -1, sum });\n        seg.apply(v,\
-    \ m, { 0, 0 });\n        sum = seg.prod_all();\n    }\n    std::cout << seg.prod_all().val()\
-    \ << '\\n';\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/arc115/tasks/arc115_e\"\n\n\
-    #include <algorithm>\n#include <iostream>\n#include <atcoder/modint>\n#include\
-    \ \"library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp\"\n\nusing\
-    \ suisen::SparseLazySegmentTree;\nusing mint = atcoder::modint998244353;\nusing\
-    \ F = std::pair<mint, mint>;\n\nmint op(mint x, mint y) {\n    return x + y;\n\
-    }\nmint e() {\n    return 0;\n}\nmint mapping(F f, mint x, int l, int r) {\n \
-    \   return f.first * x + f.second * (r - l);\n}\nF composition(F f, F g) {\n \
-    \   return { f.first * g.first, f.first * g.second + f.second };\n}\nF id() {\n\
-    \    return { 1, 0 };\n}\nmint init(int, int) {\n    return 0;\n}\n\nusing SegmentTree\
-    \ = SparseLazySegmentTree<int, mint, op, e, F, mapping, composition, id, init>;\n\
-    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for (int &e :\
-    \ a) std::cin >> e;\n    const int m = *std::max_element(a.begin(), a.end());\n\
-    \    SegmentTree seg(m);\n    SegmentTree::reserve(10000000);\n    mint sum =\
-    \ 1;\n    for (int v : a) {\n        seg.apply_all({ -1, sum });\n        seg.apply(v,\
-    \ m, { 0, 0 });\n        sum = seg.prod_all();\n    }\n    std::cout << seg.prod_all().val()\
-    \ << '\\n';\n    return 0;\n}"
+    \  update(node);\n        }\n    };\n}\n\n\n#line 9 \"test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp\"\
+    \n\nmint sum_lr(mint l, mint r) {\n    static const mint inv_2 = mint(2).inv();\n\
+    \    return (r * (r - 1) - l * (l - 1)) * inv_2;\n}\n\nmint init(long long, long\
+    \ long) {\n    return 0;\n}\nmint op(mint x, mint y) {\n    return x + y;\n}\n\
+    mint e() {\n    return 0;\n}\nmint mapping(std::pair<bool, mint> f, mint x, long\
+    \ long l, long long r) {\n    return f.first ? f.second * sum_lr(l, r) : x;\n\
+    }\nstd::pair<bool, mint> composition(std::pair<bool, mint> f, std::pair<bool,\
+    \ mint> g) {\n    return not f.first ? g : f;\n}\nstd::pair<bool, mint> id() {\n\
+    \    return { false, 0 };\n}\n\nusing SegTree = suisen::SparseLazySegmentTree<long\
+    \ long, mint, op, e, std::pair<bool, mint>, mapping, composition, id, init>;\n\
+    \nconstexpr long long inf = 1'000'000'000'000'000'010LL;\n\nint main() {\n   \
+    \ std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    long long\
+    \ n;\n    int q;\n    std::cin >> n >> q;\n\n    SegTree seg(inf);\n    SegTree::reserve(10000000);\n\
+    \n    while (q --> 0) {\n        long long d, l, r;\n        std::cin >> d >>\
+    \ l >> r;\n        ++r;\n        std::cout << (d * sum_lr(l, r) - seg.prod(l,\
+    \ r)).val() << '\\n';\n        seg.apply(l, r, { true, d });\n    }\n\n    return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc255/tasks/abc255_Ex\"\n\n\
+    #include <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \n#include \"library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp\"\
+    \n\nmint sum_lr(mint l, mint r) {\n    static const mint inv_2 = mint(2).inv();\n\
+    \    return (r * (r - 1) - l * (l - 1)) * inv_2;\n}\n\nmint init(long long, long\
+    \ long) {\n    return 0;\n}\nmint op(mint x, mint y) {\n    return x + y;\n}\n\
+    mint e() {\n    return 0;\n}\nmint mapping(std::pair<bool, mint> f, mint x, long\
+    \ long l, long long r) {\n    return f.first ? f.second * sum_lr(l, r) : x;\n\
+    }\nstd::pair<bool, mint> composition(std::pair<bool, mint> f, std::pair<bool,\
+    \ mint> g) {\n    return not f.first ? g : f;\n}\nstd::pair<bool, mint> id() {\n\
+    \    return { false, 0 };\n}\n\nusing SegTree = suisen::SparseLazySegmentTree<long\
+    \ long, mint, op, e, std::pair<bool, mint>, mapping, composition, id, init>;\n\
+    \nconstexpr long long inf = 1'000'000'000'000'000'010LL;\n\nint main() {\n   \
+    \ std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    long long\
+    \ n;\n    int q;\n    std::cin >> n >> q;\n\n    SegTree seg(inf);\n    SegTree::reserve(10000000);\n\
+    \n    while (q --> 0) {\n        long long d, l, r;\n        std::cin >> d >>\
+    \ l >> r;\n        ++r;\n        std::cout << (d * sum_lr(l, r) - seg.prod(l,\
+    \ r)).val() << '\\n';\n        seg.apply(l, r, { true, d });\n    }\n\n    return\
+    \ 0;\n}"
   dependsOn:
   - library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
   isVerificationFile: true
-  path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
+  path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
   requiredBy: []
   timestamp: '2022-06-14 00:05:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
+documentation_of: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-- /verify/test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp.html
-title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
+- /verify/test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
+- /verify/test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp.html
+title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
 ---

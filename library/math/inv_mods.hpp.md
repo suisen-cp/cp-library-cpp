@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
-    title: library/convolution/array_subset_convolution.hpp
+    title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
@@ -14,7 +14,7 @@ data:
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
-    title: library/math/array_sps.hpp
+    title: Array Sps
   - icon: ':heavy_check_mark:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
@@ -23,7 +23,7 @@ data:
     title: Set Power Series
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
-    title: library/polynomial/array_fps_naive.hpp
+    title: Array Fps Naive
   - icon: ':heavy_check_mark:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori
@@ -62,8 +62,8 @@ data:
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-    title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+    path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
+    title: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
@@ -218,7 +218,7 @@ data:
   - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc213_g.test.cpp
-  - test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/fps_naive/abc245_d.test.cpp

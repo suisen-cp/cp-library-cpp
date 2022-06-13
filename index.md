@@ -47,7 +47,7 @@ data:
       title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
     - icon: ':heavy_check_mark:'
       path: library/convolution/array_subset_convolution.hpp
-      title: library/convolution/array_subset_convolution.hpp
+      title: Array Subset Convolution
     - icon: ':heavy_check_mark:'
       path: library/convolution/convolution.hpp
       title: Convolution
@@ -86,10 +86,10 @@ data:
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
     - icon: ':heavy_check_mark:'
       path: library/convolution/relaxed_convolution.hpp
-      title: library/convolution/relaxed_convolution.hpp
+      title: Relaxed Convolution
     - icon: ':heavy_check_mark:'
       path: library/convolution/semi_relaxed_convolution.hpp
-      title: library/convolution/semi_relaxed_convolution.hpp
+      title: Semi Relaxed Convolution
     - icon: ':heavy_check_mark:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
@@ -117,15 +117,6 @@ data:
       path: library/datastructure/dynamic_sequence.hpp
       title: Dynamic Sequence
     - icon: ':heavy_check_mark:'
-      path: library/datastructure/fenwick_tree.hpp
-      title: Fenwick Tree
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/fenwick_tree_2d.hpp
-      title: Fenwick Tree 2d
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/fenwick_tree_2d_sparse.hpp
-      title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
-    - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_dynamic_sequence.hpp
       title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
         \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
@@ -136,17 +127,11 @@ data:
       path: library/datastructure/permutation_tree.hpp
       title: Permutation Tree
     - icon: ':heavy_check_mark:'
-      path: library/datastructure/persistent_fenwick_tree.hpp
-      title: Persistent Fenwick Tree
-    - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: Range Foldable Dynamic Sequence
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_map.hpp
       title: Range Foldable Map
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/rectangle_add_rectangle_sum.hpp
-      title: Rectangle Add Rectangle Sum
     - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: Sparse Table
@@ -156,9 +141,6 @@ data:
     - icon: ':warning:'
       path: library/datastructure/splay_tree_set.hpp
       title: Splay Tree Set
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/static_rectangle_add_rectangle_sum.hpp
-      title: Static Rectangle Add Rectangle Sum
     - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
@@ -199,6 +181,29 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/red_black_tree_base.hpp
       title: Red Black Tree Base
+  - name: library/datastructure/fenwick_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/fenwick_tree/fenwick_tree.hpp
+      title: Fenwick Tree
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/fenwick_tree/fenwick_tree_2d.hpp
+      title: Fenwick Tree 2d
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
+      title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/fenwick_tree/fenwick_tree_prefix.hpp
+      title: Fenwick Tree Prefix
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
+      title: Persistent Fenwick Tree
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/fenwick_tree/rectangle_add_rectangle_sum.hpp
+      title: Rectangle Add Rectangle Sum
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
+      title: Static Rectangle Add Rectangle Sum
   - name: library/datastructure/segment_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -236,7 +241,7 @@ data:
       path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
       title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
         \u5834\u5408)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\
         \u5B57\u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
@@ -340,24 +345,31 @@ data:
     - icon: ':question:'
       path: library/graph/functional_graph.hpp
       title: Functional Graph
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/kruscal.hpp
       title: Kruscal
     - icon: ':heavy_check_mark:'
       path: library/graph/low_link.hpp
       title: Low Link
     - icon: ':warning:'
+      path: library/graph/manhattan_minimum_distances.hpp
+      title: "\u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u3067\u6700\u3082\u8FD1\
+        \u3044\u70B9\u3078\u306E\u8DDD\u96E2\u306E\u5217\u6319"
+    - icon: ':heavy_check_mark:'
+      path: library/graph/manhattan_mst.hpp
+      title: Manhattan Mst
+    - icon: ':warning:'
       path: library/graph/maximum_clique.hpp
-      title: library/graph/maximum_clique.hpp
+      title: "Maximum Clique (\u6700\u5927\u30AF\u30EA\u30FC\u30AF)"
     - icon: ':heavy_check_mark:'
       path: library/graph/maximum_independent_set.hpp
-      title: library/graph/maximum_independent_set.hpp
+      title: "Maximum Independent Set (\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
     - icon: ':heavy_check_mark:'
       path: library/graph/min_cost_flow.hpp
       title: Min Cost Flow
     - icon: ':warning:'
       path: library/graph/minimum_vertex_cover.hpp
-      title: library/graph/minimum_vertex_cover.hpp
+      title: "Minimum Vertex Cover (\u6700\u5C0F\u9802\u70B9\u88AB\u8986)"
     - icon: ':warning:'
       path: library/graph/remove_multiedges.hpp
       title: "\u591A\u91CD\u8FBA\u9664\u53BB"
@@ -409,7 +421,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/math/array_sps.hpp
-      title: library/math/array_sps.hpp
+      title: Array Sps
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
@@ -480,7 +492,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/array_fps_naive.hpp
-      title: library/polynomial/array_fps_naive.hpp
+      title: Array Fps Naive
     - icon: ':heavy_check_mark:'
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
@@ -861,27 +873,45 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - name: test/src/datastructure/fenwick_tree
+  - name: test/src/datastructure/fenwick_tree/fenwick_tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
-      title: test/src/datastructure/fenwick_tree/DSL_2_B.test.cpp
+      path: test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
+      title: test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-      title: test/src/datastructure/fenwick_tree/point_add_range_sum.test.cpp
-  - name: test/src/datastructure/fenwick_tree_2d
+      path: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
+      title: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
+  - name: test/src/datastructure/fenwick_tree/fenwick_tree_2d
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-      title: test/src/datastructure/fenwick_tree_2d/random_is.test.cpp
-  - name: test/src/datastructure/fenwick_tree_2d_sparse
+      path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
+      title: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
+  - name: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-      title: test/src/datastructure/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+      path: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+      title: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-      title: test/src/datastructure/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+      path: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+      title: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - name: test/src/datastructure/fenwick_tree/persistent_fenwick_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
+      title: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+      title: test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+  - name: test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+      title: test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+  - name: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+      title: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - name: test/src/datastructure/lazy_eval_dynamic_sequence
     pages:
     - icon: ':heavy_check_mark:'
@@ -892,19 +922,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
       title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - name: test/src/datastructure/persistent_fenwick_tree
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
-      title: test/src/datastructure/persistent_fenwick_tree/abc253_f.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
-      title: test/src/datastructure/persistent_fenwick_tree/rectangle_sum.test.cpp
-  - name: test/src/datastructure/rectangle_add_rectangle_sum
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
-      title: test/src/datastructure/rectangle_add_rectangle_sum/dummy.test.cpp
   - name: test/src/datastructure/segment_tree/commutative_dual_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1001,14 +1018,12 @@ data:
       title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - name: test/src/datastructure/segment_tree/sparse_lazy_segment_tree
     pages:
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
+      title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-  - name: test/src/datastructure/static_rectangle_add_rectangle_sum
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
-      title: test/src/datastructure/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - name: test/src/datastructure/union_find/merge_history_forest
     pages:
     - icon: ':heavy_check_mark:'
@@ -1176,6 +1191,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/low_link/bridges.test.cpp
       title: test/src/graph/low_link/bridges.test.cpp
+  - name: test/src/graph/manhattan_mst
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/manhattan_mst/manhattanmst.test.cpp
+      title: test/src/graph/manhattan_mst/manhattanmst.test.cpp
   - name: test/src/graph/maximum_independent_set
     pages:
     - icon: ':heavy_check_mark:'
