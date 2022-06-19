@@ -6,7 +6,7 @@
 #include "library/util/update_proxy_object.hpp"
 
 namespace suisen {
-    template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>
+    template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)(), bool enable_beats = false>
     struct LazySegmentTree {
         using value_type = T;
         using operator_type = F;
@@ -118,7 +118,10 @@ namespace suisen {
 
         void all_apply(int k, const operator_type& f) {
             data[k] = mapping(f, data[k]);
-            if (k < m) lazy[k] = composition(f, lazy[k]);
+            if (k < m) {
+                lazy[k] = composition(f, lazy[k]);
+                if constexpr (enable_beats) if (data[k].fail) push(k), update(k);
+            }
         }
         void push(int k) {
             all_apply(2 * k, lazy[k]), all_apply(2 * k + 1, lazy[k]);
