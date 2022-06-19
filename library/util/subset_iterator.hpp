@@ -13,16 +13,17 @@
 #include <limits>
 
 namespace suisen {
+    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
     struct all_subset {
         struct all_subset_iter {
-            const uint32_t s; uint32_t t;
-            constexpr all_subset_iter(uint32_t s) : s(s), t(s + 1) {}
+            const T s; T t;
+            constexpr all_subset_iter(T s) : s(s), t(s + 1) {}
             constexpr auto operator*() const { return t; }
             constexpr auto operator++() {}
             constexpr auto operator!=(std::nullptr_t) { return t ? (--t &= s, true) : false; }
         };
-        uint32_t s;
-        constexpr all_subset(uint32_t s) : s(s) {}
+        T s;
+        constexpr all_subset(T s) : s(s) {}
         constexpr auto begin() { return all_subset_iter(s); }
         constexpr auto end() { return nullptr; }
     };

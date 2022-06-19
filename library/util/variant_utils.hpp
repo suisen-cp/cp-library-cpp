@@ -13,7 +13,7 @@ class Match {
         Match(const std::variant<Types...> &v) : v_(v) {}
 
         template <typename T, typename F>
-        Match&& with(F f) && {
+        Match&& with(F &&f) && {
             if (std::holds_alternative<T>(v_)) {
                 assert(not matched);
                 matched = true;
@@ -22,7 +22,7 @@ class Match {
             return std::move(*this);
         }
         template <typename F>
-        void otherwise(F f) && {
+        void otherwise(F &&f) && {
             if (not matched) f();
         }
     private:
