@@ -51,13 +51,13 @@ documentation_of: //library/tree/link_cut_tree.hpp
 - `static void set(node_pointer_type u, const value_type &val)`
   
   `u` に書かれた値を `val` に更新する
-- ` template <typename Fun> static void apply(node_pointer_type u, Fun&& f)`
+- `template <typename Fun> static void apply(node_pointer_type u, Fun&& f)`
   
   `u` に書かれた値 `val` を `f(val)` に更新する．即ち，`Fun` は `value_type -> value_type` の関数型を想定している．
 - `static std::vector<node_pointer_type> path_from_root(node_pointer_type u)`
   
   `u` が属する木の根から `u` までのパスを返す．
-- ` static std::optional<std::vector<node_pointer_type>> path(node_pointer_type u, node_pointer_type v)`
+- `static std::optional<std::vector<node_pointer_type>> path(node_pointer_type u, node_pointer_type v)`
   
   `u` から `v` までのパスを返す．__操作前に `u` と `v` が連結である必要がある．__
 
