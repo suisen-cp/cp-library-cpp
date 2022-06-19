@@ -206,6 +206,7 @@
 "test/src/tree/link_cut_tree/dummy1.test.cpp": "2022-06-19 16:27:23 +0900",
 "test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp": "2022-06-19 16:27:23 +0900",
 "test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp": "2022-06-19 16:27:23 +0900",
+"test/src/tree/link_cut_tree/lca.test.cpp": "2022-06-19 16:41:12 +0900",
 "test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp": "2022-05-29 02:48:02 +0900",
 "test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp": "2022-04-01 18:30:08 +0900",
 "test/src/tree/range_contour_operation_query_on_tree/yuki1038.test.cpp": "2022-04-01 18:30:08 +0900",
