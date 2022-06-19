@@ -82,6 +82,12 @@ data:
     title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
       \u5834\u5408)"
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree/segment_tree_beats.hpp
+    title: library/datastructure/segment_tree/segment_tree_beats.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+    title: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
   - icon: ':heavy_check_mark:'
@@ -273,6 +279,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+    title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+    title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
@@ -527,9 +539,11 @@ data:
   - library/datastructure/range_foldable_map.hpp
   - library/datastructure/wavelet_matrix.hpp
   - library/datastructure/cartesian_tree.hpp
+  - library/datastructure/segment_tree/segment_tree_beats.hpp
   - library/datastructure/segment_tree/dual_segment_tree.hpp
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
   - library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
+  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
   - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
   - library/datastructure/segment_tree/segment_tree.hpp
   - library/util/update_proxy_object.hpp
@@ -604,8 +618,10 @@ data:
   - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
+  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp

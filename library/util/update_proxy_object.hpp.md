@@ -28,6 +28,12 @@ data:
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
     title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
       \u5834\u5408)"
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree/segment_tree_beats.hpp
+    title: library/datastructure/segment_tree/segment_tree_beats.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+    title: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
@@ -65,6 +71,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+    title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+    title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -147,7 +159,9 @@ data:
   - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/range_foldable_map.hpp
+  - library/datastructure/segment_tree/segment_tree_beats.hpp
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
+  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
   - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
   - library/datastructure/segment_tree/segment_tree.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
@@ -160,8 +174,10 @@ data:
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
+  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
   - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp

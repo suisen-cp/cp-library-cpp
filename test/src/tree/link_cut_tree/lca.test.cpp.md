@@ -11,12 +11,14 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/lca
     links:
     - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"test/src/tree/link_cut_tree/lca.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/lca\"\n\n#include <iostream>\n#include <numeric>\n\
+  bundledCode: "#line 1 \"test/src/tree/link_cut_tree/lca.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/lca\"\n\n#include <iostream>\n#include <numeric>\n\
     \n#line 1 \"library/tree/link_cut_tree.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <optional>\n#include <utility>\n#include <vector>\n\n#line 1 \"library/util/object_pool.hpp\"\
     \n\n\n\n#include <deque>\n#line 6 \"library/util/object_pool.hpp\"\n\nnamespace\
@@ -121,9 +123,9 @@ data:
     \          expose(v);\n            if (u == v or u->_p) return path_from_root(v);\n\
     \            return std::nullopt;\n        }\n    \n    private:\n        static\
     \ inline ObjectPool<node_type> _pool{};\n    };\n} // namespace suisen\n\n\n#line\
-    \ 7 \"test/src/tree/link_cut_tree/lca.cpp\"\n\nconstexpr int op(int, int) { return\
-    \ {}; }\nconstexpr int e() { return {}; }\nconstexpr int toggle(int) { return\
-    \ {}; }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \ 7 \"test/src/tree/link_cut_tree/lca.test.cpp\"\n\nconstexpr int op(int, int)\
+    \ { return {}; }\nconstexpr int e() { return {}; }\nconstexpr int toggle(int)\
+    \ { return {}; }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    using DynamicTree = suisen::LinkCutTree<int, op, e, toggle>;\n\n    int\
     \ n, q;\n    std::cin >> n >> q;\n\n    DynamicTree::init_pool(n);\n\n    std::vector<int>\
     \ ids(n);\n    std::iota(ids.begin(), ids.end(), 0);\n    auto nodes = DynamicTree::make_nodes(ids);\n\
@@ -147,16 +149,16 @@ data:
   dependsOn:
   - library/tree/link_cut_tree.hpp
   - library/util/object_pool.hpp
-  isVerificationFile: false
-  path: test/src/tree/link_cut_tree/lca.cpp
+  isVerificationFile: true
+  path: test/src/tree/link_cut_tree/lca.test.cpp
   requiredBy: []
-  timestamp: '2022-06-19 16:27:23+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-06-19 16:41:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/tree/link_cut_tree/lca.cpp
+documentation_of: test/src/tree/link_cut_tree/lca.test.cpp
 layout: document
 redirect_from:
-- /library/test/src/tree/link_cut_tree/lca.cpp
-- /library/test/src/tree/link_cut_tree/lca.cpp.html
-title: test/src/tree/link_cut_tree/lca.cpp
+- /verify/test/src/tree/link_cut_tree/lca.test.cpp
+- /verify/test/src/tree/link_cut_tree/lca.test.cpp.html
+title: test/src/tree/link_cut_tree/lca.test.cpp
 ---

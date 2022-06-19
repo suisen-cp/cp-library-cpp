@@ -4,10 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/src/tree/link_cut_tree/lca.cpp
-    title: test/src/tree/link_cut_tree/lca.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree/dummy1.test.cpp
@@ -18,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/link_cut_tree/lca.test.cpp
+    title: test/src/tree/link_cut_tree/lca.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -218,13 +218,13 @@ data:
   - library/util/object_pool.hpp
   isVerificationFile: false
   path: library/tree/link_cut_tree.hpp
-  requiredBy:
-  - test/src/tree/link_cut_tree/lca.cpp
+  requiredBy: []
   timestamp: '2022-06-19 16:27:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/src/tree/link_cut_tree/lca.test.cpp
   - test/src/tree/link_cut_tree/dummy1.test.cpp
 documentation_of: library/tree/link_cut_tree.hpp
 layout: document

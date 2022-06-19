@@ -241,6 +241,9 @@ data:
       path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
       title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
         \u5834\u5408)"
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree/segment_tree_beats.hpp
+      title: library/datastructure/segment_tree/segment_tree_beats.hpp
     - icon: ':question:'
       path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\
@@ -249,6 +252,11 @@ data:
       path: library/datastructure/segment_tree/sparse_segment_tree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\
         \u758E\u306A\u5834\u5408)"
+  - name: library/datastructure/segment_tree/trees
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+      title: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
   - name: library/datastructure/union_find
     pages:
     - icon: ':warning:'
@@ -701,11 +709,6 @@ data:
     - icon: ':warning:'
       path: library/util/zobrist_hash.hpp
       title: Zobrist Hash
-  - name: test/src/tree/link_cut_tree
-    pages:
-    - icon: ':warning:'
-      path: test/src/tree/link_cut_tree/lca.cpp
-      title: test/src/tree/link_cut_tree/lca.cpp
   verificationCategories:
   - name: test/src/algorithm/convex_hull_trick
     pages:
@@ -1027,6 +1030,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - name: test/src/datastructure/segment_tree/segment_tree_beats
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+      title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - name: test/src/datastructure/segment_tree/sparse_lazy_segment_tree
     pages:
     - icon: ':x:'
@@ -1035,6 +1043,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
+  - name: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+      title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - name: test/src/datastructure/union_find/merge_history_forest
     pages:
     - icon: ':heavy_check_mark:'
@@ -1544,6 +1557,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree/lca.test.cpp
+      title: test/src/tree/link_cut_tree/lca.test.cpp
   - name: test/src/tree/lowest_common_anceestor
     pages:
     - icon: ':heavy_check_mark:'

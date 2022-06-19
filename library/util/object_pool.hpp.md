@@ -55,9 +55,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree.hpp
     title: Link Cut Tree
-  - icon: ':warning:'
-    path: test/src/tree/link_cut_tree/lca.cpp
-    title: test/src/tree/link_cut_tree/lca.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
@@ -107,6 +104,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/link_cut_tree/lca.test.cpp
+    title: test/src/tree/link_cut_tree/lca.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -154,7 +154,6 @@ data:
   isVerificationFile: false
   path: library/util/object_pool.hpp
   requiredBy:
-  - test/src/tree/link_cut_tree/lca.cpp
   - library/tree/link_cut_tree.hpp
   - library/datastructure/bbst/persistent_red_black_tree.hpp
   - library/datastructure/bbst/red_black_reversible_lazy_segment_tree.hpp
@@ -176,6 +175,7 @@ data:
   verifiedWith:
   - test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/src/tree/link_cut_tree/lca.test.cpp
   - test/src/tree/link_cut_tree/dummy1.test.cpp
   - test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp

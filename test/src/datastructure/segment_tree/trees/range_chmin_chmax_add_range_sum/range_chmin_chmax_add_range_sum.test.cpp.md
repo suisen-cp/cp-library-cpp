@@ -4,6 +4,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree/segment_tree_beats.hpp
+    title: library/datastructure/segment_tree/segment_tree_beats.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+    title: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
@@ -17,15 +23,17 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
+    PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
-  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp\"\
-    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\"\
-    \n\n#include <iostream>\n\n#line 1 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <vector>\n#line 1 \"library/util/update_proxy_object.hpp\"\
-    \n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
-    #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
+    - https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
+  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
+    \n\n#include <iostream>\n\n#line 1 \"library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <limits>\n\n#line 1 \"library/datastructure/segment_tree/segment_tree_beats.hpp\"\
+    \n\n\n\n#line 1 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\n\
+    \n\n\n#include <cassert>\n#include <vector>\n#line 1 \"library/util/update_proxy_object.hpp\"\
+    \n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\
+    \n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
     \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
@@ -146,45 +154,126 @@ data:
     \ m, r += m;\n            int li = __builtin_ctz(l), ri = __builtin_ctz(r);\n\
     \            for (int i = li + 1; i <= lg; ++i) update(l >> i);\n            for\
     \ (int i = ri + 1; i <= lg; ++i) update(r >> i);\n        }\n    };\n}\n\n\n#line\
-    \ 6 \"test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp\"\
-    \nusing suisen::LazySegmentTree;\n\nint op(int x, int y) {\n    return x < y ?\
-    \ x : y;\n}\nint e() {\n    return std::numeric_limits<int>::max();\n}\nint mapping(int\
-    \ f, int x) {\n    return f + x;\n}\nint composition(int f, int g) {\n    return\
-    \ f + g;\n}\nint id() {\n    return 0;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    LazySegmentTree<int,\
-    \ op, e, int, mapping, composition, id> seg(std::vector<int>(n, 0));\n    for\
-    \ (int i = 0; i < q; ++i) {\n        int t, l, r;\n        std::cin >> t >> l\
-    \ >> r;\n        ++r;\n        if (t == 0) {\n            long long x;\n     \
-    \       std::cin >> x;\n            seg.apply(l, r, x);\n        } else {\n  \
-    \          std::cout << seg(l, r) << '\\n';\n        }\n    }\n    return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\"\
-    \n\n#include <iostream>\n\n#include \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
-    \nusing suisen::LazySegmentTree;\n\nint op(int x, int y) {\n    return x < y ?\
-    \ x : y;\n}\nint e() {\n    return std::numeric_limits<int>::max();\n}\nint mapping(int\
-    \ f, int x) {\n    return f + x;\n}\nint composition(int f, int g) {\n    return\
-    \ f + g;\n}\nint id() {\n    return 0;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    LazySegmentTree<int,\
-    \ op, e, int, mapping, composition, id> seg(std::vector<int>(n, 0));\n    for\
-    \ (int i = 0; i < q; ++i) {\n        int t, l, r;\n        std::cin >> t >> l\
-    \ >> r;\n        ++r;\n        if (t == 0) {\n            long long x;\n     \
-    \       std::cin >> x;\n            seg.apply(l, r, x);\n        } else {\n  \
-    \          std::cout << seg(l, r) << '\\n';\n        }\n    }\n    return 0;\n\
-    }"
+    \ 5 \"library/datastructure/segment_tree/segment_tree_beats.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F,\
+    \ T), F(*composition)(F, F), F(*id)()>\n    using SegmentTreeBeats = LazySegmentTree<T,\
+    \ op, e, F, mapping, composition, id, /* enable_beats = */ true>;\n} // namespace\
+    \ suisen\n\n\n#line 8 \"library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T>\n    struct RangeChMinMaxAddRangeSum\
+    \ {\n        friend struct DataType;\n        struct DataType {\n            friend\
+    \ struct RangeChMinMaxAddRangeSum;\n\n            bool fail = false;\n\n     \
+    \       constexpr DataType() : lo(inf), lo2(inf), hi(-inf), hi2(-inf), sum(0),\
+    \ siz(0), num_lo(0), num_hi(0) {}\n            constexpr DataType(T x, int num\
+    \ = 1) : lo(x), lo2(inf), hi(x), hi2(-inf), sum(x * num), siz(num), num_lo(num),\
+    \ num_hi(num) {}\n\n            T get_min() const { return lo; }\n           \
+    \ T get_max() const { return hi; }\n            T get_second_min() const { return\
+    \ lo2; }\n            T get_second_max() const { return hi2; }\n            T\
+    \ get_min_num() const { return num_lo; }\n            T get_max_num() const {\
+    \ return num_hi; }\n            T get_sum() const { return sum; }\n        private:\n\
+    \            T lo, lo2, hi, hi2, sum;\n            int siz, num_lo, num_hi;\n\
+    \        };\n\n        explicit RangeChMinMaxAddRangeSum(const int n = 0) : RangeChMinMaxAddRangeSum(std::vector<T>(n,\
+    \ 0)) {}\n        RangeChMinMaxAddRangeSum(const std::vector<T> &init) {\n   \
+    \         const int n = init.size();\n            std::vector<DataType> a(n);\n\
+    \            for (int i = 0; i < n; ++i) {\n                a[i] = DataType{init[i]};\n\
+    \            }\n            seg = SegmentTreeBeats<DataType, op, e, F, mapping,\
+    \ composition, id>{ a };\n        }\n\n        void chmin(int l, int r, T val)\
+    \ {\n            seg.apply(l, r, F::chmin_query(val));\n        }\n        void\
+    \ chmax(int l, int r, T val) {\n            seg.apply(l, r, F::chmax_query(val));\n\
+    \        }\n        void update(int l, int r, T val) {\n            seg.apply(l,\
+    \ r, F::update_query(val));\n        }\n        void add(int l, int r, T val)\
+    \ {\n            seg.apply(l, r, F::add_query(val));\n        }\n        T max(int\
+    \ l, int r) {\n            return seg.prod(l, r).get_max();\n        }\n     \
+    \   T min(int l, int r) {\n            return seg.prod(l, r).get_min();\n    \
+    \    }\n        T sum(int l, int r) {\n            return seg.prod(l, r).get_sum();\n\
+    \        }\n        DataType prod(int l, int r) {\n            return seg.prod(l,\
+    \ r);\n        }\n        template <bool(*pred)(DataType)>\n        int max_right(int\
+    \ l) {\n            return seg.max_right<pred>(l);\n        }\n        template\
+    \ <typename Pred>\n        int max_right(int l, Pred &&pred) {\n            return\
+    \ seg.max_right(l, std::forward<Pred>(pred));\n        }\n        template <bool(*pred)(DataType)>\n\
+    \        int min_left(int r) {\n            return seg.min_left<pred>(r);\n  \
+    \      }\n        template <typename Pred>\n        int min_left(int r, Pred &&pred)\
+    \ {\n            return seg.min_left(r, std::forward<Pred>(pred));\n        }\n\
+    \n    private:\n        static constexpr T inf = std::numeric_limits<T>::max()\
+    \ / 2;\n\n        struct F {\n            T lb, ub, add;\n            constexpr\
+    \ F(T lb = -inf, T ub = inf, T add = 0) : lb(lb), ub(ub), add(add) {}\n      \
+    \      static constexpr F chmin_query(T x) { return F { -inf, x, 0 }; }\n    \
+    \        static constexpr F chmax_query(T x) { return F { x, inf, 0 }; }\n   \
+    \         static constexpr F update_query(T x) { return F { x, x, 0 }; }\n   \
+    \         static constexpr F add_query(T x) { return F { -inf, inf, x }; }\n \
+    \       };\n\n        static constexpr T second_lo(T lo11, T lo12, T lo21, T lo22)\
+    \ {\n            if (lo11 == lo21) return std::min(lo12, lo22);\n            if\
+    \ (lo12 <= lo21) return lo12;\n            if (lo22 <= lo11) return lo22;\n  \
+    \          return std::max(lo11, lo21);\n        }\n        static constexpr T\
+    \ second_hi(T hi11, T hi12, T hi21, T hi22) {\n            if (hi11 == hi21) return\
+    \ std::max(hi12, hi22);\n            if (hi12 >= hi21) return hi12;\n        \
+    \    if (hi22 >= hi11) return hi22;\n            return std::min(hi11, hi21);\n\
+    \        }\n\n        static constexpr DataType op(DataType x, DataType y) {\n\
+    \            DataType z{};\n            z.lo = std::min(x.lo, y.lo);\n       \
+    \     z.hi = std::max(x.hi, y.hi);\n            z.lo2 = second_lo(x.lo, x.lo2,\
+    \ y.lo, y.lo2);\n            z.hi2 = second_hi(x.hi, x.hi2, y.hi, y.hi2);\n  \
+    \          z.sum = x.sum + y.sum;\n            z.siz = x.siz + y.siz;\n      \
+    \      z.num_lo = (z.lo == x.lo) * x.num_lo + (z.lo == y.lo) * y.num_lo;\n   \
+    \         z.num_hi = (z.hi == x.hi) * x.num_hi + (z.hi == y.hi) * y.num_hi;\n\
+    \            return z;\n        }\n        static constexpr DataType e() {\n \
+    \           return DataType{};\n        }\n    \n        static constexpr DataType\
+    \ mapping(F f, DataType x) {\n            if (x.siz == 0) {\n                return\
+    \ e();\n            } else if (x.lo == x.hi or f.lb == f.ub or f.lb >= x.hi or\
+    \ f.ub <= x.lo) {\n                return DataType { std::clamp(x.lo, f.lb, f.ub)\
+    \ + f.add, x.siz };\n            } else if (x.lo2 == x.hi) { // 2\n          \
+    \      x.lo = x.hi2 = std::max(x.lo, f.lb) + f.add;\n                x.hi = x.lo2\
+    \ = std::min(x.hi, f.ub) + f.add;\n                x.sum = x.lo * x.num_lo + x.hi\
+    \ * x.num_hi;\n                return x;\n            } else if (f.lb < x.lo2\
+    \ and f.ub > x.hi2) { // >= 3\n                T nlo = std::max(x.lo, f.lb);\n\
+    \                T nhi = std::min(x.hi, f.ub);\n                x.sum += (nlo\
+    \ - x.lo) * x.num_lo + (nhi - x.hi) * x.num_hi + f.add * x.siz;\n            \
+    \    x.lo = nlo + f.add;\n                x.hi = nhi + f.add;\n              \
+    \  x.lo2 += f.add;\n                x.hi2 += f.add;\n                return x;\n\
+    \            }\n            x.fail = true;\n            return x;\n        }\n\
+    \        static constexpr F composition(F f, F g) {\n            F h;\n      \
+    \      h.lb = std::clamp(g.lb + g.add, f.lb, f.ub) - g.add;\n            h.ub\
+    \ = std::clamp(g.ub + g.add, f.lb, f.ub) - g.add;\n            h.add = f.add +\
+    \ g.add;\n            return h;\n        }\n        static constexpr F id() {\n\
+    \            return F{};\n        }\n    \n        SegmentTreeBeats<DataType,\
+    \ op, e, F, mapping, composition, id> seg;\n    };\n} // namespace suisen\n\n\n\
+    \n#line 6 \"test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    \n    int n, q;\n    std::cin >> n >> q;\n    \n    std::vector<long long>\
+    \ a(n);\n    for (auto &e : a) std::cin >> e;\n\n    suisen::RangeChMinMaxAddRangeSum<long\
+    \ long> seg(n);\n    for (int i = 0; i < n; ++i) {\n        seg.update(i, i +\
+    \ 1, a[i]);\n    }\n\n    while (q --> 0) {\n        int qt, l, r;\n        std::cin\
+    \ >> qt >> l >> r;\n        if (qt < 3) {\n            long long b;\n        \
+    \    std::cin >> b;\n            if (qt == 0) seg.chmin(l, r, b);\n          \
+    \  if (qt == 1) seg.chmax(l, r, b);\n            if (qt == 2) seg.add(l, r, b);\n\
+    \        } else {\n            std::cout << seg.sum(l, r) << '\\n';\n        }\n\
+    \    }\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
+    \n\n#include <iostream>\n\n#include \"library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    \n    int n, q;\n    std::cin >> n >> q;\n    \n    std::vector<long long>\
+    \ a(n);\n    for (auto &e : a) std::cin >> e;\n\n    suisen::RangeChMinMaxAddRangeSum<long\
+    \ long> seg(n);\n    for (int i = 0; i < n; ++i) {\n        seg.update(i, i +\
+    \ 1, a[i]);\n    }\n\n    while (q --> 0) {\n        int qt, l, r;\n        std::cin\
+    \ >> qt >> l >> r;\n        if (qt < 3) {\n            long long b;\n        \
+    \    std::cin >> b;\n            if (qt == 0) seg.chmin(l, r, b);\n          \
+    \  if (qt == 1) seg.chmax(l, r, b);\n            if (qt == 2) seg.add(l, r, b);\n\
+    \        } else {\n            std::cout << seg.sum(l, r) << '\\n';\n        }\n\
+    \    }\n    return 0;\n}"
   dependsOn:
+  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+  - library/datastructure/segment_tree/segment_tree_beats.hpp
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
   - library/util/update_proxy_object.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: true
-  path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
+  path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-06-19 20:55:55+09:00'
+  timestamp: '2022-06-19 20:56:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
+documentation_of: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-- /verify/test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp.html
-title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
+- /verify/test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+- /verify/test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp.html
+title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
 ---

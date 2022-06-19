@@ -10,20 +10,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+    title: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+    title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+    title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
-    links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
-  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp\"\
-    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\"\
-    \n\n#include <iostream>\n\n#line 1 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <vector>\n#line 1 \"library/util/update_proxy_object.hpp\"\
+    links: []
+  bundledCode: "#line 1 \"library/datastructure/segment_tree/segment_tree_beats.hpp\"\
+    \n\n\n\n#line 1 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\n\
+    \n\n\n#include <cassert>\n#include <vector>\n#line 1 \"library/util/update_proxy_object.hpp\"\
     \n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
     #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
     \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
@@ -146,45 +151,34 @@ data:
     \ m, r += m;\n            int li = __builtin_ctz(l), ri = __builtin_ctz(r);\n\
     \            for (int i = li + 1; i <= lg; ++i) update(l >> i);\n            for\
     \ (int i = ri + 1; i <= lg; ++i) update(r >> i);\n        }\n    };\n}\n\n\n#line\
-    \ 6 \"test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp\"\
-    \nusing suisen::LazySegmentTree;\n\nint op(int x, int y) {\n    return x < y ?\
-    \ x : y;\n}\nint e() {\n    return std::numeric_limits<int>::max();\n}\nint mapping(int\
-    \ f, int x) {\n    return f + x;\n}\nint composition(int f, int g) {\n    return\
-    \ f + g;\n}\nint id() {\n    return 0;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    LazySegmentTree<int,\
-    \ op, e, int, mapping, composition, id> seg(std::vector<int>(n, 0));\n    for\
-    \ (int i = 0; i < q; ++i) {\n        int t, l, r;\n        std::cin >> t >> l\
-    \ >> r;\n        ++r;\n        if (t == 0) {\n            long long x;\n     \
-    \       std::cin >> x;\n            seg.apply(l, r, x);\n        } else {\n  \
-    \          std::cout << seg(l, r) << '\\n';\n        }\n    }\n    return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\"\
-    \n\n#include <iostream>\n\n#include \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
-    \nusing suisen::LazySegmentTree;\n\nint op(int x, int y) {\n    return x < y ?\
-    \ x : y;\n}\nint e() {\n    return std::numeric_limits<int>::max();\n}\nint mapping(int\
-    \ f, int x) {\n    return f + x;\n}\nint composition(int f, int g) {\n    return\
-    \ f + g;\n}\nint id() {\n    return 0;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    LazySegmentTree<int,\
-    \ op, e, int, mapping, composition, id> seg(std::vector<int>(n, 0));\n    for\
-    \ (int i = 0; i < q; ++i) {\n        int t, l, r;\n        std::cin >> t >> l\
-    \ >> r;\n        ++r;\n        if (t == 0) {\n            long long x;\n     \
-    \       std::cin >> x;\n            seg.apply(l, r, x);\n        } else {\n  \
-    \          std::cout << seg(l, r) << '\\n';\n        }\n    }\n    return 0;\n\
-    }"
+    \ 5 \"library/datastructure/segment_tree/segment_tree_beats.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F,\
+    \ T), F(*composition)(F, F), F(*id)()>\n    using SegmentTreeBeats = LazySegmentTree<T,\
+    \ op, e, F, mapping, composition, id, /* enable_beats = */ true>;\n} // namespace\
+    \ suisen\n\n\n"
+  code: "#ifndef SUISEN_SEGMENT_TREE_BEATS\n#define SUISEN_SEGMENT_TREE_BEATS\n\n\
+    #include \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F,\
+    \ T), F(*composition)(F, F), F(*id)()>\n    using SegmentTreeBeats = LazySegmentTree<T,\
+    \ op, e, F, mapping, composition, id, /* enable_beats = */ true>;\n} // namespace\
+    \ suisen\n\n#endif // SUISEN_SEGMENT_TREE_BEATS\n"
   dependsOn:
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
   - library/util/update_proxy_object.hpp
   - library/type_traits/type_traits.hpp
-  isVerificationFile: true
-  path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-  requiredBy: []
-  timestamp: '2022-06-19 20:55:55+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
+  isVerificationFile: false
+  path: library/datastructure/segment_tree/segment_tree_beats.hpp
+  requiredBy:
+  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+  timestamp: '2022-06-19 20:56:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+documentation_of: library/datastructure/segment_tree/segment_tree_beats.hpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-- /verify/test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp.html
-title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
+- /library/library/datastructure/segment_tree/segment_tree_beats.hpp
+- /library/library/datastructure/segment_tree/segment_tree_beats.hpp.html
+title: library/datastructure/segment_tree/segment_tree_beats.hpp
 ---
