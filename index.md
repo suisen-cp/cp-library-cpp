@@ -605,6 +605,12 @@ data:
       path: library/tree/level_ancestor.hpp
       title: Level Ancestor
     - icon: ':heavy_check_mark:'
+      path: library/tree/link_cut_tree.hpp
+      title: Link Cut Tree
+    - icon: ':warning:'
+      path: library/tree/link_cut_tree_lazy.hpp
+      title: Link Cut Tree Lazy
+    - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
@@ -695,6 +701,11 @@ data:
     - icon: ':warning:'
       path: library/util/zobrist_hash.hpp
       title: Zobrist Hash
+  - name: test/src/tree/link_cut_tree
+    pages:
+    - icon: ':warning:'
+      path: test/src/tree/link_cut_tree/lca.cpp
+      title: test/src/tree/link_cut_tree/lca.cpp
   verificationCategories:
   - name: test/src/algorithm/convex_hull_trick
     pages:
@@ -1522,6 +1533,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/level_ancestor/lowest_common_ancestor.test.cpp
       title: test/src/tree/level_ancestor/lowest_common_ancestor.test.cpp
+  - name: test/src/tree/link_cut_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree/dummy1.test.cpp
+      title: test/src/tree/link_cut_tree/dummy1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp
+      title: test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
+      title: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
   - name: test/src/tree/lowest_common_anceestor
     pages:
     - icon: ':heavy_check_mark:'

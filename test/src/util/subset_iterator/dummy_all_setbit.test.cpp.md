@@ -21,14 +21,15 @@ data:
     \ _MSC_VER\n#  include <intrin.h>\n#else\n#  include <x86intrin.h>\n#endif\n\n\
     #line 11 \"library/util/subset_iterator.hpp\"\n#include <cstdint>\n#line 13 \"\
     library/util/subset_iterator.hpp\"\n#include <limits>\n\nnamespace suisen {\n\
-    \    struct all_subset {\n        struct all_subset_iter {\n            const\
-    \ uint32_t s; uint32_t t;\n            constexpr all_subset_iter(uint32_t s) :\
-    \ s(s), t(s + 1) {}\n            constexpr auto operator*() const { return t;\
-    \ }\n            constexpr auto operator++() {}\n            constexpr auto operator!=(std::nullptr_t)\
-    \ { return t ? (--t &= s, true) : false; }\n        };\n        uint32_t s;\n\
-    \        constexpr all_subset(uint32_t s) : s(s) {}\n        constexpr auto begin()\
-    \ { return all_subset_iter(s); }\n        constexpr auto end() { return nullptr;\
-    \ }\n    };\n\n    // iterator over T s.t. T is subset of S and |T| = k\n    struct\
+    \    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
+    \ = nullptr>\n    struct all_subset {\n        struct all_subset_iter {\n    \
+    \        const T s; T t;\n            constexpr all_subset_iter(T s) : s(s), t(s\
+    \ + 1) {}\n            constexpr auto operator*() const { return t; }\n      \
+    \      constexpr auto operator++() {}\n            constexpr auto operator!=(std::nullptr_t)\
+    \ { return t ? (--t &= s, true) : false; }\n        };\n        T s;\n       \
+    \ constexpr all_subset(T s) : s(s) {}\n        constexpr auto begin() { return\
+    \ all_subset_iter(s); }\n        constexpr auto end() { return nullptr; }\n  \
+    \  };\n\n    // iterator over T s.t. T is subset of S and |T| = k\n    struct\
     \ all_subset_k {\n        struct all_subset_k_iter {\n            const uint32_t\
     \ n, k, s;\n            uint32_t t;\n            __attribute__((target(\"avx2\"\
     )))\n            all_subset_k_iter(uint32_t s, uint32_t k) : n(uint32_t(1) <<\
@@ -111,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-19 16:28:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/util/subset_iterator/dummy_all_setbit.test.cpp

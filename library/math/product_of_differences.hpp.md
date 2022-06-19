@@ -418,9 +418,9 @@ data:
   timestamp: '2022-06-04 19:41:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/math/product_of_differences/yuki1938.test.cpp
 documentation_of: library/math/product_of_differences.hpp
 layout: document
 title: Product Of Differences

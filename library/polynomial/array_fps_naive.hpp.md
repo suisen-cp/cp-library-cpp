@@ -343,10 +343,10 @@ data:
   timestamp: '2022-06-04 18:33:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp
   - test/src/math/array_sps/abc253_h_2.test.cpp
-  - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc213_g.test.cpp
 documentation_of: library/polynomial/array_fps_naive.hpp
 layout: document

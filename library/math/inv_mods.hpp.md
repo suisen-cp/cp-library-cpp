@@ -185,59 +185,59 @@ data:
   isVerificationFile: false
   path: library/math/inv_mods.hpp
   requiredBy:
+  - library/polynomial/common_sequences.hpp
+  - library/polynomial/polynomial_taylor_shift.hpp
+  - library/polynomial/fps_naive.hpp
+  - library/polynomial/bostan_mori.hpp
+  - library/polynomial/fps.hpp
+  - library/polynomial/subset_sum.hpp
+  - library/polynomial/polynomial_interpolation.hpp
+  - library/polynomial/multi_point_eval.hpp
+  - library/polynomial/array_fps_naive.hpp
+  - library/polynomial/lagrange_interpolation.hpp
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/convolution/array_subset_convolution.hpp
   - library/convolution/subset_convolution.hpp
-  - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/math/sps.hpp
-  - library/math/array_sps.hpp
   - library/math/product_of_differences.hpp
-  - library/polynomial/fps.hpp
-  - library/polynomial/fps_naive.hpp
-  - library/polynomial/multi_point_eval.hpp
-  - library/polynomial/common_sequences.hpp
-  - library/polynomial/polynomial_interpolation.hpp
-  - library/polynomial/polynomial_taylor_shift.hpp
-  - library/polynomial/lagrange_interpolation.hpp
-  - library/polynomial/bostan_mori.hpp
-  - library/polynomial/subset_sum.hpp
-  - library/polynomial/array_fps_naive.hpp
+  - library/math/array_sps.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
+  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/src/polynomial/fps/inv_of_fps.test.cpp
+  - test/src/polynomial/fps/log_of_fps.test.cpp
+  - test/src/polynomial/fps/exp_of_fps.test.cpp
+  - test/src/polynomial/fps/pow_of_fps.test.cpp
+  - test/src/polynomial/fps/division_of_polynomials.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
+  - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
+  - test/src/polynomial/common_sequences/abc247_h.test.cpp
+  - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+  - test/src/polynomial/common_sequences/stirling_number1.test.cpp
+  - test/src/polynomial/common_sequences/stirling_number2.test.cpp
+  - test/src/polynomial/common_sequences/partition_function.test.cpp
+  - test/src/polynomial/fps_naive/abc245_d.test.cpp
   - test/src/convolution/relaxed_convolution/abc230_h.test.cpp
-  - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/sps/arc105_f.test.cpp
-  - test/src/math/sps/abc253_h_2.test.cpp
-  - test/src/math/sps/abc253_h.test.cpp
-  - test/src/math/sps/abc213_g.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
+  - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp
   - test/src/math/array_sps/abc253_h_2.test.cpp
-  - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc213_g.test.cpp
-  - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
-  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - test/src/polynomial/fps_naive/abc245_d.test.cpp
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  - test/src/polynomial/fps/exp_of_fps.test.cpp
-  - test/src/polynomial/fps/log_of_fps.test.cpp
-  - test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - test/src/polynomial/fps/inv_of_fps.test.cpp
-  - test/src/polynomial/fps/pow_of_fps.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - test/src/polynomial/common_sequences/stirling_number1.test.cpp
-  - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-  - test/src/polynomial/common_sequences/stirling_number2.test.cpp
-  - test/src/polynomial/common_sequences/abc247_h.test.cpp
-  - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
-  - test/src/polynomial/common_sequences/partition_function.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/math/product_of_differences/yuki1938.test.cpp
+  - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/sps/abc236_h.test.cpp
+  - test/src/math/sps/arc105_f.test.cpp
+  - test/src/math/sps/abc253_h_2.test.cpp
+  - test/src/math/sps/abc213_g.test.cpp
 documentation_of: library/math/inv_mods.hpp
 layout: document
 title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"

@@ -52,6 +52,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/persistent_segment_tree.hpp
     title: "\u6C38\u7D9A\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
+  - icon: ':heavy_check_mark:'
+    path: library/tree/link_cut_tree.hpp
+    title: Link Cut Tree
+  - icon: ':warning:'
+    path: test/src/tree/link_cut_tree/lca.cpp
+    title: test/src/tree/link_cut_tree/lca.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
@@ -92,6 +98,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/link_cut_tree/dummy1.test.cpp
+    title: test/src/tree/link_cut_tree/dummy1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp
+    title: test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
+    title: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -139,37 +154,42 @@ data:
   isVerificationFile: false
   path: library/util/object_pool.hpp
   requiredBy:
-  - library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
+  - test/src/tree/link_cut_tree/lca.cpp
+  - library/tree/link_cut_tree.hpp
+  - library/datastructure/bbst/persistent_red_black_tree.hpp
+  - library/datastructure/bbst/red_black_reversible_lazy_segment_tree.hpp
+  - library/datastructure/bbst/red_black_segment_tree.hpp
+  - library/datastructure/bbst/persistent_red_black_tree_base.hpp
+  - library/datastructure/bbst/red_black_tree_base.hpp
+  - library/datastructure/bbst/red_black_tree.hpp
   - library/datastructure/bbst/persistent_red_black_lazy_segment_tree.hpp
   - library/datastructure/bbst/red_black_lazy_segment_tree.hpp
-  - library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
-  - library/datastructure/bbst/red_black_segment_tree.hpp
   - library/datastructure/bbst/persistent_red_black_segment_tree.hpp
-  - library/datastructure/bbst/persistent_red_black_tree.hpp
-  - library/datastructure/bbst/red_black_tree_base.hpp
-  - library/datastructure/bbst/red_black_reversible_lazy_segment_tree.hpp
-  - library/datastructure/bbst/persistent_red_black_tree_base.hpp
-  - library/datastructure/bbst/red_black_tree.hpp
-  - library/datastructure/segment_tree/persistent_commutative_dual_segment_tree.hpp
-  - library/datastructure/segment_tree/persistent_dual_segment_tree.hpp
+  - library/datastructure/bbst/persistent_red_black_reversible_lazy_segment_tree.hpp
+  - library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
   - library/datastructure/segment_tree/persistent_lazy_segment_tree.hpp
+  - library/datastructure/segment_tree/persistent_dual_segment_tree.hpp
+  - library/datastructure/segment_tree/persistent_commutative_dual_segment_tree.hpp
   - library/datastructure/segment_tree/persistent_segment_tree.hpp
   timestamp: '2022-02-13 16:56:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
+  - test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
+  - test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/src/tree/link_cut_tree/dummy1.test.cpp
+  - test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
-  - test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
-  - test/src/datastructure/segment_tree/persistent_dual_segment_tree/abc253.test.cpp
-  - test/src/datastructure/segment_tree/persistent_commutative_dual_segment_tree/abc253.test.cpp
-  - test/src/datastructure/segment_tree/persistent_lazy_segment_tree/abc253.test.cpp
-  - test/src/datastructure/segment_tree/persistent_lazy_segment_tree/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
+  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/persistent_segment_tree/dummy.test.cpp
-  - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/persistent_segment_tree/abc253_f.test.cpp
+  - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/persistent_commutative_dual_segment_tree/abc253.test.cpp
+  - test/src/datastructure/segment_tree/persistent_dual_segment_tree/abc253.test.cpp
+  - test/src/datastructure/segment_tree/persistent_lazy_segment_tree/dummy.test.cpp
+  - test/src/datastructure/segment_tree/persistent_lazy_segment_tree/abc253.test.cpp
 documentation_of: library/util/object_pool.hpp
 layout: document
 title: Object Pool

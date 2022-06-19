@@ -513,11 +513,11 @@ data:
   timestamp: '2022-06-04 19:41:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/polynomial/common_sequences/stirling_number1.test.cpp
-  - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-  - test/src/polynomial/common_sequences/stirling_number2.test.cpp
-  - test/src/polynomial/common_sequences/abc247_h.test.cpp
   - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
+  - test/src/polynomial/common_sequences/abc247_h.test.cpp
+  - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+  - test/src/polynomial/common_sequences/stirling_number1.test.cpp
+  - test/src/polynomial/common_sequences/stirling_number2.test.cpp
   - test/src/polynomial/common_sequences/partition_function.test.cpp
 documentation_of: library/polynomial/common_sequences.hpp
 layout: document

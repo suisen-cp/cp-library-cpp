@@ -343,8 +343,8 @@ data:
   timestamp: '2022-04-05 23:32:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/segment_tree/persistent_lazy_segment_tree/abc253.test.cpp
   - test/src/datastructure/segment_tree/persistent_lazy_segment_tree/dummy.test.cpp
+  - test/src/datastructure/segment_tree/persistent_lazy_segment_tree/abc253.test.cpp
 documentation_of: library/datastructure/segment_tree/persistent_lazy_segment_tree.hpp
 layout: document
 title: "\u6C38\u7D9A\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
