@@ -4,11 +4,11 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree_beats.hpp
     title: library/datastructure/segment_tree/segment_tree_beats.hpp
   - icon: ':heavy_check_mark:'
@@ -27,15 +27,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
     title: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
+  - icon: ':x:'
+    path: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
+    title: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
@@ -243,16 +246,17 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree/lazy_segment_tree.hpp
   requiredBy:
-  - library/datastructure/segment_tree/segment_tree_beats.hpp
   - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+  - library/datastructure/segment_tree/segment_tree_beats.hpp
   timestamp: '2022-06-19 20:55:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
+  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
 documentation_of: library/datastructure/segment_tree/lazy_segment_tree.hpp
 layout: document

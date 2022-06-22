@@ -572,38 +572,38 @@ data:
   isVerificationFile: false
   path: library/polynomial/fps.hpp
   requiredBy:
-  - library/polynomial/common_sequences.hpp
-  - library/polynomial/polynomial_taylor_shift.hpp
+  - library/math/product_of_differences.hpp
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
+  - library/polynomial/multi_point_eval.hpp
   - library/polynomial/bostan_mori.hpp
   - library/polynomial/subset_sum.hpp
-  - library/polynomial/polynomial_interpolation.hpp
-  - library/polynomial/multi_point_eval.hpp
   - library/polynomial/lagrange_interpolation.hpp
-  - library/convolution/polynomial_eval_multipoint_eval.hpp
-  - library/math/product_of_differences.hpp
+  - library/polynomial/polynomial_interpolation.hpp
+  - library/polynomial/polynomial_taylor_shift.hpp
+  - library/polynomial/common_sequences.hpp
   timestamp: '2022-06-04 19:41:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/src/polynomial/fps/inv_of_fps.test.cpp
-  - test/src/polynomial/fps/log_of_fps.test.cpp
-  - test/src/polynomial/fps/exp_of_fps.test.cpp
-  - test/src/polynomial/fps/pow_of_fps.test.cpp
-  - test/src/polynomial/fps/division_of_polynomials.test.cpp
+  - test/src/math/product_of_differences/yuki1938.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
-  - test/src/polynomial/common_sequences/abc247_h.test.cpp
-  - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-  - test/src/polynomial/common_sequences/stirling_number1.test.cpp
   - test/src/polynomial/common_sequences/stirling_number2.test.cpp
   - test/src/polynomial/common_sequences/partition_function.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/math/product_of_differences/yuki1938.test.cpp
+  - test/src/polynomial/common_sequences/stirling_number1.test.cpp
+  - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+  - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
+  - test/src/polynomial/common_sequences/abc247_h.test.cpp
+  - test/src/polynomial/fps/log_of_fps.test.cpp
+  - test/src/polynomial/fps/inv_of_fps.test.cpp
+  - test/src/polynomial/fps/pow_of_fps.test.cpp
+  - test/src/polynomial/fps/exp_of_fps.test.cpp
+  - test/src/polynomial/fps/division_of_polynomials.test.cpp
+  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
 documentation_of: library/polynomial/fps.hpp
 layout: document
 title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"

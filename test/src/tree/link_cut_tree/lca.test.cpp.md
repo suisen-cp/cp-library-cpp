@@ -5,6 +5,9 @@ data:
     path: library/tree/link_cut_tree.hpp
     title: Link Cut Tree
   - icon: ':heavy_check_mark:'
+    path: library/tree/link_cut_tree_base.hpp
+    title: library/tree/link_cut_tree_base.hpp
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy: []
@@ -19,140 +22,170 @@ data:
     - https://judge.yosupo.jp/problem/lca
   bundledCode: "#line 1 \"test/src/tree/link_cut_tree/lca.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/lca\"\n\n#include <iostream>\n#include <numeric>\n\
-    \n#line 1 \"library/tree/link_cut_tree.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <optional>\n#include <utility>\n#include <vector>\n\n#line 1 \"library/util/object_pool.hpp\"\
-    \n\n\n\n#include <deque>\n#line 6 \"library/util/object_pool.hpp\"\n\nnamespace\
-    \ suisen {\n    template <typename T, bool auto_extend = false>\n    struct ObjectPool\
-    \ {\n        using value_type = T;\n        using value_pointer_type = T*;\n\n\
-    \        template <typename U>\n        using container_type = std::conditional_t<auto_extend,\
-    \ std::deque<U>, std::vector<U>>;\n\n        container_type<value_type> pool;\n\
-    \        container_type<value_pointer_type> stock;\n        decltype(stock.begin())\
-    \ it;\n\n        ObjectPool() : ObjectPool(0) {}\n        ObjectPool(int siz)\
-    \ : pool(siz), stock(siz) {\n            clear();\n        }\n\n        int capacity()\
-    \ const { return pool.size(); }\n        int size() const { return it - stock.begin();\
-    \ }\n\n        value_pointer_type alloc() {\n            if constexpr (auto_extend)\
-    \ ensure();\n            return *it++;\n        }\n\n        void free(value_pointer_type\
-    \ t) {\n            *--it = t;\n        }\n\n        void clear() {\n        \
-    \    int siz = pool.size();\n            it = stock.begin();\n            for\
-    \ (int i = 0; i < siz; i++) stock[i] = &pool[i];\n        }\n\n        void ensure()\
-    \ {\n            if (it != stock.end()) return;\n            int siz = stock.size();\n\
-    \            for (int i = siz; i <= siz * 2; ++i) {\n                stock.push_back(&pool.emplace_back());\n\
+    \n#line 1 \"library/tree/link_cut_tree.hpp\"\n\n\n\n#line 1 \"library/tree/link_cut_tree_base.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <optional>\n#include <utility>\n#include\
+    \ <vector>\n\n#line 1 \"library/util/object_pool.hpp\"\n\n\n\n#include <deque>\n\
+    #line 6 \"library/util/object_pool.hpp\"\n\nnamespace suisen {\n    template <typename\
+    \ T, bool auto_extend = false>\n    struct ObjectPool {\n        using value_type\
+    \ = T;\n        using value_pointer_type = T*;\n\n        template <typename U>\n\
+    \        using container_type = std::conditional_t<auto_extend, std::deque<U>,\
+    \ std::vector<U>>;\n\n        container_type<value_type> pool;\n        container_type<value_pointer_type>\
+    \ stock;\n        decltype(stock.begin()) it;\n\n        ObjectPool() : ObjectPool(0)\
+    \ {}\n        ObjectPool(int siz) : pool(siz), stock(siz) {\n            clear();\n\
+    \        }\n\n        int capacity() const { return pool.size(); }\n        int\
+    \ size() const { return it - stock.begin(); }\n\n        value_pointer_type alloc()\
+    \ {\n            if constexpr (auto_extend) ensure();\n            return *it++;\n\
+    \        }\n\n        void free(value_pointer_type t) {\n            *--it = t;\n\
+    \        }\n\n        void clear() {\n            int siz = pool.size();\n   \
+    \         it = stock.begin();\n            for (int i = 0; i < siz; i++) stock[i]\
+    \ = &pool[i];\n        }\n\n        void ensure() {\n            if (it != stock.end())\
+    \ return;\n            int siz = stock.size();\n            for (int i = siz;\
+    \ i <= siz * 2; ++i) {\n                stock.push_back(&pool.emplace_back());\n\
     \            }\n            it = stock.begin() + siz;\n        }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 10 \"library/tree/link_cut_tree.hpp\"\n\nnamespace\
-    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T)>\n\
-    \    struct LinkCutTree {\n        struct SplayTreeNode;\n\n        using node_type\
-    \ = SplayTreeNode;\n        using node_pointer_type = node_type*;\n        using\
-    \ value_type = T;\n\n        struct SplayTreeNode {\n            friend struct\
-    \ LinkCutTree;\n\n            explicit SplayTreeNode(const value_type& val = e())\
-    \ : _val(val), _sum(val) {}\n\n        private:\n            node_pointer_type\
-    \ _p = nullptr;\n            node_pointer_type _ch[2]{ nullptr, nullptr };\n\n\
-    \            int _siz = 1;\n            value_type _val, _sum;\n\n           \
-    \ bool _rev = false;\n            \n            bool is_root() const {\n     \
-    \           return not _p or (_p->_ch[0] != this and _p->_ch[1] != this);\n  \
-    \          }\n\n            void update() {\n                _siz = 1, _sum =\
-    \ _val;\n                if (_ch[0]) _siz += _ch[0]->_siz, _sum = op(_ch[0]->_sum,\
-    \ _sum);\n                if (_ch[1]) _siz += _ch[1]->_siz, _sum = op(_sum, _ch[1]->_sum);\n\
-    \            }\n\n            void reverse_all() {\n                _rev ^= true;\n\
-    \                std::swap(_ch[0], _ch[1]);\n                _sum = toggle(_sum);\n\
-    \            }\n\n            void push() {\n                if (std::exchange(_rev,\
-    \ false)) {\n                    if (_ch[0]) _ch[0]->reverse_all();\n        \
-    \            if (_ch[1]) _ch[1]->reverse_all();\n                }\n         \
-    \   }\n\n            void rot(int ch_idx) {\n                assert(_ch[ch_idx]);\n\
-    \n                node_pointer_type rt = _ch[ch_idx];\n                if (not\
-    \ is_root()) _p->_ch[_p->_ch[1] == this] = rt;\n\n                if ((_ch[ch_idx]\
-    \ = rt->_ch[ch_idx ^ 1])) {\n                    _ch[ch_idx]->_p = this;\n   \
-    \             }\n                rt->_ch[ch_idx ^ 1] = this;\n               \
-    \ rt->_p = std::exchange(_p, rt);\n\n                update(), rt->update();\n\
-    \            }\n\n            void splay() {\n                push();\n      \
-    \          while (not is_root()) {\n                    if (_p->is_root()) {\n\
-    \                        _p->push(), push();\n                        _p->rot(_p->_ch[1]\
-    \ == this);\n                    } else {\n                        node_pointer_type\
-    \ pp = _p->_p;\n                        pp->push(), _p->push(), push();\n    \
-    \                    const int idx_pp = pp->_ch[1] == _p, idx_p = _p->_ch[1] ==\
-    \ this;\n                        if (idx_p == idx_pp) {\n                    \
-    \        pp->rot(idx_pp), _p->rot(idx_p);\n                        } else {\n\
-    \                            _p->rot(idx_p), pp->rot(idx_pp);\n              \
-    \          }\n                    }\n                }\n            }\n      \
-    \  };\n\n        LinkCutTree() = delete;\n\n        static void init_pool(int\
-    \ capacity) {\n            _pool = ObjectPool<node_type>(capacity);\n        }\n\
-    \n        static node_pointer_type make_node(const value_type& val = e()) {\n\
-    \            return &(*_pool.alloc() = node_type(val));\n        }\n        static\
-    \ std::vector<node_pointer_type> make_nodes(const std::vector<value_type>& vals)\
-    \ {\n            std::vector<node_pointer_type> nodes;\n            nodes.reserve(vals.size());\n\
+    \ namespace suisen\n\n\n#line 10 \"library/tree/link_cut_tree_base.hpp\"\n\nnamespace\
+    \ suisen::internal::link_cut_tree {\n    template <typename T, typename Derived>\n\
+    \    struct SplayTreeNodeBase {\n        friend Derived;\n        template <typename,\
+    \ typename>\n        friend struct LinkCutTreeBase;\n\n        using value_type\
+    \ = T;\n        using node_type = Derived;\n        using node_pointer_type =\
+    \ node_type*;\n\n        explicit SplayTreeNodeBase(const value_type& val = value_type{})\
+    \ : _val(val) {}\n\n    protected:\n        node_pointer_type _p = nullptr;\n\
+    \        node_pointer_type _ch[2]{ nullptr, nullptr };\n\n        int _siz = 1;\n\
+    \        value_type _val;\n\n        bool _rev = false;\n        \n        static\
+    \ bool is_root(node_pointer_type node) {\n            return not node->_p or (node->_p->_ch[0]\
+    \ != node and node->_p->_ch[1] != node);\n        }\n        static node_pointer_type&\
+    \ parent(node_pointer_type node) {\n            return node->_p;\n        }\n\
+    \        static node_pointer_type& child(node_pointer_type node, int ch_idx) {\n\
+    \            return node->_ch[ch_idx];\n        }\n        static int size(node_pointer_type\
+    \ node) {\n            return node ? node->_siz : 0;\n        }\n        static\
+    \ const value_type& value(node_pointer_type node) {\n            return node->_val;\n\
+    \        }\n        static void set_value(node_pointer_type node, const value_type\
+    \ &new_val) {\n            node->_val = new_val;\n        }\n        static void\
+    \ update(node_pointer_type node) {\n            node->_siz = 1 + node_type::size(node->_ch[0])\
+    \ + node_type::size(node->_ch[1]);\n        }\n\n        static void reverse_all(node_pointer_type\
+    \ node) {\n            if (not node) return;\n            node->_rev ^= true;\n\
+    \            std::swap(node->_ch[0], node->_ch[1]);\n        }\n\n        static\
+    \ void push(node_pointer_type node) {\n            if (std::exchange(node->_rev,\
+    \ false)) {\n                node_type::reverse_all(node->_ch[0]);\n         \
+    \       node_type::reverse_all(node->_ch[1]);\n            }\n        }\n\n  \
+    \      static void rot(node_pointer_type node, int ch_idx) {\n            assert(node->_ch[ch_idx]);\n\
+    \n            node_pointer_type rt = node->_ch[ch_idx];\n            if (not node_type::is_root(node))\
+    \ node->_p->_ch[node->_p->_ch[1] == node] = rt;\n\n            if ((node->_ch[ch_idx]\
+    \ = rt->_ch[ch_idx ^ 1])) node->_ch[ch_idx]->_p = node;\n\n            rt->_ch[ch_idx\
+    \ ^ 1] = node;\n            rt->_p = std::exchange(node->_p, rt);\n\n        \
+    \    node_type::update(node), node_type::update(rt);\n        }\n\n        static\
+    \ void splay(node_pointer_type node) {\n            node_type::push(node);\n \
+    \           while (not node_type::is_root(node)) {\n                node_pointer_type\
+    \ p = node->_p;\n                if (node_type::is_root(p)) {\n              \
+    \      node_type::push(p), node_type::push(node);\n                    node_type::rot(p,\
+    \ p->_ch[1] == node);\n                } else {\n                    node_pointer_type\
+    \ pp = p->_p;\n                    node_type::push(pp), node_type::push(p), node_type::push(node);\n\
+    \                    const int idx_pp = pp->_ch[1] == p, idx_p = p->_ch[1] ==\
+    \ node;\n                    if (idx_p == idx_pp) {\n                        node_type::rot(pp,\
+    \ idx_pp), node_type::rot(p, idx_p);\n                    } else {\n         \
+    \               node_type::rot(p, idx_p), node_type::rot(pp, idx_pp);\n      \
+    \              }\n                }\n            }\n        }\n    };\n\n    template\
+    \ <typename NodeType, typename Derived>\n    struct LinkCutTreeBase {\n      \
+    \  using derived_tree_type = Derived;\n\n        using node_type = typename NodeType::node_type;\n\
+    \        using node_pointer_type = typename NodeType::node_pointer_type;\n   \
+    \     using value_type = typename NodeType::value_type;\n\n        LinkCutTreeBase()\
+    \ = delete;\n\n        static void init_pool(int capacity) {\n            _pool\
+    \ = ObjectPool<node_type>(capacity);\n        }\n\n        template <typename\
+    \ ...Args>\n        static node_pointer_type make_node(Args&&...args) {\n    \
+    \        return &(*_pool.alloc() = node_type(std::forward<Args>(args)...));\n\
+    \        }\n        static std::vector<node_pointer_type> make_nodes(const std::vector<value_type>&\
+    \ vals) {\n            std::vector<node_pointer_type> nodes;\n            nodes.reserve(vals.size());\n\
     \            for (const auto& val : vals) nodes.push_back(make_node(val));\n \
     \           return nodes;\n        }\n\n        static node_pointer_type expose(node_pointer_type\
     \ node) {\n            assert(node);\n            node_pointer_type rch = nullptr;\n\
-    \            for (node_pointer_type cur = node; cur; cur = cur->_p) {\n      \
-    \          cur->splay();\n                cur->_ch[1] = std::exchange(rch, cur);\n\
-    \                cur->update();\n            }\n            node->splay();\n \
-    \           return rch;\n        }\n\n        static void link(node_pointer_type\
-    \ ch, node_pointer_type par) {\n            evert(ch), expose(par);\n        \
-    \    assert(not (ch == par or ch->_p)); // check un-connectivity\n           \
-    \ par->_ch[1] = ch;\n            ch->_p = par;\n            par->update();\n \
-    \       }\n\n        static void cut(node_pointer_type ch) {\n            expose(ch);\n\
-    \            node_pointer_type par = ch->_ch[0];\n            assert(par);\n \
-    \           par->_p = ch->_ch[0] = nullptr;\n            ch->update();\n     \
-    \   }\n        static void cut(node_pointer_type u, node_pointer_type v) {\n \
-    \           evert(u);\n            expose(v);\n            assert(v->_ch[0] ==\
-    \ u); // check connectivity\n            u->_p = v->_ch[0] = nullptr;\n      \
-    \      v->update();\n        }\n\n        static void evert(node_pointer_type\
-    \ u) {\n            expose(u);\n            u->reverse_all();\n            u->push();\n\
-    \        }\n\n        static bool is_connected(node_pointer_type u, node_pointer_type\
-    \ v) {\n            expose(u), expose(v);\n            return u == v or u->_p;\n\
-    \        }\n\n        static node_pointer_type lca(node_pointer_type u, node_pointer_type\
-    \ v) {\n            expose(u);\n            node_pointer_type a = expose(v);\n\
-    \            return u == v or u->_p ? a : nullptr;\n        }\n\n        static\
-    \ value_type prod_from_root(node_pointer_type u) {\n            expose(u);\n \
-    \           return u->_sum;\n        }\n        static value_type prod(node_pointer_type\
-    \ u, node_pointer_type v) {\n            evert(u);\n            expose(v);\n \
-    \           assert(u == v or u->_p); // check connectivity\n            return\
-    \ v->_sum;\n        }\n\n        static value_type get(node_pointer_type u) {\n\
-    \            // expose(u);\n            return u->_val;\n        }\n        static\
-    \ void set(node_pointer_type u, const value_type& val) {\n            apply(u,\
+    \            for (node_pointer_type cur = node; cur; cur = node_type::parent(cur))\
+    \ {\n                node_type::splay(cur);\n                node_type::child(cur,\
+    \ 1) = std::exchange(rch, cur);\n                node_type::update(cur);\n   \
+    \         }\n            node_type::splay(node);\n            return rch;\n  \
+    \      }\n\n        static void link(node_pointer_type ch, node_pointer_type par)\
+    \ {\n            derived_tree_type::evert(ch), derived_tree_type::expose(par);\n\
+    \            // check un-connectivity\n            if (ch == par or node_type::parent(ch))\
+    \ assert(false);\n            node_type::child(par, 1) = ch;\n            node_type::parent(ch)\
+    \ = par;\n            node_type::update(par);\n        }\n\n        static void\
+    \ cut(node_pointer_type ch) {\n            derived_tree_type::expose(ch);\n  \
+    \          node_pointer_type par = node_type::child(ch, 0);\n            assert(par);\n\
+    \            node_type::parent(par) = node_type::child(ch, 0) = nullptr;\n   \
+    \         node_type::update(ch);\n        }\n        static void cut(node_pointer_type\
+    \ u, node_pointer_type v) {\n            derived_tree_type::evert(u);\n      \
+    \      derived_tree_type::expose(v);\n            // check connectivity\n    \
+    \        if (node_type::child(v, 0) != u) assert(false);\n            node_type::parent(u)\
+    \ = node_type::child(v, 0) = nullptr;\n            node_type::update(v);\n   \
+    \     }\n\n        static void evert(node_pointer_type u) {\n            derived_tree_type::expose(u);\n\
+    \            node_type::reverse_all(u);\n            node_type::push(u);\n   \
+    \     }\n\n        static bool is_connected(node_pointer_type u, node_pointer_type\
+    \ v) {\n            derived_tree_type::expose(u), derived_tree_type::expose(v);\n\
+    \            return u == v or node_type::parent(u);\n        }\n\n        static\
+    \ node_pointer_type lca(node_pointer_type u, node_pointer_type v) {\n        \
+    \    derived_tree_type::expose(u);\n            node_pointer_type a = derived_tree_type::expose(v);\n\
+    \            return u == v or node_type::parent(u) ? a : nullptr;\n        }\n\
+    \n        static value_type get(node_pointer_type u) {\n            // expose(u);\n\
+    \            return node_type::value(u);\n        }\n        static void set(node_pointer_type\
+    \ u, const value_type& val) {\n            derived_tree_type::update_value(u,\
     \ [&val](const value_type&) { return val; });\n        }\n        template <typename\
-    \ Fun>\n        static void apply(node_pointer_type u, Fun&& f) {\n          \
-    \  expose(u);\n            u->_val = f(u->_val);\n            u->update();\n \
-    \       }\n\n        static std::vector<node_pointer_type> path_from_root(node_pointer_type\
-    \ u) {\n            std::vector<node_pointer_type> res;\n            expose(u);\n\
-    \            auto dfs = [&](auto dfs, node_pointer_type cur) -> void {\n     \
-    \           cur->push();\n                if (cur->_ch[0]) dfs(dfs, cur->_ch[0]);\n\
-    \                res.push_back(cur);\n                if (cur->_ch[1]) dfs(dfs,\
-    \ cur->_ch[1]);\n            };\n            dfs(dfs, u);\n            return\
-    \ res;\n        }\n        static std::optional<std::vector<node_pointer_type>>\
-    \ path(node_pointer_type u, node_pointer_type v) {\n            evert(u);\n  \
-    \          expose(v);\n            if (u == v or u->_p) return path_from_root(v);\n\
-    \            return std::nullopt;\n        }\n    \n    private:\n        static\
-    \ inline ObjectPool<node_type> _pool{};\n    };\n} // namespace suisen\n\n\n#line\
-    \ 7 \"test/src/tree/link_cut_tree/lca.test.cpp\"\n\nconstexpr int op(int, int)\
-    \ { return {}; }\nconstexpr int e() { return {}; }\nconstexpr int toggle(int)\
-    \ { return {}; }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    using DynamicTree = suisen::LinkCutTree<int, op, e, toggle>;\n\n    int\
-    \ n, q;\n    std::cin >> n >> q;\n\n    DynamicTree::init_pool(n);\n\n    std::vector<int>\
-    \ ids(n);\n    std::iota(ids.begin(), ids.end(), 0);\n    auto nodes = DynamicTree::make_nodes(ids);\n\
+    \ Fun>\n        static void update_value(node_pointer_type u, Fun&& f) {\n   \
+    \         derived_tree_type::expose(u);\n            node_type::set_value(u, f(node_type::value(u)));\n\
+    \            node_type::update(u);\n        }\n\n        static std::vector<node_pointer_type>\
+    \ path_from_root(node_pointer_type u) {\n            std::vector<node_pointer_type>\
+    \ res;\n            derived_tree_type::expose(u);\n            auto dfs = [&](auto\
+    \ dfs, node_pointer_type cur) -> void {\n                node_type::push(cur);\n\
+    \                if (node_type::child(cur, 0)) dfs(dfs, node_type::child(cur,\
+    \ 0));\n                res.push_back(cur);\n                if (node_type::child(cur,\
+    \ 1)) dfs(dfs, node_type::child(cur, 1));\n            };\n            dfs(dfs,\
+    \ u);\n            return res;\n        }\n        static std::optional<std::vector<node_pointer_type>>\
+    \ path(node_pointer_type u, node_pointer_type v) {\n            derived_tree_type::evert(u);\n\
+    \            derived_tree_type::expose(v);\n            if (u == v or node_type::parent(u))\
+    \ return derived_tree_type::path_from_root(v);\n            return std::nullopt;\n\
+    \        }\n    \n    private:\n        static inline ObjectPool<node_type> _pool{};\n\
+    \    };\n} // namespace suisen\n\n\n#line 5 \"library/tree/link_cut_tree.hpp\"\
+    \n\nnamespace suisen {\n    namespace internal::link_cut_tree {\n        template\
+    \ <typename T>\n        struct SplayTreeNode : public SplayTreeNodeBase<T, SplayTreeNode<T>>\
+    \ {\n            using base_node_type = SplayTreeNodeBase<T, SplayTreeNode<T>>;\n\
+    \            \n            template <typename, typename>\n            friend struct\
+    \ SplayTreeNodeBase;\n            template <typename, typename>\n            friend\
+    \ struct LinkCutTreeBase;\n            template <typename>\n            friend\
+    \ struct LinkCutTree;\n\n            using value_type = typename base_node_type::value_type;\n\
+    \            using node_type = typename base_node_type::node_type;\n         \
+    \   using node_pointer_type = typename base_node_type::node_pointer_type;\n\n\
+    \            explicit SplayTreeNode(const value_type& val = value_type{}) : base_node_type(val)\
+    \ {}\n        };\n\n        template <typename T>\n        struct LinkCutTree\
+    \ : public LinkCutTreeBase<SplayTreeNode<T>, LinkCutTree<T>> {\n            using\
+    \ base_type = LinkCutTreeBase<SplayTreeNode<T>, LinkCutTree<T>>;\n           \
+    \ using node_type = SplayTreeNode<T>;\n            using node_pointer_type = typename\
+    \ node_type::node_pointer_type;\n            using value_type = typename node_type::value_type;\n\
+    \        };\n    } // namespace internal::link_cut_tree\n    \n    using internal::link_cut_tree::LinkCutTree;\n\
+    } // namespace suisen\n\n\n#line 7 \"test/src/tree/link_cut_tree/lca.test.cpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    using DynamicTree = suisen::LinkCutTree<int>;\n\n    int n, q;\n    std::cin\
+    \ >> n >> q;\n\n    DynamicTree::init_pool(n);\n\n    std::vector<int> ids(n);\n\
+    \    std::iota(ids.begin(), ids.end(), 0);\n    auto nodes = DynamicTree::make_nodes(ids);\n\
     \n    for (int i = 1; i < n; ++i) {\n        int p;\n        std::cin >> p;\n\
     \        DynamicTree::link(nodes[i], nodes[p]);\n    }\n    DynamicTree::evert(nodes[0]);\n\
     \    \n    while (q --> 0) {\n        int u, v;\n        std::cin >> u >> v;\n\
     \        std::cout << DynamicTree::get(DynamicTree::lca(nodes[u], nodes[v])) <<\
     \ '\\n';\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n\n#include <iostream>\n\
-    #include <numeric>\n\n#include \"library/tree/link_cut_tree.hpp\"\n\nconstexpr\
-    \ int op(int, int) { return {}; }\nconstexpr int e() { return {}; }\nconstexpr\
-    \ int toggle(int) { return {}; }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    using DynamicTree = suisen::LinkCutTree<int,\
-    \ op, e, toggle>;\n\n    int n, q;\n    std::cin >> n >> q;\n\n    DynamicTree::init_pool(n);\n\
-    \n    std::vector<int> ids(n);\n    std::iota(ids.begin(), ids.end(), 0);\n  \
-    \  auto nodes = DynamicTree::make_nodes(ids);\n\n    for (int i = 1; i < n; ++i)\
-    \ {\n        int p;\n        std::cin >> p;\n        DynamicTree::link(nodes[i],\
-    \ nodes[p]);\n    }\n    DynamicTree::evert(nodes[0]);\n    \n    while (q -->\
-    \ 0) {\n        int u, v;\n        std::cin >> u >> v;\n        std::cout << DynamicTree::get(DynamicTree::lca(nodes[u],\
-    \ nodes[v])) << '\\n';\n    }\n\n    return 0;\n}"
+    #include <numeric>\n\n#include \"library/tree/link_cut_tree.hpp\"\n\nint main()\
+    \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n   \
+    \ using DynamicTree = suisen::LinkCutTree<int>;\n\n    int n, q;\n    std::cin\
+    \ >> n >> q;\n\n    DynamicTree::init_pool(n);\n\n    std::vector<int> ids(n);\n\
+    \    std::iota(ids.begin(), ids.end(), 0);\n    auto nodes = DynamicTree::make_nodes(ids);\n\
+    \n    for (int i = 1; i < n; ++i) {\n        int p;\n        std::cin >> p;\n\
+    \        DynamicTree::link(nodes[i], nodes[p]);\n    }\n    DynamicTree::evert(nodes[0]);\n\
+    \    \n    while (q --> 0) {\n        int u, v;\n        std::cin >> u >> v;\n\
+    \        std::cout << DynamicTree::get(DynamicTree::lca(nodes[u], nodes[v])) <<\
+    \ '\\n';\n    }\n\n    return 0;\n}"
   dependsOn:
   - library/tree/link_cut_tree.hpp
+  - library/tree/link_cut_tree_base.hpp
   - library/util/object_pool.hpp
   isVerificationFile: true
   path: test/src/tree/link_cut_tree/lca.test.cpp
   requiredBy: []
-  timestamp: '2022-06-19 16:41:12+09:00'
+  timestamp: '2022-06-23 03:06:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/link_cut_tree/lca.test.cpp

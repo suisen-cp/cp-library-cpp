@@ -213,7 +213,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -241,7 +241,7 @@ data:
       path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
       title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
         \u5834\u5408)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/segment_tree_beats.hpp
       title: library/datastructure/segment_tree/segment_tree_beats.hpp
     - icon: ':question:'
@@ -615,9 +615,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/link_cut_tree.hpp
       title: Link Cut Tree
-    - icon: ':warning:'
-      path: library/tree/link_cut_tree_lazy.hpp
-      title: Link Cut Tree Lazy
+    - icon: ':heavy_check_mark:'
+      path: library/tree/link_cut_tree_base.hpp
+      title: library/tree/link_cut_tree_base.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/tree/link_cut_tree_path_foldable.hpp
+      title: library/tree/link_cut_tree_path_foldable.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/tree/link_cut_tree_path_foldable_lazy.hpp
+      title: library/tree/link_cut_tree_path_foldable_lazy.hpp
     - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: Lowest Common Ancestor
@@ -697,7 +703,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_ops.hpp
       title: Tuple Ops
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/util/update_proxy_object.hpp
       title: Update Proxy Object
     - icon: ':warning:'
@@ -1032,6 +1038,9 @@ data:
       title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - name: test/src/datastructure/segment_tree/segment_tree_beats
     pages:
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
+      title: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
@@ -1549,17 +1558,33 @@ data:
   - name: test/src/tree/link_cut_tree
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/tree/link_cut_tree/dummy1.test.cpp
-      title: test/src/tree/link_cut_tree/dummy1.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp
-      title: test/src/tree/link_cut_tree/dynamic_tree_vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
-      title: test/src/tree/link_cut_tree/dynamic_tree_vertex_set_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/src/tree/link_cut_tree/lca.test.cpp
       title: test/src/tree/link_cut_tree/lca.test.cpp
+  - name: test/src/tree/link_cut_tree_path_foldable
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree_path_foldable/dummy1.test.cpp
+      title: test/src/tree/link_cut_tree_path_foldable/dummy1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree_path_foldable/dynamic_tree_vertex_add_path_sum.test.cpp
+      title: test/src/tree/link_cut_tree_path_foldable/dynamic_tree_vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree_path_foldable/dynamic_tree_vertex_set_path_composite.test.cpp
+      title: test/src/tree/link_cut_tree_path_foldable/dynamic_tree_vertex_set_path_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree_path_foldable/lca.test.cpp
+      title: test/src/tree/link_cut_tree_path_foldable/lca.test.cpp
+  - name: test/src/tree/link_cut_tree_path_foldable_lazy
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree_path_foldable_lazy/GRL_5_E.test.cpp
+      title: test/src/tree/link_cut_tree_path_foldable_lazy/GRL_5_E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree_path_foldable_lazy/dummy1.test.cpp
+      title: test/src/tree/link_cut_tree_path_foldable_lazy/dummy1.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
+      title: test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
   - name: test/src/tree/lowest_common_anceestor
     pages:
     - icon: ':heavy_check_mark:'

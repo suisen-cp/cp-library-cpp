@@ -139,10 +139,10 @@ data:
   timestamp: '2022-06-19 16:28:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/math/sps/abc253_h.test.cpp
+  - test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
   - test/src/util/subset_iterator/dummy_all_setbit.test.cpp
   - test/src/util/subset_iterator/dummy_all_subset.test.cpp
-  - test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
-  - test/src/math/sps/abc253_h.test.cpp
 documentation_of: library/util/subset_iterator.hpp
 layout: document
 title: Subset Iterator

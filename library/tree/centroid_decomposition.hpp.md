@@ -146,8 +146,8 @@ data:
   isVerificationFile: false
   path: library/tree/centroid_decomposition.hpp
   requiredBy:
-  - library/tree/contour_aggregation_query_on_tree_base.hpp
   - library/tree/contour_aggregation_query_on_tree.hpp
+  - library/tree/contour_aggregation_query_on_tree_base.hpp
   timestamp: '2021-11-23 20:31:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

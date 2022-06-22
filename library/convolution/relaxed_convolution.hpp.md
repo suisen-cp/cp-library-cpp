@@ -74,8 +74,8 @@ data:
   timestamp: '2022-06-07 17:31:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/relaxed_convolution/convolution_mod.test.cpp
   - test/src/convolution/relaxed_convolution/abc230_h.test.cpp
+  - test/src/convolution/relaxed_convolution/convolution_mod.test.cpp
 documentation_of: library/convolution/relaxed_convolution.hpp
 layout: document
 title: Relaxed Convolution
