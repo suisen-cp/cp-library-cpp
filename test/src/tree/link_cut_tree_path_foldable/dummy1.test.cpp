@@ -2,13 +2,13 @@
 
 #include <iostream>
 
-#include "library/tree/link_cut_tree.hpp"
+#include "library/tree/link_cut_tree_path_foldable.hpp"
 
 int op(int x, int y) { return x + y; }
 int e() { return 0; }
 int toggle(int x) { return x; }
 
-using DynamicTree = suisen::LinkCutTree<int, op, e, toggle>;
+using DynamicTree = suisen::LinkCutTreePathFoldable<int, op, e, toggle>;
 
 void test() {
     const int n = 5;

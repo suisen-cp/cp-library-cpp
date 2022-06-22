@@ -15,7 +15,7 @@ std::ostream& operator<<(std::ostream& out, const mint &a) {
     return out;
 }
 
-#include "library/tree/link_cut_tree.hpp"
+#include "library/tree/link_cut_tree_path_foldable.hpp"
 
 struct S {
     mint a, b;
@@ -60,7 +60,7 @@ int main() {
         a[i] = S { c, d };
     }
 
-    using DynamicTree = suisen::LinkCutTree<S, op, e, toggle>;
+    using DynamicTree = suisen::LinkCutTreePathFoldable<S, op, e, toggle>;
 
     DynamicTree::init_pool(n);
 

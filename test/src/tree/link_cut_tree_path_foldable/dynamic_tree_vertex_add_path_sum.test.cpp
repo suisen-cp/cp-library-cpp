@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "library/tree/link_cut_tree.hpp"
+#include "library/tree/link_cut_tree_path_foldable.hpp"
 
 long long op(long long x, long long y) {
     return x + y;
@@ -24,7 +24,7 @@ int main() {
     std::vector<long long> a(n);
     for (auto& e : a) std::cin >> e;
 
-    using DynamicTree = suisen::LinkCutTree<long long, op, e, toggle>;
+    using DynamicTree = suisen::LinkCutTreePathFoldable<long long, op, e, toggle>;
 
     DynamicTree::init_pool(n);
 
@@ -47,7 +47,7 @@ int main() {
         } else if (query_type == 1) {
             int p, x;
             std::cin >> p >> x;
-            DynamicTree::apply(nodes[p], [x](long long v) { return v + x; });
+            DynamicTree::update_value(nodes[p], [x](long long v) { return v + x; });
         } else {
             int u, v;
             std::cin >> u >> v;

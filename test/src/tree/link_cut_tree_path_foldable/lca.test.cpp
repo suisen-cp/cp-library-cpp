@@ -3,13 +3,17 @@
 #include <iostream>
 #include <numeric>
 
-#include "library/tree/link_cut_tree.hpp"
+#include "library/tree/link_cut_tree_path_foldable.hpp"
+
+constexpr int op(int, int) { return {}; }
+constexpr int e() { return {}; }
+constexpr int toggle(int) { return {}; }
 
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    using DynamicTree = suisen::LinkCutTree<int>;
+    using DynamicTree = suisen::LinkCutTreePathFoldable<int, op, e, toggle>;
 
     int n, q;
     std::cin >> n >> q;
