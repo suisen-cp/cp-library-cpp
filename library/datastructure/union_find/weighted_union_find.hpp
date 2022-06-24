@@ -6,23 +6,16 @@
 #include <numeric>
 #include <vector>
 
-#include "library/type_traits/type_traits.hpp"
+#include "library/util/default_operator.hpp"
 
 namespace suisen {
 
     // reference: https://noshi91.hatenablog.com/entry/2018/05/30/191943
 
-    template <
-        typename T, typename Op = std::plus<T>, typename Inv = std::negate<T>,
-        constraints_t<is_uni_op<Inv, T>, is_bin_op<Op, T>> = nullptr
-    >
+    template <typename T, T(*op)(T, T) = default_operator_noref::add<T>, T(*e)() = default_operator_noref::zero<T>, T(*neg)(T) = default_operator_noref::neg<T>>
         struct WeightedUnionFind {
-        public:
-            WeightedUnionFind() {}
-            explicit WeightedUnionFind(int n, const T& e = T(0)) : n(n), par(n), siz(n, 1), e(e), value(n, e) {
-                std::iota(par.begin(), par.end(), 0);
-            }
-            WeightedUnionFind(int n, const T& e, Op op, Inv inv) : n(n), par(n), siz(n, 1), e(e), value(n, e), op(op), inv(inv) {
+            WeightedUnionFind() = default;
+            explicit WeightedUnionFind(int n) : n(n), par(n), siz(n, 1), value(n, e()) {
                 std::iota(par.begin(), par.end(), 0);
             }
             // Get the root of `x`. equivalent to `operator[](x)`
@@ -48,12 +41,12 @@ namespace suisen {
                  *      [x] ----------> [y]
                  *               d
                  */
-                T rd = op(op(weight(x), d), inv(weight(y)));
+                T rd = op(op(weight(x), d), neg(weight(y)));
                 x = root(x), y = root(y);
                 if (x == y) return false;
                 if (siz[x] < siz[y]) {
                     std::swap(x, y);
-                    rd = inv(std::move(rd));
+                    rd = neg(std::move(rd));
                 }
                 siz[x] += siz[y], par[y] = x;
                 value[y] = std::move(rd);
@@ -62,7 +55,7 @@ namespace suisen {
             // Return the distance d = y - x.
             T diff(int x, int y) {
                 assert(same(x, y));
-                return op(inv(weight(x)), weight(y));
+                return op(neg(weight(x)), weight(y));
             }
             // Check if `x` and `y` belongs to the same connected component.
             bool same(int x, int y) {
@@ -82,13 +75,10 @@ namespace suisen {
         private:
             int n;
             std::vector<int> par, siz;
-            T e;
             std::vector<T> value;
-            Op op;
-            Inv inv;
 
             T weight(int x) {
-                T res = e;
+                T res = e();
                 while (par[x] != x) {
                     int& p = par[x];
                     value[x] = op(value[p], value[x]);

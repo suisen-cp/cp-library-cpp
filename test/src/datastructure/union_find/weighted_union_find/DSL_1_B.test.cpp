@@ -5,12 +5,22 @@
 #include "library/datastructure/union_find/weighted_union_find.hpp"
 using suisen::WeightedUnionFind;
 
+long long op(long long x, long long y) {
+    return x + y;
+}
+long long e() {
+    return 0;
+}
+long long neg(long long x) {
+    return -x;
+}
+
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
     int n, q;
     std::cin >> n >> q;
-    WeightedUnionFind<long long, std::plus<long long>, std::negate<long long>> uf(n);
+    WeightedUnionFind<long long, op, e, neg> uf(n);
     for (int i = 0; i < q; ++i) {
         int t;
         std::cin >> t;
