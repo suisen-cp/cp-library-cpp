@@ -9,16 +9,16 @@
 namespace suisen {
     struct UndoUnionFind {
         UndoUnionFind() : UndoUnionFind(0) {}
-        explicit UndoUnionFind(std::size_t n) : _n(n), _dat(n, -1) {}
+        explicit UndoUnionFind(int n) : _n(n), _dat(n, -1) {}
 
-        int root(std::size_t x) {
+        int root(int x) const {
             assert(x < _n);
             return _dat[x] < 0 ? x : root(_dat[x]);
         }
-        int operator[](std::size_t x) {
+        int operator[](int x) const {
             return root(x);
         }
-        bool merge(std::size_t x, std::size_t y) {
+        bool merge(int x, int y) {
             x = root(x), y = root(y);
             if (x == y) return false;
             if (_dat[x] > _dat[y]) std::swap(x, y);
@@ -26,13 +26,13 @@ namespace suisen {
             _history.emplace_back(y, std::exchange(_dat[y], x));
             return true;
         }
-        bool same(std::size_t x, std::size_t y) {
+        bool same(int x, int y) const {
             return root(x) == root(y);
         }
-        int size(std::size_t x) {
+        int size(int x) const {
             return -_dat[root(x)];
         }
-        auto groups() {
+        auto groups() const {
             std::vector<std::vector<int>> res(_n);
             for (int i = 0; i < _n; ++i) res[root(i)].push_back(i);
             res.erase(std::remove_if(res.begin(), res.end(), [](const auto &g) { return g.empty(); }), res.end());
@@ -49,8 +49,8 @@ namespace suisen {
         void rollback() {
             while (_history.size()) undo();
         }
-    private:
-        std::size_t _n;
+    protected:
+        int _n;
         std::vector<int> _dat;
         std::vector<std::pair<int, int>> _history;
     };

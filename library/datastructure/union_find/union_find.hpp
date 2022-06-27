@@ -7,12 +7,12 @@
 namespace suisen {
     struct UnionFind {
         UnionFind() {}
-        explicit UnionFind(int n) : n(n), data(n, -1) {}
+        explicit UnionFind(int _n) : _n(_n), _dat(_n, -1) {}
         // Get the root of `x`. equivalent to `operator[](x)`
         int root(int x) {
             static std::vector<int> buf;
-            while (data[x] >= 0) buf.push_back(x), x = data[x];
-            while (buf.size()) data[buf.back()] = x, buf.pop_back();
+            while (_dat[x] >= 0) buf.push_back(x), x = _dat[x];
+            while (buf.size()) _dat[buf.back()] = x, buf.pop_back();
             return x;
         }
         // Get the root of `x`. euivalent to `root(x)`
@@ -23,8 +23,8 @@ namespace suisen {
         bool merge(int x, int y) {
             x = root(x), y = root(y);
             if (x == y) return false;
-            if (data[x] > data[y]) std::swap(x, y);
-            data[x] += data[y], data[y] = x;
+            if (_dat[x] > _dat[y]) std::swap(x, y);
+            _dat[x] += _dat[y], _dat[y] = x;
             return true;
         }
         // Check if `x` and `y` belongs to the same connected component.
@@ -33,18 +33,18 @@ namespace suisen {
         }
         // Get the size of connected componet to which `x` belongs.
         int size(int x) {
-            return -data[root(x)];
+            return -_dat[root(x)];
         }
         // Get all of connected components.
         std::vector<std::vector<int>> groups() {
-            std::vector<std::vector<int>> res(n);
-            for (int i = 0; i < n; ++i) res[root(i)].push_back(i);
+            std::vector<std::vector<int>> res(_n);
+            for (int i = 0; i < _n; ++i) res[root(i)].push_back(i);
             res.erase(std::remove_if(res.begin(), res.end(), [](const auto& g) { return g.empty(); }), res.end());
             return res;
         }
-    private:
-        int n;
-        std::vector<int> data;
+    protected:
+        int _n;
+        std::vector<int> _dat;
     };
 } // namespace suisen
 
