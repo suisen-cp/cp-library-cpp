@@ -18,9 +18,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series_sparse
@@ -472,7 +472,7 @@ data:
   path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
   requiredBy: []
   timestamp: '2022-06-27 18:52:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
 layout: document
