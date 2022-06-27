@@ -159,4 +159,4 @@ title: "\u9023\u7D50\u6210\u5206\u306E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u548C
 ---
 ## 連結成分の可換モノイド和取得クエリがある場合の Offline Dynamic Connectivity
 
-Offline Dynamic Connectivity で用いる Undo 可能 Union Find に連結成分の和を持たせればよい。
+Offline Dynamic Connectivity で用いる Undo 可能 Union Find に連結成分の和を持たせることで実現する。

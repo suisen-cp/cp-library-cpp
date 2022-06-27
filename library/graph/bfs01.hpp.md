@@ -91,6 +91,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/bfs01.hpp
 layout: document
-title: Bfs01
+title: 01 BFS
 ---
-## Bfs01
+## 01 BFS

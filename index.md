@@ -341,7 +341,7 @@ data:
       title: Bfs
     - icon: ':warning:'
       path: library/graph/bfs01.hpp
-      title: Bfs01
+      title: 01 BFS
     - icon: ':heavy_check_mark:'
       path: library/graph/biconnected_components.hpp
       title: "\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\u5206\u89E3"
@@ -1436,28 +1436,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/exp_of_fps.test.cpp
       title: test/src/polynomial/fps/exp_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/inv_of_fps.test.cpp
       title: test/src/polynomial/fps/inv_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/log_of_fps.test.cpp
       title: test/src/polynomial/fps/log_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
     - icon: ':x:'
       path: test/src/polynomial/fps/pow_of_fps.test.cpp
       title: test/src/polynomial/fps/pow_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
       title: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
     - icon: ':x:'

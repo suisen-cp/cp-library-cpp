@@ -124,28 +124,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/exp_of_fps.test.cpp
     title: test/src/polynomial/fps/exp_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/inv_of_fps.test.cpp
     title: test/src/polynomial/fps/inv_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/log_of_fps.test.cpp
     title: test/src/polynomial/fps/log_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'
     path: test/src/polynomial/fps/pow_of_fps.test.cpp
     title: test/src/polynomial/fps/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
   - icon: ':x:'
