@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':question:'
@@ -15,37 +15,37 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/polynomial_interpolation.hpp
     title: "\u88DC\u9593\u591A\u9805\u5F0F"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/subset_sum.hpp
     title: Subset Sum
   _extendedVerifiedWith:
@@ -55,84 +55,102 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc213_g.test.cpp
     title: test/src/math/sps/abc213_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc253_h_2.test.cpp
     title: test/src/math/sps/abc253_h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/arc105_f.test.cpp
     title: test/src/math/sps/arc105_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/common_sequences/abc247_h.test.cpp
     title: test/src/polynomial/common_sequences/abc247_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
     title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
     title: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/common_sequences/partition_function.test.cpp
     title: test/src/polynomial/common_sequences/partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/common_sequences/stirling_number1.test.cpp
     title: test/src/polynomial/common_sequences/stirling_number1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/common_sequences/stirling_number2.test.cpp
     title: test/src/polynomial/common_sequences/stirling_number2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/division_of_polynomials.test.cpp
     title: test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
+    title: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/fps/exp_of_fps.test.cpp
     title: test/src/polynomial/fps/exp_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
+    title: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/fps/inv_of_fps.test.cpp
     title: test/src/polynomial/fps/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
+    title: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/fps/log_of_fps.test.cpp
     title: test/src/polynomial/fps/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
+    title: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/fps/pow_of_fps.test.cpp
     title: test/src/polynomial/fps/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
+    title: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
+  - icon: ':x:'
+    path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
+    title: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/fps_naive/abc245_d.test.cpp
     title: test/src/polynomial/fps_naive/abc245_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
     title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n\
@@ -170,7 +188,7 @@ data:
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
     } // namespace suisen\n\n\n#line 11 \"library/polynomial/fps_naive.hpp\"\n\n#line\
     \ 1 \"library/math/modint_extension.hpp\"\n\n\n\n#line 5 \"library/math/modint_extension.hpp\"\
-    \n#include <optional>\n\nnamespace suisen {\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
+    \n#include <optional>\n\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
     \ * calculates x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename\
     \ mint>\nstd::optional<mint> optional_sqrt(mint a) {\n    static int p = mint::mod();\n\
     \    if (a == 0) return std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n\
@@ -179,38 +197,37 @@ data:
     \ = (p - 1) >> tlz;\n    mint x = a.pow((q + 1) / 2);\n    b = b.pow(q);\n   \
     \ for (int shift = 2; x * x != a; ++shift) {\n        mint e = a.inv() * x * x;\n\
     \        if (e.pow(1 << (tlz - shift)) != 1) x *= b;\n        b *= b;\n    }\n\
-    \    return std::make_optional(x);\n}\n\n};\n\n/**\n * calculates x s.t. x^2 =\
-    \ a mod p in O((log p)^2).\n * if not exists, raises runtime error.\n */\ntemplate\
-    \ <typename mint>\nauto sqrt(mint a) -> decltype(mint::mod(), mint()) {\n    return\
-    \ *suisen::optional_sqrt(a);\n}\ntemplate <typename mint>\nauto log(mint a) ->\
-    \ decltype(mint::mod(), mint())  {\n    assert(a == 1);\n    return 0;\n}\ntemplate\
-    \ <typename mint>\nauto exp(mint a) -> decltype(mint::mod(), mint())  {\n    assert(a\
-    \ == 0);\n    return 1;\n}\ntemplate <typename mint, typename T>\nauto pow(mint\
-    \ a, T b) -> decltype(mint::mod(), mint())  {\n    return a.pow(b);\n}\ntemplate\
-    \ <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint()) {\n    return\
-    \ a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n\
-    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
-    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
-    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
-    \ = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n           \
-    \ if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
-    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
-    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
-    \        static constexpr int mod = mint::mod();\n};\ntemplate <typename mint>\n\
-    std::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T>\n    struct FPSNaive : std::vector<T>\
-    \ {\n        static inline int MAX_DEG = std::numeric_limits<int>::max() / 2;\n\
-    \n        using value_type = T;\n        using element_type = rec_value_type_t<T>;\n\
-    \        using std::vector<value_type>::vector;\n\n        FPSNaive(const std::initializer_list<value_type>\
-    \ l) : std::vector<value_type>::vector(l) {}\n\n        static void set_max_deg(int\
-    \ max_deg) {\n            FPSNaive<T>::MAX_DEG = max_deg;\n        }\n\n     \
-    \   const value_type operator[](int n) const {\n            return n <= deg()\
-    \ ? unsafe_get(n) : value_type{ 0 };\n        }\n        value_type& operator[](int\
-    \ n) {\n            return ensure_deg(n), unsafe_get(n);\n        }\n\n      \
-    \  int size() const {\n            return std::vector<value_type>::size();\n \
-    \       }\n        int deg() const {\n            return size() - 1;\n       \
-    \ }\n        int normalize() {\n            while (size() and this->back() ==\
+    \    return std::make_optional(x);\n}\n\n/**\n * calculates x s.t. x^2 = a mod\
+    \ p in O((log p)^2).\n * if not exists, raises runtime error.\n */\ntemplate <typename\
+    \ mint>\nauto sqrt(mint a) -> decltype(mint::mod(), mint()) {\n    return *optional_sqrt(a);\n\
+    }\ntemplate <typename mint>\nauto log(mint a) -> decltype(mint::mod(), mint())\
+    \  {\n    assert(a == 1);\n    return 0;\n}\ntemplate <typename mint>\nauto exp(mint\
+    \ a) -> decltype(mint::mod(), mint())  {\n    assert(a == 0);\n    return 1;\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(mint a, T b) -> decltype(mint::mod(),\
+    \ mint())  {\n    return a.pow(b);\n}\ntemplate <typename mint>\nauto inv(mint\
+    \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 1 \"\
+    library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace\
+    \ suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
+    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
+    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
+    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
+    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
+    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
+    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
+    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
+    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
+    }\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\n\nnamespace suisen {\n \
+    \   template <typename T>\n    struct FPSNaive : std::vector<T> {\n        static\
+    \ inline int MAX_DEG = std::numeric_limits<int>::max() / 2;\n\n        using value_type\
+    \ = T;\n        using element_type = rec_value_type_t<T>;\n        using std::vector<value_type>::vector;\n\
+    \n        FPSNaive(const std::initializer_list<value_type> l) : std::vector<value_type>::vector(l)\
+    \ {}\n\n        static void set_max_deg(int max_deg) {\n            FPSNaive<T>::MAX_DEG\
+    \ = max_deg;\n        }\n\n        const value_type operator[](int n) const {\n\
+    \            return n <= deg() ? unsafe_get(n) : value_type{ 0 };\n        }\n\
+    \        value_type& operator[](int n) {\n            return ensure_deg(n), unsafe_get(n);\n\
+    \        }\n\n        int size() const {\n            return std::vector<value_type>::size();\n\
+    \        }\n        int deg() const {\n            return size() - 1;\n      \
+    \  }\n        int normalize() {\n            while (size() and this->back() ==\
     \ value_type{ 0 }) this->pop_back();\n            return deg();\n        }\n \
     \       FPSNaive& cut_inplace(int max_deg) {\n            if (deg() > max_deg)\
     \ this->resize(std::max(0, max_deg + 1));\n            return *this;\n       \
@@ -307,23 +324,25 @@ data:
     \ <= i; ++j) g.unsafe_get(i) += (element_type{ k } * j - (i - j)) * g.unsafe_get(i\
     \ - j) * (*this)[z + j];\n                g.unsafe_get(i) *= inv_f0 * invs[i];\n\
     \            }\n            g <<= z * k;\n            return g;\n        }\n\n\
-    \        FPSNaive sqrt(int max_deg) const {\n            int dl = 0;\n       \
-    \     while (dl < size() and unsafe_get(dl) == value_type{ 0 }) ++dl;\n      \
-    \      if (dl == size()) return FPSNaive{};\n            if (dl & 1) assert(false);\n\
-    \n            const int d = max_deg - dl / 2;\n\n            FPSNaive g(d + 1);\n\
-    \            g.unsafe_get(0) = ::sqrt((*this)[dl]);\n            value_type inv_2g0\
-    \ = ::inv(2 * g.unsafe_get(0));\n            for (int i = 1; i <= d; ++i) {\n\
-    \                g.unsafe_get(i) = unsafe_get(dl + i);\n                for (int\
-    \ j = 1; j < i; ++j) g.unsafe_get(i) -= g.unsafe_get(j) * g.unsafe_get(i - j);\n\
-    \                g.unsafe_get(i) *= inv_2g0;\n            }\n            g <<=\
-    \ dl / 2;\n            return g;\n        }\n\n        value_type eval(value_type\
-    \ x) const {\n            value_type y = 0;\n            for (int i = size() -\
-    \ 1; i >= 0; --i) y = y * x + unsafe_get(i);\n            return y;\n        }\n\
-    \n    private:\n        static inline inv_mods<element_type> invs;\n\n       \
-    \ void ensure_deg(int d) {\n            if (deg() < d) this->resize(d + 1, value_type{\
-    \ 0 });\n        }\n        const value_type& unsafe_get(int i) const {\n    \
-    \        return std::vector<value_type>::operator[](i);\n        }\n        value_type&\
-    \ unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
+    \        std::optional<FPSNaive> optional_sqrt(int max_deg) const {\n        \
+    \    int dl = 0;\n            while (dl < size() and unsafe_get(dl) == value_type{\
+    \ 0 }) ++dl;\n            if (dl == size()) return FPSNaive{};\n            if\
+    \ (dl & 1) return std::nullopt;\n\n            const int d = max_deg - dl / 2;\n\
+    \n            FPSNaive g(d + 1);\n            auto opt_g0 = ::optional_sqrt((*this)[dl]);\n\
+    \            if (not opt_g0.has_value()) return std::nullopt;\n            g.unsafe_get(0)\
+    \ = *opt_g0;\n            value_type inv_2g0 = ::inv(2 * g.unsafe_get(0));\n \
+    \           for (int i = 1; i <= d; ++i) {\n                g.unsafe_get(i) =\
+    \ (*this)[dl + i];\n                for (int j = 1; j < i; ++j) g.unsafe_get(i)\
+    \ -= g.unsafe_get(j) * g.unsafe_get(i - j);\n                g.unsafe_get(i) *=\
+    \ inv_2g0;\n            }\n            g <<= dl / 2;\n            return g;\n\
+    \        }\n        FPSNaive sqrt(int max_deg) const {\n            return *optional_sqrt(max_deg);\n\
+    \        }\n\n        value_type eval(value_type x) const {\n            value_type\
+    \ y = 0;\n            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
+    \            return y;\n        }\n\n    private:\n        static inline inv_mods<element_type>\
+    \ invs;\n\n        void ensure_deg(int d) {\n            if (deg() < d) this->resize(d\
+    \ + 1, value_type{ 0 });\n        }\n        const value_type& unsafe_get(int\
+    \ i) const {\n            return std::vector<value_type>::operator[](i);\n   \
+    \     }\n        value_type& unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
     \        }\n    };\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPSNaive<mint>\
     \ a) -> decltype(mint::mod(), suisen::FPSNaive<mint>{}) {\n    return a.sqrt(suisen::FPSNaive<mint>::MAX_DEG\
     \ == std::numeric_limits<int>::max() / 2 ? suisen::FPSNaive<mint>::MAX_DEG : a.deg());\n\
@@ -451,23 +470,25 @@ data:
     \ <= i; ++j) g.unsafe_get(i) += (element_type{ k } * j - (i - j)) * g.unsafe_get(i\
     \ - j) * (*this)[z + j];\n                g.unsafe_get(i) *= inv_f0 * invs[i];\n\
     \            }\n            g <<= z * k;\n            return g;\n        }\n\n\
-    \        FPSNaive sqrt(int max_deg) const {\n            int dl = 0;\n       \
-    \     while (dl < size() and unsafe_get(dl) == value_type{ 0 }) ++dl;\n      \
-    \      if (dl == size()) return FPSNaive{};\n            if (dl & 1) assert(false);\n\
-    \n            const int d = max_deg - dl / 2;\n\n            FPSNaive g(d + 1);\n\
-    \            g.unsafe_get(0) = ::sqrt((*this)[dl]);\n            value_type inv_2g0\
-    \ = ::inv(2 * g.unsafe_get(0));\n            for (int i = 1; i <= d; ++i) {\n\
-    \                g.unsafe_get(i) = unsafe_get(dl + i);\n                for (int\
-    \ j = 1; j < i; ++j) g.unsafe_get(i) -= g.unsafe_get(j) * g.unsafe_get(i - j);\n\
-    \                g.unsafe_get(i) *= inv_2g0;\n            }\n            g <<=\
-    \ dl / 2;\n            return g;\n        }\n\n        value_type eval(value_type\
-    \ x) const {\n            value_type y = 0;\n            for (int i = size() -\
-    \ 1; i >= 0; --i) y = y * x + unsafe_get(i);\n            return y;\n        }\n\
-    \n    private:\n        static inline inv_mods<element_type> invs;\n\n       \
-    \ void ensure_deg(int d) {\n            if (deg() < d) this->resize(d + 1, value_type{\
-    \ 0 });\n        }\n        const value_type& unsafe_get(int i) const {\n    \
-    \        return std::vector<value_type>::operator[](i);\n        }\n        value_type&\
-    \ unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
+    \        std::optional<FPSNaive> optional_sqrt(int max_deg) const {\n        \
+    \    int dl = 0;\n            while (dl < size() and unsafe_get(dl) == value_type{\
+    \ 0 }) ++dl;\n            if (dl == size()) return FPSNaive{};\n            if\
+    \ (dl & 1) return std::nullopt;\n\n            const int d = max_deg - dl / 2;\n\
+    \n            FPSNaive g(d + 1);\n            auto opt_g0 = ::optional_sqrt((*this)[dl]);\n\
+    \            if (not opt_g0.has_value()) return std::nullopt;\n            g.unsafe_get(0)\
+    \ = *opt_g0;\n            value_type inv_2g0 = ::inv(2 * g.unsafe_get(0));\n \
+    \           for (int i = 1; i <= d; ++i) {\n                g.unsafe_get(i) =\
+    \ (*this)[dl + i];\n                for (int j = 1; j < i; ++j) g.unsafe_get(i)\
+    \ -= g.unsafe_get(j) * g.unsafe_get(i - j);\n                g.unsafe_get(i) *=\
+    \ inv_2g0;\n            }\n            g <<= dl / 2;\n            return g;\n\
+    \        }\n        FPSNaive sqrt(int max_deg) const {\n            return *optional_sqrt(max_deg);\n\
+    \        }\n\n        value_type eval(value_type x) const {\n            value_type\
+    \ y = 0;\n            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
+    \            return y;\n        }\n\n    private:\n        static inline inv_mods<element_type>\
+    \ invs;\n\n        void ensure_deg(int d) {\n            if (deg() < d) this->resize(d\
+    \ + 1, value_type{ 0 });\n        }\n        const value_type& unsafe_get(int\
+    \ i) const {\n            return std::vector<value_type>::operator[](i);\n   \
+    \     }\n        value_type& unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
     \        }\n    };\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPSNaive<mint>\
     \ a) -> decltype(mint::mod(), suisen::FPSNaive<mint>{}) {\n    return a.sqrt(suisen::FPSNaive<mint>::MAX_DEG\
     \ == std::numeric_limits<int>::max() / 2 ? suisen::FPSNaive<mint>::MAX_DEG : a.deg());\n\
@@ -503,8 +524,8 @@ data:
   - library/polynomial/polynomial_interpolation.hpp
   - library/polynomial/polynomial_taylor_shift.hpp
   - library/polynomial/common_sequences.hpp
-  timestamp: '2022-06-04 18:33:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-27 18:52:58+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/product_of_differences/yuki1938.test.cpp
   - test/src/math/sps/abc253_h_2.test.cpp
@@ -524,9 +545,15 @@ data:
   - test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
   - test/src/polynomial/common_sequences/bernoulli_number.test.cpp
   - test/src/polynomial/common_sequences/abc247_h.test.cpp
+  - test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
   - test/src/polynomial/fps/log_of_fps.test.cpp
+  - test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/fps/inv_of_fps.test.cpp
   - test/src/polynomial/fps/pow_of_fps.test.cpp
+  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/fps/exp_of_fps.test.cpp
   - test/src/polynomial/fps/division_of_polynomials.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc245/tasks/abc245_d
@@ -61,7 +61,7 @@ data:
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
     } // namespace suisen\n\n\n#line 11 \"library/polynomial/fps_naive.hpp\"\n\n#line\
     \ 1 \"library/math/modint_extension.hpp\"\n\n\n\n#line 5 \"library/math/modint_extension.hpp\"\
-    \n#include <optional>\n\nnamespace suisen {\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
+    \n#include <optional>\n\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
     \ * calculates x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename\
     \ mint>\nstd::optional<mint> optional_sqrt(mint a) {\n    static int p = mint::mod();\n\
     \    if (a == 0) return std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n\
@@ -70,38 +70,37 @@ data:
     \ = (p - 1) >> tlz;\n    mint x = a.pow((q + 1) / 2);\n    b = b.pow(q);\n   \
     \ for (int shift = 2; x * x != a; ++shift) {\n        mint e = a.inv() * x * x;\n\
     \        if (e.pow(1 << (tlz - shift)) != 1) x *= b;\n        b *= b;\n    }\n\
-    \    return std::make_optional(x);\n}\n\n};\n\n/**\n * calculates x s.t. x^2 =\
-    \ a mod p in O((log p)^2).\n * if not exists, raises runtime error.\n */\ntemplate\
-    \ <typename mint>\nauto sqrt(mint a) -> decltype(mint::mod(), mint()) {\n    return\
-    \ *suisen::optional_sqrt(a);\n}\ntemplate <typename mint>\nauto log(mint a) ->\
-    \ decltype(mint::mod(), mint())  {\n    assert(a == 1);\n    return 0;\n}\ntemplate\
-    \ <typename mint>\nauto exp(mint a) -> decltype(mint::mod(), mint())  {\n    assert(a\
-    \ == 0);\n    return 1;\n}\ntemplate <typename mint, typename T>\nauto pow(mint\
-    \ a, T b) -> decltype(mint::mod(), mint())  {\n    return a.pow(b);\n}\ntemplate\
-    \ <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint()) {\n    return\
-    \ a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\
-    \n\nnamespace suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n\
-    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
-    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
-    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
-    \ = invs.size();\n            if (sz < 2) invs = {0, 1}, sz = 2;\n           \
-    \ if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
-    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
-    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
-    \        static constexpr int mod = mint::mod();\n};\ntemplate <typename mint>\n\
-    std::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T>\n    struct FPSNaive : std::vector<T>\
-    \ {\n        static inline int MAX_DEG = std::numeric_limits<int>::max() / 2;\n\
-    \n        using value_type = T;\n        using element_type = rec_value_type_t<T>;\n\
-    \        using std::vector<value_type>::vector;\n\n        FPSNaive(const std::initializer_list<value_type>\
-    \ l) : std::vector<value_type>::vector(l) {}\n\n        static void set_max_deg(int\
-    \ max_deg) {\n            FPSNaive<T>::MAX_DEG = max_deg;\n        }\n\n     \
-    \   const value_type operator[](int n) const {\n            return n <= deg()\
-    \ ? unsafe_get(n) : value_type{ 0 };\n        }\n        value_type& operator[](int\
-    \ n) {\n            return ensure_deg(n), unsafe_get(n);\n        }\n\n      \
-    \  int size() const {\n            return std::vector<value_type>::size();\n \
-    \       }\n        int deg() const {\n            return size() - 1;\n       \
-    \ }\n        int normalize() {\n            while (size() and this->back() ==\
+    \    return std::make_optional(x);\n}\n\n/**\n * calculates x s.t. x^2 = a mod\
+    \ p in O((log p)^2).\n * if not exists, raises runtime error.\n */\ntemplate <typename\
+    \ mint>\nauto sqrt(mint a) -> decltype(mint::mod(), mint()) {\n    return *optional_sqrt(a);\n\
+    }\ntemplate <typename mint>\nauto log(mint a) -> decltype(mint::mod(), mint())\
+    \  {\n    assert(a == 1);\n    return 0;\n}\ntemplate <typename mint>\nauto exp(mint\
+    \ a) -> decltype(mint::mod(), mint())  {\n    assert(a == 0);\n    return 1;\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(mint a, T b) -> decltype(mint::mod(),\
+    \ mint())  {\n    return a.pow(b);\n}\ntemplate <typename mint>\nauto inv(mint\
+    \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 1 \"\
+    library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace\
+    \ suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
+    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
+    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
+    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
+    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
+    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
+    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
+    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
+    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
+    }\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\n\nnamespace suisen {\n \
+    \   template <typename T>\n    struct FPSNaive : std::vector<T> {\n        static\
+    \ inline int MAX_DEG = std::numeric_limits<int>::max() / 2;\n\n        using value_type\
+    \ = T;\n        using element_type = rec_value_type_t<T>;\n        using std::vector<value_type>::vector;\n\
+    \n        FPSNaive(const std::initializer_list<value_type> l) : std::vector<value_type>::vector(l)\
+    \ {}\n\n        static void set_max_deg(int max_deg) {\n            FPSNaive<T>::MAX_DEG\
+    \ = max_deg;\n        }\n\n        const value_type operator[](int n) const {\n\
+    \            return n <= deg() ? unsafe_get(n) : value_type{ 0 };\n        }\n\
+    \        value_type& operator[](int n) {\n            return ensure_deg(n), unsafe_get(n);\n\
+    \        }\n\n        int size() const {\n            return std::vector<value_type>::size();\n\
+    \        }\n        int deg() const {\n            return size() - 1;\n      \
+    \  }\n        int normalize() {\n            while (size() and this->back() ==\
     \ value_type{ 0 }) this->pop_back();\n            return deg();\n        }\n \
     \       FPSNaive& cut_inplace(int max_deg) {\n            if (deg() > max_deg)\
     \ this->resize(std::max(0, max_deg + 1));\n            return *this;\n       \
@@ -198,23 +197,25 @@ data:
     \ <= i; ++j) g.unsafe_get(i) += (element_type{ k } * j - (i - j)) * g.unsafe_get(i\
     \ - j) * (*this)[z + j];\n                g.unsafe_get(i) *= inv_f0 * invs[i];\n\
     \            }\n            g <<= z * k;\n            return g;\n        }\n\n\
-    \        FPSNaive sqrt(int max_deg) const {\n            int dl = 0;\n       \
-    \     while (dl < size() and unsafe_get(dl) == value_type{ 0 }) ++dl;\n      \
-    \      if (dl == size()) return FPSNaive{};\n            if (dl & 1) assert(false);\n\
-    \n            const int d = max_deg - dl / 2;\n\n            FPSNaive g(d + 1);\n\
-    \            g.unsafe_get(0) = ::sqrt((*this)[dl]);\n            value_type inv_2g0\
-    \ = ::inv(2 * g.unsafe_get(0));\n            for (int i = 1; i <= d; ++i) {\n\
-    \                g.unsafe_get(i) = unsafe_get(dl + i);\n                for (int\
-    \ j = 1; j < i; ++j) g.unsafe_get(i) -= g.unsafe_get(j) * g.unsafe_get(i - j);\n\
-    \                g.unsafe_get(i) *= inv_2g0;\n            }\n            g <<=\
-    \ dl / 2;\n            return g;\n        }\n\n        value_type eval(value_type\
-    \ x) const {\n            value_type y = 0;\n            for (int i = size() -\
-    \ 1; i >= 0; --i) y = y * x + unsafe_get(i);\n            return y;\n        }\n\
-    \n    private:\n        static inline inv_mods<element_type> invs;\n\n       \
-    \ void ensure_deg(int d) {\n            if (deg() < d) this->resize(d + 1, value_type{\
-    \ 0 });\n        }\n        const value_type& unsafe_get(int i) const {\n    \
-    \        return std::vector<value_type>::operator[](i);\n        }\n        value_type&\
-    \ unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
+    \        std::optional<FPSNaive> optional_sqrt(int max_deg) const {\n        \
+    \    int dl = 0;\n            while (dl < size() and unsafe_get(dl) == value_type{\
+    \ 0 }) ++dl;\n            if (dl == size()) return FPSNaive{};\n            if\
+    \ (dl & 1) return std::nullopt;\n\n            const int d = max_deg - dl / 2;\n\
+    \n            FPSNaive g(d + 1);\n            auto opt_g0 = ::optional_sqrt((*this)[dl]);\n\
+    \            if (not opt_g0.has_value()) return std::nullopt;\n            g.unsafe_get(0)\
+    \ = *opt_g0;\n            value_type inv_2g0 = ::inv(2 * g.unsafe_get(0));\n \
+    \           for (int i = 1; i <= d; ++i) {\n                g.unsafe_get(i) =\
+    \ (*this)[dl + i];\n                for (int j = 1; j < i; ++j) g.unsafe_get(i)\
+    \ -= g.unsafe_get(j) * g.unsafe_get(i - j);\n                g.unsafe_get(i) *=\
+    \ inv_2g0;\n            }\n            g <<= dl / 2;\n            return g;\n\
+    \        }\n        FPSNaive sqrt(int max_deg) const {\n            return *optional_sqrt(max_deg);\n\
+    \        }\n\n        value_type eval(value_type x) const {\n            value_type\
+    \ y = 0;\n            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
+    \            return y;\n        }\n\n    private:\n        static inline inv_mods<element_type>\
+    \ invs;\n\n        void ensure_deg(int d) {\n            if (deg() < d) this->resize(d\
+    \ + 1, value_type{ 0 });\n        }\n        const value_type& unsafe_get(int\
+    \ i) const {\n            return std::vector<value_type>::operator[](i);\n   \
+    \     }\n        value_type& unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
     \        }\n    };\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPSNaive<mint>\
     \ a) -> decltype(mint::mod(), suisen::FPSNaive<mint>{}) {\n    return a.sqrt(suisen::FPSNaive<mint>::MAX_DEG\
     \ == std::numeric_limits<int>::max() / 2 ? suisen::FPSNaive<mint>::MAX_DEG : a.deg());\n\
@@ -255,8 +256,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/fps_naive/abc245_d.test.cpp
   requiredBy: []
-  timestamp: '2022-06-05 20:12:33+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-27 18:52:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/fps_naive/abc245_d.test.cpp
 layout: document

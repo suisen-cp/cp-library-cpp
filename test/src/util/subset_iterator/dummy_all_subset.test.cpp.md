@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/subset_iterator.hpp
     title: Subset Iterator
   _extendedRequiredBy: []
