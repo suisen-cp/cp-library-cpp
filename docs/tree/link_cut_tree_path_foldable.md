@@ -1,8 +1,8 @@
 ---
-title: Link Cut Tree
-documentation_of: //library/tree/link_cut_tree.hpp
+title: パス和取得ができる Link Cut Tree
+documentation_of: //library/tree/link_cut_tree_path_foldable.hpp
 ---
-## Link Cut Tree
+## パス和取得ができる Link Cut Tree
 
 ### サポートする関数
 
@@ -39,6 +39,12 @@ documentation_of: //library/tree/link_cut_tree.hpp
 - `static node_pointer_type lca(node_pointer_type u, node_pointer_type v)`
 
   `u` と `v` の Lowest Common Ancestor を返す．`u` と `v` が異なる木に属する場合は，`nullptr` を返す．`u` および `v` が属している木の根 `r` を指定するためには先に `evert(r)` を呼ぶこと (詳しくは lca のテストファイルを参照)．
+- `static value_type prod_from_root(node_pointer_type u)`
+  
+  `u` が属する木の根から `u` までのパス上の頂点を順番に `op` で畳込んだ結果を返す．
+- `static value_type prod(node_pointer_type u, node_pointer_type v)`
+  
+  `u` から `v` へのパス上の頂点を順番に `op` で畳込んだ結果を返す．__操作前の時点で `u` と `v` は連結でなければならない．__
 - `static value_type get(node_pointer_type u)`
   
   `u` に書かれた値を返す．
@@ -71,6 +77,9 @@ documentation_of: //library/tree/link_cut_tree.hpp
 - `evert(node_pointer_type u)`
   
   操作後に `u` が根となる．
+- `prod(node_pointer_type u, node_pointer_type v)`
+  
+  操作後に `u` が根となる．
 - `path(node_pointer_type u, node_pointer_type v)`
 
   操作後に `u` が根となる．
@@ -79,9 +88,13 @@ documentation_of: //library/tree/link_cut_tree.hpp
 
 ```cpp
 
-#include "library/tree/link_cut_tree.hpp"
+#include "library/tree/link_cut_tree_path_foldable.hpp"
 
-using DynamicTree = suisen::LinkCutTree<int>;
+int op(int x, int y) { return x + y; } // モノイドの二項演算
+int e() { return 0; }                  // モノイドの単位元
+int toggle(int x) { return x; }        // モノイドが非可換な場合は，逆順で和を取ったものを同時に計算してここで swap する
+
+using DynamicTree = suisen::LinkCutTreePathFoldable<int, op, e, toggle>;
 
 int main() {
     const int n = 5;
@@ -113,6 +126,9 @@ int main() {
      *            |
      *          [3(4)]
      */
+
+    // nodes[3] から nodes[4] までのパス上の値を二項演算 op で畳込む
+    int sum = DynamicTree::prod(nodes[3], nodes[4]); // 4 + 2 + 5
 
     // nodes[3] と nodes[4] の間の辺を切る (操作前に直接結ぶ辺が存在する必要がある)
     DynamicTree::cut(nodes[1], nodes[4]);
