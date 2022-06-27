@@ -10,10 +10,10 @@ data:
   _extendedRequiredBy:
   - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree_beats.hpp
-    title: library/datastructure/segment_tree/segment_tree_beats.hpp
+    title: Segment Tree Beats
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
-    title: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+    title: Range Chmin Chmax Add Range Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp

@@ -6,7 +6,7 @@ data:
     title: Link Cut Tree
   - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree_base.hpp
-    title: library/tree/link_cut_tree_base.hpp
+    title: Link Cut Tree Base
   - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool

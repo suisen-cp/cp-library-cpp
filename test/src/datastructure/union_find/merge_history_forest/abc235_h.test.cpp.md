@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/merge_history_forest.hpp
-    title: Merge History Forest
+    title: "\u30DE\u30FC\u30B8\u904E\u7A0B\u3092\u8868\u3059\u68EE"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

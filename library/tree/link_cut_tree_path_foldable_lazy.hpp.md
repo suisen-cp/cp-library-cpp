@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree_base.hpp
-    title: library/tree/link_cut_tree_base.hpp
+    title: Link Cut Tree Base
   - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
@@ -276,8 +276,7 @@ data:
   - test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
 documentation_of: library/tree/link_cut_tree_path_foldable_lazy.hpp
 layout: document
-redirect_from:
-- /library/library/tree/link_cut_tree_path_foldable_lazy.hpp
-- /library/library/tree/link_cut_tree_path_foldable_lazy.hpp.html
-title: library/tree/link_cut_tree_path_foldable_lazy.hpp
+title: "\u30D1\u30B9\u548C\u53D6\u5F97\u30FB\u30D1\u30B9\u4F5C\u7528\u304C\u3067\u304D\
+  \u308B Link Cut Tree"
 ---
+## パス和取得・パス作用ができる Link Cut Tree

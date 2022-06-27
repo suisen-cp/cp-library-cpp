@@ -140,8 +140,6 @@ data:
   - test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
 documentation_of: library/datastructure/union_find/merge_history_forest.hpp
 layout: document
-title: Merge History Forest
+title: "\u30DE\u30FC\u30B8\u904E\u7A0B\u3092\u8868\u3059\u68EE"
 ---
-## Merge History Forest
-
-いわゆる「マージ過程を表す木」。
+## マージ過程を表す森

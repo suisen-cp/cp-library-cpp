@@ -10,10 +10,11 @@ data:
     title: Link Cut Tree
   - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree_path_foldable.hpp
-    title: library/tree/link_cut_tree_path_foldable.hpp
+    title: "\u30D1\u30B9\u548C\u53D6\u5F97\u304C\u3067\u304D\u308B Link Cut Tree"
   - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree_path_foldable_lazy.hpp
-    title: library/tree/link_cut_tree_path_foldable_lazy.hpp
+    title: "\u30D1\u30B9\u548C\u53D6\u5F97\u30FB\u30D1\u30B9\u4F5C\u7528\u304C\u3067\
+      \u304D\u308B Link Cut Tree"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree/lca.test.cpp
@@ -283,8 +284,6 @@ data:
   - test/src/tree/link_cut_tree/lca.test.cpp
 documentation_of: library/tree/link_cut_tree_base.hpp
 layout: document
-redirect_from:
-- /library/library/tree/link_cut_tree_base.hpp
-- /library/library/tree/link_cut_tree_base.hpp.html
-title: library/tree/link_cut_tree_base.hpp
+title: Link Cut Tree Base
 ---
+## Link Cut Tree Base

@@ -13,7 +13,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
-    title: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+    title: Range Chmin Chmax Add Range Sum
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
@@ -181,8 +181,8 @@ data:
   - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree_beats.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/segment_tree/segment_tree_beats.hpp
-- /library/library/datastructure/segment_tree/segment_tree_beats.hpp.html
-title: library/datastructure/segment_tree/segment_tree_beats.hpp
+title: Segment Tree Beats
 ---
+## Segment Tree Beats
+
+[atcoder::lazy_segtree に1行書き足すだけの抽象化 Segment Tree Beats](https://rsm9.hatenablog.com/entry/2021/02/01/220408) を参照。

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/undo_union_find.hpp
-    title: "Undo \u53EF\u80FD Union Find"
+    title: "undo \u53EF\u80FD Union Find"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -106,8 +106,10 @@ data:
   verifiedWith: []
 documentation_of: library/algorithm/offline_dynamic_connectivity.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/offline_dynamic_connectivity.hpp
-- /library/library/algorithm/offline_dynamic_connectivity.hpp.html
-title: library/algorithm/offline_dynamic_connectivity.hpp
+title: Offline Dynamic Connectivity
 ---
+## Offline Dynamic Connectivity
+
+Dynamic Conectivity Problem をクエリ先読みにより $O(Q \log Q \log N)$ 時間で解く。時間軸を添字とした双対セグ木のノードに辺を乗せ、セグ木を dfs しながら Union Find を更新する。dfs の帰りがけで undo 操作をする必要があるので、Undo 可能 Union Find を用いる。
+
+各辺は $O(\log Q)$ 個のノードに存在するので、Union Find の操作回数は $O(Q\log Q)$ 回である。Undo 可能 Union Find の各種操作の計算量は経路圧縮を行わないため $O(\log N)$ であるから、全体の計算量は $O(Q \log Q \log N)$ となる。

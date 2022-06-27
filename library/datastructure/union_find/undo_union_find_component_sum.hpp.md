@@ -3,11 +3,13 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/undo_union_find.hpp
-    title: "Undo \u53EF\u80FD Union Find"
+    title: "undo \u53EF\u80FD Union Find"
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/offline_dynamic_connectivity_component_sum.hpp
-    title: library/algorithm/offline_dynamic_connectivity_component_sum.hpp
+    title: "\u9023\u7D50\u6210\u5206\u306E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u548C\
+      \u53D6\u5F97\u30AF\u30A8\u30EA\u304C\u3042\u308B\u5834\u5408\u306E Offline Dynamic\
+      \ Connectivity"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/offline_dynamic_connectivity_component_sum/dynamic_graph_vertex_add_component_sum.test.cpp
@@ -94,8 +96,11 @@ data:
   - test/src/algorithm/offline_dynamic_connectivity_component_sum/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: library/datastructure/union_find/undo_union_find_component_sum.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/union_find/undo_union_find_component_sum.hpp
-- /library/library/datastructure/union_find/undo_union_find_component_sum.hpp.html
-title: library/datastructure/union_find/undo_union_find_component_sum.hpp
+title: "\u9023\u7D50\u6210\u5206\u306E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u548C\u3092\
+  \u53D6\u5F97\u3067\u304D\u308B undo \u53EF\u80FD Union Find"
 ---
+## 連結成分の可換モノイド和を取得できる undo 可能 Union Find
+
+連結成分毎に可換モノイドの元を持つ Union Find に undo 機能を付けたもの。[Dynamic Graph Vertex Add Component Sum](https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum) を offline で解く場合などで使用。
+
+経路圧縮を諦めることで undo 操作を可能にしており、weighted union heuristic による集合の併合のみを行うので、各種操作の計算量は $O(\log N)$ である。

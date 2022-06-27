@@ -6,7 +6,8 @@ data:
     title: Union Find
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/union_find_component_sum.hpp
-    title: library/datastructure/union_find/union_find_component_sum.hpp
+    title: "\u9023\u7D50\u6210\u5206\u306E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u548C\
+      \u3092\u53D6\u5F97\u3067\u304D\u308B Union Find"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

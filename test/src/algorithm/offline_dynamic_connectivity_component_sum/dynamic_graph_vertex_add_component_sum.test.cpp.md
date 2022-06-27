@@ -3,13 +3,16 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/offline_dynamic_connectivity_component_sum.hpp
-    title: library/algorithm/offline_dynamic_connectivity_component_sum.hpp
+    title: "\u9023\u7D50\u6210\u5206\u306E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u548C\
+      \u53D6\u5F97\u30AF\u30A8\u30EA\u304C\u3042\u308B\u5834\u5408\u306E Offline Dynamic\
+      \ Connectivity"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/undo_union_find.hpp
-    title: "Undo \u53EF\u80FD Union Find"
+    title: "undo \u53EF\u80FD Union Find"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/undo_union_find_component_sum.hpp
-    title: library/datastructure/union_find/undo_union_find_component_sum.hpp
+    title: "\u9023\u7D50\u6210\u5206\u306E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u548C\
+      \u3092\u53D6\u5F97\u3067\u304D\u308B undo \u53EF\u80FD Union Find"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
