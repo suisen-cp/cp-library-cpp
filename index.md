@@ -334,6 +334,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/geom/segment_intersections.hpp
       title: Segment Intersections
+    - icon: ':heavy_check_mark:'
+      path: library/geom/sort_points_by_argument.hpp
+      title: library/geom/sort_points_by_argument.hpp
   - name: library/graph
     pages:
     - icon: ':warning:'
@@ -348,7 +351,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_graph_recognition.hpp
       title: Bipartite Graph Recognition
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/graph/bipartite_matching.hpp
       title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
     - icon: ':warning:'
@@ -558,7 +561,7 @@ data:
     - icon: ':warning:'
       path: library/string/morris_pratt.hpp
       title: Morris Pratt
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/string/palindromic_tree.hpp
       title: Palindromic Tree
     - icon: ':heavy_check_mark:'
@@ -1206,6 +1209,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - name: test/src/geom/sort_points_by_argument
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/geom/sort_points_by_argument/sort_points_by_argument.test.cpp
+      title: test/src/geom/sort_points_by_argument/sort_points_by_argument.test.cpp
   - name: test/src/graph/biconnected_components
     pages:
     - icon: ':heavy_check_mark:'
@@ -1460,7 +1468,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
       title: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
   - name: test/src/polynomial/fps_naive
@@ -1517,7 +1525,7 @@ data:
       title: test/src/string/manacher/enumerate_palindromes.test.cpp
   - name: test/src/string/palindromic_tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/string/palindromic_tree/abc237_h.test.cpp
       title: test/src/string/palindromic_tree/abc237_h.test.cpp
     - icon: ':heavy_check_mark:'
