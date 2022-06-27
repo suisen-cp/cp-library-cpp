@@ -1,5 +1,5 @@
 ---
-title: Bfs01
+title: 01 BFS
 documentation_of: //library/graph/bfs01.hpp
 ---
-## Bfs01
+## 01 BFS
