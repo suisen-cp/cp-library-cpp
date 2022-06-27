@@ -4,7 +4,6 @@
 #include <cassert>
 #include <optional>
 
-namespace suisen {
 /**
  * refernce: https://37zigen.com/tonelli-shanks-algorithm/
  * calculates x s.t. x^2 = a mod p in O((log p)^2).
@@ -28,15 +27,13 @@ std::optional<mint> optional_sqrt(mint a) {
     return std::make_optional(x);
 }
 
-};
-
 /**
  * calculates x s.t. x^2 = a mod p in O((log p)^2).
  * if not exists, raises runtime error.
  */
 template <typename mint>
 auto sqrt(mint a) -> decltype(mint::mod(), mint()) {
-    return *suisen::optional_sqrt(a);
+    return *optional_sqrt(a);
 }
 template <typename mint>
 auto log(mint a) -> decltype(mint::mod(), mint())  {

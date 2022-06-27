@@ -211,24 +211,29 @@ namespace suisen {
             return g;
         }
 
-        FPSNaive sqrt(int max_deg) const {
+        std::optional<FPSNaive> optional_sqrt(int max_deg) const {
             int dl = 0;
             while (dl < size() and unsafe_get(dl) == value_type{ 0 }) ++dl;
             if (dl == size()) return FPSNaive{};
-            if (dl & 1) assert(false);
+            if (dl & 1) return std::nullopt;
 
             const int d = max_deg - dl / 2;
 
             FPSNaive g(d + 1);
-            g.unsafe_get(0) = ::sqrt((*this)[dl]);
+            auto opt_g0 = ::optional_sqrt((*this)[dl]);
+            if (not opt_g0.has_value()) return std::nullopt;
+            g.unsafe_get(0) = *opt_g0;
             value_type inv_2g0 = ::inv(2 * g.unsafe_get(0));
             for (int i = 1; i <= d; ++i) {
-                g.unsafe_get(i) = unsafe_get(dl + i);
+                g.unsafe_get(i) = (*this)[dl + i];
                 for (int j = 1; j < i; ++j) g.unsafe_get(i) -= g.unsafe_get(j) * g.unsafe_get(i - j);
                 g.unsafe_get(i) *= inv_2g0;
             }
             g <<= dl / 2;
             return g;
+        }
+        FPSNaive sqrt(int max_deg) const {
+            return *optional_sqrt(max_deg);
         }
 
         value_type eval(value_type x) const {
