@@ -11,9 +11,13 @@
 using mint = atcoder::modint998244353;
 
 int main() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    
     suisen::FPS<mint>::set_multiplication([](const auto &a, const auto &b) { return atcoder::convolution(a, b); });
 
-    int n, m;
+    int n;
+    long long m;
     std::cin >> n >> m;
     suisen::FPS<mint> f(n);
     for (int i = 0; i < n; ++i) {

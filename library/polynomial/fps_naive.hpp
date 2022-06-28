@@ -197,7 +197,7 @@ namespace suisen {
             if (k == 0) return { value_type{ 1 } };
             int z = 0;
             while (z < size() and unsafe_get(z) == value_type{ 0 }) ++z;
-            if (z >= max_deg / k + 1) return FPSNaive{};
+            if (z == size() or z > max_deg / k) return FPSNaive{};
             const int d = max_deg - z * k;
 
             FPSNaive g(d + 1);

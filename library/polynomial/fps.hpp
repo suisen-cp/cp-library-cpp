@@ -162,15 +162,17 @@ namespace suisen {
             return *this = sqrt(max_deg);
         }
         FPS& pow_inplace(const long long k, const int max_deg) {
+            if (k == 0) return *this = { mint{ 1 } };
             if (max_deg <= 60) return *this = FPSNaive<mint>(this->begin(), this->end()).pow(k, max_deg);
             if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this = pow_sparse(std::move(*sp_f), k, max_deg);
             int tlz = 0;
             while (tlz <= deg() and unsafe_get(tlz) == 0) ++tlz;
-            if (tlz * k > max_deg) { this->clear(); return *this; }
+            if (tlz > deg() or tlz > max_deg / k) return this->clear(), *this;
+            const int d = max_deg - tlz * k;
             *this >>= tlz;
             mint base = (*this)[0];
-            *this *= base.inv(), log_inplace(max_deg), *this *= k, exp_inplace(max_deg), *this *= base.pow(k);
-            return *this <<= tlz * k, pre_inplace(max_deg);
+            *this *= base.inv(), log_inplace(d), *this *= k, exp_inplace(d), *this *= base.pow(k);
+            return *this <<= tlz * k;
         }
         FPS diff() const { FPS f{ *this }; f.diff_inplace(); return f; }
         FPS intg() const { FPS f{ *this }; f.intg_inplace(); return f; }
