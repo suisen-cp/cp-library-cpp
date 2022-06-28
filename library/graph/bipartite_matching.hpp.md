@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/string/palindromic_tree/abc237_h.test.cpp
     title: test/src/string/palindromic_tree/abc237_h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/bipartite_matching.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -214,7 +214,7 @@ data:
   requiredBy:
   - library/graph/dulmage_mendelsohn_decomposition.hpp
   timestamp: '2022-06-28 04:44:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/string/palindromic_tree/abc237_h.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp

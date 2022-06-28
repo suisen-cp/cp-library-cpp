@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
   _extendedRequiredBy: []
@@ -128,7 +128,7 @@ data:
   isVerificationFile: true
   path: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
   requiredBy: []
-  timestamp: '2022-03-17 16:17:30+09:00'
+  timestamp: '2022-06-28 04:44:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/graph/bipartite_matching/bipartite_matching.test.cpp

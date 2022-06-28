@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc245/tasks/abc245_d
@@ -190,18 +190,18 @@ data:
     \ g;\n        }\n        FPSNaive pow(const long long k, int max_deg) const {\n\
     \            if (k == 0) return { value_type{ 1 } };\n            int z = 0;\n\
     \            while (z < size() and unsafe_get(z) == value_type{ 0 }) ++z;\n  \
-    \          if (z >= max_deg / k + 1) return FPSNaive{};\n            const int\
-    \ d = max_deg - z * k;\n\n            FPSNaive g(d + 1);\n            const value_type\
-    \ inv_f0 = ::inv(unsafe_get(z));\n            g.unsafe_get(0) = unsafe_get(z).pow(k);\n\
-    \            for (int i = 1; i <= d; ++i) {\n                for (int j = 1; j\
-    \ <= i; ++j) g.unsafe_get(i) += (element_type{ k } * j - (i - j)) * g.unsafe_get(i\
-    \ - j) * (*this)[z + j];\n                g.unsafe_get(i) *= inv_f0 * invs[i];\n\
-    \            }\n            g <<= z * k;\n            return g;\n        }\n\n\
-    \        std::optional<FPSNaive> optional_sqrt(int max_deg) const {\n        \
-    \    int dl = 0;\n            while (dl < size() and unsafe_get(dl) == value_type{\
-    \ 0 }) ++dl;\n            if (dl == size()) return FPSNaive{};\n            if\
-    \ (dl & 1) return std::nullopt;\n\n            const int d = max_deg - dl / 2;\n\
-    \n            FPSNaive g(d + 1);\n            auto opt_g0 = ::optional_sqrt((*this)[dl]);\n\
+    \          if (z == size() or z > max_deg / k) return FPSNaive{};\n          \
+    \  const int d = max_deg - z * k;\n\n            FPSNaive g(d + 1);\n        \
+    \    const value_type inv_f0 = ::inv(unsafe_get(z));\n            g.unsafe_get(0)\
+    \ = unsafe_get(z).pow(k);\n            for (int i = 1; i <= d; ++i) {\n      \
+    \          for (int j = 1; j <= i; ++j) g.unsafe_get(i) += (element_type{ k }\
+    \ * j - (i - j)) * g.unsafe_get(i - j) * (*this)[z + j];\n                g.unsafe_get(i)\
+    \ *= inv_f0 * invs[i];\n            }\n            g <<= z * k;\n            return\
+    \ g;\n        }\n\n        std::optional<FPSNaive> optional_sqrt(int max_deg)\
+    \ const {\n            int dl = 0;\n            while (dl < size() and unsafe_get(dl)\
+    \ == value_type{ 0 }) ++dl;\n            if (dl == size()) return FPSNaive{};\n\
+    \            if (dl & 1) return std::nullopt;\n\n            const int d = max_deg\
+    \ - dl / 2;\n\n            FPSNaive g(d + 1);\n            auto opt_g0 = ::optional_sqrt((*this)[dl]);\n\
     \            if (not opt_g0.has_value()) return std::nullopt;\n            g.unsafe_get(0)\
     \ = *opt_g0;\n            value_type inv_2g0 = ::inv(2 * g.unsafe_get(0));\n \
     \           for (int i = 1; i <= d; ++i) {\n                g.unsafe_get(i) =\
@@ -256,8 +256,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/fps_naive/abc245_d.test.cpp
   requiredBy: []
-  timestamp: '2022-06-05 20:12:33+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-28 16:25:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/fps_naive/abc245_d.test.cpp
 layout: document

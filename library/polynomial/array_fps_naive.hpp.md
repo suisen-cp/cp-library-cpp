@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/array_sps.hpp
     title: Array Sps
   _extendedVerifiedWith:
@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h.test.cpp
     title: test/src/math/array_sps/abc253_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/array_sps/abc253_h_2.test.cpp
     title: test/src/math/array_sps/abc253_h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/array_sps/arc105_f.test.cpp
     title: test/src/math/array_sps/arc105_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/array_fps_naive.hpp\"\n\n\n\n#include\
@@ -341,7 +341,7 @@ data:
   - library/math/array_sps.hpp
   - library/convolution/array_subset_convolution.hpp
   timestamp: '2022-06-27 18:52:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp

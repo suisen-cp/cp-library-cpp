@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':question:'
@@ -24,15 +24,15 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/lagrange_interpolation.hpp\"\n\n\n\n\
@@ -203,18 +203,18 @@ data:
     \ g;\n        }\n        FPSNaive pow(const long long k, int max_deg) const {\n\
     \            if (k == 0) return { value_type{ 1 } };\n            int z = 0;\n\
     \            while (z < size() and unsafe_get(z) == value_type{ 0 }) ++z;\n  \
-    \          if (z >= max_deg / k + 1) return FPSNaive{};\n            const int\
-    \ d = max_deg - z * k;\n\n            FPSNaive g(d + 1);\n            const value_type\
-    \ inv_f0 = ::inv(unsafe_get(z));\n            g.unsafe_get(0) = unsafe_get(z).pow(k);\n\
-    \            for (int i = 1; i <= d; ++i) {\n                for (int j = 1; j\
-    \ <= i; ++j) g.unsafe_get(i) += (element_type{ k } * j - (i - j)) * g.unsafe_get(i\
-    \ - j) * (*this)[z + j];\n                g.unsafe_get(i) *= inv_f0 * invs[i];\n\
-    \            }\n            g <<= z * k;\n            return g;\n        }\n\n\
-    \        std::optional<FPSNaive> optional_sqrt(int max_deg) const {\n        \
-    \    int dl = 0;\n            while (dl < size() and unsafe_get(dl) == value_type{\
-    \ 0 }) ++dl;\n            if (dl == size()) return FPSNaive{};\n            if\
-    \ (dl & 1) return std::nullopt;\n\n            const int d = max_deg - dl / 2;\n\
-    \n            FPSNaive g(d + 1);\n            auto opt_g0 = ::optional_sqrt((*this)[dl]);\n\
+    \          if (z == size() or z > max_deg / k) return FPSNaive{};\n          \
+    \  const int d = max_deg - z * k;\n\n            FPSNaive g(d + 1);\n        \
+    \    const value_type inv_f0 = ::inv(unsafe_get(z));\n            g.unsafe_get(0)\
+    \ = unsafe_get(z).pow(k);\n            for (int i = 1; i <= d; ++i) {\n      \
+    \          for (int j = 1; j <= i; ++j) g.unsafe_get(i) += (element_type{ k }\
+    \ * j - (i - j)) * g.unsafe_get(i - j) * (*this)[z + j];\n                g.unsafe_get(i)\
+    \ *= inv_f0 * invs[i];\n            }\n            g <<= z * k;\n            return\
+    \ g;\n        }\n\n        std::optional<FPSNaive> optional_sqrt(int max_deg)\
+    \ const {\n            int dl = 0;\n            while (dl < size() and unsafe_get(dl)\
+    \ == value_type{ 0 }) ++dl;\n            if (dl == size()) return FPSNaive{};\n\
+    \            if (dl & 1) return std::nullopt;\n\n            const int d = max_deg\
+    \ - dl / 2;\n\n            FPSNaive g(d + 1);\n            auto opt_g0 = ::optional_sqrt((*this)[dl]);\n\
     \            if (not opt_g0.has_value()) return std::nullopt;\n            g.unsafe_get(0)\
     \ = *opt_g0;\n            value_type inv_2g0 = ::inv(2 * g.unsafe_get(0));\n \
     \           for (int i = 1; i <= d; ++i) {\n                g.unsafe_get(i) =\
@@ -335,20 +335,21 @@ data:
     \ *= ++(pre(k * 2) - res.log(k * 2)), res.pre_inplace(k * 2);\n            return\
     \ *this = std::move(res), pre_inplace(max_deg);\n        }\n        FPS& sqrt_inplace(const\
     \ int max_deg) {\n            return *this = sqrt(max_deg);\n        }\n     \
-    \   FPS& pow_inplace(const long long k, const int max_deg) {\n            if (max_deg\
-    \ <= 60) return *this = FPSNaive<mint>(this->begin(), this->end()).pow(k, max_deg);\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this\
-    \ = pow_sparse(std::move(*sp_f), k, max_deg);\n            int tlz = 0;\n    \
-    \        while (tlz <= deg() and unsafe_get(tlz) == 0) ++tlz;\n            if\
-    \ (tlz * k > max_deg) { this->clear(); return *this; }\n            *this >>=\
-    \ tlz;\n            mint base = (*this)[0];\n            *this *= base.inv(),\
-    \ log_inplace(max_deg), *this *= k, exp_inplace(max_deg), *this *= base.pow(k);\n\
-    \            return *this <<= tlz * k, pre_inplace(max_deg);\n        }\n    \
-    \    FPS diff() const { FPS f{ *this }; f.diff_inplace(); return f; }\n      \
-    \  FPS intg() const { FPS f{ *this }; f.intg_inplace(); return f; }\n        FPS\
-    \ inv(const int max_deg) const { FPS f{ *this }; f.inv_inplace(max_deg); return\
-    \ f; }\n        FPS log(const int max_deg) const { FPS f{ *this }; f.log_inplace(max_deg);\
-    \ return f; }\n        FPS exp(const int max_deg) const { FPS f{ *this }; f.exp_inplace(max_deg);\
+    \   FPS& pow_inplace(const long long k, const int max_deg) {\n            if (k\
+    \ == 0) return *this = { mint{ 1 } };\n            if (max_deg <= 60) return *this\
+    \ = FPSNaive<mint>(this->begin(), this->end()).pow(k, max_deg);\n            if\
+    \ (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this = pow_sparse(std::move(*sp_f),\
+    \ k, max_deg);\n            int tlz = 0;\n            while (tlz <= deg() and\
+    \ unsafe_get(tlz) == 0) ++tlz;\n            if (tlz > deg() or tlz > max_deg /\
+    \ k) return this->clear(), *this;\n            const int d = max_deg - tlz * k;\n\
+    \            *this >>= tlz;\n            mint base = (*this)[0];\n           \
+    \ *this *= base.inv(), log_inplace(d), *this *= k, exp_inplace(d), *this *= base.pow(k);\n\
+    \            return *this <<= tlz * k;\n        }\n        FPS diff() const {\
+    \ FPS f{ *this }; f.diff_inplace(); return f; }\n        FPS intg() const { FPS\
+    \ f{ *this }; f.intg_inplace(); return f; }\n        FPS inv(const int max_deg)\
+    \ const { FPS f{ *this }; f.inv_inplace(max_deg); return f; }\n        FPS log(const\
+    \ int max_deg) const { FPS f{ *this }; f.log_inplace(max_deg); return f; }\n \
+    \       FPS exp(const int max_deg) const { FPS f{ *this }; f.exp_inplace(max_deg);\
     \ return f; }\n        std::optional<FPS> optional_sqrt(const int max_deg) {\n\
     \            if (max_deg <= 60) return FPSNaive<mint>(this->begin(), this->end()).optional_sqrt(max_deg);\n\
     \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return optional_sqrt_sparse(std::move(*sp_f),\
@@ -550,8 +551,8 @@ data:
   isVerificationFile: false
   path: library/polynomial/lagrange_interpolation.hpp
   requiredBy: []
-  timestamp: '2022-06-27 18:52:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-28 16:25:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
