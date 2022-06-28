@@ -99,9 +99,6 @@ data:
     path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
     title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
-    title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -225,7 +222,6 @@ data:
   timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp

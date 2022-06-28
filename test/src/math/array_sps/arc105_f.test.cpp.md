@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':heavy_check_mark:'
@@ -445,7 +445,7 @@ data:
   isVerificationFile: true
   path: test/src/math/array_sps/arc105_f.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 18:52:58+09:00'
+  timestamp: '2022-06-04 19:41:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/array_sps/arc105_f.test.cpp

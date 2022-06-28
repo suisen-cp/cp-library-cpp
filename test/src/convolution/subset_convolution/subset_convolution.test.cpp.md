@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
@@ -73,7 +73,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 18:52:58+09:00'
+  timestamp: '2022-06-04 18:33:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/subset_convolution/subset_convolution.test.cpp

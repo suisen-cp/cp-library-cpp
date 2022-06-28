@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_graph_recognition.hpp
     title: Bipartite Graph Recognition
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
   - icon: ':heavy_check_mark:'
@@ -194,7 +194,7 @@ data:
   isVerificationFile: true
   path: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
   requiredBy: []
-  timestamp: '2022-06-28 04:44:21+09:00'
+  timestamp: '2022-03-17 16:17:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
