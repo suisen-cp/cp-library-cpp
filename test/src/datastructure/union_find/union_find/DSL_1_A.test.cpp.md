@@ -58,7 +58,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
   requiredBy: []
-  timestamp: '2022-06-27 18:51:28+09:00'
+  timestamp: '2022-01-17 22:14:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp

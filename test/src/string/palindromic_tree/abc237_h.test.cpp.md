@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/string/palindromic_tree.hpp
     title: Palindromic Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_Ex
@@ -259,8 +259,8 @@ data:
   isVerificationFile: true
   path: test/src/string/palindromic_tree/abc237_h.test.cpp
   requiredBy: []
-  timestamp: '2022-06-28 04:44:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-03-17 16:17:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/string/palindromic_tree/abc237_h.test.cpp
 layout: document

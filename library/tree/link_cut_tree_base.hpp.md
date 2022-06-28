@@ -17,9 +17,6 @@ data:
       \u304D\u308B Link Cut Tree"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/tree/link_cut_tree/lca.test.cpp
-    title: test/src/tree/link_cut_tree/lca.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree_path_foldable/dummy1.test.cpp
     title: test/src/tree/link_cut_tree_path_foldable/dummy1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -281,7 +278,6 @@ data:
   - test/src/tree/link_cut_tree_path_foldable/dummy1.test.cpp
   - test/src/tree/link_cut_tree_path_foldable/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/src/tree/link_cut_tree_path_foldable/dynamic_tree_vertex_set_path_composite.test.cpp
-  - test/src/tree/link_cut_tree/lca.test.cpp
 documentation_of: library/tree/link_cut_tree_base.hpp
 layout: document
 title: Link Cut Tree Base

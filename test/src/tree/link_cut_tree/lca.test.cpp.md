@@ -5,9 +5,6 @@ data:
     path: library/tree/link_cut_tree.hpp
     title: Link Cut Tree
   - icon: ':heavy_check_mark:'
-    path: library/tree/link_cut_tree_base.hpp
-    title: Link Cut Tree Base
-  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy: []
@@ -180,12 +177,11 @@ data:
     \ '\\n';\n    }\n\n    return 0;\n}"
   dependsOn:
   - library/tree/link_cut_tree.hpp
-  - library/tree/link_cut_tree_base.hpp
   - library/util/object_pool.hpp
   isVerificationFile: true
   path: test/src/tree/link_cut_tree/lca.test.cpp
   requiredBy: []
-  timestamp: '2022-06-23 03:06:22+09:00'
+  timestamp: '2022-06-19 16:41:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/link_cut_tree/lca.test.cpp
