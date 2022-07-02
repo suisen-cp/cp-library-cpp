@@ -1,34 +1,21 @@
 #ifndef SUISEN_SUBSET_CONVOLUTION
 #define SUISEN_SUBSET_CONVOLUTION
 
-#ifdef USE_ARRAY_FPS
-#include "library/polynomial/array_fps_naive.hpp"
-#else
 #include "library/polynomial/fps_naive.hpp"
-#endif
 
 #include "library/transform/subset.hpp"
 
 namespace suisen {
     namespace ranked_subset_transform {
-#ifdef USE_ARRAY_FPS
-        template <typename T>
-        using polynomial_t = ArrayFPSNaive<T, USE_ARRAY_FPS>;
-#else
         template <typename T>
         using polynomial_t = FPSNaive<T>;
-#endif
 
         namespace internal {
             template <typename T>
             std::vector<polynomial_t<T>> ranked(const std::vector<T>& a) {
                 const int n = a.size();
                 assert((-n & n) == n);
-#ifdef USE_ARRAY_FPS
-                std::vector fs(n, polynomial_t<T>{});
-#else
                 std::vector fs(n, polynomial_t<T>(__builtin_ctz(n) + 1, T{ 0 }));
-#endif
                 for (int i = 0; i < n; ++i) fs[i][__builtin_popcount(i)] = a[i];
                 return fs;
             }
