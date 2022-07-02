@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/union_find/union_find.hpp
     title: Union Find
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
+    title: test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/union_find/linked_union_find.hpp\"\
@@ -67,8 +70,9 @@ data:
   path: library/datastructure/union_find/linked_union_find.hpp
   requiredBy: []
   timestamp: '2022-06-27 18:51:28+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
 documentation_of: library/datastructure/union_find/linked_union_find.hpp
 layout: document
 title: "\u9023\u7D50\u6210\u5206\u3092\u53D6\u5F97\u3067\u304D\u308B Union Find"

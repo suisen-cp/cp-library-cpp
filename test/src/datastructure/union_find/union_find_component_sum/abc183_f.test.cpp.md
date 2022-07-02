@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/union_find/union_find.hpp
     title: Union Find
   - icon: ':heavy_check_mark:'
