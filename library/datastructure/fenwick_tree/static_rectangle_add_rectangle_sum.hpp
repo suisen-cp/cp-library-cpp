@@ -3,8 +3,8 @@
 
 #include <algorithm>
 
-#include "library/datastructure/fenwick_tree/fenwick_tree.hpp"
 #include "library/util/tuple_ops.hpp"
+#include "library/datastructure/fenwick_tree/fenwick_tree.hpp"
 
 namespace suisen {
     template <typename T>

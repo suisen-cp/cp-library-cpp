@@ -5,8 +5,6 @@
 #include <map>
 #include <unordered_map>
 
-#include "library/type_traits/type_traits.hpp"
-
 namespace suisen {
     namespace internal {
         template <typename T, typename index_t = int, typename Container = std::vector<T>>

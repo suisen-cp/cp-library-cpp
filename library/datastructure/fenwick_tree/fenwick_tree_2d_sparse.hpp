@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <limits>
 #include <tuple>
 
 #include "library/datastructure/fenwick_tree/fenwick_tree.hpp"
