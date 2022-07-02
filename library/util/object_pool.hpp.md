@@ -41,6 +41,9 @@ data:
     path: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
     title: Persistent Fenwick Tree
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/persistent_array.hpp
+    title: library/datastructure/persistent_array.hpp
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/persistent_commutative_dual_segment_tree.hpp
     title: Persistent Commutative Dual Segment Tree
   - icon: ':heavy_check_mark:'
@@ -53,9 +56,12 @@ data:
     path: library/datastructure/segment_tree/persistent_segment_tree.hpp
     title: "\u6C38\u7D9A\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
+    path: library/datastructure/union_find/persistent_union_find.hpp
+    title: library/datastructure/union_find/persistent_union_find.hpp
+  - icon: ':x:'
     path: library/tree/link_cut_tree.hpp
     title: Link Cut Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/tree/link_cut_tree_base.hpp
     title: Link Cut Tree Base
   - icon: ':heavy_check_mark:'
@@ -106,6 +112,9 @@ data:
     path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
+    title: test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
+  - icon: ':x:'
     path: test/src/tree/link_cut_tree/lca.test.cpp
     title: test/src/tree/link_cut_tree/lca.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,9 +138,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
     title: test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/object_pool.hpp\"\n\n\n\n#include <deque>\n\
@@ -176,6 +185,8 @@ data:
   isVerificationFile: false
   path: library/util/object_pool.hpp
   requiredBy:
+  - library/datastructure/persistent_array.hpp
+  - library/datastructure/union_find/persistent_union_find.hpp
   - library/datastructure/bbst/red_black_reversible_lazy_segment_tree.hpp
   - library/datastructure/bbst/persistent_red_black_tree_base.hpp
   - library/datastructure/bbst/persistent_red_black_lazy_segment_tree.hpp
@@ -196,8 +207,9 @@ data:
   - library/tree/link_cut_tree_path_foldable.hpp
   - library/tree/link_cut_tree.hpp
   timestamp: '2022-02-13 16:56:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
   - test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
   - test/src/datastructure/bbst/red_black_reversible_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp

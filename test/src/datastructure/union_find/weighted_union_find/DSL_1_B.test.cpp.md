@@ -5,8 +5,8 @@ data:
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
   - icon: ':question:'
-    path: library/type_traits/type_traits.hpp
-    title: Type Traits
+    path: library/util/default_operator.hpp
+    title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -115,11 +115,11 @@ data:
     \  }\n        }\n    }\n    return 0;\n}"
   dependsOn:
   - library/datastructure/union_find/weighted_union_find.hpp
-  - library/type_traits/type_traits.hpp
+  - library/util/default_operator.hpp
   isVerificationFile: true
   path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-06-25 02:26:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
