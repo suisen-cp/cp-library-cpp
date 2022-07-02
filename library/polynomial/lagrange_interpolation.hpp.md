@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
   - icon: ':question:'

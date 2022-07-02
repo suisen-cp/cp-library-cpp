@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution.hpp
     title: "\u591A\u5909\u6570\u7573\u307F\u8FBC\u307F (\u5207\u308A\u6368\u3066)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []

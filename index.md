@@ -53,7 +53,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/arbitrary_mod_convolution.hpp
       title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/array_subset_convolution.hpp
       title: Array Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -98,7 +98,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/semi_relaxed_convolution.hpp
       title: Semi Relaxed Convolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -434,7 +434,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/circulant_matrix.hpp
       title: "Circulant Matrix (\u5DE1\u56DE\u884C\u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/count_spanning_trees.hpp
       title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
         \u6570\u3048\u4E0A\u3052"
@@ -444,7 +444,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/hessenberg_reduction.hpp
       title: Hessenberg Reduction
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/matrix.hpp
       title: Matrix
     - icon: ':warning:'
@@ -452,7 +452,7 @@ data:
       title: "XOR \u57FA\u5E95"
   - name: library/math
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/array_sps.hpp
       title: Array Sps
     - icon: ':heavy_check_mark:'
@@ -470,10 +470,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
       title: Set Power Series
     - icon: ':heavy_check_mark:'
@@ -523,13 +523,13 @@ data:
       title: Util
   - name: library/polynomial
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/array_fps_naive.hpp
       title: Array Fps Naive
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/common_sequences.hpp
       title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
     - icon: ':question:'
@@ -593,7 +593,7 @@ data:
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/kronecker_power.hpp
       title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
         \u5909\u63DB (\u4EEE\u79F0)"
@@ -601,7 +601,7 @@ data:
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/subset.hpp
       title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -686,7 +686,7 @@ data:
     - icon: ':warning:'
       path: library/util/cumulative_sum_2d.hpp
       title: "2D \u7D2F\u7A4D\u548C"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/default_operator.hpp
       title: Default Operator
     - icon: ':warning:'
@@ -714,7 +714,7 @@ data:
       path: library/util/run_length_encoder.hpp
       title: "Run Length Encoder (\u30E9\u30F3\u30EC\u30F3\u30AF\u30B9\u5727\u7E2E\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
     - icon: ':warning:'
@@ -1335,16 +1335,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/array_sps/abc213_g.test.cpp
       title: test/src/math/array_sps/abc213_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/array_sps/abc236_h.test.cpp
       title: test/src/math/array_sps/abc236_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/array_sps/abc253_h.test.cpp
       title: test/src/math/array_sps/abc253_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/array_sps/abc253_h_2.test.cpp
       title: test/src/math/array_sps/abc253_h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/array_sps/arc105_f.test.cpp
       title: test/src/math/array_sps/arc105_f.test.cpp
   - name: test/src/math/bigint
@@ -1360,24 +1360,24 @@ data:
       title: test/src/math/bigint/NTL_2_F.test.cpp
   - name: test/src/math/product_of_differences
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/product_of_differences/yuki1938.test.cpp
       title: test/src/math/product_of_differences/yuki1938.test.cpp
   - name: test/src/math/sps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/sps/abc213_g.test.cpp
       title: test/src/math/sps/abc213_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/sps/abc236_h.test.cpp
       title: test/src/math/sps/abc236_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/sps/abc253_h.test.cpp
       title: test/src/math/sps/abc253_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/sps/abc253_h_2.test.cpp
       title: test/src/math/sps/abc253_h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/sps/arc105_f.test.cpp
       title: test/src/math/sps/arc105_f.test.cpp
   - name: test/src/math/util
@@ -1430,15 +1430,15 @@ data:
       title: test/src/number/util/same_div_dens.test.cpp
   - name: test/src/polynomial/bostan_mori
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   - name: test/src/polynomial/common_sequences
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/common_sequences/abc247_h.test.cpp
       title: test/src/polynomial/common_sequences/abc247_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
       title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
     - icon: ':x:'

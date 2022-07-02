@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/linear_algebra/characteristic_polynomial.hpp
     title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/count_spanning_trees.hpp
     title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
       \u6570\u3048\u4E0A\u3052"
@@ -25,12 +25,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/matrix/matrix_product.test.cpp
     title: test/src/linear_algebra/matrix/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#include <cassert>\n\
@@ -271,7 +271,7 @@ data:
   - library/linear_algebra/hessenberg_reduction.hpp
   - library/linear_algebra/count_spanning_trees.hpp
   timestamp: '2022-05-14 02:45:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/sps/abc253_h.test.cpp
   - test/src/linear_algebra/matrix/inverse_matrix.test.cpp

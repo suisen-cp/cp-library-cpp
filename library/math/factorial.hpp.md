@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/util.hpp
     title: Util
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/common_sequences.hpp
     title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
   - icon: ':x:'
@@ -15,25 +15,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
     title: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h.test.cpp
     title: test/src/math/array_sps/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h_2.test.cpp
     title: test/src/math/array_sps/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h_2.test.cpp
     title: test/src/math/sps/abc253_h_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/util/abc240_g.test.cpp
     title: test/src/math/util/abc240_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/abc247_h.test.cpp
     title: test/src/polynomial/common_sequences/abc247_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
     title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
   - icon: ':x:'
