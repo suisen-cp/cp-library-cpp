@@ -54,7 +54,7 @@ namespace suisen {
                 add_all(seq);
             }
 
-            void add(const value_type& val) {
+            int add(const value_type& val) {
                 _seq.push_back(val);
 
                 node_pointer_type par_node = _find_next_longest_suffix_palindrome(_get_node(_active_index));
@@ -86,7 +86,7 @@ namespace suisen {
                 } else static_assert(false_v<void>);
                 if (not inserted) {
                     ++_get_node(_active_index)->_multiplicity;
-                    return;
+                    return _active_index;
                 }
 
                 int par_length = par_node->_length;
@@ -102,6 +102,7 @@ namespace suisen {
                 } else {
                     new_node->_suffix_link = _find_next_longest_suffix_palindrome(_get_node(par_suffix_link))->_children[val];
                 }
+                return _active_index;
             }
             template <typename Iterable>
             void add_all(const Iterable &seq) {
