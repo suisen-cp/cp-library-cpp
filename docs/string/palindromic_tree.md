@@ -4,7 +4,7 @@ documentation_of: //library/string/palindromic_tree.hpp
 ---
 ## Palindromic Tree (回文木)
 
-**回文木 (Palindromic Tree)** は、文字列 $S$ の回文部分文字列を効率的に扱うデータ構造である。$\sigma$ を文字種数として、$O(|S|\log \sigma)$ 時間で構築可能である。
+**回文木 (Palindromic Tree)** は、文字列 $S$ の回文部分文字列を効率的に扱うデータ構造である。$\sigma$ を文字種数として、$O(\vert S\vert \log \sigma)$ 時間で構築可能である。
 
 以下、$S_r$ を $S$ の $r$ 文字目までを取り出して出来る文字列とする。また、$S$ の最長の回文接尾辞 (Longest Suffix-Palindrome; LSP) を $\mathrm{LSP}(S)$ と書く。
 
@@ -12,16 +12,16 @@ documentation_of: //library/string/palindromic_tree.hpp
 
 - $\mathrm{child}(c):$ 回文 $c\cdot P_v\cdot c$ を表す節点への link。特に、$-1$ 節点では回文 $c$ への link、$0$ 節点では回文 $c\cdot c$ への link である。ただし、$c\cdot P_v\cdot c$  が $S$ の部分文字列として現れないなら $\mathrm{child}(c)$ は定義されない。
 - $\mathrm{suffix\\_link}:$ $\mathrm{LSP}(P_v)$ を表す節点への link。特に、$-1$ 節点では $-1$ 節点への link、$0$ 節点では $-1$ 節点への link である。
-- $\mathrm{length}:$ $|P_v|$
-- $\mathrm{multiplicity}:$ $\mathrm{LSP}(S_i) = P_v$ となる $1\leq i\leq |S|$ の個数。**$P_v$ が部分文字列として現れる回数ではないことに注意。**
+- $\mathrm{length}:$ $\vert P_v\vert$
+- $\mathrm{multiplicity}:$ $\mathrm{LSP}(S_i) = P_v$ となる $1\leq i\leq \vert S\vert$ の個数。**$P_v$ が部分文字列として現れる回数ではないことに注意。**
 
 ## 回文木の性質
 
 節点集合を $V$ とおく。$\mathrm{child}$ により張られる link の集合を $E_{\mathrm{child}}$、$\mathrm{suffix\\_link}$ により張られる link の集合を $E_{\mathrm{suffix}}$ とおく。link の集合 $E$ に対して、すべての link を逆向きにして得られる辺集合を $\overline{E}$ で表す。
 
-- $|V|\leq|S|+2\ (\star)$
-- $|E_{\mathrm{child}}|\leq |S|$
-- $S$ に含まれる回文部分文字列の個数は、$|V|-2$ 個。$-2$ しているのは、長さ $-1,0$ の節点が存在するため。
+- $\vert V\vert \leq\vert S\vert +2\ (\star)$
+- $\vert E_{\mathrm{child}}\vert \leq \vert S\vert$
+- $S$ に含まれる回文部分文字列の個数は、$\vert V\vert -2$ 個。$-2$ しているのは、長さ $-1,0$ の節点が存在するため。
 - 有向グラフ $D(V,E_{\mathrm{child}})$ は $-1$ 節点と $0$ 節点をそれぞれ根とする $2$ つの有向木 $T_{-1},T_0$ の和、即ち森である。$T_{-1}$ は長さが奇数の回文、$T_0$ は長さが偶数の回文からなる。
 - 有向グラフ $D(V,\overline{E_{\mathrm{suffix}}})$ から辺 $(-1,-1)$ を除いたグラフは、$-1$ 節点を根とする有向木 $T_\mathrm{suffix}$ を成す。
     - 添字 $i$ で終わる回文部分文字列の個数は、$\mathrm{LSP}(S_{0,i+1})$ を表す節点の $T_\mathrm{suffix}$ における深さに一致する。
@@ -33,7 +33,7 @@ documentation_of: //library/string/palindromic_tree.hpp
 
 $(\star)$ は回文部分文字列に関する以下の重要な事実から従う。
 
-> 文字列 $S$ に対して、$S$ の部分文字列であるような非空な回文の個数を $C(S)$ とおく。このとき、任意の文字列 $S$ に対して $C(S)\leq |S|$ が成り立つ。
+> 文字列 $S$ に対して、$S$ の部分文字列であるような非空な回文の個数を $C(S)$ とおく。このとき、任意の文字列 $S$ に対して $C(S)\leq \vert S\vert$ が成り立つ。
 
 <details><summary> 証明 </summary>
     
