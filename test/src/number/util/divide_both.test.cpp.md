@@ -20,10 +20,10 @@ data:
   bundledCode: "#line 1 \"test/src/number/util/divide_both.test.cpp\"\n#define PROBLEM\
     \ \"https://atcoder.jp/contests/abc206/tasks/abc206_e\"\n\n#include <iostream>\n\
     #include <unordered_map>\n\n#line 1 \"library/number/util.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <cassert>\n#include <optional>\n#include\
-    \ <tuple>\n#include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\n\
-    \n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\n\
-    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n#include\
+    \ <optional>\n#include <tuple>\n#include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
+    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
     \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
@@ -53,7 +53,7 @@ data:
     \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 11 \"library/number/util.hpp\"\n\nnamespace suisen\
+    } // namespace suisen\n\n\n#line 12 \"library/number/util.hpp\"\n\nnamespace suisen\
     \ {\n\n    // // Returns pow(-1, n)\n    // template <typename T>\n    // constexpr\
     \ inline int pow_m1(T n) {\n    //     return -(n & 1) | 1;\n    // }\n    //\
     \ // Returns pow(-1, n)\n    // template <>\n    // constexpr inline int pow_m1<bool>(bool\
@@ -161,15 +161,20 @@ data:
     \ n; ++i) {\n                qs[i] = vs[i] / l;\n                r = std::min(r,\
     \ qs[i] == 0 ? std::numeric_limits<T>::max() : vs[i] / qs[i]);\n            }\n\
     \            res.emplace_back(l, r, std::move(qs));\n        }\n        return\
-    \ res;\n    }\n\n} // namespace suisen\n\n\n#line 7 \"test/src/number/util/divide_both.test.cpp\"\
-    \n\nusing namespace suisen;\n\nconstexpr int MAX = 1000010;\n\nint main() {\n\
-    \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int l,\
-    \ r;\n    std::cin >> l >> r;\n    l = std::max(l - 1, 1);\n    std::unordered_map<long\
-    \ long, long long> memo;\n    auto f = [&memo](auto self, int l, int r) -> long\
-    \ long {\n        const long long key = (long long) l * MAX + r;\n        {\n\
-    \            auto it = memo.find(key);\n            if (it != memo.end()) return\
-    \ it->second;\n        }\n        long long res = (long long) (r - l) * (r - l);\n\
-    \        for (auto [lg, rg, qs] : enumerate_multiple_quotients(std::array<int,\
+    \ res;\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    T floor_kth_root(T x, int k) {\n        if (k\
+    \ == 1 or x == 0 or x == 1) return x;\n        if (k >= 64) return 1;\n      \
+    \  if (k == 2) return sqrtl(x);\n        // if (k == 3) return cbrtl(x);\n   \
+    \     T res = powl(x, nextafterl(1 / (long double) k, 0));\n        while (powl(res\
+    \ + 1, k) <= x) ++res;\n        return res;\n    }\n} // namespace suisen\n\n\n\
+    #line 7 \"test/src/number/util/divide_both.test.cpp\"\n\nusing namespace suisen;\n\
+    \nconstexpr int MAX = 1000010;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    int l, r;\n    std::cin >> l >> r;\n    l = std::max(l\
+    \ - 1, 1);\n    std::unordered_map<long long, long long> memo;\n    auto f = [&memo](auto\
+    \ self, int l, int r) -> long long {\n        const long long key = (long long)\
+    \ l * MAX + r;\n        {\n            auto it = memo.find(key);\n           \
+    \ if (it != memo.end()) return it->second;\n        }\n        long long res =\
+    \ (long long) (r - l) * (r - l);\n        for (auto [lg, rg, qs] : enumerate_multiple_quotients(std::array<int,\
     \ 2>{l, r})) {\n            if (lg == 1 and rg == 1) continue;\n            auto\
     \ [nl, nr] = qs;\n            res -= (rg - lg + 1) * self(self, nl, nr);\n   \
     \     }\n        return memo[key] = res;\n    };\n    long long whole_pairs =\
@@ -202,7 +207,7 @@ data:
   isVerificationFile: true
   path: test/src/number/util/divide_both.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-07-05 04:32:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/util/divide_both.test.cpp

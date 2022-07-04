@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy: []

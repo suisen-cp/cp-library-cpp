@@ -58,10 +58,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/persistent_union_find.hpp
     title: library/datastructure/union_find/persistent_union_find.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree.hpp
     title: Link Cut Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree_base.hpp
     title: Link Cut Tree Base
   - icon: ':heavy_check_mark:'
@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
     title: test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree/lca.test.cpp
     title: test/src/tree/link_cut_tree/lca.test.cpp
   - icon: ':heavy_check_mark:'
@@ -138,9 +138,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
     title: test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/object_pool.hpp\"\n\n\n\n#include <deque>\n\
@@ -207,7 +207,7 @@ data:
   - library/tree/link_cut_tree_path_foldable.hpp
   - library/tree/link_cut_tree.hpp
   timestamp: '2022-02-13 16:56:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
   - test/src/datastructure/bbst/red_black_lazy_segment_tree/dynamic_sequence_range_affine_range_sum.test.cpp

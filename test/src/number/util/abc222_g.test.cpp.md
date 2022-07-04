@@ -20,8 +20,8 @@ data:
   bundledCode: "#line 1 \"test/src/number/util/abc222_g.test.cpp\"\n#define PROBLEM\
     \ \"https://atcoder.jp/contests/abc222/tasks/abc222_g\"\n\n#include <iostream>\n\
     #include <atcoder/modint>\nusing mint = atcoder::modint;\n\n#line 1 \"library/number/util.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <optional>\n\
-    #include <tuple>\n#include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
+    #include <optional>\n#include <tuple>\n#include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
@@ -53,7 +53,7 @@ data:
     \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 11 \"library/number/util.hpp\"\n\nnamespace suisen\
+    } // namespace suisen\n\n\n#line 12 \"library/number/util.hpp\"\n\nnamespace suisen\
     \ {\n\n    // // Returns pow(-1, n)\n    // template <typename T>\n    // constexpr\
     \ inline int pow_m1(T n) {\n    //     return -(n & 1) | 1;\n    // }\n    //\
     \ // Returns pow(-1, n)\n    // template <>\n    // constexpr inline int pow_m1<bool>(bool\
@@ -161,15 +161,20 @@ data:
     \ n; ++i) {\n                qs[i] = vs[i] / l;\n                r = std::min(r,\
     \ qs[i] == 0 ? std::numeric_limits<T>::max() : vs[i] / qs[i]);\n            }\n\
     \            res.emplace_back(l, r, std::move(qs));\n        }\n        return\
-    \ res;\n    }\n\n} // namespace suisen\n\n\n#line 8 \"test/src/number/util/abc222_g.test.cpp\"\
-    \nusing suisen::divisors;\nusing suisen::totient;\n\nint main() {\n    int t;\n\
-    \    std::cin >> t;\n    while (t --> 0) {\n        int k;\n        std::cin >>\
-    \ k;\n        k = k * 9 / std::gcd(k, 2);\n        if (std::gcd(10, k) > 1) {\n\
-    \            std::cout << -1 << std::endl;\n        } else {\n            int\
-    \ res = totient(k);\n            mint::set_mod(k);\n            for (int d : divisors(res))\
-    \ {\n                if (mint(10).pow(d) == 1) res = std::min(res, d);\n     \
-    \       }\n            std::cout << res << std::endl;\n        }\n    }\n    return\
-    \ 0;\n}\n"
+    \ res;\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    T floor_kth_root(T x, int k) {\n        if (k\
+    \ == 1 or x == 0 or x == 1) return x;\n        if (k >= 64) return 1;\n      \
+    \  if (k == 2) return sqrtl(x);\n        // if (k == 3) return cbrtl(x);\n   \
+    \     T res = powl(x, nextafterl(1 / (long double) k, 0));\n        while (powl(res\
+    \ + 1, k) <= x) ++res;\n        return res;\n    }\n} // namespace suisen\n\n\n\
+    #line 8 \"test/src/number/util/abc222_g.test.cpp\"\nusing suisen::divisors;\n\
+    using suisen::totient;\n\nint main() {\n    int t;\n    std::cin >> t;\n    while\
+    \ (t --> 0) {\n        int k;\n        std::cin >> k;\n        k = k * 9 / std::gcd(k,\
+    \ 2);\n        if (std::gcd(10, k) > 1) {\n            std::cout << -1 << std::endl;\n\
+    \        } else {\n            int res = totient(k);\n            mint::set_mod(k);\n\
+    \            for (int d : divisors(res)) {\n                if (mint(10).pow(d)\
+    \ == 1) res = std::min(res, d);\n            }\n            std::cout << res <<\
+    \ std::endl;\n        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc222/tasks/abc222_g\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint;\n\
     \n#include \"library/number/util.hpp\"\nusing suisen::divisors;\nusing suisen::totient;\n\
@@ -186,7 +191,7 @@ data:
   isVerificationFile: true
   path: test/src/number/util/abc222_g.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-07-05 04:32:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/util/abc222_g.test.cpp

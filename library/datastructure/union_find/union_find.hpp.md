@@ -17,6 +17,9 @@ data:
     path: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
     title: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/union_find/union_find/unionfind.test.cpp
+    title: test/src/datastructure/union_find/union_find/unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
     title: test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
   _isVerificationFailed: true
@@ -79,6 +82,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
+  - test/src/datastructure/union_find/union_find/unionfind.test.cpp
   - test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
   - test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
 documentation_of: library/datastructure/union_find/union_find.hpp

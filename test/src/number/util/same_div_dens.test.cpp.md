@@ -20,10 +20,10 @@ data:
   bundledCode: "#line 1 \"test/src/number/util/same_div_dens.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\n\n#include\
     \ <iostream>\n\n#line 1 \"library/number/util.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <array>\n#include <cassert>\n#include <optional>\n#include <tuple>\n\
-    #include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include\
-    \ <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate\
-    \ <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    #include <array>\n#include <cassert>\n#include <cmath>\n#include <optional>\n\
+    #include <tuple>\n#include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
+    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
     \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
@@ -53,7 +53,7 @@ data:
     \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 11 \"library/number/util.hpp\"\n\nnamespace suisen\
+    } // namespace suisen\n\n\n#line 12 \"library/number/util.hpp\"\n\nnamespace suisen\
     \ {\n\n    // // Returns pow(-1, n)\n    // template <typename T>\n    // constexpr\
     \ inline int pow_m1(T n) {\n    //     return -(n & 1) | 1;\n    // }\n    //\
     \ // Returns pow(-1, n)\n    // template <>\n    // constexpr inline int pow_m1<bool>(bool\
@@ -161,22 +161,28 @@ data:
     \ n; ++i) {\n                qs[i] = vs[i] / l;\n                r = std::min(r,\
     \ qs[i] == 0 ? std::numeric_limits<T>::max() : vs[i] / qs[i]);\n            }\n\
     \            res.emplace_back(l, r, std::move(qs));\n        }\n        return\
-    \ res;\n    }\n\n} // namespace suisen\n\n\n#line 6 \"test/src/number/util/same_div_dens.test.cpp\"\
-    \n\nusing suisen::same_fld_denominators_positive;\nusing suisen::same_fld_denominators_negative;\n\
-    using suisen::same_cld_denominators_positive;\nusing suisen::same_cld_denominators_negative;\n\
-    \ntemplate <typename T>\nconstexpr inline int pow_m1(T n) {\n    return -(n &\
-    \ 1) | 1;\n}\ntemplate <>\nconstexpr inline int pow_m1<bool>(bool n) {\n    return\
-    \ -int(n) | 1;\n}\n\ntemplate <typename T>\nconstexpr inline T fld(const T x,\
-    \ const T y) {\n    return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y >= 0))) /\
-    \ y;\n}\ntemplate <typename T>\nconstexpr inline T cld(const T x, const T y) {\n\
-    \    return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;\n}\n\nbool\
-    \ in(const std::optional<std::pair<int, int>> &r, int x) {\n    return r.has_value()\
-    \ and r->first <= x and x <= r->second;\n}\nbool out(const std::optional<std::pair<int,\
-    \ int>> &r, int x) {\n    return not r.has_value() or x < r->first or x > r->second;\n\
-    }\n\nvoid cld_test(int n, int q) {\n    auto res_pos = same_cld_denominators_positive(n,\
-    \ q, 100);\n    if (res_pos.has_value()) {\n        auto [l, r] = *res_pos;\n\
-    \        assert(1 <= l and r <= 100);\n    }\n    for (int x = 1; x <= 100; ++x)\
-    \ {\n        if (not (cld(n, x) == q ? in : out)(res_pos, x)) {\n            assert(false);\n\
+    \ res;\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    T floor_kth_root(T x, int k) {\n        if (k\
+    \ == 1 or x == 0 or x == 1) return x;\n        if (k >= 64) return 1;\n      \
+    \  if (k == 2) return sqrtl(x);\n        // if (k == 3) return cbrtl(x);\n   \
+    \     T res = powl(x, nextafterl(1 / (long double) k, 0));\n        while (powl(res\
+    \ + 1, k) <= x) ++res;\n        return res;\n    }\n} // namespace suisen\n\n\n\
+    #line 6 \"test/src/number/util/same_div_dens.test.cpp\"\n\nusing suisen::same_fld_denominators_positive;\n\
+    using suisen::same_fld_denominators_negative;\nusing suisen::same_cld_denominators_positive;\n\
+    using suisen::same_cld_denominators_negative;\n\ntemplate <typename T>\nconstexpr\
+    \ inline int pow_m1(T n) {\n    return -(n & 1) | 1;\n}\ntemplate <>\nconstexpr\
+    \ inline int pow_m1<bool>(bool n) {\n    return -int(n) | 1;\n}\n\ntemplate <typename\
+    \ T>\nconstexpr inline T fld(const T x, const T y) {\n    return (x ^ y) >= 0\
+    \ ? x / y : (x - (y + pow_m1(y >= 0))) / y;\n}\ntemplate <typename T>\nconstexpr\
+    \ inline T cld(const T x, const T y) {\n    return (x ^ y) <= 0 ? x / y : (x +\
+    \ (y + pow_m1(y >= 0))) / y;\n}\n\nbool in(const std::optional<std::pair<int,\
+    \ int>> &r, int x) {\n    return r.has_value() and r->first <= x and x <= r->second;\n\
+    }\nbool out(const std::optional<std::pair<int, int>> &r, int x) {\n    return\
+    \ not r.has_value() or x < r->first or x > r->second;\n}\n\nvoid cld_test(int\
+    \ n, int q) {\n    auto res_pos = same_cld_denominators_positive(n, q, 100);\n\
+    \    if (res_pos.has_value()) {\n        auto [l, r] = *res_pos;\n        assert(1\
+    \ <= l and r <= 100);\n    }\n    for (int x = 1; x <= 100; ++x) {\n        if\
+    \ (not (cld(n, x) == q ? in : out)(res_pos, x)) {\n            assert(false);\n\
     \        }\n    }\n\n    auto res_neg = same_cld_denominators_negative(n, q, -100);\n\
     \    if (res_neg.has_value()) {\n        auto [l, r] = *res_neg;\n        assert(-100\
     \ <= l and r <= -1);\n    }\n    for (int x = -100; x <= -1; ++x) {\n        if\
@@ -232,7 +238,7 @@ data:
   isVerificationFile: true
   path: test/src/number/util/same_div_dens.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-07-05 04:32:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/util/same_div_dens.test.cpp

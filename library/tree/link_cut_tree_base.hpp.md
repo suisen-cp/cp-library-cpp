@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree.hpp
     title: Link Cut Tree
   - icon: ':heavy_check_mark:'
@@ -16,7 +16,7 @@ data:
     title: "\u30D1\u30B9\u548C\u53D6\u5F97\u30FB\u30D1\u30B9\u4F5C\u7528\u304C\u3067\
       \u304D\u308B Link Cut Tree"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree/lca.test.cpp
     title: test/src/tree/link_cut_tree/lca.test.cpp
   - icon: ':heavy_check_mark:'
@@ -40,9 +40,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
     title: test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/link_cut_tree_base.hpp\"\n\n\n\n#include <cassert>\n\
@@ -272,7 +272,7 @@ data:
   - library/tree/link_cut_tree_path_foldable.hpp
   - library/tree/link_cut_tree.hpp
   timestamp: '2022-06-23 03:06:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/link_cut_tree_path_foldable_lazy/dummy1.test.cpp
   - test/src/tree/link_cut_tree_path_foldable_lazy/GRL_5_E.test.cpp

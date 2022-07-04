@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
     title: Persistent Fenwick Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy: []

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/persistent_union_find.hpp
     title: library/datastructure/union_find/persistent_union_find.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy: []

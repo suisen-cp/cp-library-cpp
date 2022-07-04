@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/persistent_array.hpp
     title: library/datastructure/persistent_array.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy: []

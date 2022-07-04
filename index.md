@@ -357,7 +357,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_graph_recognition.hpp
       title: Bipartite Graph Recognition
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/bipartite_matching.hpp
       title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
     - icon: ':warning:'
@@ -418,6 +418,11 @@ data:
     - icon: ':warning:'
       path: library/graph/undirected_eulerian_graph.hpp
       title: Undirected Eulerian Graph
+  - name: library/icpc
+    pages:
+    - icon: ':warning:'
+      path: library/icpc/parsing.hpp
+      title: library/icpc/parsing.hpp
   - name: library/integral_geom
     pages:
     - icon: ':warning:'
@@ -567,9 +572,9 @@ data:
     - icon: ':warning:'
       path: library/string/morris_pratt.hpp
       title: Morris Pratt
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/string/palindromic_tree.hpp
-      title: Palindromic Tree
+      title: "Palindromic Tree (\u56DE\u6587\u6728)"
     - icon: ':heavy_check_mark:'
       path: library/string/rolling_hash.hpp
       title: Rolling Hash
@@ -637,10 +642,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/level_ancestor.hpp
       title: Level Ancestor
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/link_cut_tree.hpp
       title: Link Cut Tree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/link_cut_tree_base.hpp
       title: Link Cut Tree Base
     - icon: ':heavy_check_mark:'
@@ -698,7 +703,7 @@ data:
     - icon: ':warning:'
       path: library/util/iter_util.hpp
       title: Iter Util
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/object_pool.hpp
       title: Object Pool
     - icon: ':warning:'
@@ -1114,6 +1119,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
       title: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/union_find/union_find/unionfind.test.cpp
+      title: test/src/datastructure/union_find/union_find/unionfind.test.cpp
   - name: test/src/datastructure/union_find/union_find_component_sum
     pages:
     - icon: ':heavy_check_mark:'
@@ -1547,7 +1555,7 @@ data:
       title: test/src/string/manacher/enumerate_palindromes.test.cpp
   - name: test/src/string/palindromic_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/string/palindromic_tree/abc237_h.test.cpp
       title: test/src/string/palindromic_tree/abc237_h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1632,7 +1640,7 @@ data:
       title: test/src/tree/level_ancestor/lowest_common_ancestor.test.cpp
   - name: test/src/tree/link_cut_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/link_cut_tree/lca.test.cpp
       title: test/src/tree/link_cut_tree/lca.test.cpp
   - name: test/src/tree/link_cut_tree_path_foldable

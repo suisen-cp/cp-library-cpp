@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree_base.hpp
     title: Link Cut Tree Base
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/link_cut_tree/lca.test.cpp
     title: test/src/tree/link_cut_tree/lca.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/link_cut_tree.hpp\"\n\n\n\n#line 1 \"library/tree/link_cut_tree_base.hpp\"\
@@ -178,7 +178,7 @@ data:
   path: library/tree/link_cut_tree.hpp
   requiredBy: []
   timestamp: '2022-06-23 03:06:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/link_cut_tree/lca.test.cpp
 documentation_of: library/tree/link_cut_tree.hpp

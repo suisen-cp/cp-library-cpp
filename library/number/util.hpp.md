@@ -21,10 +21,10 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/util.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <array>\n#include <cassert>\n#include <optional>\n#include <tuple>\n\
-    #include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include\
-    \ <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate\
-    \ <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    #include <array>\n#include <cassert>\n#include <cmath>\n#include <optional>\n\
+    #include <tuple>\n#include <vector>\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
+    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
     \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
@@ -54,7 +54,7 @@ data:
     \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 11 \"library/number/util.hpp\"\n\nnamespace suisen\
+    } // namespace suisen\n\n\n#line 12 \"library/number/util.hpp\"\n\nnamespace suisen\
     \ {\n\n    // // Returns pow(-1, n)\n    // template <typename T>\n    // constexpr\
     \ inline int pow_m1(T n) {\n    //     return -(n & 1) | 1;\n    // }\n    //\
     \ // Returns pow(-1, n)\n    // template <>\n    // constexpr inline int pow_m1<bool>(bool\
@@ -162,21 +162,26 @@ data:
     \ n; ++i) {\n                qs[i] = vs[i] / l;\n                r = std::min(r,\
     \ qs[i] == 0 ? std::numeric_limits<T>::max() : vs[i] / qs[i]);\n            }\n\
     \            res.emplace_back(l, r, std::move(qs));\n        }\n        return\
-    \ res;\n    }\n\n} // namespace suisen\n\n\n"
+    \ res;\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    T floor_kth_root(T x, int k) {\n        if (k\
+    \ == 1 or x == 0 or x == 1) return x;\n        if (k >= 64) return 1;\n      \
+    \  if (k == 2) return sqrtl(x);\n        // if (k == 3) return cbrtl(x);\n   \
+    \     T res = powl(x, nextafterl(1 / (long double) k, 0));\n        while (powl(res\
+    \ + 1, k) <= x) ++res;\n        return res;\n    }\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_NUMBER_UTIL\n#define SUISEN_NUMBER_UTIL\n\n#include <algorithm>\n\
-    #include <array>\n#include <cassert>\n#include <optional>\n#include <tuple>\n\
-    #include <vector>\n#include \"library/type_traits/type_traits.hpp\"\n\nnamespace\
-    \ suisen {\n\n    // // Returns pow(-1, n)\n    // template <typename T>\n   \
-    \ // constexpr inline int pow_m1(T n) {\n    //     return -(n & 1) | 1;\n   \
-    \ // }\n    // // Returns pow(-1, n)\n    // template <>\n    // constexpr inline\
-    \ int pow_m1<bool>(bool n) {\n    //     return -int(n) | 1;\n    // }\n\n   \
-    \ // // Returns floor(x / y)\n    // template <typename T>\n    // constexpr inline\
-    \ T fld(const T x, const T y) {\n    //     return (x ^ y) >= 0 ? x / y : (x -\
-    \ (y + pow_m1(y >= 0))) / y;\n    // }\n    // // Returns ceil(x / y)\n    //\
-    \ template <typename T>\n    // constexpr inline T cld(const T x, const T y) {\n\
-    \    //     return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;\n  \
-    \  // }\n\n    /**\n     * O(sqrt(n))\n     * Returns a vector of { prime, index\
-    \ }.\n     * It is guaranteed that `prime` is ascending.\n     */\n    template\
+    #include <array>\n#include <cassert>\n#include <cmath>\n#include <optional>\n\
+    #include <tuple>\n#include <vector>\n#include \"library/type_traits/type_traits.hpp\"\
+    \n\nnamespace suisen {\n\n    // // Returns pow(-1, n)\n    // template <typename\
+    \ T>\n    // constexpr inline int pow_m1(T n) {\n    //     return -(n & 1) |\
+    \ 1;\n    // }\n    // // Returns pow(-1, n)\n    // template <>\n    // constexpr\
+    \ inline int pow_m1<bool>(bool n) {\n    //     return -int(n) | 1;\n    // }\n\
+    \n    // // Returns floor(x / y)\n    // template <typename T>\n    // constexpr\
+    \ inline T fld(const T x, const T y) {\n    //     return (x ^ y) >= 0 ? x / y\
+    \ : (x - (y + pow_m1(y >= 0))) / y;\n    // }\n    // // Returns ceil(x / y)\n\
+    \    // template <typename T>\n    // constexpr inline T cld(const T x, const\
+    \ T y) {\n    //     return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0)))\
+    \ / y;\n    // }\n\n    /**\n     * O(sqrt(n))\n     * Returns a vector of { prime,\
+    \ index }.\n     * It is guaranteed that `prime` is ascending.\n     */\n    template\
     \ <typename T>\n    std::vector<std::pair<T, int>> factorize(T n) {\n        static\
     \ constexpr std::array primes{ 2, 3, 5, 7, 11, 13 };\n        static constexpr\
     \ int next_prime = 17;\n        static constexpr int siz = std::array{ 1, 2, 8,\
@@ -273,13 +278,19 @@ data:
     \ n; ++i) {\n                qs[i] = vs[i] / l;\n                r = std::min(r,\
     \ qs[i] == 0 ? std::numeric_limits<T>::max() : vs[i] / qs[i]);\n            }\n\
     \            res.emplace_back(l, r, std::move(qs));\n        }\n        return\
-    \ res;\n    }\n\n} // namespace suisen\n\n#endif // SUISEN_NUMBER_UTIL\n"
+    \ res;\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    T floor_kth_root(T x, int k) {\n        if (k\
+    \ == 1 or x == 0 or x == 1) return x;\n        if (k >= 64) return 1;\n      \
+    \  if (k == 2) return sqrtl(x);\n        // if (k == 3) return cbrtl(x);\n   \
+    \     T res = powl(x, nextafterl(1 / (long double) k, 0));\n        while (powl(res\
+    \ + 1, k) <= x) ++res;\n        return res;\n    }\n} // namespace suisen\n\n\
+    #endif // SUISEN_NUMBER_UTIL\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/number/util.hpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-07-05 04:32:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/util/abc222_g.test.cpp
