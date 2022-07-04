@@ -70,3 +70,7 @@ $$
 - `PalindromicTree` は各節点で $\mathrm{child}$ を `std::map` で管理するバージョンである。基本的にはこれを用いればよい。
 - `PalindromicTreeArr` は各節点で $\mathrm{child}$ を `std::array` で管理するバージョンである。01 文字列など、文字種が極端に少ないことが分かっている場合はこれを用いればよい。
 - `PalindromicTreeVec` は各節点で $\mathrm{child}$ を `std::vector` で管理するバージョンである。使う場面は無さそう。
+
+## 参考文献
+
+- [Parindromic Tree - math314のブログ](https://math314.hateblo.jp/entry/2016/12/19/005919) が非常に分かりやすい。
