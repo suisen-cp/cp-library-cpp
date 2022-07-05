@@ -265,8 +265,8 @@ title: "Palindromic Tree (\u56DE\u6587\u6728)"
 
 回文木は回文を表す節点と節点間を結ぶ有向 link からなる。節点集合は長さ $-1,0$ の文字列を表す節点 $2$ 個と、各回文部分文字列と対応する節点からなる。各節点 $v$ は以下の情報を持つ。節点 $v$ が表す回文を $P_v$ とおく。
 
-- $\mathrm{child}(c):$ 回文 $c\cdot P_v\cdot c$ を表す節点への link。特に、$-1$ 節点では回文 $c$ への link、$0$ 節点では回文 $c\cdot c$ への link である。ただし、$c\cdot P_v\cdot c$  が $S$ の部分文字列として現れないなら $\mathrm{child}(c)$ は定義されない。
-- $\mathrm{suffix\\_link}:$ $\mathrm{LSP}(P_v)$ を表す節点への link。特に、$-1$ 節点では $-1$ 節点への link、$0$ 節点では $-1$ 節点への link である。
+- $\mathrm{child}(c):$ 回文 $c\cdot P_v\cdot c$ を表す節点への link。特に、$-1$ 節点では回文 $c$ への link、$0$ 節点では回文 $c\cdot c$ への link である。ただし、$c\cdot P_v\cdot c$ が $S$ の部分文字列として現れないなら $\mathrm{child}(c)$ は定義されない。
+- $\mathrm{suffix\\_link}:$ $P_v$ の suffix のうち、$P_v$ より短い最長の回文を表す節点への link。特に、$-1$ 節点では $-1$ 節点への link、$0$ 節点では $-1$ 節点への link である。
 - $\mathrm{length}:$ $\vert P_v\vert$
 - $\mathrm{multiplicity}:$ $\mathrm{LSP}(S_i) = P_v$ となる $1\leq i\leq \vert S\vert$ の個数。**$P_v$ が部分文字列として現れる回数ではないことに注意。**
 
@@ -288,7 +288,7 @@ title: "Palindromic Tree (\u56DE\u6587\u6728)"
 
 $(\star)$ は回文部分文字列に関する以下の事実から従う。証明は https://hackmd.io/@tatyam-prime/pallindromes などを参照。
 
-> 文字列 $S$ に対して、$S$ の部分文字列であるような非空な回文の個数を $C(S)$ とおく。このとき、任意の文字列 $S$ に対して $C(S)\leq \vert S\vert$ が成り立つ。
+> 任意の文字列 $S$ に対して、$S$ の非空な回文部分文字列の個数は $\vert S\vert$ 以下である。
 
 ## 仕様
 
