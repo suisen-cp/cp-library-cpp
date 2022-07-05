@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/persistent_array.hpp
-    title: library/datastructure/persistent_array.hpp
+    title: "\u6C38\u7D9A\u914D\u5217"
   - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool
@@ -167,8 +167,6 @@ data:
   - test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
 documentation_of: library/datastructure/union_find/persistent_union_find.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/union_find/persistent_union_find.hpp
-- /library/library/datastructure/union_find/persistent_union_find.hpp.html
-title: library/datastructure/union_find/persistent_union_find.hpp
+title: "\u6C38\u7D9A Union Find"
 ---
+## 永続 Union Find

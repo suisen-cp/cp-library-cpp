@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/persistent_array.hpp
-    title: library/datastructure/persistent_array.hpp
+    title: "\u6C38\u7D9A\u914D\u5217"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/persistent_union_find.hpp
-    title: library/datastructure/union_find/persistent_union_find.hpp
+    title: "\u6C38\u7D9A Union Find"
   - icon: ':heavy_check_mark:'
     path: library/util/object_pool.hpp
     title: Object Pool

@@ -42,7 +42,7 @@ data:
     title: Persistent Fenwick Tree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/persistent_array.hpp
-    title: library/datastructure/persistent_array.hpp
+    title: "\u6C38\u7D9A\u914D\u5217"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/persistent_commutative_dual_segment_tree.hpp
     title: Persistent Commutative Dual Segment Tree
@@ -57,7 +57,7 @@ data:
     title: "\u6C38\u7D9A\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/persistent_union_find.hpp
-    title: library/datastructure/union_find/persistent_union_find.hpp
+    title: "\u6C38\u7D9A Union Find"
   - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree.hpp
     title: Link Cut Tree

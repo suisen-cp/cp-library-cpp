@@ -45,8 +45,6 @@ data:
   - test/src/geom/sort_points_by_argument/sort_points_by_argument.test.cpp
 documentation_of: library/geom/sort_points_by_argument.hpp
 layout: document
-redirect_from:
-- /library/library/geom/sort_points_by_argument.hpp
-- /library/library/geom/sort_points_by_argument.hpp.html
-title: library/geom/sort_points_by_argument.hpp
+title: "\u6574\u6570\u6F14\u7B97\u306B\u3088\u308B\u504F\u89D2\u30BD\u30FC\u30C8"
 ---
+## 整数演算による偏角ソート

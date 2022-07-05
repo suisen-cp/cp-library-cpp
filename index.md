@@ -136,7 +136,7 @@ data:
       title: Permutation Tree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/persistent_array.hpp
-      title: library/datastructure/persistent_array.hpp
+      title: "\u6C38\u7D9A\u914D\u5217"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: Range Foldable Dynamic Sequence
@@ -278,7 +278,7 @@ data:
       title: "\u30DE\u30FC\u30B8\u904E\u7A0B\u3092\u8868\u3059\u68EE"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/persistent_union_find.hpp
-      title: library/datastructure/union_find/persistent_union_find.hpp
+      title: "\u6C38\u7D9A Union Find"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/undo_union_find.hpp
       title: "undo \u53EF\u80FD Union Find"
@@ -342,7 +342,7 @@ data:
       title: Segment Intersections
     - icon: ':heavy_check_mark:'
       path: library/geom/sort_points_by_argument.hpp
-      title: library/geom/sort_points_by_argument.hpp
+      title: "\u6574\u6570\u6F14\u7B97\u306B\u3088\u308B\u504F\u89D2\u30BD\u30FC\u30C8"
   - name: library/graph
     pages:
     - icon: ':warning:'
@@ -375,6 +375,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/dulmage_mendelsohn_decomposition.hpp
       title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
+    - icon: ':heavy_check_mark:'
+      path: library/graph/enumerate_triangles.hpp
+      title: "\u4E09\u89D2\u5F62\u5217\u6319"
     - icon: ':question:'
       path: library/graph/functional_graph.hpp
       title: Functional Graph
@@ -422,7 +425,7 @@ data:
     pages:
     - icon: ':warning:'
       path: library/icpc/parsing.hpp
-      title: library/icpc/parsing.hpp
+      title: Parsing
   - name: library/integral_geom
     pages:
     - icon: ':warning:'
@@ -1273,6 +1276,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
       title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
+  - name: test/src/graph/enumerate_triangles
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/enumerate_triangles/enumerate_triangles.test.cpp
+      title: test/src/graph/enumerate_triangles/enumerate_triangles.test.cpp
   - name: test/src/graph/functional_graph
     pages:
     - icon: ':x:'
@@ -1438,6 +1446,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/divide_both.test.cpp
       title: test/src/number/util/divide_both.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/util/kth_root_integer.test.cpp
+      title: test/src/number/util/kth_root_integer.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/same_div_dens.test.cpp
       title: test/src/number/util/same_div_dens.test.cpp

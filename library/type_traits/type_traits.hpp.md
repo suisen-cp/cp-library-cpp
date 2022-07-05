@@ -316,6 +316,9 @@ data:
     path: test/src/number/util/divide_both.test.cpp
     title: test/src/number/util/divide_both.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/number/util/kth_root_integer.test.cpp
+    title: test/src/number/util/kth_root_integer.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/number/util/same_div_dens.test.cpp
     title: test/src/number/util/same_div_dens.test.cpp
   - icon: ':heavy_check_mark:'
@@ -540,6 +543,7 @@ data:
   verifiedWith:
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/util/abc222_g.test.cpp
+  - test/src/number/util/kth_root_integer.test.cpp
   - test/src/number/util/divide_both.test.cpp
   - test/src/number/util/same_div_dens.test.cpp
   - test/src/datastructure/util/range_set/DSL_4_A.test.cpp

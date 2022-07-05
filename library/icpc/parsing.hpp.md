@@ -113,8 +113,6 @@ data:
   verifiedWith: []
 documentation_of: library/icpc/parsing.hpp
 layout: document
-redirect_from:
-- /library/library/icpc/parsing.hpp
-- /library/library/icpc/parsing.hpp.html
-title: library/icpc/parsing.hpp
+title: Parsing
 ---
+## Parsing

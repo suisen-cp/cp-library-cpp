@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/persistent_union_find.hpp
-    title: library/datastructure/union_find/persistent_union_find.hpp
+    title: "\u6C38\u7D9A Union Find"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
@@ -164,8 +164,6 @@ data:
   - test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
 documentation_of: library/datastructure/persistent_array.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/persistent_array.hpp
-- /library/library/datastructure/persistent_array.hpp.html
-title: library/datastructure/persistent_array.hpp
+title: "\u6C38\u7D9A\u914D\u5217"
 ---
+## 永続配列
