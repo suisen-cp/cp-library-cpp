@@ -122,6 +122,9 @@ data:
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: Compressed Wavelet Matrix
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/deque_sum.hpp
+      title: "SWAG \u3092 Deque \u306B\u62E1\u5F35\u3057\u305F\u3084\u3064"
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
       title: Dynamic Sequence
     - icon: ':heavy_check_mark:'
@@ -932,6 +935,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - name: test/src/datastructure/deque_sum
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/deque_sum/queue_operate_all_composite.test.cpp
+      title: test/src/datastructure/deque_sum/queue_operate_all_composite.test.cpp
   - name: test/src/datastructure/fenwick_tree/fenwick_tree
     pages:
     - icon: ':heavy_check_mark:'
