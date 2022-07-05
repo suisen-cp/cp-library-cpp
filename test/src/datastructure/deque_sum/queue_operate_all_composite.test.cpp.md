@@ -22,11 +22,33 @@ data:
     \ const mint &a) {\n    out << a.val();\n    return out;\n}\n\n#line 1 \"library/datastructure/deque_sum.hpp\"\
     \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n    template\
     \ <typename T, T(*op)(T, T), T(*e)()>\n    struct DequeSum {\n        using value_type\
-    \ = T;\n\n        DequeSum() = default;\n\n        value_type sum() const {\n\
-    \            return op(sum(_fi_sum), sum(_se_sum));\n        }\n        const\
-    \ value_type& operator[](int i) const {\n            const int l = _fi_raw.size(),\
-    \ r = _se_raw.size();\n            assert(0 <= i and i < l + r);\n           \
-    \ return i < l ? _fi_raw[l - i - 1] : _se_raw[i - l];\n        }\n        void\
+    \ = T;\n\n        struct Iterator {\n            using fi_iterator_type = typename\
+    \ std::vector<value_type>::const_reverse_iterator;\n            using se_iterator_type\
+    \ = typename std::vector<value_type>::const_iterator;\n            fi_iterator_type\
+    \ it_l;\n            const fi_iterator_type it_l_end;\n            const se_iterator_type\
+    \ it_r_begin;\n            se_iterator_type it_r;\n            Iterator& operator++()\
+    \ {\n                if (it_l == it_l_end) ++it_r;\n                else ++it_l;\n\
+    \                return *this;\n            }\n            Iterator operator++(int)\
+    \ { Iterator ret = *this; ++(*this); return ret; }\n            Iterator& operator--()\
+    \ {\n                if (it_r == it_r_begin) --it_l;\n                else --it_r;\n\
+    \                return *this;\n            }\n            Iterator operator--(int)\
+    \ { Iterator ret = *this; --(*this); return ret; }\n            Iterator& operator+=(int\
+    \ dif) {\n                if (int d = it_l_end - it_l; d < dif) it_l = it_l_end,\
+    \ it_r += dif - d;\n                else it_l += dif;\n                return\
+    \ *this;\n            }\n            Iterator operator+(int dif) const { Iterator\
+    \ it = *this; it += dif; return it; }\n            Iterator& operator-=(int dif)\
+    \ {\n                if (int d = it_r - it_r_begin; d < dif) it_r = it_r_begin,\
+    \ it_l -= dif - d;\n                else it_r -= dif;\n                return\
+    \ *this;\n            }\n            Iterator operator-(int dif) const { Iterator\
+    \ it = *this; it -= dif; return it; }\n            const value_type& operator*()\
+    \ const { return it_l == it_l_end ? *it_r : *it_l; }\n            bool operator!=(const\
+    \ Iterator &rhs) const { return it_l != rhs.it_l or it_r != rhs.it_r; }\n    \
+    \        bool operator==(const Iterator &rhs) const { return not (*this != rhs);\
+    \ }\n        };\n        using iterator_type = Iterator;\n\n        DequeSum()\
+    \ = default;\n\n        value_type sum() const {\n            return op(sum(_fi_sum),\
+    \ sum(_se_sum));\n        }\n        const value_type& operator[](int i) const\
+    \ {\n            const int l = _fi_raw.size(), r = _se_raw.size();\n         \
+    \   return i < l ? _fi_raw[l - i - 1] : _se_raw[i - l];\n        }\n        void\
     \ push_back(const value_type &val) {\n            _se_raw.push_back(val);\n  \
     \          _se_sum.push_back(op(sum(_se_sum), val));\n        }\n        void\
     \ push_front(const value_type &val) {\n            _fi_raw.push_back(val);\n \
@@ -45,13 +67,24 @@ data:
     \            _se_raw.erase(_se_raw.begin(), _se_raw.begin() + l);\n          \
     \  _se_sum.erase(_se_sum.begin(), _se_sum.begin() + l);\n            if (r) _se_sum[0]\
     \ = _se_raw[0];\n            for (int i = 1; i < r; ++i) _se_sum[i] = op(_se_sum[i\
-    \ - 1], _se_raw[i]);\n        }\n\n    private:\n        std::vector<value_type>\
-    \ _fi_raw, _se_raw;\n        std::vector<value_type> _fi_sum, _se_sum;\n\n   \
-    \     value_type sum(const std::vector<value_type> &st) const {\n            return\
-    \ st.empty() ? e() : st.back();\n        }\n    };\n} // namespace suisen\n\n\n\
-    \n#line 19 \"test/src/datastructure/deque_sum/queue_operate_all_composite.test.cpp\"\
-    \n\nstd::pair<mint, mint> op(std::pair<mint, mint> g, std::pair<mint, mint> f)\
-    \ {\n    return { f.first * g.first, f.first * g.second + f.second };\n}\nstd::pair<mint,\
+    \ - 1], _se_raw[i]);\n        }\n        const value_type& front() const { return\
+    \ _fi_raw.size() ? _fi_raw.back() : _se_raw.front(); }\n        const value_type&\
+    \ back() const { return _se_raw.size() ? _se_raw.back() : _fi_raw.front(); }\n\
+    \        int size() const { return _fi_raw.size() + _se_raw.size(); }\n      \
+    \  void clear() { _fi_raw.clear(), _fi_sum.clear(), _se_raw.clear(), _se_sum.clear();\
+    \ }\n        void shrink_to_fit() { _fi_raw.shrink_to_fit(), _fi_sum.shrink_to_fit(),\
+    \ _se_raw.shrink_to_fit(), _se_sum.shrink_to_fit(); }\n\n        iterator_type\
+    \ begin() const { return iterator_type { _fi_raw.rbegin(), _fi_raw.rend(), _se_raw.begin(),\
+    \ _se_raw.begin() }; }\n        iterator_type end() const { return iterator_type\
+    \ { _fi_raw.rend(), _fi_raw.rend(), _se_raw.begin(), _se_raw.end() }; }\n    \
+    \    iterator_type cbegin() const { return begin(); }\n        iterator_type cend()\
+    \ const { return end(); }\n\n    private:\n        std::vector<value_type> _fi_raw,\
+    \ _se_raw;\n        std::vector<value_type> _fi_sum, _se_sum;\n\n        value_type\
+    \ sum(const std::vector<value_type> &st) const {\n            return st.empty()\
+    \ ? e() : st.back();\n        }\n    };\n} // namespace suisen\n\n\n\n#line 19\
+    \ \"test/src/datastructure/deque_sum/queue_operate_all_composite.test.cpp\"\n\n\
+    std::pair<mint, mint> op(std::pair<mint, mint> g, std::pair<mint, mint> f) {\n\
+    \    return { f.first * g.first, f.first * g.second + f.second };\n}\nstd::pair<mint,\
     \ mint> e() {\n    return { 1, 0 };\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    suisen::DequeSum<std::pair<mint, mint>, op,\
     \ e> dq;\n\n    int q;\n    std::cin >> q;\n\n    while (q --> 0) {\n        int\
@@ -82,7 +115,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/deque_sum/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-07-05 16:12:24+09:00'
+  timestamp: '2022-07-05 16:51:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/deque_sum/queue_operate_all_composite.test.cpp
