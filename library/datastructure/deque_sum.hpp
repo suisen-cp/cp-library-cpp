@@ -9,6 +9,43 @@ namespace suisen {
     struct DequeSum {
         using value_type = T;
 
+        struct Iterator {
+            using fi_iterator_type = typename std::vector<value_type>::const_reverse_iterator;
+            using se_iterator_type = typename std::vector<value_type>::const_iterator;
+            fi_iterator_type it_l;
+            const fi_iterator_type it_l_end;
+            const se_iterator_type it_r_begin;
+            se_iterator_type it_r;
+            Iterator& operator++() {
+                if (it_l == it_l_end) ++it_r;
+                else ++it_l;
+                return *this;
+            }
+            Iterator operator++(int) { Iterator ret = *this; ++(*this); return ret; }
+            Iterator& operator--() {
+                if (it_r == it_r_begin) --it_l;
+                else --it_r;
+                return *this;
+            }
+            Iterator operator--(int) { Iterator ret = *this; --(*this); return ret; }
+            Iterator& operator+=(int dif) {
+                if (int d = it_l_end - it_l; d < dif) it_l = it_l_end, it_r += dif - d;
+                else it_l += dif;
+                return *this;
+            }
+            Iterator operator+(int dif) const { Iterator it = *this; it += dif; return it; }
+            Iterator& operator-=(int dif) {
+                if (int d = it_r - it_r_begin; d < dif) it_r = it_r_begin, it_l -= dif - d;
+                else it_r -= dif;
+                return *this;
+            }
+            Iterator operator-(int dif) const { Iterator it = *this; it -= dif; return it; }
+            const value_type& operator*() const { return it_l == it_l_end ? *it_r : *it_l; }
+            bool operator!=(const Iterator &rhs) const { return it_l != rhs.it_l or it_r != rhs.it_r; }
+            bool operator==(const Iterator &rhs) const { return not (*this != rhs); }
+        };
+        using iterator_type = Iterator;
+
         DequeSum() = default;
 
         value_type sum() const {
@@ -16,7 +53,6 @@ namespace suisen {
         }
         const value_type& operator[](int i) const {
             const int l = _fi_raw.size(), r = _se_raw.size();
-            assert(0 <= i and i < l + r);
             return i < l ? _fi_raw[l - i - 1] : _se_raw[i - l];
         }
         void push_back(const value_type &val) {
@@ -49,6 +85,16 @@ namespace suisen {
             if (r) _se_sum[0] = _se_raw[0];
             for (int i = 1; i < r; ++i) _se_sum[i] = op(_se_sum[i - 1], _se_raw[i]);
         }
+        const value_type& front() const { return _fi_raw.size() ? _fi_raw.back() : _se_raw.front(); }
+        const value_type& back() const { return _se_raw.size() ? _se_raw.back() : _fi_raw.front(); }
+        int size() const { return _fi_raw.size() + _se_raw.size(); }
+        void clear() { _fi_raw.clear(), _fi_sum.clear(), _se_raw.clear(), _se_sum.clear(); }
+        void shrink_to_fit() { _fi_raw.shrink_to_fit(), _fi_sum.shrink_to_fit(), _se_raw.shrink_to_fit(), _se_sum.shrink_to_fit(); }
+
+        iterator_type begin() const { return iterator_type { _fi_raw.rbegin(), _fi_raw.rend(), _se_raw.begin(), _se_raw.begin() }; }
+        iterator_type end() const { return iterator_type { _fi_raw.rend(), _fi_raw.rend(), _se_raw.begin(), _se_raw.end() }; }
+        iterator_type cbegin() const { return begin(); }
+        iterator_type cend() const { return end(); }
 
     private:
         std::vector<value_type> _fi_raw, _se_raw;
