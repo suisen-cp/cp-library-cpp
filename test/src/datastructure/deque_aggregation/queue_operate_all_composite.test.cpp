@@ -15,7 +15,7 @@ std::ostream& operator<<(std::ostream& out, const mint &a) {
     return out;
 }
 
-#include "library/datastructure/deque_sum.hpp"
+#include "library/datastructure/deque_aggregation.hpp"
 
 std::pair<mint, mint> op(std::pair<mint, mint> g, std::pair<mint, mint> f) {
     return { f.first * g.first, f.first * g.second + f.second };
@@ -28,7 +28,7 @@ int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    suisen::DequeSum<std::pair<mint, mint>, op, e> dq;
+    suisen::DequeAggregation<std::pair<mint, mint>, op, e> dq;
 
     int q;
     std::cin >> q;
@@ -45,7 +45,7 @@ int main() {
         } else {
             mint x;
             std::cin >> x;
-            auto [a, b] = dq.sum();
+            auto [a, b] = dq.prod();
             std::cout << a * x + b << '\n';
         }
     }

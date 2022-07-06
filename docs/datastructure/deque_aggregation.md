@@ -1,6 +1,6 @@
 ---
 title: SWAG を Deque に拡張したやつ
-documentation_of: //library/datastructure/deque_sum.hpp
+documentation_of: //library/datastructure/deque_aggregation.hpp
 ---
 ## SWAG を Deque に拡張したやつ
 
@@ -14,7 +14,7 @@ documentation_of: //library/datastructure/deque_sum.hpp
 - `push_front` : 先頭に要素を追加。$O(X)$
 - `pop_back` : 末尾の要素を削除。amortized $O(X)$
 - `pop_front` : 先頭の要素を削除。amortized $O(X)$
-- `sum` : 要素を先頭から $v_1,\ldots,v_k$ として、二項演算 `op` で畳み込んだ結果 $op(v_1,op(v_2, op(\ldots, v_k)))$ を計算。$O(X)$
+- `prod` : 要素を先頭から $v_1,\ldots,v_k$ として、二項演算 `op` で畳み込んだ結果 $op(v_1,op(v_2, op(\ldots, v_k)))$ を計算。$O(X)$
 - `operator[]` : ランダムアクセス。$O(1)$
 - `back` : 末尾の要素を取得。$O(1)$
 - `front` : 先頭の要素を取得。$O(1)$
