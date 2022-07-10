@@ -7,7 +7,7 @@
 #include <atcoder/convolution>
 using mint = atcoder::modint998244353;
 
-#include "library/polynomial/common_sequences.hpp"
+#include "library/sequence/stirling_number1.hpp"
 
 int main() {
     suisen::FPS<mint>::set_multiplication([](const auto &a, const auto &b) { return atcoder::convolution(a, b); });

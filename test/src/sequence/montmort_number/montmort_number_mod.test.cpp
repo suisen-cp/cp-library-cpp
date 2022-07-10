@@ -4,7 +4,7 @@
 #include <atcoder/modint>
 using mint = atcoder::modint;
 
-#include "library/polynomial/common_sequences.hpp"
+#include "library/sequence/montmort_number.hpp"
 using suisen::montmort_number;
 
 int main() {
