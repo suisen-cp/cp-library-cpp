@@ -462,7 +462,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/matrix.hpp
       title: Matrix
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/linear_algebra/xor_base.hpp
       title: "XOR \u57FA\u5E95"
   - name: library/math
@@ -1418,6 +1418,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/matrix/matrix_product.test.cpp
       title: test/src/linear_algebra/matrix/matrix_product.test.cpp
+  - name: test/src/linear_algebra/xor_base
+    pages:
+    - icon: ':x:'
+      path: test/src/linear_algebra/xor_base/AOJ_3277.test.cpp
+      title: test/src/linear_algebra/xor_base/AOJ_3277.test.cpp
   - name: test/src/math/array_sps
     pages:
     - icon: ':heavy_check_mark:'
