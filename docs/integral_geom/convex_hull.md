@@ -1,5 +1,5 @@
 ---
-title: Convex Hull (整数座標)
+title: 凸包 (整数座標)
 documentation_of: //library/integral_geom/convex_hull.hpp
 ---
-## Convex Hull (整数座標)
+## 凸包 (整数座標)

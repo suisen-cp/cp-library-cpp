@@ -1,7 +1,7 @@
 ---
-title: Geometry
+title: 幾何テンプレート
 documentation_of: //library/geom/geometry.hpp
 ---
-## Geometry
+## 幾何テンプレート
 
 幾何ライブラリ詰め合わせ

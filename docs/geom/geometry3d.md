@@ -1,7 +1,7 @@
 ---
-title: Geometry3d
+title: 3次元幾何テンプレート
 documentation_of: //library/geom/geometry3d.hpp
 ---
-## Geometry3d
+## 3次元幾何テンプレート
 
-3次元幾何ライブラリ。verify はほとんどできてません。
+verify は出来てません。
