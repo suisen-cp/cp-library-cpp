@@ -25,6 +25,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/powers.hpp
+    title: Powers
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
@@ -509,10 +512,11 @@ data:
     \ res / a.pow(n - 1);\n    }\n    // x = 0, 1, ...\n    template <typename T>\n\
     \    T lagrange_interpolation_arithmetic_progression(const std::vector<T>& ys,\
     \ const T t) {\n        return lagrange_interpolation_arithmetic_progression(T{1},\
-    \ T{0}, ys, t);\n    }\n} // namespace suisen\n\n\n\n#line 1 \"library/number/linear_sieve.hpp\"\
-    \n\n\n\n#line 5 \"library/number/linear_sieve.hpp\"\n#include <numeric>\n#line\
-    \ 7 \"library/number/linear_sieve.hpp\"\n\nnamespace suisen {\n// referece: https://37zigen.com/linear-sieve/\n\
-    class LinearSieve {\n    public:\n        LinearSieve(const int n) : _n(n), min_prime_factor(std::vector<int>(n\
+    \ T{0}, ys, t);\n    }\n} // namespace suisen\n\n\n\n#line 1 \"library/sequence/powers.hpp\"\
+    \n\n\n\n#include <cstdint>\n#line 1 \"library/number/linear_sieve.hpp\"\n\n\n\n\
+    #line 5 \"library/number/linear_sieve.hpp\"\n#include <numeric>\n#line 7 \"library/number/linear_sieve.hpp\"\
+    \n\nnamespace suisen {\n// referece: https://37zigen.com/linear-sieve/\nclass\
+    \ LinearSieve {\n    public:\n        LinearSieve(const int n) : _n(n), min_prime_factor(std::vector<int>(n\
     \ + 1)) {\n            std::iota(min_prime_factor.begin(), min_prime_factor.end(),\
     \ 0);\n            prime_list.reserve(_n / 20);\n            for (int d = 2; d\
     \ <= _n; ++d) {\n                if (min_prime_factor[d] == d) prime_list.push_back(d);\n\
@@ -533,30 +537,27 @@ data:
     \ c = 0;\n                do { n /= p, ++c; } while (n % p == 0);\n          \
     \      prime_powers.emplace_back(p, c);\n            }\n            return prime_powers;\n\
     \        }\n    private:\n        const int _n;\n        std::vector<int> min_prime_factor;\n\
-    \        std::vector<int> prime_list;\n};\n} // namespace suisen\n\n\n#line 8\
-    \ \"test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp\"\n\nusing\
-    \ mint = atcoder::modint1000000007;\n\nint main() {\n    long long n;\n    int\
-    \ m, k;\n    std::cin >> n >> m >> k;\n    const auto mpf = suisen::LinearSieve(k\
-    \ + m).get_min_prime_factor();\n    std::vector<mint> f(k + m + 1);\n    for (int\
-    \ i = 1; i <= k + m; ++i) {\n        if (i == 1) {\n            f[i] = 1;\n  \
-    \      } else if (mpf[i] == i) {\n            f[i] = mint(i).pow(k);\n       \
-    \ } else {\n            f[i] = f[mpf[i]] * f[i / mpf[i]];\n        }\n    }\n\
-    \    for (int loop = 0; loop < m; ++loop) {\n        for (int i = 1; i <= k +\
-    \ m; ++i) {\n            f[i] += f[i - 1];\n        }\n    }\n    std::cout <<\
-    \ suisen::lagrange_interpolation_arithmetic_progression<mint>(f, n).val() << '\\\
-    n';\n    return 0;\n}\n"
+    \        std::vector<int> prime_list;\n};\n} // namespace suisen\n\n\n#line 6\
+    \ \"library/sequence/powers.hpp\"\n\nnamespace suisen {\n    // returns { 0^k,\
+    \ 1^k, ..., n^k }\n    template <typename mint>\n    std::vector<mint> powers(uint32_t\
+    \ n, uint64_t k) {\n        const auto mpf = LinearSieve(n).get_min_prime_factor();\n\
+    \        std::vector<mint> res(n + 1);\n        res[0] = k == 0;\n        for\
+    \ (uint32_t i = 1; i <= n; ++i) res[i] = i == 1 ? 1 : uint32_t(mpf[i]) == i ?\
+    \ mint(i).pow(k) : res[mpf[i]] * res[i / mpf[i]];\n        return res;\n    }\n\
+    } // namespace suisen\n\n\n#line 8 \"test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp\"\
+    \n\nusing mint = atcoder::modint1000000007;\n\nint main() {\n    long long n;\n\
+    \    int m, k;\n    std::cin >> n >> m >> k;\n\n    std::vector<mint> f = suisen::powers<mint>(k\
+    \ + m, k);\n    for (int loop = 0; loop < m; ++loop) {\n        for (int i = 1;\
+    \ i <= k + m; ++i) f[i] += f[i - 1];\n    }\n\n    std::cout << suisen::lagrange_interpolation_arithmetic_progression<mint>(f,\
+    \ n).val() << '\\n';\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc208/tasks/abc208_f\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\n\n#include \"library/polynomial/lagrange_interpolation.hpp\"\
-    \n#include \"library/number/linear_sieve.hpp\"\n\nusing mint = atcoder::modint1000000007;\n\
+    \n#include \"library/sequence/powers.hpp\"\n\nusing mint = atcoder::modint1000000007;\n\
     \nint main() {\n    long long n;\n    int m, k;\n    std::cin >> n >> m >> k;\n\
-    \    const auto mpf = suisen::LinearSieve(k + m).get_min_prime_factor();\n   \
-    \ std::vector<mint> f(k + m + 1);\n    for (int i = 1; i <= k + m; ++i) {\n  \
-    \      if (i == 1) {\n            f[i] = 1;\n        } else if (mpf[i] == i) {\n\
-    \            f[i] = mint(i).pow(k);\n        } else {\n            f[i] = f[mpf[i]]\
-    \ * f[i / mpf[i]];\n        }\n    }\n    for (int loop = 0; loop < m; ++loop)\
-    \ {\n        for (int i = 1; i <= k + m; ++i) {\n            f[i] += f[i - 1];\n\
-    \        }\n    }\n    std::cout << suisen::lagrange_interpolation_arithmetic_progression<mint>(f,\
-    \ n).val() << '\\n';\n    return 0;\n}\n"
+    \n    std::vector<mint> f = suisen::powers<mint>(k + m, k);\n    for (int loop\
+    \ = 0; loop < m; ++loop) {\n        for (int i = 1; i <= k + m; ++i) f[i] += f[i\
+    \ - 1];\n    }\n\n    std::cout << suisen::lagrange_interpolation_arithmetic_progression<mint>(f,\
+    \ n).val() << '\\n';\n\n    return 0;\n}\n"
   dependsOn:
   - library/polynomial/lagrange_interpolation.hpp
   - library/math/product_of_differences.hpp
@@ -566,11 +567,12 @@ data:
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
+  - library/sequence/powers.hpp
   - library/number/linear_sieve.hpp
   isVerificationFile: true
   path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-06-28 16:25:45+09:00'
+  timestamp: '2022-07-10 22:35:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp

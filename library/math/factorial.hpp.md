@@ -52,6 +52,9 @@ data:
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+    title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005.test.cpp
   - icon: ':heavy_check_mark:'
@@ -139,6 +142,7 @@ data:
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
   - test/src/sequence/partition_number/partition_function.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - test/src/sequence/stirling_number1/abc247_h.test.cpp

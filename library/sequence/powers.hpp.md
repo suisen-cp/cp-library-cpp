@@ -13,6 +13,12 @@ data:
     title: Stirling Number2
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+    title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+    title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005.test.cpp
   - icon: ':heavy_check_mark:'
@@ -73,6 +79,8 @@ data:
   timestamp: '2022-07-10 22:02:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2.test.cpp
 documentation_of: library/sequence/powers.hpp

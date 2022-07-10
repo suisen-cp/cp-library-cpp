@@ -10,6 +10,9 @@ data:
     path: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
     title: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+    title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005.test.cpp
   _isVerificationFailed: false
@@ -230,6 +233,7 @@ data:
   verifiedWith:
   - test/src/datastructure/deque_aggregation/queue_operate_all_composite.test.cpp
   - test/src/datastructure/deque_aggregation/staticrmq.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005.test.cpp
 documentation_of: library/datastructure/deque_aggregation.hpp
 layout: document

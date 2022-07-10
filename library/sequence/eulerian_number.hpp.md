@@ -28,6 +28,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+    title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005.test.cpp
   _isVerificationFailed: false
@@ -510,16 +513,16 @@ data:
     \ n) {\n        if (n == 0) return {};\n        factorial<mint> fac(n + 1);\n\
     \        const uint32_t h = (n + 1) >> 1;\n        FPS<mint> f = powers<mint>(h,\
     \ n);\n        f.erase(f.begin());\n        FPS<mint> g(h);\n        for (uint32_t\
-    \ i = 0; i < h; ++i) {\n            mint v = fac.fac_inv(i) * fac.fac_inv(n +\
-    \ 1 - i);\n            g[i] = i & 1 ? -v : v;\n        }\n        FPS<mint> res\
-    \ = f * g;\n        for (uint32_t i = h; i < n; ++i) res[i] = res[n - 1 - i];\n\
-    \        res.resize(n);\n        return res;\n    }\n    template <typename mint>\n\
-    \    std::vector<std::vector<mint>> eulerian_number_table(uint32_t n) {\n    \
-    \    if (n == 0) return {};\n        std::vector dp(n + 1, std::vector<mint>{});\n\
-    \        for (uint32_t i = 1; i <= n; ++i) {\n            dp[i].resize(i);\n \
-    \           dp[i][0] = dp[i][i - 1] = 1;\n            for (uint32_t j = 1; j <\
-    \ i - 1; ++j) dp[i][j] = (i - j) * dp[i - 1][j - 1] + (j + 1) * dp[i - 1][j];\n\
-    \        }\n        return dp;\n    }\n} // namespace suisen\n\n\n\n"
+    \ i = 0; i < h; ++i) {\n            mint v = fac.binom(n + 1, i);\n          \
+    \  g[i] = i & 1 ? -v : v;\n        }\n        FPS<mint> res = f * g;\n       \
+    \ res.resize(n);\n        for (uint32_t i = h; i < n; ++i) res[i] = res[n - 1\
+    \ - i];\n        return res;\n    }\n    template <typename mint>\n    std::vector<std::vector<mint>>\
+    \ eulerian_number_table(uint32_t n) {\n        if (n == 0) return {};\n      \
+    \  std::vector dp(n + 1, std::vector<mint>{});\n        for (uint32_t i = 1; i\
+    \ <= n; ++i) {\n            dp[i].resize(i);\n            dp[i][0] = dp[i][i -\
+    \ 1] = 1;\n            for (uint32_t j = 1; j < i - 1; ++j) dp[i][j] = (i - j)\
+    \ * dp[i - 1][j - 1] + (j + 1) * dp[i - 1][j];\n        }\n        return dp;\n\
+    \    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_EULERIAN_NUMBER\n#define SUISEN_EULERIAN_NUMBER\n\n#include\
     \ \"library/polynomial/fps.hpp\"\n#include \"library/math/factorial.hpp\"\n#include\
     \ \"library/sequence/powers.hpp\"\n\n// reference: https://en.wikipedia.org/wiki/Eulerian_number\n\
@@ -527,16 +530,16 @@ data:
     \ n) {\n        if (n == 0) return {};\n        factorial<mint> fac(n + 1);\n\
     \        const uint32_t h = (n + 1) >> 1;\n        FPS<mint> f = powers<mint>(h,\
     \ n);\n        f.erase(f.begin());\n        FPS<mint> g(h);\n        for (uint32_t\
-    \ i = 0; i < h; ++i) {\n            mint v = fac.fac_inv(i) * fac.fac_inv(n +\
-    \ 1 - i);\n            g[i] = i & 1 ? -v : v;\n        }\n        FPS<mint> res\
-    \ = f * g;\n        for (uint32_t i = h; i < n; ++i) res[i] = res[n - 1 - i];\n\
-    \        res.resize(n);\n        return res;\n    }\n    template <typename mint>\n\
-    \    std::vector<std::vector<mint>> eulerian_number_table(uint32_t n) {\n    \
-    \    if (n == 0) return {};\n        std::vector dp(n + 1, std::vector<mint>{});\n\
-    \        for (uint32_t i = 1; i <= n; ++i) {\n            dp[i].resize(i);\n \
-    \           dp[i][0] = dp[i][i - 1] = 1;\n            for (uint32_t j = 1; j <\
-    \ i - 1; ++j) dp[i][j] = (i - j) * dp[i - 1][j - 1] + (j + 1) * dp[i - 1][j];\n\
-    \        }\n        return dp;\n    }\n} // namespace suisen\n\n\n#endif // SUISEN_EULERIAN_NUMBER\n"
+    \ i = 0; i < h; ++i) {\n            mint v = fac.binom(n + 1, i);\n          \
+    \  g[i] = i & 1 ? -v : v;\n        }\n        FPS<mint> res = f * g;\n       \
+    \ res.resize(n);\n        for (uint32_t i = h; i < n; ++i) res[i] = res[n - 1\
+    \ - i];\n        return res;\n    }\n    template <typename mint>\n    std::vector<std::vector<mint>>\
+    \ eulerian_number_table(uint32_t n) {\n        if (n == 0) return {};\n      \
+    \  std::vector dp(n + 1, std::vector<mint>{});\n        for (uint32_t i = 1; i\
+    \ <= n; ++i) {\n            dp[i].resize(i);\n            dp[i][0] = dp[i][i -\
+    \ 1] = 1;\n            for (uint32_t j = 1; j < i - 1; ++j) dp[i][j] = (i - j)\
+    \ * dp[i - 1][j - 1] + (j + 1) * dp[i - 1][j];\n        }\n        return dp;\n\
+    \    }\n} // namespace suisen\n\n\n#endif // SUISEN_EULERIAN_NUMBER\n"
   dependsOn:
   - library/polynomial/fps.hpp
   - library/polynomial/fps_naive.hpp
@@ -549,9 +552,10 @@ data:
   isVerificationFile: false
   path: library/sequence/eulerian_number.hpp
   requiredBy: []
-  timestamp: '2022-07-10 22:02:36+09:00'
+  timestamp: '2022-07-10 22:35:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005.test.cpp
 documentation_of: library/sequence/eulerian_number.hpp
 layout: document

@@ -1640,6 +1640,9 @@ data:
   - name: test/src/sequence/eulerian_number
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+      title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/eulerian_number/yuki2005.test.cpp
       title: test/src/sequence/eulerian_number/yuki2005.test.cpp
   - name: test/src/sequence/montmort_number
