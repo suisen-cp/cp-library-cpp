@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/integral_geom/farthest_pair.hpp
+    title: library/integral_geom/farthest_pair.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
@@ -72,7 +75,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/integral_geom/convex_hull.hpp
-  requiredBy: []
+  requiredBy:
+  - library/integral_geom/farthest_pair.hpp
   timestamp: '2022-07-10 18:49:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

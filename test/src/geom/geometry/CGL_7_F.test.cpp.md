@@ -209,14 +209,18 @@ data:
     \ sgn(det(a, b)) < 0) in = not in;\n            if (sgn(det(a, b)) == 0 and sgn(dot(a,\
     \ b)) <= 0) return Containment::ON;\n        }\n        return in ? Containment::IN\
     \ : Containment::OUT;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\n\
-    \    auto convex_diameter(const Polygon &convex) {\n        const int sz = convex.size();\n\
-    \        auto d2 = [&](int i, int j) { return square_abs(convex[j % sz] - convex[i]);\
-    \ };\n        coordinate_t max_dist = -1;\n        std::pair<int, int> argmax\
-    \ { -1, -1 };\n        for (int i = 0, j = 0; i < sz; ++i) {\n            while\
-    \ (d2(i, j + 1) >= d2(i, j)) ++j;\n            coordinate_t cur_dist = d2(i, j);\n\
-    \            if (cur_dist > max_dist) {\n                max_dist = cur_dist;\n\
-    \                argmax = { i, j };\n            }\n        }\n        auto [i,\
-    \ j] = argmax;\n        return std::make_tuple(i, j % sz, std::sqrt(max_dist));\n\
+    \    std::tuple<int, int, coordinate_t> convex_diameter(const Polygon& convex)\
+    \ {\n        const int sz = convex.size();\n        if (sz <= 2) return { 0, sz\
+    \ - 1, abs(convex.front() - convex.back()) };\n        auto [si, sj] = [&]{\n\
+    \            auto [it_min, it_max] = std::minmax_element(convex.begin(), convex.end(),\
+    \ XY_COMPARATOR);\n            return std::pair<int, int> { it_min - convex.begin(),\
+    \ it_max - convex.begin() };\n        }();\n        coordinate_t max_dist = -1;\n\
+    \        std::pair<int, int> argmax{ -1, -1 };\n        for (int i = si, j = sj;\
+    \ i != sj or j != si;) {\n            if (coordinate_t dij = square_abs(convex[j]\
+    \ - convex[i]); dij > max_dist) max_dist = dij, argmax = { i, j };\n         \
+    \   int ni = (i + 1) % sz, nj = (j + 1) % sz;\n            if (det(convex[ni]\
+    \ - convex[i], convex[nj] - convex[j]) < 0) i = ni;\n            else j = nj;\n\
+    \        }\n        return { argmax.first, argmax.second, ::sqrtl(max_dist) };\n\
     \    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C\n\
     \    auto convex_cut(const Polygon &convex, const Line &l) {\n        Polygon\
     \ res;\n        int sz = convex.size();\n        for (int i = 0; i < sz; ++i)\
@@ -325,7 +329,7 @@ data:
   isVerificationFile: true
   path: test/src/geom/geometry/CGL_7_F.test.cpp
   requiredBy: []
-  timestamp: '2021-08-25 07:44:31+09:00'
+  timestamp: '2022-07-10 19:58:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/geom/geometry/CGL_7_F.test.cpp

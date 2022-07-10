@@ -22,29 +22,34 @@ data:
     \n#include <iostream>\n\n#line 1 \"library/integral_geom/sort_points_by_argument.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <vector>\n\n#line 1 \"library/integral_geom/point.hpp\"\
     \n\n\n\n#include <cassert>\n#line 6 \"library/integral_geom/point.hpp\"\n#include\
-    \ <utility>\n\nnamespace suisen::integral_geometry {\n    using coordinate_t =\
-    \ long long;\n    using multiplied_t = __int128_t;\n\n    struct Point {\n   \
-    \     coordinate_t x, y;\n        constexpr Point(coordinate_t x = 0, coordinate_t\
-    \ y = 0) : x(x), y(y) {}\n\n        operator std::pair<coordinate_t, coordinate_t>()\
-    \ const { return std::pair<coordinate_t, coordinate_t> { x, y }; }\n\n       \
-    \ friend Point operator+(const Point& p) { return p; }\n        friend Point operator-(const\
-    \ Point& p) { return { -p.x, -p.y }; }\n\n        friend Point operator+(const\
-    \ Point& lhs, const Point& rhs) { return { lhs.x + rhs.x, lhs.y + rhs.y }; }\n\
-    \        friend Point operator-(const Point& lhs, const Point& rhs) { return {\
-    \ lhs.x - rhs.x, lhs.y - rhs.y }; }\n        friend Point operator*(const Point&\
-    \ lhs, const Point& rhs) { return { lhs.x * rhs.x - lhs.y * rhs.y, lhs.x * rhs.y\
-    \ + lhs.y * rhs.x }; }\n\n        friend Point& operator+=(Point& lhs, const Point&\
-    \ rhs) { lhs.x += rhs.x, lhs.y += rhs.y; return lhs; }\n        friend Point&\
-    \ operator-=(Point& lhs, const Point& rhs) { lhs.x -= rhs.x, lhs.y -= rhs.y; return\
-    \ lhs; }\n        friend Point& operator*=(Point& lhs, const Point& rhs) { return\
-    \ lhs = lhs * rhs; }\n\n        friend Point operator+(const Point& p, coordinate_t\
-    \ real) { return { p.x + real, p.y }; }\n        friend Point operator-(const\
-    \ Point& p, coordinate_t real) { return { p.x - real, p.y }; }\n        friend\
-    \ Point operator*(const Point& p, coordinate_t real) { return { p.x * real, p.y\
-    \ * real }; }\n        friend Point operator/(const Point& p, coordinate_t real)\
-    \ { return { p.x / real, p.y / real }; }\n\n        friend Point operator+=(Point&\
-    \ p, coordinate_t real) { p.x += real; return p; }\n        friend Point operator-=(Point&\
-    \ p, coordinate_t real) { p.x -= real; return p; }\n        friend Point operator*=(Point&\
+    \ <utility>\n\n#ifndef COORDINATE_TYPE\n#define COORDINATE_TYPE long long\n#endif\
+    \ // COORDINATE_TYPE\n#ifndef MULTIPLIED_TYPE\n#define MULTIPLIED_TYPE long long\n\
+    #endif // MULTIPLIED_TYPE\n\nnamespace suisen::integral_geometry {\n    using\
+    \ coordinate_t = COORDINATE_TYPE;\n    using multiplied_t = MULTIPLIED_TYPE;\n\
+    \n    struct Point {\n        coordinate_t x, y;\n        constexpr Point(coordinate_t\
+    \ x = 0, coordinate_t y = 0) : x(x), y(y) {}\n\n        template <typename T =\
+    \ coordinate_t, typename U = coordinate_t>\n        operator std::pair<T, U>()\
+    \ const { return std::pair<T, U> { T{ x }, U{ y } }; }\n        template <typename\
+    \ T, typename U>\n        Point& operator=(const std::pair<T, U> &p) { x = p.first,\
+    \ y = p.second; return *this; }\n\n        friend Point operator+(const Point&\
+    \ p) { return p; }\n        friend Point operator-(const Point& p) { return {\
+    \ -p.x, -p.y }; }\n\n        friend Point operator+(const Point& lhs, const Point&\
+    \ rhs) { return { lhs.x + rhs.x, lhs.y + rhs.y }; }\n        friend Point operator-(const\
+    \ Point& lhs, const Point& rhs) { return { lhs.x - rhs.x, lhs.y - rhs.y }; }\n\
+    \        friend Point operator*(const Point& lhs, const Point& rhs) { return {\
+    \ lhs.x * rhs.x - lhs.y * rhs.y, lhs.x * rhs.y + lhs.y * rhs.x }; }\n\n      \
+    \  friend Point& operator+=(Point& lhs, const Point& rhs) { lhs.x += rhs.x, lhs.y\
+    \ += rhs.y; return lhs; }\n        friend Point& operator-=(Point& lhs, const\
+    \ Point& rhs) { lhs.x -= rhs.x, lhs.y -= rhs.y; return lhs; }\n        friend\
+    \ Point& operator*=(Point& lhs, const Point& rhs) { return lhs = lhs * rhs; }\n\
+    \n        friend Point operator+(const Point& p, coordinate_t real) { return {\
+    \ p.x + real, p.y }; }\n        friend Point operator-(const Point& p, coordinate_t\
+    \ real) { return { p.x - real, p.y }; }\n        friend Point operator*(const\
+    \ Point& p, coordinate_t real) { return { p.x * real, p.y * real }; }\n      \
+    \  friend Point operator/(const Point& p, coordinate_t real) { return { p.x /\
+    \ real, p.y / real }; }\n\n        friend Point operator+=(Point& p, coordinate_t\
+    \ real) { p.x += real; return p; }\n        friend Point operator-=(Point& p,\
+    \ coordinate_t real) { p.x -= real; return p; }\n        friend Point operator*=(Point&\
     \ p, coordinate_t real) { p.x *= real, p.y *= real; return p; }\n        friend\
     \ Point operator/=(Point& p, coordinate_t real) { p.x /= real, p.y /= real; return\
     \ p; }\n\n        friend Point operator+(coordinate_t real, const Point& p) {\
@@ -104,7 +109,7 @@ data:
   isVerificationFile: true
   path: test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 18:49:22+09:00'
+  timestamp: '2022-07-10 19:58:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp

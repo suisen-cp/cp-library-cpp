@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: library/integral_geom/convex_hull.hpp
+    title: "\u51F8\u5305 (\u6574\u6570\u5EA7\u6A19)"
+  - icon: ':question:'
     path: library/integral_geom/geometry.hpp
     title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19\
       )"
@@ -9,16 +12,13 @@ data:
     path: library/integral_geom/point.hpp
     title: library/integral_geom/point.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
-    title: test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/integral_geom/closest_pair.hpp\"\n\n\n\n#include\
+  bundledCode: "#line 1 \"library/integral_geom/farthest_pair.hpp\"\n\n\n\n#include\
     \ <cassert>\n\n#line 1 \"library/integral_geom/geometry.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <cmath>\n#include <iostream>\n#include <vector>\n\n#line\
     \ 1 \"library/integral_geom/point.hpp\"\n\n\n\n#line 6 \"library/integral_geom/point.hpp\"\
@@ -200,75 +200,64 @@ data:
     \ Circle& c, const Point& p) {\n        coordinate_t df = square_abs(c.center\
     \ - p) - c.radius * c.radius;\n        if (df > 0) return Containment::OUT;\n\
     \        if (df < 0) return Containment::IN;\n        return Containment::ON;\n\
-    \    }\n} // namespace suisen::integral_geometry\n\n\n#line 7 \"library/integral_geom/closest_pair.hpp\"\
-    \n\nnamespace suisen::integral_geometry {\n    std::pair<Point, Point> closest_pair(std::vector<Point>\
-    \ points) {\n        const int n = points.size();\n        assert(n > 0);\n  \
-    \      if (n == 1) return { points[0], points[0] };\n        std::sort(points.begin(),\
-    \ points.end(), XY_COMPARATOR);\n        coordinate_t min_dist = std::numeric_limits<coordinate_t>::max();\n\
-    \        std::pair<Point, Point> ans;\n        std::vector<coordinate_t> dmin(n,\
-    \ min_dist);\n\n        auto update_min = [&](int l, const Point& p, const Point&\
-    \ q) {\n            coordinate_t d = square_abs(p - q);\n            if (d >=\
-    \ dmin[l]) return;\n            dmin[l] = d;\n            if (d >= min_dist) return;\n\
-    \            min_dist = d;\n            ans.first = p, ans.second = q;\n     \
-    \   };\n\n        static constexpr int MIN_BLOCK = 4;\n        std::vector<Point>\
-    \ y = points;\n        for (int l = 0; l < n;) {\n            int r = std::min(l\
-    \ + MIN_BLOCK, n);\n            for (int j = l; j < r; ++j) for (int i = l; i\
-    \ < j; ++i) {\n                update_min(l, points[i], points[j]);\n        \
-    \    }\n            std::sort(y.begin() + l, y.begin() + r, YX_COMPARATOR);\n\
-    \            l = r;\n        }\n\n        for (int block = MIN_BLOCK; block <=\
-    \ n; block <<= 1) {\n            for (int l = 0; l + block < n;) {\n         \
-    \       int m = l + block, r = std::min(m + block, n);\n                std::inplace_merge(y.begin()\
-    \ + l, y.begin() + m, y.begin() + r, YX_COMPARATOR);\n                dmin[l]\
-    \ = std::min(dmin[l], dmin[m]);\n                std::vector<int> ids;\n     \
-    \           for (int i = l; i < r; ++i) {\n                    if (coordinate_t\
-    \ dx = y[i].x - points[m].x; dx * dx > dmin[l]) continue;\n                  \
-    \  for (auto it = ids.rbegin(); it != ids.rend(); ++it) {\n                  \
-    \      const Point& p = y[*it];\n                        if (coordinate_t dy =\
-    \ y[i].y - p.y; dy * dy > dmin[l]) break;\n                        update_min(l,\
-    \ y[i], p);\n                    }\n                    ids.push_back(i);\n  \
-    \              }\n                l = r;\n            }\n        }\n        return\
-    \ ans;\n    }\n} // namespace suisen::integral_geometry\n\n\n\n"
-  code: "#ifndef SUISEN_CLOSEST_PAIR\n#define SUISEN_CLOSEST_PAIR\n\n#include <cassert>\n\
-    \n#include \"library/integral_geom/geometry.hpp\"\n\nnamespace suisen::integral_geometry\
-    \ {\n    std::pair<Point, Point> closest_pair(std::vector<Point> points) {\n \
-    \       const int n = points.size();\n        assert(n > 0);\n        if (n ==\
-    \ 1) return { points[0], points[0] };\n        std::sort(points.begin(), points.end(),\
-    \ XY_COMPARATOR);\n        coordinate_t min_dist = std::numeric_limits<coordinate_t>::max();\n\
-    \        std::pair<Point, Point> ans;\n        std::vector<coordinate_t> dmin(n,\
-    \ min_dist);\n\n        auto update_min = [&](int l, const Point& p, const Point&\
-    \ q) {\n            coordinate_t d = square_abs(p - q);\n            if (d >=\
-    \ dmin[l]) return;\n            dmin[l] = d;\n            if (d >= min_dist) return;\n\
-    \            min_dist = d;\n            ans.first = p, ans.second = q;\n     \
-    \   };\n\n        static constexpr int MIN_BLOCK = 4;\n        std::vector<Point>\
-    \ y = points;\n        for (int l = 0; l < n;) {\n            int r = std::min(l\
-    \ + MIN_BLOCK, n);\n            for (int j = l; j < r; ++j) for (int i = l; i\
-    \ < j; ++i) {\n                update_min(l, points[i], points[j]);\n        \
-    \    }\n            std::sort(y.begin() + l, y.begin() + r, YX_COMPARATOR);\n\
-    \            l = r;\n        }\n\n        for (int block = MIN_BLOCK; block <=\
-    \ n; block <<= 1) {\n            for (int l = 0; l + block < n;) {\n         \
-    \       int m = l + block, r = std::min(m + block, n);\n                std::inplace_merge(y.begin()\
-    \ + l, y.begin() + m, y.begin() + r, YX_COMPARATOR);\n                dmin[l]\
-    \ = std::min(dmin[l], dmin[m]);\n                std::vector<int> ids;\n     \
-    \           for (int i = l; i < r; ++i) {\n                    if (coordinate_t\
-    \ dx = y[i].x - points[m].x; dx * dx > dmin[l]) continue;\n                  \
-    \  for (auto it = ids.rbegin(); it != ids.rend(); ++it) {\n                  \
-    \      const Point& p = y[*it];\n                        if (coordinate_t dy =\
-    \ y[i].y - p.y; dy * dy > dmin[l]) break;\n                        update_min(l,\
-    \ y[i], p);\n                    }\n                    ids.push_back(i);\n  \
-    \              }\n                l = r;\n            }\n        }\n        return\
-    \ ans;\n    }\n} // namespace suisen::integral_geometry\n\n\n#endif // SUISEN_CLOSEST_PAIR\n"
+    \    }\n} // namespace suisen::integral_geometry\n\n\n#line 1 \"library/integral_geom/convex_hull.hpp\"\
+    \n\n\n\n#line 5 \"library/integral_geom/convex_hull.hpp\"\n#include <numeric>\n\
+    #line 7 \"library/integral_geom/convex_hull.hpp\"\n\nnamespace suisen::integral_geometry\
+    \ {\n    template <typename PointType, typename MultipliedType = long long>\n\
+    \    std::vector<int> convex_hull(const std::vector<PointType> &points) {\n  \
+    \      const int n = points.size();\n        std::vector<int> sorted(n);\n   \
+    \     std::iota(sorted.begin(), sorted.end(), 0);\n        std::sort(sorted.begin(),\
+    \ sorted.end(), [&points](int i, int j) {\n            const auto &[xi, yi] =\
+    \ points[i];\n            const auto &[xj, yj] = points[j];\n            return\
+    \ xi == xj ? yi < yj : xi < xj;\n        });\n        std::vector<int8_t> used(n,\
+    \ false);\n        sorted.resize(2 * n - 1);\n        std::copy(sorted.rbegin()\
+    \ + n, sorted.rend(), sorted.begin() + n);\n        std::vector<int> res;\n  \
+    \      res.reserve(n);\n        int first = sorted[0], last = sorted[n - 1];\n\
+    \        auto isp_pos = [](MultipliedType x1, MultipliedType y1, MultipliedType\
+    \ x2, MultipliedType y2) -> bool {\n            auto det = x1 * y2 - y1 * x2;\n\
+    \            return det > 0 or (det == 0 and x1 * x2 + y1 * y2 > 0);\n       \
+    \ };\n        for (int k : sorted) {\n            if (k != first and used[k])\
+    \ continue;\n            for (int sz = res.size(); sz >= 2; --sz) {\n        \
+    \        int i = res[sz - 2], j = res[sz - 1];\n                if (j == last)\
+    \ break;\n                const auto &[xi, yi] = points[i];\n                const\
+    \ auto &[xj, yj] = points[j];\n                const auto &[xk, yk] = points[k];\n\
+    \                auto ab_x = xj - xi, ab_y = yj - yi;\n                auto bc_x\
+    \ = xk - xj, bc_y = yk - yj;\n                if (isp_pos(ab_x, ab_y, bc_x, bc_y))\
+    \ break;\n                res.pop_back(), used[j] = false;\n            }\n  \
+    \          if (not used[k]) res.push_back(k);\n            used[k] = true;\n \
+    \       }\n        return res;\n    }\n} // namespace suisen::integral_geometry\n\
+    \n\n#line 8 \"library/integral_geom/farthest_pair.hpp\"\n\nnamespace suisen::integral_geometry\
+    \ {\n    template <typename PointType, typename MultipliedType = long long>\n\
+    \    std::pair<PointType, PointType> farthest_pair(const std::vector<PointType>\
+    \ &points) {\n        const std::vector<int> ids = convex_hull<PointType, MultipliedType>(points);\n\
+    \        const int n = ids.size();\n        Polygon convex(n);\n        for (int\
+    \ i = 0; i < n; ++i) convex[i] = points[ids[i]];\n        auto [i, j] = convex_diameter(convex);\n\
+    \        return { PointType{ convex[i] }, PointType{ convex[j] } };\n    }\n}\
+    \ // namespace suisen::integral_geometry\n\n\n"
+  code: "#ifndef SUISEN_FARTHEST_PAIR\n#define SUISEN_FARTHEST_PAIR\n\n#include <cassert>\n\
+    \n#include \"library/integral_geom/geometry.hpp\"\n#include \"library/integral_geom/convex_hull.hpp\"\
+    \n\nnamespace suisen::integral_geometry {\n    template <typename PointType, typename\
+    \ MultipliedType = long long>\n    std::pair<PointType, PointType> farthest_pair(const\
+    \ std::vector<PointType> &points) {\n        const std::vector<int> ids = convex_hull<PointType,\
+    \ MultipliedType>(points);\n        const int n = ids.size();\n        Polygon\
+    \ convex(n);\n        for (int i = 0; i < n; ++i) convex[i] = points[ids[i]];\n\
+    \        auto [i, j] = convex_diameter(convex);\n        return { PointType{ convex[i]\
+    \ }, PointType{ convex[j] } };\n    }\n} // namespace suisen::integral_geometry\n\
+    \n#endif // SUISEN_FARTHEST_PAIR\n"
   dependsOn:
   - library/integral_geom/geometry.hpp
   - library/integral_geom/point.hpp
+  - library/integral_geom/convex_hull.hpp
   isVerificationFile: false
-  path: library/integral_geom/closest_pair.hpp
+  path: library/integral_geom/farthest_pair.hpp
   requiredBy: []
   timestamp: '2022-07-10 19:58:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
-documentation_of: library/integral_geom/closest_pair.hpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: library/integral_geom/farthest_pair.hpp
 layout: document
-title: "\u6700\u8FD1\u70B9\u5BFE (\u6574\u6570\u5EA7\u6A19)"
+redirect_from:
+- /library/library/integral_geom/farthest_pair.hpp
+- /library/library/integral_geom/farthest_pair.hpp.html
+title: library/integral_geom/farthest_pair.hpp
 ---
-## 最近点対 (整数座標)

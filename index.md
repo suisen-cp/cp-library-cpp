@@ -423,7 +423,7 @@ data:
       title: Parsing
   - name: library/integral_geom
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/integral_geom/closest_pair.hpp
       title: "\u6700\u8FD1\u70B9\u5BFE (\u6574\u6570\u5EA7\u6A19)"
     - icon: ':question:'
@@ -434,6 +434,9 @@ data:
       title: "\u683C\u5B50\u70B9\u3092\u9802\u70B9\u3068\u3059\u308B\u591A\u89D2\u5F62\
         \u306E\u5185\u90E8\u307E\u305F\u306F\u8FBA\u4E0A\u306B\u5B58\u5728\u3059\u308B\
         \u683C\u5B50\u70B9\u306E\u500B\u6570\u306E\u30AB\u30A6\u30F3\u30C8"
+    - icon: ':warning:'
+      path: library/integral_geom/farthest_pair.hpp
+      title: library/integral_geom/farthest_pair.hpp
     - icon: ':question:'
       path: library/integral_geom/geometry.hpp
       title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\
@@ -1349,7 +1352,7 @@ data:
       title: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
   - name: test/src/integral_geom/closest_pair
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
       title: test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
   - name: test/src/integral_geom/convex_hull

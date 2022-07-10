@@ -24,29 +24,34 @@ data:
     library/integral_geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n#include <cmath>\n\
     #line 7 \"library/integral_geom/geometry.hpp\"\n#include <vector>\n\n#line 1 \"\
     library/integral_geom/point.hpp\"\n\n\n\n#line 6 \"library/integral_geom/point.hpp\"\
-    \n#include <utility>\n\nnamespace suisen::integral_geometry {\n    using coordinate_t\
-    \ = long long;\n    using multiplied_t = __int128_t;\n\n    struct Point {\n \
-    \       coordinate_t x, y;\n        constexpr Point(coordinate_t x = 0, coordinate_t\
-    \ y = 0) : x(x), y(y) {}\n\n        operator std::pair<coordinate_t, coordinate_t>()\
-    \ const { return std::pair<coordinate_t, coordinate_t> { x, y }; }\n\n       \
-    \ friend Point operator+(const Point& p) { return p; }\n        friend Point operator-(const\
-    \ Point& p) { return { -p.x, -p.y }; }\n\n        friend Point operator+(const\
-    \ Point& lhs, const Point& rhs) { return { lhs.x + rhs.x, lhs.y + rhs.y }; }\n\
-    \        friend Point operator-(const Point& lhs, const Point& rhs) { return {\
-    \ lhs.x - rhs.x, lhs.y - rhs.y }; }\n        friend Point operator*(const Point&\
-    \ lhs, const Point& rhs) { return { lhs.x * rhs.x - lhs.y * rhs.y, lhs.x * rhs.y\
-    \ + lhs.y * rhs.x }; }\n\n        friend Point& operator+=(Point& lhs, const Point&\
-    \ rhs) { lhs.x += rhs.x, lhs.y += rhs.y; return lhs; }\n        friend Point&\
-    \ operator-=(Point& lhs, const Point& rhs) { lhs.x -= rhs.x, lhs.y -= rhs.y; return\
-    \ lhs; }\n        friend Point& operator*=(Point& lhs, const Point& rhs) { return\
-    \ lhs = lhs * rhs; }\n\n        friend Point operator+(const Point& p, coordinate_t\
-    \ real) { return { p.x + real, p.y }; }\n        friend Point operator-(const\
-    \ Point& p, coordinate_t real) { return { p.x - real, p.y }; }\n        friend\
-    \ Point operator*(const Point& p, coordinate_t real) { return { p.x * real, p.y\
-    \ * real }; }\n        friend Point operator/(const Point& p, coordinate_t real)\
-    \ { return { p.x / real, p.y / real }; }\n\n        friend Point operator+=(Point&\
-    \ p, coordinate_t real) { p.x += real; return p; }\n        friend Point operator-=(Point&\
-    \ p, coordinate_t real) { p.x -= real; return p; }\n        friend Point operator*=(Point&\
+    \n#include <utility>\n\n#ifndef COORDINATE_TYPE\n#define COORDINATE_TYPE long\
+    \ long\n#endif // COORDINATE_TYPE\n#ifndef MULTIPLIED_TYPE\n#define MULTIPLIED_TYPE\
+    \ long long\n#endif // MULTIPLIED_TYPE\n\nnamespace suisen::integral_geometry\
+    \ {\n    using coordinate_t = COORDINATE_TYPE;\n    using multiplied_t = MULTIPLIED_TYPE;\n\
+    \n    struct Point {\n        coordinate_t x, y;\n        constexpr Point(coordinate_t\
+    \ x = 0, coordinate_t y = 0) : x(x), y(y) {}\n\n        template <typename T =\
+    \ coordinate_t, typename U = coordinate_t>\n        operator std::pair<T, U>()\
+    \ const { return std::pair<T, U> { T{ x }, U{ y } }; }\n        template <typename\
+    \ T, typename U>\n        Point& operator=(const std::pair<T, U> &p) { x = p.first,\
+    \ y = p.second; return *this; }\n\n        friend Point operator+(const Point&\
+    \ p) { return p; }\n        friend Point operator-(const Point& p) { return {\
+    \ -p.x, -p.y }; }\n\n        friend Point operator+(const Point& lhs, const Point&\
+    \ rhs) { return { lhs.x + rhs.x, lhs.y + rhs.y }; }\n        friend Point operator-(const\
+    \ Point& lhs, const Point& rhs) { return { lhs.x - rhs.x, lhs.y - rhs.y }; }\n\
+    \        friend Point operator*(const Point& lhs, const Point& rhs) { return {\
+    \ lhs.x * rhs.x - lhs.y * rhs.y, lhs.x * rhs.y + lhs.y * rhs.x }; }\n\n      \
+    \  friend Point& operator+=(Point& lhs, const Point& rhs) { lhs.x += rhs.x, lhs.y\
+    \ += rhs.y; return lhs; }\n        friend Point& operator-=(Point& lhs, const\
+    \ Point& rhs) { lhs.x -= rhs.x, lhs.y -= rhs.y; return lhs; }\n        friend\
+    \ Point& operator*=(Point& lhs, const Point& rhs) { return lhs = lhs * rhs; }\n\
+    \n        friend Point operator+(const Point& p, coordinate_t real) { return {\
+    \ p.x + real, p.y }; }\n        friend Point operator-(const Point& p, coordinate_t\
+    \ real) { return { p.x - real, p.y }; }\n        friend Point operator*(const\
+    \ Point& p, coordinate_t real) { return { p.x * real, p.y * real }; }\n      \
+    \  friend Point operator/(const Point& p, coordinate_t real) { return { p.x /\
+    \ real, p.y / real }; }\n\n        friend Point operator+=(Point& p, coordinate_t\
+    \ real) { p.x += real; return p; }\n        friend Point operator-=(Point& p,\
+    \ coordinate_t real) { p.x -= real; return p; }\n        friend Point operator*=(Point&\
     \ p, coordinate_t real) { p.x *= real, p.y *= real; return p; }\n        friend\
     \ Point operator/=(Point& p, coordinate_t real) { p.x /= real, p.y /= real; return\
     \ p; }\n\n        friend Point operator+(coordinate_t real, const Point& p) {\
@@ -174,13 +179,16 @@ data:
     \            if (det(a, b) == 0 and dot(a, b) <= 0) return Containment::ON;\n\
     \        }\n        return in ? Containment::IN : Containment::OUT;\n    }\n\n\
     \    std::pair<int, int> convex_diameter(const Polygon& convex) {\n        const\
-    \ int sz = convex.size();\n        auto d2 = [&](int i, int j) { return square_abs(convex[j\
-    \ % sz] - convex[i]); };\n        coordinate_t max_dist = -1;\n        std::pair<int,\
-    \ int> argmax{ -1, -1 };\n        for (int i = 0, j = 0; i < sz; ++i) {\n    \
-    \        while (d2(i, j + 1) >= d2(i, j)) ++j;\n            coordinate_t cur_dist\
-    \ = d2(i, j);\n            if (cur_dist > max_dist) max_dist = cur_dist, argmax\
-    \ = { i, j };\n        }\n        argmax.second %= sz;\n        return argmax;\n\
-    \    }\n\n    // Circle\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_A\n\
+    \ int sz = convex.size();\n        if (sz <= 2) return { 0, sz - 1 };\n      \
+    \  auto [si, sj] = [&]{\n            auto [it_min, it_max] = std::minmax_element(convex.begin(),\
+    \ convex.end(), XY_COMPARATOR);\n            return std::pair<int, int> { it_min\
+    \ - convex.begin(), it_max - convex.begin() };\n        }();\n        coordinate_t\
+    \ max_dist = -1;\n        std::pair<int, int> argmax{ -1, -1 };\n        for (int\
+    \ i = si, j = sj; i != sj or j != si;) {\n            if (multiplied_t dij = square_abs(convex[j]\
+    \ - convex[i]); dij > max_dist) max_dist = dij, argmax = { i, j };\n         \
+    \   int ni = (i + 1) % sz, nj = (j + 1) % sz;\n            if (det(convex[ni]\
+    \ - convex[i], convex[nj] - convex[j]) < 0) i = ni;\n            else j = nj;\n\
+    \        }\n        return argmax;\n    }\n\n    // Circle\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_A\n\
     \    int tangent_num(const Circle& c1, const Circle& c2) {\n        coordinate_t\
     \ r1 = c1.radius, r2 = c2.radius;\n        if (r1 > r2) return tangent_num(c2,\
     \ c1);\n        coordinate_t d2 = square_abs(c1.center - c2.center);\n       \
@@ -215,7 +223,7 @@ data:
   isVerificationFile: true
   path: test/src/integral_geom/geometry/CGL_3_A.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 18:49:22+09:00'
+  timestamp: '2022-07-10 19:58:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/integral_geom/geometry/CGL_3_A.test.cpp
