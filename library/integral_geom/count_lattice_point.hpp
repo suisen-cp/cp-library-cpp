@@ -7,14 +7,14 @@
 
 namespace suisen::integral_geometry {
     // return: calculate the number of lattice points in the polygon or on at least one of the edges of it, using Pick's theorem (https://en.wikipedia.org/wiki/Pick%27s_theorem).
-    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-    long long count_lattice_points(const std::vector<std::pair<T, T>> &polygon) {
+    template <typename PointType, typename MultipliedType = long long>
+    MultipliedType count_lattice_points(const std::vector<PointType> &polygon) {
         const int n = polygon.size();
-        long long s = 0, b = 0;
+        MultipliedType s = 0, b = 0;
         for (int i = 0; i < n; ++i) {
             auto [x1, y1] = polygon[i];
             auto [x2, y2] = polygon[(i + 1) % n];
-            s += (long long) x1 * y2 - (long long) y1 * x2;
+            s += MultipliedType(x1) * y2 - MultipliedType(y1) * x2;
             b += std::abs(std::gcd(x2 - x1, y2 - y1));
         }
         return (s + 2 + b) / 2;

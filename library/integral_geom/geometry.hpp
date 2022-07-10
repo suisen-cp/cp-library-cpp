@@ -6,50 +6,10 @@
 #include <iostream>
 #include <vector>
 
+#include "library/integral_geom/point.hpp"
+
 namespace suisen::integral_geometry {
-
-    using coordinate_t = long long;
-
-    struct Point {
-        long long x, y;
-        constexpr Point(long long x = 0, long long y = 0) : x(x), y(y) {}
-
-        operator std::pair<coordinate_t, coordinate_t>() { return std::pair<coordinate_t, coordinate_t> { x, y }; }
-
-        friend Point operator+(const Point& p) { return p; }
-        friend Point operator-(const Point& p) { return { -p.x, -p.y }; }
-
-        friend Point operator+(const Point& lhs, const Point& rhs) { return { lhs.x + rhs.x, lhs.y + rhs.y }; }
-        friend Point operator-(const Point& lhs, const Point& rhs) { return { lhs.x - rhs.x, lhs.y - rhs.y }; }
-        friend Point operator*(const Point& lhs, const Point& rhs) { return { lhs.x * rhs.x - lhs.y * rhs.y, lhs.x * rhs.y + lhs.y * rhs.x }; }
-
-        friend Point& operator+=(Point& lhs, const Point& rhs) { lhs.x += rhs.x, lhs.y += rhs.y; return lhs; }
-        friend Point& operator-=(Point& lhs, const Point& rhs) { lhs.x -= rhs.x, lhs.y -= rhs.y; return lhs; }
-        friend Point& operator*=(Point& lhs, const Point& rhs) { return lhs = lhs * rhs; }
-        
-        friend Point operator+(const Point& p, coordinate_t real) { return { p.x + real, p.y }; }
-        friend Point operator-(const Point& p, coordinate_t real) { return { p.x - real, p.y }; }
-        friend Point operator*(const Point& p, coordinate_t real) { return { p.x * real, p.y * real }; }
-        friend Point operator/(const Point& p, coordinate_t real) { return { p.x / real, p.y / real }; }
-
-        friend Point operator+=(Point& p, coordinate_t real) { p.x += real; return p; }
-        friend Point operator-=(Point& p, coordinate_t real) { p.x -= real; return p; }
-        friend Point operator*=(Point& p, coordinate_t real) { p.x *= real, p.y *= real; return p; }
-        friend Point operator/=(Point& p, coordinate_t real) { p.x /= real, p.y /= real; return p; }
-
-        friend Point operator+(coordinate_t real, const Point& p) { return { real + p.x, p.y }; }
-        friend Point operator-(coordinate_t real, const Point& p) { return { real - p.x, -p.y }; }
-        friend Point operator*(coordinate_t real, const Point& p) { return { real * p.x, real * p.y }; }
-
-        friend bool operator==(const Point& lhs, const Point& rhs) { return lhs.x == rhs.x and lhs.y == rhs.y; }
-        friend bool operator!=(const Point& lhs, const Point& rhs) { return not (lhs == rhs); }
-
-        friend std::istream& operator>>(std::istream& in, Point& p) { return in >> p.x >> p.y; }
-        friend std::ostream& operator<<(std::ostream& out, const Point& p) { return out << p.x << ' ' << p.y; }
-    };
-
     // relations between three points X, Y, Z.
-
     struct ISP {
         static constexpr int L_CURVE = +1; // +---------------+ Z is in 'a' => ISP = +1
         static constexpr int R_CURVE = -1; // |aaaaaaaaaaaaaaa| Z is in 'b' => ISP = -1
@@ -60,26 +20,17 @@ namespace suisen::integral_geometry {
 
     enum class Containment { OUT, ON, IN };
 
-    constexpr Point ZERO = { 0, 0 };
-    constexpr Point ONE  = { 1, 0 };
-    constexpr Point I    = { 0, 1 };
-
-    constexpr auto XY_COMPARATOR         = [](const Point& p, const Point& q) { return p.x == q.x ? p.y < q.y : p.x < q.x; };
-    constexpr auto XY_COMPARATOR_GREATER = [](const Point& p, const Point& q) { return p.x == q.x ? p.y > q.y : p.x > q.x; };
-    constexpr auto YX_COMPARATOR         = [](const Point& p, const Point& q) { return p.y == q.y ? p.x < q.x : p.y < q.y; };
-    constexpr auto YX_COMPARATOR_GREATER = [](const Point& p, const Point& q) { return p.y == q.y ? p.x > q.x : p.y > q.y; };
-
     int sgn(coordinate_t x) { return x < 0 ? -1 : x > 0 ? +1 : 0; }
     int compare(coordinate_t x, coordinate_t y) { return sgn(x - y); }
 
-    auto cartesian(const coordinate_t real, const coordinate_t imag) { return Point(real, imag); }
-    auto conj(const Point& z) { return Point(z.x, -z.y); }
-    auto arg(const Point& z) { return std::atan2(z.y, z.x); }
-    auto square_abs(const Point& z) { return z.x * z.x + z.y * z.y; }
-    auto abs(const Point& z) { return std::sqrt(square_abs(z)); }
+    Point cartesian(const coordinate_t real, const coordinate_t imag) { return Point(real, imag); }
+    Point conj(const Point& z) { return Point(z.x, -z.y); }
+    double arg(const Point& z) { return std::atan2(z.y, z.x); }
+    multiplied_t square_abs(const Point& z) { return multiplied_t(z.x) * z.x + multiplied_t(z.y) * z.y; }
+    double abs(const Point& z) { return std::sqrt(square_abs(z)); }
 
-    auto dot(const Point& a, const Point& b) { return a.x * b.x + a.y * b.y; }
-    auto det(const Point& a, const Point& b) { return a.x * b.y - a.y * b.x; }
+    multiplied_t dot(const Point& a, const Point& b) { return multiplied_t(a.x) * b.x + multiplied_t(a.y) * b.y; }
+    multiplied_t det(const Point& a, const Point& b) { return multiplied_t(a.x) * b.y - multiplied_t(a.y) * b.x; }
 
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
     int isp(const Point& a, const Point& b, const Point& c) {

@@ -6,23 +6,24 @@
 #include <vector>
 
 namespace suisen::integral_geometry {
-    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-    std::vector<int> convex_hull(const std::vector<std::pair<T, T>> &points) {
+    template <typename PointType, typename MultipliedType = long long>
+    std::vector<int> convex_hull(const std::vector<PointType> &points) {
         const int n = points.size();
         std::vector<int> sorted(n);
         std::iota(sorted.begin(), sorted.end(), 0);
         std::sort(sorted.begin(), sorted.end(), [&points](int i, int j) {
-            auto &a = points[i], &b = points[j];
-            return a.first == b.first ? a.second < b.second : a.first < b.first;
+            const auto &[xi, yi] = points[i];
+            const auto &[xj, yj] = points[j];
+            return xi == xj ? yi < yj : xi < xj;
         });
-        std::vector<char> used(n, false);
+        std::vector<int8_t> used(n, false);
         sorted.resize(2 * n - 1);
         std::copy(sorted.rbegin() + n, sorted.rend(), sorted.begin() + n);
         std::vector<int> res;
         res.reserve(n);
         int first = sorted[0], last = sorted[n - 1];
-        auto isp_pos = [](T x1, T y1, T x2, T y2) -> bool {
-            T det = x1 * y2 - y1 * x2;
+        auto isp_pos = [](MultipliedType x1, MultipliedType y1, MultipliedType x2, MultipliedType y2) -> bool {
+            auto det = x1 * y2 - y1 * x2;
             return det > 0 or (det == 0 and x1 * x2 + y1 * y2 > 0);
         };
         for (int k : sorted) {
@@ -30,8 +31,11 @@ namespace suisen::integral_geometry {
             for (int sz = res.size(); sz >= 2; --sz) {
                 int i = res[sz - 2], j = res[sz - 1];
                 if (j == last) break;
-                T ab_x = points[j].first - points[i].first, ab_y = points[j].second - points[i].second;
-                T bc_x = points[k].first - points[j].first, bc_y = points[k].second - points[j].second;
+                const auto &[xi, yi] = points[i];
+                const auto &[xj, yj] = points[j];
+                const auto &[xk, yk] = points[k];
+                auto ab_x = xj - xi, ab_y = yj - yi;
+                auto bc_x = xk - xj, bc_y = yk - yj;
                 if (isp_pos(ab_x, ab_y, bc_x, bc_y)) break;
                 res.pop_back(), used[j] = false;
             }
