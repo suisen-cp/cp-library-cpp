@@ -304,8 +304,8 @@ data:
   verifiedWith: []
 documentation_of: library/geom/geometry3d.hpp
 layout: document
-title: Geometry3d
+title: "3\u6B21\u5143\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
 ---
-## Geometry3d
+## 3次元幾何テンプレート
 
-3次元幾何ライブラリ。verify はほとんどできてません。
+verify は出来てません。

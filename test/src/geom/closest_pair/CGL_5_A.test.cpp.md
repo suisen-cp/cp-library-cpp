@@ -6,7 +6,7 @@ data:
     title: "\u6700\u8FD1\u70B9\u5BFE"
   - icon: ':heavy_check_mark:'
     path: library/geom/geometry.hpp
-    title: Geometry
+    title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -47,8 +47,6 @@ data:
   - test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
 documentation_of: library/integral_geom/sort_points_by_argument.hpp
 layout: document
-redirect_from:
-- /library/library/integral_geom/sort_points_by_argument.hpp
-- /library/library/integral_geom/sort_points_by_argument.hpp.html
-title: library/integral_geom/sort_points_by_argument.hpp
+title: "\u504F\u89D2\u30BD\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19)"
 ---
+## 偏角ソート (整数座標)

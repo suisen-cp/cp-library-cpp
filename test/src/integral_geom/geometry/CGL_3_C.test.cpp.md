@@ -3,7 +3,8 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/integral_geom/geometry.hpp
-    title: library/integral_geom/geometry.hpp
+    title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19\
+      )"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

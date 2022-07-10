@@ -3,10 +3,12 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/integral_geom/convex_hull.hpp
-    title: "Convex Hull (\u6574\u6570\u5EA7\u6A19)"
+    title: "\u51F8\u5305 (\u6574\u6570\u5EA7\u6A19)"
   - icon: ':x:'
     path: library/integral_geom/count_lattice_point.hpp
-    title: library/integral_geom/count_lattice_point.hpp
+    title: "\u683C\u5B50\u70B9\u3092\u9802\u70B9\u3068\u3059\u308B\u591A\u89D2\u5F62\
+      \u306E\u5185\u90E8\u307E\u305F\u306F\u8FBA\u4E0A\u306B\u5B58\u5728\u3059\u308B\
+      \u683C\u5B50\u70B9\u306E\u500B\u6570\u306E\u30AB\u30A6\u30F3\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

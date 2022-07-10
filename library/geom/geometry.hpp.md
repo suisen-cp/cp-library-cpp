@@ -716,8 +716,8 @@ data:
   - test/src/geom/convex_hull/CGL_4_A.test.cpp
 documentation_of: library/geom/geometry.hpp
 layout: document
-title: Geometry
+title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
 ---
-## Geometry
+## 幾何テンプレート
 
 幾何ライブラリ詰め合わせ
