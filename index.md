@@ -1354,8 +1354,8 @@ data:
   - name: test/src/integral_geom/count_lattice_point
     pages:
     - icon: ':x:'
-      path: test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
-      title: test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
+      path: test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
+      title: test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
   - name: test/src/integral_geom/geometry
     pages:
     - icon: ':heavy_check_mark:'

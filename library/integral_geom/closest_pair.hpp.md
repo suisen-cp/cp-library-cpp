@@ -153,8 +153,7 @@ data:
     \ b);\n            if (a.y <= 0 and b.y > 0 and det(a, b) < 0) in = not in;\n\
     \            if (det(a, b) == 0 and dot(a, b) <= 0) return Containment::ON;\n\
     \        }\n        return in ? Containment::IN : Containment::OUT;\n    }\n\n\
-    \    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\n  \
-    \  std::pair<int, int> convex_diameter(const Polygon& convex) {\n        const\
+    \    std::pair<int, int> convex_diameter(const Polygon& convex) {\n        const\
     \ int sz = convex.size();\n        auto d2 = [&](int i, int j) { return square_abs(convex[j\
     \ % sz] - convex[i]); };\n        coordinate_t max_dist = -1;\n        std::pair<int,\
     \ int> argmax{ -1, -1 };\n        for (int i = 0, j = 0; i < sz; ++i) {\n    \
@@ -171,16 +170,15 @@ data:
     \    return 0;\n    }\n    bool has_common_point(const Circle& c1, const Circle&\
     \ c2) {\n        int tnum = tangent_num(c1, c2);\n        return 1 <= tnum and\
     \ tnum <= 3;\n    }\n    bool has_cross_point(const Circle& c1, const Circle&\
-    \ c2) {\n        return tangent_num(c1, c2) == 2;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F\n\
-    \    Containment contains(const Circle& c, const Point& p) {\n        coordinate_t\
-    \ df = square_abs(c.center - p) - c.radius * c.radius;\n        if (df > 0) return\
-    \ Containment::OUT;\n        if (df < 0) return Containment::IN;\n        return\
-    \ Containment::ON;\n    }\n} // namespace suisen::integral_geometry\n\n\n#line\
-    \ 7 \"library/integral_geom/closest_pair.hpp\"\n\nnamespace suisen::integral_geometry\
-    \ {\n    std::pair<Point, Point> closest_pair(std::vector<Point> points) {\n \
-    \       const int n = points.size();\n        assert(n > 0);\n        if (n ==\
-    \ 1) return { points[0], points[0] };\n        std::sort(points.begin(), points.end(),\
-    \ XY_COMPARATOR);\n        coordinate_t min_dist = std::numeric_limits<coordinate_t>::max();\n\
+    \ c2) {\n        return tangent_num(c1, c2) == 2;\n    }\n\n    Containment contains(const\
+    \ Circle& c, const Point& p) {\n        coordinate_t df = square_abs(c.center\
+    \ - p) - c.radius * c.radius;\n        if (df > 0) return Containment::OUT;\n\
+    \        if (df < 0) return Containment::IN;\n        return Containment::ON;\n\
+    \    }\n} // namespace suisen::integral_geometry\n\n\n#line 7 \"library/integral_geom/closest_pair.hpp\"\
+    \n\nnamespace suisen::integral_geometry {\n    std::pair<Point, Point> closest_pair(std::vector<Point>\
+    \ points) {\n        const int n = points.size();\n        assert(n > 0);\n  \
+    \      if (n == 1) return { points[0], points[0] };\n        std::sort(points.begin(),\
+    \ points.end(), XY_COMPARATOR);\n        coordinate_t min_dist = std::numeric_limits<coordinate_t>::max();\n\
     \        std::pair<Point, Point> ans;\n        std::vector<coordinate_t> dmin(n,\
     \ min_dist);\n\n        auto update_min = [&](int l, const Point& p, const Point&\
     \ q) {\n            coordinate_t d = square_abs(p - q);\n            if (d >=\
@@ -238,7 +236,7 @@ data:
   isVerificationFile: false
   path: library/integral_geom/closest_pair.hpp
   requiredBy: []
-  timestamp: '2022-07-10 16:40:31+09:00'
+  timestamp: '2022-07-10 16:59:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp

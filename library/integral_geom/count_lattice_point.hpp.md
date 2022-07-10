@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
-    title: test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
+    path: test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
+    title: test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -43,7 +43,7 @@ data:
   timestamp: '2022-07-10 16:40:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
+  - test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
 documentation_of: library/integral_geom/count_lattice_point.hpp
 layout: document
 redirect_from:

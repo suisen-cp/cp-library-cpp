@@ -155,8 +155,7 @@ data:
     \ b);\n            if (a.y <= 0 and b.y > 0 and det(a, b) < 0) in = not in;\n\
     \            if (det(a, b) == 0 and dot(a, b) <= 0) return Containment::ON;\n\
     \        }\n        return in ? Containment::IN : Containment::OUT;\n    }\n\n\
-    \    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\n  \
-    \  std::pair<int, int> convex_diameter(const Polygon& convex) {\n        const\
+    \    std::pair<int, int> convex_diameter(const Polygon& convex) {\n        const\
     \ int sz = convex.size();\n        auto d2 = [&](int i, int j) { return square_abs(convex[j\
     \ % sz] - convex[i]); };\n        coordinate_t max_dist = -1;\n        std::pair<int,\
     \ int> argmax{ -1, -1 };\n        for (int i = 0, j = 0; i < sz; ++i) {\n    \
@@ -173,17 +172,16 @@ data:
     \    return 0;\n    }\n    bool has_common_point(const Circle& c1, const Circle&\
     \ c2) {\n        int tnum = tangent_num(c1, c2);\n        return 1 <= tnum and\
     \ tnum <= 3;\n    }\n    bool has_cross_point(const Circle& c1, const Circle&\
-    \ c2) {\n        return tangent_num(c1, c2) == 2;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F\n\
-    \    Containment contains(const Circle& c, const Point& p) {\n        coordinate_t\
-    \ df = square_abs(c.center - p) - c.radius * c.radius;\n        if (df > 0) return\
-    \ Containment::OUT;\n        if (df < 0) return Containment::IN;\n        return\
-    \ Containment::ON;\n    }\n} // namespace suisen::integral_geometry\n\n\n#line\
-    \ 8 \"test/src/integral_geom/geometry/CGL_3_B.test.cpp\"\n\nusing namespace suisen::integral_geometry;\n\
-    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    std::cout << std::fixed << std::setprecision(20);\n\n    int n;\n    std::cin\
-    \ >> n;\n\n    Polygon poly(n);\n    for (int i = 0; i < n; ++i) {\n        std::cin\
-    \ >> poly[i];\n    }\n    std::cout << int(is_convex(poly)) << '\\n';\n    return\
-    \ 0;\n}\n"
+    \ c2) {\n        return tangent_num(c1, c2) == 2;\n    }\n\n    Containment contains(const\
+    \ Circle& c, const Point& p) {\n        coordinate_t df = square_abs(c.center\
+    \ - p) - c.radius * c.radius;\n        if (df > 0) return Containment::OUT;\n\
+    \        if (df < 0) return Containment::IN;\n        return Containment::ON;\n\
+    \    }\n} // namespace suisen::integral_geometry\n\n\n#line 8 \"test/src/integral_geom/geometry/CGL_3_B.test.cpp\"\
+    \n\nusing namespace suisen::integral_geometry;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n    std::cout << std::fixed << std::setprecision(20);\n\
+    \n    int n;\n    std::cin >> n;\n\n    Polygon poly(n);\n    for (int i = 0;\
+    \ i < n; ++i) {\n        std::cin >> poly[i];\n    }\n    std::cout << int(is_convex(poly))\
+    \ << '\\n';\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_B\"\
     \n\n#include <cassert>\n#include <iostream>\n#include <iomanip>\n\n#include \"\
     library/integral_geom/geometry.hpp\"\n\nusing namespace suisen::integral_geometry;\n\
@@ -197,7 +195,7 @@ data:
   isVerificationFile: true
   path: test/src/integral_geom/geometry/CGL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 16:40:31+09:00'
+  timestamp: '2022-07-10 16:59:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/integral_geom/geometry/CGL_3_B.test.cpp
