@@ -5,8 +5,7 @@
 #include <numeric>
 #include <vector>
 
-namespace suisen {
-namespace integral_geometry {
+namespace suisen::integral_geometry {
     template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
     std::vector<int> convex_hull(const std::vector<std::pair<T, T>> &points) {
         const int n = points.size();
@@ -41,7 +40,6 @@ namespace integral_geometry {
         }
         return res;
     }
-}
-} // namespace suisen
+} // namespace suisen::integral_geometry
 
 #endif // SUISEN_CONVEX_HULL_INTEGRAL

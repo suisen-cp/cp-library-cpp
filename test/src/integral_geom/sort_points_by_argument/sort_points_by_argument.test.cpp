@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "library/geom/sort_points_by_argument.hpp"
+#include "library/integral_geom/sort_points_by_argument.hpp"
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -14,7 +14,7 @@ int main() {
     std::vector<std::pair<int, int>> points(n);
     for (auto &[x, y] : points) std::cin >> x >> y;
     
-    suisen::sort_points_by_argument(points);
+    suisen::integral_geometry::sort_points_by_argument(points);
 
     for (auto &[x, y] : points) {
         std::cout << x << ' ' << y << '\n';
