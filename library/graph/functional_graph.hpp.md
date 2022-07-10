@@ -6,6 +6,9 @@ data:
   - icon: ':x:'
     path: test/src/graph/functional_graph/abc254_g.test.cpp
     title: test/src/graph/functional_graph/abc254_g.test.cpp
+  - icon: ':x:'
+    path: test/src/graph/functional_graph/abc258_e.test.cpp
+    title: test/src/graph/functional_graph/abc258_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/graph/functional_graph/dummy.test.cpp
     title: test/src/graph/functional_graph/dummy.test.cpp
@@ -249,6 +252,7 @@ data:
   timestamp: '2022-06-05 19:58:08+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/graph/functional_graph/abc258_e.test.cpp
   - test/src/graph/functional_graph/abc254_g.test.cpp
   - test/src/graph/functional_graph/dummy.test.cpp
 documentation_of: library/graph/functional_graph.hpp

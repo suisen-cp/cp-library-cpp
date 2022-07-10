@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/graph/enumerate_triangles.hpp
     title: "\u4E09\u89D2\u5F62\u5217\u6319"
   _extendedRequiredBy: []

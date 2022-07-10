@@ -21,12 +21,12 @@ data:
     \            throw ParseError{};\n        }\n    }\n\n    bool in(const State&\
     \ it, char l, char r) {\n        return l <= *it and *it <= r;\n    }\n    bool\
     \ is(const State& it, char c) {\n        return *it == c;\n    }\n\n    void assert_range(const\
-    \ State& it, char lo, char hi) {\n        if (in(it, lo, hi)) {\n            cerr\
-    \ << \"Expected [\" << lo << \"-\" << hi << \"] but got '\" << *it << \"'\" <<\
-    \ endl;\n            internal::print_rest_of_string(it);\n            throw ParseError{};\n\
-    \        }\n    }\n    void assert_exact(const State& it, char c) {\n        if\
-    \ (not is(it, c)) {\n            cerr << \"Expected '\" << c << \"' but got '\"\
-    \ << *it << \"'\" << endl;\n            internal::print_rest_of_string(it);\n\
+    \ State& it, char lo, char hi) {\n        if (not in(it, lo, hi)) {\n        \
+    \    cerr << \"Expected [\" << lo << \"-\" << hi << \"] but got '\" << *it <<\
+    \ \"'\" << endl;\n            internal::print_rest_of_string(it);\n          \
+    \  throw ParseError{};\n        }\n    }\n    void assert_exact(const State& it,\
+    \ char c) {\n        if (not is(it, c)) {\n            cerr << \"Expected '\"\
+    \ << c << \"' but got '\" << *it << \"'\" << endl;\n            internal::print_rest_of_string(it);\n\
     \            throw ParseError{};\n        }\n    }\n\n    long long nonnegative_number(State&\
     \ it) {\n        long long res = 0;\n        assert_range(it, '0', '9');\n   \
     \     while (in(it, '0', '9')) res = res * 10 + (*it++ - '0');\n        return\
@@ -69,12 +69,12 @@ data:
     \     throw ParseError{};\n        }\n    }\n\n    bool in(const State& it, char\
     \ l, char r) {\n        return l <= *it and *it <= r;\n    }\n    bool is(const\
     \ State& it, char c) {\n        return *it == c;\n    }\n\n    void assert_range(const\
-    \ State& it, char lo, char hi) {\n        if (in(it, lo, hi)) {\n            cerr\
-    \ << \"Expected [\" << lo << \"-\" << hi << \"] but got '\" << *it << \"'\" <<\
-    \ endl;\n            internal::print_rest_of_string(it);\n            throw ParseError{};\n\
-    \        }\n    }\n    void assert_exact(const State& it, char c) {\n        if\
-    \ (not is(it, c)) {\n            cerr << \"Expected '\" << c << \"' but got '\"\
-    \ << *it << \"'\" << endl;\n            internal::print_rest_of_string(it);\n\
+    \ State& it, char lo, char hi) {\n        if (not in(it, lo, hi)) {\n        \
+    \    cerr << \"Expected [\" << lo << \"-\" << hi << \"] but got '\" << *it <<\
+    \ \"'\" << endl;\n            internal::print_rest_of_string(it);\n          \
+    \  throw ParseError{};\n        }\n    }\n    void assert_exact(const State& it,\
+    \ char c) {\n        if (not is(it, c)) {\n            cerr << \"Expected '\"\
+    \ << c << \"' but got '\" << *it << \"'\" << endl;\n            internal::print_rest_of_string(it);\n\
     \            throw ParseError{};\n        }\n    }\n\n    long long nonnegative_number(State&\
     \ it) {\n        long long res = 0;\n        assert_range(it, '0', '9');\n   \
     \     while (in(it, '0', '9')) res = res * 10 + (*it++ - '0');\n        return\
@@ -108,7 +108,7 @@ data:
   isVerificationFile: false
   path: library/icpc/parsing.hpp
   requiredBy: []
-  timestamp: '2022-07-05 04:32:59+09:00'
+  timestamp: '2022-07-10 15:07:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/icpc/parsing.hpp

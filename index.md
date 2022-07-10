@@ -378,7 +378,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/dulmage_mendelsohn_decomposition.hpp
       title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/graph/enumerate_triangles.hpp
       title: "\u4E09\u89D2\u5F62\u5217\u6319"
     - icon: ':question:'
@@ -436,7 +436,7 @@ data:
       title: "Convex Hull (\u6574\u6570\u5EA7\u6A19)"
   - name: library/linear_algebra
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/linear_algebra/array_matrix.hpp
       title: Array Matrix
     - icon: ':heavy_check_mark:'
@@ -697,7 +697,7 @@ data:
     - icon: ':warning:'
       path: library/util/cumulative_sum_2d.hpp
       title: "2D \u7D2F\u7A4D\u548C"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/util/default_operator.hpp
       title: Default Operator
     - icon: ':warning:'
@@ -1289,6 +1289,9 @@ data:
       title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - name: test/src/graph/enumerate_triangles
     pages:
+    - icon: ':x:'
+      path: test/src/graph/enumerate_triangles/abc258_g.test.cpp
+      title: test/src/graph/enumerate_triangles/abc258_g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/graph/enumerate_triangles/enumerate_triangles.test.cpp
       title: test/src/graph/enumerate_triangles/enumerate_triangles.test.cpp
@@ -1297,6 +1300,9 @@ data:
     - icon: ':x:'
       path: test/src/graph/functional_graph/abc254_g.test.cpp
       title: test/src/graph/functional_graph/abc254_g.test.cpp
+    - icon: ':x:'
+      path: test/src/graph/functional_graph/abc258_e.test.cpp
+      title: test/src/graph/functional_graph/abc258_e.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/graph/functional_graph/dummy.test.cpp
       title: test/src/graph/functional_graph/dummy.test.cpp
@@ -1336,6 +1342,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
       title: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
+  - name: test/src/linear_algebra/array_matrix
+    pages:
+    - icon: ':x:'
+      path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+      title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
   - name: test/src/linear_algebra/characteristic_polynomial
     pages:
     - icon: ':heavy_check_mark:'

@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+    title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/array_matrix.hpp\"\n\n\n\n#include\
@@ -320,8 +323,9 @@ data:
   path: library/linear_algebra/array_matrix.hpp
   requiredBy: []
   timestamp: '2022-05-14 02:45:26+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
 documentation_of: library/linear_algebra/array_matrix.hpp
 layout: document
 title: Array Matrix

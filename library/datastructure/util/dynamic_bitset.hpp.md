@@ -9,7 +9,8 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/util/dynamic_bitset.hpp\"\n\n\n\n\
-    #include <iostream>\n#include <limits>\n#include <vector>\n\nnamespace suisen\
+    #include <iostream>\n#include <limits>\n#include <vector>\n\n#ifdef _MSC_VER\n\
+    #  include <intrin.h>\n#else\n#  include <x86intrin.h>\n#endif\n\nnamespace suisen\
     \ {\nclass dynamic_bitset {\n    public:\n        explicit dynamic_bitset() {}\n\
     \        explicit dynamic_bitset(const unsigned int n) {\n            _bits.assign(outer_index(n)\
     \ + 1, 0ULL);\n        }\n        inline int size() const {\n            return\
@@ -81,29 +82,33 @@ data:
     \                }\n                cut_leading_zeros();\n            }\n    \
     \    }\n        void clear() {\n            _bits.clear();\n        }\n      \
     \  void flip(const unsigned int n) {\n            ensure_size(n + 1);\n      \
-    \      _bits[outer_index(n)] ^= 1ULL << inner_index(n);\n        }\n        friend\
-    \ std::ostream& operator<<(std::ostream &out, const dynamic_bitset &bs) {\n  \
-    \          std::string res;\n            for (auto it = bs._bits.rbegin(); it\
-    \ != bs._bits.rend(); ++it) {\n                unsigned long long bits = *it;\n\
-    \                for (int j = BLOCK_SIZE - 1; j >= 0; --j) {\n               \
-    \     res += char('0' + ((bits >> j) & 1));\n                }\n            }\n\
-    \            out << res;\n            return out;\n        }\n        const std::vector<unsigned\
-    \ long long>& data() const {\n            return _bits;\n        }\n    private:\n\
-    \        static constexpr unsigned int BLOCK_SIZE = std::numeric_limits<unsigned\
-    \ long long>::digits;\n        static constexpr unsigned int LOG_BLOCK_SIZE =\
-    \ __builtin_ctz(BLOCK_SIZE);\n    \n        std::vector<unsigned long long> _bits;\n\
-    \n        dynamic_bitset(const std::vector<unsigned long long> &bits) : _bits(bits)\
-    \ {}\n\n        static constexpr unsigned int outer_index(unsigned int k) {\n\
-    \            return k >> LOG_BLOCK_SIZE;\n        }\n        static constexpr\
-    \ unsigned int inner_index(unsigned int k) {\n            return k & (BLOCK_SIZE\
-    \ - 1);\n        }\n        void ensure_size(const unsigned int n) {\n       \
-    \     int old_size = _bits.size();\n            int new_size = outer_index(n ==\
-    \ 0 ? n : n - 1) + 1;\n            if (new_size > old_size) {\n              \
-    \  _bits.resize(new_size, 0ULL);\n            }\n        }\n        void cut_leading_zeros()\
-    \ {\n            while (_bits.size() and _bits.back() == 0ULL) _bits.pop_back();\n\
-    \        }\n};\n} // namespace suisen\n\n\n"
+    \      _bits[outer_index(n)] ^= 1ULL << inner_index(n);\n        }\n        __attribute__((target(\"\
+    avx2\")))\n        int count() const {\n            int res = 0;\n           \
+    \ for (unsigned long long e : _bits) res += _mm_popcnt_u64(e);\n            return\
+    \ res;\n        }\n        friend std::ostream& operator<<(std::ostream &out,\
+    \ const dynamic_bitset &bs) {\n            std::string res;\n            for (auto\
+    \ it = bs._bits.rbegin(); it != bs._bits.rend(); ++it) {\n                unsigned\
+    \ long long bits = *it;\n                for (int j = BLOCK_SIZE - 1; j >= 0;\
+    \ --j) {\n                    res += char('0' + ((bits >> j) & 1));\n        \
+    \        }\n            }\n            out << res;\n            return out;\n\
+    \        }\n        const std::vector<unsigned long long>& data() const {\n  \
+    \          return _bits;\n        }\n    private:\n        static constexpr unsigned\
+    \ int BLOCK_SIZE = std::numeric_limits<unsigned long long>::digits;\n        static\
+    \ constexpr unsigned int LOG_BLOCK_SIZE = __builtin_ctz(BLOCK_SIZE);\n    \n \
+    \       std::vector<unsigned long long> _bits;\n\n        dynamic_bitset(const\
+    \ std::vector<unsigned long long> &bits) : _bits(bits) {}\n\n        static constexpr\
+    \ unsigned int outer_index(unsigned int k) {\n            return k >> LOG_BLOCK_SIZE;\n\
+    \        }\n        static constexpr unsigned int inner_index(unsigned int k)\
+    \ {\n            return k & (BLOCK_SIZE - 1);\n        }\n        void ensure_size(const\
+    \ unsigned int n) {\n            int old_size = _bits.size();\n            int\
+    \ new_size = outer_index(n == 0 ? n : n - 1) + 1;\n            if (new_size >\
+    \ old_size) {\n                _bits.resize(new_size, 0ULL);\n            }\n\
+    \        }\n        void cut_leading_zeros() {\n            while (_bits.size()\
+    \ and _bits.back() == 0ULL) _bits.pop_back();\n        }\n};\n} // namespace suisen\n\
+    \n\n"
   code: "#ifndef SUISEN_DYN_BITSET\n#define SUISEN_DYN_BITSET\n\n#include <iostream>\n\
-    #include <limits>\n#include <vector>\n\nnamespace suisen {\nclass dynamic_bitset\
+    #include <limits>\n#include <vector>\n\n#ifdef _MSC_VER\n#  include <intrin.h>\n\
+    #else\n#  include <x86intrin.h>\n#endif\n\nnamespace suisen {\nclass dynamic_bitset\
     \ {\n    public:\n        explicit dynamic_bitset() {}\n        explicit dynamic_bitset(const\
     \ unsigned int n) {\n            _bits.assign(outer_index(n) + 1, 0ULL);\n   \
     \     }\n        inline int size() const {\n            return _bits.size() *\
@@ -175,32 +180,35 @@ data:
     \                }\n                cut_leading_zeros();\n            }\n    \
     \    }\n        void clear() {\n            _bits.clear();\n        }\n      \
     \  void flip(const unsigned int n) {\n            ensure_size(n + 1);\n      \
-    \      _bits[outer_index(n)] ^= 1ULL << inner_index(n);\n        }\n        friend\
-    \ std::ostream& operator<<(std::ostream &out, const dynamic_bitset &bs) {\n  \
-    \          std::string res;\n            for (auto it = bs._bits.rbegin(); it\
-    \ != bs._bits.rend(); ++it) {\n                unsigned long long bits = *it;\n\
-    \                for (int j = BLOCK_SIZE - 1; j >= 0; --j) {\n               \
-    \     res += char('0' + ((bits >> j) & 1));\n                }\n            }\n\
-    \            out << res;\n            return out;\n        }\n        const std::vector<unsigned\
-    \ long long>& data() const {\n            return _bits;\n        }\n    private:\n\
-    \        static constexpr unsigned int BLOCK_SIZE = std::numeric_limits<unsigned\
-    \ long long>::digits;\n        static constexpr unsigned int LOG_BLOCK_SIZE =\
-    \ __builtin_ctz(BLOCK_SIZE);\n    \n        std::vector<unsigned long long> _bits;\n\
-    \n        dynamic_bitset(const std::vector<unsigned long long> &bits) : _bits(bits)\
-    \ {}\n\n        static constexpr unsigned int outer_index(unsigned int k) {\n\
-    \            return k >> LOG_BLOCK_SIZE;\n        }\n        static constexpr\
-    \ unsigned int inner_index(unsigned int k) {\n            return k & (BLOCK_SIZE\
-    \ - 1);\n        }\n        void ensure_size(const unsigned int n) {\n       \
-    \     int old_size = _bits.size();\n            int new_size = outer_index(n ==\
-    \ 0 ? n : n - 1) + 1;\n            if (new_size > old_size) {\n              \
-    \  _bits.resize(new_size, 0ULL);\n            }\n        }\n        void cut_leading_zeros()\
-    \ {\n            while (_bits.size() and _bits.back() == 0ULL) _bits.pop_back();\n\
-    \        }\n};\n} // namespace suisen\n\n#endif // SUISEN_DYN_BITSET"
+    \      _bits[outer_index(n)] ^= 1ULL << inner_index(n);\n        }\n        __attribute__((target(\"\
+    avx2\")))\n        int count() const {\n            int res = 0;\n           \
+    \ for (unsigned long long e : _bits) res += _mm_popcnt_u64(e);\n            return\
+    \ res;\n        }\n        friend std::ostream& operator<<(std::ostream &out,\
+    \ const dynamic_bitset &bs) {\n            std::string res;\n            for (auto\
+    \ it = bs._bits.rbegin(); it != bs._bits.rend(); ++it) {\n                unsigned\
+    \ long long bits = *it;\n                for (int j = BLOCK_SIZE - 1; j >= 0;\
+    \ --j) {\n                    res += char('0' + ((bits >> j) & 1));\n        \
+    \        }\n            }\n            out << res;\n            return out;\n\
+    \        }\n        const std::vector<unsigned long long>& data() const {\n  \
+    \          return _bits;\n        }\n    private:\n        static constexpr unsigned\
+    \ int BLOCK_SIZE = std::numeric_limits<unsigned long long>::digits;\n        static\
+    \ constexpr unsigned int LOG_BLOCK_SIZE = __builtin_ctz(BLOCK_SIZE);\n    \n \
+    \       std::vector<unsigned long long> _bits;\n\n        dynamic_bitset(const\
+    \ std::vector<unsigned long long> &bits) : _bits(bits) {}\n\n        static constexpr\
+    \ unsigned int outer_index(unsigned int k) {\n            return k >> LOG_BLOCK_SIZE;\n\
+    \        }\n        static constexpr unsigned int inner_index(unsigned int k)\
+    \ {\n            return k & (BLOCK_SIZE - 1);\n        }\n        void ensure_size(const\
+    \ unsigned int n) {\n            int old_size = _bits.size();\n            int\
+    \ new_size = outer_index(n == 0 ? n : n - 1) + 1;\n            if (new_size >\
+    \ old_size) {\n                _bits.resize(new_size, 0ULL);\n            }\n\
+    \        }\n        void cut_leading_zeros() {\n            while (_bits.size()\
+    \ and _bits.back() == 0ULL) _bits.pop_back();\n        }\n};\n} // namespace suisen\n\
+    \n#endif // SUISEN_DYN_BITSET"
   dependsOn: []
   isVerificationFile: false
   path: library/datastructure/util/dynamic_bitset.hpp
   requiredBy: []
-  timestamp: '2022-04-10 03:32:30+09:00'
+  timestamp: '2022-07-10 15:07:17+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/util/dynamic_bitset.hpp

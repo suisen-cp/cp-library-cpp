@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':warning:'
+  - icon: ':x:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
   - icon: ':heavy_check_mark:'
@@ -101,6 +101,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+    title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
@@ -140,9 +143,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen\
@@ -223,7 +226,7 @@ data:
   - library/convolution/lcm_convolution.hpp
   - library/linear_algebra/array_matrix.hpp
   timestamp: '2022-01-31 13:34:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   - test/src/math/array_sps/abc253_h_2.test.cpp
@@ -248,6 +251,7 @@ data:
   - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/and_convolution/and_convolution.test.cpp
+  - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
 documentation_of: library/util/default_operator.hpp
 layout: document
 title: Default Operator
