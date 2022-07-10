@@ -238,7 +238,6 @@ namespace suisen::integral_geometry {
         return in ? Containment::IN : Containment::OUT;
     }
 
-    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
     std::pair<int, int> convex_diameter(const Polygon& convex) {
         const int sz = convex.size();
         auto d2 = [&](int i, int j) { return square_abs(convex[j % sz] - convex[i]); };
@@ -276,7 +275,6 @@ namespace suisen::integral_geometry {
         return tangent_num(c1, c2) == 2;
     }
 
-    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F
     Containment contains(const Circle& c, const Point& p) {
         coordinate_t df = square_abs(c.center - p) - c.radius * c.radius;
         if (df > 0) return Containment::OUT;

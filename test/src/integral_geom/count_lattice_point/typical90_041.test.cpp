@@ -1,4 +1,4 @@
-#define PROBLEM "https://atcoder.jp/contests/typical90/tasks/typical90_ao"
+#define PROBLEM "https://atcoder.jp/contests/typical90/tasks/typical90_041"
 
 #include <iostream>
 
