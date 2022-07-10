@@ -11,14 +11,14 @@ data:
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':heavy_check_mark:'
-    path: library/polynomial/common_sequences.hpp
-    title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/stirling_number1.hpp
+    title: Stirling Number1
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
@@ -29,26 +29,27 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
+    PROBLEM: https://atcoder.jp/contests/abc247/tasks/abc247_Ex
     links:
-    - https://judge.yosupo.jp/problem/bernoulli_number
-  bundledCode: "#line 1 \"test/src/polynomial/common_sequences/bernoulli_number.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n#include\
-    \ <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\n\
-    #line 1 \"library/polynomial/common_sequences.hpp\"\n\n\n\n#line 1 \"library/polynomial/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/polynomial/fps.hpp\"\
-    \n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\
-    \n#include <cmath>\n#include <limits>\n#include <type_traits>\n#include <vector>\n\
-    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
-    \n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
-    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
-    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
-    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
-    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
-    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
-    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
-    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    - https://atcoder.jp/contests/abc247/tasks/abc247_Ex
+  bundledCode: "#line 1 \"test/src/sequence/stirling_number1/abc247_h.test.cpp\"\n\
+    #define PROBLEM \"https://atcoder.jp/contests/abc247/tasks/abc247_Ex\"\n\n#include\
+    \ <iostream>\n#include <queue>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    using mint = atcoder::modint998244353;\n\n#line 1 \"library/sequence/stirling_number1.hpp\"\
+    \n\n\n\n#line 1 \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <cassert>\n#line 7 \"library/polynomial/fps.hpp\"\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
+    \n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\n#include <cmath>\n#include\
+    \ <limits>\n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
+    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -470,73 +471,76 @@ data:
     \ _fac;\n        static std::vector<U> _fac_inv;\n    };\n    template <typename\
     \ T, typename U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template\
     \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
-    } // namespace suisen\n\n\n#line 6 \"library/polynomial/common_sequences.hpp\"\
-    \n\nnamespace suisen {\n/**\n * return:\n *   vector<mint> v s.t. v[i] = S1[n,n-i]\
-    \ for i=0,...,k (unsigned)\n * constraints:\n *   0 <= n <= 10^6\n */\ntemplate\
-    \ <typename mint>\nstd::vector<mint> stirling_number1_reversed(int n) {\n    factorial<mint>\
-    \ fac(n);\n    int l = 0;\n    while ((n >> l) != 0) ++l;\n    FPS<mint> a {1};\n\
-    \    int m = 0;\n    while (l --> 0) {\n        FPS<mint> f(m + 1), g(m + 1);\n\
-    \        mint powm = 1;\n        for (int i = 0; i <= m; ++i, powm *= m) {\n \
-    \           f[i] = powm * fac.fac_inv(i);\n            g[i] = a[i] * fac(m - i);\n\
-    \        }\n        f *= g, f.pre_inplace(m);\n        for (int i = 0; i <= m;\
-    \ ++i) f[i] *= fac.fac_inv(m - i);\n        a *= f, m *= 2, a.pre_inplace(m);\n\
-    \        if ((n >> l) & 1) {\n            a.push_back(0);\n            for (int\
-    \ i = m; i > 0; --i) a[i] += m * a[i - 1];\n            ++m;\n        }\n    }\n\
-    \    return a;\n}\ntemplate <typename mint>\nstd::vector<mint> stirling_number1(int\
-    \ n) {\n    auto a(stirling_number1_reversed<mint>(n));\n    std::reverse(a.begin(),\
-    \ a.end());\n    return a;\n}\n/**\n * return:\n *   vector<mint> v s.t. v[i]\
-    \ = S1[n,n-i] for i=0,...,k, where S1 is the stirling number of the first kind\
-    \ (unsigned).\n * constraints:\n * - 0 <= n <= 10^18\n * - 0 <= k <= 5000\n *\
-    \ - k < mod\n */\ntemplate <typename mint>\nstd::vector<mint> stirling_number1_reversed(const\
-    \ long long n, const int k) {\n    inv_mods<mint> invs(k + 1);\n    std::vector<mint>\
-    \ a(k + 1, 0);\n    a[0] = 1;\n    int l = 0;\n    while (n >> l) ++l;\n    mint\
-    \ m = 0;\n    while (l --> 0) {\n        std::vector<mint> b(k + 1, 0);\n    \
-    \    for (int j = 0; j <= k; ++j) {\n            mint tmp = 1;\n            for\
-    \ (int i = j; i <= k; ++i) {\n                b[i] += a[j] * tmp;\n          \
-    \      tmp *= (m - i) * invs[i - j + 1] * m;\n            }\n        }\n     \
-    \   for (int i = k + 1; i --> 0;) {\n            mint sum = 0;\n            for\
-    \ (int j = 0; j <= i; ++j) sum += a[j] * b[i - j];\n            a[i] = sum;\n\
-    \        }\n        m *= 2;\n        if ((n >> l) & 1) {\n            for (int\
-    \ i = k; i > 0; --i) a[i] += m * a[i - 1];\n            ++m;\n        }\n    }\n\
-    \    return a;\n}\n\n/**\n * return:\n *   vector<mint> v s.t. v[i] = S2[n,i]\
-    \ for i=0,...,k\n * constraints:\n *   0 <= n <= 10^6\n */\ntemplate <typename\
-    \ mint>\nstd::vector<mint> stirling_number2(int n) {\n    factorial<mint> fac(n);\n\
-    \    FPS<mint> a(n + 1), b(n + 1);\n    for (int i = 0; i <= n; ++i) {\n     \
-    \   a[i] = mint(i).pow(n) * fac.fac_inv(i);\n        b[i] = i & 1 ? -fac.fac_inv(i)\
-    \ : fac.fac_inv(i);\n    }\n    a *= b, a.pre_inplace(n);\n    return a;\n}\n\n\
-    /**\n * return:\n *   vector<mint> v s.t. v[i] = B_i = \u03A3_j S2[i,j] for i=0,...,n\n\
-    \ * constraints:\n *   0 <= n <= 10^6\n * note:\n *   EGF of B is e^(e^x-1)\n\
-    \ */\ntemplate <typename mint>\nstd::vector<mint> bell_number(int n) {\n    factorial<mint>\
-    \ fac(n);\n    FPS<mint> f(n + 1);\n    for (int i = 1; i <= n; ++i) f[i] = fac.fac_inv(i);\n\
-    \    f.exp_inplace(n);\n    for (int i = 0; i <= n; ++i) f[i] *= fac.fac(i);\n\
-    \    return f;\n}\n\ntemplate <typename mint>\nstd::vector<mint> bernoulli_number(int\
-    \ n) {\n    factorial<mint> fac(n);\n    FPS<mint> a(n + 1);\n    for (int i =\
-    \ 0; i <= n; ++i) a[i] = fac.fac_inv(i + 1);\n    a.inv_inplace(n), a.resize(n\
-    \ + 1);\n    for (int i = 2; i <= n; ++i) a[i] *= fac(i);\n    return a;\n}\n\n\
-    template <typename mint>\nstd::vector<mint> partition_number(int n) {\n    FPS<mint>\
-    \ inv(n + 1);\n    inv[0] = 1;\n    for (int i = 1, k = 1; k <= n; k += 3 * i\
-    \ + 1, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
-    \   for (int i = 1, k = 2; k <= n; k += 3 * i + 2, i++) {\n        if (i & 1)\
-    \ --inv[k];\n        else ++inv[k];\n    }\n    inv.inv_inplace(n), inv.resize(n\
-    \ + 1);\n    return inv;\n}\n\ntemplate <typename mint>\nstd::vector<mint> montmort_number(int\
-    \ n) {\n    std::vector<mint> res { 1, 0 };\n    for (int i = 2; i <= n; ++i)\
-    \ res.push_back((i - 1) * (res[i - 1] + res[i - 2]));\n    res.resize(n + 1);\n\
-    \    return res;\n}\n} // namespace suisen\n\n\n#line 9 \"test/src/polynomial/common_sequences/bernoulli_number.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
-    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
-    \ n;\n    std::cin >> n;\n    auto f = suisen::bernoulli_number<mint>(n);\n  \
-    \  for (int i = 0; i <= n; ++i) {\n        std::cout << f[i].val() << \" \\n\"\
-    [i == n];\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
-    #include <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
-    \n#include \"library/polynomial/common_sequences.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
-    \nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a, const\
-    \ auto &b) { return atcoder::convolution(a, b); });\n\n    int n;\n    std::cin\
-    \ >> n;\n    auto f = suisen::bernoulli_number<mint>(n);\n    for (int i = 0;\
-    \ i <= n; ++i) {\n        std::cout << f[i].val() << \" \\n\"[i == n];\n    }\n\
-    \    return 0;\n}"
+    } // namespace suisen\n\n\n#line 6 \"library/sequence/stirling_number1.hpp\"\n\
+    \nnamespace suisen {\n    /**\n     * return:\n     *   vector<mint> v s.t. v[i]\
+    \ = S1[n,n-i] for i=0,...,k (unsigned)\n     * constraints:\n     *   0 <= n <=\
+    \ 10^6\n     */\n    template <typename mint>\n    std::vector<mint> stirling_number1_reversed(int\
+    \ n) {\n        factorial<mint> fac(n);\n        int l = 0;\n        while ((n\
+    \ >> l) != 0) ++l;\n        FPS<mint> a{ 1 };\n        int m = 0;\n        while\
+    \ (l-- > 0) {\n            FPS<mint> f(m + 1), g(m + 1);\n            mint powm\
+    \ = 1;\n            for (int i = 0; i <= m; ++i, powm *= m) {\n              \
+    \  f[i] = powm * fac.fac_inv(i);\n                g[i] = a[i] * fac(m - i);\n\
+    \            }\n            f *= g, f.pre_inplace(m);\n            for (int i\
+    \ = 0; i <= m; ++i) f[i] *= fac.fac_inv(m - i);\n            a *= f, m *= 2, a.pre_inplace(m);\n\
+    \            if ((n >> l) & 1) {\n                a.push_back(0);\n          \
+    \      for (int i = m; i > 0; --i) a[i] += m * a[i - 1];\n                ++m;\n\
+    \            }\n        }\n        return a;\n    }\n    template <typename mint>\n\
+    \    std::vector<mint> stirling_number1(int n) {\n        auto a(stirling_number1_reversed<mint>(n));\n\
+    \        std::reverse(a.begin(), a.end());\n        return a;\n    }\n    /**\n\
+    \     * return:\n     *   vector<mint> v s.t. v[i] = S1[n,n-i] for i=0,...,k,\
+    \ where S1 is the stirling number of the first kind (unsigned).\n     * constraints:\n\
+    \     * - 0 <= n <= 10^18\n     * - 0 <= k <= 5000\n     * - k < mod\n     */\n\
+    \    template <typename mint>\n    std::vector<mint> stirling_number1_reversed(const\
+    \ long long n, const int k) {\n        inv_mods<mint> invs(k + 1);\n        std::vector<mint>\
+    \ a(k + 1, 0);\n        a[0] = 1;\n        int l = 0;\n        while (n >> l)\
+    \ ++l;\n        mint m = 0;\n        while (l-- > 0) {\n            std::vector<mint>\
+    \ b(k + 1, 0);\n            for (int j = 0; j <= k; ++j) {\n                mint\
+    \ tmp = 1;\n                for (int i = j; i <= k; ++i) {\n                 \
+    \   b[i] += a[j] * tmp;\n                    tmp *= (m - i) * invs[i - j + 1]\
+    \ * m;\n                }\n            }\n            for (int i = k + 1; i--\
+    \ > 0;) {\n                mint sum = 0;\n                for (int j = 0; j <=\
+    \ i; ++j) sum += a[j] * b[i - j];\n                a[i] = sum;\n            }\n\
+    \            m *= 2;\n            if ((n >> l) & 1) {\n                for (int\
+    \ i = k; i > 0; --i) a[i] += m * a[i - 1];\n                ++m;\n           \
+    \ }\n        }\n        return a;\n    }\n    template <typename mint>\n    std::vector<std::vector<mint>>\
+    \ stirling_number1_table(uint32_t n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
+    \        for (uint32_t i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n\
+    \            dp[i][0] = 0, dp[i][i] = 1;\n            for (uint32_t j = 1; j <\
+    \ i; ++j) dp[i][j] = dp[i - 1][j - 1] + (i - 1) * dp[i - 1][j];\n        }\n \
+    \       return dp;\n    }\n} // namespace suisen\n\n\n#line 11 \"test/src/sequence/stirling_number1/abc247_h.test.cpp\"\
+    \n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a,\
+    \ const auto &b) { return atcoder::convolution(a, b); });\n    \n    int n, k;\n\
+    \    std::cin >> n >> k;\n\n    k -= std::max(0, (k - n)) / 2 * 2;\n\n    std::vector<int>\
+    \ c(n);\n    for (auto &e : c) std::cin >> e, --e;\n \n    std::vector<int> cnt(n);\n\
+    \    for (auto &e : c) ++cnt[e];\n    \n    auto comp = [&](const std::vector<mint>\
+    \ &f, const std::vector<mint> &g) { return f.size() > g.size(); };\n    std::priority_queue<std::vector<mint>,\
+    \ std::vector<std::vector<mint>>, decltype(comp)> pq { comp };\n    for (int v\
+    \ : cnt) pq.push(suisen::stirling_number1_reversed<mint>(v));\n \n    while (pq.size()\
+    \ > 1) {\n        auto f = std::move(pq.top());\n        pq.pop();\n        auto\
+    \ g = std::move(pq.top());\n        pq.pop();\n        auto h = atcoder::convolution(f,\
+    \ g);\n        h.resize(f.size() + g.size() - 1);\n        pq.push(std::move(h));\n\
+    \    }\n \n    mint ans = 0;\n    auto f = pq.top();\n    for (; k >= 0; k -=\
+    \ 2) {\n        if (k < int(f.size())) ans += f[k];\n    }\n    std::cout << ans.val()\
+    \ << std::endl;\n \n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc247/tasks/abc247_Ex\"\n\n\
+    #include <iostream>\n#include <queue>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    using mint = atcoder::modint998244353;\n\n#include \"library/sequence/stirling_number1.hpp\"\
+    \n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a,\
+    \ const auto &b) { return atcoder::convolution(a, b); });\n    \n    int n, k;\n\
+    \    std::cin >> n >> k;\n\n    k -= std::max(0, (k - n)) / 2 * 2;\n\n    std::vector<int>\
+    \ c(n);\n    for (auto &e : c) std::cin >> e, --e;\n \n    std::vector<int> cnt(n);\n\
+    \    for (auto &e : c) ++cnt[e];\n    \n    auto comp = [&](const std::vector<mint>\
+    \ &f, const std::vector<mint> &g) { return f.size() > g.size(); };\n    std::priority_queue<std::vector<mint>,\
+    \ std::vector<std::vector<mint>>, decltype(comp)> pq { comp };\n    for (int v\
+    \ : cnt) pq.push(suisen::stirling_number1_reversed<mint>(v));\n \n    while (pq.size()\
+    \ > 1) {\n        auto f = std::move(pq.top());\n        pq.pop();\n        auto\
+    \ g = std::move(pq.top());\n        pq.pop();\n        auto h = atcoder::convolution(f,\
+    \ g);\n        h.resize(f.size() + g.size() - 1);\n        pq.push(std::move(h));\n\
+    \    }\n \n    mint ans = 0;\n    auto f = pq.top();\n    for (; k >= 0; k -=\
+    \ 2) {\n        if (k < int(f.size())) ans += f[k];\n    }\n    std::cout << ans.val()\
+    \ << std::endl;\n \n    return 0;\n}"
   dependsOn:
-  - library/polynomial/common_sequences.hpp
+  - library/sequence/stirling_number1.hpp
   - library/polynomial/fps.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
@@ -544,15 +548,15 @@ data:
   - library/math/inv_mods.hpp
   - library/math/factorial.hpp
   isVerificationFile: true
-  path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
+  path: test/src/sequence/stirling_number1/abc247_h.test.cpp
   requiredBy: []
-  timestamp: '2022-06-28 16:25:45+09:00'
+  timestamp: '2022-07-10 22:02:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
+documentation_of: test/src/sequence/stirling_number1/abc247_h.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/polynomial/common_sequences/bernoulli_number.test.cpp
-- /verify/test/src/polynomial/common_sequences/bernoulli_number.test.cpp.html
-title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
+- /verify/test/src/sequence/stirling_number1/abc247_h.test.cpp
+- /verify/test/src/sequence/stirling_number1/abc247_h.test.cpp.html
+title: test/src/sequence/stirling_number1/abc247_h.test.cpp
 ---

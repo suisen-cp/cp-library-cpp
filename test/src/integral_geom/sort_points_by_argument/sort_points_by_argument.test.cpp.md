@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/integral_geom/point.hpp
-    title: library/integral_geom/point.hpp
+    title: Point
   - icon: ':heavy_check_mark:'
     path: library/integral_geom/sort_points_by_argument.hpp
     title: "\u504F\u89D2\u30BD\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19)"

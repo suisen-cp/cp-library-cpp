@@ -3,14 +3,14 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/integral_geom/point.hpp
-    title: library/integral_geom/point.hpp
+    title: Point
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/integral_geom/closest_pair.hpp
     title: "\u6700\u8FD1\u70B9\u5BFE (\u6574\u6570\u5EA7\u6A19)"
   - icon: ':warning:'
     path: library/integral_geom/farthest_pair.hpp
-    title: library/integral_geom/farthest_pair.hpp
+    title: Farthest Pair
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/closest_pair/AOJ_0585.test.cpp

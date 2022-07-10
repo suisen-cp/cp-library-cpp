@@ -11,14 +11,20 @@ data:
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':heavy_check_mark:'
-    path: library/polynomial/common_sequences.hpp
-    title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
+    path: library/number/linear_sieve.hpp
+    title: "\u7DDA\u5F62\u7BE9"
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/powers.hpp
+    title: Powers
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/stirling_number2.hpp
+    title: Stirling Number2
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
@@ -29,13 +35,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/montmort_number_mod
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
     links:
-    - https://judge.yosupo.jp/problem/montmort_number_mod
-  bundledCode: "#line 1 \"test/src/polynomial/common_sequences/montmort_number_mod.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\n\
-    #include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint;\n\
-    \n#line 1 \"library/polynomial/common_sequences.hpp\"\n\n\n\n#line 1 \"library/polynomial/fps.hpp\"\
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind
+  bundledCode: "#line 1 \"test/src/sequence/stirling_number2/stirling_number2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#line 1 \"library/sequence/stirling_number2.hpp\"\n\n\n\n#line 1 \"library/polynomial/fps.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/polynomial/fps.hpp\"\
     \n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\
     \n#include <cmath>\n#include <limits>\n#include <type_traits>\n#include <vector>\n\
@@ -470,87 +476,85 @@ data:
     \ _fac;\n        static std::vector<U> _fac_inv;\n    };\n    template <typename\
     \ T, typename U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template\
     \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
-    } // namespace suisen\n\n\n#line 6 \"library/polynomial/common_sequences.hpp\"\
-    \n\nnamespace suisen {\n/**\n * return:\n *   vector<mint> v s.t. v[i] = S1[n,n-i]\
-    \ for i=0,...,k (unsigned)\n * constraints:\n *   0 <= n <= 10^6\n */\ntemplate\
-    \ <typename mint>\nstd::vector<mint> stirling_number1_reversed(int n) {\n    factorial<mint>\
-    \ fac(n);\n    int l = 0;\n    while ((n >> l) != 0) ++l;\n    FPS<mint> a {1};\n\
-    \    int m = 0;\n    while (l --> 0) {\n        FPS<mint> f(m + 1), g(m + 1);\n\
-    \        mint powm = 1;\n        for (int i = 0; i <= m; ++i, powm *= m) {\n \
-    \           f[i] = powm * fac.fac_inv(i);\n            g[i] = a[i] * fac(m - i);\n\
-    \        }\n        f *= g, f.pre_inplace(m);\n        for (int i = 0; i <= m;\
-    \ ++i) f[i] *= fac.fac_inv(m - i);\n        a *= f, m *= 2, a.pre_inplace(m);\n\
-    \        if ((n >> l) & 1) {\n            a.push_back(0);\n            for (int\
-    \ i = m; i > 0; --i) a[i] += m * a[i - 1];\n            ++m;\n        }\n    }\n\
-    \    return a;\n}\ntemplate <typename mint>\nstd::vector<mint> stirling_number1(int\
-    \ n) {\n    auto a(stirling_number1_reversed<mint>(n));\n    std::reverse(a.begin(),\
-    \ a.end());\n    return a;\n}\n/**\n * return:\n *   vector<mint> v s.t. v[i]\
-    \ = S1[n,n-i] for i=0,...,k, where S1 is the stirling number of the first kind\
-    \ (unsigned).\n * constraints:\n * - 0 <= n <= 10^18\n * - 0 <= k <= 5000\n *\
-    \ - k < mod\n */\ntemplate <typename mint>\nstd::vector<mint> stirling_number1_reversed(const\
-    \ long long n, const int k) {\n    inv_mods<mint> invs(k + 1);\n    std::vector<mint>\
-    \ a(k + 1, 0);\n    a[0] = 1;\n    int l = 0;\n    while (n >> l) ++l;\n    mint\
-    \ m = 0;\n    while (l --> 0) {\n        std::vector<mint> b(k + 1, 0);\n    \
-    \    for (int j = 0; j <= k; ++j) {\n            mint tmp = 1;\n            for\
-    \ (int i = j; i <= k; ++i) {\n                b[i] += a[j] * tmp;\n          \
-    \      tmp *= (m - i) * invs[i - j + 1] * m;\n            }\n        }\n     \
-    \   for (int i = k + 1; i --> 0;) {\n            mint sum = 0;\n            for\
-    \ (int j = 0; j <= i; ++j) sum += a[j] * b[i - j];\n            a[i] = sum;\n\
-    \        }\n        m *= 2;\n        if ((n >> l) & 1) {\n            for (int\
-    \ i = k; i > 0; --i) a[i] += m * a[i - 1];\n            ++m;\n        }\n    }\n\
-    \    return a;\n}\n\n/**\n * return:\n *   vector<mint> v s.t. v[i] = S2[n,i]\
-    \ for i=0,...,k\n * constraints:\n *   0 <= n <= 10^6\n */\ntemplate <typename\
-    \ mint>\nstd::vector<mint> stirling_number2(int n) {\n    factorial<mint> fac(n);\n\
-    \    FPS<mint> a(n + 1), b(n + 1);\n    for (int i = 0; i <= n; ++i) {\n     \
-    \   a[i] = mint(i).pow(n) * fac.fac_inv(i);\n        b[i] = i & 1 ? -fac.fac_inv(i)\
-    \ : fac.fac_inv(i);\n    }\n    a *= b, a.pre_inplace(n);\n    return a;\n}\n\n\
-    /**\n * return:\n *   vector<mint> v s.t. v[i] = B_i = \u03A3_j S2[i,j] for i=0,...,n\n\
-    \ * constraints:\n *   0 <= n <= 10^6\n * note:\n *   EGF of B is e^(e^x-1)\n\
-    \ */\ntemplate <typename mint>\nstd::vector<mint> bell_number(int n) {\n    factorial<mint>\
-    \ fac(n);\n    FPS<mint> f(n + 1);\n    for (int i = 1; i <= n; ++i) f[i] = fac.fac_inv(i);\n\
-    \    f.exp_inplace(n);\n    for (int i = 0; i <= n; ++i) f[i] *= fac.fac(i);\n\
-    \    return f;\n}\n\ntemplate <typename mint>\nstd::vector<mint> bernoulli_number(int\
-    \ n) {\n    factorial<mint> fac(n);\n    FPS<mint> a(n + 1);\n    for (int i =\
-    \ 0; i <= n; ++i) a[i] = fac.fac_inv(i + 1);\n    a.inv_inplace(n), a.resize(n\
-    \ + 1);\n    for (int i = 2; i <= n; ++i) a[i] *= fac(i);\n    return a;\n}\n\n\
-    template <typename mint>\nstd::vector<mint> partition_number(int n) {\n    FPS<mint>\
-    \ inv(n + 1);\n    inv[0] = 1;\n    for (int i = 1, k = 1; k <= n; k += 3 * i\
-    \ + 1, i++) {\n        if (i & 1) --inv[k];\n        else ++inv[k];\n    }\n \
-    \   for (int i = 1, k = 2; k <= n; k += 3 * i + 2, i++) {\n        if (i & 1)\
-    \ --inv[k];\n        else ++inv[k];\n    }\n    inv.inv_inplace(n), inv.resize(n\
-    \ + 1);\n    return inv;\n}\n\ntemplate <typename mint>\nstd::vector<mint> montmort_number(int\
-    \ n) {\n    std::vector<mint> res { 1, 0 };\n    for (int i = 2; i <= n; ++i)\
-    \ res.push_back((i - 1) * (res[i - 1] + res[i - 2]));\n    res.resize(n + 1);\n\
-    \    return res;\n}\n} // namespace suisen\n\n\n#line 8 \"test/src/polynomial/common_sequences/montmort_number_mod.test.cpp\"\
-    \nusing suisen::montmort_number;\n\nint main() {\n    int n, m;\n    std::cin\
-    \ >> n >> m;\n    mint::set_mod(m);\n    std::vector<mint> res = montmort_number<mint>(n);\n\
-    \    for (int i = 1; i <= n; ++i) {\n        std::cout << res[i].val() << \" \\\
+    } // namespace suisen\n\n\n#line 1 \"library/sequence/powers.hpp\"\n\n\n\n#include\
+    \ <cstdint>\n#line 1 \"library/number/linear_sieve.hpp\"\n\n\n\n#line 5 \"library/number/linear_sieve.hpp\"\
+    \n#include <numeric>\n#line 7 \"library/number/linear_sieve.hpp\"\n\nnamespace\
+    \ suisen {\n// referece: https://37zigen.com/linear-sieve/\nclass LinearSieve\
+    \ {\n    public:\n        LinearSieve(const int n) : _n(n), min_prime_factor(std::vector<int>(n\
+    \ + 1)) {\n            std::iota(min_prime_factor.begin(), min_prime_factor.end(),\
+    \ 0);\n            prime_list.reserve(_n / 20);\n            for (int d = 2; d\
+    \ <= _n; ++d) {\n                if (min_prime_factor[d] == d) prime_list.push_back(d);\n\
+    \                const int prime_max = std::min(min_prime_factor[d], _n / d);\n\
+    \                for (int prime : prime_list) {\n                    if (prime\
+    \ > prime_max) break;\n                    min_prime_factor[prime * d] = prime;\n\
+    \                }\n            }\n        }\n        int prime_num() const noexcept\
+    \ { return prime_list.size(); }\n        /**\n         * Returns a vector of primes\
+    \ in [0, n].\n         * It is guaranteed that the returned vector is sorted in\
+    \ ascending order.\n         */\n        const std::vector<int>& get_prime_list()\
+    \ const noexcept  {\n            return prime_list;\n        }\n        const\
+    \ std::vector<int>& get_min_prime_factor() const noexcept { return min_prime_factor;\
+    \ }\n        /**\n         * Returns a vector of `{ prime, index }`.\n       \
+    \  * It is guaranteed that the returned vector is sorted in ascending order.\n\
+    \         */\n        std::vector<std::pair<int, int>> factorize(int n) const\
+    \ noexcept {\n            assert(0 < n and n <= _n);\n            std::vector<std::pair<int,\
+    \ int>> prime_powers;\n            while (n > 1) {\n                int p = min_prime_factor[n],\
+    \ c = 0;\n                do { n /= p, ++c; } while (n % p == 0);\n          \
+    \      prime_powers.emplace_back(p, c);\n            }\n            return prime_powers;\n\
+    \        }\n    private:\n        const int _n;\n        std::vector<int> min_prime_factor;\n\
+    \        std::vector<int> prime_list;\n};\n} // namespace suisen\n\n\n#line 6\
+    \ \"library/sequence/powers.hpp\"\n\nnamespace suisen {\n    // returns { 0^k,\
+    \ 1^k, ..., n^k }\n    template <typename mint>\n    std::vector<mint> powers(uint32_t\
+    \ n, uint64_t k) {\n        const auto mpf = LinearSieve(n).get_min_prime_factor();\n\
+    \        std::vector<mint> res(n + 1);\n        res[0] = k == 0;\n        for\
+    \ (uint32_t i = 1; i <= n; ++i) res[i] = i == 1 ? 1 : uint32_t(mpf[i]) == i ?\
+    \ mint(i).pow(k) : res[mpf[i]] * res[i / mpf[i]];\n        return res;\n    }\n\
+    } // namespace suisen\n\n\n#line 7 \"library/sequence/stirling_number2.hpp\"\n\
+    \nnamespace suisen {\n    /**\n     * return:\n     *   vector<mint> v s.t. v[i]\
+    \ = S2[n,i] for i=0,...,k\n     * constraints:\n     *   0 <= n <= 10^6\n    \
+    \ */\n    template <typename mint>\n    std::vector<mint> stirling_number2(int\
+    \ n) {\n        std::vector<mint> pows = powers<mint>(n, n);\n        factorial<mint>\
+    \ fac(n);\n        FPS<mint> a(n + 1), b(n + 1);\n        for (int i = 0; i <=\
+    \ n; ++i) {\n            a[i] = pows[i] * fac.fac_inv(i);\n            b[i] =\
+    \ i & 1 ? -fac.fac_inv(i) : fac.fac_inv(i);\n        }\n        a *= b, a.pre_inplace(n);\n\
+    \        return a;\n    }\n    template <typename mint>\n    std::vector<std::vector<mint>>\
+    \ stirling_number2_table(uint32_t n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
+    \        for (uint32_t i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n\
+    \            dp[i][0] = 0, dp[i][i] = 1;\n            for (uint32_t j = 1; j <\
+    \ i; ++j) dp[i][j] = dp[i - 1][j - 1] + j * dp[i - 1][j];\n        }\n       \
+    \ return dp;\n    }\n} // namespace suisen\n\n\n#line 8 \"test/src/sequence/stirling_number2/stirling_number2.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
+    \ n;\n    std::cin >> n;\n    auto ans = suisen::stirling_number2<mint>(n);\n\
+    \    for (int i = 0; i <= n; ++i) {\n        std::cout << ans[i].val() << \" \\\
     n\"[i == n];\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\
-    \n#include <iostream>\n#include <atcoder/modint>\nusing mint = atcoder::modint;\n\
-    \n#include \"library/polynomial/common_sequences.hpp\"\nusing suisen::montmort_number;\n\
-    \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n    mint::set_mod(m);\n\
-    \    std::vector<mint> res = montmort_number<mint>(n);\n    for (int i = 1; i\
-    \ <= n; ++i) {\n        std::cout << res[i].val() << \" \\n\"[i == n];\n    }\n\
-    \    return 0;\n}"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#include \"library/sequence/stirling_number2.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    \nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a, const\
+    \ auto &b) { return atcoder::convolution(a, b); });\n\n    int n;\n    std::cin\
+    \ >> n;\n    auto ans = suisen::stirling_number2<mint>(n);\n    for (int i = 0;\
+    \ i <= n; ++i) {\n        std::cout << ans[i].val() << \" \\n\"[i == n];\n   \
+    \ }\n    return 0;\n}"
   dependsOn:
-  - library/polynomial/common_sequences.hpp
+  - library/sequence/stirling_number2.hpp
   - library/polynomial/fps.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
   - library/math/factorial.hpp
+  - library/sequence/powers.hpp
+  - library/number/linear_sieve.hpp
   isVerificationFile: true
-  path: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+  path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
   requiredBy: []
-  timestamp: '2022-06-28 16:25:45+09:00'
+  timestamp: '2022-07-10 22:02:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+documentation_of: test/src/sequence/stirling_number2/stirling_number2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-- /verify/test/src/polynomial/common_sequences/montmort_number_mod.test.cpp.html
-title: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
+- /verify/test/src/sequence/stirling_number2/stirling_number2.test.cpp
+- /verify/test/src/sequence/stirling_number2/stirling_number2.test.cpp.html
+title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
 ---

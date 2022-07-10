@@ -10,7 +10,7 @@ data:
       )"
   - icon: ':question:'
     path: library/integral_geom/point.hpp
-    title: library/integral_geom/point.hpp
+    title: Point
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -256,8 +256,6 @@ data:
   verifiedWith: []
 documentation_of: library/integral_geom/farthest_pair.hpp
 layout: document
-redirect_from:
-- /library/library/integral_geom/farthest_pair.hpp
-- /library/library/integral_geom/farthest_pair.hpp.html
-title: library/integral_geom/farthest_pair.hpp
+title: Farthest Pair
 ---
+## Farthest Pair

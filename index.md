@@ -436,14 +436,14 @@ data:
         \u683C\u5B50\u70B9\u306E\u500B\u6570\u306E\u30AB\u30A6\u30F3\u30C8"
     - icon: ':warning:'
       path: library/integral_geom/farthest_pair.hpp
-      title: library/integral_geom/farthest_pair.hpp
+      title: Farthest Pair
     - icon: ':question:'
       path: library/integral_geom/geometry.hpp
       title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\
         \u6A19)"
     - icon: ':question:'
       path: library/integral_geom/point.hpp
-      title: library/integral_geom/point.hpp
+      title: Point
     - icon: ':heavy_check_mark:'
       path: library/integral_geom/sort_points_by_argument.hpp
       title: "\u504F\u89D2\u30BD\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19)"
@@ -554,9 +554,6 @@ data:
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
     - icon: ':heavy_check_mark:'
-      path: library/polynomial/common_sequences.hpp
-      title: "\u6709\u540D\u306A\u6570\u5217\u305F\u3061"
-    - icon: ':heavy_check_mark:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
     - icon: ':heavy_check_mark:'
@@ -580,6 +577,32 @@ data:
     - icon: ':warning:'
       path: library/polynomial/vec_sparse_fps.hpp
       title: Vec Sparse Fps
+  - name: library/sequence
+    pages:
+    - icon: ':warning:'
+      path: library/sequence/bell_number.hpp
+      title: Bell Number
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/bernoulli_number.hpp
+      title: Bernoulli Number
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/eulerian_number.hpp
+      title: Eulerian Number
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/montmort_number.hpp
+      title: Montmort Number
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/partition_number.hpp
+      title: Partition Number
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/powers.hpp
+      title: Powers
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/stirling_number1.hpp
+      title: Stirling Number1
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/stirling_number2.hpp
+      title: Stirling Number2
   - name: library/string
     pages:
     - icon: ':heavy_check_mark:'
@@ -1541,26 +1564,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - name: test/src/polynomial/common_sequences
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/polynomial/common_sequences/abc247_h.test.cpp
-      title: test/src/polynomial/common_sequences/abc247_h.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
-      title: test/src/polynomial/common_sequences/bernoulli_number.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-      title: test/src/polynomial/common_sequences/montmort_number_mod.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/polynomial/common_sequences/partition_function.test.cpp
-      title: test/src/polynomial/common_sequences/partition_function.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/polynomial/common_sequences/stirling_number1.test.cpp
-      title: test/src/polynomial/common_sequences/stirling_number1.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/polynomial/common_sequences/stirling_number2.test.cpp
-      title: test/src/polynomial/common_sequences/stirling_number2.test.cpp
   - name: test/src/polynomial/fps
     pages:
     - icon: ':heavy_check_mark:'
@@ -1629,6 +1632,39 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
       title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
+  - name: test/src/sequence/bernoulli_number
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+      title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - name: test/src/sequence/eulerian_number
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/eulerian_number/yuki2005.test.cpp
+      title: test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - name: test/src/sequence/montmort_number
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/montmort_number/montmort_number_mod.test.cpp
+      title: test/src/sequence/montmort_number/montmort_number_mod.test.cpp
+  - name: test/src/sequence/partition_number
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/partition_number/partition_function.test.cpp
+      title: test/src/sequence/partition_number/partition_function.test.cpp
+  - name: test/src/sequence/stirling_number1
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/stirling_number1/abc247_h.test.cpp
+      title: test/src/sequence/stirling_number1/abc247_h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
+      title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
+  - name: test/src/sequence/stirling_number2
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
+      title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - name: test/src/string/compare_substring
     pages:
     - icon: ':heavy_check_mark:'

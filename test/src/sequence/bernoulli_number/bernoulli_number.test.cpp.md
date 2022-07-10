@@ -2,159 +2,53 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: library/math/factorial.hpp
+    title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':heavy_check_mark:'
+    path: library/polynomial/fps.hpp
+    title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
-    path: library/type_traits/type_traits.hpp
-    title: Type Traits
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: library/convolution/polynomial_eval_multipoint_eval.hpp
-    title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
-      \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
-    path: library/math/product_of_differences.hpp
-    title: Product Of Differences
-  - icon: ':heavy_check_mark:'
-    path: library/polynomial/bostan_mori.hpp
-    title: Bostan Mori
-  - icon: ':heavy_check_mark:'
-    path: library/polynomial/lagrange_interpolation.hpp
-    title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':heavy_check_mark:'
-    path: library/polynomial/multi_point_eval.hpp
-    title: Multi Point Evaluation
-  - icon: ':heavy_check_mark:'
-    path: library/polynomial/polynomial_interpolation.hpp
-    title: "\u88DC\u9593\u591A\u9805\u5F0F"
-  - icon: ':heavy_check_mark:'
-    path: library/polynomial/polynomial_taylor_shift.hpp
-    title: Polynomial Taylor Shift
-  - icon: ':heavy_check_mark:'
-    path: library/polynomial/subset_sum.hpp
-    title: Subset Sum
-  - icon: ':warning:'
-    path: library/sequence/bell_number.hpp
-    title: Bell Number
   - icon: ':heavy_check_mark:'
     path: library/sequence/bernoulli_number.hpp
     title: Bernoulli Number
-  - icon: ':heavy_check_mark:'
-    path: library/sequence/eulerian_number.hpp
-    title: Eulerian Number
-  - icon: ':heavy_check_mark:'
-    path: library/sequence/partition_number.hpp
-    title: Partition Number
-  - icon: ':heavy_check_mark:'
-    path: library/sequence/stirling_number1.hpp
-    title: Stirling Number1
-  - icon: ':heavy_check_mark:'
-    path: library/sequence/stirling_number2.hpp
-    title: Stirling Number2
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-    title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/product_of_differences/yuki1938.test.cpp
-    title: test/src/math/product_of_differences/yuki1938.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-    title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/division_of_polynomials.test.cpp
-    title: test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/exp_of_fps.test.cpp
-    title: test/src/polynomial/fps/exp_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/inv_of_fps.test.cpp
-    title: test/src/polynomial/fps/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/log_of_fps.test.cpp
-    title: test/src/polynomial/fps/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/pow_of_fps.test.cpp
-    title: test/src/polynomial/fps/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
-    title: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-    title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-    title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-    title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-    title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-    title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-    title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-    title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/eulerian_number/yuki2005.test.cpp
-    title: test/src/sequence/eulerian_number/yuki2005.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/partition_number/partition_function.test.cpp
-    title: test/src/sequence/partition_number/partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/stirling_number1/abc247_h.test.cpp
-    title: test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-    title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-    title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - icon: ':question:'
+    path: library/type_traits/type_traits.hpp
+    title: Type Traits
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n\
-    #include <cassert>\n#include <iostream>\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
-    \n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\n#include <cmath>\n#include\
-    \ <limits>\n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
-    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
+    links:
+    - https://judge.yosupo.jp/problem/bernoulli_number
+  bundledCode: "#line 1 \"test/src/sequence/bernoulli_number/bernoulli_number.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n#include\
+    \ <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\n\
+    #line 1 \"library/sequence/bernoulli_number.hpp\"\n\n\n\n#line 1 \"library/polynomial/fps.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/polynomial/fps.hpp\"\
+    \n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\
+    \n#include <cmath>\n#include <limits>\n#include <type_traits>\n#include <vector>\n\
+    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
+    \n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
+    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
+    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
+    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
+    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
+    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
+    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
+    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -555,270 +449,64 @@ data:
     \    return a.exp(a.deg());\n}\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint>\
     \ a, T b) -> decltype(mint::mod(), suisen::FPS<mint>{}) {\n    return a.pow(b,\
     \ a.deg());\n}\ntemplate <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(),\
-    \ suisen::FPS<mint>{}) {\n    return a.inv(a.deg());\n}\n\n\n"
-  code: "#ifndef SUISEN_FPS\n#define SUISEN_FPS\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#include <iostream>\n\n#include \"library/polynomial/fps_naive.hpp\"\
-    \n#include \"library/math/inv_mods.hpp\"\n#include \"library/math/modint_extension.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint>\n    using convolution_t\
-    \ = std::vector<mint>(*)(const std::vector<mint>&, const std::vector<mint>&);\n\
-    \n    template <typename mint>\n    struct FPS : public std::vector<mint> {\n\
-    \        using std::vector<mint>::vector;\n\n        FPS(const std::initializer_list<mint>\
-    \ l) : std::vector<mint>::vector(l) {}\n        FPS(const std::vector<mint>& v)\
-    \ : std::vector<mint>::vector(v) {}\n        FPS(std::vector<mint>&& v) : std::vector<mint>::vector(std::move(v))\
-    \ {}\n\n        static void set_multiplication(convolution_t<mint> multiplication)\
-    \ {\n            FPS<mint>::mult = multiplication;\n        }\n\n        const\
-    \ mint operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) :\
-    \ 0; }\n        mint& operator[](int n) noexcept { ensure_deg(n); return unsafe_get(n);\
-    \ }\n\n        int size() const noexcept { return std::vector<mint>::size(); }\n\
-    \        int deg()  const noexcept { return size() - 1; }\n        int normalize()\
-    \ {\n            while (this->size() and this->back() == 0) this->pop_back();\n\
-    \            return deg();\n        }\n        FPS& pre_inplace(int max_deg) noexcept\
-    \ {\n            if (deg() > max_deg) this->resize(std::max(0, max_deg + 1));\n\
-    \            return *this;\n        }\n        FPS pre(int max_deg) const noexcept\
-    \ { return FPS(*this).pre_inplace(max_deg); }\n\n        FPS operator+() const\
-    \ { return FPS(*this); }\n        FPS operator-() const {\n            FPS f(*this);\n\
-    \            for (auto& e : f) e = mint::mod() - e;\n            return f;\n \
-    \       }\n        FPS& operator++() { ++(*this)[0]; return *this; }\n       \
-    \ FPS& operator--() { --(*this)[0]; return *this; }\n        FPS& operator+=(const\
-    \ mint x) { (*this)[0] += x; return *this; }\n        FPS& operator-=(const mint\
-    \ x) { (*this)[0] -= x; return *this; }\n        FPS& operator+=(const FPS& g)\
-    \ {\n            ensure_deg(g.deg());\n            for (int i = 0; i <= g.deg();\
-    \ ++i) unsafe_get(i) += g.unsafe_get(i);\n            return *this;\n        }\n\
-    \        FPS& operator-=(const FPS& g) {\n            ensure_deg(g.deg());\n \
-    \           for (int i = 0; i <= g.deg(); ++i) unsafe_get(i) -= g.unsafe_get(i);\n\
-    \            return *this;\n        }\n        FPS& operator*=(const FPS& g) {\
-    \ return *this = FPS<mint>::mult(*this, g); }\n        FPS& operator*=(const mint\
-    \ x) {\n            for (auto& e : *this) e *= x;\n            return *this;\n\
-    \        }\n        FPS& operator/=(FPS g) {\n            const int fd = normalize(),\
-    \ gd = g.normalize();\n            assert(gd >= 0);\n            if (fd < gd)\
-    \ { this->clear(); return *this; }\n            if (gd == 0) return *this *= g.unsafe_get(0).inv();\n\
-    \            static constexpr int THRESHOLD_NAIVE_POLY_QUOTIENT = 256;\n     \
-    \       if (gd <= THRESHOLD_NAIVE_POLY_QUOTIENT) {\n                *this = std::move(naive_div_inplace(std::move(g),\
-    \ gd).first);\n                return *this;\n            }\n            std::reverse(this->begin(),\
-    \ this->end()), std::reverse(g.begin(), g.end());\n            const int k = fd\
-    \ - gd;\n            *this *= g.inv_inplace(k), this->resize(k + 1);\n       \
-    \     std::reverse(this->begin(), this->end());\n            return *this;\n \
-    \       }\n        FPS& operator%=(FPS g) {\n            int fd = normalize(),\
-    \ gd = g.normalize();\n            assert(gd >= 0);\n            if (fd < gd)\
-    \ return *this;\n            if (gd == 0) { this->clear(); return *this; }\n \
-    \           static constexpr int THRESHOLD_NAIVE_REMAINDER = 256;\n          \
-    \  if (gd <= THRESHOLD_NAIVE_REMAINDER) return naive_div_inplace(std::move(g),\
-    \ gd).second;\n            *this -= g * (*this / g);\n            return pre_inplace(gd\
-    \ - 1);\n        }\n        FPS& operator<<=(const int shamt) {\n            this->insert(this->begin(),\
-    \ shamt, 0);\n            return *this;\n        }\n        FPS& operator>>=(const\
-    \ int shamt) {\n            if (shamt > size()) this->clear();\n            else\
-    \ this->erase(this->begin(), this->begin() + shamt);\n            return *this;\n\
-    \        }\n\n        friend FPS operator+(FPS f, const FPS& g) { f += g; return\
-    \ f; }\n        friend FPS operator+(FPS f, const mint x) { f += x; return f;\
-    \ }\n        friend FPS operator-(FPS f, const FPS& g) { f -= g; return f; }\n\
-    \        friend FPS operator-(FPS f, const mint x) { f -= x; return f; }\n   \
-    \     friend FPS operator*(FPS f, const FPS& g) { f *= g; return f; }\n      \
-    \  friend FPS operator*(FPS f, const mint x) { f *= x; return f; }\n        friend\
-    \ FPS operator/(FPS f, const FPS& g) { f /= g; return f; }\n        friend FPS\
-    \ operator%(FPS f, const FPS& g) { f %= g; return f; }\n        friend FPS operator*(const\
-    \ mint x, FPS f) { f *= x; return f; }\n        friend FPS operator<<(FPS f, const\
-    \ int shamt) { f <<= shamt; return f; }\n        friend FPS operator>>(FPS f,\
-    \ const int shamt) { f >>= shamt; return f; }\n\n        friend bool operator==(const\
-    \ FPS& f, const FPS& g) {\n            int n = f.size(), m = g.size();\n     \
-    \       if (n < m) return g == f;\n            for (int i = 0; i < m; ++i) if\
-    \ (f.unsafe_get(i) != g.unsafe_get(i)) return false;\n            for (int i =\
-    \ m; i < n; ++i) if (f.unsafe_get(i) != 0) return false;\n            return true;\n\
-    \        }\n\n        FPS& diff_inplace() {\n            if (this->size() == 0)\
-    \ return *this;\n            for (int i = 1; i <= deg(); ++i) unsafe_get(i - 1)\
-    \ = unsafe_get(i) * i;\n            this->pop_back();\n            return *this;\n\
-    \        }\n        FPS& intg_inplace() {\n            int d = deg();\n      \
-    \      ensure_deg(d + 1);\n            for (int i = d; i >= 0; --i) unsafe_get(i\
-    \ + 1) = unsafe_get(i) * invs[i + 1];\n            unsafe_get(0) = 0;\n      \
-    \      return *this;\n        }\n        FPS& inv_inplace(const int max_deg) {\n\
-    \            if (max_deg <= 60) return *this = FPSNaive<mint>(this->begin(), this->end()).inv(max_deg);\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this\
-    \ = inv_sparse(std::move(*sp_f), max_deg);\n            FPS res{ unsafe_get(0).inv()\
-    \ };\n            for (int k = 1; k <= max_deg; k *= 2) {\n                FPS\
-    \ tmp(this->pre(k * 2) * (res * res));\n                res *= 2, res -= tmp.pre_inplace(2\
-    \ * k);\n            }\n            return *this = std::move(res), pre_inplace(max_deg);\n\
-    \        }\n        FPS& log_inplace(const int max_deg) {\n            if (max_deg\
-    \ <= 60) return *this = FPSNaive<mint>(this->begin(), this->end()).log(max_deg);\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this\
-    \ = log_sparse(std::move(*sp_f), max_deg);\n            FPS f_inv = inv(max_deg);\n\
-    \            diff_inplace(), *this *= f_inv, pre_inplace(max_deg - 1), intg_inplace();\n\
-    \            return *this;\n        }\n        FPS& exp_inplace(const int max_deg)\
-    \ {\n            if (max_deg <= 60) return *this = FPSNaive<mint>(this->begin(),\
-    \ this->end()).exp(max_deg);\n            if (auto sp_f = sparse_fps_format(15);\
-    \ sp_f.has_value()) return *this = exp_sparse(std::move(*sp_f), max_deg);\n  \
-    \          FPS res{ 1 };\n            for (int k = 1; k <= max_deg; k *= 2) res\
-    \ *= ++(pre(k * 2) - res.log(k * 2)), res.pre_inplace(k * 2);\n            return\
-    \ *this = std::move(res), pre_inplace(max_deg);\n        }\n        FPS& sqrt_inplace(const\
-    \ int max_deg) {\n            return *this = sqrt(max_deg);\n        }\n     \
-    \   FPS& pow_inplace(const long long k, const int max_deg) {\n            if (k\
-    \ == 0) return *this = { mint{ 1 } };\n            if (max_deg <= 60) return *this\
-    \ = FPSNaive<mint>(this->begin(), this->end()).pow(k, max_deg);\n            if\
-    \ (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this = pow_sparse(std::move(*sp_f),\
-    \ k, max_deg);\n            int tlz = 0;\n            while (tlz <= deg() and\
-    \ unsafe_get(tlz) == 0) ++tlz;\n            if (tlz > deg() or tlz > max_deg /\
-    \ k) return this->clear(), *this;\n            const int d = max_deg - tlz * k;\n\
-    \            *this >>= tlz;\n            mint base = (*this)[0];\n           \
-    \ *this *= base.inv(), log_inplace(d), *this *= k, exp_inplace(d), *this *= base.pow(k);\n\
-    \            return *this <<= tlz * k;\n        }\n        FPS diff() const {\
-    \ FPS f{ *this }; f.diff_inplace(); return f; }\n        FPS intg() const { FPS\
-    \ f{ *this }; f.intg_inplace(); return f; }\n        FPS inv(const int max_deg)\
-    \ const { FPS f{ *this }; f.inv_inplace(max_deg); return f; }\n        FPS log(const\
-    \ int max_deg) const { FPS f{ *this }; f.log_inplace(max_deg); return f; }\n \
-    \       FPS exp(const int max_deg) const { FPS f{ *this }; f.exp_inplace(max_deg);\
-    \ return f; }\n        std::optional<FPS> optional_sqrt(const int max_deg) {\n\
-    \            if (max_deg <= 60) return FPSNaive<mint>(this->begin(), this->end()).optional_sqrt(max_deg);\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return optional_sqrt_sparse(std::move(*sp_f),\
-    \ max_deg);\n\n            int tlz = 0;\n            while (tlz <= deg() and unsafe_get(tlz)\
-    \ == 0) ++tlz;\n            if (tlz > deg()) return FPS{};\n            if (tlz\
-    \ % 2 == 1) return std::nullopt;\n            int max_deg2 = max_deg - tlz / 2;\n\
-    \            FPS f(this->begin() + tlz, this->end());\n\n            auto opt_res0\
-    \ = ::optional_sqrt(f[0]);\n            if (not opt_res0.has_value()) return std::nullopt;\n\
-    \            FPS res{ *opt_res0 };\n            mint inv_2 = mint(2).inv();\n\
-    \            for (int k = 1; k <= max_deg2; k *= 2) {\n                res = ((f.pre(k\
-    \ * 2) * res.inv(2 * k)).pre_inplace(2 * k) += res) *= inv_2;\n            }\n\
-    \            return *this = std::move(res <<= tlz / 2), pre_inplace(max_deg);\n\
-    \        }\n        FPS sqrt(const int max_deg) const { return *optional_sqrt(max_deg);\
-    \ }\n        FPS pow(const long long k, const int max_deg) const { FPS f{ *this\
-    \ }; f.pow_inplace(k, max_deg); return f; }\n\n        mint eval(mint x) const\
-    \ {\n            mint y = 0;\n            for (int i = size() - 1; i >= 0; --i)\
-    \ y = y * x + unsafe_get(i);\n            return y;\n        }\n\n    private:\n\
-    \        static inline inv_mods<mint> invs;\n        static convolution_t<mint>\
-    \ mult;\n        void ensure_deg(int d) { if (deg() < d) this->resize(d + 1, 0);\
-    \ }\n        const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i);\
-    \ }\n        mint& unsafe_get(int i) { return std::vector<mint>::operator[](i);\
-    \ }\n\n        std::optional<std::vector<std::pair<int, mint>>> sparse_fps_format(int\
-    \ max_size) const {\n            std::vector<std::pair<int, mint>> res;\n    \
-    \        for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i) if (mint\
-    \ v = unsafe_get(i); v != 0) res.emplace_back(i, v);\n            if (int(res.size())\
-    \ > max_size) return std::nullopt;\n            return res;\n        }\n\n   \
-    \     std::pair<FPS, FPS&> naive_div_inplace(FPS&& g, const int gd) {\n      \
-    \      const int k = deg() - gd;\n            mint head_inv = g.unsafe_get(gd).inv();\n\
-    \            FPS q(k + 1);\n            for (int i = k; i >= 0; --i) {\n     \
-    \           mint div = this->unsafe_get(i + gd) * head_inv;\n                q.unsafe_get(i)\
-    \ = div;\n                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j)\
-    \ -= div * g.unsafe_get(j);\n            }\n            return { q, pre_inplace(gd\
-    \ - 1) };\n        }\n\n        static FPS div_fps_sparse(const FPS &f, const\
-    \ std::vector<std::pair<int, mint>> &g, const int max_deg) {\n            const\
-    \ int siz = g.size();\n            assert(siz and g[0].first == 0);\n        \
-    \    const mint inv_g0 = g[0].second.inv();\n            FPS h(max_deg + 1);\n\
-    \            for (int i = 0; i <= max_deg; ++i) {\n                mint v = f[i];\n\
-    \                for (int idx = 1; idx < siz; ++idx) {\n                    const\
-    \ auto &[j, gj] = g[idx];\n                    if (j > i) break;\n           \
-    \         v -= gj * h.unsafe_get(i - j);\n                }\n                h.unsafe_get(i)\
-    \ = v * inv_g0;\n            }\n            return h;\n        }\n        static\
-    \ FPS inv_sparse(const std::vector<std::pair<int, mint>> &g, const int max_deg)\
-    \ {\n            return div_fps_sparse(FPS { mint{1} }, g, max_deg);\n       \
-    \ }\n        static FPS exp_sparse(const std::vector<std::pair<int, mint>> &f,\
-    \ const int max_deg) {\n            const int siz = f.size();\n            assert(not\
-    \ siz or f[0].first != 0);\n            FPS g(max_deg + 1);\n            g[0]\
-    \ = 1;\n            for (int i = 1; i <= max_deg; ++i) {\n                mint\
-    \ v = 0;\n                for (const auto &[j, fj] : f) {\n                  \
-    \  if (j > i) break;\n                    v += j * fj * g.unsafe_get(i - j);\n\
-    \                }\n                v *= invs[i];\n                g.unsafe_get(i)\
-    \ = v;\n            }\n            return g;\n        }\n        static FPS log_sparse(const\
-    \ std::vector<std::pair<int, mint>> &f, const int max_deg) {\n            const\
-    \ int siz = f.size();\n            assert(siz and f[0].first == 0 and f[0].second\
-    \ == 1);\n            FPS g(max_deg + 1);\n            for (int idx = 1; idx <\
-    \ siz; ++idx) {\n                const auto &[j, fj] = f[idx];\n             \
-    \   if (j > max_deg) break;\n                g.unsafe_get(j) = j * fj;\n     \
-    \       }\n            for (int i = 1; i <= max_deg; ++i) {\n                mint\
-    \ v = g.unsafe_get(i);\n                for (int idx = 1; idx < siz; ++idx) {\n\
-    \                    const auto &[j, fj] = f[idx];\n                    if (j\
-    \ > i) break;\n                    v -= fj * g.unsafe_get(i - j) * (i - j);\n\
-    \                }\n                v *= invs[i];\n                g.unsafe_get(i)\
-    \ = v;\n            }\n            return g;\n        }\n        static FPS pow_sparse(const\
-    \ std::vector<std::pair<int, mint>> &f, const long long k, const int max_deg)\
-    \ {\n            if (k == 0) return FPS { mint{1} };\n            const int siz\
-    \ = f.size();\n            if (not siz) return FPS{};\n            const int p\
-    \ = f[0].first;\n            if (p >= max_deg / k + 1) return FPS{};\n       \
-    \     const mint inv_f0 = f[0].second.inv();\n            const int lz = p * k;\n\
-    \            FPS g(max_deg + 1);\n            g[lz] = f[0].second.pow(k);\n  \
-    \          for (int i = 1; lz + i <= max_deg; ++i) {\n                mint v =\
-    \ 0;\n                for (int idx = 1; idx < siz; ++idx) {\n                \
-    \    auto [j, fj] = f[idx];\n                    j -= p;\n                   \
-    \ if (j > i) break;\n                    v += fj * g.unsafe_get(lz + i - j) *\
-    \ (mint(k) * j - (i - j));\n                }\n                v *= invs[i] *\
-    \ inv_f0;\n                g.unsafe_get(lz + i) = v;\n            }\n        \
-    \    return g;\n        }\n        static std::optional<FPS> optional_sqrt_sparse(const\
-    \ std::vector<std::pair<int, mint>> &f, const int max_deg) {\n            const\
-    \ int siz = f.size();\n            if (not siz) return FPS{};\n            const\
-    \ int p = f[0].first;\n            if (p % 2 == 1) return std::nullopt;\n    \
-    \        if (p / 2 > max_deg) return FPS{};\n            const mint inv_f0 = f[0].second.inv();\n\
-    \            const int lz = p / 2;\n            FPS g(max_deg + 1);\n        \
-    \    auto opt_g0 = ::optional_sqrt(f[0].second);\n            if (not opt_g0.has_value())\
-    \ return std::nullopt;\n            g[lz] = *opt_g0;\n            mint k = mint(2).inv();\n\
-    \            for (int i = 1; lz + i <= max_deg; ++i) {\n                mint v\
-    \ = 0;\n                for (int idx = 1; idx < siz; ++idx) {\n              \
-    \      auto [j, fj] = f[idx];\n                    j -= p;\n                 \
-    \   if (j > i) break;\n                    v += fj * g.unsafe_get(lz + i - j)\
-    \ * (k * j - (i - j));\n                }\n                v *= invs[i] * inv_f0;\n\
-    \                g.unsafe_get(lz + i) = v;\n            }\n            return\
-    \ g;\n        }\n        static FPS sqrt_sparse(const std::vector<std::pair<int,\
-    \ mint>> &f, const int max_deg) {\n            return *optional_sqrt(f, max_deg);\n\
-    \        }\n    };\n\n    template <typename mint>\n    convolution_t<mint> FPS<mint>::mult\
-    \ = [](const auto&, const auto&) {\n        std::cerr << \"convolution function\
-    \ is not available.\" << std::endl;\n        assert(false);\n        return std::vector<mint>{};\n\
-    \    };\n\n} // namespace suisen\n\ntemplate <typename mint>\nauto sqrt(suisen::FPS<mint>\
-    \ a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {\n    return a.sqrt(a.deg());\n\
-    }\ntemplate <typename mint>\nauto log(suisen::FPS<mint> a) -> decltype(mint::mod(),\
-    \ suisen::FPS<mint>{}) {\n    return a.log(a.deg());\n}\ntemplate <typename mint>\n\
-    auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {\n\
-    \    return a.exp(a.deg());\n}\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint>\
-    \ a, T b) -> decltype(mint::mod(), suisen::FPS<mint>{}) {\n    return a.pow(b,\
-    \ a.deg());\n}\ntemplate <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(),\
-    \ suisen::FPS<mint>{}) {\n    return a.inv(a.deg());\n}\n\n#endif // SUISEN_FPS\n"
+    \ suisen::FPS<mint>{}) {\n    return a.inv(a.deg());\n}\n\n\n#line 1 \"library/math/factorial.hpp\"\
+    \n\n\n\n#line 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename T, typename U = T>\n    struct factorial {\n        factorial() {}\n\
+    \        factorial(int n) { ensure(n); }\n\n        static void ensure(const int\
+    \ n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
+    \            int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
+    \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
+    \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
+    \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
+    \ _fac_inv[i] * i;\n        }\n\n        T fac(const int i) {\n            ensure(i);\n\
+    \            return _fac[i];\n        }\n        T operator()(int i) {\n     \
+    \       return fac(i);\n        }\n        U fac_inv(const int i) {\n        \
+    \    ensure(i);\n            return _fac_inv[i];\n        }\n        U binom(const\
+    \ int n, const int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n\
+    \            ensure(n);\n            return _fac[n] * _fac_inv[r] * _fac_inv[n\
+    \ - r];\n        }\n        U perm(const int n, const int r) {\n            if\
+    \ (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n            return\
+    \ _fac[n] * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T>\
+    \ _fac;\n        static std::vector<U> _fac_inv;\n    };\n    template <typename\
+    \ T, typename U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template\
+    \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
+    } // namespace suisen\n\n\n#line 6 \"library/sequence/bernoulli_number.hpp\"\n\
+    \nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> bernoulli_number(int\
+    \ n) {\n        factorial<mint> fac(n);\n        FPS<mint> a(n + 1);\n       \
+    \ for (int i = 0; i <= n; ++i) a[i] = fac.fac_inv(i + 1);\n        a.inv_inplace(n),\
+    \ a.resize(n + 1);\n        for (int i = 2; i <= n; ++i) a[i] *= fac(i);\n   \
+    \     return a;\n    }\n} // namespace suisen\n\n\n#line 9 \"test/src/sequence/bernoulli_number/bernoulli_number.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
+    \ n;\n    std::cin >> n;\n    auto f = suisen::bernoulli_number<mint>(n);\n  \
+    \  for (int i = 0; i <= n; ++i) {\n        std::cout << f[i].val() << \" \\n\"\
+    [i == n];\n    }\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n\n\
+    #include <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#include \"library/sequence/bernoulli_number.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
+    \nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a, const\
+    \ auto &b) { return atcoder::convolution(a, b); });\n\n    int n;\n    std::cin\
+    \ >> n;\n    auto f = suisen::bernoulli_number<mint>(n);\n    for (int i = 0;\
+    \ i <= n; ++i) {\n        std::cout << f[i].val() << \" \\n\"[i == n];\n    }\n\
+    \    return 0;\n}"
   dependsOn:
+  - library/sequence/bernoulli_number.hpp
+  - library/polynomial/fps.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: false
-  path: library/polynomial/fps.hpp
-  requiredBy:
-  - library/math/product_of_differences.hpp
-  - library/convolution/polynomial_eval_multipoint_eval.hpp
-  - library/polynomial/multi_point_eval.hpp
-  - library/polynomial/bostan_mori.hpp
-  - library/polynomial/subset_sum.hpp
-  - library/polynomial/lagrange_interpolation.hpp
-  - library/polynomial/polynomial_interpolation.hpp
-  - library/polynomial/polynomial_taylor_shift.hpp
-  - library/sequence/partition_number.hpp
-  - library/sequence/bell_number.hpp
-  - library/sequence/bernoulli_number.hpp
-  - library/sequence/stirling_number1.hpp
-  - library/sequence/stirling_number2.hpp
-  - library/sequence/eulerian_number.hpp
-  timestamp: '2022-06-28 16:25:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/fps/log_of_fps.test.cpp
-  - test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/inv_of_fps.test.cpp
-  - test/src/polynomial/fps/pow_of_fps.test.cpp
-  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/exp_of_fps.test.cpp
-  - test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - test/src/sequence/partition_number/partition_function.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
-documentation_of: library/polynomial/fps.hpp
+  - library/math/factorial.hpp
+  isVerificationFile: true
+  path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  requiredBy: []
+  timestamp: '2022-07-10 22:02:36+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
 layout: document
-title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
+redirect_from:
+- /verify/test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+- /verify/test/src/sequence/bernoulli_number/bernoulli_number.test.cpp.html
+title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
 ---
-## 形式的冪級数

@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/integral_geom/farthest_pair.hpp
-    title: library/integral_geom/farthest_pair.hpp
+    title: Farthest Pair
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/convex_hull/CGL_4_A.test.cpp

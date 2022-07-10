@@ -5,10 +5,25 @@ data:
   - icon: ':warning:'
     path: library/number/anymod_binom.hpp
     title: "\u4EFB\u610F mod \u3067\u306E\u4E8C\u9805\u4FC2\u6570\u5217\u6319"
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/eulerian_number.hpp
+    title: Eulerian Number
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/powers.hpp
+    title: Powers
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/stirling_number2.hpp
+    title: Stirling Number2
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/sequence/eulerian_number/yuki2005.test.cpp
+    title: test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
+    title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -69,10 +84,15 @@ data:
   path: library/number/linear_sieve.hpp
   requiredBy:
   - library/number/anymod_binom.hpp
+  - library/sequence/powers.hpp
+  - library/sequence/stirling_number2.hpp
+  - library/sequence/eulerian_number.hpp
   timestamp: '2021-08-04 13:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
 documentation_of: library/number/linear_sieve.hpp
 layout: document
 title: "\u7DDA\u5F62\u7BE9"

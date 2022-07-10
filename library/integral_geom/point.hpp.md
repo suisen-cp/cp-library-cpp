@@ -7,7 +7,7 @@ data:
     title: "\u6700\u8FD1\u70B9\u5BFE (\u6574\u6570\u5EA7\u6A19)"
   - icon: ':warning:'
     path: library/integral_geom/farthest_pair.hpp
-    title: library/integral_geom/farthest_pair.hpp
+    title: Farthest Pair
   - icon: ':question:'
     path: library/integral_geom/geometry.hpp
     title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19\
@@ -192,8 +192,6 @@ data:
   - test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
 documentation_of: library/integral_geom/point.hpp
 layout: document
-redirect_from:
-- /library/library/integral_geom/point.hpp
-- /library/library/integral_geom/point.hpp.html
-title: library/integral_geom/point.hpp
+title: Point
 ---
+## Point
