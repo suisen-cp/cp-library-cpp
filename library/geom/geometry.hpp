@@ -383,21 +383,22 @@ namespace geometry {
     }
 
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B
-    auto convex_diameter(const Polygon &convex) {
+    std::tuple<int, int, coordinate_t> convex_diameter(const Polygon& convex) {
         const int sz = convex.size();
-        auto d2 = [&](int i, int j) { return square_abs(convex[j % sz] - convex[i]); };
+        if (sz <= 2) return { 0, sz - 1, abs(convex.front() - convex.back()) };
+        auto [si, sj] = [&]{
+            auto [it_min, it_max] = std::minmax_element(convex.begin(), convex.end(), XY_COMPARATOR);
+            return std::pair<int, int> { it_min - convex.begin(), it_max - convex.begin() };
+        }();
         coordinate_t max_dist = -1;
-        std::pair<int, int> argmax { -1, -1 };
-        for (int i = 0, j = 0; i < sz; ++i) {
-            while (d2(i, j + 1) >= d2(i, j)) ++j;
-            coordinate_t cur_dist = d2(i, j);
-            if (cur_dist > max_dist) {
-                max_dist = cur_dist;
-                argmax = { i, j };
-            }
+        std::pair<int, int> argmax{ -1, -1 };
+        for (int i = si, j = sj; i != sj or j != si;) {
+            if (coordinate_t dij = square_abs(convex[j] - convex[i]); dij > max_dist) max_dist = dij, argmax = { i, j };
+            int ni = (i + 1) % sz, nj = (j + 1) % sz;
+            if (det(convex[ni] - convex[i], convex[nj] - convex[j]) < 0) i = ni;
+            else j = nj;
         }
-        auto [i, j] = argmax;
-        return std::make_tuple(i, j % sz, std::sqrt(max_dist));
+        return { argmax.first, argmax.second, ::sqrtl(max_dist) };
     }
 
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_C

@@ -5,15 +5,25 @@
 #include <iostream>
 #include <utility>
 
+#ifndef COORDINATE_TYPE
+#define COORDINATE_TYPE long long
+#endif // COORDINATE_TYPE
+#ifndef MULTIPLIED_TYPE
+#define MULTIPLIED_TYPE long long
+#endif // MULTIPLIED_TYPE
+
 namespace suisen::integral_geometry {
-    using coordinate_t = long long;
-    using multiplied_t = __int128_t;
+    using coordinate_t = COORDINATE_TYPE;
+    using multiplied_t = MULTIPLIED_TYPE;
 
     struct Point {
         coordinate_t x, y;
         constexpr Point(coordinate_t x = 0, coordinate_t y = 0) : x(x), y(y) {}
 
-        operator std::pair<coordinate_t, coordinate_t>() const { return std::pair<coordinate_t, coordinate_t> { x, y }; }
+        template <typename T = coordinate_t, typename U = coordinate_t>
+        operator std::pair<T, U>() const { return std::pair<T, U> { T{ x }, U{ y } }; }
+        template <typename T, typename U>
+        Point& operator=(const std::pair<T, U> &p) { x = p.first, y = p.second; return *this; }
 
         friend Point operator+(const Point& p) { return p; }
         friend Point operator-(const Point& p) { return { -p.x, -p.y }; }
