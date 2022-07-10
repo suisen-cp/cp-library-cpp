@@ -329,11 +329,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/geom/convex_hull.hpp
       title: "\u51F8\u5305"
-    - icon: ':warning:'
-      path: library/geom/count_lattice_point.hpp
-      title: "\u591A\u89D2\u5F62\u306E\u5185\u90E8\u307E\u305F\u306F\u8FBA\u4E0A\u306B\
-        \u3042\u308B\u683C\u5B50\u70B9\u306E\u500B\u6570\u3092\u6570\u3048\u308B\u3084\
-        \u3064"
     - icon: ':heavy_check_mark:'
       path: library/geom/geometry.hpp
       title: Geometry
@@ -343,9 +338,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/geom/segment_intersections.hpp
       title: Segment Intersections
-    - icon: ':heavy_check_mark:'
-      path: library/geom/sort_points_by_argument.hpp
-      title: "\u6574\u6570\u6F14\u7B97\u306B\u3088\u308B\u504F\u89D2\u30BD\u30FC\u30C8"
   - name: library/graph
     pages:
     - icon: ':warning:'
@@ -431,9 +423,21 @@ data:
       title: Parsing
   - name: library/integral_geom
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: library/integral_geom/closest_pair.hpp
+      title: library/integral_geom/closest_pair.hpp
+    - icon: ':question:'
       path: library/integral_geom/convex_hull.hpp
       title: "Convex Hull (\u6574\u6570\u5EA7\u6A19)"
+    - icon: ':x:'
+      path: library/integral_geom/count_lattice_point.hpp
+      title: library/integral_geom/count_lattice_point.hpp
+    - icon: ':question:'
+      path: library/integral_geom/geometry.hpp
+      title: library/integral_geom/geometry.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/integral_geom/sort_points_by_argument.hpp
+      title: library/integral_geom/sort_points_by_argument.hpp
   - name: library/linear_algebra
     pages:
     - icon: ':x:'
@@ -1253,11 +1257,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - name: test/src/geom/sort_points_by_argument
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/geom/sort_points_by_argument/sort_points_by_argument.test.cpp
-      title: test/src/geom/sort_points_by_argument/sort_points_by_argument.test.cpp
   - name: test/src/graph/biconnected_components
     pages:
     - icon: ':heavy_check_mark:'
@@ -1342,6 +1341,52 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
       title: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
+  - name: test/src/integral_geom/closest_pair
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
+      title: test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
+  - name: test/src/integral_geom/convex_hull
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
+      title: test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
+  - name: test/src/integral_geom/count_lattice_point
+    pages:
+    - icon: ':x:'
+      path: test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
+      title: test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
+  - name: test/src/integral_geom/geometry
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/geometry/CGL_1_C.test.cpp
+      title: test/src/integral_geom/geometry/CGL_1_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/geometry/CGL_2_A.test.cpp
+      title: test/src/integral_geom/geometry/CGL_2_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/geometry/CGL_2_B.test.cpp
+      title: test/src/integral_geom/geometry/CGL_2_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/geometry/CGL_3_A.test.cpp
+      title: test/src/integral_geom/geometry/CGL_3_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/geometry/CGL_3_B.test.cpp
+      title: test/src/integral_geom/geometry/CGL_3_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/geometry/CGL_3_C.test.cpp
+      title: test/src/integral_geom/geometry/CGL_3_C.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/geometry/CGL_7_A.test.cpp
+      title: test/src/integral_geom/geometry/CGL_7_A.test.cpp
+    - icon: ':x:'
+      path: test/src/integral_geom/geometry/abc259_d.test.cpp
+      title: test/src/integral_geom/geometry/abc259_d.test.cpp
+  - name: test/src/integral_geom/sort_points_by_argument
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
+      title: test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
   - name: test/src/linear_algebra/array_matrix
     pages:
     - icon: ':x:'

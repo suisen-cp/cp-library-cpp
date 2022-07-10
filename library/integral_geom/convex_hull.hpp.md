@@ -2,16 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
+    title: test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
+  - icon: ':x:'
+    path: test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
+    title: test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/integral_geom/convex_hull.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <numeric>\n#include <vector>\n\nnamespace suisen {\nnamespace\
-    \ integral_geometry {\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    std::vector<int> convex_hull(const std::vector<std::pair<T,\
+    \ <algorithm>\n#include <numeric>\n#include <vector>\n\nnamespace suisen::integral_geometry\
+    \ {\n    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
+    \ = nullptr>\n    std::vector<int> convex_hull(const std::vector<std::pair<T,\
     \ T>> &points) {\n        const int n = points.size();\n        std::vector<int>\
     \ sorted(n);\n        std::iota(sorted.begin(), sorted.end(), 0);\n        std::sort(sorted.begin(),\
     \ sorted.end(), [&points](int i, int j) {\n            auto &a = points[i], &b\
@@ -30,12 +36,12 @@ data:
     \ bc_y = points[k].second - points[j].second;\n                if (isp_pos(ab_x,\
     \ ab_y, bc_x, bc_y)) break;\n                res.pop_back(), used[j] = false;\n\
     \            }\n            if (not used[k]) res.push_back(k);\n            used[k]\
-    \ = true;\n        }\n        return res;\n    }\n}\n} // namespace suisen\n\n\
-    \n"
+    \ = true;\n        }\n        return res;\n    }\n} // namespace suisen::integral_geometry\n\
+    \n\n"
   code: "#ifndef SUISEN_CONVEX_HULL_INTEGRAL\n#define SUISEN_CONVEX_HULL_INTEGRAL\n\
-    \n#include <algorithm>\n#include <numeric>\n#include <vector>\n\nnamespace suisen\
-    \ {\nnamespace integral_geometry {\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    std::vector<int> convex_hull(const std::vector<std::pair<T,\
+    \n#include <algorithm>\n#include <numeric>\n#include <vector>\n\nnamespace suisen::integral_geometry\
+    \ {\n    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
+    \ = nullptr>\n    std::vector<int> convex_hull(const std::vector<std::pair<T,\
     \ T>> &points) {\n        const int n = points.size();\n        std::vector<int>\
     \ sorted(n);\n        std::iota(sorted.begin(), sorted.end(), 0);\n        std::sort(sorted.begin(),\
     \ sorted.end(), [&points](int i, int j) {\n            auto &a = points[i], &b\
@@ -54,15 +60,17 @@ data:
     \ bc_y = points[k].second - points[j].second;\n                if (isp_pos(ab_x,\
     \ ab_y, bc_x, bc_y)) break;\n                res.pop_back(), used[j] = false;\n\
     \            }\n            if (not used[k]) res.push_back(k);\n            used[k]\
-    \ = true;\n        }\n        return res;\n    }\n}\n} // namespace suisen\n\n\
-    #endif // SUISEN_CONVEX_HULL_INTEGRAL\n"
+    \ = true;\n        }\n        return res;\n    }\n} // namespace suisen::integral_geometry\n\
+    \n#endif // SUISEN_CONVEX_HULL_INTEGRAL\n"
   dependsOn: []
   isVerificationFile: false
   path: library/integral_geom/convex_hull.hpp
   requiredBy: []
-  timestamp: '2021-08-25 03:07:17+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-07-10 16:40:31+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/src/integral_geom/count_lattice_point/typical90_ao.test.cpp
+  - test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
 documentation_of: library/integral_geom/convex_hull.hpp
 layout: document
 title: "Convex Hull (\u6574\u6570\u5EA7\u6A19)"
