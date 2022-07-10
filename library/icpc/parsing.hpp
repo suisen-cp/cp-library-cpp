@@ -37,7 +37,7 @@ namespace suisen::parsing {
     }
 
     void assert_range(const State& it, char lo, char hi) {
-        if (in(it, lo, hi)) {
+        if (not in(it, lo, hi)) {
             cerr << "Expected [" << lo << "-" << hi << "] but got '" << *it << "'" << endl;
             internal::print_rest_of_string(it);
             throw ParseError{};
