@@ -16,12 +16,12 @@ namespace suisen {
         f.erase(f.begin());
         FPS<mint> g(h);
         for (uint32_t i = 0; i < h; ++i) {
-            mint v = fac.fac_inv(i) * fac.fac_inv(n + 1 - i);
+            mint v = fac.binom(n + 1, i);
             g[i] = i & 1 ? -v : v;
         }
         FPS<mint> res = f * g;
-        for (uint32_t i = h; i < n; ++i) res[i] = res[n - 1 - i];
         res.resize(n);
+        for (uint32_t i = h; i < n; ++i) res[i] = res[n - 1 - i];
         return res;
     }
     template <typename mint>
