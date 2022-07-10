@@ -5,6 +5,12 @@
 #include <limits>
 #include <vector>
 
+#ifdef _MSC_VER
+#  include <intrin.h>
+#else
+#  include <x86intrin.h>
+#endif
+
 namespace suisen {
 class dynamic_bitset {
     public:
@@ -147,6 +153,12 @@ class dynamic_bitset {
         void flip(const unsigned int n) {
             ensure_size(n + 1);
             _bits[outer_index(n)] ^= 1ULL << inner_index(n);
+        }
+        __attribute__((target("avx2")))
+        int count() const {
+            int res = 0;
+            for (unsigned long long e : _bits) res += _mm_popcnt_u64(e);
+            return res;
         }
         friend std::ostream& operator<<(std::ostream &out, const dynamic_bitset &bs) {
             std::string res;
