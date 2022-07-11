@@ -7,9 +7,7 @@
 #include "library/type_traits/type_traits.hpp"
 
 namespace suisen {
-    class BitVector {
-        using u8 = std::uint8_t;
-    public:
+    struct BitVector {
         explicit BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L) + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}
         BitVector() : BitVector(0) {}
         template <typename Gen, constraints_t<is_same_as_invoke_result<bool, Gen, int>> = nullptr>
@@ -43,20 +41,20 @@ namespace suisen {
             }
             for (; i < n; ++i) bits[ns - 1] |= gen(i) << (i & MASK_S);
         }
-        inline bool operator[](int i) const {
+        bool operator[](int i) const {
             return (bits[i >> LOG_BLOCK_S] >> (i & MASK_S)) & 1;
         }
         // returns the i'th val (i: 0-indexed)
-        inline bool access(int i) const {
+        bool access(int i) const {
             return (*this)[i];
         }
         // returns the number of val in [0, i)
-        inline int rank(bool val, int i) const {
+        int rank(bool val, int i) const {
             int res_1 = cum_l[i >> LOG_BLOCK_L] + cum_s[i >> LOG_BLOCK_S] + popcount8(bits[i >> LOG_BLOCK_S] & ((1 << (i & MASK_S)) - 1));
             return val ? res_1 : i - res_1;
         }
         // returns the number of val in [l, r)
-        inline int rank(bool val, int l, int r) const {
+        int rank(bool val, int l, int r) const {
             return rank(val, r) - rank(val, l);
         }
         // find the index of num'th val. (num: 1-indexed). if not exists, returns default_value.
@@ -75,9 +73,9 @@ namespace suisen {
 
         int n, nl, ns;
         std::vector<int> cum_l;
-        std::vector<u8> cum_s, bits;
+        std::vector<std::uint8_t> cum_s, bits;
 
-        static constexpr u8 popcount8(u8 x) {
+        static constexpr std::uint8_t popcount8(std::uint8_t x) {
             x = (x & 0b01010101) + ((x >> 1) & 0b01010101);
             x = (x & 0b00110011) + ((x >> 2) & 0b00110011);
             return (x & 0b00001111) + (x >> 4);

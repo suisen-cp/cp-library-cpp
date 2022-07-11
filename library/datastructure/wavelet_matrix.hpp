@@ -168,11 +168,6 @@ namespace suisen {
         }
 
         static void check_value_bounds(T val) {
-            if (val >> bit_num) {
-                std::vector<int> a(val);
-                std::cerr << a[val] << std::endl;
-                assert(false);
-            }
             assert((val >> bit_num) == 0);
         }
     };
