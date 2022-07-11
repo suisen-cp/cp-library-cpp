@@ -11,7 +11,7 @@
 
 namespace suisen {
     template <typename T, int log_max_len = std::numeric_limits<std::make_unsigned_t<T>>::digits>
-    struct CompressedWaveletMatrix : public WaveletMatrix<int, log_max_len> {
+    struct CompressedWaveletMatrix : private WaveletMatrix<int, log_max_len> {
         // default constructor
         CompressedWaveletMatrix() noexcept : WaveletMatrix<int, log_max_len>(0) {}
         // builds WaveletMatrix from generating function typed as (int) -> T

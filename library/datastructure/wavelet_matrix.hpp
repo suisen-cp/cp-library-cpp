@@ -38,6 +38,7 @@ namespace suisen {
                 mid[log] = li;
             }
         }
+
         // returns WaveletMatrix[i]
         T operator[](int i) const {
             T res = 0;
@@ -49,9 +50,10 @@ namespace suisen {
             return res;
         }
         // returns WaveletMatrix[i]
-        inline T access(int i) const {
+        T access(int i) const {
             return (*this)[i];
         }
+
         // returns the number of `val` in WaveletMatrix[0, i).
         int rank(T val, int i) const {
             check_value_bounds(val);
@@ -59,69 +61,97 @@ namespace suisen {
             for (int log = bit_num - 1; log >= 0; --log) succ(l, r, (val >> log) & 1, log);
             return r - l;
         }
-        // returns the k'th smallest value in WaveletMatrix[l, r) (k : 0-indexed)
-        T range_kth_smallest(int l, int r, int k, T default_value = T(-1)) const {
+
+        // returns the k'th smallest value in the multiset {| x ^ WaveletMatrix[i] : i in [l, r) |} (k : 0-indexed)
+        T range_xor_kth_smallest(int l, int r, int k, T x, T default_value = T(-1)) const {
             if (k < 0 or k >= r - l) return default_value;
             T res = 0;
+            check_value_bounds(x);
             for (int log = bit_num - 1; log >= 0; --log) {
-                int cnt_0 = bv[log].rank(false, l, r);
-                bool bit = k >= cnt_0;
+                bool z = (x >> log) & 1;
+                int cnt_z = bv[log].rank(z, l, r);
+                bool skip_z = k >= cnt_z, bit = z ^ skip_z;
                 succ(l, r, bit, log);
                 res |= T(bit) << log;
-                k -= bit * cnt_0;
+                k -= skip_z * cnt_z;
             }
             return res;
         }
-        // returns the k'th largest value in WaveletMatrix[l, r) (k : 0-indexed)
-        inline T range_kth_largest(int l, int r, int k, T default_value = T(-1)) const {
-            return range_kth_smallest(l, r, r - l - 1 - k, default_value);
+        // returns the k'th largest value in the multiset {| x ^ WaveletMatrix[i] : i in [l, r) |} (k : 0-indexed)
+        T range_xor_kth_largest(int l, int r, int k, T x, T default_value = T(-1)) const {
+            return range_xor_kth_smallest(l, r, r - l - 1 - k, x, default_value);
         }
-        // returns the minimum value in WaveletMatrix[l, r)
-        inline T range_min(int l, int r) const {
+        // returns the minimum value in the set { x ^ WaveletMatrix[i] : i in [l, r) }
+        T range_xor_min(int l, int r, T x) const {
             assert(l < r);
-            return range_kth_smallest(l, r, 0);
+            return range_xor_kth_smallest(l, r, 0, x);
         }
-        // returns the maximum value in WaveletMatrix[l, r)
-        inline T range_max(int l, int r) const {
+        // returns the maximum value in the set { x ^ WaveletMatrix[i] : i in [l, r) }
+        T range_xor_max(int l, int r, T x) const {
             assert(l < r);
-            return range_kth_largest(l, r, 0);
+            return range_xor_kth_largest(l, r, 0, x);
         }
-        // returns the number of v in WaveletMatrix[l, r) s.t. v < upper
-        int range_freq(int l, int r, T upper) const {
+
+        // returns the number of v in WaveletMatrix[l, r) s.t. v ^ x < upper
+        int range_xor_freq(int l, int r, T x, T upper) const {
             if (r <= l) return 0;
-            check_value_bounds(upper);
+            if (upper > MAX) return r - l;
+            check_value_bounds(x);
             int res = 0;
             for (int log = bit_num - 1; log >= 0; --log) {
-                bool b = (upper >> log) & 1;
-                if (b) res += bv[log].rank(false, l, r);
-                succ(l, r, b, log);
+                bool z = (x >> log) & 1, u = (upper >> log) & 1;
+                if (u) res += bv[log].rank(z, l, r);
+                succ(l, r, z ^ u, log);
             }
             return res;
         }
-        // returns the number of v in WaveletMatrix[l, r) s.t. lower <= v < upper
-        inline int range_freq(int l, int r, T lower, T upper) const {
+        // returns the number of v in WaveletMatrix[l, r) s.t. lower <= x ^ v < upper
+        int range_xor_freq(int l, int r, T x, T lower, T upper) const {
             if (lower >= upper) return 0;
-            return range_freq(l, r, upper) - range_freq(l, r, lower);
+            return range_xor_freq(l, r, x, upper) - range_xor_freq(l, r, x, lower);
         }
+
+        // returns the minimum value v in WaveletMatrix[l, r) s.t. lower <= x ^ v
+        T range_xor_min_geq(int l, int r, T x, T lower, T default_value = T(-1)) const {
+            int cnt = range_xor_freq(l, r, x, lower);
+            return cnt >= r - l ? default_value : range_xor_kth_smallest(l, r, cnt, x);
+        }
+        // returns the minimum value v in WaveletMatrix[l, r) s.t. lower < x ^ v
+        T range_xor_min_gt(int l, int r, T x, T lower, T default_value = T(-1)) const {
+            return lower == MAX ? default_value : range_xor_min_geq(l, r, x, lower + 1, default_value);
+        }
+        // returns the maximum value v in WaveletMatrix[l, r) s.t. x ^ v < upper
+        T range_xor_max_lt(int l, int r, T x, T upper, T default_value = T(-1)) const {
+            int cnt = range_xor_freq(l, r, x, upper);
+            return cnt == 0 ? default_value : range_xor_kth_smallest(l, r, cnt - 1, x, default_value);
+        }
+        // returns the maximum value v in WaveletMatrix[l, r) s.t. x ^ v <= upper
+        T range_xor_max_leq(int l, int r, T x, T upper, T default_value = T(-1)) const {
+            if (l >= r) return default_value;
+            return upper == MAX ? range_xor_max(l, r, x) : range_xor_max_lt(l, r, x, upper + 1, default_value);
+        }
+
+        // returns the k'th smallest value in WaveletMatrix[l, r) (k : 0-indexed)
+        T range_kth_smallest(int l, int r, int k, T default_value = T(-1)) const { return range_xor_kth_smallest(l, r, k, 0, default_value); }
+        // returns the k'th largest value in WaveletMatrix[l, r) (k : 0-indexed)
+        T range_kth_largest(int l, int r, int k, T default_value = T(-1)) const { return range_xor_kth_largest(l, r, k, 0, default_value); }
+        // returns the minimum value in WaveletMatrix[l, r)
+        T range_min(int l, int r) const { return range_xor_min(l, r, 0); }
+        // returns the maximum value in WaveletMatrix[l, r)
+        T range_max(int l, int r) const { return range_xor_max(l, r, 0); }
+
+        // returns the number of v in WaveletMatrix[l, r) s.t. v < upper
+        int range_freq(int l, int r, T upper) const { return range_xor_freq(l, r, 0, upper); }
+        // returns the number of v in WaveletMatrix[l, r) s.t. lower <= v < upper
+        int range_freq(int l, int r, T lower, T upper) const { return range_xor_freq(l, r, 0, lower, upper); }
         // returns the minimum value v in WaveletMatrix[l, r) s.t. lower <= v
-        inline T range_min_geq(int l, int r, T lower, T default_value = T(-1)) const {
-            int cnt = range_freq(l, r, lower);
-            return cnt >= r - l ? default_value : range_kth_smallest(l, r, cnt);
-        }
+        T range_min_geq(int l, int r, T lower, T default_value = T(-1)) const { return range_xor_min_geq(l, r, 0, lower, default_value); }
         // returns the minimum value v in WaveletMatrix[l, r) s.t. lower < v
-        inline T range_min_gt(int l, int r, T lower, T default_value = T(-1)) const {
-            return lower == MAX ? default_value : range_min_geq(l, r, lower + 1);
-        }
+        T range_min_gt(int l, int r, T lower, T default_value = T(-1)) const { return range_xor_min_gt(l, r, 0, lower, default_value); }
         // returns the maximum value v in WaveletMatrix[l, r) s.t. v < upper
-        inline T range_max_lt(int l, int r, T upper, T default_value = T(-1)) const {
-            int cnt = range_freq(l, r, upper);
-            return cnt == 0 ? default_value : range_kth_smallest(l, r, cnt - 1);
-        }
+        T range_max_lt(int l, int r, T upper, T default_value = T(-1)) const { return range_xor_max_lt(l, r, 0, upper, default_value); }
         // returns the maximum value v in WaveletMatrix[l, r) s.t. v <= upper
-        inline T range_max_leq(int l, int r, T upper, T default_value = T(-1)) const {
-            if (r >= l) return default_value;
-            return upper == MAX ? range_max(l, r) : range_max_lt(l, r, upper + 1);
-        }
+        T range_max_leq(int l, int r, T upper, T default_value = T(-1)) const { return range_xor_max_leq(l, r, 0, upper, default_value); }
     protected:
         WaveletMatrix(int n) noexcept : n(n) {}
     private:
@@ -132,12 +162,17 @@ namespace suisen {
         std::array<BitVector, bit_num> bv;
         std::array<int, bit_num> mid;
 
-        inline void succ(int& l, int& r, const bool b, const int log) const {
+        void succ(int& l, int& r, const bool b, const int log) const {
             l = b * mid[log] + bv[log].rank(b, l);
             r = b * mid[log] + bv[log].rank(b, r);
         }
 
-        static constexpr void check_value_bounds(T val) {
+        static void check_value_bounds(T val) {
+            if (val >> bit_num) {
+                std::vector<int> a(val);
+                std::cerr << a[val] << std::endl;
+                assert(false);
+            }
             assert((val >> bit_num) == 0);
         }
     };
