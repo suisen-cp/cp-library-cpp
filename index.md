@@ -1201,6 +1201,9 @@ data:
   - name: test/src/datastructure/wavelet_matrix
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/wavelet_matrix/dummy.test.cpp
+      title: test/src/datastructure/wavelet_matrix/dummy.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'

@@ -46,8 +46,8 @@ data:
   timestamp: '2022-07-10 18:49:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
   - test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
+  - test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
 documentation_of: library/integral_geom/count_lattice_point.hpp
 layout: document
 title: "\u683C\u5B50\u70B9\u3092\u9802\u70B9\u3068\u3059\u308B\u591A\u89D2\u5F62\u306E\

@@ -22,6 +22,9 @@ data:
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/wavelet_matrix/dummy.test.cpp
+    title: test/src/datastructure/wavelet_matrix/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
@@ -160,17 +163,18 @@ data:
   isVerificationFile: false
   path: library/datastructure/bit_vector.hpp
   requiredBy:
-  - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/wavelet_matrix.hpp
+  - library/datastructure/compressed_wavelet_matrix.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/wavelet_matrix/dummy.test.cpp
+  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
 documentation_of: library/datastructure/bit_vector.hpp
 layout: document
 title: Bit Vector
