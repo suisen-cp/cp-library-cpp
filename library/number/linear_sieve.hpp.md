@@ -87,16 +87,16 @@ data:
   path: library/number/linear_sieve.hpp
   requiredBy:
   - library/number/anymod_binom.hpp
-  - library/sequence/eulerian_number.hpp
-  - library/sequence/stirling_number2.hpp
   - library/sequence/powers.hpp
+  - library/sequence/stirling_number2.hpp
+  - library/sequence/eulerian_number.hpp
   timestamp: '2021-08-04 13:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005.test.cpp
-  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
 documentation_of: library/number/linear_sieve.hpp
 layout: document
 title: "\u7DDA\u5F62\u7BE9"

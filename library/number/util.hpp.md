@@ -296,10 +296,10 @@ data:
   timestamp: '2022-07-05 04:32:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/number/util/kth_root_integer.test.cpp
   - test/src/number/util/abc222_g.test.cpp
-  - test/src/number/util/same_div_dens.test.cpp
+  - test/src/number/util/kth_root_integer.test.cpp
   - test/src/number/util/divide_both.test.cpp
+  - test/src/number/util/same_div_dens.test.cpp
 documentation_of: library/number/util.hpp
 layout: document
 title: Util

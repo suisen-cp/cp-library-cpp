@@ -267,17 +267,17 @@ data:
   isVerificationFile: false
   path: library/linear_algebra/matrix.hpp
   requiredBy:
-  - library/linear_algebra/count_spanning_trees.hpp
-  - library/linear_algebra/hessenberg_reduction.hpp
   - library/linear_algebra/characteristic_polynomial.hpp
+  - library/linear_algebra/hessenberg_reduction.hpp
+  - library/linear_algebra/count_spanning_trees.hpp
   timestamp: '2022-05-14 02:45:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/sps/abc253_h.test.cpp
-  - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
-  - test/src/linear_algebra/matrix/matrix_product.test.cpp
   - test/src/linear_algebra/matrix/inverse_matrix.test.cpp
   - test/src/linear_algebra/matrix/determinant_of_matrix.test.cpp
+  - test/src/linear_algebra/matrix/matrix_product.test.cpp
+  - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
 documentation_of: library/linear_algebra/matrix.hpp
 layout: document
 title: Matrix

@@ -523,8 +523,8 @@ data:
   - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp
-  - test/src/math/array_sps/abc213_g.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/array_sps/abc213_g.test.cpp
 documentation_of: library/math/array_sps.hpp
 layout: document
 title: Array Sps

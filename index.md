@@ -716,6 +716,11 @@ data:
     - icon: ':question:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
+  - name: library/uncategorized
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/uncategorized/static_range_xored_mex_query.hpp
+      title: library/uncategorized/static_range_xored_mex_query.hpp
   - name: library/util
     pages:
     - icon: ':warning:'
@@ -1831,6 +1836,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/edpc_v.test.cpp
       title: test/src/tree/rerooting/edpc_v.test.cpp
+  - name: test/src/uncategorized/static_range_xored_mex_query
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
+      title: test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
   - name: test/src/util/coordinate_compressor
     pages:
     - icon: ':heavy_check_mark:'

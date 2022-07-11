@@ -81,10 +81,10 @@ data:
   timestamp: '2022-06-27 18:51:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
   - test/src/datastructure/union_find/union_find/unionfind.test.cpp
   - test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
   - test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
-  - test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
 documentation_of: library/datastructure/union_find/union_find.hpp
 layout: document
 title: Union Find

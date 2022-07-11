@@ -551,8 +551,8 @@ data:
   - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/math/sps/arc105_f.test.cpp
   - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/sps/abc213_g.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/sps/abc213_g.test.cpp
 documentation_of: library/math/sps.hpp
 layout: document
 title: Set Power Series

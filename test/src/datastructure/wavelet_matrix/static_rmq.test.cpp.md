@@ -57,17 +57,17 @@ data:
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
     } // namespace suisen\n\n\n#line 8 \"library/datastructure/bit_vector.hpp\"\n\n\
-    namespace suisen {\n    class BitVector {\n        using u8 = std::uint8_t;\n\
-    \    public:\n        explicit BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L)\
-    \ + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}\n\
-    \        BitVector() : BitVector(0) {}\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
-    \ Gen, int>> = nullptr>\n        BitVector(int n, Gen gen) : BitVector(n) {\n\
-    \            build(gen);\n        }\n        BitVector& operator=(const BitVector&\
-    \ bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s\
-    \ = bv.cum_s, bits = bv.bits;\n            return *this;\n        }\n        BitVector&\
-    \ operator=(BitVector&& bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l\
-    \ = std::move(bv.cum_l), cum_s = std::move(bv.cum_s), bits = std::move(bv.bits);\n\
-    \            return *this;\n        }\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
+    namespace suisen {\n    struct BitVector {\n        explicit BitVector(int n)\
+    \ : n(n), nl((n >> LOG_BLOCK_L) + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl, 0),\
+    \ cum_s(ns, 0), bits(ns, 0) {}\n        BitVector() : BitVector(0) {}\n      \
+    \  template <typename Gen, constraints_t<is_same_as_invoke_result<bool, Gen, int>>\
+    \ = nullptr>\n        BitVector(int n, Gen gen) : BitVector(n) {\n           \
+    \ build(gen);\n        }\n        BitVector& operator=(const BitVector& bv) {\n\
+    \            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s = bv.cum_s,\
+    \ bits = bv.bits;\n            return *this;\n        }\n        BitVector& operator=(BitVector&&\
+    \ bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = std::move(bv.cum_l),\
+    \ cum_s = std::move(bv.cum_s), bits = std::move(bv.bits);\n            return\
+    \ *this;\n        }\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
     \ Gen, int>> = nullptr>\n        void build(Gen gen) {\n            int i = 0;\n\
     \            for (int index_s = 1; index_s < ns; ++index_s) {\n              \
     \  int count = cum_s[index_s - 1];\n                for (; i < index_s << LOG_BLOCK_S;\
@@ -78,28 +78,29 @@ data:
     \                   int index_l = i >> LOG_BLOCK_L;\n                    cum_l[index_l]\
     \ = cum_l[index_l - 1] + count;\n                }\n            }\n          \
     \  for (; i < n; ++i) bits[ns - 1] |= gen(i) << (i & MASK_S);\n        }\n   \
-    \     inline bool operator[](int i) const {\n            return (bits[i >> LOG_BLOCK_S]\
+    \     bool operator[](int i) const {\n            return (bits[i >> LOG_BLOCK_S]\
     \ >> (i & MASK_S)) & 1;\n        }\n        // returns the i'th val (i: 0-indexed)\n\
-    \        inline bool access(int i) const {\n            return (*this)[i];\n \
-    \       }\n        // returns the number of val in [0, i)\n        inline int\
-    \ rank(bool val, int i) const {\n            int res_1 = cum_l[i >> LOG_BLOCK_L]\
-    \ + cum_s[i >> LOG_BLOCK_S] + popcount8(bits[i >> LOG_BLOCK_S] & ((1 << (i & MASK_S))\
-    \ - 1));\n            return val ? res_1 : i - res_1;\n        }\n        // returns\
-    \ the number of val in [l, r)\n        inline int rank(bool val, int l, int r)\
-    \ const {\n            return rank(val, r) - rank(val, l);\n        }\n      \
-    \  // find the index of num'th val. (num: 1-indexed). if not exists, returns default_value.\n\
-    \        int select(bool val, int num, int default_value = -1) const {\n     \
-    \       int l = -1, r = n + 1;\n            while (r - l > 1) {\n            \
-    \    int m = (l + r) >> 1;\n                (rank(val, m) >= num ? r : l) = m;\n\
+    \        bool access(int i) const {\n            return (*this)[i];\n        }\n\
+    \        // returns the number of val in [0, i)\n        int rank(bool val, int\
+    \ i) const {\n            int res_1 = cum_l[i >> LOG_BLOCK_L] + cum_s[i >> LOG_BLOCK_S]\
+    \ + popcount8(bits[i >> LOG_BLOCK_S] & ((1 << (i & MASK_S)) - 1));\n         \
+    \   return val ? res_1 : i - res_1;\n        }\n        // returns the number\
+    \ of val in [l, r)\n        int rank(bool val, int l, int r) const {\n       \
+    \     return rank(val, r) - rank(val, l);\n        }\n        // find the index\
+    \ of num'th val. (num: 1-indexed). if not exists, returns default_value.\n   \
+    \     int select(bool val, int num, int default_value = -1) const {\n        \
+    \    int l = -1, r = n + 1;\n            while (r - l > 1) {\n               \
+    \ int m = (l + r) >> 1;\n                (rank(val, m) >= num ? r : l) = m;\n\
     \            }\n            return r == n + 1 ? default_value : r;\n        }\n\
     \    private:\n        static constexpr int LOG_BLOCK_L = 8;\n        static constexpr\
     \ int LOG_BLOCK_S = 3;\n        static constexpr int MASK_S = (1 << LOG_BLOCK_S)\
-    \ - 1;\n\n        int n, nl, ns;\n        std::vector<int> cum_l;\n        std::vector<u8>\
-    \ cum_s, bits;\n\n        static constexpr u8 popcount8(u8 x) {\n            x\
-    \ = (x & 0b01010101) + ((x >> 1) & 0b01010101);\n            x = (x & 0b00110011)\
-    \ + ((x >> 2) & 0b00110011);\n            return (x & 0b00001111) + (x >> 4);\n\
-    \        }\n    };\n} // namespace suisen\n\n\n#line 10 \"library/datastructure/wavelet_matrix.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T, int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
+    \ - 1;\n\n        int n, nl, ns;\n        std::vector<int> cum_l;\n        std::vector<std::uint8_t>\
+    \ cum_s, bits;\n\n        static constexpr std::uint8_t popcount8(std::uint8_t\
+    \ x) {\n            x = (x & 0b01010101) + ((x >> 1) & 0b01010101);\n        \
+    \    x = (x & 0b00110011) + ((x >> 2) & 0b00110011);\n            return (x &\
+    \ 0b00001111) + (x >> 4);\n        }\n    };\n} // namespace suisen\n\n\n#line\
+    \ 10 \"library/datastructure/wavelet_matrix.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename T, int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
     \    struct WaveletMatrix {\n        // default constructor\n        WaveletMatrix()\
     \ noexcept : n(0) {}\n        // builds WaveletMatrix from generating function\
     \ typed as (int) -> T\n        template <typename Gen, constraints_t<is_same_as_invoke_result<T,\
@@ -203,16 +204,14 @@ data:
     \ bv;\n        std::array<int, bit_num> mid;\n\n        void succ(int& l, int&\
     \ r, const bool b, const int log) const {\n            l = b * mid[log] + bv[log].rank(b,\
     \ l);\n            r = b * mid[log] + bv[log].rank(b, r);\n        }\n\n     \
-    \   static void check_value_bounds(T val) {\n            if (val >> bit_num) {\n\
-    \                std::vector<int> a(val);\n                std::cerr << a[val]\
-    \ << std::endl;\n                assert(false);\n            }\n            assert((val\
-    \ >> bit_num) == 0);\n        }\n    };\n} // namespace suisen\n\n\n#line 6 \"\
-    test/src/datastructure/wavelet_matrix/static_rmq.test.cpp\"\n\nusing suisen::WaveletMatrix;\n\
-    \nconstexpr int MAX_LOG = 30;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    int n, q;\n    std::cin >> n >> q;\n    std::vector<int>\
-    \ a(n);\n    for (auto &e : a) std::cin >> e;\n    WaveletMatrix<int, MAX_LOG>\
-    \ wm(a);\n    while (q --> 0) {\n        int l, r;\n        std::cin >> l >> r;\n\
-    \        std::cout << wm.range_min(l, r) << '\\n';\n    }\n    return 0;\n}\n"
+    \   static void check_value_bounds(T val) {\n            assert((val >> bit_num)\
+    \ == 0);\n        }\n    };\n} // namespace suisen\n\n\n#line 6 \"test/src/datastructure/wavelet_matrix/static_rmq.test.cpp\"\
+    \n\nusing suisen::WaveletMatrix;\n\nconstexpr int MAX_LOG = 30;\n\nint main()\
+    \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int\
+    \ n, q;\n    std::cin >> n >> q;\n    std::vector<int> a(n);\n    for (auto &e\
+    \ : a) std::cin >> e;\n    WaveletMatrix<int, MAX_LOG> wm(a);\n    while (q -->\
+    \ 0) {\n        int l, r;\n        std::cin >> l >> r;\n        std::cout << wm.range_min(l,\
+    \ r) << '\\n';\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include\
     \ <iostream>\n\n#include \"library/datastructure/wavelet_matrix.hpp\"\n\nusing\
     \ suisen::WaveletMatrix;\n\nconstexpr int MAX_LOG = 30;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
@@ -227,7 +226,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   requiredBy: []
-  timestamp: '2022-07-11 22:19:21+09:00'
+  timestamp: '2022-07-11 23:27:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
