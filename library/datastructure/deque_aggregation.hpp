@@ -74,14 +74,15 @@ namespace suisen {
                 else it_l += dif;
                 return *this;
             }
-            DequeAggregationIterator operator+(difference_type dif) const { DequeAggregationIterator it = *this; it += dif; return it; }
+            friend DequeAggregationIterator operator+(DequeAggregationIterator it, difference_type dif) { it += dif; return it; }
+            friend DequeAggregationIterator operator+(difference_type dif, DequeAggregationIterator it) { it += dif; return it; }
             DequeAggregationIterator& operator-=(difference_type dif) {
                 if (dif < 0) return *this += -dif;
                 if (int d = it_r - it_r_begin; d < dif) it_r = it_r_begin, it_l -= dif - d;
                 else it_r -= dif;
                 return *this;
             }
-            DequeAggregationIterator operator-(difference_type dif) const { DequeAggregationIterator it = *this; it -= dif; return it; }
+            friend DequeAggregationIterator operator-(DequeAggregationIterator it, difference_type dif) { it -= dif; return it; }
             difference_type operator-(const DequeAggregationIterator &rhs) const {
                 difference_type d1 = it_l == it_l_end ? it_r - it_r_begin : it_l - it_l_end;
                 difference_type d2 = rhs.it_l == rhs.it_l_end ? rhs.it_r - rhs.it_r_begin : rhs.it_l - rhs.it_l_end;
@@ -91,9 +92,9 @@ namespace suisen {
             const value_type& operator*() const { return it_l == it_l_end ? it_r->first : it_l->first; }
             bool operator!=(const DequeAggregationIterator &rhs) const { return it_l != rhs.it_l or it_r != rhs.it_r; }
             bool operator==(const DequeAggregationIterator &rhs) const { return not (*this != rhs); }
-            bool operator<(const DequeAggregationIterator &rhs) const { return (*this) - rhs < 0; }
+            bool operator< (const DequeAggregationIterator &rhs) const { return (*this) - rhs <  0; }
             bool operator<=(const DequeAggregationIterator &rhs) const { return (*this) - rhs <= 0; }
-            bool operator>(const DequeAggregationIterator &rhs) const { return (*this) - rhs > 0; }
+            bool operator> (const DequeAggregationIterator &rhs) const { return (*this) - rhs >  0; }
             bool operator>=(const DequeAggregationIterator &rhs) const { return (*this) - rhs >= 0; }
         };
         
