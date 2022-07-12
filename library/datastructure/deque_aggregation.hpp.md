@@ -58,37 +58,38 @@ data:
     \   DequeAggregationIterator& operator+=(difference_type dif) {\n            \
     \    if (dif < 0) return *this -= -dif;\n                if (int d = it_l_end\
     \ - it_l; d < dif) it_l = it_l_end, it_r += dif - d;\n                else it_l\
-    \ += dif;\n                return *this;\n            }\n            DequeAggregationIterator\
-    \ operator+(difference_type dif) const { DequeAggregationIterator it = *this;\
-    \ it += dif; return it; }\n            DequeAggregationIterator& operator-=(difference_type\
-    \ dif) {\n                if (dif < 0) return *this += -dif;\n               \
-    \ if (int d = it_r - it_r_begin; d < dif) it_r = it_r_begin, it_l -= dif - d;\n\
-    \                else it_r -= dif;\n                return *this;\n          \
-    \  }\n            DequeAggregationIterator operator-(difference_type dif) const\
-    \ { DequeAggregationIterator it = *this; it -= dif; return it; }\n           \
-    \ difference_type operator-(const DequeAggregationIterator &rhs) const {\n   \
-    \             difference_type d1 = it_l == it_l_end ? it_r - it_r_begin : it_l\
-    \ - it_l_end;\n                difference_type d2 = rhs.it_l == rhs.it_l_end ?\
-    \ rhs.it_r - rhs.it_r_begin : rhs.it_l - rhs.it_l_end;\n                return\
-    \ d1 - d2;\n            }\n            const value_type& operator[](difference_type\
-    \ i) const { return *((*this) + i); }\n            const value_type& operator*()\
-    \ const { return it_l == it_l_end ? it_r->first : it_l->first; }\n           \
-    \ bool operator!=(const DequeAggregationIterator &rhs) const { return it_l !=\
-    \ rhs.it_l or it_r != rhs.it_r; }\n            bool operator==(const DequeAggregationIterator\
-    \ &rhs) const { return not (*this != rhs); }\n            bool operator<(const\
-    \ DequeAggregationIterator &rhs) const { return (*this) - rhs < 0; }\n       \
-    \     bool operator<=(const DequeAggregationIterator &rhs) const { return (*this)\
-    \ - rhs <= 0; }\n            bool operator>(const DequeAggregationIterator &rhs)\
-    \ const { return (*this) - rhs > 0; }\n            bool operator>=(const DequeAggregationIterator\
-    \ &rhs) const { return (*this) - rhs >= 0; }\n        };\n        \n        using\
-    \ iterator = DequeAggregationIterator;\n        using difference_type = typename\
-    \ iterator::difference_type;\n        using value_type = typename iterator::value_type;\n\
-    \        using pointer = typename iterator::pointer;\n        using reference\
-    \ = typename iterator::reference;\n\n        DequeAggregation() = default;\n \
-    \       template <typename InputIterator, std::enable_if_t<std::is_constructible_v<value_type,\
-    \ typename InputIterator::value_type>, std::nullptr_t> = nullptr>\n        DequeAggregation(InputIterator\
-    \ first, InputIterator last) {\n            for (; first != last; ++first) push_back(*first);\n\
-    \        }\n        template <typename Container, std::enable_if_t<std::is_constructible_v<value_type,\
+    \ += dif;\n                return *this;\n            }\n            friend DequeAggregationIterator\
+    \ operator+(DequeAggregationIterator it, difference_type dif) { it += dif; return\
+    \ it; }\n            friend DequeAggregationIterator operator+(difference_type\
+    \ dif, DequeAggregationIterator it) { it += dif; return it; }\n            DequeAggregationIterator&\
+    \ operator-=(difference_type dif) {\n                if (dif < 0) return *this\
+    \ += -dif;\n                if (int d = it_r - it_r_begin; d < dif) it_r = it_r_begin,\
+    \ it_l -= dif - d;\n                else it_r -= dif;\n                return\
+    \ *this;\n            }\n            friend DequeAggregationIterator operator-(DequeAggregationIterator\
+    \ it, difference_type dif) { it -= dif; return it; }\n            difference_type\
+    \ operator-(const DequeAggregationIterator &rhs) const {\n                difference_type\
+    \ d1 = it_l == it_l_end ? it_r - it_r_begin : it_l - it_l_end;\n             \
+    \   difference_type d2 = rhs.it_l == rhs.it_l_end ? rhs.it_r - rhs.it_r_begin\
+    \ : rhs.it_l - rhs.it_l_end;\n                return d1 - d2;\n            }\n\
+    \            const value_type& operator[](difference_type i) const { return *((*this)\
+    \ + i); }\n            const value_type& operator*() const { return it_l == it_l_end\
+    \ ? it_r->first : it_l->first; }\n            bool operator!=(const DequeAggregationIterator\
+    \ &rhs) const { return it_l != rhs.it_l or it_r != rhs.it_r; }\n            bool\
+    \ operator==(const DequeAggregationIterator &rhs) const { return not (*this !=\
+    \ rhs); }\n            bool operator< (const DequeAggregationIterator &rhs) const\
+    \ { return (*this) - rhs <  0; }\n            bool operator<=(const DequeAggregationIterator\
+    \ &rhs) const { return (*this) - rhs <= 0; }\n            bool operator> (const\
+    \ DequeAggregationIterator &rhs) const { return (*this) - rhs >  0; }\n      \
+    \      bool operator>=(const DequeAggregationIterator &rhs) const { return (*this)\
+    \ - rhs >= 0; }\n        };\n        \n        using iterator = DequeAggregationIterator;\n\
+    \        using difference_type = typename iterator::difference_type;\n       \
+    \ using value_type = typename iterator::value_type;\n        using pointer = typename\
+    \ iterator::pointer;\n        using reference = typename iterator::reference;\n\
+    \n        DequeAggregation() = default;\n        template <typename InputIterator,\
+    \ std::enable_if_t<std::is_constructible_v<value_type, typename InputIterator::value_type>,\
+    \ std::nullptr_t> = nullptr>\n        DequeAggregation(InputIterator first, InputIterator\
+    \ last) {\n            for (; first != last; ++first) push_back(*first);\n   \
+    \     }\n        template <typename Container, std::enable_if_t<std::is_constructible_v<value_type,\
     \ typename Container::value_type>, std::nullptr_t> = nullptr>\n        DequeAggregation(const\
     \ Container &c) : DequeAggregation(std::begin(c), std::end(c)) {}\n\n        value_type\
     \ prod() const {\n            return op(prod(_st_l), prod(_st_r));\n        }\n\
@@ -159,37 +160,38 @@ data:
     \   DequeAggregationIterator& operator+=(difference_type dif) {\n            \
     \    if (dif < 0) return *this -= -dif;\n                if (int d = it_l_end\
     \ - it_l; d < dif) it_l = it_l_end, it_r += dif - d;\n                else it_l\
-    \ += dif;\n                return *this;\n            }\n            DequeAggregationIterator\
-    \ operator+(difference_type dif) const { DequeAggregationIterator it = *this;\
-    \ it += dif; return it; }\n            DequeAggregationIterator& operator-=(difference_type\
-    \ dif) {\n                if (dif < 0) return *this += -dif;\n               \
-    \ if (int d = it_r - it_r_begin; d < dif) it_r = it_r_begin, it_l -= dif - d;\n\
-    \                else it_r -= dif;\n                return *this;\n          \
-    \  }\n            DequeAggregationIterator operator-(difference_type dif) const\
-    \ { DequeAggregationIterator it = *this; it -= dif; return it; }\n           \
-    \ difference_type operator-(const DequeAggregationIterator &rhs) const {\n   \
-    \             difference_type d1 = it_l == it_l_end ? it_r - it_r_begin : it_l\
-    \ - it_l_end;\n                difference_type d2 = rhs.it_l == rhs.it_l_end ?\
-    \ rhs.it_r - rhs.it_r_begin : rhs.it_l - rhs.it_l_end;\n                return\
-    \ d1 - d2;\n            }\n            const value_type& operator[](difference_type\
-    \ i) const { return *((*this) + i); }\n            const value_type& operator*()\
-    \ const { return it_l == it_l_end ? it_r->first : it_l->first; }\n           \
-    \ bool operator!=(const DequeAggregationIterator &rhs) const { return it_l !=\
-    \ rhs.it_l or it_r != rhs.it_r; }\n            bool operator==(const DequeAggregationIterator\
-    \ &rhs) const { return not (*this != rhs); }\n            bool operator<(const\
-    \ DequeAggregationIterator &rhs) const { return (*this) - rhs < 0; }\n       \
-    \     bool operator<=(const DequeAggregationIterator &rhs) const { return (*this)\
-    \ - rhs <= 0; }\n            bool operator>(const DequeAggregationIterator &rhs)\
-    \ const { return (*this) - rhs > 0; }\n            bool operator>=(const DequeAggregationIterator\
-    \ &rhs) const { return (*this) - rhs >= 0; }\n        };\n        \n        using\
-    \ iterator = DequeAggregationIterator;\n        using difference_type = typename\
-    \ iterator::difference_type;\n        using value_type = typename iterator::value_type;\n\
-    \        using pointer = typename iterator::pointer;\n        using reference\
-    \ = typename iterator::reference;\n\n        DequeAggregation() = default;\n \
-    \       template <typename InputIterator, std::enable_if_t<std::is_constructible_v<value_type,\
-    \ typename InputIterator::value_type>, std::nullptr_t> = nullptr>\n        DequeAggregation(InputIterator\
-    \ first, InputIterator last) {\n            for (; first != last; ++first) push_back(*first);\n\
-    \        }\n        template <typename Container, std::enable_if_t<std::is_constructible_v<value_type,\
+    \ += dif;\n                return *this;\n            }\n            friend DequeAggregationIterator\
+    \ operator+(DequeAggregationIterator it, difference_type dif) { it += dif; return\
+    \ it; }\n            friend DequeAggregationIterator operator+(difference_type\
+    \ dif, DequeAggregationIterator it) { it += dif; return it; }\n            DequeAggregationIterator&\
+    \ operator-=(difference_type dif) {\n                if (dif < 0) return *this\
+    \ += -dif;\n                if (int d = it_r - it_r_begin; d < dif) it_r = it_r_begin,\
+    \ it_l -= dif - d;\n                else it_r -= dif;\n                return\
+    \ *this;\n            }\n            friend DequeAggregationIterator operator-(DequeAggregationIterator\
+    \ it, difference_type dif) { it -= dif; return it; }\n            difference_type\
+    \ operator-(const DequeAggregationIterator &rhs) const {\n                difference_type\
+    \ d1 = it_l == it_l_end ? it_r - it_r_begin : it_l - it_l_end;\n             \
+    \   difference_type d2 = rhs.it_l == rhs.it_l_end ? rhs.it_r - rhs.it_r_begin\
+    \ : rhs.it_l - rhs.it_l_end;\n                return d1 - d2;\n            }\n\
+    \            const value_type& operator[](difference_type i) const { return *((*this)\
+    \ + i); }\n            const value_type& operator*() const { return it_l == it_l_end\
+    \ ? it_r->first : it_l->first; }\n            bool operator!=(const DequeAggregationIterator\
+    \ &rhs) const { return it_l != rhs.it_l or it_r != rhs.it_r; }\n            bool\
+    \ operator==(const DequeAggregationIterator &rhs) const { return not (*this !=\
+    \ rhs); }\n            bool operator< (const DequeAggregationIterator &rhs) const\
+    \ { return (*this) - rhs <  0; }\n            bool operator<=(const DequeAggregationIterator\
+    \ &rhs) const { return (*this) - rhs <= 0; }\n            bool operator> (const\
+    \ DequeAggregationIterator &rhs) const { return (*this) - rhs >  0; }\n      \
+    \      bool operator>=(const DequeAggregationIterator &rhs) const { return (*this)\
+    \ - rhs >= 0; }\n        };\n        \n        using iterator = DequeAggregationIterator;\n\
+    \        using difference_type = typename iterator::difference_type;\n       \
+    \ using value_type = typename iterator::value_type;\n        using pointer = typename\
+    \ iterator::pointer;\n        using reference = typename iterator::reference;\n\
+    \n        DequeAggregation() = default;\n        template <typename InputIterator,\
+    \ std::enable_if_t<std::is_constructible_v<value_type, typename InputIterator::value_type>,\
+    \ std::nullptr_t> = nullptr>\n        DequeAggregation(InputIterator first, InputIterator\
+    \ last) {\n            for (; first != last; ++first) push_back(*first);\n   \
+    \     }\n        template <typename Container, std::enable_if_t<std::is_constructible_v<value_type,\
     \ typename Container::value_type>, std::nullptr_t> = nullptr>\n        DequeAggregation(const\
     \ Container &c) : DequeAggregation(std::begin(c), std::end(c)) {}\n\n        value_type\
     \ prod() const {\n            return op(prod(_st_l), prod(_st_r));\n        }\n\
@@ -228,7 +230,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/deque_aggregation.hpp
   requiredBy: []
-  timestamp: '2022-07-06 16:04:17+09:00'
+  timestamp: '2022-07-12 14:26:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/deque_aggregation/queue_operate_all_composite.test.cpp
