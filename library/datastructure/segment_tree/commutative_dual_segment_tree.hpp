@@ -3,7 +3,6 @@
 
 #include <cassert>
 #include <vector>
-#include "library/type_traits/type_traits.hpp"
 
 namespace suisen {
     template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>
