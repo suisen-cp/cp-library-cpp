@@ -253,8 +253,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/graph/functional_graph/abc258_e.test.cpp
-  - test/src/graph/functional_graph/abc254_g.test.cpp
   - test/src/graph/functional_graph/dummy.test.cpp
+  - test/src/graph/functional_graph/abc254_g.test.cpp
 documentation_of: library/graph/functional_graph.hpp
 layout: document
 title: Functional Graph

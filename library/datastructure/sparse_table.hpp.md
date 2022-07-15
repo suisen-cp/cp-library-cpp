@@ -83,18 +83,18 @@ data:
   isVerificationFile: false
   path: library/datastructure/sparse_table.hpp
   requiredBy:
-  - library/algorithm/rmq_pm1_with_index.hpp
   - library/algorithm/rmq_pm1.hpp
-  - library/string/compare_substring.hpp
+  - library/algorithm/rmq_pm1_with_index.hpp
   - library/tree/lowest_common_ancestor.hpp
+  - library/string/compare_substring.hpp
   timestamp: '2022-05-29 02:48:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/string/compare_substring/substring.test.cpp
+  - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - test/src/string/compare_substring/string_search.test.cpp
+  - test/src/string/compare_substring/substring.test.cpp
   - test/src/string/compare_substring/abc141_e.test.cpp
   - test/src/string/compare_substring/dummy.test.cpp
-  - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
 documentation_of: library/datastructure/sparse_table.hpp
 layout: document
 title: Sparse Table

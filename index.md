@@ -113,6 +113,9 @@ data:
       path: library/datastructure/binary_trie.hpp
       title: Binary Trie
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/binary_trie_patricia.hpp
+      title: library/datastructure/binary_trie_patricia.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bit_vector.hpp
       title: Bit Vector
     - icon: ':heavy_check_mark:'
@@ -960,6 +963,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/binary_trie/xor_game.test.cpp
       title: test/src/datastructure/binary_trie/xor_game.test.cpp
+  - name: test/src/datastructure/binary_trie_patricia
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
+      title: test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
   - name: test/src/datastructure/cartesian_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1055,6 +1063,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
+      title: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp

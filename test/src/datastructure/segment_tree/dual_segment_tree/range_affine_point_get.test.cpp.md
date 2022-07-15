@@ -15,13 +15,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_point_get
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E
-  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp\"\
-    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
-    \n\n#include <iostream>\n\n#line 1 \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\
-    \n\n\n\n#line 1 \"library/datastructure/segment_tree/commutative_dual_segment_tree.hpp\"\
+    - https://judge.yosupo.jp/problem/range_affine_point_get
+  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\n\
+    \n#include <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \n#line 1 \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\n\n\n\n\
+    #line 1 \"library/datastructure/segment_tree/commutative_dual_segment_tree.hpp\"\
     \n\n#define SUISEN_DUAL_SEGTREE\n\n#include <cassert>\n#include <vector>\n\nnamespace\
     \ suisen {\n    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F,\
     \ F), F(*id)()>\n    struct CommutativeDualSegmentTree {\n        CommutativeDualSegmentTree()\
@@ -59,38 +60,49 @@ data:
     \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n    DualSegmentTree(int,\
     \ T)->DualSegmentTree<T, F, mapping, composition, id>;\n\n    template <typename\
     \ T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n    DualSegmentTree(std::vector<T>)->DualSegmentTree<T,\
-    \ F, mapping, composition, id>;\n} // namespace suisen\n\n\n\n#line 6 \"test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp\"\
-    \nusing suisen::DualSegmentTree;\n\nint mapping(int f, int x) { return f + x;\
-    \ }\nint composition(int f, int g) { return f + g; }\nint id() { return 0; }\n\
-    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    DualSegmentTree<int,\
-    \ int, mapping, composition, id> seg(n, 0);\n    for (int i = 0; i < q; ++i) {\n\
-    \        int t;\n        std::cin >> t;\n        if (t == 0) {\n            int\
-    \ s, t, x;\n            std::cin >> s >> t >> x;\n            seg.apply(--s, t,\
-    \ x);\n        } else {\n            int i;\n            std::cin >> i;\n    \
-    \        std::cout << seg[--i] << '\\n';\n        }\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
-    \n\n#include <iostream>\n\n#include \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\
-    \nusing suisen::DualSegmentTree;\n\nint mapping(int f, int x) { return f + x;\
-    \ }\nint composition(int f, int g) { return f + g; }\nint id() { return 0; }\n\
-    \nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    DualSegmentTree<int,\
-    \ int, mapping, composition, id> seg(n, 0);\n    for (int i = 0; i < q; ++i) {\n\
-    \        int t;\n        std::cin >> t;\n        if (t == 0) {\n            int\
-    \ s, t, x;\n            std::cin >> s >> t >> x;\n            seg.apply(--s, t,\
-    \ x);\n        } else {\n            int i;\n            std::cin >> i;\n    \
-    \        std::cout << seg[--i] << '\\n';\n        }\n    }\n    return 0;\n}"
+    \ F, mapping, composition, id>;\n} // namespace suisen\n\n\n\n#line 9 \"test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp\"\
+    \n\nmint mapping(std::pair<mint, mint> f, mint x) {\n    return f.first * x +\
+    \ f.second;\n}\nstd::pair<mint, mint> composition(std::pair<mint, mint> f, std::pair<mint,\
+    \ mint> g) {\n    return { f.first * g.first, f.first * g.second + f.second };\n\
+    }\nstd::pair<mint, mint> id() {\n    return { 1, 0 };\n}\nusing Segtree = suisen::DualSegmentTree<mint,\
+    \ std::pair<mint, mint>, mapping, composition, id>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<mint>\
+    \ a(n);\n    for (auto &e : a) {\n        int v;\n        std::cin >> v;\n   \
+    \     e = v;\n    }\n\n    Segtree seg(a);\n    while (q --> 0) {\n        int\
+    \ query_type;\n        std::cin >> query_type;\n        if (query_type == 0) {\n\
+    \            int l, r, b, c;\n            std::cin >> l >> r >> b >> c;\n    \
+    \        seg.apply(l, r, { b, c });\n        } else {\n            int x;\n  \
+    \          std::cin >> x;\n            std::cout << seg.get(x).val() << '\\n';\n\
+    \        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \n#include \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\n\nmint\
+    \ mapping(std::pair<mint, mint> f, mint x) {\n    return f.first * x + f.second;\n\
+    }\nstd::pair<mint, mint> composition(std::pair<mint, mint> f, std::pair<mint,\
+    \ mint> g) {\n    return { f.first * g.first, f.first * g.second + f.second };\n\
+    }\nstd::pair<mint, mint> id() {\n    return { 1, 0 };\n}\nusing Segtree = suisen::DualSegmentTree<mint,\
+    \ std::pair<mint, mint>, mapping, composition, id>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<mint>\
+    \ a(n);\n    for (auto &e : a) {\n        int v;\n        std::cin >> v;\n   \
+    \     e = v;\n    }\n\n    Segtree seg(a);\n    while (q --> 0) {\n        int\
+    \ query_type;\n        std::cin >> query_type;\n        if (query_type == 0) {\n\
+    \            int l, r, b, c;\n            std::cin >> l >> r >> b >> c;\n    \
+    \        seg.apply(l, r, { b, c });\n        } else {\n            int x;\n  \
+    \          std::cin >> x;\n            std::cout << seg.get(x).val() << '\\n';\n\
+    \        }\n    }\n\n    return 0;\n}"
   dependsOn:
   - library/datastructure/segment_tree/dual_segment_tree.hpp
   - library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
   isVerificationFile: true
-  path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
+  path: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
   requiredBy: []
   timestamp: '2022-07-16 03:53:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
+documentation_of: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-- /verify/test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp.html
-title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
+- /verify/test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
+- /verify/test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp.html
+title: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
 ---

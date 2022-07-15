@@ -499,9 +499,9 @@ data:
   verifiedWith:
   - test/src/math/product_of_differences/yuki1938.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
 documentation_of: library/polynomial/multi_point_eval.hpp
 layout: document
 title: Multi Point Evaluation

@@ -187,8 +187,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
-  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
+  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
 documentation_of: library/graph/dulmage_mendelsohn_decomposition.hpp
 layout: document
 title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
