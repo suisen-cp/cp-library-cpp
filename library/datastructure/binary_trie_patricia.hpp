@@ -64,8 +64,8 @@ namespace suisen {
         bool empty() const {
             return _root->siz == 0;
         }
-        void clear() { delete _root; _root = node_pointer_type::new_node(0, 0, 0); }
-        
+        void clear() { delete _root; _root = node_type::new_node(0, 0, 0); }
+
         // returns true iff insertion is succeeded.
         bool insert_if_absent(unsigned_value_type val) {
             bit_reverse(val);
@@ -116,7 +116,7 @@ namespace suisen {
             for (uint32_t l = 0; l < bit_num;) {
                 const uint32_t ch_idx = x & (ary - 1);
                 node_pointer_type nxt = nullptr;
-                for (int x : { 0, 2, 1, 3 }) {
+                for (int x : _ord) {
                     if (nxt = cur->ch[ch_idx ^ x]; nxt) {
                         if (nxt->siz > k) break;
                         k -= nxt->siz;
@@ -136,6 +136,7 @@ namespace suisen {
         }
 
         // #{ v in S | x ^ v < upper }
+        __attribute__((target("bmi")))
         size_type xor_count_lt (unsigned_value_type x, unsigned_value_type upper) const {
             if (upper >> bit_num) return _root->siz;
             bit_reverse(x);
@@ -146,15 +147,21 @@ namespace suisen {
                 const uint32_t ch_idx = x & (ary - 1);
                 const uint32_t ch_idx_r = upper & (ary - 1);
                 node_pointer_type nxt = nullptr;
-                for (int x : { 0, 2, 1, 3 }) {
+                for (uint32_t x : _ord) {
                     nxt = cur->ch[ch_idx ^ x];
-                    if ((ch_idx ^ x) == ch_idx_r) break;
+                    if (x == ch_idx_r) break;
                     if (nxt) res += nxt->siz;
                 }
                 if (not nxt) break;
-                x >>= nxt->len;
-                upper >>= nxt->len;
-                l += nxt->len;
+                const uint32_t len = nxt->len;
+                unsigned_value_type vlo = cut_lower(x, len) ^ nxt->val, ulo = cut_lower(upper, len);
+                if (vlo != ulo) {
+                    uint32_t tz = len <= 32 ? _tzcnt_u32(vlo ^ ulo) : _tzcnt_u64(vlo ^ ulo);
+                    return (ulo >> tz) & 1 ? res + nxt->siz : res;
+                }
+                x >>= len;
+                upper >>= len;
+                l += len;
                 cur = nxt;
             }
             return res;
@@ -175,27 +182,27 @@ namespace suisen {
 
         // max{ x ^ v | x ^ v < upper } or std::nullopt
         std::optional<value_type> safe_xor_max_lt (unsigned_value_type x, unsigned_value_type upper) const {
-            internal_size_type clt = xor_count_lt(x, upper);
-            if (clt == 0) return std::nullopt;
-            return xor_kth_min(clt - 1);
+            internal_size_type cnt = xor_count_lt(x, upper);
+            if (cnt == 0) return std::nullopt;
+            return xor_kth_min(x, cnt - 1);
         }
         // max{ x ^ v | x ^ v <= upper } or std::nullopt
         std::optional<value_type> safe_xor_max_leq(unsigned_value_type x, unsigned_value_type upper) const {
-            internal_size_type clt = xor_count_leq(x, upper);
-            if (clt == 0) return std::nullopt;
-            return xor_kth_min(clt - 1);
+            internal_size_type cnt = xor_count_leq(x, upper);
+            if (cnt == 0) return std::nullopt;
+            return xor_kth_min(x, cnt - 1);
         }
         // min{ x ^ v | x ^ v >= lower } or std::nullopt
         std::optional<value_type> safe_xor_min_geq(unsigned_value_type x, unsigned_value_type lower) const {
-            internal_size_type clt = xor_count_lt(x, lower);
-            if (clt == _root->siz) return std::nullopt;
-            return xor_kth_min(clt);
+            internal_size_type cnt = xor_count_lt(x, lower);
+            if (cnt == _root->siz) return std::nullopt;
+            return xor_kth_min(x, cnt);
         }
         // min{ x ^ v | x ^ v > lower } or std::nullopt
         std::optional<value_type> safe_xor_min_gt (unsigned_value_type x, unsigned_value_type lower) const {
-            internal_size_type clt = xor_count_leq(x, lower);
-            if (clt == _root->siz) return std::nullopt;
-            return xor_kth_min(clt);
+            internal_size_type cnt = xor_count_leq(x, lower);
+            if (cnt == _root->siz) return std::nullopt;
+            return xor_kth_min(x, cnt);
         }
 
         // max{ x ^ v | x ^ v < upper } or Runtime Error
@@ -221,13 +228,13 @@ namespace suisen {
         size_type count_gt (unsigned_value_type lower) const { return xor_count_gt (0, lower); }
 
         // max{ v | v < upper } or std::nullopt
-        std::optional<value_type> safe_max_lt (unsigned_value_type upper) const { return safe_xor_max_lt (upper); }
+        std::optional<value_type> safe_max_lt (unsigned_value_type upper) const { return safe_xor_max_lt (0, upper); }
         // max{ v | v <= upper } or std::nullopt
-        std::optional<value_type> safe_max_leq(unsigned_value_type upper) const { return safe_xor_max_leq(upper); }
+        std::optional<value_type> safe_max_leq(unsigned_value_type upper) const { return safe_xor_max_leq(0, upper); }
         // min{ v | v >= lower } or std::nullopt
-        std::optional<value_type> safe_min_geq(unsigned_value_type lower) const { return safe_xor_min_geq(lower); }
+        std::optional<value_type> safe_min_geq(unsigned_value_type lower) const { return safe_xor_min_geq(0, lower); }
         // min{ v | v > lower } or std::nullopt
-        std::optional<value_type> safe_min_gt (unsigned_value_type lower) const { return safe_xor_min_gt (lower); }
+        std::optional<value_type> safe_min_gt (unsigned_value_type lower) const { return safe_xor_min_gt (0, lower); }
 
         // max{ v | v < upper } or Runtime Error
         value_type max_lt (unsigned_value_type upper) const { return *safe_max_lt (upper); }
@@ -239,6 +246,10 @@ namespace suisen {
         value_type min_gt (unsigned_value_type lower) const { return *safe_min_gt (lower); }
 
     private:
+        static constexpr uint32_t _ord[4]{ 0, 2, 1, 3 };
+        static constexpr uint32_t _rev_ord[4]{ 3, 1, 2, 0 };
+        static constexpr uint32_t _inv_ord[4]{ 0, 2, 1, 3 };
+
         node_pointer_type _root = node_type::new_node(0, 0, 0);
 
         static constexpr unsigned_value_type cut_lower(const unsigned_value_type& val, uint32_t r) {
@@ -267,7 +278,8 @@ namespace suisen {
             }
         }
 
-        __attribute__((target("bmi"))) bool _insert_if_absent(node_pointer_type cur, uint32_t l, unsigned_value_type val) {
+        __attribute__((target("bmi")))
+        bool _insert_if_absent(node_pointer_type cur, uint32_t l, unsigned_value_type val) {
             if (l == bit_num) return false;
             const uint32_t idx = val & (ary - 1);
             node_pointer_type nxt = cur->ch[idx];
@@ -295,7 +307,8 @@ namespace suisen {
             return true;
         }
 
-        __attribute__((target("bmi"))) void _insert(node_pointer_type cur, uint32_t l, unsigned_value_type val, internal_size_type num) {
+        __attribute__((target("bmi")))
+        void _insert(node_pointer_type cur, uint32_t l, unsigned_value_type val, internal_size_type num) {
             cur->siz += num;
             if (l == bit_num) return;
             const uint32_t idx = val & (ary - 1);
@@ -350,6 +363,5 @@ namespace suisen {
         }
     };
 } // namespace suisen
-
 
 #endif // SUISEN_BINARY_TRIE_PATRICIA
