@@ -64,7 +64,8 @@ namespace suisen {
         bool empty() const {
             return _root->siz == 0;
         }
-
+        void clear() { delete _root; _root = node_pointer_type::new_node(0, 0, 0); }
+        
         // returns true iff insertion is succeeded.
         bool insert_if_absent(unsigned_value_type val) {
             bit_reverse(val);
@@ -81,7 +82,7 @@ namespace suisen {
             _erase(_root, num, 0, val);
             return num;
         }
-        
+
         size_type count(unsigned_value_type val) const {
             bit_reverse(val);
             node_pointer_type cur = _root;
@@ -220,13 +221,13 @@ namespace suisen {
         size_type count_gt (unsigned_value_type lower) const { return xor_count_gt (0, lower); }
 
         // max{ v | v < upper } or std::nullopt
-        std::optional<value_type> safe_max_lt (unsigned_value_type upper) const { return safe_xor_max_lt(upper); }
+        std::optional<value_type> safe_max_lt (unsigned_value_type upper) const { return safe_xor_max_lt (upper); }
         // max{ v | v <= upper } or std::nullopt
         std::optional<value_type> safe_max_leq(unsigned_value_type upper) const { return safe_xor_max_leq(upper); }
         // min{ v | v >= lower } or std::nullopt
         std::optional<value_type> safe_min_geq(unsigned_value_type lower) const { return safe_xor_min_geq(lower); }
         // min{ v | v > lower } or std::nullopt
-        std::optional<value_type> safe_min_gt (unsigned_value_type lower) const { return safe_xor_min_gt(lower); }
+        std::optional<value_type> safe_min_gt (unsigned_value_type lower) const { return safe_xor_min_gt (lower); }
 
         // max{ v | v < upper } or Runtime Error
         value_type max_lt (unsigned_value_type upper) const { return *safe_max_lt (upper); }
