@@ -8,12 +8,12 @@ namespace suisen {
     struct BlockCutForest {
         BlockCutForest() = default;
         BlockCutForest(const BiconnectedComponents &bcc)
-            : _bcc_num(bcc.component_num()), _art_num(bcc.articulation_points().size()), _g(_bcc_num + _art_num), _vertex_num(_bcc_num + _art_num) {
+            : _edge_comp_num(bcc.edge_component_num()), _isolated_vertex_num(bcc.isolated_vertex_num()), _art_num(bcc.articulation_points().size()), _node_num(_edge_comp_num + _isolated_vertex_num + _art_num), _g(_node_num), _vertex_num(_node_num) {
             std::vector<int> art_id(bcc.vertex_num(), -1);
-            int next_id = _bcc_num;
+            int next_id = _edge_comp_num + _isolated_vertex_num;
             for (int v : bcc.articulation_points()) art_id[v] = next_id++;
 
-            std::vector<int> comp_id(bcc.vertex_num());
+            std::vector<int> comp_id(bcc.vertex_num(), -1);
             for (int edge_id = 0; edge_id < bcc.edge_num(); ++edge_id) {
                 const int cid = bcc[edge_id];
                 const auto &[u, v] = bcc.edge(edge_id);
@@ -21,6 +21,11 @@ namespace suisen {
                 if (int vid = art_id[u]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);
                 if (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);
             }
+            int isolated_vertex_id = _edge_comp_num;
+            for (int v : bcc.isolated_vertices()) {
+                comp_id[v] = isolated_vertex_id++;
+            }
+
             remove_multiedges(_g);
 
             for (int v = 0; v < bcc.vertex_num(); ++v) {
@@ -33,10 +38,11 @@ namespace suisen {
             }
         }
 
-        int size() const { return _bcc_num + _art_num; }
+        int size() const { return _edge_comp_num + _isolated_vertex_num + _art_num; }
         
-        bool is_articulation_point(int id)    const { return id >= _bcc_num; }
+        bool is_articulation_point(int id)    const { return id >= _edge_comp_num + _isolated_vertex_num; }
         bool is_biconnected_component(int id) const { return not is_articulation_point(id); }
+        bool is_isolated_vertex(int id)       const { return id >= _edge_comp_num and is_biconnected_component(id); }
 
         const std::vector<int>& operator[](int id) const { return _g[id]; }
         std::vector<int>& operator[](int id) { return _g[id]; }
@@ -44,8 +50,10 @@ namespace suisen {
         int vertex_num(int id) const { return _vertex_num[id]; }
 
     private:
-        int _bcc_num;
+        int _edge_comp_num;
+        int _isolated_vertex_num;
         int _art_num;
+        int _node_num;
         std::vector<std::vector<int>> _g;
         std::vector<int> _vertex_num;
     };

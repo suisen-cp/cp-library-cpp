@@ -31,6 +31,8 @@ namespace suisen {
 
         const std::pair<int, int>& edge(int edge_id) const { return _edges[edge_id]; }
         const std::vector<std::pair<int, int>>& edges() const { return _edges; }
+        // list of edges { u, edge_id } adjacent to the vertex v.
+        const std::vector<std::pair<int, int>>& operator[](int v) const { return _g[v]; }
         
         int pre_order(int v) const {
             assert(_built);

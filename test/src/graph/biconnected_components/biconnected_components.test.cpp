@@ -8,14 +8,14 @@ using suisen::BiconnectedComponents;
 
 auto solve1(int n, std::vector<std::pair<int, int>> edges) {
     BiconnectedComponents bcc(n, edges);
-    return std::make_pair(bcc.component_num(), bcc.edge_groups());
+    return std::make_pair(bcc.component_num(), bcc.components());
 }
 
 auto solve2(int n, std::vector<std::pair<int, int>> edges) {
     BiconnectedComponents bcc(n);
     for (const auto &[u, v] : edges) bcc.add_edge(u, v);
     bcc.build();
-    return std::make_pair(bcc.component_num(), bcc.edge_groups());
+    return std::make_pair(bcc.component_num(), bcc.components());
 }
 
 int main() {
@@ -31,15 +31,15 @@ int main() {
     }
     
     auto ans1 = solve1(n, edges);
-    // auto ans2 = solve2(n, edges);
-    // assert(ans1 == ans2);
+    auto ans2 = solve2(n, edges);
+    assert(ans1 == ans2);
 
-    const auto &[comp_num, groups] = ans1;
+    const auto &[comp_num, components] = ans1;
 
     std::cout << comp_num << '\n';
-    for (const auto &group : groups) {
-        std::cout << group.size();
-        for (const int v : group) std::cout << ' ' << v;
+    for (const auto &component : components) {
+        std::cout << component.vids.size();
+        for (const int v : component.vids) std::cout << ' ' << v;
         std::cout << '\n';
     }
 
