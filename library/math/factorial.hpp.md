@@ -5,25 +5,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/util.hpp
     title: Util
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
   - icon: ':warning:'
     path: library/sequence/bell_number.hpp
     title: Bell Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/bernoulli_number.hpp
     title: Bernoulli Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/eulerian_number.hpp
     title: Eulerian Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/partition_number.hpp
     title: Partition Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/stirling_number2.hpp
     title: Stirling Number2
   _extendedVerifiedWith:
@@ -45,33 +45,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/util/abc240_g.test.cpp
     title: test/src/math/util/abc240_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/partition_number/partition_function.test.cpp
     title: test/src/sequence/partition_number/partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/abc247_h.test.cpp
     title: test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n\
@@ -123,15 +123,15 @@ data:
   path: library/math/factorial.hpp
   requiredBy:
   - library/math/util.hpp
-  - library/sequence/eulerian_number.hpp
-  - library/sequence/stirling_number2.hpp
+  - library/sequence/bernoulli_number.hpp
+  - library/sequence/partition_number.hpp
   - library/sequence/bell_number.hpp
   - library/sequence/stirling_number1.hpp
-  - library/sequence/partition_number.hpp
-  - library/sequence/bernoulli_number.hpp
+  - library/sequence/eulerian_number.hpp
+  - library/sequence/stirling_number2.hpp
   - library/polynomial/polynomial_taylor_shift.hpp
   timestamp: '2022-05-28 01:05:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
@@ -139,13 +139,13 @@ data:
   - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - test/src/sequence/stirling_number1/abc247_h.test.cpp
   - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - test/src/sequence/stirling_number1/abc247_h.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - test/src/sequence/partition_number/partition_function.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document

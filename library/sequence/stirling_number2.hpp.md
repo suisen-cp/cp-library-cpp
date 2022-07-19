@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/powers.hpp
     title: Powers
   - icon: ':question:'
@@ -27,19 +27,19 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/sequence/stirling_number2.hpp\"\n\n\n\n#line 1 \"\
     library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n#include <cassert>\n\
-    #include <iostream>\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#line\
-    \ 5 \"library/polynomial/fps_naive.hpp\"\n#include <cmath>\n#include <limits>\n\
-    #include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    #include <iostream>\n#include <queue>\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
+    \n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\n#include <cmath>\n#include\
+    \ <limits>\n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
     // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
@@ -243,7 +243,7 @@ data:
     \ : a.deg());\n}\ntemplate <typename mint>\nauto inv(suisen::FPSNaive<mint> a)\
     \ -> decltype(mint::mod(), suisen::FPSNaive<mint>{}) {\n    return a.inv(suisen::FPSNaive<mint>::MAX_DEG\
     \ == std::numeric_limits<int>::max() / 2 ? suisen::FPSNaive<mint>::MAX_DEG : a.deg());\n\
-    }\n\n\n\n#line 11 \"library/polynomial/fps.hpp\"\n\nnamespace suisen {\n    template\
+    }\n\n\n\n#line 12 \"library/polynomial/fps.hpp\"\n\nnamespace suisen {\n    template\
     \ <typename mint>\n    using convolution_t = std::vector<mint>(*)(const std::vector<mint>&,\
     \ const std::vector<mint>&);\n\n    template <typename mint>\n    struct FPS :\
     \ public std::vector<mint> {\n        using std::vector<mint>::vector;\n\n   \
@@ -289,7 +289,16 @@ data:
     \           static constexpr int THRESHOLD_NAIVE_REMAINDER = 256;\n          \
     \  if (gd <= THRESHOLD_NAIVE_REMAINDER) return naive_div_inplace(std::move(g),\
     \ gd).second;\n            *this -= g * (*this / g);\n            return pre_inplace(gd\
-    \ - 1);\n        }\n        FPS& operator<<=(const int shamt) {\n            this->insert(this->begin(),\
+    \ - 1);\n        }\n        std::pair<FPS, FPS> div_mod(FPS g) const {\n     \
+    \       auto f = *this;\n            int fd = f.normalize(), gd = g.normalize();\n\
+    \            assert(gd >= 0);\n            if (fd < gd) return { {}, f };\n  \
+    \          if (gd == 0) return { f * g.unsafe_get(0).inv(), {} };\n          \
+    \  static constexpr int THRESHOLD_NAIVE_REMAINDER = 256;\n            if (gd <=\
+    \ THRESHOLD_NAIVE_REMAINDER) {\n                auto q = f.naive_div_inplace(std::move(g),\
+    \ gd).first;\n                return { std::move(q), std::move(f) };\n       \
+    \     }\n            auto q = f / g;\n            auto r = (f - g * q).pre_inplace(gd\
+    \ - 1);\n            return { std::move(q), std::move(r) };\n        }\n     \
+    \   FPS& operator<<=(const int shamt) {\n            this->insert(this->begin(),\
     \ shamt, 0);\n            return *this;\n        }\n        FPS& operator>>=(const\
     \ int shamt) {\n            if (shamt > size()) this->clear();\n            else\
     \ this->erase(this->begin(), this->begin() + shamt);\n            return *this;\n\
@@ -365,12 +374,19 @@ data:
     \ }\n        FPS pow(const long long k, const int max_deg) const { FPS f{ *this\
     \ }; f.pow_inplace(k, max_deg); return f; }\n\n        mint eval(mint x) const\
     \ {\n            mint y = 0;\n            for (int i = size() - 1; i >= 0; --i)\
-    \ y = y * x + unsafe_get(i);\n            return y;\n        }\n\n    private:\n\
-    \        static inline inv_mods<mint> invs;\n        static convolution_t<mint>\
-    \ mult;\n        void ensure_deg(int d) { if (deg() < d) this->resize(d + 1, 0);\
-    \ }\n        const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i);\
-    \ }\n        mint& unsafe_get(int i) { return std::vector<mint>::operator[](i);\
-    \ }\n\n        std::optional<std::vector<std::pair<int, mint>>> sparse_fps_format(int\
+    \ y = y * x + unsafe_get(i);\n            return y;\n        }\n\n        static\
+    \ FPS prod(const std::vector<FPS> &fs) {\n            auto comp = [](const FPS\
+    \ &f, const FPS &g) { return f.size() > g.size(); };\n            std::priority_queue<FPS,\
+    \ std::vector<FPS>, decltype(comp)> pq { comp };\n            for (const auto\
+    \ &f : fs) pq.push(f);\n            while (pq.size() > 1) {\n                auto\
+    \ f = pq.top();\n                pq.pop();\n                auto g = pq.top();\n\
+    \                pq.pop();\n                pq.push(f * g);\n            }\n \
+    \           return pq.top();\n        }\n\n    private:\n        static inline\
+    \ inv_mods<mint> invs;\n        static convolution_t<mint> mult;\n        void\
+    \ ensure_deg(int d) { if (deg() < d) this->resize(d + 1, 0); }\n        const\
+    \ mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i); }\n\
+    \        mint& unsafe_get(int i) { return std::vector<mint>::operator[](i); }\n\
+    \n        std::optional<std::vector<std::pair<int, mint>>> sparse_fps_format(int\
     \ max_size) const {\n            std::vector<std::pair<int, mint>> res;\n    \
     \        for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i) if (mint\
     \ v = unsafe_get(i); v != 0) res.emplace_back(i, v);\n            if (int(res.size())\
@@ -545,8 +561,8 @@ data:
   isVerificationFile: false
   path: library/sequence/stirling_number2.hpp
   requiredBy: []
-  timestamp: '2022-07-10 22:02:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-20 05:42:48+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/sequence/stirling_number2/stirling_number2.test.cpp
 documentation_of: library/sequence/stirling_number2.hpp

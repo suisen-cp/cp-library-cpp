@@ -163,9 +163,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/string/compare_substring/string_search.test.cpp
-  - test/src/string/compare_substring/substring.test.cpp
   - test/src/string/compare_substring/abc141_e.test.cpp
   - test/src/string/compare_substring/dummy.test.cpp
+  - test/src/string/compare_substring/substring.test.cpp
 documentation_of: library/string/compare_substring.hpp
 layout: document
 title: Compare Substring

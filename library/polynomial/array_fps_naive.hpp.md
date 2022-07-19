@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':question:'
@@ -343,11 +343,11 @@ data:
   timestamp: '2022-06-27 18:52:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/array_sps/abc253_h_2.test.cpp
-  - test/src/math/array_sps/arc105_f.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/array_sps/abc213_g.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/array_sps/arc105_f.test.cpp
 documentation_of: library/polynomial/array_fps_naive.hpp
 layout: document
 title: Array Fps Naive

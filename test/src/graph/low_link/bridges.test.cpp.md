@@ -29,7 +29,9 @@ data:
     \            _built = true;\n        }\n\n        int vertex_num() const { return\
     \ _n; }\n        int edge_num()   const { return _m; }\n\n        const std::pair<int,\
     \ int>& edge(int edge_id) const { return _edges[edge_id]; }\n        const std::vector<std::pair<int,\
-    \ int>>& edges() const { return _edges; }\n        \n        int pre_order(int\
+    \ int>>& edges() const { return _edges; }\n        // list of edges { u, edge_id\
+    \ } adjacent to the vertex v.\n        const std::vector<std::pair<int, int>>&\
+    \ operator[](int v) const { return _g[v]; }\n        \n        int pre_order(int\
     \ v) const {\n            assert(_built);\n            return _pre_order[v];\n\
     \        }\n        int low_link(int v) const {\n            assert(_built);\n\
     \            return _low_link[v];\n        }\n\n        const std::vector<int>&\
@@ -99,7 +101,7 @@ data:
   isVerificationFile: true
   path: test/src/graph/low_link/bridges.test.cpp
   requiredBy: []
-  timestamp: '2022-05-05 17:37:03+09:00'
+  timestamp: '2022-07-16 16:39:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/graph/low_link/bridges.test.cpp

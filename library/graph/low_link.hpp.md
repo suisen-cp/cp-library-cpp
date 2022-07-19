@@ -41,7 +41,9 @@ data:
     \            _built = true;\n        }\n\n        int vertex_num() const { return\
     \ _n; }\n        int edge_num()   const { return _m; }\n\n        const std::pair<int,\
     \ int>& edge(int edge_id) const { return _edges[edge_id]; }\n        const std::vector<std::pair<int,\
-    \ int>>& edges() const { return _edges; }\n        \n        int pre_order(int\
+    \ int>>& edges() const { return _edges; }\n        // list of edges { u, edge_id\
+    \ } adjacent to the vertex v.\n        const std::vector<std::pair<int, int>>&\
+    \ operator[](int v) const { return _g[v]; }\n        \n        int pre_order(int\
     \ v) const {\n            assert(_built);\n            return _pre_order[v];\n\
     \        }\n        int low_link(int v) const {\n            assert(_built);\n\
     \            return _low_link[v];\n        }\n\n        const std::vector<int>&\
@@ -82,7 +84,9 @@ data:
     \            _built = true;\n        }\n\n        int vertex_num() const { return\
     \ _n; }\n        int edge_num()   const { return _m; }\n\n        const std::pair<int,\
     \ int>& edge(int edge_id) const { return _edges[edge_id]; }\n        const std::vector<std::pair<int,\
-    \ int>>& edges() const { return _edges; }\n        \n        int pre_order(int\
+    \ int>>& edges() const { return _edges; }\n        // list of edges { u, edge_id\
+    \ } adjacent to the vertex v.\n        const std::vector<std::pair<int, int>>&\
+    \ operator[](int v) const { return _g[v]; }\n        \n        int pre_order(int\
     \ v) const {\n            assert(_built);\n            return _pre_order[v];\n\
     \        }\n        int low_link(int v) const {\n            assert(_built);\n\
     \            return _low_link[v];\n        }\n\n        const std::vector<int>&\
@@ -115,16 +119,16 @@ data:
   isVerificationFile: false
   path: library/graph/low_link.hpp
   requiredBy:
-  - library/graph/block_cut_forest.hpp
-  - library/graph/two_edge_connected_components.hpp
   - library/graph/biconnected_components.hpp
-  timestamp: '2022-05-05 17:37:03+09:00'
+  - library/graph/two_edge_connected_components.hpp
+  - library/graph/block_cut_forest.hpp
+  timestamp: '2022-07-16 16:39:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/graph/low_link/articulation_points.test.cpp
+  - test/src/graph/low_link/bridges.test.cpp
   - test/src/graph/biconnected_components/biconnected_components.test.cpp
   - test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
-  - test/src/graph/low_link/bridges.test.cpp
-  - test/src/graph/low_link/articulation_points.test.cpp
 documentation_of: library/graph/low_link.hpp
 layout: document
 title: Low Link

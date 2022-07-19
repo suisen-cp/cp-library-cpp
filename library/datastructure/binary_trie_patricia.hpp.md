@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp
+    title: test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
     title: test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
   _isVerificationFailed: false
@@ -35,7 +38,8 @@ data:
     \        ~BinaryTriePatricia() {\n            delete _root;\n        }\n\n   \
     \     // number of elements in the set\n        int size() const {\n         \
     \   return _root->siz;\n        }\n        // true iff size() == 0\n        bool\
-    \ empty() const {\n            return _root->siz == 0;\n        }\n\n        //\
+    \ empty() const {\n            return _root->siz == 0;\n        }\n        void\
+    \ clear() { delete _root; _root = node_type::new_node(0, 0, 0); }\n\n        //\
     \ returns true iff insertion is succeeded.\n        bool insert_if_absent(unsigned_value_type\
     \ val) {\n            bit_reverse(val);\n            return _insert_if_absent(_root,\
     \ 0, val);\n        }\n        void insert(unsigned_value_type val, internal_size_type\
@@ -43,14 +47,14 @@ data:
     \ num);\n        }\n        // returns the number of erased elements\n       \
     \ size_type erase(unsigned_value_type val, internal_size_type num = 1) {\n   \
     \         if (num == 0) return 0;\n            bit_reverse(val);\n           \
-    \ _erase(_root, num, 0, val);\n            return num;\n        }\n        \n\
-    \        size_type count(unsigned_value_type val) const {\n            bit_reverse(val);\n\
-    \            node_pointer_type cur = _root;\n            for (uint32_t l = 0;\
-    \ l < bit_num;) {\n                const uint32_t ch_idx = val & (ary - 1);\n\
-    \                node_pointer_type nxt = cur->ch[ch_idx];\n                if\
-    \ (not nxt or cut_lower(val ^ nxt->val, nxt->len)) return 0;\n               \
-    \ val >>= nxt->len;\n                l += nxt->len;\n                cur = nxt;\n\
-    \            }\n            return cur->siz;\n        }\n        bool contains(unsigned_value_type\
+    \ _erase(_root, num, 0, val);\n            return num;\n        }\n\n        size_type\
+    \ count(unsigned_value_type val) const {\n            bit_reverse(val);\n    \
+    \        node_pointer_type cur = _root;\n            for (uint32_t l = 0; l <\
+    \ bit_num;) {\n                const uint32_t ch_idx = val & (ary - 1);\n    \
+    \            node_pointer_type nxt = cur->ch[ch_idx];\n                if (not\
+    \ nxt or cut_lower(val ^ nxt->val, nxt->len)) return 0;\n                val >>=\
+    \ nxt->len;\n                l += nxt->len;\n                cur = nxt;\n    \
+    \        }\n            return cur->siz;\n        }\n        bool contains(unsigned_value_type\
     \ val) const { return count(val) != 0; }\n\n        // min{ x ^ v | v in S }\n\
     \        value_type xor_min(unsigned_value_type x) const {\n            return\
     \ xor_kth_min(x, 0);\n        }\n        // max{ x ^ v | v in S }\n        value_type\
@@ -61,29 +65,34 @@ data:
     \          unsigned_value_type res = 0;\n            node_pointer_type cur = _root;\n\
     \            for (uint32_t l = 0; l < bit_num;) {\n                const uint32_t\
     \ ch_idx = x & (ary - 1);\n                node_pointer_type nxt = nullptr;\n\
-    \                for (int x : { 0, 2, 1, 3 }) {\n                    if (nxt =\
-    \ cur->ch[ch_idx ^ x]; nxt) {\n                        if (nxt->siz > k) break;\n\
-    \                        k -= nxt->siz;\n                    }\n             \
-    \   }\n                res |= nxt->val << l;\n                x >>= nxt->len;\n\
-    \                l += nxt->len;\n                cur = nxt;\n            }\n \
-    \           bit_reverse(res);\n            return x_ ^ res;\n        }\n     \
-    \   // k-th largest of { x ^ v | v in S } (0-indexed)\n        value_type xor_kth_max(unsigned_value_type\
+    \                for (int x : _ord) {\n                    if (nxt = cur->ch[ch_idx\
+    \ ^ x]; nxt) {\n                        if (nxt->siz > k) break;\n           \
+    \             k -= nxt->siz;\n                    }\n                }\n     \
+    \           res |= nxt->val << l;\n                x >>= nxt->len;\n         \
+    \       l += nxt->len;\n                cur = nxt;\n            }\n          \
+    \  bit_reverse(res);\n            return x_ ^ res;\n        }\n        // k-th\
+    \ largest of { x ^ v | v in S } (0-indexed)\n        value_type xor_kth_max(unsigned_value_type\
     \ x, internal_size_type k) const {\n            return xor_kth_min(x, _root->siz\
-    \ - k - 1);\n        }\n\n        // #{ v in S | x ^ v < upper }\n        size_type\
-    \ xor_count_lt (unsigned_value_type x, unsigned_value_type upper) const {\n  \
-    \          if (upper >> bit_num) return _root->siz;\n            bit_reverse(x);\n\
-    \            bit_reverse(upper);\n            internal_size_type res = 0;\n  \
-    \          node_pointer_type cur = _root;\n            for (uint32_t l = 0; l\
-    \ < bit_num;) {\n                const uint32_t ch_idx = x & (ary - 1);\n    \
-    \            const uint32_t ch_idx_r = upper & (ary - 1);\n                node_pointer_type\
-    \ nxt = nullptr;\n                for (int x : { 0, 2, 1, 3 }) {\n           \
-    \         nxt = cur->ch[ch_idx ^ x];\n                    if ((ch_idx ^ x) ==\
+    \ - k - 1);\n        }\n\n        // #{ v in S | x ^ v < upper }\n        __attribute__((target(\"\
+    bmi\")))\n        size_type xor_count_lt (unsigned_value_type x, unsigned_value_type\
+    \ upper) const {\n            if (upper >> bit_num) return _root->siz;\n     \
+    \       bit_reverse(x);\n            bit_reverse(upper);\n            internal_size_type\
+    \ res = 0;\n            node_pointer_type cur = _root;\n            for (uint32_t\
+    \ l = 0; l < bit_num;) {\n                const uint32_t ch_idx = x & (ary - 1);\n\
+    \                const uint32_t ch_idx_r = upper & (ary - 1);\n              \
+    \  node_pointer_type nxt = nullptr;\n                for (uint32_t x : _ord) {\n\
+    \                    nxt = cur->ch[ch_idx ^ x];\n                    if (x ==\
     \ ch_idx_r) break;\n                    if (nxt) res += nxt->siz;\n          \
-    \      }\n                if (not nxt) break;\n                x >>= nxt->len;\n\
-    \                upper >>= nxt->len;\n                l += nxt->len;\n       \
-    \         cur = nxt;\n            }\n            return res;\n        }\n    \
-    \    // #{ v in S | x ^ v <= upper }\n        size_type xor_count_leq(unsigned_value_type\
-    \ x, unsigned_value_type upper) const {\n            if (upper == std::numeric_limits<unsigned_value_type>::max())\
+    \      }\n                if (not nxt) break;\n                const uint32_t\
+    \ len = nxt->len;\n                unsigned_value_type vlo = cut_lower(x, len)\
+    \ ^ nxt->val, ulo = cut_lower(upper, len);\n                if (vlo != ulo) {\n\
+    \                    uint32_t tz = len <= 32 ? _tzcnt_u32(vlo ^ ulo) : _tzcnt_u64(vlo\
+    \ ^ ulo);\n                    return (ulo >> tz) & 1 ? res + nxt->siz : res;\n\
+    \                }\n                x >>= len;\n                upper >>= len;\n\
+    \                l += len;\n                cur = nxt;\n            }\n      \
+    \      return res;\n        }\n        // #{ v in S | x ^ v <= upper }\n     \
+    \   size_type xor_count_leq(unsigned_value_type x, unsigned_value_type upper)\
+    \ const {\n            if (upper == std::numeric_limits<unsigned_value_type>::max())\
     \ return _root->siz;\n            return xor_count_lt(x, upper + 1);\n       \
     \ }\n        // #{ v in S | x ^ v >= lower }\n        size_type xor_count_geq(unsigned_value_type\
     \ x, unsigned_value_type lower) const {\n            return _root->siz - xor_count_lt(x,\
@@ -92,54 +101,57 @@ data:
     \          return _root->siz - xor_count_leq(x, lower);\n        }\n\n       \
     \ // max{ x ^ v | x ^ v < upper } or std::nullopt\n        std::optional<value_type>\
     \ safe_xor_max_lt (unsigned_value_type x, unsigned_value_type upper) const {\n\
-    \            internal_size_type clt = xor_count_lt(x, upper);\n            if\
-    \ (clt == 0) return std::nullopt;\n            return xor_kth_min(clt - 1);\n\
+    \            internal_size_type cnt = xor_count_lt(x, upper);\n            if\
+    \ (cnt == 0) return std::nullopt;\n            return xor_kth_min(x, cnt - 1);\n\
     \        }\n        // max{ x ^ v | x ^ v <= upper } or std::nullopt\n       \
     \ std::optional<value_type> safe_xor_max_leq(unsigned_value_type x, unsigned_value_type\
-    \ upper) const {\n            internal_size_type clt = xor_count_leq(x, upper);\n\
-    \            if (clt == 0) return std::nullopt;\n            return xor_kth_min(clt\
-    \ - 1);\n        }\n        // min{ x ^ v | x ^ v >= lower } or std::nullopt\n\
+    \ upper) const {\n            internal_size_type cnt = xor_count_leq(x, upper);\n\
+    \            if (cnt == 0) return std::nullopt;\n            return xor_kth_min(x,\
+    \ cnt - 1);\n        }\n        // min{ x ^ v | x ^ v >= lower } or std::nullopt\n\
     \        std::optional<value_type> safe_xor_min_geq(unsigned_value_type x, unsigned_value_type\
-    \ lower) const {\n            internal_size_type clt = xor_count_lt(x, lower);\n\
-    \            if (clt == _root->siz) return std::nullopt;\n            return xor_kth_min(clt);\n\
-    \        }\n        // min{ x ^ v | x ^ v > lower } or std::nullopt\n        std::optional<value_type>\
-    \ safe_xor_min_gt (unsigned_value_type x, unsigned_value_type lower) const {\n\
-    \            internal_size_type clt = xor_count_leq(x, lower);\n            if\
-    \ (clt == _root->siz) return std::nullopt;\n            return xor_kth_min(clt);\n\
-    \        }\n\n        // max{ x ^ v | x ^ v < upper } or Runtime Error\n     \
-    \   value_type xor_max_lt (unsigned_value_type x, unsigned_value_type upper) const\
-    \ { return *safe_xor_max_lt (x, upper); }\n        // max{ x ^ v | x ^ v <= upper\
-    \ } or Runtime Error\n        value_type xor_max_leq(unsigned_value_type x, unsigned_value_type\
-    \ upper) const { return *safe_xor_max_leq(x, upper); }\n        // min{ x ^ v\
-    \ | x ^ v >= lower } or Runtime Error\n        value_type xor_min_geq(unsigned_value_type\
-    \ x, unsigned_value_type lower) const { return *safe_xor_min_geq(x, lower); }\n\
-    \        // min{ x ^ v | x ^ v > lower } or Runtime Error\n        value_type\
-    \ xor_min_gt (unsigned_value_type x, unsigned_value_type lower) const { return\
-    \ *safe_xor_min_gt (x, lower); }\n\n        // 0-indexed\n        value_type kth_min(internal_size_type\
-    \ k) const { return xor_kth_min(0, k); }\n        // 0-indexed\n        value_type\
-    \ kth_max(internal_size_type k) const { return xor_kth_max(0, k); }\n        //\
-    \ #{ v in S | v < upper }\n        size_type count_lt (unsigned_value_type upper)\
-    \ const { return xor_count_lt (0, upper); }\n        // #{ v in S | v <= upper\
-    \ }\n        size_type count_leq(unsigned_value_type upper) const { return xor_count_leq(0,\
-    \ upper); }\n        // #{ v in S | v >= lower }\n        size_type count_geq(unsigned_value_type\
-    \ lower) const { return xor_count_geq(0, lower); }\n        // #{ v in S | v >\
-    \ lower }\n        size_type count_gt (unsigned_value_type lower) const { return\
-    \ xor_count_gt (0, lower); }\n\n        // max{ v | v < upper } or std::nullopt\n\
-    \        std::optional<value_type> safe_max_lt (unsigned_value_type upper) const\
-    \ { return safe_xor_max_lt(upper); }\n        // max{ v | v <= upper } or std::nullopt\n\
-    \        std::optional<value_type> safe_max_leq(unsigned_value_type upper) const\
-    \ { return safe_xor_max_leq(upper); }\n        // min{ v | v >= lower } or std::nullopt\n\
-    \        std::optional<value_type> safe_min_geq(unsigned_value_type lower) const\
-    \ { return safe_xor_min_geq(lower); }\n        // min{ v | v > lower } or std::nullopt\n\
-    \        std::optional<value_type> safe_min_gt (unsigned_value_type lower) const\
-    \ { return safe_xor_min_gt(lower); }\n\n        // max{ v | v < upper } or Runtime\
-    \ Error\n        value_type max_lt (unsigned_value_type upper) const { return\
-    \ *safe_max_lt (upper); }\n        // max{ v | v <= upper } or Runtime Error\n\
-    \        value_type max_leq(unsigned_value_type upper) const { return *safe_max_leq(upper);\
-    \ }\n        // min{ v | v >= lower } or Runtime Error\n        value_type min_geq(unsigned_value_type\
-    \ lower) const { return *safe_min_geq(lower); }\n        // min{ v | v > lower\
-    \ } or Runtime Error\n        value_type min_gt (unsigned_value_type lower) const\
-    \ { return *safe_min_gt (lower); }\n\n    private:\n        node_pointer_type\
+    \ lower) const {\n            internal_size_type cnt = xor_count_lt(x, lower);\n\
+    \            if (cnt == _root->siz) return std::nullopt;\n            return xor_kth_min(x,\
+    \ cnt);\n        }\n        // min{ x ^ v | x ^ v > lower } or std::nullopt\n\
+    \        std::optional<value_type> safe_xor_min_gt (unsigned_value_type x, unsigned_value_type\
+    \ lower) const {\n            internal_size_type cnt = xor_count_leq(x, lower);\n\
+    \            if (cnt == _root->siz) return std::nullopt;\n            return xor_kth_min(x,\
+    \ cnt);\n        }\n\n        // max{ x ^ v | x ^ v < upper } or Runtime Error\n\
+    \        value_type xor_max_lt (unsigned_value_type x, unsigned_value_type upper)\
+    \ const { return *safe_xor_max_lt (x, upper); }\n        // max{ x ^ v | x ^ v\
+    \ <= upper } or Runtime Error\n        value_type xor_max_leq(unsigned_value_type\
+    \ x, unsigned_value_type upper) const { return *safe_xor_max_leq(x, upper); }\n\
+    \        // min{ x ^ v | x ^ v >= lower } or Runtime Error\n        value_type\
+    \ xor_min_geq(unsigned_value_type x, unsigned_value_type lower) const { return\
+    \ *safe_xor_min_geq(x, lower); }\n        // min{ x ^ v | x ^ v > lower } or Runtime\
+    \ Error\n        value_type xor_min_gt (unsigned_value_type x, unsigned_value_type\
+    \ lower) const { return *safe_xor_min_gt (x, lower); }\n\n        // 0-indexed\n\
+    \        value_type kth_min(internal_size_type k) const { return xor_kth_min(0,\
+    \ k); }\n        // 0-indexed\n        value_type kth_max(internal_size_type k)\
+    \ const { return xor_kth_max(0, k); }\n        // #{ v in S | v < upper }\n  \
+    \      size_type count_lt (unsigned_value_type upper) const { return xor_count_lt\
+    \ (0, upper); }\n        // #{ v in S | v <= upper }\n        size_type count_leq(unsigned_value_type\
+    \ upper) const { return xor_count_leq(0, upper); }\n        // #{ v in S | v >=\
+    \ lower }\n        size_type count_geq(unsigned_value_type lower) const { return\
+    \ xor_count_geq(0, lower); }\n        // #{ v in S | v > lower }\n        size_type\
+    \ count_gt (unsigned_value_type lower) const { return xor_count_gt (0, lower);\
+    \ }\n\n        // max{ v | v < upper } or std::nullopt\n        std::optional<value_type>\
+    \ safe_max_lt (unsigned_value_type upper) const { return safe_xor_max_lt (0, upper);\
+    \ }\n        // max{ v | v <= upper } or std::nullopt\n        std::optional<value_type>\
+    \ safe_max_leq(unsigned_value_type upper) const { return safe_xor_max_leq(0, upper);\
+    \ }\n        // min{ v | v >= lower } or std::nullopt\n        std::optional<value_type>\
+    \ safe_min_geq(unsigned_value_type lower) const { return safe_xor_min_geq(0, lower);\
+    \ }\n        // min{ v | v > lower } or std::nullopt\n        std::optional<value_type>\
+    \ safe_min_gt (unsigned_value_type lower) const { return safe_xor_min_gt (0, lower);\
+    \ }\n\n        // max{ v | v < upper } or Runtime Error\n        value_type max_lt\
+    \ (unsigned_value_type upper) const { return *safe_max_lt (upper); }\n       \
+    \ // max{ v | v <= upper } or Runtime Error\n        value_type max_leq(unsigned_value_type\
+    \ upper) const { return *safe_max_leq(upper); }\n        // min{ v | v >= lower\
+    \ } or Runtime Error\n        value_type min_geq(unsigned_value_type lower) const\
+    \ { return *safe_min_geq(lower); }\n        // min{ v | v > lower } or Runtime\
+    \ Error\n        value_type min_gt (unsigned_value_type lower) const { return\
+    \ *safe_min_gt (lower); }\n\n    private:\n        static constexpr uint32_t _ord[4]{\
+    \ 0, 2, 1, 3 };\n        static constexpr uint32_t _rev_ord[4]{ 3, 1, 2, 0 };\n\
+    \        static constexpr uint32_t _inv_ord[4]{ 0, 2, 1, 3 };\n\n        node_pointer_type\
     \ _root = node_type::new_node(0, 0, 0);\n\n        static constexpr unsigned_value_type\
     \ cut_lower(const unsigned_value_type& val, uint32_t r) {\n            return\
     \ val & ((unsigned_value_type(1) << r) - 1);\n        }\n        static constexpr\
@@ -158,7 +170,7 @@ data:
     \ x) {\n            if constexpr (bit_num <= 32) {\n                x = bit_reverse_u32(x)\
     \ >> (32 - bit_num);\n            } else {\n                x = bit_reverse_u64(x)\
     \ >> (64 - bit_num);\n            }\n        }\n\n        __attribute__((target(\"\
-    bmi\"))) bool _insert_if_absent(node_pointer_type cur, uint32_t l, unsigned_value_type\
+    bmi\")))\n        bool _insert_if_absent(node_pointer_type cur, uint32_t l, unsigned_value_type\
     \ val) {\n            if (l == bit_num) return false;\n            const uint32_t\
     \ idx = val & (ary - 1);\n            node_pointer_type nxt = cur->ch[idx];\n\
     \            if (not nxt) {\n                cur->ch[idx] = node_type::new_node(val,\
@@ -173,7 +185,7 @@ data:
     \ >>= tz;\n            nxt->len -= tz;\n            val >>= tz;\n            br->ch[nxt->val\
     \ & (ary - 1)] = nxt;\n            br->ch[val & (ary - 1)] = node_type::new_node(val,\
     \ bit_num - l - tz, 1);\n            ++cur->siz;\n            return true;\n \
-    \       }\n\n        __attribute__((target(\"bmi\"))) void _insert(node_pointer_type\
+    \       }\n\n        __attribute__((target(\"bmi\")))\n        void _insert(node_pointer_type\
     \ cur, uint32_t l, unsigned_value_type val, internal_size_type num) {\n      \
     \      cur->siz += num;\n            if (l == bit_num) return;\n            const\
     \ uint32_t idx = val & (ary - 1);\n            node_pointer_type nxt = cur->ch[idx];\n\
@@ -203,8 +215,7 @@ data:
     \ {\n                cur->val |= ch->val << cur->len;\n                cur->len\
     \ += ch->len;\n                for (uint32_t i = 0; i < ary; ++i) cur->ch[i] =\
     \ std::exchange(ch->ch[i], nullptr);\n                delete ch;\n           \
-    \ }\n            return false;\n        }\n    };\n} // namespace suisen\n\n\n\
-    \n"
+    \ }\n            return false;\n        }\n    };\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_BINARY_TRIE_PATRICIA\n#define SUISEN_BINARY_TRIE_PATRICIA\n\
     \n#include <array>\n#include <cassert>\n#include <cstdint>\n#include <cstring>\n\
     #include <limits>\n#include <optional>\n#include <type_traits>\n#include <utility>\n\
@@ -229,7 +240,8 @@ data:
     \        ~BinaryTriePatricia() {\n            delete _root;\n        }\n\n   \
     \     // number of elements in the set\n        int size() const {\n         \
     \   return _root->siz;\n        }\n        // true iff size() == 0\n        bool\
-    \ empty() const {\n            return _root->siz == 0;\n        }\n\n        //\
+    \ empty() const {\n            return _root->siz == 0;\n        }\n        void\
+    \ clear() { delete _root; _root = node_type::new_node(0, 0, 0); }\n\n        //\
     \ returns true iff insertion is succeeded.\n        bool insert_if_absent(unsigned_value_type\
     \ val) {\n            bit_reverse(val);\n            return _insert_if_absent(_root,\
     \ 0, val);\n        }\n        void insert(unsigned_value_type val, internal_size_type\
@@ -237,14 +249,14 @@ data:
     \ num);\n        }\n        // returns the number of erased elements\n       \
     \ size_type erase(unsigned_value_type val, internal_size_type num = 1) {\n   \
     \         if (num == 0) return 0;\n            bit_reverse(val);\n           \
-    \ _erase(_root, num, 0, val);\n            return num;\n        }\n        \n\
-    \        size_type count(unsigned_value_type val) const {\n            bit_reverse(val);\n\
-    \            node_pointer_type cur = _root;\n            for (uint32_t l = 0;\
-    \ l < bit_num;) {\n                const uint32_t ch_idx = val & (ary - 1);\n\
-    \                node_pointer_type nxt = cur->ch[ch_idx];\n                if\
-    \ (not nxt or cut_lower(val ^ nxt->val, nxt->len)) return 0;\n               \
-    \ val >>= nxt->len;\n                l += nxt->len;\n                cur = nxt;\n\
-    \            }\n            return cur->siz;\n        }\n        bool contains(unsigned_value_type\
+    \ _erase(_root, num, 0, val);\n            return num;\n        }\n\n        size_type\
+    \ count(unsigned_value_type val) const {\n            bit_reverse(val);\n    \
+    \        node_pointer_type cur = _root;\n            for (uint32_t l = 0; l <\
+    \ bit_num;) {\n                const uint32_t ch_idx = val & (ary - 1);\n    \
+    \            node_pointer_type nxt = cur->ch[ch_idx];\n                if (not\
+    \ nxt or cut_lower(val ^ nxt->val, nxt->len)) return 0;\n                val >>=\
+    \ nxt->len;\n                l += nxt->len;\n                cur = nxt;\n    \
+    \        }\n            return cur->siz;\n        }\n        bool contains(unsigned_value_type\
     \ val) const { return count(val) != 0; }\n\n        // min{ x ^ v | v in S }\n\
     \        value_type xor_min(unsigned_value_type x) const {\n            return\
     \ xor_kth_min(x, 0);\n        }\n        // max{ x ^ v | v in S }\n        value_type\
@@ -255,29 +267,34 @@ data:
     \          unsigned_value_type res = 0;\n            node_pointer_type cur = _root;\n\
     \            for (uint32_t l = 0; l < bit_num;) {\n                const uint32_t\
     \ ch_idx = x & (ary - 1);\n                node_pointer_type nxt = nullptr;\n\
-    \                for (int x : { 0, 2, 1, 3 }) {\n                    if (nxt =\
-    \ cur->ch[ch_idx ^ x]; nxt) {\n                        if (nxt->siz > k) break;\n\
-    \                        k -= nxt->siz;\n                    }\n             \
-    \   }\n                res |= nxt->val << l;\n                x >>= nxt->len;\n\
-    \                l += nxt->len;\n                cur = nxt;\n            }\n \
-    \           bit_reverse(res);\n            return x_ ^ res;\n        }\n     \
-    \   // k-th largest of { x ^ v | v in S } (0-indexed)\n        value_type xor_kth_max(unsigned_value_type\
+    \                for (int x : _ord) {\n                    if (nxt = cur->ch[ch_idx\
+    \ ^ x]; nxt) {\n                        if (nxt->siz > k) break;\n           \
+    \             k -= nxt->siz;\n                    }\n                }\n     \
+    \           res |= nxt->val << l;\n                x >>= nxt->len;\n         \
+    \       l += nxt->len;\n                cur = nxt;\n            }\n          \
+    \  bit_reverse(res);\n            return x_ ^ res;\n        }\n        // k-th\
+    \ largest of { x ^ v | v in S } (0-indexed)\n        value_type xor_kth_max(unsigned_value_type\
     \ x, internal_size_type k) const {\n            return xor_kth_min(x, _root->siz\
-    \ - k - 1);\n        }\n\n        // #{ v in S | x ^ v < upper }\n        size_type\
-    \ xor_count_lt (unsigned_value_type x, unsigned_value_type upper) const {\n  \
-    \          if (upper >> bit_num) return _root->siz;\n            bit_reverse(x);\n\
-    \            bit_reverse(upper);\n            internal_size_type res = 0;\n  \
-    \          node_pointer_type cur = _root;\n            for (uint32_t l = 0; l\
-    \ < bit_num;) {\n                const uint32_t ch_idx = x & (ary - 1);\n    \
-    \            const uint32_t ch_idx_r = upper & (ary - 1);\n                node_pointer_type\
-    \ nxt = nullptr;\n                for (int x : { 0, 2, 1, 3 }) {\n           \
-    \         nxt = cur->ch[ch_idx ^ x];\n                    if ((ch_idx ^ x) ==\
+    \ - k - 1);\n        }\n\n        // #{ v in S | x ^ v < upper }\n        __attribute__((target(\"\
+    bmi\")))\n        size_type xor_count_lt (unsigned_value_type x, unsigned_value_type\
+    \ upper) const {\n            if (upper >> bit_num) return _root->siz;\n     \
+    \       bit_reverse(x);\n            bit_reverse(upper);\n            internal_size_type\
+    \ res = 0;\n            node_pointer_type cur = _root;\n            for (uint32_t\
+    \ l = 0; l < bit_num;) {\n                const uint32_t ch_idx = x & (ary - 1);\n\
+    \                const uint32_t ch_idx_r = upper & (ary - 1);\n              \
+    \  node_pointer_type nxt = nullptr;\n                for (uint32_t x : _ord) {\n\
+    \                    nxt = cur->ch[ch_idx ^ x];\n                    if (x ==\
     \ ch_idx_r) break;\n                    if (nxt) res += nxt->siz;\n          \
-    \      }\n                if (not nxt) break;\n                x >>= nxt->len;\n\
-    \                upper >>= nxt->len;\n                l += nxt->len;\n       \
-    \         cur = nxt;\n            }\n            return res;\n        }\n    \
-    \    // #{ v in S | x ^ v <= upper }\n        size_type xor_count_leq(unsigned_value_type\
-    \ x, unsigned_value_type upper) const {\n            if (upper == std::numeric_limits<unsigned_value_type>::max())\
+    \      }\n                if (not nxt) break;\n                const uint32_t\
+    \ len = nxt->len;\n                unsigned_value_type vlo = cut_lower(x, len)\
+    \ ^ nxt->val, ulo = cut_lower(upper, len);\n                if (vlo != ulo) {\n\
+    \                    uint32_t tz = len <= 32 ? _tzcnt_u32(vlo ^ ulo) : _tzcnt_u64(vlo\
+    \ ^ ulo);\n                    return (ulo >> tz) & 1 ? res + nxt->siz : res;\n\
+    \                }\n                x >>= len;\n                upper >>= len;\n\
+    \                l += len;\n                cur = nxt;\n            }\n      \
+    \      return res;\n        }\n        // #{ v in S | x ^ v <= upper }\n     \
+    \   size_type xor_count_leq(unsigned_value_type x, unsigned_value_type upper)\
+    \ const {\n            if (upper == std::numeric_limits<unsigned_value_type>::max())\
     \ return _root->siz;\n            return xor_count_lt(x, upper + 1);\n       \
     \ }\n        // #{ v in S | x ^ v >= lower }\n        size_type xor_count_geq(unsigned_value_type\
     \ x, unsigned_value_type lower) const {\n            return _root->siz - xor_count_lt(x,\
@@ -286,54 +303,57 @@ data:
     \          return _root->siz - xor_count_leq(x, lower);\n        }\n\n       \
     \ // max{ x ^ v | x ^ v < upper } or std::nullopt\n        std::optional<value_type>\
     \ safe_xor_max_lt (unsigned_value_type x, unsigned_value_type upper) const {\n\
-    \            internal_size_type clt = xor_count_lt(x, upper);\n            if\
-    \ (clt == 0) return std::nullopt;\n            return xor_kth_min(clt - 1);\n\
+    \            internal_size_type cnt = xor_count_lt(x, upper);\n            if\
+    \ (cnt == 0) return std::nullopt;\n            return xor_kth_min(x, cnt - 1);\n\
     \        }\n        // max{ x ^ v | x ^ v <= upper } or std::nullopt\n       \
     \ std::optional<value_type> safe_xor_max_leq(unsigned_value_type x, unsigned_value_type\
-    \ upper) const {\n            internal_size_type clt = xor_count_leq(x, upper);\n\
-    \            if (clt == 0) return std::nullopt;\n            return xor_kth_min(clt\
-    \ - 1);\n        }\n        // min{ x ^ v | x ^ v >= lower } or std::nullopt\n\
+    \ upper) const {\n            internal_size_type cnt = xor_count_leq(x, upper);\n\
+    \            if (cnt == 0) return std::nullopt;\n            return xor_kth_min(x,\
+    \ cnt - 1);\n        }\n        // min{ x ^ v | x ^ v >= lower } or std::nullopt\n\
     \        std::optional<value_type> safe_xor_min_geq(unsigned_value_type x, unsigned_value_type\
-    \ lower) const {\n            internal_size_type clt = xor_count_lt(x, lower);\n\
-    \            if (clt == _root->siz) return std::nullopt;\n            return xor_kth_min(clt);\n\
-    \        }\n        // min{ x ^ v | x ^ v > lower } or std::nullopt\n        std::optional<value_type>\
-    \ safe_xor_min_gt (unsigned_value_type x, unsigned_value_type lower) const {\n\
-    \            internal_size_type clt = xor_count_leq(x, lower);\n            if\
-    \ (clt == _root->siz) return std::nullopt;\n            return xor_kth_min(clt);\n\
-    \        }\n\n        // max{ x ^ v | x ^ v < upper } or Runtime Error\n     \
-    \   value_type xor_max_lt (unsigned_value_type x, unsigned_value_type upper) const\
-    \ { return *safe_xor_max_lt (x, upper); }\n        // max{ x ^ v | x ^ v <= upper\
-    \ } or Runtime Error\n        value_type xor_max_leq(unsigned_value_type x, unsigned_value_type\
-    \ upper) const { return *safe_xor_max_leq(x, upper); }\n        // min{ x ^ v\
-    \ | x ^ v >= lower } or Runtime Error\n        value_type xor_min_geq(unsigned_value_type\
-    \ x, unsigned_value_type lower) const { return *safe_xor_min_geq(x, lower); }\n\
-    \        // min{ x ^ v | x ^ v > lower } or Runtime Error\n        value_type\
-    \ xor_min_gt (unsigned_value_type x, unsigned_value_type lower) const { return\
-    \ *safe_xor_min_gt (x, lower); }\n\n        // 0-indexed\n        value_type kth_min(internal_size_type\
-    \ k) const { return xor_kth_min(0, k); }\n        // 0-indexed\n        value_type\
-    \ kth_max(internal_size_type k) const { return xor_kth_max(0, k); }\n        //\
-    \ #{ v in S | v < upper }\n        size_type count_lt (unsigned_value_type upper)\
-    \ const { return xor_count_lt (0, upper); }\n        // #{ v in S | v <= upper\
-    \ }\n        size_type count_leq(unsigned_value_type upper) const { return xor_count_leq(0,\
-    \ upper); }\n        // #{ v in S | v >= lower }\n        size_type count_geq(unsigned_value_type\
-    \ lower) const { return xor_count_geq(0, lower); }\n        // #{ v in S | v >\
-    \ lower }\n        size_type count_gt (unsigned_value_type lower) const { return\
-    \ xor_count_gt (0, lower); }\n\n        // max{ v | v < upper } or std::nullopt\n\
-    \        std::optional<value_type> safe_max_lt (unsigned_value_type upper) const\
-    \ { return safe_xor_max_lt(upper); }\n        // max{ v | v <= upper } or std::nullopt\n\
-    \        std::optional<value_type> safe_max_leq(unsigned_value_type upper) const\
-    \ { return safe_xor_max_leq(upper); }\n        // min{ v | v >= lower } or std::nullopt\n\
-    \        std::optional<value_type> safe_min_geq(unsigned_value_type lower) const\
-    \ { return safe_xor_min_geq(lower); }\n        // min{ v | v > lower } or std::nullopt\n\
-    \        std::optional<value_type> safe_min_gt (unsigned_value_type lower) const\
-    \ { return safe_xor_min_gt(lower); }\n\n        // max{ v | v < upper } or Runtime\
-    \ Error\n        value_type max_lt (unsigned_value_type upper) const { return\
-    \ *safe_max_lt (upper); }\n        // max{ v | v <= upper } or Runtime Error\n\
-    \        value_type max_leq(unsigned_value_type upper) const { return *safe_max_leq(upper);\
-    \ }\n        // min{ v | v >= lower } or Runtime Error\n        value_type min_geq(unsigned_value_type\
-    \ lower) const { return *safe_min_geq(lower); }\n        // min{ v | v > lower\
-    \ } or Runtime Error\n        value_type min_gt (unsigned_value_type lower) const\
-    \ { return *safe_min_gt (lower); }\n\n    private:\n        node_pointer_type\
+    \ lower) const {\n            internal_size_type cnt = xor_count_lt(x, lower);\n\
+    \            if (cnt == _root->siz) return std::nullopt;\n            return xor_kth_min(x,\
+    \ cnt);\n        }\n        // min{ x ^ v | x ^ v > lower } or std::nullopt\n\
+    \        std::optional<value_type> safe_xor_min_gt (unsigned_value_type x, unsigned_value_type\
+    \ lower) const {\n            internal_size_type cnt = xor_count_leq(x, lower);\n\
+    \            if (cnt == _root->siz) return std::nullopt;\n            return xor_kth_min(x,\
+    \ cnt);\n        }\n\n        // max{ x ^ v | x ^ v < upper } or Runtime Error\n\
+    \        value_type xor_max_lt (unsigned_value_type x, unsigned_value_type upper)\
+    \ const { return *safe_xor_max_lt (x, upper); }\n        // max{ x ^ v | x ^ v\
+    \ <= upper } or Runtime Error\n        value_type xor_max_leq(unsigned_value_type\
+    \ x, unsigned_value_type upper) const { return *safe_xor_max_leq(x, upper); }\n\
+    \        // min{ x ^ v | x ^ v >= lower } or Runtime Error\n        value_type\
+    \ xor_min_geq(unsigned_value_type x, unsigned_value_type lower) const { return\
+    \ *safe_xor_min_geq(x, lower); }\n        // min{ x ^ v | x ^ v > lower } or Runtime\
+    \ Error\n        value_type xor_min_gt (unsigned_value_type x, unsigned_value_type\
+    \ lower) const { return *safe_xor_min_gt (x, lower); }\n\n        // 0-indexed\n\
+    \        value_type kth_min(internal_size_type k) const { return xor_kth_min(0,\
+    \ k); }\n        // 0-indexed\n        value_type kth_max(internal_size_type k)\
+    \ const { return xor_kth_max(0, k); }\n        // #{ v in S | v < upper }\n  \
+    \      size_type count_lt (unsigned_value_type upper) const { return xor_count_lt\
+    \ (0, upper); }\n        // #{ v in S | v <= upper }\n        size_type count_leq(unsigned_value_type\
+    \ upper) const { return xor_count_leq(0, upper); }\n        // #{ v in S | v >=\
+    \ lower }\n        size_type count_geq(unsigned_value_type lower) const { return\
+    \ xor_count_geq(0, lower); }\n        // #{ v in S | v > lower }\n        size_type\
+    \ count_gt (unsigned_value_type lower) const { return xor_count_gt (0, lower);\
+    \ }\n\n        // max{ v | v < upper } or std::nullopt\n        std::optional<value_type>\
+    \ safe_max_lt (unsigned_value_type upper) const { return safe_xor_max_lt (0, upper);\
+    \ }\n        // max{ v | v <= upper } or std::nullopt\n        std::optional<value_type>\
+    \ safe_max_leq(unsigned_value_type upper) const { return safe_xor_max_leq(0, upper);\
+    \ }\n        // min{ v | v >= lower } or std::nullopt\n        std::optional<value_type>\
+    \ safe_min_geq(unsigned_value_type lower) const { return safe_xor_min_geq(0, lower);\
+    \ }\n        // min{ v | v > lower } or std::nullopt\n        std::optional<value_type>\
+    \ safe_min_gt (unsigned_value_type lower) const { return safe_xor_min_gt (0, lower);\
+    \ }\n\n        // max{ v | v < upper } or Runtime Error\n        value_type max_lt\
+    \ (unsigned_value_type upper) const { return *safe_max_lt (upper); }\n       \
+    \ // max{ v | v <= upper } or Runtime Error\n        value_type max_leq(unsigned_value_type\
+    \ upper) const { return *safe_max_leq(upper); }\n        // min{ v | v >= lower\
+    \ } or Runtime Error\n        value_type min_geq(unsigned_value_type lower) const\
+    \ { return *safe_min_geq(lower); }\n        // min{ v | v > lower } or Runtime\
+    \ Error\n        value_type min_gt (unsigned_value_type lower) const { return\
+    \ *safe_min_gt (lower); }\n\n    private:\n        static constexpr uint32_t _ord[4]{\
+    \ 0, 2, 1, 3 };\n        static constexpr uint32_t _rev_ord[4]{ 3, 1, 2, 0 };\n\
+    \        static constexpr uint32_t _inv_ord[4]{ 0, 2, 1, 3 };\n\n        node_pointer_type\
     \ _root = node_type::new_node(0, 0, 0);\n\n        static constexpr unsigned_value_type\
     \ cut_lower(const unsigned_value_type& val, uint32_t r) {\n            return\
     \ val & ((unsigned_value_type(1) << r) - 1);\n        }\n        static constexpr\
@@ -352,7 +372,7 @@ data:
     \ x) {\n            if constexpr (bit_num <= 32) {\n                x = bit_reverse_u32(x)\
     \ >> (32 - bit_num);\n            } else {\n                x = bit_reverse_u64(x)\
     \ >> (64 - bit_num);\n            }\n        }\n\n        __attribute__((target(\"\
-    bmi\"))) bool _insert_if_absent(node_pointer_type cur, uint32_t l, unsigned_value_type\
+    bmi\")))\n        bool _insert_if_absent(node_pointer_type cur, uint32_t l, unsigned_value_type\
     \ val) {\n            if (l == bit_num) return false;\n            const uint32_t\
     \ idx = val & (ary - 1);\n            node_pointer_type nxt = cur->ch[idx];\n\
     \            if (not nxt) {\n                cur->ch[idx] = node_type::new_node(val,\
@@ -367,7 +387,7 @@ data:
     \ >>= tz;\n            nxt->len -= tz;\n            val >>= tz;\n            br->ch[nxt->val\
     \ & (ary - 1)] = nxt;\n            br->ch[val & (ary - 1)] = node_type::new_node(val,\
     \ bit_num - l - tz, 1);\n            ++cur->siz;\n            return true;\n \
-    \       }\n\n        __attribute__((target(\"bmi\"))) void _insert(node_pointer_type\
+    \       }\n\n        __attribute__((target(\"bmi\")))\n        void _insert(node_pointer_type\
     \ cur, uint32_t l, unsigned_value_type val, internal_size_type num) {\n      \
     \      cur->siz += num;\n            if (l == bit_num) return;\n            const\
     \ uint32_t idx = val & (ary - 1);\n            node_pointer_type nxt = cur->ch[idx];\n\
@@ -397,15 +417,16 @@ data:
     \ {\n                cur->val |= ch->val << cur->len;\n                cur->len\
     \ += ch->len;\n                for (uint32_t i = 0; i < ary; ++i) cur->ch[i] =\
     \ std::exchange(ch->ch[i], nullptr);\n                delete ch;\n           \
-    \ }\n            return false;\n        }\n    };\n} // namespace suisen\n\n\n\
-    #endif // SUISEN_BINARY_TRIE_PATRICIA\n"
+    \ }\n            return false;\n        }\n    };\n} // namespace suisen\n\n#endif\
+    \ // SUISEN_BINARY_TRIE_PATRICIA\n"
   dependsOn: []
   isVerificationFile: false
   path: library/datastructure/binary_trie_patricia.hpp
   requiredBy: []
-  timestamp: '2022-07-16 03:53:19+09:00'
+  timestamp: '2022-07-16 18:47:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp
   - test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
 documentation_of: library/datastructure/binary_trie_patricia.hpp
 layout: document

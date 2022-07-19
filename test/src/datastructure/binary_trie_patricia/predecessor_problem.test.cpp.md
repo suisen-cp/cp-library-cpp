@@ -11,13 +11,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
+    PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
     links:
-    - https://judge.yosupo.jp/problem/set_xor_min
-  bundledCode: "#line 1 \"test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n\n#include\
-    \ <iostream>\n\n#line 1 \"library/datastructure/binary_trie_patricia.hpp\"\n\n\
-    \n\n#include <array>\n#include <cassert>\n#include <cstdint>\n#include <cstring>\n\
+    - https://judge.yosupo.jp/problem/predecessor_problem
+  bundledCode: "#line 1 \"test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\n\
+    #include <iostream>\n\n#line 1 \"library/datastructure/binary_trie_patricia.hpp\"\
+    \n\n\n\n#include <array>\n#include <cassert>\n#include <cstdint>\n#include <cstring>\n\
     #include <limits>\n#include <optional>\n#include <type_traits>\n#include <utility>\n\
     \n#ifdef _MSC_VER\n#  include <intrin.h>\n#else\n#  include <x86intrin.h>\n#endif\n\
     \nnamespace suisen {\n    template <typename T, uint32_t bit_num, typename SizeType\
@@ -218,35 +218,45 @@ data:
     \ += ch->len;\n                for (uint32_t i = 0; i < ary; ++i) cur->ch[i] =\
     \ std::exchange(ch->ch[i], nullptr);\n                delete ch;\n           \
     \ }\n            return false;\n        }\n    };\n} // namespace suisen\n\n\n\
-    #line 6 \"test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp\"\n\
-    using suisen::BinaryTriePatricia;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int q;\n    std::cin >> q;\n\n    BinaryTriePatricia<uint32_t,\
-    \ 30> bt;\n    while (q --> 0) {\n        uint32_t query_type, x;\n        std::cin\
-    \ >> query_type >> x;\n\n        if (query_type == 0) {\n            bt.insert_if_absent(x);\n\
-    \        } else if (query_type == 1) {\n            bt.erase(x);\n        } else\
-    \ {\n            std::cout << bt.xor_min(x) << '\\n';\n        }\n    }\n\n  \
-    \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n\n#include\
-    \ <iostream>\n\n#include \"library/datastructure/binary_trie_patricia.hpp\"\n\
-    using suisen::BinaryTriePatricia;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int q;\n    std::cin >> q;\n\n    BinaryTriePatricia<uint32_t,\
-    \ 30> bt;\n    while (q --> 0) {\n        uint32_t query_type, x;\n        std::cin\
-    \ >> query_type >> x;\n\n        if (query_type == 0) {\n            bt.insert_if_absent(x);\n\
-    \        } else if (query_type == 1) {\n            bt.erase(x);\n        } else\
-    \ {\n            std::cout << bt.xor_min(x) << '\\n';\n        }\n    }\n\n  \
-    \  return 0;\n}\n"
+    #line 6 \"test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n, q;\n    std::cin >> n >> q;\n\n    std::string t;\n    std::cin >>\
+    \ t;\n\n    suisen::BinaryTriePatricia<int, 24> bt;\n    for (int i = 0; i < n;\
+    \ ++i) if (t[i] == '1') {\n        bt.insert(i);\n    }\n\n    while (q --> 0)\
+    \ {\n        int query_type, k;\n        std::cin >> query_type >> k;\n      \
+    \  if (query_type == 0) {\n            bt.insert_if_absent(k);\n        } else\
+    \ if (query_type == 1) {\n            bt.erase(k);\n        } else if (query_type\
+    \ == 2) {\n            std::cout << bt.contains(k) << '\\n';\n        } else if\
+    \ (query_type == 3) {\n            auto opt_v = bt.safe_min_geq(k);\n        \
+    \    std::cout << (opt_v.has_value() ? *opt_v : -1) << '\\n';\n        } else\
+    \ {\n            auto opt_v = bt.safe_max_leq(k);\n            std::cout << (opt_v.has_value()\
+    \ ? *opt_v : -1) << '\\n';\n        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
+    \n#include <iostream>\n\n#include \"library/datastructure/binary_trie_patricia.hpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n, q;\n    std::cin >> n >> q;\n\n    std::string t;\n    std::cin >>\
+    \ t;\n\n    suisen::BinaryTriePatricia<int, 24> bt;\n    for (int i = 0; i < n;\
+    \ ++i) if (t[i] == '1') {\n        bt.insert(i);\n    }\n\n    while (q --> 0)\
+    \ {\n        int query_type, k;\n        std::cin >> query_type >> k;\n      \
+    \  if (query_type == 0) {\n            bt.insert_if_absent(k);\n        } else\
+    \ if (query_type == 1) {\n            bt.erase(k);\n        } else if (query_type\
+    \ == 2) {\n            std::cout << bt.contains(k) << '\\n';\n        } else if\
+    \ (query_type == 3) {\n            auto opt_v = bt.safe_min_geq(k);\n        \
+    \    std::cout << (opt_v.has_value() ? *opt_v : -1) << '\\n';\n        } else\
+    \ {\n            auto opt_v = bt.safe_max_leq(k);\n            std::cout << (opt_v.has_value()\
+    \ ? *opt_v : -1) << '\\n';\n        }\n    }\n\n    return 0;\n}"
   dependsOn:
   - library/datastructure/binary_trie_patricia.hpp
   isVerificationFile: true
-  path: test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
+  path: test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp
   requiredBy: []
   timestamp: '2022-07-16 18:47:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
+documentation_of: test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
-- /verify/test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp.html
-title: test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
+- /verify/test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp
+- /verify/test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp.html
+title: test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp
 ---

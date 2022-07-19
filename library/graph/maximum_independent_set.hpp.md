@@ -100,8 +100,8 @@ data:
   isVerificationFile: false
   path: library/graph/maximum_independent_set.hpp
   requiredBy:
-  - library/graph/maximum_clique.hpp
   - library/graph/minimum_vertex_cover.hpp
+  - library/graph/maximum_clique.hpp
   timestamp: '2022-06-11 19:21:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

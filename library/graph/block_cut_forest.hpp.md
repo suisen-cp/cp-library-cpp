@@ -24,20 +24,22 @@ data:
     \  for (int v : vs) exists[v] = true;\n        vs.erase(std::remove_if(vs.begin(),\
     \ vs.end(), [&](int v) { return not std::exchange(exists[v], false); }), vs.end());\n\
     \    }\n}\n\n} // namespace suisen\n\n\n\n#line 1 \"library/graph/biconnected_components.hpp\"\
-    \n\n\n\n#line 1 \"library/graph/low_link.hpp\"\n\n\n\n#include <cassert>\n#line\
-    \ 6 \"library/graph/low_link.hpp\"\n\nnamespace suisen {\n    struct LowLink {\n\
-    \        LowLink() : LowLink(0) {}\n        LowLink(const int n) : _n(n), _m(0),\
-    \ _g(n), _pre_order(n, -1), _low_link(n), _built(false) {}\n        LowLink(const\
-    \ int n, const std::vector<std::pair<int, int>> &edges) : LowLink(n) {\n     \
-    \       for (const auto &[u, v] : edges) add_edge(u, v);\n            build();\n\
-    \        }\n        \n        int add_edge(int u, int v) {\n            _built\
-    \ = false;\n            _edges.emplace_back(u, v);\n            _g[u].emplace_back(v,\
-    \ _m);\n            _g[v].emplace_back(u, _m);\n            return _m++;\n   \
-    \     }\n\n        void build() {\n            dfs_for_all_connected_components();\n\
+    \n\n\n\n#line 5 \"library/graph/biconnected_components.hpp\"\n#include <utility>\n\
+    #line 1 \"library/graph/low_link.hpp\"\n\n\n\n#include <cassert>\n#line 6 \"library/graph/low_link.hpp\"\
+    \n\nnamespace suisen {\n    struct LowLink {\n        LowLink() : LowLink(0) {}\n\
+    \        LowLink(const int n) : _n(n), _m(0), _g(n), _pre_order(n, -1), _low_link(n),\
+    \ _built(false) {}\n        LowLink(const int n, const std::vector<std::pair<int,\
+    \ int>> &edges) : LowLink(n) {\n            for (const auto &[u, v] : edges) add_edge(u,\
+    \ v);\n            build();\n        }\n        \n        int add_edge(int u,\
+    \ int v) {\n            _built = false;\n            _edges.emplace_back(u, v);\n\
+    \            _g[u].emplace_back(v, _m);\n            _g[v].emplace_back(u, _m);\n\
+    \            return _m++;\n        }\n\n        void build() {\n            dfs_for_all_connected_components();\n\
     \            _built = true;\n        }\n\n        int vertex_num() const { return\
     \ _n; }\n        int edge_num()   const { return _m; }\n\n        const std::pair<int,\
     \ int>& edge(int edge_id) const { return _edges[edge_id]; }\n        const std::vector<std::pair<int,\
-    \ int>>& edges() const { return _edges; }\n        \n        int pre_order(int\
+    \ int>>& edges() const { return _edges; }\n        // list of edges { u, edge_id\
+    \ } adjacent to the vertex v.\n        const std::vector<std::pair<int, int>>&\
+    \ operator[](int v) const { return _g[v]; }\n        \n        int pre_order(int\
     \ v) const {\n            assert(_built);\n            return _pre_order[v];\n\
     \        }\n        int low_link(int v) const {\n            assert(_built);\n\
     \            return _low_link[v];\n        }\n\n        const std::vector<int>&\
@@ -65,88 +67,127 @@ data:
     \        }\n\n        void dfs_for_all_connected_components() {\n            for\
     \ (int i = 0, ord = 0; i < _n; ++i) {\n                if (_pre_order[i] < 0)\
     \ dfs(i, -1, ord);\n            }\n        }\n    };\n} // namespace suisen\n\n\
-    \n\n#line 6 \"library/graph/biconnected_components.hpp\"\n\nnamespace suisen {\n\
+    \n\n#line 7 \"library/graph/biconnected_components.hpp\"\n\nnamespace suisen {\n\
     \    struct BiconnectedComponents : public LowLink {\n        BiconnectedComponents()\
     \ \n            : BiconnectedComponents(0) {}\n        BiconnectedComponents(const\
-    \ int n) \n            : LowLink(n), _used(_n, false), _comp_id(_m, -1), _comp_num(0)\
-    \ {}\n        BiconnectedComponents(const int n, const std::vector<std::pair<int,\
-    \ int>> &edges) \n            : LowLink(n, edges), _used(_n, false), _comp_id(_m,\
-    \ -1), _comp_num(0) {\n            dfs_for_all_connected_components();\n     \
-    \   }\n\n        void build() {\n            LowLink::build();\n            dfs_for_all_connected_components();\n\
-    \        }\n\n        int component_num() const {\n            assert(_built);\n\
-    \            return _comp_num;\n        }\n\n        int operator[](int edge_id)\
-    \ const {\n            assert(_built);\n            return _comp_id[edge_id];\n\
-    \        }\n        \n        std::vector<std::vector<int>> edge_groups() const\
-    \ {\n            assert(_built);\n            std::vector<std::vector<int>> res(component_num());\n\
-    \            for (int i = 0; i < _m; ++i) res[_comp_id[i]].push_back(i);\n   \
-    \         return res;\n        }\n\n    private:\n        std::vector<int8_t>\
-    \ _used;\n        std::vector<int> _comp_id;\n        int _comp_num;\n\n     \
-    \   void dfs(int u, int par_edge_id) {\n            _used[u] = true;\n       \
-    \     static std::vector<int> edges;\n            for (const auto &[v, edge_id]\
+    \ int n) \n            : LowLink(n), _used(_n, false), _edge_comp_id(_m, -1),\
+    \ _edge_comp_num(0) {}\n        BiconnectedComponents(const int n, const std::vector<std::pair<int,\
+    \ int>> &edges) \n            : LowLink(n, edges), _used(_n, false), _edge_comp_id(_m,\
+    \ -1), _edge_comp_num(0) {\n            dfs_for_all_connected_components();\n\
+    \        }\n\n        void build() {\n            LowLink::build();\n        \
+    \    dfs_for_all_connected_components();\n        }\n\n        // # of component\
+    \ (including isolated vertices)\n        int component_num() const {\n       \
+    \     assert(_built);\n            return _edge_comp_num + _isolated_vertices.size();\n\
+    \        }\n        // component_num() - # of isolated vertices\n        int edge_component_num()\
+    \ const {\n            assert(_built);\n            return _edge_comp_num;\n \
+    \       }\n        int isolated_vertex_num() const {\n            assert(_built);\n\
+    \            return _isolated_vertices.size();\n        }\n        bool is_isolated_component(int\
+    \ component_id) const {\n            return component_id >= _edge_comp_num;\n\
+    \        } \n\n        int operator[](int edge_id) const {\n            assert(_built);\n\
+    \            return _edge_comp_id[edge_id];\n        }\n\n        const std::vector<int>&\
+    \ isolated_vertices() const {\n            assert(_built);\n            return\
+    \ _isolated_vertices;\n        }\n\n        struct Subgraph {\n            std::vector<int>\
+    \ vids, eids;\n            int vertex_num() const { return vids.size(); }\n  \
+    \          int edge_num()   const { return eids.size(); }\n            const std::vector<int>&\
+    \ vertex_set() const { return vids; }\n            const std::vector<int>& edge_set()\
+    \   const { return eids; }\n            bool operator==(const Subgraph &rhs) const\
+    \ { return vids == rhs.vids and eids == rhs.eids; }\n            bool operator!=(const\
+    \ Subgraph &rhs) const { return not (*this == rhs); }\n        };\n        \n\
+    \        // vector of biconnected components. [0:edge_component_num()) has edges,\
+    \ [edge_component_num(),component_num()) are isolated vertices.\n        std::vector<Subgraph>\
+    \ components() const {\n            assert(_built);\n            std::vector<Subgraph>\
+    \ res(component_num());\n            for (int i = 0; i < _m; ++i) {\n        \
+    \        res[_edge_comp_id[i]].eids.push_back(i);\n            }\n           \
+    \ std::vector<int8_t> seen(vertex_num(), false);\n            for (int id = 0;\
+    \ id < _edge_comp_num; ++id) {\n                for (int eid : res[id].eids) {\n\
+    \                    const auto &[u, v] = edge(eid);\n                    if (not\
+    \ std::exchange(seen[u], true)) res[id].vids.push_back(u);\n                 \
+    \   if (not std::exchange(seen[v], true)) res[id].vids.push_back(v);\n       \
+    \         }\n                for (int eid : res[id].eids) {\n                \
+    \    const auto &[u, v] = edge(eid);\n                    seen[u] = seen[v] =\
+    \ false;\n                }\n            }\n            int id = _edge_comp_num;\n\
+    \            for (int v : _isolated_vertices) {\n                res[id++].vids\
+    \ = { v };\n            }\n            return res;\n        }\n\n    private:\n\
+    \        std::vector<int8_t> _used;\n        std::vector<int> _edge_comp_id;\n\
+    \        int _edge_comp_num;\n        std::vector<int> _isolated_vertices;\n\n\
+    \        void dfs(int u, int par_edge_id) {\n            _used[u] = true;\n  \
+    \          static std::vector<int> edges;\n            for (const auto &[v, edge_id]\
     \ : _g[u]) if (edge_id != par_edge_id) {\n                // edge_id is a new\
     \ edge\n                if (not _used[v] or _pre_order[v] < _pre_order[u]) edges.push_back(edge_id);\n\
     \                // v is not a new vertex\n                if (_used[v]) continue;\n\
     \                dfs(v, edge_id);\n                if (_low_link[v] < _pre_order[u])\
-    \ continue;\n                int e;\n                do _comp_id[e = edges.back()]\
-    \ = _comp_num, edges.pop_back(); while (e != edge_id);\n                _comp_num++;\n\
+    \ continue;\n                int e;\n                do _edge_comp_id[e = edges.back()]\
+    \ = _edge_comp_num, edges.pop_back(); while (e != edge_id);\n                _edge_comp_num++;\n\
     \            }\n        }\n        void dfs_for_all_connected_components() {\n\
-    \            _comp_num = 0;\n            _comp_id.assign(_m, -1);\n          \
-    \  _used.assign(_n, false);\n            for (int i = 0; i < _n; ++i) {\n    \
-    \            if (not _used[i]) dfs(i, -1);\n            }\n        }\n    };\n\
-    } // namespace suisen\n\n\n\n#line 6 \"library/graph/block_cut_forest.hpp\"\n\n\
-    namespace suisen {\n    struct BlockCutForest {\n        BlockCutForest() = default;\n\
-    \        BlockCutForest(const BiconnectedComponents &bcc)\n            : _bcc_num(bcc.component_num()),\
-    \ _art_num(bcc.articulation_points().size()), _g(_bcc_num + _art_num), _vertex_num(_bcc_num\
-    \ + _art_num) {\n            std::vector<int> art_id(bcc.vertex_num(), -1);\n\
-    \            int next_id = _bcc_num;\n            for (int v : bcc.articulation_points())\
-    \ art_id[v] = next_id++;\n\n            std::vector<int> comp_id(bcc.vertex_num());\n\
-    \            for (int edge_id = 0; edge_id < bcc.edge_num(); ++edge_id) {\n  \
-    \              const int cid = bcc[edge_id];\n                const auto &[u,\
-    \ v] = bcc.edge(edge_id);\n                comp_id[u] = comp_id[v] = cid;\n  \
-    \              if (int vid = art_id[u]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
-    \                if (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
-    \            }\n            remove_multiedges(_g);\n\n            for (int v =\
-    \ 0; v < bcc.vertex_num(); ++v) {\n                if (int vid = art_id[v]; vid\
-    \ < 0) {\n                    ++_vertex_num[comp_id[v]];\n                } else\
-    \ {\n                    _vertex_num[vid] = 1;\n                    for (int cid\
-    \ : _g[vid]) ++_vertex_num[cid];\n                }\n            }\n        }\n\
-    \n        int size() const { return _bcc_num + _art_num; }\n        \n       \
-    \ bool is_articulation_point(int id)    const { return id >= _bcc_num; }\n   \
-    \     bool is_biconnected_component(int id) const { return not is_articulation_point(id);\
+    \            _edge_comp_num = 0;\n            _edge_comp_id.assign(_m, -1);\n\
+    \            _used.assign(_n, false);\n            for (int i = 0; i < _n; ++i)\
+    \ if (not _used[i]) {\n                dfs(i, -1);\n                if (_g[i].empty())\
+    \ _isolated_vertices.push_back(i);\n            }\n        }\n    };\n} // namespace\
+    \ suisen\n\n\n\n#line 6 \"library/graph/block_cut_forest.hpp\"\n\nnamespace suisen\
+    \ {\n    struct BlockCutForest {\n        BlockCutForest() = default;\n      \
+    \  BlockCutForest(const BiconnectedComponents &bcc)\n            : _edge_comp_num(bcc.edge_component_num()),\
+    \ _isolated_vertex_num(bcc.isolated_vertex_num()), _art_num(bcc.articulation_points().size()),\
+    \ _node_num(_edge_comp_num + _isolated_vertex_num + _art_num), _g(_node_num),\
+    \ _vertex_num(_node_num) {\n            std::vector<int> art_id(bcc.vertex_num(),\
+    \ -1);\n            int next_id = _edge_comp_num + _isolated_vertex_num;\n   \
+    \         for (int v : bcc.articulation_points()) art_id[v] = next_id++;\n\n \
+    \           std::vector<int> comp_id(bcc.vertex_num(), -1);\n            for (int\
+    \ edge_id = 0; edge_id < bcc.edge_num(); ++edge_id) {\n                const int\
+    \ cid = bcc[edge_id];\n                const auto &[u, v] = bcc.edge(edge_id);\n\
+    \                comp_id[u] = comp_id[v] = cid;\n                if (int vid =\
+    \ art_id[u]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n     \
+    \           if (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
+    \            }\n            int isolated_vertex_id = _edge_comp_num;\n       \
+    \     for (int v : bcc.isolated_vertices()) {\n                comp_id[v] = isolated_vertex_id++;\n\
+    \            }\n\n            remove_multiedges(_g);\n\n            for (int v\
+    \ = 0; v < bcc.vertex_num(); ++v) {\n                if (int vid = art_id[v];\
+    \ vid < 0) {\n                    ++_vertex_num[comp_id[v]];\n               \
+    \ } else {\n                    _vertex_num[vid] = 1;\n                    for\
+    \ (int cid : _g[vid]) ++_vertex_num[cid];\n                }\n            }\n\
+    \        }\n\n        int size() const { return _edge_comp_num + _isolated_vertex_num\
+    \ + _art_num; }\n        \n        bool is_articulation_point(int id)    const\
+    \ { return id >= _edge_comp_num + _isolated_vertex_num; }\n        bool is_biconnected_component(int\
+    \ id) const { return not is_articulation_point(id); }\n        bool is_isolated_vertex(int\
+    \ id)       const { return id >= _edge_comp_num and is_biconnected_component(id);\
     \ }\n\n        const std::vector<int>& operator[](int id) const { return _g[id];\
     \ }\n        std::vector<int>& operator[](int id) { return _g[id]; }\n\n     \
     \   int vertex_num(int id) const { return _vertex_num[id]; }\n\n    private:\n\
-    \        int _bcc_num;\n        int _art_num;\n        std::vector<std::vector<int>>\
-    \ _g;\n        std::vector<int> _vertex_num;\n    };\n} // namespace suisen\n\n\
-    \n\n"
+    \        int _edge_comp_num;\n        int _isolated_vertex_num;\n        int _art_num;\n\
+    \        int _node_num;\n        std::vector<std::vector<int>> _g;\n        std::vector<int>\
+    \ _vertex_num;\n    };\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_BLOCK_CUT_FOREST\n#define SUISEN_BLOCK_CUT_FOREST\n\n#include\
     \ \"library/graph/remove_multiedges.hpp\"\n#include \"library/graph/biconnected_components.hpp\"\
     \n\nnamespace suisen {\n    struct BlockCutForest {\n        BlockCutForest()\
     \ = default;\n        BlockCutForest(const BiconnectedComponents &bcc)\n     \
-    \       : _bcc_num(bcc.component_num()), _art_num(bcc.articulation_points().size()),\
-    \ _g(_bcc_num + _art_num), _vertex_num(_bcc_num + _art_num) {\n            std::vector<int>\
-    \ art_id(bcc.vertex_num(), -1);\n            int next_id = _bcc_num;\n       \
-    \     for (int v : bcc.articulation_points()) art_id[v] = next_id++;\n\n     \
-    \       std::vector<int> comp_id(bcc.vertex_num());\n            for (int edge_id\
-    \ = 0; edge_id < bcc.edge_num(); ++edge_id) {\n                const int cid =\
-    \ bcc[edge_id];\n                const auto &[u, v] = bcc.edge(edge_id);\n   \
-    \             comp_id[u] = comp_id[v] = cid;\n                if (int vid = art_id[u];\
-    \ vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n                if\
-    \ (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
-    \            }\n            remove_multiedges(_g);\n\n            for (int v =\
-    \ 0; v < bcc.vertex_num(); ++v) {\n                if (int vid = art_id[v]; vid\
-    \ < 0) {\n                    ++_vertex_num[comp_id[v]];\n                } else\
-    \ {\n                    _vertex_num[vid] = 1;\n                    for (int cid\
-    \ : _g[vid]) ++_vertex_num[cid];\n                }\n            }\n        }\n\
-    \n        int size() const { return _bcc_num + _art_num; }\n        \n       \
-    \ bool is_articulation_point(int id)    const { return id >= _bcc_num; }\n   \
-    \     bool is_biconnected_component(int id) const { return not is_articulation_point(id);\
+    \       : _edge_comp_num(bcc.edge_component_num()), _isolated_vertex_num(bcc.isolated_vertex_num()),\
+    \ _art_num(bcc.articulation_points().size()), _node_num(_edge_comp_num + _isolated_vertex_num\
+    \ + _art_num), _g(_node_num), _vertex_num(_node_num) {\n            std::vector<int>\
+    \ art_id(bcc.vertex_num(), -1);\n            int next_id = _edge_comp_num + _isolated_vertex_num;\n\
+    \            for (int v : bcc.articulation_points()) art_id[v] = next_id++;\n\n\
+    \            std::vector<int> comp_id(bcc.vertex_num(), -1);\n            for\
+    \ (int edge_id = 0; edge_id < bcc.edge_num(); ++edge_id) {\n                const\
+    \ int cid = bcc[edge_id];\n                const auto &[u, v] = bcc.edge(edge_id);\n\
+    \                comp_id[u] = comp_id[v] = cid;\n                if (int vid =\
+    \ art_id[u]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n     \
+    \           if (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
+    \            }\n            int isolated_vertex_id = _edge_comp_num;\n       \
+    \     for (int v : bcc.isolated_vertices()) {\n                comp_id[v] = isolated_vertex_id++;\n\
+    \            }\n\n            remove_multiedges(_g);\n\n            for (int v\
+    \ = 0; v < bcc.vertex_num(); ++v) {\n                if (int vid = art_id[v];\
+    \ vid < 0) {\n                    ++_vertex_num[comp_id[v]];\n               \
+    \ } else {\n                    _vertex_num[vid] = 1;\n                    for\
+    \ (int cid : _g[vid]) ++_vertex_num[cid];\n                }\n            }\n\
+    \        }\n\n        int size() const { return _edge_comp_num + _isolated_vertex_num\
+    \ + _art_num; }\n        \n        bool is_articulation_point(int id)    const\
+    \ { return id >= _edge_comp_num + _isolated_vertex_num; }\n        bool is_biconnected_component(int\
+    \ id) const { return not is_articulation_point(id); }\n        bool is_isolated_vertex(int\
+    \ id)       const { return id >= _edge_comp_num and is_biconnected_component(id);\
     \ }\n\n        const std::vector<int>& operator[](int id) const { return _g[id];\
     \ }\n        std::vector<int>& operator[](int id) { return _g[id]; }\n\n     \
     \   int vertex_num(int id) const { return _vertex_num[id]; }\n\n    private:\n\
-    \        int _bcc_num;\n        int _art_num;\n        std::vector<std::vector<int>>\
-    \ _g;\n        std::vector<int> _vertex_num;\n    };\n} // namespace suisen\n\n\
-    \n#endif // SUISEN_BLOCK_CUT_FOREST\n"
+    \        int _edge_comp_num;\n        int _isolated_vertex_num;\n        int _art_num;\n\
+    \        int _node_num;\n        std::vector<std::vector<int>> _g;\n        std::vector<int>\
+    \ _vertex_num;\n    };\n} // namespace suisen\n\n\n#endif // SUISEN_BLOCK_CUT_FOREST\n"
   dependsOn:
   - library/graph/remove_multiedges.hpp
   - library/graph/biconnected_components.hpp
@@ -154,7 +195,7 @@ data:
   isVerificationFile: false
   path: library/graph/block_cut_forest.hpp
   requiredBy: []
-  timestamp: '2022-05-05 17:38:51+09:00'
+  timestamp: '2022-07-16 16:39:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/graph/block_cut_forest.hpp

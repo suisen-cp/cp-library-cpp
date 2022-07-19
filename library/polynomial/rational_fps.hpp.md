@@ -8,58 +8,36 @@ data:
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':question:'
-    path: library/math/product_of_differences.hpp
-    title: Product Of Differences
-  - icon: ':x:'
-    path: library/number/linear_sieve.hpp
-    title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':x:'
-    path: library/polynomial/lagrange_interpolation.hpp
-    title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':question:'
-    path: library/polynomial/multi_point_eval.hpp
-    title: Multi Point Evaluation
-  - icon: ':x:'
-    path: library/sequence/powers.hpp
-    title: Powers
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
-  _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc208/tasks/abc208_f
-    links:
-    - https://atcoder.jp/contests/abc208/tasks/abc208_f
-  bundledCode: "#line 1 \"test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/abc208/tasks/abc208_f\"\n\n#include\
-    \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/polynomial/lagrange_interpolation.hpp\"\
-    \n\n\n\n#line 1 \"library/math/product_of_differences.hpp\"\n\n\n\n#include <deque>\n\
-    #line 1 \"library/polynomial/multi_point_eval.hpp\"\n\n\n\n#line 1 \"library/polynomial/fps.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/polynomial/fps.hpp\"\
-    \n#include <queue>\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#line\
-    \ 5 \"library/polynomial/fps_naive.hpp\"\n#include <cmath>\n#include <limits>\n\
-    #include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
-    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    links: []
+  bundledCode: "#line 1 \"library/polynomial/rational_fps.hpp\"\n\n\n\n#include <queue>\n\
+    \n#line 1 \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n#include\
+    \ <cassert>\n#include <iostream>\n#line 8 \"library/polynomial/fps.hpp\"\n\n#line\
+    \ 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\
+    \n#include <cmath>\n#include <limits>\n#include <type_traits>\n#include <vector>\n\
+    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
+    \n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
+    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
+    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
+    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
+    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
+    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
+    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
+    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -476,126 +454,111 @@ data:
     \    return a.exp(a.deg());\n}\ntemplate <typename mint, typename T>\nauto pow(suisen::FPS<mint>\
     \ a, T b) -> decltype(mint::mod(), suisen::FPS<mint>{}) {\n    return a.pow(b,\
     \ a.deg());\n}\ntemplate <typename mint>\nauto inv(suisen::FPS<mint> a) -> decltype(mint::mod(),\
-    \ suisen::FPS<mint>{}) {\n    return a.inv(a.deg());\n}\n\n\n#line 5 \"library/polynomial/multi_point_eval.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> multi_point_eval(const\
-    \ FPS<mint>& f, const std::vector<mint>& xs) {\n        int n = xs.size();\n \
-    \       std::vector<FPS<mint>> seg(2 * n);\n        for (int i = 0; i < n; ++i)\
-    \ seg[n + i] = FPS<mint>{ -xs[i], 1 };\n        for (int i = n - 1; i > 0; --i)\
-    \ seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        seg[1] = f % seg[1];\n      \
-    \  for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];\n        std::vector<mint>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
-    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 6 \"library/math/product_of_differences.hpp\"\
-    \n\nnamespace suisen {\n    /**\n     * O(N(logN)^2)\n     * return the vector\
-    \ p of length xs.size() s.t. p[i]=\u03A0[j!=i](x[i]-x[j])\n     */\n    template\
-    \ <typename mint>\n    std::vector<mint> product_of_differences(const std::vector<mint>&\
-    \ xs) {\n        // f(x):=\u03A0_i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0\
-    [j!=i](x-x[j])\n        // => f'(x[i])=\u03A0[j!=i](x[i]-x[j])\n        const\
-    \ int n = xs.size();\n        std::deque<FPS<mint>> dq;\n        for (int i =\
-    \ 0; i < n; ++i) dq.push_back(FPS<mint>{ -xs[i], mint{ 1 } });\n        while\
-    \ (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n          \
-    \  dq.pop_front();\n            auto g = std::move(dq.front());\n            dq.pop_front();\n\
-    \            dq.push_back(f * g);\n        }\n        auto f = std::move(dq.front());\n\
-    \        f.diff_inplace();\n        return multi_point_eval(f, xs);\n    }\n}\
-    \ // namespace suisen\n\n\n\n#line 5 \"library/polynomial/lagrange_interpolation.hpp\"\
-    \n\nnamespace suisen {\n    // O(N^2+NlogP)\n    template <typename T>\n    T\
-    \ lagrange_interpolation_naive(const std::vector<T>& xs, const std::vector<T>&\
-    \ ys, const T t) {\n        const int n = xs.size();\n        assert(int(ys.size())\
-    \ == n);\n\n        T p{ 1 };\n        for (int i = 0; i < n; ++i) p *= t - xs[i];\n\
-    \n        T res{ 0 };\n        for (int i = 0; i < n; ++i) {\n            T w\
-    \ = 1;\n            for (int j = 0; j < n; ++j) if (j != i) w *= xs[i] - xs[j];\n\
-    \            res += ys[i] * (t == xs[i] ? 1 : p / (w * (t - xs[i])));\n      \
-    \  }\n        return res;\n    }\n\n    // O(N(logN)^2+NlogP)\n    template <typename\
-    \ mint>\n    mint lagrange_interpolation(const std::vector<mint>& xs, const std::vector<mint>&\
-    \ ys, const mint t) {\n        const int n = xs.size();\n        assert(int(ys.size())\
-    \ == n);\n\n        std::vector<FPS<mint>> seg(2 * n);\n        for (int i = 0;\
-    \ i < n; ++i) seg[n + i] = FPS<mint> {-xs[i], 1};\n        for (int i = n - 1;\
-    \ i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        seg[1] = seg[1].diff()\
-    \ % seg[1];\n        for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];\n\
-    \n        mint p{ 1 };\n        for (int i = 0; i < n; ++i) p *= t - xs[i];\n\n\
-    \        mint res{ 0 };\n        for (int i = 0; i < n; ++i) {\n            mint\
-    \ w = seg[n + i][0];\n            res += ys[i] * (t == xs[i] ? 1 : p / (w * (t\
-    \ - xs[i])));\n        }\n        return res;\n    }\n\n    // xs[i] = ai + b\n\
-    \    // requirement: for all 0\u2264i<j<n, ai+b \u2262 aj+b mod p\n    template\
-    \ <typename T>\n    T lagrange_interpolation_arithmetic_progression(T a, T b,\
-    \ const std::vector<T>& ys, const T t) {\n        const int n = ys.size();\n \
-    \       T fac = 1;\n        for (int i = 1; i < n; ++i) fac *= i;\n        std::vector<T>\
-    \ fac_inv(n), suf(n);\n        fac_inv[n - 1] = T(1) / fac;\n        suf[n - 1]\
-    \ = 1;\n        for (int i = n - 1; i > 0; --i) {\n            fac_inv[i - 1]\
-    \ = fac_inv[i] * i;\n            suf[i - 1] = suf[i] * (t - (a * i + b));\n  \
-    \      }\n        T pre = 1, res = 0;\n        for (int i = 0; i < n; ++i) {\n\
-    \            T val = ys[i] * pre * suf[i] * fac_inv[i] * fac_inv[n - i - 1];\n\
-    \            if ((n - 1 - i) & 1) res -= val;\n            else              \
-    \   res += val;\n            pre *= t - (a * i + b);\n        }\n        return\
-    \ res / a.pow(n - 1);\n    }\n    // x = 0, 1, ...\n    template <typename T>\n\
-    \    T lagrange_interpolation_arithmetic_progression(const std::vector<T>& ys,\
-    \ const T t) {\n        return lagrange_interpolation_arithmetic_progression(T{1},\
-    \ T{0}, ys, t);\n    }\n} // namespace suisen\n\n\n\n#line 1 \"library/sequence/powers.hpp\"\
-    \n\n\n\n#include <cstdint>\n#line 1 \"library/number/linear_sieve.hpp\"\n\n\n\n\
-    #line 5 \"library/number/linear_sieve.hpp\"\n#include <numeric>\n#line 7 \"library/number/linear_sieve.hpp\"\
-    \n\nnamespace suisen {\n// referece: https://37zigen.com/linear-sieve/\nclass\
-    \ LinearSieve {\n    public:\n        LinearSieve(const int n) : _n(n), min_prime_factor(std::vector<int>(n\
-    \ + 1)) {\n            std::iota(min_prime_factor.begin(), min_prime_factor.end(),\
-    \ 0);\n            prime_list.reserve(_n / 20);\n            for (int d = 2; d\
-    \ <= _n; ++d) {\n                if (min_prime_factor[d] == d) prime_list.push_back(d);\n\
-    \                const int prime_max = std::min(min_prime_factor[d], _n / d);\n\
-    \                for (int prime : prime_list) {\n                    if (prime\
-    \ > prime_max) break;\n                    min_prime_factor[prime * d] = prime;\n\
-    \                }\n            }\n        }\n        int prime_num() const noexcept\
-    \ { return prime_list.size(); }\n        /**\n         * Returns a vector of primes\
-    \ in [0, n].\n         * It is guaranteed that the returned vector is sorted in\
-    \ ascending order.\n         */\n        const std::vector<int>& get_prime_list()\
-    \ const noexcept  {\n            return prime_list;\n        }\n        const\
-    \ std::vector<int>& get_min_prime_factor() const noexcept { return min_prime_factor;\
-    \ }\n        /**\n         * Returns a vector of `{ prime, index }`.\n       \
-    \  * It is guaranteed that the returned vector is sorted in ascending order.\n\
-    \         */\n        std::vector<std::pair<int, int>> factorize(int n) const\
-    \ noexcept {\n            assert(0 < n and n <= _n);\n            std::vector<std::pair<int,\
-    \ int>> prime_powers;\n            while (n > 1) {\n                int p = min_prime_factor[n],\
-    \ c = 0;\n                do { n /= p, ++c; } while (n % p == 0);\n          \
-    \      prime_powers.emplace_back(p, c);\n            }\n            return prime_powers;\n\
-    \        }\n    private:\n        const int _n;\n        std::vector<int> min_prime_factor;\n\
-    \        std::vector<int> prime_list;\n};\n} // namespace suisen\n\n\n#line 6\
-    \ \"library/sequence/powers.hpp\"\n\nnamespace suisen {\n    // returns { 0^k,\
-    \ 1^k, ..., n^k }\n    template <typename mint>\n    std::vector<mint> powers(uint32_t\
-    \ n, uint64_t k) {\n        const auto mpf = LinearSieve(n).get_min_prime_factor();\n\
-    \        std::vector<mint> res(n + 1);\n        res[0] = k == 0;\n        for\
-    \ (uint32_t i = 1; i <= n; ++i) res[i] = i == 1 ? 1 : uint32_t(mpf[i]) == i ?\
-    \ mint(i).pow(k) : res[mpf[i]] * res[i / mpf[i]];\n        return res;\n    }\n\
-    } // namespace suisen\n\n\n#line 8 \"test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp\"\
-    \n\nusing mint = atcoder::modint1000000007;\n\nint main() {\n    long long n;\n\
-    \    int m, k;\n    std::cin >> n >> m >> k;\n\n    std::vector<mint> f = suisen::powers<mint>(k\
-    \ + m, k);\n    for (int loop = 0; loop < m; ++loop) {\n        for (int i = 1;\
-    \ i <= k + m; ++i) f[i] += f[i - 1];\n    }\n\n    std::cout << suisen::lagrange_interpolation_arithmetic_progression<mint>(f,\
-    \ n).val() << '\\n';\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc208/tasks/abc208_f\"\n\n\
-    #include <iostream>\n#include <atcoder/modint>\n\n#include \"library/polynomial/lagrange_interpolation.hpp\"\
-    \n#include \"library/sequence/powers.hpp\"\n\nusing mint = atcoder::modint1000000007;\n\
-    \nint main() {\n    long long n;\n    int m, k;\n    std::cin >> n >> m >> k;\n\
-    \n    std::vector<mint> f = suisen::powers<mint>(k + m, k);\n    for (int loop\
-    \ = 0; loop < m; ++loop) {\n        for (int i = 1; i <= k + m; ++i) f[i] += f[i\
-    \ - 1];\n    }\n\n    std::cout << suisen::lagrange_interpolation_arithmetic_progression<mint>(f,\
-    \ n).val() << '\\n';\n\n    return 0;\n}\n"
+    \ suisen::FPS<mint>{}) {\n    return a.inv(a.deg());\n}\n\n\n#line 7 \"library/polynomial/rational_fps.hpp\"\
+    \n\nnamespace suisen {\n    template <typename mint>\n    struct RationalFPS {\n\
+    \        FPS<mint> num, den;\n        RationalFPS(const FPS<mint>& num = { 0 },\
+    \ const FPS<mint>& den = { 1 }) : num(num), den(den) {}\n        RationalFPS(const\
+    \ std::pair<FPS<mint>, FPS<mint>>& p) : num(p.first), den(p.second) {}\n\n   \
+    \     FPS<mint> to_fps(int max_deg) const {\n            return (num * den.inv(max_deg)).pre_inplace(max_deg);\n\
+    \        }\n\n        RationalFPS<mint> operator+() const { return *this; }\n\
+    \        RationalFPS<mint> operator-() const { return { -num, den }; }\n\n   \
+    \     friend RationalFPS<mint> operator+(const RationalFPS& lhs, const RationalFPS&\
+    \ rhs) {\n            return { lhs.num * rhs.den + lhs.den * rhs.num, lhs.den\
+    \ * rhs.den };\n        }\n        friend RationalFPS<mint> operator-(const RationalFPS&\
+    \ lhs, const RationalFPS& rhs) {\n            return { lhs.num * rhs.den - lhs.den\
+    \ * rhs.num, lhs.den * rhs.den };\n        }\n        friend RationalFPS<mint>\
+    \ operator*(const RationalFPS& lhs, const RationalFPS& rhs) {\n            return\
+    \ { lhs.num * rhs.num, lhs.den * rhs.den };\n        }\n        friend RationalFPS<mint>\
+    \ operator*(const RationalFPS& lhs, const mint& val) {\n            return { lhs.num\
+    \ * val, lhs.den };\n        }\n        friend RationalFPS<mint> operator/(const\
+    \ RationalFPS& lhs, const mint& val) {\n            return { lhs.num, lhs.den\
+    \ * val };\n        }\n        friend RationalFPS<mint> operator*(const mint&\
+    \ val, const RationalFPS& lhs) {\n            return { lhs.num * val, lhs.den\
+    \ };\n        }\n        friend RationalFPS<mint> operator/(const mint& val, const\
+    \ RationalFPS& lhs) {\n            return { lhs.den * val, lhs.num };\n      \
+    \  }\n\n        RationalFPS<mint>& operator+=(const RationalFPS& rhs) { return\
+    \ *this = *this + rhs; }\n        RationalFPS<mint>& operator-=(const RationalFPS&\
+    \ rhs) { return *this = *this - rhs; }\n        RationalFPS<mint>& operator*=(const\
+    \ RationalFPS& rhs) { return *this = *this * rhs; }\n        RationalFPS<mint>&\
+    \ operator*=(const mint& val) { return num *= val, *this; }\n        RationalFPS<mint>&\
+    \ operator/=(const mint& val) { return den *= val, *this; }\n\n        RationalFPS<mint>\
+    \ inv() const { return { den, num }; }\n        RationalFPS<mint>& inv_inplace()\
+    \ { return std::swap(num, den), * this; }\n\n        FPS<mint> normalize() {\n\
+    \            auto [q, r] = num.div_mod(den);\n            num = std::move(r);\n\
+    \            return q;\n        }\n\n        static RationalFPS<mint> sum(const\
+    \ std::vector<RationalFPS<mint>>& fs) {\n            auto comp = [](const RationalFPS<mint>&\
+    \ f, const RationalFPS<mint>& g) {\n                return f.den.size() > g.den.size();\n\
+    \            };\n            std::priority_queue<RationalFPS<mint>, std::vector<RationalFPS<mint>>,\
+    \ decltype(comp)> pq{ comp };\n            for (const auto& f : fs) pq.push(f);\n\
+    \n            while (pq.size() > 1) {\n                auto f = pq.top();\n  \
+    \              pq.pop();\n                auto g = pq.top();\n               \
+    \ pq.pop();\n                pq.emplace(f + g);\n            }\n            return\
+    \ pq.top();\n        }\n        static RationalFPS<mint> prod(const std::vector<RationalFPS<mint>>&\
+    \ fs) {\n            std::vector<FPS<mint>> nums, dens;\n            for (const\
+    \ auto &f : fs) nums.push_back(f.num), dens.push_back(f.den);\n            return\
+    \ { FPS<mint>::prod(nums), FPS<mint>::prod(dens) };\n        }\n    };\n} // namespace\
+    \ suisen\n\n\n"
+  code: "#ifndef SUISEN_RATIONAL_FPS\n#define SUISEN_RATIONAL_FPS\n\n#include <queue>\n\
+    \n#include \"library/polynomial/fps.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename mint>\n    struct RationalFPS {\n        FPS<mint> num, den;\n   \
+    \     RationalFPS(const FPS<mint>& num = { 0 }, const FPS<mint>& den = { 1 })\
+    \ : num(num), den(den) {}\n        RationalFPS(const std::pair<FPS<mint>, FPS<mint>>&\
+    \ p) : num(p.first), den(p.second) {}\n\n        FPS<mint> to_fps(int max_deg)\
+    \ const {\n            return (num * den.inv(max_deg)).pre_inplace(max_deg);\n\
+    \        }\n\n        RationalFPS<mint> operator+() const { return *this; }\n\
+    \        RationalFPS<mint> operator-() const { return { -num, den }; }\n\n   \
+    \     friend RationalFPS<mint> operator+(const RationalFPS& lhs, const RationalFPS&\
+    \ rhs) {\n            return { lhs.num * rhs.den + lhs.den * rhs.num, lhs.den\
+    \ * rhs.den };\n        }\n        friend RationalFPS<mint> operator-(const RationalFPS&\
+    \ lhs, const RationalFPS& rhs) {\n            return { lhs.num * rhs.den - lhs.den\
+    \ * rhs.num, lhs.den * rhs.den };\n        }\n        friend RationalFPS<mint>\
+    \ operator*(const RationalFPS& lhs, const RationalFPS& rhs) {\n            return\
+    \ { lhs.num * rhs.num, lhs.den * rhs.den };\n        }\n        friend RationalFPS<mint>\
+    \ operator*(const RationalFPS& lhs, const mint& val) {\n            return { lhs.num\
+    \ * val, lhs.den };\n        }\n        friend RationalFPS<mint> operator/(const\
+    \ RationalFPS& lhs, const mint& val) {\n            return { lhs.num, lhs.den\
+    \ * val };\n        }\n        friend RationalFPS<mint> operator*(const mint&\
+    \ val, const RationalFPS& lhs) {\n            return { lhs.num * val, lhs.den\
+    \ };\n        }\n        friend RationalFPS<mint> operator/(const mint& val, const\
+    \ RationalFPS& lhs) {\n            return { lhs.den * val, lhs.num };\n      \
+    \  }\n\n        RationalFPS<mint>& operator+=(const RationalFPS& rhs) { return\
+    \ *this = *this + rhs; }\n        RationalFPS<mint>& operator-=(const RationalFPS&\
+    \ rhs) { return *this = *this - rhs; }\n        RationalFPS<mint>& operator*=(const\
+    \ RationalFPS& rhs) { return *this = *this * rhs; }\n        RationalFPS<mint>&\
+    \ operator*=(const mint& val) { return num *= val, *this; }\n        RationalFPS<mint>&\
+    \ operator/=(const mint& val) { return den *= val, *this; }\n\n        RationalFPS<mint>\
+    \ inv() const { return { den, num }; }\n        RationalFPS<mint>& inv_inplace()\
+    \ { return std::swap(num, den), * this; }\n\n        FPS<mint> normalize() {\n\
+    \            auto [q, r] = num.div_mod(den);\n            num = std::move(r);\n\
+    \            return q;\n        }\n\n        static RationalFPS<mint> sum(const\
+    \ std::vector<RationalFPS<mint>>& fs) {\n            auto comp = [](const RationalFPS<mint>&\
+    \ f, const RationalFPS<mint>& g) {\n                return f.den.size() > g.den.size();\n\
+    \            };\n            std::priority_queue<RationalFPS<mint>, std::vector<RationalFPS<mint>>,\
+    \ decltype(comp)> pq{ comp };\n            for (const auto& f : fs) pq.push(f);\n\
+    \n            while (pq.size() > 1) {\n                auto f = pq.top();\n  \
+    \              pq.pop();\n                auto g = pq.top();\n               \
+    \ pq.pop();\n                pq.emplace(f + g);\n            }\n            return\
+    \ pq.top();\n        }\n        static RationalFPS<mint> prod(const std::vector<RationalFPS<mint>>&\
+    \ fs) {\n            std::vector<FPS<mint>> nums, dens;\n            for (const\
+    \ auto &f : fs) nums.push_back(f.num), dens.push_back(f.den);\n            return\
+    \ { FPS<mint>::prod(nums), FPS<mint>::prod(dens) };\n        }\n    };\n} // namespace\
+    \ suisen\n\n#endif // SUISEN_RATIONAL_FPS\n"
   dependsOn:
-  - library/polynomial/lagrange_interpolation.hpp
-  - library/math/product_of_differences.hpp
-  - library/polynomial/multi_point_eval.hpp
   - library/polynomial/fps.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
-  - library/sequence/powers.hpp
-  - library/number/linear_sieve.hpp
-  isVerificationFile: true
-  path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  isVerificationFile: false
+  path: library/polynomial/rational_fps.hpp
   requiredBy: []
   timestamp: '2022-07-20 05:42:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+documentation_of: library/polynomial/rational_fps.hpp
 layout: document
 redirect_from:
-- /verify/test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-- /verify/test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp.html
-title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+- /library/library/polynomial/rational_fps.hpp
+- /library/library/polynomial/rational_fps.hpp.html
+title: library/polynomial/rational_fps.hpp
 ---
