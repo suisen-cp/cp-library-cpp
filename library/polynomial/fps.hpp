@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <queue>
 
 #include "library/polynomial/fps_naive.hpp"
 #include "library/math/inv_mods.hpp"
@@ -90,6 +91,21 @@ namespace suisen {
             if (gd <= THRESHOLD_NAIVE_REMAINDER) return naive_div_inplace(std::move(g), gd).second;
             *this -= g * (*this / g);
             return pre_inplace(gd - 1);
+        }
+        std::pair<FPS, FPS> div_mod(FPS g) const {
+            auto f = *this;
+            int fd = f.normalize(), gd = g.normalize();
+            assert(gd >= 0);
+            if (fd < gd) return { {}, f };
+            if (gd == 0) return { f * g.unsafe_get(0).inv(), {} };
+            static constexpr int THRESHOLD_NAIVE_REMAINDER = 256;
+            if (gd <= THRESHOLD_NAIVE_REMAINDER) {
+                auto q = f.naive_div_inplace(std::move(g), gd).first;
+                return { std::move(q), std::move(f) };
+            }
+            auto q = f / g;
+            auto r = (f - g * q).pre_inplace(gd - 1);
+            return { std::move(q), std::move(r) };
         }
         FPS& operator<<=(const int shamt) {
             this->insert(this->begin(), shamt, 0);
@@ -206,6 +222,20 @@ namespace suisen {
             mint y = 0;
             for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);
             return y;
+        }
+
+        static FPS prod(const std::vector<FPS> &fs) {
+            auto comp = [](const FPS &f, const FPS &g) { return f.size() > g.size(); };
+            std::priority_queue<FPS, std::vector<FPS>, decltype(comp)> pq { comp };
+            for (const auto &f : fs) pq.push(f);
+            while (pq.size() > 1) {
+                auto f = pq.top();
+                pq.pop();
+                auto g = pq.top();
+                pq.pop();
+                pq.push(f * g);
+            }
+            return pq.top();
         }
 
     private:
