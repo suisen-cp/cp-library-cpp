@@ -9,6 +9,7 @@
 
 using mint = atcoder::modint998244353;
 
+#include "library/polynomial/fps.hpp"
 #include "library/polynomial/lagrange_interpolation.hpp"
 
 template <int N>
@@ -40,7 +41,7 @@ void test() {
 
     auto check = [&](mint t) {
         mint expected = eval(t);
-        mint actual_fast = suisen::lagrange_interpolation(xs, ys, t);
+        mint actual_fast = suisen::lagrange_interpolation<suisen::FPS<mint>>(xs, ys, t);
         mint actual_naive = suisen::lagrange_interpolation_naive(xs, ys, t);
         assert(expected == actual_naive);
         assert(expected == actual_fast);
@@ -81,7 +82,7 @@ void test_arithmetic_progression() {
         auto check = [&](mint t) {
             mint expected = eval(t);
             mint actual_arith = suisen::lagrange_interpolation_arithmetic_progression(a, b, ys, t);
-            mint actual_fast = suisen::lagrange_interpolation(xs, ys, t);
+            mint actual_fast = suisen::lagrange_interpolation<suisen::FPS<mint>>(xs, ys, t);
             mint actual_naive = suisen::lagrange_interpolation_naive(xs, ys, t);
             assert(expected == actual_arith);
             assert(expected == actual_naive);

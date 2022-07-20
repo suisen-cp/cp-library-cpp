@@ -21,7 +21,7 @@ int main() {
         std::cin >> coef;
         f[i] = coef;
     }
-    auto inv_f = f.inv(n - 1);
+    auto inv_f = f.inv();
     for (int i = 0; i < n; ++i) {
         std::cout << inv_f[i].val() << " \n"[i == n - 1];
     }

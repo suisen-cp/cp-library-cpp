@@ -6,6 +6,7 @@
 
 using mint = atcoder::modint998244353;
 
+#include "library/polynomial/fps.hpp"
 #include "library/polynomial/bostan_mori.hpp"
 using suisen::FPS;
 

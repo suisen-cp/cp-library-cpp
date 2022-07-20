@@ -1,7 +1,6 @@
 #ifndef SUISEN_BELL_NUMBER
 #define SUISEN_BELL_NUMBER
 
-#include "library/polynomial/fps.hpp"
 #include "library/math/factorial.hpp"
 
 namespace suisen {
@@ -13,10 +12,11 @@ namespace suisen {
      * note:
      *   EGF of B is e^(e^x-1)
      */
-    template <typename mint>
-    std::vector<mint> bell_number(int n) {
+    template <typename FPSType>
+    std::vector<typename FPSType::value_type> bell_number(int n) {
+        using mint = typename FPSType::value_type;
         factorial<mint> fac(n);
-        FPS<mint> f(n + 1);
+        FPSType f(n + 1);
         for (int i = 1; i <= n; ++i) f[i] = fac.fac_inv(i);
         f.exp_inplace(n);
         for (int i = 0; i <= n; ++i) f[i] *= fac.fac(i);

@@ -5,6 +5,7 @@
 #include <atcoder/modint>
 #include <atcoder/convolution>
 
+#include "library/polynomial/fps.hpp"
 #include "library/sequence/partition_number.hpp"
 
 using mint = atcoder::modint998244353;
@@ -14,7 +15,7 @@ int main() {
 
     int n;
     std::cin >> n;
-    auto f = suisen::partition_number<mint>(n);
+    auto f = suisen::partition_number<suisen::FPS<mint>>(n);
     for (int i = 0; i <= n; ++i) {
         std::cout << f[i].val() << " \n"[i == n];
     }

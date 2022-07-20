@@ -4,6 +4,7 @@
 #include <atcoder/convolution>
 #include <atcoder/modint>
 
+#include "library/polynomial/fps.hpp"
 #include "library/transform/walsh_hadamard.hpp"
 #include "library/convolution/polynomial_eval_multipoint_eval.hpp"
 using namespace suisen;

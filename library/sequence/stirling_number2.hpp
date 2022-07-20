@@ -1,7 +1,6 @@
 #ifndef SUISEN_STIRLING_NUMBER_2
 #define SUISEN_STIRLING_NUMBER_2
 
-#include "library/polynomial/fps.hpp"
 #include "library/math/factorial.hpp"
 #include "library/sequence/powers.hpp"
 
@@ -12,16 +11,17 @@ namespace suisen {
      * constraints:
      *   0 <= n <= 10^6
      */
-    template <typename mint>
-    std::vector<mint> stirling_number2(int n) {
+    template <typename FPSType>
+    std::vector<typename FPSType::value_type> stirling_number2(int n) {
+        using mint = typename FPSType::value_type;
         std::vector<mint> pows = powers<mint>(n, n);
         factorial<mint> fac(n);
-        FPS<mint> a(n + 1), b(n + 1);
+        FPSType a(n + 1), b(n + 1);
         for (int i = 0; i <= n; ++i) {
             a[i] = pows[i] * fac.fac_inv(i);
             b[i] = i & 1 ? -fac.fac_inv(i) : fac.fac_inv(i);
         }
-        a *= b, a.pre_inplace(n);
+        a *= b, a.cut(n + 1);
         return a;
     }
     template <typename mint>

@@ -46,7 +46,7 @@ namespace suisen {
     std::vector<T> subset_convolution(const std::vector<T>& a, const std::vector<T>& b) {
         const int n = a.size();
         auto ra = ranked_subset_transform::ranked_zeta(a), rb = ranked_subset_transform::ranked_zeta(b);
-        for (int i = 0; i < n; ++i) ra[i] = ra[i].mul(rb[i], ra[i].deg());
+        for (int i = 0; i < n; ++i) ra[i] = ra[i].mul(rb[i], ra[i].size());
         return ranked_subset_transform::deranked_mobius(ra);
     }
 } // namespace suisen

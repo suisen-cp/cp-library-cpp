@@ -21,7 +21,7 @@ int main() {
         std::cin >> d >> v;
         f[d] = v;
     }
-    auto log_f = f.log(n - 1);
+    auto log_f = f.log();
     for (int i = 0; i < n; ++i) {
         std::cout << log_f[i].val() << " \n"[i == n - 1];
     }

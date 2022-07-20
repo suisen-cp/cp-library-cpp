@@ -7,6 +7,7 @@
 #include <atcoder/convolution>
 using mint = atcoder::modint998244353;
 
+#include "library/polynomial/fps.hpp"
 #include "library/sequence/stirling_number1.hpp"
 
 int main() {
@@ -25,7 +26,7 @@ int main() {
     
     auto comp = [&](const std::vector<mint> &f, const std::vector<mint> &g) { return f.size() > g.size(); };
     std::priority_queue<std::vector<mint>, std::vector<std::vector<mint>>, decltype(comp)> pq { comp };
-    for (int v : cnt) pq.push(suisen::stirling_number1_reversed<mint>(v));
+    for (int v : cnt) pq.push(suisen::stirling_number1_reversed<suisen::FPS<mint>>(v));
  
     while (pq.size() > 1) {
         auto f = std::move(pq.top());

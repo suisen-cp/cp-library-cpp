@@ -1,7 +1,7 @@
 #ifndef SUISEN_STIRLING_NUMBER_1
 #define SUISEN_STIRLING_NUMBER_1
 
-#include "library/polynomial/fps.hpp"
+#include "library/math/inv_mods.hpp"
 #include "library/math/factorial.hpp"
 
 namespace suisen {
@@ -11,23 +11,24 @@ namespace suisen {
      * constraints:
      *   0 <= n <= 10^6
      */
-    template <typename mint>
-    std::vector<mint> stirling_number1_reversed(int n) {
+    template <typename FPSType>
+    std::vector<typename FPSType::value_type> stirling_number1_reversed(int n) {
+        using mint = typename FPSType::value_type;
         factorial<mint> fac(n);
         int l = 0;
         while ((n >> l) != 0) ++l;
-        FPS<mint> a{ 1 };
+        FPSType a{ 1 };
         int m = 0;
         while (l-- > 0) {
-            FPS<mint> f(m + 1), g(m + 1);
+            FPSType f(m + 1), g(m + 1);
             mint powm = 1;
             for (int i = 0; i <= m; ++i, powm *= m) {
                 f[i] = powm * fac.fac_inv(i);
-                g[i] = a[i] * fac(m - i);
+                g[i] = a[i] * fac.fac(m - i);
             }
-            f *= g, f.pre_inplace(m);
+            f *= g, f.cut(m + 1);
             for (int i = 0; i <= m; ++i) f[i] *= fac.fac_inv(m - i);
-            a *= f, m *= 2, a.pre_inplace(m);
+            a *= f, m *= 2, a.cut(m + 1);
             if ((n >> l) & 1) {
                 a.push_back(0);
                 for (int i = m; i > 0; --i) a[i] += m * a[i - 1];
@@ -36,9 +37,9 @@ namespace suisen {
         }
         return a;
     }
-    template <typename mint>
-    std::vector<mint> stirling_number1(int n) {
-        auto a(stirling_number1_reversed<mint>(n));
+    template <typename FPSType>
+    std::vector<typename FPSType::value_type> stirling_number1(int n) {
+        std::vector<typename FPSType::value_type> a(stirling_number1_reversed<FPSType>(n));
         std::reverse(a.begin(), a.end());
         return a;
     }

@@ -23,7 +23,7 @@ int main() {
         e = v;
     }
 
-    auto [b, r] = div_mod(c, a);
+    auto [b, r] = c.div_mod(a);
     assert(r == suisen::FPSNaive<mint>{});
 
     for (int i = 0; i <= m; ++i) {

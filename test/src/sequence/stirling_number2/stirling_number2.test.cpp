@@ -4,6 +4,7 @@
 #include <atcoder/modint>
 #include <atcoder/convolution>
 
+#include "library/polynomial/fps.hpp"
 #include "library/sequence/stirling_number2.hpp"
 
 using mint = atcoder::modint998244353;
@@ -13,7 +14,7 @@ int main() {
 
     int n;
     std::cin >> n;
-    auto ans = suisen::stirling_number2<mint>(n);
+    auto ans = suisen::stirling_number2<suisen::FPS<mint>>(n);
     for (int i = 0; i <= n; ++i) {
         std::cout << ans[i].val() << " \n"[i == n];
     }

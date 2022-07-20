@@ -6,6 +6,7 @@
 #include <atcoder/modint>
 #include <atcoder/convolution>
 
+#include "library/polynomial/fps.hpp"
 #include "library/polynomial/subset_sum.hpp"
 
 using mint = atcoder::modint998244353;
@@ -17,7 +18,7 @@ int main() {
     std::cin >> n >> t;
     std::vector<int> items(n);
     for (int &e : items) std::cin >> e;
-    auto f = suisen::subset_sum<mint>(t, items);
+    auto f = suisen::subset_sum<suisen::FPS<mint>>(t, items);
     for (int i = 1; i <= t; ++i) {
         std::cout << f[i].val() << " \n"[i == t];
     }

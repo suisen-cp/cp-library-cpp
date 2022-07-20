@@ -12,6 +12,7 @@ std::istream& operator>>(std::istream& in, mint &a) {
     return in;
 }
 
+#include "library/polynomial/fps.hpp"
 #include "library/math/product_of_differences.hpp"
 
 int main() {
@@ -26,7 +27,7 @@ int main() {
         std::cin >> xs[i] >> ys[i];
     }
 
-    std::vector<mint> w = suisen::product_of_differences(xs);
+    std::vector<mint> w = suisen::product_of_differences<suisen::FPS<mint>>(xs);
 
     mint s = 0;
     for (int i = 0; i < n; ++i) {

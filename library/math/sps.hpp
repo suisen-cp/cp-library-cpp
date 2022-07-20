@@ -103,7 +103,7 @@ namespace suisen {
         struct ZetaSPS : public std::vector<polynomial_type> {
             using base_type = std::vector<polynomial_type>;
             ZetaSPS() = default;
-            ZetaSPS(const SPS<value_type>& f) : base_type::vector(ranked_subset_transform::ranked_zeta(f)), _d(f.cardinality()) {}
+            ZetaSPS(const SPS<value_type>& f) : base_type::vector(ranked_subset_transform::ranked_zeta(f)), _d(f.cardinality() + 1) {}
 
             ZetaSPS operator+() const {
                 return *this;

@@ -5,6 +5,7 @@
 #include <atcoder/modint>
 #include <atcoder/convolution>
 
+#include "library/polynomial/fps.hpp"
 #include "library/polynomial/multi_point_eval.hpp"
 
 using mint = atcoder::modint998244353;

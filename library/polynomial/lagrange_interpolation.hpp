@@ -23,17 +23,18 @@ namespace suisen {
     }
 
     // O(N(logN)^2+NlogP)
-    template <typename mint>
-    mint lagrange_interpolation(const std::vector<mint>& xs, const std::vector<mint>& ys, const mint t) {
+    template <typename FPSType, typename T>
+    typename FPSType::value_type lagrange_interpolation(const std::vector<T>& xs, const std::vector<T>& ys, const T t) {
         const int n = xs.size();
         assert(int(ys.size()) == n);
 
-        std::vector<FPS<mint>> seg(2 * n);
-        for (int i = 0; i < n; ++i) seg[n + i] = FPS<mint> {-xs[i], 1};
+        std::vector<FPSType> seg(2 * n);
+        for (int i = 0; i < n; ++i) seg[n + i] = FPSType {-xs[i], 1};
         for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];
         seg[1] = seg[1].diff() % seg[1];
         for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];
 
+        using mint = typename FPSType::value_type;
         mint p{ 1 };
         for (int i = 0; i < n; ++i) p *= t - xs[i];
 

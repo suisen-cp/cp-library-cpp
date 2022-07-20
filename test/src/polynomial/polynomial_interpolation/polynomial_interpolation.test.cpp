@@ -4,6 +4,7 @@
 #include <atcoder/modint>
 #include <atcoder/convolution>
 
+#include "library/polynomial/fps.hpp"
 #include "library/polynomial/polynomial_interpolation.hpp"
 
 using mint = atcoder::modint998244353;
@@ -23,7 +24,7 @@ int main() {
         std::cin >> yi;
         y[i] = yi;
     }
-    auto f = suisen::polynomial_interpolation(x, y);
+    auto f = suisen::polynomial_interpolation<suisen::FPS<mint>>(x, y);
     for (int i = 0; i < n; ++i) {
         std::cout << f[i].val() << " \n"[i == n - 1];
     }

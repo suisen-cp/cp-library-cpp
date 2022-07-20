@@ -22,7 +22,7 @@ int main() {
         std::cin >> d >> v;
         f[d] = v;
     }
-    auto pow_f = f.pow(m, n - 1);
+    auto pow_f = f.pow(m);
     for (int i = 0; i < n; ++i) {
         std::cout << pow_f[i].val() << " \n"[i == n - 1];
     }

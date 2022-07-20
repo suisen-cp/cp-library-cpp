@@ -16,6 +16,7 @@ std::ostream& operator<<(std::ostream& out, const mint &a) {
     return out;
 }
 
+#include "library/polynomial/fps.hpp"
 #include "library/sequence/eulerian_number.hpp"
 #include "library/datastructure/deque_aggregation.hpp"
 
@@ -51,7 +52,7 @@ int main() {
     suisen::DequeAggregation<mint, op, e> dq;
     for (uint32_t d = 0; d < n; ++d) dq.push_front(m + d);
     for (uint32_t k = 1; k <= K_MAX; ++k) {
-        std::vector<mint> e = suisen::eulerian_number<mint>(k);
+        std::vector<mint> e = suisen::eulerian_number<suisen::FPS<mint>>(k);
         dq.push_front(m + n + k - 1);
         mint sum = 0;
         const uint32_t p = std::min(uint64_t(k), m);

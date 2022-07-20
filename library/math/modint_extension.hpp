@@ -9,7 +9,7 @@
  * calculates x s.t. x^2 = a mod p in O((log p)^2).
  */
 template <typename mint>
-std::optional<mint> optional_sqrt(mint a) {
+std::optional<mint> safe_sqrt(mint a) {
     static int p = mint::mod();
     if (a == 0) return std::make_optional(0);
     if (p == 2) return std::make_optional(a);
@@ -33,20 +33,20 @@ std::optional<mint> optional_sqrt(mint a) {
  */
 template <typename mint>
 auto sqrt(mint a) -> decltype(mint::mod(), mint()) {
-    return *optional_sqrt(a);
+    return *safe_sqrt(a);
 }
 template <typename mint>
-auto log(mint a) -> decltype(mint::mod(), mint())  {
+auto log(mint a) -> decltype(mint::mod(), mint()) {
     assert(a == 1);
     return 0;
 }
 template <typename mint>
-auto exp(mint a) -> decltype(mint::mod(), mint())  {
+auto exp(mint a) -> decltype(mint::mod(), mint()) {
     assert(a == 0);
     return 1;
 }
 template <typename mint, typename T>
-auto pow(mint a, T b) -> decltype(mint::mod(), mint())  {
+auto pow(mint a, T b) -> decltype(mint::mod(), mint()) {
     return a.pow(b);
 }
 template <typename mint>

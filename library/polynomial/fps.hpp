@@ -16,7 +16,9 @@ namespace suisen {
 
     template <typename mint>
     struct FPS : public std::vector<mint> {
-        using std::vector<mint>::vector;
+        using base_type = std::vector<mint>;
+        using value_type = typename base_type::value_type;
+        using base_type::vector;
 
         FPS(const std::initializer_list<mint> l) : std::vector<mint>::vector(l) {}
         FPS(const std::vector<mint>& v) : std::vector<mint>::vector(v) {}
@@ -26,208 +28,264 @@ namespace suisen {
             FPS<mint>::mult = multiplication;
         }
 
-        const mint operator[](int n) const noexcept { return n <= deg() ? unsafe_get(n) : 0; }
-        mint& operator[](int n) noexcept { ensure_deg(n); return unsafe_get(n); }
+        int size() const noexcept {
+            return base_type::size();
+        }
+        int deg() const noexcept {
+            return size() - 1;
+        }
+        void ensure(int n) {
+            if (size() < n) this->resize(n);
+        }
 
-        int size() const noexcept { return std::vector<mint>::size(); }
-        int deg()  const noexcept { return size() - 1; }
-        int normalize() {
+        value_type safe_get(int d) const {
+            return d <= deg() ? (*this)[d] : 0;
+        }
+        value_type& safe_get(int d) {
+            ensure(d + 1);
+            return (*this)[d];
+        }
+
+        int cut_trailing_zeros() {
             while (this->size() and this->back() == 0) this->pop_back();
             return deg();
         }
-        FPS& pre_inplace(int max_deg) noexcept {
-            if (deg() > max_deg) this->resize(std::max(0, max_deg + 1));
-            return *this;
+        void cut(int n) {
+            if (size() > n) this->resize(std::max(0, n));
         }
-        FPS pre(int max_deg) const noexcept { return FPS(*this).pre_inplace(max_deg); }
+        FPS cut_copy(int n) const {
+            FPS res(this->begin(), this->begin() + std::min(size(), n));
+            res.ensure(n);
+            return res;
+        }
 
-        FPS operator+() const { return FPS(*this); }
+        /* Unary Operations */
+
+        FPS operator+() const { return *this; }
         FPS operator-() const {
-            FPS f(*this);
-            for (auto& e : f) e = mint::mod() - e;
-            return f;
+            FPS res = *this;
+            for (auto& e : res) e = -e;
+            return res;
         }
-        FPS& operator++() { ++(*this)[0]; return *this; }
-        FPS& operator--() { --(*this)[0]; return *this; }
-        FPS& operator+=(const mint x) { (*this)[0] += x; return *this; }
-        FPS& operator-=(const mint x) { (*this)[0] -= x; return *this; }
-        FPS& operator+=(const FPS& g) {
-            ensure_deg(g.deg());
-            for (int i = 0; i <= g.deg(); ++i) unsafe_get(i) += g.unsafe_get(i);
-            return *this;
+        FPS& operator++() { return ++safe_get(0), * this; }
+        FPS& operator--() { return --safe_get(0), * this; }
+        FPS operator++(int) {
+            FPS res = *this;
+            ++(*this);
+            return res;
         }
-        FPS& operator-=(const FPS& g) {
-            ensure_deg(g.deg());
-            for (int i = 0; i <= g.deg(); ++i) unsafe_get(i) -= g.unsafe_get(i);
-            return *this;
+        FPS operator--(int) {
+            FPS res = *this;
+            --(*this);
+            return res;
         }
-        FPS& operator*=(const FPS& g) { return *this = FPS<mint>::mult(*this, g); }
-        FPS& operator*=(const mint x) {
+
+        /* Binary Operations With Constant */
+
+        FPS& operator+=(const value_type& x) { return safe_get(0) += x, *this; }
+        FPS& operator-=(const value_type& x) { return safe_get(0) -= x, *this; }
+        FPS& operator*=(const value_type& x) {
             for (auto& e : *this) e *= x;
             return *this;
         }
-        FPS& operator/=(FPS g) {
-            const int fd = normalize(), gd = g.normalize();
-            assert(gd >= 0);
-            if (fd < gd) { this->clear(); return *this; }
-            if (gd == 0) return *this *= g.unsafe_get(0).inv();
-            static constexpr int THRESHOLD_NAIVE_POLY_QUOTIENT = 256;
-            if (gd <= THRESHOLD_NAIVE_POLY_QUOTIENT) {
-                *this = std::move(naive_div_inplace(std::move(g), gd).first);
-                return *this;
-            }
-            std::reverse(this->begin(), this->end()), std::reverse(g.begin(), g.end());
-            const int k = fd - gd;
-            *this *= g.inv_inplace(k), this->resize(k + 1);
-            std::reverse(this->begin(), this->end());
+        FPS& operator/=(const value_type& x) { return *this *= x.inv(); }
+
+        friend FPS operator+(FPS f, const value_type& x) { f += x; return f; }
+        friend FPS operator+(const value_type& x, FPS f) { f += x; return f; }
+        friend FPS operator-(FPS f, const value_type& x) { f -= x; return f; }
+        friend FPS operator-(const value_type& x, FPS f) { f -= x; return -f; }
+        friend FPS operator*(FPS f, const value_type& x) { f *= x; return f; }
+        friend FPS operator*(const value_type& x, FPS f) { f *= x; return f; }
+        friend FPS operator/(FPS f, const value_type& x) { f /= x; return f; }
+
+        /* Binary Operations With Formal Power Series */
+
+        FPS& operator+=(const FPS& g) {
+            const int n = g.size();
+            ensure(n);
+            for (int i = 0; i < n; ++i) (*this)[i] += g[i];
             return *this;
         }
-        FPS& operator%=(FPS g) {
-            int fd = normalize(), gd = g.normalize();
-            assert(gd >= 0);
-            if (fd < gd) return *this;
-            if (gd == 0) { this->clear(); return *this; }
-            static constexpr int THRESHOLD_NAIVE_REMAINDER = 256;
-            if (gd <= THRESHOLD_NAIVE_REMAINDER) return naive_div_inplace(std::move(g), gd).second;
-            *this -= g * (*this / g);
-            return pre_inplace(gd - 1);
-        }
-        std::pair<FPS, FPS> div_mod(FPS g) const {
-            auto f = *this;
-            int fd = f.normalize(), gd = g.normalize();
-            assert(gd >= 0);
-            if (fd < gd) return { {}, f };
-            if (gd == 0) return { f * g.unsafe_get(0).inv(), {} };
-            static constexpr int THRESHOLD_NAIVE_REMAINDER = 256;
-            if (gd <= THRESHOLD_NAIVE_REMAINDER) {
-                auto q = f.naive_div_inplace(std::move(g), gd).first;
-                return { std::move(q), std::move(f) };
-            }
-            auto q = f / g;
-            auto r = (f - g * q).pre_inplace(gd - 1);
-            return { std::move(q), std::move(r) };
-        }
-        FPS& operator<<=(const int shamt) {
-            this->insert(this->begin(), shamt, 0);
+        FPS& operator-=(const FPS& g) {
+            const int n = g.size();
+            ensure(n);
+            for (int i = 0; i < n; ++i) (*this)[i] -= g[i];
             return *this;
         }
-        FPS& operator>>=(const int shamt) {
-            if (shamt > size()) this->clear();
-            else this->erase(this->begin(), this->begin() + shamt);
-            return *this;
-        }
+        FPS& operator*=(const FPS& g) { return *this = *this * g; }
+        FPS& operator/=(const FPS& g) { return *this = *this / g; }
+        FPS& operator%=(const FPS& g) { return *this = *this % g; }
 
         friend FPS operator+(FPS f, const FPS& g) { f += g; return f; }
-        friend FPS operator+(FPS f, const mint x) { f += x; return f; }
         friend FPS operator-(FPS f, const FPS& g) { f -= g; return f; }
-        friend FPS operator-(FPS f, const mint x) { f -= x; return f; }
-        friend FPS operator*(FPS f, const FPS& g) { f *= g; return f; }
-        friend FPS operator*(FPS f, const mint x) { f *= x; return f; }
-        friend FPS operator/(FPS f, const FPS& g) { f /= g; return f; }
-        friend FPS operator%(FPS f, const FPS& g) { f %= g; return f; }
-        friend FPS operator*(const mint x, FPS f) { f *= x; return f; }
+        friend FPS operator*(const FPS& f, const FPS& g) { return mult(f, g); }
+        friend FPS operator/(FPS f, FPS g) {
+            if (f.size() < 60) return FPSNaive<mint>(f).div_mod(g).first;
+            f.cut_trailing_zeros(), g.cut_trailing_zeros();
+            const int fd = f.deg(), gd = g.deg();
+            assert(gd >= 0);
+            if (fd < gd) return {};
+            if (gd == 0) {
+                f /= g[0];
+                return f;
+            }
+            std::reverse(f.begin(), f.end()), std::reverse(g.begin(), g.end());
+            const int qd = fd - gd;
+            FPS q = f * g.inv(qd + 1);
+            q.cut(qd + 1);
+            std::reverse(q.begin(), q.end());
+            return q;
+        }
+        friend FPS operator%(const FPS& f, const FPS& g) { return f.div_mod(g).second; }
+        std::pair<FPS, FPS> div_mod(const FPS& g) const {
+            if (size() < 60) {
+                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);
+                return { q, r };
+            }
+            FPS q = *this / g, r = *this - g * q;
+            r.cut_trailing_zeros();
+            return { q, r };
+        }
+
+        /* Shift Operations */
+
+        FPS& operator<<=(const int shamt) {
+            return this->insert(this->begin(), shamt, 0), * this;
+        }
+        FPS& operator>>=(const int shamt) {
+            return this->erase(this->begin(), this->begin() + std::min(shamt, size())), * this;
+        }
         friend FPS operator<<(FPS f, const int shamt) { f <<= shamt; return f; }
         friend FPS operator>>(FPS f, const int shamt) { f >>= shamt; return f; }
 
+        /* Compare */
+
         friend bool operator==(const FPS& f, const FPS& g) {
-            int n = f.size(), m = g.size();
+            const int n = f.size(), m = g.size();
             if (n < m) return g == f;
-            for (int i = 0; i < m; ++i) if (f.unsafe_get(i) != g.unsafe_get(i)) return false;
-            for (int i = m; i < n; ++i) if (f.unsafe_get(i) != 0) return false;
+            for (int i = 0; i < m; ++i) if (f[i] != g[i]) return false;
+            for (int i = m; i < n; ++i) if (f[i] != 0) return false;
             return true;
         }
+        friend bool operator!=(const FPS& f, const FPS& g) { return not (f == g); }
+
+        /* Other Operations */
 
         FPS& diff_inplace() {
-            if (this->size() == 0) return *this;
-            for (int i = 1; i <= deg(); ++i) unsafe_get(i - 1) = unsafe_get(i) * i;
-            this->pop_back();
-            return *this;
+            const int n = size();
+            for (int i = 1; i < n; ++i) (*this)[i - 1] = (*this)[i] * i;
+            return (*this)[n - 1] = 0, *this;
+        }
+        FPS diff() const {
+            FPS res = *this;
+            res.diff_inplace();
+            return res;
         }
         FPS& intg_inplace() {
-            int d = deg();
-            ensure_deg(d + 1);
-            for (int i = d; i >= 0; --i) unsafe_get(i + 1) = unsafe_get(i) * invs[i + 1];
-            unsafe_get(0) = 0;
-            return *this;
+            const int n = size();
+            inv_mods<value_type> invs(n);
+            this->resize(n + 1);
+            for (int i = n; i > 0; --i) (*this)[i] = (*this)[i - 1] * invs[i];
+            return (*this)[0] = 0, *this;
         }
-        FPS& inv_inplace(const int max_deg) {
-            if (max_deg <= 60) return *this = FPSNaive<mint>(this->begin(), this->end()).inv(max_deg);
-            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this = inv_sparse(std::move(*sp_f), max_deg);
-            FPS res{ unsafe_get(0).inv() };
-            for (int k = 1; k <= max_deg; k *= 2) {
-                FPS tmp(this->pre(k * 2) * (res * res));
-                res *= 2, res -= tmp.pre_inplace(2 * k);
+        FPS intg() const {
+            FPS res = *this;
+            res.intg_inplace();
+            return res;
+        }
+        
+        FPS& inv_inplace(const int n = -1) { return *this = inv(n); } 
+        FPS inv(int n = -1) const {
+            if (n < 0) n = size();
+            if (n < 60) return FPSNaive<mint>(*this).inv();
+            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return inv_sparse(std::move(*sp_f), n);
+            FPS res{ (*this)[0].inv() };
+            for (int k = 1; k < n; k *= 2) {
+                FPS tmp(cut_copy(k * 2) * (res * res));
+                tmp.resize(2 * k);
+                res = 2 * res - tmp;
             }
-            return *this = std::move(res), pre_inplace(max_deg);
+            res.resize(n);
+            return res;
         }
-        FPS& log_inplace(const int max_deg) {
-            if (max_deg <= 60) return *this = FPSNaive<mint>(this->begin(), this->end()).log(max_deg);
-            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this = log_sparse(std::move(*sp_f), max_deg);
-            FPS f_inv = inv(max_deg);
-            diff_inplace(), *this *= f_inv, pre_inplace(max_deg - 1), intg_inplace();
-            return *this;
+        FPS& log_inplace(int n = -1) { return *this = log(n); }
+        FPS log(int n = -1) const {
+            assert(safe_get(0) == 1);
+            if (n < 0) n = size();
+            if (n < 60) return FPSNaive<mint>(cut_copy(n)).log();
+            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return log_sparse(std::move(*sp_f), n);
+            FPS res = inv(n) * diff();
+            res.resize(n - 1);
+            return res.intg();
         }
-        FPS& exp_inplace(const int max_deg) {
-            if (max_deg <= 60) return *this = FPSNaive<mint>(this->begin(), this->end()).exp(max_deg);
-            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this = exp_sparse(std::move(*sp_f), max_deg);
+        FPS& exp_inplace(int n = -1) { return *this = exp(n); }
+        FPS exp(int n = -1) {
+            assert(safe_get(0) == 0);
+            if (n < 0) n = size();
+            if (n < 60) return FPSNaive<mint>(cut_copy(n)).exp();
+            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return exp_sparse(std::move(*sp_f), n);
             FPS res{ 1 };
-            for (int k = 1; k <= max_deg; k *= 2) res *= ++(pre(k * 2) - res.log(k * 2)), res.pre_inplace(k * 2);
-            return *this = std::move(res), pre_inplace(max_deg);
+            for (int k = 1; k < n; k *= 2) res *= ++(cut_copy(k * 2) - res.log(k * 2)), res.cut(k * 2);
+            res.resize(n);
+            return res;
         }
-        FPS& sqrt_inplace(const int max_deg) {
-            return *this = sqrt(max_deg);
-        }
-        FPS& pow_inplace(const long long k, const int max_deg) {
-            if (k == 0) return *this = { mint{ 1 } };
-            if (max_deg <= 60) return *this = FPSNaive<mint>(this->begin(), this->end()).pow(k, max_deg);
-            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return *this = pow_sparse(std::move(*sp_f), k, max_deg);
-            int tlz = 0;
-            while (tlz <= deg() and unsafe_get(tlz) == 0) ++tlz;
-            if (tlz > deg() or tlz > max_deg / k) return this->clear(), *this;
-            const int d = max_deg - tlz * k;
-            *this >>= tlz;
-            mint base = (*this)[0];
-            *this *= base.inv(), log_inplace(d), *this *= k, exp_inplace(d), *this *= base.pow(k);
-            return *this <<= tlz * k;
-        }
-        FPS diff() const { FPS f{ *this }; f.diff_inplace(); return f; }
-        FPS intg() const { FPS f{ *this }; f.intg_inplace(); return f; }
-        FPS inv(const int max_deg) const { FPS f{ *this }; f.inv_inplace(max_deg); return f; }
-        FPS log(const int max_deg) const { FPS f{ *this }; f.log_inplace(max_deg); return f; }
-        FPS exp(const int max_deg) const { FPS f{ *this }; f.exp_inplace(max_deg); return f; }
-        std::optional<FPS> optional_sqrt(const int max_deg) {
-            if (max_deg <= 60) return FPSNaive<mint>(this->begin(), this->end()).optional_sqrt(max_deg);
-            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return optional_sqrt_sparse(std::move(*sp_f), max_deg);
-
-            int tlz = 0;
-            while (tlz <= deg() and unsafe_get(tlz) == 0) ++tlz;
-            if (tlz > deg()) return FPS{};
-            if (tlz % 2 == 1) return std::nullopt;
-            int max_deg2 = max_deg - tlz / 2;
-            FPS f(this->begin() + tlz, this->end());
-
-            auto opt_res0 = ::optional_sqrt(f[0]);
-            if (not opt_res0.has_value()) return std::nullopt;
-            FPS res{ *opt_res0 };
-            mint inv_2 = mint(2).inv();
-            for (int k = 1; k <= max_deg2; k *= 2) {
-                res = ((f.pre(k * 2) * res.inv(2 * k)).pre_inplace(2 * k) += res) *= inv_2;
+        FPS& pow_inplace(long long k, int n = -1) { return *this = pow(k, n); }
+        FPS pow(const long long k, int n = -1) const {
+            if (n < 0) n = size();
+            if (n < 60) return FPSNaive<mint>(cut_copy(n)).pow(k);
+            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return pow_sparse(std::move(*sp_f), k, n);
+            if (k == 0) {
+                FPS f{ 1 };
+                f.resize(n);
+                return f;
             }
-            return *this = std::move(res <<= tlz / 2), pre_inplace(max_deg);
+            int tlz = 0;
+            while (tlz < size() and (*this)[tlz] == 0) ++tlz;
+            if (tlz == size() or tlz > (n - 1) / k) return FPS(n, 0);
+            const int m = n - tlz * k;
+            FPS f = *this >> tlz;
+            value_type base = f[0];
+            return ((((f /= base).log(m) *= k).exp(m) *= base.pow(k)) <<= (tlz * k));
         }
-        FPS sqrt(const int max_deg) const { return *optional_sqrt(max_deg); }
-        FPS pow(const long long k, const int max_deg) const { FPS f{ *this }; f.pow_inplace(k, max_deg); return f; }
+        std::optional<FPS> safe_sqrt(int n = -1) const {
+            if (n < 0) n = size();
+            if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();
+            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f), n);
+            int tlz = 0;
+            while (tlz < size() and (*this)[tlz] == 0) ++tlz;
+            if (tlz == size()) return FPS(n, 0);
+            if (tlz & 1) return std::nullopt;
+            const int m = n - tlz / 2;
+
+            FPS h(this->begin() + tlz, this->end());
+            auto q0 = ::safe_sqrt(h[0]);
+            if (not q0.has_value()) return std::nullopt;
+            FPS res{ *q0 };
+            mint inv_2 = mint(2).inv();
+            for (int k = 1; k < m; k *= 2) {
+                FPS tmp = h.cut_copy(k * 2) * res.inv(2 * k);
+                tmp.cut(2 * k);
+                res += tmp, res *= inv_2;
+            }
+            res.resize(m);
+            res <<= tlz / 2;
+            return res;
+        }
+        FPS& sqrt_inplace(int n = -1) { return *this = sqrt(n); }
+        FPS sqrt(int n = -1) const {
+            return *safe_sqrt(n);
+        }
 
         mint eval(mint x) const {
             mint y = 0;
-            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);
+            for (int i = size() - 1; i >= 0; --i) y = y * x + (*this)[i];
             return y;
         }
 
-        static FPS prod(const std::vector<FPS> &fs) {
-            auto comp = [](const FPS &f, const FPS &g) { return f.size() > g.size(); };
-            std::priority_queue<FPS, std::vector<FPS>, decltype(comp)> pq { comp };
-            for (const auto &f : fs) pq.push(f);
+        static FPS prod(const std::vector<FPS>& fs) {
+            auto comp = [](const FPS& f, const FPS& g) { return f.size() > g.size(); };
+            std::priority_queue<FPS, std::vector<FPS>, decltype(comp)> pq{ comp };
+            for (const auto& f : fs) pq.push(f);
             while (pq.size() > 1) {
                 auto f = pq.top();
                 pq.pop();
@@ -238,139 +296,131 @@ namespace suisen {
             return pq.top();
         }
 
-    private:
-        static inline inv_mods<mint> invs;
+    protected:
         static convolution_t<mint> mult;
-        void ensure_deg(int d) { if (deg() < d) this->resize(d + 1, 0); }
-        const mint& unsafe_get(int i) const { return std::vector<mint>::operator[](i); }
-        mint& unsafe_get(int i) { return std::vector<mint>::operator[](i); }
 
-        std::optional<std::vector<std::pair<int, mint>>> sparse_fps_format(int max_size) const {
-            std::vector<std::pair<int, mint>> res;
-            for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i) if (mint v = unsafe_get(i); v != 0) res.emplace_back(i, v);
+        std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int max_size) const {
+            std::vector<std::pair<int, value_type>> res;
+            for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i) if (value_type v = (*this)[i]; v != 0) res.emplace_back(i, v);
             if (int(res.size()) > max_size) return std::nullopt;
             return res;
         }
 
-        std::pair<FPS, FPS&> naive_div_inplace(FPS&& g, const int gd) {
-            const int k = deg() - gd;
-            mint head_inv = g.unsafe_get(gd).inv();
-            FPS q(k + 1);
-            for (int i = k; i >= 0; --i) {
-                mint div = this->unsafe_get(i + gd) * head_inv;
-                q.unsafe_get(i) = div;
-                for (int j = 0; j <= gd; ++j) this->unsafe_get(i + j) -= div * g.unsafe_get(j);
-            }
-            return { q, pre_inplace(gd - 1) };
-        }
-
-        static FPS div_fps_sparse(const FPS &f, const std::vector<std::pair<int, mint>> &g, const int max_deg) {
+        static FPS div_fps_sparse(const FPS& f, const std::vector<std::pair<int, value_type>>& g, int n) {
             const int siz = g.size();
             assert(siz and g[0].first == 0);
-            const mint inv_g0 = g[0].second.inv();
-            FPS h(max_deg + 1);
-            for (int i = 0; i <= max_deg; ++i) {
-                mint v = f[i];
+            const value_type inv_g0 = g[0].second.inv();
+            FPS h(n);
+            for (int i = 0; i < n; ++i) {
+                value_type v = f.safe_get(i);
                 for (int idx = 1; idx < siz; ++idx) {
-                    const auto &[j, gj] = g[idx];
+                    const auto& [j, gj] = g[idx];
                     if (j > i) break;
-                    v -= gj * h.unsafe_get(i - j);
+                    v -= gj * h[i - j];
                 }
-                h.unsafe_get(i) = v * inv_g0;
+                h[i] = v * inv_g0;
             }
             return h;
         }
-        static FPS inv_sparse(const std::vector<std::pair<int, mint>> &g, const int max_deg) {
-            return div_fps_sparse(FPS { mint{1} }, g, max_deg);
+        static FPS inv_sparse(const std::vector<std::pair<int, value_type>>& g, const int n) {
+            return div_fps_sparse(FPS{ 1 }, g, n);
         }
-        static FPS exp_sparse(const std::vector<std::pair<int, mint>> &f, const int max_deg) {
+        static FPS exp_sparse(const std::vector<std::pair<int, value_type>>& f, const int n) {
             const int siz = f.size();
             assert(not siz or f[0].first != 0);
-            FPS g(max_deg + 1);
+            FPS g(n);
             g[0] = 1;
-            for (int i = 1; i <= max_deg; ++i) {
-                mint v = 0;
-                for (const auto &[j, fj] : f) {
+            inv_mods<value_type> invs(n);
+            for (int i = 1; i < n; ++i) {
+                value_type v = 0;
+                for (const auto& [j, fj] : f) {
                     if (j > i) break;
-                    v += j * fj * g.unsafe_get(i - j);
+                    v += j * fj * g[i - j];
                 }
                 v *= invs[i];
-                g.unsafe_get(i) = v;
+                g[i] = v;
             }
             return g;
         }
-        static FPS log_sparse(const std::vector<std::pair<int, mint>> &f, const int max_deg) {
+        static FPS log_sparse(const std::vector<std::pair<int, value_type>>& f, const int n) {
             const int siz = f.size();
             assert(siz and f[0].first == 0 and f[0].second == 1);
-            FPS g(max_deg + 1);
+            FPS g(n);
             for (int idx = 1; idx < siz; ++idx) {
-                const auto &[j, fj] = f[idx];
-                if (j > max_deg) break;
-                g.unsafe_get(j) = j * fj;
+                const auto& [j, fj] = f[idx];
+                if (j >= n) break;
+                g[j] = j * fj;
             }
-            for (int i = 1; i <= max_deg; ++i) {
-                mint v = g.unsafe_get(i);
+            inv_mods<value_type> invs(n);
+            for (int i = 1; i < n; ++i) {
+                value_type v = g[i];
                 for (int idx = 1; idx < siz; ++idx) {
-                    const auto &[j, fj] = f[idx];
+                    const auto& [j, fj] = f[idx];
                     if (j > i) break;
-                    v -= fj * g.unsafe_get(i - j) * (i - j);
+                    v -= fj * g[i - j] * (i - j);
                 }
                 v *= invs[i];
-                g.unsafe_get(i) = v;
+                g[i] = v;
             }
             return g;
         }
-        static FPS pow_sparse(const std::vector<std::pair<int, mint>> &f, const long long k, const int max_deg) {
-            if (k == 0) return FPS { mint{1} };
+        static FPS pow_sparse(const std::vector<std::pair<int, value_type>>& f, const long long k, const int n) {
+            if (k == 0) {
+                FPS res(n, 0);
+                res[0] = 1;
+                return res;
+            }
             const int siz = f.size();
-            if (not siz) return FPS{};
+            if (not siz) return FPS(n, 0);
             const int p = f[0].first;
-            if (p >= max_deg / k + 1) return FPS{};
-            const mint inv_f0 = f[0].second.inv();
+            if (p > (n - 1) / k) return FPS(n, 0);
+            const value_type inv_f0 = f[0].second.inv();
             const int lz = p * k;
-            FPS g(max_deg + 1);
+            FPS g(n);
             g[lz] = f[0].second.pow(k);
-            for (int i = 1; lz + i <= max_deg; ++i) {
-                mint v = 0;
+            inv_mods<value_type> invs(n);
+            for (int i = 1; lz + i < n; ++i) {
+                value_type v = 0;
                 for (int idx = 1; idx < siz; ++idx) {
                     auto [j, fj] = f[idx];
                     j -= p;
                     if (j > i) break;
-                    v += fj * g.unsafe_get(lz + i - j) * (mint(k) * j - (i - j));
+                    v += fj * g[lz + i - j] * (value_type(k) * j - (i - j));
                 }
                 v *= invs[i] * inv_f0;
-                g.unsafe_get(lz + i) = v;
+                g[lz + i] = v;
             }
             return g;
         }
-        static std::optional<FPS> optional_sqrt_sparse(const std::vector<std::pair<int, mint>> &f, const int max_deg) {
+        static std::optional<FPS> safe_sqrt_sparse(const std::vector<std::pair<int, value_type>>& f, const int n) {
             const int siz = f.size();
-            if (not siz) return FPS{};
+            if (not siz) return FPS(n, 0);
             const int p = f[0].first;
             if (p % 2 == 1) return std::nullopt;
-            if (p / 2 > max_deg) return FPS{};
-            const mint inv_f0 = f[0].second.inv();
+            if (p / 2 >= n) return FPS(n, 0);
+            const value_type inv_f0 = f[0].second.inv();
             const int lz = p / 2;
-            FPS g(max_deg + 1);
-            auto opt_g0 = ::optional_sqrt(f[0].second);
+            FPS g(n);
+            auto opt_g0 = ::safe_sqrt(f[0].second);
             if (not opt_g0.has_value()) return std::nullopt;
             g[lz] = *opt_g0;
-            mint k = mint(2).inv();
-            for (int i = 1; lz + i <= max_deg; ++i) {
-                mint v = 0;
+            value_type k = mint(2).inv();
+            inv_mods<value_type> invs(n);
+            for (int i = 1; lz + i < n; ++i) {
+                value_type v = 0;
                 for (int idx = 1; idx < siz; ++idx) {
                     auto [j, fj] = f[idx];
                     j -= p;
                     if (j > i) break;
-                    v += fj * g.unsafe_get(lz + i - j) * (k * j - (i - j));
+                    v += fj * g[lz + i - j] * (k * j - (i - j));
                 }
                 v *= invs[i] * inv_f0;
-                g.unsafe_get(lz + i) = v;
+                g[lz + i] = v;
             }
             return g;
         }
-        static FPS sqrt_sparse(const std::vector<std::pair<int, mint>> &f, const int max_deg) {
-            return *optional_sqrt(f, max_deg);
+        static FPS sqrt_sparse(const std::vector<std::pair<int, value_type>>& f, const int n) {
+            return *safe_sqrt(f, n);
         }
     };
 
@@ -384,24 +434,24 @@ namespace suisen {
 } // namespace suisen
 
 template <typename mint>
-auto sqrt(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {
-    return a.sqrt(a.deg());
+suisen::FPS<mint> sqrt(suisen::FPS<mint> a) {
+    return a.sqrt();
 }
 template <typename mint>
-auto log(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {
-    return a.log(a.deg());
+suisen::FPS<mint> log(suisen::FPS<mint> a) {
+    return a.log();
 }
 template <typename mint>
-auto exp(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {
-    return a.exp(a.deg());
+suisen::FPS<mint> exp(suisen::FPS<mint> a) {
+    return a.exp();
 }
 template <typename mint, typename T>
-auto pow(suisen::FPS<mint> a, T b) -> decltype(mint::mod(), suisen::FPS<mint>{}) {
-    return a.pow(b, a.deg());
+suisen::FPS<mint> pow(suisen::FPS<mint> a, T b) {
+    return a.pow(b);
 }
 template <typename mint>
-auto inv(suisen::FPS<mint> a) -> decltype(mint::mod(), suisen::FPS<mint>{}) {
-    return a.inv(a.deg());
+suisen::FPS<mint> inv(suisen::FPS<mint> a) {
+    return a.inv();
 }
 
 #endif // SUISEN_FPS

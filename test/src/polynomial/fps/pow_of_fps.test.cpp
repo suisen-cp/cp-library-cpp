@@ -25,7 +25,7 @@ int main() {
         std::cin >> coef;
         f[i] = coef;
     }
-    auto g = f.pow(m, n - 1);
+    auto g = f.pow(m);
     for (int i = 0; i < n; ++i) {
         std::cout << g[i].val() << " \n"[i == n - 1];
     }

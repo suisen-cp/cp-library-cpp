@@ -11,7 +11,7 @@
 using mint = atcoder::modint998244353;
 
 int main() {
-    suisen::FPS<mint>::set_multiplication([](const auto &a, const auto &b) { return atcoder::convolution(a, b); });
+    suisen::FPS<mint>::set_multiplication([](const auto& a, const auto& b) { return atcoder::convolution(a, b); });
 
     int n;
     std::cin >> n;
@@ -21,7 +21,7 @@ int main() {
         std::cin >> coef;
         f[i] = coef;
     }
-    auto opt_g = f.optional_sqrt(n - 1);
+    auto opt_g = f.safe_sqrt();
     if (not opt_g.has_value()) {
         std::cout << -1 << std::endl;
         return 0;

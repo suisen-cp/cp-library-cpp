@@ -1,13 +1,12 @@
 #ifndef SUISEN_PARTITON_NUMBER
 #define SUISEN_PARTITON_NUMBER
 
-#include "library/polynomial/fps.hpp"
-#include "library/math/factorial.hpp"
+#include <vector>
 
 namespace suisen {
-    template <typename mint>
-    std::vector<mint> partition_number(int n) {
-        FPS<mint> inv(n + 1);
+    template <typename FPSType>
+    std::vector<typename FPSType::value_type> partition_number(int n) {
+        FPSType inv(n + 1);
         inv[0] = 1;
         for (int i = 1, k = 1; k <= n; k += 3 * i + 1, i++) {
             if (i & 1) --inv[k];
@@ -17,7 +16,7 @@ namespace suisen {
             if (i & 1) --inv[k];
             else ++inv[k];
         }
-        inv.inv_inplace(n), inv.resize(n + 1);
+        inv.inv_inplace(n + 1), inv.resize(n + 1);
         return inv;
     }
 } // namespace suisen

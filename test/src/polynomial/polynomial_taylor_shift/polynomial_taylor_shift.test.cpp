@@ -6,6 +6,7 @@
 #include <atcoder/modint>
 #include <atcoder/convolution>
 
+#include "library/polynomial/fps.hpp"
 #include "library/polynomial/polynomial_taylor_shift.hpp"
 
 using mint = atcoder::modint998244353;

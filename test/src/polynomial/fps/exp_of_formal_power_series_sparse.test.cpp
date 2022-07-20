@@ -21,7 +21,7 @@ int main() {
         std::cin >> d >> v;
         f[d] = v;
     }
-    auto exp_f = f.exp(n - 1);
+    auto exp_f = f.exp();
     for (int i = 0; i < n; ++i) {
         std::cout << exp_f[i].val() << " \n"[i == n - 1];
     }

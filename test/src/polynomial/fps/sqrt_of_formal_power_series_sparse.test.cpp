@@ -12,7 +12,7 @@ using mint = atcoder::modint998244353;
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
-    
+
     int n, k;
     std::cin >> n >> k;
     suisen::FPS<mint> f(n);
@@ -21,7 +21,7 @@ int main() {
         std::cin >> d >> v;
         f[d] = v;
     }
-    auto opt_sqrt_f = f.optional_sqrt(n - 1);
+    auto opt_sqrt_f = f.safe_sqrt();
     if (not opt_sqrt_f.has_value()) {
         std::cout << -1 << std::endl;
         return 0;

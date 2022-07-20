@@ -21,7 +21,7 @@ int main() {
         std::cin >> coef;
         f[i] = coef;
     }
-    auto g = f.exp(n - 1);
+    auto g = f.exp();
     for (int i = 0; i < n; ++i) {
         std::cout << g[i].val() << " \n"[i == n - 1];
     }

@@ -1,25 +1,25 @@
 #ifndef SUISEN_EULERIAN_NUMBER
 #define SUISEN_EULERIAN_NUMBER
 
-#include "library/polynomial/fps.hpp"
 #include "library/math/factorial.hpp"
 #include "library/sequence/powers.hpp"
 
 // reference: https://en.wikipedia.org/wiki/Eulerian_number
 namespace suisen {
-    template <typename mint>
-    std::vector<mint> eulerian_number(uint32_t n) {
+    template <typename FPSType>
+    std::vector<typename FPSType::value_type> eulerian_number(uint32_t n) {
+        using mint = typename FPSType::value_type;
         if (n == 0) return {};
         factorial<mint> fac(n + 1);
         const uint32_t h = (n + 1) >> 1;
-        FPS<mint> f = powers<mint>(h, n);
+        FPSType f = powers<mint>(h, n);
         f.erase(f.begin());
-        FPS<mint> g(h);
+        FPSType g(h);
         for (uint32_t i = 0; i < h; ++i) {
             mint v = fac.binom(n + 1, i);
             g[i] = i & 1 ? -v : v;
         }
-        FPS<mint> res = f * g;
+        FPSType res = f * g;
         res.resize(n);
         for (uint32_t i = h; i < n; ++i) res[i] = res[n - 1 - i];
         return res;
