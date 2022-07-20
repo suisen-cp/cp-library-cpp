@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
@@ -23,10 +23,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -34,7 +34,7 @@ data:
     path: library/transform/supset.hpp
     title: "\u4E0A\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/walsh_hadamard.hpp
     title: "Walsh Hadamard \u5909\u63DB"
   _extendedVerifiedWith:
@@ -44,10 +44,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -68,19 +68,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/arc105_f.test.cpp
     title: test/src/math/array_sps/arc105_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc213_g.test.cpp
     title: test/src/math/sps/abc213_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc253_h_2.test.cpp
     title: test/src/math/sps/abc253_h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/arc105_f.test.cpp
     title: test/src/math/sps/arc105_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -89,9 +89,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/transform/kronecker_power/arc132_f.test.cpp
     title: test/src/transform/kronecker_power/arc132_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#include\
@@ -206,7 +206,7 @@ data:
   - library/convolution/and_convolution.hpp
   - library/convolution/subset_convolution.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/transform/kronecker_power/agc044_c.test.cpp
   - test/src/transform/kronecker_power/arc132_f.test.cpp

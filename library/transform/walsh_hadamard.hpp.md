@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
@@ -16,15 +16,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
     title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/walsh_hadamard.hpp\"\n\n\n\n#line 1 \"\
@@ -137,7 +137,7 @@ data:
   requiredBy:
   - library/convolution/xor_convolution.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

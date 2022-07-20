@@ -18,9 +18,6 @@ data:
     path: library/sequence/eulerian_number.hpp
     title: Eulerian Number
   - icon: ':x:'
-    path: library/sequence/partition_number.hpp
-    title: Partition Number
-  - icon: ':x:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
   - icon: ':x:'
@@ -36,10 +33,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h_2.test.cpp
     title: test/src/math/array_sps/abc253_h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc253_h_2.test.cpp
     title: test/src/math/sps/abc253_h_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -49,8 +46,17 @@ data:
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - icon: ':x:'
+    path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
+    title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - icon: ':x:'
+    path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
+    title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
+  - icon: ':x:'
+    path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
+    title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
@@ -58,17 +64,20 @@ data:
     path: test/src/sequence/eulerian_number/yuki2005.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005.test.cpp
   - icon: ':x:'
-    path: test/src/sequence/partition_number/partition_function.test.cpp
-    title: test/src/sequence/partition_number/partition_function.test.cpp
-  - icon: ':x:'
     path: test/src/sequence/stirling_number1/abc247_h.test.cpp
     title: test/src/sequence/stirling_number1/abc247_h.test.cpp
   - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - icon: ':x:'
+    path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
+    title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - icon: ':x:'
+    path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+    title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -124,7 +133,6 @@ data:
   requiredBy:
   - library/math/util.hpp
   - library/sequence/bernoulli_number.hpp
-  - library/sequence/partition_number.hpp
   - library/sequence/bell_number.hpp
   - library/sequence/stirling_number1.hpp
   - library/sequence/eulerian_number.hpp
@@ -139,14 +147,18 @@ data:
   - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
   - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - test/src/sequence/stirling_number1/abc247_h.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - test/src/sequence/partition_number/partition_function.test.cpp
   - test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document
 title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"

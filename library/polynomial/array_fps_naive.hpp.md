@@ -76,7 +76,7 @@ data:
     \n\n#line 1 \"library/math/modint_extension.hpp\"\n\n\n\n#line 5 \"library/math/modint_extension.hpp\"\
     \n#include <optional>\n\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
     \ * calculates x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename\
-    \ mint>\nstd::optional<mint> optional_sqrt(mint a) {\n    static int p = mint::mod();\n\
+    \ mint>\nstd::optional<mint> safe_sqrt(mint a) {\n    static int p = mint::mod();\n\
     \    if (a == 0) return std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n\
     \    if (a.pow((p - 1) / 2) != 1) return std::nullopt;\n    mint b = 1;\n    while\
     \ (b.pow((p - 1) / 2) == 1) ++b;\n    static int tlz = __builtin_ctz(p - 1), q\
@@ -85,12 +85,12 @@ data:
     \        if (e.pow(1 << (tlz - shift)) != 1) x *= b;\n        b *= b;\n    }\n\
     \    return std::make_optional(x);\n}\n\n/**\n * calculates x s.t. x^2 = a mod\
     \ p in O((log p)^2).\n * if not exists, raises runtime error.\n */\ntemplate <typename\
-    \ mint>\nauto sqrt(mint a) -> decltype(mint::mod(), mint()) {\n    return *optional_sqrt(a);\n\
+    \ mint>\nauto sqrt(mint a) -> decltype(mint::mod(), mint()) {\n    return *safe_sqrt(a);\n\
     }\ntemplate <typename mint>\nauto log(mint a) -> decltype(mint::mod(), mint())\
-    \  {\n    assert(a == 1);\n    return 0;\n}\ntemplate <typename mint>\nauto exp(mint\
-    \ a) -> decltype(mint::mod(), mint())  {\n    assert(a == 0);\n    return 1;\n\
+    \ {\n    assert(a == 1);\n    return 0;\n}\ntemplate <typename mint>\nauto exp(mint\
+    \ a) -> decltype(mint::mod(), mint()) {\n    assert(a == 0);\n    return 1;\n\
     }\ntemplate <typename mint, typename T>\nauto pow(mint a, T b) -> decltype(mint::mod(),\
-    \ mint())  {\n    return a.pow(b);\n}\ntemplate <typename mint>\nauto inv(mint\
+    \ mint()) {\n    return a.pow(b);\n}\ntemplate <typename mint>\nauto inv(mint\
     \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 1 \"\
     library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen {\ntemplate\
     \ <typename mint>\nclass inv_mods {\n    public:\n        inv_mods() {}\n    \
@@ -340,7 +340,7 @@ data:
   requiredBy:
   - library/math/array_sps.hpp
   - library/convolution/array_subset_convolution.hpp
-  timestamp: '2022-06-27 18:52:58+09:00'
+  timestamp: '2022-07-21 04:00:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/array_sps/abc236_h.test.cpp
