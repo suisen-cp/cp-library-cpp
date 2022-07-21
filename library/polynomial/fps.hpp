@@ -197,7 +197,7 @@ namespace suisen {
         FPS& inv_inplace(const int n = -1) { return *this = inv(n); } 
         FPS inv(int n = -1) const {
             if (n < 0) n = size();
-            if (n < 60) return FPSNaive<mint>(*this).inv();
+            if (n < 60) return FPSNaive<mint>(*this).inv(n);
             if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return inv_sparse(std::move(*sp_f), n);
             FPS res{ (*this)[0].inv() };
             for (int k = 1; k < n; k *= 2) {
@@ -212,7 +212,7 @@ namespace suisen {
         FPS log(int n = -1) const {
             assert(safe_get(0) == 1);
             if (n < 0) n = size();
-            if (n < 60) return FPSNaive<mint>(cut_copy(n)).log();
+            if (n < 60) return FPSNaive<mint>(cut_copy(n)).log(n);
             if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return log_sparse(std::move(*sp_f), n);
             FPS res = inv(n) * diff();
             res.resize(n - 1);
@@ -222,7 +222,7 @@ namespace suisen {
         FPS exp(int n = -1) {
             assert(safe_get(0) == 0);
             if (n < 0) n = size();
-            if (n < 60) return FPSNaive<mint>(cut_copy(n)).exp();
+            if (n < 60) return FPSNaive<mint>(cut_copy(n)).exp(n);
             if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return exp_sparse(std::move(*sp_f), n);
             FPS res{ 1 };
             for (int k = 1; k < n; k *= 2) res *= ++(cut_copy(k * 2) - res.log(k * 2)), res.cut(k * 2);
@@ -232,7 +232,7 @@ namespace suisen {
         FPS& pow_inplace(long long k, int n = -1) { return *this = pow(k, n); }
         FPS pow(const long long k, int n = -1) const {
             if (n < 0) n = size();
-            if (n < 60) return FPSNaive<mint>(cut_copy(n)).pow(k);
+            if (n < 60) return FPSNaive<mint>(cut_copy(n)).pow(k, n);
             if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return pow_sparse(std::move(*sp_f), k, n);
             if (k == 0) {
                 FPS f{ 1 };
@@ -249,7 +249,7 @@ namespace suisen {
         }
         std::optional<FPS> safe_sqrt(int n = -1) const {
             if (n < 0) n = size();
-            if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();
+            if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt(n);
             if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f), n);
             int tlz = 0;
             while (tlz < size() and (*this)[tlz] == 0) ++tlz;
@@ -263,7 +263,7 @@ namespace suisen {
             FPS res{ *q0 };
             mint inv_2 = mint(2).inv();
             for (int k = 1; k < m; k *= 2) {
-                FPS tmp = h.cut_copy(k * 2) * res.inv(2 * k);
+                FPS tmp = h.cut_copy(2 * k) * res.inv(2 * k);
                 tmp.cut(2 * k);
                 res += tmp, res *= inv_2;
             }
