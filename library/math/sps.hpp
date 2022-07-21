@@ -103,7 +103,7 @@ namespace suisen {
         struct ZetaSPS : public std::vector<polynomial_type> {
             using base_type = std::vector<polynomial_type>;
             ZetaSPS() = default;
-            ZetaSPS(const SPS<value_type>& f) : base_type::vector(ranked_subset_transform::ranked_zeta(f)), _d(f.cardinality() + 1) {}
+            ZetaSPS(const SPS<value_type>& f) : base_type::vector(ranked_subset_transform::ranked_zeta(f)), _d(f.cardinality()) {}
 
             ZetaSPS operator+() const {
                 return *this;
@@ -141,7 +141,7 @@ namespace suisen {
             }
             ZetaSPS& operator*=(const ZetaSPS& rhs) {
                 assert(_d == rhs._d);
-                for (size_type i = 0; i < size_type(1) << _d; ++i) (*this)[i] = (*this)[i].mul(rhs[i], _d);
+                for (size_type i = 0; i < size_type(1) << _d; ++i) (*this)[i] = (*this)[i].mul(rhs[i], _d + 1);
                 return *this;
             }
             ZetaSPS inv()  const { auto f = ZetaSPS(*this).inv_inplace();  return f; }
@@ -150,23 +150,23 @@ namespace suisen {
             ZetaSPS log()  const { auto f = ZetaSPS(*this).log_inplace();  return f; }
             ZetaSPS pow(long long k) const { auto f = ZetaSPS(*this).pow_inplace(k); return f; }
             ZetaSPS& inv_inplace() {
-                for (auto& f : *this) f = f.inv(_d);
+                for (auto& f : *this) f = f.inv(_d + 1);
                 return *this;
             }
             ZetaSPS& sqrt_inplace() {
-                for (auto& f : *this) f = f.sqrt(_d);
+                for (auto& f : *this) f = f.sqrt(_d + 1);
                 return *this;
             }
             ZetaSPS& exp_inplace() {
-                for (auto& f : *this) f = f.exp(_d);
+                for (auto& f : *this) f = f.exp(_d + 1);
                 return *this;
             }
             ZetaSPS& log_inplace() {
-                for (auto& f : *this) f = f.log(_d);
+                for (auto& f : *this) f = f.log(_d + 1);
                 return *this;
             }
             ZetaSPS& pow_inplace(long long k) {
-                for (auto& f : *this) f = f.pow(k, _d);
+                for (auto& f : *this) f = f.pow(k, _d + 1);
                 return *this;
             }
             SPS<value_type> mobius_inplace() {
