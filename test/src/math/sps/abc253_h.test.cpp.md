@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/count_spanning_trees.hpp
     title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
       \u6570\u3048\u4E0A\u3052"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
   - icon: ':question:'
@@ -20,17 +20,17 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -40,14 +40,14 @@ data:
   - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/subset_iterator.hpp
     title: Subset Iterator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc253/tasks/abc253_Ex
@@ -646,9 +646,9 @@ data:
     \ namespace suisen\n\n\n#line 12 \"test/src/math/sps/abc253_h.test.cpp\"\n\nint\
     \ main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    std::vector<std::pair<int,\
     \ int>> edges(m);\n\n    for (auto& [u, v] : edges) {\n        std::cin >> u >>\
-    \ v;\n        --u, --v;\n    }\n\n    suisen::FPSNaive<mint>::set_max_deg(n);\n\
-    \n    suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));\n \
-    \   for (int s = 1; s < 1 << n; ++s) {\n        std::vector<int> ids(n, -1);\n\
+    \ v;\n        --u, --v;\n    }\n\n    suisen::FPSNaive<mint>::set_max_size(n +\
+    \ 1);\n\n    suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));\n\
+    \    for (int s = 1; s < 1 << n; ++s) {\n        std::vector<int> ids(n, -1);\n\
     \        int id = 0;\n        for (int i : suisen::all_setbit(s)) ids[i] = id++;\n\
     \        std::vector<std::pair<int, int>> Es;\n        for (const auto& [u, v]\
     \ : edges) if (ids[u] >= 0 and ids[v] >= 0) {\n            Es.emplace_back(ids[u],\
@@ -662,9 +662,9 @@ data:
     \n#include \"library/math/factorial.hpp\"\n#include \"library/math/sps.hpp\"\n\
     \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    std::vector<std::pair<int,\
     \ int>> edges(m);\n\n    for (auto& [u, v] : edges) {\n        std::cin >> u >>\
-    \ v;\n        --u, --v;\n    }\n\n    suisen::FPSNaive<mint>::set_max_deg(n);\n\
-    \n    suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));\n \
-    \   for (int s = 1; s < 1 << n; ++s) {\n        std::vector<int> ids(n, -1);\n\
+    \ v;\n        --u, --v;\n    }\n\n    suisen::FPSNaive<mint>::set_max_size(n +\
+    \ 1);\n\n    suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));\n\
+    \    for (int s = 1; s < 1 << n; ++s) {\n        std::vector<int> ids(n, -1);\n\
     \        int id = 0;\n        for (int i : suisen::all_setbit(s)) ids[i] = id++;\n\
     \        std::vector<std::pair<int, int>> Es;\n        for (const auto& [u, v]\
     \ : edges) if (ids[u] >= 0 and ids[v] >= 0) {\n            Es.emplace_back(ids[u],\
@@ -689,8 +689,8 @@ data:
   isVerificationFile: true
   path: test/src/math/sps/abc253_h.test.cpp
   requiredBy: []
-  timestamp: '2022-07-21 12:51:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-21 13:04:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/abc253_h.test.cpp
 layout: document
