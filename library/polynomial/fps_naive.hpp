@@ -145,9 +145,9 @@ namespace suisen {
         FPSNaive mul(const FPSNaive& g, int n = -1) const {
             if (n < 0) n = size();
             if (this->empty() or g.empty()) return FPSNaive{};
-            const int n = size(), m = g.size();
-            FPSNaive h(std::min(n, n + m - 1));
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
+            const int m = size(), k = g.size();
+            FPSNaive h(std::min(n, m + k - 1));
+            for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {
                 if (i + j >= n) break;
                 h.unsafe_get(i + j) += unsafe_get(i) * g.unsafe_get(j);
             }
