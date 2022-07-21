@@ -21,7 +21,7 @@ int main() {
         --u, --v;
     }
 
-    suisen::FPSNaive<mint>::set_max_deg(n);
+    suisen::FPSNaive<mint>::set_max_size(n + 1);
 
     suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));
     for (int s = 1; s < 1 << n; ++s) {
