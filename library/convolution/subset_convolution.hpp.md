@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
@@ -25,31 +25,31 @@ data:
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - icon: ':x:'
     path: test/src/math/sps/abc213_g.test.cpp
     title: test/src/math/sps/abc213_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
   - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h_2.test.cpp
     title: test/src/math/sps/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/arc105_f.test.cpp
     title: test/src/math/sps/arc105_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/subset_convolution.hpp\"\n\n\n\n#line\
@@ -190,8 +190,8 @@ data:
     \ g) {\n            return not (f == g);\n        }\n\n        FPSNaive mul(const\
     \ FPSNaive& g, int n = -1) const {\n            if (n < 0) n = size();\n     \
     \       if (this->empty() or g.empty()) return FPSNaive{};\n            const\
-    \ int n = size(), m = g.size();\n            FPSNaive h(std::min(n, n + m - 1));\n\
-    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n     \
+    \ int m = size(), k = g.size();\n            FPSNaive h(std::min(n, m + k - 1));\n\
+    \            for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n     \
     \           if (i + j >= n) break;\n                h.unsafe_get(i + j) += unsafe_get(i)\
     \ * g.unsafe_get(j);\n            }\n            return h;\n        }\n      \
     \  FPSNaive diff() const {\n            if (this->empty()) return {};\n      \
@@ -393,8 +393,8 @@ data:
   path: library/convolution/subset_convolution.hpp
   requiredBy:
   - library/math/sps.hpp
-  timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-21 12:28:40+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/sps/abc253_h_2.test.cpp

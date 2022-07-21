@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
@@ -172,8 +172,8 @@ data:
     \ g) {\n            return not (f == g);\n        }\n\n        FPSNaive mul(const\
     \ FPSNaive& g, int n = -1) const {\n            if (n < 0) n = size();\n     \
     \       if (this->empty() or g.empty()) return FPSNaive{};\n            const\
-    \ int n = size(), m = g.size();\n            FPSNaive h(std::min(n, n + m - 1));\n\
-    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n     \
+    \ int m = size(), k = g.size();\n            FPSNaive h(std::min(n, m + k - 1));\n\
+    \            for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n     \
     \           if (i + j >= n) break;\n                h.unsafe_get(i + j) += unsafe_get(i)\
     \ * g.unsafe_get(j);\n            }\n            return h;\n        }\n      \
     \  FPSNaive diff() const {\n            if (this->empty()) return {};\n      \
@@ -497,8 +497,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-21 12:28:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
 layout: document

@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':x:'
@@ -174,8 +174,8 @@ data:
     \ g) {\n            return not (f == g);\n        }\n\n        FPSNaive mul(const\
     \ FPSNaive& g, int n = -1) const {\n            if (n < 0) n = size();\n     \
     \       if (this->empty() or g.empty()) return FPSNaive{};\n            const\
-    \ int n = size(), m = g.size();\n            FPSNaive h(std::min(n, n + m - 1));\n\
-    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n     \
+    \ int m = size(), k = g.size();\n            FPSNaive h(std::min(n, m + k - 1));\n\
+    \            for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n     \
     \           if (i + j >= n) break;\n                h.unsafe_get(i + j) += unsafe_get(i)\
     \ * g.unsafe_get(j);\n            }\n            return h;\n        }\n      \
     \  FPSNaive diff() const {\n            if (this->empty()) return {};\n      \
@@ -538,7 +538,7 @@ data:
   isVerificationFile: true
   path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
   requiredBy: []
-  timestamp: '2022-07-21 04:00:33+09:00'
+  timestamp: '2022-07-21 12:28:40+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/sequence/stirling_number1/stirling_number1.test.cpp

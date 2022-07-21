@@ -11,44 +11,44 @@ data:
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':x:'
     path: library/polynomial/formal_power_series.hpp
     title: library/polynomial/formal_power_series.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
   - icon: ':x:'
     path: test/src/math/sps/abc213_g.test.cpp
     title: test/src/math/sps/abc213_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
   - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h_2.test.cpp
     title: test/src/math/sps/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/arc105_f.test.cpp
     title: test/src/math/sps/arc105_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
@@ -188,7 +188,7 @@ data:
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n\
@@ -328,8 +328,8 @@ data:
     \ g) {\n            return not (f == g);\n        }\n\n        FPSNaive mul(const\
     \ FPSNaive& g, int n = -1) const {\n            if (n < 0) n = size();\n     \
     \       if (this->empty() or g.empty()) return FPSNaive{};\n            const\
-    \ int n = size(), m = g.size();\n            FPSNaive h(std::min(n, n + m - 1));\n\
-    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n     \
+    \ int m = size(), k = g.size();\n            FPSNaive h(std::min(n, m + k - 1));\n\
+    \            for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n     \
     \           if (i + j >= n) break;\n                h.unsafe_get(i + j) += unsafe_get(i)\
     \ * g.unsafe_get(j);\n            }\n            return h;\n        }\n      \
     \  FPSNaive diff() const {\n            if (this->empty()) return {};\n      \
@@ -471,8 +471,8 @@ data:
     \ g) {\n            return not (f == g);\n        }\n\n        FPSNaive mul(const\
     \ FPSNaive& g, int n = -1) const {\n            if (n < 0) n = size();\n     \
     \       if (this->empty() or g.empty()) return FPSNaive{};\n            const\
-    \ int n = size(), m = g.size();\n            FPSNaive h(std::min(n, n + m - 1));\n\
-    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n     \
+    \ int m = size(), k = g.size();\n            FPSNaive h(std::min(n, m + k - 1));\n\
+    \            for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n     \
     \           if (i + j >= n) break;\n                h.unsafe_get(i + j) += unsafe_get(i)\
     \ * g.unsafe_get(j);\n            }\n            return h;\n        }\n      \
     \  FPSNaive diff() const {\n            if (this->empty()) return {};\n      \
@@ -549,8 +549,8 @@ data:
   - library/convolution/subset_convolution.hpp
   - library/polynomial/fps.hpp
   - library/polynomial/formal_power_series.hpp
-  timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-21 12:28:40+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/sps/abc253_h_2.test.cpp
