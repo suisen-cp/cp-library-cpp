@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/binary_trie_patricia.hpp
-    title: library/datastructure/binary_trie_patricia.hpp
+    title: Binary Trie Patricia
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

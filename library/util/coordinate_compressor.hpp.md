@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
+  - icon: ':warning:'
+    path: library/uncategorized/inversion_number.hpp
+    title: Inversion Number
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
@@ -265,6 +268,7 @@ data:
   path: library/util/coordinate_compressor.hpp
   requiredBy:
   - library/geom/segment_intersections.hpp
+  - library/uncategorized/inversion_number.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_SOME_WA

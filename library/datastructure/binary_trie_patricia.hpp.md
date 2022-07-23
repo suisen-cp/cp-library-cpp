@@ -430,8 +430,6 @@ data:
   - test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
 documentation_of: library/datastructure/binary_trie_patricia.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/binary_trie_patricia.hpp
-- /library/library/datastructure/binary_trie_patricia.hpp.html
-title: library/datastructure/binary_trie_patricia.hpp
+title: Binary Trie Patricia
 ---
+## Binary Trie Patricia

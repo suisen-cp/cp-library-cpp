@@ -109,8 +109,6 @@ data:
   verifiedWith: []
 documentation_of: library/polynomial/rational_fps.hpp
 layout: document
-redirect_from:
-- /library/library/polynomial/rational_fps.hpp
-- /library/library/polynomial/rational_fps.hpp.html
-title: library/polynomial/rational_fps.hpp
+title: Rational Fps
 ---
+## Rational Fps

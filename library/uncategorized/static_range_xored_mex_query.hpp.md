@@ -191,8 +191,6 @@ data:
   - test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
 documentation_of: library/uncategorized/static_range_xored_mex_query.hpp
 layout: document
-redirect_from:
-- /library/library/uncategorized/static_range_xored_mex_query.hpp
-- /library/library/uncategorized/static_range_xored_mex_query.hpp.html
-title: library/uncategorized/static_range_xored_mex_query.hpp
+title: Static Range Xored Mex Query
 ---
+## Static Range Xored Mex Query

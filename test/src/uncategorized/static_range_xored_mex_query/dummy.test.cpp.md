@@ -9,7 +9,7 @@ data:
     title: Type Traits
   - icon: ':heavy_check_mark:'
     path: library/uncategorized/static_range_xored_mex_query.hpp
-    title: library/uncategorized/static_range_xored_mex_query.hpp
+    title: Static Range Xored Mex Query
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
