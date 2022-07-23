@@ -16,7 +16,7 @@ namespace suisen {
         // => f'(x[i])=Π[j!=i](x[i]-x[j])
         const int n = xs.size();
         std::deque<FPSType> dq;
-        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], mint{ 1 } });
+        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], 1 });
         while (dq.size() >= 2) {
             auto f = std::move(dq.front());
             dq.pop_front();
