@@ -553,10 +553,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/array_fps_naive.hpp
       title: Array Fps Naive
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/formal_power_series.hpp
       title: library/polynomial/formal_power_series.hpp
     - icon: ':question:'
@@ -565,16 +565,16 @@ data:
     - icon: ':question:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/lagrange_interpolation.hpp
       title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
     - icon: ':question:'
       path: library/polynomial/multi_point_eval.hpp
       title: Multi Point Evaluation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/polynomial_interpolation.hpp
       title: "\u88DC\u9593\u591A\u9805\u5F0F"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/polynomial_taylor_shift.hpp
       title: Polynomial Taylor Shift
     - icon: ':warning:'
@@ -1592,42 +1592,42 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - name: test/src/polynomial/formal_power_series
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
       title: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
       title: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
       title: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
       title: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
       title: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
   - name: test/src/polynomial/fps
@@ -1675,31 +1675,31 @@ data:
     - icon: ':x:'
       path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
       title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
       title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
       title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   - name: test/src/polynomial/multi_point_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
       title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - name: test/src/polynomial/polynomial_interpolation
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
       title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
       title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
   - name: test/src/polynomial/polynomial_taylor_shift
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
       title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     - icon: ':x:'

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: library/polynomial/formal_power_series.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/inv_of_formal_power_series
@@ -401,35 +401,23 @@ data:
     \ + tlz, this->end());\n            auto q0 = ::safe_sqrt(h[0]);\n           \
     \ if (not q0.has_value()) return std::nullopt;\n\n            FormalPowerSeries\
     \ f{ *q0 }, f_fft, g{ q0->inv() }, g_fft;\n            for (int k = 1; k < m;\
-    \ k *= 2) {\n                f_fft = f, atcoder::internal::butterfly(f_fft);\n\
-    \                g_fft = g, atcoder::internal::butterfly(g_fft);\n\n         \
-    \       FormalPowerSeries h_lo = h.cut_copy(k), h_hi = h.cut_copy(k, 2 * k);\n\
-    \                for (int i = 0; i < k; ++i) h_lo[i] += h_hi[i];\n\n         \
-    \       atcoder::internal::butterfly(h_lo);\n\n                for (int i = 0;\
-    \ i < k; ++i) h_lo[i] -= f_fft[i] * f_fft[i];\n                atcoder::internal::butterfly_inv(h_lo);\n\
-    \n                h_lo.resize(2 * k);\n                atcoder::internal::butterfly(h_lo);\n\
-    \                g_fft = g.cut_copy(2 * k);\n                atcoder::internal::butterfly(g_fft);\n\
-    \n                const value_type inv_siz = (2 * k).inv();\n                const\
-    \ value_type inv_siz2 = inv_siz * inv_siz:\n                for (int i = 0; i\
-    \ < 2 * k; ++i) h_lo[i] *= g_fft[i] * inv_siz2;\n                atcoder::internal::butterfly(h_lo);\n\
-    \n                f.resize(2 * k);\n                for (int i = 0; i < k; ++i)\
-    \ f[k + i] = h_lo[i];\n\n\n\n                // f_fft = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\
-    \n                // if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n      \
-    \          // g_fft = g.cut_copy(2 * k);\n                // atcoder::internal::butterfly(g_fft);\n\
-    \                // FormalPowerSeries h_fft = h.cut_copy(2 * k);\n           \
-    \     // atcoder::internal::butterfly(h_fft);\n                // for (int i =\
-    \ 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i] * f_fft[i]) * g_fft[i];\n\
-    \                // atcoder::internal::butterfly_inv(h_fft);\n               \
-    \ // f.resize(2 * k);\n                // const value_type iz = value_type(4 *\
-    \ k).inv();\n                // for (int i = 0; i < k; ++i) f[k + i] = h_fft[k\
-    \ + i] * iz;\n            }\n            f.resize(m), f <<= (tlz / 2);\n     \
-    \       return f;\n        }\n        FormalPowerSeries& sqrt_inplace(int n =\
-    \ -1) { return *this = sqrt(n); }\n        FormalPowerSeries sqrt(int n = -1)\
-    \ const {\n            return *safe_sqrt(n);\n        }\n\n        value_type\
-    \ eval(value_type x) const {\n            value_type y = 0;\n            for (int\
-    \ i = size() - 1; i >= 0; --i) y = y * x + (*this)[i];\n            return y;\n\
-    \        }\n\n        static FormalPowerSeries prod(const std::vector<FormalPowerSeries>&\
-    \ fs) {\n            auto comp = [](const FormalPowerSeries& f, const FormalPowerSeries&\
+    \ k *= 2) {\n                f_fft = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\
+    \n                if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n         \
+    \       g_fft = g.cut_copy(2 * k);\n                atcoder::internal::butterfly(g_fft);\n\
+    \                FormalPowerSeries h_fft = h.cut_copy(2 * k);\n              \
+    \  atcoder::internal::butterfly(h_fft);\n                for (int i = 0; i < 2\
+    \ * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i] * f_fft[i]) * g_fft[i];\n        \
+    \        atcoder::internal::butterfly_inv(h_fft);\n                f.resize(2\
+    \ * k);\n                const value_type iz = value_type(4 * k).inv();\n    \
+    \            for (int i = 0; i < k; ++i) f[k + i] = h_fft[k + i] * iz;\n     \
+    \       }\n            f.resize(m), f <<= (tlz / 2);\n            return f;\n\
+    \        }\n        FormalPowerSeries& sqrt_inplace(int n = -1) { return *this\
+    \ = sqrt(n); }\n        FormalPowerSeries sqrt(int n = -1) const {\n         \
+    \   return *safe_sqrt(n);\n        }\n\n        value_type eval(value_type x)\
+    \ const {\n            value_type y = 0;\n            for (int i = size() - 1;\
+    \ i >= 0; --i) y = y * x + (*this)[i];\n            return y;\n        }\n\n \
+    \       static FormalPowerSeries prod(const std::vector<FormalPowerSeries>& fs)\
+    \ {\n            auto comp = [](const FormalPowerSeries& f, const FormalPowerSeries&\
     \ g) { return f.size() > g.size(); };\n            std::priority_queue<FormalPowerSeries,\
     \ std::vector<FormalPowerSeries>, decltype(comp)> pq{ comp };\n            for\
     \ (const auto& f : fs) pq.push(f);\n            while (pq.size() > 1) {\n    \
@@ -543,8 +531,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
   requiredBy: []
-  timestamp: '2022-07-23 15:41:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-23 23:43:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
 layout: document

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori
   - icon: ':question:'
