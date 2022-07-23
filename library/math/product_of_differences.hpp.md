@@ -5,7 +5,7 @@ data:
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   _extendedVerifiedWith:
@@ -15,7 +15,7 @@ data:
   - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - icon: ':x:'

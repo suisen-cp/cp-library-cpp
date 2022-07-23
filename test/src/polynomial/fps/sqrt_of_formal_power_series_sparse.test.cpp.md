@@ -18,9 +18,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series_sparse
@@ -250,88 +250,93 @@ data:
     \    }\n\n        value_type safe_get(int d) const {\n            return d <=\
     \ deg() ? (*this)[d] : 0;\n        }\n        value_type& safe_get(int d) {\n\
     \            ensure(d + 1);\n            return (*this)[d];\n        }\n\n   \
-    \     int cut_trailing_zeros() {\n            while (this->size() and this->back()\
-    \ == 0) this->pop_back();\n            return deg();\n        }\n        void\
+    \     FPS& cut_trailing_zeros() {\n            while (this->size() and this->back()\
+    \ == 0) this->pop_back();\n            return *this;\n        }\n        FPS&\
     \ cut(int n) {\n            if (size() > n) this->resize(std::max(0, n));\n  \
-    \      }\n        FPS cut_copy(int n) const {\n            FPS res(this->begin(),\
-    \ this->begin() + std::min(size(), n));\n            res.ensure(n);\n        \
-    \    return res;\n        }\n\n        /* Unary Operations */\n\n        FPS operator+()\
-    \ const { return *this; }\n        FPS operator-() const {\n            FPS res\
-    \ = *this;\n            for (auto& e : res) e = -e;\n            return res;\n\
-    \        }\n        FPS& operator++() { return ++safe_get(0), * this; }\n    \
-    \    FPS& operator--() { return --safe_get(0), * this; }\n        FPS operator++(int)\
-    \ {\n            FPS res = *this;\n            ++(*this);\n            return\
-    \ res;\n        }\n        FPS operator--(int) {\n            FPS res = *this;\n\
-    \            --(*this);\n            return res;\n        }\n\n        /* Binary\
-    \ Operations With Constant */\n\n        FPS& operator+=(const value_type& x)\
-    \ { return safe_get(0) += x, *this; }\n        FPS& operator-=(const value_type&\
-    \ x) { return safe_get(0) -= x, *this; }\n        FPS& operator*=(const value_type&\
-    \ x) {\n            for (auto& e : *this) e *= x;\n            return *this;\n\
-    \        }\n        FPS& operator/=(const value_type& x) { return *this *= x.inv();\
-    \ }\n\n        friend FPS operator+(FPS f, const value_type& x) { f += x; return\
-    \ f; }\n        friend FPS operator+(const value_type& x, FPS f) { f += x; return\
-    \ f; }\n        friend FPS operator-(FPS f, const value_type& x) { f -= x; return\
-    \ f; }\n        friend FPS operator-(const value_type& x, FPS f) { f -= x; return\
-    \ -f; }\n        friend FPS operator*(FPS f, const value_type& x) { f *= x; return\
-    \ f; }\n        friend FPS operator*(const value_type& x, FPS f) { f *= x; return\
-    \ f; }\n        friend FPS operator/(FPS f, const value_type& x) { f /= x; return\
-    \ f; }\n\n        /* Binary Operations With Formal Power Series */\n\n       \
-    \ FPS& operator+=(const FPS& g) {\n            const int n = g.size();\n     \
-    \       ensure(n);\n            for (int i = 0; i < n; ++i) (*this)[i] += g[i];\n\
-    \            return *this;\n        }\n        FPS& operator-=(const FPS& g) {\n\
-    \            const int n = g.size();\n            ensure(n);\n            for\
-    \ (int i = 0; i < n; ++i) (*this)[i] -= g[i];\n            return *this;\n   \
-    \     }\n        FPS& operator*=(const FPS& g) { return *this = *this * g; }\n\
-    \        FPS& operator/=(const FPS& g) { return *this = *this / g; }\n       \
-    \ FPS& operator%=(const FPS& g) { return *this = *this % g; }\n\n        friend\
-    \ FPS operator+(FPS f, const FPS& g) { f += g; return f; }\n        friend FPS\
-    \ operator-(FPS f, const FPS& g) { f -= g; return f; }\n        friend FPS operator*(const\
-    \ FPS& f, const FPS& g) { return mult(f, g); }\n        friend FPS operator/(FPS\
-    \ f, FPS g) {\n            if (f.size() < 60) return FPSNaive<mint>(f).div_mod(g).first;\n\
-    \            f.cut_trailing_zeros(), g.cut_trailing_zeros();\n            const\
-    \ int fd = f.deg(), gd = g.deg();\n            assert(gd >= 0);\n            if\
-    \ (fd < gd) return {};\n            if (gd == 0) {\n                f /= g[0];\n\
-    \                return f;\n            }\n            std::reverse(f.begin(),\
-    \ f.end()), std::reverse(g.begin(), g.end());\n            const int qd = fd -\
-    \ gd;\n            FPS q = f * g.inv(qd + 1);\n            q.cut(qd + 1);\n  \
-    \          std::reverse(q.begin(), q.end());\n            return q;\n        }\n\
-    \        friend FPS operator%(const FPS& f, const FPS& g) { return f.div_mod(g).second;\
-    \ }\n        std::pair<FPS, FPS> div_mod(const FPS& g) const {\n            if\
-    \ (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
-    \                return { q, r };\n            }\n            FPS q = *this /\
-    \ g, r = *this - g * q;\n            r.cut_trailing_zeros();\n            return\
-    \ { q, r };\n        }\n\n        /* Shift Operations */\n\n        FPS& operator<<=(const\
-    \ int shamt) {\n            return this->insert(this->begin(), shamt, 0), * this;\n\
-    \        }\n        FPS& operator>>=(const int shamt) {\n            return this->erase(this->begin(),\
-    \ this->begin() + std::min(shamt, size())), * this;\n        }\n        friend\
-    \ FPS operator<<(FPS f, const int shamt) { f <<= shamt; return f; }\n        friend\
-    \ FPS operator>>(FPS f, const int shamt) { f >>= shamt; return f; }\n\n      \
-    \  /* Compare */\n\n        friend bool operator==(const FPS& f, const FPS& g)\
-    \ {\n            const int n = f.size(), m = g.size();\n            if (n < m)\
-    \ return g == f;\n            for (int i = 0; i < m; ++i) if (f[i] != g[i]) return\
-    \ false;\n            for (int i = m; i < n; ++i) if (f[i] != 0) return false;\n\
-    \            return true;\n        }\n        friend bool operator!=(const FPS&\
-    \ f, const FPS& g) { return not (f == g); }\n\n        /* Other Operations */\n\
-    \n        FPS& diff_inplace() {\n            const int n = size();\n         \
-    \   for (int i = 1; i < n; ++i) (*this)[i - 1] = (*this)[i] * i;\n           \
-    \ return (*this)[n - 1] = 0, *this;\n        }\n        FPS diff() const {\n \
-    \           FPS res = *this;\n            res.diff_inplace();\n            return\
-    \ res;\n        }\n        FPS& intg_inplace() {\n            const int n = size();\n\
-    \            inv_mods<value_type> invs(n);\n            this->resize(n + 1);\n\
-    \            for (int i = n; i > 0; --i) (*this)[i] = (*this)[i - 1] * invs[i];\n\
-    \            return (*this)[0] = 0, *this;\n        }\n        FPS intg() const\
-    \ {\n            FPS res = *this;\n            res.intg_inplace();\n         \
-    \   return res;\n        }\n        \n        FPS& inv_inplace(const int n = -1)\
-    \ { return *this = inv(n); } \n        FPS inv(int n = -1) const {\n         \
-    \   if (n < 0) n = size();\n            if (n < 60) return FPSNaive<mint>(*this).inv(n);\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return inv_sparse(std::move(*sp_f),\
-    \ n);\n            FPS res{ (*this)[0].inv() };\n            for (int k = 1; k\
-    \ < n; k *= 2) {\n                FPS tmp(cut_copy(k * 2) * (res * res));\n  \
-    \              tmp.resize(2 * k);\n                res = 2 * res - tmp;\n    \
-    \        }\n            res.resize(n);\n            return res;\n        }\n \
-    \       FPS& log_inplace(int n = -1) { return *this = log(n); }\n        FPS log(int\
-    \ n = -1) const {\n            assert(safe_get(0) == 1);\n            if (n <\
-    \ 0) n = size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).log(n);\n\
+    \          return *this;\n        }\n        FPS cut_copy(int n) const {\n   \
+    \         FPS res(this->begin(), this->begin() + std::min(size(), n));\n     \
+    \       res.ensure(n);\n            return res;\n        }\n        FPS cut_copy(int\
+    \ l, int r) const {\n            if (l >= size()) return FPS(r - l, 0);\n    \
+    \        FPS res(this->begin() + l, this->begin() + std::min(size(), r));\n  \
+    \          res.ensure(r - l);\n            return res;\n        }\n\n        /*\
+    \ Unary Operations */\n\n        FPS operator+() const { return *this; }\n   \
+    \     FPS operator-() const {\n            FPS res = *this;\n            for (auto&\
+    \ e : res) e = -e;\n            return res;\n        }\n        FPS& operator++()\
+    \ { return ++safe_get(0), * this; }\n        FPS& operator--() { return --safe_get(0),\
+    \ * this; }\n        FPS operator++(int) {\n            FPS res = *this;\n   \
+    \         ++(*this);\n            return res;\n        }\n        FPS operator--(int)\
+    \ {\n            FPS res = *this;\n            --(*this);\n            return\
+    \ res;\n        }\n\n        /* Binary Operations With Constant */\n\n       \
+    \ FPS& operator+=(const value_type& x) { return safe_get(0) += x, *this; }\n \
+    \       FPS& operator-=(const value_type& x) { return safe_get(0) -= x, *this;\
+    \ }\n        FPS& operator*=(const value_type& x) {\n            for (auto& e\
+    \ : *this) e *= x;\n            return *this;\n        }\n        FPS& operator/=(const\
+    \ value_type& x) { return *this *= x.inv(); }\n\n        friend FPS operator+(FPS\
+    \ f, const value_type& x) { f += x; return f; }\n        friend FPS operator+(const\
+    \ value_type& x, FPS f) { f += x; return f; }\n        friend FPS operator-(FPS\
+    \ f, const value_type& x) { f -= x; return f; }\n        friend FPS operator-(const\
+    \ value_type& x, FPS f) { f -= x; return -f; }\n        friend FPS operator*(FPS\
+    \ f, const value_type& x) { f *= x; return f; }\n        friend FPS operator*(const\
+    \ value_type& x, FPS f) { f *= x; return f; }\n        friend FPS operator/(FPS\
+    \ f, const value_type& x) { f /= x; return f; }\n\n        /* Binary Operations\
+    \ With Formal Power Series */\n\n        FPS& operator+=(const FPS& g) {\n   \
+    \         const int n = g.size();\n            ensure(n);\n            for (int\
+    \ i = 0; i < n; ++i) (*this)[i] += g[i];\n            return *this;\n        }\n\
+    \        FPS& operator-=(const FPS& g) {\n            const int n = g.size();\n\
+    \            ensure(n);\n            for (int i = 0; i < n; ++i) (*this)[i] -=\
+    \ g[i];\n            return *this;\n        }\n        FPS& operator*=(const FPS&\
+    \ g) { return *this = *this * g; }\n        FPS& operator/=(const FPS& g) { return\
+    \ *this = *this / g; }\n        FPS& operator%=(const FPS& g) { return *this =\
+    \ *this % g; }\n\n        friend FPS operator+(FPS f, const FPS& g) { f += g;\
+    \ return f; }\n        friend FPS operator-(FPS f, const FPS& g) { f -= g; return\
+    \ f; }\n        friend FPS operator*(const FPS& f, const FPS& g) { return mult(f,\
+    \ g); }\n        friend FPS operator/(FPS f, FPS g) {\n            if (f.size()\
+    \ < 60) return FPSNaive<mint>(f).div_mod(g).first;\n            f.cut_trailing_zeros(),\
+    \ g.cut_trailing_zeros();\n            const int fd = f.deg(), gd = g.deg();\n\
+    \            assert(gd >= 0);\n            if (fd < gd) return {};\n         \
+    \   if (gd == 0) {\n                f /= g[0];\n                return f;\n  \
+    \          }\n            std::reverse(f.begin(), f.end()), std::reverse(g.begin(),\
+    \ g.end());\n            const int qd = fd - gd;\n            FPS q = f * g.inv(qd\
+    \ + 1);\n            q.cut(qd + 1);\n            std::reverse(q.begin(), q.end());\n\
+    \            return q;\n        }\n        friend FPS operator%(const FPS& f,\
+    \ const FPS& g) { return f.div_mod(g).second; }\n        std::pair<FPS, FPS> div_mod(const\
+    \ FPS& g) const {\n            if (size() < 60) {\n                auto [q, r]\
+    \ = FPSNaive<mint>(*this).div_mod(g);\n                return { q, r };\n    \
+    \        }\n            FPS q = *this / g, r = *this - g * q;\n            r.cut_trailing_zeros();\n\
+    \            return { q, r };\n        }\n\n        /* Shift Operations */\n\n\
+    \        FPS& operator<<=(const int shamt) {\n            return this->insert(this->begin(),\
+    \ shamt, 0), * this;\n        }\n        FPS& operator>>=(const int shamt) {\n\
+    \            return this->erase(this->begin(), this->begin() + std::min(shamt,\
+    \ size())), * this;\n        }\n        friend FPS operator<<(FPS f, const int\
+    \ shamt) { f <<= shamt; return f; }\n        friend FPS operator>>(FPS f, const\
+    \ int shamt) { f >>= shamt; return f; }\n\n        /* Compare */\n\n        friend\
+    \ bool operator==(const FPS& f, const FPS& g) {\n            const int n = f.size(),\
+    \ m = g.size();\n            if (n < m) return g == f;\n            for (int i\
+    \ = 0; i < m; ++i) if (f[i] != g[i]) return false;\n            for (int i = m;\
+    \ i < n; ++i) if (f[i] != 0) return false;\n            return true;\n       \
+    \ }\n        friend bool operator!=(const FPS& f, const FPS& g) { return not (f\
+    \ == g); }\n\n        /* Other Operations */\n\n        FPS& diff_inplace() {\n\
+    \            const int n = size();\n            for (int i = 1; i < n; ++i) (*this)[i\
+    \ - 1] = (*this)[i] * i;\n            return (*this)[n - 1] = 0, *this;\n    \
+    \    }\n        FPS diff() const {\n            FPS res = *this;\n           \
+    \ res.diff_inplace();\n            return res;\n        }\n        FPS& intg_inplace()\
+    \ {\n            const int n = size();\n            inv_mods<value_type> invs(n);\n\
+    \            this->resize(n + 1);\n            for (int i = n; i > 0; --i) (*this)[i]\
+    \ = (*this)[i - 1] * invs[i];\n            return (*this)[0] = 0, *this;\n   \
+    \     }\n        FPS intg() const {\n            FPS res = *this;\n          \
+    \  res.intg_inplace();\n            return res;\n        }\n        \n       \
+    \ FPS& inv_inplace(const int n = -1) { return *this = inv(n); } \n        FPS\
+    \ inv(int n = -1) const {\n            if (n < 0) n = size();\n            if\
+    \ (n < 60) return FPSNaive<mint>(*this).inv(n);\n            if (auto sp_f = sparse_fps_format(15);\
+    \ sp_f.has_value()) return inv_sparse(std::move(*sp_f), n);\n            FPS g{\
+    \ (*this)[0].inv() };\n            for (int k = 1; k < n; k *= 2) {\n        \
+    \        FPS f_lo = cut_copy(k), f_hi = cut_copy(k, 2 * k);\n                FPS\
+    \ h = (f_hi * g).cut(k) + ((f_lo * g) >>= k);\n                FPS g_hi = g *\
+    \ h;\n                g.resize(2 * k);\n                for (int i = 0; i < k;\
+    \ ++i) g[k + i] = -g_hi[i];\n            }\n            g.resize(n);\n       \
+    \     return g;\n        }\n        FPS& log_inplace(int n = -1) { return *this\
+    \ = log(n); }\n        FPS log(int n = -1) const {\n            assert(safe_get(0)\
+    \ == 1);\n            if (n < 0) n = size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).log(n);\n\
     \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return log_sparse(std::move(*sp_f),\
     \ n);\n            FPS res = inv(n) * diff();\n            res.resize(n - 1);\n\
     \            return res.intg();\n        }\n        FPS& exp_inplace(int n = -1)\
@@ -358,59 +363,60 @@ data:
     \ == 0) ++tlz;\n            if (tlz == size()) return FPS(n, 0);\n           \
     \ if (tlz & 1) return std::nullopt;\n            const int m = n - tlz / 2;\n\n\
     \            FPS h(this->begin() + tlz, this->end());\n            auto q0 = ::safe_sqrt(h[0]);\n\
-    \            if (not q0.has_value()) return std::nullopt;\n            FPS res{\
-    \ *q0 };\n            mint inv_2 = mint(2).inv();\n            for (int k = 1;\
-    \ k < m; k *= 2) {\n                FPS tmp = h.cut_copy(2 * k) * res.inv(2 *\
-    \ k);\n                tmp.cut(2 * k);\n                res += tmp, res *= inv_2;\n\
-    \            }\n            res.resize(m);\n            res <<= tlz / 2;\n   \
-    \         return res;\n        }\n        FPS& sqrt_inplace(int n = -1) { return\
-    \ *this = sqrt(n); }\n        FPS sqrt(int n = -1) const {\n            return\
-    \ *safe_sqrt(n);\n        }\n\n        mint eval(mint x) const {\n           \
-    \ mint y = 0;\n            for (int i = size() - 1; i >= 0; --i) y = y * x + (*this)[i];\n\
-    \            return y;\n        }\n\n        static FPS prod(const std::vector<FPS>&\
-    \ fs) {\n            auto comp = [](const FPS& f, const FPS& g) { return f.size()\
-    \ > g.size(); };\n            std::priority_queue<FPS, std::vector<FPS>, decltype(comp)>\
-    \ pq{ comp };\n            for (const auto& f : fs) pq.push(f);\n            while\
-    \ (pq.size() > 1) {\n                auto f = pq.top();\n                pq.pop();\n\
-    \                auto g = pq.top();\n                pq.pop();\n             \
-    \   pq.push(f * g);\n            }\n            return pq.top();\n        }\n\n\
-    \    protected:\n        static convolution_t<mint> mult;\n\n        std::optional<std::vector<std::pair<int,\
-    \ value_type>>> sparse_fps_format(int max_size) const {\n            std::vector<std::pair<int,\
-    \ value_type>> res;\n            for (int i = 0; i <= deg() and int(res.size())\
-    \ <= max_size; ++i) if (value_type v = (*this)[i]; v != 0) res.emplace_back(i,\
-    \ v);\n            if (int(res.size()) > max_size) return std::nullopt;\n    \
-    \        return res;\n        }\n\n        static FPS div_fps_sparse(const FPS&\
-    \ f, const std::vector<std::pair<int, value_type>>& g, int n) {\n            const\
-    \ int siz = g.size();\n            assert(siz and g[0].first == 0);\n        \
-    \    const value_type inv_g0 = g[0].second.inv();\n            FPS h(n);\n   \
-    \         for (int i = 0; i < n; ++i) {\n                value_type v = f.safe_get(i);\n\
-    \                for (int idx = 1; idx < siz; ++idx) {\n                    const\
-    \ auto& [j, gj] = g[idx];\n                    if (j > i) break;\n           \
-    \         v -= gj * h[i - j];\n                }\n                h[i] = v * inv_g0;\n\
-    \            }\n            return h;\n        }\n        static FPS inv_sparse(const\
-    \ std::vector<std::pair<int, value_type>>& g, const int n) {\n            return\
-    \ div_fps_sparse(FPS{ 1 }, g, n);\n        }\n        static FPS exp_sparse(const\
-    \ std::vector<std::pair<int, value_type>>& f, const int n) {\n            const\
-    \ int siz = f.size();\n            assert(not siz or f[0].first != 0);\n     \
-    \       FPS g(n);\n            g[0] = 1;\n            inv_mods<value_type> invs(n);\n\
-    \            for (int i = 1; i < n; ++i) {\n                value_type v = 0;\n\
-    \                for (const auto& [j, fj] : f) {\n                    if (j >\
-    \ i) break;\n                    v += j * fj * g[i - j];\n                }\n\
-    \                v *= invs[i];\n                g[i] = v;\n            }\n   \
-    \         return g;\n        }\n        static FPS log_sparse(const std::vector<std::pair<int,\
+    \            if (not q0.has_value()) return std::nullopt;\n            FPS f{\
+    \ *q0 }, g{ q0->inv() };\n            mint inv_2 = mint(2).inv();\n          \
+    \  for (int k = 1; k < m; k *= 2) {\n                FPS tmp = h.cut_copy(2 *\
+    \ k) * f.inv(2 * k);\n                tmp.cut(2 * k);\n                f += tmp,\
+    \ f *= inv_2;\n            }\n            f.fize(m);\n            f <<= tlz /\
+    \ 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
+    \ { return *this = sqrt(n); }\n        FPS sqrt(int n = -1) const {\n        \
+    \    return *safe_sqrt(n);\n        }\n\n        mint eval(mint x) const {\n \
+    \           mint y = 0;\n            for (int i = size() - 1; i >= 0; --i) y =\
+    \ y * x + (*this)[i];\n            return y;\n        }\n\n        static FPS\
+    \ prod(const std::vector<FPS>& fs) {\n            auto comp = [](const FPS& f,\
+    \ const FPS& g) { return f.size() > g.size(); };\n            std::priority_queue<FPS,\
+    \ std::vector<FPS>, decltype(comp)> pq{ comp };\n            for (const auto&\
+    \ f : fs) pq.push(f);\n            while (pq.size() > 1) {\n                auto\
+    \ f = pq.top();\n                pq.pop();\n                auto g = pq.top();\n\
+    \                pq.pop();\n                pq.push(f * g);\n            }\n \
+    \           return pq.top();\n        }\n\n    protected:\n        static convolution_t<mint>\
+    \ mult;\n\n        std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int\
+    \ max_size) const {\n            std::vector<std::pair<int, value_type>> res;\n\
+    \            for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i)\
+    \ if (value_type v = (*this)[i]; v != 0) res.emplace_back(i, v);\n           \
+    \ if (int(res.size()) > max_size) return std::nullopt;\n            return res;\n\
+    \        }\n\n        static FPS div_fps_sparse(const FPS& f, const std::vector<std::pair<int,\
+    \ value_type>>& g, int n) {\n            const int siz = g.size();\n         \
+    \   assert(siz and g[0].first == 0);\n            const value_type inv_g0 = g[0].second.inv();\n\
+    \            FPS h(n);\n            for (int i = 0; i < n; ++i) {\n          \
+    \      value_type v = f.safe_get(i);\n                for (int idx = 1; idx <\
+    \ siz; ++idx) {\n                    const auto& [j, gj] = g[idx];\n         \
+    \           if (j > i) break;\n                    v -= gj * h[i - j];\n     \
+    \           }\n                h[i] = v * inv_g0;\n            }\n           \
+    \ return h;\n        }\n        static FPS inv_sparse(const std::vector<std::pair<int,\
+    \ value_type>>& g, const int n) {\n            return div_fps_sparse(FPS{ 1 },\
+    \ g, n);\n        }\n        static FPS exp_sparse(const std::vector<std::pair<int,\
     \ value_type>>& f, const int n) {\n            const int siz = f.size();\n   \
-    \         assert(siz and f[0].first == 0 and f[0].second == 1);\n            FPS\
-    \ g(n);\n            for (int idx = 1; idx < siz; ++idx) {\n                const\
-    \ auto& [j, fj] = f[idx];\n                if (j >= n) break;\n              \
-    \  g[j] = j * fj;\n            }\n            inv_mods<value_type> invs(n);\n\
-    \            for (int i = 1; i < n; ++i) {\n                value_type v = g[i];\n\
-    \                for (int idx = 1; idx < siz; ++idx) {\n                    const\
-    \ auto& [j, fj] = f[idx];\n                    if (j > i) break;\n           \
-    \         v -= fj * g[i - j] * (i - j);\n                }\n                v\
-    \ *= invs[i];\n                g[i] = v;\n            }\n            return g;\n\
-    \        }\n        static FPS pow_sparse(const std::vector<std::pair<int, value_type>>&\
-    \ f, const long long k, const int n) {\n            if (k == 0) {\n          \
-    \      FPS res(n, 0);\n                res[0] = 1;\n                return res;\n\
+    \         assert(not siz or f[0].first != 0);\n            FPS g(n);\n       \
+    \     g[0] = 1;\n            inv_mods<value_type> invs(n);\n            for (int\
+    \ i = 1; i < n; ++i) {\n                value_type v = 0;\n                for\
+    \ (const auto& [j, fj] : f) {\n                    if (j > i) break;\n       \
+    \             v += j * fj * g[i - j];\n                }\n                v *=\
+    \ invs[i];\n                g[i] = v;\n            }\n            return g;\n\
+    \        }\n        static FPS log_sparse(const std::vector<std::pair<int, value_type>>&\
+    \ f, const int n) {\n            const int siz = f.size();\n            assert(siz\
+    \ and f[0].first == 0 and f[0].second == 1);\n            FPS g(n);\n        \
+    \    for (int idx = 1; idx < siz; ++idx) {\n                const auto& [j, fj]\
+    \ = f[idx];\n                if (j >= n) break;\n                g[j] = j * fj;\n\
+    \            }\n            inv_mods<value_type> invs(n);\n            for (int\
+    \ i = 1; i < n; ++i) {\n                value_type v = g[i];\n               \
+    \ for (int idx = 1; idx < siz; ++idx) {\n                    const auto& [j, fj]\
+    \ = f[idx];\n                    if (j > i) break;\n                    v -= fj\
+    \ * g[i - j] * (i - j);\n                }\n                v *= invs[i];\n  \
+    \              g[i] = v;\n            }\n            return g;\n        }\n  \
+    \      static FPS pow_sparse(const std::vector<std::pair<int, value_type>>& f,\
+    \ const long long k, const int n) {\n            if (k == 0) {\n             \
+    \   FPS res(n, 0);\n                res[0] = 1;\n                return res;\n\
     \            }\n            const int siz = f.size();\n            if (not siz)\
     \ return FPS(n, 0);\n            const int p = f[0].first;\n            if (p\
     \ > (n - 1) / k) return FPS(n, 0);\n            const value_type inv_f0 = f[0].second.inv();\n\
@@ -476,8 +482,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
   requiredBy: []
-  timestamp: '2022-07-21 13:45:59+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-23 15:41:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
 layout: document

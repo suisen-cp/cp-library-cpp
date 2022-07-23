@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series.hpp
     title: library/polynomial/formal_power_series.hpp
   - icon: ':question:'
@@ -249,22 +249,26 @@ data:
     \        }\n\n        value_type safe_get(int d) const {\n            return d\
     \ <= deg() ? (*this)[d] : 0;\n        }\n        value_type& safe_get(int d) {\n\
     \            ensure(d + 1);\n            return (*this)[d];\n        }\n\n   \
-    \     void cut_trailing_zeros() {\n            while (size() and this->back()\
-    \ == 0) this->pop_back();\n        }\n        void cut(int n) {\n            if\
-    \ (size() > n) this->resize(std::max(0, n));\n        }\n        FormalPowerSeries\
-    \ cut_copy(int n) const {\n            FormalPowerSeries res(this->begin(), this->begin()\
-    \ + std::min(size(), n));\n            res.ensure(n);\n            return res;\n\
-    \        }\n\n        /* Unary Operations */\n\n        FormalPowerSeries operator+()\
-    \ const { return *this; }\n        FormalPowerSeries operator-() const {\n   \
-    \         FormalPowerSeries res = *this;\n            for (auto& e : res) e =\
-    \ -e;\n            return res;\n        }\n        FormalPowerSeries& operator++()\
-    \ { return ++safe_get(0), * this; }\n        FormalPowerSeries& operator--() {\
-    \ return --safe_get(0), * this; }\n        FormalPowerSeries operator++(int) {\n\
-    \            FormalPowerSeries res = *this;\n            ++(*this);\n        \
-    \    return res;\n        }\n        FormalPowerSeries operator--(int) {\n   \
-    \         FormalPowerSeries res = *this;\n            --(*this);\n           \
-    \ return res;\n        }\n\n        /* Binary Operations With Constant */\n\n\
-    \        FormalPowerSeries& operator+=(const value_type& x) { return safe_get(0)\
+    \     FormalPowerSeries& cut_trailing_zeros() {\n            while (size() and\
+    \ this->back() == 0) this->pop_back();\n            return *this;\n        }\n\
+    \        FormalPowerSeries& cut(int n) {\n            if (size() > n) this->resize(std::max(0,\
+    \ n));\n            return *this;\n        }\n        FormalPowerSeries cut_copy(int\
+    \ n) const {\n            FormalPowerSeries res(this->begin(), this->begin() +\
+    \ std::min(size(), n));\n            res.ensure(n);\n            return res;\n\
+    \        }\n        FormalPowerSeries cut_copy(int l, int r) const {\n       \
+    \     if (l >= size()) return FormalPowerSeries(r - l, 0);\n            FormalPowerSeries\
+    \ res(this->begin() + l, this->begin() + std::min(size(), r));\n            res.ensure(r\
+    \ - l);\n            return res;\n        }\n\n        /* Unary Operations */\n\
+    \n        FormalPowerSeries operator+() const { return *this; }\n        FormalPowerSeries\
+    \ operator-() const {\n            FormalPowerSeries res = *this;\n          \
+    \  for (auto& e : res) e = -e;\n            return res;\n        }\n        FormalPowerSeries&\
+    \ operator++() { return ++safe_get(0), * this; }\n        FormalPowerSeries& operator--()\
+    \ { return --safe_get(0), * this; }\n        FormalPowerSeries operator++(int)\
+    \ {\n            FormalPowerSeries res = *this;\n            ++(*this);\n    \
+    \        return res;\n        }\n        FormalPowerSeries operator--(int) {\n\
+    \            FormalPowerSeries res = *this;\n            --(*this);\n        \
+    \    return res;\n        }\n\n        /* Binary Operations With Constant */\n\
+    \n        FormalPowerSeries& operator+=(const value_type& x) { return safe_get(0)\
     \ += x, *this; }\n        FormalPowerSeries& operator-=(const value_type& x) {\
     \ return safe_get(0) -= x, *this; }\n        FormalPowerSeries& operator*=(const\
     \ value_type& x) {\n            for (auto& e : *this) e *= x;\n            return\
@@ -390,23 +394,36 @@ data:
     \ = *this >> tlz;\n            value_type base = f[0];\n            return ((((f\
     \ /= base).log(m) *= k).exp(m) *= base.pow(k)) <<= (tlz * k));\n        }\n\n\
     \        std::optional<FormalPowerSeries> safe_sqrt(int n = -1) const {\n    \
-    \        if (n < 0) n = size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f),\
-    \ n);\n            int tlz = 0;\n            while (tlz < size() and (*this)[tlz]\
-    \ == 0) ++tlz;\n            if (tlz == size()) return FormalPowerSeries(n, 0);\n\
-    \            if (tlz & 1) return std::nullopt;\n            const int m = n -\
-    \ tlz / 2;\n\n            FormalPowerSeries h(this->begin() + tlz, this->end());\n\
-    \            auto q0 = ::safe_sqrt(h[0]);\n            if (not q0.has_value())\
-    \ return std::nullopt;\n\n            FormalPowerSeries f{ *q0 }, f_fft, g{ q0->inv()\
-    \ }, g_fft;\n            for (int k = 1; k < m; k *= 2) {\n                f_fft\
-    \ = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\n              \
-    \  if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n                g_fft = g.cut_copy(2\
-    \ * k);\n                atcoder::internal::butterfly(g_fft);\n              \
-    \  FormalPowerSeries h_fft = h.cut_copy(2 * k);\n                atcoder::internal::butterfly(h_fft);\n\
-    \                for (int i = 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i]\
-    \ * f_fft[i]) * g_fft[i];\n                atcoder::internal::butterfly_inv(h_fft);\n\
-    \                f.resize(2 * k);\n                const value_type iz = value_type(4\
-    \ * k).inv();\n                for (int i = 0; i < k; ++i) f[k + i] = h_fft[k\
+    \        if (n < 0) n = size();\n            // if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();\n\
+    \            // if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return\
+    \ safe_sqrt_sparse(std::move(*sp_f), n);\n            int tlz = 0;\n         \
+    \   while (tlz < size() and (*this)[tlz] == 0) ++tlz;\n            if (tlz ==\
+    \ size()) return FormalPowerSeries(n, 0);\n            if (tlz & 1) return std::nullopt;\n\
+    \            const int m = n - tlz / 2;\n\n            FormalPowerSeries h(this->begin()\
+    \ + tlz, this->end());\n            auto q0 = ::safe_sqrt(h[0]);\n           \
+    \ if (not q0.has_value()) return std::nullopt;\n\n            FormalPowerSeries\
+    \ f{ *q0 }, f_fft, g{ q0->inv() }, g_fft;\n            for (int k = 1; k < m;\
+    \ k *= 2) {\n                f_fft = f, atcoder::internal::butterfly(f_fft);\n\
+    \                g_fft = g, atcoder::internal::butterfly(g_fft);\n\n         \
+    \       FormalPowerSeries h_lo = h.cut_copy(k), h_hi = h.cut_copy(k, 2 * k);\n\
+    \                for (int i = 0; i < k; ++i) h_lo[i] += h_hi[i];\n\n         \
+    \       atcoder::internal::butterfly(h_lo);\n\n                for (int i = 0;\
+    \ i < k; ++i) h_lo[i] -= f_fft[i] * f_fft[i];\n                atcoder::internal::butterfly_inv(h_lo);\n\
+    \n                h_lo.resize(2 * k);\n                atcoder::internal::butterfly(h_lo);\n\
+    \                g_fft = g.cut_copy(2 * k);\n                atcoder::internal::butterfly(g_fft);\n\
+    \n                const value_type inv_siz = (2 * k).inv();\n                const\
+    \ value_type inv_siz2 = inv_siz * inv_siz:\n                for (int i = 0; i\
+    \ < 2 * k; ++i) h_lo[i] *= g_fft[i] * inv_siz2;\n                atcoder::internal::butterfly(h_lo);\n\
+    \n                f.resize(2 * k);\n                for (int i = 0; i < k; ++i)\
+    \ f[k + i] = h_lo[i];\n\n\n\n                // f_fft = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\
+    \n                // if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n      \
+    \          // g_fft = g.cut_copy(2 * k);\n                // atcoder::internal::butterfly(g_fft);\n\
+    \                // FormalPowerSeries h_fft = h.cut_copy(2 * k);\n           \
+    \     // atcoder::internal::butterfly(h_fft);\n                // for (int i =\
+    \ 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i] * f_fft[i]) * g_fft[i];\n\
+    \                // atcoder::internal::butterfly_inv(h_fft);\n               \
+    \ // f.resize(2 * k);\n                // const value_type iz = value_type(4 *\
+    \ k).inv();\n                // for (int i = 0; i < k; ++i) f[k + i] = h_fft[k\
     \ + i] * iz;\n            }\n            f.resize(m), f <<= (tlz / 2);\n     \
     \       return f;\n        }\n        FormalPowerSeries& sqrt_inplace(int n =\
     \ -1) { return *this = sqrt(n); }\n        FormalPowerSeries sqrt(int n = -1)\
@@ -539,7 +556,7 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   requiredBy: []
-  timestamp: '2022-07-21 12:28:40+09:00'
+  timestamp: '2022-07-23 15:41:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
