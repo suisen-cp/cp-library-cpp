@@ -5,7 +5,7 @@ data:
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   _extendedVerifiedWith:
@@ -15,10 +15,10 @@ data:
   - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   _isVerificationFailed: true
@@ -43,8 +43,8 @@ data:
     \ product_of_differences(const std::vector<T>& xs) {\n        // f(x):=\u03A0\
     _i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0[j!=i](x-x[j])\n        // => f'(x[i])=\u03A0\
     [j!=i](x[i]-x[j])\n        const int n = xs.size();\n        std::deque<FPSType>\
-    \ dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], mint{\
-    \ 1 } });\n        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
+    \ dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], 1 });\n\
+    \        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
     \            dq.pop_front();\n            auto g = std::move(dq.front());\n  \
     \          dq.pop_front();\n            dq.push_back(f * g);\n        }\n    \
     \    auto f = std::move(dq.front());\n        f.diff_inplace();\n        return\
@@ -57,10 +57,10 @@ data:
     \ std::vector<T>& xs) {\n        // f(x):=\u03A0_i(x-x[i])\n        // => f'(x)=\u03A3\
     _i \u03A0[j!=i](x-x[j])\n        // => f'(x[i])=\u03A0[j!=i](x[i]-x[j])\n    \
     \    const int n = xs.size();\n        std::deque<FPSType> dq;\n        for (int\
-    \ i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], mint{ 1 } });\n        while\
-    \ (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n          \
-    \  dq.pop_front();\n            auto g = std::move(dq.front());\n            dq.pop_front();\n\
-    \            dq.push_back(f * g);\n        }\n        auto f = std::move(dq.front());\n\
+    \ i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], 1 });\n        while (dq.size()\
+    \ >= 2) {\n            auto f = std::move(dq.front());\n            dq.pop_front();\n\
+    \            auto g = std::move(dq.front());\n            dq.pop_front();\n  \
+    \          dq.push_back(f * g);\n        }\n        auto f = std::move(dq.front());\n\
     \        f.diff_inplace();\n        return multi_point_eval<FPSType, T>(f, xs);\n\
     \    }\n} // namespace suisen\n\n\n#endif // SUISEN_PRODUCT_OF_DIFFERNCES\n"
   dependsOn:
@@ -69,7 +69,7 @@ data:
   path: library/math/product_of_differences.hpp
   requiredBy:
   - library/polynomial/lagrange_interpolation.hpp
-  timestamp: '2022-07-21 04:00:33+09:00'
+  timestamp: '2022-07-23 23:55:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/product_of_differences/yuki1938.test.cpp

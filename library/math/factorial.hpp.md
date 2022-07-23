@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/util.hpp
     title: Util
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
   - icon: ':warning:'
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/util/abc240_g.test.cpp
     title: test/src/math/util/abc240_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - icon: ':x:'

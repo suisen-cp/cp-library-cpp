@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -402,32 +402,31 @@ data:
     \ = *this >> tlz;\n            value_type base = f[0];\n            return ((((f\
     \ /= base).log(m) *= k).exp(m) *= base.pow(k)) <<= (tlz * k));\n        }\n\n\
     \        std::optional<FormalPowerSeries> safe_sqrt(int n = -1) const {\n    \
-    \        if (n < 0) n = size();\n            // if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();\n\
-    \            // if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return\
-    \ safe_sqrt_sparse(std::move(*sp_f), n);\n            int tlz = 0;\n         \
-    \   while (tlz < size() and (*this)[tlz] == 0) ++tlz;\n            if (tlz ==\
-    \ size()) return FormalPowerSeries(n, 0);\n            if (tlz & 1) return std::nullopt;\n\
-    \            const int m = n - tlz / 2;\n\n            FormalPowerSeries h(this->begin()\
-    \ + tlz, this->end());\n            auto q0 = ::safe_sqrt(h[0]);\n           \
-    \ if (not q0.has_value()) return std::nullopt;\n\n            FormalPowerSeries\
-    \ f{ *q0 }, f_fft, g{ q0->inv() }, g_fft;\n            for (int k = 1; k < m;\
-    \ k *= 2) {\n                f_fft = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\
-    \n                if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n         \
-    \       g_fft = g.cut_copy(2 * k);\n                atcoder::internal::butterfly(g_fft);\n\
-    \                FormalPowerSeries h_fft = h.cut_copy(2 * k);\n              \
-    \  atcoder::internal::butterfly(h_fft);\n                for (int i = 0; i < 2\
-    \ * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i] * f_fft[i]) * g_fft[i];\n        \
-    \        atcoder::internal::butterfly_inv(h_fft);\n                f.resize(2\
-    \ * k);\n                const value_type iz = value_type(4 * k).inv();\n    \
-    \            for (int i = 0; i < k; ++i) f[k + i] = h_fft[k + i] * iz;\n     \
-    \       }\n            f.resize(m), f <<= (tlz / 2);\n            return f;\n\
-    \        }\n        FormalPowerSeries& sqrt_inplace(int n = -1) { return *this\
-    \ = sqrt(n); }\n        FormalPowerSeries sqrt(int n = -1) const {\n         \
-    \   return *safe_sqrt(n);\n        }\n\n        value_type eval(value_type x)\
-    \ const {\n            value_type y = 0;\n            for (int i = size() - 1;\
-    \ i >= 0; --i) y = y * x + (*this)[i];\n            return y;\n        }\n\n \
-    \       static FormalPowerSeries prod(const std::vector<FormalPowerSeries>& fs)\
-    \ {\n            auto comp = [](const FormalPowerSeries& f, const FormalPowerSeries&\
+    \        if (n < 0) n = size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();\n\
+    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f),\
+    \ n);\n            int tlz = 0;\n            while (tlz < size() and (*this)[tlz]\
+    \ == 0) ++tlz;\n            if (tlz == size()) return FormalPowerSeries(n, 0);\n\
+    \            if (tlz & 1) return std::nullopt;\n            const int m = n -\
+    \ tlz / 2;\n\n            FormalPowerSeries h(this->begin() + tlz, this->end());\n\
+    \            auto q0 = ::safe_sqrt(h[0]);\n            if (not q0.has_value())\
+    \ return std::nullopt;\n\n            FormalPowerSeries f{ *q0 }, f_fft, g{ q0->inv()\
+    \ }, g_fft;\n            for (int k = 1; k < m; k *= 2) {\n                f_fft\
+    \ = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\n              \
+    \  if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n                g_fft = g.cut_copy(2\
+    \ * k);\n                atcoder::internal::butterfly(g_fft);\n              \
+    \  FormalPowerSeries h_fft = h.cut_copy(2 * k);\n                atcoder::internal::butterfly(h_fft);\n\
+    \                for (int i = 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i]\
+    \ * f_fft[i]) * g_fft[i];\n                atcoder::internal::butterfly_inv(h_fft);\n\
+    \                f.resize(2 * k);\n                const value_type iz = value_type(4\
+    \ * k).inv();\n                for (int i = 0; i < k; ++i) f[k + i] = h_fft[k\
+    \ + i] * iz;\n            }\n            f.resize(m), f <<= (tlz / 2);\n     \
+    \       return f;\n        }\n        FormalPowerSeries& sqrt_inplace(int n =\
+    \ -1) { return *this = sqrt(n); }\n        FormalPowerSeries sqrt(int n = -1)\
+    \ const {\n            return *safe_sqrt(n);\n        }\n\n        value_type\
+    \ eval(value_type x) const {\n            value_type y = 0;\n            for (int\
+    \ i = size() - 1; i >= 0; --i) y = y * x + (*this)[i];\n            return y;\n\
+    \        }\n\n        static FormalPowerSeries prod(const std::vector<FormalPowerSeries>&\
+    \ fs) {\n            auto comp = [](const FormalPowerSeries& f, const FormalPowerSeries&\
     \ g) { return f.size() > g.size(); };\n            std::priority_queue<FormalPowerSeries,\
     \ std::vector<FormalPowerSeries>, decltype(comp)> pq{ comp };\n            for\
     \ (const auto& f : fs) pq.push(f);\n            while (pq.size() > 1) {\n    \
@@ -534,8 +533,8 @@ data:
     \ product_of_differences(const std::vector<T>& xs) {\n        // f(x):=\u03A0\
     _i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0[j!=i](x-x[j])\n        // => f'(x[i])=\u03A0\
     [j!=i](x[i]-x[j])\n        const int n = xs.size();\n        std::deque<FPSType>\
-    \ dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], mint{\
-    \ 1 } });\n        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
+    \ dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], 1 });\n\
+    \        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
     \            dq.pop_front();\n            auto g = std::move(dq.front());\n  \
     \          dq.pop_front();\n            dq.push_back(f * g);\n        }\n    \
     \    auto f = std::move(dq.front());\n        f.diff_inplace();\n        return\
@@ -667,8 +666,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   requiredBy: []
-  timestamp: '2022-07-23 23:43:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-24 00:00:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
 layout: document

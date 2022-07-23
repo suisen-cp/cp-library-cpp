@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -377,8 +377,8 @@ data:
     \ *q0 }, g{ q0->inv() };\n            mint inv_2 = mint(2).inv();\n          \
     \  for (int k = 1; k < m; k *= 2) {\n                FPS tmp = h.cut_copy(2 *\
     \ k) * f.inv(2 * k);\n                tmp.cut(2 * k);\n                f += tmp,\
-    \ f *= inv_2;\n            }\n            f.fize(m);\n            f <<= tlz /\
-    \ 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
+    \ f *= inv_2;\n            }\n            f.resize(m);\n            f <<= tlz\
+    \ / 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
     \ { return *this = sqrt(n); }\n        FPS sqrt(int n = -1) const {\n        \
     \    return *safe_sqrt(n);\n        }\n\n        mint eval(mint x) const {\n \
     \           mint y = 0;\n            for (int i = size() - 1; i >= 0; --i) y =\
@@ -481,8 +481,8 @@ data:
     \ product_of_differences(const std::vector<T>& xs) {\n        // f(x):=\u03A0\
     _i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0[j!=i](x-x[j])\n        // => f'(x[i])=\u03A0\
     [j!=i](x[i]-x[j])\n        const int n = xs.size();\n        std::deque<FPSType>\
-    \ dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], mint{\
-    \ 1 } });\n        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
+    \ dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], 1 });\n\
+    \        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
     \            dq.pop_front();\n            auto g = std::move(dq.front());\n  \
     \          dq.pop_front();\n            dq.push_back(f * g);\n        }\n    \
     \    auto f = std::move(dq.front());\n        f.diff_inplace();\n        return\
@@ -618,8 +618,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   requiredBy: []
-  timestamp: '2022-07-23 15:41:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-24 00:00:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
 layout: document

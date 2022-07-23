@@ -368,8 +368,8 @@ data:
     \ *q0 }, g{ q0->inv() };\n            mint inv_2 = mint(2).inv();\n          \
     \  for (int k = 1; k < m; k *= 2) {\n                FPS tmp = h.cut_copy(2 *\
     \ k) * f.inv(2 * k);\n                tmp.cut(2 * k);\n                f += tmp,\
-    \ f *= inv_2;\n            }\n            f.fize(m);\n            f <<= tlz /\
-    \ 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
+    \ f *= inv_2;\n            }\n            f.resize(m);\n            f <<= tlz\
+    \ / 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
     \ { return *this = sqrt(n); }\n        FPS sqrt(int n = -1) const {\n        \
     \    return *safe_sqrt(n);\n        }\n\n        mint eval(mint x) const {\n \
     \           mint y = 0;\n            for (int i = size() - 1; i >= 0; --i) y =\
@@ -495,7 +495,7 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/fps/division_of_polynomials.test.cpp
   requiredBy: []
-  timestamp: '2022-07-23 15:41:50+09:00'
+  timestamp: '2022-07-24 00:00:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/fps/division_of_polynomials.test.cpp

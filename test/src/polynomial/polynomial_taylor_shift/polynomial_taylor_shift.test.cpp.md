@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_taylor_shift
@@ -373,8 +373,8 @@ data:
     \ *q0 }, g{ q0->inv() };\n            mint inv_2 = mint(2).inv();\n          \
     \  for (int k = 1; k < m; k *= 2) {\n                FPS tmp = h.cut_copy(2 *\
     \ k) * f.inv(2 * k);\n                tmp.cut(2 * k);\n                f += tmp,\
-    \ f *= inv_2;\n            }\n            f.fize(m);\n            f <<= tlz /\
-    \ 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
+    \ f *= inv_2;\n            }\n            f.resize(m);\n            f <<= tlz\
+    \ / 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
     \ { return *this = sqrt(n); }\n        FPS sqrt(int n = -1) const {\n        \
     \    return *safe_sqrt(n);\n        }\n\n        mint eval(mint x) const {\n \
     \           mint y = 0;\n            for (int i = size() - 1; i >= 0; --i) y =\
@@ -521,8 +521,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   requiredBy: []
-  timestamp: '2022-07-23 15:41:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-24 00:00:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
 layout: document

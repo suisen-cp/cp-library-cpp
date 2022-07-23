@@ -51,22 +51,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/pow_of_fps.test.cpp
     title: test/src/polynomial/fps/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
   - icon: ':x:'
     path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
     title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - icon: ':x:'
@@ -433,8 +433,8 @@ data:
     \ *q0 }, g{ q0->inv() };\n            mint inv_2 = mint(2).inv();\n          \
     \  for (int k = 1; k < m; k *= 2) {\n                FPS tmp = h.cut_copy(2 *\
     \ k) * f.inv(2 * k);\n                tmp.cut(2 * k);\n                f += tmp,\
-    \ f *= inv_2;\n            }\n            f.fize(m);\n            f <<= tlz /\
-    \ 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
+    \ f *= inv_2;\n            }\n            f.resize(m);\n            f <<= tlz\
+    \ / 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
     \ { return *this = sqrt(n); }\n        FPS sqrt(int n = -1) const {\n        \
     \    return *safe_sqrt(n);\n        }\n\n        mint eval(mint x) const {\n \
     \           mint y = 0;\n            for (int i = size() - 1; i >= 0; --i) y =\
@@ -655,8 +655,8 @@ data:
     \ *q0 }, g{ q0->inv() };\n            mint inv_2 = mint(2).inv();\n          \
     \  for (int k = 1; k < m; k *= 2) {\n                FPS tmp = h.cut_copy(2 *\
     \ k) * f.inv(2 * k);\n                tmp.cut(2 * k);\n                f += tmp,\
-    \ f *= inv_2;\n            }\n            f.fize(m);\n            f <<= tlz /\
-    \ 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
+    \ f *= inv_2;\n            }\n            f.resize(m);\n            f <<= tlz\
+    \ / 2;\n            return f;\n        }\n        FPS& sqrt_inplace(int n = -1)\
     \ { return *this = sqrt(n); }\n        FPS sqrt(int n = -1) const {\n        \
     \    return *safe_sqrt(n);\n        }\n\n        mint eval(mint x) const {\n \
     \           mint y = 0;\n            for (int i = size() - 1; i >= 0; --i) y =\
@@ -750,7 +750,7 @@ data:
   isVerificationFile: false
   path: library/polynomial/fps.hpp
   requiredBy: []
-  timestamp: '2022-07-23 15:41:50+09:00'
+  timestamp: '2022-07-24 00:00:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/product_of_differences/yuki1938.test.cpp

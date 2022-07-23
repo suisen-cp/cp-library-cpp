@@ -6,7 +6,7 @@ data:
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/polynomial_taylor_shift.hpp\"\n\n\n\n\
@@ -66,7 +66,7 @@ data:
   path: library/polynomial/polynomial_taylor_shift.hpp
   requiredBy: []
   timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
