@@ -40,15 +40,23 @@ namespace suisen {
             return (*this)[d];
         }
 
-        void cut_trailing_zeros() {
+        FormalPowerSeries& cut_trailing_zeros() {
             while (size() and this->back() == 0) this->pop_back();
+            return *this;
         }
-        void cut(int n) {
+        FormalPowerSeries& cut(int n) {
             if (size() > n) this->resize(std::max(0, n));
+            return *this;
         }
         FormalPowerSeries cut_copy(int n) const {
             FormalPowerSeries res(this->begin(), this->begin() + std::min(size(), n));
             res.ensure(n);
+            return res;
+        }
+        FormalPowerSeries cut_copy(int l, int r) const {
+            if (l >= size()) return FormalPowerSeries(r - l, 0);
+            FormalPowerSeries res(this->begin() + l, this->begin() + std::min(size(), r));
+            res.ensure(r - l);
             return res;
         }
 
@@ -293,8 +301,8 @@ namespace suisen {
 
         std::optional<FormalPowerSeries> safe_sqrt(int n = -1) const {
             if (n < 0) n = size();
-            if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();
-            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f), n);
+            // if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();
+            // if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f), n);
             int tlz = 0;
             while (tlz < size() and (*this)[tlz] == 0) ++tlz;
             if (tlz == size()) return FormalPowerSeries(n, 0);
@@ -307,19 +315,45 @@ namespace suisen {
 
             FormalPowerSeries f{ *q0 }, f_fft, g{ q0->inv() }, g_fft;
             for (int k = 1; k < m; k *= 2) {
-                f_fft = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);
+                f_fft = f, atcoder::internal::butterfly(f_fft);
+                g_fft = g, atcoder::internal::butterfly(g_fft);
 
-                if (k > 1) update_inv(k / 2, f_fft, g_fft, g);
+                FormalPowerSeries h_lo = h.cut_copy(k), h_hi = h.cut_copy(k, 2 * k);
+                for (int i = 0; i < k; ++i) h_lo[i] += h_hi[i];
 
+                atcoder::internal::butterfly(h_lo);
+
+                for (int i = 0; i < k; ++i) h_lo[i] -= f_fft[i] * f_fft[i];
+                atcoder::internal::butterfly_inv(h_lo);
+
+                h_lo.resize(2 * k);
+                atcoder::internal::butterfly(h_lo);
                 g_fft = g.cut_copy(2 * k);
                 atcoder::internal::butterfly(g_fft);
-                FormalPowerSeries h_fft = h.cut_copy(2 * k);
-                atcoder::internal::butterfly(h_fft);
-                for (int i = 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i] * f_fft[i]) * g_fft[i];
-                atcoder::internal::butterfly_inv(h_fft);
+
+                const value_type inv_siz = (2 * k).inv();
+                const value_type inv_siz2 = inv_siz * inv_siz:
+                for (int i = 0; i < 2 * k; ++i) h_lo[i] *= g_fft[i] * inv_siz2;
+                atcoder::internal::butterfly(h_lo);
+
                 f.resize(2 * k);
-                const value_type iz = value_type(4 * k).inv();
-                for (int i = 0; i < k; ++i) f[k + i] = h_fft[k + i] * iz;
+                for (int i = 0; i < k; ++i) f[k + i] = h_lo[i];
+
+
+
+                // f_fft = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);
+
+                // if (k > 1) update_inv(k / 2, f_fft, g_fft, g);
+
+                // g_fft = g.cut_copy(2 * k);
+                // atcoder::internal::butterfly(g_fft);
+                // FormalPowerSeries h_fft = h.cut_copy(2 * k);
+                // atcoder::internal::butterfly(h_fft);
+                // for (int i = 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i] * f_fft[i]) * g_fft[i];
+                // atcoder::internal::butterfly_inv(h_fft);
+                // f.resize(2 * k);
+                // const value_type iz = value_type(4 * k).inv();
+                // for (int i = 0; i < k; ++i) f[k + i] = h_fft[k + i] * iz;
             }
             f.resize(m), f <<= (tlz / 2);
             return f;

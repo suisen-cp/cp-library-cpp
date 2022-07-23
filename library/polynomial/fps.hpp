@@ -46,16 +46,23 @@ namespace suisen {
             return (*this)[d];
         }
 
-        int cut_trailing_zeros() {
+        FPS& cut_trailing_zeros() {
             while (this->size() and this->back() == 0) this->pop_back();
-            return deg();
+            return *this;
         }
-        void cut(int n) {
+        FPS& cut(int n) {
             if (size() > n) this->resize(std::max(0, n));
+            return *this;
         }
         FPS cut_copy(int n) const {
             FPS res(this->begin(), this->begin() + std::min(size(), n));
             res.ensure(n);
+            return res;
+        }
+        FPS cut_copy(int l, int r) const {
+            if (l >= size()) return FPS(r - l, 0);
+            FPS res(this->begin() + l, this->begin() + std::min(size(), r));
+            res.ensure(r - l);
             return res;
         }
 
@@ -199,14 +206,16 @@ namespace suisen {
             if (n < 0) n = size();
             if (n < 60) return FPSNaive<mint>(*this).inv(n);
             if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return inv_sparse(std::move(*sp_f), n);
-            FPS res{ (*this)[0].inv() };
+            FPS g{ (*this)[0].inv() };
             for (int k = 1; k < n; k *= 2) {
-                FPS tmp(cut_copy(k * 2) * (res * res));
-                tmp.resize(2 * k);
-                res = 2 * res - tmp;
+                FPS f_lo = cut_copy(k), f_hi = cut_copy(k, 2 * k);
+                FPS h = (f_hi * g).cut(k) + ((f_lo * g) >>= k);
+                FPS g_hi = g * h;
+                g.resize(2 * k);
+                for (int i = 0; i < k; ++i) g[k + i] = -g_hi[i];
             }
-            res.resize(n);
-            return res;
+            g.resize(n);
+            return g;
         }
         FPS& log_inplace(int n = -1) { return *this = log(n); }
         FPS log(int n = -1) const {
@@ -260,16 +269,16 @@ namespace suisen {
             FPS h(this->begin() + tlz, this->end());
             auto q0 = ::safe_sqrt(h[0]);
             if (not q0.has_value()) return std::nullopt;
-            FPS res{ *q0 };
+            FPS f{ *q0 }, g{ q0->inv() };
             mint inv_2 = mint(2).inv();
             for (int k = 1; k < m; k *= 2) {
-                FPS tmp = h.cut_copy(2 * k) * res.inv(2 * k);
+                FPS tmp = h.cut_copy(2 * k) * f.inv(2 * k);
                 tmp.cut(2 * k);
-                res += tmp, res *= inv_2;
+                f += tmp, f *= inv_2;
             }
-            res.resize(m);
-            res <<= tlz / 2;
-            return res;
+            f.fize(m);
+            f <<= tlz / 2;
+            return f;
         }
         FPS& sqrt_inplace(int n = -1) { return *this = sqrt(n); }
         FPS sqrt(int n = -1) const {
