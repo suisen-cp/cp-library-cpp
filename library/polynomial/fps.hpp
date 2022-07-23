@@ -276,7 +276,7 @@ namespace suisen {
                 tmp.cut(2 * k);
                 f += tmp, f *= inv_2;
             }
-            f.fize(m);
+            f.resize(m);
             f <<= tlz / 2;
             return f;
         }

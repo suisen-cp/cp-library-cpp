@@ -301,8 +301,8 @@ namespace suisen {
 
         std::optional<FormalPowerSeries> safe_sqrt(int n = -1) const {
             if (n < 0) n = size();
-            // if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();
-            // if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f), n);
+            if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();
+            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f), n);
             int tlz = 0;
             while (tlz < size() and (*this)[tlz] == 0) ++tlz;
             if (tlz == size()) return FormalPowerSeries(n, 0);
