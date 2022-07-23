@@ -315,45 +315,19 @@ namespace suisen {
 
             FormalPowerSeries f{ *q0 }, f_fft, g{ q0->inv() }, g_fft;
             for (int k = 1; k < m; k *= 2) {
-                f_fft = f, atcoder::internal::butterfly(f_fft);
-                g_fft = g, atcoder::internal::butterfly(g_fft);
+                f_fft = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);
 
-                FormalPowerSeries h_lo = h.cut_copy(k), h_hi = h.cut_copy(k, 2 * k);
-                for (int i = 0; i < k; ++i) h_lo[i] += h_hi[i];
+                if (k > 1) update_inv(k / 2, f_fft, g_fft, g);
 
-                atcoder::internal::butterfly(h_lo);
-
-                for (int i = 0; i < k; ++i) h_lo[i] -= f_fft[i] * f_fft[i];
-                atcoder::internal::butterfly_inv(h_lo);
-
-                h_lo.resize(2 * k);
-                atcoder::internal::butterfly(h_lo);
                 g_fft = g.cut_copy(2 * k);
                 atcoder::internal::butterfly(g_fft);
-
-                const value_type inv_siz = (2 * k).inv();
-                const value_type inv_siz2 = inv_siz * inv_siz:
-                for (int i = 0; i < 2 * k; ++i) h_lo[i] *= g_fft[i] * inv_siz2;
-                atcoder::internal::butterfly(h_lo);
-
+                FormalPowerSeries h_fft = h.cut_copy(2 * k);
+                atcoder::internal::butterfly(h_fft);
+                for (int i = 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i] * f_fft[i]) * g_fft[i];
+                atcoder::internal::butterfly_inv(h_fft);
                 f.resize(2 * k);
-                for (int i = 0; i < k; ++i) f[k + i] = h_lo[i];
-
-
-
-                // f_fft = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);
-
-                // if (k > 1) update_inv(k / 2, f_fft, g_fft, g);
-
-                // g_fft = g.cut_copy(2 * k);
-                // atcoder::internal::butterfly(g_fft);
-                // FormalPowerSeries h_fft = h.cut_copy(2 * k);
-                // atcoder::internal::butterfly(h_fft);
-                // for (int i = 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i] * f_fft[i]) * g_fft[i];
-                // atcoder::internal::butterfly_inv(h_fft);
-                // f.resize(2 * k);
-                // const value_type iz = value_type(4 * k).inv();
-                // for (int i = 0; i < k; ++i) f[k + i] = h_fft[k + i] * iz;
+                const value_type iz = value_type(4 * k).inv();
+                for (int i = 0; i < k; ++i) f[k + i] = h_fft[k + i] * iz;
             }
             f.resize(m), f <<= (tlz / 2);
             return f;
