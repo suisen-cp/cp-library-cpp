@@ -7,7 +7,7 @@
 namespace suisen {
     // Requirement: T is comparable 
     template <typename Int, typename T>
-    auto number_of_nonempty_subsequences(const std::vector<T> &a) -> decltype(std::declval<T>() < std::declval<T>(), std::declval<Int>()) {
+    auto number_of_nonempty_subsequences(const std::vector<T> &a) -> decltype(std::declval<T>() < std::declval<T>(), Int{}) {
         const int n = a.size();
         std::vector<std::pair<T, int>> sorted(n);
         for (int i = 0; i < n; ++i) sorted[i] = { a[i], i };

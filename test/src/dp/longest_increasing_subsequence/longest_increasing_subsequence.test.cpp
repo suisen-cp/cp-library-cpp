@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/longest_increasing_subsequence"
+
 #include <iostream>
 
 #include "library/dp/longest_increasing_subsequence.hpp"
