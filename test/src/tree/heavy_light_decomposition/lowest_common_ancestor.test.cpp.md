@@ -72,8 +72,8 @@ data:
     \            while (u >= 0) {\n                int h = head[u];\n            \
     \    if (visit[u] - k >= visit[h]) return ord[visit[u] - k];\n               \
     \ k -= visit[u] - visit[h] + 1;\n                u = par[h];\n            }\n\
-    \            return default_value;\n        }\n        int move_to(int u, int\
-    \ v, int d, int default_value = -1) const {\n            if (d < 0) return default_value;\n\
+    \            return default_value;\n        }\n        int jump(int u, int v,\
+    \ int d, int default_value = -1) const {\n            if (d < 0) return default_value;\n\
     \            const int w = lca(u, v);\n            int uw = dep[u] - dep[w];\n\
     \            if (d <= uw) return la(u, d);\n            int vw = dep[v] - dep[w];\n\
     \            return d <= uw + vw ? la(v, (uw + vw) - d) : default_value;\n   \
@@ -164,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-07-26 15:08:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp

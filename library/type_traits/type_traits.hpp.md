@@ -429,6 +429,9 @@ data:
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
+    title: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   - icon: ':heavy_check_mark:'
@@ -572,6 +575,7 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
   - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/math/sps/abc213_g.test.cpp

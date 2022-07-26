@@ -10,28 +10,32 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"library/tree/auxiliary_tree.hpp\"\n\n\n\n#include <algorithm>\n\
-    #line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
-    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
-    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
-    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
-    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
-    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
-    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
+    links:
+    - https://judge.yosupo.jp/problem/jump_on_tree
+  bundledCode: "#line 1 \"test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\
+    \ <iostream>\n\n#line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n\
+    #line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include\
+    \ <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\n\
+    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\n\
+    template <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto)\
+    \ constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n\
+    \        return std::forward<Then>(then);\n    } else {\n        return std::forward<OrElse>(or_else);\n\
+    \    }\n}\n\n// ! function\ntemplate <typename ReturnType, typename Callable,\
+    \ typename ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
+    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
+    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
+    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
+    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
+    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
+    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
+    template <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool\
+    \ value = bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
     \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
     \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
     \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
@@ -137,82 +141,36 @@ data:
     \            head[u] = p >= 0 and g[p].front() == u ? head[p] : u;\n         \
     \   for (int v : g[u]) {\n                if (v != p) hld(g, v, u, time);\n  \
     \          }\n            leave[u] = time;\n        }\n};\n} // namespace suisen\n\
-    \n\n#line 6 \"library/tree/auxiliary_tree.hpp\"\n\nnamespace suisen {\n    struct\
-    \ AuxiliaryTree {\n        AuxiliaryTree() = default;\n        AuxiliaryTree(const\
-    \ HeavyLightDecomposition& hld) : _n(hld.size()), _aux(_n), _hld(hld) {}\n\n \
-    \       const std::vector<int>& operator[](int u) const {\n            return\
-    \ _aux[u];\n        }\n\n        void build(std::vector<int> vs) {\n         \
-    \   const int k = vs.size();\n            for (int v : _upd) _aux[v].clear();\n\
-    \            _upd.clear();\n\n            std::sort(vs.begin(), vs.end(), [this](int\
-    \ i, int j) { return _hld.get_visit_time(i) < _hld.get_visit_time(j); });\n\n\
-    \            std::copy(vs.begin(), vs.end(), std::back_inserter(_upd));\n\n  \
-    \          std::vector<int> st{ vs[0] };\n            for (int i = 0; i < k -\
-    \ 1; ++i) {\n                const int w = _hld.lca(vs[i], vs[i + 1]);\n\n   \
-    \             if (w != vs[i]) {\n                    _upd.push_back(w);\n    \
-    \                int last = st.back();\n                    st.pop_back();\n \
-    \                   while (st.size() and _hld.get_depth(w) < _hld.get_depth(st.back()))\
-    \ {\n                        int u = st.back();\n                        _aux[u].push_back(last);\n\
-    \                        _aux[last].push_back(u);\n                        last\
-    \ = st.back();\n                        st.pop_back();\n                    }\n\
-    \n                    if (st.empty() or st.back() != w) {\n                  \
-    \      st.push_back(w);\n                        vs.push_back(w);\n          \
-    \              _aux[w].push_back(last);\n                        _aux[last].push_back(w);\n\
-    \                    } else {\n                        _aux[w].push_back(last);\n\
-    \                        _aux[last].push_back(w);\n                    }\n   \
-    \             }\n\n                st.push_back(vs[i + 1]);\n            }\n \
-    \           const int siz = st.size();\n            for (int i = 0; i < siz -\
-    \ 1; ++i) {\n                _aux[st[i]].push_back(st[i + 1]);\n             \
-    \   _aux[st[i + 1]].push_back(st[i]);\n            }\n        }\n\n        const\
-    \ HeavyLightDecomposition& get_hld() const {\n            return _hld;\n     \
-    \   }\n    private:\n        int _n;\n        std::vector<std::vector<int>> _aux;\n\
-    \        HeavyLightDecomposition _hld;\n        std::vector<int> _upd;\n    };\n\
-    } // namespace suisen\n\n\n"
-  code: "#ifndef SUISEN_AUXILIARY_TREE\n#define SUISEN_AUXILIARY_TREE\n\n#include\
-    \ <algorithm>\n#include \"library/tree/heavy_light_decomposition.hpp\"\n\nnamespace\
-    \ suisen {\n    struct AuxiliaryTree {\n        AuxiliaryTree() = default;\n \
-    \       AuxiliaryTree(const HeavyLightDecomposition& hld) : _n(hld.size()), _aux(_n),\
-    \ _hld(hld) {}\n\n        const std::vector<int>& operator[](int u) const {\n\
-    \            return _aux[u];\n        }\n\n        void build(std::vector<int>\
-    \ vs) {\n            const int k = vs.size();\n            for (int v : _upd)\
-    \ _aux[v].clear();\n            _upd.clear();\n\n            std::sort(vs.begin(),\
-    \ vs.end(), [this](int i, int j) { return _hld.get_visit_time(i) < _hld.get_visit_time(j);\
-    \ });\n\n            std::copy(vs.begin(), vs.end(), std::back_inserter(_upd));\n\
-    \n            std::vector<int> st{ vs[0] };\n            for (int i = 0; i < k\
-    \ - 1; ++i) {\n                const int w = _hld.lca(vs[i], vs[i + 1]);\n\n \
-    \               if (w != vs[i]) {\n                    _upd.push_back(w);\n  \
-    \                  int last = st.back();\n                    st.pop_back();\n\
-    \                    while (st.size() and _hld.get_depth(w) < _hld.get_depth(st.back()))\
-    \ {\n                        int u = st.back();\n                        _aux[u].push_back(last);\n\
-    \                        _aux[last].push_back(u);\n                        last\
-    \ = st.back();\n                        st.pop_back();\n                    }\n\
-    \n                    if (st.empty() or st.back() != w) {\n                  \
-    \      st.push_back(w);\n                        vs.push_back(w);\n          \
-    \              _aux[w].push_back(last);\n                        _aux[last].push_back(w);\n\
-    \                    } else {\n                        _aux[w].push_back(last);\n\
-    \                        _aux[last].push_back(w);\n                    }\n   \
-    \             }\n\n                st.push_back(vs[i + 1]);\n            }\n \
-    \           const int siz = st.size();\n            for (int i = 0; i < siz -\
-    \ 1; ++i) {\n                _aux[st[i]].push_back(st[i + 1]);\n             \
-    \   _aux[st[i + 1]].push_back(st[i]);\n            }\n        }\n\n        const\
-    \ HeavyLightDecomposition& get_hld() const {\n            return _hld;\n     \
-    \   }\n    private:\n        int _n;\n        std::vector<std::vector<int>> _aux;\n\
-    \        HeavyLightDecomposition _hld;\n        std::vector<int> _upd;\n    };\n\
-    } // namespace suisen\n\n#endif // SUISEN_AUXILIARY_TREE\n"
+    \n\n#line 6 \"test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp\"\n\
+    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<std::vector<int>>\
+    \ g(n);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        std::cin\
+    \ >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n\
+    \    suisen::HeavyLightDecomposition hld(g);\n\n    while (q --> 0) {\n      \
+    \  int u, v, d;\n        std::cin >> u >> v >> d;\n        std::cout << hld.jump(u,\
+    \ v, d) << '\\n';\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n\n#include\
+    \ <iostream>\n\n#include \"library/tree/heavy_light_decomposition.hpp\"\n\nint\
+    \ main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<std::vector<int>>\
+    \ g(n);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        std::cin\
+    \ >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n\
+    \    suisen::HeavyLightDecomposition hld(g);\n\n    while (q --> 0) {\n      \
+    \  int u, v, d;\n        std::cin >> u >> v >> d;\n        std::cout << hld.jump(u,\
+    \ v, d) << '\\n';\n    }\n\n    return 0;\n}"
   dependsOn:
   - library/tree/heavy_light_decomposition.hpp
   - library/type_traits/type_traits.hpp
-  isVerificationFile: false
-  path: library/tree/auxiliary_tree.hpp
+  isVerificationFile: true
+  path: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
   requiredBy: []
   timestamp: '2022-07-26 15:08:44+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: library/tree/auxiliary_tree.hpp
+documentation_of: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
 layout: document
-title: "\u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u305F\u3061\u306E\u6700\u5C0F\u5171\
-  \u901A\u7956\u5148\u95A2\u4FC2\u3092\u4FDD\u3063\u3066\u6728\u3092\u5727\u7E2E\u3057\
-  \u3066\u3067\u304D\u308B\u88DC\u52A9\u7684\u306A\u6728"
+redirect_from:
+- /verify/test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
+- /verify/test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp.html
+title: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
 ---
-## 指定された頂点たちの最小共通祖先関係を保って木を圧縮してできる補助的な木
-
-名称は [ア辞典](https://dic.kimiyuki.net/auxiliary-tree) から拝借しました。

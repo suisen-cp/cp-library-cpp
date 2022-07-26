@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/tree/level_ancestor/jump_on_tree.test.cpp
+    title: test/src/tree/level_ancestor/jump_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/level_ancestor/lowest_common_ancestor.test.cpp
     title: test/src/tree/level_ancestor/lowest_common_ancestor.test.cpp
   _isVerificationFailed: false
@@ -83,6 +86,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/level_ancestor/lowest_common_ancestor.test.cpp
+  - test/src/tree/level_ancestor/jump_on_tree.test.cpp
 documentation_of: library/tree/level_ancestor.hpp
 layout: document
 title: Level Ancestor

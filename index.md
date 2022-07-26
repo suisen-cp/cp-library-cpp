@@ -324,6 +324,14 @@ data:
     - icon: ':warning:'
       path: library/debug/tree.hpp
       title: Tree
+  - name: library/dp
+    pages:
+    - icon: ':x:'
+      path: library/dp/longest_increasing_subsequence.hpp
+      title: library/dp/longest_increasing_subsequence.hpp
+    - icon: ':x:'
+      path: library/dp/number_of_subsequences.hpp
+      title: library/dp/number_of_subsequences.hpp
   - name: library/geom
     pages:
     - icon: ':heavy_check_mark:'
@@ -1240,6 +1248,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+  - name: test/src/dp/longest_increasing_subsequence
+    pages:
+    - icon: ':x:'
+      path: test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence.test.cpp
+      title: test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence.test.cpp
+    - icon: ':x:'
+      path: test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence_2.test.cpp
+      title: test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence_2.test.cpp
+  - name: test/src/dp/number_of_subsequences
+    pages:
+    - icon: ':x:'
+      path: test/src/dp/number_of_subsequences/number_of_subsequences.test.cpp
+      title: test/src/dp/number_of_subsequences/number_of_subsequences.test.cpp
   - name: test/src/geom/closest_pair
     pages:
     - icon: ':heavy_check_mark:'
@@ -1852,6 +1873,9 @@ data:
       path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
+      title: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1868,6 +1892,9 @@ data:
       title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/level_ancestor
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/level_ancestor/jump_on_tree.test.cpp
+      title: test/src/tree/level_ancestor/jump_on_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/tree/level_ancestor/lowest_common_ancestor.test.cpp
       title: test/src/tree/level_ancestor/lowest_common_ancestor.test.cpp

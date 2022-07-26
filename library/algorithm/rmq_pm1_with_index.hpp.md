@@ -10,6 +10,9 @@ data:
     title: Lowest Common Ancestor
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/tree/level_ancestor/jump_on_tree.test.cpp
+    title: test/src/tree/level_ancestor/jump_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
     title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   _isVerificationFailed: false
@@ -152,6 +155,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - test/src/tree/level_ancestor/jump_on_tree.test.cpp
 documentation_of: library/algorithm/rmq_pm1_with_index.hpp
 layout: document
 title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\u306E\

@@ -15,6 +15,9 @@ data:
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
+    title: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,8 +90,8 @@ data:
     \            while (u >= 0) {\n                int h = head[u];\n            \
     \    if (visit[u] - k >= visit[h]) return ord[visit[u] - k];\n               \
     \ k -= visit[u] - visit[h] + 1;\n                u = par[h];\n            }\n\
-    \            return default_value;\n        }\n        int move_to(int u, int\
-    \ v, int d, int default_value = -1) const {\n            if (d < 0) return default_value;\n\
+    \            return default_value;\n        }\n        int jump(int u, int v,\
+    \ int d, int default_value = -1) const {\n            if (d < 0) return default_value;\n\
     \            const int w = lca(u, v);\n            int uw = dep[u] - dep[w];\n\
     \            if (d <= uw) return la(u, d);\n            int vw = dep[v] - dep[w];\n\
     \            return d <= uw + vw ? la(v, (uw + vw) - d) : default_value;\n   \
@@ -178,8 +181,8 @@ data:
     \            while (u >= 0) {\n                int h = head[u];\n            \
     \    if (visit[u] - k >= visit[h]) return ord[visit[u] - k];\n               \
     \ k -= visit[u] - visit[h] + 1;\n                u = par[h];\n            }\n\
-    \            return default_value;\n        }\n        int move_to(int u, int\
-    \ v, int d, int default_value = -1) const {\n            if (d < 0) return default_value;\n\
+    \            return default_value;\n        }\n        int jump(int u, int v,\
+    \ int d, int default_value = -1) const {\n            if (d < 0) return default_value;\n\
     \            const int w = lca(u, v);\n            int uw = dep[u] - dep[w];\n\
     \            if (d <= uw) return la(u, d);\n            int vw = dep[v] - dep[w];\n\
     \            return d <= uw + vw ? la(v, (uw + vw) - d) : default_value;\n   \
@@ -254,7 +257,7 @@ data:
   path: library/tree/heavy_light_decomposition.hpp
   requiredBy:
   - library/tree/auxiliary_tree.hpp
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-07-26 15:08:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
@@ -263,6 +266,7 @@ data:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
 documentation_of: library/tree/heavy_light_decomposition.hpp
 layout: document
 title: Heavy Light Decomposition (HLD)
