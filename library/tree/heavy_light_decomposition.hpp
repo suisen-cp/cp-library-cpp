@@ -43,7 +43,7 @@ class HeavyLightDecomposition {
             }
             return default_value;
         }
-        int move_to(int u, int v, int d, int default_value = -1) const {
+        int jump(int u, int v, int d, int default_value = -1) const {
             if (d < 0) return default_value;
             const int w = lca(u, v);
             int uw = dep[u] - dep[w];
