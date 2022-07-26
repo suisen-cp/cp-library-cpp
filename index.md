@@ -326,10 +326,10 @@ data:
       title: Tree
   - name: library/dp
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/dp/longest_increasing_subsequence.hpp
       title: library/dp/longest_increasing_subsequence.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/dp/number_of_subsequences.hpp
       title: library/dp/number_of_subsequences.hpp
   - name: library/geom
@@ -1250,15 +1250,15 @@ data:
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - name: test/src/dp/longest_increasing_subsequence
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence.test.cpp
       title: test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence_2.test.cpp
       title: test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence_2.test.cpp
   - name: test/src/dp/number_of_subsequences
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/dp/number_of_subsequences/number_of_subsequences.test.cpp
       title: test/src/dp/number_of_subsequences/number_of_subsequences.test.cpp
   - name: test/src/geom/closest_pair

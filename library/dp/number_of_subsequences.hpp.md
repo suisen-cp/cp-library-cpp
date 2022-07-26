@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/dp/number_of_subsequences/number_of_subsequences.test.cpp
     title: test/src/dp/number_of_subsequences/number_of_subsequences.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/dp/number_of_subsequences.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <vector>\n\nnamespace suisen {\n    // Requirement: T\
     \ is comparable \n    template <typename Int, typename T>\n    auto number_of_nonempty_subsequences(const\
-    \ std::vector<T> &a) -> decltype(std::declval<T>() < std::declval<T>(), std::declval<Int>())\
+    \ std::vector<T> &a) -> decltype(std::declval<T>() < std::declval<T>(), Int{})\
     \ {\n        const int n = a.size();\n        std::vector<std::pair<T, int>> sorted(n);\n\
     \        for (int i = 0; i < n; ++i) sorted[i] = { a[i], i };\n        std::sort(sorted.begin(),\
     \ sorted.end());\n\n        std::vector<int> last(n, -1);\n        for (int i\
@@ -27,7 +27,7 @@ data:
   code: "#ifndef SUISEN_NUMBER_OF_SUBSEQUENCES\n#define SUISEN_NUMBER_OF_SUBSEQUENCES\n\
     \n#include <algorithm>\n#include <vector>\n\nnamespace suisen {\n    // Requirement:\
     \ T is comparable \n    template <typename Int, typename T>\n    auto number_of_nonempty_subsequences(const\
-    \ std::vector<T> &a) -> decltype(std::declval<T>() < std::declval<T>(), std::declval<Int>())\
+    \ std::vector<T> &a) -> decltype(std::declval<T>() < std::declval<T>(), Int{})\
     \ {\n        const int n = a.size();\n        std::vector<std::pair<T, int>> sorted(n);\n\
     \        for (int i = 0; i < n; ++i) sorted[i] = { a[i], i };\n        std::sort(sorted.begin(),\
     \ sorted.end());\n\n        std::vector<int> last(n, -1);\n        for (int i\
@@ -41,8 +41,8 @@ data:
   isVerificationFile: false
   path: library/dp/number_of_subsequences.hpp
   requiredBy: []
-  timestamp: '2022-07-26 15:08:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-26 15:37:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/dp/number_of_subsequences/number_of_subsequences.test.cpp
 documentation_of: library/dp/number_of_subsequences.hpp
