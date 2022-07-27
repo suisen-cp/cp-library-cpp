@@ -11,14 +11,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_product
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_det
     links:
-    - https://judge.yosupo.jp/problem/matrix_product
-  bundledCode: "#line 1 \"test/src/linear_algebra/matrix/matrix_product.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
-    \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/linear_algebra/matrix.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <optional>\n#include <vector>\n\nnamespace\
-    \ suisen {\n    template <typename T>\n    struct Matrix {\n        std::vector<std::vector<T>>\
+    - https://judge.yosupo.jp/problem/matrix_det
+  bundledCode: "#line 1 \"test/src/linear_algebra/matrix/matrix_det.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include <iostream>\n\
+    #include <atcoder/modint>\n\n#line 1 \"library/linear_algebra/matrix.hpp\"\n\n\
+    \n\n#include <cassert>\n#include <optional>\n#include <vector>\n\nnamespace suisen\
+    \ {\n    template <typename T>\n    struct Matrix {\n        std::vector<std::vector<T>>\
     \ dat;\n\n        Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0))\
     \ : dat(n, std::vector<T>(m, fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>&\
     \ dat) : dat(dat) {}\n\n        const std::vector<T>& operator[](int i) const\
@@ -105,37 +105,33 @@ data:
     \            p *= p;\n            }\n            return res;\n        }\n    private:\n\
     \        SquareMatrix(int n, bool mult_identity, int) : Matrix<T>::Matrix(n, n)\
     \ {\n            if (mult_identity) for (int i = 0; i < n; ++i) this->dat[i][i]\
-    \ = 1;\n        }\n    };\n} // namespace suisen\n\n\n#line 7 \"test/src/linear_algebra/matrix/matrix_product.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\nusing suisen::Matrix;\n\nint main()\
-    \ {\n    int n, m, k;\n    std::cin >> n >> m >> k;\n    Matrix<mint> A(n, m),\
-    \ B(m, k);\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n  \
-    \      int val;\n        std::cin >> val;\n        A[i][j] = val;\n    }\n   \
-    \ for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n        int val;\n\
-    \        std::cin >> val;\n        B[i][j] = val;\n    }\n    A *= B;\n    for\
-    \ (int i = 0; i < n; ++i) for (int j = 0; j < k; ++j) {\n        std::cout <<\
-    \ A[i][j].val() << \" \\n\"[j == k - 1];\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n\n#include\
+    \ = 1;\n        }\n    };\n} // namespace suisen\n\n\n#line 7 \"test/src/linear_algebra/matrix/matrix_det.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\nusing suisen::SquareMatrix;\n\nint\
+    \ main() {\n    int n;\n    std::cin >> n;\n    SquareMatrix<mint> A(n);\n   \
+    \ for (int i = 0; i < n; ++i) {\n        for (int j = 0; j < n; ++j) {\n     \
+    \       int val;\n            std::cin >> val;\n            A[i][j] = val;\n \
+    \       }\n    }\n    std::cout << SquareMatrix<mint>::det(A).val() << '\\n';\n\
+    \    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\n#include \"library/linear_algebra/matrix.hpp\"\
-    \n\nusing mint = atcoder::modint998244353;\nusing suisen::Matrix;\n\nint main()\
-    \ {\n    int n, m, k;\n    std::cin >> n >> m >> k;\n    Matrix<mint> A(n, m),\
-    \ B(m, k);\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n  \
-    \      int val;\n        std::cin >> val;\n        A[i][j] = val;\n    }\n   \
-    \ for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n        int val;\n\
-    \        std::cin >> val;\n        B[i][j] = val;\n    }\n    A *= B;\n    for\
-    \ (int i = 0; i < n; ++i) for (int j = 0; j < k; ++j) {\n        std::cout <<\
-    \ A[i][j].val() << \" \\n\"[j == k - 1];\n    }\n    return 0;\n}"
+    \n\nusing mint = atcoder::modint998244353;\nusing suisen::SquareMatrix;\n\nint\
+    \ main() {\n    int n;\n    std::cin >> n;\n    SquareMatrix<mint> A(n);\n   \
+    \ for (int i = 0; i < n; ++i) {\n        for (int j = 0; j < n; ++j) {\n     \
+    \       int val;\n            std::cin >> val;\n            A[i][j] = val;\n \
+    \       }\n    }\n    std::cout << SquareMatrix<mint>::det(A).val() << '\\n';\n\
+    \    return 0;\n}"
   dependsOn:
   - library/linear_algebra/matrix.hpp
   isVerificationFile: true
-  path: test/src/linear_algebra/matrix/matrix_product.test.cpp
+  path: test/src/linear_algebra/matrix/matrix_det.test.cpp
   requiredBy: []
   timestamp: '2022-07-27 16:21:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/linear_algebra/matrix/matrix_product.test.cpp
+documentation_of: test/src/linear_algebra/matrix/matrix_det.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/linear_algebra/matrix/matrix_product.test.cpp
-- /verify/test/src/linear_algebra/matrix/matrix_product.test.cpp.html
-title: test/src/linear_algebra/matrix/matrix_product.test.cpp
+- /verify/test/src/linear_algebra/matrix/matrix_det.test.cpp
+- /verify/test/src/linear_algebra/matrix/matrix_det.test.cpp.html
+title: test/src/linear_algebra/matrix/matrix_det.test.cpp
 ---

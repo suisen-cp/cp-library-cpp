@@ -9,9 +9,18 @@ data:
   - icon: ':x:'
     path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
     title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+    title: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
+    title: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
+    title: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/array_matrix.hpp\"\n\n\n\n#include\
@@ -42,289 +51,223 @@ data:
     \ -x; }\n        template <typename T>\n        auto inv(T x) -> decltype(one<T>()\
     \ / x)  { return one<T>() / x; }\n    } // default_operator\n} // namespace suisen\n\
     \n\n#line 9 \"library/linear_algebra/array_matrix.hpp\"\n\nnamespace suisen {\n\
-    \    template <\n        typename T,\n        size_t N,\n        size_t M,\n \
-    \       T(*_add)(T, T) = default_operator_noref::add<T>,\n        T(*_neg)(T)\
-    \ = default_operator_noref::neg<T>,\n        T(*_zero)() = default_operator_noref::zero<T>,\n\
-    \        T(*_mul)(T, T) = default_operator_noref::mul<T>,\n        T(*_inv)(T)\
-    \ = default_operator_noref::inv<T>,\n        T(*_one)()  = default_operator_noref::one<T>\n\
-    \    >\n    struct ArrayMatrix : public std::array<std::array<T, M>, N> {\n#define\
-    \ MatrixType(N, M) ArrayMatrix<T, N, M, _add, _neg, _zero, _mul, _inv, _one>\n\
-    \        using base_type = std::array<std::array<T, M>, N>;\n        using container_type\
-    \ = base_type;\n        using row_type = std::array<T, M>;\n\n        using base_type::base_type;\n\
-    \        constexpr ArrayMatrix() : ArrayMatrix(_zero()) {}\n        constexpr\
-    \ ArrayMatrix(T fill_value) {\n            for (size_t i = 0; i < N; ++i) for\
-    \ (size_t j = 0; j < M; ++j) (*this)[i][j] = fill_value;\n        }\n        constexpr\
-    \ ArrayMatrix(const container_type &c) {\n            for (size_t i = 0; i < N;\
-    \ ++i) for (size_t j = 0; j < M; ++j) (*this)[i][j] = c[i][j];\n        }\n\n\
-    \        constexpr std::pair<int, int> shape() const {\n            return { N,\
-    \ M };\n        }\n        constexpr int row_size() const {\n            return\
-    \ N;\n        }\n        constexpr int col_size() const {\n            return\
-    \ M;\n        }\n\n        constexpr MatrixType(N, M) operator+() {\n        \
-    \    return *this;\n        }\n        constexpr MatrixType(N, M) operator-()\
-    \ {\n            ArrayMatrix res;\n            for (size_t i = 0; i < N; ++i)\
-    \ for (size_t j = 0; j < M; ++j) res[i][j] = _add(res[i][j], _neg((*this)[i][j]));\n\
-    \            return res;\n        }\n        constexpr MatrixType(N, M)& operator+=(const\
-    \ MatrixType(N, M)& other) {\n            for (size_t i = 0; i < N; ++i) for (size_t\
-    \ j = 0; j < M; ++j) (*this)[i][j] = _add((*this)[i][j], other[i][j]);\n     \
-    \       return *this;\n        }\n        constexpr MatrixType(N, M)& operator-=(const\
-    \ MatrixType(N, M)& other) {\n            for (size_t i = 0; i < N; ++i) for (size_t\
-    \ j = 0; j < M; ++j) (*this)[i][j] = _add((*this)[i][j], _neg(other[i][j]));\n\
-    \            return *this;\n        }\n        template <size_t K>\n        constexpr\
-    \ MatrixType(N, M)& operator*=(const MatrixType(M, K)& other) {\n            return\
-    \ *this = *this * other;\n        }\n        constexpr MatrixType(N, M)& operator*=(const\
-    \ T& val) {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j <\
-    \ M; ++j) (*this)[i][j] = _mul((*this)[i][j], val);\n            return *this;\n\
-    \        }\n        constexpr MatrixType(N, M)& operator/=(const T& val) {\n \
-    \           return *this *= _inv(val);\n        }\n        constexpr friend MatrixType(N,\
-    \ M) operator+(const MatrixType(N, M)& lhs, const MatrixType(N, M)& rhs) {\n \
-    \           return MatrixType(N, M)(lhs) += rhs;\n        }\n        constexpr\
-    \ friend MatrixType(N, M) operator-(const MatrixType(N, M)& lhs, const MatrixType(N,\
-    \ M)& rhs) {\n            return MatrixType(N, M)(lhs) -= rhs;\n        }\n  \
-    \      template <size_t K>\n        constexpr friend MatrixType(N, K) operator*(const\
-    \ MatrixType(N, M)& lhs, const MatrixType(M, K)& rhs) {\n            MatrixType(N,\
-    \ K) res;\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M;\
-    \ ++j) for (size_t k = 0; k < K; ++k) {\n                res[i][k] = _add(res[i][k],\
-    \ _mul(lhs[i][j], rhs[j][k]));\n            }\n            return res;\n     \
-    \   }\n        constexpr friend MatrixType(N, M) operator*(const MatrixType(N,\
-    \ M)& A, const T& val) {\n            MatrixType(N, M) res;\n            for (size_t\
-    \ i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) res[i][j] = _mul(A[i][j],\
-    \ val);\n            return res;\n        }\n        constexpr friend MatrixType(N,\
-    \ M) operator*(const T& val, const MatrixType(N, M)& A) {\n            MatrixType(N,\
-    \ M) res;\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M;\
-    \ ++j) res[i][j] = _mul(val, A[i][j]);\n            return res;\n        }\n \
-    \       constexpr friend MatrixType(N, M) operator/(const MatrixType(N, M)& A,\
-    \ const T& val) {\n            return MatrixType(N, M)(A) /= val;\n        }\n\
-    \n        constexpr std::array<T, N> operator*(const std::array<T, M>& x) const\
-    \ {\n            std::array<T, N> b;\n            b.fill(_zero());\n         \
-    \   for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) b[i] = _add(b[i],\
-    \ _mul((*this)[i][j], x[j]));\n            return b;\n        }\n#undef MatrixType\n\
-    \    };\n\n    template <\n        typename T,\n        size_t N,\n        T(*_add)(T,\
-    \ T) = default_operator_noref::add<T>,\n        T(*_neg)(T) = default_operator_noref::neg<T>,\n\
-    \        T(*_zero)() = default_operator_noref::zero<T>,\n        T(*_mul)(T, T)\
-    \ = default_operator_noref::mul<T>,\n        T(*_inv)(T) = default_operator_noref::inv<T>,\n\
-    \        T(*_one)()  = default_operator_noref::one<T>\n    >\n    class SquareArrayMatrix\
-    \ : public ArrayMatrix<T, N, N, _add, _neg, _zero, _mul, _inv, _one> {\n    private:\n\
-    \        enum Operator { Add, Mul };\n    public:\n#define MatrixType(N) SquareArrayMatrix<T,\
-    \ N, _add, _neg, _zero, _mul, _inv, _one>\n        using base_type = ArrayMatrix<T,\
-    \ N, N, _add, _neg, _zero, _mul, _inv, _one>;\n        using container_type =\
-    \ typename base_type::container_type;\n        using row_type = typename base_type::row_type;\n\
-    \n        using base_type::base_type;\n\n        static SquareArrayMatrix e0()\
-    \ { return SquareArrayMatrix(Operator::Add); }\n        static SquareArrayMatrix\
-    \ e1() { return SquareArrayMatrix(Operator::Mul); }\n\n        static constexpr\
-    \ std::optional<SquareArrayMatrix> inv(const SquareArrayMatrix& A) {\n       \
-    \     std::array<std::array<T, 2 * N>, N> data;\n            for (size_t i = 0;\
-    \ i < N; ++i) {\n                for (size_t j = 0; j < N; ++j) {\n          \
-    \          data[i][j] = A[i][j];\n                    data[i][N + j] = i == j\
-    \ ? _one() : _zero();\n                }\n            }\n            for (size_t\
-    \ i = 0; i < N; ++i) {\n                int pivot = -1;\n                for (size_t\
-    \ k = i; k < N; ++k) if (data[k][i] != _zero()) {\n                    pivot =\
-    \ k;\n                    break;\n                }\n                if (pivot\
-    \ < 0) return std::nullopt;\n                data[i].swap(data[pivot]);\n    \
-    \            T coef = _inv(data[i][i]);\n                for (size_t j = i; j\
-    \ < 2 * N; ++j) data[i][j] = _mul(data[i][j], coef);\n                for (size_t\
-    \ k = 0; k < N; ++k) if (k != i and data[k][i] != _zero()) {\n               \
-    \     T c = data[k][i];\n                    for (size_t j = i; j < 2 * N; ++j)\
-    \ data[k][j] = _add(data[k][j], _neg(_mul(c, data[i][j])));\n                }\n\
-    \            }\n            SquareArrayMatrix res;\n            for (size_t i\
-    \ = 0; i < N; ++i) std::copy(data[i].begin(), data[i].begin() + N, res[i].begin());\n\
-    \            return res;\n        }\n        static constexpr T det(SquareArrayMatrix&&\
-    \ A) {\n            T det_inv = _one();\n            for (size_t i = 0; i < N;\
-    \ ++i) {\n                int pivot = -1;\n                for (size_t k = i;\
-    \ k < N; ++k) if (A[k][i] != _zero()) {\n                    pivot = k;\n    \
-    \                break;\n                }\n                if (pivot < 0) return\
-    \ _zero();\n                A[i].swap(A[pivot]);\n                if (pivot !=\
-    \ i) det_inv = _mul(det_inv, _neg(_one()));\n                T coef = _inv(A[i][i]);\n\
-    \                for (size_t j = i; j < N; ++j) A[i][j] = _mul(A[i][j], coef);\n\
-    \                det_inv = _mul(det_inv, coef);\n                for (size_t k\
-    \ = i + 1; k < N; ++k) if (A[k][i] != _zero()) {\n                    T c = A[k][i];\n\
-    \                    for (size_t j = i; j < N; ++j) A[k][j] = _add(A[k][j], _neg(_mul(c,\
-    \ A[i][j])));\n                }\n            }\n            return _inv(det_inv);\n\
-    \        }\n        static constexpr T det(const SquareArrayMatrix& A) {\n   \
-    \         return det(SquareArrayMatrix(A));\n        }\n        constexpr SquareArrayMatrix\
-    \ inv() const {\n            return *inv(*this);\n        }\n        constexpr\
-    \ T det() const {\n            return det(*this);\n        }\n\n        constexpr\
-    \ friend SquareArrayMatrix operator+(const SquareArrayMatrix& A, const SquareArrayMatrix&\
-    \ B) {\n            auto res = *static_cast<base_type const*>(&A) + *static_cast<base_type\
-    \ const*>(&B);\n            return *static_cast<SquareArrayMatrix*>(&res);\n \
-    \       }\n        constexpr SquareArrayMatrix& operator+=(const SquareArrayMatrix&\
-    \ B) {\n            return *static_cast<SquareArrayMatrix*>(&(*static_cast<base_type*>(this)\
-    \ += *static_cast<base_type const*>(&B)));\n        }\n        constexpr friend\
-    \ SquareArrayMatrix operator-(const SquareArrayMatrix& A, const SquareArrayMatrix&\
-    \ B) {\n            auto res = *static_cast<base_type const*>(&A) - *static_cast<base_type\
-    \ const*>(&B);\n            return *static_cast<SquareArrayMatrix*>(&res);\n \
-    \       }\n        constexpr SquareArrayMatrix& operator-=(const SquareArrayMatrix&\
-    \ B) {\n            return *static_cast<SquareArrayMatrix*>(&(*static_cast<base_type*>(this)\
-    \ -= *static_cast<base_type const*>(&B)));\n        }\n        constexpr friend\
-    \ SquareArrayMatrix operator*(const SquareArrayMatrix& A, const SquareArrayMatrix&\
-    \ B) {\n            auto res = *static_cast<base_type const*>(&A) * *static_cast<base_type\
-    \ const*>(&B);\n            return *static_cast<SquareArrayMatrix*>(&res);\n \
-    \       }\n        constexpr SquareArrayMatrix& operator*=(const SquareArrayMatrix&\
-    \ B) {\n            return *static_cast<SquareArrayMatrix*>(&(*static_cast<base_type*>(this)\
-    \ *= *static_cast<base_type const*>(&B)));\n        }\n        constexpr friend\
-    \ SquareArrayMatrix operator*(const SquareArrayMatrix& A, const T& x) {\n    \
-    \        auto res = *static_cast<base_type const*>(&A) * x;\n            return\
-    \ *static_cast<SquareArrayMatrix*>(&res);\n        }\n        constexpr friend\
-    \ SquareArrayMatrix operator*(const T& x, const SquareArrayMatrix& A) {\n    \
-    \        auto res = x * *static_cast<base_type const*>(&A);\n            return\
-    \ *static_cast<SquareArrayMatrix*>(&res);\n        }\n        constexpr SquareArrayMatrix&\
-    \ operator*=(const T& x) {\n            return *static_cast<SquareArrayMatrix*>(&(*static_cast<base_type*>(this)\
-    \ *= x));\n        }\n        constexpr SquareArrayMatrix& operator/=(const SquareArrayMatrix&\
-    \ other) { return *this *= other.inv(); }\n        constexpr SquareArrayMatrix\
-    \  operator/ (const SquareArrayMatrix& other) const { return SquareArrayMatrix(*this)\
-    \ *= other.inv(); }\n\n        constexpr SquareArrayMatrix pow(long long b) const\
-    \ {\n            assert(b >= 0);\n            SquareArrayMatrix res(e1()), p(*this);\n\
-    \            for (; b; b >>= 1) {\n                if (b & 1) res *= p;\n    \
-    \            p *= p;\n            }\n            return res;\n        }\n    private:\n\
-    \        SquareArrayMatrix(Operator op) : base_type() {\n            if (op ==\
-    \ Operator::Mul) for (size_t i = 0; i < N; ++i) (*this)[i][i] = _one();\n    \
-    \    }\n#undef MatrixType\n    };\n} // namespace suisen\n\n\n"
+    \    template <\n        typename T, size_t N, size_t M,\n        T(*_add)(T,\
+    \ T) = default_operator_noref::add<T>, T(*_neg)(T) = default_operator_noref::neg<T>,\
+    \ T(*_zero)() = default_operator_noref::zero<T>,\n        T(*_mul)(T, T) = default_operator_noref::mul<T>,\
+    \ T(*_inv)(T) = default_operator_noref::inv<T>, T(*_one)()  = default_operator_noref::one<T>\n\
+    \    >\n    struct ArrayMatrix : public std::array<std::array<T, M>, N> {\n  \
+    \  private:\n        enum Operator { Add, Mul };\n        template <typename DummyType\
+    \ = void>\n        static constexpr bool is_square_v = N == M;\n        template\
+    \ <size_t X, size_t Y>\n        using MatrixType = ArrayMatrix<T, X, Y, _add,\
+    \ _neg, _zero, _mul, _inv, _one>;\n    public:\n        using base_type = std::array<std::array<T,\
+    \ M>, N>;\n        using container_type = base_type;\n        using row_type =\
+    \ std::array<T, M>;\n\n        using base_type::base_type;\n        ArrayMatrix()\
+    \ : ArrayMatrix(_zero()) {}\n        ArrayMatrix(T fill_value) {\n           \
+    \ for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) (*this)[i][j]\
+    \ = fill_value;\n        }\n        ArrayMatrix(const container_type &c) : base_type{c}\
+    \ {}\n        ArrayMatrix(const std::initializer_list<row_type> &c) {\n      \
+    \      assert(c.size() == N);\n            size_t i = 0;\n            for (const\
+    \ auto &row : c) {\n                for (size_t j = 0; j < M; ++j) (*this)[i][j]\
+    \ = row[j];\n                ++i;\n            }\n        }\n\n        static\
+    \ ArrayMatrix e0() { return ArrayMatrix(Operator::Add); }\n        static MatrixType<M,\
+    \ M> e1() { return MatrixType<M, M>(Operator::Mul); }\n\n        int size() const\
+    \ {\n            static_assert(is_square_v<>);\n            return N;\n      \
+    \  }\n        std::pair<int, int> shape() const { return { N, M }; }\n       \
+    \ int row_size() const { return N; }\n        int col_size() const { return M;\
+    \ }\n\n        ArrayMatrix operator+() const { return *this; }\n        ArrayMatrix\
+    \ operator-() const {\n            ArrayMatrix res;\n            for (size_t i\
+    \ = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) res[i][j] = _neg((*this)[i][j]);\n\
+    \            return res;\n        }\n        ArrayMatrix& operator+=(const ArrayMatrix&\
+    \ other) {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j <\
+    \ M; ++j) (*this)[i][j] = _add((*this)[i][j], other[i][j]);\n            return\
+    \ *this;\n        }\n        ArrayMatrix& operator-=(const ArrayMatrix& other)\
+    \ {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j)\
+    \ (*this)[i][j] = _add((*this)[i][j], _neg(other[i][j]));\n            return\
+    \ *this;\n        }\n        template <size_t K>\n        MatrixType<N, K>& operator*=(const\
+    \ MatrixType<M, K>& other) { return *this = *this * other; }\n        ArrayMatrix&\
+    \ operator*=(const T& val) {\n            for (size_t i = 0; i < N; ++i) for (size_t\
+    \ j = 0; j < M; ++j) (*this)[i][j] = _mul((*this)[i][j], val);\n            return\
+    \ *this;\n        }\n        ArrayMatrix& operator/=(const T& val) { return *this\
+    \ *= _inv(val); }\n        friend ArrayMatrix operator+(ArrayMatrix lhs, const\
+    \ ArrayMatrix& rhs) { lhs += rhs; return lhs; }\n        friend ArrayMatrix operator-(ArrayMatrix\
+    \ lhs, const ArrayMatrix& rhs) { lhs -= rhs; return lhs; }\n        template <size_t\
+    \ K>\n        friend MatrixType<N, K> operator*(const ArrayMatrix& lhs, const\
+    \ MatrixType<M, K>& rhs) {\n            MatrixType<N, K> res;\n            for\
+    \ (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) for (size_t k = 0;\
+    \ k < K; ++k) {\n                res[i][k] = _add(res[i][k], _mul(lhs[i][j], rhs[j][k]));\n\
+    \            }\n            return res;\n        }\n        friend ArrayMatrix\
+    \ operator*(ArrayMatrix A, const T& val) { A *= val; return A; }\n        friend\
+    \ ArrayMatrix operator*(const T& val, ArrayMatrix A) { A *= val; return A; }\n\
+    \        friend ArrayMatrix operator/(ArrayMatrix A, const T& val) { A /= val;\
+    \ return A; }\n\n        std::array<T, N> operator*(const std::array<T, M>& x)\
+    \ const {\n            std::array<T, N> b;\n            b.fill(_zero());\n   \
+    \         for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) b[i] =\
+    \ _add(b[i], _mul((*this)[i][j], x[j]));\n            return b;\n        }\n\n\
+    \        static std::optional<ArrayMatrix> inv(const ArrayMatrix& A) {\n     \
+    \       static_assert(is_square_v<>);\n            std::array<std::array<T, 2\
+    \ * N>, N> data;\n            for (size_t i = 0; i < N; ++i) {\n             \
+    \   for (size_t j = 0; j < N; ++j) {\n                    data[i][j] = A[i][j];\n\
+    \                    data[i][N + j] = i == j ? _one() : _zero();\n           \
+    \     }\n            }\n            for (size_t i = 0; i < N; ++i) {\n       \
+    \         int pivot = -1;\n                for (size_t k = i; k < N; ++k) if (data[k][i]\
+    \ != _zero()) {\n                    pivot = k;\n                    break;\n\
+    \                }\n                if (pivot < 0) return std::nullopt;\n    \
+    \            data[i].swap(data[pivot]);\n                T coef = _inv(data[i][i]);\n\
+    \                for (size_t j = i; j < 2 * N; ++j) data[i][j] = _mul(data[i][j],\
+    \ coef);\n                for (size_t k = 0; k < N; ++k) if (k != i and data[k][i]\
+    \ != _zero()) {\n                    T c = data[k][i];\n                    for\
+    \ (size_t j = i; j < 2 * N; ++j) data[k][j] = _add(data[k][j], _neg(_mul(c, data[i][j])));\n\
+    \                }\n            }\n            ArrayMatrix res;\n            for\
+    \ (size_t i = 0; i < N; ++i) std::copy(data[i].begin() + N, data[i].begin() +\
+    \ 2 * N, res[i].begin());\n            return res;\n        }\n        static\
+    \ T det(ArrayMatrix A) {\n            static_assert(is_square_v<>);\n        \
+    \    bool sgn = false;\n            for (size_t j = 0; j < N; ++j) for (size_t\
+    \ i = j + 1; i < N; ++i) if (A[i][j] != _zero()) {\n                std::swap(A[j],\
+    \ A[i]);\n                T q = _mul(A[i][j], _inv(A[j][j]));\n              \
+    \  for (size_t k = j; k < N; ++k) A[i][k] = _add(A[i][k], _neg(_mul(A[j][k], q)));\n\
+    \                sgn = not sgn;\n            }\n            T res = sgn ? _neg(_one())\
+    \ : _one();\n            for (size_t i = 0; i < N; ++i) res = _mul(res, A[i][i]);\n\
+    \            return res;\n        }\n        static T det_arbitrary_mod(ArrayMatrix\
+    \ A) {\n            bool sgn = false;\n            for (size_t j = 0; j < N; ++j)\
+    \ for (size_t i = j + 1; i < N; ++i) {\n                for (; A[i][j].val();\
+    \ sgn = not sgn) {\n                    std::swap(A[j], A[i]);\n             \
+    \       T q = A[i][j].val() / A[j][j].val();\n                    for (size_t\
+    \ k = j; k < N; ++k) A[i][k] -= A[j][k] * q;\n                }\n            }\n\
+    \            T res = sgn ? -1 : +1;\n            for (size_t i = 0; i < N; ++i)\
+    \ res *= A[i][i];\n            return res;\n        }\n        std::optional<ArrayMatrix>\
+    \ inv() const { static_assert(is_square_v<>); return inv(*this); }\n        T\
+    \ det() const { static_assert(is_square_v<>); return det(*this); }\n        T\
+    \ det_arbitrary_mod() const { static_assert(is_square_v<>); return det_arbitrary_mod(*this);\
+    \ }\n\n        ArrayMatrix& operator/=(const ArrayMatrix& other) { static_assert(is_square_v<>);\
+    \ return *this *= other.inv(); }\n        ArrayMatrix  operator/ (const ArrayMatrix&\
+    \ other) const { static_assert(is_square_v<>); return ArrayMatrix(*this) *= *other.inv();\
+    \ }\n\n        ArrayMatrix pow(long long b) const {\n            static_assert(is_square_v<>);\n\
+    \            assert(b >= 0);\n            ArrayMatrix res(e1()), p(*this);\n \
+    \           for (; b; b >>= 1) {\n                if (b & 1) res *= p;\n     \
+    \           p *= p;\n            }\n            return res;\n        }\n    private:\n\
+    \        ArrayMatrix(Operator op) : ArrayMatrix(_zero()) {\n            if (op\
+    \ == Operator::Mul) for (size_t i = 0; i < N; ++i) (*this)[i][i] = _one();\n \
+    \       }\n    };\n    template <\n        typename T, size_t N,\n        T(*_add)(T,\
+    \ T) = default_operator_noref::add<T>, T(*_neg)(T) = default_operator_noref::neg<T>,\
+    \ T(*_zero)() = default_operator_noref::zero<T>,\n        T(*_mul)(T, T) = default_operator_noref::mul<T>,\
+    \ T(*_inv)(T) = default_operator_noref::inv<T>, T(*_one)()  = default_operator_noref::one<T>\n\
+    \    >\n    using SquareArrayMatrix = ArrayMatrix<T, N, N, _add, _neg, _zero,\
+    \ _mul, _inv, _one>;\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_ARRAY_MATRIX\n#define SUISEN_ARRAY_MATRIX\n\n#include <array>\n\
     #include <cassert>\n#include <optional>\n\n#include \"library/util/default_operator.hpp\"\
-    \n\nnamespace suisen {\n    template <\n        typename T,\n        size_t N,\n\
-    \        size_t M,\n        T(*_add)(T, T) = default_operator_noref::add<T>,\n\
-    \        T(*_neg)(T) = default_operator_noref::neg<T>,\n        T(*_zero)() =\
-    \ default_operator_noref::zero<T>,\n        T(*_mul)(T, T) = default_operator_noref::mul<T>,\n\
-    \        T(*_inv)(T) = default_operator_noref::inv<T>,\n        T(*_one)()  =\
-    \ default_operator_noref::one<T>\n    >\n    struct ArrayMatrix : public std::array<std::array<T,\
-    \ M>, N> {\n#define MatrixType(N, M) ArrayMatrix<T, N, M, _add, _neg, _zero, _mul,\
-    \ _inv, _one>\n        using base_type = std::array<std::array<T, M>, N>;\n  \
-    \      using container_type = base_type;\n        using row_type = std::array<T,\
-    \ M>;\n\n        using base_type::base_type;\n        constexpr ArrayMatrix()\
-    \ : ArrayMatrix(_zero()) {}\n        constexpr ArrayMatrix(T fill_value) {\n \
-    \           for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) (*this)[i][j]\
-    \ = fill_value;\n        }\n        constexpr ArrayMatrix(const container_type\
-    \ &c) {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M;\
-    \ ++j) (*this)[i][j] = c[i][j];\n        }\n\n        constexpr std::pair<int,\
-    \ int> shape() const {\n            return { N, M };\n        }\n        constexpr\
-    \ int row_size() const {\n            return N;\n        }\n        constexpr\
-    \ int col_size() const {\n            return M;\n        }\n\n        constexpr\
-    \ MatrixType(N, M) operator+() {\n            return *this;\n        }\n     \
-    \   constexpr MatrixType(N, M) operator-() {\n            ArrayMatrix res;\n \
-    \           for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) res[i][j]\
-    \ = _add(res[i][j], _neg((*this)[i][j]));\n            return res;\n        }\n\
-    \        constexpr MatrixType(N, M)& operator+=(const MatrixType(N, M)& other)\
+    \n\nnamespace suisen {\n    template <\n        typename T, size_t N, size_t M,\n\
+    \        T(*_add)(T, T) = default_operator_noref::add<T>, T(*_neg)(T) = default_operator_noref::neg<T>,\
+    \ T(*_zero)() = default_operator_noref::zero<T>,\n        T(*_mul)(T, T) = default_operator_noref::mul<T>,\
+    \ T(*_inv)(T) = default_operator_noref::inv<T>, T(*_one)()  = default_operator_noref::one<T>\n\
+    \    >\n    struct ArrayMatrix : public std::array<std::array<T, M>, N> {\n  \
+    \  private:\n        enum Operator { Add, Mul };\n        template <typename DummyType\
+    \ = void>\n        static constexpr bool is_square_v = N == M;\n        template\
+    \ <size_t X, size_t Y>\n        using MatrixType = ArrayMatrix<T, X, Y, _add,\
+    \ _neg, _zero, _mul, _inv, _one>;\n    public:\n        using base_type = std::array<std::array<T,\
+    \ M>, N>;\n        using container_type = base_type;\n        using row_type =\
+    \ std::array<T, M>;\n\n        using base_type::base_type;\n        ArrayMatrix()\
+    \ : ArrayMatrix(_zero()) {}\n        ArrayMatrix(T fill_value) {\n           \
+    \ for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) (*this)[i][j]\
+    \ = fill_value;\n        }\n        ArrayMatrix(const container_type &c) : base_type{c}\
+    \ {}\n        ArrayMatrix(const std::initializer_list<row_type> &c) {\n      \
+    \      assert(c.size() == N);\n            size_t i = 0;\n            for (const\
+    \ auto &row : c) {\n                for (size_t j = 0; j < M; ++j) (*this)[i][j]\
+    \ = row[j];\n                ++i;\n            }\n        }\n\n        static\
+    \ ArrayMatrix e0() { return ArrayMatrix(Operator::Add); }\n        static MatrixType<M,\
+    \ M> e1() { return MatrixType<M, M>(Operator::Mul); }\n\n        int size() const\
+    \ {\n            static_assert(is_square_v<>);\n            return N;\n      \
+    \  }\n        std::pair<int, int> shape() const { return { N, M }; }\n       \
+    \ int row_size() const { return N; }\n        int col_size() const { return M;\
+    \ }\n\n        ArrayMatrix operator+() const { return *this; }\n        ArrayMatrix\
+    \ operator-() const {\n            ArrayMatrix res;\n            for (size_t i\
+    \ = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) res[i][j] = _neg((*this)[i][j]);\n\
+    \            return res;\n        }\n        ArrayMatrix& operator+=(const ArrayMatrix&\
+    \ other) {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j <\
+    \ M; ++j) (*this)[i][j] = _add((*this)[i][j], other[i][j]);\n            return\
+    \ *this;\n        }\n        ArrayMatrix& operator-=(const ArrayMatrix& other)\
     \ {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j)\
-    \ (*this)[i][j] = _add((*this)[i][j], other[i][j]);\n            return *this;\n\
-    \        }\n        constexpr MatrixType(N, M)& operator-=(const MatrixType(N,\
-    \ M)& other) {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0;\
-    \ j < M; ++j) (*this)[i][j] = _add((*this)[i][j], _neg(other[i][j]));\n      \
-    \      return *this;\n        }\n        template <size_t K>\n        constexpr\
-    \ MatrixType(N, M)& operator*=(const MatrixType(M, K)& other) {\n            return\
-    \ *this = *this * other;\n        }\n        constexpr MatrixType(N, M)& operator*=(const\
-    \ T& val) {\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j <\
-    \ M; ++j) (*this)[i][j] = _mul((*this)[i][j], val);\n            return *this;\n\
-    \        }\n        constexpr MatrixType(N, M)& operator/=(const T& val) {\n \
-    \           return *this *= _inv(val);\n        }\n        constexpr friend MatrixType(N,\
-    \ M) operator+(const MatrixType(N, M)& lhs, const MatrixType(N, M)& rhs) {\n \
-    \           return MatrixType(N, M)(lhs) += rhs;\n        }\n        constexpr\
-    \ friend MatrixType(N, M) operator-(const MatrixType(N, M)& lhs, const MatrixType(N,\
-    \ M)& rhs) {\n            return MatrixType(N, M)(lhs) -= rhs;\n        }\n  \
-    \      template <size_t K>\n        constexpr friend MatrixType(N, K) operator*(const\
-    \ MatrixType(N, M)& lhs, const MatrixType(M, K)& rhs) {\n            MatrixType(N,\
-    \ K) res;\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M;\
-    \ ++j) for (size_t k = 0; k < K; ++k) {\n                res[i][k] = _add(res[i][k],\
-    \ _mul(lhs[i][j], rhs[j][k]));\n            }\n            return res;\n     \
-    \   }\n        constexpr friend MatrixType(N, M) operator*(const MatrixType(N,\
-    \ M)& A, const T& val) {\n            MatrixType(N, M) res;\n            for (size_t\
-    \ i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) res[i][j] = _mul(A[i][j],\
-    \ val);\n            return res;\n        }\n        constexpr friend MatrixType(N,\
-    \ M) operator*(const T& val, const MatrixType(N, M)& A) {\n            MatrixType(N,\
-    \ M) res;\n            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M;\
-    \ ++j) res[i][j] = _mul(val, A[i][j]);\n            return res;\n        }\n \
-    \       constexpr friend MatrixType(N, M) operator/(const MatrixType(N, M)& A,\
-    \ const T& val) {\n            return MatrixType(N, M)(A) /= val;\n        }\n\
-    \n        constexpr std::array<T, N> operator*(const std::array<T, M>& x) const\
-    \ {\n            std::array<T, N> b;\n            b.fill(_zero());\n         \
-    \   for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) b[i] = _add(b[i],\
-    \ _mul((*this)[i][j], x[j]));\n            return b;\n        }\n#undef MatrixType\n\
-    \    };\n\n    template <\n        typename T,\n        size_t N,\n        T(*_add)(T,\
-    \ T) = default_operator_noref::add<T>,\n        T(*_neg)(T) = default_operator_noref::neg<T>,\n\
-    \        T(*_zero)() = default_operator_noref::zero<T>,\n        T(*_mul)(T, T)\
-    \ = default_operator_noref::mul<T>,\n        T(*_inv)(T) = default_operator_noref::inv<T>,\n\
-    \        T(*_one)()  = default_operator_noref::one<T>\n    >\n    class SquareArrayMatrix\
-    \ : public ArrayMatrix<T, N, N, _add, _neg, _zero, _mul, _inv, _one> {\n    private:\n\
-    \        enum Operator { Add, Mul };\n    public:\n#define MatrixType(N) SquareArrayMatrix<T,\
-    \ N, _add, _neg, _zero, _mul, _inv, _one>\n        using base_type = ArrayMatrix<T,\
-    \ N, N, _add, _neg, _zero, _mul, _inv, _one>;\n        using container_type =\
-    \ typename base_type::container_type;\n        using row_type = typename base_type::row_type;\n\
-    \n        using base_type::base_type;\n\n        static SquareArrayMatrix e0()\
-    \ { return SquareArrayMatrix(Operator::Add); }\n        static SquareArrayMatrix\
-    \ e1() { return SquareArrayMatrix(Operator::Mul); }\n\n        static constexpr\
-    \ std::optional<SquareArrayMatrix> inv(const SquareArrayMatrix& A) {\n       \
-    \     std::array<std::array<T, 2 * N>, N> data;\n            for (size_t i = 0;\
-    \ i < N; ++i) {\n                for (size_t j = 0; j < N; ++j) {\n          \
-    \          data[i][j] = A[i][j];\n                    data[i][N + j] = i == j\
-    \ ? _one() : _zero();\n                }\n            }\n            for (size_t\
-    \ i = 0; i < N; ++i) {\n                int pivot = -1;\n                for (size_t\
-    \ k = i; k < N; ++k) if (data[k][i] != _zero()) {\n                    pivot =\
-    \ k;\n                    break;\n                }\n                if (pivot\
-    \ < 0) return std::nullopt;\n                data[i].swap(data[pivot]);\n    \
-    \            T coef = _inv(data[i][i]);\n                for (size_t j = i; j\
-    \ < 2 * N; ++j) data[i][j] = _mul(data[i][j], coef);\n                for (size_t\
-    \ k = 0; k < N; ++k) if (k != i and data[k][i] != _zero()) {\n               \
-    \     T c = data[k][i];\n                    for (size_t j = i; j < 2 * N; ++j)\
-    \ data[k][j] = _add(data[k][j], _neg(_mul(c, data[i][j])));\n                }\n\
-    \            }\n            SquareArrayMatrix res;\n            for (size_t i\
-    \ = 0; i < N; ++i) std::copy(data[i].begin(), data[i].begin() + N, res[i].begin());\n\
-    \            return res;\n        }\n        static constexpr T det(SquareArrayMatrix&&\
-    \ A) {\n            T det_inv = _one();\n            for (size_t i = 0; i < N;\
-    \ ++i) {\n                int pivot = -1;\n                for (size_t k = i;\
-    \ k < N; ++k) if (A[k][i] != _zero()) {\n                    pivot = k;\n    \
-    \                break;\n                }\n                if (pivot < 0) return\
-    \ _zero();\n                A[i].swap(A[pivot]);\n                if (pivot !=\
-    \ i) det_inv = _mul(det_inv, _neg(_one()));\n                T coef = _inv(A[i][i]);\n\
-    \                for (size_t j = i; j < N; ++j) A[i][j] = _mul(A[i][j], coef);\n\
-    \                det_inv = _mul(det_inv, coef);\n                for (size_t k\
-    \ = i + 1; k < N; ++k) if (A[k][i] != _zero()) {\n                    T c = A[k][i];\n\
-    \                    for (size_t j = i; j < N; ++j) A[k][j] = _add(A[k][j], _neg(_mul(c,\
-    \ A[i][j])));\n                }\n            }\n            return _inv(det_inv);\n\
-    \        }\n        static constexpr T det(const SquareArrayMatrix& A) {\n   \
-    \         return det(SquareArrayMatrix(A));\n        }\n        constexpr SquareArrayMatrix\
-    \ inv() const {\n            return *inv(*this);\n        }\n        constexpr\
-    \ T det() const {\n            return det(*this);\n        }\n\n        constexpr\
-    \ friend SquareArrayMatrix operator+(const SquareArrayMatrix& A, const SquareArrayMatrix&\
-    \ B) {\n            auto res = *static_cast<base_type const*>(&A) + *static_cast<base_type\
-    \ const*>(&B);\n            return *static_cast<SquareArrayMatrix*>(&res);\n \
-    \       }\n        constexpr SquareArrayMatrix& operator+=(const SquareArrayMatrix&\
-    \ B) {\n            return *static_cast<SquareArrayMatrix*>(&(*static_cast<base_type*>(this)\
-    \ += *static_cast<base_type const*>(&B)));\n        }\n        constexpr friend\
-    \ SquareArrayMatrix operator-(const SquareArrayMatrix& A, const SquareArrayMatrix&\
-    \ B) {\n            auto res = *static_cast<base_type const*>(&A) - *static_cast<base_type\
-    \ const*>(&B);\n            return *static_cast<SquareArrayMatrix*>(&res);\n \
-    \       }\n        constexpr SquareArrayMatrix& operator-=(const SquareArrayMatrix&\
-    \ B) {\n            return *static_cast<SquareArrayMatrix*>(&(*static_cast<base_type*>(this)\
-    \ -= *static_cast<base_type const*>(&B)));\n        }\n        constexpr friend\
-    \ SquareArrayMatrix operator*(const SquareArrayMatrix& A, const SquareArrayMatrix&\
-    \ B) {\n            auto res = *static_cast<base_type const*>(&A) * *static_cast<base_type\
-    \ const*>(&B);\n            return *static_cast<SquareArrayMatrix*>(&res);\n \
-    \       }\n        constexpr SquareArrayMatrix& operator*=(const SquareArrayMatrix&\
-    \ B) {\n            return *static_cast<SquareArrayMatrix*>(&(*static_cast<base_type*>(this)\
-    \ *= *static_cast<base_type const*>(&B)));\n        }\n        constexpr friend\
-    \ SquareArrayMatrix operator*(const SquareArrayMatrix& A, const T& x) {\n    \
-    \        auto res = *static_cast<base_type const*>(&A) * x;\n            return\
-    \ *static_cast<SquareArrayMatrix*>(&res);\n        }\n        constexpr friend\
-    \ SquareArrayMatrix operator*(const T& x, const SquareArrayMatrix& A) {\n    \
-    \        auto res = x * *static_cast<base_type const*>(&A);\n            return\
-    \ *static_cast<SquareArrayMatrix*>(&res);\n        }\n        constexpr SquareArrayMatrix&\
-    \ operator*=(const T& x) {\n            return *static_cast<SquareArrayMatrix*>(&(*static_cast<base_type*>(this)\
-    \ *= x));\n        }\n        constexpr SquareArrayMatrix& operator/=(const SquareArrayMatrix&\
-    \ other) { return *this *= other.inv(); }\n        constexpr SquareArrayMatrix\
-    \  operator/ (const SquareArrayMatrix& other) const { return SquareArrayMatrix(*this)\
-    \ *= other.inv(); }\n\n        constexpr SquareArrayMatrix pow(long long b) const\
-    \ {\n            assert(b >= 0);\n            SquareArrayMatrix res(e1()), p(*this);\n\
-    \            for (; b; b >>= 1) {\n                if (b & 1) res *= p;\n    \
-    \            p *= p;\n            }\n            return res;\n        }\n    private:\n\
-    \        SquareArrayMatrix(Operator op) : base_type() {\n            if (op ==\
-    \ Operator::Mul) for (size_t i = 0; i < N; ++i) (*this)[i][i] = _one();\n    \
-    \    }\n#undef MatrixType\n    };\n} // namespace suisen\n\n#endif // SUISEN_ARRAY_MATRIX\n"
+    \ (*this)[i][j] = _add((*this)[i][j], _neg(other[i][j]));\n            return\
+    \ *this;\n        }\n        template <size_t K>\n        MatrixType<N, K>& operator*=(const\
+    \ MatrixType<M, K>& other) { return *this = *this * other; }\n        ArrayMatrix&\
+    \ operator*=(const T& val) {\n            for (size_t i = 0; i < N; ++i) for (size_t\
+    \ j = 0; j < M; ++j) (*this)[i][j] = _mul((*this)[i][j], val);\n            return\
+    \ *this;\n        }\n        ArrayMatrix& operator/=(const T& val) { return *this\
+    \ *= _inv(val); }\n        friend ArrayMatrix operator+(ArrayMatrix lhs, const\
+    \ ArrayMatrix& rhs) { lhs += rhs; return lhs; }\n        friend ArrayMatrix operator-(ArrayMatrix\
+    \ lhs, const ArrayMatrix& rhs) { lhs -= rhs; return lhs; }\n        template <size_t\
+    \ K>\n        friend MatrixType<N, K> operator*(const ArrayMatrix& lhs, const\
+    \ MatrixType<M, K>& rhs) {\n            MatrixType<N, K> res;\n            for\
+    \ (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) for (size_t k = 0;\
+    \ k < K; ++k) {\n                res[i][k] = _add(res[i][k], _mul(lhs[i][j], rhs[j][k]));\n\
+    \            }\n            return res;\n        }\n        friend ArrayMatrix\
+    \ operator*(ArrayMatrix A, const T& val) { A *= val; return A; }\n        friend\
+    \ ArrayMatrix operator*(const T& val, ArrayMatrix A) { A *= val; return A; }\n\
+    \        friend ArrayMatrix operator/(ArrayMatrix A, const T& val) { A /= val;\
+    \ return A; }\n\n        std::array<T, N> operator*(const std::array<T, M>& x)\
+    \ const {\n            std::array<T, N> b;\n            b.fill(_zero());\n   \
+    \         for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) b[i] =\
+    \ _add(b[i], _mul((*this)[i][j], x[j]));\n            return b;\n        }\n\n\
+    \        static std::optional<ArrayMatrix> inv(const ArrayMatrix& A) {\n     \
+    \       static_assert(is_square_v<>);\n            std::array<std::array<T, 2\
+    \ * N>, N> data;\n            for (size_t i = 0; i < N; ++i) {\n             \
+    \   for (size_t j = 0; j < N; ++j) {\n                    data[i][j] = A[i][j];\n\
+    \                    data[i][N + j] = i == j ? _one() : _zero();\n           \
+    \     }\n            }\n            for (size_t i = 0; i < N; ++i) {\n       \
+    \         int pivot = -1;\n                for (size_t k = i; k < N; ++k) if (data[k][i]\
+    \ != _zero()) {\n                    pivot = k;\n                    break;\n\
+    \                }\n                if (pivot < 0) return std::nullopt;\n    \
+    \            data[i].swap(data[pivot]);\n                T coef = _inv(data[i][i]);\n\
+    \                for (size_t j = i; j < 2 * N; ++j) data[i][j] = _mul(data[i][j],\
+    \ coef);\n                for (size_t k = 0; k < N; ++k) if (k != i and data[k][i]\
+    \ != _zero()) {\n                    T c = data[k][i];\n                    for\
+    \ (size_t j = i; j < 2 * N; ++j) data[k][j] = _add(data[k][j], _neg(_mul(c, data[i][j])));\n\
+    \                }\n            }\n            ArrayMatrix res;\n            for\
+    \ (size_t i = 0; i < N; ++i) std::copy(data[i].begin() + N, data[i].begin() +\
+    \ 2 * N, res[i].begin());\n            return res;\n        }\n        static\
+    \ T det(ArrayMatrix A) {\n            static_assert(is_square_v<>);\n        \
+    \    bool sgn = false;\n            for (size_t j = 0; j < N; ++j) for (size_t\
+    \ i = j + 1; i < N; ++i) if (A[i][j] != _zero()) {\n                std::swap(A[j],\
+    \ A[i]);\n                T q = _mul(A[i][j], _inv(A[j][j]));\n              \
+    \  for (size_t k = j; k < N; ++k) A[i][k] = _add(A[i][k], _neg(_mul(A[j][k], q)));\n\
+    \                sgn = not sgn;\n            }\n            T res = sgn ? _neg(_one())\
+    \ : _one();\n            for (size_t i = 0; i < N; ++i) res = _mul(res, A[i][i]);\n\
+    \            return res;\n        }\n        static T det_arbitrary_mod(ArrayMatrix\
+    \ A) {\n            bool sgn = false;\n            for (size_t j = 0; j < N; ++j)\
+    \ for (size_t i = j + 1; i < N; ++i) {\n                for (; A[i][j].val();\
+    \ sgn = not sgn) {\n                    std::swap(A[j], A[i]);\n             \
+    \       T q = A[i][j].val() / A[j][j].val();\n                    for (size_t\
+    \ k = j; k < N; ++k) A[i][k] -= A[j][k] * q;\n                }\n            }\n\
+    \            T res = sgn ? -1 : +1;\n            for (size_t i = 0; i < N; ++i)\
+    \ res *= A[i][i];\n            return res;\n        }\n        std::optional<ArrayMatrix>\
+    \ inv() const { static_assert(is_square_v<>); return inv(*this); }\n        T\
+    \ det() const { static_assert(is_square_v<>); return det(*this); }\n        T\
+    \ det_arbitrary_mod() const { static_assert(is_square_v<>); return det_arbitrary_mod(*this);\
+    \ }\n\n        ArrayMatrix& operator/=(const ArrayMatrix& other) { static_assert(is_square_v<>);\
+    \ return *this *= other.inv(); }\n        ArrayMatrix  operator/ (const ArrayMatrix&\
+    \ other) const { static_assert(is_square_v<>); return ArrayMatrix(*this) *= *other.inv();\
+    \ }\n\n        ArrayMatrix pow(long long b) const {\n            static_assert(is_square_v<>);\n\
+    \            assert(b >= 0);\n            ArrayMatrix res(e1()), p(*this);\n \
+    \           for (; b; b >>= 1) {\n                if (b & 1) res *= p;\n     \
+    \           p *= p;\n            }\n            return res;\n        }\n    private:\n\
+    \        ArrayMatrix(Operator op) : ArrayMatrix(_zero()) {\n            if (op\
+    \ == Operator::Mul) for (size_t i = 0; i < N; ++i) (*this)[i][i] = _one();\n \
+    \       }\n    };\n    template <\n        typename T, size_t N,\n        T(*_add)(T,\
+    \ T) = default_operator_noref::add<T>, T(*_neg)(T) = default_operator_noref::neg<T>,\
+    \ T(*_zero)() = default_operator_noref::zero<T>,\n        T(*_mul)(T, T) = default_operator_noref::mul<T>,\
+    \ T(*_inv)(T) = default_operator_noref::inv<T>, T(*_one)()  = default_operator_noref::one<T>\n\
+    \    >\n    using SquareArrayMatrix = ArrayMatrix<T, N, N, _add, _neg, _zero,\
+    \ _mul, _inv, _one>;\n} // namespace suisen\n\n#endif // SUISEN_ARRAY_MATRIX\n"
   dependsOn:
   - library/util/default_operator.hpp
   isVerificationFile: false
   path: library/linear_algebra/array_matrix.hpp
   requiredBy: []
-  timestamp: '2022-05-14 02:45:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-27 16:22:05+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
+  - test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+  - test/src/linear_algebra/array_matrix/matrix_det.test.cpp
   - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
 documentation_of: library/linear_algebra/array_matrix.hpp
 layout: document

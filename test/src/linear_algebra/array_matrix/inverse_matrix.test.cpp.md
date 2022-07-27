@@ -9,17 +9,20 @@ data:
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc258/tasks/abc258_Ex
+    PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix
     links:
-    - https://atcoder.jp/contests/abc258/tasks/abc258_Ex
-  bundledCode: "#line 1 \"test/src/linear_algebra/array_matrix/abc258_ex.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/abc258/tasks/abc258_Ex\"\n\n#include\
-    \ <iostream>\n#include <vector>\n#include <atcoder/modint>\n\n#line 1 \"library/linear_algebra/array_matrix.hpp\"\
+    - https://judge.yosupo.jp/problem/inverse_matrix
+  bundledCode: "#line 1 \"test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\n\n#include\
+    \ <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \nstd::istream& operator>>(std::istream& in, mint &a) {\n    long long e; in >>\
+    \ e; a = e;\n    return in;\n}\n\nstd::ostream& operator<<(std::ostream& out,\
+    \ const mint &a) {\n    out << a.val();\n    return out;\n}\n\n#line 1 \"library/linear_algebra/array_matrix.hpp\"\
     \n\n\n\n#include <array>\n#include <cassert>\n#include <optional>\n\n#line 1 \"\
     library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n    namespace default_operator\
     \ {\n        template <typename T>\n        auto zero() -> decltype(T { 0 }) {\
@@ -148,41 +151,43 @@ data:
     \ T(*_zero)() = default_operator_noref::zero<T>,\n        T(*_mul)(T, T) = default_operator_noref::mul<T>,\
     \ T(*_inv)(T) = default_operator_noref::inv<T>, T(*_one)()  = default_operator_noref::one<T>\n\
     \    >\n    using SquareArrayMatrix = ArrayMatrix<T, N, N, _add, _neg, _zero,\
-    \ _mul, _inv, _one>;\n} // namespace suisen\n\n\n#line 8 \"test/src/linear_algebra/array_matrix/abc258_ex.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\nusing matrix = suisen::SquareArrayMatrix<mint,\
-    \ 4>;\n \nmatrix T {\n    { 0, 0, 1, 0 },\n    { 1, 0, 0, 0 },\n    { 0, 0, 1,\
-    \ 1 },\n    { 0, 0, 1, 0 }\n};\nmatrix U {\n    { 0, 0, 0, 0 },\n    { 1, 0, 0,\
-    \ 0 },\n    { 0, 0, 0, 1 },\n    { 0, 0, 1, 0 }\n};\n\nint main() {\n    int n;\n\
-    \    long long s;\n    std::cin >> n >> s;\n    \n    std::vector<long long> a(n);\n\
-    \    for (auto &e : a) std::cin >> e;\n    a.push_back(s);\n \n    std::array<mint,\
-    \ 4> x { 1, 0, 1, 0 };\n    long long p = 0;\n    for (long long t : a) {\n  \
-    \      x = ((t == s ? T : U) * T.pow(t - 1 - p)) * x;\n        p = t;\n    }\n\
-    \    std::cout << x[0].val() << std::endl;\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc258/tasks/abc258_Ex\"\n\n\
-    #include <iostream>\n#include <vector>\n#include <atcoder/modint>\n\n#include\
-    \ \"library/linear_algebra/array_matrix.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
-    using matrix = suisen::SquareArrayMatrix<mint, 4>;\n \nmatrix T {\n    { 0, 0,\
-    \ 1, 0 },\n    { 1, 0, 0, 0 },\n    { 0, 0, 1, 1 },\n    { 0, 0, 1, 0 }\n};\n\
-    matrix U {\n    { 0, 0, 0, 0 },\n    { 1, 0, 0, 0 },\n    { 0, 0, 0, 1 },\n  \
-    \  { 0, 0, 1, 0 }\n};\n\nint main() {\n    int n;\n    long long s;\n    std::cin\
-    \ >> n >> s;\n    \n    std::vector<long long> a(n);\n    for (auto &e : a) std::cin\
-    \ >> e;\n    a.push_back(s);\n \n    std::array<mint, 4> x { 1, 0, 1, 0 };\n \
-    \   long long p = 0;\n    for (long long t : a) {\n        x = ((t == s ? T :\
-    \ U) * T.pow(t - 1 - p)) * x;\n        p = t;\n    }\n    std::cout << x[0].val()\
-    \ << std::endl;\n\n    return 0;\n}"
+    \ _mul, _inv, _one>;\n} // namespace suisen\n\n\n#line 19 \"test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp\"\
+    \n\nconstexpr int N = 500;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    using matrix = suisen::SquareArrayMatrix<mint,\
+    \ N>;\n\n    matrix A = matrix::e1();\n\n    int n;\n    std::cin >> n;\n    for\
+    \ (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) {\n        std::cin >> A[i][j];\n\
+    \    }\n    auto opt_inv = A.inv();\n    if (not opt_inv.has_value()) {\n    \
+    \    std::cout << -1 << std::endl;\n    } else {\n        auto B = std::move(*opt_inv);\n\
+    \        for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) {\n         \
+    \   std::cout << B[i][j] << \" \\n\"[j == n - 1];\n        }\n    }\n\n    return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\n\n#include\
+    \ <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \nstd::istream& operator>>(std::istream& in, mint &a) {\n    long long e; in >>\
+    \ e; a = e;\n    return in;\n}\n\nstd::ostream& operator<<(std::ostream& out,\
+    \ const mint &a) {\n    out << a.val();\n    return out;\n}\n\n#include \"library/linear_algebra/array_matrix.hpp\"\
+    \n\nconstexpr int N = 500;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    using matrix = suisen::SquareArrayMatrix<mint,\
+    \ N>;\n\n    matrix A = matrix::e1();\n\n    int n;\n    std::cin >> n;\n    for\
+    \ (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) {\n        std::cin >> A[i][j];\n\
+    \    }\n    auto opt_inv = A.inv();\n    if (not opt_inv.has_value()) {\n    \
+    \    std::cout << -1 << std::endl;\n    } else {\n        auto B = std::move(*opt_inv);\n\
+    \        for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) {\n         \
+    \   std::cout << B[i][j] << \" \\n\"[j == n - 1];\n        }\n    }\n\n    return\
+    \ 0;\n}"
   dependsOn:
   - library/linear_algebra/array_matrix.hpp
   - library/util/default_operator.hpp
   isVerificationFile: true
-  path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+  path: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
   requiredBy: []
   timestamp: '2022-07-27 16:22:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+documentation_of: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
-- /verify/test/src/linear_algebra/array_matrix/abc258_ex.test.cpp.html
-title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+- /verify/test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+- /verify/test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp.html
+title: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
 ---

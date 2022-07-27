@@ -25,9 +25,9 @@ data:
     \ n % p ? n : p;\n            while (l --> 0) *result++ = *start++;\n        }\n\
     \        template <typename RandomAccessibleContainer>\n        RandomAccessibleContainer\
     \ min_period(RandomAccessibleContainer s, bool accept_fragment = true) {\n   \
-    \         RandomAccessibleContainer res;\n            min_period(res.begin(),\
-    \ res.end(), std::back_inserter(res), accept_fragment);\n            return res;\n\
-    \        }\n\n        template <typename RandomAccessibleContainer>\n        struct\
+    \         RandomAccessibleContainer res;\n            min_period(s.begin(), s.end(),\
+    \ std::back_inserter(res), accept_fragment);\n            return res;\n      \
+    \  }\n\n        template <typename RandomAccessibleContainer>\n        struct\
     \ MatcherMP {\n            MatcherMP() {}\n            MatcherMP(const RandomAccessibleContainer\
     \ &s) : s(s), mp(morris_pratt(s)) {}\n            vector<int> operator()(const\
     \ RandomAccessibleContainer &t) {\n                const int n = s.size(), m =\
@@ -56,9 +56,9 @@ data:
     \ n % p ? n : p;\n            while (l --> 0) *result++ = *start++;\n        }\n\
     \        template <typename RandomAccessibleContainer>\n        RandomAccessibleContainer\
     \ min_period(RandomAccessibleContainer s, bool accept_fragment = true) {\n   \
-    \         RandomAccessibleContainer res;\n            min_period(res.begin(),\
-    \ res.end(), std::back_inserter(res), accept_fragment);\n            return res;\n\
-    \        }\n\n        template <typename RandomAccessibleContainer>\n        struct\
+    \         RandomAccessibleContainer res;\n            min_period(s.begin(), s.end(),\
+    \ std::back_inserter(res), accept_fragment);\n            return res;\n      \
+    \  }\n\n        template <typename RandomAccessibleContainer>\n        struct\
     \ MatcherMP {\n            MatcherMP() {}\n            MatcherMP(const RandomAccessibleContainer\
     \ &s) : s(s), mp(morris_pratt(s)) {}\n            vector<int> operator()(const\
     \ RandomAccessibleContainer &t) {\n                const int n = s.size(), m =\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: library/string/morris_pratt.hpp
   requiredBy: []
-  timestamp: '2022-05-05 17:40:10+09:00'
+  timestamp: '2022-07-27 16:22:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/string/morris_pratt.hpp

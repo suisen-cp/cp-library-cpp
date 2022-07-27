@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
   - icon: ':heavy_check_mark:'
@@ -104,6 +104,15 @@ data:
   - icon: ':x:'
     path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
     title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+    title: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
+    title: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
+    title: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
@@ -241,6 +250,9 @@ data:
   - test/src/math/array_sps/abc213_g.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp
+  - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
+  - test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+  - test/src/linear_algebra/array_matrix/matrix_det.test.cpp
   - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
   - test/src/convolution/gcd_convolution/gcd_convolution.test.cpp

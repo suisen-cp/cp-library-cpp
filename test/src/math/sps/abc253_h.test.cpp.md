@@ -114,120 +114,95 @@ data:
     \ }\n    };\n} // namespace suisen\n\n\n#line 1 \"library/linear_algebra/count_spanning_trees.hpp\"\
     \n\n\n\n#line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#line 5 \"library/linear_algebra/matrix.hpp\"\
     \n#include <optional>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
-    \ T>\n    struct Matrix {\n        std::vector<std::vector<T>> data;\n\n     \
-    \   Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0)) : data(n, std::vector<T>(m,\
-    \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& data) noexcept\
-    \ : data(data) {}\n        Matrix(std::vector<std::vector<T>>&& data) noexcept\
-    \ : data(std::move(data)) {}\n        Matrix(const Matrix<T>& other) noexcept\
-    \ : data(other.data) {}\n        Matrix(Matrix<T>&& other) noexcept : data(std::move(other.data))\
-    \ {}\n\n        Matrix<T>& operator=(const Matrix<T>& other) noexcept {\n    \
-    \        data = other.data;\n            return *this;\n        }\n        Matrix<T>&\
-    \ operator=(Matrix<T>&& other) noexcept {\n            data = std::move(other.data);\n\
-    \            return *this;\n        }\n\n        const std::vector<T>& operator[](int\
-    \ i) const { return data[i]; }\n        std::vector<T>& operator[](int i) { return\
-    \ data[i]; }\n\n        std::pair<int, int> size() const {\n            if (data.empty())\
-    \ {\n                return { 0, 0 };\n            } else {\n                return\
-    \ { data.size(), data[0].size() };\n            }\n        }\n        int row_size()\
-    \ const {\n            return data.size();\n        }\n        int col_size()\
-    \ const {\n            return data.empty() ? 0 : data[0].size();\n        }\n\n\
-    \        Matrix<T>& operator+=(const Matrix<T>& other) {\n            assert(size()\
-    \ == other.size());\n            auto [n, m] = size();\n            for (int i\
-    \ = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n                data[i][j] +=\
-    \ other[i][j];\n            }\n            return *this;\n        }\n        Matrix<T>&\
-    \ operator-=(const Matrix<T>& other) {\n            assert(size() == other.size());\n\
-    \            auto [n, m] = size();\n            for (int i = 0; i < n; ++i) for\
-    \ (int j = 0; j < m; ++j) {\n                data[i][j] -= other[i][j];\n    \
-    \        }\n            return *this;\n        }\n        Matrix<T>& operator*=(const\
-    \ Matrix<T>& other) {\n            return *this = *this * other;\n        }\n\
-    \        Matrix<T>& operator*=(const T& val) {\n            auto [n, m] = size();\n\
-    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {\n     \
-    \           data[i][j] *= val;\n            }\n            return *this;\n   \
-    \     }\n        Matrix<T>& operator/=(const T& val) {\n            return *this\
-    \ *= T(1) / val;\n        }\n        Matrix<T> operator+(const Matrix<T>& other)\
-    \ const {\n            return Matrix<T>(*this) += other;\n        }\n        Matrix<T>\
-    \ operator-(const Matrix<T>& other) const {\n            return Matrix<T>(*this)\
-    \ -= other;\n        }\n        Matrix<T> operator*(const Matrix<T>& other) const\
-    \ {\n            auto [n, m] = size();\n            auto [m2, l] = other.size();\n\
-    \            assert(m == m2);\n            std::vector res(n, std::vector(l, T(0)));\n\
-    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) for (int\
-    \ k = 0; k < l; ++k) {\n                res[i][k] += (*this)[i][j] * other[j][k];\n\
-    \            }\n            return res;\n        }\n        Matrix<T> operator*(const\
-    \ T& val) const {\n            return Matrix<T>(*this) *= val;\n        }\n  \
-    \      Matrix<T> operator/(const T& val) const {\n            return Matrix<T>(*this)\
-    \ /= val;\n        }\n\n        std::vector<T> operator*(const std::vector<T>&\
-    \ x) const {\n            auto [n, m] = size();\n            assert(m == int(x.size()));\n\
-    \            std::vector<T> b(n, T(0));\n            for (int i = 0; i < n; ++i)\
-    \ for (int j = 0; j < m; ++j) {\n                b[i] += data[i][j] * x[j];\n\
-    \            }\n            return b;\n        }\n    };\n\n    template <typename\
-    \ T>\n    class SquareMatrix : public Matrix<T> {\n    public:\n        SquareMatrix()\
-    \ {}\n        SquareMatrix(int n, T fill_value = T(0)) : Matrix<T>::Matrix(n,\
-    \ n, fill_value) {}\n        SquareMatrix(const std::vector<std::vector<T>>& data)\
-    \ : Matrix<T>::Matrix(data) {\n            auto [n, m] = this->size();\n     \
-    \       assert(n == m);\n        }\n        SquareMatrix(std::vector<std::vector<T>>&&\
-    \ data) : Matrix<T>::Matrix(std::move(data)) {\n            auto [n, m] = this->size();\n\
-    \            assert(n == m);\n        }\n        SquareMatrix(const SquareMatrix<T>&\
-    \ other) : SquareMatrix(other.data) {}\n        SquareMatrix(SquareMatrix<T>&&\
-    \ other) : SquareMatrix(std::move(other.data)) {}\n        SquareMatrix(const\
-    \ Matrix<T>& other) : Matrix<T>::Matrix(other.data) {}\n        SquareMatrix(Matrix<T>&&\
-    \ other) : Matrix<T>::Matrix(std::move(other.data)) {}\n\n        SquareMatrix<T>&\
-    \ operator=(const SquareMatrix<T>& other) noexcept {\n            this->data =\
-    \ other.data;\n            return *this;\n        }\n        SquareMatrix<T>&\
-    \ operator=(SquareMatrix<T>&& other) noexcept {\n            this->data = std::move(other.data);\n\
-    \            return *this;\n        }\n\n        bool operator==(const SquareMatrix<T>&\
-    \ other) noexcept {\n            return this->data == other.data;\n        }\n\
-    \        bool operator!=(const SquareMatrix<T>& other) noexcept {\n          \
-    \  return this->data != other.data;\n        }\n\n        static SquareMatrix<T>\
-    \ e0(int n) { return SquareMatrix<T>(n, false); }\n        static SquareMatrix<T>\
-    \ e1(int n) { return SquareMatrix<T>(n, true); }\n\n        static std::optional<SquareMatrix<T>>\
-    \ inv(SquareMatrix<T>&& A) {\n            auto& data = A.data;\n            int\
-    \ n = data.size();\n            for (int i = 0; i < n; ++i) {\n              \
-    \  data[i].resize(2 * n, T{ 0 });\n                data[i][n + i] = T{ 1 };\n\
-    \            }\n            for (int i = 0; i < n; ++i) {\n                int\
-    \ pivot = -1;\n                for (int k = i; k < n; ++k) {\n               \
-    \     if (data[k][i] != T{ 0 }) {\n                        pivot = k;\n      \
-    \                  break;\n                    }\n                }\n        \
-    \        if (pivot < 0) return std::nullopt;\n                data[i].swap(data[pivot]);\n\
-    \                T coef = T{ 1 } / data[i][i];\n                for (int j = i;\
-    \ j < 2 * n; ++j) data[i][j] *= coef;\n                for (int k = 0; k < n;\
-    \ ++k) {\n                    if (k == i or data[k][i] == T{ 0 }) continue;\n\
-    \                    T c = data[k][i];\n                    for (int j = i; j\
-    \ < 2 * n; ++j) data[k][j] -= c * data[i][j];\n                }\n           \
-    \ }\n            for (auto& row : data) row.erase(row.begin(), row.begin() + n);\n\
-    \            return std::make_optional(std::move(A));\n        }\n        static\
-    \ std::optional<SquareMatrix<T>> inv(const SquareMatrix<T>& A) {\n           \
-    \ return SquareMatrix<T>::inv(SquareMatrix<T>(A));\n        }\n        static\
-    \ T det(SquareMatrix<T>&& A) {\n            auto& data = A.data;\n           \
-    \ T det_inv = T{ 1 };\n            int n = data.size();\n            for (int\
-    \ i = 0; i < n; ++i) {\n                int pivot = -1;\n                for (int\
-    \ k = i; k < n; ++k) {\n                    if (data[k][i] != T{ 0 }) {\n    \
-    \                    pivot = k;\n                        break;\n            \
-    \        }\n                }\n                if (pivot < 0) return T{ 0 };\n\
-    \                data[i].swap(data[pivot]);\n                if (pivot != i) det_inv\
-    \ *= T{ -1 };\n                T coef = T{ 1 } / data[i][i];\n               \
-    \ for (int j = i; j < n; ++j) data[i][j] *= coef;\n                det_inv *=\
-    \ coef;\n                for (int k = i + 1; k < n; ++k) {\n                 \
-    \   if (data[k][i] == T(0)) continue;\n                    T c = data[k][i];\n\
-    \                    for (int j = i; j < n; ++j) data[k][j] -= c * data[i][j];\n\
-    \                }\n            }\n            return T{ 1 } / det_inv;\n    \
-    \    }\n        static T det(const SquareMatrix<T>& A) {\n            return SquareMatrix<T>::det(SquareMatrix<T>(A));\n\
-    \        }\n        SquareMatrix<T>& inv_inplace() {\n            return *this\
-    \ = *SquareMatrix<T>::inv(std::move(*this));\n        }\n        SquareMatrix<T>\
-    \ inv() const {\n            return *SquareMatrix<T>::inv(*this);\n        }\n\
-    \        T det() const {\n            return SquareMatrix<T>::det(SquareMatrix<T>(*this));\n\
+    \ T>\n    struct Matrix {\n        std::vector<std::vector<T>> dat;\n\n      \
+    \  Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m,\
+    \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& dat) : dat(dat)\
+    \ {}\n\n        const std::vector<T>& operator[](int i) const { return dat[i];\
+    \ }\n        std::vector<T>& operator[](int i) { return dat[i]; }\n\n        operator\
+    \ std::vector<std::vector<T>>() const { return dat; }\n\n        bool operator==(const\
+    \ Matrix<T>& other) const { return this->dat == other.dat; }\n        bool operator!=(const\
+    \ Matrix<T>& other) const { return this->dat != other.dat; }\n\n        std::pair<int,\
+    \ int> shape() const { return dat.empty() ? std::make_pair<int, int>(0, 0) : std::make_pair<int,\
+    \ int>(dat.size(), dat[0].size()); }\n        int row_size() const { return dat.size();\
+    \ }\n        int col_size() const { return dat.empty() ? 0 : dat[0].size(); }\n\
+    \n        Matrix<T>& operator+=(const Matrix<T>& other) {\n            assert(shape()\
+    \ == other.shape());\n            auto [n, m] = shape();\n            for (int\
+    \ i = 0; i < n; ++i) for (int j = 0; j < m; ++j) dat[i][j] += other[i][j];\n \
+    \           return *this;\n        }\n        Matrix<T>& operator-=(const Matrix<T>&\
+    \ other) {\n            assert(shape() == other.shape());\n            auto [n,\
+    \ m] = shape();\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m;\
+    \ ++j) dat[i][j] -= other[i][j];\n            return *this;\n        }\n     \
+    \   Matrix<T>& operator*=(const Matrix<T>& other) { return *this = *this * other;\
+    \ }\n        Matrix<T>& operator*=(const T& val) {\n            for (auto &row\
+    \ : dat) for (auto &elm : row) elm *= val;\n            return *this;\n      \
+    \  }\n        Matrix<T>& operator/=(const T& val) { return *this *= T(1) / val;\
+    \ }\n        Matrix<T> operator+(const Matrix<T>& other) const { Matrix<T> res\
+    \ = *this; res += other; return res; }\n        Matrix<T> operator-(const Matrix<T>&\
+    \ other) const { Matrix<T> res = *this; res -= other; return res; }\n        Matrix<T>\
+    \ operator*(const Matrix<T>& other) const {\n            auto [n, m] = shape();\n\
+    \            auto [m2, l] = other.shape();\n            assert(m == m2);\n   \
+    \         std::vector res(n, std::vector(l, T(0)));\n            for (int i =\
+    \ 0; i < n; ++i) for (int j = 0; j < m; ++j) for (int k = 0; k < l; ++k) res[i][k]\
+    \ += (*this)[i][j] * other[j][k];\n            return res;\n        }\n      \
+    \  Matrix<T> operator*(const T& val) const { Matrix<T> res = *this; res *= val;\
+    \ return res; }\n        Matrix<T> operator/(const T& val) const { Matrix<T> res\
+    \ = *this; res /= val; return res; }\n\n        std::vector<T> operator*(const\
+    \ std::vector<T>& x) const {\n            auto [n, m] = shape();\n           \
+    \ assert(m == int(x.size()));\n            std::vector<T> b(n, T(0));\n      \
+    \      for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) b[i] += dat[i][j]\
+    \ * x[j];\n            return b;\n        }\n    };\n\n    template <typename\
+    \ T>\n    struct SquareMatrix : public Matrix<T> {\n        SquareMatrix() {}\n\
+    \        SquareMatrix(int n, T fill_value = T(0)) : Matrix<T>::Matrix(n, n, fill_value)\
+    \ {}\n        SquareMatrix(const std::vector<std::vector<T>>& dat) : Matrix<T>::Matrix(dat)\
+    \ {\n            auto [n, m] = this->shape();\n            assert(n == m);\n \
+    \       }\n\n        int size() const { return this->row_size(); }\n\n       \
+    \ bool operator==(const SquareMatrix<T>& other) const { return this->dat == other.dat;\
+    \ }\n        bool operator!=(const SquareMatrix<T>& other) const { return this->dat\
+    \ != other.dat; }\n\n        static SquareMatrix<T> e0(int n) { return SquareMatrix<T>(n,\
+    \ false, /* dummy */ 0); }\n        static SquareMatrix<T> e1(int n) { return\
+    \ SquareMatrix<T>(n, true, /* dummy */ 0); }\n\n        static std::optional<SquareMatrix<T>>\
+    \ inv(SquareMatrix<T> A) {\n            int n = A.size();\n            for (int\
+    \ i = 0; i < n; ++i) {\n                A[i].resize(2 * n, T{ 0 });\n        \
+    \        A[i][n + i] = T{ 1 };\n            }\n            for (int i = 0; i <\
+    \ n; ++i) {\n                int pivot = -1;\n                for (int k = i;\
+    \ k < n; ++k) if (A[k][i] != T{ 0 }) {\n                    pivot = k;\n     \
+    \               break;\n                }\n                if (pivot < 0) return\
+    \ std::nullopt;\n                std::swap(A[i], A[pivot]);\n                T\
+    \ coef = T{ 1 } / A[i][i];\n                for (int j = i; j < 2 * n; ++j) A[i][j]\
+    \ *= coef;\n                for (int k = 0; k < n; ++k) if (k != i and A[k][i]\
+    \ != T{ 0 }) {\n                    T c = A[k][i];\n                    for (int\
+    \ j = i; j < 2 * n; ++j) A[k][j] -= c * A[i][j];\n                }\n        \
+    \    }\n            for (auto& row : A.dat) row.erase(row.begin(), row.begin()\
+    \ + n);\n            return A;\n        }\n        static T det(SquareMatrix<T>\
+    \ A) {\n            bool sgn = false;\n            const int n = A.size();\n \
+    \           for (int j = 0; j < n; ++j) for (int i = j + 1; i < n; ++i) if (A[i][j]\
+    \ != T { 0 }) {\n                std::swap(A[j], A[i]);\n                T q =\
+    \ A[i][j] / A[j][j];\n                for (int k = j; k < n; ++k) A[i][k] -= A[j][k]\
+    \ * q;\n                sgn = not sgn;\n            }\n            T res = sgn\
+    \ ? T { -1 } : T { +1 };\n            for (int i = 0; i < n; ++i) res *= A[i][i];\n\
+    \            return res;\n        }\n        static T det_arbitrary_mod(SquareMatrix<T>\
+    \ A) {\n            bool sgn = false;\n            const int n = A.size();\n \
+    \           for (int j = 0; j < n; ++j) for (int i = j + 1; i < n; ++i) {\n  \
+    \              for (; A[i][j].val(); sgn = not sgn) {\n                    std::swap(A[j],\
+    \ A[i]);\n                    T q = A[i][j].val() / A[j][j].val();\n         \
+    \           for (int k = j; k < n; ++k) A[i][k] -= A[j][k] * q;\n            \
+    \    }\n            }\n            T res = sgn ? -1 : +1;\n            for (int\
+    \ i = 0; i < n; ++i) res *= A[i][i];\n            return res;\n        }\n   \
+    \     SquareMatrix<T>& inv_inplace() {\n            return *this = *SquareMatrix<T>::inv(std::move(*this));\n\
+    \        }\n        SquareMatrix<T> inv() const {\n            return *SquareMatrix<T>::inv(*this);\n\
+    \        }\n        T det() const {\n            return SquareMatrix<T>::det(*this);\n\
+    \        }\n        T det_arbitrary_mod() const {\n            return SquareMatrix<T>::det_arbitrary_mod(*this);\n\
     \        }\n\n        SquareMatrix<T>& operator/=(const SquareMatrix<T>& other)\
-    \ { return *this *= other.inv(); }\n        SquareMatrix<T>& operator/=(SquareMatrix<T>&&\
-    \ other) { return *this *= other.inv_inplace(); }\n        SquareMatrix<T>  operator/\
-    \ (const SquareMatrix<T>& other) const { return SquareMatrix<T>(*this) *= other.inv();\
-    \ }\n        SquareMatrix<T>  operator/ (SquareMatrix<T>&& other) const { return\
-    \ SquareMatrix<T>(*this) *= other.inv_inplace(); }\n\n        SquareMatrix<T>\
-    \ pow(long long b) {\n            assert(b >= 0);\n            SquareMatrix<T>\
-    \ res(SquareMatrix<T>::e1(this->data.size())), p(*this);\n            for (; b;\
-    \ b >>= 1) {\n                if (b & 1) res *= p;\n                p *= p;\n\
-    \            }\n            return res;\n        }\n    private:\n        SquareMatrix(int\
-    \ n, bool mult_identity) : Matrix<T>::Matrix(n, n) {\n            if (mult_identity)\
-    \ for (int i = 0; i < n; ++i) this->data[i][i] = 1;\n        }\n    };\n} // namespace\
-    \ suisen\n\n\n#line 5 \"library/linear_algebra/count_spanning_trees.hpp\"\n\n\
-    namespace suisen {\n    template <typename T, typename Edge>\n    T count_spanning_trees(const\
+    \ { return *this *= other.inv(); }\n        SquareMatrix<T>  operator/ (const\
+    \ SquareMatrix<T>& other) const { SquareMatrix<T> res = *this; res /= other; return\
+    \ res; }\n\n        SquareMatrix<T> pow(long long b) {\n            assert(b >=\
+    \ 0);\n            SquareMatrix<T> res(SquareMatrix<T>::e1(size())), p(*this);\n\
+    \            for (; b; b >>= 1) {\n                if (b & 1) res *= p;\n    \
+    \            p *= p;\n            }\n            return res;\n        }\n    private:\n\
+    \        SquareMatrix(int n, bool mult_identity, int) : Matrix<T>::Matrix(n, n)\
+    \ {\n            if (mult_identity) for (int i = 0; i < n; ++i) this->dat[i][i]\
+    \ = 1;\n        }\n    };\n} // namespace suisen\n\n\n#line 5 \"library/linear_algebra/count_spanning_trees.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T, typename Edge>\n    T count_spanning_trees(const\
     \ int n, const std::vector<Edge> &edges) {\n        SquareMatrix<T> A(n - 1);\n\
     \        for (auto [u, v] : edges) if (u != v) {\n            if (u > v) std::swap(u,\
     \ v);\n            ++A[u][u];\n            if (v != n - 1) ++A[v][v], --A[u][v],\
@@ -689,7 +664,7 @@ data:
   isVerificationFile: true
   path: test/src/math/sps/abc253_h.test.cpp
   requiredBy: []
-  timestamp: '2022-07-21 13:04:20+09:00'
+  timestamp: '2022-07-27 16:21:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/abc253_h.test.cpp

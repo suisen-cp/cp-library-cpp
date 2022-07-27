@@ -460,7 +460,7 @@ data:
       title: "\u504F\u89D2\u30BD\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19)"
   - name: library/linear_algebra
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/linear_algebra/array_matrix.hpp
       title: Array Matrix
     - icon: ':heavy_check_mark:'
@@ -1479,6 +1479,15 @@ data:
     - icon: ':x:'
       path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
       title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+      title: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
+      title: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
+    - icon: ':x:'
+      path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
+      title: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   - name: test/src/linear_algebra/characteristic_polynomial
     pages:
     - icon: ':heavy_check_mark:'
@@ -1497,11 +1506,14 @@ data:
   - name: test/src/linear_algebra/matrix
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/linear_algebra/matrix/determinant_of_matrix.test.cpp
-      title: test/src/linear_algebra/matrix/determinant_of_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/matrix/inverse_matrix.test.cpp
       title: test/src/linear_algebra/matrix/inverse_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/linear_algebra/matrix/matrix_det.test.cpp
+      title: test/src/linear_algebra/matrix/matrix_det.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/linear_algebra/matrix/matrix_det_arbitrary_mod.test.cpp
+      title: test/src/linear_algebra/matrix/matrix_det_arbitrary_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/matrix/matrix_product.test.cpp
       title: test/src/linear_algebra/matrix/matrix_product.test.cpp
