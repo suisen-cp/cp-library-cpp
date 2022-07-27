@@ -19,6 +19,6 @@ int main() {
             A[i][j] = val;
         }
     }
-    std::cout << SquareMatrix<mint>::det(std::move(A)).val() << '\n';
+    std::cout << SquareMatrix<mint>::det(A).val() << '\n';
     return 0;
 }
