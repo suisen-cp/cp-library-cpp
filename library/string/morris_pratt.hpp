@@ -31,7 +31,7 @@ namespace suisen {
         template <typename RandomAccessibleContainer>
         RandomAccessibleContainer min_period(RandomAccessibleContainer s, bool accept_fragment = true) {
             RandomAccessibleContainer res;
-            min_period(res.begin(), res.end(), std::back_inserter(res), accept_fragment);
+            min_period(s.begin(), s.end(), std::back_inserter(res), accept_fragment);
             return res;
         }
 
