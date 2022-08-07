@@ -1496,7 +1496,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
       title: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
       title: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   - name: test/src/linear_algebra/characteristic_polynomial

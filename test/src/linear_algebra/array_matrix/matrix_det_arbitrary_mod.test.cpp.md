@@ -9,17 +9,17 @@ data:
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_det
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod
     links:
-    - https://judge.yosupo.jp/problem/matrix_det
+    - https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod
   bundledCode: "#line 1 \"test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include <iostream>\n\
-    #include <atcoder/modint>\n\n#line 1 \"library/linear_algebra/array_matrix.hpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/linear_algebra/array_matrix.hpp\"\
     \n\n\n\n#include <array>\n#include <cassert>\n#include <optional>\n\n#line 1 \"\
     library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n    namespace default_operator\
     \ {\n        template <typename T>\n        auto zero() -> decltype(T { 0 }) {\
@@ -156,23 +156,23 @@ data:
     \ j < n; ++j) {\n            int val;\n            std::cin >> val;\n        \
     \    A[i][j] = val;\n        }\n    }\n    std::cout << A.det_arbitrary_mod().val()\
     \ << '\\n';\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det\"\n\n#include\
-    \ <iostream>\n#include <atcoder/modint>\n\n#include \"library/linear_algebra/array_matrix.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n\n#include \"library/linear_algebra/array_matrix.hpp\"\
     \n\nusing mint = atcoder::modint;\nusing matrix = suisen::SquareArrayMatrix<mint,\
     \ 500>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    int n, m;\n    std::cin >> n >> m;\n    mint::set_mod(m);\n\n    matrix\
     \ A = matrix::e1();\n    for (int i = 0; i < n; ++i) {\n        for (int j = 0;\
     \ j < n; ++j) {\n            int val;\n            std::cin >> val;\n        \
     \    A[i][j] = val;\n        }\n    }\n    std::cout << A.det_arbitrary_mod().val()\
-    \ << '\\n';\n    return 0;\n}"
+    \ << '\\n';\n    return 0;\n}\n"
   dependsOn:
   - library/linear_algebra/array_matrix.hpp
   - library/util/default_operator.hpp
   isVerificationFile: true
   path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-07-27 16:22:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-07 21:13:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
 layout: document
