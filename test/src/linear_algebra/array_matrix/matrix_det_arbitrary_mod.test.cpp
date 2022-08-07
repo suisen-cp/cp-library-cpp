@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det"
+#define PROBLEM "https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod"
 
 #include <iostream>
 #include <atcoder/modint>
