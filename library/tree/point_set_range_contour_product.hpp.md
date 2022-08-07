@@ -4,27 +4,27 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
-    title: test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
+    path: test/src/tree/point_set_range_contour_product/dummy.test.cpp
+    title: test/src/tree/point_set_range_contour_product/dummy.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/tree/range_contour_aggregation_query_on_tree.hpp\"\
-    \n\n\n\n#include <cstdint>\n#include <deque>\n#include <map>\n#include <queue>\n\
-    #include <tuple>\n\n#include <atcoder/segtree>\n\nnamespace suisen {\n    template\
-    \ <typename T, T(*op)(T, T), T(*e)()>\n    struct RangeContourAggregationQueryOnTree\
-    \ {\n        RangeContourAggregationQueryOnTree() {}\n        RangeContourAggregationQueryOnTree(int\
-    \ n, const T &fill_value) : RangeContourAggregationQueryOnTree(std::vector<T>(n,\
-    \ fill_value)) {}\n        RangeContourAggregationQueryOnTree(const std::vector<T>\
-    \ &dat) : _n(dat.size()), _g(_n), _par(_n, -1), _removed(_n, false), _info(_n),\
-    \ _nodes(_n), _dat(dat) {\n            _par.reserve(2 * _n);\n            for\
-    \ (int i = 0; i < _n; ++i) _info[i].reserve(30);\n        }\n\n        using segtree_type\
-    \ = atcoder::segtree<T, op, e>;\n\n        struct AuxData {\n            int segtree_index;\n\
-    \            int8_t child_index;\n            int dist;\n        };\n\n      \
-    \  struct Node {\n            std::vector<int> _sep;\n            segtree_type\
-    \ _seq;\n\n            Node() {}\n            Node(const std::vector<std::vector<int>>&\
+  bundledCode: "#line 1 \"library/tree/point_set_range_contour_product.hpp\"\n\n\n\
+    \n#include <cstdint>\n#include <deque>\n#include <map>\n#include <queue>\n#include\
+    \ <tuple>\n\n#include <atcoder/segtree>\n\nnamespace suisen {\n    template <typename\
+    \ T, T(*op)(T, T), T(*e)()>\n    struct PointSetRangeContourProduct {\n      \
+    \  PointSetRangeContourProduct() {}\n        PointSetRangeContourProduct(int n,\
+    \ const T &fill_value) : PointSetRangeContourProduct(std::vector<T>(n, fill_value))\
+    \ {}\n        PointSetRangeContourProduct(const std::vector<T> &dat) : _n(dat.size()),\
+    \ _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat)\
+    \ {\n            _par.reserve(2 * _n);\n            for (int i = 0; i < _n; ++i)\
+    \ _info[i].reserve(30);\n        }\n\n        using segtree_type = atcoder::segtree<T,\
+    \ op, e>;\n\n        struct AuxData {\n            int segtree_index;\n      \
+    \      int8_t child_index;\n            int dist;\n        };\n\n        struct\
+    \ Node {\n            std::vector<int> _sep;\n            segtree_type _seq;\n\
+    \n            Node() {}\n            Node(const std::vector<std::vector<int>>&\
     \ g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const\
     \ bool child_index, std::vector<std::vector<AuxData>>& info, const std::vector<T>\
     \ &dat, int siz) {\n                std::vector<T> reordered_dat(siz);\n     \
@@ -105,20 +105,20 @@ data:
     \     std::vector<int> _par;\n        std::vector<int8_t> _removed;\n        std::vector<std::vector<AuxData>>\
     \ _info;\n        std::vector<std::array<Node, 2>> _nodes;\n        std::vector<T>\
     \ _dat;\n    };\n} // namespace suisen\n\n\n\n"
-  code: "#ifndef SUISEN_RANGE_CONTOUR_QUERY_ON_TREE_BASE\n#define SUISEN_RANGE_CONTOUR_QUERY_ON_TREE_BASE\n\
+  code: "#ifndef SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT\n#define SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT\n\
     \n#include <cstdint>\n#include <deque>\n#include <map>\n#include <queue>\n#include\
     \ <tuple>\n\n#include <atcoder/segtree>\n\nnamespace suisen {\n    template <typename\
-    \ T, T(*op)(T, T), T(*e)()>\n    struct RangeContourAggregationQueryOnTree {\n\
-    \        RangeContourAggregationQueryOnTree() {}\n        RangeContourAggregationQueryOnTree(int\
-    \ n, const T &fill_value) : RangeContourAggregationQueryOnTree(std::vector<T>(n,\
-    \ fill_value)) {}\n        RangeContourAggregationQueryOnTree(const std::vector<T>\
-    \ &dat) : _n(dat.size()), _g(_n), _par(_n, -1), _removed(_n, false), _info(_n),\
-    \ _nodes(_n), _dat(dat) {\n            _par.reserve(2 * _n);\n            for\
-    \ (int i = 0; i < _n; ++i) _info[i].reserve(30);\n        }\n\n        using segtree_type\
-    \ = atcoder::segtree<T, op, e>;\n\n        struct AuxData {\n            int segtree_index;\n\
-    \            int8_t child_index;\n            int dist;\n        };\n\n      \
-    \  struct Node {\n            std::vector<int> _sep;\n            segtree_type\
-    \ _seq;\n\n            Node() {}\n            Node(const std::vector<std::vector<int>>&\
+    \ T, T(*op)(T, T), T(*e)()>\n    struct PointSetRangeContourProduct {\n      \
+    \  PointSetRangeContourProduct() {}\n        PointSetRangeContourProduct(int n,\
+    \ const T &fill_value) : PointSetRangeContourProduct(std::vector<T>(n, fill_value))\
+    \ {}\n        PointSetRangeContourProduct(const std::vector<T> &dat) : _n(dat.size()),\
+    \ _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat)\
+    \ {\n            _par.reserve(2 * _n);\n            for (int i = 0; i < _n; ++i)\
+    \ _info[i].reserve(30);\n        }\n\n        using segtree_type = atcoder::segtree<T,\
+    \ op, e>;\n\n        struct AuxData {\n            int segtree_index;\n      \
+    \      int8_t child_index;\n            int dist;\n        };\n\n        struct\
+    \ Node {\n            std::vector<int> _sep;\n            segtree_type _seq;\n\
+    \n            Node() {}\n            Node(const std::vector<std::vector<int>>&\
     \ g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const\
     \ bool child_index, std::vector<std::vector<AuxData>>& info, const std::vector<T>\
     \ &dat, int siz) {\n                std::vector<T> reordered_dat(siz);\n     \
@@ -198,16 +198,16 @@ data:
     \   private:\n        int _n;\n        std::vector<std::vector<int>> _g;\n   \
     \     std::vector<int> _par;\n        std::vector<int8_t> _removed;\n        std::vector<std::vector<AuxData>>\
     \ _info;\n        std::vector<std::array<Node, 2>> _nodes;\n        std::vector<T>\
-    \ _dat;\n    };\n} // namespace suisen\n\n\n#endif // SUISEN_RANGE_CONTOUR_QUERY_ON_TREE_BASE\n"
+    \ _dat;\n    };\n} // namespace suisen\n\n\n#endif // SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT"
   dependsOn: []
   isVerificationFile: false
-  path: library/tree/range_contour_aggregation_query_on_tree.hpp
+  path: library/tree/point_set_range_contour_product.hpp
   requiredBy: []
-  timestamp: '2022-04-01 18:30:08+09:00'
+  timestamp: '2022-08-07 20:14:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/tree/range_contour_aggregation_query_on_tree/dummy.test.cpp
-documentation_of: library/tree/range_contour_aggregation_query_on_tree.hpp
+  - test/src/tree/point_set_range_contour_product/dummy.test.cpp
+documentation_of: library/tree/point_set_range_contour_product.hpp
 layout: document
 title: "Range Contour Aggregation Query On Tree (\u6728\u4E0A\u306E\u7B49\u9AD8\u7DDA\
   \u96C6\u7D04\u30AF\u30A8\u30EA)"

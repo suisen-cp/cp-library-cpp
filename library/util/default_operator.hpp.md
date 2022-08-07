@@ -65,6 +65,18 @@ data:
     path: library/transform/walsh_hadamard.hpp
     title: "Walsh Hadamard \u5909\u63DB"
   - icon: ':warning:'
+    path: library/tree/contour_sum.hpp
+    title: library/tree/contour_sum.hpp
+  - icon: ':warning:'
+    path: library/tree/point_add_range_contour_sum_invertible.hpp
+    title: library/tree/point_add_range_contour_sum_invertible.hpp
+  - icon: ':warning:'
+    path: library/tree/point_get_range_contour_add_invertible.hpp
+    title: library/tree/point_get_range_contour_add_invertible.hpp
+  - icon: ':warning:'
+    path: library/tree/range_contour_sum_invertible.hpp
+    title: library/tree/range_contour_sum_invertible.hpp
+  - icon: ':warning:'
     path: library/util/cumulative_sum.hpp
     title: "\u7D2F\u7A4D\u548C"
   - icon: ':warning:'
@@ -219,6 +231,10 @@ data:
   - library/transform/walsh_hadamard.hpp
   - library/transform/subset.hpp
   - library/transform/multiple.hpp
+  - library/tree/point_add_range_contour_sum_invertible.hpp
+  - library/tree/contour_sum.hpp
+  - library/tree/point_get_range_contour_add_invertible.hpp
+  - library/tree/range_contour_sum_invertible.hpp
   - library/math/sps.hpp
   - library/math/array_sps.hpp
   - library/linear_algebra/array_matrix.hpp
