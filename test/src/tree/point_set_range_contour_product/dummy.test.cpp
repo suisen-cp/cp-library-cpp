@@ -4,7 +4,7 @@
 #include <numeric>
 #include <random>
 
-#include "library/tree/range_contour_aggregation_query_on_tree.hpp"
+#include "library/tree/point_set_range_contour_product.hpp"
 
 int op(int x, int y) {
     return std::max(x, y);
@@ -13,7 +13,7 @@ int e() {
     return 0;
 }
 
-using Solution = suisen::RangeContourAggregationQueryOnTree<int, op, e>;
+using Solution = suisen::PointSetRangeContourProduct<int, op, e>;
 
 struct NaiveSolution {
     NaiveSolution(std::vector<std::vector<int>> g, std::vector<int> dat) : g(g), dat(dat) {}
@@ -38,7 +38,7 @@ private:
     std::vector<int> dat;
 };
 
-void random_queries(int n, int q, Solution &t1, NaiveSolution &t2) {
+void random_queries(int n, int q, Solution& t1, NaiveSolution& t2) {
     auto check = [&](int k, int dl, int dr) {
         int sum1 = t1.prod(k, dl, dr);
         int sum2 = t2.prod(k, dl, dr);
@@ -46,7 +46,7 @@ void random_queries(int n, int q, Solution &t1, NaiveSolution &t2) {
     };
 
     std::mt19937 rng{ std::random_device{}() };
-    while (q --> 0) {
+    while (q-- > 0) {
         int qt = rng();
         if (qt == 1) {
             int i = rng() % n;
@@ -65,14 +65,14 @@ void random_queries(int n, int q, Solution &t1, NaiveSolution &t2) {
 #include <atcoder/dsu>
 
 std::vector<std::vector<int>> random_tree(int n) {
-    std::mt19937 rng{std::random_device{}()};
+    std::mt19937 rng{ std::random_device{}() };
 
     std::vector<std::pair<int, int>> edges;
     for (int i = 0; i < n; ++i) for (int j = 0; j < i; ++j) {
         edges.emplace_back(i, j);
     }
     std::shuffle(edges.begin(), edges.end(), rng);
-    
+
     std::vector<std::vector<int>> g(n);
 
     atcoder::dsu uf(n);
@@ -122,7 +122,7 @@ void test1(int q = 100000) {
     std::vector<int> dat(n);
     std::iota(dat.begin(), dat.end(), 1);
 
-    suisen::RangeContourAggregationQueryOnTree<int, op, e> contour_aggregator(dat);
+    suisen::PointSetRangeContourProduct<int, op, e> contour_aggregator(dat);
     for (int i = 0; i < n; ++i) for (int j : g[i]) if (i < j) {
         contour_aggregator.add_edge(i, j);
     }
@@ -138,7 +138,7 @@ void test2(int n = 1000, int q = 10000) {
     std::vector<int> dat(n);
     std::iota(dat.begin(), dat.end(), 1);
 
-    suisen::RangeContourAggregationQueryOnTree<int, op, e> contour_aggregator(dat);
+    suisen::PointSetRangeContourProduct<int, op, e> contour_aggregator(dat);
     for (int i = 0; i < n; ++i) for (int j : g[i]) if (i < j) {
         contour_aggregator.add_edge(i, j);
     }

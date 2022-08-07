@@ -1,5 +1,5 @@
-#ifndef SUISEN_RANGE_CONTOUR_OPERATION_QUERY_ON_TREE_BASE
-#define SUISEN_RANGE_CONTOUR_OPERATION_QUERY_ON_TREE_BASE
+#ifndef SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT
+#define SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT
 
 #include <cstdint>
 #include <deque>
@@ -7,36 +7,19 @@
 #include <queue>
 #include <tuple>
 
+#include <atcoder/segtree>
+
 namespace suisen {
-    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>
-    struct RangeContourOperationQueryOnTree {
-        RangeContourOperationQueryOnTree() {}
-        RangeContourOperationQueryOnTree(int n, const T &fill_value) : RangeContourOperationQueryOnTree(std::vector<T>(n, fill_value)) {}
-        RangeContourOperationQueryOnTree(const std::vector<T> &dat) : _n(dat.size()), _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat) {
+    template <typename T, T(*op)(T, T), T(*e)()>
+    struct PointSetRangeContourProduct {
+        PointSetRangeContourProduct() {}
+        PointSetRangeContourProduct(int n, const T &fill_value) : PointSetRangeContourProduct(std::vector<T>(n, fill_value)) {}
+        PointSetRangeContourProduct(const std::vector<T> &dat) : _n(dat.size()), _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat) {
             _par.reserve(2 * _n);
             for (int i = 0; i < _n; ++i) _info[i].reserve(30);
         }
 
-        struct CommutativeDualSegmentTree {
-            CommutativeDualSegmentTree() {}
-            CommutativeDualSegmentTree(int n) : _n(n), _laz(2 * _n, id()) {}
-            void apply(int l, int r, const F& f) {
-                for (l += _n, r += _n; l < r; l >>= 1, r >>= 1) {
-                    if (l & 1) _laz[l] = composition(_laz[l], f), ++l;
-                    if (r & 1) --r, _laz[r] = composition(_laz[r], f);
-                }
-            }
-            F get(int i) {
-                F res = id();
-                for (i += _n; i; i >>= 1) res = composition(res, _laz[i]);
-                return res;
-            }
-        private:
-            int _n;
-            std::vector<F> _laz;
-        };
-
-        using segtree_type = CommutativeDualSegmentTree;
+        using segtree_type = atcoder::segtree<T, op, e>;
 
         struct AuxData {
             int segtree_index;
@@ -49,7 +32,8 @@ namespace suisen {
             segtree_type _seq;
 
             Node() {}
-            Node(const std::vector<std::vector<int>>& g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const bool child_index, std::vector<std::vector<AuxData>>& info) {
+            Node(const std::vector<std::vector<int>>& g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const bool child_index, std::vector<std::vector<AuxData>>& info, const std::vector<T> &dat, int siz) {
+                std::vector<T> reordered_dat(siz);
                 _sep.push_back(0);
                 std::deque<std::tuple<int, int, int>> dq;
                 for (int r : roots) dq.emplace_back(r, -1, 0);
@@ -58,20 +42,21 @@ namespace suisen {
                     const auto [u, pu, du] = dq.front();
                     dq.pop_front();
                     if (du == pre_dist + 1) _sep.push_back(cnt), pre_dist = du;
-                    info[u].push_back({ cnt++, child_index, du });
+                    info[u].push_back({ cnt, child_index, du });
+                    reordered_dat[cnt++] = dat[u];
                     for (int v : g[u]) if (v != pu and not removed[v]) dq.emplace_back(v, u, du + 1);
                 }
                 _sep.push_back(cnt);
-                _seq = segtree_type(cnt);
+                _seq = segtree_type(reordered_dat);
             }
 
-            F get(int i) {
-                return _seq.get(i);
+            void set(int i, const T& val) {
+                _seq.set(i, val);
             }
-            void apply(int dl, int dr, const F& val) {
+            T prod(int dl, int dr) const {
                 dl = std::max(dl, 0);
                 dr = std::min(dr, int(_sep.size()) - 1);
-                if (dl < dr) _seq.apply(_sep[dl], _sep[dr], val);
+                return dl < dr ? _seq.prod(_sep[dl], _sep[dr]) : e();
             }
         };
 
@@ -90,7 +75,7 @@ namespace suisen {
 
             auto merge = [&](std::vector<int> &&l, std::vector<int> &&r) -> std::vector<int>&& {
                 if (l.size() > r.size()) std::swap(l, r);
-                for (int e : l) r.push_back(e);
+                for (int v : l) r.push_back(v);
                 return std::move(r);
             };
 
@@ -133,8 +118,8 @@ namespace suisen {
                     const int v = pq.top(); pq.pop();
                     if (pq.empty()) {
                         _par[ctr[u]] = _par[ctr[v]] = c;
-                        _nodes[c][0] = Node{ _g, _removed, ch[u], 0, _info };
-                        _nodes[c][1] = Node{ _g, _removed, ch[v], 1, _info };
+                        _nodes[c][0] = Node{ _g, _removed, ch[u], 0, _info, _dat, sub_size[u] };
+                        _nodes[c][1] = Node{ _g, _removed, ch[v], 1, _info, _dat, sub_size[v] };
                         break;
                     }
                     const int new_node = sub_size.size();
@@ -143,8 +128,8 @@ namespace suisen {
                     _par.push_back(-1);
                     _par[ctr[u]] = _par[ctr[v]] = new_node;
                     _nodes.emplace_back();
-                    _nodes[new_node][0] = Node{ _g, _removed, ch[u], 0, _info };
-                    _nodes[new_node][1] = Node{ _g, _removed, ch[v], 1, _info };
+                    _nodes[new_node][0] = Node{ _g, _removed, ch[u], 0, _info, _dat, sub_size[u] };
+                    _nodes[new_node][1] = Node{ _g, _removed, ch[v], 1, _info, _dat, sub_size[v] };
                     ch.push_back(merge(std::move(ch[u]), std::move(ch[v])));
                     ch[u].clear(), ch[u].shrink_to_fit();
                     ch[v].clear(), ch[v].shrink_to_fit();
@@ -153,7 +138,7 @@ namespace suisen {
                 if (pq.size()) {
                     int u = pq.top(); pq.pop();
                     _par[ctr[u]] = c;
-                    _nodes[c][0] = Node{ _g, _removed, ch[u], 0, _info };
+                    _nodes[c][0] = Node{ _g, _removed, ch[u], 0, _info, _dat, sub_size[u] };
                 }
                 _removed[c] = false;
                 return c;
@@ -161,24 +146,27 @@ namespace suisen {
             rec(rec, 0, _n);
         }
 
-        T get(int u) {
-            F res = id();
+        T get(int u) const {
+            return _dat[u];
+        }
+        void set(int u, const T& val) {
+            _dat[u] = val;
             int v = _par[u];
             for (const auto &info : _info[u]) {
-                res = composition(res, _nodes[std::exchange(v, _par[v])][info.child_index].get(info.segtree_index));
+                _nodes[std::exchange(v, _par[v])][info.child_index].set(info.segtree_index, val);
             }
-            return mapping(res, _dat[u]);
         }
-        void apply(int u, int dl, int dr, const F& val) {
-            if (dl <= 0 and 0 < dr) _dat[u] = mapping(val, _dat[u]);
-            _nodes[u][0].apply(dl - 1, dr - 1, val);
-            _nodes[u][1].apply(dl - 1, dr - 1, val);
+        T prod(int u, int dl, int dr) const {
+            T res = dl <= 0 and 0 < dr ? _dat[u] : e();
+            res = op(res, _nodes[u][0].prod(dl - 1, dr - 1));
+            res = op(res, _nodes[u][1].prod(dl - 1, dr - 1));
             int v = _par[u];
             for (const auto &info : _info[u]) {
                 int ql = dl - info.dist - 2, qr = dr - info.dist - 2;
-                if (v < _n and ql <= -1 and -1 < qr) _dat[v] = mapping(val, _dat[v]);
-                _nodes[std::exchange(v, _par[v])][info.child_index ^ 1].apply(ql, qr, val);
+                if (v < _n and ql <= -1 and -1 < qr) res = op(res, _dat[v]);
+                res = op(res, _nodes[std::exchange(v, _par[v])][info.child_index ^ 1].prod(ql, qr));
             }
+            return res;
         }
 
     private:
@@ -192,4 +180,5 @@ namespace suisen {
     };
 } // namespace suisen
 
-#endif // SUISEN_RANGE_CONTOUR_OPERATION_QUERY_ON_TREE_BASE
+
+#endif // SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT

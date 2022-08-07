@@ -1,6 +1,6 @@
 ---
 title: Range Contour Aggregation Query On Tree (木上の等高線集約クエリ)
-documentation_of: //library/tree/range_contour_aggregation_query_on_tree.hpp
+documentation_of: //library/tree/point_set_range_contour_product.hpp
 ---
 ## Range Contour Aggregation Query On Tree (木上の等高線集約クエリ)
 
