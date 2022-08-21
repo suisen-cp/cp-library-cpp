@@ -216,8 +216,8 @@ data:
   timestamp: '2022-01-15 00:26:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/bigint/NTL_2_A.test.cpp
   - test/src/math/bigint/NTL_2_F.test.cpp
+  - test/src/math/bigint/NTL_2_A.test.cpp
   - test/src/math/bigint/NTL_2_B.test.cpp
 documentation_of: library/math/bigint.hpp
 layout: document

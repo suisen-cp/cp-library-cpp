@@ -266,9 +266,9 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
+  - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
   - test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
   - test/src/linear_algebra/array_matrix/matrix_det.test.cpp
-  - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
 documentation_of: library/linear_algebra/array_matrix.hpp
 layout: document
 title: Array Matrix

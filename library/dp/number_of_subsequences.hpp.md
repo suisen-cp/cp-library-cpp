@@ -47,8 +47,6 @@ data:
   - test/src/dp/number_of_subsequences/number_of_subsequences.test.cpp
 documentation_of: library/dp/number_of_subsequences.hpp
 layout: document
-redirect_from:
-- /library/library/dp/number_of_subsequences.hpp
-- /library/library/dp/number_of_subsequences.hpp.html
-title: library/dp/number_of_subsequences.hpp
+title: Number Of Subsequences
 ---
+## Number Of Subsequences

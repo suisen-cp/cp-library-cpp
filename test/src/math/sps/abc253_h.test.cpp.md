@@ -1,36 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/linear_algebra/count_spanning_trees.hpp
     title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
       \u6570\u3048\u4E0A\u3052"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -40,14 +40,14 @@ data:
   - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/util/subset_iterator.hpp
     title: Subset Iterator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc253/tasks/abc253_Ex
@@ -80,10 +80,11 @@ data:
     \                }\n            }\n            auto operator!=(std::nullptr_t)\
     \ const { return t < n; }\n        };\n        uint32_t s, k;\n        all_subset_k(uint32_t\
     \ s, uint32_t k) : s(s), k(k) {\n            assert(s != std::numeric_limits<uint32_t>::max());\n\
-    \        }\n        auto begin() { return all_subset_k_iter(s, k); }\n       \
-    \ auto end() { return nullptr; }\n    };\n\n    struct all_subset_k_64 {\n   \
-    \     struct all_subset_k_iter_64 {\n            const uint64_t n, s;\n      \
-    \      const uint32_t k;\n            uint64_t t;\n            __attribute__((target(\"\
+    \        }\n        static all_subset_k nCk(uint32_t n, uint32_t k) { return all_subset_k((uint32_t(1)\
+    \ << n) - 1, k); }\n        auto begin() { return all_subset_k_iter(s, k); }\n\
+    \        auto end() { return nullptr; }\n    };\n\n    struct all_subset_k_64\
+    \ {\n        struct all_subset_k_iter_64 {\n            const uint64_t n, s;\n\
+    \            const uint32_t k;\n            uint64_t t;\n            __attribute__((target(\"\
     avx2\")))\n            all_subset_k_iter_64(uint64_t s, uint32_t k) : n(uint64_t(1)\
     \ << _mm_popcnt_u64(s)), s(s), k(k), t((uint64_t(1) << k) - 1) {}\n          \
     \  __attribute__((target(\"bmi2\")))\n            auto operator*() const { return\
@@ -664,8 +665,8 @@ data:
   isVerificationFile: true
   path: test/src/math/sps/abc253_h.test.cpp
   requiredBy: []
-  timestamp: '2022-07-27 16:21:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-21 18:23:10+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/sps/abc253_h.test.cpp
 layout: document

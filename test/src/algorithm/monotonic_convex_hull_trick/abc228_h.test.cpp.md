@@ -5,9 +5,6 @@ data:
     path: library/algorithm/monotonic_convex_hull_trick.hpp
     title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3059\u308B Convex\
       \ Hull Trick"
-  - icon: ':question:'
-    path: library/type_traits/type_traits.hpp
-    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,125 +18,103 @@ data:
   bundledCode: "#line 1 \"test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/abc228/tasks/abc228_h\"\n\n#include\
     \ <algorithm>\n#include <iostream>\n#include <vector>\n\n#line 1 \"library/algorithm/monotonic_convex_hull_trick.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <limits>\n#include <queue>\n\n#line 1 \"\
-    library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\
-    \n#include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
-    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
-    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
-    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
-    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
-    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
-    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
-    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
-    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
-    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
-    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
-    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
-    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
-    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
-    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 9 \"library/algorithm/monotonic_convex_hull_trick.hpp\"\
-    \n\nnamespace suisen {\n\ntemplate <typename T, bool is_min_query = true>\nclass\
-    \ MonotonicCHT {\n    using MultT = safely_multipliable_t<T>;\n\n    public:\n\
-    \        MonotonicCHT() {}\n    \n        void add_line(T slope, T intercept)\
-    \ {\n            if constexpr (not is_min_query) {\n                slope = -slope;\n\
-    \                intercept = -intercept;\n            }\n            if (slope\
-    \ <= min_slope) {\n                min_slope = slope;\n                max_slope\
-    \ = std::max(max_slope, slope);\n                add_right(slope, intercept);\n\
-    \            } else if (slope >= max_slope) {\n                max_slope = slope;\n\
-    \                min_slope = std::min(min_slope, slope);\n                add_left(slope,\
-    \ intercept);\n            } else assert(false);\n        }\n\n        MultT query(T\
-    \ x) const {\n            assert(not (called_ascending_query or called_descending_query));\n\
-    \            called_general_query = true;\n            assert(lines.size() > 0);\n\
-    \            int l = -1, r = lines.size();\n            while (r - l >= 3) {\n\
-    \                int ml = l + (r - l) / 3;\n                int mr = r - (r -\
-    \ l) / 3;\n                if (eval(x, ml) < eval(x, mr)) {\n                \
-    \    r = mr;\n                } else {\n                    l = ml;\n        \
-    \        }\n            }\n            assert(r - l == 2);\n            MultT\
-    \ res = eval(l + 1);\n            return is_min_query ? res : -res;\n        }\n\
-    \n        MultT ascending_query(T x) {\n            assert(not (called_general_query\
-    \ or called_descending_query));\n            if (not called_ascending_query) {\n\
-    \                prev_query = x;\n                called_ascending_query = true;\n\
-    \            }\n            assert(x >= prev_query);\n            prev_query =\
-    \ x;\n            assert(lines.size() > 0);\n            MultT res = eval(x, 0);\n\
-    \            while (lines.size() >= 2) {\n                MultT nxt_res = eval(x,\
-    \ 1);\n                if (res < nxt_res) break;\n                lines.pop_front();\n\
-    \                std::swap(res, nxt_res);\n            }\n            return is_min_query\
-    \ ? res : -res;\n        }\n\n        MultT descending_query(T x) {\n        \
-    \    assert(not (called_general_query or called_ascending_query));\n         \
-    \   if (not called_descending_query) {\n                prev_query = x;\n    \
-    \            called_descending_query = true;\n            }\n            assert(x\
-    \ <= prev_query);\n            prev_query = x;\n            assert(lines.size()\
-    \ > 0);\n            MultT res = eval(x, lines.size() - 1);\n            while\
-    \ (lines.size() >= 2) {\n                MultT nxt_res = eval(x, lines.size()\
-    \ - 2);\n                if (res < nxt_res) break;\n                lines.pop_back();\n\
-    \                std::swap(res, nxt_res);\n            }\n            return is_min_query\
-    \ ? res : -res;\n        }\n\n    private:\n        std::deque<std::pair<T, T>>\
-    \ lines;\n        T max_slope = std::numeric_limits<T>::min();\n        T min_slope\
-    \ = std::numeric_limits<T>::max();\n\n        bool called_general_query = false;\n\
-    \        bool called_ascending_query = false;\n        bool called_descending_query\
-    \ = false;\n\n        T prev_query = 0;\n\n        // check if ma * x + mb is\
-    \ necessary.\n        bool is_necessary(T la, T lb, T ma, T mb, T ra, T rb) {\n\
-    \            return (MultT) (lb - mb) * (ra - ma) > (MultT) (mb - rb) * (ma -\
-    \ la);\n        }\n\n        void add_left(T slope, T intercept) {\n         \
-    \   while (lines.size()) {\n                auto it = lines.begin();\n       \
-    \         const auto [a, b] = *it;\n                if (a == slope) {\n      \
-    \              if (intercept >= b) return;\n                } else {\n       \
-    \             if (++it == lines.end() or is_necessary(it->first, it->second, a,\
-    \ b, slope, intercept)) break;\n                }\n                lines.pop_front();\n\
-    \            }\n            lines.emplace_front(slope, intercept);\n        }\n\
-    \n        void add_right(T slope, T intercept) {\n            while (lines.size())\
-    \ {\n                auto it = lines.rbegin();\n                const auto [a,\
-    \ b] = *it;\n                if (a == slope) {\n                    if (intercept\
-    \ >= b) return;\n                } else {\n                    if (++it == lines.rend()\
-    \ or is_necessary(slope, intercept, a, b, it->first, it->second)) break;\n   \
-    \             }\n                lines.pop_back();\n            }\n          \
-    \  lines.emplace_back(slope, intercept);\n        }\n\n        MultT eval(T x,\
-    \ int i) {\n            const auto &[a, b] = lines[i];\n            return (MultT)\
-    \ a * x + b;\n        }\n};\n\n} // namespace suisen\n\n\n#line 8 \"test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp\"\
+    \n\n\n\n#include <cassert>\n#include <limits>\n#include <queue>\n#include <type_traits>\n\
+    \nnamespace suisen {\n    namespace internal::monotonic_cht { struct query_tag_base\
+    \ {}; }\n    struct inc_query_tag : internal::monotonic_cht::query_tag_base {};\n\
+    \    struct dec_query_tag : internal::monotonic_cht::query_tag_base {};\n    struct\
+    \ non_monotonic_query_tag : internal::monotonic_cht::query_tag_base {};\n\n  \
+    \  template <typename T, bool is_min_query, typename QueryTag,\n        std::enable_if_t<std::is_base_of_v<internal::monotonic_cht::query_tag_base,\
+    \ QueryTag>, std::nullptr_t> = nullptr\n    >\n    struct MonotonicCHT {\n   \
+    \     using value_type = T;\n        using query_tag = QueryTag;\n\n        MonotonicCHT()\
+    \ = default;\n    private:\n        template <typename, typename = void>\n   \
+    \     struct query_impl {};\n        template <typename Dummy>\n        struct\
+    \ query_impl<inc_query_tag, Dummy> {\n            value_type prev_x = std::numeric_limits<value_type>::min();\n\
+    \            value_type operator()(MonotonicCHT* ptr, value_type x) {\n      \
+    \          assert(x >= prev_x);\n                prev_x = x;\n               \
+    \ assert(ptr->lines.size());\n                value_type res = ptr->eval(x, 0);\n\
+    \                while (ptr->lines.size() >= 2) {\n                    value_type\
+    \ nxt_res = ptr->eval(x, 1);\n                    if (res < nxt_res) break;\n\
+    \                    ptr->lines.pop_front();\n                    std::swap(res,\
+    \ nxt_res);\n                }\n                return res;\n            }\n \
+    \       };\n        template <typename Dummy>\n        struct query_impl<dec_query_tag,\
+    \ Dummy> {\n            value_type prev_x = std::numeric_limits<value_type>::max();\n\
+    \            value_type operator()(MonotonicCHT* ptr, value_type x) {\n      \
+    \          assert(x <= prev_x);\n                prev_x = x;\n               \
+    \ assert(ptr->lines.size());\n                value_type res = ptr->eval(x, ptr->lines.size()\
+    \ - 1);\n                while (ptr->lines.size() >= 2) {\n                  \
+    \  value_type nxt_res = ptr->eval(x, ptr->lines.size() - 2);\n               \
+    \     if (res < nxt_res) break;\n                    ptr->lines.pop_back();\n\
+    \                    std::swap(res, nxt_res);\n                }\n           \
+    \     return res;\n            }\n        };\n        template <typename Dummy>\n\
+    \        struct query_impl<non_monotonic_query_tag, Dummy> {\n            value_type\
+    \ operator()(MonotonicCHT* ptr, value_type x) {\n                assert(ptr->lines.size());\n\
+    \                int l = -1, r = ptr->lines.size();\n                while (r\
+    \ - l >= 3) {\n                    int ml = l + (r - l) / 3;\n               \
+    \     int mr = r - (r - l) / 3;\n                    if (ptr->eval(x, ml) < ptr->eval(x,\
+    \ mr)) {\n                        r = mr;\n                    } else {\n    \
+    \                    l = ml;\n                    }\n                }\n     \
+    \           assert(r - l == 2);\n                return ptr->eval(x, l + 1);\n\
+    \            }\n        };\n    public:\n        void add_line(value_type slope,\
+    \ value_type intercept) {\n            if constexpr (not is_min_query) slope =\
+    \ -slope, intercept = -intercept;\n            if (slope <= min_slope) {\n   \
+    \             min_slope = slope, max_slope = std::max(max_slope, slope);\n   \
+    \             add_right(slope, intercept);\n            } else if (slope >= max_slope)\
+    \ {\n                max_slope = slope, min_slope = std::min(min_slope, slope);\n\
+    \                add_left(slope, intercept);\n            } else assert(false);\n\
+    \        }\n\n        value_type query(value_type x) {\n            return (is_min_query\
+    \ ? 1 : -1) * _query(this, x);\n        }\n    private:\n        std::deque<std::pair<value_type,\
+    \ value_type>> lines;\n        value_type max_slope = std::numeric_limits<value_type>::min();\n\
+    \        value_type min_slope = std::numeric_limits<value_type>::max();\n    \
+    \    query_impl<query_tag> _query{};\n\n        // check if ma * x + mb is necessary.\n\
+    \        bool is_necessary(value_type la, value_type lb, value_type ma, value_type\
+    \ mb, value_type ra, value_type rb) {\n            using MultT = std::conditional_t<std::is_integral_v<value_type>,\
+    \ __int128_t, value_type>;\n            return MultT(lb - mb) * (ra - ma) > MultT(mb\
+    \ - rb) * (ma - la);\n        }\n\n        void add_left(value_type slope, value_type\
+    \ intercept) {\n            while (lines.size()) {\n                auto it =\
+    \ lines.begin();\n                const auto [a, b] = *it;\n                if\
+    \ (a == slope) {\n                    if (intercept >= b) return;\n          \
+    \      } else {\n                    if (++it == lines.end() or is_necessary(it->first,\
+    \ it->second, a, b, slope, intercept)) break;\n                }\n           \
+    \     lines.pop_front();\n            }\n            lines.emplace_front(slope,\
+    \ intercept);\n        }\n\n        void add_right(value_type slope, value_type\
+    \ intercept) {\n            while (lines.size()) {\n                auto it =\
+    \ lines.rbegin();\n                const auto [a, b] = *it;\n                if\
+    \ (a == slope) {\n                    if (intercept >= b) return;\n          \
+    \      } else {\n                    if (++it == lines.rend() or is_necessary(slope,\
+    \ intercept, a, b, it->first, it->second)) break;\n                }\n       \
+    \         lines.pop_back();\n            }\n            lines.emplace_back(slope,\
+    \ intercept);\n        }\n\n        value_type eval(value_type x, int i) {\n \
+    \           const auto& [a, b] = lines[i];\n            return a * x + b;\n  \
+    \      }\n    };\n\n    template <typename T, typename QueryTag>\n    using MinMonotonicCHT\
+    \ = MonotonicCHT<T, true, QueryTag>;\n    template <typename T, typename QueryTag>\n\
+    \    using MaxMonotonicCHT = MonotonicCHT<T, false, QueryTag>;\n} // namespace\
+    \ suisen\n\n\n#line 8 \"test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp\"\
     \n\nconstexpr int M = 1000000;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, x;\n    std::cin >> n >> x;\n\n    std::array<long\
     \ long, M + 1> cs{};\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n \
-    \       std::cin >> a >> c;\n        cs[a] += c;\n    }\n\n    suisen::MonotonicCHT<long\
-    \ long> cht;\n    \n    long long ans = 0;\n    long long s = 0, t = 0;\n    cht.add_line(-s,\
-    \ t);\n    for (long long a = 0; a <= M; ++a) if (long long c = cs[a]; c) {\n\
-    \        s += c, t += a * c;\n        ans = cht.ascending_query(a) + x + a * s\
-    \ - t;\n        cht.add_line(-s, ans + t);\n    }\n    std::cout << ans << std::endl;\n\
-    \    \n    return 0;\n}\n"
+    \       std::cin >> a >> c;\n        cs[a] += c;\n    }\n\n    suisen::MinMonotonicCHT<long\
+    \ long, suisen::inc_query_tag> cht;\n    \n    long long ans = 0;\n    long long\
+    \ s = 0, t = 0;\n    cht.add_line(-s, t);\n    for (long long a = 0; a <= M; ++a)\
+    \ if (long long c = cs[a]; c) {\n        s += c, t += a * c;\n        ans = cht.query(a)\
+    \ + x + a * s - t;\n        cht.add_line(-s, ans + t);\n    }\n    std::cout <<\
+    \ ans << std::endl;\n    \n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc228/tasks/abc228_h\"\n\n\
     #include <algorithm>\n#include <iostream>\n#include <vector>\n\n#include \"library/algorithm/monotonic_convex_hull_trick.hpp\"\
     \n\nconstexpr int M = 1000000;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, x;\n    std::cin >> n >> x;\n\n    std::array<long\
     \ long, M + 1> cs{};\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n \
-    \       std::cin >> a >> c;\n        cs[a] += c;\n    }\n\n    suisen::MonotonicCHT<long\
-    \ long> cht;\n    \n    long long ans = 0;\n    long long s = 0, t = 0;\n    cht.add_line(-s,\
-    \ t);\n    for (long long a = 0; a <= M; ++a) if (long long c = cs[a]; c) {\n\
-    \        s += c, t += a * c;\n        ans = cht.ascending_query(a) + x + a * s\
-    \ - t;\n        cht.add_line(-s, ans + t);\n    }\n    std::cout << ans << std::endl;\n\
-    \    \n    return 0;\n}"
+    \       std::cin >> a >> c;\n        cs[a] += c;\n    }\n\n    suisen::MinMonotonicCHT<long\
+    \ long, suisen::inc_query_tag> cht;\n    \n    long long ans = 0;\n    long long\
+    \ s = 0, t = 0;\n    cht.add_line(-s, t);\n    for (long long a = 0; a <= M; ++a)\
+    \ if (long long c = cs[a]; c) {\n        s += c, t += a * c;\n        ans = cht.query(a)\
+    \ + x + a * s - t;\n        cht.add_line(-s, ans + t);\n    }\n    std::cout <<\
+    \ ans << std::endl;\n    \n    return 0;\n}"
   dependsOn:
   - library/algorithm/monotonic_convex_hull_trick.hpp
-  - library/type_traits/type_traits.hpp
   isVerificationFile: true
   path: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
   requiredBy: []
-  timestamp: '2022-06-11 19:15:48+09:00'
+  timestamp: '2022-08-21 18:20:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp

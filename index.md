@@ -1,6 +1,14 @@
 ---
 data:
   libraryCategories:
+  - name: library/algebra/monoid
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/algebra/monoid/affine.hpp
+      title: library/algebra/monoid/affine.hpp
+    - icon: ':warning:'
+      path: library/algebra/monoid/affine_clamp.hpp
+      title: library/algebra/monoid/affine_clamp.hpp
   - name: library/algorithm
     pages:
     - icon: ':heavy_check_mark:'
@@ -98,7 +106,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/semi_relaxed_convolution.hpp
       title: Semi Relaxed Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -137,7 +145,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/lazy_eval_map.hpp
       title: Lazy Eval Map
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/permutation_tree.hpp
       title: Permutation Tree
     - icon: ':heavy_check_mark:'
@@ -230,7 +238,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -258,10 +266,10 @@ data:
       path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
       title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
         \u5834\u5408)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree_beats.hpp
       title: Segment Tree Beats
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\
         \u5B57\u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
@@ -328,19 +336,19 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/dp/longest_increasing_subsequence.hpp
-      title: library/dp/longest_increasing_subsequence.hpp
+      title: Longest Increasing Subsequence
     - icon: ':heavy_check_mark:'
       path: library/dp/number_of_subsequences.hpp
-      title: library/dp/number_of_subsequences.hpp
+      title: Number Of Subsequences
   - name: library/geom
     pages:
     - icon: ':heavy_check_mark:'
       path: library/geom/closest_pair.hpp
       title: "\u6700\u8FD1\u70B9\u5BFE"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/geom/convex_hull.hpp
       title: "\u51F8\u5305"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/geom/geometry.hpp
       title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
     - icon: ':warning:'
@@ -381,6 +389,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/dulmage_mendelsohn_decomposition.hpp
       title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
+    - icon: ':x:'
+      path: library/graph/enumerate_cliques.hpp
+      title: library/graph/enumerate_cliques.hpp
     - icon: ':question:'
       path: library/graph/enumerate_triangles.hpp
       title: "\u4E09\u89D2\u5F62\u5217\u6319"
@@ -469,7 +480,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/circulant_matrix.hpp
       title: "Circulant Matrix (\u5DE1\u56DE\u884C\u5217)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/linear_algebra/count_spanning_trees.hpp
       title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
         \u6570\u3048\u4E0A\u3052"
@@ -479,7 +490,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/hessenberg_reduction.hpp
       title: Hessenberg Reduction
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/linear_algebra/matrix.hpp
       title: Matrix
     - icon: ':x:'
@@ -493,13 +504,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
     - icon: ':heavy_check_mark:'
@@ -508,7 +519,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/sps.hpp
       title: Set Power Series
     - icon: ':heavy_check_mark:'
@@ -570,7 +581,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
     - icon: ':heavy_check_mark:'
@@ -657,7 +668,7 @@ data:
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/transform/kronecker_power.hpp
       title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
         \u5909\u63DB (\u4EEE\u79F0)"
@@ -665,7 +676,7 @@ data:
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/transform/subset.hpp
       title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -694,7 +705,7 @@ data:
       title: Contour Aggregation Query On Tree Base
     - icon: ':warning:'
       path: library/tree/contour_sum.hpp
-      title: library/tree/contour_sum.hpp
+      title: Contour Sum
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
@@ -720,22 +731,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: Lowest Common Ancestor
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/tree/point_add_range_contour_sum_invertible.hpp
-      title: library/tree/point_add_range_contour_sum_invertible.hpp
+      title: Point Add Range Contour Sum Invertible
     - icon: ':warning:'
       path: library/tree/point_get_range_contour_add_invertible.hpp
-      title: library/tree/point_get_range_contour_add_invertible.hpp
+      title: Point Get Range Contour Add Invertible
     - icon: ':heavy_check_mark:'
       path: library/tree/point_get_range_contour_operate.hpp
-      title: library/tree/point_get_range_contour_operate.hpp
+      title: Point Get Range Contour Operate
     - icon: ':heavy_check_mark:'
       path: library/tree/point_set_range_contour_product.hpp
       title: "Range Contour Aggregation Query On Tree (\u6728\u4E0A\u306E\u7B49\u9AD8\
         \u7DDA\u96C6\u7D04\u30AF\u30A8\u30EA)"
     - icon: ':warning:'
       path: library/tree/range_contour_sum_invertible.hpp
-      title: library/tree/range_contour_sum_invertible.hpp
+      title: Range Contour Sum Invertible
     - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
@@ -797,7 +808,7 @@ data:
       path: library/util/run_length_encoder.hpp
       title: "Run Length Encoder (\u30E9\u30F3\u30EC\u30F3\u30AF\u30B9\u5727\u7E2E\
         )"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
     - icon: ':warning:'
@@ -812,7 +823,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_ops.hpp
       title: Tuple Ops
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/update_proxy_object.hpp
       title: Update Proxy Object
     - icon: ':warning:'
@@ -855,8 +866,23 @@ data:
   - name: test/src/algorithm/monotonic_convex_hull_trick
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
-      title: test/src/algorithm/monotonic_convex_hull_trick/EDPCE_Z.test.cpp
+      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_dec.test.cpp
+      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_dec.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_inc.test.cpp
+      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_inc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_nonmonotonic.test.cpp
+      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_nonmonotonic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_dec.test.cpp
+      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_dec.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_inc.test.cpp
+      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_inc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_nonmonotonic.test.cpp
+      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_nonmonotonic.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
       title: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
@@ -1018,6 +1044,9 @@ data:
   - name: test/src/datastructure/deque_aggregation
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
+      title: test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/deque_aggregation/queue_operate_all_composite.test.cpp
       title: test/src/datastructure/deque_aggregation/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1078,6 +1107,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
       title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - name: test/src/datastructure/permutation_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/permutation_tree/common_interval_decomposition_tree.test.cpp
+      title: test/src/datastructure/permutation_tree/common_interval_decomposition_tree.test.cpp
   - name: test/src/datastructure/segment_tree/commutative_dual_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1177,7 +1211,7 @@ data:
       title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - name: test/src/datastructure/segment_tree/segment_tree_beats
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1185,7 +1219,7 @@ data:
       title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - name: test/src/datastructure/segment_tree/sparse_lazy_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1279,72 +1313,72 @@ data:
       title: test/src/geom/closest_pair/CGL_5_A.test.cpp
   - name: test/src/geom/convex_hull
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/convex_hull/CGL_4_A.test.cpp
       title: test/src/geom/convex_hull/CGL_4_A.test.cpp
   - name: test/src/geom/geometry
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_1_A.test.cpp
       title: test/src/geom/geometry/CGL_1_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_1_B.test.cpp
       title: test/src/geom/geometry/CGL_1_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_1_C.test.cpp
       title: test/src/geom/geometry/CGL_1_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_2_A.test.cpp
       title: test/src/geom/geometry/CGL_2_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_2_B.test.cpp
       title: test/src/geom/geometry/CGL_2_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_2_C.test.cpp
       title: test/src/geom/geometry/CGL_2_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_2_D.test.cpp
       title: test/src/geom/geometry/CGL_2_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_3_A.test.cpp
       title: test/src/geom/geometry/CGL_3_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_3_B.test.cpp
       title: test/src/geom/geometry/CGL_3_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_3_C.test.cpp
       title: test/src/geom/geometry/CGL_3_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_4_B.test.cpp
       title: test/src/geom/geometry/CGL_4_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_4_C.test.cpp
       title: test/src/geom/geometry/CGL_4_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_7_A.test.cpp
       title: test/src/geom/geometry/CGL_7_A.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_7_B.test.cpp
       title: test/src/geom/geometry/CGL_7_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_7_C.test.cpp
       title: test/src/geom/geometry/CGL_7_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_7_D.test.cpp
       title: test/src/geom/geometry/CGL_7_D.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_7_E.test.cpp
       title: test/src/geom/geometry/CGL_7_E.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_7_F.test.cpp
       title: test/src/geom/geometry/CGL_7_F.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_7_G.test.cpp
       title: test/src/geom/geometry/CGL_7_G.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_7_H.test.cpp
       title: test/src/geom/geometry/CGL_7_H.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/geometry/CGL_7_I.test.cpp
       title: test/src/geom/geometry/CGL_7_I.test.cpp
   - name: test/src/geom/segment_intersections
@@ -1381,6 +1415,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
       title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
+  - name: test/src/graph/enumerate_cliques
+    pages:
+    - icon: ':x:'
+      path: test/src/graph/enumerate_cliques/enumerate_cliques.test.cpp
+      title: test/src/graph/enumerate_cliques/enumerate_cliques.test.cpp
   - name: test/src/graph/enumerate_triangles
     pages:
     - icon: ':x:'
@@ -1574,7 +1613,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/sps/abc236_h.test.cpp
       title: test/src/math/sps/abc236_h.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/sps/abc253_h.test.cpp
       title: test/src/math/sps/abc253_h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1956,6 +1995,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
       title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - name: test/src/tree/point_add_range_contour_sum_invertible
+    pages:
+    - icon: ':x:'
+      path: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
+      title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
   - name: test/src/tree/point_get_range_contour_operate
     pages:
     - icon: ':heavy_check_mark:'
@@ -1989,13 +2033,13 @@ data:
       title: test/src/util/coordinate_compressor/dummy.test.cpp
   - name: test/src/util/subset_iterator
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
       title: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/util/subset_iterator/dummy_all_subset.test.cpp
       title: test/src/util/subset_iterator/dummy_all_subset.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
       title: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
 layout: toppage

@@ -251,10 +251,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/transform/multiple/divide_both.test.cpp
+  - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
   - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
   - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
-  - test/src/algorithm/mo/abc238_g.test.cpp
 documentation_of: library/number/sieve_of_eratosthenes.hpp
 layout: document
 title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"

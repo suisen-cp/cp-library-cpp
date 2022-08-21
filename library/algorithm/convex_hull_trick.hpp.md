@@ -92,7 +92,9 @@ data:
     \ r->a) {\n                r->m = r->b <= l->b ? inf : -inf;\n            } else\
     \ {\n                r->m = internal::convex_hull_trick::div(r->b - l->b, l->a\
     \ - r->a);\n            }\n            return l->m > r->m;\n        }\n    };\n\
-    \n} // namespace suisen\n\n\n"
+    \    template <typename T>\n    using MinCHT = ConvexHullTrick<T, /* is_min_query\
+    \ = */ true>;\n    template <typename T>\n    using MaxCHT = ConvexHullTrick<T,\
+    \ /* is_min_query = */ false>;\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_CHT\n#define SUISEN_CHT\n\n#include <cassert>\n#include <limits>\n\
     #include <set>\n\n#include \"library/type_traits/type_traits.hpp\"\n\nnamespace\
     \ suisen {\n    namespace internal::convex_hull_trick {\n        template <typename\
@@ -132,18 +134,20 @@ data:
     \ r->a) {\n                r->m = r->b <= l->b ? inf : -inf;\n            } else\
     \ {\n                r->m = internal::convex_hull_trick::div(r->b - l->b, l->a\
     \ - r->a);\n            }\n            return l->m > r->m;\n        }\n    };\n\
-    \n} // namespace suisen\n\n#endif // SUISEN_CHT\n"
+    \    template <typename T>\n    using MinCHT = ConvexHullTrick<T, /* is_min_query\
+    \ = */ true>;\n    template <typename T>\n    using MaxCHT = ConvexHullTrick<T,\
+    \ /* is_min_query = */ false>;\n} // namespace suisen\n\n#endif // SUISEN_CHT\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/algorithm/convex_hull_trick.hpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-08-21 18:20:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
   - test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
   - test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
-  - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
 documentation_of: library/algorithm/convex_hull_trick.hpp
 layout: document
 title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3057\u306A\u3044 Convex\

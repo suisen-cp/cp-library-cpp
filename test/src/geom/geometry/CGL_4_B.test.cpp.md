@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/geom/geometry.hpp
     title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
@@ -84,19 +84,24 @@ data:
     \        Point ba = a - b, bc = c - b;\n        if (sgn(dot(ba, bc)) == Sign::NEGATIVE)\
     \ return ISP::FRONT;\n        return ISP::MIDDLE;\n    }\n\n    struct Line {\n\
     \        Point a, b;\n        Line() : Line(ZERO, ZERO) {}\n        Line(const\
-    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Ray {\n\
-    \        Point a, b;\n        Ray() : Ray(ZERO, ZERO) {}\n        Ray(const Point\
-    \ &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Segment {\n\
-    \        Point a, b;\n        Segment() : Segment(ZERO, ZERO) {}\n        Segment(const\
-    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Circle\
-    \ {\n        Point center;\n        coordinate_t radius;\n        Circle() : Circle(ZERO,\
-    \ 0) {}\n        Circle(const Point &c, const coordinate_t &r) : center(c), radius(r)\
-    \ {}\n    };\n\n    // Triangle\n    \n    coordinate_t signed_area(const Point\
-    \ &a, const Point &b, const Point &c) {\n        return det(b - a, c - a) / 2;\n\
-    \    }\n    coordinate_t area(const Point &a, const Point &b, const Point &c)\
-    \ {\n        return std::abs(signed_area(a, b, c));\n    }\n    Point pG(const\
-    \ Point &a, const Point &b, const Point &c) {\n        return (a + b + c) / 3;\n\
-    \    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
+    \ Point &from, const Point &to) : a(from), b(to) {}\n        // coef_x * x + coef_y\
+    \ * y + cnst = 0\n        Line(coordinate_t coef_x, coordinate_t coef_y, coordinate_t\
+    \ cnst) {\n            if (not equals(coef_x, 0.)) {\n                a = { (coef_y\
+    \ - cnst) / coef_x, -1. };\n                b = { (-coef_y - cnst) / coef_x, +1.\
+    \ };\n            } else {\n                a = { -1., (coef_x - cnst) / coef_y\
+    \ };\n                b = { +1., (-coef_x - cnst) / coef_y };\n            }\n\
+    \        }\n    };\n    struct Ray {\n        Point a, b;\n        Ray() : Ray(ZERO,\
+    \ ZERO) {}\n        Ray(const Point &from, const Point &to) : a(from), b(to) {}\n\
+    \    };\n    struct Segment {\n        Point a, b;\n        Segment() : Segment(ZERO,\
+    \ ZERO) {}\n        Segment(const Point &from, const Point &to) : a(from), b(to)\
+    \ {}\n    };\n    struct Circle {\n        Point center;\n        coordinate_t\
+    \ radius;\n        Circle() : Circle(ZERO, 0) {}\n        Circle(const Point &c,\
+    \ const coordinate_t &r) : center(c), radius(r) {}\n    };\n\n    // Triangle\n\
+    \    \n    coordinate_t signed_area(const Point &a, const Point &b, const Point\
+    \ &c) {\n        return det(b - a, c - a) / 2;\n    }\n    coordinate_t area(const\
+    \ Point &a, const Point &b, const Point &c) {\n        return std::abs(signed_area(a,\
+    \ b, c));\n    }\n    Point pG(const Point &a, const Point &b, const Point &c)\
+    \ {\n        return (a + b + c) / 3;\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
     \    Circle pI(const Point &a, const Point &b, const Point &c) {\n        auto\
     \ la = std::abs(b - c), lb = std::abs(c - a), lc = std::abs(a - b);\n        auto\
     \ l = la + lb + lc;\n        la /= l, lb /= l, lc /= l;\n        Point center\
@@ -329,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/src/geom/geometry/CGL_4_B.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 19:58:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-21 18:24:44+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/geom/geometry/CGL_4_B.test.cpp
 layout: document

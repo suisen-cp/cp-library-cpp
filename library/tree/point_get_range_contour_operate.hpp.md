@@ -237,8 +237,6 @@ data:
   - test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
 documentation_of: library/tree/point_get_range_contour_operate.hpp
 layout: document
-redirect_from:
-- /library/library/tree/point_get_range_contour_operate.hpp
-- /library/library/tree/point_get_range_contour_operate.hpp.html
-title: library/tree/point_get_range_contour_operate.hpp
+title: Point Get Range Contour Operate
 ---
+## Point Get Range Contour Operate

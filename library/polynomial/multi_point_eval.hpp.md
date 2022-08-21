@@ -63,19 +63,19 @@ data:
   isVerificationFile: false
   path: library/polynomial/multi_point_eval.hpp
   requiredBy:
+  - library/polynomial/lagrange_interpolation.hpp
   - library/math/product_of_differences.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
-  - library/polynomial/lagrange_interpolation.hpp
   timestamp: '2022-07-21 04:00:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
+  - test/src/math/product_of_differences/yuki1938.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/polynomial/multi_point_eval.hpp
 layout: document
 title: Multi Point Evaluation

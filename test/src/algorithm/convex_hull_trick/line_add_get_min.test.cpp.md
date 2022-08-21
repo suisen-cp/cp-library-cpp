@@ -92,7 +92,9 @@ data:
     \ r->a) {\n                r->m = r->b <= l->b ? inf : -inf;\n            } else\
     \ {\n                r->m = internal::convex_hull_trick::div(r->b - l->b, l->a\
     \ - r->a);\n            }\n            return l->m > r->m;\n        }\n    };\n\
-    \n} // namespace suisen\n\n\n#line 8 \"test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp\"\
+    \    template <typename T>\n    using MinCHT = ConvexHullTrick<T, /* is_min_query\
+    \ = */ true>;\n    template <typename T>\n    using MaxCHT = ConvexHullTrick<T,\
+    \ /* is_min_query = */ false>;\n} // namespace suisen\n\n\n#line 8 \"test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp\"\
     \nusing suisen::ConvexHullTrick;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    ConvexHullTrick<long\
     \ long> cht;\n    for (int i = 0; i < n; ++i) {\n        long long a, b;\n   \
@@ -119,7 +121,7 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-08-21 18:20:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp

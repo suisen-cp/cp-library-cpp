@@ -77,8 +77,6 @@ data:
   - test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence.test.cpp
 documentation_of: library/dp/longest_increasing_subsequence.hpp
 layout: document
-redirect_from:
-- /library/library/dp/longest_increasing_subsequence.hpp
-- /library/library/dp/longest_increasing_subsequence.hpp.html
-title: library/dp/longest_increasing_subsequence.hpp
+title: Longest Increasing Subsequence
 ---
+## Longest Increasing Subsequence

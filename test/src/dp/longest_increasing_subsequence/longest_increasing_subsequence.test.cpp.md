@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/dp/longest_increasing_subsequence.hpp
-    title: library/dp/longest_increasing_subsequence.hpp
+    title: Longest Increasing Subsequence
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

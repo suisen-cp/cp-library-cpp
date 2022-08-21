@@ -5,10 +5,13 @@ data:
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/point_add_range_contour_sum_invertible.hpp\"\
@@ -130,30 +133,30 @@ data:
     \ val);\n            int v = _par[u];\n            const auto it_end = _nodes[u].info_it;\n\
     \            for (auto it = _info[u].begin(); it != it_end; ++it) _subtrees[std::exchange(v,\
     \ _par[v])][it->child_index].add(it->dep, val);\n        }\n        // O((logN)^2)\n\
-    \        void set(int u, const value_type& new_val) {\n            u = _ord[u];\n\
-    \            add(u, _add(new_val, _neg(get(u))));\n        }\n        // O((logN)^2)\n\
-    \        value_type sum(int u, int dl, int dr) const {\n            u = _ord[u];\n\
-    \            value_type res = dl <= 0 and 0 < dr ? _nodes[u].dat : _zero();\n\
-    \            res = _add(res, _subtrees[u][0].sum(dl - 1, dr - 1));\n         \
-    \   res = _add(res, _subtrees[u][1].sum(dl - 1, dr - 1));\n            int v =\
-    \ _par[u];\n            const auto it_end = _nodes[u].info_it;\n            for\
-    \ (auto it = _info[u].begin(); it != it_end; ++it) {\n                const int\
-    \ ql = dl - it->dep - 1, qr = dr - it->dep - 1;\n                if (v < _n and\
-    \ ql <= 0 and 0 < qr) res = _add(res, _nodes[v].dat);\n                res = _add(res,\
-    \ _subtrees[std::exchange(v, _par[v])][it->child_index ^ 1].sum(ql - 1, qr - 1));\n\
-    \            }\n            return res;\n        }\n\n    private:\n        int\
-    \ _n;\n        std::vector<TreeNode> _nodes;\n        std::vector<int> _par;\n\
-    \        std::vector<std::array<AuxInfo, 30>> _info;\n        std::vector<std::array<sequence_type,\
-    \ 2>> _subtrees;\n\n        std::vector<int> _ord;\n\n        void reorder(int\
-    \ s) {\n            _ord.assign(_n, -1);\n            int t = 0;\n           \
-    \ std::deque<int> dq{ s };\n            while (dq.size()) {\n                int\
-    \ u = dq.front(); dq.pop_front();\n                _ord[u] = t++;\n          \
-    \      for (int v : _nodes[u].adj) if (_ord[v] < 0) dq.push_back(v);\n       \
-    \     }\n            assert(t == _n);\n            std::vector<TreeNode> tmp(_n);\n\
-    \            for (int i = 0; i < _n; ++i) {\n                for (int& e : _nodes[i].adj)\
-    \ e = _ord[e];\n                _nodes[i].info_it = _info[_ord[i]].begin();\n\
-    \                tmp[_ord[i]] = std::move(_nodes[i]);\n            }\n       \
-    \     _nodes.swap(tmp);\n        }\n    };\n} // namespace suisen\n\n\n"
+    \        void set(int u, const value_type& new_val) {\n            add(u, _add(new_val,\
+    \ _neg(get(u))));\n        }\n        // O((logN)^2)\n        value_type sum(int\
+    \ u, int dl, int dr) const {\n            u = _ord[u];\n            value_type\
+    \ res = dl <= 0 and 0 < dr ? _nodes[u].dat : _zero();\n            res = _add(res,\
+    \ _subtrees[u][0].sum(dl - 1, dr - 1));\n            res = _add(res, _subtrees[u][1].sum(dl\
+    \ - 1, dr - 1));\n            int v = _par[u];\n            const auto it_end\
+    \ = _nodes[u].info_it;\n            for (auto it = _info[u].begin(); it != it_end;\
+    \ ++it) {\n                const int ql = dl - it->dep - 1, qr = dr - it->dep\
+    \ - 1;\n                if (v < _n and ql <= 0 and 0 < qr) res = _add(res, _nodes[v].dat);\n\
+    \                res = _add(res, _subtrees[std::exchange(v, _par[v])][it->child_index\
+    \ ^ 1].sum(ql - 1, qr - 1));\n            }\n            return res;\n       \
+    \ }\n\n    private:\n        int _n;\n        std::vector<TreeNode> _nodes;\n\
+    \        std::vector<int> _par;\n        std::vector<std::array<AuxInfo, 30>>\
+    \ _info;\n        std::vector<std::array<sequence_type, 2>> _subtrees;\n\n   \
+    \     std::vector<int> _ord;\n\n        void reorder(int s) {\n            _ord.assign(_n,\
+    \ -1);\n            int t = 0;\n            std::deque<int> dq{ s };\n       \
+    \     while (dq.size()) {\n                int u = dq.front(); dq.pop_front();\n\
+    \                _ord[u] = t++;\n                for (int v : _nodes[u].adj) if\
+    \ (_ord[v] < 0) dq.push_back(v);\n            }\n            assert(t == _n);\n\
+    \            std::vector<TreeNode> tmp(_n);\n            for (int i = 0; i < _n;\
+    \ ++i) {\n                for (int& e : _nodes[i].adj) e = _ord[e];\n        \
+    \        _nodes[i].info_it = _info[_ord[i]].begin();\n                tmp[_ord[i]]\
+    \ = std::move(_nodes[i]);\n            }\n            _nodes.swap(tmp);\n    \
+    \    }\n    };\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_POINT_ADD_RANGE_CONTOUR_SUM_INVERTIBLE\n#define SUISEN_POINT_ADD_RANGE_CONTOUR_SUM_INVERTIBLE\n\
     \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <deque>\n\
     #include <iostream>\n#include <queue>\n#include <random>\n#include <utility>\n\
@@ -248,43 +251,41 @@ data:
     \ val);\n            int v = _par[u];\n            const auto it_end = _nodes[u].info_it;\n\
     \            for (auto it = _info[u].begin(); it != it_end; ++it) _subtrees[std::exchange(v,\
     \ _par[v])][it->child_index].add(it->dep, val);\n        }\n        // O((logN)^2)\n\
-    \        void set(int u, const value_type& new_val) {\n            u = _ord[u];\n\
-    \            add(u, _add(new_val, _neg(get(u))));\n        }\n        // O((logN)^2)\n\
-    \        value_type sum(int u, int dl, int dr) const {\n            u = _ord[u];\n\
-    \            value_type res = dl <= 0 and 0 < dr ? _nodes[u].dat : _zero();\n\
-    \            res = _add(res, _subtrees[u][0].sum(dl - 1, dr - 1));\n         \
-    \   res = _add(res, _subtrees[u][1].sum(dl - 1, dr - 1));\n            int v =\
-    \ _par[u];\n            const auto it_end = _nodes[u].info_it;\n            for\
-    \ (auto it = _info[u].begin(); it != it_end; ++it) {\n                const int\
-    \ ql = dl - it->dep - 1, qr = dr - it->dep - 1;\n                if (v < _n and\
-    \ ql <= 0 and 0 < qr) res = _add(res, _nodes[v].dat);\n                res = _add(res,\
-    \ _subtrees[std::exchange(v, _par[v])][it->child_index ^ 1].sum(ql - 1, qr - 1));\n\
-    \            }\n            return res;\n        }\n\n    private:\n        int\
-    \ _n;\n        std::vector<TreeNode> _nodes;\n        std::vector<int> _par;\n\
-    \        std::vector<std::array<AuxInfo, 30>> _info;\n        std::vector<std::array<sequence_type,\
-    \ 2>> _subtrees;\n\n        std::vector<int> _ord;\n\n        void reorder(int\
-    \ s) {\n            _ord.assign(_n, -1);\n            int t = 0;\n           \
-    \ std::deque<int> dq{ s };\n            while (dq.size()) {\n                int\
-    \ u = dq.front(); dq.pop_front();\n                _ord[u] = t++;\n          \
-    \      for (int v : _nodes[u].adj) if (_ord[v] < 0) dq.push_back(v);\n       \
-    \     }\n            assert(t == _n);\n            std::vector<TreeNode> tmp(_n);\n\
-    \            for (int i = 0; i < _n; ++i) {\n                for (int& e : _nodes[i].adj)\
-    \ e = _ord[e];\n                _nodes[i].info_it = _info[_ord[i]].begin();\n\
-    \                tmp[_ord[i]] = std::move(_nodes[i]);\n            }\n       \
-    \     _nodes.swap(tmp);\n        }\n    };\n} // namespace suisen\n\n#endif //\
-    \ SUISEN_POINT_ADD_RANGE_CONTOUR_SUM_INVERTIBLE\n"
+    \        void set(int u, const value_type& new_val) {\n            add(u, _add(new_val,\
+    \ _neg(get(u))));\n        }\n        // O((logN)^2)\n        value_type sum(int\
+    \ u, int dl, int dr) const {\n            u = _ord[u];\n            value_type\
+    \ res = dl <= 0 and 0 < dr ? _nodes[u].dat : _zero();\n            res = _add(res,\
+    \ _subtrees[u][0].sum(dl - 1, dr - 1));\n            res = _add(res, _subtrees[u][1].sum(dl\
+    \ - 1, dr - 1));\n            int v = _par[u];\n            const auto it_end\
+    \ = _nodes[u].info_it;\n            for (auto it = _info[u].begin(); it != it_end;\
+    \ ++it) {\n                const int ql = dl - it->dep - 1, qr = dr - it->dep\
+    \ - 1;\n                if (v < _n and ql <= 0 and 0 < qr) res = _add(res, _nodes[v].dat);\n\
+    \                res = _add(res, _subtrees[std::exchange(v, _par[v])][it->child_index\
+    \ ^ 1].sum(ql - 1, qr - 1));\n            }\n            return res;\n       \
+    \ }\n\n    private:\n        int _n;\n        std::vector<TreeNode> _nodes;\n\
+    \        std::vector<int> _par;\n        std::vector<std::array<AuxInfo, 30>>\
+    \ _info;\n        std::vector<std::array<sequence_type, 2>> _subtrees;\n\n   \
+    \     std::vector<int> _ord;\n\n        void reorder(int s) {\n            _ord.assign(_n,\
+    \ -1);\n            int t = 0;\n            std::deque<int> dq{ s };\n       \
+    \     while (dq.size()) {\n                int u = dq.front(); dq.pop_front();\n\
+    \                _ord[u] = t++;\n                for (int v : _nodes[u].adj) if\
+    \ (_ord[v] < 0) dq.push_back(v);\n            }\n            assert(t == _n);\n\
+    \            std::vector<TreeNode> tmp(_n);\n            for (int i = 0; i < _n;\
+    \ ++i) {\n                for (int& e : _nodes[i].adj) e = _ord[e];\n        \
+    \        _nodes[i].info_it = _info[_ord[i]].begin();\n                tmp[_ord[i]]\
+    \ = std::move(_nodes[i]);\n            }\n            _nodes.swap(tmp);\n    \
+    \    }\n    };\n} // namespace suisen\n\n#endif // SUISEN_POINT_ADD_RANGE_CONTOUR_SUM_INVERTIBLE\n"
   dependsOn:
   - library/util/default_operator.hpp
   isVerificationFile: false
   path: library/tree/point_add_range_contour_sum_invertible.hpp
   requiredBy: []
-  timestamp: '2022-08-07 20:14:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-08-21 18:22:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: library/tree/point_add_range_contour_sum_invertible.hpp
 layout: document
-redirect_from:
-- /library/library/tree/point_add_range_contour_sum_invertible.hpp
-- /library/library/tree/point_add_range_contour_sum_invertible.hpp.html
-title: library/tree/point_add_range_contour_sum_invertible.hpp
+title: Point Add Range Contour Sum Invertible
 ---
+## Point Add Range Contour Sum Invertible

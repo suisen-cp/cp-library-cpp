@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
@@ -38,14 +38,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':heavy_check_mark:'
     path: library/transform/divisor.hpp
     title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
@@ -53,7 +53,7 @@ data:
     path: library/transform/multiple.hpp
     title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -66,16 +66,16 @@ data:
     title: "Walsh Hadamard \u5909\u63DB"
   - icon: ':warning:'
     path: library/tree/contour_sum.hpp
-    title: library/tree/contour_sum.hpp
-  - icon: ':warning:'
+    title: Contour Sum
+  - icon: ':x:'
     path: library/tree/point_add_range_contour_sum_invertible.hpp
-    title: library/tree/point_add_range_contour_sum_invertible.hpp
+    title: Point Add Range Contour Sum Invertible
   - icon: ':warning:'
     path: library/tree/point_get_range_contour_add_invertible.hpp
-    title: library/tree/point_get_range_contour_add_invertible.hpp
+    title: Point Get Range Contour Add Invertible
   - icon: ':warning:'
     path: library/tree/range_contour_sum_invertible.hpp
-    title: library/tree/range_contour_sum_invertible.hpp
+    title: Range Contour Sum Invertible
   - icon: ':warning:'
     path: library/util/cumulative_sum.hpp
     title: "\u7D2F\u7A4D\u548C"
@@ -146,7 +146,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -164,6 +164,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
+  - icon: ':x:'
+    path: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -225,61 +228,62 @@ data:
   isVerificationFile: false
   path: library/util/default_operator.hpp
   requiredBy:
-  - library/transform/kronecker_power.hpp
-  - library/transform/supset.hpp
-  - library/transform/divisor.hpp
-  - library/transform/walsh_hadamard.hpp
-  - library/transform/subset.hpp
-  - library/transform/multiple.hpp
-  - library/tree/point_add_range_contour_sum_invertible.hpp
-  - library/tree/contour_sum.hpp
   - library/tree/point_get_range_contour_add_invertible.hpp
   - library/tree/range_contour_sum_invertible.hpp
-  - library/math/sps.hpp
+  - library/tree/point_add_range_contour_sum_invertible.hpp
+  - library/tree/contour_sum.hpp
   - library/math/array_sps.hpp
-  - library/linear_algebra/array_matrix.hpp
+  - library/math/sps.hpp
+  - library/convolution/multi_variate_convolution.hpp
   - library/convolution/or_convolution.hpp
+  - library/convolution/and_convolution.hpp
+  - library/convolution/gcd_convolution.hpp
+  - library/convolution/subset_convolution.hpp
   - library/convolution/xor_convolution.hpp
   - library/convolution/array_subset_convolution.hpp
-  - library/convolution/and_convolution.hpp
-  - library/convolution/multi_variate_convolution.hpp
   - library/convolution/lcm_convolution.hpp
-  - library/convolution/gcd_convolution.hpp
   - library/convolution/convolution.hpp
-  - library/convolution/subset_convolution.hpp
   - library/datastructure/union_find/weighted_union_find.hpp
+  - library/transform/divisor.hpp
+  - library/transform/supset.hpp
+  - library/transform/walsh_hadamard.hpp
+  - library/transform/subset.hpp
+  - library/transform/kronecker_power.hpp
+  - library/transform/multiple.hpp
+  - library/linear_algebra/array_matrix.hpp
   - library/util/cumulative_sum_2d.hpp
   - library/util/cumulative_sum.hpp
   timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/transform/multiple/divide_both.test.cpp
-  - test/src/transform/kronecker_power/agc044_c.test.cpp
-  - test/src/transform/kronecker_power/arc132_f.test.cpp
-  - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/sps/abc253_h_2.test.cpp
-  - test/src/math/sps/abc213_g.test.cpp
-  - test/src/math/sps/abc253_h.test.cpp
+  - test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/src/math/sps/arc105_f.test.cpp
-  - test/src/math/array_sps/abc236_h.test.cpp
-  - test/src/math/array_sps/abc253_h_2.test.cpp
-  - test/src/math/array_sps/abc213_g.test.cpp
-  - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/sps/abc213_g.test.cpp
+  - test/src/math/sps/abc253_h_2.test.cpp
+  - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp
-  - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
-  - test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
-  - test/src/linear_algebra/array_matrix/matrix_det.test.cpp
-  - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+  - test/src/math/array_sps/abc213_g.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
+  - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/array_sps/abc236_h.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/convolution/gcd_convolution/lcms.test.cpp
   - test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
-  - test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
+  - test/src/transform/multiple/divide_both.test.cpp
+  - test/src/transform/kronecker_power/arc132_f.test.cpp
+  - test/src/transform/kronecker_power/agc044_c.test.cpp
+  - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
+  - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
+  - test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+  - test/src/linear_algebra/array_matrix/matrix_det.test.cpp
 documentation_of: library/util/default_operator.hpp
 layout: document
 title: Default Operator

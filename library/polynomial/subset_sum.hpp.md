@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
@@ -61,8 +61,8 @@ data:
   timestamp: '2022-07-21 04:00:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
 documentation_of: library/polynomial/subset_sum.hpp
 layout: document
 title: Subset Sum

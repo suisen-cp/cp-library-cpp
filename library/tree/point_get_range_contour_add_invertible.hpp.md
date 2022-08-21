@@ -261,8 +261,6 @@ data:
   verifiedWith: []
 documentation_of: library/tree/point_get_range_contour_add_invertible.hpp
 layout: document
-redirect_from:
-- /library/library/tree/point_get_range_contour_add_invertible.hpp
-- /library/library/tree/point_get_range_contour_add_invertible.hpp.html
-title: library/tree/point_get_range_contour_add_invertible.hpp
+title: Point Get Range Contour Add Invertible
 ---
+## Point Get Range Contour Add Invertible

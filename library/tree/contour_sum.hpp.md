@@ -238,8 +238,6 @@ data:
   verifiedWith: []
 documentation_of: library/tree/contour_sum.hpp
 layout: document
-redirect_from:
-- /library/library/tree/contour_sum.hpp
-- /library/library/tree/contour_sum.hpp.html
-title: library/tree/contour_sum.hpp
+title: Contour Sum
 ---
+## Contour Sum

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
@@ -851,28 +851,28 @@ data:
   timestamp: '2022-07-24 00:00:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - test/src/sequence/partition_number/partition_function_2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
+  - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
+  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - test/src/sequence/partition_number/partition_function_2.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
 documentation_of: library/polynomial/formal_power_series.hpp
 layout: document
 title: Formal Power Series

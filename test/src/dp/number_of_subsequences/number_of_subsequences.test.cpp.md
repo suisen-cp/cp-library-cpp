@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/dp/number_of_subsequences.hpp
-    title: library/dp/number_of_subsequences.hpp
+    title: Number Of Subsequences
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

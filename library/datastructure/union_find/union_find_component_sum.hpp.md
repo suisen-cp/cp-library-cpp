@@ -38,7 +38,7 @@ data:
     \ { return g.empty(); }), res.end());\n            return res;\n        }\n  \
     \  protected:\n        int _n;\n        std::vector<int> _dat;\n    };\n} // namespace\
     \ suisen\n\n\n#line 5 \"library/datastructure/union_find/union_find_component_sum.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T, void(*merge_data)(T&, T&)>\n\
+    \n\nnamespace suisen {\n    template <typename T, void(*merge_data)(T&, T)>\n\
     \    struct UnionFindComponentSum : UnionFind {\n        UnionFindComponentSum()\
     \ : UnionFindComponentSum(0) {}\n        explicit UnionFindComponentSum(int n,\
     \ const T &init_value = T{}) : UnionFindComponentSum(std::vector<T>(n, init_value))\
@@ -46,13 +46,13 @@ data:
     \ : UnionFind(init_values.size()), _sum(init_values) {}\n\n        bool merge(int\
     \ x, int y) {\n            x = root(x), y = root(y);\n            bool res = UnionFind::merge(x,\
     \ y);\n            if (res) {\n                if (root(x) == y) std::swap(x,\
-    \ y);\n                merge_data(_sum[x], _sum[y]);\n            }\n        \
-    \    return res;\n        }\n        const T& sum(int x) {\n            return\
-    \ _sum[root(x)];\n        }\n    private:\n        std::vector<T> _sum;\n    };\n\
-    } // namespace suisen\n\n\n\n"
+    \ y);\n                merge_data(_sum[x], std::move(_sum[y]));\n            }\n\
+    \            return res;\n        }\n        const T& sum(int x) {\n         \
+    \   return _sum[root(x)];\n        }\n    private:\n        std::vector<T> _sum;\n\
+    \    };\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_UNION_FIND_COMPONENT_SUM\n#define SUISEN_UNION_FIND_COMPONENT_SUM\n\
     \n#include \"library/datastructure/union_find/union_find.hpp\"\n\nnamespace suisen\
-    \ {\n    template <typename T, void(*merge_data)(T&, T&)>\n    struct UnionFindComponentSum\
+    \ {\n    template <typename T, void(*merge_data)(T&, T)>\n    struct UnionFindComponentSum\
     \ : UnionFind {\n        UnionFindComponentSum() : UnionFindComponentSum(0) {}\n\
     \        explicit UnionFindComponentSum(int n, const T &init_value = T{}) : UnionFindComponentSum(std::vector<T>(n,\
     \ init_value)) {}\n        explicit UnionFindComponentSum(const std::vector<T>\
@@ -60,15 +60,16 @@ data:
     \    bool merge(int x, int y) {\n            x = root(x), y = root(y);\n     \
     \       bool res = UnionFind::merge(x, y);\n            if (res) {\n         \
     \       if (root(x) == y) std::swap(x, y);\n                merge_data(_sum[x],\
-    \ _sum[y]);\n            }\n            return res;\n        }\n        const\
-    \ T& sum(int x) {\n            return _sum[root(x)];\n        }\n    private:\n\
-    \        std::vector<T> _sum;\n    };\n} // namespace suisen\n\n\n#endif // SUISEN_UNION_FIND_COMPONENT_SUM\n"
+    \ std::move(_sum[y]));\n            }\n            return res;\n        }\n  \
+    \      const T& sum(int x) {\n            return _sum[root(x)];\n        }\n \
+    \   private:\n        std::vector<T> _sum;\n    };\n} // namespace suisen\n\n\n\
+    #endif // SUISEN_UNION_FIND_COMPONENT_SUM\n"
   dependsOn:
   - library/datastructure/union_find/union_find.hpp
   isVerificationFile: false
   path: library/datastructure/union_find/union_find_component_sum.hpp
   requiredBy: []
-  timestamp: '2022-06-27 18:51:28+09:00'
+  timestamp: '2022-08-21 18:23:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp

@@ -256,8 +256,6 @@ data:
   verifiedWith: []
 documentation_of: library/tree/range_contour_sum_invertible.hpp
 layout: document
-redirect_from:
-- /library/library/tree/range_contour_sum_invertible.hpp
-- /library/library/tree/range_contour_sum_invertible.hpp.html
-title: library/tree/range_contour_sum_invertible.hpp
+title: Range Contour Sum Invertible
 ---
+## Range Contour Sum Invertible

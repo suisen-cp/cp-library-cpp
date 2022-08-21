@@ -5,82 +5,82 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/geom/closest_pair.hpp
     title: "\u6700\u8FD1\u70B9\u5BFE"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/convex_hull.hpp
     title: "\u51F8\u5305"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/closest_pair/CGL_5_A.test.cpp
     title: test/src/geom/closest_pair/CGL_5_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/convex_hull/CGL_4_A.test.cpp
     title: test/src/geom/convex_hull/CGL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_1_A.test.cpp
     title: test/src/geom/geometry/CGL_1_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_1_B.test.cpp
     title: test/src/geom/geometry/CGL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_1_C.test.cpp
     title: test/src/geom/geometry/CGL_1_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_2_A.test.cpp
     title: test/src/geom/geometry/CGL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_2_B.test.cpp
     title: test/src/geom/geometry/CGL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_2_C.test.cpp
     title: test/src/geom/geometry/CGL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_2_D.test.cpp
     title: test/src/geom/geometry/CGL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_3_A.test.cpp
     title: test/src/geom/geometry/CGL_3_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_3_B.test.cpp
     title: test/src/geom/geometry/CGL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_3_C.test.cpp
     title: test/src/geom/geometry/CGL_3_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_4_B.test.cpp
     title: test/src/geom/geometry/CGL_4_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_4_C.test.cpp
     title: test/src/geom/geometry/CGL_4_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_7_A.test.cpp
     title: test/src/geom/geometry/CGL_7_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_7_B.test.cpp
     title: test/src/geom/geometry/CGL_7_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_7_C.test.cpp
     title: test/src/geom/geometry/CGL_7_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_7_D.test.cpp
     title: test/src/geom/geometry/CGL_7_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_7_E.test.cpp
     title: test/src/geom/geometry/CGL_7_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_7_F.test.cpp
     title: test/src/geom/geometry/CGL_7_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_7_G.test.cpp
     title: test/src/geom/geometry/CGL_7_G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_7_H.test.cpp
     title: test/src/geom/geometry/CGL_7_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/geometry/CGL_7_I.test.cpp
     title: test/src/geom/geometry/CGL_7_I.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
@@ -170,19 +170,24 @@ data:
     \        Point ba = a - b, bc = c - b;\n        if (sgn(dot(ba, bc)) == Sign::NEGATIVE)\
     \ return ISP::FRONT;\n        return ISP::MIDDLE;\n    }\n\n    struct Line {\n\
     \        Point a, b;\n        Line() : Line(ZERO, ZERO) {}\n        Line(const\
-    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Ray {\n\
-    \        Point a, b;\n        Ray() : Ray(ZERO, ZERO) {}\n        Ray(const Point\
-    \ &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Segment {\n\
-    \        Point a, b;\n        Segment() : Segment(ZERO, ZERO) {}\n        Segment(const\
-    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Circle\
-    \ {\n        Point center;\n        coordinate_t radius;\n        Circle() : Circle(ZERO,\
-    \ 0) {}\n        Circle(const Point &c, const coordinate_t &r) : center(c), radius(r)\
-    \ {}\n    };\n\n    // Triangle\n    \n    coordinate_t signed_area(const Point\
-    \ &a, const Point &b, const Point &c) {\n        return det(b - a, c - a) / 2;\n\
-    \    }\n    coordinate_t area(const Point &a, const Point &b, const Point &c)\
-    \ {\n        return std::abs(signed_area(a, b, c));\n    }\n    Point pG(const\
-    \ Point &a, const Point &b, const Point &c) {\n        return (a + b + c) / 3;\n\
-    \    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
+    \ Point &from, const Point &to) : a(from), b(to) {}\n        // coef_x * x + coef_y\
+    \ * y + cnst = 0\n        Line(coordinate_t coef_x, coordinate_t coef_y, coordinate_t\
+    \ cnst) {\n            if (not equals(coef_x, 0.)) {\n                a = { (coef_y\
+    \ - cnst) / coef_x, -1. };\n                b = { (-coef_y - cnst) / coef_x, +1.\
+    \ };\n            } else {\n                a = { -1., (coef_x - cnst) / coef_y\
+    \ };\n                b = { +1., (-coef_x - cnst) / coef_y };\n            }\n\
+    \        }\n    };\n    struct Ray {\n        Point a, b;\n        Ray() : Ray(ZERO,\
+    \ ZERO) {}\n        Ray(const Point &from, const Point &to) : a(from), b(to) {}\n\
+    \    };\n    struct Segment {\n        Point a, b;\n        Segment() : Segment(ZERO,\
+    \ ZERO) {}\n        Segment(const Point &from, const Point &to) : a(from), b(to)\
+    \ {}\n    };\n    struct Circle {\n        Point center;\n        coordinate_t\
+    \ radius;\n        Circle() : Circle(ZERO, 0) {}\n        Circle(const Point &c,\
+    \ const coordinate_t &r) : center(c), radius(r) {}\n    };\n\n    // Triangle\n\
+    \    \n    coordinate_t signed_area(const Point &a, const Point &b, const Point\
+    \ &c) {\n        return det(b - a, c - a) / 2;\n    }\n    coordinate_t area(const\
+    \ Point &a, const Point &b, const Point &c) {\n        return std::abs(signed_area(a,\
+    \ b, c));\n    }\n    Point pG(const Point &a, const Point &b, const Point &c)\
+    \ {\n        return (a + b + c) / 3;\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
     \    Circle pI(const Point &a, const Point &b, const Point &c) {\n        auto\
     \ la = std::abs(b - c), lb = std::abs(c - a), lc = std::abs(a - b);\n        auto\
     \ l = la + lb + lc;\n        la /= l, lb /= l, lc /= l;\n        Point center\
@@ -463,19 +468,24 @@ data:
     \        Point ba = a - b, bc = c - b;\n        if (sgn(dot(ba, bc)) == Sign::NEGATIVE)\
     \ return ISP::FRONT;\n        return ISP::MIDDLE;\n    }\n\n    struct Line {\n\
     \        Point a, b;\n        Line() : Line(ZERO, ZERO) {}\n        Line(const\
-    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Ray {\n\
-    \        Point a, b;\n        Ray() : Ray(ZERO, ZERO) {}\n        Ray(const Point\
-    \ &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Segment {\n\
-    \        Point a, b;\n        Segment() : Segment(ZERO, ZERO) {}\n        Segment(const\
-    \ Point &from, const Point &to) : a(from), b(to) {}\n    };\n    struct Circle\
-    \ {\n        Point center;\n        coordinate_t radius;\n        Circle() : Circle(ZERO,\
-    \ 0) {}\n        Circle(const Point &c, const coordinate_t &r) : center(c), radius(r)\
-    \ {}\n    };\n\n    // Triangle\n    \n    coordinate_t signed_area(const Point\
-    \ &a, const Point &b, const Point &c) {\n        return det(b - a, c - a) / 2;\n\
-    \    }\n    coordinate_t area(const Point &a, const Point &b, const Point &c)\
-    \ {\n        return std::abs(signed_area(a, b, c));\n    }\n    Point pG(const\
-    \ Point &a, const Point &b, const Point &c) {\n        return (a + b + c) / 3;\n\
-    \    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
+    \ Point &from, const Point &to) : a(from), b(to) {}\n        // coef_x * x + coef_y\
+    \ * y + cnst = 0\n        Line(coordinate_t coef_x, coordinate_t coef_y, coordinate_t\
+    \ cnst) {\n            if (not equals(coef_x, 0.)) {\n                a = { (coef_y\
+    \ - cnst) / coef_x, -1. };\n                b = { (-coef_y - cnst) / coef_x, +1.\
+    \ };\n            } else {\n                a = { -1., (coef_x - cnst) / coef_y\
+    \ };\n                b = { +1., (-coef_x - cnst) / coef_y };\n            }\n\
+    \        }\n    };\n    struct Ray {\n        Point a, b;\n        Ray() : Ray(ZERO,\
+    \ ZERO) {}\n        Ray(const Point &from, const Point &to) : a(from), b(to) {}\n\
+    \    };\n    struct Segment {\n        Point a, b;\n        Segment() : Segment(ZERO,\
+    \ ZERO) {}\n        Segment(const Point &from, const Point &to) : a(from), b(to)\
+    \ {}\n    };\n    struct Circle {\n        Point center;\n        coordinate_t\
+    \ radius;\n        Circle() : Circle(ZERO, 0) {}\n        Circle(const Point &c,\
+    \ const coordinate_t &r) : center(c), radius(r) {}\n    };\n\n    // Triangle\n\
+    \    \n    coordinate_t signed_area(const Point &a, const Point &b, const Point\
+    \ &c) {\n        return det(b - a, c - a) / 2;\n    }\n    coordinate_t area(const\
+    \ Point &a, const Point &b, const Point &c) {\n        return std::abs(signed_area(a,\
+    \ b, c));\n    }\n    Point pG(const Point &a, const Point &b, const Point &c)\
+    \ {\n        return (a + b + c) / 3;\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
     \    Circle pI(const Point &a, const Point &b, const Point &c) {\n        auto\
     \ la = std::abs(b - c), lb = std::abs(c - a), lc = std::abs(a - b);\n        auto\
     \ l = la + lb + lc;\n        la /= l, lb /= l, lc /= l;\n        Point center\
@@ -694,34 +704,34 @@ data:
   isVerificationFile: false
   path: library/geom/geometry.hpp
   requiredBy:
-  - library/geom/convex_hull.hpp
   - library/geom/closest_pair.hpp
-  timestamp: '2022-07-10 19:58:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - library/geom/convex_hull.hpp
+  timestamp: '2022-08-21 18:24:44+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/geom/convex_hull/CGL_4_A.test.cpp
-  - test/src/geom/closest_pair/CGL_5_A.test.cpp
-  - test/src/geom/geometry/CGL_7_E.test.cpp
-  - test/src/geom/geometry/CGL_7_H.test.cpp
-  - test/src/geom/geometry/CGL_2_C.test.cpp
-  - test/src/geom/geometry/CGL_7_F.test.cpp
-  - test/src/geom/geometry/CGL_7_A.test.cpp
-  - test/src/geom/geometry/CGL_7_C.test.cpp
-  - test/src/geom/geometry/CGL_3_C.test.cpp
-  - test/src/geom/geometry/CGL_7_G.test.cpp
-  - test/src/geom/geometry/CGL_3_A.test.cpp
-  - test/src/geom/geometry/CGL_2_D.test.cpp
-  - test/src/geom/geometry/CGL_7_B.test.cpp
-  - test/src/geom/geometry/CGL_7_D.test.cpp
-  - test/src/geom/geometry/CGL_1_A.test.cpp
-  - test/src/geom/geometry/CGL_1_C.test.cpp
-  - test/src/geom/geometry/CGL_4_C.test.cpp
-  - test/src/geom/geometry/CGL_4_B.test.cpp
-  - test/src/geom/geometry/CGL_7_I.test.cpp
-  - test/src/geom/geometry/CGL_2_A.test.cpp
-  - test/src/geom/geometry/CGL_1_B.test.cpp
   - test/src/geom/geometry/CGL_3_B.test.cpp
+  - test/src/geom/geometry/CGL_7_B.test.cpp
+  - test/src/geom/geometry/CGL_1_A.test.cpp
+  - test/src/geom/geometry/CGL_7_G.test.cpp
+  - test/src/geom/geometry/CGL_7_F.test.cpp
   - test/src/geom/geometry/CGL_2_B.test.cpp
+  - test/src/geom/geometry/CGL_2_D.test.cpp
+  - test/src/geom/geometry/CGL_4_B.test.cpp
+  - test/src/geom/geometry/CGL_7_D.test.cpp
+  - test/src/geom/geometry/CGL_1_B.test.cpp
+  - test/src/geom/geometry/CGL_7_H.test.cpp
+  - test/src/geom/geometry/CGL_3_A.test.cpp
+  - test/src/geom/geometry/CGL_2_C.test.cpp
+  - test/src/geom/geometry/CGL_3_C.test.cpp
+  - test/src/geom/geometry/CGL_7_E.test.cpp
+  - test/src/geom/geometry/CGL_7_C.test.cpp
+  - test/src/geom/geometry/CGL_2_A.test.cpp
+  - test/src/geom/geometry/CGL_4_C.test.cpp
+  - test/src/geom/geometry/CGL_7_A.test.cpp
+  - test/src/geom/geometry/CGL_7_I.test.cpp
+  - test/src/geom/geometry/CGL_1_C.test.cpp
+  - test/src/geom/closest_pair/CGL_5_A.test.cpp
+  - test/src/geom/convex_hull/CGL_4_A.test.cpp
 documentation_of: library/geom/geometry.hpp
 layout: document
 title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"

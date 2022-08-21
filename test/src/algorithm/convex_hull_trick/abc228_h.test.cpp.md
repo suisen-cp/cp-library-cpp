@@ -92,7 +92,9 @@ data:
     \ r->a) {\n                r->m = r->b <= l->b ? inf : -inf;\n            } else\
     \ {\n                r->m = internal::convex_hull_trick::div(r->b - l->b, l->a\
     \ - r->a);\n            }\n            return l->m > r->m;\n        }\n    };\n\
-    \n} // namespace suisen\n\n\n#line 8 \"test/src/algorithm/convex_hull_trick/abc228_h.test.cpp\"\
+    \    template <typename T>\n    using MinCHT = ConvexHullTrick<T, /* is_min_query\
+    \ = */ true>;\n    template <typename T>\n    using MaxCHT = ConvexHullTrick<T,\
+    \ /* is_min_query = */ false>;\n} // namespace suisen\n\n\n#line 8 \"test/src/algorithm/convex_hull_trick/abc228_h.test.cpp\"\
     \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    int n, x;\n    std::cin >> n >> x;\n\n    std::vector<std::pair<long long,\
     \ long long>> ps(n);\n    for (auto &[a, c] : ps) std::cin >> a >> c;\n    std::sort(ps.begin(),\
@@ -117,7 +119,7 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
   requiredBy: []
-  timestamp: '2022-06-11 19:15:48+09:00'
+  timestamp: '2022-08-21 18:20:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/convex_hull_trick/abc228_h.test.cpp

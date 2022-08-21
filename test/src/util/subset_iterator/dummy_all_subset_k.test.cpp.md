@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/util/subset_iterator.hpp
     title: Subset Iterator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -41,10 +41,11 @@ data:
     \                }\n            }\n            auto operator!=(std::nullptr_t)\
     \ const { return t < n; }\n        };\n        uint32_t s, k;\n        all_subset_k(uint32_t\
     \ s, uint32_t k) : s(s), k(k) {\n            assert(s != std::numeric_limits<uint32_t>::max());\n\
-    \        }\n        auto begin() { return all_subset_k_iter(s, k); }\n       \
-    \ auto end() { return nullptr; }\n    };\n\n    struct all_subset_k_64 {\n   \
-    \     struct all_subset_k_iter_64 {\n            const uint64_t n, s;\n      \
-    \      const uint32_t k;\n            uint64_t t;\n            __attribute__((target(\"\
+    \        }\n        static all_subset_k nCk(uint32_t n, uint32_t k) { return all_subset_k((uint32_t(1)\
+    \ << n) - 1, k); }\n        auto begin() { return all_subset_k_iter(s, k); }\n\
+    \        auto end() { return nullptr; }\n    };\n\n    struct all_subset_k_64\
+    \ {\n        struct all_subset_k_iter_64 {\n            const uint64_t n, s;\n\
+    \            const uint32_t k;\n            uint64_t t;\n            __attribute__((target(\"\
     avx2\")))\n            all_subset_k_iter_64(uint64_t s, uint32_t k) : n(uint64_t(1)\
     \ << _mm_popcnt_u64(s)), s(s), k(k), t((uint64_t(1) << k) - 1) {}\n          \
     \  __attribute__((target(\"bmi2\")))\n            auto operator*() const { return\
@@ -116,8 +117,8 @@ data:
   isVerificationFile: true
   path: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
   requiredBy: []
-  timestamp: '2022-06-19 16:28:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-21 18:23:10+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
 layout: document
