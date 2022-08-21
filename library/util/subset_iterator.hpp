@@ -52,6 +52,7 @@ namespace suisen {
         all_subset_k(uint32_t s, uint32_t k) : s(s), k(k) {
             assert(s != std::numeric_limits<uint32_t>::max());
         }
+        static all_subset_k nCk(uint32_t n, uint32_t k) { return all_subset_k((uint32_t(1) << n) - 1, k); }
         auto begin() { return all_subset_k_iter(s, k); }
         auto end() { return nullptr; }
     };
