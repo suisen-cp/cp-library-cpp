@@ -137,6 +137,16 @@ namespace geometry {
         Point a, b;
         Line() : Line(ZERO, ZERO) {}
         Line(const Point &from, const Point &to) : a(from), b(to) {}
+        // coef_x * x + coef_y * y + cnst = 0
+        Line(coordinate_t coef_x, coordinate_t coef_y, coordinate_t cnst) {
+            if (not equals(coef_x, 0.)) {
+                a = { (coef_y - cnst) / coef_x, -1. };
+                b = { (-coef_y - cnst) / coef_x, +1. };
+            } else {
+                a = { -1., (coef_x - cnst) / coef_y };
+                b = { +1., (-coef_x - cnst) / coef_y };
+            }
+        }
     };
     struct Ray {
         Point a, b;
