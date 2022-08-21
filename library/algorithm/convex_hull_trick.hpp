@@ -83,7 +83,10 @@ namespace suisen {
             return l->m > r->m;
         }
     };
-
+    template <typename T>
+    using MinCHT = ConvexHullTrick<T, /* is_min_query = */ true>;
+    template <typename T>
+    using MaxCHT = ConvexHullTrick<T, /* is_min_query = */ false>;
 } // namespace suisen
 
 #endif // SUISEN_CHT
