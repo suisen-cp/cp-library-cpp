@@ -4,7 +4,7 @@
 #include "library/datastructure/union_find/union_find.hpp"
 
 namespace suisen {
-    template <typename T, void(*merge_data)(T&, T&)>
+    template <typename T, void(*merge_data)(T&, T)>
     struct UnionFindComponentSum : UnionFind {
         UnionFindComponentSum() : UnionFindComponentSum(0) {}
         explicit UnionFindComponentSum(int n, const T &init_value = T{}) : UnionFindComponentSum(std::vector<T>(n, init_value)) {}
@@ -15,7 +15,7 @@ namespace suisen {
             bool res = UnionFind::merge(x, y);
             if (res) {
                 if (root(x) == y) std::swap(x, y);
-                merge_data(_sum[x], _sum[y]);
+                merge_data(_sum[x], std::move(_sum[y]));
             }
             return res;
         }

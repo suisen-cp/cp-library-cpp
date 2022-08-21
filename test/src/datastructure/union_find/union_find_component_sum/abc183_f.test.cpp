@@ -7,7 +7,7 @@
 
 using sum_type = std::map<int, int>;
 
-void merge(sum_type &par_data, sum_type &ch_data) {
+void merge(sum_type &par_data, sum_type ch_data) {
     for (auto &[k, v] : ch_data) par_data[k] += v;
 }
 
