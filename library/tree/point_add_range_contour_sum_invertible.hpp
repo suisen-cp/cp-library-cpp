@@ -180,7 +180,6 @@ namespace suisen {
         }
         // O((logN)^2)
         void set(int u, const value_type& new_val) {
-            u = _ord[u];
             add(u, _add(new_val, _neg(get(u))));
         }
         // O((logN)^2)
