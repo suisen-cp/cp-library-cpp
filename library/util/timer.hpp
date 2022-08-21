@@ -16,12 +16,12 @@ namespace suisen {
         void start() {
             _start = std::chrono::system_clock::now();
         }
-        template <typename TimeUnit>
+        template <typename TimeUnit = std::chrono::milliseconds>
         double elapsed() const {
             return std::chrono::duration_cast<TimeUnit>(std::chrono::system_clock::now() - _start).count();
         }
 
-        template <typename TimeUnit, typename Proc>
+        template <typename TimeUnit = std::chrono::milliseconds, typename Proc>
         static double measure(Proc &&proc) {
             Timer timer;
             proc();
