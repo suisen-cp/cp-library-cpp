@@ -117,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/uncategorized/static_range_xored_mex_query.hpp
     title: Static Range Xored Mex Query
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
   - icon: ':heavy_check_mark:'
@@ -226,7 +226,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/functional_graph/abc254_g.test.cpp
     title: test/src/graph/functional_graph/abc254_g.test.cpp
   - icon: ':heavy_check_mark:'

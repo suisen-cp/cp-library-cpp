@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/enumerate_triangles.hpp
     title: "\u4E09\u89D2\u5F62\u5217\u6319"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc258/tasks/abc258_g
@@ -54,7 +54,7 @@ data:
   path: test/src/graph/enumerate_triangles/abc258_g.test.cpp
   requiredBy: []
   timestamp: '2022-07-10 15:07:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/graph/enumerate_triangles/abc258_g.test.cpp
 layout: document

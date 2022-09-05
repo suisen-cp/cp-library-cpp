@@ -208,6 +208,12 @@ data:
       title: Red Black Tree Base
   - name: library/datastructure/fenwick_tree
     pages:
+    - icon: ':warning:'
+      path: library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp
+      title: library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp
+    - icon: ':warning:'
+      path: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
+      title: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/fenwick_tree.hpp
       title: Fenwick Tree
@@ -318,7 +324,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/util/priority_sum.hpp
       title: Priority Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/util/range_set.hpp
       title: Range Set
     - icon: ':warning:'
@@ -345,10 +351,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/geom/closest_pair.hpp
       title: "\u6700\u8FD1\u70B9\u5BFE"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/convex_hull.hpp
       title: "\u51F8\u5305"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/geometry.hpp
       title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
     - icon: ':warning:'
@@ -389,10 +395,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/dulmage_mendelsohn_decomposition.hpp
       title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/enumerate_cliques.hpp
       title: library/graph/enumerate_cliques.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/enumerate_triangles.hpp
       title: "\u4E09\u89D2\u5F62\u5217\u6319"
     - icon: ':question:'
@@ -732,24 +738,29 @@ data:
       path: library/tree/lowest_common_ancestor.hpp
       title: Lowest Common Ancestor
     - icon: ':x:'
+      path: library/tree/point_add_range_contour_sum.hpp
+      title: library/tree/point_add_range_contour_sum.hpp
+    - icon: ':x:'
       path: library/tree/point_add_range_contour_sum_invertible.hpp
       title: Point Add Range Contour Sum Invertible
     - icon: ':warning:'
       path: library/tree/point_get_range_contour_add_invertible.hpp
       title: Point Get Range Contour Add Invertible
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/tree/point_get_range_contour_operate.hpp
       title: Point Get Range Contour Operate
-    - icon: ':heavy_check_mark:'
-      path: library/tree/point_set_range_contour_product.hpp
-      title: "Range Contour Aggregation Query On Tree (\u6728\u4E0A\u306E\u7B49\u9AD8\
-        \u7DDA\u96C6\u7D04\u30AF\u30A8\u30EA)"
+    - icon: ':x:'
+      path: library/tree/point_set_range_contour_sum.hpp
+      title: library/tree/point_set_range_contour_sum.hpp
     - icon: ':warning:'
       path: library/tree/range_contour_sum_invertible.hpp
       title: Range Contour Sum Invertible
     - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
+    - icon: ':x:'
+      path: library/tree/rooted_tree_isomorphism_classification.hpp
+      title: library/tree/rooted_tree_isomorphism_classification.hpp
   - name: library/type_traits
     pages:
     - icon: ':question:'
@@ -771,7 +782,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: Container Utils
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
       title: "\u5EA7\u6A19\u5727\u7E2E"
     - icon: ':warning:'
@@ -1313,72 +1324,72 @@ data:
       title: test/src/geom/closest_pair/CGL_5_A.test.cpp
   - name: test/src/geom/convex_hull
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/convex_hull/CGL_4_A.test.cpp
       title: test/src/geom/convex_hull/CGL_4_A.test.cpp
   - name: test/src/geom/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_A.test.cpp
       title: test/src/geom/geometry/CGL_1_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_B.test.cpp
       title: test/src/geom/geometry/CGL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_C.test.cpp
       title: test/src/geom/geometry/CGL_1_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_A.test.cpp
       title: test/src/geom/geometry/CGL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_B.test.cpp
       title: test/src/geom/geometry/CGL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_C.test.cpp
       title: test/src/geom/geometry/CGL_2_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_D.test.cpp
       title: test/src/geom/geometry/CGL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_3_A.test.cpp
       title: test/src/geom/geometry/CGL_3_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_3_B.test.cpp
       title: test/src/geom/geometry/CGL_3_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_3_C.test.cpp
       title: test/src/geom/geometry/CGL_3_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_4_B.test.cpp
       title: test/src/geom/geometry/CGL_4_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_4_C.test.cpp
       title: test/src/geom/geometry/CGL_4_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_A.test.cpp
       title: test/src/geom/geometry/CGL_7_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_B.test.cpp
       title: test/src/geom/geometry/CGL_7_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_C.test.cpp
       title: test/src/geom/geometry/CGL_7_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_D.test.cpp
       title: test/src/geom/geometry/CGL_7_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_E.test.cpp
       title: test/src/geom/geometry/CGL_7_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_F.test.cpp
       title: test/src/geom/geometry/CGL_7_F.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_G.test.cpp
       title: test/src/geom/geometry/CGL_7_G.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_H.test.cpp
       title: test/src/geom/geometry/CGL_7_H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_I.test.cpp
       title: test/src/geom/geometry/CGL_7_I.test.cpp
   - name: test/src/geom/segment_intersections
@@ -1417,12 +1428,12 @@ data:
       title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - name: test/src/graph/enumerate_cliques
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/enumerate_cliques/enumerate_cliques.test.cpp
       title: test/src/graph/enumerate_cliques/enumerate_cliques.test.cpp
   - name: test/src/graph/enumerate_triangles
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/enumerate_triangles/abc258_g.test.cpp
       title: test/src/graph/enumerate_triangles/abc258_g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1430,7 +1441,7 @@ data:
       title: test/src/graph/enumerate_triangles/enumerate_triangles.test.cpp
   - name: test/src/graph/functional_graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/functional_graph/abc254_g.test.cpp
       title: test/src/graph/functional_graph/abc254_g.test.cpp
     - icon: ':x:'
@@ -1995,6 +2006,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
       title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
+  - name: test/src/tree/point_add_range_contour_sum
+    pages:
+    - icon: ':x:'
+      path: test/src/tree/point_add_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
+      title: test/src/tree/point_add_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
   - name: test/src/tree/point_add_range_contour_sum_invertible
     pages:
     - icon: ':x:'
@@ -2002,14 +2018,17 @@ data:
       title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
   - name: test/src/tree/point_get_range_contour_operate
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
       title: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
-  - name: test/src/tree/point_set_range_contour_product
+  - name: test/src/tree/point_set_range_contour_sum
     pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/tree/point_set_range_contour_product/dummy.test.cpp
-      title: test/src/tree/point_set_range_contour_product/dummy.test.cpp
+    - icon: ':x:'
+      path: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
+      title: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
+    - icon: ':x:'
+      path: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
+      title: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
   - name: test/src/tree/rerooting
     pages:
     - icon: ':heavy_check_mark:'
@@ -2021,6 +2040,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/edpc_v.test.cpp
       title: test/src/tree/rerooting/edpc_v.test.cpp
+  - name: test/src/tree/rooted_tree_isomorphism_classification
+    pages:
+    - icon: ':x:'
+      path: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
+      title: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
   - name: test/src/uncategorized/static_range_xored_mex_query
     pages:
     - icon: ':heavy_check_mark:'

@@ -13,33 +13,33 @@ data:
     links: []
   bundledCode: "#line 1 \"library/tree/point_get_range_contour_add_invertible.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <cstdint>\n#include\
-    \ <deque>\n#include <queue>\n#include <random>\n#include <tuple>\n\n#line 1 \"\
-    library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n    namespace default_operator\
+    \ <deque>\n#include <queue>\n#include <random>\n#include <tuple>\n#include <utility>\n\
+    \n#line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen {\n  \
+    \  namespace default_operator {\n        template <typename T>\n        auto zero()\
+    \ -> decltype(T { 0 }) { return T { 0 }; }\n        template <typename T>\n  \
+    \      auto one()  -> decltype(T { 1 }) { return T { 1 }; }\n        template\
+    \ <typename T>\n        auto add(const T &x, const T &y) -> decltype(x + y) {\
+    \ return x + y; }\n        template <typename T>\n        auto sub(const T &x,\
+    \ const T &y) -> decltype(x - y) { return x - y; }\n        template <typename\
+    \ T>\n        auto mul(const T &x, const T &y) -> decltype(x * y) { return x *\
+    \ y; }\n        template <typename T>\n        auto div(const T &x, const T &y)\
+    \ -> decltype(x / y) { return x / y; }\n        template <typename T>\n      \
+    \  auto mod(const T &x, const T &y) -> decltype(x % y) { return x % y; }\n   \
+    \     template <typename T>\n        auto neg(const T &x) -> decltype(-x) { return\
+    \ -x; }\n        template <typename T>\n        auto inv(const T &x) -> decltype(one<T>()\
+    \ / x)  { return one<T>() / x; }\n    } // default_operator\n    namespace default_operator_noref\
     \ {\n        template <typename T>\n        auto zero() -> decltype(T { 0 }) {\
     \ return T { 0 }; }\n        template <typename T>\n        auto one()  -> decltype(T\
-    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(const\
-    \ T &x, const T &y) -> decltype(x + y) { return x + y; }\n        template <typename\
-    \ T>\n        auto sub(const T &x, const T &y) -> decltype(x - y) { return x -\
-    \ y; }\n        template <typename T>\n        auto mul(const T &x, const T &y)\
-    \ -> decltype(x * y) { return x * y; }\n        template <typename T>\n      \
-    \  auto div(const T &x, const T &y) -> decltype(x / y) { return x / y; }\n   \
-    \     template <typename T>\n        auto mod(const T &x, const T &y) -> decltype(x\
-    \ % y) { return x % y; }\n        template <typename T>\n        auto neg(const\
-    \ T &x) -> decltype(-x) { return -x; }\n        template <typename T>\n      \
-    \  auto inv(const T &x) -> decltype(one<T>() / x)  { return one<T>() / x; }\n\
-    \    } // default_operator\n    namespace default_operator_noref {\n        template\
-    \ <typename T>\n        auto zero() -> decltype(T { 0 }) { return T { 0 }; }\n\
-    \        template <typename T>\n        auto one()  -> decltype(T { 1 }) { return\
-    \ T { 1 }; }\n        template <typename T>\n        auto add(T x, T y) -> decltype(x\
-    \ + y) { return x + y; }\n        template <typename T>\n        auto sub(T x,\
-    \ T y) -> decltype(x - y) { return x - y; }\n        template <typename T>\n \
-    \       auto mul(T x, T y) -> decltype(x * y) { return x * y; }\n        template\
-    \ <typename T>\n        auto div(T x, T y) -> decltype(x / y) { return x / y;\
-    \ }\n        template <typename T>\n        auto mod(T x, T y) -> decltype(x %\
-    \ y) { return x % y; }\n        template <typename T>\n        auto neg(T x) ->\
-    \ decltype(-x) { return -x; }\n        template <typename T>\n        auto inv(T\
-    \ x) -> decltype(one<T>() / x)  { return one<T>() / x; }\n    } // default_operator\n\
-    } // namespace suisen\n\n\n#line 13 \"library/tree/point_get_range_contour_add_invertible.hpp\"\
+    \ { 1 }) { return T { 1 }; }\n        template <typename T>\n        auto add(T\
+    \ x, T y) -> decltype(x + y) { return x + y; }\n        template <typename T>\n\
+    \        auto sub(T x, T y) -> decltype(x - y) { return x - y; }\n        template\
+    \ <typename T>\n        auto mul(T x, T y) -> decltype(x * y) { return x * y;\
+    \ }\n        template <typename T>\n        auto div(T x, T y) -> decltype(x /\
+    \ y) { return x / y; }\n        template <typename T>\n        auto mod(T x, T\
+    \ y) -> decltype(x % y) { return x % y; }\n        template <typename T>\n   \
+    \     auto neg(T x) -> decltype(-x) { return -x; }\n        template <typename\
+    \ T>\n        auto inv(T x) -> decltype(one<T>() / x)  { return one<T>() / x;\
+    \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 14 \"library/tree/point_get_range_contour_add_invertible.hpp\"\
     \n\nnamespace suisen {\n    template <typename T, typename F, T(*mapping)(F, T),\
     \ F(*composition)(F, F), F(*id)(), F(*inv)(F)>\n    struct PointGetRangeContourAddOnTree\
     \ {\n        using value_type = T;\n        using operator_type = F;\n    private:\n\
@@ -146,30 +146,30 @@ data:
     \ // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_POINT_GET_RANGE_CONTOUR_ADD_INVERTIBLE\n#define SUISEN_POINT_GET_RANGE_CONTOUR_ADD_INVERTIBLE\n\
     \n#include <algorithm>\n#include <cassert>\n#include <cstdint>\n#include <deque>\n\
-    #include <queue>\n#include <random>\n#include <tuple>\n\n#include \"library/util/default_operator.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T, typename F, T(*mapping)(F, T),\
-    \ F(*composition)(F, F), F(*id)(), F(*inv)(F)>\n    struct PointGetRangeContourAddOnTree\
-    \ {\n        using value_type = T;\n        using operator_type = F;\n    private:\n\
-    \        struct InternalFenwickTree {\n            InternalFenwickTree() = default;\n\
-    \            InternalFenwickTree(int n) : _n(n), _dat(_n + 1, id()) {}\n     \
-    \       operator_type get(int i) const {\n                operator_type res =\
-    \ id();\n                for (++i; i; i -= i & -i) res = composition(res, _dat[i]);\n\
-    \                return res;\n            }\n            void apply(int l, int\
-    \ r, const operator_type& f) {\n                l = std::max(0, l), r = std::min(r,\
-    \ _n);\n                if (l < r) apply(l, f), apply(r, inv(f));\n          \
-    \  }\n        private:\n            int _n;\n            std::vector<operator_type>\
-    \ _dat;\n\n            void apply(int r, const operator_type& f) {\n         \
-    \       for (++r; r <= _n; r += r & -r) _dat[r] = composition(f, _dat[r]);\n \
-    \           }\n        };\n        using sequence_type = InternalFenwickTree;\n\
-    \n        struct AuxInfo {\n            int8_t child_index;\n            int dep;\n\
-    \        };\n\n        struct TreeNode {\n            std::vector<int> adj;\n\
-    \            typename std::array<AuxInfo, 30>::iterator info_it;\n        };\n\
-    \    public:\n        PointGetRangeContourAddOnTree(int n = 0) : _n(n), _dat(_n),\
-    \ _nodes(_n), _par(2 * _n, -1), _info(_n), _subtrees(2 * _n), _ord(_n, -1) {}\n\
-    \n        void add_edge(int u, int v) {\n            _nodes[u].adj.push_back(v);\n\
-    \            _nodes[v].adj.push_back(u);\n        }\n        // O(NlogN)\n   \
-    \     void build(const std::vector<value_type>& a) {\n            std::mt19937\
-    \ rng{ std::random_device{}() };\n            reorder(std::uniform_int_distribution<int>{\
+    #include <queue>\n#include <random>\n#include <tuple>\n#include <utility>\n\n\
+    #include \"library/util/default_operator.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)(),\
+    \ F(*inv)(F)>\n    struct PointGetRangeContourAddOnTree {\n        using value_type\
+    \ = T;\n        using operator_type = F;\n    private:\n        struct InternalFenwickTree\
+    \ {\n            InternalFenwickTree() = default;\n            InternalFenwickTree(int\
+    \ n) : _n(n), _dat(_n + 1, id()) {}\n            operator_type get(int i) const\
+    \ {\n                operator_type res = id();\n                for (++i; i; i\
+    \ -= i & -i) res = composition(res, _dat[i]);\n                return res;\n \
+    \           }\n            void apply(int l, int r, const operator_type& f) {\n\
+    \                l = std::max(0, l), r = std::min(r, _n);\n                if\
+    \ (l < r) apply(l, f), apply(r, inv(f));\n            }\n        private:\n  \
+    \          int _n;\n            std::vector<operator_type> _dat;\n\n         \
+    \   void apply(int r, const operator_type& f) {\n                for (++r; r <=\
+    \ _n; r += r & -r) _dat[r] = composition(f, _dat[r]);\n            }\n       \
+    \ };\n        using sequence_type = InternalFenwickTree;\n\n        struct AuxInfo\
+    \ {\n            int8_t child_index;\n            int dep;\n        };\n\n   \
+    \     struct TreeNode {\n            std::vector<int> adj;\n            typename\
+    \ std::array<AuxInfo, 30>::iterator info_it;\n        };\n    public:\n      \
+    \  PointGetRangeContourAddOnTree(int n = 0) : _n(n), _dat(_n), _nodes(_n), _par(2\
+    \ * _n, -1), _info(_n), _subtrees(2 * _n), _ord(_n, -1) {}\n\n        void add_edge(int\
+    \ u, int v) {\n            _nodes[u].adj.push_back(v);\n            _nodes[v].adj.push_back(u);\n\
+    \        }\n        // O(NlogN)\n        void build(const std::vector<value_type>&\
+    \ a) {\n            std::mt19937 rng{ std::random_device{}() };\n            reorder(std::uniform_int_distribution<int>{\
     \ 0, _n - 1 }(rng), a);\n\n            int new_node = _n;\n            std::vector<int>\
     \ sub_size(2 * _n, 0);\n            std::vector<int> ctr(2 * _n, -1);\n\n    \
     \        std::vector<int> head(2 * _n), tail(2 * _n), link(2 * _n);\n        \
@@ -256,7 +256,7 @@ data:
   isVerificationFile: false
   path: library/tree/point_get_range_contour_add_invertible.hpp
   requiredBy: []
-  timestamp: '2022-08-07 20:14:06+09:00'
+  timestamp: '2022-09-05 23:57:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/tree/point_get_range_contour_add_invertible.hpp

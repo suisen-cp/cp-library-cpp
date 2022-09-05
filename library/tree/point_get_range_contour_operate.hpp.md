@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
     title: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/point_get_range_contour_operate.hpp\"\n\n\n\
     \n#include <algorithm>\n#include <cassert>\n#include <cstdint>\n#include <deque>\n\
-    #include <queue>\n#include <random>\n#include <tuple>\n\nnamespace suisen {\n\
-    \    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F),\
-    \ F(*id)()>\n    struct PointGetRangeContourOperate {\n        using value_type\
+    #include <queue>\n#include <random>\n#include <tuple>\n#include <utility>\n\n\
+    namespace suisen {\n    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F,\
+    \ F), F(*id)()>\n    struct PointGetRangeContourOperate {\n        using value_type\
     \ = T;\n        using operator_type = F;\n    private:\n        struct InternalCommutativeDualSegmentTree\
     \ {\n            InternalCommutativeDualSegmentTree(int n = 0) : _n(n), _laz(2\
     \ * _n, id()) {}\n            void apply(int l, int r, const operator_type& f)\
@@ -35,18 +35,17 @@ data:
     \ * _n, -1), _info(_n), _subtrees(2 * _n), _ord(_n, -1) {}\n\n        void add_edge(int\
     \ u, int v) {\n            _nodes[u].adj.push_back(v);\n            _nodes[v].adj.push_back(u);\n\
     \        }\n        // O(NlogN)\n        void build(const std::vector<value_type>&\
-    \ a) {\n            // std::mt19937 rng{ std::random_device{}() };\n         \
-    \   // reorder(std::uniform_int_distribution<int>{ 0, _n - 1 }(rng), a);\n   \
-    \         for (int i = 0; i < _n; ++i) _dat[i] = a[i], _ord[i] = i, _nodes[i].info_it\
-    \ = _info[i].begin();\n\n            int new_node = _n;\n            std::vector<int>\
-    \ sub_size(2 * _n, 0);\n            std::vector<int> ctr(2 * _n, -1);\n\n    \
-    \        std::vector<int> head(2 * _n), tail(2 * _n), link(2 * _n);\n        \
-    \    for (int i = 0; i < _n; ++i) head[i] = tail[i] = i;\n\n            auto rec\
-    \ = [&](auto rec, int r, int siz) -> int {\n                int c = -1;\n    \
-    \            auto get_centroid = [&](auto get_centroid, int u, int p) -> void\
-    \ {\n                    sub_size[u] = 1;\n                    for (int v : _nodes[u].adj)\
-    \ if (v != p) {\n                        get_centroid(get_centroid, v, u);\n \
-    \                       if (v == c) {\n                            sub_size[u]\
+    \ a) {\n            std::mt19937 rng{ std::random_device{}() };\n            reorder(std::uniform_int_distribution<int>{\
+    \ 0, _n - 1 }(rng), a);\n            for (int i = 0; i < _n; ++i) _dat[i] = a[i],\
+    \ _ord[i] = i, _nodes[i].info_it = _info[i].begin();\n\n            int new_node\
+    \ = _n;\n            std::vector<int> sub_size(2 * _n, 0);\n            std::vector<int>\
+    \ ctr(2 * _n, -1);\n\n            std::vector<int> head(2 * _n), tail(2 * _n),\
+    \ link(2 * _n);\n            for (int i = 0; i < _n; ++i) head[i] = tail[i] =\
+    \ i;\n\n            auto rec = [&](auto rec, int r, int siz) -> int {\n      \
+    \          int c = -1;\n                auto get_centroid = [&](auto get_centroid,\
+    \ int u, int p) -> void {\n                    sub_size[u] = 1;\n            \
+    \        for (int v : _nodes[u].adj) if (v != p) {\n                        get_centroid(get_centroid,\
+    \ v, u);\n                        if (v == c) {\n                            sub_size[u]\
     \ = siz - sub_size[c];\n                            break;\n                 \
     \       }\n                        sub_size[u] += sub_size[v];\n             \
     \       }\n                    if (c < 0 and sub_size[u] * 2 > siz) c = u;\n \
@@ -94,36 +93,35 @@ data:
     \            for (auto it = _info[u].begin(); it != it_end; ++it) res = mapping(_subtrees[std::exchange(v,\
     \ _par[v])][it->child_index].get(it->dep), res);\n            return res;\n  \
     \      }\n        // O(1)\n        void apply(int u, const operator_type& f) {\n\
-    \            u = _ord[u];\n            _dat[u] = mapping(f, _dat[u]);\n      \
-    \  }\n        // O((logN)^2)\n        void apply(int u, int dl, int dr, const\
-    \ operator_type& f) {\n            u = _ord[u];\n            if (dl <= 0 and 0\
-    \ < dr) _dat[u] = mapping(f, _dat[u]);\n            _subtrees[u][0].apply(dl -\
-    \ 1, dr - 1, f);\n            _subtrees[u][1].apply(dl - 1, dr - 1, f);\n    \
-    \        int v = _par[u];\n            const auto it_end = _nodes[u].info_it;\n\
-    \            for (auto it = _info[u].begin(); it != it_end; ++it) {\n        \
-    \        int ql = dl - it->dep - 1, qr = dr - it->dep - 1;\n                if\
-    \ (v < _n and ql <= 0 and 0 < qr) _dat[v] = mapping(f, _dat[v]);\n           \
-    \     _subtrees[std::exchange(v, _par[v])][it->child_index ^ 1].apply(ql - 1,\
-    \ qr - 1, f);\n            }\n        }\n\n    private:\n        int _n;\n   \
-    \     std::vector<value_type> _dat;\n        std::vector<TreeNode> _nodes;\n \
-    \       std::vector<int> _par;\n        std::vector<std::array<AuxInfo, 30>> _info;\n\
-    \        std::vector<std::array<sequence_type, 2>> _subtrees;\n\n        std::vector<int>\
-    \ _ord;\n\n        void reorder(int s, const std::vector<value_type> &a) {\n \
-    \           _ord.assign(_n, -1);\n            int t = 0;\n            std::deque<int>\
-    \ dq{ s };\n            while (dq.size()) {\n                int u = dq.front();\
-    \ dq.pop_front();\n                _ord[u] = t++;\n                for (int v\
-    \ : _nodes[u].adj) if (_ord[v] < 0) dq.push_back(v);\n            }\n        \
-    \    assert(t == _n);\n            std::vector<TreeNode> tmp(_n);\n          \
-    \  for (int i = 0; i < _n; ++i) {\n                for (int& e : _nodes[i].adj)\
+    \            _dat[u] = mapping(f, _dat[u]);\n        }\n        // O((logN)^2)\n\
+    \        void apply(int u, int dl, int dr, const operator_type& f) {\n       \
+    \     u = _ord[u];\n            if (dl <= 0 and 0 < dr) _dat[u] = mapping(f, _dat[u]);\n\
+    \            _subtrees[u][0].apply(dl - 1, dr - 1, f);\n            _subtrees[u][1].apply(dl\
+    \ - 1, dr - 1, f);\n            int v = _par[u];\n            const auto it_end\
+    \ = _nodes[u].info_it;\n            for (auto it = _info[u].begin(); it != it_end;\
+    \ ++it) {\n                int ql = dl - it->dep - 1, qr = dr - it->dep - 1;\n\
+    \                if (v < _n and ql <= 0 and 0 < qr) _dat[v] = mapping(f, _dat[v]);\n\
+    \                _subtrees[std::exchange(v, _par[v])][it->child_index ^ 1].apply(ql\
+    \ - 1, qr - 1, f);\n            }\n        }\n\n    private:\n        int _n;\n\
+    \        std::vector<value_type> _dat;\n        std::vector<TreeNode> _nodes;\n\
+    \        std::vector<int> _par;\n        std::vector<std::array<AuxInfo, 30>>\
+    \ _info;\n        std::vector<std::array<sequence_type, 2>> _subtrees;\n\n   \
+    \     std::vector<int> _ord;\n\n        void reorder(int s, const std::vector<value_type>\
+    \ &a) {\n            _ord.assign(_n, -1);\n            int t = 0;\n          \
+    \  std::deque<int> dq{ s };\n            while (dq.size()) {\n               \
+    \ int u = dq.front(); dq.pop_front();\n                _ord[u] = t++;\n      \
+    \          for (int v : _nodes[u].adj) if (_ord[v] < 0) dq.push_back(v);\n   \
+    \         }\n            assert(t == _n);\n            std::vector<TreeNode> tmp(_n);\n\
+    \            for (int i = 0; i < _n; ++i) {\n                for (int& e : _nodes[i].adj)\
     \ e = _ord[e];\n                _nodes[i].info_it = _info[_ord[i]].begin();\n\
     \                tmp[_ord[i]] = std::move(_nodes[i]);\n                _dat[_ord[i]]\
     \ = a[i];\n            }\n            _nodes.swap(tmp);\n        }\n    };\n}\
     \ // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_POINT_GET_RANGE_CONTOUR_OPERATE\n#define SUISEN_POINT_GET_RANGE_CONTOUR_OPERATE\n\
     \n#include <algorithm>\n#include <cassert>\n#include <cstdint>\n#include <deque>\n\
-    #include <queue>\n#include <random>\n#include <tuple>\n\nnamespace suisen {\n\
-    \    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F),\
-    \ F(*id)()>\n    struct PointGetRangeContourOperate {\n        using value_type\
+    #include <queue>\n#include <random>\n#include <tuple>\n#include <utility>\n\n\
+    namespace suisen {\n    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F,\
+    \ F), F(*id)()>\n    struct PointGetRangeContourOperate {\n        using value_type\
     \ = T;\n        using operator_type = F;\n    private:\n        struct InternalCommutativeDualSegmentTree\
     \ {\n            InternalCommutativeDualSegmentTree(int n = 0) : _n(n), _laz(2\
     \ * _n, id()) {}\n            void apply(int l, int r, const operator_type& f)\
@@ -143,18 +141,17 @@ data:
     \ * _n, -1), _info(_n), _subtrees(2 * _n), _ord(_n, -1) {}\n\n        void add_edge(int\
     \ u, int v) {\n            _nodes[u].adj.push_back(v);\n            _nodes[v].adj.push_back(u);\n\
     \        }\n        // O(NlogN)\n        void build(const std::vector<value_type>&\
-    \ a) {\n            // std::mt19937 rng{ std::random_device{}() };\n         \
-    \   // reorder(std::uniform_int_distribution<int>{ 0, _n - 1 }(rng), a);\n   \
-    \         for (int i = 0; i < _n; ++i) _dat[i] = a[i], _ord[i] = i, _nodes[i].info_it\
-    \ = _info[i].begin();\n\n            int new_node = _n;\n            std::vector<int>\
-    \ sub_size(2 * _n, 0);\n            std::vector<int> ctr(2 * _n, -1);\n\n    \
-    \        std::vector<int> head(2 * _n), tail(2 * _n), link(2 * _n);\n        \
-    \    for (int i = 0; i < _n; ++i) head[i] = tail[i] = i;\n\n            auto rec\
-    \ = [&](auto rec, int r, int siz) -> int {\n                int c = -1;\n    \
-    \            auto get_centroid = [&](auto get_centroid, int u, int p) -> void\
-    \ {\n                    sub_size[u] = 1;\n                    for (int v : _nodes[u].adj)\
-    \ if (v != p) {\n                        get_centroid(get_centroid, v, u);\n \
-    \                       if (v == c) {\n                            sub_size[u]\
+    \ a) {\n            std::mt19937 rng{ std::random_device{}() };\n            reorder(std::uniform_int_distribution<int>{\
+    \ 0, _n - 1 }(rng), a);\n            for (int i = 0; i < _n; ++i) _dat[i] = a[i],\
+    \ _ord[i] = i, _nodes[i].info_it = _info[i].begin();\n\n            int new_node\
+    \ = _n;\n            std::vector<int> sub_size(2 * _n, 0);\n            std::vector<int>\
+    \ ctr(2 * _n, -1);\n\n            std::vector<int> head(2 * _n), tail(2 * _n),\
+    \ link(2 * _n);\n            for (int i = 0; i < _n; ++i) head[i] = tail[i] =\
+    \ i;\n\n            auto rec = [&](auto rec, int r, int siz) -> int {\n      \
+    \          int c = -1;\n                auto get_centroid = [&](auto get_centroid,\
+    \ int u, int p) -> void {\n                    sub_size[u] = 1;\n            \
+    \        for (int v : _nodes[u].adj) if (v != p) {\n                        get_centroid(get_centroid,\
+    \ v, u);\n                        if (v == c) {\n                            sub_size[u]\
     \ = siz - sub_size[c];\n                            break;\n                 \
     \       }\n                        sub_size[u] += sub_size[v];\n             \
     \       }\n                    if (c < 0 and sub_size[u] * 2 > siz) c = u;\n \
@@ -202,27 +199,26 @@ data:
     \            for (auto it = _info[u].begin(); it != it_end; ++it) res = mapping(_subtrees[std::exchange(v,\
     \ _par[v])][it->child_index].get(it->dep), res);\n            return res;\n  \
     \      }\n        // O(1)\n        void apply(int u, const operator_type& f) {\n\
-    \            u = _ord[u];\n            _dat[u] = mapping(f, _dat[u]);\n      \
-    \  }\n        // O((logN)^2)\n        void apply(int u, int dl, int dr, const\
-    \ operator_type& f) {\n            u = _ord[u];\n            if (dl <= 0 and 0\
-    \ < dr) _dat[u] = mapping(f, _dat[u]);\n            _subtrees[u][0].apply(dl -\
-    \ 1, dr - 1, f);\n            _subtrees[u][1].apply(dl - 1, dr - 1, f);\n    \
-    \        int v = _par[u];\n            const auto it_end = _nodes[u].info_it;\n\
-    \            for (auto it = _info[u].begin(); it != it_end; ++it) {\n        \
-    \        int ql = dl - it->dep - 1, qr = dr - it->dep - 1;\n                if\
-    \ (v < _n and ql <= 0 and 0 < qr) _dat[v] = mapping(f, _dat[v]);\n           \
-    \     _subtrees[std::exchange(v, _par[v])][it->child_index ^ 1].apply(ql - 1,\
-    \ qr - 1, f);\n            }\n        }\n\n    private:\n        int _n;\n   \
-    \     std::vector<value_type> _dat;\n        std::vector<TreeNode> _nodes;\n \
-    \       std::vector<int> _par;\n        std::vector<std::array<AuxInfo, 30>> _info;\n\
-    \        std::vector<std::array<sequence_type, 2>> _subtrees;\n\n        std::vector<int>\
-    \ _ord;\n\n        void reorder(int s, const std::vector<value_type> &a) {\n \
-    \           _ord.assign(_n, -1);\n            int t = 0;\n            std::deque<int>\
-    \ dq{ s };\n            while (dq.size()) {\n                int u = dq.front();\
-    \ dq.pop_front();\n                _ord[u] = t++;\n                for (int v\
-    \ : _nodes[u].adj) if (_ord[v] < 0) dq.push_back(v);\n            }\n        \
-    \    assert(t == _n);\n            std::vector<TreeNode> tmp(_n);\n          \
-    \  for (int i = 0; i < _n; ++i) {\n                for (int& e : _nodes[i].adj)\
+    \            _dat[u] = mapping(f, _dat[u]);\n        }\n        // O((logN)^2)\n\
+    \        void apply(int u, int dl, int dr, const operator_type& f) {\n       \
+    \     u = _ord[u];\n            if (dl <= 0 and 0 < dr) _dat[u] = mapping(f, _dat[u]);\n\
+    \            _subtrees[u][0].apply(dl - 1, dr - 1, f);\n            _subtrees[u][1].apply(dl\
+    \ - 1, dr - 1, f);\n            int v = _par[u];\n            const auto it_end\
+    \ = _nodes[u].info_it;\n            for (auto it = _info[u].begin(); it != it_end;\
+    \ ++it) {\n                int ql = dl - it->dep - 1, qr = dr - it->dep - 1;\n\
+    \                if (v < _n and ql <= 0 and 0 < qr) _dat[v] = mapping(f, _dat[v]);\n\
+    \                _subtrees[std::exchange(v, _par[v])][it->child_index ^ 1].apply(ql\
+    \ - 1, qr - 1, f);\n            }\n        }\n\n    private:\n        int _n;\n\
+    \        std::vector<value_type> _dat;\n        std::vector<TreeNode> _nodes;\n\
+    \        std::vector<int> _par;\n        std::vector<std::array<AuxInfo, 30>>\
+    \ _info;\n        std::vector<std::array<sequence_type, 2>> _subtrees;\n\n   \
+    \     std::vector<int> _ord;\n\n        void reorder(int s, const std::vector<value_type>\
+    \ &a) {\n            _ord.assign(_n, -1);\n            int t = 0;\n          \
+    \  std::deque<int> dq{ s };\n            while (dq.size()) {\n               \
+    \ int u = dq.front(); dq.pop_front();\n                _ord[u] = t++;\n      \
+    \          for (int v : _nodes[u].adj) if (_ord[v] < 0) dq.push_back(v);\n   \
+    \         }\n            assert(t == _n);\n            std::vector<TreeNode> tmp(_n);\n\
+    \            for (int i = 0; i < _n; ++i) {\n                for (int& e : _nodes[i].adj)\
     \ e = _ord[e];\n                _nodes[i].info_it = _info[_ord[i]].begin();\n\
     \                tmp[_ord[i]] = std::move(_nodes[i]);\n                _dat[_ord[i]]\
     \ = a[i];\n            }\n            _nodes.swap(tmp);\n        }\n    };\n}\
@@ -231,8 +227,8 @@ data:
   isVerificationFile: false
   path: library/tree/point_get_range_contour_operate.hpp
   requiredBy: []
-  timestamp: '2022-08-07 20:14:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-05 23:57:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
 documentation_of: library/tree/point_get_range_contour_operate.hpp

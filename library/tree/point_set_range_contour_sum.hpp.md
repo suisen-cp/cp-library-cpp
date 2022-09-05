@@ -3,26 +3,26 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/tree/point_set_range_contour_product/dummy.test.cpp
-    title: test/src/tree/point_set_range_contour_product/dummy.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/tree/point_set_range_contour_product.hpp\"\n\n\n\
-    \n#include <cstdint>\n#include <deque>\n#include <map>\n#include <queue>\n#include\
-    \ <tuple>\n\n#include <atcoder/segtree>\n\nnamespace suisen {\n    template <typename\
-    \ T, T(*op)(T, T), T(*e)()>\n    struct PointSetRangeContourProduct {\n      \
-    \  PointSetRangeContourProduct() {}\n        PointSetRangeContourProduct(int n,\
-    \ const T &fill_value) : PointSetRangeContourProduct(std::vector<T>(n, fill_value))\
-    \ {}\n        PointSetRangeContourProduct(const std::vector<T> &dat) : _n(dat.size()),\
+  bundledCode: "#line 1 \"library/tree/point_set_range_contour_sum.hpp\"\n\n\n\n#include\
+    \ <array>\n#include <cstdint>\n#include <deque>\n#include <map>\n#include <queue>\n\
+    #include <tuple>\n#include <utility>\n\n#include <atcoder/segtree>\n\nnamespace\
+    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)()>\n    struct PointSetRangeContourSum\
+    \ {\n        PointSetRangeContourSum() {}\n        PointSetRangeContourSum(int\
+    \ n, const T &fill_value) : PointSetRangeContourSum(std::vector<T>(n, fill_value))\
+    \ {}\n        PointSetRangeContourSum(const std::vector<T> &dat) : _n(dat.size()),\
     \ _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat)\
     \ {\n            _par.reserve(2 * _n);\n            for (int i = 0; i < _n; ++i)\
     \ _info[i].reserve(30);\n        }\n\n        using segtree_type = atcoder::segtree<T,\
     \ op, e>;\n\n        struct AuxData {\n            int segtree_index;\n      \
-    \      int8_t child_index;\n            int dist;\n        };\n\n        struct\
+    \      int8_t child_index;\n            int dep;\n        };\n\n        struct\
     \ Node {\n            std::vector<int> _sep;\n            segtree_type _seq;\n\
     \n            Node() {}\n            Node(const std::vector<std::vector<int>>&\
     \ g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const\
@@ -39,7 +39,7 @@ data:
     \ + 1);\n                }\n                _sep.push_back(cnt);\n           \
     \     _seq = segtree_type(reordered_dat);\n            }\n\n            void set(int\
     \ i, const T& val) {\n                _seq.set(i, val);\n            }\n     \
-    \       T prod(int dl, int dr) const {\n                dl = std::max(dl, 0);\n\
+    \       T sum(int dl, int dr) const {\n                dl = std::max(dl, 0);\n\
     \                dr = std::min(dr, int(_sep.size()) - 1);\n                return\
     \ dl < dr ? _seq.prod(_sep[dl], _sep[dr]) : e();\n            }\n        };\n\n\
     \        void add_edge(int u, int v) {\n            _g[u].push_back(v);\n    \
@@ -93,30 +93,30 @@ data:
     \ val) {\n            _dat[u] = val;\n            int v = _par[u];\n         \
     \   for (const auto &info : _info[u]) {\n                _nodes[std::exchange(v,\
     \ _par[v])][info.child_index].set(info.segtree_index, val);\n            }\n \
-    \       }\n        T prod(int u, int dl, int dr) const {\n            T res =\
-    \ dl <= 0 and 0 < dr ? _dat[u] : e();\n            res = op(res, _nodes[u][0].prod(dl\
-    \ - 1, dr - 1));\n            res = op(res, _nodes[u][1].prod(dl - 1, dr - 1));\n\
+    \       }\n        T sum(int u, int dl, int dr) const {\n            T res = dl\
+    \ <= 0 and 0 < dr ? _dat[u] : e();\n            res = op(res, _nodes[u][0].sum(dl\
+    \ - 1, dr - 1));\n            res = op(res, _nodes[u][1].sum(dl - 1, dr - 1));\n\
     \            int v = _par[u];\n            for (const auto &info : _info[u]) {\n\
-    \                int ql = dl - info.dist - 2, qr = dr - info.dist - 2;\n     \
-    \           if (v < _n and ql <= -1 and -1 < qr) res = op(res, _dat[v]);\n   \
-    \             res = op(res, _nodes[std::exchange(v, _par[v])][info.child_index\
-    \ ^ 1].prod(ql, qr));\n            }\n            return res;\n        }\n\n \
-    \   private:\n        int _n;\n        std::vector<std::vector<int>> _g;\n   \
-    \     std::vector<int> _par;\n        std::vector<int8_t> _removed;\n        std::vector<std::vector<AuxData>>\
+    \                int ql = dl - info.dep - 2, qr = dr - info.dep - 2;\n       \
+    \         if (v < _n and ql <= -1 and -1 < qr) res = op(res, _dat[v]);\n     \
+    \           res = op(res, _nodes[std::exchange(v, _par[v])][info.child_index ^\
+    \ 1].sum(ql, qr));\n            }\n            return res;\n        }\n\n    private:\n\
+    \        int _n;\n        std::vector<std::vector<int>> _g;\n        std::vector<int>\
+    \ _par;\n        std::vector<int8_t> _removed;\n        std::vector<std::vector<AuxData>>\
     \ _info;\n        std::vector<std::array<Node, 2>> _nodes;\n        std::vector<T>\
     \ _dat;\n    };\n} // namespace suisen\n\n\n\n"
-  code: "#ifndef SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT\n#define SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT\n\
-    \n#include <cstdint>\n#include <deque>\n#include <map>\n#include <queue>\n#include\
-    \ <tuple>\n\n#include <atcoder/segtree>\n\nnamespace suisen {\n    template <typename\
-    \ T, T(*op)(T, T), T(*e)()>\n    struct PointSetRangeContourProduct {\n      \
-    \  PointSetRangeContourProduct() {}\n        PointSetRangeContourProduct(int n,\
-    \ const T &fill_value) : PointSetRangeContourProduct(std::vector<T>(n, fill_value))\
-    \ {}\n        PointSetRangeContourProduct(const std::vector<T> &dat) : _n(dat.size()),\
+  code: "#ifndef SUISEN_POINT_SET_RANGE_CONTOUR_SUM\n#define SUISEN_POINT_SET_RANGE_CONTOUR_SUM\n\
+    \n#include <array>\n#include <cstdint>\n#include <deque>\n#include <map>\n#include\
+    \ <queue>\n#include <tuple>\n#include <utility>\n\n#include <atcoder/segtree>\n\
+    \nnamespace suisen {\n    template <typename T, T(*op)(T, T), T(*e)()>\n    struct\
+    \ PointSetRangeContourSum {\n        PointSetRangeContourSum() {}\n        PointSetRangeContourSum(int\
+    \ n, const T &fill_value) : PointSetRangeContourSum(std::vector<T>(n, fill_value))\
+    \ {}\n        PointSetRangeContourSum(const std::vector<T> &dat) : _n(dat.size()),\
     \ _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat)\
     \ {\n            _par.reserve(2 * _n);\n            for (int i = 0; i < _n; ++i)\
     \ _info[i].reserve(30);\n        }\n\n        using segtree_type = atcoder::segtree<T,\
     \ op, e>;\n\n        struct AuxData {\n            int segtree_index;\n      \
-    \      int8_t child_index;\n            int dist;\n        };\n\n        struct\
+    \      int8_t child_index;\n            int dep;\n        };\n\n        struct\
     \ Node {\n            std::vector<int> _sep;\n            segtree_type _seq;\n\
     \n            Node() {}\n            Node(const std::vector<std::vector<int>>&\
     \ g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const\
@@ -133,7 +133,7 @@ data:
     \ + 1);\n                }\n                _sep.push_back(cnt);\n           \
     \     _seq = segtree_type(reordered_dat);\n            }\n\n            void set(int\
     \ i, const T& val) {\n                _seq.set(i, val);\n            }\n     \
-    \       T prod(int dl, int dr) const {\n                dl = std::max(dl, 0);\n\
+    \       T sum(int dl, int dr) const {\n                dl = std::max(dl, 0);\n\
     \                dr = std::min(dr, int(_sep.size()) - 1);\n                return\
     \ dl < dr ? _seq.prod(_sep[dl], _sep[dr]) : e();\n            }\n        };\n\n\
     \        void add_edge(int u, int v) {\n            _g[u].push_back(v);\n    \
@@ -187,42 +187,30 @@ data:
     \ val) {\n            _dat[u] = val;\n            int v = _par[u];\n         \
     \   for (const auto &info : _info[u]) {\n                _nodes[std::exchange(v,\
     \ _par[v])][info.child_index].set(info.segtree_index, val);\n            }\n \
-    \       }\n        T prod(int u, int dl, int dr) const {\n            T res =\
-    \ dl <= 0 and 0 < dr ? _dat[u] : e();\n            res = op(res, _nodes[u][0].prod(dl\
-    \ - 1, dr - 1));\n            res = op(res, _nodes[u][1].prod(dl - 1, dr - 1));\n\
+    \       }\n        T sum(int u, int dl, int dr) const {\n            T res = dl\
+    \ <= 0 and 0 < dr ? _dat[u] : e();\n            res = op(res, _nodes[u][0].sum(dl\
+    \ - 1, dr - 1));\n            res = op(res, _nodes[u][1].sum(dl - 1, dr - 1));\n\
     \            int v = _par[u];\n            for (const auto &info : _info[u]) {\n\
-    \                int ql = dl - info.dist - 2, qr = dr - info.dist - 2;\n     \
-    \           if (v < _n and ql <= -1 and -1 < qr) res = op(res, _dat[v]);\n   \
-    \             res = op(res, _nodes[std::exchange(v, _par[v])][info.child_index\
-    \ ^ 1].prod(ql, qr));\n            }\n            return res;\n        }\n\n \
-    \   private:\n        int _n;\n        std::vector<std::vector<int>> _g;\n   \
-    \     std::vector<int> _par;\n        std::vector<int8_t> _removed;\n        std::vector<std::vector<AuxData>>\
+    \                int ql = dl - info.dep - 2, qr = dr - info.dep - 2;\n       \
+    \         if (v < _n and ql <= -1 and -1 < qr) res = op(res, _dat[v]);\n     \
+    \           res = op(res, _nodes[std::exchange(v, _par[v])][info.child_index ^\
+    \ 1].sum(ql, qr));\n            }\n            return res;\n        }\n\n    private:\n\
+    \        int _n;\n        std::vector<std::vector<int>> _g;\n        std::vector<int>\
+    \ _par;\n        std::vector<int8_t> _removed;\n        std::vector<std::vector<AuxData>>\
     \ _info;\n        std::vector<std::array<Node, 2>> _nodes;\n        std::vector<T>\
-    \ _dat;\n    };\n} // namespace suisen\n\n\n#endif // SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT"
+    \ _dat;\n    };\n} // namespace suisen\n\n\n#endif // SUISEN_POINT_SET_RANGE_CONTOUR_SUM"
   dependsOn: []
   isVerificationFile: false
-  path: library/tree/point_set_range_contour_product.hpp
+  path: library/tree/point_set_range_contour_sum.hpp
   requiredBy: []
-  timestamp: '2022-08-07 20:14:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-05 23:57:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/tree/point_set_range_contour_product/dummy.test.cpp
-documentation_of: library/tree/point_set_range_contour_product.hpp
+  - test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
+documentation_of: library/tree/point_set_range_contour_sum.hpp
 layout: document
-title: "Range Contour Aggregation Query On Tree (\u6728\u4E0A\u306E\u7B49\u9AD8\u7DDA\
-  \u96C6\u7D04\u30AF\u30A8\u30EA)"
+redirect_from:
+- /library/library/tree/point_set_range_contour_sum.hpp
+- /library/library/tree/point_set_range_contour_sum.hpp.html
+title: library/tree/point_set_range_contour_sum.hpp
 ---
-## Range Contour Aggregation Query On Tree (木上の等高線集約クエリ)
-
-以下のような問題を考えます。
-
-### 問題
-
-$N$ 頂点の木 $T$ の各頂点 $v$ に可換モノイド $(M,\oplus)$ の元 $A _ v$ が書かれている。以下の形式で表されるクエリが $Q$ 個与えられるので、順番に処理せよ。
-
-- `1 v x` : 頂点 $v\in V(T)$ に書かれた値を $x\in M$ に変更する。即ち、$A _ v \leftarrow x$ とする。
-- `2 v l r` : 頂点 $v\in V(T)$ からの最短距離が $l$ 以上 $r$ 未満であるような頂点の集合を $S(v,l,r)$ として、$\displaystyle \bigoplus _ { u \in S (v,l,r) } A _ u$ を計算する。
-
-ここで、$T$ の辺の重みは全て $1$ であるとします。
-
-本ライブラリは、$\oplus$ の計算にかかる時間を $O(1)$ と仮定して、上記の問題を前計算 $\Theta(N \log N)$、クエリ $\Theta( (\log N) ^ 2 )$ で解くアルゴリズムの実装です。詳細は [重心分解で 1 点更新区間取得 - noshi91のメモ](https://noshi91.hatenablog.com/entry/2022/03/27/042143) を参照してください。
