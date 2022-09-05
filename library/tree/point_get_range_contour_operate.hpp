@@ -8,6 +8,7 @@
 #include <queue>
 #include <random>
 #include <tuple>
+#include <utility>
 
 namespace suisen {
     template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>
@@ -54,8 +55,8 @@ namespace suisen {
         }
         // O(NlogN)
         void build(const std::vector<value_type>& a) {
-            // std::mt19937 rng{ std::random_device{}() };
-            // reorder(std::uniform_int_distribution<int>{ 0, _n - 1 }(rng), a);
+            std::mt19937 rng{ std::random_device{}() };
+            reorder(std::uniform_int_distribution<int>{ 0, _n - 1 }(rng), a);
             for (int i = 0; i < _n; ++i) _dat[i] = a[i], _ord[i] = i, _nodes[i].info_it = _info[i].begin();
 
             int new_node = _n;
@@ -156,7 +157,6 @@ namespace suisen {
         }
         // O(1)
         void apply(int u, const operator_type& f) {
-            u = _ord[u];
             _dat[u] = mapping(f, _dat[u]);
         }
         // O((logN)^2)

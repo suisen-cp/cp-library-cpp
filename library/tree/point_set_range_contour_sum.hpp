@@ -1,20 +1,22 @@
-#ifndef SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT
-#define SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT
+#ifndef SUISEN_POINT_SET_RANGE_CONTOUR_SUM
+#define SUISEN_POINT_SET_RANGE_CONTOUR_SUM
 
+#include <array>
 #include <cstdint>
 #include <deque>
 #include <map>
 #include <queue>
 #include <tuple>
+#include <utility>
 
 #include <atcoder/segtree>
 
 namespace suisen {
     template <typename T, T(*op)(T, T), T(*e)()>
-    struct PointSetRangeContourProduct {
-        PointSetRangeContourProduct() {}
-        PointSetRangeContourProduct(int n, const T &fill_value) : PointSetRangeContourProduct(std::vector<T>(n, fill_value)) {}
-        PointSetRangeContourProduct(const std::vector<T> &dat) : _n(dat.size()), _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat) {
+    struct PointSetRangeContourSum {
+        PointSetRangeContourSum() {}
+        PointSetRangeContourSum(int n, const T &fill_value) : PointSetRangeContourSum(std::vector<T>(n, fill_value)) {}
+        PointSetRangeContourSum(const std::vector<T> &dat) : _n(dat.size()), _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat) {
             _par.reserve(2 * _n);
             for (int i = 0; i < _n; ++i) _info[i].reserve(30);
         }
@@ -24,7 +26,7 @@ namespace suisen {
         struct AuxData {
             int segtree_index;
             int8_t child_index;
-            int dist;
+            int dep;
         };
 
         struct Node {
@@ -53,7 +55,7 @@ namespace suisen {
             void set(int i, const T& val) {
                 _seq.set(i, val);
             }
-            T prod(int dl, int dr) const {
+            T sum(int dl, int dr) const {
                 dl = std::max(dl, 0);
                 dr = std::min(dr, int(_sep.size()) - 1);
                 return dl < dr ? _seq.prod(_sep[dl], _sep[dr]) : e();
@@ -156,15 +158,15 @@ namespace suisen {
                 _nodes[std::exchange(v, _par[v])][info.child_index].set(info.segtree_index, val);
             }
         }
-        T prod(int u, int dl, int dr) const {
+        T sum(int u, int dl, int dr) const {
             T res = dl <= 0 and 0 < dr ? _dat[u] : e();
-            res = op(res, _nodes[u][0].prod(dl - 1, dr - 1));
-            res = op(res, _nodes[u][1].prod(dl - 1, dr - 1));
+            res = op(res, _nodes[u][0].sum(dl - 1, dr - 1));
+            res = op(res, _nodes[u][1].sum(dl - 1, dr - 1));
             int v = _par[u];
             for (const auto &info : _info[u]) {
-                int ql = dl - info.dist - 2, qr = dr - info.dist - 2;
+                int ql = dl - info.dep - 2, qr = dr - info.dep - 2;
                 if (v < _n and ql <= -1 and -1 < qr) res = op(res, _dat[v]);
-                res = op(res, _nodes[std::exchange(v, _par[v])][info.child_index ^ 1].prod(ql, qr));
+                res = op(res, _nodes[std::exchange(v, _par[v])][info.child_index ^ 1].sum(ql, qr));
             }
             return res;
         }
@@ -181,4 +183,4 @@ namespace suisen {
 } // namespace suisen
 
 
-#endif // SUISEN_POINT_SET_RANGE_CONTOUR_PRODUCT
+#endif // SUISEN_POINT_SET_RANGE_CONTOUR_SUM
