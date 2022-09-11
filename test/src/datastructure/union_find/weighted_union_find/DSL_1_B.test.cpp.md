@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []

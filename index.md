@@ -106,7 +106,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/semi_relaxed_convolution.hpp
       title: Semi Relaxed Convolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/subset_convolution.hpp
       title: Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -401,7 +401,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/enumerate_triangles.hpp
       title: "\u4E09\u89D2\u5F62\u5217\u6319"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/functional_graph.hpp
       title: Functional Graph
     - icon: ':heavy_check_mark:'
@@ -465,11 +465,11 @@ data:
     - icon: ':warning:'
       path: library/integral_geom/farthest_pair.hpp
       title: Farthest Pair
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/integral_geom/geometry.hpp
       title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\
         \u6A19)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/integral_geom/point.hpp
       title: Point
     - icon: ':heavy_check_mark:'
@@ -477,7 +477,7 @@ data:
       title: "\u504F\u89D2\u30BD\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19)"
   - name: library/linear_algebra
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/array_matrix.hpp
       title: Array Matrix
     - icon: ':heavy_check_mark:'
@@ -486,7 +486,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/circulant_matrix.hpp
       title: "Circulant Matrix (\u5DE1\u56DE\u884C\u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/count_spanning_trees.hpp
       title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
         \u6570\u3048\u4E0A\u3052"
@@ -496,7 +496,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/hessenberg_reduction.hpp
       title: Hessenberg Reduction
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/matrix.hpp
       title: Matrix
     - icon: ':x:'
@@ -510,13 +510,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
     - icon: ':heavy_check_mark:'
@@ -525,7 +525,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/sps.hpp
       title: Set Power Series
     - icon: ':heavy_check_mark:'
@@ -587,7 +587,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
     - icon: ':heavy_check_mark:'
@@ -639,6 +639,9 @@ data:
       title: Stirling Number2
   - name: library/string
     pages:
+    - icon: ':warning:'
+      path: library/string/aho_corasick.hpp
+      title: library/string/aho_corasick.hpp
     - icon: ':heavy_check_mark:'
       path: library/string/compare_substring.hpp
       title: Compare Substring
@@ -674,7 +677,7 @@ data:
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/kronecker_power.hpp
       title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
         \u5909\u63DB (\u4EEE\u79F0)"
@@ -682,7 +685,7 @@ data:
       path: library/transform/multiple.hpp
       title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/subset.hpp
       title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -737,10 +740,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/lowest_common_ancestor.hpp
       title: Lowest Common Ancestor
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/point_add_range_contour_sum.hpp
       title: library/tree/point_add_range_contour_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/point_add_range_contour_sum_invertible.hpp
       title: Point Add Range Contour Sum Invertible
     - icon: ':warning:'
@@ -749,7 +752,7 @@ data:
     - icon: ':x:'
       path: library/tree/point_get_range_contour_operate.hpp
       title: Point Get Range Contour Operate
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/point_set_range_contour_sum.hpp
       title: library/tree/point_set_range_contour_sum.hpp
     - icon: ':warning:'
@@ -758,12 +761,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/rooted_tree_isomorphism_classification.hpp
       title: library/tree/rooted_tree_isomorphism_classification.hpp
   - name: library/type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
   - name: library/uncategorized
@@ -791,7 +794,7 @@ data:
     - icon: ':warning:'
       path: library/util/cumulative_sum_2d.hpp
       title: "2D \u7D2F\u7A4D\u548C"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/default_operator.hpp
       title: Default Operator
     - icon: ':warning:'
@@ -819,7 +822,7 @@ data:
       path: library/util/run_length_encoder.hpp
       title: "Run Length Encoder (\u30E9\u30F3\u30EC\u30F3\u30AF\u30B9\u5727\u7E2E\
         )"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
     - icon: ':warning:'
@@ -1444,7 +1447,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/functional_graph/abc254_g.test.cpp
       title: test/src/graph/functional_graph/abc254_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/functional_graph/abc258_e.test.cpp
       title: test/src/graph/functional_graph/abc258_e.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1527,7 +1530,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/integral_geom/geometry/CGL_7_A.test.cpp
       title: test/src/integral_geom/geometry/CGL_7_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/integral_geom/geometry/abc259_d.test.cpp
       title: test/src/integral_geom/geometry/abc259_d.test.cpp
   - name: test/src/integral_geom/sort_points_by_argument
@@ -1537,7 +1540,7 @@ data:
       title: test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
   - name: test/src/linear_algebra/array_matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
       title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1624,7 +1627,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/sps/abc236_h.test.cpp
       title: test/src/math/sps/abc236_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/sps/abc253_h.test.cpp
       title: test/src/math/sps/abc253_h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2008,12 +2011,12 @@ data:
       title: test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp
   - name: test/src/tree/point_add_range_contour_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/point_add_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/src/tree/point_add_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
   - name: test/src/tree/point_add_range_contour_sum_invertible
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
   - name: test/src/tree/point_get_range_contour_operate
@@ -2026,7 +2029,7 @@ data:
     - icon: ':x:'
       path: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
       title: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
   - name: test/src/tree/rerooting
@@ -2042,7 +2045,7 @@ data:
       title: test/src/tree/rerooting/edpc_v.test.cpp
   - name: test/src/tree/rooted_tree_isomorphism_classification
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
       title: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
   - name: test/src/uncategorized/static_range_xored_mex_query
@@ -2057,13 +2060,13 @@ data:
       title: test/src/util/coordinate_compressor/dummy.test.cpp
   - name: test/src/util/subset_iterator
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
       title: test/src/util/subset_iterator/dummy_all_setbit.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/subset_iterator/dummy_all_subset.test.cpp
       title: test/src/util/subset_iterator/dummy_all_subset.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
       title: test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
 layout: toppage

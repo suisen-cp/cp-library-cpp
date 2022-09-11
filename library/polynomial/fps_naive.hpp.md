@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,9 +186,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n\
@@ -550,7 +550,7 @@ data:
   - library/math/sps.hpp
   - library/convolution/subset_convolution.hpp
   timestamp: '2022-07-21 12:28:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp

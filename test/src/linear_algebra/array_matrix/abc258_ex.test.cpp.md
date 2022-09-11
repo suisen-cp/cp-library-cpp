@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc258/tasks/abc258_Ex
@@ -177,7 +177,7 @@ data:
   path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
   requiredBy: []
   timestamp: '2022-07-27 16:22:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
 layout: document

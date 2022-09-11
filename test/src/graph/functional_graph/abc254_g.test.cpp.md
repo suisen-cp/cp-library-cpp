@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/util/range_set.hpp
     title: Range Set
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/functional_graph.hpp
     title: Functional Graph
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'

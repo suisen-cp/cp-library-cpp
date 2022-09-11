@@ -20,7 +20,7 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
@@ -73,7 +73,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':heavy_check_mark:'
@@ -94,7 +94,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':warning:'
@@ -253,7 +253,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -442,9 +442,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
@@ -556,7 +556,7 @@ data:
   - library/util/coordinate_compressor.hpp
   - library/template.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp

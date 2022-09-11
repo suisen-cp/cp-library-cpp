@@ -5,13 +5,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':heavy_check_mark:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   _extendedVerifiedWith:
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -204,9 +204,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://37zigen.com/tonelli-shanks-algorithm/
@@ -261,7 +261,7 @@ data:
   - library/convolution/subset_convolution.hpp
   - library/convolution/array_subset_convolution.hpp
   timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp

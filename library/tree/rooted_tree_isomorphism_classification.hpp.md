@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
     title: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/rooted_tree_isomorphism_classification.hpp\"\
@@ -60,7 +60,7 @@ data:
   path: library/tree/rooted_tree_isomorphism_classification.hpp
   requiredBy: []
   timestamp: '2022-09-05 23:58:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
 documentation_of: library/tree/rooted_tree_isomorphism_classification.hpp

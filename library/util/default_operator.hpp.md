@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
@@ -32,20 +32,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':heavy_check_mark:'
     path: library/transform/divisor.hpp
     title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
@@ -53,7 +53,7 @@ data:
     path: library/transform/multiple.hpp
     title: "\u500D\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -67,7 +67,7 @@ data:
   - icon: ':warning:'
     path: library/tree/contour_sum.hpp
     title: Contour Sum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/point_add_range_contour_sum_invertible.hpp
     title: Point Add Range Contour Sum Invertible
   - icon: ':warning:'
@@ -113,7 +113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
     title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
     title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -146,7 +146,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc236_h.test.cpp
     title: test/src/math/sps/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -164,12 +164,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/default_operator.hpp\"\n\n\n\nnamespace suisen\
@@ -254,7 +254,7 @@ data:
   - library/util/cumulative_sum_2d.hpp
   - library/util/cumulative_sum.hpp
   timestamp: '2022-01-31 13:34:34+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/src/math/sps/arc105_f.test.cpp

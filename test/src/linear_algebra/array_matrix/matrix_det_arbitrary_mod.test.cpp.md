@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []

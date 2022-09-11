@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc253_h_2.test.cpp
     title: test/src/math/array_sps/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,9 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n\
@@ -139,7 +139,7 @@ data:
   - library/sequence/stirling_number1.hpp
   - library/sequence/bernoulli_number.hpp
   timestamp: '2022-05-28 01:05:03+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp

@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/functional_graph/abc254_g.test.cpp
     title: test/src/graph/functional_graph/abc254_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/functional_graph/abc258_e.test.cpp
     title: test/src/graph/functional_graph/abc258_e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/graph/functional_graph/dummy.test.cpp
     title: test/src/graph/functional_graph/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2019/09/22/114149
@@ -250,7 +250,7 @@ data:
   path: library/graph/functional_graph.hpp
   requiredBy: []
   timestamp: '2022-06-05 19:58:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/functional_graph/dummy.test.cpp
   - test/src/graph/functional_graph/abc258_e.test.cpp

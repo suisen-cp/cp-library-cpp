@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
     title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,9 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
     title: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/array_matrix.hpp\"\n\n\n\n#include\
@@ -263,7 +263,7 @@ data:
   path: library/linear_algebra/array_matrix.hpp
   requiredBy: []
   timestamp: '2022-07-27 16:22:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp

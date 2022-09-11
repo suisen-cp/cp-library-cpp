@@ -26,8 +26,8 @@ data:
     \        void add_point(const point_type& p) {\n            comp.add(p[0]);\n\
     \            points.push_back(p);\n        }\n        void build() {\n       \
     \     data.assign(n = comp.build(), data_type{});\n            for (const auto&\
-    \ p : points) for (int k = comp(p[0]) + 1; k; k -= k & -k) {\n               \
-    \ data[k - 1].add_point(tail(p));\n            }\n            points.clear();\n\
+    \ p : points) for (int k = comp(p[0]) + 1; k <= n; k += k & -k) {\n          \
+    \      data[k - 1].add_point(tail(p));\n            }\n            points.clear();\n\
     \            points.shrink_to_fit();\n            for (auto& t : data) t.build();\n\
     \        }\n\n        value_type prefix_query(const point_type& p) const {\n \
     \           value_type res = e();\n            for (int r = comp(p[0]); r; r -=\
@@ -72,8 +72,8 @@ data:
     \        void add_point(const point_type& p) {\n            comp.add(p[0]);\n\
     \            points.push_back(p);\n        }\n        void build() {\n       \
     \     data.assign(n = comp.build(), data_type{});\n            for (const auto&\
-    \ p : points) for (int k = comp(p[0]) + 1; k; k -= k & -k) {\n               \
-    \ data[k - 1].add_point(tail(p));\n            }\n            points.clear();\n\
+    \ p : points) for (int k = comp(p[0]) + 1; k <= n; k += k & -k) {\n          \
+    \      data[k - 1].add_point(tail(p));\n            }\n            points.clear();\n\
     \            points.shrink_to_fit();\n            for (auto& t : data) t.build();\n\
     \        }\n\n        value_type prefix_query(const point_type& p) const {\n \
     \           value_type res = e();\n            for (int r = comp(p[0]); r; r -=\
@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
   requiredBy: []
-  timestamp: '2022-09-05 23:58:31+09:00'
+  timestamp: '2022-09-11 15:24:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp

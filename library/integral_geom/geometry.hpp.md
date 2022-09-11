@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/integral_geom/point.hpp
     title: Point
   _extendedRequiredBy:
@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/geometry/CGL_7_A.test.cpp
     title: test/src/integral_geom/geometry/CGL_7_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/geometry/abc259_d.test.cpp
     title: test/src/integral_geom/geometry/abc259_d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C
@@ -365,7 +365,7 @@ data:
   - library/integral_geom/farthest_pair.hpp
   - library/integral_geom/closest_pair.hpp
   timestamp: '2022-07-10 19:58:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/integral_geom/geometry/CGL_3_B.test.cpp
   - test/src/integral_geom/geometry/CGL_2_B.test.cpp

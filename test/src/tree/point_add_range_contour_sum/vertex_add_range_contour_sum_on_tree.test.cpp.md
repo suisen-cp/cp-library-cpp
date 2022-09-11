@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/point_add_range_contour_sum.hpp
     title: library/tree/point_add_range_contour_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
@@ -162,7 +162,7 @@ data:
   path: test/src/tree/point_add_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
   timestamp: '2022-09-05 23:57:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/point_add_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
 layout: document

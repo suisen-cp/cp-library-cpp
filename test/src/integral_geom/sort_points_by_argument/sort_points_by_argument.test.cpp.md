@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/integral_geom/point.hpp
     title: Point
   - icon: ':heavy_check_mark:'

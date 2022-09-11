@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/integral_geom/geometry.hpp
     title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/integral_geom/point.hpp
     title: Point
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc259/tasks/abc259_d
@@ -229,7 +229,7 @@ data:
   path: test/src/integral_geom/geometry/abc259_d.test.cpp
   requiredBy: []
   timestamp: '2022-07-10 19:58:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/integral_geom/geometry/abc259_d.test.cpp
 layout: document

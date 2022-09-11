@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/point_add_range_contour_sum_invertible.hpp\"\
@@ -281,7 +281,7 @@ data:
   path: library/tree/point_add_range_contour_sum_invertible.hpp
   requiredBy: []
   timestamp: '2022-08-21 18:22:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: library/tree/point_add_range_contour_sum_invertible.hpp
