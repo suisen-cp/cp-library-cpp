@@ -642,6 +642,9 @@ data:
     - icon: ':warning:'
       path: library/string/aho_corasick.hpp
       title: library/string/aho_corasick.hpp
+    - icon: ':warning:'
+      path: library/string/aho_corasick_array.hpp
+      title: library/string/aho_corasick_array.hpp
     - icon: ':heavy_check_mark:'
       path: library/string/compare_substring.hpp
       title: Compare Substring
@@ -663,6 +666,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/suffix_automaton.hpp
       title: Suffix Automaton
+    - icon: ':warning:'
+      path: library/string/trie_array.hpp
+      title: library/string/trie_array.hpp
+    - icon: ':warning:'
+      path: library/string/trie_map.hpp
+      title: library/string/trie_map.hpp
   - name: library
     pages:
     - icon: ':warning:'
