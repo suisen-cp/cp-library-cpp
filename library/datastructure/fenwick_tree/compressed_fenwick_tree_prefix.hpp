@@ -38,7 +38,7 @@ namespace suisen {
         }
         void build() {
             data.assign(n = comp.build(), data_type{});
-            for (const auto& p : points) for (int k = comp(p[0]) + 1; k; k -= k & -k) {
+            for (const auto& p : points) for (int k = comp(p[0]) + 1; k <= n; k += k & -k) {
                 data[k - 1].add_point(tail(p));
             }
             points.clear();

@@ -39,7 +39,7 @@ namespace suisen {
         }
         void build() {
             data.assign(n = comp.build(), data_type{});
-            for (const auto& p : points) for (int k = comp(p[0]) + 1; k; k -= k & -k) {
+            for (const auto& p : points) for (int k = comp(p[0]) + 1; k <= n; k += k & -k) {
                 data[k - 1].add_point(tail(p));
             }
             points.clear();
@@ -71,11 +71,7 @@ namespace suisen {
         }
         template <typename X, std::size_t... Seq>
         static constexpr auto tail_impl(const X& p, std::index_sequence<Seq...>) {
-            if constexpr (std::is_same_v<X, point_type>) {
-                return typename data_type::point_type{ p[1 + Seq]... };
-            } else if constexpr (std::is_same_v<X, cube_type>) {
-                return typename data_type::cube_type{ p[1 + Seq]... };
-            }
+            return std::conditional_t<std::is_same_v<X, point_type>, typename data_type::point_type, typename data_type::cube_type>{ p[1 + Seq]... };
         }
     };
     template <typename T, T(*op)(T, T), T(*e)(), T(*inv)(T), typename Index>
