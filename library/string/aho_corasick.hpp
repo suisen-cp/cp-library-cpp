@@ -15,7 +15,7 @@ namespace suisen {
 
         template <typename Container, std::enable_if_t<std::is_constructible_v<value_type, typename Container::value_type>, std::nullptr_t> = nullptr>
         void add(const Container& s) {
-            int cur = 0;
+            int cur = init_state();
             for (value_type c : s) {
                 auto [it, inserted] = _next[cur].try_emplace(c, _next.size());
                 if (inserted) _next.emplace_back();
@@ -59,7 +59,7 @@ namespace suisen {
                 }
             }
         }
-        int match_count(int state) const {
+        int count_suffix_matching(int state) const {
             assert(_built);
             return _count[state];
         }
