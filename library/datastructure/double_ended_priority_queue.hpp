@@ -4,70 +4,86 @@
 #include <cassert>
 #include <vector>
 #include <functional>
+#include <utility>
 
 namespace suisen {
     template <typename T, typename Comp = std::less<T>>
     struct DoubleEndedPriorityQueue {
+        using value_type = T;
+
         DoubleEndedPriorityQueue() {}
         DoubleEndedPriorityQueue(const Comp& comp) : _comp(comp) {}
 
-        void push(const T& v) {
+        bool empty() const { return _dat.empty(); }
+        int size() const { return _dat.size(); }
+
+        void push(const value_type& v) {
             _dat.push_back(v);
             fix_up(_dat.size() - 1);
         }
         template <typename ...Args>
         void emplace(Args &&...args) {
-            push(T(std::forward<Args>(args)...));
+            push(value_type(std::forward<Args>(args)...));
         }
 
-        const T& max() const {
+        const value_type& max() const {
             assert(_dat.size());
-            return _dat[_dat.size() >= 2];
+            return _dat[max_heap_top_index()];
         }
-        const T& min() const {
+        const value_type& min() const {
             assert(_dat.size());
-            return _dat[0];
+            return _dat[min_heap_top_index()];
         }
 
-        T pop_max() {
+        value_type pop_max() {
             assert(_dat.size());
-            int idx = _dat.size() >= 2;
-            T res = std::move(_dat[idx]);
-            if (_dat.size() == 1) {
-                _dat.pop_back();
-                return res;
-            }
-            _dat[idx] = std::move(_dat.back());
+            const int idx = max_heap_top_index();
+            std::swap(_dat[idx], _dat.back());
+            value_type res = std::move(_dat.back());
             _dat.pop_back();
-
-            const int siz = _dat.size();
-            while (true) {
-                int lch = max_heap_child_l(idx), rch = max_heap_child_r(idx);
-                lch -= lch >= siz;
-                rch -= rch >= siz;
-                if (lch >= siz) {
-                    fix_up(idx);
-                    break;
-                }
-                int ch = rch < siz and _comp(_dat[lch], _dat[rch]) ? rch : lch;
-                if (_comp(_dat[idx], _dat[ch])) {
-                    std::swap(_dat[idx], _dat[ch]);
-                    idx = ch;
-                } else break;
-            }
+            fix_max_heap_down(idx);
             return res;
         }
-        T pop_min() {
+        value_type pop_min() {
             assert(_dat.size());
-            int idx = 0;
-            T res = std::move(_dat[idx]);
-            if (_dat.size() == 1) {
-                _dat.pop_back();
-                return res;
-            }
-            _dat[idx] = std::move(_dat.back());
+            const int idx = min_heap_top_index();
+            std::swap(_dat[idx], _dat.back());
+            value_type res = std::move(_dat.back());
             _dat.pop_back();
+            fix_min_heap_down(idx);
+            return res;
+        }
+        const auto& data() const { return _dat; }
+        auto &data() { return _dat; }
+    private:
+        // even : min_heap, odd : max_heap
+        std::vector<value_type> _dat;
+        Comp _comp;
 
+        int min_heap_top_index() const { return 0; }
+        int max_heap_top_index() const { return _dat.size() >= 2; }
+
+        void fix_up(int idx) {
+            if (const int l = idx & ~0b1, r = l | 1; r < int(_dat.size())) {
+                if (_comp(_dat[r], _dat[l])) std::swap(_dat[l], _dat[r]), idx ^= 1;
+                fix_min_heap_up(l), fix_max_heap_up(r);
+            } else {
+                fix_min_heap_up(l), fix_max_heap_up(l);
+            }
+        }
+        void fix_min_heap_up(int idx) {
+            while (idx >= 2) {
+                if (int par = min_heap_parent(idx); _comp(_dat[idx], _dat[par])) std::swap(_dat[std::exchange(idx, par)], _dat[par]);
+                else return;
+            }
+        }
+        void fix_max_heap_up(int idx) {
+            while (idx >= 2) {
+                if (int par = max_heap_parent(idx); _comp(_dat[par], _dat[idx])) std::swap(_dat[std::exchange(idx, par)], _dat[par]);
+                else return;
+            }
+        }
+        void fix_min_heap_down(int idx) {
             const int siz = _dat.size();
             while (true) {
                 int lch = min_heap_child_l(idx), rch = min_heap_child_r(idx);
@@ -76,72 +92,31 @@ namespace suisen {
                     break;
                 }
                 int ch = rch < siz and _comp(_dat[rch], _dat[lch]) ? rch : lch;
-                if (_comp(_dat[ch], _dat[idx])) {
-                    std::swap(_dat[idx], _dat[ch]);
-                    idx = ch;
-                } else break;
+                if (_comp(_dat[ch], _dat[idx])) std::swap(_dat[std::exchange(idx, ch)], _dat[ch]);
+                else break;
             }
-            return res;
         }
-
-        const std::vector<T>& data() const {
-            return _dat;
-        }
-    private:
-        // even : min_heap
-        // odd  : max_heap
-        std::vector<T> _dat;
-        Comp _comp;
-
-        void fix_up(int idx) {
-            int l = idx & ~0b1, r = l | 1;
-            if (r < int(_dat.size())) {
-                if (_comp(_dat[r], _dat[l])) {
-                    std::swap(_dat[l], _dat[r]);
-                    idx ^= 1;
+        void fix_max_heap_down(int idx) {
+            const int siz = _dat.size();
+            while (true) {
+                int lch = max_heap_child_l(idx), rch = max_heap_child_r(idx);
+                lch -= lch >= siz, rch -= rch >= siz;
+                if (lch >= siz) {
+                    fix_up(idx);
+                    break;
                 }
-                fix_min_heap_up(l), fix_max_heap_up(r);
-            } else {
-                fix_min_heap_up(l), fix_max_heap_up(l);
-            }
-        }
-        void fix_min_heap_up(int idx) {
-            while (idx >= 2) {
-                int par = min_heap_parent(idx);
-                if (_comp(_dat[idx], _dat[par])) {
-                    std::swap(_dat[idx], _dat[par]);
-                    idx = par;
-                } else return;
-            }
-        }
-        void fix_max_heap_up(int idx) {
-            while (idx >= 2) {
-                int par = max_heap_parent(idx);
-                if (_comp(_dat[par], _dat[idx])) {
-                    std::swap(_dat[idx], _dat[par]);
-                    idx = par;
-                } else return;
+                int ch = rch < siz and _comp(_dat[lch], _dat[rch]) ? rch : lch;
+                if (_comp(_dat[idx], _dat[ch])) std::swap(_dat[std::exchange(idx, ch)], _dat[ch]);
+                else break;
             }
         }
 
-        static constexpr int min_heap_parent(int idx) {
-            return (idx - 2) >> 2 << 1;
-        }
-        static constexpr int max_heap_parent(int idx) {
-            return min_heap_parent(idx) | 1;
-        }
-        static constexpr int min_heap_child_l(int idx) {
-            return (idx + 1) << 1;
-        }
-        static constexpr int min_heap_child_r(int idx) {
-            return (idx + 2) << 1;
-        }
-        static constexpr int max_heap_child_l(int idx) {
-            return min_heap_child_l(idx - 1) | 1;
-        }
-        static constexpr int max_heap_child_r(int idx) {
-            return min_heap_child_r(idx - 1) | 1;
-        }
+        static constexpr int min_heap_parent(int idx) { return (idx - 2) >> 2 << 1; }
+        static constexpr int max_heap_parent(int idx) { return min_heap_parent(idx) | 1; }
+        static constexpr int min_heap_child_l(int idx) { return (idx + 1) << 1; }
+        static constexpr int min_heap_child_r(int idx) { return (idx + 2) << 1; }
+        static constexpr int max_heap_child_l(int idx) { return min_heap_child_l(idx - 1) | 1; }
+        static constexpr int max_heap_child_r(int idx) { return min_heap_child_r(idx - 1) | 1; }
     };
 } // namespace suisen
 
