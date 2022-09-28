@@ -12,24 +12,8 @@ namespace suisen {
         DoubleEndedPriorityQueue(const Comp& comp) : _comp(comp) {}
 
         void push(const T& v) {
-            int pos = _dat.size();
             _dat.push_back(v);
-            if (pos == 0) return;
-            if (_dat.size() & 1) {
-                int max_par = max_heap_parent(pos);
-                if (_comp(_dat[pos], _dat[max_par])) {
-                    fix_min_heap_up(pos);
-                } else {
-                    fix_max_heap_up(pos);
-                }
-            } else {
-                if (_comp(_dat[pos], _dat[pos - 1])) {
-                    std::swap(_dat[pos - 1], _dat[pos]);
-                    fix_min_heap_up(pos - 1);
-                } else {
-                    fix_max_heap_up(pos);
-                }
-            }
+            fix_up(_dat.size() - 1);
         }
         template <typename ...Args>
         void emplace(Args &&...args) {
