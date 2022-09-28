@@ -135,6 +135,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/deque_aggregation.hpp
       title: "SWAG \u3092 Deque \u306B\u62E1\u5F35\u3057\u305F\u3084\u3064"
+    - icon: ':warning:'
+      path: library/datastructure/double_ended_priority_queue.hpp
+      title: library/datastructure/double_ended_priority_queue.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
       title: Dynamic Sequence
@@ -539,6 +542,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/deterministic_miller_rabin.hpp
       title: Deterministic Miller Rabin
+    - icon: ':heavy_check_mark:'
+      path: library/number/discrete_logarithm.hpp
+      title: library/number/discrete_logarithm.hpp
     - icon: ':warning:'
       path: library/number/ext_gcd.hpp
       title: Ext Gcd
@@ -1650,6 +1656,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/util/abc240_g.test.cpp
       title: test/src/math/util/abc240_g.test.cpp
+  - name: test/src/number/discrete_logarithm
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp
+      title: test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp
   - name: test/src/number/fast_factorize
     pages:
     - icon: ':heavy_check_mark:'

@@ -220,18 +220,18 @@ data:
   isVerificationFile: false
   path: library/linear_algebra/matrix.hpp
   requiredBy:
-  - library/linear_algebra/count_spanning_trees.hpp
   - library/linear_algebra/characteristic_polynomial.hpp
+  - library/linear_algebra/count_spanning_trees.hpp
   - library/linear_algebra/hessenberg_reduction.hpp
   timestamp: '2022-07-27 16:21:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/sps/abc253_h.test.cpp
-  - test/src/linear_algebra/matrix/matrix_product.test.cpp
+  - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
   - test/src/linear_algebra/matrix/matrix_det_arbitrary_mod.test.cpp
+  - test/src/linear_algebra/matrix/matrix_product.test.cpp
   - test/src/linear_algebra/matrix/inverse_matrix.test.cpp
   - test/src/linear_algebra/matrix/matrix_det.test.cpp
-  - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
+  - test/src/math/sps/abc253_h.test.cpp
 documentation_of: library/linear_algebra/matrix.hpp
 layout: document
 title: Matrix

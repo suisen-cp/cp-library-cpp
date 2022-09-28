@@ -49,8 +49,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/fenwick_tree/fenwick_tree_prefix.hpp
   requiredBy:
-  - library/graph/manhattan_minimum_distances.hpp
   - library/graph/manhattan_mst.hpp
+  - library/graph/manhattan_minimum_distances.hpp
   timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

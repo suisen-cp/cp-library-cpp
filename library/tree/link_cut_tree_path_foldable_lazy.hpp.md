@@ -271,8 +271,8 @@ data:
   timestamp: '2022-06-23 03:06:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/tree/link_cut_tree_path_foldable_lazy/dummy1.test.cpp
   - test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
+  - test/src/tree/link_cut_tree_path_foldable_lazy/dummy1.test.cpp
   - test/src/tree/link_cut_tree_path_foldable_lazy/GRL_5_E.test.cpp
 documentation_of: library/tree/link_cut_tree_path_foldable_lazy.hpp
 layout: document

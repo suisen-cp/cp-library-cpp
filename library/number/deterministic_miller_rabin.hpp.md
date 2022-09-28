@@ -67,28 +67,29 @@ data:
     \ 1263739024124850375ULL };\n\n        constexpr uint32_t BASE_7[] { 2U, 325U,\
     \ 9375U, 28178U, 450775U, 9780504U, 1795265022U };\n\n        template <auto BASE,\
     \ std::size_t SIZE, typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n        bool miller_rabin(T _n) {\n            using U = std::make_unsigned_t<T>;\n\
-    \            using M = safely_multipliable_t<U>;\n\n            U n = _n, d =\
-    \ (n - 1) >> __builtin_ctzll(n - 1);\n\n            if (n == 2 or n == 3 or n\
-    \ == 5 or n == 7) return true;\n            if (n % 2 == 0 or n % 3 == 0 or n\
-    \ % 5 == 0 or n % 7 == 0) return false;\n\n            for (std::size_t i = 0;\
-    \ i < SIZE; ++i) {\n                M y = 1, p = BASE[i] % n;\n              \
-    \  if (p == 0) continue;\n                for (U d2 = d; d2; d2 >>= 1) {\n   \
-    \                 if (d2 & 1) y = y * p % n;\n                    p = p * p %\
-    \ n;\n                }\n                if (y == 1) continue;\n             \
-    \   for (U t = d; y != n - 1; t <<= 1) {\n                    y = y * y % n;\n\
-    \                    if (y == 1 or t == n - 1) return false;\n               \
-    \ }\n            }\n            return true;\n        }\n    }\n\n    template\
-    \ <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>\n\
-    \    bool is_prime(T n) {\n        if (n <= 1) return false;\n        using namespace\
-    \ internal;\n        if (n < THRESHOLD_1) {\n            return miller_rabin<BASE_1,\
-    \ 1>(n);\n        } else if (n < THRESHOLD_2) {\n            return miller_rabin<BASE_2,\
-    \ 2>(n);\n        } else if (n < THRESHOLD_3) {\n            return miller_rabin<BASE_3,\
-    \ 3>(n);\n        } else if (n < THRESHOLD_4) {\n            return miller_rabin<BASE_4,\
-    \ 4>(n);\n        } else if (n < THRESHOLD_5) {\n            return miller_rabin<BASE_5,\
-    \ 5>(n);\n        } else if (n < THRESHOLD_6) {\n            return miller_rabin<BASE_6,\
-    \ 6>(n);\n        } else {\n            return miller_rabin<BASE_7, 7>(n);\n \
-    \       }\n    }\n} // namespace suisen::miller_rabin\n\n\n"
+    \ = nullptr>\n        constexpr bool miller_rabin(T _n) {\n            using U\
+    \ = std::make_unsigned_t<T>;\n            using M = safely_multipliable_t<U>;\n\
+    \n            U n = _n, d = (n - 1) >> __builtin_ctzll(n - 1);\n\n           \
+    \ if (n == 2 or n == 3 or n == 5 or n == 7) return true;\n            if (n %\
+    \ 2 == 0 or n % 3 == 0 or n % 5 == 0 or n % 7 == 0) return false;\n\n        \
+    \    for (std::size_t i = 0; i < SIZE; ++i) {\n                M y = 1, p = BASE[i]\
+    \ % n;\n                if (p == 0) continue;\n                for (U d2 = d;\
+    \ d2; d2 >>= 1) {\n                    if (d2 & 1) y = y * p % n;\n          \
+    \          p = p * p % n;\n                }\n                if (y == 1) continue;\n\
+    \                for (U t = d; y != n - 1; t <<= 1) {\n                    y =\
+    \ y * y % n;\n                    if (y == 1 or t == n - 1) return false;\n  \
+    \              }\n            }\n            return true;\n        }\n    }\n\n\
+    \    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
+    \ = nullptr>\n    constexpr bool is_prime(T n) {\n        if (n <= 1) return false;\n\
+    \        using U = std::make_unsigned_t<T>;\n        U n2 = n;\n        using\
+    \ namespace internal;\n        if (n2 < THRESHOLD_1) {\n            return miller_rabin<BASE_1,\
+    \ 1>(n2);\n        } else if (n2 < THRESHOLD_2) {\n            return miller_rabin<BASE_2,\
+    \ 2>(n2);\n        } else if (n2 < THRESHOLD_3) {\n            return miller_rabin<BASE_3,\
+    \ 3>(n2);\n        } else if (n2 < THRESHOLD_4) {\n            return miller_rabin<BASE_4,\
+    \ 4>(n2);\n        } else if (n2 < THRESHOLD_5) {\n            return miller_rabin<BASE_5,\
+    \ 5>(n2);\n        } else if (n2 < THRESHOLD_6) {\n            return miller_rabin<BASE_6,\
+    \ 6>(n2);\n        } else {\n            return miller_rabin<BASE_7, 7>(n2);\n\
+    \        }\n    }\n} // namespace suisen::miller_rabin\n\n\n"
   code: "#ifndef SUISEN_DETERMINISTIC_MILLER_RABIN\n#define SUISEN_DETERMINISTIC_MILLER_RABIN\n\
     \n#include <cassert>\n#include <cstdint>\n#include <iterator>\n\n#include \"library/type_traits/type_traits.hpp\"\
     \n\nnamespace suisen::miller_rabin {\n    namespace internal {\n        constexpr\
@@ -107,35 +108,36 @@ data:
     \ 1263739024124850375ULL };\n\n        constexpr uint32_t BASE_7[] { 2U, 325U,\
     \ 9375U, 28178U, 450775U, 9780504U, 1795265022U };\n\n        template <auto BASE,\
     \ std::size_t SIZE, typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n        bool miller_rabin(T _n) {\n            using U = std::make_unsigned_t<T>;\n\
-    \            using M = safely_multipliable_t<U>;\n\n            U n = _n, d =\
-    \ (n - 1) >> __builtin_ctzll(n - 1);\n\n            if (n == 2 or n == 3 or n\
-    \ == 5 or n == 7) return true;\n            if (n % 2 == 0 or n % 3 == 0 or n\
-    \ % 5 == 0 or n % 7 == 0) return false;\n\n            for (std::size_t i = 0;\
-    \ i < SIZE; ++i) {\n                M y = 1, p = BASE[i] % n;\n              \
-    \  if (p == 0) continue;\n                for (U d2 = d; d2; d2 >>= 1) {\n   \
-    \                 if (d2 & 1) y = y * p % n;\n                    p = p * p %\
-    \ n;\n                }\n                if (y == 1) continue;\n             \
-    \   for (U t = d; y != n - 1; t <<= 1) {\n                    y = y * y % n;\n\
-    \                    if (y == 1 or t == n - 1) return false;\n               \
-    \ }\n            }\n            return true;\n        }\n    }\n\n    template\
-    \ <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>\n\
-    \    bool is_prime(T n) {\n        if (n <= 1) return false;\n        using namespace\
-    \ internal;\n        if (n < THRESHOLD_1) {\n            return miller_rabin<BASE_1,\
-    \ 1>(n);\n        } else if (n < THRESHOLD_2) {\n            return miller_rabin<BASE_2,\
-    \ 2>(n);\n        } else if (n < THRESHOLD_3) {\n            return miller_rabin<BASE_3,\
-    \ 3>(n);\n        } else if (n < THRESHOLD_4) {\n            return miller_rabin<BASE_4,\
-    \ 4>(n);\n        } else if (n < THRESHOLD_5) {\n            return miller_rabin<BASE_5,\
-    \ 5>(n);\n        } else if (n < THRESHOLD_6) {\n            return miller_rabin<BASE_6,\
-    \ 6>(n);\n        } else {\n            return miller_rabin<BASE_7, 7>(n);\n \
-    \       }\n    }\n} // namespace suisen::miller_rabin\n\n#endif // SUISEN_DETERMINISTIC_MILLER_RABIN\n"
+    \ = nullptr>\n        constexpr bool miller_rabin(T _n) {\n            using U\
+    \ = std::make_unsigned_t<T>;\n            using M = safely_multipliable_t<U>;\n\
+    \n            U n = _n, d = (n - 1) >> __builtin_ctzll(n - 1);\n\n           \
+    \ if (n == 2 or n == 3 or n == 5 or n == 7) return true;\n            if (n %\
+    \ 2 == 0 or n % 3 == 0 or n % 5 == 0 or n % 7 == 0) return false;\n\n        \
+    \    for (std::size_t i = 0; i < SIZE; ++i) {\n                M y = 1, p = BASE[i]\
+    \ % n;\n                if (p == 0) continue;\n                for (U d2 = d;\
+    \ d2; d2 >>= 1) {\n                    if (d2 & 1) y = y * p % n;\n          \
+    \          p = p * p % n;\n                }\n                if (y == 1) continue;\n\
+    \                for (U t = d; y != n - 1; t <<= 1) {\n                    y =\
+    \ y * y % n;\n                    if (y == 1 or t == n - 1) return false;\n  \
+    \              }\n            }\n            return true;\n        }\n    }\n\n\
+    \    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
+    \ = nullptr>\n    constexpr bool is_prime(T n) {\n        if (n <= 1) return false;\n\
+    \        using U = std::make_unsigned_t<T>;\n        U n2 = n;\n        using\
+    \ namespace internal;\n        if (n2 < THRESHOLD_1) {\n            return miller_rabin<BASE_1,\
+    \ 1>(n2);\n        } else if (n2 < THRESHOLD_2) {\n            return miller_rabin<BASE_2,\
+    \ 2>(n2);\n        } else if (n2 < THRESHOLD_3) {\n            return miller_rabin<BASE_3,\
+    \ 3>(n2);\n        } else if (n2 < THRESHOLD_4) {\n            return miller_rabin<BASE_4,\
+    \ 4>(n2);\n        } else if (n2 < THRESHOLD_5) {\n            return miller_rabin<BASE_5,\
+    \ 5>(n2);\n        } else if (n2 < THRESHOLD_6) {\n            return miller_rabin<BASE_6,\
+    \ 6>(n2);\n        } else {\n            return miller_rabin<BASE_7, 7>(n2);\n\
+    \        }\n    }\n} // namespace suisen::miller_rabin\n\n#endif // SUISEN_DETERMINISTIC_MILLER_RABIN\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/number/deterministic_miller_rabin.hpp
   requiredBy:
   - library/number/fast_factorize.hpp
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2022-09-28 21:34:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/fast_factorize/factorize.test.cpp

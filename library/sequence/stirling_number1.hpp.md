@@ -143,9 +143,9 @@ data:
   timestamp: '2022-07-21 04:00:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - test/src/sequence/stirling_number1/abc247_h.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
 documentation_of: library/sequence/stirling_number1.hpp
 layout: document
 title: Stirling Number1

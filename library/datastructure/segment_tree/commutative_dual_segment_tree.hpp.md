@@ -83,8 +83,8 @@ data:
   verifiedWith:
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
-  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
+  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
   - test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
 documentation_of: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp

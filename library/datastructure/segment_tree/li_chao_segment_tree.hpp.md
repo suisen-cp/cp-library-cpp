@@ -139,8 +139,8 @@ data:
   timestamp: '2022-01-17 22:14:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
   - test/src/datastructure/segment_tree/li_chao_segment_tree/line_add_get_min.test.cpp
+  - test/src/datastructure/segment_tree/li_chao_segment_tree/segment_add_get_min.test.cpp
 documentation_of: library/datastructure/segment_tree/li_chao_segment_tree.hpp
 layout: document
 title: Li Chao Segment Tree
