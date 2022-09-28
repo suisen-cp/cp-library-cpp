@@ -30,7 +30,7 @@ namespace suisen::miller_rabin {
         constexpr uint32_t BASE_7[] { 2U, 325U, 9375U, 28178U, 450775U, 9780504U, 1795265022U };
 
         template <auto BASE, std::size_t SIZE, typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-        bool miller_rabin(T _n) {
+        constexpr bool miller_rabin(T _n) {
             using U = std::make_unsigned_t<T>;
             using M = safely_multipliable_t<U>;
 
@@ -57,23 +57,25 @@ namespace suisen::miller_rabin {
     }
 
     template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-    bool is_prime(T n) {
+    constexpr bool is_prime(T n) {
         if (n <= 1) return false;
+        using U = std::make_unsigned_t<T>;
+        U n2 = n;
         using namespace internal;
-        if (n < THRESHOLD_1) {
-            return miller_rabin<BASE_1, 1>(n);
-        } else if (n < THRESHOLD_2) {
-            return miller_rabin<BASE_2, 2>(n);
-        } else if (n < THRESHOLD_3) {
-            return miller_rabin<BASE_3, 3>(n);
-        } else if (n < THRESHOLD_4) {
-            return miller_rabin<BASE_4, 4>(n);
-        } else if (n < THRESHOLD_5) {
-            return miller_rabin<BASE_5, 5>(n);
-        } else if (n < THRESHOLD_6) {
-            return miller_rabin<BASE_6, 6>(n);
+        if (n2 < THRESHOLD_1) {
+            return miller_rabin<BASE_1, 1>(n2);
+        } else if (n2 < THRESHOLD_2) {
+            return miller_rabin<BASE_2, 2>(n2);
+        } else if (n2 < THRESHOLD_3) {
+            return miller_rabin<BASE_3, 3>(n2);
+        } else if (n2 < THRESHOLD_4) {
+            return miller_rabin<BASE_4, 4>(n2);
+        } else if (n2 < THRESHOLD_5) {
+            return miller_rabin<BASE_5, 5>(n2);
+        } else if (n2 < THRESHOLD_6) {
+            return miller_rabin<BASE_6, 6>(n2);
         } else {
-            return miller_rabin<BASE_7, 7>(n);
+            return miller_rabin<BASE_7, 7>(n2);
         }
     }
 } // namespace suisen::miller_rabin

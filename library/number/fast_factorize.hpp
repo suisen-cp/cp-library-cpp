@@ -11,7 +11,7 @@
 namespace suisen::fast_factorize {
     namespace internal {
         template <typename T>
-        int floor_log2(T n) {
+        constexpr int floor_log2(T n) {
             int i = 0;
             while (n) n >>= 1, ++i;
             return i - 1;
