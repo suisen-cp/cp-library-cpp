@@ -9,128 +9,134 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/double_ended_priority_queue.hpp\"\n\
-    \n\n\n#include <cassert>\n#include <vector>\n#include <functional>\n#include <utility>\n\
-    \nnamespace suisen {\n    template <typename T, typename Comp = std::less<T>>\n\
-    \    struct DoubleEndedPriorityQueue {\n        using value_type = T;\n\n    \
-    \    DoubleEndedPriorityQueue() {}\n        DoubleEndedPriorityQueue(const Comp&\
-    \ comp) : _comp(comp) {}\n\n        bool empty() const { return _dat.empty();\
-    \ }\n        int size() const { return _dat.size(); }\n\n        void push(const\
-    \ value_type& v) {\n            _dat.push_back(v);\n            fix_up(_dat.size()\
-    \ - 1);\n        }\n        template <typename ...Args>\n        void emplace(Args\
-    \ &&...args) {\n            push(value_type(std::forward<Args>(args)...));\n \
-    \       }\n\n        const value_type& max() const {\n            assert(_dat.size());\n\
-    \            return _dat[max_heap_top_index()];\n        }\n        const value_type&\
-    \ min() const {\n            assert(_dat.size());\n            return _dat[min_heap_top_index()];\n\
-    \        }\n\n        value_type pop_max() {\n            assert(_dat.size());\n\
-    \            const int idx = max_heap_top_index();\n            std::swap(_dat[idx],\
-    \ _dat.back());\n            value_type res = std::move(_dat.back());\n      \
-    \      _dat.pop_back();\n            fix_max_heap_down(idx);\n            return\
-    \ res;\n        }\n        value_type pop_min() {\n            assert(_dat.size());\n\
-    \            const int idx = min_heap_top_index();\n            std::swap(_dat[idx],\
-    \ _dat.back());\n            value_type res = std::move(_dat.back());\n      \
-    \      _dat.pop_back();\n            fix_min_heap_down(idx);\n            return\
-    \ res;\n        }\n        const auto& data() const { return _dat; }\n       \
-    \ auto &data() { return _dat; }\n    private:\n        // even : min_heap, odd\
-    \ : max_heap\n        std::vector<value_type> _dat;\n        Comp _comp;\n\n \
-    \       int min_heap_top_index() const { return 0; }\n        int max_heap_top_index()\
-    \ const { return _dat.size() >= 2; }\n\n        void fix_up(int idx) {\n     \
-    \       if (const int l = idx & ~0b1, r = l | 1; r < int(_dat.size())) {\n   \
-    \             if (_comp(_dat[r], _dat[l])) std::swap(_dat[l], _dat[r]), idx ^=\
-    \ 1;\n                fix_min_heap_up(l), fix_max_heap_up(r);\n            } else\
-    \ {\n                fix_min_heap_up(l), fix_max_heap_up(l);\n            }\n\
-    \        }\n        void fix_min_heap_up(int idx) {\n            while (idx >=\
-    \ 2) {\n                if (int par = min_heap_parent(idx); _comp(_dat[idx], _dat[par]))\
-    \ std::swap(_dat[std::exchange(idx, par)], _dat[par]);\n                else return;\n\
-    \            }\n        }\n        void fix_max_heap_up(int idx) {\n         \
-    \   while (idx >= 2) {\n                if (int par = max_heap_parent(idx); _comp(_dat[par],\
-    \ _dat[idx])) std::swap(_dat[std::exchange(idx, par)], _dat[par]);\n         \
-    \       else return;\n            }\n        }\n        void fix_min_heap_down(int\
-    \ idx) {\n            const int siz = _dat.size();\n            while (true) {\n\
-    \                int lch = min_heap_child_l(idx), rch = min_heap_child_r(idx);\n\
-    \                if (lch >= siz) {\n                    fix_up(idx);\n       \
-    \             break;\n                }\n                int ch = rch < siz and\
-    \ _comp(_dat[rch], _dat[lch]) ? rch : lch;\n                if (_comp(_dat[ch],\
-    \ _dat[idx])) std::swap(_dat[std::exchange(idx, ch)], _dat[ch]);\n           \
-    \     else break;\n            }\n        }\n        void fix_max_heap_down(int\
-    \ idx) {\n            const int siz = _dat.size();\n            while (true) {\n\
-    \                int lch = max_heap_child_l(idx), rch = max_heap_child_r(idx);\n\
-    \                lch -= lch >= siz, rch -= rch >= siz;\n                if (lch\
-    \ >= siz) {\n                    fix_up(idx);\n                    break;\n  \
-    \              }\n                int ch = rch < siz and _comp(_dat[lch], _dat[rch])\
-    \ ? rch : lch;\n                if (_comp(_dat[idx], _dat[ch])) std::swap(_dat[std::exchange(idx,\
-    \ ch)], _dat[ch]);\n                else break;\n            }\n        }\n\n\
-    \        static constexpr int min_heap_parent(int idx) { return (idx - 2) >> 2\
-    \ << 1; }\n        static constexpr int max_heap_parent(int idx) { return min_heap_parent(idx)\
-    \ | 1; }\n        static constexpr int min_heap_child_l(int idx) { return (idx\
-    \ + 1) << 1; }\n        static constexpr int min_heap_child_r(int idx) { return\
-    \ (idx + 2) << 1; }\n        static constexpr int max_heap_child_l(int idx) {\
-    \ return min_heap_child_l(idx - 1) | 1; }\n        static constexpr int max_heap_child_r(int\
-    \ idx) { return min_heap_child_r(idx - 1) | 1; }\n    };\n} // namespace suisen\n\
-    \n\n\n"
+    \n\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n#include <functional>\n\
+    #include <utility>\n\nnamespace suisen {\n    template <typename T, typename Comp\
+    \ = std::less<T>>\n    struct DoubleEndedPriorityQueue {\n        using value_type\
+    \ = T;\n        using compare_type = Comp;\n\n        DoubleEndedPriorityQueue()\
+    \ = default;\n        DoubleEndedPriorityQueue(const Comp& comp) : _comp(comp)\
+    \ {}\n\n        template <typename InputIterator>\n        DoubleEndedPriorityQueue(InputIterator\
+    \ first, InputIterator last) : _max_heap(first, last) {\n            std::make_heap(_max_heap.begin(),\
+    \ _max_heap.end(), _comp);\n        }\n        template <typename InputIterator>\n\
+    \        DoubleEndedPriorityQueue(InputIterator first, InputIterator last, const\
+    \ Comp& comp) : _comp(comp), _max_heap(first, last) {\n            std::make_heap(_max_heap.begin(),\
+    \ _max_heap.end(), _comp);\n        }\n\n        template <typename Iterable,\
+    \ typename = std::void_t<typename Iterable::iterator>>\n        DoubleEndedPriorityQueue(const\
+    \ Iterable& dat) : DoubleEndedPriorityQueue(dat.begin(), dat.end()) {}\n     \
+    \   template <typename Iterable, typename = std::void_t<typename Iterable::iterator>>\n\
+    \        DoubleEndedPriorityQueue(const Iterable& dat, Comp& comp) : DoubleEndedPriorityQueue(dat.begin(),\
+    \ dat.end(), comp) {}\n\n        bool empty() const { return size() == 0; }\n\
+    \        int size() const { return _min_heap.size() + _max_heap.size(); }\n\n\
+    \        void push(const value_type& v) {\n            if (_min_heap.empty() or\
+    \ _comp(pivot, v)) {\n                _max_heap.push_back(v);\n              \
+    \  std::push_heap(_max_heap.begin(), _max_heap.end(), _comp);\n            } else\
+    \ {\n                _min_heap.push_back(v);\n                std::push_heap(_min_heap.begin(),\
+    \ _min_heap.end(), _rev_comp);\n            }\n        }\n        template <typename\
+    \ ...Args>\n        void emplace(Args &&...args) { push(value_type(std::forward<Args>(args)...));\
+    \ }\n\n        const value_type& max() const {\n            assert(size());\n\
+    \            return _max_heap.size() ? _max_heap.front() : pivot;\n        }\n\
+    \        const value_type& min() {\n            ensure_min_heap_nonempty();\n\
+    \            return _min_heap.front();\n        }\n        const value_type& top()\
+    \ const { return max(); }\n\n        value_type pop_max() {\n            ensure_max_heap_nonempty();\n\
+    \            std::pop_heap(_max_heap.begin(), _max_heap.end(), _comp);\n     \
+    \       value_type res = std::move(_max_heap.back());\n            _max_heap.pop_back();\n\
+    \            return res;\n        }\n        value_type pop_min() {\n        \
+    \    ensure_min_heap_nonempty();\n            std::pop_heap(_min_heap.begin(),\
+    \ _min_heap.end(), _rev_comp);\n            value_type res = std::move(_min_heap.back());\n\
+    \            _min_heap.pop_back();\n            return res;\n        }\n     \
+    \   value_type pop() { return pop_max(); }\n\n    private:\n        compare_type\
+    \ _comp;\n        std::vector<value_type> _max_heap, _min_heap;\n        value_type\
+    \ pivot;\n\n        struct {\n            compare_type* _comp;\n            bool\
+    \ operator()(const value_type& x, const value_type& y) { return (*_comp)(y, x);\
+    \ }\n        } _rev_comp{ &_comp };\n\n        void ensure_min_heap_nonempty()\
+    \ {\n            const int siz = size();\n            assert(siz);\n         \
+    \   if (not _min_heap.empty()) return;\n            if (siz == 1) {\n        \
+    \        std::swap(_min_heap, _max_heap);\n                pivot = _min_heap.front();\n\
+    \            } else {\n                const int mid = (siz + 1) >> 1;\n     \
+    \           std::nth_element(_max_heap.begin(), _max_heap.begin() + mid - 1, _max_heap.end(),\
+    \ _comp);\n                pivot = _max_heap[mid - 1];\n                _min_heap.reserve(mid);\n\
+    \                std::move(_max_heap.begin(), _max_heap.begin() + mid, std::back_inserter(_min_heap));\n\
+    \                _max_heap.erase(_max_heap.begin(), _max_heap.begin() + mid);\n\
+    \                std::make_heap(_max_heap.begin(), _max_heap.end(), _comp);\n\
+    \                std::make_heap(_min_heap.begin(), _min_heap.end(), _rev_comp);\n\
+    \            }\n        }\n        void ensure_max_heap_nonempty() {\n       \
+    \     const int siz = size();\n            assert(siz);\n            if (not _max_heap.empty())\
+    \ return;\n            if (siz == 1) {\n                std::swap(_min_heap, _max_heap);\n\
+    \            } else {\n                const int mid = siz >> 1;\n           \
+    \     std::nth_element(_min_heap.begin(), _min_heap.begin() + mid - 1, _min_heap.end(),\
+    \ _comp);\n                pivot = _min_heap[mid - 1];\n                _max_heap.reserve(siz\
+    \ - mid);\n                std::move(_min_heap.begin() + mid, _min_heap.end(),\
+    \ std::back_inserter(_max_heap));\n                _min_heap.erase(_min_heap.begin()\
+    \ + mid, _min_heap.end());\n                std::make_heap(_max_heap.begin(),\
+    \ _max_heap.end(), _comp);\n                std::make_heap(_min_heap.begin(),\
+    \ _min_heap.end(), _rev_comp);\n            }\n        }\n    };\n} // namespace\
+    \ suisen\n\n\n\n"
   code: "#ifndef SUISEN_DOUBLE_ENDED_PRIORITY_QUEUE\n#define SUISEN_DOUBLE_ENDED_PRIORITY_QUEUE\n\
-    \n#include <cassert>\n#include <vector>\n#include <functional>\n#include <utility>\n\
-    \nnamespace suisen {\n    template <typename T, typename Comp = std::less<T>>\n\
-    \    struct DoubleEndedPriorityQueue {\n        using value_type = T;\n\n    \
-    \    DoubleEndedPriorityQueue() {}\n        DoubleEndedPriorityQueue(const Comp&\
-    \ comp) : _comp(comp) {}\n\n        bool empty() const { return _dat.empty();\
-    \ }\n        int size() const { return _dat.size(); }\n\n        void push(const\
-    \ value_type& v) {\n            _dat.push_back(v);\n            fix_up(_dat.size()\
-    \ - 1);\n        }\n        template <typename ...Args>\n        void emplace(Args\
-    \ &&...args) {\n            push(value_type(std::forward<Args>(args)...));\n \
-    \       }\n\n        const value_type& max() const {\n            assert(_dat.size());\n\
-    \            return _dat[max_heap_top_index()];\n        }\n        const value_type&\
-    \ min() const {\n            assert(_dat.size());\n            return _dat[min_heap_top_index()];\n\
-    \        }\n\n        value_type pop_max() {\n            assert(_dat.size());\n\
-    \            const int idx = max_heap_top_index();\n            std::swap(_dat[idx],\
-    \ _dat.back());\n            value_type res = std::move(_dat.back());\n      \
-    \      _dat.pop_back();\n            fix_max_heap_down(idx);\n            return\
-    \ res;\n        }\n        value_type pop_min() {\n            assert(_dat.size());\n\
-    \            const int idx = min_heap_top_index();\n            std::swap(_dat[idx],\
-    \ _dat.back());\n            value_type res = std::move(_dat.back());\n      \
-    \      _dat.pop_back();\n            fix_min_heap_down(idx);\n            return\
-    \ res;\n        }\n        const auto& data() const { return _dat; }\n       \
-    \ auto &data() { return _dat; }\n    private:\n        // even : min_heap, odd\
-    \ : max_heap\n        std::vector<value_type> _dat;\n        Comp _comp;\n\n \
-    \       int min_heap_top_index() const { return 0; }\n        int max_heap_top_index()\
-    \ const { return _dat.size() >= 2; }\n\n        void fix_up(int idx) {\n     \
-    \       if (const int l = idx & ~0b1, r = l | 1; r < int(_dat.size())) {\n   \
-    \             if (_comp(_dat[r], _dat[l])) std::swap(_dat[l], _dat[r]), idx ^=\
-    \ 1;\n                fix_min_heap_up(l), fix_max_heap_up(r);\n            } else\
-    \ {\n                fix_min_heap_up(l), fix_max_heap_up(l);\n            }\n\
-    \        }\n        void fix_min_heap_up(int idx) {\n            while (idx >=\
-    \ 2) {\n                if (int par = min_heap_parent(idx); _comp(_dat[idx], _dat[par]))\
-    \ std::swap(_dat[std::exchange(idx, par)], _dat[par]);\n                else return;\n\
-    \            }\n        }\n        void fix_max_heap_up(int idx) {\n         \
-    \   while (idx >= 2) {\n                if (int par = max_heap_parent(idx); _comp(_dat[par],\
-    \ _dat[idx])) std::swap(_dat[std::exchange(idx, par)], _dat[par]);\n         \
-    \       else return;\n            }\n        }\n        void fix_min_heap_down(int\
-    \ idx) {\n            const int siz = _dat.size();\n            while (true) {\n\
-    \                int lch = min_heap_child_l(idx), rch = min_heap_child_r(idx);\n\
-    \                if (lch >= siz) {\n                    fix_up(idx);\n       \
-    \             break;\n                }\n                int ch = rch < siz and\
-    \ _comp(_dat[rch], _dat[lch]) ? rch : lch;\n                if (_comp(_dat[ch],\
-    \ _dat[idx])) std::swap(_dat[std::exchange(idx, ch)], _dat[ch]);\n           \
-    \     else break;\n            }\n        }\n        void fix_max_heap_down(int\
-    \ idx) {\n            const int siz = _dat.size();\n            while (true) {\n\
-    \                int lch = max_heap_child_l(idx), rch = max_heap_child_r(idx);\n\
-    \                lch -= lch >= siz, rch -= rch >= siz;\n                if (lch\
-    \ >= siz) {\n                    fix_up(idx);\n                    break;\n  \
-    \              }\n                int ch = rch < siz and _comp(_dat[lch], _dat[rch])\
-    \ ? rch : lch;\n                if (_comp(_dat[idx], _dat[ch])) std::swap(_dat[std::exchange(idx,\
-    \ ch)], _dat[ch]);\n                else break;\n            }\n        }\n\n\
-    \        static constexpr int min_heap_parent(int idx) { return (idx - 2) >> 2\
-    \ << 1; }\n        static constexpr int max_heap_parent(int idx) { return min_heap_parent(idx)\
-    \ | 1; }\n        static constexpr int min_heap_child_l(int idx) { return (idx\
-    \ + 1) << 1; }\n        static constexpr int min_heap_child_r(int idx) { return\
-    \ (idx + 2) << 1; }\n        static constexpr int max_heap_child_l(int idx) {\
-    \ return min_heap_child_l(idx - 1) | 1; }\n        static constexpr int max_heap_child_r(int\
-    \ idx) { return min_heap_child_r(idx - 1) | 1; }\n    };\n} // namespace suisen\n\
-    \n\n#endif // SUISEN_DOUBLE_ENDED_PRIORITY_QUEUE\n"
+    \n#include <algorithm>\n#include <cassert>\n#include <vector>\n#include <functional>\n\
+    #include <utility>\n\nnamespace suisen {\n    template <typename T, typename Comp\
+    \ = std::less<T>>\n    struct DoubleEndedPriorityQueue {\n        using value_type\
+    \ = T;\n        using compare_type = Comp;\n\n        DoubleEndedPriorityQueue()\
+    \ = default;\n        DoubleEndedPriorityQueue(const Comp& comp) : _comp(comp)\
+    \ {}\n\n        template <typename InputIterator>\n        DoubleEndedPriorityQueue(InputIterator\
+    \ first, InputIterator last) : _max_heap(first, last) {\n            std::make_heap(_max_heap.begin(),\
+    \ _max_heap.end(), _comp);\n        }\n        template <typename InputIterator>\n\
+    \        DoubleEndedPriorityQueue(InputIterator first, InputIterator last, const\
+    \ Comp& comp) : _comp(comp), _max_heap(first, last) {\n            std::make_heap(_max_heap.begin(),\
+    \ _max_heap.end(), _comp);\n        }\n\n        template <typename Iterable,\
+    \ typename = std::void_t<typename Iterable::iterator>>\n        DoubleEndedPriorityQueue(const\
+    \ Iterable& dat) : DoubleEndedPriorityQueue(dat.begin(), dat.end()) {}\n     \
+    \   template <typename Iterable, typename = std::void_t<typename Iterable::iterator>>\n\
+    \        DoubleEndedPriorityQueue(const Iterable& dat, Comp& comp) : DoubleEndedPriorityQueue(dat.begin(),\
+    \ dat.end(), comp) {}\n\n        bool empty() const { return size() == 0; }\n\
+    \        int size() const { return _min_heap.size() + _max_heap.size(); }\n\n\
+    \        void push(const value_type& v) {\n            if (_min_heap.empty() or\
+    \ _comp(pivot, v)) {\n                _max_heap.push_back(v);\n              \
+    \  std::push_heap(_max_heap.begin(), _max_heap.end(), _comp);\n            } else\
+    \ {\n                _min_heap.push_back(v);\n                std::push_heap(_min_heap.begin(),\
+    \ _min_heap.end(), _rev_comp);\n            }\n        }\n        template <typename\
+    \ ...Args>\n        void emplace(Args &&...args) { push(value_type(std::forward<Args>(args)...));\
+    \ }\n\n        const value_type& max() const {\n            assert(size());\n\
+    \            return _max_heap.size() ? _max_heap.front() : pivot;\n        }\n\
+    \        const value_type& min() {\n            ensure_min_heap_nonempty();\n\
+    \            return _min_heap.front();\n        }\n        const value_type& top()\
+    \ const { return max(); }\n\n        value_type pop_max() {\n            ensure_max_heap_nonempty();\n\
+    \            std::pop_heap(_max_heap.begin(), _max_heap.end(), _comp);\n     \
+    \       value_type res = std::move(_max_heap.back());\n            _max_heap.pop_back();\n\
+    \            return res;\n        }\n        value_type pop_min() {\n        \
+    \    ensure_min_heap_nonempty();\n            std::pop_heap(_min_heap.begin(),\
+    \ _min_heap.end(), _rev_comp);\n            value_type res = std::move(_min_heap.back());\n\
+    \            _min_heap.pop_back();\n            return res;\n        }\n     \
+    \   value_type pop() { return pop_max(); }\n\n    private:\n        compare_type\
+    \ _comp;\n        std::vector<value_type> _max_heap, _min_heap;\n        value_type\
+    \ pivot;\n\n        struct {\n            compare_type* _comp;\n            bool\
+    \ operator()(const value_type& x, const value_type& y) { return (*_comp)(y, x);\
+    \ }\n        } _rev_comp{ &_comp };\n\n        void ensure_min_heap_nonempty()\
+    \ {\n            const int siz = size();\n            assert(siz);\n         \
+    \   if (not _min_heap.empty()) return;\n            if (siz == 1) {\n        \
+    \        std::swap(_min_heap, _max_heap);\n                pivot = _min_heap.front();\n\
+    \            } else {\n                const int mid = (siz + 1) >> 1;\n     \
+    \           std::nth_element(_max_heap.begin(), _max_heap.begin() + mid - 1, _max_heap.end(),\
+    \ _comp);\n                pivot = _max_heap[mid - 1];\n                _min_heap.reserve(mid);\n\
+    \                std::move(_max_heap.begin(), _max_heap.begin() + mid, std::back_inserter(_min_heap));\n\
+    \                _max_heap.erase(_max_heap.begin(), _max_heap.begin() + mid);\n\
+    \                std::make_heap(_max_heap.begin(), _max_heap.end(), _comp);\n\
+    \                std::make_heap(_min_heap.begin(), _min_heap.end(), _rev_comp);\n\
+    \            }\n        }\n        void ensure_max_heap_nonempty() {\n       \
+    \     const int siz = size();\n            assert(siz);\n            if (not _max_heap.empty())\
+    \ return;\n            if (siz == 1) {\n                std::swap(_min_heap, _max_heap);\n\
+    \            } else {\n                const int mid = siz >> 1;\n           \
+    \     std::nth_element(_min_heap.begin(), _min_heap.begin() + mid - 1, _min_heap.end(),\
+    \ _comp);\n                pivot = _min_heap[mid - 1];\n                _max_heap.reserve(siz\
+    \ - mid);\n                std::move(_min_heap.begin() + mid, _min_heap.end(),\
+    \ std::back_inserter(_max_heap));\n                _min_heap.erase(_min_heap.begin()\
+    \ + mid, _min_heap.end());\n                std::make_heap(_max_heap.begin(),\
+    \ _max_heap.end(), _comp);\n                std::make_heap(_min_heap.begin(),\
+    \ _min_heap.end(), _rev_comp);\n            }\n        }\n    };\n} // namespace\
+    \ suisen\n\n\n#endif // SUISEN_DOUBLE_ENDED_PRIORITY_QUEUE\n"
   dependsOn: []
   isVerificationFile: false
   path: library/datastructure/double_ended_priority_queue.hpp
   requiredBy: []
-  timestamp: '2022-09-28 22:05:27+09:00'
+  timestamp: '2022-09-29 21:45:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/double_ended_priority_queue.hpp

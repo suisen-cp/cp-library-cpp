@@ -238,6 +238,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
       title: Static Rectangle Add Rectangle Sum
+  - name: library/datastructure/heap
+    pages:
+    - icon: ':warning:'
+      path: library/datastructure/heap/binary_heap.hpp
+      title: O(n)
+    - icon: ':warning:'
+      path: library/datastructure/heap/heap_tag.hpp
+      title: library/datastructure/heap/heap_tag.hpp
+    - icon: ':warning:'
+      path: library/datastructure/heap/interval_heap.hpp
+      title: library/datastructure/heap/interval_heap.hpp
   - name: library/datastructure/segment_tree
     pages:
     - icon: ':heavy_check_mark:'
