@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/cartesian_tree.hpp
     title: Cartesian Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

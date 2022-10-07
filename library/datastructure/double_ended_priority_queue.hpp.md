@@ -43,18 +43,23 @@ data:
     \    ensure_min_heap_nonempty();\n            std::pop_heap(_min_heap.begin(),\
     \ _min_heap.end(), _rev_comp);\n            value_type res = std::move(_min_heap.back());\n\
     \            _min_heap.pop_back();\n            return res;\n        }\n     \
-    \   value_type pop() { return pop_max(); }\n\n    private:\n        compare_type\
-    \ _comp;\n        std::vector<value_type> _max_heap, _min_heap;\n        value_type\
-    \ pivot;\n\n        struct {\n            compare_type* _comp;\n            bool\
-    \ operator()(const value_type& x, const value_type& y) { return (*_comp)(y, x);\
-    \ }\n        } _rev_comp{ &_comp };\n\n        void ensure_min_heap_nonempty()\
-    \ {\n            const int siz = size();\n            assert(siz);\n         \
-    \   if (not _min_heap.empty()) return;\n            if (siz == 1) {\n        \
-    \        std::swap(_min_heap, _max_heap);\n                pivot = _min_heap.front();\n\
-    \            } else {\n                const int mid = (siz + 1) >> 1;\n     \
-    \           std::nth_element(_max_heap.begin(), _max_heap.begin() + mid - 1, _max_heap.end(),\
-    \ _comp);\n                pivot = _max_heap[mid - 1];\n                _min_heap.reserve(mid);\n\
-    \                std::move(_max_heap.begin(), _max_heap.begin() + mid, std::back_inserter(_min_heap));\n\
+    \   value_type pop() { return pop_max(); }\n\n        std::vector<value_type>\
+    \ dump_sorted() const {\n            std::vector<value_type> res_l(_min_heap),\
+    \ res_r(_max_heap);\n            std::sort(res_l.begin(), res_l.end(), _comp);\n\
+    \            std::sort(res_r.begin(), res_r.end(), _comp);\n            res_l.reserve(size());\n\
+    \            std::copy(res_r.begin(), res_r.end(), std::back_inserter(res_l));\n\
+    \            return res_l;\n        }\n\n    private:\n        compare_type _comp;\n\
+    \        struct {\n            compare_type* comp;\n            bool operator()(const\
+    \ value_type& x, const value_type& y) { return (*comp)(y, x); }\n        } _rev_comp{\
+    \ &_comp };\n\n        std::vector<value_type> _max_heap, _min_heap;\n       \
+    \ value_type pivot;\n\n        void ensure_min_heap_nonempty() {\n           \
+    \ const int siz = size();\n            assert(siz);\n            if (not _min_heap.empty())\
+    \ return;\n            if (siz == 1) {\n                std::swap(_min_heap, _max_heap);\n\
+    \                pivot = _min_heap.front();\n            } else {\n          \
+    \      const int mid = (siz + 1) >> 1;\n                std::nth_element(_max_heap.begin(),\
+    \ _max_heap.begin() + mid - 1, _max_heap.end(), _comp);\n                pivot\
+    \ = _max_heap[mid - 1];\n                _min_heap.reserve(mid);\n           \
+    \     std::move(_max_heap.begin(), _max_heap.begin() + mid, std::back_inserter(_min_heap));\n\
     \                _max_heap.erase(_max_heap.begin(), _max_heap.begin() + mid);\n\
     \                std::make_heap(_max_heap.begin(), _max_heap.end(), _comp);\n\
     \                std::make_heap(_min_heap.begin(), _min_heap.end(), _rev_comp);\n\
@@ -105,18 +110,23 @@ data:
     \    ensure_min_heap_nonempty();\n            std::pop_heap(_min_heap.begin(),\
     \ _min_heap.end(), _rev_comp);\n            value_type res = std::move(_min_heap.back());\n\
     \            _min_heap.pop_back();\n            return res;\n        }\n     \
-    \   value_type pop() { return pop_max(); }\n\n    private:\n        compare_type\
-    \ _comp;\n        std::vector<value_type> _max_heap, _min_heap;\n        value_type\
-    \ pivot;\n\n        struct {\n            compare_type* _comp;\n            bool\
-    \ operator()(const value_type& x, const value_type& y) { return (*_comp)(y, x);\
-    \ }\n        } _rev_comp{ &_comp };\n\n        void ensure_min_heap_nonempty()\
-    \ {\n            const int siz = size();\n            assert(siz);\n         \
-    \   if (not _min_heap.empty()) return;\n            if (siz == 1) {\n        \
-    \        std::swap(_min_heap, _max_heap);\n                pivot = _min_heap.front();\n\
-    \            } else {\n                const int mid = (siz + 1) >> 1;\n     \
-    \           std::nth_element(_max_heap.begin(), _max_heap.begin() + mid - 1, _max_heap.end(),\
-    \ _comp);\n                pivot = _max_heap[mid - 1];\n                _min_heap.reserve(mid);\n\
-    \                std::move(_max_heap.begin(), _max_heap.begin() + mid, std::back_inserter(_min_heap));\n\
+    \   value_type pop() { return pop_max(); }\n\n        std::vector<value_type>\
+    \ dump_sorted() const {\n            std::vector<value_type> res_l(_min_heap),\
+    \ res_r(_max_heap);\n            std::sort(res_l.begin(), res_l.end(), _comp);\n\
+    \            std::sort(res_r.begin(), res_r.end(), _comp);\n            res_l.reserve(size());\n\
+    \            std::copy(res_r.begin(), res_r.end(), std::back_inserter(res_l));\n\
+    \            return res_l;\n        }\n\n    private:\n        compare_type _comp;\n\
+    \        struct {\n            compare_type* comp;\n            bool operator()(const\
+    \ value_type& x, const value_type& y) { return (*comp)(y, x); }\n        } _rev_comp{\
+    \ &_comp };\n\n        std::vector<value_type> _max_heap, _min_heap;\n       \
+    \ value_type pivot;\n\n        void ensure_min_heap_nonempty() {\n           \
+    \ const int siz = size();\n            assert(siz);\n            if (not _min_heap.empty())\
+    \ return;\n            if (siz == 1) {\n                std::swap(_min_heap, _max_heap);\n\
+    \                pivot = _min_heap.front();\n            } else {\n          \
+    \      const int mid = (siz + 1) >> 1;\n                std::nth_element(_max_heap.begin(),\
+    \ _max_heap.begin() + mid - 1, _max_heap.end(), _comp);\n                pivot\
+    \ = _max_heap[mid - 1];\n                _min_heap.reserve(mid);\n           \
+    \     std::move(_max_heap.begin(), _max_heap.begin() + mid, std::back_inserter(_min_heap));\n\
     \                _max_heap.erase(_max_heap.begin(), _max_heap.begin() + mid);\n\
     \                std::make_heap(_max_heap.begin(), _max_heap.end(), _comp);\n\
     \                std::make_heap(_min_heap.begin(), _min_heap.end(), _rev_comp);\n\
@@ -136,7 +146,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/double_ended_priority_queue.hpp
   requiredBy: []
-  timestamp: '2022-09-29 21:45:35+09:00'
+  timestamp: '2022-10-08 03:16:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/double_ended_priority_queue.hpp

@@ -5,19 +5,19 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':heavy_check_mark:'
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/transform/walsh_hadamard.hpp
     title: "Walsh Hadamard \u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'
@@ -396,13 +396,13 @@ data:
     \ f : fs) pq.push(f);\n            while (pq.size() > 1) {\n                auto\
     \ f = pq.top();\n                pq.pop();\n                auto g = pq.top();\n\
     \                pq.pop();\n                pq.push(f * g);\n            }\n \
-    \           return pq.top();\n        }\n\n    protected:\n        static convolution_t<mint>\
-    \ mult;\n\n        std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int\
-    \ max_size) const {\n            std::vector<std::pair<int, value_type>> res;\n\
-    \            for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i)\
-    \ if (value_type v = (*this)[i]; v != 0) res.emplace_back(i, v);\n           \
-    \ if (int(res.size()) > max_size) return std::nullopt;\n            return res;\n\
-    \        }\n\n        static FPS div_fps_sparse(const FPS& f, const std::vector<std::pair<int,\
+    \           return pq.top();\n        }\n\n        std::optional<std::vector<std::pair<int,\
+    \ value_type>>> sparse_fps_format(int max_size) const {\n            std::vector<std::pair<int,\
+    \ value_type>> res;\n            for (int i = 0; i <= deg() and int(res.size())\
+    \ <= max_size; ++i) if (value_type v = (*this)[i]; v != 0) res.emplace_back(i,\
+    \ v);\n            if (int(res.size()) > max_size) return std::nullopt;\n    \
+    \        return res;\n        }\n\n    protected:\n        static convolution_t<mint>\
+    \ mult;\n\n        static FPS div_fps_sparse(const FPS& f, const std::vector<std::pair<int,\
     \ value_type>>& g, int n) {\n            const int siz = g.size();\n         \
     \   assert(siz and g[0].first == 0);\n            const value_type inv_g0 = g[0].second.inv();\n\
     \            FPS h(n);\n            for (int i = 0; i < n; ++i) {\n          \
@@ -606,7 +606,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2022-07-24 00:00:50+09:00'
+  timestamp: '2022-10-08 03:16:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

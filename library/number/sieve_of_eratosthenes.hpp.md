@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/number/index_calculus.hpp
+    title: library/number/index_calculus.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc238_g.test.cpp
     title: test/src/algorithm/mo/abc238_g.test.cpp
+  - icon: ':x:'
+    path: test/src/number/primitive_root/dummy.test.cpp
+    title: test/src/number/primitive_root/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
     title: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
@@ -21,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\n\n#include\
@@ -246,15 +252,17 @@ data:
   - library/number/internal_eratosthenes.hpp
   isVerificationFile: false
   path: library/number/sieve_of_eratosthenes.hpp
-  requiredBy: []
+  requiredBy:
+  - library/number/index_calculus.hpp
   timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/transform/multiple/divide_both.test.cpp
   - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
   - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
   - test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
 documentation_of: library/number/sieve_of_eratosthenes.hpp
 layout: document
 title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"

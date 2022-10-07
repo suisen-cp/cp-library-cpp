@@ -3,12 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
+    title: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/point_set_range_contour_sum.hpp\"\n\n\n\n#include\
@@ -204,8 +207,9 @@ data:
   path: library/tree/point_set_range_contour_sum.hpp
   requiredBy: []
   timestamp: '2022-09-05 23:57:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/tree/point_set_range_contour_sum/dummy.test.cpp
   - test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: library/tree/point_set_range_contour_sum.hpp
 layout: document

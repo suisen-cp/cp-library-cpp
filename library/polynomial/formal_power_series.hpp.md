@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -51,39 +51,42 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
     title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+    title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/partition_number/partition_function_2.test.cpp
     title: test/src/sequence/partition_number/partition_function_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://arxiv.org/pdf/1301.5804.pdf
@@ -481,21 +484,20 @@ data:
     \ (const auto& f : fs) pq.push(f);\n            while (pq.size() > 1) {\n    \
     \            auto f = pq.top();\n                pq.pop();\n                auto\
     \ g = pq.top();\n                pq.pop();\n                pq.push(f * g);\n\
-    \            }\n            return pq.top();\n        }\n\n    private:\n    \
-    \    static void update_inv(const int k, FormalPowerSeries& f_fft, FormalPowerSeries&\
-    \ g_fft, FormalPowerSeries& g) {\n            FormalPowerSeries fg(2 * k);\n \
-    \           for (int i = 0; i < 2 * k; ++i) fg[i] = f_fft[i] * g_fft[i];\n   \
-    \         atcoder::internal::butterfly_inv(fg);\n            fg >>= k, fg.resize(2\
-    \ * k);\n            atcoder::internal::butterfly(fg);\n            for (int i\
-    \ = 0; i < 2 * k; ++i) fg[i] *= g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
-    \            const value_type iz = value_type(2 * k).inv(), c = -iz * iz;\n  \
-    \          g.resize(2 * k);\n            for (int i = 0; i < k; ++i) g[k + i]\
-    \ = fg[i] * c;\n        }\n\n        std::optional<std::vector<std::pair<int,\
+    \            }\n            return pq.top();\n        }\n\n        std::optional<std::vector<std::pair<int,\
     \ value_type>>> sparse_fps_format(int max_size) const {\n            std::vector<std::pair<int,\
     \ value_type>> res;\n            for (int i = 0; i <= deg() and int(res.size())\
     \ <= max_size; ++i) if (value_type v = (*this)[i]; v != 0) res.emplace_back(i,\
     \ v);\n            if (int(res.size()) > max_size) return std::nullopt;\n    \
-    \        return res;\n        }\n\n        static FormalPowerSeries div_fps_sparse(const\
+    \        return res;\n        }\n\n    private:\n        static void update_inv(const\
+    \ int k, FormalPowerSeries& f_fft, FormalPowerSeries& g_fft, FormalPowerSeries&\
+    \ g) {\n            FormalPowerSeries fg(2 * k);\n            for (int i = 0;\
+    \ i < 2 * k; ++i) fg[i] = f_fft[i] * g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
+    \            fg >>= k, fg.resize(2 * k);\n            atcoder::internal::butterfly(fg);\n\
+    \            for (int i = 0; i < 2 * k; ++i) fg[i] *= g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
+    \            const value_type iz = value_type(2 * k).inv(), c = -iz * iz;\n  \
+    \          g.resize(2 * k);\n            for (int i = 0; i < k; ++i) g[k + i]\
+    \ = fg[i] * c;\n        }\n\n        static FormalPowerSeries div_fps_sparse(const\
     \ FormalPowerSeries& f, const std::vector<std::pair<int, value_type>>& g, int\
     \ n) {\n            const int siz = g.size();\n            assert(siz and g[0].first\
     \ == 0);\n            const value_type inv_g0 = g[0].second.inv();\n         \
@@ -756,21 +758,20 @@ data:
     \ (const auto& f : fs) pq.push(f);\n            while (pq.size() > 1) {\n    \
     \            auto f = pq.top();\n                pq.pop();\n                auto\
     \ g = pq.top();\n                pq.pop();\n                pq.push(f * g);\n\
-    \            }\n            return pq.top();\n        }\n\n    private:\n    \
-    \    static void update_inv(const int k, FormalPowerSeries& f_fft, FormalPowerSeries&\
-    \ g_fft, FormalPowerSeries& g) {\n            FormalPowerSeries fg(2 * k);\n \
-    \           for (int i = 0; i < 2 * k; ++i) fg[i] = f_fft[i] * g_fft[i];\n   \
-    \         atcoder::internal::butterfly_inv(fg);\n            fg >>= k, fg.resize(2\
-    \ * k);\n            atcoder::internal::butterfly(fg);\n            for (int i\
-    \ = 0; i < 2 * k; ++i) fg[i] *= g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
-    \            const value_type iz = value_type(2 * k).inv(), c = -iz * iz;\n  \
-    \          g.resize(2 * k);\n            for (int i = 0; i < k; ++i) g[k + i]\
-    \ = fg[i] * c;\n        }\n\n        std::optional<std::vector<std::pair<int,\
+    \            }\n            return pq.top();\n        }\n\n        std::optional<std::vector<std::pair<int,\
     \ value_type>>> sparse_fps_format(int max_size) const {\n            std::vector<std::pair<int,\
     \ value_type>> res;\n            for (int i = 0; i <= deg() and int(res.size())\
     \ <= max_size; ++i) if (value_type v = (*this)[i]; v != 0) res.emplace_back(i,\
     \ v);\n            if (int(res.size()) > max_size) return std::nullopt;\n    \
-    \        return res;\n        }\n\n        static FormalPowerSeries div_fps_sparse(const\
+    \        return res;\n        }\n\n    private:\n        static void update_inv(const\
+    \ int k, FormalPowerSeries& f_fft, FormalPowerSeries& g_fft, FormalPowerSeries&\
+    \ g) {\n            FormalPowerSeries fg(2 * k);\n            for (int i = 0;\
+    \ i < 2 * k; ++i) fg[i] = f_fft[i] * g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
+    \            fg >>= k, fg.resize(2 * k);\n            atcoder::internal::butterfly(fg);\n\
+    \            for (int i = 0; i < 2 * k; ++i) fg[i] *= g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
+    \            const value_type iz = value_type(2 * k).inv(), c = -iz * iz;\n  \
+    \          g.resize(2 * k);\n            for (int i = 0; i < k; ++i) g[k + i]\
+    \ = fg[i] * c;\n        }\n\n        static FormalPowerSeries div_fps_sparse(const\
     \ FormalPowerSeries& f, const std::vector<std::pair<int, value_type>>& g, int\
     \ n) {\n            const int siz = g.size();\n            assert(siz and g[0].first\
     \ == 0);\n            const value_type inv_g0 = g[0].second.inv();\n         \
@@ -848,8 +849,8 @@ data:
   isVerificationFile: false
   path: library/polynomial/formal_power_series.hpp
   requiredBy: []
-  timestamp: '2022-07-24 00:00:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-08 03:16:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
@@ -872,6 +873,7 @@ data:
   - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
   - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
+  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
 documentation_of: library/polynomial/formal_power_series.hpp
 layout: document

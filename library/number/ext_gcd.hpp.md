@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/number/index_calculus.hpp
+    title: library/number/index_calculus.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -41,7 +44,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/number/ext_gcd.hpp
-  requiredBy: []
+  requiredBy:
+  - library/number/index_calculus.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

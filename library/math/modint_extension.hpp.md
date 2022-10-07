@@ -17,13 +17,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
     title: Array Fps Naive
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   _extendedVerifiedWith:
@@ -126,87 +126,90 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/log_of_fps.test.cpp
     title: test/src/polynomial/fps/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/pow_of_fps.test.cpp
     title: test/src/polynomial/fps/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps_naive/abc245_d.test.cpp
     title: test/src/polynomial/fps_naive/abc245_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
     title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
     title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+    title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/partition_number/partition_function.test.cpp
     title: test/src/sequence/partition_number/partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/partition_number/partition_function_2.test.cpp
     title: test/src/sequence/partition_number/partition_function_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/abc247_h.test.cpp
     title: test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://37zigen.com/tonelli-shanks-algorithm/
@@ -261,7 +264,7 @@ data:
   - library/convolution/subset_convolution.hpp
   - library/convolution/array_subset_convolution.hpp
   timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
@@ -307,6 +310,7 @@ data:
   - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
+  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp

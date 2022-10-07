@@ -7,9 +7,6 @@ data:
     title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3057\u306A\u3044\
       \ Convex Hull Trick"
   - icon: ':heavy_check_mark:'
-    path: library/algorithm/sliding_window_minimum.hpp
-    title: Sliding Window Minimum
-  - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
@@ -76,25 +73,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
+  - icon: ':question:'
+    path: library/number/order_prime_mod.hpp
+    title: library/number/order_prime_mod.hpp
+  - icon: ':question:'
+    path: library/number/primitive_root.hpp
+    title: library/number/primitive_root.hpp
   - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: Util
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
     title: Array Fps Naive
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':warning:'
@@ -133,9 +136,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
     title: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
-    title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
@@ -265,6 +265,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
+  - icon: ':x:'
+    path: test/src/number/primitive_root/dummy.test.cpp
+    title: test/src/number/primitive_root/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/primitive_root/primitive_root.test.cpp
+    title: test/src/number/primitive_root/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/util/abc222_g.test.cpp
     title: test/src/number/util/abc222_g.test.cpp
@@ -337,82 +343,85 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/log_of_fps.test.cpp
     title: test/src/polynomial/fps/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/pow_of_fps.test.cpp
     title: test/src/polynomial/fps/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps_naive/abc245_d.test.cpp
     title: test/src/polynomial/fps_naive/abc245_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
     title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
     title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+    title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/partition_number/partition_function.test.cpp
     title: test/src/sequence/partition_number/partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/partition_number/partition_function_2.test.cpp
     title: test/src/sequence/partition_number/partition_function_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/abc247_h.test.cpp
     title: test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -442,9 +451,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
@@ -520,7 +529,6 @@ data:
   - library/util/update_proxy_object.hpp
   - library/util/coordinate_compressor.hpp
   - library/algorithm/convex_hull_trick.hpp
-  - library/algorithm/sliding_window_minimum.hpp
   - library/geom/segment_intersections.hpp
   - library/template.cpp
   - library/template.hpp
@@ -530,9 +538,11 @@ data:
   - library/polynomial/fps.hpp
   - library/math/sps.hpp
   - library/math/array_sps.hpp
+  - library/number/primitive_root.hpp
   - library/number/util.hpp
   - library/number/deterministic_miller_rabin.hpp
   - library/number/fast_factorize.hpp
+  - library/number/order_prime_mod.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/tree/auxiliary_tree.hpp
   - library/uncategorized/static_range_xored_mex_query.hpp
@@ -556,7 +566,7 @@ data:
   - library/convolution/polynomial_eval.hpp
   - library/convolution/array_subset_convolution.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
@@ -570,7 +580,6 @@ data:
   - test/src/sequence/partition_number/partition_function.test.cpp
   - test/src/sequence/partition_number/partition_function_2.test.cpp
   - test/src/util/coordinate_compressor/dummy.test.cpp
-  - test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
   - test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
   - test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
   - test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
@@ -608,6 +617,7 @@ data:
   - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
+  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
@@ -626,6 +636,8 @@ data:
   - test/src/number/util/abc222_g.test.cpp
   - test/src/number/util/divide_both.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/number/primitive_root/primitive_root.test.cpp
   - test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp

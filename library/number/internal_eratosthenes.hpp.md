@@ -2,7 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: library/number/index_calculus.hpp
+    title: library/number/index_calculus.hpp
+  - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':heavy_check_mark:'
@@ -13,6 +16,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc238_g.test.cpp
     title: test/src/algorithm/mo/abc238_g.test.cpp
+  - icon: ':x:'
+    path: test/src/number/primitive_root/dummy.test.cpp
+    title: test/src/number/primitive_root/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
     title: test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
@@ -31,9 +37,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/internal_eratosthenes.hpp\"\n\n\n\n#include\
@@ -102,8 +108,9 @@ data:
   requiredBy:
   - library/number/sieve_of_eratosthenes.hpp
   - library/number/sieve_of_eratosthenes_constexpr.hpp
+  - library/number/index_calculus.hpp
   timestamp: '2021-07-22 14:46:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/transform/multiple/divide_both.test.cpp
@@ -112,6 +119,7 @@ data:
   - test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
   - test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
   - test/src/number/sieve_of_eratosthenes_constexpr/flatten.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
 documentation_of: library/number/internal_eratosthenes.hpp
 layout: document
 title: Internal Eratosthenes

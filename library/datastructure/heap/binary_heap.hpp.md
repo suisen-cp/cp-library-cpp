@@ -4,7 +4,10 @@ data:
   - icon: ':warning:'
     path: library/datastructure/heap/heap_tag.hpp
     title: library/datastructure/heap/heap_tag.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/datastructure/priority_queue.hpp
+    title: library/datastructure/priority_queue.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -162,7 +165,8 @@ data:
   - library/datastructure/heap/heap_tag.hpp
   isVerificationFile: false
   path: library/datastructure/heap/binary_heap.hpp
-  requiredBy: []
+  requiredBy:
+  - library/datastructure/priority_queue.hpp
   timestamp: '2022-09-29 21:45:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

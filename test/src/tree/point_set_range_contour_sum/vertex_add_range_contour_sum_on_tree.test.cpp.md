@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/tree/point_set_range_contour_sum.hpp
     title: library/tree/point_set_range_contour_sum.hpp
   _extendedRequiredBy: []

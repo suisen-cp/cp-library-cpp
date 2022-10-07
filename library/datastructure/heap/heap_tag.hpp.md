@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: library/datastructure/heap/binary_heap.hpp
     title: O(n)
+  - icon: ':warning:'
+    path: library/datastructure/priority_queue.hpp
+    title: library/datastructure/priority_queue.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -35,6 +38,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/heap/heap_tag.hpp
   requiredBy:
+  - library/datastructure/priority_queue.hpp
   - library/datastructure/heap/binary_heap.hpp
   timestamp: '2022-09-29 21:45:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
