@@ -340,7 +340,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/log_of_fps.test.cpp
     title: test/src/polynomial/fps/log_of_fps.test.cpp
   - icon: ':x:'
