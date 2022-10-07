@@ -4,7 +4,7 @@
 #include <cassert>
 #include <vector>
 #include <queue>
-#include "library/type_traits/type_traits.hpp"
+#include <type_traits>
 
 namespace suisen {
 namespace prioritizing_mode {
@@ -18,10 +18,13 @@ namespace prioritizing_mode {
     using right_most_max = std::less_equal<T>;
 }
 
-template <typename T, typename Comparator = prioritizing_mode::left_most_min<T>, constraints_t<is_comparator<Comparator, T>> = nullptr>
+template <
+    typename T, typename Comparator = prioritizing_mode::left_most_min<T>,
+    std::enable_if_t<std::is_invocable_r_v<bool, Comparator, T, T>, std::nullptr_t> = nullptr
+>
 class sliding_window_minimum {
     public:
-        template <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>
+        template <typename Gen, std::enable_if_t<std::is_invocable_r_v<T, Gen, int>, std::nullptr_t> = nullptr>
         sliding_window_minimum(int n, Gen gen) : _n(n), _a(n) {
             for (int i = 0; i < _n; ++i) _a[i] = gen(i);
         }

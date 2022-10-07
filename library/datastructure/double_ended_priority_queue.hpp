@@ -71,15 +71,24 @@ namespace suisen {
         }
         value_type pop() { return pop_max(); }
 
+        std::vector<value_type> dump_sorted() const {
+            std::vector<value_type> res_l(_min_heap), res_r(_max_heap);
+            std::sort(res_l.begin(), res_l.end(), _comp);
+            std::sort(res_r.begin(), res_r.end(), _comp);
+            res_l.reserve(size());
+            std::copy(res_r.begin(), res_r.end(), std::back_inserter(res_l));
+            return res_l;
+        }
+
     private:
         compare_type _comp;
+        struct {
+            compare_type* comp;
+            bool operator()(const value_type& x, const value_type& y) { return (*comp)(y, x); }
+        } _rev_comp{ &_comp };
+
         std::vector<value_type> _max_heap, _min_heap;
         value_type pivot;
-
-        struct {
-            compare_type* _comp;
-            bool operator()(const value_type& x, const value_type& y) { return (*_comp)(y, x); }
-        } _rev_comp{ &_comp };
 
         void ensure_min_heap_nonempty() {
             const int siz = size();

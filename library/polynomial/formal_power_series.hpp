@@ -357,6 +357,13 @@ namespace suisen {
             return pq.top();
         }
 
+        std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int max_size) const {
+            std::vector<std::pair<int, value_type>> res;
+            for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i) if (value_type v = (*this)[i]; v != 0) res.emplace_back(i, v);
+            if (int(res.size()) > max_size) return std::nullopt;
+            return res;
+        }
+
     private:
         static void update_inv(const int k, FormalPowerSeries& f_fft, FormalPowerSeries& g_fft, FormalPowerSeries& g) {
             FormalPowerSeries fg(2 * k);
@@ -369,13 +376,6 @@ namespace suisen {
             const value_type iz = value_type(2 * k).inv(), c = -iz * iz;
             g.resize(2 * k);
             for (int i = 0; i < k; ++i) g[k + i] = fg[i] * c;
-        }
-
-        std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int max_size) const {
-            std::vector<std::pair<int, value_type>> res;
-            for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i) if (value_type v = (*this)[i]; v != 0) res.emplace_back(i, v);
-            if (int(res.size()) > max_size) return std::nullopt;
-            return res;
         }
 
         static FormalPowerSeries div_fps_sparse(const FormalPowerSeries& f, const std::vector<std::pair<int, value_type>>& g, int n) {

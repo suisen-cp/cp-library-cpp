@@ -305,15 +305,15 @@ namespace suisen {
             return pq.top();
         }
 
-    protected:
-        static convolution_t<mint> mult;
-
         std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int max_size) const {
             std::vector<std::pair<int, value_type>> res;
             for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i) if (value_type v = (*this)[i]; v != 0) res.emplace_back(i, v);
             if (int(res.size()) > max_size) return std::nullopt;
             return res;
         }
+
+    protected:
+        static convolution_t<mint> mult;
 
         static FPS div_fps_sparse(const FPS& f, const std::vector<std::pair<int, value_type>>& g, int n) {
             const int siz = g.size();
