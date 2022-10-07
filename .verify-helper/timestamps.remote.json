@@ -228,7 +228,6 @@
 "test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp": "2022-10-08 03:16:55 +0900",
 "test/src/polynomial/fps/inv_of_fps.test.cpp": "2022-10-08 03:16:55 +0900",
 "test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp": "2022-10-08 03:16:55 +0900",
-"test/src/polynomial/fps/log_of_fps.test.cpp": "2022-10-08 03:16:55 +0900",
 "test/src/polynomial/fps_naive/abc245_d.test.cpp": "2022-07-21 12:28:40 +0900",
 "test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp": "2022-07-23 23:55:26 +0900",
 "test/src/sequence/eulerian_number/yuki2005.test.cpp": "2022-07-21 04:00:33 +0900",
