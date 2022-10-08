@@ -63,8 +63,6 @@ data:
   - test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp
 documentation_of: library/number/discrete_logarithm.hpp
 layout: document
-redirect_from:
-- /library/library/number/discrete_logarithm.hpp
-- /library/library/number/discrete_logarithm.hpp.html
-title: library/number/discrete_logarithm.hpp
+title: Discrete Logarithm
 ---
+## Discrete Logarithm

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/tree/point_add_range_contour_sum.hpp
-    title: library/tree/point_add_range_contour_sum.hpp
+    title: Point Add Range Contour Sum
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

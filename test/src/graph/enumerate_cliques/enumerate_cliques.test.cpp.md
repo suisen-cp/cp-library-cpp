@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/enumerate_cliques.hpp
-    title: library/graph/enumerate_cliques.hpp
+    title: Enumerate Cliques
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

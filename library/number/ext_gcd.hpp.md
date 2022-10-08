@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/number/index_calculus.hpp
-    title: library/number/index_calculus.hpp
+    title: Index Calculus
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp

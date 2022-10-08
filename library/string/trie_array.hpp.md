@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/string/aho_corasick_array.hpp
-    title: library/string/aho_corasick_array.hpp
+    title: Aho Corasick Array
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -89,8 +89,6 @@ data:
   verifiedWith: []
 documentation_of: library/string/trie_array.hpp
 layout: document
-redirect_from:
-- /library/library/string/trie_array.hpp
-- /library/library/string/trie_array.hpp.html
-title: library/string/trie_array.hpp
+title: Trie Array
 ---
+## Trie Array

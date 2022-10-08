@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/datastructure/heap/binary_heap.hpp
-    title: O(n)
+    title: Binary Heap
   - icon: ':warning:'
     path: library/datastructure/priority_queue.hpp
-    title: library/datastructure/priority_queue.hpp
+    title: Priority Queue
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -45,8 +45,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/heap/heap_tag.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/heap/heap_tag.hpp
-- /library/library/datastructure/heap/heap_tag.hpp.html
-title: library/datastructure/heap/heap_tag.hpp
+title: Heap Tag
 ---
+## Heap Tag

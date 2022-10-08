@@ -5,10 +5,10 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/algebra/monoid/affine.hpp
-      title: library/algebra/monoid/affine.hpp
+      title: Affine
     - icon: ':warning:'
       path: library/algebra/monoid/affine_clamp.hpp
-      title: library/algebra/monoid/affine_clamp.hpp
+      title: Affine Clamp
   - name: library/algorithm
     pages:
     - icon: ':heavy_check_mark:'
@@ -89,6 +89,10 @@ data:
       path: library/convolution/multi_variate_convolution.hpp
       title: "\u591A\u5909\u6570\u7573\u307F\u8FBC\u307F (\u5207\u308A\u6368\u3066\
         )"
+    - icon: ':heavy_check_mark:'
+      path: library/convolution/multiplicative_convolution_mod_2^n.hpp
+      title: Multiplicative Convolution Mod 2^n ($c_k = \sum_{i\times j \equiv k \pmod{2
+        ^ n}} a_i \cdot b_j$)
     - icon: ':warning:'
       path: library/convolution/or_convolution.hpp
       title: Bitwise Or Convolution
@@ -137,7 +141,7 @@ data:
       title: "SWAG \u3092 Deque \u306B\u62E1\u5F35\u3057\u305F\u3084\u3064"
     - icon: ':warning:'
       path: library/datastructure/double_ended_priority_queue.hpp
-      title: library/datastructure/double_ended_priority_queue.hpp
+      title: Double Ended Priority Queue
     - icon: ':heavy_check_mark:'
       path: library/datastructure/dynamic_sequence.hpp
       title: Dynamic Sequence
@@ -156,7 +160,7 @@ data:
       title: "\u6C38\u7D9A\u914D\u5217"
     - icon: ':warning:'
       path: library/datastructure/priority_queue.hpp
-      title: library/datastructure/priority_queue.hpp
+      title: Priority Queue
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: Range Foldable Dynamic Sequence
@@ -216,10 +220,10 @@ data:
     pages:
     - icon: ':warning:'
       path: library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp
-      title: library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp
+      title: Compressed Fenwick Tree
     - icon: ':warning:'
       path: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
-      title: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
+      title: Compressed Fenwick Tree Prefix
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/fenwick_tree.hpp
       title: Fenwick Tree
@@ -245,13 +249,13 @@ data:
     pages:
     - icon: ':warning:'
       path: library/datastructure/heap/binary_heap.hpp
-      title: O(n)
+      title: Binary Heap
     - icon: ':warning:'
       path: library/datastructure/heap/heap_tag.hpp
-      title: library/datastructure/heap/heap_tag.hpp
+      title: Heap Tag
     - icon: ':warning:'
       path: library/datastructure/heap/interval_heap.hpp
-      title: library/datastructure/heap/interval_heap.hpp
+      title: Interval Heap
   - name: library/datastructure/segment_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -414,7 +418,7 @@ data:
       title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
     - icon: ':heavy_check_mark:'
       path: library/graph/enumerate_cliques.hpp
-      title: library/graph/enumerate_cliques.hpp
+      title: Enumerate Cliques
     - icon: ':heavy_check_mark:'
       path: library/graph/enumerate_triangles.hpp
       title: "\u4E09\u89D2\u5F62\u5217\u6319"
@@ -558,7 +562,7 @@ data:
       title: Deterministic Miller Rabin
     - icon: ':heavy_check_mark:'
       path: library/number/discrete_logarithm.hpp
-      title: library/number/discrete_logarithm.hpp
+      title: Discrete Logarithm
     - icon: ':warning:'
       path: library/number/ext_gcd.hpp
       title: Ext Gcd
@@ -567,7 +571,7 @@ data:
       title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':warning:'
       path: library/number/index_calculus.hpp
-      title: library/number/index_calculus.hpp
+      title: Index Calculus
     - icon: ':question:'
       path: library/number/internal_eratosthenes.hpp
       title: Internal Eratosthenes
@@ -579,10 +583,10 @@ data:
       title: Mobius Function
     - icon: ':question:'
       path: library/number/order_prime_mod.hpp
-      title: library/number/order_prime_mod.hpp
+      title: Order Prime Mod
     - icon: ':question:'
       path: library/number/primitive_root.hpp
-      title: library/number/primitive_root.hpp
+      title: Primitive Root
     - icon: ':warning:'
       path: library/number/rational.hpp
       title: Rational
@@ -633,7 +637,7 @@ data:
       title: Polynomial Taylor Shift
     - icon: ':heavy_check_mark:'
       path: library/polynomial/prod_f(r^k_x).hpp
-      title: $\prod_{k=0}^{m-1} f(r^k x)$
+      title: $\left(\prod_{k=0}^{m-1} f(r^k x)\right) \bmod x^N$
     - icon: ':warning:'
       path: library/polynomial/rational_fps.hpp
       title: Rational Fps
@@ -673,10 +677,10 @@ data:
     pages:
     - icon: ':warning:'
       path: library/string/aho_corasick.hpp
-      title: library/string/aho_corasick.hpp
+      title: Aho Corasick
     - icon: ':warning:'
       path: library/string/aho_corasick_array.hpp
-      title: library/string/aho_corasick_array.hpp
+      title: Aho Corasick Array
     - icon: ':heavy_check_mark:'
       path: library/string/compare_substring.hpp
       title: Compare Substring
@@ -700,10 +704,10 @@ data:
       title: Suffix Automaton
     - icon: ':warning:'
       path: library/string/trie_array.hpp
-      title: library/string/trie_array.hpp
+      title: Trie Array
     - icon: ':warning:'
       path: library/string/trie_map.hpp
-      title: library/string/trie_map.hpp
+      title: Trie Map
   - name: library
     pages:
     - icon: ':warning:'
@@ -783,7 +787,7 @@ data:
       title: Lowest Common Ancestor
     - icon: ':heavy_check_mark:'
       path: library/tree/point_add_range_contour_sum.hpp
-      title: library/tree/point_add_range_contour_sum.hpp
+      title: Point Add Range Contour Sum
     - icon: ':heavy_check_mark:'
       path: library/tree/point_add_range_contour_sum_invertible.hpp
       title: Point Add Range Contour Sum Invertible
@@ -793,9 +797,9 @@ data:
     - icon: ':x:'
       path: library/tree/point_get_range_contour_operate.hpp
       title: Point Get Range Contour Operate
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/point_set_range_contour_sum.hpp
-      title: library/tree/point_set_range_contour_sum.hpp
+      title: Point Set Range Contour Sum
     - icon: ':warning:'
       path: library/tree/range_contour_sum_invertible.hpp
       title: Range Contour Sum Invertible
@@ -804,7 +808,7 @@ data:
       title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
     - icon: ':heavy_check_mark:'
       path: library/tree/rooted_tree_isomorphism_classification.hpp
-      title: library/tree/rooted_tree_isomorphism_classification.hpp
+      title: Rooted Tree Isomorphism Classification
   - name: library/type_traits
     pages:
     - icon: ':question:'
@@ -1003,6 +1007,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
       title: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
+  - name: test/src/convolution/multiplicative_convolution_mod_2^n.hpp
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
+      title: test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
   - name: test/src/convolution/polynomial_eval
     pages:
     - icon: ':heavy_check_mark:'
@@ -2085,7 +2094,7 @@ data:
       title: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
   - name: test/src/tree/point_set_range_contour_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
       title: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
     - icon: ':heavy_check_mark:'

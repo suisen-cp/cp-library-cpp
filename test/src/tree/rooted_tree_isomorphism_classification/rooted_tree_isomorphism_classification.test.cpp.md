@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/tree/rooted_tree_isomorphism_classification.hpp
-    title: library/tree/rooted_tree_isomorphism_classification.hpp
+    title: Rooted Tree Isomorphism Classification
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -83,8 +83,6 @@ data:
   - test/src/graph/enumerate_cliques/enumerate_cliques.test.cpp
 documentation_of: library/graph/enumerate_cliques.hpp
 layout: document
-redirect_from:
-- /library/library/graph/enumerate_cliques.hpp
-- /library/library/graph/enumerate_cliques.hpp.html
-title: library/graph/enumerate_cliques.hpp
+title: Enumerate Cliques
 ---
+## Enumerate Cliques

@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/number/index_calculus.hpp
-    title: library/number/index_calculus.hpp
+    title: Index Calculus
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc238_g.test.cpp

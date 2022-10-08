@@ -65,8 +65,6 @@ data:
   - test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
 documentation_of: library/tree/rooted_tree_isomorphism_classification.hpp
 layout: document
-redirect_from:
-- /library/library/tree/rooted_tree_isomorphism_classification.hpp
-- /library/library/tree/rooted_tree_isomorphism_classification.hpp.html
-title: library/tree/rooted_tree_isomorphism_classification.hpp
+title: Rooted Tree Isomorphism Classification
 ---
+## Rooted Tree Isomorphism Classification

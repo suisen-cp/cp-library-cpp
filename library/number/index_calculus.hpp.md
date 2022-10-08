@@ -438,8 +438,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/index_calculus.hpp
 layout: document
-redirect_from:
-- /library/library/number/index_calculus.hpp
-- /library/library/number/index_calculus.hpp.html
-title: library/number/index_calculus.hpp
+title: Index Calculus
 ---
+## Index Calculus

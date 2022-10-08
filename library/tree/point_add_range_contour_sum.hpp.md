@@ -247,8 +247,6 @@ data:
   - test/src/tree/point_add_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: library/tree/point_add_range_contour_sum.hpp
 layout: document
-redirect_from:
-- /library/library/tree/point_add_range_contour_sum.hpp
-- /library/library/tree/point_add_range_contour_sum.hpp.html
-title: library/tree/point_add_range_contour_sum.hpp
+title: Point Add Range Contour Sum
 ---
+## Point Add Range Contour Sum

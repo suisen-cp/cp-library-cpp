@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/algebra/monoid/affine.hpp
-    title: library/algebra/monoid/affine.hpp
+    title: Affine
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -97,8 +97,6 @@ data:
   verifiedWith: []
 documentation_of: library/algebra/monoid/affine_clamp.hpp
 layout: document
-redirect_from:
-- /library/library/algebra/monoid/affine_clamp.hpp
-- /library/library/algebra/monoid/affine_clamp.hpp.html
-title: library/algebra/monoid/affine_clamp.hpp
+title: Affine Clamp
 ---
+## Affine Clamp

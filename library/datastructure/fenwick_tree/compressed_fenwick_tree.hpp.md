@@ -125,8 +125,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp
-- /library/library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp.html
-title: library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp
+title: Compressed Fenwick Tree
 ---
+## Compressed Fenwick Tree

@@ -13,7 +13,7 @@ data:
   _extendedRequiredBy:
   - icon: ':question:'
     path: library/number/primitive_root.hpp
-    title: library/number/primitive_root.hpp
+    title: Primitive Root
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/number/primitive_root/dummy.test.cpp
@@ -319,8 +319,6 @@ data:
   - test/src/number/primitive_root/primitive_root.test.cpp
 documentation_of: library/number/order_prime_mod.hpp
 layout: document
-redirect_from:
-- /library/library/number/order_prime_mod.hpp
-- /library/library/number/order_prime_mod.hpp.html
-title: library/number/order_prime_mod.hpp
+title: Order Prime Mod
 ---
+## Order Prime Mod

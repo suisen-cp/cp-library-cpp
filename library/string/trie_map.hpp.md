@@ -63,8 +63,6 @@ data:
   verifiedWith: []
 documentation_of: library/string/trie_map.hpp
 layout: document
-redirect_from:
-- /library/library/string/trie_map.hpp
-- /library/library/string/trie_map.hpp.html
-title: library/string/trie_map.hpp
+title: Trie Map
 ---
+## Trie Map

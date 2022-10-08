@@ -12,10 +12,10 @@ data:
     title: Internal Eratosthenes
   - icon: ':question:'
     path: library/number/order_prime_mod.hpp
-    title: library/number/order_prime_mod.hpp
+    title: Order Prime Mod
   - icon: ':question:'
     path: library/number/primitive_root.hpp
-    title: library/number/primitive_root.hpp
+    title: Primitive Root
   - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"

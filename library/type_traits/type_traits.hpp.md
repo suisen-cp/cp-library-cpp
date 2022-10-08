@@ -81,10 +81,10 @@ data:
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
   - icon: ':question:'
     path: library/number/order_prime_mod.hpp
-    title: library/number/order_prime_mod.hpp
+    title: Order Prime Mod
   - icon: ':question:'
     path: library/number/primitive_root.hpp
-    title: library/number/primitive_root.hpp
+    title: Primitive Root
   - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: Util

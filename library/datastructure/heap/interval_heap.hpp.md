@@ -159,8 +159,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/heap/interval_heap.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/heap/interval_heap.hpp
-- /library/library/datastructure/heap/interval_heap.hpp.html
-title: library/datastructure/heap/interval_heap.hpp
+title: Interval Heap
 ---
+## Interval Heap

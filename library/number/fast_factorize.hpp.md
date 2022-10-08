@@ -10,10 +10,10 @@ data:
   _extendedRequiredBy:
   - icon: ':question:'
     path: library/number/order_prime_mod.hpp
-    title: library/number/order_prime_mod.hpp
+    title: Order Prime Mod
   - icon: ':question:'
     path: library/number/primitive_root.hpp
-    title: library/number/primitive_root.hpp
+    title: Primitive Root
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/number/fast_factorize/factorize.test.cpp

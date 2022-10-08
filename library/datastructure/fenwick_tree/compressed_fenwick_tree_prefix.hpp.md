@@ -109,8 +109,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
-- /library/library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp.html
-title: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
+title: Compressed Fenwick Tree Prefix
 ---
+## Compressed Fenwick Tree Prefix

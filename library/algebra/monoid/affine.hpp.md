@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/algebra/monoid/affine_clamp.hpp
-    title: library/algebra/monoid/affine_clamp.hpp
+    title: Affine Clamp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
@@ -83,8 +83,6 @@ data:
   - test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
 documentation_of: library/algebra/monoid/affine.hpp
 layout: document
-redirect_from:
-- /library/library/algebra/monoid/affine.hpp
-- /library/library/algebra/monoid/affine.hpp.html
-title: library/algebra/monoid/affine.hpp
+title: Affine
 ---
+## Affine

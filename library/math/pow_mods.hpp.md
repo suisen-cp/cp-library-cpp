@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/prod_f(r^k_x).hpp
-    title: $\prod_{k=0}^{m-1} f(r^k x)$
+    title: $\left(\prod_{k=0}^{m-1} f(r^k x)\right) \bmod x^N$
   - icon: ':heavy_check_mark:'
     path: library/string/rolling_hash.hpp
     title: Rolling Hash

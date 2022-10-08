@@ -151,8 +151,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/double_ended_priority_queue.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/double_ended_priority_queue.hpp
-- /library/library/datastructure/double_ended_priority_queue.hpp.html
-title: library/datastructure/double_ended_priority_queue.hpp
+title: Double Ended Priority Queue
 ---
+## Double Ended Priority Queue

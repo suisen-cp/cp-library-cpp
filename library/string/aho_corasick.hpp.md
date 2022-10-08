@@ -77,8 +77,6 @@ data:
   verifiedWith: []
 documentation_of: library/string/aho_corasick.hpp
 layout: document
-redirect_from:
-- /library/library/string/aho_corasick.hpp
-- /library/library/string/aho_corasick.hpp.html
-title: library/string/aho_corasick.hpp
+title: Aho Corasick
 ---
+## Aho Corasick

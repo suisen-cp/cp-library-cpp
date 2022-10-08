@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/number/discrete_logarithm.hpp
-    title: library/number/discrete_logarithm.hpp
+    title: Discrete Logarithm
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
