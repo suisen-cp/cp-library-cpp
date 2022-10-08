@@ -4,7 +4,7 @@
 #include "library/math/pow_mods.hpp"
 
 /**
- * @brief $\prod_{k=0}^{m-1} f(r^k x)$
+ * @brief $\left(\prod_{k=0}^{m-1} f(r^k x)\right) \bmod x^N$
  */
 
 namespace suisen {
@@ -42,10 +42,13 @@ namespace suisen {
         }
     }
     /**
-     * @brief Calculates F(x) = Π[k=0,m-1] f(r^k x) in O(NlogN) time, where N is the size of F.
-     * @param f formal power series
-     * @param r ratio
-     * @param m the number of terms of the product
+     * \brief Calculates Π[k=0,m-1] f(r^k x) mod x^N in O(NlogN) time.
+     * \tparam FPSType type of formal power series
+     * \param f formal power series
+     * \param r ratio
+     * \param m the number of terms of the product
+     * \param result_size N (default: size of f)
+     * \return Π[k=0,m-1] f(r^k x) mod x^N 
      */
     template <typename FPSType>
     FPSType prod_f_rk_x(FPSType f, const typename FPSType::value_type r, const int m, int result_size = -1) {
