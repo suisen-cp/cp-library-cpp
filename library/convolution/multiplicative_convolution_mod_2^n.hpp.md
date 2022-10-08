@@ -181,23 +181,32 @@ $(\mathbb{Z}/2 ^ n\mathbb{Z}) ^ \ast$ の位数は $\varphi(2 ^ n) = 2 ^ {n - 1}
 $$5 ^ {2 ^ {n - 3}} \not\equiv 1 \pmod{2 ^ n}, \tag{1}$$
 $$5 ^ {2 ^ {n - 2}} \equiv 1 \pmod{2 ^ n}.     \tag{2}$$
 
-- $(1)$ の証明
-  
-  以下、$2$ が正整数 $k$ を割り切る回数を $v_2(k)$ と書く。
-  
-  $$5 ^ {2 ^ {n - 3}} = (1 + 4) ^ {2 ^ {n - 3}} = 1 + 2 ^ {n - 1} + \sum _ {i = 2} ^ {2 ^ {n - 3}} \binom{2 ^ {n - 3}}{i} 2 ^ {2i}$$
-  
-  であり、$\displaystyle v_2(i!) = \sum _ {j = 1} ^ \infty \left\lfloor\dfrac{i}{2 ^ j}\right\rfloor \leq \sum _ {j = 1} ^ \infty \dfrac{i}{2 ^ j} \leq i$ を満たすので、$i\geq 3$ において $\displaystyle v_2\left(\binom{2 ^ {n - 3}}{i} 2 ^ {2i}\right)\geq n-3+i\geq n$ が成り立つ。また、実際に計算することで $i=2$ の場合もこれが成り立つことが分かる。従って、次を得る:
-  
-  $$5 ^ {2 ^ {n - 3}} \equiv 1 + 2 ^ {n - 1} \not\equiv 1 \pmod{2 ^ n}.$$
+<ul>
+<li>
 
-- $(2)$ の証明
+$(1)$ の証明
+
+以下、$2$ が正整数 $k$ を割り切る回数を $v_2(k)$ と書く。
+
+$$5 ^ {2 ^ {n - 3}} = (1 + 4) ^ {2 ^ {n - 3}} = 1 + 2 ^ {n - 1} + \sum _ {i = 2} ^ {2 ^ {n - 3}} \binom{2 ^ {n - 3}}{i} 2 ^ {2i}$$
+
+であり、$\displaystyle v_2(i!) = \sum _ {j = 1} ^ \infty \left\lfloor\dfrac{i}{2 ^ j}\right\rfloor \leq \sum _ {j = 1} ^ \infty \dfrac{i}{2 ^ j} \leq i$ を満たすので、$i\geq 3$ において $\displaystyle v_2\left(\binom{2 ^ {n - 3}}{i} 2 ^ {2i}\right)\geq n-3+i\geq n$ が成り立つ。また、実際に計算することで $i=2$ の場合もこれが成り立つことが分かる。従って、次を得る:
+
+$$5 ^ {2 ^ {n - 3}} \equiv 1 + 2 ^ {n - 1} \not\equiv 1 \pmod{2 ^ n}.$$
+
+</li>
+<li>
+
+$(2)$ の証明
   
-  $$5 ^ {2 ^ {n - 2}} = (1 + 4) ^ {2 ^ {n - 2}} = 1 +  \sum _ {i = 1} ^ {2 ^ {n - 2}} \binom{2 ^ {n - 2}}{i} 2 ^ {2i}$$
-  
-  に対して同様の議論により $i\geq 1$ で $\displaystyle v_2\left(\binom{2 ^ {n - 2}}{i} 2 ^ {2i}\right)\geq n$ が成り立つことが分かり、次を得る:
-  
-  $$5 ^ {2 ^ {n - 2}} \equiv 1 \pmod{2 ^ n}.$$
+$$5 ^ {2 ^ {n - 2}} = (1 + 4) ^ {2 ^ {n - 2}} = 1 +  \sum _ {i = 1} ^ {2 ^ {n - 2}} \binom{2 ^ {n - 2}}{i} 2 ^ {2i}$$
+
+に対して同様の議論により $i\geq 1$ で $\displaystyle v_2\left(\binom{2 ^ {n - 2}}{i} 2 ^ {2i}\right)\geq n$ が成り立つことが分かり、次を得る:
+
+$$5 ^ {2 ^ {n - 2}} \equiv 1 \pmod{2 ^ n}.$$
+
+</li>
+</ul>
 
 </div>
 
@@ -209,9 +218,9 @@ $n \leq 2$ では $\mathrm{ord}(5) = 1$ であるから、結局 $\mathrm{ord}(5
 
 $(\star)$ より、$5$ によって生成される部分群 $\langle 5 \rangle = \lbrace 5 ^ n \mid n \in \mathbb{Z} \rbrace$ の位数は $2 ^ {n - 2}$ である。簡単な計算により $a \in \langle 5 \rangle \Rightarrow a \equiv 1 \pmod{4}$ が分かるが、$a \equiv 1 \pmod{4}$ を満たす $a\in (\mathbb{Z}/2 ^ n\mathbb{Z}) ^ \ast$ の個数はちょうど $2 ^ {n - 2}$ であるから、$\langle 5 \rangle=\lbrace4k+1 \mid k\in \mathbb{Z}\rbrace$ である。同様にして、$\langle -5\rangle = \lbrace4k-1 \mid k\in \mathbb{Z}\rbrace$ も分かる。
 
-以上より、任意の $a\in \mathbb{Z}/2^n\mathbb{Z}$ に対して $a \equiv (-1) ^ {s _ a} \cdot 2 ^ {p _ a} \cdot 5 ^ {q _ a}$ を満たす整数 $s _ a, p _ a, q _ a$ が存在する。そこで、$a = (s _ a, p _ a, q _ a)$ と書くことにすると、$a\in \mathbb{Z}/2^n\mathbb{Z}$ 上の乗算 $a\times b$ は次のように指数の加算へと変換される。
+以上より、任意の $a\in \mathbb{Z}/2^n\mathbb{Z}$ に対して $a \equiv (-1) ^ {s _ a} \cdot 2 ^ {p _ a} \cdot 5 ^ {q _ a}$ を満たす整数 $s _ a, p _ a, q _ a$ が存在する。そこで、$a = (s _ a, p _ a, q _ a)$ と書くことにすると、$\mathbb{Z}/2^n\mathbb{Z}$ 上の乗算 $a\times b$ は次のように指数の加算へと変換される。
 
-$$a\times b = (s _ a + s _ b, p _ a + p _ b, q _ a + q _ b)$$
+$$a\times b = (s _ a + s _ b, p _ a + p _ b, q _ a + q _ b).$$
 
 さて、$a\in \mathbb{Z}/2 ^ n\mathbb{Z}$ に対して、$a\equiv 0$ の場合を除いて $p_a$ は一意に定まり、$0$ 以上 $n-1$ 以下の値をとる。ここでは、$0$ については $0=(0, n, 0)$ と扱うことにする。
 
@@ -237,7 +246,7 @@ $$
 \sum _ {z = 0} ^ {n - 3} \sum _ {x + y = z} (n - 2 - z) 2 ^ {n - 2 - z} \leq \sum _ {z = 0} ^ {n - 3} (z + 1) (n - 2 - z) 2 ^ {n - 2 - z} = \Theta(n\cdot 2 ^ n)
 $$
 
-以上で、全体 $\Theta(n 2 ^ n)$ 時間で動作するアルゴリズムが構築できた。
+以上で、全体 $\Theta(n \cdot 2 ^ n)$ 時間で動作するアルゴリズムが構築できた。
 
 ## 参考
 
