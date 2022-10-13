@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/point_add_range_contour_sum_invertible.hpp
     title: Point Add Range Contour Sum Invertible
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []

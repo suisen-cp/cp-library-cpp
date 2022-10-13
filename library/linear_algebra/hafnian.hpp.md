@@ -4,16 +4,6 @@ data:
   - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
-    path: library/linear_algebra/count_spanning_trees.hpp
-    title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
-      \u6570\u3048\u4E0A\u3052"
-  - icon: ':heavy_check_mark:'
-    path: library/linear_algebra/matrix.hpp
-    title: Matrix
-  - icon: ':heavy_check_mark:'
-    path: library/math/factorial.hpp
-    title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
@@ -40,209 +30,30 @@ data:
   - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
-  - icon: ':heavy_check_mark:'
-    path: library/util/subset_iterator.hpp
-    title: Subset Iterator
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+    title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc253/tasks/abc253_Ex
-    links:
-    - https://atcoder.jp/contests/abc253/tasks/abc253_Ex
-  bundledCode: "#line 1 \"test/src/math/sps/abc253_h.test.cpp\"\n#define PROBLEM \"\
-    https://atcoder.jp/contests/abc253/tasks/abc253_Ex\"\n\n#include <iostream>\n\n\
-    #include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\n#line 1 \"\
-    library/util/subset_iterator.hpp\"\n\n\n\n#ifdef _MSC_VER\n#  include <intrin.h>\n\
-    #else\n#  include <x86intrin.h>\n#endif\n\n#include <cassert>\n#include <cstdint>\n\
-    #line 13 \"library/util/subset_iterator.hpp\"\n#include <limits>\n\nnamespace\
-    \ suisen {\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    struct all_subset {\n        struct all_subset_iter\
-    \ {\n            const T s; T t;\n            constexpr all_subset_iter(T s) :\
-    \ s(s), t(s + 1) {}\n            constexpr auto operator*() const { return t;\
-    \ }\n            constexpr auto operator++() {}\n            constexpr auto operator!=(std::nullptr_t)\
-    \ { return t ? (--t &= s, true) : false; }\n        };\n        T s;\n       \
-    \ constexpr all_subset(T s) : s(s) {}\n        constexpr auto begin() { return\
-    \ all_subset_iter(s); }\n        constexpr auto end() { return nullptr; }\n  \
-    \  };\n\n    // iterator over T s.t. T is subset of S and |T| = k\n    struct\
-    \ all_subset_k {\n        struct all_subset_k_iter {\n            const uint32_t\
-    \ n, k, s;\n            uint32_t t;\n            __attribute__((target(\"avx2\"\
-    )))\n            all_subset_k_iter(uint32_t s, uint32_t k) : n(uint32_t(1) <<\
-    \ _mm_popcnt_u32(s)), k(k), s(s), t((uint32_t(1) << k) - 1) {}\n            __attribute__((target(\"\
-    bmi2\")))\n            auto operator*() const { return _pdep_u32(t, s); }\n  \
-    \          __attribute__((target(\"bmi\")))\n            auto operator++() {\n\
-    \                if (k == 0) {\n                    t = std::numeric_limits<uint32_t>::max();\n\
-    \                } else {\n                    uint32_t y = t + _blsi_u32(t);\
-    \ // t + (-t & t)\n                    t = y | ((y ^ t) >> _tzcnt_u32(t << 2));\n\
-    \                }\n            }\n            auto operator!=(std::nullptr_t)\
-    \ const { return t < n; }\n        };\n        uint32_t s, k;\n        all_subset_k(uint32_t\
-    \ s, uint32_t k) : s(s), k(k) {\n            assert(s != std::numeric_limits<uint32_t>::max());\n\
-    \        }\n        static all_subset_k nCk(uint32_t n, uint32_t k) { return all_subset_k((uint32_t(1)\
-    \ << n) - 1, k); }\n        auto begin() { return all_subset_k_iter(s, k); }\n\
-    \        auto end() { return nullptr; }\n    };\n\n    struct all_subset_k_64\
-    \ {\n        struct all_subset_k_iter_64 {\n            const uint64_t n, s;\n\
-    \            const uint32_t k;\n            uint64_t t;\n            __attribute__((target(\"\
-    avx2\")))\n            all_subset_k_iter_64(uint64_t s, uint32_t k) : n(uint64_t(1)\
-    \ << _mm_popcnt_u64(s)), s(s), k(k), t((uint64_t(1) << k) - 1) {}\n          \
-    \  __attribute__((target(\"bmi2\")))\n            auto operator*() const { return\
-    \ _pdep_u64(t, s); }\n            __attribute__((target(\"bmi\")))\n         \
-    \   auto operator++() {\n                if (k == 0) {\n                    t\
-    \ = std::numeric_limits<uint64_t>::max();\n                } else {\n        \
-    \            uint64_t y = t + _blsi_u64(t);\n                    t = y | ((y ^\
-    \ t) >> _tzcnt_u64(t << 2));\n                }\n            }\n            auto\
-    \ operator!=(std::nullptr_t) const { return t < n; }\n        };\n        uint64_t\
-    \ s;\n        uint32_t k;\n        all_subset_k_64(uint64_t s, uint32_t k) : s(s),\
-    \ k(k) {\n            assert(s != std::numeric_limits<uint64_t>::max());\n   \
-    \     }\n        auto begin() { return all_subset_k_iter_64(s, k); }\n       \
-    \ auto end() { return nullptr; }\n    };\n\n    struct all_setbit {\n        struct\
-    \ all_setbit_iter {\n            uint32_t s;\n            all_setbit_iter(uint32_t\
-    \ s) : s(s) {}\n            __attribute__((target(\"bmi\")))\n            auto\
-    \ operator*() { return _tzcnt_u32(s); }\n            __attribute__((target(\"\
-    bmi\")))\n            auto operator++() { s = __blsr_u32(s); }\n            auto\
-    \ operator!=(std::nullptr_t) { return s; }\n        };\n        uint32_t s;\n\
-    \        all_setbit(uint32_t s) : s(s) {}\n        auto begin() { return all_setbit_iter(s);\
-    \ }\n        auto end() { return nullptr; }\n    };\n\n    struct all_setbit_64\
-    \ {\n        struct all_setbit_iter_64 {\n            uint64_t s;\n          \
-    \  all_setbit_iter_64(uint64_t s) : s(s) {}\n            __attribute__((target(\"\
-    bmi\")))\n            auto operator*() { return _tzcnt_u64(s); }\n           \
-    \ __attribute__((target(\"bmi\")))\n            auto operator++() { s = __blsr_u64(s);\
-    \ }\n            auto operator!=(std::nullptr_t) { return s; }\n        };\n \
-    \       uint64_t s;\n        all_setbit_64(uint64_t s) : s(s) {}\n        auto\
-    \ begin() { return all_setbit_iter_64(s); }\n        auto end() { return nullptr;\
-    \ }\n    };\n} // namespace suisen\n\n\n#line 1 \"library/linear_algebra/count_spanning_trees.hpp\"\
-    \n\n\n\n#line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#line 5 \"library/linear_algebra/matrix.hpp\"\
-    \n#include <optional>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
-    \ T>\n    struct Matrix {\n        std::vector<std::vector<T>> dat;\n\n      \
-    \  Matrix() {}\n        Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m,\
-    \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& dat) : dat(dat)\
-    \ {}\n\n        const std::vector<T>& operator[](int i) const { return dat[i];\
-    \ }\n        std::vector<T>& operator[](int i) { return dat[i]; }\n\n        operator\
-    \ std::vector<std::vector<T>>() const { return dat; }\n\n        bool operator==(const\
-    \ Matrix<T>& other) const { return this->dat == other.dat; }\n        bool operator!=(const\
-    \ Matrix<T>& other) const { return this->dat != other.dat; }\n\n        std::pair<int,\
-    \ int> shape() const { return dat.empty() ? std::make_pair<int, int>(0, 0) : std::make_pair<int,\
-    \ int>(dat.size(), dat[0].size()); }\n        int row_size() const { return dat.size();\
-    \ }\n        int col_size() const { return dat.empty() ? 0 : dat[0].size(); }\n\
-    \n        Matrix<T>& operator+=(const Matrix<T>& other) {\n            assert(shape()\
-    \ == other.shape());\n            auto [n, m] = shape();\n            for (int\
-    \ i = 0; i < n; ++i) for (int j = 0; j < m; ++j) dat[i][j] += other[i][j];\n \
-    \           return *this;\n        }\n        Matrix<T>& operator-=(const Matrix<T>&\
-    \ other) {\n            assert(shape() == other.shape());\n            auto [n,\
-    \ m] = shape();\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m;\
-    \ ++j) dat[i][j] -= other[i][j];\n            return *this;\n        }\n     \
-    \   Matrix<T>& operator*=(const Matrix<T>& other) { return *this = *this * other;\
-    \ }\n        Matrix<T>& operator*=(const T& val) {\n            for (auto &row\
-    \ : dat) for (auto &elm : row) elm *= val;\n            return *this;\n      \
-    \  }\n        Matrix<T>& operator/=(const T& val) { return *this *= T(1) / val;\
-    \ }\n        Matrix<T> operator+(const Matrix<T>& other) const { Matrix<T> res\
-    \ = *this; res += other; return res; }\n        Matrix<T> operator-(const Matrix<T>&\
-    \ other) const { Matrix<T> res = *this; res -= other; return res; }\n        Matrix<T>\
-    \ operator*(const Matrix<T>& other) const {\n            auto [n, m] = shape();\n\
-    \            auto [m2, l] = other.shape();\n            assert(m == m2);\n   \
-    \         std::vector res(n, std::vector(l, T(0)));\n            for (int i =\
-    \ 0; i < n; ++i) for (int j = 0; j < m; ++j) for (int k = 0; k < l; ++k) res[i][k]\
-    \ += (*this)[i][j] * other[j][k];\n            return res;\n        }\n      \
-    \  Matrix<T> operator*(const T& val) const { Matrix<T> res = *this; res *= val;\
-    \ return res; }\n        Matrix<T> operator/(const T& val) const { Matrix<T> res\
-    \ = *this; res /= val; return res; }\n\n        std::vector<T> operator*(const\
-    \ std::vector<T>& x) const {\n            auto [n, m] = shape();\n           \
-    \ assert(m == int(x.size()));\n            std::vector<T> b(n, T(0));\n      \
-    \      for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) b[i] += dat[i][j]\
-    \ * x[j];\n            return b;\n        }\n    };\n\n    template <typename\
-    \ T>\n    struct SquareMatrix : public Matrix<T> {\n        SquareMatrix() {}\n\
-    \        SquareMatrix(int n, T fill_value = T(0)) : Matrix<T>::Matrix(n, n, fill_value)\
-    \ {}\n        SquareMatrix(const std::vector<std::vector<T>>& dat) : Matrix<T>::Matrix(dat)\
-    \ {\n            auto [n, m] = this->shape();\n            assert(n == m);\n \
-    \       }\n\n        int size() const { return this->row_size(); }\n\n       \
-    \ bool operator==(const SquareMatrix<T>& other) const { return this->dat == other.dat;\
-    \ }\n        bool operator!=(const SquareMatrix<T>& other) const { return this->dat\
-    \ != other.dat; }\n\n        static SquareMatrix<T> e0(int n) { return SquareMatrix<T>(n,\
-    \ false, /* dummy */ 0); }\n        static SquareMatrix<T> e1(int n) { return\
-    \ SquareMatrix<T>(n, true, /* dummy */ 0); }\n\n        static std::optional<SquareMatrix<T>>\
-    \ inv(SquareMatrix<T> A) {\n            int n = A.size();\n            for (int\
-    \ i = 0; i < n; ++i) {\n                A[i].resize(2 * n, T{ 0 });\n        \
-    \        A[i][n + i] = T{ 1 };\n            }\n            for (int i = 0; i <\
-    \ n; ++i) {\n                int pivot = -1;\n                for (int k = i;\
-    \ k < n; ++k) if (A[k][i] != T{ 0 }) {\n                    pivot = k;\n     \
-    \               break;\n                }\n                if (pivot < 0) return\
-    \ std::nullopt;\n                std::swap(A[i], A[pivot]);\n                T\
-    \ coef = T{ 1 } / A[i][i];\n                for (int j = i; j < 2 * n; ++j) A[i][j]\
-    \ *= coef;\n                for (int k = 0; k < n; ++k) if (k != i and A[k][i]\
-    \ != T{ 0 }) {\n                    T c = A[k][i];\n                    for (int\
-    \ j = i; j < 2 * n; ++j) A[k][j] -= c * A[i][j];\n                }\n        \
-    \    }\n            for (auto& row : A.dat) row.erase(row.begin(), row.begin()\
-    \ + n);\n            return A;\n        }\n        static T det(SquareMatrix<T>\
-    \ A) {\n            bool sgn = false;\n            const int n = A.size();\n \
-    \           for (int j = 0; j < n; ++j) for (int i = j + 1; i < n; ++i) if (A[i][j]\
-    \ != T { 0 }) {\n                std::swap(A[j], A[i]);\n                T q =\
-    \ A[i][j] / A[j][j];\n                for (int k = j; k < n; ++k) A[i][k] -= A[j][k]\
-    \ * q;\n                sgn = not sgn;\n            }\n            T res = sgn\
-    \ ? T { -1 } : T { +1 };\n            for (int i = 0; i < n; ++i) res *= A[i][i];\n\
-    \            return res;\n        }\n        static T det_arbitrary_mod(SquareMatrix<T>\
-    \ A) {\n            bool sgn = false;\n            const int n = A.size();\n \
-    \           for (int j = 0; j < n; ++j) for (int i = j + 1; i < n; ++i) {\n  \
-    \              for (; A[i][j].val(); sgn = not sgn) {\n                    std::swap(A[j],\
-    \ A[i]);\n                    T q = A[i][j].val() / A[j][j].val();\n         \
-    \           for (int k = j; k < n; ++k) A[i][k] -= A[j][k] * q;\n            \
-    \    }\n            }\n            T res = sgn ? -1 : +1;\n            for (int\
-    \ i = 0; i < n; ++i) res *= A[i][i];\n            return res;\n        }\n   \
-    \     SquareMatrix<T>& inv_inplace() {\n            return *this = *SquareMatrix<T>::inv(std::move(*this));\n\
-    \        }\n        SquareMatrix<T> inv() const {\n            return *SquareMatrix<T>::inv(*this);\n\
-    \        }\n        T det() const {\n            return SquareMatrix<T>::det(*this);\n\
-    \        }\n        T det_arbitrary_mod() const {\n            return SquareMatrix<T>::det_arbitrary_mod(*this);\n\
-    \        }\n\n        SquareMatrix<T>& operator/=(const SquareMatrix<T>& other)\
-    \ { return *this *= other.inv(); }\n        SquareMatrix<T>  operator/ (const\
-    \ SquareMatrix<T>& other) const { SquareMatrix<T> res = *this; res /= other; return\
-    \ res; }\n\n        SquareMatrix<T> pow(long long b) {\n            assert(b >=\
-    \ 0);\n            SquareMatrix<T> res(SquareMatrix<T>::e1(size())), p(*this);\n\
-    \            for (; b; b >>= 1) {\n                if (b & 1) res *= p;\n    \
-    \            p *= p;\n            }\n            return res;\n        }\n    private:\n\
-    \        SquareMatrix(int n, bool mult_identity, int) : Matrix<T>::Matrix(n, n)\
-    \ {\n            if (mult_identity) for (int i = 0; i < n; ++i) this->dat[i][i]\
-    \ = 1;\n        }\n    };\n} // namespace suisen\n\n\n#line 5 \"library/linear_algebra/count_spanning_trees.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T, typename Edge>\n    T count_spanning_trees(const\
-    \ int n, const std::vector<Edge> &edges) {\n        SquareMatrix<T> A(n - 1);\n\
-    \        for (auto [u, v] : edges) if (u != v) {\n            if (u > v) std::swap(u,\
-    \ v);\n            ++A[u][u];\n            if (v != n - 1) ++A[v][v], --A[u][v],\
-    \ --A[v][u];\n        }\n        return SquareMatrix<T>::det(std::move(A));\n\
-    \    }\n} // namespace suisen\n\n\n\n#line 1 \"library/math/factorial.hpp\"\n\n\
-    \n\n#line 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\n    template\
-    \ <typename T, typename U = T>\n    struct factorial {\n        factorial() {}\n\
-    \        factorial(int n) { ensure(n); }\n\n        static void ensure(const int\
-    \ n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
-    \            int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
-    \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
-    \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
-    \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
-    \ _fac_inv[i] * i;\n        }\n\n        T fac(const int i) {\n            ensure(i);\n\
-    \            return _fac[i];\n        }\n        T operator()(int i) {\n     \
-    \       return fac(i);\n        }\n        U fac_inv(const int i) {\n        \
-    \    ensure(i);\n            return _fac_inv[i];\n        }\n        U binom(const\
-    \ int n, const int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n\
-    \            ensure(n);\n            return _fac[n] * _fac_inv[r] * _fac_inv[n\
-    \ - r];\n        }\n        U perm(const int n, const int r) {\n            if\
-    \ (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n            return\
-    \ _fac[n] * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T>\
-    \ _fac;\n        static std::vector<U> _fac_inv;\n    };\n    template <typename\
-    \ T, typename U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template\
-    \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
-    } // namespace suisen\n\n\n#line 1 \"library/math/sps.hpp\"\n\n\n\n#line 1 \"\
-    library/convolution/subset_convolution.hpp\"\n\n\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
-    \n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\n#include <cmath>\n#line\
-    \ 7 \"library/polynomial/fps_naive.hpp\"\n#include <type_traits>\n#line 9 \"library/polynomial/fps_naive.hpp\"\
-    \n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
-    \n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
-    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
-    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
-    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
-    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
-    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
-    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
-    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    links: []
+  bundledCode: "#line 1 \"library/linear_algebra/hafnian.hpp\"\n\n\n\n#line 1 \"library/math/sps.hpp\"\
+    \n\n\n\n#line 1 \"library/convolution/subset_convolution.hpp\"\n\n\n\n#line 1\
+    \ \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n#include <cmath>\n\
+    #include <limits>\n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
+    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -265,54 +76,55 @@ data:
     \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
     \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
     } // namespace suisen\n\n\n#line 11 \"library/polynomial/fps_naive.hpp\"\n\n#line\
-    \ 1 \"library/math/modint_extension.hpp\"\n\n\n\n#line 6 \"library/math/modint_extension.hpp\"\
-    \n\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n * calculates\
-    \ x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename mint>\nstd::optional<mint>\
-    \ safe_sqrt(mint a) {\n    static int p = mint::mod();\n    if (a == 0) return\
-    \ std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n    if\
-    \ (a.pow((p - 1) / 2) != 1) return std::nullopt;\n    mint b = 1;\n    while (b.pow((p\
-    \ - 1) / 2) == 1) ++b;\n    static int tlz = __builtin_ctz(p - 1), q = (p - 1)\
-    \ >> tlz;\n    mint x = a.pow((q + 1) / 2);\n    b = b.pow(q);\n    for (int shift\
-    \ = 2; x * x != a; ++shift) {\n        mint e = a.inv() * x * x;\n        if (e.pow(1\
-    \ << (tlz - shift)) != 1) x *= b;\n        b *= b;\n    }\n    return std::make_optional(x);\n\
-    }\n\n/**\n * calculates x s.t. x^2 = a mod p in O((log p)^2).\n * if not exists,\
-    \ raises runtime error.\n */\ntemplate <typename mint>\nauto sqrt(mint a) -> decltype(mint::mod(),\
-    \ mint()) {\n    return *safe_sqrt(a);\n}\ntemplate <typename mint>\nauto log(mint\
-    \ a) -> decltype(mint::mod(), mint()) {\n    assert(a == 1);\n    return 0;\n\
-    }\ntemplate <typename mint>\nauto exp(mint a) -> decltype(mint::mod(), mint())\
-    \ {\n    assert(a == 0);\n    return 1;\n}\ntemplate <typename mint, typename\
-    \ T>\nauto pow(mint a, T b) -> decltype(mint::mod(), mint()) {\n    return a.pow(b);\n\
-    }\ntemplate <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint())\
-    \ {\n    return a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n\
-    #line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ mint>\nclass inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
-    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
-    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
-    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = {0,\
-    \ 1}, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
-    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
-    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
-    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n};\n\
-    template <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line\
-    \ 14 \"library/polynomial/fps_naive.hpp\"\n\nnamespace suisen {\n    template\
-    \ <typename T>\n    struct FPSNaive : std::vector<T> {\n        static inline\
-    \ int MAX_SIZE = std::numeric_limits<int>::max() / 2;\n\n        using value_type\
-    \ = T;\n        using element_type = rec_value_type_t<T>;\n        using std::vector<value_type>::vector;\n\
-    \n        FPSNaive(const std::initializer_list<value_type> l) : std::vector<value_type>::vector(l)\
-    \ {}\n        FPSNaive(const std::vector<value_type>& v) : std::vector<value_type>::vector(v)\
-    \ {}\n\n        static void set_max_size(int n) {\n            FPSNaive<T>::MAX_SIZE\
-    \ = n;\n        }\n\n        const value_type operator[](int n) const {\n    \
-    \        return n <= deg() ? unsafe_get(n) : value_type{ 0 };\n        }\n   \
-    \     value_type& operator[](int n) {\n            return ensure_deg(n), unsafe_get(n);\n\
-    \        }\n\n        int size() const {\n            return std::vector<value_type>::size();\n\
-    \        }\n        int deg() const {\n            return size() - 1;\n      \
-    \  }\n        int normalize() {\n            while (size() and this->back() ==\
-    \ value_type{ 0 }) this->pop_back();\n            return deg();\n        }\n \
-    \       FPSNaive& cut_inplace(int n) {\n            if (size() > n) this->resize(std::max(0,\
-    \ n));\n            return *this;\n        }\n        FPSNaive cut(int n) const\
-    \ {\n            FPSNaive f = FPSNaive(*this).cut_inplace(n);\n            return\
-    \ f;\n        }\n\n        FPSNaive operator+() const {\n            return FPSNaive(*this);\n\
-    \        }\n        FPSNaive operator-() const {\n            FPSNaive f(*this);\n\
+    \ 1 \"library/math/modint_extension.hpp\"\n\n\n\n#line 5 \"library/math/modint_extension.hpp\"\
+    \n#include <optional>\n\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
+    \ * calculates x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename\
+    \ mint>\nstd::optional<mint> safe_sqrt(mint a) {\n    static int p = mint::mod();\n\
+    \    if (a == 0) return std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n\
+    \    if (a.pow((p - 1) / 2) != 1) return std::nullopt;\n    mint b = 1;\n    while\
+    \ (b.pow((p - 1) / 2) == 1) ++b;\n    static int tlz = __builtin_ctz(p - 1), q\
+    \ = (p - 1) >> tlz;\n    mint x = a.pow((q + 1) / 2);\n    b = b.pow(q);\n   \
+    \ for (int shift = 2; x * x != a; ++shift) {\n        mint e = a.inv() * x * x;\n\
+    \        if (e.pow(1 << (tlz - shift)) != 1) x *= b;\n        b *= b;\n    }\n\
+    \    return std::make_optional(x);\n}\n\n/**\n * calculates x s.t. x^2 = a mod\
+    \ p in O((log p)^2).\n * if not exists, raises runtime error.\n */\ntemplate <typename\
+    \ mint>\nauto sqrt(mint a) -> decltype(mint::mod(), mint()) {\n    return *safe_sqrt(a);\n\
+    }\ntemplate <typename mint>\nauto log(mint a) -> decltype(mint::mod(), mint())\
+    \ {\n    assert(a == 1);\n    return 0;\n}\ntemplate <typename mint>\nauto exp(mint\
+    \ a) -> decltype(mint::mod(), mint()) {\n    assert(a == 0);\n    return 1;\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(mint a, T b) -> decltype(mint::mod(),\
+    \ mint()) {\n    return a.pow(b);\n}\ntemplate <typename mint>\nauto inv(mint\
+    \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 1 \"\
+    library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace\
+    \ suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
+    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
+    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
+    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
+    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
+    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
+    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
+    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
+    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
+    }\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\n\nnamespace suisen {\n \
+    \   template <typename T>\n    struct FPSNaive : std::vector<T> {\n        static\
+    \ inline int MAX_SIZE = std::numeric_limits<int>::max() / 2;\n\n        using\
+    \ value_type = T;\n        using element_type = rec_value_type_t<T>;\n       \
+    \ using std::vector<value_type>::vector;\n\n        FPSNaive(const std::initializer_list<value_type>\
+    \ l) : std::vector<value_type>::vector(l) {}\n        FPSNaive(const std::vector<value_type>&\
+    \ v) : std::vector<value_type>::vector(v) {}\n\n        static void set_max_size(int\
+    \ n) {\n            FPSNaive<T>::MAX_SIZE = n;\n        }\n\n        const value_type\
+    \ operator[](int n) const {\n            return n <= deg() ? unsafe_get(n) : value_type{\
+    \ 0 };\n        }\n        value_type& operator[](int n) {\n            return\
+    \ ensure_deg(n), unsafe_get(n);\n        }\n\n        int size() const {\n   \
+    \         return std::vector<value_type>::size();\n        }\n        int deg()\
+    \ const {\n            return size() - 1;\n        }\n        int normalize()\
+    \ {\n            while (size() and this->back() == value_type{ 0 }) this->pop_back();\n\
+    \            return deg();\n        }\n        FPSNaive& cut_inplace(int n) {\n\
+    \            if (size() > n) this->resize(std::max(0, n));\n            return\
+    \ *this;\n        }\n        FPSNaive cut(int n) const {\n            FPSNaive\
+    \ f = FPSNaive(*this).cut_inplace(n);\n            return f;\n        }\n\n  \
+    \      FPSNaive operator+() const {\n            return FPSNaive(*this);\n   \
+    \     }\n        FPSNaive operator-() const {\n            FPSNaive f(*this);\n\
     \            for (auto& e : f) e = -e;\n            return f;\n        }\n   \
     \     FPSNaive& operator++() { return ++(*this)[0], * this; }\n        FPSNaive&\
     \ operator--() { return --(*this)[0], * this; }\n        FPSNaive& operator+=(const\
@@ -619,40 +431,45 @@ data:
     \ auto rf = ZetaSPS(*this);\n                return ranked_subset_transform::deranked_mobius<value_type>(rf);\n\
     \            }\n        private:\n            int _d;\n        };\n\n        ZetaSPS\
     \ zeta() const {\n            return ZetaSPS(*this);\n        }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 12 \"test/src/math/sps/abc253_h.test.cpp\"\n\nint\
-    \ main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    std::vector<std::pair<int,\
-    \ int>> edges(m);\n\n    for (auto& [u, v] : edges) {\n        std::cin >> u >>\
-    \ v;\n        --u, --v;\n    }\n\n    suisen::FPSNaive<mint>::set_max_size(n +\
-    \ 1);\n\n    suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));\n\
-    \    for (int s = 1; s < 1 << n; ++s) {\n        std::vector<int> ids(n, -1);\n\
-    \        int id = 0;\n        for (int i : suisen::all_setbit(s)) ids[i] = id++;\n\
-    \        std::vector<std::pair<int, int>> Es;\n        for (const auto& [u, v]\
-    \ : edges) if (ids[u] >= 0 and ids[v] >= 0) {\n            Es.emplace_back(ids[u],\
-    \ ids[v]);\n        }\n        f[s] = { 0, suisen::count_spanning_trees<mint>(id,\
-    \ Es) };\n    }\n\n    suisen::factorial<mint> fac(n);\n\n    auto g = f.exp().back();\n\
-    \n    for (int k = 1; k < n; ++k) {\n        std::cout << (fac.fac(k) * g[n -\
-    \ k] / mint(m).pow(k)).val() << std::endl;\n    }\n\n    return 0;\n}\n\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc253/tasks/abc253_Ex\"\n\n\
-    #include <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
-    \n#include \"library/util/subset_iterator.hpp\"\n#include \"library/linear_algebra/count_spanning_trees.hpp\"\
-    \n#include \"library/math/factorial.hpp\"\n#include \"library/math/sps.hpp\"\n\
-    \nint main() {\n    int n, m;\n    std::cin >> n >> m;\n\n    std::vector<std::pair<int,\
-    \ int>> edges(m);\n\n    for (auto& [u, v] : edges) {\n        std::cin >> u >>\
-    \ v;\n        --u, --v;\n    }\n\n    suisen::FPSNaive<mint>::set_max_size(n +\
-    \ 1);\n\n    suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));\n\
-    \    for (int s = 1; s < 1 << n; ++s) {\n        std::vector<int> ids(n, -1);\n\
-    \        int id = 0;\n        for (int i : suisen::all_setbit(s)) ids[i] = id++;\n\
-    \        std::vector<std::pair<int, int>> Es;\n        for (const auto& [u, v]\
-    \ : edges) if (ids[u] >= 0 and ids[v] >= 0) {\n            Es.emplace_back(ids[u],\
-    \ ids[v]);\n        }\n        f[s] = { 0, suisen::count_spanning_trees<mint>(id,\
-    \ Es) };\n    }\n\n    suisen::factorial<mint> fac(n);\n\n    auto g = f.exp().back();\n\
-    \n    for (int k = 1; k < n; ++k) {\n        std::cout << (fac.fac(k) * g[n -\
-    \ k] / mint(m).pow(k)).val() << std::endl;\n    }\n\n    return 0;\n}\n\n"
+    \ namespace suisen\n\n\n#line 5 \"library/linear_algebra/hafnian.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename T, typename U = T, std::enable_if_t<std::is_constructible_v<T,\
+    \ U>, std::nullptr_t> = nullptr>\n    T hafnian(const std::vector<std::vector<U>>\
+    \ &mat) {\n        const int n = mat.size();\n        assert(n % 2 == 0);\n\n\
+    \        using ZetaSPS = typename SPS<T>::ZetaSPS;\n\n        std::vector P(n,\
+    \ std::vector<ZetaSPS>(n));\n        for (int i = 0; i < n; ++i) for (int j =\
+    \ 0; j < i; ++j) {\n            P[i][j] = SPS<T>{ mat[i][j] }.zeta();\n      \
+    \      assert(mat[i][j] == mat[j][i]);\n        }\n        ZetaSPS h = SPS<T>{\
+    \ 1 }.zeta();\n        for (int i = 0; i < n / 2 - 1; ++i) {\n            const\
+    \ int lv = n - 2 * (i + 1), rv = lv + 1;\n\n            h.concat(h * P[rv][lv]);\n\
+    \n            std::vector<ZetaSPS> zPlr(lv);\n            for (int k = 0; k <\
+    \ lv; ++k) {\n                zPlr[k] = P[lv][k] * P[rv][k];\n            }\n\n\
+    \            for (int j = 0; j < lv; ++j) for (int k = 0; k < j; ++k) {\n    \
+    \            P[j][k].concat((P[lv][j] + P[lv][k]) * (P[rv][j] + P[rv][k]) - zPlr[j]\
+    \ - zPlr[k]);\n            }\n            P.pop_back(), P.pop_back();\n      \
+    \  }\n        SPS<T> f = h.mobius_inplace(), g = P[1][0].mobius_inplace();\n \
+    \       T res = 0;\n        for (int i = 0, siz = h.size(); i < siz; ++i) {\n\
+    \            res += f[i] * g[siz - i - 1];\n        }\n        return res;\n \
+    \   }\n} // namespace suisen\n\n\n"
+  code: "#ifndef SUISEN_HAFNIAN\n#define SUISEN_HAFNIAN\n\n#include \"library/math/sps.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T, typename U = T, std::enable_if_t<std::is_constructible_v<T,\
+    \ U>, std::nullptr_t> = nullptr>\n    T hafnian(const std::vector<std::vector<U>>\
+    \ &mat) {\n        const int n = mat.size();\n        assert(n % 2 == 0);\n\n\
+    \        using ZetaSPS = typename SPS<T>::ZetaSPS;\n\n        std::vector P(n,\
+    \ std::vector<ZetaSPS>(n));\n        for (int i = 0; i < n; ++i) for (int j =\
+    \ 0; j < i; ++j) {\n            P[i][j] = SPS<T>{ mat[i][j] }.zeta();\n      \
+    \      assert(mat[i][j] == mat[j][i]);\n        }\n        ZetaSPS h = SPS<T>{\
+    \ 1 }.zeta();\n        for (int i = 0; i < n / 2 - 1; ++i) {\n            const\
+    \ int lv = n - 2 * (i + 1), rv = lv + 1;\n\n            h.concat(h * P[rv][lv]);\n\
+    \n            std::vector<ZetaSPS> zPlr(lv);\n            for (int k = 0; k <\
+    \ lv; ++k) {\n                zPlr[k] = P[lv][k] * P[rv][k];\n            }\n\n\
+    \            for (int j = 0; j < lv; ++j) for (int k = 0; k < j; ++k) {\n    \
+    \            P[j][k].concat((P[lv][j] + P[lv][k]) * (P[rv][j] + P[rv][k]) - zPlr[j]\
+    \ - zPlr[k]);\n            }\n            P.pop_back(), P.pop_back();\n      \
+    \  }\n        SPS<T> f = h.mobius_inplace(), g = P[1][0].mobius_inplace();\n \
+    \       T res = 0;\n        for (int i = 0, siz = h.size(); i < siz; ++i) {\n\
+    \            res += f[i] * g[siz - i - 1];\n        }\n        return res;\n \
+    \   }\n} // namespace suisen\n\n#endif // SUISEN_HAFNIAN\n"
   dependsOn:
-  - library/util/subset_iterator.hpp
-  - library/linear_algebra/count_spanning_trees.hpp
-  - library/linear_algebra/matrix.hpp
-  - library/math/factorial.hpp
   - library/math/sps.hpp
   - library/convolution/subset_convolution.hpp
   - library/polynomial/fps_naive.hpp
@@ -662,16 +479,15 @@ data:
   - library/transform/subset.hpp
   - library/transform/kronecker_power.hpp
   - library/util/default_operator.hpp
-  isVerificationFile: true
-  path: test/src/math/sps/abc253_h.test.cpp
+  isVerificationFile: false
+  path: library/linear_algebra/hafnian.hpp
   requiredBy: []
-  timestamp: '2022-08-21 18:23:10+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/src/math/sps/abc253_h.test.cpp
+  timestamp: '2022-10-14 04:51:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+documentation_of: library/linear_algebra/hafnian.hpp
 layout: document
-redirect_from:
-- /verify/test/src/math/sps/abc253_h.test.cpp
-- /verify/test/src/math/sps/abc253_h.test.cpp.html
-title: test/src/math/sps/abc253_h.test.cpp
+title: Hafnian
 ---
+## Hafnian

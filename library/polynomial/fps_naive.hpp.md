@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: library/linear_algebra/hafnian.hpp
+    title: Hafnian
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':heavy_check_mark:'
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+    title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
@@ -189,9 +195,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n\
@@ -550,10 +556,11 @@ data:
   requiredBy:
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/fps.hpp
+  - library/linear_algebra/hafnian.hpp
   - library/math/sps.hpp
   - library/convolution/subset_convolution.hpp
   timestamp: '2022-07-21 12:28:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
@@ -602,6 +609,7 @@ data:
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
   - test/src/math/sps/abc236_h.test.cpp

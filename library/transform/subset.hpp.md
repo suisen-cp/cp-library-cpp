@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
@@ -15,19 +15,25 @@ data:
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
+  - icon: ':x:'
+    path: library/linear_algebra/hafnian.hpp
+    title: Hafnian
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+    title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
@@ -58,9 +64,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/arc105_f.test.cpp
     title: test/src/math/sps/arc105_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/subset.hpp\"\n\n\n\n#line 1 \"library/transform/kronecker_power.hpp\"\
@@ -157,14 +163,16 @@ data:
   isVerificationFile: false
   path: library/transform/subset.hpp
   requiredBy:
+  - library/linear_algebra/hafnian.hpp
   - library/math/sps.hpp
   - library/math/array_sps.hpp
   - library/convolution/subset_convolution.hpp
   - library/convolution/array_subset_convolution.hpp
   - library/convolution/or_convolution.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp

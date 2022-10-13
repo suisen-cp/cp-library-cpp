@@ -17,7 +17,7 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
@@ -67,10 +67,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
+  - icon: ':x:'
+    path: library/linear_algebra/hafnian.hpp
+    title: Hafnian
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':question:'
@@ -97,7 +100,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
@@ -229,6 +232,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/functional_graph/abc254_g.test.cpp
     title: test/src/graph/functional_graph/abc254_g.test.cpp
+  - icon: ':x:'
+    path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+    title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
@@ -536,6 +542,7 @@ data:
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/array_fps_naive.hpp
   - library/polynomial/fps.hpp
+  - library/linear_algebra/hafnian.hpp
   - library/math/sps.hpp
   - library/math/array_sps.hpp
   - library/range_query/static_range_xored_mex_query.hpp
@@ -620,6 +627,7 @@ data:
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp

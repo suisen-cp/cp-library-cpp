@@ -5,13 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
+  - icon: ':x:'
+    path: library/linear_algebra/hafnian.hpp
+    title: Hafnian
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':heavy_check_mark:'
@@ -23,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   _extendedVerifiedWith:
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+    title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
@@ -207,9 +213,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://37zigen.com/tonelli-shanks-algorithm/
@@ -259,12 +265,13 @@ data:
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/array_fps_naive.hpp
   - library/polynomial/fps.hpp
+  - library/linear_algebra/hafnian.hpp
   - library/math/sps.hpp
   - library/math/array_sps.hpp
   - library/convolution/subset_convolution.hpp
   - library/convolution/array_subset_convolution.hpp
   timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
@@ -313,6 +320,7 @@ data:
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp
