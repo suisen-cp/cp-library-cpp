@@ -1,6 +1,7 @@
 #ifndef SUISEN_STIRLING_NUMBER_1
 #define SUISEN_STIRLING_NUMBER_1
 
+#include <algorithm>
 #include "library/math/inv_mods.hpp"
 #include "library/math/factorial.hpp"
 
@@ -82,12 +83,12 @@ namespace suisen {
         return a;
     }
     template <typename mint>
-    std::vector<std::vector<mint>> stirling_number1_table(uint32_t n) {
+    std::vector<std::vector<mint>> stirling_number1_table(int n) {
         std::vector dp(n + 1, std::vector<mint>{});
-        for (uint32_t i = 0; i <= n; ++i) {
+        for (int i = 0; i <= n; ++i) {
             dp[i].resize(i + 1);
             dp[i][0] = 0, dp[i][i] = 1;
-            for (uint32_t j = 1; j < i; ++j) dp[i][j] = dp[i - 1][j - 1] + (i - 1) * dp[i - 1][j];
+            for (int j = 1; j < i; ++j) dp[i][j] = dp[i - 1][j - 1] + (i - 1) * dp[i - 1][j];
         }
         return dp;
     }
