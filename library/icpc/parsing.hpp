@@ -13,9 +13,9 @@ namespace suisen::parsing {
 
     namespace internal {
         void print_rest_of_string(State it) {
-            cerr << "Rest string is '";
-            while (*it) cerr << *it++;
-            cerr << "'" << endl;
+            std::cerr << "Rest string is '";
+            while (*it)  std::cerr << *it++;
+            std::cerr << "'" << std::endl;
         }
     }
 
@@ -23,7 +23,7 @@ namespace suisen::parsing {
         if (*it == expected) {
             *it++;
         } else {
-            cerr << "Expected '" << expected << "' but got '" << *it << "'" << endl;
+            std::cerr << "Expected '" << expected << "' but got '" << *it << "'" << std::endl;
             internal::print_rest_of_string(it);
             throw ParseError{};
         }
@@ -38,14 +38,14 @@ namespace suisen::parsing {
 
     void assert_range(const State& it, char lo, char hi) {
         if (not in(it, lo, hi)) {
-            cerr << "Expected [" << lo << "-" << hi << "] but got '" << *it << "'" << endl;
+            std::cerr << "Expected [" << lo << "-" << hi << "] but got '" << *it << "'" << std::endl;
             internal::print_rest_of_string(it);
             throw ParseError{};
         }
     }
     void assert_exact(const State& it, char c) {
         if (not is(it, c)) {
-            cerr << "Expected '" << c << "' but got '" << *it << "'" << endl;
+            std::cerr << "Expected '" << c << "' but got '" << *it << "'" << std::endl;
             internal::print_rest_of_string(it);
             throw ParseError{};
         }
