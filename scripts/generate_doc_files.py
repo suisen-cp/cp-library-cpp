@@ -50,5 +50,5 @@ if __name__ == '__main__':
     src_root = Path(opts.src)
     doc_root = Path(opts.dst)
 
-    for src_file in Path(src_root).glob("**/*.hpp"):
+    for src_file in src_root.glob("**/*.hpp"):
         generate(src_file.relative_to(src_root))
