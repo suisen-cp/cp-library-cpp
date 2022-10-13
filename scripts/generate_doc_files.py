@@ -29,18 +29,6 @@ def generate(src_file: Path):
         """)
     )
 
-    with open(doc_path, mode='w') as f:
-        lib_name = ' '.join(w.capitalize() for w in doc_path.stem.split('_'))
-
-        lines = [
-            f'---',
-            f'title: {lib_name}',
-            f'documentation_of: //library/{src_file}',
-            f'---',
-            f'## {lib_name}',
-        ]
-        f.write('\n'.join(lines))
-
 if __name__ == '__main__':
     logger: logging.Logger = logging.getLogger(__name__)
     handler = colorlog.StreamHandler()
