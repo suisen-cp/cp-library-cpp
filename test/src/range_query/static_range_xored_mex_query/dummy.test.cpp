@@ -4,7 +4,7 @@
 #include <iostream>
 #include <random>
 
-#include "library/uncategorized/static_range_xored_mex_query.hpp"
+#include "library/range_query/static_range_xored_mex_query.hpp"
 
 template <typename T>
 struct NaiveSolution {
