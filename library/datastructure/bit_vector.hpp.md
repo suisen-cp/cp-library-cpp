@@ -12,8 +12,8 @@ data:
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
-    path: library/uncategorized/static_range_xored_mex_query.hpp
-    title: Static Range Xored Mex Query
+    path: library/range_query/static_range_xored_mex_query.hpp
+    title: library/range_query/static_range_xored_mex_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
@@ -37,8 +37,8 @@ data:
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
-    title: test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
+    path: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
+    title: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -170,13 +170,13 @@ data:
   isVerificationFile: false
   path: library/datastructure/bit_vector.hpp
   requiredBy:
-  - library/uncategorized/static_range_xored_mex_query.hpp
+  - library/range_query/static_range_xored_mex_query.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/wavelet_matrix.hpp
   timestamp: '2022-07-11 23:27:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
+  - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
   - test/src/datastructure/wavelet_matrix/dummy.test.cpp
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp

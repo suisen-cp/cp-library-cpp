@@ -100,6 +100,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
+  - icon: ':heavy_check_mark:'
+    path: library/range_query/static_range_xored_mex_query.hpp
+    title: library/range_query/static_range_xored_mex_query.hpp
   - icon: ':warning:'
     path: library/template.cpp
     title: library/template.cpp
@@ -117,9 +120,6 @@ data:
   - icon: ':warning:'
     path: library/uncategorized/inversion_number.hpp
     title: Inversion Number
-  - icon: ':heavy_check_mark:'
-    path: library/uncategorized/static_range_xored_mex_query.hpp
-    title: Static Range Xored Mex Query
   - icon: ':heavy_check_mark:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
@@ -392,6 +392,9 @@ data:
     path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
+    title: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -445,9 +448,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
-    title: test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
@@ -538,6 +538,7 @@ data:
   - library/polynomial/fps.hpp
   - library/math/sps.hpp
   - library/math/array_sps.hpp
+  - library/range_query/static_range_xored_mex_query.hpp
   - library/number/primitive_root.hpp
   - library/number/util.hpp
   - library/number/deterministic_miller_rabin.hpp
@@ -545,7 +546,6 @@ data:
   - library/number/order_prime_mod.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/tree/auxiliary_tree.hpp
-  - library/uncategorized/static_range_xored_mex_query.hpp
   - library/uncategorized/inversion_number.hpp
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
   - library/datastructure/dynamic_sequence.hpp
@@ -631,6 +631,7 @@ data:
   - test/src/math/sps/arc105_f.test.cpp
   - test/src/math/sps/abc213_g.test.cpp
   - test/src/math/sps/abc253_h_2.test.cpp
+  - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
   - test/src/number/util/same_div_dens.test.cpp
   - test/src/number/util/kth_root_integer.test.cpp
   - test/src/number/util/abc222_g.test.cpp
@@ -645,7 +646,6 @@ data:
   - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

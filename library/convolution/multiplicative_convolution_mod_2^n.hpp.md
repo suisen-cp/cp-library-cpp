@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
-    title: test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
+    path: test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
+    title: test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -156,7 +156,7 @@ data:
   timestamp: '2022-10-08 20:12:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
+  - test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
 documentation_of: library/convolution/multiplicative_convolution_mod_2^n.hpp
 layout: document
 title: Multiplicative Convolution Mod 2^n ($c_k = \sum_{i\times j \equiv k \pmod{2

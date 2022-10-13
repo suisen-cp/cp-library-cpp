@@ -15,7 +15,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/mul_mod2n_convolution
     links:
     - https://judge.yosupo.jp/problem/mul_mod2n_convolution
-  bundledCode: "#line 1 \"test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/mul_mod2n_convolution\"\n\n\
     #include <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/convolution/multiplicative_convolution_mod_2^n.hpp\"\
     \n\n\n\n#include <array>\n#include <cassert>\n#include <vector>\n\n#include <atcoder/convolution>\n\
@@ -85,7 +85,7 @@ data:
     \            for (int i = 0; i < len; ++i) {\n                int j = (pow_m1(f)\
     \ * ((long long) pows[i] << k)) & mask;\n                c[j] += c2[f][k][i];\n\
     \            }\n        }\n        return c;\n    }\n} // namespace suisen\n\n\
-    \n\n#line 7 \"test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp\"\
+    \n\n#line 7 \"test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp\"\
     \n\nint main() {\n    using mint = atcoder::modint998244353;\n\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    std::vector<mint>\
     \ a(1 << n), b(1 << n);\n    for (int i = 0, v; i < 1 << n; ++i) std::cin >> v,\
@@ -107,15 +107,15 @@ data:
   dependsOn:
   - library/convolution/multiplicative_convolution_mod_2^n.hpp
   isVerificationFile: true
-  path: test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
+  path: test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-10-08 20:12:27+09:00'
+  timestamp: '2022-10-13 20:09:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
+documentation_of: test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
-- /verify/test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp.html
-title: test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
+- /verify/test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
+- /verify/test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp.html
+title: test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
 ---

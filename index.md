@@ -139,7 +139,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/deque_aggregation.hpp
       title: "SWAG \u3092 Deque \u306B\u62E1\u5F35\u3057\u305F\u3084\u3064"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/double_ended_priority_queue.hpp
       title: Double Ended Priority Queue
     - icon: ':heavy_check_mark:'
@@ -253,7 +253,7 @@ data:
     - icon: ':warning:'
       path: library/datastructure/heap/heap_tag.hpp
       title: Heap Tag
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/heap/interval_heap.hpp
       title: Interval Heap
   - name: library/datastructure/segment_tree
@@ -647,6 +647,14 @@ data:
     - icon: ':warning:'
       path: library/polynomial/vec_sparse_fps.hpp
       title: Vec Sparse Fps
+  - name: library/range_query
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/range_query/static_range_inversion_number_query.hpp
+      title: Static Range Inversion Number Query
+    - icon: ':heavy_check_mark:'
+      path: library/range_query/static_range_xored_mex_query.hpp
+      title: library/range_query/static_range_xored_mex_query.hpp
   - name: library/sequence
     pages:
     - icon: ':warning:'
@@ -819,9 +827,6 @@ data:
     - icon: ':warning:'
       path: library/uncategorized/inversion_number.hpp
       title: Inversion Number
-    - icon: ':heavy_check_mark:'
-      path: library/uncategorized/static_range_xored_mex_query.hpp
-      title: Static Range Xored Mex Query
   - name: library/util
     pages:
     - icon: ':warning:'
@@ -1007,11 +1012,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
       title: test/src/convolution/multi_variate_convolution/multivariate_convolution.test.cpp
-  - name: test/src/convolution/multiplicative_convolution_mod_2^n.hpp
+  - name: test/src/convolution/multiplicative_convolution_mod_2^n
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
-      title: test/src/convolution/multiplicative_convolution_mod_2^n.hpp/mul_mod2n_convolution.test.cpp
+      path: test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
+      title: test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
   - name: test/src/convolution/polynomial_eval
     pages:
     - icon: ':heavy_check_mark:'
@@ -1116,6 +1121,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
       title: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
+  - name: test/src/datastructure/double_ended_priority_queue
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/double_ended_priority_queue/double_ended_priority_queue.test.cpp
+      title: test/src/datastructure/double_ended_priority_queue/double_ended_priority_queue.test.cpp
   - name: test/src/datastructure/fenwick_tree/fenwick_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1161,6 +1171,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
       title: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
+  - name: test/src/datastructure/heap/interval_heap
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/heap/interval_heap/double_ended_priority_queue.test.cpp
+      title: test/src/datastructure/heap/interval_heap/double_ended_priority_queue.test.cpp
   - name: test/src/datastructure/lazy_eval_dynamic_sequence
     pages:
     - icon: ':heavy_check_mark:'
@@ -1881,6 +1896,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
       title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - name: test/src/range_query/static_range_inversion_number_query
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/range_query/static_range_inversion_number_query/static_range_inversions_query.test.cpp
+      title: test/src/range_query/static_range_inversion_number_query/static_range_inversions_query.test.cpp
+  - name: test/src/range_query/static_range_xored_mex_query
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
+      title: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
   - name: test/src/sequence/bernoulli_number
     pages:
     - icon: ':heavy_check_mark:'
@@ -2116,11 +2141,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
       title: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
-  - name: test/src/uncategorized/static_range_xored_mex_query
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
-      title: test/src/uncategorized/static_range_xored_mex_query/dummy.test.cpp
   - name: test/src/util/coordinate_compressor
     pages:
     - icon: ':heavy_check_mark:'
