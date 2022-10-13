@@ -1,31 +1,53 @@
 #!/usr/bin/env python3
 
-import os
-import subprocess
+import colorlog
+import logging
+import textwrap
 import argparse
 from pathlib import Path
 
-def generate(path):
-    dir_path = (test_gen + path).replace(".hpp", "")
-    if not os.path.exists(dir_path):
-        print("generate:", dir_path)
-        os.makedirs(dir_path)
-    gitignore = Path(dir_path) / Path(".gitignore")
-    with open(gitignore, mode='w') as f:
-        f.write("/*\n")
-        f.write("!.gitignore\n")
-        f.write("!*.cpp\n")
-        f.write("combined.cpp\n")
-        f.write("!*.md\n")
+def generate(relative_path: Path):
+    dir_path = gen_root / relative_path
+
+    if dir_path.exists():
+        logger.debug(f'Directory "{dir_path}" already exists.')
+        return
+
+    logger.info(f'Generate directory "{dir_path}."')
+
+    dir_path.mkdir(parents=True)
+    gitignore = dir_path / ".gitignore"
+
+    gitignore.write_text(
+        textwrap.dedent("""\
+            /*
+            !.gitignore
+            !*.cpp
+            combined.cpp
+            !*.md
+        """)
+    )
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Generate Test Source Folders for All Libraries')
-    parser.add_argument('test_source', help='Source Directory')
-    parser.add_argument('test_dest', help='Destination Directory')
+    logger: logging.Logger = logging.getLogger(__name__)
+    handler = colorlog.StreamHandler()
+    formatter = colorlog.ColoredFormatter(
+        "%(log_color)s%(asctime)s [%(levelname)s] %(message)s",
+        datefmt="%H:%M:%S",
+    )
+    handler.setFormatter(formatter)
+    logging.basicConfig(
+        level=logging.INFO,
+        handlers=[handler]
+    )
+
+    parser = argparse.ArgumentParser(description='Generate test directories for all libraries.')
+    parser.add_argument('src', help='Base directory of source files')
+    parser.add_argument('dst', help='Destination directory')
     opts = parser.parse_args()
 
-    test_src = opts.test_source
-    test_gen = opts.test_dest
+    src_root = Path(opts.src)
+    gen_root = Path(opts.dst)
 
-    for path in map(str, Path(test_src).glob("**/*.hpp")):
-        generate(path[len(test_src):-4])
+    for src_path in src_root.glob('**/*.hpp'):
+        generate(src_path.relative_to(src_root).with_suffix(''))
