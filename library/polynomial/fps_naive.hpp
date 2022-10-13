@@ -147,9 +147,10 @@ namespace suisen {
             if (this->empty() or g.empty()) return FPSNaive{};
             const int m = size(), k = g.size();
             FPSNaive h(std::min(n, m + k - 1));
-            for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {
-                if (i + j >= n) break;
-                h.unsafe_get(i + j) += unsafe_get(i) * g.unsafe_get(j);
+            for (int i = 0; i < m; ++i) {
+                for (int j = 0, jr = std::min(k, n - i); j < jr; ++j) {
+                    h.unsafe_get(i + j) += unsafe_get(i) * g.unsafe_get(j);
+                }
             }
             return h;
         }

@@ -169,6 +169,14 @@ namespace suisen {
                 for (auto& f : *this) f = f.pow(k, _d + 1);
                 return *this;
             }
+            void concat(const ZetaSPS& rhs) {
+                assert(_d == rhs._d);
+                this->reserve(1 << (_d + 1));
+                for (size_type i = 0; i < size_type(1) << _d; ++i) {
+                    this->push_back((rhs[i] << 1) += (*this)[i]);
+                }
+                ++_d;
+            }
             SPS<value_type> mobius_inplace() {
                 return ranked_subset_transform::deranked_mobius<value_type>(*this);
             }
