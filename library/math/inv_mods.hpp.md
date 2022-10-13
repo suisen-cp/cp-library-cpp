@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/stirling_number1_small_prime_mod.hpp
+    title: Stirling Number of the First Kind (Small Prime Mod)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
@@ -214,6 +217,9 @@ data:
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+    title: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -251,6 +257,7 @@ data:
   path: library/math/inv_mods.hpp
   requiredBy:
   - library/sequence/stirling_number1.hpp
+  - library/sequence/stirling_number1_small_prime_mod.hpp
   - library/polynomial/fps_naive.hpp
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/array_fps_naive.hpp
@@ -272,6 +279,7 @@ data:
   - test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - test/src/sequence/stirling_number1/abc247_h.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
+  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - test/src/sequence/partition_number/partition_function.test.cpp
   - test/src/sequence/partition_number/partition_function_2.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp

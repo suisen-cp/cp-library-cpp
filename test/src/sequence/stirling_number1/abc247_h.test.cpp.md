@@ -481,7 +481,7 @@ data:
     \  static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
     \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
     \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
-    \ suisen\n\n\n#line 6 \"library/sequence/stirling_number1.hpp\"\n\nnamespace suisen\
+    \ suisen\n\n\n#line 7 \"library/sequence/stirling_number1.hpp\"\n\nnamespace suisen\
     \ {\n    /**\n     * return:\n     *   vector<mint> v s.t. v[i] = S1[n,n-i] for\
     \ i=0,...,k (unsigned)\n     * constraints:\n     *   0 <= n <= 10^6\n     */\n\
     \    template <typename FPSType>\n    std::vector<typename FPSType::value_type>\
@@ -515,11 +515,11 @@ data:
     \            m *= 2;\n            if ((n >> l) & 1) {\n                for (int\
     \ i = k; i > 0; --i) a[i] += m * a[i - 1];\n                ++m;\n           \
     \ }\n        }\n        return a;\n    }\n    template <typename mint>\n    std::vector<std::vector<mint>>\
-    \ stirling_number1_table(uint32_t n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
-    \        for (uint32_t i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n\
-    \            dp[i][0] = 0, dp[i][i] = 1;\n            for (uint32_t j = 1; j <\
-    \ i; ++j) dp[i][j] = dp[i - 1][j - 1] + (i - 1) * dp[i - 1][j];\n        }\n \
-    \       return dp;\n    }\n} // namespace suisen\n\n\n#line 12 \"test/src/sequence/stirling_number1/abc247_h.test.cpp\"\
+    \ stirling_number1_table(int n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
+    \        for (int i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n  \
+    \          dp[i][0] = 0, dp[i][i] = 1;\n            for (int j = 1; j < i; ++j)\
+    \ dp[i][j] = dp[i - 1][j - 1] + (i - 1) * dp[i - 1][j];\n        }\n        return\
+    \ dp;\n    }\n} // namespace suisen\n\n\n#line 12 \"test/src/sequence/stirling_number1/abc247_h.test.cpp\"\
     \n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const auto &a,\
     \ const auto &b) { return atcoder::convolution(a, b); });\n    \n    int n, k;\n\
     \    std::cin >> n >> k;\n\n    k -= std::max(0, (k - n)) / 2 * 2;\n\n    std::vector<int>\
@@ -563,7 +563,7 @@ data:
   isVerificationFile: true
   path: test/src/sequence/stirling_number1/abc247_h.test.cpp
   requiredBy: []
-  timestamp: '2022-10-08 03:16:55+09:00'
+  timestamp: '2022-10-13 23:32:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/sequence/stirling_number1/abc247_h.test.cpp

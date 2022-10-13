@@ -654,7 +654,7 @@ data:
       title: Static Range Inversion Number Query
     - icon: ':heavy_check_mark:'
       path: library/range_query/static_range_xored_mex_query.hpp
-      title: library/range_query/static_range_xored_mex_query.hpp
+      title: Static Range Xored Mex Query
   - name: library/sequence
     pages:
     - icon: ':warning:'
@@ -663,6 +663,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/sequence/bernoulli_number.hpp
       title: Bernoulli Number
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/binomial_coefficient.hpp
+      title: Binomial Coefficient
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/binomial_coefficient_small_prime_mod.hpp
+      title: Binomial Coefficient Small Prime Mod
     - icon: ':heavy_check_mark:'
       path: library/sequence/eulerian_number.hpp
       title: Eulerian Number
@@ -679,8 +685,14 @@ data:
       path: library/sequence/stirling_number1.hpp
       title: Stirling Number1
     - icon: ':heavy_check_mark:'
+      path: library/sequence/stirling_number1_small_prime_mod.hpp
+      title: Stirling Number of the First Kind (Small Prime Mod)
+    - icon: ':heavy_check_mark:'
       path: library/sequence/stirling_number2.hpp
       title: Stirling Number2
+    - icon: ':heavy_check_mark:'
+      path: library/sequence/stirling_number2_small_prime_mod.hpp
+      title: Stirling Number2 Small Prime Mod
   - name: library/string
     pages:
     - icon: ':warning:'
@@ -1949,6 +1961,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
       title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
+  - name: test/src/sequence/stirling_number1_small_prime_mod
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+      title: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - name: test/src/sequence/stirling_number2
     pages:
     - icon: ':heavy_check_mark:'
@@ -1957,6 +1974,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
       title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - name: test/src/sequence/stirling_number2_small_prime_mod
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+      title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - name: test/src/string/compare_substring
     pages:
     - icon: ':heavy_check_mark:'

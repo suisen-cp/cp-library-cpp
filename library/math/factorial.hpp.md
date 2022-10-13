@@ -21,8 +21,14 @@ data:
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
   - icon: ':heavy_check_mark:'
+    path: library/sequence/stirling_number1_small_prime_mod.hpp
+    title: Stirling Number of the First Kind (Small Prime Mod)
+  - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number2.hpp
     title: Stirling Number2
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/stirling_number2_small_prime_mod.hpp
+    title: Stirling Number2 Small Prime Mod
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
@@ -76,11 +82,17 @@ data:
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+    title: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+    title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -137,7 +149,9 @@ data:
   - library/sequence/stirling_number1.hpp
   - library/sequence/bernoulli_number.hpp
   - library/sequence/bell_number.hpp
+  - library/sequence/stirling_number2_small_prime_mod.hpp
   - library/sequence/eulerian_number.hpp
+  - library/sequence/stirling_number1_small_prime_mod.hpp
   - library/sequence/stirling_number2.hpp
   - library/polynomial/polynomial_taylor_shift.hpp
   - library/math/util.hpp
@@ -154,6 +168,8 @@ data:
   - test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - test/src/sequence/stirling_number1/abc247_h.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
+  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp

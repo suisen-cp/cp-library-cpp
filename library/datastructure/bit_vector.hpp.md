@@ -13,7 +13,7 @@ data:
     title: Wavelet Matrix
   - icon: ':heavy_check_mark:'
     path: library/range_query/static_range_xored_mex_query.hpp
-    title: library/range_query/static_range_xored_mex_query.hpp
+    title: Static Range Xored Mex Query
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp

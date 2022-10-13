@@ -10,7 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/sequence/powers.hpp
     title: Powers
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/stirling_number2_small_prime_mod.hpp
+    title: Stirling Number2 Small Prime Mod
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+    title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -87,11 +93,11 @@ data:
     \ ++i) {\n            a[i] = pows[i] * fac.fac_inv(i);\n            b[i] = i &\
     \ 1 ? -fac.fac_inv(i) : fac.fac_inv(i);\n        }\n        a *= b, a.cut(n +\
     \ 1);\n        return a;\n    }\n    template <typename mint>\n    std::vector<std::vector<mint>>\
-    \ stirling_number2_table(uint32_t n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
-    \        for (uint32_t i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n\
-    \            dp[i][0] = 0, dp[i][i] = 1;\n            for (uint32_t j = 1; j <\
-    \ i; ++j) dp[i][j] = dp[i - 1][j - 1] + j * dp[i - 1][j];\n        }\n       \
-    \ return dp;\n    }\n} // namespace suisen\n\n\n"
+    \ stirling_number2_table(int n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
+    \        for (int i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n  \
+    \          dp[i][0] = 0, dp[i][i] = 1;\n            for (int j = 1; j < i; ++j)\
+    \ dp[i][j] = dp[i - 1][j - 1] + j * dp[i - 1][j];\n        }\n        return dp;\n\
+    \    }\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_STIRLING_NUMBER_2\n#define SUISEN_STIRLING_NUMBER_2\n\n#include\
     \ \"library/math/factorial.hpp\"\n#include \"library/sequence/powers.hpp\"\n\n\
     namespace suisen {\n    /**\n     * return:\n     *   vector<mint> v s.t. v[i]\
@@ -103,23 +109,25 @@ data:
     \ ++i) {\n            a[i] = pows[i] * fac.fac_inv(i);\n            b[i] = i &\
     \ 1 ? -fac.fac_inv(i) : fac.fac_inv(i);\n        }\n        a *= b, a.cut(n +\
     \ 1);\n        return a;\n    }\n    template <typename mint>\n    std::vector<std::vector<mint>>\
-    \ stirling_number2_table(uint32_t n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
-    \        for (uint32_t i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n\
-    \            dp[i][0] = 0, dp[i][i] = 1;\n            for (uint32_t j = 1; j <\
-    \ i; ++j) dp[i][j] = dp[i - 1][j - 1] + j * dp[i - 1][j];\n        }\n       \
-    \ return dp;\n    }\n} // namespace suisen\n\n#endif // SUISEN_STIRLING_NUMBER_2\n"
+    \ stirling_number2_table(int n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
+    \        for (int i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n  \
+    \          dp[i][0] = 0, dp[i][i] = 1;\n            for (int j = 1; j < i; ++j)\
+    \ dp[i][j] = dp[i - 1][j - 1] + j * dp[i - 1][j];\n        }\n        return dp;\n\
+    \    }\n} // namespace suisen\n\n#endif // SUISEN_STIRLING_NUMBER_2\n"
   dependsOn:
   - library/math/factorial.hpp
   - library/sequence/powers.hpp
   - library/number/linear_sieve.hpp
   isVerificationFile: false
   path: library/sequence/stirling_number2.hpp
-  requiredBy: []
-  timestamp: '2022-07-21 04:00:33+09:00'
+  requiredBy:
+  - library/sequence/stirling_number2_small_prime_mod.hpp
+  timestamp: '2022-10-13 23:32:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
 documentation_of: library/sequence/stirling_number2.hpp
 layout: document
 title: Stirling Number2

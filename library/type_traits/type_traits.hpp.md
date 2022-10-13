@@ -102,7 +102,7 @@ data:
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
     path: library/range_query/static_range_xored_mex_query.hpp
-    title: library/range_query/static_range_xored_mex_query.hpp
+    title: Static Range Xored Mex Query
   - icon: ':warning:'
     path: library/template.cpp
     title: library/template.cpp

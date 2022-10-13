@@ -529,11 +529,11 @@ data:
     \ ++i) {\n            a[i] = pows[i] * fac.fac_inv(i);\n            b[i] = i &\
     \ 1 ? -fac.fac_inv(i) : fac.fac_inv(i);\n        }\n        a *= b, a.cut(n +\
     \ 1);\n        return a;\n    }\n    template <typename mint>\n    std::vector<std::vector<mint>>\
-    \ stirling_number2_table(uint32_t n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
-    \        for (uint32_t i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n\
-    \            dp[i][0] = 0, dp[i][i] = 1;\n            for (uint32_t j = 1; j <\
-    \ i; ++j) dp[i][j] = dp[i - 1][j - 1] + j * dp[i - 1][j];\n        }\n       \
-    \ return dp;\n    }\n} // namespace suisen\n\n\n#line 9 \"test/src/sequence/stirling_number2/stirling_number2.test.cpp\"\
+    \ stirling_number2_table(int n) {\n        std::vector dp(n + 1, std::vector<mint>{});\n\
+    \        for (int i = 0; i <= n; ++i) {\n            dp[i].resize(i + 1);\n  \
+    \          dp[i][0] = 0, dp[i][i] = 1;\n            for (int j = 1; j < i; ++j)\
+    \ dp[i][j] = dp[i - 1][j - 1] + j * dp[i - 1][j];\n        }\n        return dp;\n\
+    \    }\n} // namespace suisen\n\n\n#line 9 \"test/src/sequence/stirling_number2/stirling_number2.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
     \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n\n    int\
     \ n;\n    std::cin >> n;\n    auto ans = suisen::stirling_number2<suisen::FPS<mint>>(n);\n\
@@ -560,7 +560,7 @@ data:
   isVerificationFile: true
   path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
   requiredBy: []
-  timestamp: '2022-10-08 03:16:55+09:00'
+  timestamp: '2022-10-13 23:32:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/sequence/stirling_number2/stirling_number2.test.cpp

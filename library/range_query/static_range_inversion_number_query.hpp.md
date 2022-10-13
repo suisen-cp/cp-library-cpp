@@ -172,8 +172,6 @@ data:
   - test/src/range_query/static_range_inversion_number_query/static_range_inversions_query.test.cpp
 documentation_of: library/range_query/static_range_inversion_number_query.hpp
 layout: document
-redirect_from:
-- /library/library/range_query/static_range_inversion_number_query.hpp
-- /library/library/range_query/static_range_inversion_number_query.hpp.html
 title: Static Range Inversion Number Query
 ---
+## Static Range Inversion Number Query

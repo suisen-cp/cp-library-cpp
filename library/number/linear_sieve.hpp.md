@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number2.hpp
     title: Stirling Number2
+  - icon: ':heavy_check_mark:'
+    path: library/sequence/stirling_number2_small_prime_mod.hpp
+    title: Stirling Number2 Small Prime Mod
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+    title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -93,6 +99,7 @@ data:
   path: library/number/linear_sieve.hpp
   requiredBy:
   - library/sequence/powers.hpp
+  - library/sequence/stirling_number2_small_prime_mod.hpp
   - library/sequence/eulerian_number.hpp
   - library/sequence/stirling_number2.hpp
   - library/number/anymod_binom.hpp
@@ -104,6 +111,7 @@ data:
   - test/src/sequence/eulerian_number/yuki2005.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
 documentation_of: library/number/linear_sieve.hpp
 layout: document
