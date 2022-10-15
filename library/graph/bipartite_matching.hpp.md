@@ -216,11 +216,11 @@ data:
   timestamp: '2022-06-28 04:44:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/string/palindromic_tree/abc237_h.test.cpp
   - test/src/graph/bipartite_matching/bipartite_matching.test.cpp
-  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
+  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
+  - test/src/string/palindromic_tree/abc237_h.test.cpp
 documentation_of: library/graph/bipartite_matching.hpp
 layout: document
 title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"

@@ -701,10 +701,10 @@ data:
       title: Stirling Number2 Small Prime Mod
   - name: library/string
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/string/aho_corasick.hpp
       title: Aho Corasick
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/string/aho_corasick_array.hpp
       title: Aho Corasick Array
     - icon: ':heavy_check_mark:'
@@ -728,7 +728,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/suffix_automaton.hpp
       title: Suffix Automaton
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/string/trie_array.hpp
       title: Trie Array
     - icon: ':warning:'
@@ -1995,6 +1995,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
       title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+  - name: test/src/string/aho_corasick
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/string/aho_corasick/abc268_h.test.cpp
+      title: test/src/string/aho_corasick/abc268_h.test.cpp
+  - name: test/src/string/aho_corasick_array
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/string/aho_corasick_array/abc268_h.test.cpp
+      title: test/src/string/aho_corasick_array/abc268_h.test.cpp
   - name: test/src/string/compare_substring
     pages:
     - icon: ':heavy_check_mark:'

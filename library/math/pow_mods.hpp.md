@@ -60,13 +60,13 @@ data:
   isVerificationFile: false
   path: library/math/pow_mods.hpp
   requiredBy:
-  - library/string/rolling_hash.hpp
   - library/polynomial/prod_f(r^k_x).hpp
+  - library/string/rolling_hash.hpp
   timestamp: '2021-11-28 20:19:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/string/rolling_hash/abc141_e.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - test/src/string/rolling_hash/abc141_e.test.cpp
 documentation_of: library/math/pow_mods.hpp
 layout: document
 title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"

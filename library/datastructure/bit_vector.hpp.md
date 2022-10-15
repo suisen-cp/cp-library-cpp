@@ -170,20 +170,20 @@ data:
   isVerificationFile: false
   path: library/datastructure/bit_vector.hpp
   requiredBy:
-  - library/range_query/static_range_xored_mex_query.hpp
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/wavelet_matrix.hpp
+  - library/range_query/static_range_xored_mex_query.hpp
   timestamp: '2022-07-11 23:27:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
   - test/src/datastructure/wavelet_matrix/dummy.test.cpp
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
 documentation_of: library/datastructure/bit_vector.hpp
 layout: document
 title: Bit Vector

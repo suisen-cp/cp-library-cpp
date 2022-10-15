@@ -39,8 +39,8 @@ data:
   timestamp: '2022-07-21 04:00:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/sequence/partition_number/partition_function.test.cpp
   - test/src/sequence/partition_number/partition_function_2.test.cpp
+  - test/src/sequence/partition_number/partition_function.test.cpp
 documentation_of: library/sequence/partition_number.hpp
 layout: document
 title: Partition Number

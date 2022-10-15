@@ -41,8 +41,8 @@ data:
   isVerificationFile: false
   path: library/sequence/binomial_coefficient.hpp
   requiredBy:
-  - library/sequence/binomial_coefficient_small_prime_mod.hpp
   - library/sequence/stirling_number2_small_prime_mod.hpp
+  - library/sequence/binomial_coefficient_small_prime_mod.hpp
   - library/sequence/stirling_number1_small_prime_mod.hpp
   timestamp: '2022-10-13 23:32:59+09:00'
   verificationStatus: LIBRARY_ALL_AC

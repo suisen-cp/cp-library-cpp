@@ -184,8 +184,8 @@ data:
   isVerificationFile: false
   path: library/number/fast_factorize.hpp
   requiredBy:
-  - library/number/primitive_root.hpp
   - library/number/order_prime_mod.hpp
+  - library/number/primitive_root.hpp
   timestamp: '2022-09-28 21:34:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
