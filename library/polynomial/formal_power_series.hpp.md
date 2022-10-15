@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -66,9 +66,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
-    title: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
@@ -864,7 +861,6 @@ data:
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp

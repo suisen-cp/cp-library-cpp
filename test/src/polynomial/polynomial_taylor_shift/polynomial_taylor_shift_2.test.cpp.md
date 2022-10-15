@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

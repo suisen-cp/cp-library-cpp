@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/order_prime_mod.hpp\"\n\n\n\n#include <tuple>\n\
@@ -313,7 +313,7 @@ data:
   requiredBy:
   - library/number/primitive_root.hpp
   timestamp: '2022-10-08 03:16:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/primitive_root/dummy.test.cpp
   - test/src/number/primitive_root/primitive_root.test.cpp

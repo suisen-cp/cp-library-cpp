@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

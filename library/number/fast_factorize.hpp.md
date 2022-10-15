@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/order_prime_mod.hpp
     title: Order Prime Mod
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n\
@@ -187,7 +187,7 @@ data:
   - library/number/primitive_root.hpp
   - library/number/order_prime_mod.hpp
   timestamp: '2022-09-28 21:34:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/primitive_root/dummy.test.cpp

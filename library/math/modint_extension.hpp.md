@@ -175,9 +175,6 @@ data:
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
-    title: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -293,7 +290,6 @@ data:
   - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
   - test/src/polynomial/fps_naive/abc245_d.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp

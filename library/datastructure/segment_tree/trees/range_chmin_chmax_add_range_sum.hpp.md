@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_beats.hpp
     title: Segment Tree Beats
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'

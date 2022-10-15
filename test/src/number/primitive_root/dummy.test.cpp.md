@@ -1,37 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/order_prime_mod.hpp
     title: Order Prime Mod
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"test/src/number/primitive_root/dummy.test.cpp\"\n#include\
-    \ <iostream>\n\n#include <atcoder/modint>\n\n#line 1 \"library/number/primitive_root.hpp\"\
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+    links:
+    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+  bundledCode: "#line 1 \"test/src/number/primitive_root/dummy.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n\n#include <iostream>\n\n#include <atcoder/modint>\n\n#line 1 \"library/number/primitive_root.hpp\"\
     \n\n\n\n#line 1 \"library/number/order_prime_mod.hpp\"\n\n\n\n#include <tuple>\n\
     \n#line 1 \"library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n#line\
     \ 6 \"library/number/fast_factorize.hpp\"\n#include <random>\n#include <numeric>\n\
@@ -350,21 +353,25 @@ data:
     \ j < index; ++j) {\n                        divs.push_back(d *= prime);\n   \
     \                 }\n                }\n            }\n            return divs;\n\
     \        }\n};\ntemplate <unsigned int N>\nunsigned int Sieve<N>::pf[Sieve<N>::base_max\
-    \ + internal::sieve::K];\n} // namespace suisen\n\n\n#line 7 \"test/src/number/primitive_root/dummy.test.cpp\"\
-    \n\nusing mint = atcoder::modint;\n\nint main() {\n    suisen::Sieve<100000> sieve;\n\
-    \n    for (int i = 2; i < 100000; ++i) if (sieve.is_prime(i)) {\n        int g\
-    \ = suisen::primitive_root(i);\n\n        mint::set_mod(i);\n        for (int\
-    \ d : sieve.divisors(i - 1)) if (d != i - 1) {\n            if (mint(g).pow(d).val()\
+    \ + internal::sieve::K];\n} // namespace suisen\n\n\n#line 9 \"test/src/number/primitive_root/dummy.test.cpp\"\
+    \n\nusing mint = atcoder::modint;\n\nvoid test() {\n    suisen::Sieve<100000>\
+    \ sieve;\n\n    for (int i = 2; i < 100000; ++i) if (sieve.is_prime(i)) {\n  \
+    \      int g = suisen::primitive_root(i);\n\n        mint::set_mod(i);\n     \
+    \   for (int d : sieve.divisors(i - 1)) if (d != i - 1) {\n            if (mint(g).pow(d).val()\
     \ == 1) {\n                std::cout << \"p = \" << i << \", g = \" << g << \"\
-    , d = \" << d << std::endl;\n            }\n        }\n    }\n}\n"
-  code: "#include <iostream>\n\n#include <atcoder/modint>\n\n#include \"library/number/primitive_root.hpp\"\
+    , d = \" << d << std::endl;\n            }\n        }\n    }\n}\n\nint main()\
+    \ {\n    test();\n    std::cout << \"Hello World\" << std::endl;\n    return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+    \n\n#include <iostream>\n\n#include <atcoder/modint>\n\n#include \"library/number/primitive_root.hpp\"\
     \n#include \"library/number/sieve_of_eratosthenes.hpp\"\n\nusing mint = atcoder::modint;\n\
-    \nint main() {\n    suisen::Sieve<100000> sieve;\n\n    for (int i = 2; i < 100000;\
+    \nvoid test() {\n    suisen::Sieve<100000> sieve;\n\n    for (int i = 2; i < 100000;\
     \ ++i) if (sieve.is_prime(i)) {\n        int g = suisen::primitive_root(i);\n\n\
     \        mint::set_mod(i);\n        for (int d : sieve.divisors(i - 1)) if (d\
     \ != i - 1) {\n            if (mint(g).pow(d).val() == 1) {\n                std::cout\
     \ << \"p = \" << i << \", g = \" << g << \", d = \" << d << std::endl;\n     \
-    \       }\n        }\n    }\n}"
+    \       }\n        }\n    }\n}\n\nint main() {\n    test();\n    std::cout <<\
+    \ \"Hello World\" << std::endl;\n    return 0;\n}\n"
   dependsOn:
   - library/number/primitive_root.hpp
   - library/number/order_prime_mod.hpp
@@ -376,8 +383,8 @@ data:
   isVerificationFile: true
   path: test/src/number/primitive_root/dummy.test.cpp
   requiredBy: []
-  timestamp: '2022-10-08 03:16:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-15 19:12:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/primitive_root/dummy.test.cpp
 layout: document

@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/polynomial_interpolation.hpp
     title: "\u88DC\u9593\u591A\u9805\u5F0F"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

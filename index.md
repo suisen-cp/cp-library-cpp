@@ -560,7 +560,7 @@ data:
     - icon: ':warning:'
       path: library/number/anymod_binom.hpp
       title: "\u4EFB\u610F mod \u3067\u306E\u4E8C\u9805\u4FC2\u6570\u5217\u6319"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/deterministic_miller_rabin.hpp
       title: Deterministic Miller Rabin
     - icon: ':heavy_check_mark:'
@@ -569,13 +569,13 @@ data:
     - icon: ':warning:'
       path: library/number/ext_gcd.hpp
       title: Ext Gcd
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/fast_factorize.hpp
       title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':warning:'
       path: library/number/index_calculus.hpp
       title: Index Calculus
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/internal_eratosthenes.hpp
       title: Internal Eratosthenes
     - icon: ':heavy_check_mark:'
@@ -584,16 +584,16 @@ data:
     - icon: ':warning:'
       path: library/number/mobius_function.hpp
       title: Mobius Function
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/order_prime_mod.hpp
       title: Order Prime Mod
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/primitive_root.hpp
       title: Primitive Root
     - icon: ':warning:'
       path: library/number/rational.hpp
       title: Rational
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
     - icon: ':heavy_check_mark:'
@@ -820,7 +820,7 @@ data:
     - icon: ':warning:'
       path: library/tree/point_get_range_contour_add_invertible.hpp
       title: Point Get Range Contour Add Invertible
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/point_get_range_contour_operate.hpp
       title: Point Get Range Contour Operate
     - icon: ':heavy_check_mark:'
@@ -837,7 +837,7 @@ data:
       title: Rooted Tree Isomorphism Classification
   - name: library/type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
   - name: library/uncategorized
@@ -1741,7 +1741,7 @@ data:
       title: test/src/number/fast_factorize/factorize.test.cpp
   - name: test/src/number/primitive_root
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/primitive_root/dummy.test.cpp
       title: test/src/number/primitive_root/dummy.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2152,7 +2152,7 @@ data:
       title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
   - name: test/src/tree/point_get_range_contour_operate
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
       title: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
   - name: test/src/tree/point_set_range_contour_sum
