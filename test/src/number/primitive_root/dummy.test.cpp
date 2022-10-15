@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A"
+
 #include <iostream>
 
 #include <atcoder/modint>
@@ -7,7 +9,7 @@
 
 using mint = atcoder::modint;
 
-int main() {
+void test() {
     suisen::Sieve<100000> sieve;
 
     for (int i = 2; i < 100000; ++i) if (sieve.is_prime(i)) {
@@ -20,4 +22,10 @@ int main() {
             }
         }
     }
+}
+
+int main() {
+    test();
+    std::cout << "Hello World" << std::endl;
+    return 0;
 }

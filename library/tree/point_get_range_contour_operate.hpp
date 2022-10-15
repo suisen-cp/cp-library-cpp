@@ -47,7 +47,7 @@ namespace suisen {
             typename std::array<AuxInfo, 30>::iterator info_it;
         };
     public:
-        PointGetRangeContourOperate(int n = 0) : _n(n), _dat(_n), _nodes(_n), _par(2 * _n, -1), _info(_n), _subtrees(2 * _n), _ord(_n, -1) {}
+        PointGetRangeContourOperate(int n = 0) : _n(n), _dat(_n), _nodes(_n), _par(2 * _n, -1), _info(_n), _subtrees(2 * _n) {}
 
         void add_edge(int u, int v) {
             _nodes[u].adj.push_back(v);
@@ -55,9 +55,7 @@ namespace suisen {
         }
         // O(NlogN)
         void build(const std::vector<value_type>& a) {
-            std::mt19937 rng{ std::random_device{}() };
-            reorder(std::uniform_int_distribution<int>{ 0, _n - 1 }(rng), a);
-            for (int i = 0; i < _n; ++i) _dat[i] = a[i], _ord[i] = i, _nodes[i].info_it = _info[i].begin();
+            for (int i = 0; i < _n; ++i) _dat[i] = a[i], _nodes[i].info_it = _info[i].begin();
 
             int new_node = _n;
             std::vector<int> sub_size(2 * _n, 0);
@@ -148,7 +146,6 @@ namespace suisen {
 
         // O((logN)^2)
         value_type get(int u) const {
-            u = _ord[u];
             value_type res = _dat[u];
             int v = _par[u];
             const auto it_end = _nodes[u].info_it;
@@ -161,7 +158,6 @@ namespace suisen {
         }
         // O((logN)^2)
         void apply(int u, int dl, int dr, const operator_type& f) {
-            u = _ord[u];
             if (dl <= 0 and 0 < dr) _dat[u] = mapping(f, _dat[u]);
             _subtrees[u][0].apply(dl - 1, dr - 1, f);
             _subtrees[u][1].apply(dl - 1, dr - 1, f);
@@ -181,28 +177,6 @@ namespace suisen {
         std::vector<int> _par;
         std::vector<std::array<AuxInfo, 30>> _info;
         std::vector<std::array<sequence_type, 2>> _subtrees;
-
-        std::vector<int> _ord;
-
-        void reorder(int s, const std::vector<value_type> &a) {
-            _ord.assign(_n, -1);
-            int t = 0;
-            std::deque<int> dq{ s };
-            while (dq.size()) {
-                int u = dq.front(); dq.pop_front();
-                _ord[u] = t++;
-                for (int v : _nodes[u].adj) if (_ord[v] < 0) dq.push_back(v);
-            }
-            assert(t == _n);
-            std::vector<TreeNode> tmp(_n);
-            for (int i = 0; i < _n; ++i) {
-                for (int& e : _nodes[i].adj) e = _ord[e];
-                _nodes[i].info_it = _info[_ord[i]].begin();
-                tmp[_ord[i]] = std::move(_nodes[i]);
-                _dat[_ord[i]] = a[i];
-            }
-            _nodes.swap(tmp);
-        }
     };
 } // namespace suisen
 
