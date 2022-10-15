@@ -26,8 +26,8 @@ $$f(x) = \sum _ {i = 0} ^ {N - 1} p _ i \prod _ {j \in [N] \setminus \lbrace i \
 
 $$\begin{aligned}
 f(x) - a _ {N - 1} x ^ {\underline{N - 1}}
-&=\sum _ {i = 0} ^ {N - 2}p _ i \cdot (-(n - i + 1)) \prod _ {j \in [N - 1]\setminus\lbrace i \rbrace} (x - j) \newline
-&=\sum _ {i = 0} ^ {N - 2}p' _ i \prod _ {j \in [N - 1]\setminus\lbrace i \rbrace} (x - j) && (p' _ i := p _ i \cdot (-(n - i + 1)))
+&=\sum _ {i = 0} ^ {N - 2} p _ i \cdot (-1) \cdot (N - 1 - i) \prod _ {j \in [N - 1]\setminus\lbrace i \rbrace} (x - j) \newline
+&=\sum _ {i = 0} ^ {N - 2}p' _ i \prod _ {j \in [N - 1]\setminus\lbrace i \rbrace} (x - j) && (p' _ i := p _ i \cdot (-1) \cdot (N - 1 - i))
 \end{aligned}$$
 
 となり、サイズが $1$ だけ小さい問題が得られる。これを繰り返すことで、次を得る。
@@ -40,7 +40,7 @@ $$a _ i = \sum _ {j = 0} ^ i \dfrac{f(j)}{j!} \cdot \dfrac{(-1) ^ {i - j}}{(i - 
 
 これは畳み込みで高速化できる形なので、$a$ を $O(N \log N)$ 時間で計算することができた。
 
-### Step 2. $f(c + k)$ の計算
+### Step 2. $k = 0, \ldots, M-1$ に対する $f(c + k)$ の計算
 
 下降階乗冪に関する以下の恒等式が重要。
 
@@ -55,11 +55,11 @@ f(c+k)
 &= \sum _ {j = 0} ^ {N - 1} \dfrac{k ^ {\underline{j}}}{j!} \sum _ {i = j} ^ {N - 1} (a _ i \cdot i!)\cdot \dfrac{c ^ {\underline{i - j}}}{(i - j)!} \newline
 &= \sum _ {j = 0} ^ {k} \binom{k}{j} \sum _ {i = 0} ^ {N - 1 - j} (a _ {i + j} \cdot (i + j)!)\cdot \dfrac{c ^ {\underline{i}}}{i!} \newline
 &= \sum _ {j = 0} ^ {k} \binom{k}{j} \sum _ {i = 0} ^ {N - 1 - j} a' _ {(N - 1 - j) - i}\cdot \dfrac{c ^ {\underline{i}}}{i!} && (a' _ i := a _ {N - i - 1} \cdot (n - i - 1)!) \newline
-&= \sum _ {j = 0} ^ {k} \binom{k}{j} b _ {N - 1 - j} && (b _ i := \sum _ {j = 0} ^ i a' _ {i - j}\cdot \dfrac{c ^ {\underline{j}}}{i!}) \newline
+&= \sum _ {j = 0} ^ {k} \binom{k}{j} b _ {N - 1 - j} && (b _ i := \sum _ {j = 0} ^ i a' _ {i - j}\cdot \dfrac{c ^ {\underline{j}}}{j!}) \newline
 &= k! \sum _ {j = 0} ^ k \dfrac{b _ {N - 1 - j}}{j!} \cdot \dfrac{1}{(k - j)!}.
 \end{aligned}$$
 
-途中で定義した $b$ は畳み込みの形をしているので $O(N \log N)$ 時間で計算することができる。
+途中で定義した $b$ は畳み込みの形をしているので $O(N \log N)$ 時間で計算することができる。また、$c ^ {\underline{i}}$ に関しては $i$ の昇順に計算することで必要な部分を全体 $O(N)$ 時間で列挙できる。
 
 最後の式も畳み込みの形をしているので $O((M + N) \log (M + N))$ 時間で計算することができる。
 
