@@ -15,7 +15,7 @@ namespace suisen {
         struct Modint2305843009213693951 {
             using self = Modint2305843009213693951;
 
-            Modint2305843009213693951() {}
+            Modint2305843009213693951() = default;
             Modint2305843009213693951(uint64_t v) : v(fast_mod(v)) {}
 
             static constexpr uint64_t mod() {
@@ -122,10 +122,19 @@ namespace suisen {
             }
         }
 
-        auto operator()(int l, int r) {
-            std::array<mint, base_num> res;
-            for (int base_id = 0; base_id < base_num; ++base_id) res[base_id] = hash[base_id][r] - hash[base_id][l] * pows[base_id][r - l];
+        std::array<uint64_t, base_num> operator()(int l, int r) {
+            std::array<uint64_t, base_num> res;
+            for (int base_id = 0; base_id < base_num; ++base_id) {
+                res[base_id] = (hash[base_id][r] - hash[base_id][l] * pows[base_id][r - l]).val();
+            }
             return res;
+        }
+
+        std::array<uint64_t, base_num> concat(std::array<uint64_t, base_num> h, int l, int r) {
+            for (int base_id = 0; base_id < base_num; ++base_id) {
+                h[base_id] = (h[base_id] * pows[base_id][r - l] + hash[base_id][r] - hash[base_id][l] * pows[base_id][r - l]).val();
+            }
+            return h;
         }
 
         static auto mod() {
