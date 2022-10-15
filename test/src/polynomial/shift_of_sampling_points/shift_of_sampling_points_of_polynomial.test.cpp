@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <atcoder/modint>
-#include "library/polynomial/formal_power_series.hpp"
 #include "library/polynomial/shift_of_sampling_points.hpp"
 
 int main() {
