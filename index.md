@@ -817,7 +817,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/point_add_range_contour_sum_invertible.hpp
       title: Point Add Range Contour Sum Invertible
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/point_get_range_contour_add_invertible.hpp
       title: Point Get Range Contour Add Invertible
     - icon: ':heavy_check_mark:'
@@ -2150,6 +2150,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
+  - name: test/src/tree/point_get_range_contour_add_invertible
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/point_get_range_contour_add_invertible/yuki1038.test.cpp
+      title: test/src/tree/point_get_range_contour_add_invertible/yuki1038.test.cpp
   - name: test/src/tree/point_get_range_contour_operate
     pages:
     - icon: ':heavy_check_mark:'

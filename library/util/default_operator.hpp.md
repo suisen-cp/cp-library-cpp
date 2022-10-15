@@ -73,7 +73,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/point_add_range_contour_sum_invertible.hpp
     title: Point Add Range Contour Sum Invertible
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/point_get_range_contour_add_invertible.hpp
     title: Point Get Range Contour Add Invertible
   - icon: ':warning:'
@@ -173,6 +173,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/point_get_range_contour_add_invertible/yuki1038.test.cpp
+    title: test/src/tree/point_get_range_contour_add_invertible/yuki1038.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -282,6 +285,7 @@ data:
   - test/src/math/sps/abc213_g.test.cpp
   - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/src/tree/point_get_range_contour_add_invertible/yuki1038.test.cpp
   - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
   - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
