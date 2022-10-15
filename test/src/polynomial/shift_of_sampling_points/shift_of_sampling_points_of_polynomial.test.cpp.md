@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: library/math/factorial.hpp
+    title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -13,37 +16,40 @@ data:
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
+  - icon: ':x:'
+    path: library/polynomial/shift_of_sampling_points.hpp
+    title: Shift of Sampling Points of Polynomial
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
     links:
-    - https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
-  bundledCode: "#line 1 \"test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
-    \n\n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
-    \ <atcoder/convolution>\n\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
-    \n\n\n\n#include <limits>\n#include <optional>\n#include <queue>\n\n#line 10 \"\
-    library/polynomial/formal_power_series.hpp\"\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\
-    \n#include <type_traits>\n#line 9 \"library/polynomial/fps_naive.hpp\"\n\n#line\
-    \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
-    \n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
-    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
-    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
-    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
-    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
-    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
-    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
-    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    - https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
+  bundledCode: "#line 1 \"test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
+    \n\n\n\n#include <limits>\n#include <optional>\n#include <queue>\n\n#line 9 \"\
+    library/polynomial/formal_power_series.hpp\"\n#include <atcoder/convolution>\n\
+    \n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\n#include <type_traits>\n\
+    #include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line\
+    \ 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n// ! utility\n\
+    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -505,40 +511,84 @@ data:
     \ {\n    return a.exp();\n}\ntemplate <typename mint, typename T>\nsuisen::FormalPowerSeries<mint>\
     \ pow(suisen::FormalPowerSeries<mint> a, T b) {\n    return a.pow(b);\n}\ntemplate\
     \ <typename mint>\nsuisen::FormalPowerSeries<mint> inv(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.inv();\n}\n\n\n#line 10 \"test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n;\n    std::cin\
-    \ >> n;\n    suisen::FormalPowerSeries<mint> f(n);\n    for (int i = 0; i < n;\
-    \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
-    \    }\n    auto opt_g = f.safe_sqrt();\n    if (not opt_g.has_value()) {\n  \
-    \      std::cout << -1 << std::endl;\n        return 0;\n    }\n    auto g = std::move(*opt_g);\n\
-    \    for (int i = 0; i < n; ++i) {\n        std::cout << g[i].val() << \" \\n\"\
-    [i == n - 1];\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
-    \n\n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
-    \ <atcoder/convolution>\n\n#include \"library/polynomial/formal_power_series.hpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n;\n    std::cin\
-    \ >> n;\n    suisen::FormalPowerSeries<mint> f(n);\n    for (int i = 0; i < n;\
-    \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
-    \    }\n    auto opt_g = f.safe_sqrt();\n    if (not opt_g.has_value()) {\n  \
-    \      std::cout << -1 << std::endl;\n        return 0;\n    }\n    auto g = std::move(*opt_g);\n\
-    \    for (int i = 0; i < n; ++i) {\n        std::cout << g[i].val() << \" \\n\"\
-    [i == n - 1];\n    }\n    return 0;\n}"
+    \ a) {\n    return a.inv();\n}\n\n\n#line 1 \"library/polynomial/shift_of_sampling_points.hpp\"\
+    \n\n\n\n#line 6 \"library/polynomial/shift_of_sampling_points.hpp\"\n\n#line 1\
+    \ \"library/math/factorial.hpp\"\n\n\n\n#line 6 \"library/math/factorial.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T, typename U = T>\n    struct\
+    \ factorial {\n        factorial() {}\n        factorial(int n) { ensure(n); }\n\
+    \n        static void ensure(const int n) {\n            int sz = _fac.size();\n\
+    \            if (n + 1 <= sz) return;\n            int new_size = std::max(n +\
+    \ 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
+    \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
+    \            _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n           \
+    \ for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n\
+    \        }\n\n        T fac(const int i) {\n            ensure(i);\n         \
+    \   return _fac[i];\n        }\n        T operator()(int i) {\n            return\
+    \ fac(i);\n        }\n        U fac_inv(const int i) {\n            ensure(i);\n\
+    \            return _fac_inv[i];\n        }\n        U binom(const int n, const\
+    \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
+    \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
+    \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
+    \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
+    \ - r];\n        }\n    private:\n        static std::vector<T> _fac;\n      \
+    \  static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
+    \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
+    \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
+    \ suisen\n\n\n#line 8 \"library/polynomial/shift_of_sampling_points.hpp\"\n\n\
+    namespace suisen {\n    template <typename mint>\n    std::vector<mint> shift_of_sampling_points(const\
+    \ std::vector<mint>& ys, mint t, int m) {\n        const int n = ys.size();\n\
+    \        factorial<mint> fac(std::max(n, m));\n\n        std::vector<mint> b =\
+    \ [&] {\n            std::vector<mint> f(n), g(n);\n            for (int i = 0;\
+    \ i < n; ++i) {\n                f[i] = ys[i] * fac.fac_inv(i);\n            \
+    \    g[i] = (i & 1 ? -1 : 1) * fac.fac_inv(i);\n            }\n            std::vector<mint>\
+    \ b = atcoder::convolution(f, g);\n            b.resize(n);\n            return\
+    \ b;\n        }();\n        std::vector<mint> e = [&] {\n            std::vector<mint>\
+    \ c(n);\n            mint prd = 1;\n            std::reverse(b.begin(), b.end());\n\
+    \            for (int i = 0; i < n; ++i) {\n                b[i] *= fac.fac(n\
+    \ - i - 1);\n                c[i] = prd * fac.fac_inv(i);\n                prd\
+    \ *= t - i;\n            }\n            std::vector<mint> e = atcoder::convolution(b,\
+    \ c);\n            e.resize(n);\n            return e;\n        }();\n       \
+    \ std::reverse(e.begin(), e.end());\n        for (int i = 0; i < n; ++i) {\n \
+    \           e[i] *= fac.fac_inv(i);\n        }\n\n        std::vector<mint> f(m);\n\
+    \        for (int i = 0; i < m; ++i) f[i] = fac.fac_inv(i);\n        std::vector<mint>\
+    \ res = atcoder::convolution(e, f);\n        res.resize(m);\n        for (int\
+    \ i = 0; i < m; ++i) res[i] *= fac.fac(i);\n        return res;\n    }\n} // namespace\
+    \ suisen\n\n\n\n#line 7 \"test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \n\nint main() {\n    using mint = atcoder::modint998244353;\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, m, c;\n    std::cin >> n >> m >> c;\n\
+    \n    std::vector<mint> ys(n);\n    for (int i = 0, v; i < n; ++i) std::cin >>\
+    \ v, ys[i] = v;\n\n    std::vector<mint> ans = suisen::shift_of_sampling_points<mint>(ys,\
+    \ c, m);\n    for (int i = 0; i < m; ++i) {\n        std::cout << ans[i].val();\n\
+    \        if (i + 1 != m) std::cout << ' ';\n    }\n    std::cout << '\\n';\n \
+    \   return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include \"library/polynomial/formal_power_series.hpp\"\
+    \n#include \"library/polynomial/shift_of_sampling_points.hpp\"\n\nint main() {\n\
+    \    using mint = atcoder::modint998244353;\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, m, c;\n    std::cin >> n >> m >> c;\n\
+    \n    std::vector<mint> ys(n);\n    for (int i = 0, v; i < n; ++i) std::cin >>\
+    \ v, ys[i] = v;\n\n    std::vector<mint> ans = suisen::shift_of_sampling_points<mint>(ys,\
+    \ c, m);\n    for (int i = 0; i < m; ++i) {\n        std::cout << ans[i].val();\n\
+    \        if (i + 1 != m) std::cout << ' ';\n    }\n    std::cout << '\\n';\n \
+    \   return 0;\n}"
   dependsOn:
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
+  - library/polynomial/shift_of_sampling_points.hpp
+  - library/math/factorial.hpp
   isVerificationFile: true
-  path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+  path: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2022-10-14 04:52:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-15 18:34:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+documentation_of: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-- /verify/test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp.html
-title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+- /verify/test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
+- /verify/test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp.html
+title: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
 ---

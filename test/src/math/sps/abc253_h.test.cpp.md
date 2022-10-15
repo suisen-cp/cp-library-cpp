@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -20,24 +20,24 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   - icon: ':heavy_check_mark:'
@@ -368,50 +368,51 @@ data:
     \ FPSNaive& g, int n = -1) const {\n            if (n < 0) n = size();\n     \
     \       if (this->empty() or g.empty()) return FPSNaive{};\n            const\
     \ int m = size(), k = g.size();\n            FPSNaive h(std::min(n, m + k - 1));\n\
-    \            for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {\n     \
-    \           if (i + j >= n) break;\n                h.unsafe_get(i + j) += unsafe_get(i)\
-    \ * g.unsafe_get(j);\n            }\n            return h;\n        }\n      \
-    \  FPSNaive diff() const {\n            if (this->empty()) return {};\n      \
-    \      FPSNaive g(size() - 1);\n            for (int i = 1; i <= deg(); ++i) g.unsafe_get(i\
-    \ - 1) = unsafe_get(i) * i;\n            return g;\n        }\n        FPSNaive\
-    \ intg() const {\n            const int n = size();\n            FPSNaive g(n\
-    \ + 1);\n            for (int i = 0; i < n; ++i) g.unsafe_get(i + 1) = unsafe_get(i)\
-    \ * invs[i + 1];\n            if (g.deg() > MAX_SIZE) g.cut_inplace(MAX_SIZE);\n\
-    \            return g;\n        }\n        FPSNaive inv(int n = -1) const {\n\
-    \            if (n < 0) n = size();\n            FPSNaive g(n);\n            const\
-    \ value_type inv_f0 = ::inv(unsafe_get(0));\n            g.unsafe_get(0) = inv_f0;\n\
-    \            for (int i = 1; i < n; ++i) {\n                for (int j = 1; j\
-    \ <= i; ++j) g.unsafe_get(i) -= g.unsafe_get(i - j) * (*this)[j];\n          \
-    \      g.unsafe_get(i) *= inv_f0;\n            }\n            return g;\n    \
-    \    }\n        FPSNaive exp(int n = -1) const {\n            if (n < 0) n = size();\n\
-    \            assert(unsafe_get(0) == value_type{ 0 });\n            FPSNaive g(n);\n\
-    \            g.unsafe_get(0) = value_type{ 1 };\n            for (int i = 1; i\
-    \ < n; ++i) {\n                for (int j = 1; j <= i; ++j) g.unsafe_get(i) +=\
-    \ j * g.unsafe_get(i - j) * (*this)[j];\n                g.unsafe_get(i) *= invs[i];\n\
-    \            }\n            return g;\n        }\n        FPSNaive log(int n =\
-    \ -1) const {\n            if (n < 0) n = size();\n            assert(unsafe_get(0)\
-    \ == value_type{ 1 });\n            FPSNaive g(n);\n            g.unsafe_get(0)\
-    \ = value_type{ 0 };\n            for (int i = 1; i < n; ++i) {\n            \
-    \    g.unsafe_get(i) = i * (*this)[i];\n                for (int j = 1; j < i;\
-    \ ++j) g.unsafe_get(i) -= (i - j) * g.unsafe_get(i - j) * (*this)[j];\n      \
-    \          g.unsafe_get(i) *= invs[i];\n            }\n            return g;\n\
-    \        }\n        FPSNaive pow(const long long k, int n = -1) const {\n    \
-    \        if (n < 0) n = size();\n            if (k == 0) {\n                FPSNaive\
-    \ res(n);\n                res[0] = 1;\n                return res;\n        \
-    \    }\n            int z = 0;\n            while (z < size() and unsafe_get(z)\
-    \ == value_type{ 0 }) ++z;\n            if (z == size() or z > (n - 1) / k) return\
-    \ FPSNaive(n, 0);\n            const int m = n - z * k;\n\n            FPSNaive\
-    \ g(m);\n            const value_type inv_f0 = ::inv(unsafe_get(z));\n       \
-    \     g.unsafe_get(0) = unsafe_get(z).pow(k);\n            for (int i = 1; i <\
-    \ m; ++i) {\n                for (int j = 1; j <= i; ++j) g.unsafe_get(i) += (element_type{\
-    \ k } *j - (i - j)) * g.unsafe_get(i - j) * (*this)[z + j];\n                g.unsafe_get(i)\
-    \ *= inv_f0 * invs[i];\n            }\n            g <<= z * k;\n            return\
-    \ g;\n        }\n\n        std::optional<FPSNaive> safe_sqrt(int n = -1) const\
-    \ {\n            if (n < 0) n = size();\n            int dl = 0;\n           \
-    \ while (dl < size() and unsafe_get(dl) == value_type{ 0 }) ++dl;\n          \
-    \  if (dl == size()) return FPSNaive(n, 0);\n            if (dl & 1) return std::nullopt;\n\
-    \n            const int m = n - dl / 2;\n\n            FPSNaive g(m);\n      \
-    \      auto opt_g0 = ::safe_sqrt((*this)[dl]);\n            if (not opt_g0.has_value())\
+    \            for (int i = 0; i < m; ++i) {\n                for (int j = 0, jr\
+    \ = std::min(k, n - i); j < jr; ++j) {\n                    h.unsafe_get(i + j)\
+    \ += unsafe_get(i) * g.unsafe_get(j);\n                }\n            }\n    \
+    \        return h;\n        }\n        FPSNaive diff() const {\n            if\
+    \ (this->empty()) return {};\n            FPSNaive g(size() - 1);\n          \
+    \  for (int i = 1; i <= deg(); ++i) g.unsafe_get(i - 1) = unsafe_get(i) * i;\n\
+    \            return g;\n        }\n        FPSNaive intg() const {\n         \
+    \   const int n = size();\n            FPSNaive g(n + 1);\n            for (int\
+    \ i = 0; i < n; ++i) g.unsafe_get(i + 1) = unsafe_get(i) * invs[i + 1];\n    \
+    \        if (g.deg() > MAX_SIZE) g.cut_inplace(MAX_SIZE);\n            return\
+    \ g;\n        }\n        FPSNaive inv(int n = -1) const {\n            if (n <\
+    \ 0) n = size();\n            FPSNaive g(n);\n            const value_type inv_f0\
+    \ = ::inv(unsafe_get(0));\n            g.unsafe_get(0) = inv_f0;\n           \
+    \ for (int i = 1; i < n; ++i) {\n                for (int j = 1; j <= i; ++j)\
+    \ g.unsafe_get(i) -= g.unsafe_get(i - j) * (*this)[j];\n                g.unsafe_get(i)\
+    \ *= inv_f0;\n            }\n            return g;\n        }\n        FPSNaive\
+    \ exp(int n = -1) const {\n            if (n < 0) n = size();\n            assert(unsafe_get(0)\
+    \ == value_type{ 0 });\n            FPSNaive g(n);\n            g.unsafe_get(0)\
+    \ = value_type{ 1 };\n            for (int i = 1; i < n; ++i) {\n            \
+    \    for (int j = 1; j <= i; ++j) g.unsafe_get(i) += j * g.unsafe_get(i - j) *\
+    \ (*this)[j];\n                g.unsafe_get(i) *= invs[i];\n            }\n  \
+    \          return g;\n        }\n        FPSNaive log(int n = -1) const {\n  \
+    \          if (n < 0) n = size();\n            assert(unsafe_get(0) == value_type{\
+    \ 1 });\n            FPSNaive g(n);\n            g.unsafe_get(0) = value_type{\
+    \ 0 };\n            for (int i = 1; i < n; ++i) {\n                g.unsafe_get(i)\
+    \ = i * (*this)[i];\n                for (int j = 1; j < i; ++j) g.unsafe_get(i)\
+    \ -= (i - j) * g.unsafe_get(i - j) * (*this)[j];\n                g.unsafe_get(i)\
+    \ *= invs[i];\n            }\n            return g;\n        }\n        FPSNaive\
+    \ pow(const long long k, int n = -1) const {\n            if (n < 0) n = size();\n\
+    \            if (k == 0) {\n                FPSNaive res(n);\n               \
+    \ res[0] = 1;\n                return res;\n            }\n            int z =\
+    \ 0;\n            while (z < size() and unsafe_get(z) == value_type{ 0 }) ++z;\n\
+    \            if (z == size() or z > (n - 1) / k) return FPSNaive(n, 0);\n    \
+    \        const int m = n - z * k;\n\n            FPSNaive g(m);\n            const\
+    \ value_type inv_f0 = ::inv(unsafe_get(z));\n            g.unsafe_get(0) = unsafe_get(z).pow(k);\n\
+    \            for (int i = 1; i < m; ++i) {\n                for (int j = 1; j\
+    \ <= i; ++j) g.unsafe_get(i) += (element_type{ k } *j - (i - j)) * g.unsafe_get(i\
+    \ - j) * (*this)[z + j];\n                g.unsafe_get(i) *= inv_f0 * invs[i];\n\
+    \            }\n            g <<= z * k;\n            return g;\n        }\n\n\
+    \        std::optional<FPSNaive> safe_sqrt(int n = -1) const {\n            if\
+    \ (n < 0) n = size();\n            int dl = 0;\n            while (dl < size()\
+    \ and unsafe_get(dl) == value_type{ 0 }) ++dl;\n            if (dl == size())\
+    \ return FPSNaive(n, 0);\n            if (dl & 1) return std::nullopt;\n\n   \
+    \         const int m = n - dl / 2;\n\n            FPSNaive g(m);\n          \
+    \  auto opt_g0 = ::safe_sqrt((*this)[dl]);\n            if (not opt_g0.has_value())\
     \ return std::nullopt;\n            g.unsafe_get(0) = *opt_g0;\n            value_type\
     \ inv_2g0 = ::inv(2 * g.unsafe_get(0));\n            for (int i = 1; i < m; ++i)\
     \ {\n                g.unsafe_get(i) = (*this)[dl + i];\n                for (int\
@@ -613,8 +614,12 @@ data:
     \ {\n                for (auto& f : *this) f = f.log(_d + 1);\n              \
     \  return *this;\n            }\n            ZetaSPS& pow_inplace(long long k)\
     \ {\n                for (auto& f : *this) f = f.pow(k, _d + 1);\n           \
-    \     return *this;\n            }\n            SPS<value_type> mobius_inplace()\
-    \ {\n                return ranked_subset_transform::deranked_mobius<value_type>(*this);\n\
+    \     return *this;\n            }\n            void concat(const ZetaSPS& rhs)\
+    \ {\n                assert(_d == rhs._d);\n                this->reserve(1 <<\
+    \ (_d + 1));\n                for (size_type i = 0; i < size_type(1) << _d; ++i)\
+    \ {\n                    this->push_back((rhs[i] << 1) += (*this)[i]);\n     \
+    \           }\n                ++_d;\n            }\n            SPS<value_type>\
+    \ mobius_inplace() {\n                return ranked_subset_transform::deranked_mobius<value_type>(*this);\n\
     \            }\n            SPS<value_type> mobius() const {\n               \
     \ auto rf = ZetaSPS(*this);\n                return ranked_subset_transform::deranked_mobius<value_type>(rf);\n\
     \            }\n        private:\n            int _d;\n        };\n\n        ZetaSPS\
@@ -665,7 +670,7 @@ data:
   isVerificationFile: true
   path: test/src/math/sps/abc253_h.test.cpp
   requiredBy: []
-  timestamp: '2022-08-21 18:23:10+09:00'
+  timestamp: '2022-10-14 04:52:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sps/abc253_h.test.cpp
