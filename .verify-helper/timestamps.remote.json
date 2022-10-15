@@ -308,6 +308,7 @@
 "test/src/tree/lowest_common_anceestor/lowest_common_anceestor.test.cpp": "2022-05-29 02:48:02 +0900",
 "test/src/tree/point_add_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp": "2022-09-05 23:57:42 +0900",
 "test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp": "2022-08-21 18:22:49 +0900",
+"test/src/tree/point_get_range_contour_add_invertible/yuki1038.test.cpp": "2022-10-15 19:46:41 +0900",
 "test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp": "2022-10-15 19:12:39 +0900",
 "test/src/tree/point_set_range_contour_sum/dummy.test.cpp": "2022-10-08 03:16:55 +0900",
 "test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp": "2022-09-05 23:57:42 +0900",
