@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/order_prime_mod.hpp
     title: Order Prime Mod
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   - icon: ':heavy_check_mark:'
     path: library/number/tetration_mod.hpp
     title: $a\uparrow\uparrow b \bmod m$
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/tetration_mod/tetration_mod.test.cpp
     title: test/src/number/tetration_mod/tetration_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n\
@@ -261,12 +261,13 @@ data:
     \                }\n            }\n        }\n    }\n\n    template <typename\
     \ T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>\n    std::vector<std::pair<T,\
     \ int>> factorize(T n) {\n        static constexpr int threshold = 1000000;\n\
-    \        static Sieve<threshold> sieve;\n\n        if (n <= threshold) return\
-    \ sieve.factorize(n);\n\n        std::vector<std::pair<T, int>> res;\n       \
-    \ if ((n & 1) == 0) {\n            int q = 0;\n            do ++q, n >>= 1; while\
-    \ ((n & 1) == 0);\n            res.emplace_back(2, q);\n        }\n        for\
-    \ (T p = 3; p * p <= n; p += 2) {\n            if (p >= 101 and n >= 1 << 20)\
-    \ {\n                while (n > 1) {\n                    if (miller_rabin::is_prime(n))\
+    \        static Sieve<threshold> sieve;\n\n        std::vector<std::pair<T, int>>\
+    \ res;\n        if (n <= threshold) {\n            for (auto [p, q] : sieve.factorize(n))\
+    \ res.emplace_back(p, q);\n            return res;\n        }\n\n        if ((n\
+    \ & 1) == 0) {\n            int q = 0;\n            do ++q, n >>= 1; while ((n\
+    \ & 1) == 0);\n            res.emplace_back(2, q);\n        }\n        for (T\
+    \ p = 3; p * p <= n; p += 2) {\n            if (p >= 101 and n >= 1 << 20) {\n\
+    \                while (n > 1) {\n                    if (miller_rabin::is_prime(n))\
     \ {\n                        res.emplace_back(std::exchange(n, 1), 1);\n     \
     \               } else {\n                        p = internal::pollard_rho(n);\n\
     \                        int q = 0;\n                        do ++q, n /= p; while\
@@ -303,8 +304,9 @@ data:
     \    }\n        }\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
     \ std::nullptr_t> = nullptr>\n    std::vector<std::pair<T, int>> factorize(T n)\
     \ {\n        static constexpr int threshold = 1000000;\n        static Sieve<threshold>\
-    \ sieve;\n\n        if (n <= threshold) return sieve.factorize(n);\n\n       \
-    \ std::vector<std::pair<T, int>> res;\n        if ((n & 1) == 0) {\n         \
+    \ sieve;\n\n        std::vector<std::pair<T, int>> res;\n        if (n <= threshold)\
+    \ {\n            for (auto [p, q] : sieve.factorize(n)) res.emplace_back(p, q);\n\
+    \            return res;\n        }\n\n        if ((n & 1) == 0) {\n         \
     \   int q = 0;\n            do ++q, n >>= 1; while ((n & 1) == 0);\n         \
     \   res.emplace_back(2, q);\n        }\n        for (T p = 3; p * p <= n; p +=\
     \ 2) {\n            if (p >= 101 and n >= 1 << 20) {\n                while (n\
@@ -329,8 +331,8 @@ data:
   - library/number/primitive_root.hpp
   - library/number/tetration_mod.hpp
   - library/number/order_prime_mod.hpp
-  timestamp: '2022-10-17 14:43:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-10-17 22:14:18+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/tetration_mod/tetration_mod.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp

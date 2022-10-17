@@ -5,7 +5,7 @@ data:
     path: library/algorithm/convex_hull_trick.hpp
     title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3057\u306A\u3044\
       \ Convex Hull Trick"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

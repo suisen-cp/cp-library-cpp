@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/order_prime_mod.hpp\"\n\n\n\n#include <tuple>\n\
@@ -253,12 +253,13 @@ data:
     \                }\n            }\n        }\n    }\n\n    template <typename\
     \ T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>\n    std::vector<std::pair<T,\
     \ int>> factorize(T n) {\n        static constexpr int threshold = 1000000;\n\
-    \        static Sieve<threshold> sieve;\n\n        if (n <= threshold) return\
-    \ sieve.factorize(n);\n\n        std::vector<std::pair<T, int>> res;\n       \
-    \ if ((n & 1) == 0) {\n            int q = 0;\n            do ++q, n >>= 1; while\
-    \ ((n & 1) == 0);\n            res.emplace_back(2, q);\n        }\n        for\
-    \ (T p = 3; p * p <= n; p += 2) {\n            if (p >= 101 and n >= 1 << 20)\
-    \ {\n                while (n > 1) {\n                    if (miller_rabin::is_prime(n))\
+    \        static Sieve<threshold> sieve;\n\n        std::vector<std::pair<T, int>>\
+    \ res;\n        if (n <= threshold) {\n            for (auto [p, q] : sieve.factorize(n))\
+    \ res.emplace_back(p, q);\n            return res;\n        }\n\n        if ((n\
+    \ & 1) == 0) {\n            int q = 0;\n            do ++q, n >>= 1; while ((n\
+    \ & 1) == 0);\n            res.emplace_back(2, q);\n        }\n        for (T\
+    \ p = 3; p * p <= n; p += 2) {\n            if (p >= 101 and n >= 1 << 20) {\n\
+    \                while (n > 1) {\n                    if (miller_rabin::is_prime(n))\
     \ {\n                        res.emplace_back(std::exchange(n, 1), 1);\n     \
     \               } else {\n                        p = internal::pollard_rho(n);\n\
     \                        int q = 0;\n                        do ++q, n /= p; while\
@@ -444,8 +445,8 @@ data:
   path: library/number/order_prime_mod.hpp
   requiredBy:
   - library/number/primitive_root.hpp
-  timestamp: '2022-10-17 14:43:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-10-17 22:14:18+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/primitive_root/dummy.test.cpp
   - test/src/number/primitive_root/primitive_root.test.cpp

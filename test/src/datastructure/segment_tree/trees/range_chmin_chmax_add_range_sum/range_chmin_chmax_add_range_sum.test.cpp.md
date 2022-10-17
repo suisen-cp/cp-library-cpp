@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
     title: Range Chmin Chmax Add Range Sum
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'

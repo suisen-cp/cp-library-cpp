@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/sequence/bernoulli_number.hpp
     title: Bernoulli Number
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
