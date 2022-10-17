@@ -1,119 +1,135 @@
 #ifndef SUISEN_CENTROID_DECOMPOSITION
 #define SUISEN_CENTROID_DECOMPOSITION
 
+#include <deque>
+#include <limits>
+#include <queue>
+#include <tuple>
 #include <vector>
+#include "library/graph/csr_graph.hpp"
 
 namespace suisen {
+    namespace internal {
+        template <typename WeightType = void>
+        struct CentroidDecomposition : Graph<WeightType> {
+            friend struct CentroidDecompositionUnweighted;
+            template <typename WeightType_, std::enable_if_t<not std::is_same_v<WeightType_, void>, std::nullptr_t>>
+            friend struct CentroidDecompositionWeighted;
 
-    struct CentroidDecomposition : public std::vector<std::vector<int>> {
-        using BaseType = std::vector<std::vector<int>>;
-    public:
-        using BaseType::BaseType;
+            using graph_type = Graph<WeightType>;
+            using weight_type = WeightType;
 
-        void add_edge(int u, int v) {
-            BaseType::operator[](u).push_back(v);
-            BaseType::operator[](v).push_back(u);
-        }
+            CentroidDecomposition(const graph_type& g) : graph_type(g), n(this->size()), cpar(n, -1), cdep(n, std::numeric_limits<int>::max()), csiz(n) {
+                build();
+            }
 
-    private:
-        std::vector<bool> removed;
-        std::vector<int> sub;
+            int dct_parent(int i) const { return cpar[i]; }
+            int dct_depth(int i) const { return cdep[i]; }
+            int dct_size(int i) const { return csiz[i]; }
 
-        struct AdjacentListIterator {
-            using it_t = std::vector<int>::const_iterator;
-            const CentroidDecomposition* const ptr;
-            const int u;
-            it_t it;
-            AdjacentListIterator(const CentroidDecomposition* const ptr, int u, it_t it) : ptr(ptr), u(u), it(it) { suc(); }
-            AdjacentListIterator& operator++() { return ++it, suc(), * this; }
-            int operator*() { return *it; }
-            bool operator!=(const AdjacentListIterator& other) { return it != other.it; }
-            void suc() { while (it != (*ptr).BaseType::operator[](u).end() and ptr->removed[*it]) ++it; }
-        };
-        struct AdjacentList {
-            CentroidDecomposition* const ptr;
-            const int u;
-            std::vector<int>& base_vector()& { return ptr->BaseType::operator[](u); }
-            auto begin() const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).begin()); }
-            auto end()   const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).end()); }
-        };
-        struct ConstAdjacentList {
-            const CentroidDecomposition* const ptr;
-            const int u;
-            const std::vector<int>& base_vector() const& { return ptr->BaseType::operator[](u); }
-            auto begin() const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).begin()); }
-            auto end()   const { return AdjacentListIterator(ptr, u, (*ptr).BaseType::operator[](u).end()); }
-        };
-
-    public:
-        static constexpr void dummy(int, int) {}
-
-        // Returns the list of vertices adjacent to `u`. If called during decomposition, it skips removed vertices.
-        auto operator[](int u) {
-            return AdjacentList{ this, u };
-        }
-        // Returns the (constant) list of vertices adjacent to `u`. If called during decomposition, it skips removed vertices.
-        auto operator[](int u) const {
-            return ConstAdjacentList{ this, u };
-        }
-
-        // This method is expected to be called in functions passed to the `decomp`.
-        // The argument `root` must be directly connected to the current centroid. If not, the returned value will be undefined.
-        int component_size(int root) const {
-            return sub[root];
-        }
-
-        struct DecompositionTree {
-            DecompositionTree() {}
-            DecompositionTree(int root, const std::vector<int> &par) : n(par.size()), root(root), par(par) {}
-
-            int size() const { return n; }
-            int get_root() const { return root; }
-            int get_parent(int u) const { return par[u]; }
-            const std::vector<int>& parents() const { return par; }
         private:
             int n;
-            int root;
-            std::vector<int> par;
+            std::vector<int> cpar;
+            std::vector<int> cdep;
+            std::vector<int> csiz;
+
+            void build() {
+                std::vector<int> eid(n, 0);
+
+                cpar[0] = -1, csiz[0] = n;
+                std::deque<std::tuple<int, int>> dq{ { 0, 0 } };
+
+                while (dq.size()) {
+                    const auto [r, dep] = dq.front();
+                    const int siz = csiz[r], prev_ctr = cpar[r];
+                    dq.pop_front();
+
+                    int c = -1;
+                    eid[r] = 0, csiz[r] = 1, cpar[r] = -1;
+                    for (int cur = r;;) {
+                        for (const int edge_num = int((*this)[cur].size());;) {
+                            if (eid[cur] == edge_num) {
+                                if (csiz[cur] * 2 > siz) {
+                                    c = cur;
+                                } else {
+                                    const int nxt = cpar[cur];
+                                    csiz[nxt] += csiz[cur];
+                                    cur = nxt;
+                                }
+                                break;
+                            }
+                            const int nxt = (*this)[cur][eid[cur]++];
+                            if (cdep[nxt] >= dep and nxt != cpar[cur]) {
+                                eid[nxt] = 0, csiz[nxt] = 1, cpar[nxt] = cur;
+                                cur = nxt;
+                                break;
+                            }
+                        }
+                        if (c >= 0) break;
+                    }
+                    for (int v : (*this)[c]) if (cdep[v] >= dep) {
+                        if (cpar[c] == v) cpar[v] = c, csiz[v] = siz - csiz[c];
+                        dq.emplace_back(v, dep + 1);
+                    }
+                    cpar[c] = prev_ctr, cdep[c] = dep, csiz[c] = siz;
+                }
+            }
         };
 
-        // returns the centroid decomposition tree
-        template <typename DownF = decltype(dummy), typename UpF = decltype(dummy)>
-        DecompositionTree decomp(DownF down = dummy, UpF up = dummy) {
-            removed.assign(size(), false);
-            sub.assign(size(), 0);
-            std::vector<int> par(size(), -1);
-            auto rec = [&](auto rec, int r, int siz) -> int {
-                int c = -1;
-                auto get_centroid = [&](auto get_centroid, int u, int p) -> void {
-                    sub[u] = 1;
-                    for (int v : (*this)[u]) {
-                        if (v == p) continue;
-                        get_centroid(get_centroid, v, u);
-                        if (v == c) {
-                            sub[u] = siz - sub[c];
-                            break;
+        struct CentroidDecompositionUnweighted : internal::CentroidDecomposition<void> {
+            using base_type = internal::CentroidDecomposition<void>;
+            using base_type::base_type;
+
+            std::vector<std::vector<std::pair<int, int>>> collect(int root, int root_val = 0) const {
+                std::vector<std::vector<std::pair<int, int>>> res{ { { root, root_val } } };
+                for (int sub_root : (*this)[root]) if (this->cdep[sub_root] > this->cdep[root]) {
+                    res.emplace_back();
+                    std::deque<std::tuple<int, int, int>> dq{ { sub_root, root, root_val + 1 } };
+                    while (dq.size()) {
+                        auto [u, p, w] = dq.front();
+                        dq.pop_front();
+                        res.back().emplace_back(u, w);
+                        for (int v : (*this)[u]) if (v != p and this->cdep[v] > this->cdep[root]) {
+                            dq.emplace_back(v, u, w + 1);
                         }
-                        sub[u] += sub[v];
                     }
-                    if (c < 0 and sub[u] * 2 > siz) c = u;
-                };
-                get_centroid(get_centroid, r, -1);
-                down(c, siz);
-                removed[c] = true;
-                for (int v : (*this)[c]) {
-                    const int comp_size = sub[v];
-                    par[rec(rec, v, comp_size)] = c;
-                    sub[v] = comp_size;
+                    std::copy(res.back().begin(), res.back().end(), std::back_inserter(res.front()));
                 }
-                removed[c] = false;
-                up(c, siz);
-                return c;
-            };
-            int root = rec(rec, 0, size());
-            return DecompositionTree(root, par);
-        }
-    };
+                return res;
+            }
+        };
+
+        template <typename WeightType, std::enable_if_t<not std::is_same_v<WeightType, void>, std::nullptr_t> = nullptr>
+        struct CentroidDecompositionWeighted : internal::CentroidDecomposition<WeightType> {
+            using base_type = internal::CentroidDecomposition<WeightType>;
+            using base_type::base_type;
+
+            using weight_type = typename base_type::weight_type;
+
+            template <typename Op, std::enable_if_t<std::is_invocable_r_v<weight_type, Op, weight_type, weight_type>, std::nullptr_t> = nullptr>
+            std::vector<std::vector<std::pair<int, weight_type>>> collect(int root, Op op, weight_type root_val) const {
+                std::vector<std::vector<std::pair<int, weight_type>>> res{ { { root, root_val } } };
+                for (auto [sub_root, ew] : (*this)[root]) if (this->cdep[sub_root] > this->cdep[root]) {
+                    res.emplace_back();
+                    std::deque<std::tuple<int, int, weight_type>> dq{ { sub_root, root, op(root_val, ew) } };
+                    while (dq.size()) {
+                        auto [u, p, w] = dq.front();
+                        dq.pop_front();
+                        res.back().emplace_back(u, w);
+                        for (auto [v, ew] : (*this)[u]) if (v != p and this->cdep[v] > this->cdep[root]) {
+                            dq.emplace_back(v, u, op(w, ew));
+                        }
+                    }
+                    std::copy(res.back().begin(), res.back().end(), std::back_inserter(res.front()));
+                }
+                return res;
+            }
+        };
+    }
+
+    using CentroidDecompositionUnweighted = internal::CentroidDecompositionUnweighted;
+    template <typename WeightType, std::enable_if_t<not std::is_same_v<WeightType, void>, std::nullptr_t> = nullptr>
+    using CentroidDecompositionWeighted = internal::CentroidDecompositionWeighted<WeightType>;
 
 } // namespace suisen
 
