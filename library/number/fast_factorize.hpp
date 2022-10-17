@@ -57,9 +57,12 @@ namespace suisen::fast_factorize {
         static constexpr int threshold = 1000000;
         static Sieve<threshold> sieve;
 
-        if (n <= threshold) return sieve.factorize(n);
-
         std::vector<std::pair<T, int>> res;
+        if (n <= threshold) {
+            for (auto [p, q] : sieve.factorize(n)) res.emplace_back(p, q);
+            return res;
+        }
+
         if ((n & 1) == 0) {
             int q = 0;
             do ++q, n >>= 1; while ((n & 1) == 0);
