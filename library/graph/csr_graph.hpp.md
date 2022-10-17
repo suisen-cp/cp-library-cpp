@@ -7,8 +7,7 @@ data:
     title: "\u91CD\u5FC3\u5206\u89E3"
   - icon: ':heavy_check_mark:'
     path: library/tree/frequency_table_of_tree_distance.hpp
-    title: Given a tree with N vertices, calculates the number of unordered pair (u,
-      v) s.t. dist(u, v) = k for k = 1, ..., N - 1.
+    title: Frequency Table Of Tree Distance
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/csr_graph/dummy.test.cpp
@@ -386,8 +385,6 @@ data:
   - test/src/graph/csr_graph/dummy.test.cpp
 documentation_of: library/graph/csr_graph.hpp
 layout: document
-redirect_from:
-- /library/library/graph/csr_graph.hpp
-- /library/library/graph/csr_graph.hpp.html
-title: library/graph/csr_graph.hpp
+title: Csr Graph
 ---
+## Csr Graph

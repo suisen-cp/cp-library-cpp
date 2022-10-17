@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: library/math/sum_i^d_r^i.hpp
+    title: $\displaystyle \sum _ i i ^ d r ^ i$
+  - icon: ':heavy_check_mark:'
     path: library/math/util.hpp
     title: Util
   - icon: ':heavy_check_mark:'
@@ -48,6 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h_2.test.cpp
     title: test/src/math/sps/abc253_h_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/util/abc240_g.test.cpp
     title: test/src/math/util/abc240_g.test.cpp
@@ -162,6 +171,7 @@ data:
   - library/polynomial/shift_of_sampling_points.hpp
   - library/polynomial/polynomial_taylor_shift.hpp
   - library/math/util.hpp
+  - library/math/sum_i^d_r^i.hpp
   timestamp: '2022-05-28 01:05:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -185,6 +195,8 @@ data:
   - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/util/abc240_g.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
   - test/src/math/sps/abc253_h_2.test.cpp
 documentation_of: library/math/factorial.hpp

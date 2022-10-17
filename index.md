@@ -406,7 +406,7 @@ data:
       title: Block Cut Forest
     - icon: ':heavy_check_mark:'
       path: library/graph/csr_graph.hpp
-      title: library/graph/csr_graph.hpp
+      title: Csr Graph
     - icon: ':heavy_check_mark:'
       path: library/graph/cycle_detection.hpp
       title: Cycle Detection
@@ -556,6 +556,9 @@ data:
       path: library/math/sps.hpp
       title: Set Power Series
     - icon: ':heavy_check_mark:'
+      path: library/math/sum_i^d_r^i.hpp
+      title: $\displaystyle \sum _ i i ^ d r ^ i$
+    - icon: ':heavy_check_mark:'
       path: library/math/util.hpp
       title: Util
   - name: library/number
@@ -611,7 +614,7 @@ data:
       title: Prefix Sum of Totient Function
     - icon: ':heavy_check_mark:'
       path: library/number/tetration_mod.hpp
-      title: $a \uparrow \uparrow b \pmod{m}$
+      title: $a\uparrow\uparrow b \bmod m$
     - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: Util
@@ -791,8 +794,7 @@ data:
       title: Euler Tour
     - icon: ':heavy_check_mark:'
       path: library/tree/frequency_table_of_tree_distance.hpp
-      title: Given a tree with N vertices, calculates the number of unordered pair
-        (u, v) s.t. dist(u, v) = k for k = 1, ..., N - 1.
+      title: Frequency Table Of Tree Distance
     - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
@@ -1733,6 +1735,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/sps/arc105_f.test.cpp
       title: test/src/math/sps/arc105_f.test.cpp
+  - name: test/src/math/sum_i^d_r^i
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+      title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+      title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - name: test/src/math/util
     pages:
     - icon: ':heavy_check_mark:'

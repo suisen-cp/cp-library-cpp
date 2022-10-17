@@ -3,12 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: library/math/sum_i^d_r^i.hpp
+    title: $\displaystyle \sum _ i i ^ d r ^ i$
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/prod_f(r^k_x).hpp
     title: $\left(\prod_{k=0}^{m-1} f(r^k x)\right) \bmod x^N$
   - icon: ':x:'
     path: library/string/rolling_hash.hpp
     title: Rolling Hash
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
@@ -62,11 +71,14 @@ data:
   requiredBy:
   - library/string/rolling_hash.hpp
   - library/polynomial/prod_f(r^k_x).hpp
+  - library/math/sum_i^d_r^i.hpp
   timestamp: '2021-11-28 20:19:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/string/rolling_hash/abc141_e.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
 documentation_of: library/math/pow_mods.hpp
 layout: document
 title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"

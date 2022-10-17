@@ -19,7 +19,7 @@ data:
     title: Primitive Root
   - icon: ':heavy_check_mark:'
     path: library/number/tetration_mod.hpp
-    title: $a \uparrow \uparrow b \pmod{m}$
+    title: $a\uparrow\uparrow b \bmod m$
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc238_g.test.cpp

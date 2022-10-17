@@ -15,7 +15,7 @@ data:
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':heavy_check_mark:'
     path: library/number/tetration_mod.hpp
-    title: $a \uparrow \uparrow b \pmod{m}$
+    title: $a\uparrow\uparrow b \bmod m$
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
@@ -269,38 +269,39 @@ data:
     \       }\n        }\n        if (n > 1) res.emplace_back(n, 1);\n        return\
     \ res;\n    }\n} // namespace suisen::fast_factorize\n\n\n#line 9 \"library/number/tetration_mod.hpp\"\
     \n\n/**\n * @brief $a \\uparrow \\uparrow b \\pmod{m}$\n*/\n\nnamespace suisen\
-    \ {\n    namespace internal::tetration_mod {\n        int saturation_pow(int a,\
-    \ int b, int max_value = std::numeric_limits<int>::max()) {\n            long\
-    \ long res = 1, pow_a = a;\n            for (; b; b >>= 1) {\n               \
-    \ if (b & 1) res = std::min(res * pow_a, (long long) max_value);\n           \
-    \     pow_a = std::min(pow_a * pow_a, (long long) max_value);\n            }\n\
-    \            return res;\n        }\n        int pow_int(int a, int b) {\n   \
-    \         int res = 1, pow_a = a;\n            for (; b; b >>= 1) {\n        \
-    \        if (b & 1) res *= pow_a;\n                pow_a *= pow_a;\n         \
-    \   }\n            return res;\n        }\n        int pow_mod(int a, int b, int\
-    \ m) {\n            long long res = 1, pow_a = a;\n            for (; b; b >>=\
-    \ 1) {\n                if (b & 1) res = (res * pow_a) % m;\n                pow_a\
-    \ = (pow_a * pow_a) % m;\n            }\n            return res;\n        }\n\n\
-    \        int tetration_mod_naive(int a, int b, int m) {\n            int res =\
-    \ 1;\n            for (int i = 0; i < b; ++i) res = pow_int(a, res);\n       \
-    \     return res % m;\n        }\n\n        int tetration_mod_impl(int a, int\
-    \ b, int m, int x) {\n            if (m == 1) return x;\n            if (b ==\
-    \ 0) return 1;\n            int nx = 0, m2 = m;\n            while (true) {\n\
-    \                int g = std::gcd(m2, a);\n                if (g == 1) break;\n\
-    \                m2 /= g, ++nx;\n            }\n            int phi_m2 = m2;\n\
-    \            for (auto [p, q] : fast_factorize::factorize(m2)) {\n           \
-    \     phi_m2 /= p, phi_m2 *= p - 1;\n            }\n            int res = saturation_pow(a,\
-    \ b - 1) >= nx ? pow_mod(a, tetration_mod_impl(a, b - 1, phi_m2, nx), m) : tetration_mod_naive(a,\
-    \ b, m);\n            return res >= x ? res : res + m * ((x - res + m - 1) / m);\n\
+    \ {\n    namespace internal::tetration_mod {\n        constexpr int max_value\
+    \ = std::numeric_limits<int>::max();\n        int saturation_pow(int a, int b)\
+    \ {\n            if (b >= 32) return max_value;\n            long long res = 1,\
+    \ pow_a = a;\n            for (; b; b >>= 1) {\n                if (b & 1) res\
+    \ = std::min(res * pow_a, (long long) max_value);\n                pow_a = std::min(pow_a\
+    \ * pow_a, (long long) max_value);\n            }\n            return res;\n \
+    \       }\n        int saturation_tetration(int a, int b) {\n            assert(a\
+    \ >= 2);\n            if (b == 0) return 1;\n            int exponent = 1;\n \
+    \           for (int i = 0; i < b and exponent != max_value; ++i) exponent = saturation_pow(a,\
+    \ exponent);\n            return exponent;\n        }\n        int pow_mod(int\
+    \ a, int b, int m) {\n            long long res = 1, pow_a = a;\n            for\
+    \ (; b; b >>= 1) {\n                if (b & 1) res = (res * pow_a) % m;\n    \
+    \            pow_a = (pow_a * pow_a) % m;\n            }\n            return res;\n\
     \        }\n    }\n\n    /**\n     * @brief Calculates a\u2191\u2191b mod m (=\
     \ a^(a^(a^...(b times)...)) mod m)\n     * @param a base\n     * @param b number\
     \ of power operations\n     * @param m mod\n     * @return a\u2191\u2191b mod\
-    \ m\n     */\n    int tetration_mod(int a, int b, int m) {\n        return internal::tetration_mod::tetration_mod_impl(a,\
-    \ b, m, 0);\n    }\n}\n\n\n#line 6 \"test/src/number/tetration_mod/tetration_mod.test.cpp\"\
-    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    int t;\n    std::cin >> t;\n\n    for (int i = 0; i < t; ++i) {\n      \
-    \  int a, b, m;\n        std::cin >> a >> b >> m;\n        std::cout << suisen::tetration_mod(a,\
-    \ b, m) << '\\n';\n    }\n\n    return 0;\n}\n"
+    \ m\n     */\n    int tetration_mod(int a, int b, int m) {\n        using namespace\
+    \ internal::tetration_mod;\n        if (m == 1) return 0;\n        if (a == 0)\
+    \ return 1 ^ (b & 1);\n        if (a == 1 or b == 0) return 1;\n        int i0\
+    \ = 0, m0 = m;\n        for (int g = std::gcd(m0, a); g != 1; g = std::gcd(m0,\
+    \ g)) {\n            m0 /= g, ++i0;\n        }\n        int phi = m0;\n      \
+    \  for (auto [p, q] : fast_factorize::factorize(m0)) {\n            phi /= p,\
+    \ phi *= p - 1;\n        }\n        int exponent = saturation_tetration(a, b -\
+    \ 1);\n        if (exponent == max_value) {\n            exponent = tetration_mod(a,\
+    \ b - 1, phi);\n            if (i0 > exponent) {\n                exponent +=\
+    \ (((i0 - exponent) + phi - 1) / phi) * phi;\n            }\n        } else if\
+    \ (i0 <= exponent) {\n            exponent -= ((exponent - i0) / phi) * phi;\n\
+    \        }\n        return pow_mod(a, exponent, m);\n    }\n}\n\n\n#line 6 \"\
+    test/src/number/tetration_mod/tetration_mod.test.cpp\"\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int t;\n    std::cin >> t;\n\n    for (int\
+    \ i = 0; i < t; ++i) {\n        int a, b, m;\n        std::cin >> a >> b >> m;\n\
+    \        std::cout << suisen::tetration_mod(a, b, m) << '\\n';\n    }\n\n    return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tetration_mod\"\n\n#include\
     \ <iostream>\n\n#include \"library/number/tetration_mod.hpp\"\n\nint main() {\n\
     \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    int\
@@ -317,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/src/number/tetration_mod/tetration_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-10-17 14:43:40+09:00'
+  timestamp: '2022-10-17 20:08:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/tetration_mod/tetration_mod.test.cpp

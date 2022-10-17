@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/math/sum_i^d_r^i.hpp
+    title: $\displaystyle \sum _ i i ^ d r ^ i$
   - icon: ':warning:'
     path: library/number/anymod_binom.hpp
     title: "\u4EFB\u610F mod \u3067\u306E\u4E8C\u9805\u4FC2\u6570\u5217\u6319"
@@ -18,6 +21,12 @@ data:
     path: library/sequence/stirling_number2_small_prime_mod.hpp
     title: Stirling Number2 Small Prime Mod
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
@@ -102,6 +111,7 @@ data:
   - library/sequence/stirling_number2_small_prime_mod.hpp
   - library/sequence/eulerian_number.hpp
   - library/sequence/stirling_number2.hpp
+  - library/math/sum_i^d_r^i.hpp
   - library/number/anymod_binom.hpp
   timestamp: '2021-08-04 13:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -113,6 +123,8 @@ data:
   - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
 documentation_of: library/number/linear_sieve.hpp
 layout: document
 title: "\u7DDA\u5F62\u7BE9"

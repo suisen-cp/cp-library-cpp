@@ -7,8 +7,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/math/sum_i^d_r^i.hpp
+    title: $\displaystyle \sum _ i i ^ d r ^ i$
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
@@ -123,13 +132,16 @@ data:
   - library/polynomial/multi_point_eval.hpp
   isVerificationFile: false
   path: library/polynomial/lagrange_interpolation.hpp
-  requiredBy: []
+  requiredBy:
+  - library/math/sum_i^d_r^i.hpp
   timestamp: '2022-07-23 23:55:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
 documentation_of: library/polynomial/lagrange_interpolation.hpp
 layout: document
 title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"

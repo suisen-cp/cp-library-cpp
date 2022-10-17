@@ -3,12 +3,11 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/csr_graph.hpp
-    title: library/graph/csr_graph.hpp
+    title: Csr Graph
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/tree/frequency_table_of_tree_distance.hpp
-    title: Given a tree with N vertices, calculates the number of unordered pair (u,
-      v) s.t. dist(u, v) = k for k = 1, ..., N - 1.
+    title: Frequency Table Of Tree Distance
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp

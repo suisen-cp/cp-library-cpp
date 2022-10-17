@@ -90,7 +90,7 @@ data:
     title: Primitive Root
   - icon: ':heavy_check_mark:'
     path: library/number/tetration_mod.hpp
-    title: $a \uparrow \uparrow b \pmod{m}$
+    title: $a\uparrow\uparrow b \bmod m$
   - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: Util

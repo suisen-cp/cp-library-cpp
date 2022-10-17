@@ -10,6 +10,9 @@ data:
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
   - icon: ':heavy_check_mark:'
+    path: library/math/sum_i^d_r^i.hpp
+    title: $\displaystyle \sum _ i i ^ d r ^ i$
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   _extendedVerifiedWith:
@@ -19,6 +22,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+    title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
@@ -65,6 +74,7 @@ data:
   requiredBy:
   - library/polynomial/lagrange_interpolation.hpp
   - library/math/product_of_differences.hpp
+  - library/math/sum_i^d_r^i.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
   timestamp: '2022-07-21 04:00:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -75,6 +85,8 @@ data:
   - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/polynomial/multi_point_eval.hpp
 layout: document
