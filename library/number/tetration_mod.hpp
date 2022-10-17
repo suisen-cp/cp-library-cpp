@@ -13,7 +13,9 @@
 
 namespace suisen {
     namespace internal::tetration_mod {
-        int saturation_pow(int a, int b, int max_value = std::numeric_limits<int>::max()) {
+        constexpr int max_value = std::numeric_limits<int>::max();
+        int saturation_pow(int a, int b) {
+            if (b >= 32) return max_value;
             long long res = 1, pow_a = a;
             for (; b; b >>= 1) {
                 if (b & 1) res = std::min(res * pow_a, (long long) max_value);
@@ -21,13 +23,12 @@ namespace suisen {
             }
             return res;
         }
-        int pow_int(int a, int b) {
-            int res = 1, pow_a = a;
-            for (; b; b >>= 1) {
-                if (b & 1) res *= pow_a;
-                pow_a *= pow_a;
-            }
-            return res;
+        int saturation_tetration(int a, int b) {
+            assert(a >= 2);
+            if (b == 0) return 1;
+            int exponent = 1;
+            for (int i = 0; i < b and exponent != max_value; ++i) exponent = saturation_pow(a, exponent);
+            return exponent;
         }
         int pow_mod(int a, int b, int m) {
             long long res = 1, pow_a = a;
@@ -36,29 +37,6 @@ namespace suisen {
                 pow_a = (pow_a * pow_a) % m;
             }
             return res;
-        }
-
-        int tetration_mod_naive(int a, int b, int m) {
-            int res = 1;
-            for (int i = 0; i < b; ++i) res = pow_int(a, res);
-            return res % m;
-        }
-
-        int tetration_mod_impl(int a, int b, int m, int x) {
-            if (m == 1) return x;
-            if (b == 0) return 1;
-            int nx = 0, m2 = m;
-            while (true) {
-                int g = std::gcd(m2, a);
-                if (g == 1) break;
-                m2 /= g, ++nx;
-            }
-            int phi_m2 = m2;
-            for (auto [p, q] : fast_factorize::factorize(m2)) {
-                phi_m2 /= p, phi_m2 *= p - 1;
-            }
-            int res = saturation_pow(a, b - 1) >= nx ? pow_mod(a, tetration_mod_impl(a, b - 1, phi_m2, nx), m) : tetration_mod_naive(a, b, m);
-            return res >= x ? res : res + m * ((x - res + m - 1) / m);
         }
     }
 
@@ -70,7 +48,28 @@ namespace suisen {
      * @return a↑↑b mod m
      */
     int tetration_mod(int a, int b, int m) {
-        return internal::tetration_mod::tetration_mod_impl(a, b, m, 0);
+        using namespace internal::tetration_mod;
+        if (m == 1) return 0;
+        if (a == 0) return 1 ^ (b & 1);
+        if (a == 1 or b == 0) return 1;
+        int i0 = 0, m0 = m;
+        for (int g = std::gcd(m0, a); g != 1; g = std::gcd(m0, g)) {
+            m0 /= g, ++i0;
+        }
+        int phi = m0;
+        for (auto [p, q] : fast_factorize::factorize(m0)) {
+            phi /= p, phi *= p - 1;
+        }
+        int exponent = saturation_tetration(a, b - 1);
+        if (exponent == max_value) {
+            exponent = tetration_mod(a, b - 1, phi);
+            if (i0 > exponent) {
+                exponent += (((i0 - exponent) + phi - 1) / phi) * phi;
+            }
+        } else if (i0 <= exponent) {
+            exponent -= ((exponent - i0) / phi) * phi;
+        }
+        return pow_mod(a, exponent, m);
     }
 }
 
