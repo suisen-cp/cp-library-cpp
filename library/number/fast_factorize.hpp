@@ -5,8 +5,10 @@
 #include <iostream>
 #include <random>
 #include <numeric>
+#include <utility>
 
 #include "library/number/deterministic_miller_rabin.hpp"
+#include "library/number/sieve_of_eratosthenes.hpp"
 
 namespace suisen::fast_factorize {
     namespace internal {
@@ -52,6 +54,11 @@ namespace suisen::fast_factorize {
 
     template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
     std::vector<std::pair<T, int>> factorize(T n) {
+        static constexpr int threshold = 1000000;
+        static Sieve<threshold> sieve;
+
+        if (n <= threshold) return sieve.factorize(n);
+
         std::vector<std::pair<T, int>> res;
         if ((n & 1) == 0) {
             int q = 0;
