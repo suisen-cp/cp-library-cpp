@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
@@ -293,8 +293,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/dynamic_sequence.hpp
   requiredBy:
-  - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - library/datastructure/range_foldable_dynamic_sequence.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

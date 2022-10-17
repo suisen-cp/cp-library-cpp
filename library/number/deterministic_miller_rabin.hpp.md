@@ -1,32 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/number/order_prime_mod.hpp
     title: Order Prime Mod
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: library/number/tetration_mod.hpp
+    title: $a \uparrow \uparrow b \pmod{m}$
+  _extendedVerifiedWith:
+  - icon: ':x:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/tetration_mod/tetration_mod.test.cpp
+    title: test/src/number/tetration_mod/tetration_mod.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/deterministic_miller_rabin.hpp\"\n\n\n\n\
@@ -148,12 +154,14 @@ data:
   isVerificationFile: false
   path: library/number/deterministic_miller_rabin.hpp
   requiredBy:
-  - library/number/order_prime_mod.hpp
   - library/number/primitive_root.hpp
+  - library/number/tetration_mod.hpp
   - library/number/fast_factorize.hpp
+  - library/number/order_prime_mod.hpp
   timestamp: '2022-09-28 21:34:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/number/tetration_mod/tetration_mod.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/primitive_root/dummy.test.cpp
   - test/src/number/primitive_root/primitive_root.test.cpp

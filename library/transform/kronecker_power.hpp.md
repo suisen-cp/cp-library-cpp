@@ -201,38 +201,38 @@ data:
   isVerificationFile: false
   path: library/transform/kronecker_power.hpp
   requiredBy:
-  - library/convolution/subset_convolution.hpp
-  - library/convolution/or_convolution.hpp
-  - library/convolution/xor_convolution.hpp
-  - library/convolution/array_subset_convolution.hpp
-  - library/convolution/and_convolution.hpp
-  - library/transform/supset.hpp
   - library/transform/walsh_hadamard.hpp
   - library/transform/subset.hpp
-  - library/math/array_sps.hpp
-  - library/math/sps.hpp
+  - library/transform/supset.hpp
   - library/linear_algebra/hafnian.hpp
+  - library/math/sps.hpp
+  - library/math/array_sps.hpp
+  - library/convolution/subset_convolution.hpp
+  - library/convolution/xor_convolution.hpp
+  - library/convolution/and_convolution.hpp
+  - library/convolution/array_subset_convolution.hpp
+  - library/convolution/or_convolution.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/transform/kronecker_power/agc044_c.test.cpp
   - test/src/transform/kronecker_power/arc132_f.test.cpp
-  - test/src/math/array_sps/abc253_h_2.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/array_sps/abc236_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp
   - test/src/math/array_sps/abc213_g.test.cpp
-  - test/src/math/array_sps/abc236_h.test.cpp
-  - test/src/math/sps/abc253_h_2.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/sps/abc236_h.test.cpp
   - test/src/math/sps/arc105_f.test.cpp
   - test/src/math/sps/abc213_g.test.cpp
-  - test/src/math/sps/abc236_h.test.cpp
-  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  - test/src/math/sps/abc253_h_2.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
 documentation_of: library/transform/kronecker_power.hpp
 layout: document
 title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\u5909\

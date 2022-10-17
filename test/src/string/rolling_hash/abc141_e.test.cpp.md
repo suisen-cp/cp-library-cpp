@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/string/rolling_hash.hpp
     title: Rolling Hash
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc141/tasks/abc141_e
@@ -42,18 +42,18 @@ data:
     \n\nnamespace suisen {\n    namespace internal::rolling_hash {\n        // reference:\
     \ https://qiita.com/keymoon/items/11fac5627672a6d6a9f6\n        struct Modint2305843009213693951\
     \ {\n            using self = Modint2305843009213693951;\n\n            Modint2305843009213693951()\
-    \ {}\n            Modint2305843009213693951(uint64_t v) : v(fast_mod(v)) {}\n\n\
-    \            static constexpr uint64_t mod() {\n                return _mod;\n\
-    \            }\n\n            static constexpr uint64_t fast_mod(uint64_t v) {\n\
-    \                constexpr uint32_t mid = 61;\n                constexpr uint64_t\
-    \ mask = (uint64_t(1) << mid) - 1;\n                uint64_t u = v >> mid;\n \
-    \               uint64_t d = v & mask;\n                uint64_t res = u + d;\n\
-    \                if (res >= _mod) res -= _mod;\n                return res;\n\
-    \            }\n\n            uint64_t val() const {\n                return v;\n\
-    \            }\n\n            self& operator+=(const self &rhs) {\n          \
-    \      v += rhs.v;\n                if (v >= _mod) v -= _mod;\n              \
-    \  return *this;\n            }\n            self& operator-=(const self &rhs)\
-    \ {\n                if (v < rhs.v) v += _mod;\n                v -= rhs.v;\n\
+    \ = default;\n            Modint2305843009213693951(uint64_t v) : v(fast_mod(v))\
+    \ {}\n\n            static constexpr uint64_t mod() {\n                return\
+    \ _mod;\n            }\n\n            static constexpr uint64_t fast_mod(uint64_t\
+    \ v) {\n                constexpr uint32_t mid = 61;\n                constexpr\
+    \ uint64_t mask = (uint64_t(1) << mid) - 1;\n                uint64_t u = v >>\
+    \ mid;\n                uint64_t d = v & mask;\n                uint64_t res =\
+    \ u + d;\n                if (res >= _mod) res -= _mod;\n                return\
+    \ res;\n            }\n\n            uint64_t val() const {\n                return\
+    \ v;\n            }\n\n            self& operator+=(const self &rhs) {\n     \
+    \           v += rhs.v;\n                if (v >= _mod) v -= _mod;\n         \
+    \       return *this;\n            }\n            self& operator-=(const self\
+    \ &rhs) {\n                if (v < rhs.v) v += _mod;\n                v -= rhs.v;\n\
     \                return *this;\n            }\n            self& operator*=(const\
     \ self &rhs) {\n                static constexpr uint32_t mid31 = 31;\n      \
     \          static constexpr uint64_t mask31 = (uint64_t(1) << mid31) - 1;\n\n\
@@ -98,12 +98,17 @@ data:
     \ {\n            for (int base_id = 0; base_id < base_num; ++base_id) {\n    \
     \            hash[base_id].resize(n + 1);\n                hash[base_id][0] =\
     \ 0;\n                for (int i = 0; i < n; ++i) hash[base_id][i + 1] = hash[base_id][i]\
-    \ * bases[base_id] + a[i];\n            }\n        }\n\n        auto operator()(int\
-    \ l, int r) {\n            std::array<mint, base_num> res;\n            for (int\
-    \ base_id = 0; base_id < base_num; ++base_id) res[base_id] = hash[base_id][r]\
-    \ - hash[base_id][l] * pows[base_id][r - l];\n            return res;\n      \
-    \  }\n\n        static auto mod() {\n            return mint::mod();\n       \
-    \ }\n\n        static void set_bases(const std::array<mint, base_num> &new_bases)\
+    \ * bases[base_id] + a[i];\n            }\n        }\n\n        std::array<uint64_t,\
+    \ base_num> operator()(int l, int r) {\n            std::array<uint64_t, base_num>\
+    \ res;\n            for (int base_id = 0; base_id < base_num; ++base_id) {\n \
+    \               res[base_id] = (hash[base_id][r] - hash[base_id][l] * pows[base_id][r\
+    \ - l]).val();\n            }\n            return res;\n        }\n\n        std::array<uint64_t,\
+    \ base_num> concat(std::array<uint64_t, base_num> h, int l, int r) {\n       \
+    \     for (int base_id = 0; base_id < base_num; ++base_id) {\n               \
+    \ h[base_id] = (h[base_id] * pows[base_id][r - l] + hash[base_id][r] - hash[base_id][l]\
+    \ * pows[base_id][r - l]).val();\n            }\n            return h;\n     \
+    \   }\n\n        static auto mod() {\n            return mint::mod();\n      \
+    \  }\n\n        static void set_bases(const std::array<mint, base_num> &new_bases)\
     \ {\n            bases = new_bases;\n            pows = internal::rolling_hash::init_pows<base_num,\
     \ mint>(bases);\n        }\n\n        template <typename Iterable, typename ToIntFunction>\n\
     \        static RollingHash from(const Iterable &s, ToIntFunction f) {\n     \
@@ -153,8 +158,8 @@ data:
   isVerificationFile: true
   path: test/src/string/rolling_hash/abc141_e.test.cpp
   requiredBy: []
-  timestamp: '2021-11-28 20:19:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-10-15 19:53:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/string/rolling_hash/abc141_e.test.cpp
 layout: document

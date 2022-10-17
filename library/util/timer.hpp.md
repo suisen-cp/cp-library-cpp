@@ -1,11 +1,21 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/tree/frequency_table_of_tree_distance.hpp
+    title: Given a tree with N vertices, calculates the number of unordered pair (u,
+      v) s.t. dist(u, v) = k for k = 1, ..., N - 1.
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/graph/csr_graph/dummy.test.cpp
+    title: test/src/graph/csr_graph/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
+    title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/timer.hpp\"\n\n\n\n#include <chrono>\n\nnamespace\
@@ -37,10 +47,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/util/timer.hpp
-  requiredBy: []
+  requiredBy:
+  - library/tree/frequency_table_of_tree_distance.hpp
   timestamp: '2022-08-21 18:25:28+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
+  - test/src/graph/csr_graph/dummy.test.cpp
 documentation_of: library/util/timer.hpp
 layout: document
 title: Timer

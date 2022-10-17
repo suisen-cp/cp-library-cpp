@@ -405,6 +405,9 @@ data:
       path: library/graph/block_cut_forest.hpp
       title: Block Cut Forest
     - icon: ':heavy_check_mark:'
+      path: library/graph/csr_graph.hpp
+      title: library/graph/csr_graph.hpp
+    - icon: ':heavy_check_mark:'
       path: library/graph/cycle_detection.hpp
       title: Cycle Detection
     - icon: ':warning:'
@@ -543,7 +546,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
     - icon: ':heavy_check_mark:'
@@ -560,7 +563,7 @@ data:
     - icon: ':warning:'
       path: library/number/anymod_binom.hpp
       title: "\u4EFB\u610F mod \u3067\u306E\u4E8C\u9805\u4FC2\u6570\u5217\u6319"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/deterministic_miller_rabin.hpp
       title: Deterministic Miller Rabin
     - icon: ':heavy_check_mark:'
@@ -569,13 +572,13 @@ data:
     - icon: ':warning:'
       path: library/number/ext_gcd.hpp
       title: Ext Gcd
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/fast_factorize.hpp
       title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':warning:'
       path: library/number/index_calculus.hpp
       title: Index Calculus
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/internal_eratosthenes.hpp
       title: Internal Eratosthenes
     - icon: ':heavy_check_mark:'
@@ -584,16 +587,16 @@ data:
     - icon: ':warning:'
       path: library/number/mobius_function.hpp
       title: Mobius Function
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/number/order_prime_mod.hpp
       title: Order Prime Mod
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/number/primitive_root.hpp
       title: Primitive Root
     - icon: ':warning:'
       path: library/number/rational.hpp
       title: Rational
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/sieve_of_eratosthenes.hpp
       title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
     - icon: ':heavy_check_mark:'
@@ -606,6 +609,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/sum_of_totient_function.hpp
       title: Prefix Sum of Totient Function
+    - icon: ':heavy_check_mark:'
+      path: library/number/tetration_mod.hpp
+      title: $a \uparrow \uparrow b \pmod{m}$
     - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: Util
@@ -719,7 +725,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/palindromic_tree.hpp
       title: "Palindromic Tree (\u56DE\u6587\u6728)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/string/rolling_hash.hpp
       title: Rolling Hash
     - icon: ':heavy_check_mark:'
@@ -777,18 +783,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/centroid_decomposition.hpp
       title: "\u91CD\u5FC3\u5206\u89E3"
-    - icon: ':heavy_check_mark:'
-      path: library/tree/contour_aggregation_query_on_tree.hpp
-      title: Contour Aggregation Query On Tree
-    - icon: ':heavy_check_mark:'
-      path: library/tree/contour_aggregation_query_on_tree_base.hpp
-      title: Contour Aggregation Query On Tree Base
     - icon: ':warning:'
       path: library/tree/contour_sum.hpp
       title: Contour Sum
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
+    - icon: ':heavy_check_mark:'
+      path: library/tree/frequency_table_of_tree_distance.hpp
+      title: Given a tree with N vertices, calculates the number of unordered pair
+        (u, v) s.t. dist(u, v) = k for k = 1, ..., N - 1.
     - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
@@ -837,7 +841,7 @@ data:
       title: Rooted Tree Isomorphism Classification
   - name: library/type_traits
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
   - name: library/uncategorized
@@ -893,7 +897,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/util/timer.hpp
       title: Timer
     - icon: ':warning:'
@@ -1493,6 +1497,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
       title: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
+  - name: test/src/graph/csr_graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/csr_graph/dummy.test.cpp
+      title: test/src/graph/csr_graph/dummy.test.cpp
   - name: test/src/graph/cycle_detection
     pages:
     - icon: ':heavy_check_mark:'
@@ -1736,15 +1745,15 @@ data:
       title: test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp
   - name: test/src/number/fast_factorize
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/fast_factorize/factorize.test.cpp
       title: test/src/number/fast_factorize/factorize.test.cpp
   - name: test/src/number/primitive_root
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/primitive_root/dummy.test.cpp
       title: test/src/number/primitive_root/dummy.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/primitive_root/primitive_root.test.cpp
       title: test/src/number/primitive_root/primitive_root.test.cpp
   - name: test/src/number/sieve_of_eratosthenes
@@ -1774,6 +1783,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
       title: test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
+  - name: test/src/number/tetration_mod
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/tetration_mod/tetration_mod.test.cpp
+      title: test/src/number/tetration_mod/tetration_mod.test.cpp
   - name: test/src/number/util
     pages:
     - icon: ':heavy_check_mark:'
@@ -2034,7 +2048,7 @@ data:
       title: test/src/string/palindromic_tree/yuki263.test.cpp
   - name: test/src/string/rolling_hash
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/string/rolling_hash/abc141_e.test.cpp
       title: test/src/string/rolling_hash/abc141_e.test.cpp
   - name: test/src/string/substring_set
@@ -2063,16 +2077,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/transform/multiple/divide_both.test.cpp
       title: test/src/transform/multiple/divide_both.test.cpp
-  - name: test/src/tree/centroid_decomposition
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
-      title: test/src/tree/centroid_decomposition/frequency_table_of_tree_distance.test.cpp
-  - name: test/src/tree/contour_aggregation_query_on_tree
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
-      title: test/src/tree/contour_aggregation_query_on_tree/dummy.test.cpp
   - name: test/src/tree/euler_tour
     pages:
     - icon: ':heavy_check_mark:'
@@ -2084,6 +2088,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp
       title: test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp
+  - name: test/src/tree/frequency_table_of_tree_distance
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
+      title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   - name: test/src/tree/heavy_light_decomposition
     pages:
     - icon: ':heavy_check_mark:'

@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/sequence/partition_number.hpp
     title: Partition Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

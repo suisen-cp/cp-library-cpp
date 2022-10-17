@@ -109,10 +109,10 @@ data:
   timestamp: '2022-03-19 20:36:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/deque_aggregation/staticrmq.test.cpp
-  - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/algorithm/mo/abc174_f.test.cpp
+  - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/algorithm/mo/abc242_g.test.cpp
+  - test/src/datastructure/deque_aggregation/staticrmq.test.cpp
 documentation_of: library/algorithm/mo.hpp
 layout: document
 title: Mo
