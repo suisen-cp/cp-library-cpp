@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/csr_graph.hpp
-    title: Csr Graph
+    title: Graph (CSR Format)
   - icon: ':heavy_check_mark:'
     path: library/tree/centroid_decomposition.hpp
     title: "\u91CD\u5FC3\u5206\u89E3"

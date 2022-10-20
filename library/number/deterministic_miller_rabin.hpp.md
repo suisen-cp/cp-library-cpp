@@ -9,8 +9,8 @@ data:
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
   - icon: ':heavy_check_mark:'
-    path: library/number/order_prime_mod.hpp
-    title: Order Prime Mod
+    path: library/number/order_Z_mZ.hpp
+    title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
   - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
@@ -157,7 +157,7 @@ data:
   - library/number/primitive_root.hpp
   - library/number/tetration_mod.hpp
   - library/number/fast_factorize.hpp
-  - library/number/order_prime_mod.hpp
+  - library/number/order_Z_mZ.hpp
   timestamp: '2022-09-28 21:34:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

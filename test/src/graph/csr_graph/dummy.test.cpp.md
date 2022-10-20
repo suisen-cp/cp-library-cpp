@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/csr_graph.hpp
-    title: Csr Graph
+    title: Graph (CSR Format)
   - icon: ':heavy_check_mark:'
     path: library/util/timer.hpp
     title: Timer

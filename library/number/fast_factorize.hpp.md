@@ -15,8 +15,8 @@ data:
     title: Type Traits
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: library/number/order_prime_mod.hpp
-    title: Order Prime Mod
+    path: library/number/order_Z_mZ.hpp
+    title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
   - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
@@ -330,7 +330,7 @@ data:
   requiredBy:
   - library/number/primitive_root.hpp
   - library/number/tetration_mod.hpp
-  - library/number/order_prime_mod.hpp
+  - library/number/order_Z_mZ.hpp
   timestamp: '2022-10-17 22:14:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

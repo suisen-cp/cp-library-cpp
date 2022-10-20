@@ -83,17 +83,14 @@ data:
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
   - icon: ':heavy_check_mark:'
-    path: library/number/order_prime_mod.hpp
-    title: Order Prime Mod
+    path: library/number/order_Z_mZ.hpp
+    title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
   - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   - icon: ':heavy_check_mark:'
     path: library/number/tetration_mod.hpp
     title: $a\uparrow\uparrow b \bmod m$
-  - icon: ':heavy_check_mark:'
-    path: library/number/util.hpp
-    title: Util
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
     title: Array Fps Naive
@@ -283,18 +280,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/number/tetration_mod/tetration_mod.test.cpp
     title: test/src/number/tetration_mod/tetration_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/number/util/abc222_g.test.cpp
-    title: test/src/number/util/abc222_g.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/number/util/divide_both.test.cpp
-    title: test/src/number/util/divide_both.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/number/util/kth_root_integer.test.cpp
-    title: test/src/number/util/kth_root_integer.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/number/util/same_div_dens.test.cpp
-    title: test/src/number/util/same_div_dens.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -553,11 +538,10 @@ data:
   - library/math/array_sps.hpp
   - library/range_query/static_range_xored_mex_query.hpp
   - library/number/primitive_root.hpp
-  - library/number/util.hpp
   - library/number/deterministic_miller_rabin.hpp
   - library/number/tetration_mod.hpp
   - library/number/fast_factorize.hpp
-  - library/number/order_prime_mod.hpp
+  - library/number/order_Z_mZ.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/tree/auxiliary_tree.hpp
   - library/uncategorized/inversion_number.hpp
@@ -647,10 +631,6 @@ data:
   - test/src/math/sps/abc213_g.test.cpp
   - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
-  - test/src/number/util/same_div_dens.test.cpp
-  - test/src/number/util/kth_root_integer.test.cpp
-  - test/src/number/util/abc222_g.test.cpp
-  - test/src/number/util/divide_both.test.cpp
   - test/src/number/tetration_mod/tetration_mod.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/primitive_root/dummy.test.cpp

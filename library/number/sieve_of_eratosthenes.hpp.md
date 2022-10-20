@@ -12,8 +12,8 @@ data:
     path: library/number/index_calculus.hpp
     title: Index Calculus
   - icon: ':heavy_check_mark:'
-    path: library/number/order_prime_mod.hpp
-    title: Order Prime Mod
+    path: library/number/order_Z_mZ.hpp
+    title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
   - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
@@ -277,8 +277,8 @@ data:
   - library/number/primitive_root.hpp
   - library/number/tetration_mod.hpp
   - library/number/fast_factorize.hpp
-  - library/number/order_prime_mod.hpp
   - library/number/index_calculus.hpp
+  - library/number/order_Z_mZ.hpp
   timestamp: '2022-02-25 23:20:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

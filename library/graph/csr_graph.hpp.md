@@ -385,6 +385,6 @@ data:
   - test/src/graph/csr_graph/dummy.test.cpp
 documentation_of: library/graph/csr_graph.hpp
 layout: document
-title: Csr Graph
+title: Graph (CSR Format)
 ---
-## Csr Graph
+## Graph (CSR Format)

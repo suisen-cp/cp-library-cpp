@@ -406,7 +406,7 @@ data:
       title: Block Cut Forest
     - icon: ':heavy_check_mark:'
       path: library/graph/csr_graph.hpp
-      title: Csr Graph
+      title: Graph (CSR Format)
     - icon: ':heavy_check_mark:'
       path: library/graph/cycle_detection.hpp
       title: Cycle Detection
@@ -572,18 +572,31 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/discrete_logarithm.hpp
       title: Discrete Logarithm
+    - icon: ':x:'
+      path: library/number/enumerate_quotient.hpp
+      title: "\u5546\u5217\u6319"
     - icon: ':warning:'
       path: library/number/ext_gcd.hpp
       title: Ext Gcd
+    - icon: ':warning:'
+      path: library/number/factorized_form.hpp
+      title: library/number/factorized_form.hpp
     - icon: ':heavy_check_mark:'
       path: library/number/fast_factorize.hpp
       title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
+    - icon: ':heavy_check_mark:'
+      path: library/number/find_denominators.hpp
+      title: "\u5206\u5B50\u3068\u5546\u304B\u3089\u5206\u6BCD\u3068\u3057\u3066\u3042\
+        \u308A\u3046\u308B\u7BC4\u56F2\u3092\u8A08\u7B97"
     - icon: ':warning:'
       path: library/number/index_calculus.hpp
       title: Index Calculus
     - icon: ':heavy_check_mark:'
       path: library/number/internal_eratosthenes.hpp
       title: Internal Eratosthenes
+    - icon: ':warning:'
+      path: library/number/kth_root_round.hpp
+      title: $\lfloor a ^ {\frac{1}{k}}\rfloor, \lceil a ^ {\frac{1}{k}}\rceil$
     - icon: ':heavy_check_mark:'
       path: library/number/linear_sieve.hpp
       title: "\u7DDA\u5F62\u7BE9"
@@ -591,8 +604,8 @@ data:
       path: library/number/mobius_function.hpp
       title: Mobius Function
     - icon: ':heavy_check_mark:'
-      path: library/number/order_prime_mod.hpp
-      title: Order Prime Mod
+      path: library/number/order_Z_mZ.hpp
+      title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
     - icon: ':heavy_check_mark:'
       path: library/number/primitive_root.hpp
       title: Primitive Root
@@ -615,7 +628,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/tetration_mod.hpp
       title: $a\uparrow\uparrow b \bmod m$
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/util.hpp
       title: Util
   - name: library/polynomial
@@ -731,6 +744,9 @@ data:
     - icon: ':x:'
       path: library/string/rolling_hash.hpp
       title: Rolling Hash
+    - icon: ':heavy_check_mark:'
+      path: library/string/run_enumerate.hpp
+      title: Run Enumerate
     - icon: ':heavy_check_mark:'
       path: library/string/substring_set.hpp
       title: Substring Set
@@ -1753,11 +1769,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp
       title: test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp
+  - name: test/src/number/enumerate_quotient
+    pages:
+    - icon: ':x:'
+      path: test/src/number/enumerate_quotient/divide_both.test.cpp
+      title: test/src/number/enumerate_quotient/divide_both.test.cpp
   - name: test/src/number/fast_factorize
     pages:
     - icon: ':heavy_check_mark:'
       path: test/src/number/fast_factorize/factorize.test.cpp
       title: test/src/number/fast_factorize/factorize.test.cpp
+  - name: test/src/number/find_denominators
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/find_denominators/dummy.test.cpp
+      title: test/src/number/find_denominators/dummy.test.cpp
   - name: test/src/number/primitive_root
     pages:
     - icon: ':heavy_check_mark:'
@@ -1803,15 +1829,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/abc222_g.test.cpp
       title: test/src/number/util/abc222_g.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/number/util/divide_both.test.cpp
-      title: test/src/number/util/divide_both.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/util/kth_root_integer.test.cpp
       title: test/src/number/util/kth_root_integer.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/number/util/same_div_dens.test.cpp
-      title: test/src/number/util/same_div_dens.test.cpp
   - name: test/src/polynomial/bostan_mori
     pages:
     - icon: ':heavy_check_mark:'
@@ -2061,6 +2081,11 @@ data:
     - icon: ':x:'
       path: test/src/string/rolling_hash/abc141_e.test.cpp
       title: test/src/string/rolling_hash/abc141_e.test.cpp
+  - name: test/src/string/run_enumerate
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/string/run_enumerate/runenumerate.test.cpp
+      title: test/src/string/run_enumerate/runenumerate.test.cpp
   - name: test/src/string/substring_set
     pages:
     - icon: ':heavy_check_mark:'
