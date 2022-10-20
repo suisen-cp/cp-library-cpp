@@ -1,6 +1,7 @@
-#ifndef SUISEN_ORDER_PRIME_MOD
-#define SUISEN_ORDER_PRIME_MOD
+#ifndef SUISEN_ORDER_Z_mZ
+#define SUISEN_ORDER_Z_mZ
 
+#include <map>
 #include <tuple>
 
 #include <atcoder/modint>
@@ -44,29 +45,32 @@ namespace suisen {
     }
 
     template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-    struct OrderFp {
+    struct OrderMod {
         using U = std::make_unsigned_t<T>;
-        OrderFp(T p) : _p(p) {
-            assert(_p >= 1 and miller_rabin::is_prime(_p));
-            for (auto [p, q] : fast_factorize::factorize(_p - 1)) {
+        OrderMod(T m) : _mod(m) {
+            auto factorized = fast_factorize::factorize<T>(_mod);
+            _is_prime = factorized.size() == 1;
+            _lambda = carmichael(factorized);
+            _phi = totient(factorized);
+            for (auto [p, q] : fast_factorize::factorize<T>(_lambda)) {
                 U r = 1;
                 for (int i = 0; i < q; ++i) r *= p;
-                _factorized.emplace_back(p, q, r);
+                _fac_lambda.emplace_back(p, q, r);
             }
         }
 
         bool is_primitive_root(U a) const {
-            if (_p < 1ULL << 32) {
+            if (_mod < 1ULL << 32) {
                 using mint = atcoder::dynamic_modint<1000000000>;
                 U old_mod = mint::mod();
-                mint::set_mod(_p);
+                mint::set_mod(_mod);
                 bool res = is_primitive_root_impl<mint>(a);
                 mint::set_mod(old_mod);
                 return res;
             } else {
                 using mint = internal::order_prime_mod::mint64<1000000000>;
                 U old_mod = mint::mod();
-                mint::set_mod(_p);
+                mint::set_mod(_mod);
                 bool res = is_primitive_root_impl<mint>(a);
                 mint::set_mod(old_mod);
                 return res;
@@ -74,7 +78,8 @@ namespace suisen {
         }
 
         T primitive_root() const {
-            if (_p < 1ULL << 32) {
+            assert(_lambda == _phi);
+            if (_mod < 1ULL << 32) {
                 return primitive_root_impl<std::mt19937>();
             } else {
                 return primitive_root_impl<std::mt19937_64>();
@@ -82,17 +87,17 @@ namespace suisen {
         }
 
         T operator()(U a) const {
-            if (_p < 1ULL << 32) {
+            if (_mod < 1ULL << 32) {
                 using mint = atcoder::dynamic_modint<1000000000>;
                 U old_mod = mint::mod();
-                mint::set_mod(_p);
+                mint::set_mod(_mod);
                 T res = order_impl<mint>(a);
                 mint::set_mod(old_mod);
                 return res;
             } else {
                 using mint = internal::order_prime_mod::mint64<1000000000>;
                 U old_mod = mint::mod();
-                mint::set_mod(_p);
+                mint::set_mod(_mod);
                 T res = order_impl<mint>(a);
                 mint::set_mod(old_mod);
                 return res;
@@ -100,29 +105,53 @@ namespace suisen {
         }
 
         T mod() const {
-            return _p;
+            return _mod;
         }
 
     private:
-        U _p;
-        std::vector<std::tuple<U, int, U>> _factorized;
+        U _mod;
+        U _phi;
+        U _lambda;
+        bool _is_prime;
+
+        std::vector<std::tuple<U, int, U>> _fac_lambda;
+
+        static T carmichael(const std::vector<std::pair<T, int>>& factorized) {
+            T lambda = 1;
+            for (auto [p, ep] : factorized) {
+                T phi = p - 1;
+                int exponent = ep - (1 + (p == 2 and ep >= 3));
+                for (int i = 0; i < exponent; ++i) phi *= p;
+                lambda = std::lcm(lambda, phi);
+            }
+            return lambda;
+        }
+        static T totient(const std::vector<std::pair<T, int>>& factorized) {
+            T t = 1;
+            for (const auto& [p, ep] : factorized) {
+                t *= p - 1;
+                for (int i = 0; i < ep - 1; ++i) t *= p;
+            }
+            return t;
+        }
 
         template <typename mint>
         bool is_primitive_root_impl(U a) const {
-            if (_p == 2) return a % 2 == 1;
+            if (_lambda != _phi) return false;
+            if (_mod == 2) return a % 2 == 1;
 
-            const int k = _factorized.size();
-            U x = _p - 1;
-            for (const auto &[p, q, pq] : _factorized) x /= p;
+            const int k = _fac_lambda.size();
+            U x = _lambda;
+            for (const auto& [p, q, pq] : _fac_lambda) x /= p;
 
             mint b = mint(a).pow(x);
             if (k == 1) return b.val() != 1;
-    
+
             auto dfs = [&](auto dfs, const int l, const int r, const mint val) -> bool {
                 const int m = (l + r) >> 1;
 
                 U lp = 1;
-                for (int i = m; i < r; ++i) lp *= std::get<0>(_factorized[i]);
+                for (int i = m; i < r; ++i) lp *= std::get<0>(_fac_lambda[i]);
                 mint lval = val.pow(lp);
                 if (m - l == 1) {
                     if (lval.val() == 1) return false;
@@ -131,7 +160,7 @@ namespace suisen {
                 }
 
                 U rp = 1;
-                for (int i = l; i < m; ++i) rp *= std::get<0>(_factorized[i]);
+                for (int i = l; i < m; ++i) rp *= std::get<0>(_fac_lambda[i]);
                 mint rval = val.pow(rp);
                 if (r - m == 1) {
                     if (rval.val() == 1) return false;
@@ -146,21 +175,23 @@ namespace suisen {
 
         template <typename Rng>
         T primitive_root_impl() const {
-            if (_p == 2) return 1;
+            if (_mod == 2) return 1;
 
             Rng rng{ std::random_device{}() };
             while (true) {
-                if (U a = rng() % (_p - 2) + 2; is_primitive_root(a)) {
-                    return a;
+                U a = rng() % (_mod - 2) + 2;
+                while (not _is_prime and std::gcd(a, _mod) != 1) {
+                    a = rng() % (_mod - 2) + 2;
                 }
+                if (is_primitive_root(a)) return a;
             }
         }
 
         template <typename mint>
         U order_impl(U a) const {
-            if (_p == 2) return a % 2 == 1;
+            if (_mod == 2) return a % 2 == 1;
 
-            const int k = _factorized.size();
+            const int k = _fac_lambda.size();
 
             U res = 1;
 
@@ -170,9 +201,9 @@ namespace suisen {
                     res *= p;
                 }
             };
-    
+
             if (k == 1) {
-                update(std::get<0>(_factorized.front()), a);
+                update(std::get<0>(_fac_lambda.front()), a);
                 return res;
             }
 
@@ -180,19 +211,19 @@ namespace suisen {
                 const int m = (l + r) >> 1;
 
                 U lp = 1;
-                for (int i = m; i < r; ++i) lp *= std::get<2>(_factorized[i]);
+                for (int i = m; i < r; ++i) lp *= std::get<2>(_fac_lambda[i]);
                 mint lval = val.pow(lp);
                 if (m - l == 1) {
-                    update(std::get<0>(_factorized[l]), lval);
+                    update(std::get<0>(_fac_lambda[l]), lval);
                 } else {
                     dfs(dfs, l, m, lval);
                 }
 
                 U rp = 1;
-                for (int i = l; i < m; ++i) rp *= std::get<2>(_factorized[i]);
+                for (int i = l; i < m; ++i) rp *= std::get<2>(_fac_lambda[i]);
                 mint rval = val.pow(rp);
                 if (r - m == 1) {
-                    update(std::get<0>(_factorized[m]), rval);
+                    update(std::get<0>(_fac_lambda[m]), rval);
                 } else {
                     dfs(dfs, m, r, rval);
                 }
@@ -204,4 +235,4 @@ namespace suisen {
     };
 } // namespace suisen
 
-#endif // SUISEN_ORDER_PRIME_MOD
+#endif // SUISEN_ORDER_Z_mZ

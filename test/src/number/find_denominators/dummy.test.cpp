@@ -1,13 +1,14 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A"
 
+#include <cassert>
 #include <iostream>
 
-#include "library/number/util.hpp"
+#include "library/number/find_denominators.hpp"
 
-using suisen::same_fld_denominators_positive;
-using suisen::same_fld_denominators_negative;
-using suisen::same_cld_denominators_positive;
-using suisen::same_cld_denominators_negative;
+using suisen::fld_denominators_positive;
+using suisen::fld_denominators_negative;
+using suisen::cld_denominators_positive;
+using suisen::cld_denominators_negative;
 
 template <typename T>
 constexpr inline int pow_m1(T n) {
@@ -35,7 +36,7 @@ bool out(const std::optional<std::pair<int, int>> &r, int x) {
 }
 
 void cld_test(int n, int q) {
-    auto res_pos = same_cld_denominators_positive(n, q, 100);
+    auto res_pos = cld_denominators_positive(n, q, 100);
     if (res_pos.has_value()) {
         auto [l, r] = *res_pos;
         assert(1 <= l and r <= 100);
@@ -46,7 +47,7 @@ void cld_test(int n, int q) {
         }
     }
 
-    auto res_neg = same_cld_denominators_negative(n, q, -100);
+    auto res_neg = cld_denominators_negative(n, q, -100);
     if (res_neg.has_value()) {
         auto [l, r] = *res_neg;
         assert(-100 <= l and r <= -1);
@@ -59,7 +60,7 @@ void cld_test(int n, int q) {
 }
 
 void fld_test(int n, int q) {
-    auto res_pos = same_fld_denominators_positive(n, q, 100);
+    auto res_pos = fld_denominators_positive(n, q, 100);
     if (res_pos.has_value()) {
         auto [l, r] = *res_pos;
         assert(1 <= l and r <= 100);
@@ -70,7 +71,7 @@ void fld_test(int n, int q) {
         }
     }
 
-    auto res_neg = same_fld_denominators_negative(n, q, -100);
+    auto res_neg = fld_denominators_negative(n, q, -100);
     if (res_neg.has_value()) {
         auto [l, r] = *res_neg;
         assert(-100 <= l and r <= -1);

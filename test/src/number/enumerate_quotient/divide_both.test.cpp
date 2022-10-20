@@ -3,7 +3,7 @@
 #include <iostream>
 #include <unordered_map>
 
-#include "library/number/util.hpp"
+#include "library/number/enumerate_quotient.hpp"
 
 using namespace suisen;
 

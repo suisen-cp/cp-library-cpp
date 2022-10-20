@@ -1,45 +1,35 @@
 #ifndef SUISEN_NUMBER_UTIL
 #define SUISEN_NUMBER_UTIL
 
-#include <algorithm>
 #include <array>
 #include <cassert>
 #include <cmath>
-#include <optional>
+#include <numeric>
 #include <tuple>
 #include <vector>
-#include "library/type_traits/type_traits.hpp"
+
+/**
+ * @brief Utilities
+*/
 
 namespace suisen {
-
-    // // Returns pow(-1, n)
-    // template <typename T>
-    // constexpr inline int pow_m1(T n) {
-    //     return -(n & 1) | 1;
-    // }
-    // // Returns pow(-1, n)
-    // template <>
-    // constexpr inline int pow_m1<bool>(bool n) {
-    //     return -int(n) | 1;
-    // }
-
-    // // Returns floor(x / y)
-    // template <typename T>
-    // constexpr inline T fld(const T x, const T y) {
-    //     return (x ^ y) >= 0 ? x / y : (x - (y + pow_m1(y >= 0))) / y;
-    // }
-    // // Returns ceil(x / y)
-    // template <typename T>
-    // constexpr inline T cld(const T x, const T y) {
-    //     return (x ^ y) <= 0 ? x / y : (x + (y + pow_m1(y >= 0))) / y;
-    // }
+    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+    T powi(T a, int b) {
+        T res = 1, pow_a = a;
+        for (; b; b >>= 1) {
+            if (b & 1) res *= pow_a;
+            pow_a *= pow_a;
+        }
+        return res;
+    }
 
     /**
-     * O(sqrt(n))
-     * Returns a vector of { prime, index }.
-     * It is guaranteed that `prime` is ascending.
+     * @brief Calculates the prime factorization of n in O(√n).
+     * @tparam T integer type
+     * @param n integer to factorize
+     * @return vector of { prime, exponent }. It is guaranteed that prime is ascending.
      */
-    template <typename T>
+    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
     std::vector<std::pair<T, int>> factorize(T n) {
         static constexpr std::array primes{ 2, 3, 5, 7, 11, 13 };
         static constexpr int next_prime = 17;
@@ -76,11 +66,12 @@ namespace suisen {
     }
 
     /**
-     * O(sigma(n))
-     * Returns a vector that contains all divisors of `n`.
-     * It is NOT guaranteed that the vector is sorted.
+     * @brief Enumerates divisors of n from its prime-factorized form in O(# of divisors of n) time.
+     * @tparam T integer type
+     * @param factorized a prime-factorized form of n (a vector of { prime, exponent })
+     * @return vector of divisors (NOT sorted)
      */
-    template <typename T>
+    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
     std::vector<T> divisors(const std::vector<std::pair<T, int>>& factorized) {
         std::vector<T> res{ 1 };
         for (auto [p, c] : factorized) {
@@ -91,22 +82,56 @@ namespace suisen {
         }
         return res;
     }
-
     /**
-     * O(sqrt(n))
-     * Returns a vector that contains all divisors of `n`.
-     * It is NOT guaranteed that the vector is sorted.
+     * @brief Enumerates divisors of n in O(√n) time.
+     * @tparam T integer type
+     * @param n
+     * @return vector of divisors (NOT sorted)
      */
-    template <typename T, constraints_t<std::is_integral<T>> = nullptr>
+    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
     std::vector<T> divisors(T n) {
         return divisors(factorize(n));
     }
-
-    template <typename T>
-    T totient(T n) {
-        for (const auto& [p, _] : factorize(n)) n /= p, n *= p - 1;
-        return n;
+    /**
+     * @brief Calculates the divisors for i=1,...,n in O(n log n) time.
+     * @param n upper bound (closed)
+     * @return 2-dim vector a of length n+1, where a[i] is the vector of divisors of i.
+     */
+    std::vector<std::vector<int>> divisors_table(int n) {
+        std::vector<std::vector<int>> divs(n + 1);
+        for (int i = 1; i <= n; ++i) {
+            for (int j = i; j <= n; ++j) divs[j].push_back(i);
+        }
+        return divs;
     }
+
+    /**
+     * @brief Calculates φ(n) from its prime-factorized form in O(log n).
+     * @tparam T integer type
+     * @param factorized a prime-factorized form of n (a vector of { prime, exponent })
+     * @return φ(n)
+     */
+    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+    T totient(const std::vector<std::pair<T, int>>& factorized) {
+        T res = 1;
+        for (const auto& [p, c] : factorized) res *= (p - 1) * powi(p, c - 1);
+        return res;
+    }
+    /**
+     * @brief Calculates φ(n) in O(√n).
+     * @tparam T integer type
+     * @param n
+     * @return φ(n)
+     */
+    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+    T totient(T n) {
+        return totient(factorize(n));
+    }
+    /**
+     * @brief Calculates φ(i) for i=1,...,n.
+     * @param n upper bound (closed)
+     * @return vector a of length n+1, where a[i]=φ(i) for i=1,...,n
+     */
     std::vector<int> totient_table(int n) {
         std::vector<int> res(n + 1);
         for (int i = 0; i <= n; ++i) res[i] = (i & 1) == 0 ? i >> 1 : i;
@@ -117,123 +142,29 @@ namespace suisen {
         return res;
     }
 
-    // Returns { l, r } := min_max { x>0 | fld(n,x)=q }.
-    template <typename T, constraints_t<std::is_integral<T>> = nullptr>
-    std::optional<std::pair<T, T>> same_fld_denominators_positive(T n, T q, T max_val = std::numeric_limits<T>::max()) {
-        T l, r;
-        if (q >= 0) {
-            if (n < 0) return std::nullopt;
-            // cld(n + 1, q + 1) <= x <= fld(n, q)
-            l = (n + 1 + q) / (q + 1), r = q == 0 ? max_val : std::min(max_val, n / q);
-        } else {
-            if (n >= 0) return std::nullopt;
-            // cld(n, q) <= x <= fld(n + 1, q + 1)
-            l = (n + q + 1) / q, r = q == -1 ? max_val : std::min(max_val, (n + 1) / (q + 1));
-        }
-        if (l <= r) return std::make_pair(l, r);
-        else        return std::nullopt;
-    }
-    // Returns { l, r } := min_max { x<0 | fld(n,x)=q }.
-    template <typename T, constraints_t<std::is_integral<T>> = nullptr>
-    std::optional<std::pair<T, T>> same_fld_denominators_negative(T n, T q, T min_val = std::numeric_limits<T>::min()) {
-        T l, r;
-        if (q >= 0) {
-            if (n > 0) return std::nullopt;
-            // cld(n, q) <= x <= fld(n - 1, q + 1)
-            l = q == 0 ? min_val : std::max(min_val, n / q), r = (n - 1 - q) / (q + 1);
-        } else {
-            if (n <= 0) return std::nullopt;
-            // cld(n - 1, q + 1) <= x <= fld(n, q)
-            l = q == -1 ? min_val : std::max(min_val, (n - 1) / (q + 1)), r = (n - q - 1) / q;
-        }
-        if (l <= r) return std::make_pair(l, r);
-        else        return std::nullopt;
-    }
-    // Returns { l, r } := min_max { x>0 | cld(n,x)=q }.
-    template <typename T, constraints_t<std::is_integral<T>> = nullptr>
-    std::optional<std::pair<T, T>> same_cld_denominators_positive(T n, T q, T max_val = std::numeric_limits<T>::max()) {
-        T l, r;
-        if (q > 0) {
-            if (n <= 0) return std::nullopt;
-            l = (n + q - 1) / q, r = q == 1 ? max_val : std::min(max_val, (n - 1) / (q - 1));
-        } else {
-            if (n > 0) return std::nullopt;
-            l = (n - 1 + q) / (q - 1), r = q == 0 ? max_val : std::min(max_val, n / q);
-        }
-        if (l <= r) return std::make_pair(l, r);
-        else        return std::nullopt;
-    }
-    // Returns { l, r } := min_max { x<0 | cld(n,x)=q }.
-    template <typename T, constraints_t<std::is_integral<T>> = nullptr>
-    std::optional<std::pair<T, T>> same_cld_denominators_negative(T n, T q, T min_val = std::numeric_limits<T>::min()) {
-        T l, r;
-        if (q > 0) {
-            if (n >= 0) return std::nullopt;
-            l = q == 1 ? min_val : std::max(min_val, (n + 1) / (q - 1)), r = (n - q + 1) / q;
-        } else {
-            if (n < 0) return std::nullopt;
-            l = q == 0 ? min_val : std::max(min_val, n / q), r = (n + 1 - q) / (q - 1);
-        }
-        if (l <= r) return std::make_pair(l, r);
-        else        return std::nullopt;
-    }
-
     /**
-     * O(sqrt(n)).
-     * Returns vector of { l : T, r : T, q : T } s.t. let S be { d | n / d = q }, l = min S and r = max S.
-     * It is guaranteed that `l`, `r` is ascending (i.e. `q` is descending).
+     * @brief Calculates λ(n) from its prime-factorized form in O(log n).
+     * @tparam T integer type
+     * @param factorized a prime-factorized form of n (a vector of { prime, exponent })
+     * @return λ(n)
      */
-    template <typename T, constraints_t<std::is_integral<T>> = nullptr>
-    auto enumerate_quotients(T n) {
-        assert(0 <= n);
-        std::vector<std::tuple<T, T, T>> res;
-        for (T l = 1, r = 1; l <= n; l = r + 1) {
-            T q = n / l;
-            res.emplace_back(l, r = n / q, q);
-        }
-        return res;
-    }
-
-    /**
-     * Template Parameter:
-     *  - vector<T> or array<T, N>
-     *
-     * Time Complexity: O(|vs| * Sum_{v in vs} sqrt(v))
-     *
-     * Returns vector of { l : T, r : T, qs : Container } s.t. let S be { d | vs[i] / d = qs[i] (for all i) }, l = min S and r = max S
-     * It is guaranteed that `l`, `r` is ascending (i.e. for all `i`, `q[i]` is descending).
-     */
-    template <typename Container>
-    std::vector<std::tuple<typename Container::value_type, typename Container::value_type, Container>>
-        enumerate_multiple_quotients(const Container& vs) {
-        using T = typename Container::value_type;
-        static_assert(std::is_integral_v<T>);
-        int n = vs.size();
-        T max_val = *std::max_element(vs.begin(), vs.end());
-        assert(*std::min_element(vs.begin(), vs.end()) >= 0);
-        std::vector<std::tuple<T, T, Container>> res;
-        for (T l = 1, r = 1; l <= max_val; l = r + 1) {
-            Container qs{};
-            if constexpr (std::is_same_v<Container, std::vector<T>>) qs.resize(n);
-            r = std::numeric_limits<T>::max();
-            for (int i = 0; i < n; ++i) {
-                qs[i] = vs[i] / l;
-                r = std::min(r, qs[i] == 0 ? std::numeric_limits<T>::max() : vs[i] / qs[i]);
-            }
-            res.emplace_back(l, r, std::move(qs));
-        }
-        return res;
-    }
-
     template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-    T floor_kth_root(T x, int k) {
-        if (k == 1 or x == 0 or x == 1) return x;
-        if (k >= 64) return 1;
-        if (k == 2) return sqrtl(x);
-        // if (k == 3) return cbrtl(x);
-        T res = powl(x, nextafterl(1 / (long double) k, 0));
-        while (powl(res + 1, k) <= x) ++res;
+    T carmichael(const std::vector<std::pair<T, int>>& factorized) {
+        T res = 1;
+        for (const auto &[p, c] : factorized) {
+            res = std::lcm(res, ((p - 1) * powi(p, c - 1)) >> (p == 2 and c >= 3));
+        }
         return res;
+    }
+    /**
+     * @brief Calculates λ(n) in O(√n).
+     * @tparam T integer type
+     * @param n
+     * @return λ(n)
+     */
+    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
+    T carmichael(T n) {
+        return carmichael(factorize(n));
     }
 } // namespace suisen
 
