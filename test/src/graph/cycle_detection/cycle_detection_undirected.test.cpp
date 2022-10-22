@@ -12,21 +12,28 @@ int main() {
 
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::vector<std::pair<int, int>>> g(n);
+    UndirectedGraphBuilder<int> gb(n);
     for (int i = 0; i < m; ++i) {
-        long long u, v;
+        int u, v;
         std::cin >> u >> v;
-        g[u].emplace_back(v, i);
+        gb.emplace_edge(u, v, i);
     }
+    Graph<int> g = gb.build();
 
-    const auto optional_cycle = get_cycle_values<GraphType::DIRECTED>(g);
+    const auto optional_cycle = get_cycle_undirected(g);
     if (optional_cycle.has_value()) {
         const auto &cycle = *optional_cycle;
         const int sz = cycle.size();
         std::cout << sz << '\n';
+        std::vector<int> vs, es;
         for (int i = 0; i < sz; ++i) {
-            std::cout << cycle[i] << '\n';
+            auto [j, eid] = cycle[i];
+            vs.push_back(j);
+            es.push_back(eid);
         }
+        std::rotate(vs.begin(), std::prev(vs.end()), vs.end());
+        for (int i = 0; i < sz; ++i) std::cout << vs[i] << " \n"[i == sz - 1];
+        for (int i = 0; i < sz; ++i) std::cout << es[i] << " \n"[i == sz - 1];
     } else {
         std::cout << -1 << '\n';
     }

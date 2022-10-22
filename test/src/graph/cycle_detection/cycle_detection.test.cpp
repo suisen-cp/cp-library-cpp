@@ -12,24 +12,21 @@ int main() {
 
     int n, m;
     std::cin >> n >> m;
-    std::vector<std::vector<int>> g(n);
-    std::vector<long long> edges(m);
+    DirectedGraphBuilder<int> gb(n);
     for (int i = 0; i < m; ++i) {
-        long long u, v;
+        int u, v;
         std::cin >> u >> v;
-        edges[i] = u << 40 | v << 20 | i;
-        g[u].push_back(v);
+        gb.emplace_edge(u, v, i);
     }
-    std::sort(edges.begin(), edges.end());
+    Graph<int> g = gb.build();
 
-    const auto optional_cycle = get_cycle<GraphType::DIRECTED>(g);
+    const auto optional_cycle = get_cycle_directed(g);
     if (optional_cycle.has_value()) {
         const auto &cycle = *optional_cycle;
         const int sz = cycle.size();
         std::cout << sz << '\n';
         for (int i = 0; i < sz; ++i) {
-            const long long u = cycle[i], v = cycle[(i + 1) % sz];
-            std::cout << (*std::lower_bound(edges.begin(), edges.end(), u << 40 | v << 20) & ((1 << 20) - 1)) << '\n';
+            std::cout << g.get_weight(cycle[i]) << '\n';
         }
     } else {
         std::cout << -1 << '\n';

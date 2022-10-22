@@ -4,8 +4,10 @@
 #include <algorithm>
 #include <cassert>
 #include <limits>
+#include <optional>
 #include <type_traits>
 #include <tuple>
+#include <utility>
 #include <vector>
 
 namespace suisen {
@@ -24,6 +26,8 @@ namespace suisen {
 
         using weight_type = WeightType;
         static constexpr bool weighted = std::negation_v<std::is_same<weight_type, void>>;
+
+        using weight_type_or_1 = std::conditional_t<weighted, weight_type, int>;
 
         using input_edge_type = std::conditional_t<weighted, std::tuple<int, int, weight_type>, std::pair<int, int>>;
     private:
@@ -174,12 +178,12 @@ namespace suisen {
                 }
             }
         }
-        Graph(const std::vector<std::vector<edge_type>> &g) : Graph(g.size(), make_edges(g), directed_graph_tag{}) {}
+        Graph(const std::vector<std::vector<edge_type>>& g) : Graph(g.size(), make_edges(g), directed_graph_tag{}) {}
 
-        static Graph create_directed_graph(const int n, const std::vector<input_edge_type>& edges, const std::vector<int> &cap = {}) {
+        static Graph create_directed_graph(const int n, const std::vector<input_edge_type>& edges, const std::vector<int>& cap = {}) {
             return Graph(n, edges, directed_graph_tag{}, cap);
         }
-        static Graph create_undirected_graph(const int n, const std::vector<input_edge_type>& edges, const std::vector<int> &cap = {}) {
+        static Graph create_undirected_graph(const int n, const std::vector<input_edge_type>& edges, const std::vector<int>& cap = {}) {
             return Graph(n, edges, undirected_graph_tag{}, cap);
         }
 
@@ -211,45 +215,95 @@ namespace suisen {
             _edges.swap(new_edges);
         }
 
-        static std::conditional_t<weighted, weight_type, int> get_weight(const edge_type& edge) {
+        static weight_type_or_1 get_weight(const edge_type& edge) {
             if constexpr (weighted) return std::get<1>(edge);
             else return 1;
         }
 
-        Graph reversed(const std::vector<int> &cap = {}) const {
+        Graph reversed(const std::vector<int>& cap = {}) const {
             std::vector<input_edge_type> edges;
             for (int i = 0; i < _n; ++i) {
-                for (const auto &edge : (*this)[i]) {
+                for (const auto& edge : (*this)[i]) {
                     if constexpr (weighted) edges.emplace_back(std::get<0>(edge), i, std::get<1>(edge));
                     else edges.emplace_back(edge, i);
                 }
             }
             return Graph(_n, std::move(edges), directed_graph_tag{}, cap);
         }
+
+        struct DFSTree {
+            std::vector<int> par;
+            std::vector<int> pre_ord, pst_ord;
+            Graph tree, back;
+        };
+
+        DFSTree dfs_tree(int start = 0) const {
+            std::vector<input_edge_type> tree_edge, back_edge;
+
+            std::vector<int> pre(_n), pst(_n);
+            auto pre_it = pre.begin(), pst_it = pst.begin();
+
+            std::vector<int> eid(_n, -1), par(_n, -2);
+            std::vector<std::optional<weight_type_or_1>> par_w(_n, std::nullopt);
+            for (int i = 0; i < _n; ++i) {
+                int cur = (start + i) % _n;
+                if (par[cur] != -2) continue;
+                par[cur] = -1;
+                while (cur >= 0) {
+                    ++eid[cur];
+                    if (eid[cur] == 0) *pre_it++ = cur;
+                    if (eid[cur] == _adj[cur].size()) {
+                        *pst_it++ = cur;
+                        cur = par[cur];
+                    } else {
+                        const auto &e = _adj[cur][eid[cur]];
+                        weight_type_or_1 w = get_weight(e);
+                        int nxt = e;
+                        if (par[nxt] == -2) {
+                            tree_edge.emplace_back(make_edge(cur, e));
+                            par[nxt] = cur;
+                            par_w[nxt] = std::move(w);
+                            cur = nxt;
+                        } else if (eid[nxt] != _adj[nxt].size()) {
+                            if (par[cur] != nxt or par_w[cur] != w or not std::exchange(par_w[cur], std::nullopt).has_value()) {
+                                back_edge.emplace_back(make_edge(cur, e));
+                            }
+                        }
+                    }
+                }
+            }
+            Graph tree = create_directed_graph(_n, tree_edge);
+            Graph back = create_directed_graph(_n, back_edge);
+            return DFSTree{ std::move(par), std::move(pre), std::move(pst), std::move(tree), std::move(back) };
+        }
+
     private:
         int _n;
         std::vector<adjacent_list> _adj;
         std::vector<edge_type> _edges;
 
-        static std::vector<input_edge_type> make_edges(const std::vector<std::vector<edge_type>> &g) {
+        static std::vector<input_edge_type> make_edges(const std::vector<std::vector<edge_type>>& g) {
             const int n = g.size();
             std::vector<input_edge_type> edges;
-            for (int i = 0; i < n; ++i) for (const auto &e : g[i]) {
-                if constexpr (weighted) edges.emplace_back(i, std::get<0>(e), std::get<1>(e));
-                else edges.emplace_back(i, e);
+            for (int i = 0; i < n; ++i) for (const auto& e : g[i]) {
+                edges.emplace_back(make_edge(i, e));
             }
             return edges;
+        }
+        static input_edge_type make_edge(int i, const edge_type& e) {
+            if constexpr (weighted) return { i, std::get<0>(e), std::get<1>(e) };
+            else return { i, e };
         }
     };
 
     template <typename GraphTag>
-    Graph(int, std::vector<std::pair<int, int>>, GraphTag, std::vector<int> = {}) -> Graph<void>;
+    Graph(int, std::vector<std::pair<int, int>>, GraphTag, std::vector<int> = {})->Graph<void>;
     template <typename WeightType, typename GraphTag>
-    Graph(int, std::vector<std::tuple<int, int, WeightType>>, GraphTag, std::vector<int> = {}) -> Graph<WeightType>;
+    Graph(int, std::vector<std::tuple<int, int, WeightType>>, GraphTag, std::vector<int> = {})->Graph<WeightType>;
 
-    Graph(std::vector<std::vector<int>>) -> Graph<void>;
+    Graph(std::vector<std::vector<int>>)->Graph<void>;
     template <typename WeightType>
-    Graph(std::vector<std::vector<std::pair<int, WeightType>>>) -> Graph<WeightType>;
+    Graph(std::vector<std::vector<std::pair<int, WeightType>>>)->Graph<WeightType>;
 
     template <typename GraphTag, typename WeightType = void,
         std::enable_if_t<is_graph_tag_v<GraphTag>, std::nullptr_t> = nullptr>
@@ -270,8 +324,8 @@ namespace suisen {
             _edges.emplace_back(std::forward<Args>(args)...);
         }
         template <typename EdgeContainer, std::enable_if_t<std::is_constructible_v<edge_type, typename EdgeContainer::value_type>, std::nullptr_t> = nullptr>
-        void add_edges(const EdgeContainer &edges) {
-            for (const auto &edge : edges) add_edge(edge);
+        void add_edges(const EdgeContainer& edges) {
+            for (const auto& edge : edges) add_edge(edge);
         }
 
         template <bool move_edges = true>
@@ -287,7 +341,7 @@ namespace suisen {
             return build<false>();
         }
 
-        static Graph<weight_type> build(const int n, const std::vector<edge_type> &edges) {
+        static Graph<weight_type> build(const int n, const std::vector<edge_type>& edges) {
             GraphBuilder builder(n);
             builder.add_edges(edges);
             return builder.build();
