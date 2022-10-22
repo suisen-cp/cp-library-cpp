@@ -10,14 +10,27 @@
 #include <vector>
 
 namespace suisen {
+    struct DecompNode {
+        std::vector<int> bag;
+        std::vector<int> adj;
+    };
+    struct DecompNodeRooted {
+        std::vector<int> bag;
+        int par;
+        std::vector<int> ch;
+    };
+
     struct TreeDecompositionTW2 {
-        TreeDecompositionTW2(const int n = 0) : _n(n), _edges{} {}
+        TreeDecompositionTW2(const int n = 0, const std::vector<std::pair<int, int>>& edges = {}) : _n(n), _edges(edges) {}
+        TreeDecompositionTW2(const std::vector<std::vector<int>>& g) : TreeDecompositionTW2(g.size()) {
+            for (int i = 0; i < _n; ++i) for (int j : g[i]) if (i < j) add_edge(i, j);
+        }
 
         void add_edge(int u, int v) {
             _edges.emplace_back(u, v);
         }
 
-        std::optional<std::pair<std::vector<std::vector<int>>, std::vector<std::pair<int, int>>>> decomp() const {
+        std::optional<std::vector<DecompNode>> decomp() const {
             std::vector<std::vector<std::pair<int, int>>> g(_n);
             for (auto [u, v] : _edges) if (u != v) {
                 if (u > v) std::swap(u, v);
@@ -28,10 +41,12 @@ namespace suisen {
 
             std::vector<int8_t> seen(_n, false);
             std::deque<int> dq;
-            for (int i = 0; i < _n; ++i) if (g[i].size() <= 2) {
-                dq.push_back(i);
-                seen[i] = true;
-            }
+            auto push_if_removable = [&](int i) {
+                if (g[i].size() > 2 or std::exchange(seen[i], true)) return;
+                if (g[i].size() == 2) dq.push_back(i);
+                else dq.push_front(i);
+            };
+            for (int i = 0; i < _n; ++i) push_if_removable(i);
 
             std::vector<int> roots;
             std::vector<std::pair<int, int>> edges;
@@ -49,7 +64,7 @@ namespace suisen {
                     roots.push_back(id);
                 } else if (g[u].size() == 1) {
                     int v = remove_edge(g, u, 0);
-                    if (g[v].size() <= 2 and not std::exchange(seen[v], true)) dq.push_back(v);
+                    push_if_removable(v);
                     bag[id] = { u, v };
                     link[v].push_back(id);
                 } else {
@@ -62,8 +77,8 @@ namespace suisen {
                     g[w].emplace_back(v, dv);
                     remove_multiedges(g, v, dv);
                     remove_multiedges(g, w, dw);
-                    if (g[v].size() <= 2 and not std::exchange(seen[v], true)) dq.push_back(v);
-                    if (g[w].size() <= 2 and not std::exchange(seen[w], true)) dq.push_back(w);
+                    push_if_removable(v);
+                    push_if_removable(w);
                     link[v].push_back(id);
                     link[w].push_back(id);
                 }
@@ -78,89 +93,104 @@ namespace suisen {
             for (int i = 0; i < root_num - 1; ++i) {
                 edges.emplace_back(roots[i], roots[i + 1]);
             }
-            for (auto& b : bag) std::sort(b.begin(), b.end());
-            return std::pair{ std::move(bag), std::move(edges) };
+            std::vector<DecompNode> res(_n);
+            for (int i = 0; i < _n; ++i) {
+                res[i].bag = std::move(bag[i]);
+                std::sort(res[i].bag.begin(), res[i].bag.end());
+            }
+            for (auto& [i, j] : edges) {
+                res[i].adj.push_back(j);
+                res[j].adj.push_back(i);
+            }
+            return res;
         }
-        std::optional<std::pair<std::vector<std::vector<int>>, std::vector<std::pair<int, int>>>> nice_decomp() const {
+        std::optional<std::vector<DecompNodeRooted>> nice_decomp() const {
             auto opt_decomp = decomp();
             if (not opt_decomp.has_value()) return std::nullopt;
-            std::vector<std::vector<int>> bag = std::move(opt_decomp->first);
-            std::vector<std::pair<int, int>> edges = std::move(opt_decomp->second);
+            std::vector<DecompNodeRooted> res(_n);
+            for (int i = 0; i < _n; ++i) {
+                res[i].bag = std::move((*opt_decomp)[i].bag);
+            }
 
             const int root = 0;
 
-            std::vector<std::vector<int>> adj(bag.size());
-            for (auto [u, v] : edges) {
-                if ((u == root) + adj[u].size() == 3) {
-                    const int n = bag.size();
-                    const int w = adj[u].back();
-                    bag.push_back(bag[u]);
-                    adj.push_back({ u, w });
-                    u = adj[u].back() = *std::find(adj[w].begin(), adj[w].end(), u) = n;
-                }
-                if ((v == root) + adj[v].size() == 3) {
-                    const int n = bag.size();
-                    const int w = adj[v].back();
-                    bag.push_back(bag[v]);
-                    adj.push_back({ v, w });
-                    v = adj[v].back() = *std::find(adj[w].begin(), adj[w].end(), v) = n;
-                }
-                adj[u].push_back(v);
-                adj[v].push_back(u);
+            std::vector<std::vector<std::pair<int, int>>> adj_idx(_n);
+            for (int i = 0; i < _n; ++i) for (int j : (*opt_decomp)[i].adj) if (i < j) {
+                int u = i, v = j;
+                auto fix_deg = [&](int& z) {
+                    if ((z == root) + adj_idx[z].size() != 3) return;
+                    const int n = res.size();
+                    const int idx_zw = 0;
+                    const auto [w, idx_wz] = adj_idx[z][idx_zw];
+                    auto& node = res.emplace_back();
+                    node.bag = res[z].bag;
+                    adj_idx.push_back({ { z, idx_zw }, { w, idx_wz } });
+                    adj_idx[z][idx_zw] = { n, 0 };
+                    adj_idx[w][idx_wz] = { n, 1 };
+                    z = n;
+                };
+                fix_deg(u), fix_deg(v);
+                const int du = adj_idx[u].size(), dv = adj_idx[v].size();
+                adj_idx[u].emplace_back(v, dv);
+                adj_idx[v].emplace_back(u, du);
             }
-            std::vector<int> par(bag.size(), -1);
+            for (int i = 0; i < int(res.size()); ++i) {
+                res[i].ch.reserve(adj_idx[i].size());
+                for (auto [j, idx] : adj_idx[i]) res[i].ch.push_back(j);
+                adj_idx[i].clear(), adj_idx[i].shrink_to_fit();
+            }
+            adj_idx.clear(), adj_idx.shrink_to_fit();
+
+            const int k = res.size();
+
             std::deque<int> dq{ root };
             while (dq.size()) {
                 int u = dq.front();
                 dq.pop_front();
-                std::vector<int> ch;
-                for (int v : adj[u]) if (v != par[u]) {
-                    par[v] = u;
+                for (int v : res[u].ch) {
+                    res[v].par = u;
+                    res[v].ch.erase(std::find(res[v].ch.begin(), res[v].ch.end(), u));
                     dq.push_back(v);
-                    ch.push_back(v);
                 }
 
-                auto fix_path = [&](int u) {
-                    const int v = adj[u][adj[u][0] == par[u]];
+                auto fix_path = [&](int u, int v) {
                     std::vector<int> dif;
-                    std::set_difference(bag[v].begin(), bag[v].end(), bag[u].begin(), bag[u].end(), std::back_inserter(dif));
-                    std::set_difference(bag[u].begin(), bag[u].end(), bag[v].begin(), bag[v].end(), std::back_inserter(dif));
+                    std::set_difference(res[v].bag.begin(), res[v].bag.end(), res[u].bag.begin(), res[u].bag.end(), std::back_inserter(dif));
+                    std::set_difference(res[u].bag.begin(), res[u].bag.end(), res[v].bag.begin(), res[v].bag.end(), std::back_inserter(dif));
                     assert(dif.size());
-                    adj[u].erase(std::find(adj[u].begin(), adj[u].end(), v));
-                    adj[v].erase(std::find(adj[v].begin(), adj[v].end(), u));
+                    res[u].ch.erase(std::find(res[u].ch.begin(), res[u].ch.end(), v));
                     while (dif.size() > 1) {
-                        const int n = bag.size();
-                        bag.emplace_back();
-                        std::set_symmetric_difference(bag[u].begin(), bag[u].end(), std::prev(dif.end()), dif.end(), std::back_inserter(bag.back()));
-                        adj.emplace_back().push_back(u);
-                        adj[u].push_back(n);
-                        par.push_back(u);
+                        const int n = res.size();
+                        auto& node = res.emplace_back();
+                        std::set_symmetric_difference(res[u].bag.begin(), res[u].bag.end(), std::prev(dif.end()), dif.end(), std::back_inserter(node.bag));
+                        res[u].ch.push_back(n);
                         dif.pop_back();
+                        node.par = u;
                         u = n;
                     }
-                    adj[u].push_back(v);
-                    adj[v].push_back(u);
-                    par[v] = u;
+                    res[u].ch.push_back(v);
+                    res[v].par = u;
                 };
 
-                if (ch.size() == 2) {
-                    for (int v : ch) if (bag[u] != bag[v]) {
-                        const int n = bag.size();
-                        *std::find(adj[u].begin(), adj[u].end(), v) = *std::find(adj[v].begin(), adj[v].end(), u) = n;
-                        bag.push_back(bag[u]);
-                        adj.push_back({ u, v });
-                        par.push_back(u);
-                        fix_path(n);
+                if (res[u].ch.size() == 2) {
+                    for (int v : res[u].ch) if (res[u].bag != res[v].bag) {
+                        const int n = res.size();
+                        *std::find(res[u].ch.begin(), res[u].ch.end(), v) = n;
+                        auto& node = res.emplace_back();
+                        node.bag = res[u].bag;
+                        node.ch = { v };
+                        node.par = u;
+                        fix_path(n, v);
                     }
-                } else if (ch.size() == 1) {
-                    fix_path(u);
-                } else if (ch.size() == 0) {
-                    while (bag[u].size() > 1) {
-                        const int n = bag.size();
-                        bag.emplace_back(bag[u].begin(), std::prev(bag[u].end()));
-                        adj.emplace_back().push_back(u);
-                        adj[u].push_back(n);
-                        par.push_back(u);
+                } else if (res[u].ch.size() == 1) {
+                    fix_path(u, res[u].ch[0]);
+                } else if (res[u].ch.size() == 0) {
+                    while (res[u].bag.size() > 1) {
+                        const int n = res.size();
+                        auto& node = res.emplace_back();
+                        node.bag = std::vector<int>(res[u].bag.begin(), std::prev(res[u].bag.end()));
+                        node.par = u;
+                        res[u].ch.push_back(n);
                         u = n;
                     }
                 } else {
@@ -168,38 +198,26 @@ namespace suisen {
                 }
             }
 
-            edges.clear();
-            int n = bag.size();
-            for (int i = 0; i < n; ++i) for (int j : adj[i]) if (i < j) {
-                edges.emplace_back(i, j);
-            }
-            return std::pair{ std::move(bag), std::move(edges) };
+            return res;
         }
 
-        static void assert_nice(const std::vector<std::vector<int>>& bag, const std::vector<std::pair<int, int>>& edges, int root) {
-            std::vector<std::vector<int>> adj(bag.size());
-            for (auto [u, v] : edges) {
-                adj[u].push_back(v);
-                adj[v].push_back(u);
-            }
-            auto dfs = [&](auto dfs, int u, int p) -> void {
-                std::vector<int> ch;
-                for (int v : adj[u]) if (v != p) {
-                    dfs(dfs, v, u);
-                    ch.push_back(v);
-                }
-                assert(ch.size() <= 2);
-                if (ch.size() == 2) {
-                    assert(bag[u] == bag[ch[0]] and bag[u] == bag[ch[1]]);
-                } else if (ch.size() == 1) {
+        static void assert_nice(const std::vector<DecompNodeRooted>& nodes, int root) {
+            auto dfs = [&](auto dfs, int u) -> void {
+                for (int v : nodes[u].ch) dfs(dfs, v);
+                assert(nodes[u].ch.size() <= 2);
+                if (nodes[u].ch.size() == 2) {
+                    int x = nodes[u].ch[0], y = nodes[u].ch[1];
+                    assert(nodes[u].bag == nodes[x].bag and nodes[u].bag == nodes[y].bag);
+                } else if (nodes[u].ch.size() == 1) {
+                    int x = nodes[u].ch[0];
                     std::vector<int> d;
-                    std::set_symmetric_difference(bag[u].begin(), bag[u].end(), bag[ch[0]].begin(), bag[ch[0]].end(), std::back_inserter(d));
+                    std::set_symmetric_difference(nodes[u].bag.begin(), nodes[u].bag.end(), nodes[x].bag.begin(), nodes[x].bag.end(), std::back_inserter(d));
                     assert(d.size() == 1);
                 } else {
-                    assert(bag[u].size() == 1);
+                    assert(nodes[u].bag.size() == 1);
                 }
             };
-            dfs(dfs, root, -1);
+            dfs(dfs, root);
         }
     private:
         int _n;
