@@ -2,12 +2,14 @@
 #define SUISEN_TRIE_MAP
 
 #include <map>
+#include <unordered_map>
 #include <vector>
 
 namespace suisen {
-    template <typename T>
-    struct MapTrieNode : std::map<T, int> {
+    template <typename T, bool use_ordered_map = true>
+    struct MapTrieNode : std::conditional_t<use_ordered_map, std::map<T, int>, std::unordered_map<T, int>> {
         static constexpr int none = -1;
+        static constexpr bool ordered = use_ordered_map;
 
         using key_type = T;
 
@@ -19,7 +21,10 @@ namespace suisen {
             return this->try_emplace(c, none).first->second;
         }
     };
-    template <typename NodeType, std::enable_if_t<std::is_base_of_v<MapTrieNode<typename NodeType::key_type>, NodeType>, std::nullptr_t> = nullptr>
+    template <
+        typename NodeType,
+        std::enable_if_t<std::is_base_of_v<MapTrieNode<typename NodeType::key_type, NodeType::ordered>, NodeType>, std::nullptr_t> = nullptr
+    >
     struct MapTrie {
         using node_type = NodeType;
         using key_type = typename node_type::key_type;
