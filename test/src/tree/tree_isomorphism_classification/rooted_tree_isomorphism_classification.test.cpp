@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "library/tree/rooted_tree_isomorphism_classification.hpp"
+#include "library/tree/tree_isomorphism_classification.hpp"
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -18,7 +18,8 @@ int main() {
         g[p].push_back(i);
     }
 
-    auto [k, ids] = suisen::tree_isomorphism_classification(g, 0);
+    auto ids = suisen::RootedTreeClassifier<>{}.classify_subtrees(g, 0);
+    const int k = *std::max_element(ids.begin(), ids.end()) + 1;
     std::cout << k << '\n';
     for (int i = 0; i < n; ++i) {
         std::cout << ids[i];
