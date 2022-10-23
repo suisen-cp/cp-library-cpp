@@ -10,7 +10,7 @@
 #include <vector>
 #include <unordered_map>
 
-#include "library/util/tuple_hash.hpp"
+#include "library/util/hashes.hpp"
 
 namespace suisen {
 

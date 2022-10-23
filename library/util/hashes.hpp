@@ -1,8 +1,10 @@
 #ifndef SUISEN_TUPLE_HASH
 #define SUISEN_TUPLE_HASH
 
+#include <array>
 #include <cstdint>
 #include <tuple>
+#include <utility>
 
 namespace std {
     namespace {
@@ -27,11 +29,27 @@ namespace std {
         };
     }
 
+    template <typename T, typename U>
+    struct hash<std::pair<T, U>> {
+        size_t operator()(std::pair<T, U> const& tt) const {
+            size_t seed = 0;
+            HashValueImpl<std::pair<T, U>>::apply(seed, tt);
+            return seed;
+        }
+    };
     template <typename ...Args>
     struct hash<std::tuple<Args...>> {
         size_t operator()(std::tuple<Args...> const& tt) const {
             size_t seed = 0;
             HashValueImpl<std::tuple<Args...>>::apply(seed, tt);
+            return seed;
+        }
+    };
+    template <typename T, std::size_t N>
+    struct hash<std::array<T, N>> {
+        size_t operator()(std::array<T, N> const& tt) const {
+            size_t seed = 0;
+            HashValueImpl<std::array<T, N>>::apply(seed, tt);
             return seed;
         }
     };
