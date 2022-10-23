@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection"
+#define PROBLEM "https://judge.yosupo.jp/problem/cycle_detection_undirected"
 
 #include <algorithm>
 #include <iostream>
