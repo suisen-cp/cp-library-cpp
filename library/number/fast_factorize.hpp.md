@@ -328,16 +328,16 @@ data:
   isVerificationFile: false
   path: library/number/fast_factorize.hpp
   requiredBy:
-  - library/number/primitive_root.hpp
   - library/number/tetration_mod.hpp
   - library/number/order_Z_mZ.hpp
+  - library/number/primitive_root.hpp
   timestamp: '2022-10-17 22:14:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/number/tetration_mod/tetration_mod.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
-  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/number/tetration_mod/tetration_mod.test.cpp
   - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
 documentation_of: library/number/fast_factorize.hpp
 layout: document
 title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"

@@ -356,9 +356,9 @@ data:
   timestamp: '2022-07-21 04:00:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/math/array_sps/arc105_f.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp
-  - test/src/math/array_sps/arc105_f.test.cpp
   - test/src/math/array_sps/abc213_g.test.cpp
   - test/src/math/array_sps/abc253_h_2.test.cpp
 documentation_of: library/convolution/array_subset_convolution.hpp

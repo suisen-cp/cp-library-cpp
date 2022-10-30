@@ -59,13 +59,13 @@ data:
   isVerificationFile: false
   path: library/sequence/binomial_coefficient_small_prime_mod.hpp
   requiredBy:
-  - library/sequence/stirling_number2_small_prime_mod.hpp
   - library/sequence/stirling_number1_small_prime_mod.hpp
+  - library/sequence/stirling_number2_small_prime_mod.hpp
   timestamp: '2022-10-13 23:32:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
 documentation_of: library/sequence/binomial_coefficient_small_prime_mod.hpp
 layout: document
 title: Binomial Coefficient Small Prime Mod
@@ -75,7 +75,7 @@ title: Binomial Coefficient Small Prime Mod
 以下に示す Lucas の定理を用いる。
 
 > $p$ が素数のとき、非負整数 $n, r$ に対して次が成り立つ:
-> $$\binom{n}{r} \equiv \prod_{i=0}^{k-1}\binom{n _ i}{r _ i} \pmod{p}.$$
+> $$\binom{n}{r} \equiv \prod _ {i = 0} ^ {k - 1} \binom{n _ i}{r _ i} \pmod{p}.$$
 > ここで、$n$ を $p$ 進表記したときの $i$ 桁目を $n_i$ とした ($r$ についても同様)。
 
 全ての $0\leq n\lt p,0\leq r\lt p$ に対する $\displaystyle \binom{n}{r} \bmod p$ を $O(p ^ 2)$ 時間だけ掛けて前計算しておくことで、クエリあたり $O(\log _ p n)$ で計算できる。

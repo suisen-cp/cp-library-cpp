@@ -4,9 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/ZDD.hpp
     title: ZDD
-  - icon: ':heavy_check_mark:'
-    path: library/util/tuple_hash.hpp
-    title: Tuple Hash
+  - icon: ':question:'
+    path: library/util/hashes.hpp
+    title: library/util/hashes.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,35 +22,42 @@ data:
     \n#include <iostream>\n\n#line 1 \"library/datastructure/ZDD.hpp\"\n\n\n\n#include\
     \ <array>\n#include <cstdint>\n#include <limits>\n#include <optional>\n#include\
     \ <queue>\n#include <set>\n#include <vector>\n#include <unordered_map>\n\n#line\
-    \ 1 \"library/util/tuple_hash.hpp\"\n\n\n\n#line 5 \"library/util/tuple_hash.hpp\"\
-    \n#include <tuple>\n\nnamespace std {\n    namespace {\n        template <class\
-    \ T>\n        inline void hash_combine(std::size_t& seed, T const& v) {\n    \
-    \        seed ^= hash<T>()(v) + 0x9e3779b9 + (seed << 6) + (seed >> 2);\n    \
-    \    }\n\n        template <class Tuple, size_t Index = std::tuple_size<Tuple>::value\
+    \ 1 \"library/util/hashes.hpp\"\n\n\n\n#line 6 \"library/util/hashes.hpp\"\n#include\
+    \ <tuple>\n#include <utility>\n\nnamespace std {\n    namespace {\n        template\
+    \ <class T>\n        inline void hash_combine(std::size_t& seed, T const& v) {\n\
+    \            seed ^= hash<T>()(v) + 0x9e3779b9 + (seed << 6) + (seed >> 2);\n\
+    \        }\n\n        template <class Tuple, size_t Index = std::tuple_size<Tuple>::value\
     \ - 1>\n        struct HashValueImpl {\n            static void apply(size_t&\
     \ seed, Tuple const& t) {\n                HashValueImpl<Tuple, Index - 1>::apply(seed,\
     \ t);\n                hash_combine(seed, get<Index>(t));\n            }\n   \
     \     };\n\n        template <class Tuple>\n        struct HashValueImpl<Tuple,\
     \ 0> {\n            static void apply(size_t& seed, Tuple const& t) {\n      \
     \          hash_combine(seed, get<0>(t));\n            }\n        };\n    }\n\n\
-    \    template <typename ...Args>\n    struct hash<std::tuple<Args...>> {\n   \
-    \     size_t operator()(std::tuple<Args...> const& tt) const {\n            size_t\
-    \ seed = 0;\n            HashValueImpl<std::tuple<Args...>>::apply(seed, tt);\n\
-    \            return seed;\n        }\n    };\n}\n\n\n#line 14 \"library/datastructure/ZDD.hpp\"\
-    \n\nnamespace suisen {\n\n    namespace internal::zdd {\n        using zdd_lev_t\
-    \ = uint32_t;\n        using zdd_t = uint32_t;\n\n        constexpr zdd_t ZERO\
-    \ = 0;\n        constexpr zdd_t ONE = 1;\n\n        zdd_t next_id = 2;\n\n   \
-    \     std::unordered_map<std::tuple<zdd_t, zdd_t, zdd_lev_t>, zdd_t> zdd_cache;\n\
-    \        std::vector<std::array<zdd_t, 2>> child(next_id);\n        std::vector<zdd_lev_t>\
-    \ level(next_id);\n\n        zdd_lev_t next_lev = 1;\n\n        template <typename\
-    \ Cache, typename ...Args>\n        auto check_cache(const Cache& cache, Args\
-    \ &&...args) {\n            return cache.find(std::make_tuple(std::forward<Args>(args)...));\n\
-    \        }\n\n        template <typename Cache, typename Result, typename ...Args>\n\
-    \        auto register_result(Cache& cache, Result f, Args &&...args) {\n    \
-    \        return cache[std::make_tuple(std::forward<Args>(args)...)] = f;\n   \
-    \     }\n    } // namespace zdd\n    \n    struct ZDD {\n\n        ZDD(internal::zdd::zdd_t\
-    \ id = internal::zdd::ZERO) : id(id) {}\n\n        static ZDD terminal0() {\n\
-    \            return ZDD(internal::zdd::ZERO);\n        }\n        static ZDD terminal1()\
+    \    template <typename T, typename U>\n    struct hash<std::pair<T, U>> {\n \
+    \       size_t operator()(std::pair<T, U> const& tt) const {\n            size_t\
+    \ seed = 0;\n            HashValueImpl<std::pair<T, U>>::apply(seed, tt);\n  \
+    \          return seed;\n        }\n    };\n    template <typename ...Args>\n\
+    \    struct hash<std::tuple<Args...>> {\n        size_t operator()(std::tuple<Args...>\
+    \ const& tt) const {\n            size_t seed = 0;\n            HashValueImpl<std::tuple<Args...>>::apply(seed,\
+    \ tt);\n            return seed;\n        }\n    };\n    template <typename T,\
+    \ std::size_t N>\n    struct hash<std::array<T, N>> {\n        size_t operator()(std::array<T,\
+    \ N> const& tt) const {\n            size_t seed = 0;\n            HashValueImpl<std::array<T,\
+    \ N>>::apply(seed, tt);\n            return seed;\n        }\n    };\n}\n\n\n\
+    #line 14 \"library/datastructure/ZDD.hpp\"\n\nnamespace suisen {\n\n    namespace\
+    \ internal::zdd {\n        using zdd_lev_t = uint32_t;\n        using zdd_t =\
+    \ uint32_t;\n\n        constexpr zdd_t ZERO = 0;\n        constexpr zdd_t ONE\
+    \ = 1;\n\n        zdd_t next_id = 2;\n\n        std::unordered_map<std::tuple<zdd_t,\
+    \ zdd_t, zdd_lev_t>, zdd_t> zdd_cache;\n        std::vector<std::array<zdd_t,\
+    \ 2>> child(next_id);\n        std::vector<zdd_lev_t> level(next_id);\n\n    \
+    \    zdd_lev_t next_lev = 1;\n\n        template <typename Cache, typename ...Args>\n\
+    \        auto check_cache(const Cache& cache, Args &&...args) {\n            return\
+    \ cache.find(std::make_tuple(std::forward<Args>(args)...));\n        }\n\n   \
+    \     template <typename Cache, typename Result, typename ...Args>\n        auto\
+    \ register_result(Cache& cache, Result f, Args &&...args) {\n            return\
+    \ cache[std::make_tuple(std::forward<Args>(args)...)] = f;\n        }\n    } //\
+    \ namespace zdd\n    \n    struct ZDD {\n\n        ZDD(internal::zdd::zdd_t id\
+    \ = internal::zdd::ZERO) : id(id) {}\n\n        static ZDD terminal0() {\n   \
+    \         return ZDD(internal::zdd::ZERO);\n        }\n        static ZDD terminal1()\
     \ {\n            return ZDD(internal::zdd::ONE);\n        }\n\n        static\
     \ internal::zdd::zdd_lev_t new_level() {\n            return internal::zdd::next_lev++;\n\
     \        }\n\n        static internal::zdd::zdd_t create_zdd(ZDD l, ZDD r, internal::zdd::zdd_lev_t\
@@ -215,11 +222,11 @@ data:
     \ e - 1 << ' ';\n    std::cout << std::endl;\n    return 0;\n}"
   dependsOn:
   - library/datastructure/ZDD.hpp
-  - library/util/tuple_hash.hpp
+  - library/util/hashes.hpp
   isVerificationFile: true
   path: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
   requiredBy: []
-  timestamp: '2022-01-15 02:41:24+09:00'
+  timestamp: '2022-10-23 23:57:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/ZDD/maximum_independent_set.test.cpp

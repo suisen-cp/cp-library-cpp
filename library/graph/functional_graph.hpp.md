@@ -252,9 +252,9 @@ data:
   timestamp: '2022-06-05 19:58:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/graph/functional_graph/abc258_e.test.cpp
   - test/src/graph/functional_graph/dummy.test.cpp
   - test/src/graph/functional_graph/abc254_g.test.cpp
-  - test/src/graph/functional_graph/abc258_e.test.cpp
 documentation_of: library/graph/functional_graph.hpp
 layout: document
 title: Functional Graph

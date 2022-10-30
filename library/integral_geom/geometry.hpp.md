@@ -368,12 +368,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
-  - test/src/integral_geom/geometry/CGL_3_A.test.cpp
-  - test/src/integral_geom/geometry/CGL_2_B.test.cpp
-  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
   - test/src/integral_geom/geometry/abc259_d.test.cpp
-  - test/src/integral_geom/geometry/CGL_3_B.test.cpp
+  - test/src/integral_geom/geometry/CGL_3_A.test.cpp
+  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
+  - test/src/integral_geom/geometry/CGL_2_B.test.cpp
   - test/src/integral_geom/geometry/CGL_2_A.test.cpp
+  - test/src/integral_geom/geometry/CGL_3_B.test.cpp
   - test/src/integral_geom/geometry/CGL_3_C.test.cpp
   - test/src/integral_geom/geometry/CGL_1_C.test.cpp
 documentation_of: library/integral_geom/geometry.hpp

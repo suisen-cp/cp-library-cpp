@@ -562,9 +562,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  - test/src/math/sps/arc105_f.test.cpp
   - test/src/math/sps/abc253_h.test.cpp
   - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/sps/arc105_f.test.cpp
   - test/src/math/sps/abc213_g.test.cpp
   - test/src/math/sps/abc253_h_2.test.cpp
 documentation_of: library/math/sps.hpp

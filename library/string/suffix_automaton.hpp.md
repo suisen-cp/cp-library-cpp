@@ -239,8 +239,8 @@ data:
   isVerificationFile: false
   path: library/string/suffix_automaton.hpp
   requiredBy:
-  - library/string/substring_set.hpp
   - library/debug/suffix_automaton.hpp
+  - library/string/substring_set.hpp
   timestamp: '2021-09-09 05:49:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

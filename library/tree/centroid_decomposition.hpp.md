@@ -1,27 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/frequency_table_of_tree_distance.hpp
     title: Frequency Table Of Tree Distance
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
     title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/centroid_decomposition.hpp\"\n\n\n\n#include\
     \ <deque>\n#include <limits>\n#include <queue>\n#include <tuple>\n#include <vector>\n\
     #line 1 \"library/graph/csr_graph.hpp\"\n\n\n\n#include <algorithm>\n#include\
-    \ <cassert>\n#line 7 \"library/graph/csr_graph.hpp\"\n#include <type_traits>\n\
-    #line 10 \"library/graph/csr_graph.hpp\"\n\nnamespace suisen {\n    namespace\
+    \ <cassert>\n#line 7 \"library/graph/csr_graph.hpp\"\n#include <optional>\n#include\
+    \ <type_traits>\n#line 10 \"library/graph/csr_graph.hpp\"\n#include <utility>\n\
+    #line 12 \"library/graph/csr_graph.hpp\"\n\nnamespace suisen {\n    namespace\
     \ internal::csr_graph { struct graph_base_tag {}; }\n    struct directed_graph_tag\
     \ : internal::csr_graph::graph_base_tag {};\n    struct undirected_graph_tag :\
     \ internal::csr_graph::graph_base_tag {};\n    template <typename T>\n    struct\
@@ -31,7 +32,8 @@ data:
     \ <typename GraphTag, typename, std::enable_if_t<is_graph_tag_v<GraphTag>, std::nullptr_t>>\n\
     \        friend struct GraphBuilder;\n\n        using weight_type = WeightType;\n\
     \        static constexpr bool weighted = std::negation_v<std::is_same<weight_type,\
-    \ void>>;\n\n        using input_edge_type = std::conditional_t<weighted, std::tuple<int,\
+    \ void>>;\n\n        using weight_type_or_1 = std::conditional_t<weighted, weight_type,\
+    \ int>;\n\n        using input_edge_type = std::conditional_t<weighted, std::tuple<int,\
     \ int, weight_type>, std::pair<int, int>>;\n    private:\n        using internal_edge_type\
     \ = std::conditional_t<weighted, std::pair<int, weight_type>, int>;\n        struct\
     \ Edge : public internal_edge_type {\n            using internal_edge_type::internal_edge_type;\n\
@@ -101,27 +103,27 @@ data:
     \ GraphTag, std::vector<int> cap = {}) : _n(n), _adj(_n) {\n            static\
     \ constexpr bool undirected = std::is_same_v<undirected_graph_tag, GraphTag>;\n\
     \n            for (const auto& e : edges) {\n                const int u = std::get<0>(e);\n\
-    \                const int v = std::get<1>(e);\n                ++_adj[u]._siz;\n\
-    \                if constexpr (undirected) ++_adj[v]._siz;\n            }\n  \
-    \          if (cap.empty()) cap.resize(_n, std::numeric_limits<int>::max());\n\
-    \            int edge_num = 0;\n            for (int i = 0; i < _n; ++i) {\n \
-    \               _adj[i]._g = this;\n                _adj[i]._cap = std::min(_adj[i]._siz,\
-    \ cap[i]);\n                _adj[i]._offset = edge_num;\n                edge_num\
-    \ += _adj[i]._siz;\n            }\n            _edges.resize(edge_num);\n    \
-    \        std::vector<typename std::vector<edge_type>::iterator> ptr(_n);\n   \
-    \         for (int i = 0; i < _n; ++i) ptr[i] = _adj[i].begin();\n           \
-    \ for (const auto& e : edges) {\n                const int u = std::get<0>(e);\n\
+    \                ++_adj[u]._siz;\n                if constexpr (undirected) {\n\
+    \                    const int v = std::get<1>(e);\n                    ++_adj[v]._siz;\n\
+    \                }\n            }\n            if (cap.empty()) cap.resize(_n,\
+    \ std::numeric_limits<int>::max());\n            int edge_num = 0;\n         \
+    \   for (int i = 0; i < _n; ++i) {\n                _adj[i]._g = this;\n     \
+    \           _adj[i]._cap = std::min(_adj[i]._siz, cap[i]);\n                _adj[i]._offset\
+    \ = edge_num;\n                edge_num += _adj[i]._siz;\n            }\n    \
+    \        _edges.resize(edge_num);\n            std::vector<typename std::vector<edge_type>::iterator>\
+    \ ptr(_n);\n            for (int i = 0; i < _n; ++i) ptr[i] = _adj[i].begin();\n\
+    \            for (const auto& e : edges) {\n                const int u = std::get<0>(e);\n\
     \                const int v = std::get<1>(e);\n                if constexpr (weighted)\
     \ {\n                    const weight_type& w = std::get<2>(e);\n            \
     \        *ptr[u]++ = { v, w };\n                    if constexpr (undirected)\
     \ *ptr[v]++ = { u, w };\n                } else {\n                    *ptr[u]++\
     \ = v;\n                    if constexpr (undirected) *ptr[v]++ = u;\n       \
-    \         }\n            }\n        }\n        Graph(const std::vector<std::vector<edge_type>>\
-    \ &g) : Graph(g.size(), make_edges(g), directed_graph_tag{}) {}\n\n        static\
+    \         }\n            }\n        }\n        Graph(const std::vector<std::vector<edge_type>>&\
+    \ g) : Graph(g.size(), make_edges(g), directed_graph_tag{}) {}\n\n        static\
     \ Graph create_directed_graph(const int n, const std::vector<input_edge_type>&\
-    \ edges, const std::vector<int> &cap = {}) {\n            return Graph(n, edges,\
+    \ edges, const std::vector<int>& cap = {}) {\n            return Graph(n, edges,\
     \ directed_graph_tag{}, cap);\n        }\n        static Graph create_undirected_graph(const\
-    \ int n, const std::vector<input_edge_type>& edges, const std::vector<int> &cap\
+    \ int n, const std::vector<input_edge_type>& edges, const std::vector<int>& cap\
     \ = {}) {\n            return Graph(n, edges, undirected_graph_tag{}, cap);\n\
     \        }\n\n        adjacent_list& operator[](int i) {\n            _adj[i]._g\
     \ = this;\n            return _adj[i];\n        }\n        const adjacent_list&\
@@ -134,28 +136,54 @@ data:
     \       int nl = it - new_edges.begin();\n                it = std::move(_adj[i].begin(),\
     \ _adj[i].end(), it);\n                _adj[i]._offset = nl;\n               \
     \ _adj[i]._cap = _adj[i]._siz;\n            }\n            _edges.swap(new_edges);\n\
-    \        }\n\n        static std::conditional_t<weighted, weight_type, int> get_weight(const\
-    \ edge_type& edge) {\n            if constexpr (weighted) return std::get<1>(edge);\n\
-    \            else return 1;\n        }\n\n        Graph reversed(const std::vector<int>\
-    \ &cap = {}) const {\n            std::vector<input_edge_type> edges;\n      \
-    \      for (int i = 0; i < _n; ++i) {\n                for (const auto &edge :\
+    \        }\n\n        static weight_type_or_1 get_weight(const edge_type& edge)\
+    \ {\n            if constexpr (weighted) return std::get<1>(edge);\n         \
+    \   else return 1;\n        }\n\n        Graph reversed(const std::vector<int>&\
+    \ cap = {}) const {\n            std::vector<input_edge_type> edges;\n       \
+    \     for (int i = 0; i < _n; ++i) {\n                for (const auto& edge :\
     \ (*this)[i]) {\n                    if constexpr (weighted) edges.emplace_back(std::get<0>(edge),\
     \ i, std::get<1>(edge));\n                    else edges.emplace_back(edge, i);\n\
     \                }\n            }\n            return Graph(_n, std::move(edges),\
-    \ directed_graph_tag{}, cap);\n        }\n    private:\n        int _n;\n    \
-    \    std::vector<adjacent_list> _adj;\n        std::vector<edge_type> _edges;\n\
-    \n        static std::vector<input_edge_type> make_edges(const std::vector<std::vector<edge_type>>\
-    \ &g) {\n            const int n = g.size();\n            std::vector<input_edge_type>\
-    \ edges;\n            for (int i = 0; i < n; ++i) for (const auto &e : g[i]) {\n\
-    \                if constexpr (weighted) edges.emplace_back(i, std::get<0>(e),\
-    \ std::get<1>(e));\n                else edges.emplace_back(i, e);\n         \
-    \   }\n            return edges;\n        }\n    };\n\n    template <typename\
+    \ directed_graph_tag{}, cap);\n        }\n\n        struct DFSTree {\n       \
+    \     std::vector<int> par;\n            std::vector<int> pre_ord, pst_ord;\n\
+    \            Graph tree, back;\n        };\n\n        DFSTree dfs_tree(int start\
+    \ = 0) const {\n            std::vector<input_edge_type> tree_edge, back_edge;\n\
+    \n            std::vector<int> pre(_n), pst(_n);\n            auto pre_it = pre.begin(),\
+    \ pst_it = pst.begin();\n\n            std::vector<int> eid(_n, -1), par(_n, -2);\n\
+    \            std::vector<std::optional<weight_type_or_1>> par_w(_n, std::nullopt);\n\
+    \            for (int i = 0; i < _n; ++i) {\n                int cur = (start\
+    \ + i) % _n;\n                if (par[cur] != -2) continue;\n                par[cur]\
+    \ = -1;\n                while (cur >= 0) {\n                    ++eid[cur];\n\
+    \                    if (eid[cur] == 0) *pre_it++ = cur;\n                   \
+    \ if (eid[cur] == _adj[cur].size()) {\n                        *pst_it++ = cur;\n\
+    \                        cur = par[cur];\n                    } else {\n     \
+    \                   const auto &e = _adj[cur][eid[cur]];\n                   \
+    \     weight_type_or_1 w = get_weight(e);\n                        int nxt = e;\n\
+    \                        if (par[nxt] == -2) {\n                            tree_edge.emplace_back(make_edge(cur,\
+    \ e));\n                            par[nxt] = cur;\n                        \
+    \    par_w[nxt] = std::move(w);\n                            cur = nxt;\n    \
+    \                    } else if (eid[nxt] != _adj[nxt].size()) {\n            \
+    \                if (par[cur] != nxt or par_w[cur] != w or not std::exchange(par_w[cur],\
+    \ std::nullopt).has_value()) {\n                                back_edge.emplace_back(make_edge(cur,\
+    \ e));\n                            }\n                        }\n           \
+    \         }\n                }\n            }\n            Graph tree = create_directed_graph(_n,\
+    \ tree_edge);\n            Graph back = create_directed_graph(_n, back_edge);\n\
+    \            return DFSTree{ std::move(par), std::move(pre), std::move(pst), std::move(tree),\
+    \ std::move(back) };\n        }\n\n    private:\n        int _n;\n        std::vector<adjacent_list>\
+    \ _adj;\n        std::vector<edge_type> _edges;\n\n        static std::vector<input_edge_type>\
+    \ make_edges(const std::vector<std::vector<edge_type>>& g) {\n            const\
+    \ int n = g.size();\n            std::vector<input_edge_type> edges;\n       \
+    \     for (int i = 0; i < n; ++i) for (const auto& e : g[i]) {\n             \
+    \   edges.emplace_back(make_edge(i, e));\n            }\n            return edges;\n\
+    \        }\n        static input_edge_type make_edge(int i, const edge_type& e)\
+    \ {\n            if constexpr (weighted) return { i, std::get<0>(e), std::get<1>(e)\
+    \ };\n            else return { i, e };\n        }\n    };\n\n    template <typename\
     \ GraphTag>\n    Graph(int, std::vector<std::pair<int, int>>, GraphTag, std::vector<int>\
-    \ = {}) -> Graph<void>;\n    template <typename WeightType, typename GraphTag>\n\
+    \ = {})->Graph<void>;\n    template <typename WeightType, typename GraphTag>\n\
     \    Graph(int, std::vector<std::tuple<int, int, WeightType>>, GraphTag, std::vector<int>\
-    \ = {}) -> Graph<WeightType>;\n\n    Graph(std::vector<std::vector<int>>) -> Graph<void>;\n\
+    \ = {})->Graph<WeightType>;\n\n    Graph(std::vector<std::vector<int>>)->Graph<void>;\n\
     \    template <typename WeightType>\n    Graph(std::vector<std::vector<std::pair<int,\
-    \ WeightType>>>) -> Graph<WeightType>;\n\n    template <typename GraphTag, typename\
+    \ WeightType>>>)->Graph<WeightType>;\n\n    template <typename GraphTag, typename\
     \ WeightType = void,\n        std::enable_if_t<is_graph_tag_v<GraphTag>, std::nullptr_t>\
     \ = nullptr>\n    struct GraphBuilder {\n        using graph_tag = GraphTag;\n\
     \        using weight_type = WeightType;\n        using edge_type = typename Graph<weight_type>::input_edge_type;\n\
@@ -165,15 +193,15 @@ data:
     \ &&...args) {\n            check_not_moved();\n            _edges.emplace_back(std::forward<Args>(args)...);\n\
     \        }\n        template <typename EdgeContainer, std::enable_if_t<std::is_constructible_v<edge_type,\
     \ typename EdgeContainer::value_type>, std::nullptr_t> = nullptr>\n        void\
-    \ add_edges(const EdgeContainer &edges) {\n            for (const auto &edge :\
+    \ add_edges(const EdgeContainer& edges) {\n            for (const auto& edge :\
     \ edges) add_edge(edge);\n        }\n\n        template <bool move_edges = true>\n\
     \        Graph<weight_type> build() {\n            if constexpr (move_edges) {\n\
     \                _moved = true;\n                return Graph<weight_type>(_n,\
     \ std::move(_edges), graph_tag{});\n            } else {\n                return\
     \ Graph<weight_type>(_n, _edges, graph_tag{});\n            }\n        }\n   \
     \     Graph<weight_type> build_without_move() {\n            return build<false>();\n\
-    \        }\n\n        static Graph<weight_type> build(const int n, const std::vector<edge_type>\
-    \ &edges) {\n            GraphBuilder builder(n);\n            builder.add_edges(edges);\n\
+    \        }\n\n        static Graph<weight_type> build(const int n, const std::vector<edge_type>&\
+    \ edges) {\n            GraphBuilder builder(n);\n            builder.add_edges(edges);\n\
     \            return builder.build();\n        }\n    private:\n        int _n;\n\
     \        std::vector<edge_type> _edges;\n        bool _moved = false;\n\n    \
     \    void check_not_moved() {\n            if (not _moved) return;\n         \
@@ -352,8 +380,8 @@ data:
   path: library/tree/centroid_decomposition.hpp
   requiredBy:
   - library/tree/frequency_table_of_tree_distance.hpp
-  timestamp: '2022-10-17 14:54:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-30 21:38:10+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
 documentation_of: library/tree/centroid_decomposition.hpp

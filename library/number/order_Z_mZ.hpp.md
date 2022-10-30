@@ -476,8 +476,8 @@ data:
   timestamp: '2022-10-20 19:29:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/number/primitive_root/dummy.test.cpp
   - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
 documentation_of: library/number/order_Z_mZ.hpp
 layout: document
 title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$

@@ -265,9 +265,9 @@ data:
   timestamp: '2022-07-27 16:22:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
-  - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   - test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
+  - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
+  - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
   - test/src/linear_algebra/array_matrix/matrix_det.test.cpp
 documentation_of: library/linear_algebra/array_matrix.hpp
 layout: document

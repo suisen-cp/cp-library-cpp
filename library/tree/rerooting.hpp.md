@@ -101,8 +101,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/rerooting/abc160_f.test.cpp
-  - test/src/tree/rerooting/abc222_f.test.cpp
   - test/src/tree/rerooting/edpc_v.test.cpp
+  - test/src/tree/rerooting/abc222_f.test.cpp
 documentation_of: library/tree/rerooting.hpp
 layout: document
 title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"

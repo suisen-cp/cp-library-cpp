@@ -177,9 +177,9 @@ data:
   timestamp: '2022-10-20 19:29:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/number/util/kth_root_integer.test.cpp
-  - test/src/number/util/abc222_g.test.cpp
   - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/number/util/abc222_g.test.cpp
+  - test/src/number/util/kth_root_integer.test.cpp
 documentation_of: library/number/util.hpp
 layout: document
 title: Util

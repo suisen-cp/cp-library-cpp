@@ -1,6 +1,11 @@
 ---
 data:
   libraryCategories:
+  - name: library/algebra/field
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: library/algebra/field/nimber.hpp
+      title: library/algebra/field/nimber.hpp
   - name: library/algebra/monoid
     pages:
     - icon: ':heavy_check_mark:'
@@ -12,22 +17,20 @@ data:
   - name: library/algorithm
     pages:
     - icon: ':heavy_check_mark:'
-      path: library/algorithm/convex_hull_trick.hpp
-      title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3057\u306A\u3044\
-        \ Convex Hull Trick"
+      path: library/algorithm/area_of_union_of_rectangles.hpp
+      title: Calculates area of union of rectangles in O(NlogN) time.
     - icon: ':heavy_check_mark:'
       path: library/algorithm/dynamic_convex_hull_offline.hpp
       title: "\u52D5\u7684\u51F8\u5305"
     - icon: ':warning:'
       path: library/algorithm/horn_sat.hpp
       title: Horn SAT
+    - icon: ':warning:'
+      path: library/algorithm/inversion_number.hpp
+      title: library/algorithm/inversion_number.hpp
     - icon: ':heavy_check_mark:'
       path: library/algorithm/mo.hpp
       title: Mo
-    - icon: ':heavy_check_mark:'
-      path: library/algorithm/monotonic_convex_hull_trick.hpp
-      title: "\u50BE\u304D\u306E\u5358\u8ABF\u6027\u3092\u4EEE\u5B9A\u3059\u308B Convex\
-        \ Hull Trick"
     - icon: ':warning:'
       path: library/algorithm/offline_dynamic_connectivity.hpp
       title: Offline Dynamic Connectivity
@@ -44,12 +47,6 @@ data:
       path: library/algorithm/rmq_pm1_with_index.hpp
       title: "\u96A3\u63A5\u8981\u7D20\u306E\u5DEE\u304C $\\pm 1$ \u306E\u5834\u5408\
         \u306E RMQ (\u6DFB\u5B57\u306E\u5FA9\u5143\u4ED8\u304D)"
-    - icon: ':heavy_check_mark:'
-      path: library/algorithm/sliding_window_minimum.hpp
-      title: Sliding Window Minimum
-    - icon: ':heavy_check_mark:'
-      path: library/algorithm/slope_trick.hpp
-      title: Slope Trick
     - icon: ':warning:'
       path: library/algorithm/two_sat.hpp
       title: Two Sat
@@ -137,6 +134,9 @@ data:
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: Compressed Wavelet Matrix
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/convex_hull_trick.hpp
+      title: library/datastructure/convex_hull_trick.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/deque_aggregation.hpp
       title: "SWAG \u3092 Deque \u306B\u62E1\u5F35\u3057\u305F\u3084\u3064"
     - icon: ':heavy_check_mark:'
@@ -153,6 +153,9 @@ data:
       path: library/datastructure/lazy_eval_map.hpp
       title: Lazy Eval Map
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/monotonic_convex_hull_trick.hpp
+      title: library/datastructure/monotonic_convex_hull_trick.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/permutation_tree.hpp
       title: Permutation Tree
     - icon: ':heavy_check_mark:'
@@ -167,6 +170,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_map.hpp
       title: Range Foldable Map
+    - icon: ':x:'
+      path: library/datastructure/sliding_window_minimum.hpp
+      title: library/datastructure/sliding_window_minimum.hpp
+    - icon: ':x:'
+      path: library/datastructure/slope_trick.hpp
+      title: library/datastructure/slope_trick.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: Sparse Table
@@ -221,7 +230,7 @@ data:
     - icon: ':warning:'
       path: library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp
       title: Compressed Fenwick Tree
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
       title: Compressed Fenwick Tree Prefix
     - icon: ':heavy_check_mark:'
@@ -262,6 +271,9 @@ data:
       path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\
         \u53EF\u63DB\u306A\u5834\u5408)"
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree/compressed_segment_tree.hpp
+      title: library/datastructure/segment_tree/compressed_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
@@ -404,10 +416,10 @@ data:
     - icon: ':warning:'
       path: library/graph/block_cut_forest.hpp
       title: Block Cut Forest
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/graph/csr_graph.hpp
       title: Graph (CSR Format)
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/graph/cycle_detection.hpp
       title: Cycle Detection
     - icon: ':warning:'
@@ -460,8 +472,14 @@ data:
       path: library/graph/segment_tree_graph.hpp
       title: Segment Tree Graph
     - icon: ':warning:'
+      path: library/graph/single_source_shortest_path_dag.hpp
+      title: library/graph/single_source_shortest_path_dag.hpp
+    - icon: ':warning:'
       path: library/graph/topological_sort.hpp
       title: Topological Sort
+    - icon: ':x:'
+      path: library/graph/tree_decomposition_tw2.hpp
+      title: Tree Decomposition Tw2
     - icon: ':heavy_check_mark:'
       path: library/graph/two_edge_connected_components.hpp
       title: "\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3"
@@ -744,6 +762,9 @@ data:
     - icon: ':x:'
       path: library/string/rolling_hash.hpp
       title: Rolling Hash
+    - icon: ':warning:'
+      path: library/string/rolling_hash_field.hpp
+      title: library/string/rolling_hash_field.hpp
     - icon: ':heavy_check_mark:'
       path: library/string/run_enumerate.hpp
       title: Run Enumerate
@@ -756,7 +777,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/trie_array.hpp
       title: Trie Array
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/string/trie_map.hpp
       title: Trie Map
   - name: library
@@ -799,7 +820,7 @@ data:
       title: "\u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u305F\u3061\u306E\u6700\u5C0F\
         \u5171\u901A\u7956\u5148\u95A2\u4FC2\u3092\u4FDD\u3063\u3066\u6728\u3092\u5727\
         \u7E2E\u3057\u3066\u3067\u304D\u308B\u88DC\u52A9\u7684\u306A\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/tree/centroid_decomposition.hpp
       title: "\u91CD\u5FC3\u5206\u89E3"
     - icon: ':warning:'
@@ -808,7 +829,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: library/tree/find_centroid.hpp
+      title: library/tree/find_centroid.hpp
+    - icon: ':x:'
       path: library/tree/frequency_table_of_tree_distance.hpp
       title: Frequency Table Of Tree Distance
     - icon: ':heavy_check_mark:'
@@ -854,19 +878,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
-    - icon: ':heavy_check_mark:'
-      path: library/tree/rooted_tree_isomorphism_classification.hpp
-      title: Rooted Tree Isomorphism Classification
+    - icon: ':x:'
+      path: library/tree/tree_isomorphism_classification.hpp
+      title: Classify subtrees by isomorphism in O(n log n) time.
   - name: library/type_traits
     pages:
     - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
-  - name: library/uncategorized
-    pages:
-    - icon: ':warning:'
-      path: library/uncategorized/inversion_number.hpp
-      title: Inversion Number
   - name: library/util
     pages:
     - icon: ':warning:'
@@ -893,6 +912,9 @@ data:
     - icon: ':warning:'
       path: library/util/grid_utils.hpp
       title: Grid Utils
+    - icon: ':question:'
+      path: library/util/hashes.hpp
+      title: library/util/hashes.hpp
     - icon: ':warning:'
       path: library/util/iter_util.hpp
       title: Iter Util
@@ -915,15 +937,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/util/timer.hpp
       title: Timer
     - icon: ':warning:'
       path: library/util/transpose.hpp
       title: Transpose
-    - icon: ':heavy_check_mark:'
-      path: library/util/tuple_hash.hpp
-      title: Tuple Hash
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_ops.hpp
       title: Tuple Ops
@@ -940,17 +959,16 @@ data:
       path: library/util/zobrist_hash.hpp
       title: Zobrist Hash
   verificationCategories:
-  - name: test/src/algorithm/convex_hull_trick
+  - name: test/src/algebra/field/nimber
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
-      title: test/src/algorithm/convex_hull_trick/EDPC_Z.test.cpp
+      path: test/src/algebra/field/nimber/nim_product_64.test.cpp
+      title: test/src/algebra/field/nimber/nim_product_64.test.cpp
+  - name: test/src/algorithm/area_of_union_of_rectangles
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
-      title: test/src/algorithm/convex_hull_trick/abc228_h.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
-      title: test/src/algorithm/convex_hull_trick/line_add_get_min.test.cpp
+      path: test/src/algorithm/area_of_union_of_rectangles/area_of_union_of_rectangles.test.cpp
+      title: test/src/algorithm/area_of_union_of_rectangles/area_of_union_of_rectangles.test.cpp
   - name: test/src/algorithm/dynamic_convex_hull_offline
     pages:
     - icon: ':heavy_check_mark:'
@@ -967,50 +985,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/mo/abc242_g.test.cpp
       title: test/src/algorithm/mo/abc242_g.test.cpp
-  - name: test/src/algorithm/monotonic_convex_hull_trick
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_dec.test.cpp
-      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_dec.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_inc.test.cpp
-      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_inc.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_nonmonotonic.test.cpp
-      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_max_nonmonotonic.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_dec.test.cpp
-      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_dec.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_inc.test.cpp
-      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_inc.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_nonmonotonic.test.cpp
-      title: test/src/algorithm/monotonic_convex_hull_trick/EDPC_Z_min_nonmonotonic.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
-      title: test/src/algorithm/monotonic_convex_hull_trick/abc228_h.test.cpp
   - name: test/src/algorithm/offline_dynamic_connectivity_component_sum
     pages:
     - icon: ':heavy_check_mark:'
       path: test/src/algorithm/offline_dynamic_connectivity_component_sum/dynamic_graph_vertex_add_component_sum.test.cpp
       title: test/src/algorithm/offline_dynamic_connectivity_component_sum/dynamic_graph_vertex_add_component_sum.test.cpp
-  - name: test/src/algorithm/sliding_window_minimum
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
-      title: test/src/algorithm/sliding_window_minimum/DSL_3_D.test.cpp
-  - name: test/src/algorithm/slope_trick
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/slope_trick/absolute_minima.test.cpp
-      title: test/src/algorithm/slope_trick/absolute_minima.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
-      title: test/src/algorithm/slope_trick/inc_dec_decomposition.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
-      title: test/src/algorithm/slope_trick/narrow_rectangles.test.cpp
   - name: test/src/convolution/and_convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -1150,6 +1129,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - name: test/src/datastructure/convex_hull_trick
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
+      title: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
+      title: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
+      title: test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
   - name: test/src/datastructure/deque_aggregation
     pages:
     - icon: ':heavy_check_mark:'
@@ -1166,6 +1156,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/double_ended_priority_queue/double_ended_priority_queue.test.cpp
       title: test/src/datastructure/double_ended_priority_queue/double_ended_priority_queue.test.cpp
+  - name: test/src/datastructure/fenwick_tree/compressed_fenwick_tree_prefix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/fenwick_tree/compressed_fenwick_tree_prefix/abc266_h.test.cpp
+      title: test/src/datastructure/fenwick_tree/compressed_fenwick_tree_prefix/abc266_h.test.cpp
   - name: test/src/datastructure/fenwick_tree/fenwick_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1226,6 +1221,29 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
       title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - name: test/src/datastructure/monotonic_convex_hull_trick
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_max_dec.test.cpp
+      title: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_max_dec.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_max_inc.test.cpp
+      title: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_max_inc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_max_nonmonotonic.test.cpp
+      title: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_max_nonmonotonic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_min_dec.test.cpp
+      title: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_min_dec.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_min_inc.test.cpp
+      title: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_min_inc.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_min_nonmonotonic.test.cpp
+      title: test/src/datastructure/monotonic_convex_hull_trick/EDPC_Z_min_nonmonotonic.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/monotonic_convex_hull_trick/abc228_h.test.cpp
+      title: test/src/datastructure/monotonic_convex_hull_trick/abc228_h.test.cpp
   - name: test/src/datastructure/permutation_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1239,6 +1257,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
       title: test/src/datastructure/segment_tree/commutative_dual_segment_tree/rectilinear_polygons.test.cpp
+  - name: test/src/datastructure/segment_tree/compressed_segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/compressed_segment_tree/abc266_h.test.cpp
+      title: test/src/datastructure/segment_tree/compressed_segment_tree/abc266_h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/compressed_segment_tree/abc266_h_2.test.cpp
+      title: test/src/datastructure/segment_tree/compressed_segment_tree/abc266_h_2.test.cpp
   - name: test/src/datastructure/segment_tree/dual_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1349,6 +1375,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
       title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+  - name: test/src/datastructure/sliding_window_minimum
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/sliding_window_minimum/DSL_3_D.test.cpp
+      title: test/src/datastructure/sliding_window_minimum/DSL_3_D.test.cpp
+  - name: test/src/datastructure/slope_trick
+    pages:
+    - icon: ':x:'
+      path: test/src/datastructure/slope_trick/absolute_minima.test.cpp
+      title: test/src/datastructure/slope_trick/absolute_minima.test.cpp
+    - icon: ':x:'
+      path: test/src/datastructure/slope_trick/inc_dec_decomposition.test.cpp
+      title: test/src/datastructure/slope_trick/inc_dec_decomposition.test.cpp
+    - icon: ':x:'
+      path: test/src/datastructure/slope_trick/narrow_rectangles.test.cpp
+      title: test/src/datastructure/slope_trick/narrow_rectangles.test.cpp
   - name: test/src/datastructure/union_find/linked_union_find
     pages:
     - icon: ':x:'
@@ -1517,17 +1559,20 @@ data:
       title: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
   - name: test/src/graph/csr_graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/graph/csr_graph/dummy.test.cpp
       title: test/src/graph/csr_graph/dummy.test.cpp
   - name: test/src/graph/cycle_detection
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/graph/cycle_detection/cycle_detection.test.cpp
       title: test/src/graph/cycle_detection/cycle_detection.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
-      title: test/src/graph/cycle_detection/cycle_detection_2.test.cpp
+    - icon: ':x:'
+      path: test/src/graph/cycle_detection/cycle_detection_undirected.test.cpp
+      title: test/src/graph/cycle_detection/cycle_detection_undirected.test.cpp
+    - icon: ':x:'
+      path: test/src/graph/cycle_detection/dummy.test.cpp
+      title: test/src/graph/cycle_detection/dummy.test.cpp
   - name: test/src/graph/dulmage_mendelsohn_decomposition
     pages:
     - icon: ':heavy_check_mark:'
@@ -1594,6 +1639,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/segment_tree_graph/flags.test.cpp
       title: test/src/graph/segment_tree_graph/flags.test.cpp
+  - name: test/src/graph/tree_decomposition_tw2
+    pages:
+    - icon: ':x:'
+      path: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
+      title: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
+    - icon: ':x:'
+      path: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
+      title: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
   - name: test/src/graph/two_edge_connected_components
     pages:
     - icon: ':heavy_check_mark:'
@@ -2125,7 +2178,7 @@ data:
       title: test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/frequency_table_of_tree_distance
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
       title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   - name: test/src/tree/heavy_light_decomposition
@@ -2233,11 +2286,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/edpc_v.test.cpp
       title: test/src/tree/rerooting/edpc_v.test.cpp
-  - name: test/src/tree/rooted_tree_isomorphism_classification
+  - name: test/src/tree/tree_isomorphism_classification
     pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
-      title: test/src/tree/rooted_tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
+    - icon: ':x:'
+      path: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
+      title: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
   - name: test/src/util/coordinate_compressor
     pages:
     - icon: ':heavy_check_mark:'
