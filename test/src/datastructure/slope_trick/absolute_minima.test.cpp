@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc127/tasks/abc127_f"
 
 #include <iostream>
-#include "library/algorithm/slope_trick.hpp"
+#include "library/datastructure/slope_trick.hpp"
 
 void solve() {
     suisen::SlopeTrick<long long> f;

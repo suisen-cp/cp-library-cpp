@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "library/algorithm/slope_trick.hpp"
+#include "library/datastructure/slope_trick.hpp"
 
 long long solve() {
     int n;

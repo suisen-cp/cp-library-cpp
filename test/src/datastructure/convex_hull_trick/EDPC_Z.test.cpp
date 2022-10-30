@@ -1,11 +1,11 @@
 #define PROBLEM "https://atcoder.jp/contests/dp/tasks/dp_z"
 
 #include <iostream>
+#include <vector>
 
-#include "library/algorithm/monotonic_convex_hull_trick.hpp"
+#include "library/datastructure/convex_hull_trick.hpp"
 
-using suisen::MaxMonotonicCHT;
-using suisen::non_monotonic_query_tag;
+using suisen::ConvexHullTrick;
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -18,10 +18,10 @@ int main() {
         std::cin >> h[i];
     }
     std::vector<long long> dp(n, 0);
-    MaxMonotonicCHT<long long, non_monotonic_query_tag> cht;
+    ConvexHullTrick<long long> cht;
     for (int i = 1; i < n; ++i) {
-        cht.add_line(2 * h[i - 1], -(dp[i - 1] + h[i - 1] * h[i - 1]));
-        dp[i] = -cht.query(h[i]) + h[i] * h[i] + c;
+        cht.add_line(-2 * h[i - 1], dp[i - 1] + h[i - 1] * h[i - 1]);
+        dp[i] = cht.query(h[i]) + h[i] * h[i] + c;
     }
     std::cout << dp[n - 1] << std::endl;
     return 0;

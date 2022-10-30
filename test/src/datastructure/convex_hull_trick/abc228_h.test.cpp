@@ -4,9 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "library/algorithm/monotonic_convex_hull_trick.hpp"
-
-constexpr int M = 1000000;
+#include "library/datastructure/convex_hull_trick.hpp"
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -15,24 +13,21 @@ int main() {
     int n, x;
     std::cin >> n >> x;
 
-    std::array<long long, M + 1> cs{};
-    for (int i = 0; i < n; ++i) {
-        int a, c;
-        std::cin >> a >> c;
-        cs[a] += c;
-    }
+    std::vector<std::pair<long long, long long>> ps(n);
+    for (auto &[a, c] : ps) std::cin >> a >> c;
+    std::sort(ps.begin(), ps.end());
 
-    suisen::MinMonotonicCHT<long long, suisen::inc_query_tag> cht;
+    suisen::ConvexHullTrick<long long> cht;
     
     long long ans = 0;
     long long s = 0, t = 0;
     cht.add_line(-s, t);
-    for (long long a = 0; a <= M; ++a) if (long long c = cs[a]; c) {
+    for (const auto &[a, c] : ps) {
         s += c, t += a * c;
         ans = cht.query(a) + x + a * s - t;
         cht.add_line(-s, ans + t);
     }
+
     std::cout << ans << std::endl;
-    
     return 0;
 }

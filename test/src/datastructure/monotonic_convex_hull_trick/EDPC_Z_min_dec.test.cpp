@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "library/algorithm/monotonic_convex_hull_trick.hpp"
+#include "library/datastructure/monotonic_convex_hull_trick.hpp"
 
 using suisen::MinMonotonicCHT;
 using suisen::dec_query_tag;

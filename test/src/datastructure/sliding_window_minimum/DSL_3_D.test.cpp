@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "library/algorithm/sliding_window_minimum.hpp"
+#include "library/datastructure/sliding_window_minimum.hpp"
 using suisen::sliding_window_minimum;
 
 int main() {

@@ -4,7 +4,7 @@
 #include <tuple>
 #include <vector>
 
-#include "library/algorithm/convex_hull_trick.hpp"
+#include "library/datastructure/convex_hull_trick.hpp"
 using suisen::ConvexHullTrick;
 
 int main() {
