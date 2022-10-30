@@ -29,7 +29,7 @@ namespace suisen {
         using index_type = Index;
         using point_type = std::array<index_type, K>;
         using cube_type = std::array<std::pair<index_type, index_type>, K>;
-        using data_type = CompressedSegmentTree<value_type, op, e, inv, K - 1, index_type>;
+        using data_type = CompressedSegmentTree<value_type, op, e, K - 1, index_type>;
 
         CompressedSegmentTree() = default;
 
@@ -41,7 +41,7 @@ namespace suisen {
             n = comp.build();
             data.assign(2 * n, data_type{});
             for (const auto& p : points) for (int k = n + comp(p[0]); k; k >>= 1) {
-                data[k - 1].add_point(tail(p));
+                data[k].add_point(tail(p));
             }
             points.clear();
             points.shrink_to_fit();
@@ -49,18 +49,22 @@ namespace suisen {
         }
 
         value_type query(const cube_type& p) const {
-            auto tp = tail(p);
             value_type sml = e(), smr = e();
             int l = comp(p[0].first) + n, r = comp(p[0].second) + n;
             for (; l < r; l >>= 1, r >>= 1) {
-                if (l & 1) sml = op(sml, data[l++].query(tp));
-                if (r & 1) smr = op(data[--r].query(tp), smr);
+                if (l & 1) sml = op(sml, data[l++].query(tail(p)));
+                if (r & 1) smr = op(data[--r].query(tail(p)), smr);
             }
             return op(sml, smr);
         }
+        value_type get(const point_type& p) const {
+            return data[comp(p[0]) + n].get(tail(p));
+        }
         void set(const point_type& p, const value_type& val) {
-            int i = comp(p[0]) + n;
-            while (i >>= 1) data[i].set(tail(p), val);
+            for (int i = comp(p[0]) + n; i; i >>= 1) data[i].set(tail(p), val);
+        }
+        void apply(const point_type& p, const value_type& val) {
+            for (int i = comp(p[0]) + n; i; i >>= 1) data[i].apply(tail(p), val);
         }
     private:
         int n;
@@ -105,11 +109,17 @@ namespace suisen {
             }
             return op(sml, smr);
         }
+        value_type get(const point_type &i) const {
+            return data[comp(i) + n];
+        }
 
         void set(const point_type& p, const value_type& val) {
             int i = comp(p) + n;
             data[i] = val;
             while (i >>= 1) data[i] = op(data[2 * i + 0], data[2 * i + 1]);
+        }
+        void apply(const point_type& p, const value_type& val) {
+            for (int i = comp(p) + n; i; i >>= 1) data[i] = op(data[i], val);
         }
     private:
         int n;
