@@ -1,6 +1,8 @@
 #ifndef SUISEN_ENUMERATE_QUOTIENT
 #define SUISEN_ENUMERATE_QUOTIENT
 
+#include <algorithm>
+#include <cassert>
 #include <limits>
 #include <tuple>
 #include <vector>

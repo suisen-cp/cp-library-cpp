@@ -21,7 +21,7 @@ int main() {
         std::set<RollingHash<>::hash_type> s;
         for (int i = 0; i + l <= n; ++i) {
             if (i >= l) s.insert(hashes[i - l]);
-            auto h = rh(i, i + l)[0].val();
+            auto h = rh(i, i + l)[0];
             hashes[i] = h;
             if (s.count(h)) return true;
         }
