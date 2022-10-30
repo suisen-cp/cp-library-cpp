@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/string/rolling_hash.hpp
     title: Rolling Hash
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc141/tasks/abc141_e
@@ -132,12 +132,11 @@ data:
     \ f = [&](int l) -> bool {\n        std::vector<RollingHash<>::hash_type> hashes(n);\n\
     \        std::set<RollingHash<>::hash_type> s;\n        for (int i = 0; i + l\
     \ <= n; ++i) {\n            if (i >= l) s.insert(hashes[i - l]);\n           \
-    \ auto h = rh(i, i + l)[0].val();\n            hashes[i] = h;\n            if\
-    \ (s.count(h)) return true;\n        }\n        return false;\n    };\n\n    int\
-    \ ok = 0, ng = n + 1;\n    while (ng - ok > 1) {\n        int l = (ok + ng) /\
-    \ 2;\n        if (f(l)) {\n            ok = l;\n        } else {\n           \
-    \ ng = l;\n        }\n    }\n    std::cout << ok << std::endl;\n    return 0;\n\
-    }\n"
+    \ auto h = rh(i, i + l)[0];\n            hashes[i] = h;\n            if (s.count(h))\
+    \ return true;\n        }\n        return false;\n    };\n\n    int ok = 0, ng\
+    \ = n + 1;\n    while (ng - ok > 1) {\n        int l = (ok + ng) / 2;\n      \
+    \  if (f(l)) {\n            ok = l;\n        } else {\n            ng = l;\n \
+    \       }\n    }\n    std::cout << ok << std::endl;\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc141/tasks/abc141_e\"\n\n\
     #include <iostream>\n#include <set>\n\n#include \"library/string/rolling_hash.hpp\"\
     \nusing suisen::RollingHash;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
@@ -146,20 +145,19 @@ data:
     \ f = [&](int l) -> bool {\n        std::vector<RollingHash<>::hash_type> hashes(n);\n\
     \        std::set<RollingHash<>::hash_type> s;\n        for (int i = 0; i + l\
     \ <= n; ++i) {\n            if (i >= l) s.insert(hashes[i - l]);\n           \
-    \ auto h = rh(i, i + l)[0].val();\n            hashes[i] = h;\n            if\
-    \ (s.count(h)) return true;\n        }\n        return false;\n    };\n\n    int\
-    \ ok = 0, ng = n + 1;\n    while (ng - ok > 1) {\n        int l = (ok + ng) /\
-    \ 2;\n        if (f(l)) {\n            ok = l;\n        } else {\n           \
-    \ ng = l;\n        }\n    }\n    std::cout << ok << std::endl;\n    return 0;\n\
-    }"
+    \ auto h = rh(i, i + l)[0];\n            hashes[i] = h;\n            if (s.count(h))\
+    \ return true;\n        }\n        return false;\n    };\n\n    int ok = 0, ng\
+    \ = n + 1;\n    while (ng - ok > 1) {\n        int l = (ok + ng) / 2;\n      \
+    \  if (f(l)) {\n            ok = l;\n        } else {\n            ng = l;\n \
+    \       }\n    }\n    std::cout << ok << std::endl;\n    return 0;\n}"
   dependsOn:
   - library/string/rolling_hash.hpp
   - library/math/pow_mods.hpp
   isVerificationFile: true
   path: test/src/string/rolling_hash/abc141_e.test.cpp
   requiredBy: []
-  timestamp: '2022-10-15 19:53:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-31 01:25:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/string/rolling_hash/abc141_e.test.cpp
 layout: document

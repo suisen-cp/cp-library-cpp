@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/string/trie_map.hpp
     title: Trie Map
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/find_centroid.hpp
     title: Find Centroid
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/hashes.hpp
     title: Hashes
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
     title: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Classify subtrees by isomorphism in O(n log n) time.
     links: []
@@ -307,7 +307,7 @@ data:
   path: library/tree/tree_isomorphism_classification.hpp
   requiredBy: []
   timestamp: '2022-10-23 23:59:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
 documentation_of: library/tree/tree_isomorphism_classification.hpp

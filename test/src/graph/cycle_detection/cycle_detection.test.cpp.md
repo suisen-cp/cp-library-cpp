@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
   - icon: ':heavy_check_mark:'

@@ -5,19 +5,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/ZDD.hpp
     title: ZDD
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/tree_isomorphism_classification.hpp
     title: Tree Isomorphism Classification
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
     title: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
     title: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/hashes.hpp\"\n\n\n\n#include <array>\n#include\
@@ -70,7 +70,7 @@ data:
   - library/tree/tree_isomorphism_classification.hpp
   - library/datastructure/ZDD.hpp
   timestamp: '2022-10-23 23:57:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
   - test/src/datastructure/ZDD/maximum_independent_set.test.cpp

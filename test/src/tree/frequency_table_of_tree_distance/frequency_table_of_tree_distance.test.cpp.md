@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/centroid_decomposition.hpp
     title: "\u91CD\u5FC3\u5206\u89E3"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/frequency_table_of_tree_distance.hpp
     title: Frequency Table Of Tree Distance
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/timer.hpp
     title: Timer
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -375,7 +375,7 @@ data:
   path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
   timestamp: '2022-10-30 21:38:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
 layout: document

@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/tree_isomorphism_classification.hpp
     title: Tree Isomorphism Classification
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
     title: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/string/trie_map.hpp\"\n\n\n\n#include <map>\n#include\
@@ -70,7 +70,7 @@ data:
   requiredBy:
   - library/tree/tree_isomorphism_classification.hpp
   timestamp: '2022-10-23 23:58:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
 documentation_of: library/string/trie_map.hpp

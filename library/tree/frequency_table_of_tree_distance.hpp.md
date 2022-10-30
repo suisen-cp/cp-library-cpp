@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/centroid_decomposition.hpp
     title: "\u91CD\u5FC3\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/timer.hpp
     title: Timer
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
     title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Given a tree with N vertices, calculates the number of unordered
       pair (u, v) s.t. dist(u, v) = k for k = 1, ..., N - 1.
@@ -388,7 +388,7 @@ data:
   path: library/tree/frequency_table_of_tree_distance.hpp
   requiredBy: []
   timestamp: '2022-10-30 21:38:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
 documentation_of: library/tree/frequency_table_of_tree_distance.hpp

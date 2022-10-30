@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/frequency_table_of_tree_distance.hpp
     title: Frequency Table Of Tree Distance
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/csr_graph/dummy.test.cpp
     title: test/src/graph/csr_graph/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
     title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/timer.hpp\"\n\n\n\n#include <chrono>\n\nnamespace\
@@ -49,7 +49,7 @@ data:
   requiredBy:
   - library/tree/frequency_table_of_tree_distance.hpp
   timestamp: '2022-08-21 18:25:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   - test/src/graph/csr_graph/dummy.test.cpp

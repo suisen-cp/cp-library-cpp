@@ -1,19 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/tree_decomposition_tw2.hpp
     title: Tree Decomposition Tw2
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
+    PROBLEM: https://judge.yosupo.jp/problem/tree_decomposition_width_2
+    links:
+    - https://judge.yosupo.jp/problem/tree_decomposition_width_2
   bundledCode: "#line 1 \"test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp\"\
-    \n#include <iostream>\n#include <limits>\n#include <tuple>\n\n#line 1 \"library/graph/tree_decomposition_tw2.hpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/tree_decomposition_width_2\"\
+    \n\n#include <iostream>\n#include <limits>\n#include <tuple>\n\n#line 1 \"library/graph/tree_decomposition_tw2.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <atcoder/dsu>\n#include <cassert>\n#include\
     \ <deque>\n#include <optional>\n#include <utility>\n#include <vector>\n\nnamespace\
     \ suisen {\n    struct DecompNode {\n        std::vector<int> bag;\n        std::vector<int>\
@@ -83,23 +86,22 @@ data:
     \       for (int i = 0; i < int(res.size()); ++i) {\n                res[i].ch.reserve(adj_idx[i].size());\n\
     \                for (auto [j, idx] : adj_idx[i]) res[i].ch.push_back(j);\n  \
     \              adj_idx[i].clear(), adj_idx[i].shrink_to_fit();\n            }\n\
-    \            adj_idx.clear(), adj_idx.shrink_to_fit();\n\n            const int\
-    \ k = res.size();\n\n            std::deque<int> dq{ root };\n            while\
-    \ (dq.size()) {\n                int u = dq.front();\n                dq.pop_front();\n\
-    \                for (int v : res[u].ch) {\n                    res[v].par = u;\n\
-    \                    res[v].ch.erase(std::find(res[v].ch.begin(), res[v].ch.end(),\
-    \ u));\n                    dq.push_back(v);\n                }\n\n          \
-    \      auto fix_path = [&](int u, int v) {\n                    std::vector<int>\
-    \ dif;\n                    std::set_difference(res[v].bag.begin(), res[v].bag.end(),\
-    \ res[u].bag.begin(), res[u].bag.end(), std::back_inserter(dif));\n          \
-    \          std::set_difference(res[u].bag.begin(), res[u].bag.end(), res[v].bag.begin(),\
-    \ res[v].bag.end(), std::back_inserter(dif));\n                    assert(dif.size());\n\
-    \                    res[u].ch.erase(std::find(res[u].ch.begin(), res[u].ch.end(),\
-    \ v));\n                    while (dif.size() > 1) {\n                       \
-    \ const int n = res.size();\n                        auto& node = res.emplace_back();\n\
-    \                        std::set_symmetric_difference(res[u].bag.begin(), res[u].bag.end(),\
-    \ std::prev(dif.end()), dif.end(), std::back_inserter(node.bag));\n          \
-    \              res[u].ch.push_back(n);\n                        dif.pop_back();\n\
+    \            adj_idx.clear(), adj_idx.shrink_to_fit();\n\n            std::deque<int>\
+    \ dq{ root };\n            while (dq.size()) {\n                int u = dq.front();\n\
+    \                dq.pop_front();\n                for (int v : res[u].ch) {\n\
+    \                    res[v].par = u;\n                    res[v].ch.erase(std::find(res[v].ch.begin(),\
+    \ res[v].ch.end(), u));\n                    dq.push_back(v);\n              \
+    \  }\n\n                auto fix_path = [&](int u, int v) {\n                \
+    \    std::vector<int> dif;\n                    std::set_difference(res[v].bag.begin(),\
+    \ res[v].bag.end(), res[u].bag.begin(), res[u].bag.end(), std::back_inserter(dif));\n\
+    \                    std::set_difference(res[u].bag.begin(), res[u].bag.end(),\
+    \ res[v].bag.begin(), res[v].bag.end(), std::back_inserter(dif));\n          \
+    \          assert(dif.size());\n                    res[u].ch.erase(std::find(res[u].ch.begin(),\
+    \ res[u].ch.end(), v));\n                    while (dif.size() > 1) {\n      \
+    \                  const int n = res.size();\n                        auto& node\
+    \ = res.emplace_back();\n                        std::set_symmetric_difference(res[u].bag.begin(),\
+    \ res[u].bag.end(), std::prev(dif.end()), dif.end(), std::back_inserter(node.bag));\n\
+    \                        res[u].ch.push_back(n);\n                        dif.pop_back();\n\
     \                        node.par = u;\n                        u = n;\n     \
     \               }\n                    res[u].ch.push_back(v);\n             \
     \       res[v].par = u;\n                };\n\n                if (res[u].ch.size()\
@@ -148,43 +150,44 @@ data:
     \ true;\n                if (idx_uv - 2 >= 0 and g[u][idx_uv].first == g[u][idx_uv\
     \ - 2].first) return true;\n                return false;\n            };\n  \
     \          while (is_unnecessary(idx_uv)) remove_edge(g, u, idx_uv);\n       \
-    \ }\n    };\n} // namespace suisen\n\n\n\n#line 6 \"test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp\"\
+    \ }\n    };\n} // namespace suisen\n\n\n\n#line 8 \"test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp\"\
     \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    std::string waste_input;\n    std::cin >> waste_input >> waste_input;\n\n\
     \    int n, m;\n    std::cin >> n >> m;\n\n    suisen::TreeDecompositionTW2 td(n);\n\
     \    for (int i = 0; i < m; ++i) {\n        int u, v;\n        std::cin >> u >>\
     \ v;\n        --u, --v;\n        td.add_edge(u, v);\n    }\n\n    const auto opt_res\
     \ = td.nice_decomp();\n    if (not opt_res.has_value()) {\n        std::cout <<\
-    \ -1 << '\\n';\n    } else {\n        const auto& [bag, edges] = *opt_res;\n \
-    \       const int k = bag.size();\n        suisen::TreeDecompositionTW2::assert_nice(bag,\
-    \ edges, 0);\n        assert(k <= 3 * n + m + 10);\n        std::cout << \"s td\
-    \ \" << k << ' ' << 2 << ' ' << n << '\\n';\n        for (int i = 0; i < k; ++i)\
-    \ {\n            std::cout << \"b \" << i + 1;\n            for (int v : bag[i])\
+    \ -1 << '\\n';\n    } else {\n        const auto& nodes = *opt_res;\n        const\
+    \ int k = nodes.size();\n        suisen::TreeDecompositionTW2::assert_nice(nodes,\
+    \ 0);\n        assert(k <= 3 * n + m + 10);\n        std::cout << \"s td \" <<\
+    \ k << ' ' << 2 << ' ' << n << '\\n';\n        for (int i = 0; i < k; ++i) {\n\
+    \            std::cout << \"b \" << i + 1;\n            for (int v : nodes[i].bag)\
     \ std::cout << ' ' << v + 1;\n            std::cout << '\\n';\n        }\n   \
-    \     for (auto [u, v] : edges) {\n            std::cout << u + 1 << ' ' << v\
-    \ + 1 << '\\n';\n        }\n    }\n\n    return 0;\n}\n"
-  code: "#include <iostream>\n#include <limits>\n#include <tuple>\n\n#include \"library/graph/tree_decomposition_tw2.hpp\"\
+    \     for (int i = 0; i < k; ++i) for (int j : nodes[i].ch) {\n            std::cout\
+    \ << i + 1 << ' ' << j + 1 << '\\n';\n        }\n    }\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_decomposition_width_2\"\
+    \n\n#include <iostream>\n#include <limits>\n#include <tuple>\n\n#include \"library/graph/tree_decomposition_tw2.hpp\"\
     \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \n    std::string waste_input;\n    std::cin >> waste_input >> waste_input;\n\n\
     \    int n, m;\n    std::cin >> n >> m;\n\n    suisen::TreeDecompositionTW2 td(n);\n\
     \    for (int i = 0; i < m; ++i) {\n        int u, v;\n        std::cin >> u >>\
     \ v;\n        --u, --v;\n        td.add_edge(u, v);\n    }\n\n    const auto opt_res\
     \ = td.nice_decomp();\n    if (not opt_res.has_value()) {\n        std::cout <<\
-    \ -1 << '\\n';\n    } else {\n        const auto& [bag, edges] = *opt_res;\n \
-    \       const int k = bag.size();\n        suisen::TreeDecompositionTW2::assert_nice(bag,\
-    \ edges, 0);\n        assert(k <= 3 * n + m + 10);\n        std::cout << \"s td\
-    \ \" << k << ' ' << 2 << ' ' << n << '\\n';\n        for (int i = 0; i < k; ++i)\
-    \ {\n            std::cout << \"b \" << i + 1;\n            for (int v : bag[i])\
+    \ -1 << '\\n';\n    } else {\n        const auto& nodes = *opt_res;\n        const\
+    \ int k = nodes.size();\n        suisen::TreeDecompositionTW2::assert_nice(nodes,\
+    \ 0);\n        assert(k <= 3 * n + m + 10);\n        std::cout << \"s td \" <<\
+    \ k << ' ' << 2 << ' ' << n << '\\n';\n        for (int i = 0; i < k; ++i) {\n\
+    \            std::cout << \"b \" << i + 1;\n            for (int v : nodes[i].bag)\
     \ std::cout << ' ' << v + 1;\n            std::cout << '\\n';\n        }\n   \
-    \     for (auto [u, v] : edges) {\n            std::cout << u + 1 << ' ' << v\
-    \ + 1 << '\\n';\n        }\n    }\n\n    return 0;\n}"
+    \     for (int i = 0; i < k; ++i) for (int j : nodes[i].ch) {\n            std::cout\
+    \ << i + 1 << ' ' << j + 1 << '\\n';\n        }\n    }\n\n    return 0;\n}"
   dependsOn:
   - library/graph/tree_decomposition_tw2.hpp
   isVerificationFile: true
   path: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
   requiredBy: []
-  timestamp: '2022-10-22 18:09:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-31 01:21:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/ZDD.hpp
     title: ZDD
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/hashes.hpp
     title: Hashes
   _extendedRequiredBy: []

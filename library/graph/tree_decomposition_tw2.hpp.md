@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
     title: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
     title: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/tree_decomposition_tw2.hpp\"\n\n\n\n#include\
@@ -84,23 +84,22 @@ data:
     \       for (int i = 0; i < int(res.size()); ++i) {\n                res[i].ch.reserve(adj_idx[i].size());\n\
     \                for (auto [j, idx] : adj_idx[i]) res[i].ch.push_back(j);\n  \
     \              adj_idx[i].clear(), adj_idx[i].shrink_to_fit();\n            }\n\
-    \            adj_idx.clear(), adj_idx.shrink_to_fit();\n\n            const int\
-    \ k = res.size();\n\n            std::deque<int> dq{ root };\n            while\
-    \ (dq.size()) {\n                int u = dq.front();\n                dq.pop_front();\n\
-    \                for (int v : res[u].ch) {\n                    res[v].par = u;\n\
-    \                    res[v].ch.erase(std::find(res[v].ch.begin(), res[v].ch.end(),\
-    \ u));\n                    dq.push_back(v);\n                }\n\n          \
-    \      auto fix_path = [&](int u, int v) {\n                    std::vector<int>\
-    \ dif;\n                    std::set_difference(res[v].bag.begin(), res[v].bag.end(),\
-    \ res[u].bag.begin(), res[u].bag.end(), std::back_inserter(dif));\n          \
-    \          std::set_difference(res[u].bag.begin(), res[u].bag.end(), res[v].bag.begin(),\
-    \ res[v].bag.end(), std::back_inserter(dif));\n                    assert(dif.size());\n\
-    \                    res[u].ch.erase(std::find(res[u].ch.begin(), res[u].ch.end(),\
-    \ v));\n                    while (dif.size() > 1) {\n                       \
-    \ const int n = res.size();\n                        auto& node = res.emplace_back();\n\
-    \                        std::set_symmetric_difference(res[u].bag.begin(), res[u].bag.end(),\
-    \ std::prev(dif.end()), dif.end(), std::back_inserter(node.bag));\n          \
-    \              res[u].ch.push_back(n);\n                        dif.pop_back();\n\
+    \            adj_idx.clear(), adj_idx.shrink_to_fit();\n\n            std::deque<int>\
+    \ dq{ root };\n            while (dq.size()) {\n                int u = dq.front();\n\
+    \                dq.pop_front();\n                for (int v : res[u].ch) {\n\
+    \                    res[v].par = u;\n                    res[v].ch.erase(std::find(res[v].ch.begin(),\
+    \ res[v].ch.end(), u));\n                    dq.push_back(v);\n              \
+    \  }\n\n                auto fix_path = [&](int u, int v) {\n                \
+    \    std::vector<int> dif;\n                    std::set_difference(res[v].bag.begin(),\
+    \ res[v].bag.end(), res[u].bag.begin(), res[u].bag.end(), std::back_inserter(dif));\n\
+    \                    std::set_difference(res[u].bag.begin(), res[u].bag.end(),\
+    \ res[v].bag.begin(), res[v].bag.end(), std::back_inserter(dif));\n          \
+    \          assert(dif.size());\n                    res[u].ch.erase(std::find(res[u].ch.begin(),\
+    \ res[u].ch.end(), v));\n                    while (dif.size() > 1) {\n      \
+    \                  const int n = res.size();\n                        auto& node\
+    \ = res.emplace_back();\n                        std::set_symmetric_difference(res[u].bag.begin(),\
+    \ res[u].bag.end(), std::prev(dif.end()), dif.end(), std::back_inserter(node.bag));\n\
+    \                        res[u].ch.push_back(n);\n                        dif.pop_back();\n\
     \                        node.par = u;\n                        u = n;\n     \
     \               }\n                    res[u].ch.push_back(v);\n             \
     \       res[v].par = u;\n                };\n\n                if (res[u].ch.size()\
@@ -220,23 +219,22 @@ data:
     \       for (int i = 0; i < int(res.size()); ++i) {\n                res[i].ch.reserve(adj_idx[i].size());\n\
     \                for (auto [j, idx] : adj_idx[i]) res[i].ch.push_back(j);\n  \
     \              adj_idx[i].clear(), adj_idx[i].shrink_to_fit();\n            }\n\
-    \            adj_idx.clear(), adj_idx.shrink_to_fit();\n\n            const int\
-    \ k = res.size();\n\n            std::deque<int> dq{ root };\n            while\
-    \ (dq.size()) {\n                int u = dq.front();\n                dq.pop_front();\n\
-    \                for (int v : res[u].ch) {\n                    res[v].par = u;\n\
-    \                    res[v].ch.erase(std::find(res[v].ch.begin(), res[v].ch.end(),\
-    \ u));\n                    dq.push_back(v);\n                }\n\n          \
-    \      auto fix_path = [&](int u, int v) {\n                    std::vector<int>\
-    \ dif;\n                    std::set_difference(res[v].bag.begin(), res[v].bag.end(),\
-    \ res[u].bag.begin(), res[u].bag.end(), std::back_inserter(dif));\n          \
-    \          std::set_difference(res[u].bag.begin(), res[u].bag.end(), res[v].bag.begin(),\
-    \ res[v].bag.end(), std::back_inserter(dif));\n                    assert(dif.size());\n\
-    \                    res[u].ch.erase(std::find(res[u].ch.begin(), res[u].ch.end(),\
-    \ v));\n                    while (dif.size() > 1) {\n                       \
-    \ const int n = res.size();\n                        auto& node = res.emplace_back();\n\
-    \                        std::set_symmetric_difference(res[u].bag.begin(), res[u].bag.end(),\
-    \ std::prev(dif.end()), dif.end(), std::back_inserter(node.bag));\n          \
-    \              res[u].ch.push_back(n);\n                        dif.pop_back();\n\
+    \            adj_idx.clear(), adj_idx.shrink_to_fit();\n\n            std::deque<int>\
+    \ dq{ root };\n            while (dq.size()) {\n                int u = dq.front();\n\
+    \                dq.pop_front();\n                for (int v : res[u].ch) {\n\
+    \                    res[v].par = u;\n                    res[v].ch.erase(std::find(res[v].ch.begin(),\
+    \ res[v].ch.end(), u));\n                    dq.push_back(v);\n              \
+    \  }\n\n                auto fix_path = [&](int u, int v) {\n                \
+    \    std::vector<int> dif;\n                    std::set_difference(res[v].bag.begin(),\
+    \ res[v].bag.end(), res[u].bag.begin(), res[u].bag.end(), std::back_inserter(dif));\n\
+    \                    std::set_difference(res[u].bag.begin(), res[u].bag.end(),\
+    \ res[v].bag.begin(), res[v].bag.end(), std::back_inserter(dif));\n          \
+    \          assert(dif.size());\n                    res[u].ch.erase(std::find(res[u].ch.begin(),\
+    \ res[u].ch.end(), v));\n                    while (dif.size() > 1) {\n      \
+    \                  const int n = res.size();\n                        auto& node\
+    \ = res.emplace_back();\n                        std::set_symmetric_difference(res[u].bag.begin(),\
+    \ res[u].bag.end(), std::prev(dif.end()), dif.end(), std::back_inserter(node.bag));\n\
+    \                        res[u].ch.push_back(n);\n                        dif.pop_back();\n\
     \                        node.par = u;\n                        u = n;\n     \
     \               }\n                    res[u].ch.push_back(v);\n             \
     \       res[v].par = u;\n                };\n\n                if (res[u].ch.size()\
@@ -290,8 +288,8 @@ data:
   isVerificationFile: false
   path: library/graph/tree_decomposition_tw2.hpp
   requiredBy: []
-  timestamp: '2022-10-22 18:09:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-10-31 01:21:54+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
   - test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp

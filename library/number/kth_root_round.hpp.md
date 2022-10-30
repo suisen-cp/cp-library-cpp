@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/kth_root_round/kth_root_integer.test.cpp
+    title: test/src/number/kth_root_round/kth_root_integer.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/kth_root_round.hpp\"\n\n\n\n#include <cmath>\n\
@@ -34,8 +37,9 @@ data:
   path: library/number/kth_root_round.hpp
   requiredBy: []
   timestamp: '2022-10-20 19:29:51+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/number/kth_root_round/kth_root_integer.test.cpp
 documentation_of: library/number/kth_root_round.hpp
 layout: document
 title: $\lfloor a ^ {\frac{1}{k}}\rfloor, \lceil a ^ {\frac{1}{k}}\rceil$

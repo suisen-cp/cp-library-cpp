@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/frequency_table_of_tree_distance.hpp
     title: Frequency Table Of Tree Distance
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
     title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/centroid_decomposition.hpp\"\n\n\n\n#include\
@@ -381,7 +381,7 @@ data:
   requiredBy:
   - library/tree/frequency_table_of_tree_distance.hpp
   timestamp: '2022-10-30 21:38:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
 documentation_of: library/tree/centroid_decomposition.hpp

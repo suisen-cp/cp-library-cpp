@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/string/trie_map.hpp
     title: Trie Map
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/find_centroid.hpp
     title: Find Centroid
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/tree_isomorphism_classification.hpp
     title: Tree Isomorphism Classification
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/hashes.hpp
     title: Hashes
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
@@ -220,7 +220,7 @@ data:
   path: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
   requiredBy: []
   timestamp: '2022-10-23 23:59:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
 layout: document

@@ -8,10 +8,10 @@ data:
   - icon: ':warning:'
     path: library/graph/single_source_shortest_path_dag.hpp
     title: Single Source Shortest Path (DAG)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/centroid_decomposition.hpp
     title: "\u91CD\u5FC3\u5206\u89E3"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/frequency_table_of_tree_distance.hpp
     title: Frequency Table Of Tree Distance
   _extendedVerifiedWith:
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/cycle_detection/dummy.test.cpp
     title: test/src/graph/cycle_detection/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
     title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/csr_graph.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -450,7 +450,7 @@ data:
   - library/graph/cycle_detection.hpp
   - library/graph/single_source_shortest_path_dag.hpp
   timestamp: '2022-10-30 21:38:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   - test/src/graph/csr_graph/dummy.test.cpp

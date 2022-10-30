@@ -417,7 +417,7 @@ data:
     - icon: ':warning:'
       path: library/graph/block_cut_forest.hpp
       title: Block Cut Forest
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/csr_graph.hpp
       title: Graph (CSR Format)
     - icon: ':heavy_check_mark:'
@@ -478,7 +478,7 @@ data:
     - icon: ':warning:'
       path: library/graph/topological_sort.hpp
       title: Topological Sort
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/tree_decomposition_tw2.hpp
       title: Tree Decomposition Tw2
     - icon: ':heavy_check_mark:'
@@ -565,7 +565,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
     - icon: ':heavy_check_mark:'
@@ -591,7 +591,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/discrete_logarithm.hpp
       title: Discrete Logarithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/number/enumerate_quotient.hpp
       title: "\u5546\u5217\u6319"
     - icon: ':warning:'
@@ -613,7 +613,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/internal_eratosthenes.hpp
       title: Internal Eratosthenes
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/number/kth_root_round.hpp
       title: $\lfloor a ^ {\frac{1}{k}}\rfloor, \lceil a ^ {\frac{1}{k}}\rceil$
     - icon: ':heavy_check_mark:'
@@ -647,7 +647,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/tetration_mod.hpp
       title: $a\uparrow\uparrow b \bmod m$
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: Util
   - name: library/polynomial
@@ -760,7 +760,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/palindromic_tree.hpp
       title: "Palindromic Tree (\u56DE\u6587\u6728)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/string/rolling_hash.hpp
       title: Rolling Hash
     - icon: ':warning:'
@@ -778,7 +778,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/trie_array.hpp
       title: Trie Array
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/string/trie_map.hpp
       title: Trie Map
   - name: library
@@ -821,7 +821,7 @@ data:
       title: "\u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u305F\u3061\u306E\u6700\u5C0F\
         \u5171\u901A\u7956\u5148\u95A2\u4FC2\u3092\u4FDD\u3063\u3066\u6728\u3092\u5727\
         \u7E2E\u3057\u3066\u3067\u304D\u308B\u88DC\u52A9\u7684\u306A\u6728"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/centroid_decomposition.hpp
       title: "\u91CD\u5FC3\u5206\u89E3"
     - icon: ':warning:'
@@ -830,10 +830,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/euler_tour.hpp
       title: Euler Tour
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/find_centroid.hpp
       title: Find Centroid
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/frequency_table_of_tree_distance.hpp
       title: Frequency Table Of Tree Distance
     - icon: ':heavy_check_mark:'
@@ -879,7 +879,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/tree_isomorphism_classification.hpp
       title: Tree Isomorphism Classification
   - name: library/type_traits
@@ -913,7 +913,7 @@ data:
     - icon: ':warning:'
       path: library/util/grid_utils.hpp
       title: Grid Utils
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/hashes.hpp
       title: Hashes
     - icon: ':warning:'
@@ -938,7 +938,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/timer.hpp
       title: Timer
     - icon: ':warning:'
@@ -1642,10 +1642,10 @@ data:
       title: test/src/graph/segment_tree_graph/flags.test.cpp
   - name: test/src/graph/tree_decomposition_tw2
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
       title: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
       title: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
   - name: test/src/graph/two_edge_connected_components
@@ -1825,7 +1825,7 @@ data:
       title: test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp
   - name: test/src/number/enumerate_quotient
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/enumerate_quotient/divide_both.test.cpp
       title: test/src/number/enumerate_quotient/divide_both.test.cpp
   - name: test/src/number/fast_factorize
@@ -1838,6 +1838,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/find_denominators/dummy.test.cpp
       title: test/src/number/find_denominators/dummy.test.cpp
+  - name: test/src/number/kth_root_round
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/kth_root_round/kth_root_integer.test.cpp
+      title: test/src/number/kth_root_round/kth_root_integer.test.cpp
   - name: test/src/number/primitive_root
     pages:
     - icon: ':heavy_check_mark:'
@@ -1883,9 +1888,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/abc222_g.test.cpp
       title: test/src/number/util/abc222_g.test.cpp
-    - icon: ':x:'
-      path: test/src/number/util/kth_root_integer.test.cpp
-      title: test/src/number/util/kth_root_integer.test.cpp
   - name: test/src/polynomial/bostan_mori
     pages:
     - icon: ':heavy_check_mark:'
@@ -2132,7 +2134,7 @@ data:
       title: test/src/string/palindromic_tree/yuki263.test.cpp
   - name: test/src/string/rolling_hash
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/string/rolling_hash/abc141_e.test.cpp
       title: test/src/string/rolling_hash/abc141_e.test.cpp
   - name: test/src/string/run_enumerate
@@ -2179,7 +2181,7 @@ data:
       title: test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/frequency_table_of_tree_distance
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
       title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   - name: test/src/tree/heavy_light_decomposition
@@ -2289,7 +2291,7 @@ data:
       title: test/src/tree/rerooting/edpc_v.test.cpp
   - name: test/src/tree/tree_isomorphism_classification
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
       title: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
   - name: test/src/util/coordinate_compressor
