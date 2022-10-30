@@ -1,3 +1,5 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/tree_decomposition_width_2"
+
 #include <iostream>
 #include <limits>
 #include <tuple>
@@ -26,18 +28,18 @@ int main() {
     if (not opt_res.has_value()) {
         std::cout << -1 << '\n';
     } else {
-        const auto& [bag, edges] = *opt_res;
-        const int k = bag.size();
-        suisen::TreeDecompositionTW2::assert_nice(bag, edges, 0);
+        const auto& nodes = *opt_res;
+        const int k = nodes.size();
+        suisen::TreeDecompositionTW2::assert_nice(nodes, 0);
         assert(k <= 3 * n + m + 10);
         std::cout << "s td " << k << ' ' << 2 << ' ' << n << '\n';
         for (int i = 0; i < k; ++i) {
             std::cout << "b " << i + 1;
-            for (int v : bag[i]) std::cout << ' ' << v + 1;
+            for (int v : nodes[i].bag) std::cout << ' ' << v + 1;
             std::cout << '\n';
         }
-        for (auto [u, v] : edges) {
-            std::cout << u + 1 << ' ' << v + 1 << '\n';
+        for (int i = 0; i < k; ++i) for (int j : nodes[i].ch) {
+            std::cout << i + 1 << ' ' << j + 1 << '\n';
         }
     }
 

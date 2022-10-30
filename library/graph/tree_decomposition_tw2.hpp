@@ -141,8 +141,6 @@ namespace suisen {
             }
             adj_idx.clear(), adj_idx.shrink_to_fit();
 
-            const int k = res.size();
-
             std::deque<int> dq{ root };
             while (dq.size()) {
                 int u = dq.front();
