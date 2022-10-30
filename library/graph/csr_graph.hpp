@@ -150,9 +150,11 @@ namespace suisen {
 
             for (const auto& e : edges) {
                 const int u = std::get<0>(e);
-                const int v = std::get<1>(e);
                 ++_adj[u]._siz;
-                if constexpr (undirected) ++_adj[v]._siz;
+                if constexpr (undirected) {
+                    const int v = std::get<1>(e);
+                    ++_adj[v]._siz;
+                }
             }
             if (cap.empty()) cap.resize(_n, std::numeric_limits<int>::max());
             int edge_num = 0;
