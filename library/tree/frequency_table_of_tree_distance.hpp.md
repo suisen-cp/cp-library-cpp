@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
   - icon: ':x:'
     path: library/tree/centroid_decomposition.hpp
     title: "\u91CD\u5FC3\u5206\u89E3"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/timer.hpp
     title: Timer
   _extendedRequiredBy: []

@@ -7,7 +7,7 @@ data:
     title: ZDD
   - icon: ':x:'
     path: library/tree/tree_isomorphism_classification.hpp
-    title: Classify subtrees by isomorphism in O(n log n) time.
+    title: Tree Isomorphism Classification
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/ZDD/maximum_independent_set.test.cpp
@@ -76,8 +76,8 @@ data:
   - test/src/datastructure/ZDD/maximum_independent_set.test.cpp
 documentation_of: library/util/hashes.hpp
 layout: document
-redirect_from:
-- /library/library/util/hashes.hpp
-- /library/library/util/hashes.hpp.html
-title: library/util/hashes.hpp
+title: Hashes
 ---
+## Hashes
+
+`std::pair`, `std::tuple`, `std::array` の hash を定義し、`std::unordered_map` の key として使えるようにする。

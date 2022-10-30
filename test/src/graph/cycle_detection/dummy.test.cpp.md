@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/cycle_detection.hpp
     title: Cycle Detection
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -320,7 +320,7 @@ data:
   path: test/src/graph/cycle_detection/dummy.test.cpp
   requiredBy: []
   timestamp: '2022-10-30 21:38:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/graph/cycle_detection/dummy.test.cpp
 layout: document

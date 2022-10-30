@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/slope_trick/absolute_minima.test.cpp
     title: test/src/datastructure/slope_trick/absolute_minima.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/slope_trick/inc_dec_decomposition.test.cpp
     title: test/src/datastructure/slope_trick/inc_dec_decomposition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/slope_trick/narrow_rectangles.test.cpp
     title: test/src/datastructure/slope_trick/narrow_rectangles.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/slope_trick.hpp\"\n\n\n\n#include\
@@ -108,15 +108,15 @@ data:
   path: library/datastructure/slope_trick.hpp
   requiredBy: []
   timestamp: '2022-10-30 21:37:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/slope_trick/narrow_rectangles.test.cpp
   - test/src/datastructure/slope_trick/absolute_minima.test.cpp
   - test/src/datastructure/slope_trick/inc_dec_decomposition.test.cpp
 documentation_of: library/datastructure/slope_trick.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/slope_trick.hpp
-- /library/library/datastructure/slope_trick.hpp.html
-title: library/datastructure/slope_trick.hpp
+title: Slope Trick
 ---
+## Slope Trick
+
+[slope trick (1) 解説編](https://maspypy.com/slope-trick-1-%E8%A7%A3%E8%AA%AC%E7%B7%A8) に詳しい。

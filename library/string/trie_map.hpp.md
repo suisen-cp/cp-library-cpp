@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':x:'
     path: library/tree/tree_isomorphism_classification.hpp
-    title: Classify subtrees by isomorphism in O(n log n) time.
+    title: Tree Isomorphism Classification
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp

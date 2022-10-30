@@ -150,8 +150,7 @@ data:
   - test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
 documentation_of: library/datastructure/convex_hull_trick.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/convex_hull_trick.hpp
-- /library/library/datastructure/convex_hull_trick.hpp.html
-title: library/datastructure/convex_hull_trick.hpp
+title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\u306A\
+  \u3044\u5834\u5408)"
 ---
+## Convex Hull Trick (傾きが単調とは限らない場合)

@@ -98,8 +98,6 @@ data:
   - test/src/algorithm/area_of_union_of_rectangles/area_of_union_of_rectangles.test.cpp
 documentation_of: library/algorithm/area_of_union_of_rectangles.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/area_of_union_of_rectangles.hpp
-- /library/library/algorithm/area_of_union_of_rectangles.hpp.html
-title: Calculates area of union of rectangles in O(NlogN) time.
+title: Area Of Union Of Rectangles
 ---
+## Area Of Union Of Rectangles

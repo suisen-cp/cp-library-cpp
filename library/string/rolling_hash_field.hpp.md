@@ -141,8 +141,6 @@ data:
   verifiedWith: []
 documentation_of: library/string/rolling_hash_field.hpp
 layout: document
-redirect_from:
-- /library/library/string/rolling_hash_field.hpp
-- /library/library/string/rolling_hash_field.hpp.html
-title: library/string/rolling_hash_field.hpp
+title: "Rolling Hash (\u4E00\u822C\u306E\u4F53)"
 ---
+## Rolling Hash (一般の体)

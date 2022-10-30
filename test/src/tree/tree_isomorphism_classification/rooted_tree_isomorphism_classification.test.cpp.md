@@ -6,13 +6,13 @@ data:
     title: Trie Map
   - icon: ':x:'
     path: library/tree/find_centroid.hpp
-    title: library/tree/find_centroid.hpp
+    title: Find Centroid
   - icon: ':x:'
     path: library/tree/tree_isomorphism_classification.hpp
-    title: Classify subtrees by isomorphism in O(n log n) time.
+    title: Tree Isomorphism Classification
   - icon: ':question:'
     path: library/util/hashes.hpp
-    title: library/util/hashes.hpp
+    title: Hashes
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

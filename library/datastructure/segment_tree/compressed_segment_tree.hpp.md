@@ -149,8 +149,8 @@ data:
   - test/src/datastructure/segment_tree/compressed_segment_tree/abc266_h_2.test.cpp
 documentation_of: library/datastructure/segment_tree/compressed_segment_tree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/segment_tree/compressed_segment_tree.hpp
-- /library/library/datastructure/segment_tree/compressed_segment_tree.hpp.html
-title: library/datastructure/segment_tree/compressed_segment_tree.hpp
+title: "\u4EFB\u610F\u6B21\u5143 Segment Tree"
 ---
+## 任意次元 Segment Tree
+
+空間 $O(q(\log q) ^ {d - 1})$、クエリ $O((\log q) ^ d)$ の $d$ 次元 Segment Tree。計算量は $d$ を定数とみなした場合である。クエリの定数倍として $2 ^ d$ が付くので注意 (prefix クエリの場合を除く)。

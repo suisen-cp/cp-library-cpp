@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':x:'
     path: library/tree/tree_isomorphism_classification.hpp
-    title: Classify subtrees by isomorphism in O(n log n) time.
+    title: Tree Isomorphism Classification
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
@@ -55,8 +55,8 @@ data:
   - test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
 documentation_of: library/tree/find_centroid.hpp
 layout: document
-redirect_from:
-- /library/library/tree/find_centroid.hpp
-- /library/library/tree/find_centroid.hpp.html
-title: library/tree/find_centroid.hpp
+title: Find Centroid
 ---
+## Find Centroid
+
+木の重心を $O(n)$ 時間で列挙する。

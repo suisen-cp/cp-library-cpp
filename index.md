@@ -5,7 +5,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/algebra/field/nimber.hpp
-      title: library/algebra/field/nimber.hpp
+      title: Nimber
   - name: library/algebra/monoid
     pages:
     - icon: ':heavy_check_mark:'
@@ -18,7 +18,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/algorithm/area_of_union_of_rectangles.hpp
-      title: Calculates area of union of rectangles in O(NlogN) time.
+      title: Area Of Union Of Rectangles
     - icon: ':heavy_check_mark:'
       path: library/algorithm/dynamic_convex_hull_offline.hpp
       title: "\u52D5\u7684\u51F8\u5305"
@@ -27,7 +27,7 @@ data:
       title: Horn SAT
     - icon: ':warning:'
       path: library/algorithm/inversion_number.hpp
-      title: library/algorithm/inversion_number.hpp
+      title: Inversion Number
     - icon: ':heavy_check_mark:'
       path: library/algorithm/mo.hpp
       title: Mo
@@ -135,7 +135,8 @@ data:
       title: Compressed Wavelet Matrix
     - icon: ':heavy_check_mark:'
       path: library/datastructure/convex_hull_trick.hpp
-      title: library/datastructure/convex_hull_trick.hpp
+      title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\
+        \u306A\u3044\u5834\u5408)"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/deque_aggregation.hpp
       title: "SWAG \u3092 Deque \u306B\u62E1\u5F35\u3057\u305F\u3084\u3064"
@@ -154,7 +155,7 @@ data:
       title: Lazy Eval Map
     - icon: ':heavy_check_mark:'
       path: library/datastructure/monotonic_convex_hull_trick.hpp
-      title: library/datastructure/monotonic_convex_hull_trick.hpp
+      title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u306A\u5834\u5408)"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/permutation_tree.hpp
       title: Permutation Tree
@@ -170,12 +171,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_map.hpp
       title: Range Foldable Map
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/sliding_window_minimum.hpp
-      title: library/datastructure/sliding_window_minimum.hpp
-    - icon: ':x:'
+      title: Sliding Window Minimum
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/slope_trick.hpp
-      title: library/datastructure/slope_trick.hpp
+      title: Slope Trick
     - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: Sparse Table
@@ -229,7 +230,7 @@ data:
     pages:
     - icon: ':warning:'
       path: library/datastructure/fenwick_tree/compressed_fenwick_tree.hpp
-      title: Compressed Fenwick Tree
+      title: "\u4EFB\u610F\u6B21\u5143 Fenwick Tree"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
       title: Compressed Fenwick Tree Prefix
@@ -273,7 +274,7 @@ data:
         \u53EF\u63DB\u306A\u5834\u5408)"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/compressed_segment_tree.hpp
-      title: library/datastructure/segment_tree/compressed_segment_tree.hpp
+      title: "\u4EFB\u610F\u6B21\u5143 Segment Tree"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
@@ -416,10 +417,10 @@ data:
     - icon: ':warning:'
       path: library/graph/block_cut_forest.hpp
       title: Block Cut Forest
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/graph/csr_graph.hpp
       title: Graph (CSR Format)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/cycle_detection.hpp
       title: Cycle Detection
     - icon: ':warning:'
@@ -473,7 +474,7 @@ data:
       title: Segment Tree Graph
     - icon: ':warning:'
       path: library/graph/single_source_shortest_path_dag.hpp
-      title: library/graph/single_source_shortest_path_dag.hpp
+      title: Single Source Shortest Path (DAG)
     - icon: ':warning:'
       path: library/graph/topological_sort.hpp
       title: Topological Sort
@@ -764,7 +765,7 @@ data:
       title: Rolling Hash
     - icon: ':warning:'
       path: library/string/rolling_hash_field.hpp
-      title: library/string/rolling_hash_field.hpp
+      title: "Rolling Hash (\u4E00\u822C\u306E\u4F53)"
     - icon: ':heavy_check_mark:'
       path: library/string/run_enumerate.hpp
       title: Run Enumerate
@@ -831,7 +832,7 @@ data:
       title: Euler Tour
     - icon: ':x:'
       path: library/tree/find_centroid.hpp
-      title: library/tree/find_centroid.hpp
+      title: Find Centroid
     - icon: ':x:'
       path: library/tree/frequency_table_of_tree_distance.hpp
       title: Frequency Table Of Tree Distance
@@ -880,7 +881,7 @@ data:
       title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
     - icon: ':x:'
       path: library/tree/tree_isomorphism_classification.hpp
-      title: Classify subtrees by isomorphism in O(n log n) time.
+      title: Tree Isomorphism Classification
   - name: library/type_traits
     pages:
     - icon: ':heavy_check_mark:'
@@ -914,7 +915,7 @@ data:
       title: Grid Utils
     - icon: ':question:'
       path: library/util/hashes.hpp
-      title: library/util/hashes.hpp
+      title: Hashes
     - icon: ':warning:'
       path: library/util/iter_util.hpp
       title: Iter Util
@@ -937,7 +938,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/util/timer.hpp
       title: Timer
     - icon: ':warning:'
@@ -1377,18 +1378,18 @@ data:
       title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - name: test/src/datastructure/sliding_window_minimum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/sliding_window_minimum/DSL_3_D.test.cpp
       title: test/src/datastructure/sliding_window_minimum/DSL_3_D.test.cpp
   - name: test/src/datastructure/slope_trick
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/slope_trick/absolute_minima.test.cpp
       title: test/src/datastructure/slope_trick/absolute_minima.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/slope_trick/inc_dec_decomposition.test.cpp
       title: test/src/datastructure/slope_trick/inc_dec_decomposition.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/slope_trick/narrow_rectangles.test.cpp
       title: test/src/datastructure/slope_trick/narrow_rectangles.test.cpp
   - name: test/src/datastructure/union_find/linked_union_find
@@ -1559,18 +1560,18 @@ data:
       title: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
   - name: test/src/graph/csr_graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/csr_graph/dummy.test.cpp
       title: test/src/graph/csr_graph/dummy.test.cpp
   - name: test/src/graph/cycle_detection
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/cycle_detection/cycle_detection.test.cpp
       title: test/src/graph/cycle_detection/cycle_detection.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/cycle_detection/cycle_detection_undirected.test.cpp
       title: test/src/graph/cycle_detection/cycle_detection_undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/cycle_detection/dummy.test.cpp
       title: test/src/graph/cycle_detection/dummy.test.cpp
   - name: test/src/graph/dulmage_mendelsohn_decomposition

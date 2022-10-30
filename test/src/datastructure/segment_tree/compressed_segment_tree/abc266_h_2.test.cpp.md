@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/compressed_segment_tree.hpp
-    title: library/datastructure/segment_tree/compressed_segment_tree.hpp
+    title: "\u4EFB\u610F\u6B21\u5143 Segment Tree"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

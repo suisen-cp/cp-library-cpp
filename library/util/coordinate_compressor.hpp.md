@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/algorithm/inversion_number.hpp
-    title: library/algorithm/inversion_number.hpp
+    title: Inversion Number
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix

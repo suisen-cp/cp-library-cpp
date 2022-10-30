@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/area_of_union_of_rectangles.hpp
-    title: Calculates area of union of rectangles in O(NlogN) time.
+    title: Area Of Union Of Rectangles
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

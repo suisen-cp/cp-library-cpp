@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/algebra/field/nimber.hpp
-    title: library/algebra/field/nimber.hpp
+    title: Nimber
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

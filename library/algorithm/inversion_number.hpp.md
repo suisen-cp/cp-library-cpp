@@ -164,8 +164,6 @@ data:
   verifiedWith: []
 documentation_of: library/algorithm/inversion_number.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/inversion_number.hpp
-- /library/library/algorithm/inversion_number.hpp.html
-title: library/algorithm/inversion_number.hpp
+title: Inversion Number
 ---
+## Inversion Number

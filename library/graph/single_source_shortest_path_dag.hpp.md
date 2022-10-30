@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
   _extendedRequiredBy: []
@@ -258,8 +258,10 @@ data:
   verifiedWith: []
 documentation_of: library/graph/single_source_shortest_path_dag.hpp
 layout: document
-redirect_from:
-- /library/library/graph/single_source_shortest_path_dag.hpp
-- /library/library/graph/single_source_shortest_path_dag.hpp.html
-title: library/graph/single_source_shortest_path_dag.hpp
+title: Single Source Shortest Path (DAG)
 ---
+## Single Source Shortest Path (DAG)
+
+入力グラフが DAG の場合の単一始点最短路。動的計画法により $O(N + M)$ で解く。
+
+辺のコストは負でもよい。

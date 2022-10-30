@@ -6,10 +6,10 @@ data:
     title: Trie Map
   - icon: ':x:'
     path: library/tree/find_centroid.hpp
-    title: library/tree/find_centroid.hpp
+    title: Find Centroid
   - icon: ':question:'
     path: library/util/hashes.hpp
-    title: library/util/hashes.hpp
+    title: Hashes
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -312,8 +312,6 @@ data:
   - test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
 documentation_of: library/tree/tree_isomorphism_classification.hpp
 layout: document
-redirect_from:
-- /library/library/tree/tree_isomorphism_classification.hpp
-- /library/library/tree/tree_isomorphism_classification.hpp.html
-title: Classify subtrees by isomorphism in O(n log n) time.
+title: Tree Isomorphism Classification
 ---
+## Tree Isomorphism Classification

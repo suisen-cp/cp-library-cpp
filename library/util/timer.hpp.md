@@ -6,7 +6,7 @@ data:
     path: library/tree/frequency_table_of_tree_distance.hpp
     title: Frequency Table Of Tree Distance
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/csr_graph/dummy.test.cpp
     title: test/src/graph/csr_graph/dummy.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/timer.hpp\"\n\n\n\n#include <chrono>\n\nnamespace\
@@ -49,7 +49,7 @@ data:
   requiredBy:
   - library/tree/frequency_table_of_tree_distance.hpp
   timestamp: '2022-08-21 18:25:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   - test/src/graph/csr_graph/dummy.test.cpp

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/monotonic_convex_hull_trick.hpp
-    title: library/datastructure/monotonic_convex_hull_trick.hpp
+    title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u306A\u5834\u5408)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

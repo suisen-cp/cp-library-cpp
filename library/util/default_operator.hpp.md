@@ -46,7 +46,7 @@ data:
     title: Set Power Series
   - icon: ':warning:'
     path: library/string/rolling_hash_field.hpp
-    title: library/string/rolling_hash_field.hpp
+    title: "Rolling Hash (\u4E00\u822C\u306E\u4F53)"
   - icon: ':heavy_check_mark:'
     path: library/transform/divisor.hpp
     title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\

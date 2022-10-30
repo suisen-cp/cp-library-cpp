@@ -6,7 +6,7 @@ data:
     title: ZDD
   - icon: ':question:'
     path: library/util/hashes.hpp
-    title: library/util/hashes.hpp
+    title: Hashes
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -197,8 +197,6 @@ data:
   - test/src/algebra/field/nimber/nim_product_64.test.cpp
 documentation_of: library/algebra/field/nimber.hpp
 layout: document
-redirect_from:
-- /library/library/algebra/field/nimber.hpp
-- /library/library/algebra/field/nimber.hpp.html
-title: library/algebra/field/nimber.hpp
+title: Nimber
 ---
+## Nimber

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/cycle_detection/cycle_detection.test.cpp
     title: test/src/graph/cycle_detection/cycle_detection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/cycle_detection/cycle_detection_undirected.test.cpp
     title: test/src/graph/cycle_detection/cycle_detection_undirected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/cycle_detection/dummy.test.cpp
     title: test/src/graph/cycle_detection/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/cycle_detection.hpp\"\n\n\n\n#include <optional>\n\
@@ -307,7 +307,7 @@ data:
   path: library/graph/cycle_detection.hpp
   requiredBy: []
   timestamp: '2022-10-30 21:38:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/cycle_detection/cycle_detection.test.cpp
   - test/src/graph/cycle_detection/cycle_detection_undirected.test.cpp
