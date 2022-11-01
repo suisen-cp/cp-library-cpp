@@ -482,6 +482,9 @@ data:
       path: library/graph/tree_decomposition_tw2.hpp
       title: Tree Decomposition Tw2
     - icon: ':heavy_check_mark:'
+      path: library/graph/tree_decomposition_tw2_dp.hpp
+      title: library/graph/tree_decomposition_tw2_dp.hpp
+    - icon: ':heavy_check_mark:'
       path: library/graph/two_edge_connected_components.hpp
       title: "\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3"
     - icon: ':warning:'
@@ -1648,6 +1651,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
       title: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
+  - name: test/src/graph/tree_decomposition_tw2_dp
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
+      title: test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
   - name: test/src/graph/two_edge_connected_components
     pages:
     - icon: ':heavy_check_mark:'

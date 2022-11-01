@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/graph/tree_decomposition_tw2_dp.hpp
+    title: library/graph/tree_decomposition_tw2_dp.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
@@ -9,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
     title: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
+    title: test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -116,10 +122,11 @@ data:
     \                        node.bag = std::vector<int>(res[u].bag.begin(), std::prev(res[u].bag.end()));\n\
     \                        node.par = u;\n                        res[u].ch.push_back(n);\n\
     \                        u = n;\n                    }\n                } else\
-    \ {\n                    assert(false);\n                }\n            }\n\n\
-    \            return res;\n        }\n\n        static void assert_nice(const std::vector<DecompNodeRooted>&\
-    \ nodes, int root) {\n            auto dfs = [&](auto dfs, int u) -> void {\n\
-    \                for (int v : nodes[u].ch) dfs(dfs, v);\n                assert(nodes[u].ch.size()\
+    \ {\n                    assert(false);\n                }\n            }\n  \
+    \          res[root].par = -1;\n\n            return res;\n        }\n\n     \
+    \   static void assert_nice(const std::vector<DecompNodeRooted>& nodes, int root)\
+    \ {\n            auto dfs = [&](auto dfs, int u) -> void {\n                for\
+    \ (int v : nodes[u].ch) dfs(dfs, v);\n                assert(nodes[u].ch.size()\
     \ <= 2);\n                if (nodes[u].ch.size() == 2) {\n                   \
     \ int x = nodes[u].ch[0], y = nodes[u].ch[1];\n                    assert(nodes[u].bag\
     \ == nodes[x].bag and nodes[u].bag == nodes[y].bag);\n                } else if\
@@ -251,10 +258,11 @@ data:
     \                        node.bag = std::vector<int>(res[u].bag.begin(), std::prev(res[u].bag.end()));\n\
     \                        node.par = u;\n                        res[u].ch.push_back(n);\n\
     \                        u = n;\n                    }\n                } else\
-    \ {\n                    assert(false);\n                }\n            }\n\n\
-    \            return res;\n        }\n\n        static void assert_nice(const std::vector<DecompNodeRooted>&\
-    \ nodes, int root) {\n            auto dfs = [&](auto dfs, int u) -> void {\n\
-    \                for (int v : nodes[u].ch) dfs(dfs, v);\n                assert(nodes[u].ch.size()\
+    \ {\n                    assert(false);\n                }\n            }\n  \
+    \          res[root].par = -1;\n\n            return res;\n        }\n\n     \
+    \   static void assert_nice(const std::vector<DecompNodeRooted>& nodes, int root)\
+    \ {\n            auto dfs = [&](auto dfs, int u) -> void {\n                for\
+    \ (int v : nodes[u].ch) dfs(dfs, v);\n                assert(nodes[u].ch.size()\
     \ <= 2);\n                if (nodes[u].ch.size() == 2) {\n                   \
     \ int x = nodes[u].ch[0], y = nodes[u].ch[1];\n                    assert(nodes[u].bag\
     \ == nodes[x].bag and nodes[u].bag == nodes[y].bag);\n                } else if\
@@ -287,12 +295,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/graph/tree_decomposition_tw2.hpp
-  requiredBy: []
-  timestamp: '2022-10-31 01:21:54+09:00'
+  requiredBy:
+  - library/graph/tree_decomposition_tw2_dp.hpp
+  timestamp: '2022-11-01 16:55:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
   - test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
+  - test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
 documentation_of: library/graph/tree_decomposition_tw2.hpp
 layout: document
 title: Tree Decomposition Tw2

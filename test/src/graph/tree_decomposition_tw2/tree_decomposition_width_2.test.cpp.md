@@ -118,10 +118,11 @@ data:
     \                        node.bag = std::vector<int>(res[u].bag.begin(), std::prev(res[u].bag.end()));\n\
     \                        node.par = u;\n                        res[u].ch.push_back(n);\n\
     \                        u = n;\n                    }\n                } else\
-    \ {\n                    assert(false);\n                }\n            }\n\n\
-    \            return res;\n        }\n\n        static void assert_nice(const std::vector<DecompNodeRooted>&\
-    \ nodes, int root) {\n            auto dfs = [&](auto dfs, int u) -> void {\n\
-    \                for (int v : nodes[u].ch) dfs(dfs, v);\n                assert(nodes[u].ch.size()\
+    \ {\n                    assert(false);\n                }\n            }\n  \
+    \          res[root].par = -1;\n\n            return res;\n        }\n\n     \
+    \   static void assert_nice(const std::vector<DecompNodeRooted>& nodes, int root)\
+    \ {\n            auto dfs = [&](auto dfs, int u) -> void {\n                for\
+    \ (int v : nodes[u].ch) dfs(dfs, v);\n                assert(nodes[u].ch.size()\
     \ <= 2);\n                if (nodes[u].ch.size() == 2) {\n                   \
     \ int x = nodes[u].ch[0], y = nodes[u].ch[1];\n                    assert(nodes[u].bag\
     \ == nodes[x].bag and nodes[u].bag == nodes[y].bag);\n                } else if\
@@ -184,7 +185,7 @@ data:
   isVerificationFile: true
   path: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
   requiredBy: []
-  timestamp: '2022-10-31 01:21:54+09:00'
+  timestamp: '2022-11-01 16:55:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp

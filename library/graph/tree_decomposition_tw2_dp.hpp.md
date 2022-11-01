@@ -5,21 +5,20 @@ data:
     path: library/graph/tree_decomposition_tw2.hpp
     title: Tree Decomposition Tw2
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
+    title: test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/tree_decomposition_width_2
-    links:
-    - https://judge.yosupo.jp/problem/tree_decomposition_width_2
-  bundledCode: "#line 1 \"test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/tree_decomposition_width_2\"\
-    \n\n#include <iostream>\n#include <limits>\n#include <tuple>\n\n#line 1 \"library/graph/tree_decomposition_tw2.hpp\"\
-    \n\n\n\n#include <algorithm>\n#include <atcoder/dsu>\n#include <cassert>\n#include\
-    \ <deque>\n#include <optional>\n#include <utility>\n#include <vector>\n\nnamespace\
-    \ suisen {\n    struct DecompNode {\n        std::vector<int> bag;\n        std::vector<int>\
+    links: []
+  bundledCode: "#line 1 \"library/graph/tree_decomposition_tw2_dp.hpp\"\n\n\n\n#include\
+    \ <functional>\n\n#line 1 \"library/graph/tree_decomposition_tw2.hpp\"\n\n\n\n\
+    #include <algorithm>\n#include <atcoder/dsu>\n#include <cassert>\n#include <deque>\n\
+    #include <optional>\n#include <utility>\n#include <vector>\n\nnamespace suisen\
+    \ {\n    struct DecompNode {\n        std::vector<int> bag;\n        std::vector<int>\
     \ adj;\n    };\n    struct DecompNodeRooted {\n        std::vector<int> bag;\n\
     \        int par;\n        std::vector<int> ch;\n    };\n\n    struct TreeDecompositionTW2\
     \ {\n        TreeDecompositionTW2(const int n = 0, const std::vector<std::pair<int,\
@@ -151,49 +150,140 @@ data:
     \ true;\n                if (idx_uv - 2 >= 0 and g[u][idx_uv].first == g[u][idx_uv\
     \ - 2].first) return true;\n                return false;\n            };\n  \
     \          while (is_unnecessary(idx_uv)) remove_edge(g, u, idx_uv);\n       \
-    \ }\n    };\n} // namespace suisen\n\n\n\n#line 8 \"test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp\"\
-    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    std::string waste_input;\n    std::cin >> waste_input >> waste_input;\n\n\
-    \    int n, m;\n    std::cin >> n >> m;\n\n    suisen::TreeDecompositionTW2 td(n);\n\
-    \    for (int i = 0; i < m; ++i) {\n        int u, v;\n        std::cin >> u >>\
-    \ v;\n        --u, --v;\n        td.add_edge(u, v);\n    }\n\n    const auto opt_res\
-    \ = td.nice_decomp();\n    if (not opt_res.has_value()) {\n        std::cout <<\
-    \ -1 << '\\n';\n    } else {\n        const auto& nodes = *opt_res;\n        const\
-    \ int k = nodes.size();\n        suisen::TreeDecompositionTW2::assert_nice(nodes,\
-    \ 0);\n        assert(k <= 3 * n + m + 10);\n        std::cout << \"s td \" <<\
-    \ k << ' ' << 2 << ' ' << n << '\\n';\n        for (int i = 0; i < k; ++i) {\n\
-    \            std::cout << \"b \" << i + 1;\n            for (int v : nodes[i].bag)\
-    \ std::cout << ' ' << v + 1;\n            std::cout << '\\n';\n        }\n   \
-    \     for (int i = 0; i < k; ++i) for (int j : nodes[i].ch) {\n            std::cout\
-    \ << i + 1 << ' ' << j + 1 << '\\n';\n        }\n    }\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_decomposition_width_2\"\
-    \n\n#include <iostream>\n#include <limits>\n#include <tuple>\n\n#include \"library/graph/tree_decomposition_tw2.hpp\"\
-    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    std::string waste_input;\n    std::cin >> waste_input >> waste_input;\n\n\
-    \    int n, m;\n    std::cin >> n >> m;\n\n    suisen::TreeDecompositionTW2 td(n);\n\
-    \    for (int i = 0; i < m; ++i) {\n        int u, v;\n        std::cin >> u >>\
-    \ v;\n        --u, --v;\n        td.add_edge(u, v);\n    }\n\n    const auto opt_res\
-    \ = td.nice_decomp();\n    if (not opt_res.has_value()) {\n        std::cout <<\
-    \ -1 << '\\n';\n    } else {\n        const auto& nodes = *opt_res;\n        const\
-    \ int k = nodes.size();\n        suisen::TreeDecompositionTW2::assert_nice(nodes,\
-    \ 0);\n        assert(k <= 3 * n + m + 10);\n        std::cout << \"s td \" <<\
-    \ k << ' ' << 2 << ' ' << n << '\\n';\n        for (int i = 0; i < k; ++i) {\n\
-    \            std::cout << \"b \" << i + 1;\n            for (int v : nodes[i].bag)\
-    \ std::cout << ' ' << v + 1;\n            std::cout << '\\n';\n        }\n   \
-    \     for (int i = 0; i < k; ++i) for (int j : nodes[i].ch) {\n            std::cout\
-    \ << i + 1 << ' ' << j + 1 << '\\n';\n        }\n    }\n\n    return 0;\n}"
+    \ }\n    };\n} // namespace suisen\n\n\n\n#line 7 \"library/graph/tree_decomposition_tw2_dp.hpp\"\
+    \n\nnamespace suisen {\n    enum class NodeType {\n        LEAF,\n        INTRODUCE,\n\
+    \        FORGET,\n        JOIN\n    };\n\n    struct NiceDecompTree {\n      \
+    \  static constexpr int root = 0;\n\n        NiceDecompTree() = default;\n   \
+    \     NiceDecompTree(std::vector<DecompNodeRooted>&& nodes) : _n(nodes.size()),\
+    \ _nodes(std::move(nodes)), _pst(_n, -1) {}\n        NiceDecompTree(const std::vector<DecompNodeRooted>&\
+    \ nodes) : _n(nodes.size()), _nodes(nodes), _pst(_n, -1) {}\n        NiceDecompTree(int\
+    \ n, const std::vector<std::pair<int, int>>& edges) : NiceDecompTree(*TreeDecompositionTW2{\
+    \ n, edges }.nice_decomp()) {}\n        NiceDecompTree(const std::vector<std::vector<int>>&\
+    \ g) : NiceDecompTree(*TreeDecompositionTW2{ g }.nice_decomp()) {}\n\n       \
+    \ int size() const { return _n; }\n\n        NodeType get_node_type(int i) const\
+    \ {\n            if (_nodes[i].ch.size() == 0) return NodeType::LEAF;\n      \
+    \      if (_nodes[i].ch.size() == 2) return NodeType::JOIN;\n            if (_nodes[i].bag.size()\
+    \ > _nodes[_nodes[i].ch[0]].bag.size()) return NodeType::INTRODUCE;\n        \
+    \    return NodeType::FORGET;\n        }\n        std::vector<NodeType> get_node_types()\
+    \ const {\n            std::vector<NodeType> types(_n);\n            for (int\
+    \ i = 0; i < _n; ++i) types[i] = get_node_type(i);\n            return types;\n\
+    \        }\n\n        const DecompNodeRooted& operator[](int i) const { return\
+    \ _nodes[i]; }\n        DecompNodeRooted& operator[](int i) { return _nodes[i];\
+    \ }\n\n        template <typename T> T run_dp(\n            std::function<T(const\
+    \ DecompNodeRooted& node, int leaf_vertex)> leaf,\n            std::function<T(const\
+    \ DecompNodeRooted& node, const DecompNodeRooted& child_node, const T& child_result,\
+    \ int introduce_vertex)> introduce,\n            std::function<T(const DecompNodeRooted&\
+    \ node, const DecompNodeRooted& child_node, const T& child_result, int forget_vertex)>\
+    \ forget,\n            std::function<T(const DecompNodeRooted& node, const DecompNodeRooted&\
+    \ child_node_1, const T& child_result_1, const DecompNodeRooted& child_node_2,\
+    \ const T& child_result_2)> join\n        ) const {\n            prepare_post_order();\n\
+    \            std::vector<T> dp(_n);\n            for (int i : _pst) {\n      \
+    \          dp[i] = [&, this] {\n                    switch (get_node_type(i))\
+    \ {\n                    case NodeType::LEAF:\n                    {\n       \
+    \                 return leaf(_nodes[i], _nodes[i].bag[0]);\n                \
+    \    }\n                    case NodeType::INTRODUCE:\n                    {\n\
+    \                        int j = _nodes[i].ch[0];\n                        int\
+    \ sj = _nodes[j].bag.size();\n                        int v = _nodes[i].bag[sj];\n\
+    \                        for (int k = 0; k < sj; ++k) if (_nodes[i].bag[k] !=\
+    \ _nodes[j].bag[k]) {\n                            v = _nodes[i].bag[k];\n   \
+    \                         break;\n                        }\n                \
+    \        return introduce(_nodes[i], _nodes[j], dp[j], v);\n                 \
+    \   }\n                    case NodeType::FORGET:\n                    {\n   \
+    \                     int j = _nodes[i].ch[0];\n                        int si\
+    \ = _nodes[i].bag.size();\n                        int v = _nodes[j].bag[si];\n\
+    \                        for (int k = 0; k < si; ++k) if (_nodes[i].bag[k] !=\
+    \ _nodes[j].bag[k]) {\n                            v = _nodes[j].bag[k];\n   \
+    \                         break;\n                        }\n                \
+    \        return forget(_nodes[i], _nodes[j], dp[j], v);\n                    }\n\
+    \                    case NodeType::JOIN:\n                    {\n           \
+    \             int j = _nodes[i].ch[0], k = _nodes[i].ch[1];\n                \
+    \        return join(_nodes[i], _nodes[j], dp[j], _nodes[k], dp[k]);\n       \
+    \             }\n                    default:\n                    {\n       \
+    \                 assert(false);\n                    }\n                    }\n\
+    \                }();\n            }\n            return dp[root];\n        }\n\
+    \n    private:\n        int _n;\n        std::vector<DecompNodeRooted> _nodes;\n\
+    \n        mutable std::vector<int> _pst;\n\n        void prepare_post_order()\
+    \ const {\n            if (_pst.empty() or _pst.front() >= 0) return;\n      \
+    \      auto it = _pst.begin();\n            std::vector<std::size_t> eid(_n, 0);\n\
+    \            for (int cur = root; cur >= 0;) {\n                if (eid[cur] ==\
+    \ _nodes[cur].ch.size()) {\n                    *it++ = cur;\n               \
+    \     cur = _nodes[cur].par;\n                } else {\n                    cur\
+    \ = _nodes[cur].ch[eid[cur]++];\n                }\n            }\n        }\n\
+    \    };\n} // namespace suisen\n\n\n\n"
+  code: "#ifndef SUISEN_TREE_DECOMPOSITION_TW2_DP\n#define SUISEN_TREE_DECOMPOSITION_TW2_DP\n\
+    \n#include <functional>\n\n#include \"library/graph/tree_decomposition_tw2.hpp\"\
+    \n\nnamespace suisen {\n    enum class NodeType {\n        LEAF,\n        INTRODUCE,\n\
+    \        FORGET,\n        JOIN\n    };\n\n    struct NiceDecompTree {\n      \
+    \  static constexpr int root = 0;\n\n        NiceDecompTree() = default;\n   \
+    \     NiceDecompTree(std::vector<DecompNodeRooted>&& nodes) : _n(nodes.size()),\
+    \ _nodes(std::move(nodes)), _pst(_n, -1) {}\n        NiceDecompTree(const std::vector<DecompNodeRooted>&\
+    \ nodes) : _n(nodes.size()), _nodes(nodes), _pst(_n, -1) {}\n        NiceDecompTree(int\
+    \ n, const std::vector<std::pair<int, int>>& edges) : NiceDecompTree(*TreeDecompositionTW2{\
+    \ n, edges }.nice_decomp()) {}\n        NiceDecompTree(const std::vector<std::vector<int>>&\
+    \ g) : NiceDecompTree(*TreeDecompositionTW2{ g }.nice_decomp()) {}\n\n       \
+    \ int size() const { return _n; }\n\n        NodeType get_node_type(int i) const\
+    \ {\n            if (_nodes[i].ch.size() == 0) return NodeType::LEAF;\n      \
+    \      if (_nodes[i].ch.size() == 2) return NodeType::JOIN;\n            if (_nodes[i].bag.size()\
+    \ > _nodes[_nodes[i].ch[0]].bag.size()) return NodeType::INTRODUCE;\n        \
+    \    return NodeType::FORGET;\n        }\n        std::vector<NodeType> get_node_types()\
+    \ const {\n            std::vector<NodeType> types(_n);\n            for (int\
+    \ i = 0; i < _n; ++i) types[i] = get_node_type(i);\n            return types;\n\
+    \        }\n\n        const DecompNodeRooted& operator[](int i) const { return\
+    \ _nodes[i]; }\n        DecompNodeRooted& operator[](int i) { return _nodes[i];\
+    \ }\n\n        template <typename T> T run_dp(\n            std::function<T(const\
+    \ DecompNodeRooted& node, int leaf_vertex)> leaf,\n            std::function<T(const\
+    \ DecompNodeRooted& node, const DecompNodeRooted& child_node, const T& child_result,\
+    \ int introduce_vertex)> introduce,\n            std::function<T(const DecompNodeRooted&\
+    \ node, const DecompNodeRooted& child_node, const T& child_result, int forget_vertex)>\
+    \ forget,\n            std::function<T(const DecompNodeRooted& node, const DecompNodeRooted&\
+    \ child_node_1, const T& child_result_1, const DecompNodeRooted& child_node_2,\
+    \ const T& child_result_2)> join\n        ) const {\n            prepare_post_order();\n\
+    \            std::vector<T> dp(_n);\n            for (int i : _pst) {\n      \
+    \          dp[i] = [&, this] {\n                    switch (get_node_type(i))\
+    \ {\n                    case NodeType::LEAF:\n                    {\n       \
+    \                 return leaf(_nodes[i], _nodes[i].bag[0]);\n                \
+    \    }\n                    case NodeType::INTRODUCE:\n                    {\n\
+    \                        int j = _nodes[i].ch[0];\n                        int\
+    \ sj = _nodes[j].bag.size();\n                        int v = _nodes[i].bag[sj];\n\
+    \                        for (int k = 0; k < sj; ++k) if (_nodes[i].bag[k] !=\
+    \ _nodes[j].bag[k]) {\n                            v = _nodes[i].bag[k];\n   \
+    \                         break;\n                        }\n                \
+    \        return introduce(_nodes[i], _nodes[j], dp[j], v);\n                 \
+    \   }\n                    case NodeType::FORGET:\n                    {\n   \
+    \                     int j = _nodes[i].ch[0];\n                        int si\
+    \ = _nodes[i].bag.size();\n                        int v = _nodes[j].bag[si];\n\
+    \                        for (int k = 0; k < si; ++k) if (_nodes[i].bag[k] !=\
+    \ _nodes[j].bag[k]) {\n                            v = _nodes[j].bag[k];\n   \
+    \                         break;\n                        }\n                \
+    \        return forget(_nodes[i], _nodes[j], dp[j], v);\n                    }\n\
+    \                    case NodeType::JOIN:\n                    {\n           \
+    \             int j = _nodes[i].ch[0], k = _nodes[i].ch[1];\n                \
+    \        return join(_nodes[i], _nodes[j], dp[j], _nodes[k], dp[k]);\n       \
+    \             }\n                    default:\n                    {\n       \
+    \                 assert(false);\n                    }\n                    }\n\
+    \                }();\n            }\n            return dp[root];\n        }\n\
+    \n    private:\n        int _n;\n        std::vector<DecompNodeRooted> _nodes;\n\
+    \n        mutable std::vector<int> _pst;\n\n        void prepare_post_order()\
+    \ const {\n            if (_pst.empty() or _pst.front() >= 0) return;\n      \
+    \      auto it = _pst.begin();\n            std::vector<std::size_t> eid(_n, 0);\n\
+    \            for (int cur = root; cur >= 0;) {\n                if (eid[cur] ==\
+    \ _nodes[cur].ch.size()) {\n                    *it++ = cur;\n               \
+    \     cur = _nodes[cur].par;\n                } else {\n                    cur\
+    \ = _nodes[cur].ch[eid[cur]++];\n                }\n            }\n        }\n\
+    \    };\n} // namespace suisen\n\n\n#endif // SUISEN_TREE_DECOMPOSITION_TW2_DP\n"
   dependsOn:
   - library/graph/tree_decomposition_tw2.hpp
-  isVerificationFile: true
-  path: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
+  isVerificationFile: false
+  path: library/graph/tree_decomposition_tw2_dp.hpp
   requiredBy: []
   timestamp: '2022-11-01 16:55:57+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
+documentation_of: library/graph/tree_decomposition_tw2_dp.hpp
 layout: document
 redirect_from:
-- /verify/test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
-- /verify/test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp.html
-title: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
+- /library/library/graph/tree_decomposition_tw2_dp.hpp
+- /library/library/graph/tree_decomposition_tw2_dp.hpp.html
+title: library/graph/tree_decomposition_tw2_dp.hpp
 ---
