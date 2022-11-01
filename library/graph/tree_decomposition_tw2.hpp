@@ -195,6 +195,7 @@ namespace suisen {
                     assert(false);
                 }
             }
+            res[root].par = -1;
 
             return res;
         }
