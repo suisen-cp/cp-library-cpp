@@ -36,6 +36,8 @@ namespace suisen {
         static constexpr int alphabet_size = node_type::alphabet_size;
         static constexpr int offset = node_type::offset;
 
+        static constexpr int root = 0;
+
         using base_node_type = ArrayTrieNode<alphabet_size, offset>;
 
         std::vector<node_type> nodes;
