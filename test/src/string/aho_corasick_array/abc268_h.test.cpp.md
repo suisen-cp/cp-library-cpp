@@ -37,31 +37,31 @@ data:
     \ {\n        using node_type = NodeType;\n        using key_type = typename node_type::key_type;\n\
     \n        static constexpr int none = node_type::none;\n        static constexpr\
     \ int alphabet_size = node_type::alphabet_size;\n        static constexpr int\
-    \ offset = node_type::offset;\n\n        using base_node_type = ArrayTrieNode<alphabet_size,\
-    \ offset>;\n\n        std::vector<node_type> nodes;\n\n        ArrayTrie() {\n\
-    \            nodes.emplace_back();\n        }\n\n        void reserve(int capacity)\
-    \ {\n            nodes.reserve(capacity);\n        }\n\n        template <typename\
-    \ Container, std::enable_if_t<std::is_constructible_v<key_type, typename Container::value_type>,\
-    \ std::nullptr_t> = nullptr>\n        node_type& add(const Container& s, int start\
-    \ = 0) {\n            int cur = start;\n            for (key_type c : s) {\n \
-    \               c -= offset;\n                if (nodes[cur][c] == none) {\n \
-    \                   nodes[cur][c] = nodes.size();\n                    if constexpr\
-    \ (std::is_base_of_v<ArrayTrieNodeWithParentLink<alphabet_size, offset>, node_type>)\
-    \ {\n                        nodes.emplace_back(cur, c);\n                   \
-    \ } else {\n                        nodes.emplace_back();\n                  \
-    \  }\n                }\n                cur = nodes[cur][c];\n            }\n\
-    \            return nodes[cur];\n        }\n\n        const node_type& operator[](int\
-    \ i) const {\n            return nodes[i];\n        }\n        node_type& operator[](int\
-    \ i) {\n            return nodes[i];\n        }\n    };\n} // namespace suisen\n\
-    \n\n#line 10 \"library/string/aho_corasick_array.hpp\"\n\nnamespace suisen {\n\
-    \    template <int alphabet_size, int offset>\n    struct AhoCorasickArrayNode\
-    \ : ArrayTrieNode<alphabet_size, offset> {\n        int count;\n        int failure;\n\
-    \    };\n\n    template <int alphabet_size, int offset>\n    struct AhoCorasickArray\
-    \ : private ArrayTrie<AhoCorasickArrayNode<alphabet_size, offset>> {\n       \
-    \ using base_type = ArrayTrie<AhoCorasickArrayNode<alphabet_size, offset>>;\n\
-    \        using node_type = typename base_type::node_type;\n        using key_type\
-    \ = typename base_type::key_type;\n\n        using base_type::base_type;\n\n \
-    \       template <typename Container, std::enable_if_t<std::is_constructible_v<key_type,\
+    \ offset = node_type::offset;\n\n        static constexpr int root = 0;\n\n  \
+    \      using base_node_type = ArrayTrieNode<alphabet_size, offset>;\n\n      \
+    \  std::vector<node_type> nodes;\n\n        ArrayTrie() {\n            nodes.emplace_back();\n\
+    \        }\n\n        void reserve(int capacity) {\n            nodes.reserve(capacity);\n\
+    \        }\n\n        template <typename Container, std::enable_if_t<std::is_constructible_v<key_type,\
+    \ typename Container::value_type>, std::nullptr_t> = nullptr>\n        node_type&\
+    \ add(const Container& s, int start = 0) {\n            int cur = start;\n   \
+    \         for (key_type c : s) {\n                c -= offset;\n             \
+    \   if (nodes[cur][c] == none) {\n                    nodes[cur][c] = nodes.size();\n\
+    \                    if constexpr (std::is_base_of_v<ArrayTrieNodeWithParentLink<alphabet_size,\
+    \ offset>, node_type>) {\n                        nodes.emplace_back(cur, c);\n\
+    \                    } else {\n                        nodes.emplace_back();\n\
+    \                    }\n                }\n                cur = nodes[cur][c];\n\
+    \            }\n            return nodes[cur];\n        }\n\n        const node_type&\
+    \ operator[](int i) const {\n            return nodes[i];\n        }\n       \
+    \ node_type& operator[](int i) {\n            return nodes[i];\n        }\n  \
+    \  };\n} // namespace suisen\n\n\n#line 10 \"library/string/aho_corasick_array.hpp\"\
+    \n\nnamespace suisen {\n    template <int alphabet_size, int offset>\n    struct\
+    \ AhoCorasickArrayNode : ArrayTrieNode<alphabet_size, offset> {\n        int count;\n\
+    \        int failure;\n    };\n\n    template <int alphabet_size, int offset>\n\
+    \    struct AhoCorasickArray : private ArrayTrie<AhoCorasickArrayNode<alphabet_size,\
+    \ offset>> {\n        using base_type = ArrayTrie<AhoCorasickArrayNode<alphabet_size,\
+    \ offset>>;\n        using node_type = typename base_type::node_type;\n      \
+    \  using key_type = typename base_type::key_type;\n\n        using base_type::base_type;\n\
+    \n        template <typename Container, std::enable_if_t<std::is_constructible_v<key_type,\
     \ typename Container::value_type>, std::nullptr_t> = nullptr>\n        void add(const\
     \ Container& s) {\n            ++base_type::add(s).count;\n        }\n\n     \
     \   void build() {\n            this->nodes[0].failure = init_state();\n     \
@@ -107,7 +107,7 @@ data:
   isVerificationFile: true
   path: test/src/string/aho_corasick_array/abc268_h.test.cpp
   requiredBy: []
-  timestamp: '2022-10-15 19:53:20+09:00'
+  timestamp: '2022-11-06 23:07:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/string/aho_corasick_array/abc268_h.test.cpp

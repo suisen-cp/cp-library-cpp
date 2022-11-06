@@ -352,7 +352,7 @@ data:
       title: Weighted Union Find
   - name: library/datastructure/util
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/util/dynamic_bitset.hpp
       title: Dynamic Bitset
     - icon: ':heavy_check_mark:'
@@ -539,6 +539,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/gaussian_elimination.hpp
       title: Gaussian Elimination
+    - icon: ':warning:'
+      path: library/linear_algebra/gaussian_elimination_f2.hpp
+      title: library/linear_algebra/gaussian_elimination_f2.hpp
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/hafnian.hpp
       title: Hafnian
@@ -548,6 +551,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/matrix.hpp
       title: Matrix
+    - icon: ':warning:'
+      path: library/linear_algebra/matrix_f2.hpp
+      title: library/linear_algebra/matrix_f2.hpp
     - icon: ':x:'
       path: library/linear_algebra/xor_base.hpp
       title: "XOR \u57FA\u5E95"
@@ -1428,6 +1434,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
       title: test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp
+  - name: test/src/datastructure/util/dynamic_bitset
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/util/dynamic_bitset/dummy.test.cpp
+      title: test/src/datastructure/util/dynamic_bitset/dummy.test.cpp
   - name: test/src/datastructure/util/priority_sum
     pages:
     - icon: ':heavy_check_mark:'
