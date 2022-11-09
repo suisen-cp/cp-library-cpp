@@ -119,7 +119,23 @@ namespace suisen {
 
         friend FormalPowerSeries operator+(FormalPowerSeries f, const FormalPowerSeries& g) { f += g; return f; }
         friend FormalPowerSeries operator-(FormalPowerSeries f, const FormalPowerSeries& g) { f -= g; return f; }
-        friend FormalPowerSeries operator*(const FormalPowerSeries& f, const FormalPowerSeries& g) { return atcoder::convolution(f, g); }
+        friend FormalPowerSeries operator*(const FormalPowerSeries& f, const FormalPowerSeries& g) {
+            const int siz_f = f.size(), siz_g = g.size();
+            if (siz_f < siz_g) return g * f;
+            if (std::min(siz_f, siz_g) <= 60) return atcoder::convolution(f, g);
+            const int deg = siz_f + siz_g - 2;
+            int fpow2 = 1;
+            while ((fpow2 << 1) <= deg) fpow2 <<= 1;
+            if (const int dif = deg - fpow2 + 1; dif <= 10) {
+                FormalPowerSeries h = atcoder::convolution(std::vector<mint>(f.begin(), f.end() - dif), g);
+                h.resize(h.size() + dif);
+                for (int i = siz_f - dif; i < siz_f; ++i) for (int j = 0; j < siz_g; ++j) {
+                    h[i + j] += f[i] * g[j];
+                }
+                return h;
+            }
+            return atcoder::convolution(f, g);
+        }
         friend FormalPowerSeries operator/(FormalPowerSeries f, FormalPowerSeries g) {
             if (f.size() < 60) return FPSNaive<mint>(f).div_mod(g).first;
             f.cut_trailing_zeros(), g.cut_trailing_zeros();
@@ -344,17 +360,15 @@ namespace suisen {
         }
 
         static FormalPowerSeries prod(const std::vector<FormalPowerSeries>& fs) {
-            auto comp = [](const FormalPowerSeries& f, const FormalPowerSeries& g) { return f.size() > g.size(); };
-            std::priority_queue<FormalPowerSeries, std::vector<FormalPowerSeries>, decltype(comp)> pq{ comp };
-            for (const auto& f : fs) pq.push(f);
-            while (pq.size() > 1) {
-                auto f = pq.top();
-                pq.pop();
-                auto g = pq.top();
-                pq.pop();
-                pq.push(f * g);
+            if (fs.empty()) return { 1 };
+            std::deque<FormalPowerSeries> dq(fs.begin(), fs.end());
+            std::sort(dq.begin(), dq.end(), [](auto& f, auto& g) { return f.size() < g.size(); });
+            while (dq.size() >= 2) {
+                dq.push_back(dq[0] * dq[1]);
+                dq.pop_front();
+                dq.pop_front();
             }
-            return pq.top();
+            return dq.front();
         }
 
         std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int max_size) const {
