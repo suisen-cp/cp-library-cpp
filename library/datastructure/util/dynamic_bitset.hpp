@@ -161,6 +161,7 @@ namespace suisen {
                     }
                 }
             }
+            res.range_reset(x.n - shamt, x.n);
             return res;
         }
 

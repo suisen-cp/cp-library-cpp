@@ -53,7 +53,7 @@ namespace suisen {
             assert(x.m == y.m);
             MatrixF2 z(x.n, y.n);
             for (std::size_t i = 0; i < x.n; ++i) for (std::size_t j = 0; j < y.n; ++j) {
-                z[i][j] = x[i].has_intersection(y[j]);
+                z[i][j] = (x[i] & y[j]).count() & 1;
             }
             return z;
         }
@@ -65,7 +65,7 @@ namespace suisen {
         DynamicBitSet operator*(const DynamicBitSet& x) const {
             assert(m == std::size_t(x.size()));
             DynamicBitSet y(n);
-            for (std::size_t i = 0; i < n; ++i) y[i] = dat[i].has_intersection(x);
+            for (std::size_t i = 0; i < n; ++i) y[i] = (dat[i] & x).count() & 1;
             return y;
         }
 
@@ -94,7 +94,7 @@ namespace suisen {
             for (std::size_t i = 0; i < n; ++i) {
                 for (std::size_t j = i + 1; j < n; ++j) if (A[j][i]) {
                     std::swap(A[i], A[j]), std::swap(B[i], B[j]);
-                    if (A[j][i]) A[j] ^= A[i];
+                    if (A[j][i]) A[j] ^= A[i], B[j] ^= B[i];
                 }
                 if (not A[i][i]) return std::nullopt;
             }
