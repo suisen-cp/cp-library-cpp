@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/sequence/binomial_coefficient_small_prime_mod.hpp
     title: Binomial Coefficient Small Prime Mod
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
   - icon: ':heavy_check_mark:'

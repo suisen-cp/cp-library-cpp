@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/linear_algebra/gaussian_elimination_f2.hpp
-    title: library/linear_algebra/gaussian_elimination_f2.hpp
+    title: Gaussian Elimination F2
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -110,12 +110,13 @@ data:
     \ res.blocks[i] |= x.blocks[i + block_shamt] >> bit_shamt;\n                 \
     \   if (i + block_shamt + 1 != x.block_num()) {\n                        res.blocks[i]\
     \ |= x.blocks[i + block_shamt + 1] << (block_size - bit_shamt);\n            \
-    \        }\n                }\n            }\n            return res;\n      \
-    \  }\n\n        DynamicBitSet operator~() const {\n            DynamicBitSet neg(n);\n\
-    \            for (std::size_t i = 0; i < block_num(); ++i) neg.blocks[i] = ~blocks[i];\n\
-    \            return neg;\n        }\n\n        bool operator[](std::size_t i)\
-    \ const {\n            return (blocks[block_index(i)] >> bit_index(i)) & 1;\n\
-    \        }\n        bitref operator[](std::size_t i) {\n            return { blocks[block_index(i)],\
+    \        }\n                }\n            }\n            res.range_reset(x.n\
+    \ - shamt, x.n);\n            return res;\n        }\n\n        DynamicBitSet\
+    \ operator~() const {\n            DynamicBitSet neg(n);\n            for (std::size_t\
+    \ i = 0; i < block_num(); ++i) neg.blocks[i] = ~blocks[i];\n            return\
+    \ neg;\n        }\n\n        bool operator[](std::size_t i) const {\n        \
+    \    return (blocks[block_index(i)] >> bit_index(i)) & 1;\n        }\n       \
+    \ bitref operator[](std::size_t i) {\n            return { blocks[block_index(i)],\
     \ bit_index(i) };\n        }\n\n        void range_set(std::size_t l, std::size_t\
     \ r) {\n            assert(l <= r and r <= n);\n            if (l == r) return;\n\
     \            std::size_t lb = block_index(l), rb = block_index(r - 1);\n     \
@@ -237,7 +238,7 @@ data:
     \ MatrixF2& x, MatrixF2 y) {\n            y = y.transposed();\n            assert(x.m\
     \ == y.m);\n            MatrixF2 z(x.n, y.n);\n            for (std::size_t i\
     \ = 0; i < x.n; ++i) for (std::size_t j = 0; j < y.n; ++j) {\n               \
-    \ z[i][j] = x[i].has_intersection(y[j]);\n            }\n            return z;\n\
+    \ z[i][j] = (x[i] & y[j]).count() & 1;\n            }\n            return z;\n\
     \        }\n        friend MatrixF2 operator*(MatrixF2 x, bool val) { x *= val;\
     \ return x; }\n        friend MatrixF2 operator*(bool val, MatrixF2 x) { x *=\
     \ val; return x; }\n        friend MatrixF2 operator/(const MatrixF2 &x, const\
@@ -245,11 +246,11 @@ data:
     \ x, bool val) { x /= val; return x; }\n\n        DynamicBitSet operator*(const\
     \ DynamicBitSet& x) const {\n            assert(m == std::size_t(x.size()));\n\
     \            DynamicBitSet y(n);\n            for (std::size_t i = 0; i < n; ++i)\
-    \ y[i] = dat[i].has_intersection(x);\n            return y;\n        }\n\n   \
-    \     MatrixF2 pow(long long b) const {\n            assert(n == m);\n       \
-    \     MatrixF2 p = *this, res = e1(n);\n            for (; b; b >>= 1) {\n   \
-    \             if (b & 1) res *= p;\n                p *= p;\n            }\n \
-    \           return res;\n        }\n\n        static MatrixF2 e0(std::size_t n)\
+    \ y[i] = (dat[i] & x).count() & 1;\n            return y;\n        }\n\n     \
+    \   MatrixF2 pow(long long b) const {\n            assert(n == m);\n         \
+    \   MatrixF2 p = *this, res = e1(n);\n            for (; b; b >>= 1) {\n     \
+    \           if (b & 1) res *= p;\n                p *= p;\n            }\n   \
+    \         return res;\n        }\n\n        static MatrixF2 e0(std::size_t n)\
     \ {\n            return MatrixF2(n, n);\n        }\n        static MatrixF2 e1(std::size_t\
     \ n) {\n            MatrixF2 res(n, n);\n            for (std::size_t i = 0; i\
     \ < n; ++i) res[i][i] = 1;\n            return res;\n        }\n\n        std::optional<MatrixF2>\
@@ -257,23 +258,23 @@ data:
     \ B = e1(n);\n            for (std::size_t i = 0; i < n; ++i) {\n            \
     \    for (std::size_t j = i + 1; j < n; ++j) if (A[j][i]) {\n                \
     \    std::swap(A[i], A[j]), std::swap(B[i], B[j]);\n                    if (A[j][i])\
-    \ A[j] ^= A[i];\n                }\n                if (not A[i][i]) return std::nullopt;\n\
-    \            }\n            for (std::size_t i = n; i-- > 0;) {\n            \
-    \    for (std::size_t j = 0; j < i; ++j) {\n                    if (A[j][i]) A[j]\
-    \ ^= A[i], B[j] ^= B[i];\n                }\n            }\n            return\
-    \ B;\n        }\n        bool det() const {\n            MatrixF2 A = *this;\n\
-    \            for (std::size_t i = 0; i < n; ++i) {\n                for (std::size_t\
-    \ j = i + 1; j < n; ++j) if (A[j][i]) {\n                    std::swap(A[i], A[j]);\n\
-    \                    if (A[j][i]) A[j] ^= A[i];\n                }\n         \
-    \       if (not A[i][i]) return false;\n            }\n            return true;\n\
-    \        }\n        std::size_t rank() const {\n            MatrixF2 A = *this;\n\
-    \            std::size_t r = 0;\n            for (std::size_t j = 0; j < m; ++j)\
-    \ {\n                for (std::size_t i = r + 1; i < n; ++i) if (A[i][j]) {\n\
-    \                    std::swap(A[r], A[i]);\n                    if (A[i][j])\
-    \ A[i] ^= A[r];\n                }\n                r += A[r][j];\n          \
-    \  }\n            return r;\n        }\n\n    private:\n        std::size_t n,\
-    \ m;\n        std::vector<DynamicBitSet> dat;\n    };\n} // namespace suisen\n\
-    \n\n\n"
+    \ A[j] ^= A[i], B[j] ^= B[i];\n                }\n                if (not A[i][i])\
+    \ return std::nullopt;\n            }\n            for (std::size_t i = n; i--\
+    \ > 0;) {\n                for (std::size_t j = 0; j < i; ++j) {\n           \
+    \         if (A[j][i]) A[j] ^= A[i], B[j] ^= B[i];\n                }\n      \
+    \      }\n            return B;\n        }\n        bool det() const {\n     \
+    \       MatrixF2 A = *this;\n            for (std::size_t i = 0; i < n; ++i) {\n\
+    \                for (std::size_t j = i + 1; j < n; ++j) if (A[j][i]) {\n    \
+    \                std::swap(A[i], A[j]);\n                    if (A[j][i]) A[j]\
+    \ ^= A[i];\n                }\n                if (not A[i][i]) return false;\n\
+    \            }\n            return true;\n        }\n        std::size_t rank()\
+    \ const {\n            MatrixF2 A = *this;\n            std::size_t r = 0;\n \
+    \           for (std::size_t j = 0; j < m; ++j) {\n                for (std::size_t\
+    \ i = r + 1; i < n; ++i) if (A[i][j]) {\n                    std::swap(A[r], A[i]);\n\
+    \                    if (A[i][j]) A[i] ^= A[r];\n                }\n         \
+    \       r += A[r][j];\n            }\n            return r;\n        }\n\n   \
+    \ private:\n        std::size_t n, m;\n        std::vector<DynamicBitSet> dat;\n\
+    \    };\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_MATRIX_F2\n#define SUISEN_MATRIX_F2\n\n#include <cassert>\n\
     #include <optional>\n#include <vector>\n\n#include \"library/datastructure/util/dynamic_bitset.hpp\"\
     \n\nnamespace suisen {\n    struct MatrixF2 {\n        MatrixF2() : MatrixF2(0,\
@@ -304,7 +305,7 @@ data:
     \ MatrixF2& x, MatrixF2 y) {\n            y = y.transposed();\n            assert(x.m\
     \ == y.m);\n            MatrixF2 z(x.n, y.n);\n            for (std::size_t i\
     \ = 0; i < x.n; ++i) for (std::size_t j = 0; j < y.n; ++j) {\n               \
-    \ z[i][j] = x[i].has_intersection(y[j]);\n            }\n            return z;\n\
+    \ z[i][j] = (x[i] & y[j]).count() & 1;\n            }\n            return z;\n\
     \        }\n        friend MatrixF2 operator*(MatrixF2 x, bool val) { x *= val;\
     \ return x; }\n        friend MatrixF2 operator*(bool val, MatrixF2 x) { x *=\
     \ val; return x; }\n        friend MatrixF2 operator/(const MatrixF2 &x, const\
@@ -312,11 +313,11 @@ data:
     \ x, bool val) { x /= val; return x; }\n\n        DynamicBitSet operator*(const\
     \ DynamicBitSet& x) const {\n            assert(m == std::size_t(x.size()));\n\
     \            DynamicBitSet y(n);\n            for (std::size_t i = 0; i < n; ++i)\
-    \ y[i] = dat[i].has_intersection(x);\n            return y;\n        }\n\n   \
-    \     MatrixF2 pow(long long b) const {\n            assert(n == m);\n       \
-    \     MatrixF2 p = *this, res = e1(n);\n            for (; b; b >>= 1) {\n   \
-    \             if (b & 1) res *= p;\n                p *= p;\n            }\n \
-    \           return res;\n        }\n\n        static MatrixF2 e0(std::size_t n)\
+    \ y[i] = (dat[i] & x).count() & 1;\n            return y;\n        }\n\n     \
+    \   MatrixF2 pow(long long b) const {\n            assert(n == m);\n         \
+    \   MatrixF2 p = *this, res = e1(n);\n            for (; b; b >>= 1) {\n     \
+    \           if (b & 1) res *= p;\n                p *= p;\n            }\n   \
+    \         return res;\n        }\n\n        static MatrixF2 e0(std::size_t n)\
     \ {\n            return MatrixF2(n, n);\n        }\n        static MatrixF2 e1(std::size_t\
     \ n) {\n            MatrixF2 res(n, n);\n            for (std::size_t i = 0; i\
     \ < n; ++i) res[i][i] = 1;\n            return res;\n        }\n\n        std::optional<MatrixF2>\
@@ -324,36 +325,34 @@ data:
     \ B = e1(n);\n            for (std::size_t i = 0; i < n; ++i) {\n            \
     \    for (std::size_t j = i + 1; j < n; ++j) if (A[j][i]) {\n                \
     \    std::swap(A[i], A[j]), std::swap(B[i], B[j]);\n                    if (A[j][i])\
-    \ A[j] ^= A[i];\n                }\n                if (not A[i][i]) return std::nullopt;\n\
-    \            }\n            for (std::size_t i = n; i-- > 0;) {\n            \
-    \    for (std::size_t j = 0; j < i; ++j) {\n                    if (A[j][i]) A[j]\
-    \ ^= A[i], B[j] ^= B[i];\n                }\n            }\n            return\
-    \ B;\n        }\n        bool det() const {\n            MatrixF2 A = *this;\n\
-    \            for (std::size_t i = 0; i < n; ++i) {\n                for (std::size_t\
-    \ j = i + 1; j < n; ++j) if (A[j][i]) {\n                    std::swap(A[i], A[j]);\n\
-    \                    if (A[j][i]) A[j] ^= A[i];\n                }\n         \
-    \       if (not A[i][i]) return false;\n            }\n            return true;\n\
-    \        }\n        std::size_t rank() const {\n            MatrixF2 A = *this;\n\
-    \            std::size_t r = 0;\n            for (std::size_t j = 0; j < m; ++j)\
-    \ {\n                for (std::size_t i = r + 1; i < n; ++i) if (A[i][j]) {\n\
-    \                    std::swap(A[r], A[i]);\n                    if (A[i][j])\
-    \ A[i] ^= A[r];\n                }\n                r += A[r][j];\n          \
-    \  }\n            return r;\n        }\n\n    private:\n        std::size_t n,\
-    \ m;\n        std::vector<DynamicBitSet> dat;\n    };\n} // namespace suisen\n\
-    \n\n#endif // SUISEN_MATRIX_F2\n"
+    \ A[j] ^= A[i], B[j] ^= B[i];\n                }\n                if (not A[i][i])\
+    \ return std::nullopt;\n            }\n            for (std::size_t i = n; i--\
+    \ > 0;) {\n                for (std::size_t j = 0; j < i; ++j) {\n           \
+    \         if (A[j][i]) A[j] ^= A[i], B[j] ^= B[i];\n                }\n      \
+    \      }\n            return B;\n        }\n        bool det() const {\n     \
+    \       MatrixF2 A = *this;\n            for (std::size_t i = 0; i < n; ++i) {\n\
+    \                for (std::size_t j = i + 1; j < n; ++j) if (A[j][i]) {\n    \
+    \                std::swap(A[i], A[j]);\n                    if (A[j][i]) A[j]\
+    \ ^= A[i];\n                }\n                if (not A[i][i]) return false;\n\
+    \            }\n            return true;\n        }\n        std::size_t rank()\
+    \ const {\n            MatrixF2 A = *this;\n            std::size_t r = 0;\n \
+    \           for (std::size_t j = 0; j < m; ++j) {\n                for (std::size_t\
+    \ i = r + 1; i < n; ++i) if (A[i][j]) {\n                    std::swap(A[r], A[i]);\n\
+    \                    if (A[i][j]) A[i] ^= A[r];\n                }\n         \
+    \       r += A[r][j];\n            }\n            return r;\n        }\n\n   \
+    \ private:\n        std::size_t n, m;\n        std::vector<DynamicBitSet> dat;\n\
+    \    };\n} // namespace suisen\n\n\n#endif // SUISEN_MATRIX_F2\n"
   dependsOn:
   - library/datastructure/util/dynamic_bitset.hpp
   isVerificationFile: false
   path: library/linear_algebra/matrix_f2.hpp
   requiredBy:
   - library/linear_algebra/gaussian_elimination_f2.hpp
-  timestamp: '2022-11-06 23:07:23+09:00'
+  timestamp: '2022-11-10 03:30:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/linear_algebra/matrix_f2.hpp
 layout: document
-redirect_from:
-- /library/library/linear_algebra/matrix_f2.hpp
-- /library/library/linear_algebra/matrix_f2.hpp.html
-title: library/linear_algebra/matrix_f2.hpp
+title: Matrix F2
 ---
+## Matrix F2

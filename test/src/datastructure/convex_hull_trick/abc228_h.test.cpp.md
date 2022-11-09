@@ -5,7 +5,7 @@ data:
     path: library/datastructure/convex_hull_trick.hpp
     title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\
       \u306A\u3044\u5834\u5408)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

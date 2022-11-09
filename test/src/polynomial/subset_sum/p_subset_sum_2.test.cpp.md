@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/subset_sum.hpp
     title: Subset Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
@@ -297,8 +297,18 @@ data:
     \ operator+(FormalPowerSeries f, const FormalPowerSeries& g) { f += g; return\
     \ f; }\n        friend FormalPowerSeries operator-(FormalPowerSeries f, const\
     \ FormalPowerSeries& g) { f -= g; return f; }\n        friend FormalPowerSeries\
-    \ operator*(const FormalPowerSeries& f, const FormalPowerSeries& g) { return atcoder::convolution(f,\
-    \ g); }\n        friend FormalPowerSeries operator/(FormalPowerSeries f, FormalPowerSeries\
+    \ operator*(const FormalPowerSeries& f, const FormalPowerSeries& g) {\n      \
+    \      const int siz_f = f.size(), siz_g = g.size();\n            if (siz_f <\
+    \ siz_g) return g * f;\n            if (std::min(siz_f, siz_g) <= 60) return atcoder::convolution(f,\
+    \ g);\n            const int deg = siz_f + siz_g - 2;\n            int fpow2 =\
+    \ 1;\n            while ((fpow2 << 1) <= deg) fpow2 <<= 1;\n            if (const\
+    \ int dif = deg - fpow2 + 1; dif <= 10) {\n                FormalPowerSeries h\
+    \ = atcoder::convolution(std::vector<mint>(f.begin(), f.end() - dif), g);\n  \
+    \              h.resize(h.size() + dif);\n                for (int i = siz_f -\
+    \ dif; i < siz_f; ++i) for (int j = 0; j < siz_g; ++j) {\n                   \
+    \ h[i + j] += f[i] * g[j];\n                }\n                return h;\n   \
+    \         }\n            return atcoder::convolution(f, g);\n        }\n     \
+    \   friend FormalPowerSeries operator/(FormalPowerSeries f, FormalPowerSeries\
     \ g) {\n            if (f.size() < 60) return FPSNaive<mint>(f).div_mod(g).first;\n\
     \            f.cut_trailing_zeros(), g.cut_trailing_zeros();\n            const\
     \ int fd = f.deg(), gd = g.deg();\n            assert(gd >= 0);\n            if\
@@ -419,23 +429,22 @@ data:
     \ eval(value_type x) const {\n            value_type y = 0;\n            for (int\
     \ i = size() - 1; i >= 0; --i) y = y * x + (*this)[i];\n            return y;\n\
     \        }\n\n        static FormalPowerSeries prod(const std::vector<FormalPowerSeries>&\
-    \ fs) {\n            auto comp = [](const FormalPowerSeries& f, const FormalPowerSeries&\
-    \ g) { return f.size() > g.size(); };\n            std::priority_queue<FormalPowerSeries,\
-    \ std::vector<FormalPowerSeries>, decltype(comp)> pq{ comp };\n            for\
-    \ (const auto& f : fs) pq.push(f);\n            while (pq.size() > 1) {\n    \
-    \            auto f = pq.top();\n                pq.pop();\n                auto\
-    \ g = pq.top();\n                pq.pop();\n                pq.push(f * g);\n\
-    \            }\n            return pq.top();\n        }\n\n        std::optional<std::vector<std::pair<int,\
-    \ value_type>>> sparse_fps_format(int max_size) const {\n            std::vector<std::pair<int,\
-    \ value_type>> res;\n            for (int i = 0; i <= deg() and int(res.size())\
-    \ <= max_size; ++i) if (value_type v = (*this)[i]; v != 0) res.emplace_back(i,\
-    \ v);\n            if (int(res.size()) > max_size) return std::nullopt;\n    \
-    \        return res;\n        }\n\n    private:\n        static void update_inv(const\
-    \ int k, FormalPowerSeries& f_fft, FormalPowerSeries& g_fft, FormalPowerSeries&\
-    \ g) {\n            FormalPowerSeries fg(2 * k);\n            for (int i = 0;\
-    \ i < 2 * k; ++i) fg[i] = f_fft[i] * g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
-    \            fg >>= k, fg.resize(2 * k);\n            atcoder::internal::butterfly(fg);\n\
-    \            for (int i = 0; i < 2 * k; ++i) fg[i] *= g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
+    \ fs) {\n            if (fs.empty()) return { 1 };\n            std::deque<FormalPowerSeries>\
+    \ dq(fs.begin(), fs.end());\n            std::sort(dq.begin(), dq.end(), [](auto&\
+    \ f, auto& g) { return f.size() < g.size(); });\n            while (dq.size()\
+    \ >= 2) {\n                dq.push_back(dq[0] * dq[1]);\n                dq.pop_front();\n\
+    \                dq.pop_front();\n            }\n            return dq.front();\n\
+    \        }\n\n        std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int\
+    \ max_size) const {\n            std::vector<std::pair<int, value_type>> res;\n\
+    \            for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i)\
+    \ if (value_type v = (*this)[i]; v != 0) res.emplace_back(i, v);\n           \
+    \ if (int(res.size()) > max_size) return std::nullopt;\n            return res;\n\
+    \        }\n\n    private:\n        static void update_inv(const int k, FormalPowerSeries&\
+    \ f_fft, FormalPowerSeries& g_fft, FormalPowerSeries& g) {\n            FormalPowerSeries\
+    \ fg(2 * k);\n            for (int i = 0; i < 2 * k; ++i) fg[i] = f_fft[i] * g_fft[i];\n\
+    \            atcoder::internal::butterfly_inv(fg);\n            fg >>= k, fg.resize(2\
+    \ * k);\n            atcoder::internal::butterfly(fg);\n            for (int i\
+    \ = 0; i < 2 * k; ++i) fg[i] *= g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
     \            const value_type iz = value_type(2 * k).inv(), c = -iz * iz;\n  \
     \          g.resize(2 * k);\n            for (int i = 0; i < k; ++i) g[k + i]\
     \ = fg[i] * c;\n        }\n\n        static FormalPowerSeries div_fps_sparse(const\
@@ -543,8 +552,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   requiredBy: []
-  timestamp: '2022-10-14 04:52:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-10 03:30:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []

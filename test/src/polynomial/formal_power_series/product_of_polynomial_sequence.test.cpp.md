@@ -18,32 +18,32 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse
+    PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
     links:
-    - https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse
-  bundledCode: "#line 1 \"test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse\"\
-    \n\n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n\n#line\
-    \ 1 \"library/polynomial/formal_power_series.hpp\"\n\n\n\n#include <limits>\n\
-    #include <optional>\n#include <queue>\n\n#line 9 \"library/polynomial/formal_power_series.hpp\"\
-    \n#include <atcoder/convolution>\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
+    - https://judge.yosupo.jp/problem/division_of_polynomials
+  bundledCode: "#line 1 \"test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\n\
+    \n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \nusing mint = atcoder::modint998244353;\n\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
+    \n\n\n\n#include <limits>\n#include <optional>\n#include <queue>\n\n#line 10 \"\
+    library/polynomial/formal_power_series.hpp\"\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
     \n\n\n\n#include <cassert>\n#include <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\
-    \n#include <type_traits>\n#line 9 \"library/polynomial/fps_naive.hpp\"\n\n#line\
-    \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
-    \n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
-    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
-    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
-    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
-    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
-    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
-    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
-    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
+    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -514,22 +514,26 @@ data:
     \ {\n    return a.exp();\n}\ntemplate <typename mint, typename T>\nsuisen::FormalPowerSeries<mint>\
     \ pow(suisen::FormalPowerSeries<mint> a, T b) {\n    return a.pow(b);\n}\ntemplate\
     \ <typename mint>\nsuisen::FormalPowerSeries<mint> inv(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.inv();\n}\n\n\n#line 9 \"test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    \n    int n, k;\n    std::cin >> n >> k;\n  \
-    \  suisen::FormalPowerSeries<mint> f(n);\n    for (int i = 0; i < k; ++i) {\n\
-    \        int d, v;\n        std::cin >> d >> v;\n        f[d] = v;\n    }\n  \
-    \  auto log_f = f.log();\n    for (int i = 0; i < n; ++i) {\n        std::cout\
-    \ << log_f[i].val() << \" \\n\"[i == n - 1];\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/log_of_formal_power_series_sparse\"\
-    \n\n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n\n#include\
-    \ \"library/polynomial/formal_power_series.hpp\"\n\nusing mint = atcoder::modint998244353;\n\
-    \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \    \n    int n, k;\n    std::cin >> n >> k;\n    suisen::FormalPowerSeries<mint>\
-    \ f(n);\n    for (int i = 0; i < k; ++i) {\n        int d, v;\n        std::cin\
-    \ >> d >> v;\n        f[d] = v;\n    }\n    auto log_f = f.log();\n    for (int\
-    \ i = 0; i < n; ++i) {\n        std::cout << log_f[i].val() << \" \\n\"[i == n\
-    \ - 1];\n    }\n    return 0;\n}"
+    \ a) {\n    return a.inv();\n}\n\n\n#line 10 \"test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp\"\
+    \nusing suisen::FormalPowerSeries;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    std::vector<FormalPowerSeries<mint>>\
+    \ fs(n);\n    for (int i = 0; i < n; ++i) {\n        int d;\n        std::cin\
+    \ >> d;\n        fs[i].resize(d + 1);\n        for (int j = 0, v; j <= d; ++j)\
+    \ {\n            std::cin >> v, fs[i][j] = v;\n        }\n    }\n    FormalPowerSeries<mint>\
+    \ g = FormalPowerSeries<mint>::prod(fs);\n    const int m = g.size();\n    for\
+    \ (int i = 0; i < m; ++i) {\n        std::cout << g[i].val();\n        if (i +\
+    \ 1 < m) std::cout << ' ';\n    }\n    std::cout << '\\n';\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \nusing mint = atcoder::modint998244353;\n\n#include \"library/polynomial/formal_power_series.hpp\"\
+    \nusing suisen::FormalPowerSeries;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    std::vector<FormalPowerSeries<mint>>\
+    \ fs(n);\n    for (int i = 0; i < n; ++i) {\n        int d;\n        std::cin\
+    \ >> d;\n        fs[i].resize(d + 1);\n        for (int j = 0, v; j <= d; ++j)\
+    \ {\n            std::cin >> v, fs[i][j] = v;\n        }\n    }\n    FormalPowerSeries<mint>\
+    \ g = FormalPowerSeries<mint>::prod(fs);\n    const int m = g.size();\n    for\
+    \ (int i = 0; i < m; ++i) {\n        std::cout << g[i].val();\n        if (i +\
+    \ 1 < m) std::cout << ' ';\n    }\n    std::cout << '\\n';\n    return 0;\n}"
   dependsOn:
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/fps_naive.hpp
@@ -537,15 +541,15 @@ data:
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
   isVerificationFile: true
-  path: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
+  path: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
   requiredBy: []
   timestamp: '2022-11-10 03:30:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
+documentation_of: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-- /verify/test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp.html
-title: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
+- /verify/test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
+- /verify/test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp.html
+title: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
 ---

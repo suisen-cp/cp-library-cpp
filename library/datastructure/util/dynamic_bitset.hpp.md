@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/linear_algebra/gaussian_elimination_f2.hpp
-    title: library/linear_algebra/gaussian_elimination_f2.hpp
+    title: Gaussian Elimination F2
   - icon: ':warning:'
     path: library/linear_algebra/matrix_f2.hpp
-    title: library/linear_algebra/matrix_f2.hpp
+    title: Matrix F2
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/dynamic_bitset/dummy.test.cpp
@@ -111,12 +111,13 @@ data:
     \ res.blocks[i] |= x.blocks[i + block_shamt] >> bit_shamt;\n                 \
     \   if (i + block_shamt + 1 != x.block_num()) {\n                        res.blocks[i]\
     \ |= x.blocks[i + block_shamt + 1] << (block_size - bit_shamt);\n            \
-    \        }\n                }\n            }\n            return res;\n      \
-    \  }\n\n        DynamicBitSet operator~() const {\n            DynamicBitSet neg(n);\n\
-    \            for (std::size_t i = 0; i < block_num(); ++i) neg.blocks[i] = ~blocks[i];\n\
-    \            return neg;\n        }\n\n        bool operator[](std::size_t i)\
-    \ const {\n            return (blocks[block_index(i)] >> bit_index(i)) & 1;\n\
-    \        }\n        bitref operator[](std::size_t i) {\n            return { blocks[block_index(i)],\
+    \        }\n                }\n            }\n            res.range_reset(x.n\
+    \ - shamt, x.n);\n            return res;\n        }\n\n        DynamicBitSet\
+    \ operator~() const {\n            DynamicBitSet neg(n);\n            for (std::size_t\
+    \ i = 0; i < block_num(); ++i) neg.blocks[i] = ~blocks[i];\n            return\
+    \ neg;\n        }\n\n        bool operator[](std::size_t i) const {\n        \
+    \    return (blocks[block_index(i)] >> bit_index(i)) & 1;\n        }\n       \
+    \ bitref operator[](std::size_t i) {\n            return { blocks[block_index(i)],\
     \ bit_index(i) };\n        }\n\n        void range_set(std::size_t l, std::size_t\
     \ r) {\n            assert(l <= r and r <= n);\n            if (l == r) return;\n\
     \            std::size_t lb = block_index(l), rb = block_index(r - 1);\n     \
@@ -303,12 +304,13 @@ data:
     \ res.blocks[i] |= x.blocks[i + block_shamt] >> bit_shamt;\n                 \
     \   if (i + block_shamt + 1 != x.block_num()) {\n                        res.blocks[i]\
     \ |= x.blocks[i + block_shamt + 1] << (block_size - bit_shamt);\n            \
-    \        }\n                }\n            }\n            return res;\n      \
-    \  }\n\n        DynamicBitSet operator~() const {\n            DynamicBitSet neg(n);\n\
-    \            for (std::size_t i = 0; i < block_num(); ++i) neg.blocks[i] = ~blocks[i];\n\
-    \            return neg;\n        }\n\n        bool operator[](std::size_t i)\
-    \ const {\n            return (blocks[block_index(i)] >> bit_index(i)) & 1;\n\
-    \        }\n        bitref operator[](std::size_t i) {\n            return { blocks[block_index(i)],\
+    \        }\n                }\n            }\n            res.range_reset(x.n\
+    \ - shamt, x.n);\n            return res;\n        }\n\n        DynamicBitSet\
+    \ operator~() const {\n            DynamicBitSet neg(n);\n            for (std::size_t\
+    \ i = 0; i < block_num(); ++i) neg.blocks[i] = ~blocks[i];\n            return\
+    \ neg;\n        }\n\n        bool operator[](std::size_t i) const {\n        \
+    \    return (blocks[block_index(i)] >> bit_index(i)) & 1;\n        }\n       \
+    \ bitref operator[](std::size_t i) {\n            return { blocks[block_index(i)],\
     \ bit_index(i) };\n        }\n\n        void range_set(std::size_t l, std::size_t\
     \ r) {\n            assert(l <= r and r <= n);\n            if (l == r) return;\n\
     \            std::size_t lb = block_index(l), rb = block_index(r - 1);\n     \
@@ -408,7 +410,7 @@ data:
   requiredBy:
   - library/linear_algebra/gaussian_elimination_f2.hpp
   - library/linear_algebra/matrix_f2.hpp
-  timestamp: '2022-11-06 23:07:23+09:00'
+  timestamp: '2022-11-10 03:30:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/util/dynamic_bitset/dummy.test.cpp
