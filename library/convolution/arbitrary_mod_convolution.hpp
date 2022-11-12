@@ -10,6 +10,15 @@ namespace suisen {
     template <typename mint, atcoder::internal::is_modint_t<mint>* = nullptr>
     std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>& a, const std::vector<mint>& b) {
         int n = int(a.size()), m = int(b.size());
+
+        if constexpr (atcoder::internal::is_static_modint<mint>::value) {
+            int maxz = 1;
+            while (not ((mint::mod() - 1) & maxz)) maxz <<= 1;
+            int z = 1;
+            while (z < n + m - 1) z <<= 1;
+            if (z <= maxz) return atcoder::convolution<mint>(a, b);
+        }
+
         if (n == 0 or m == 0) return {};
         if (std::min(n, m) <= 120) return internal::convolution_naive(a, b);
 
