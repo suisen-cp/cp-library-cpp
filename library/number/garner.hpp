@@ -16,15 +16,10 @@ namespace suisen {
 
         auto calc_prefix = [&](int i, long long mod) {
             long long res = 0;
+            long long prd = 1;
             for (int j = 0; j < i; ++j) {
-                long long t = a[j];
-                for (int k = 0; k < j; ++k) {
-                    long long mk = eq[k].second;
-                    t *= mk;
-                    t %= mod;
-                }
-                res += t;
-                if (res >= mod) res -= mod;
+                (res += a[j] * prd) %= mod;
+                (prd *= eq[j].second) %= mod;
             }
             return res;
         };
