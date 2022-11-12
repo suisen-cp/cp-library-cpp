@@ -22,15 +22,14 @@ namespace suisen {
         const int n = f.size();
         std::vector<T> g(m);
         if (n == 0 or m == 0) return g;
+        T pow_a = 1;
+        for (int i = 0; i < n; ++i, pow_a *= a) f[i] *= pow_a;
         if (r == 0) {
             for (int i = 0; i < n; ++i) g[0] += f[i];
             for (int k = 1; k < m; ++k) g[k] += f[0];
             return g;
         }
-        T pow_a = 1;
-        for (int i = 0; i < n; ++i, pow_a *= a) f[i] *= pow_a;
-
-        const T w_inv = r.inv();
+        const T r_inv = r.inv();
 
         const int l = n + m - 1;
 
@@ -38,7 +37,7 @@ namespace suisen {
         pow_r_tri[0] = pow_r_tri_inv[0] = 1;
 
         T pow_r = 1, pow_r_inv = 1;
-        for (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv *= w_inv) {
+        for (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv *= r_inv) {
             pow_r_tri[i] = pow_r_tri[i - 1] * pow_r;
             pow_r_tri_inv[i] = pow_r_tri_inv[i - 1] * pow_r_inv;
         }
