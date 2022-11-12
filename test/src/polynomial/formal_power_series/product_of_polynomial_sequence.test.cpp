@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/division_of_polynomials"
+#define PROBLEM "https://judge.yosupo.jp/problem/product_of_polynomial_sequence"
 
 #include <iostream>
 #include <atcoder/modint>
