@@ -31,8 +31,9 @@ namespace suisen {
             }
             edge_num /= 2;
             std::vector<int> res;
+            std::vector<std::size_t> iter(n);
             auto dfs = [&](auto dfs, int u) -> void {
-                for (std::size_t i = 0; i < g[u].size(); ++i) {
+                for (std::size_t &i = iter[u]; i < g[u].size(); ++i) {
                     if (used[u][i]) continue;
                     const int v = g[u][i];
                     used[u][i] = true;
