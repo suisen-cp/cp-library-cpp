@@ -16,7 +16,8 @@ data:
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
-    title: Hafnian
+    title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
+      \u3052)"
   - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series

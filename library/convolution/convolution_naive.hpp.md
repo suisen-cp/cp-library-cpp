@@ -13,7 +13,8 @@ data:
     title: Convolution (Large)
   - icon: ':question:'
     path: library/convolution/multi_variate_convolution_circular.hpp
-    title: Multi Variate Convolution Circular
+    title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
+      \u307F\u8FBC\u307F)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp

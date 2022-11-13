@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/graph/tree_decomposition_tw2_dp.hpp
-    title: library/graph/tree_decomposition_tw2_dp.hpp
+    title: Tree Decomposition Tw2 Dp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp

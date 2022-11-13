@@ -493,6 +493,7 @@ data:
   - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
 documentation_of: library/linear_algebra/hafnian.hpp
 layout: document
-title: Hafnian
+title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
+  \u3052)"
 ---
-## Hafnian
+## Hafnian (完全マッチングの数え上げ)

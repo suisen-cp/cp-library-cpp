@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/linear_algebra/gaussian_elimination_f2.hpp
-    title: Gaussian Elimination F2
+    title: Gaussian Elimination $\mathbb{F} _ 2$
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -353,6 +353,8 @@ data:
   verifiedWith: []
 documentation_of: library/linear_algebra/matrix_f2.hpp
 layout: document
-title: Matrix F2
+title: Matrix $\mathbb{F} _ 2$
 ---
-## Matrix F2
+## Matrix $\mathbb{F} _ 2$
+
+$\mathbb{F} _ 2$ 上の行列に対する種々の演算は bitset による高速化が可能である。

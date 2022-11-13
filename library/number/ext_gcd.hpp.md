@@ -4,10 +4,11 @@ data:
   _extendedRequiredBy:
   - icon: ':question:'
     path: library/convolution/multi_variate_convolution_circular.hpp
-    title: Multi Variate Convolution Circular
+    title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
+      \u307F\u8FBC\u307F)"
   - icon: ':question:'
     path: library/number/garner.hpp
-    title: Garner
+    title: Garner's Algorithm
   - icon: ':warning:'
     path: library/number/index_calculus.hpp
     title: Index Calculus

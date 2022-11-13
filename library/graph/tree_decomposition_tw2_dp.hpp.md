@@ -282,8 +282,6 @@ data:
   - test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
 documentation_of: library/graph/tree_decomposition_tw2_dp.hpp
 layout: document
-redirect_from:
-- /library/library/graph/tree_decomposition_tw2_dp.hpp
-- /library/library/graph/tree_decomposition_tw2_dp.hpp.html
-title: library/graph/tree_decomposition_tw2_dp.hpp
+title: Tree Decomposition Tw2 Dp
 ---
+## Tree Decomposition Tw2 Dp

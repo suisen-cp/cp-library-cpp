@@ -9,7 +9,8 @@ data:
     title: Naive Convolution
   - icon: ':question:'
     path: library/convolution/multi_variate_convolution_circular.hpp
-    title: Multi Variate Convolution Circular
+    title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
+      \u307F\u8FBC\u307F)"
   - icon: ':question:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
@@ -21,7 +22,7 @@ data:
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
   - icon: ':question:'
     path: library/number/garner.hpp
-    title: Garner
+    title: Garner's Algorithm
   - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
@@ -36,7 +37,8 @@ data:
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':question:'
     path: library/transform/chirp_z_transform.hpp
-    title: Chirp Z Transform
+    title: "chirp z-transform (\u8A55\u4FA1\u70B9\u304C\u7B49\u5DEE\u6570\u5217\u3092\
+      \u6210\u3059\u5834\u5408\u306E Multipoint Evaluation)"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits

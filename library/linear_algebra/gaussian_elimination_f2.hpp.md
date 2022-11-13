@@ -6,7 +6,7 @@ data:
     title: Dynamic Bitset
   - icon: ':warning:'
     path: library/linear_algebra/matrix_f2.hpp
-    title: Matrix F2
+    title: Matrix $\mathbb{F} _ 2$
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -388,6 +388,6 @@ data:
   verifiedWith: []
 documentation_of: library/linear_algebra/gaussian_elimination_f2.hpp
 layout: document
-title: Gaussian Elimination F2
+title: Gaussian Elimination $\mathbb{F} _ 2$
 ---
-## Gaussian Elimination F2
+## Gaussian Elimination $\mathbb{F} _ 2$

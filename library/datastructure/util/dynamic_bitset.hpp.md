@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/linear_algebra/gaussian_elimination_f2.hpp
-    title: Gaussian Elimination F2
+    title: Gaussian Elimination $\mathbb{F} _ 2$
   - icon: ':warning:'
     path: library/linear_algebra/matrix_f2.hpp
-    title: Matrix F2
+    title: Matrix $\mathbb{F} _ 2$
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/dynamic_bitset/dummy.test.cpp

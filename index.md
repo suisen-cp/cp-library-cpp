@@ -88,7 +88,8 @@ data:
         )"
     - icon: ':question:'
       path: library/convolution/multi_variate_convolution_circular.hpp
-      title: Multi Variate Convolution Circular
+      title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
+        \u307F\u8FBC\u307F)"
     - icon: ':heavy_check_mark:'
       path: library/convolution/multiplicative_convolution_mod_2^n.hpp
       title: Multiplicative Convolution Mod 2^n ($c_k = \sum_{i\times j \equiv k \pmod{2
@@ -489,7 +490,7 @@ data:
       title: Tree Decomposition Tw2
     - icon: ':heavy_check_mark:'
       path: library/graph/tree_decomposition_tw2_dp.hpp
-      title: library/graph/tree_decomposition_tw2_dp.hpp
+      title: Tree Decomposition Tw2 Dp
     - icon: ':heavy_check_mark:'
       path: library/graph/two_edge_connected_components.hpp
       title: "\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3"
@@ -547,10 +548,11 @@ data:
       title: Gaussian Elimination
     - icon: ':warning:'
       path: library/linear_algebra/gaussian_elimination_f2.hpp
-      title: Gaussian Elimination F2
+      title: Gaussian Elimination $\mathbb{F} _ 2$
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/hafnian.hpp
-      title: Hafnian
+      title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\
+        \u4E0A\u3052)"
     - icon: ':heavy_check_mark:'
       path: library/linear_algebra/hessenberg_reduction.hpp
       title: Hessenberg Reduction
@@ -559,7 +561,7 @@ data:
       title: Matrix
     - icon: ':warning:'
       path: library/linear_algebra/matrix_f2.hpp
-      title: Matrix F2
+      title: Matrix $\mathbb{F} _ 2$
     - icon: ':x:'
       path: library/linear_algebra/xor_base.hpp
       title: "XOR \u57FA\u5E95"
@@ -624,7 +626,7 @@ data:
         \u308A\u3046\u308B\u7BC4\u56F2\u3092\u8A08\u7B97"
     - icon: ':question:'
       path: library/number/garner.hpp
-      title: Garner
+      title: Garner's Algorithm
     - icon: ':warning:'
       path: library/number/index_calculus.hpp
       title: Index Calculus
@@ -815,7 +817,8 @@ data:
     pages:
     - icon: ':question:'
       path: library/transform/chirp_z_transform.hpp
-      title: Chirp Z Transform
+      title: "chirp z-transform (\u8A55\u4FA1\u70B9\u304C\u7B49\u5DEE\u6570\u5217\u3092\
+        \u6210\u3059\u5834\u5408\u306E Multipoint Evaluation)"
     - icon: ':heavy_check_mark:'
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\

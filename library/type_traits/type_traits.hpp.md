@@ -10,7 +10,8 @@ data:
     title: Array Subset Convolution
   - icon: ':question:'
     path: library/convolution/multi_variate_convolution_circular.hpp
-    title: Multi Variate Convolution Circular
+    title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
+      \u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
@@ -75,7 +76,8 @@ data:
     title: Segment Intersections
   - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
-    title: Hafnian
+    title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
+      \u3052)"
   - icon: ':heavy_check_mark:'
     path: library/math/array_sps.hpp
     title: Array Sps
