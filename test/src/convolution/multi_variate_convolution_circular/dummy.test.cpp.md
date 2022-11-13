@@ -1,55 +1,55 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/ext_gcd.hpp
     title: Ext Gcd
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/garner.hpp
     title: Garner's Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/chirp_z_transform.hpp
     title: "chirp z-transform (\u8A55\u4FA1\u70B9\u304C\u7B49\u5DEE\u6570\u5217\u3092\
       \u6210\u3059\u5834\u5408\u306E Multipoint Evaluation)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/timer.hpp
     title: Timer
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -69,31 +69,30 @@ data:
     \    template <typename T, typename Convolution>\n    std::vector<T> chirp_z_transform(std::vector<T>\
     \ f, T a, T r, int m, Convolution &&convolution = internal::default_convolution)\
     \ {\n        const int n = f.size();\n        std::vector<T> g(m);\n        if\
-    \ (n == 0 or m == 0) return g;\n        if (r == 0) {\n            for (int i\
-    \ = 0; i < n; ++i) g[0] += f[i];\n            for (int k = 1; k < m; ++k) g[k]\
-    \ += f[0];\n            return g;\n        }\n        T pow_a = 1;\n        for\
-    \ (int i = 0; i < n; ++i, pow_a *= a) f[i] *= pow_a;\n\n        const T w_inv\
-    \ = r.inv();\n\n        const int l = n + m - 1;\n\n        std::vector<T> pow_r_tri(l),\
-    \ pow_r_tri_inv(l);\n        pow_r_tri[0] = pow_r_tri_inv[0] = 1;\n\n        T\
-    \ pow_r = 1, pow_r_inv = 1;\n        for (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv\
-    \ *= w_inv) {\n            pow_r_tri[i] = pow_r_tri[i - 1] * pow_r;\n        \
-    \    pow_r_tri_inv[i] = pow_r_tri_inv[i - 1] * pow_r_inv;\n        }\n\n     \
-    \   std::vector<T> p(n), q(l);\n        for (int i = 0; i < n; ++i) p[i] = f[i]\
-    \ * pow_r_tri_inv[i];\n        for (int i = 0; i < l; ++i) q[i] = pow_r_tri[i];\n\
-    \        std::reverse(p.begin(), p.end());\n        std::vector<T> pq = convolution(p,\
-    \ q);\n        for (int k = 0; k < m; ++k) {\n            g[k] = pow_r_tri_inv[k]\
-    \ * pq[n - 1 + k];\n        }\n\n        return g;\n    }\n} // namespace suisen\n\
-    \n\n\n#line 1 \"library/convolution/arbitrary_mod_convolution.hpp\"\n\n\n\n#line\
-    \ 6 \"library/convolution/arbitrary_mod_convolution.hpp\"\n\n#line 1 \"library/convolution/convolution_naive.hpp\"\
-    \n\n\n\n#line 5 \"library/convolution/convolution_naive.hpp\"\n\nnamespace suisen::internal\
-    \ {\n    template <typename T>\n    std::vector<T> convolution_naive(const std::vector<T>&\
-    \ a, const std::vector<T>& b) {\n        const int n = a.size(), m = b.size();\n\
-    \        std::vector<T> c(n + m - 1);\n        if (n < m) {\n            for (int\
-    \ j = 0; j < m; j++) for (int i = 0; i < n; i++) c[i + j] += a[i] * b[j];\n  \
-    \      } else {\n            for (int i = 0; i < n; i++) for (int j = 0; j < m;\
-    \ j++) c[i + j] += a[i] * b[j];\n        }\n        return c;\n    }\n} // namespace\
-    \ suisen\n\n\n\n#line 8 \"library/convolution/arbitrary_mod_convolution.hpp\"\n\
-    \nnamespace suisen {\n    template <typename mint, atcoder::internal::is_modint_t<mint>*\
+    \ (n == 0 or m == 0) return g;\n        T pow_a = 1;\n        for (int i = 0;\
+    \ i < n; ++i, pow_a *= a) f[i] *= pow_a;\n        if (r == 0) {\n            for\
+    \ (int i = 0; i < n; ++i) g[0] += f[i];\n            for (int k = 1; k < m; ++k)\
+    \ g[k] += f[0];\n            return g;\n        }\n        const T r_inv = r.inv();\n\
+    \n        const int l = n + m - 1;\n\n        std::vector<T> pow_r_tri(l), pow_r_tri_inv(l);\n\
+    \        pow_r_tri[0] = pow_r_tri_inv[0] = 1;\n\n        T pow_r = 1, pow_r_inv\
+    \ = 1;\n        for (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv *= r_inv) {\n\
+    \            pow_r_tri[i] = pow_r_tri[i - 1] * pow_r;\n            pow_r_tri_inv[i]\
+    \ = pow_r_tri_inv[i - 1] * pow_r_inv;\n        }\n\n        std::vector<T> p(n),\
+    \ q(l);\n        for (int i = 0; i < n; ++i) p[i] = f[i] * pow_r_tri_inv[i];\n\
+    \        for (int i = 0; i < l; ++i) q[i] = pow_r_tri[i];\n        std::reverse(p.begin(),\
+    \ p.end());\n        std::vector<T> pq = convolution(p, q);\n        for (int\
+    \ k = 0; k < m; ++k) {\n            g[k] = pow_r_tri_inv[k] * pq[n - 1 + k];\n\
+    \        }\n\n        return g;\n    }\n} // namespace suisen\n\n\n\n#line 1 \"\
+    library/convolution/arbitrary_mod_convolution.hpp\"\n\n\n\n#line 6 \"library/convolution/arbitrary_mod_convolution.hpp\"\
+    \n\n#line 1 \"library/convolution/convolution_naive.hpp\"\n\n\n\n#line 5 \"library/convolution/convolution_naive.hpp\"\
+    \n\nnamespace suisen::internal {\n    template <typename T>\n    std::vector<T>\
+    \ convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {\n    \
+    \    const int n = a.size(), m = b.size();\n        std::vector<T> c(n + m - 1);\n\
+    \        if (n < m) {\n            for (int j = 0; j < m; j++) for (int i = 0;\
+    \ i < n; i++) c[i + j] += a[i] * b[j];\n        } else {\n            for (int\
+    \ i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j] += a[i] * b[j];\n  \
+    \      }\n        return c;\n    }\n} // namespace suisen\n\n\n\n#line 8 \"library/convolution/arbitrary_mod_convolution.hpp\"\
+    \n\nnamespace suisen {\n    template <typename mint, atcoder::internal::is_modint_t<mint>*\
     \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
     \n        if constexpr (atcoder::internal::is_static_modint<mint>::value) {\n\
@@ -475,15 +474,13 @@ data:
     \ m_i }\n     * @return x mod m s.t. x = x_i (mod m_i)\n     */\n    int garner(std::vector<std::pair<int,\
     \ int>> eq, int m) {\n        const int n = eq.size();\n        std::vector<long\
     \ long> a(n);\n\n        auto calc_prefix = [&](int i, long long mod) {\n    \
-    \        long long res = 0;\n            for (int j = 0; j < i; ++j) {\n     \
-    \           long long t = a[j];\n                for (int k = 0; k < j; ++k) {\n\
-    \                    long long mk = eq[k].second;\n                    t *= mk;\n\
-    \                    t %= mod;\n                }\n                res += t;\n\
-    \                if (res >= mod) res -= mod;\n            }\n            return\
-    \ res;\n        };\n    \n        for (int i = 0; i < n; ++i) {\n            auto\
-    \ [xi, mi] = eq[i];\n            a[i] = (xi - calc_prefix(i, mi)) % mi;\n    \
-    \        if (a[i] < 0) a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n\
-    \                long long mj = eq[j].second;\n                a[i] *= inv_mod(mj,\
+    \        long long res = 0;\n            long long prd = 1;\n            for (int\
+    \ j = 0; j < i; ++j) {\n                (res += a[j] * prd) %= mod;\n        \
+    \        (prd *= eq[j].second) %= mod;\n            }\n            return res;\n\
+    \        };\n    \n        for (int i = 0; i < n; ++i) {\n            auto [xi,\
+    \ mi] = eq[i];\n            a[i] = (xi - calc_prefix(i, mi)) % mi;\n         \
+    \   if (a[i] < 0) a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n   \
+    \             long long mj = eq[j].second;\n                a[i] *= inv_mod(mj,\
     \ mi);\n                a[i] %= mi;\n            }\n        }\n        return\
     \ calc_prefix(n, m);\n    }\n} // namespace suisen\n\n\n\n#line 12 \"library/convolution/multi_variate_convolution_circular.hpp\"\
     \n\nnamespace suisen {\n    namespace internal {\n        template <typename mint,\
@@ -599,7 +596,7 @@ data:
     \    std::iota(g.begin(), g.end(), 5439850);\n\n    Timer t;\n    std::vector<mint>\
     \ h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n    \n\
     \    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n    if\
-    \ (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n        assert(false);\n\
+    \ (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n        // assert(false);\n\
     \    }\n}\n\nvoid perf_test2() {\n    using namespace suisen;\n\n    std::vector<int>\
     \ n(11, 3);\n    const int l = std::reduce(n.begin(), n.end(), 1, std::multiplies<int>());\
     \ // 177147\n\n    suisen::multi_variate_convolution_circular<mint> conv(n);\n\
@@ -607,7 +604,7 @@ data:
     \    std::iota(g.begin(), g.end(), 5439850);\n\n    Timer t;\n    std::vector<mint>\
     \ h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n    \n\
     \    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n    if\
-    \ (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n        assert(false);\n\
+    \ (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n        // assert(false);\n\
     \    }\n}\n\nvoid perf_test3() {\n    using namespace suisen;\n\n    std::vector<int>\
     \ n { 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };\n    const int l = std::reduce(n.begin(),\
     \ n.end(), 1, std::multiplies<int>()); // 236196\n\n    suisen::multi_variate_convolution_circular<mint>\
@@ -616,7 +613,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test4() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test4() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(9, 4);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 262144\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -624,7 +621,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test5() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test5() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(7, 6);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 279936\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -632,7 +629,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test6() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test6() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(6, 8);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 262144\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -640,7 +637,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test7() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test7() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(5, 12);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 248832\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -648,7 +645,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test8() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test8() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(4, 22);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 234256\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -656,7 +653,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test9() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test9() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(3, 64);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 262144\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -664,7 +661,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test10() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test10() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(2, 512);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 262144\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -672,8 +669,8 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid test() {\n    test1();\n    test2();\n  \
-    \  test3();\n    perf_test1();\n    perf_test2();\n    perf_test3();\n    perf_test4();\n\
+    \   // assert(false);\n    }\n}\n\nvoid test() {\n    test1();\n    test2();\n\
+    \    test3();\n    perf_test1();\n    perf_test2();\n    perf_test3();\n    perf_test4();\n\
     \    perf_test5();\n    perf_test6();\n    perf_test7();\n    perf_test8();\n\
     \    perf_test9();\n    perf_test10();\n}\n\nint main() {\n    test();\n    std::cout\
     \ << \"Hello World\" << std::endl;\n    return 0;\n}\n"
@@ -706,7 +703,7 @@ data:
     \    std::iota(g.begin(), g.end(), 5439850);\n\n    Timer t;\n    std::vector<mint>\
     \ h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n    \n\
     \    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n    if\
-    \ (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n        assert(false);\n\
+    \ (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n        // assert(false);\n\
     \    }\n}\n\nvoid perf_test2() {\n    using namespace suisen;\n\n    std::vector<int>\
     \ n(11, 3);\n    const int l = std::reduce(n.begin(), n.end(), 1, std::multiplies<int>());\
     \ // 177147\n\n    suisen::multi_variate_convolution_circular<mint> conv(n);\n\
@@ -714,7 +711,7 @@ data:
     \    std::iota(g.begin(), g.end(), 5439850);\n\n    Timer t;\n    std::vector<mint>\
     \ h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n    \n\
     \    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n    if\
-    \ (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n        assert(false);\n\
+    \ (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n        // assert(false);\n\
     \    }\n}\n\nvoid perf_test3() {\n    using namespace suisen;\n\n    std::vector<int>\
     \ n { 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 };\n    const int l = std::reduce(n.begin(),\
     \ n.end(), 1, std::multiplies<int>()); // 236196\n\n    suisen::multi_variate_convolution_circular<mint>\
@@ -723,7 +720,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test4() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test4() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(9, 4);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 262144\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -731,7 +728,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test5() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test5() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(7, 6);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 279936\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -739,7 +736,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test6() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test6() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(6, 8);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 262144\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -747,7 +744,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test7() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test7() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(5, 12);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 248832\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -755,7 +752,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test8() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test8() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(4, 22);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 234256\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -763,7 +760,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test9() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test9() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(3, 64);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 262144\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -771,7 +768,7 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid perf_test10() {\n    using namespace suisen;\n\
+    \   // assert(false);\n    }\n}\n\nvoid perf_test10() {\n    using namespace suisen;\n\
     \n    std::vector<int> n(2, 512);\n    const int l = std::reduce(n.begin(), n.end(),\
     \ 1, std::multiplies<int>()); // 262144\n\n    suisen::multi_variate_convolution_circular<mint>\
     \ conv(n);\n\n    std::vector<mint> f(l), g(l);\n    std::iota(f.begin(), f.end(),\
@@ -779,8 +776,8 @@ data:
     \ std::vector<mint> h_actual = conv.convolution(f, g);\n    double elapsed = t.elapsed();\n\
     \    \n    std::cerr << \"Solved in \" << elapsed << \" ms.\" << std::endl;\n\n\
     \    if (elapsed > 2000) {\n        std::cerr << \"TLE\" << std::endl;\n     \
-    \   assert(false);\n    }\n}\n\nvoid test() {\n    test1();\n    test2();\n  \
-    \  test3();\n    perf_test1();\n    perf_test2();\n    perf_test3();\n    perf_test4();\n\
+    \   // assert(false);\n    }\n}\n\nvoid test() {\n    test1();\n    test2();\n\
+    \    test3();\n    perf_test1();\n    perf_test2();\n    perf_test3();\n    perf_test4();\n\
     \    perf_test5();\n    perf_test6();\n    perf_test7();\n    perf_test8();\n\
     \    perf_test9();\n    perf_test10();\n}\n\nint main() {\n    test();\n    std::cout\
     \ << \"Hello World\" << std::endl;\n    return 0;\n}\n"
@@ -802,8 +799,8 @@ data:
   isVerificationFile: true
   path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   requiredBy: []
-  timestamp: '2022-11-13 03:53:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-13 06:07:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
 layout: document

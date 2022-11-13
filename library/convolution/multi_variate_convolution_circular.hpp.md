@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/ext_gcd.hpp
     title: Ext Gcd
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/garner.hpp
     title: Garner's Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/chirp_z_transform.hpp
     title: "chirp z-transform (\u8A55\u4FA1\u70B9\u304C\u7B49\u5DEE\u6570\u5217\u3092\
       \u6210\u3059\u5834\u5408\u306E Multipoint Evaluation)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -43,12 +43,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/multi_variate_convolution_circular.hpp\"\
@@ -61,14 +61,14 @@ data:
     \ time\n     */\n    template <typename T, typename Convolution>\n    std::vector<T>\
     \ chirp_z_transform(std::vector<T> f, T a, T r, int m, Convolution &&convolution\
     \ = internal::default_convolution) {\n        const int n = f.size();\n      \
-    \  std::vector<T> g(m);\n        if (n == 0 or m == 0) return g;\n        if (r\
-    \ == 0) {\n            for (int i = 0; i < n; ++i) g[0] += f[i];\n           \
-    \ for (int k = 1; k < m; ++k) g[k] += f[0];\n            return g;\n        }\n\
-    \        T pow_a = 1;\n        for (int i = 0; i < n; ++i, pow_a *= a) f[i] *=\
-    \ pow_a;\n\n        const T w_inv = r.inv();\n\n        const int l = n + m -\
-    \ 1;\n\n        std::vector<T> pow_r_tri(l), pow_r_tri_inv(l);\n        pow_r_tri[0]\
+    \  std::vector<T> g(m);\n        if (n == 0 or m == 0) return g;\n        T pow_a\
+    \ = 1;\n        for (int i = 0; i < n; ++i, pow_a *= a) f[i] *= pow_a;\n     \
+    \   if (r == 0) {\n            for (int i = 0; i < n; ++i) g[0] += f[i];\n   \
+    \         for (int k = 1; k < m; ++k) g[k] += f[0];\n            return g;\n \
+    \       }\n        const T r_inv = r.inv();\n\n        const int l = n + m - 1;\n\
+    \n        std::vector<T> pow_r_tri(l), pow_r_tri_inv(l);\n        pow_r_tri[0]\
     \ = pow_r_tri_inv[0] = 1;\n\n        T pow_r = 1, pow_r_inv = 1;\n        for\
-    \ (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv *= w_inv) {\n            pow_r_tri[i]\
+    \ (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv *= r_inv) {\n            pow_r_tri[i]\
     \ = pow_r_tri[i - 1] * pow_r;\n            pow_r_tri_inv[i] = pow_r_tri_inv[i\
     \ - 1] * pow_r_inv;\n        }\n\n        std::vector<T> p(n), q(l);\n       \
     \ for (int i = 0; i < n; ++i) p[i] = f[i] * pow_r_tri_inv[i];\n        for (int\
@@ -468,15 +468,13 @@ data:
     \ m_i }\n     * @return x mod m s.t. x = x_i (mod m_i)\n     */\n    int garner(std::vector<std::pair<int,\
     \ int>> eq, int m) {\n        const int n = eq.size();\n        std::vector<long\
     \ long> a(n);\n\n        auto calc_prefix = [&](int i, long long mod) {\n    \
-    \        long long res = 0;\n            for (int j = 0; j < i; ++j) {\n     \
-    \           long long t = a[j];\n                for (int k = 0; k < j; ++k) {\n\
-    \                    long long mk = eq[k].second;\n                    t *= mk;\n\
-    \                    t %= mod;\n                }\n                res += t;\n\
-    \                if (res >= mod) res -= mod;\n            }\n            return\
-    \ res;\n        };\n    \n        for (int i = 0; i < n; ++i) {\n            auto\
-    \ [xi, mi] = eq[i];\n            a[i] = (xi - calc_prefix(i, mi)) % mi;\n    \
-    \        if (a[i] < 0) a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n\
-    \                long long mj = eq[j].second;\n                a[i] *= inv_mod(mj,\
+    \        long long res = 0;\n            long long prd = 1;\n            for (int\
+    \ j = 0; j < i; ++j) {\n                (res += a[j] * prd) %= mod;\n        \
+    \        (prd *= eq[j].second) %= mod;\n            }\n            return res;\n\
+    \        };\n    \n        for (int i = 0; i < n; ++i) {\n            auto [xi,\
+    \ mi] = eq[i];\n            a[i] = (xi - calc_prefix(i, mi)) % mi;\n         \
+    \   if (a[i] < 0) a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n   \
+    \             long long mj = eq[j].second;\n                a[i] *= inv_mod(mj,\
     \ mi);\n                a[i] %= mi;\n            }\n        }\n        return\
     \ calc_prefix(n, m);\n    }\n} // namespace suisen\n\n\n\n#line 12 \"library/convolution/multi_variate_convolution_circular.hpp\"\
     \n\nnamespace suisen {\n    namespace internal {\n        template <typename mint,\
@@ -647,8 +645,8 @@ data:
   isVerificationFile: false
   path: library/convolution/multi_variate_convolution_circular.hpp
   requiredBy: []
-  timestamp: '2022-11-13 03:53:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-11-13 06:07:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp

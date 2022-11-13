@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/ext_gcd.hpp
     title: Ext Gcd
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
@@ -13,12 +13,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Calculates x mod m s.t. x = x_i (mod m_i). m_i should be coprime
       each other.
@@ -44,15 +44,13 @@ data:
     \ x mod m s.t. x = x_i (mod m_i)\n     */\n    int garner(std::vector<std::pair<int,\
     \ int>> eq, int m) {\n        const int n = eq.size();\n        std::vector<long\
     \ long> a(n);\n\n        auto calc_prefix = [&](int i, long long mod) {\n    \
-    \        long long res = 0;\n            for (int j = 0; j < i; ++j) {\n     \
-    \           long long t = a[j];\n                for (int k = 0; k < j; ++k) {\n\
-    \                    long long mk = eq[k].second;\n                    t *= mk;\n\
-    \                    t %= mod;\n                }\n                res += t;\n\
-    \                if (res >= mod) res -= mod;\n            }\n            return\
-    \ res;\n        };\n    \n        for (int i = 0; i < n; ++i) {\n            auto\
-    \ [xi, mi] = eq[i];\n            a[i] = (xi - calc_prefix(i, mi)) % mi;\n    \
-    \        if (a[i] < 0) a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n\
-    \                long long mj = eq[j].second;\n                a[i] *= inv_mod(mj,\
+    \        long long res = 0;\n            long long prd = 1;\n            for (int\
+    \ j = 0; j < i; ++j) {\n                (res += a[j] * prd) %= mod;\n        \
+    \        (prd *= eq[j].second) %= mod;\n            }\n            return res;\n\
+    \        };\n    \n        for (int i = 0; i < n; ++i) {\n            auto [xi,\
+    \ mi] = eq[i];\n            a[i] = (xi - calc_prefix(i, mi)) % mi;\n         \
+    \   if (a[i] < 0) a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n   \
+    \             long long mj = eq[j].second;\n                a[i] *= inv_mod(mj,\
     \ mi);\n                a[i] %= mi;\n            }\n        }\n        return\
     \ calc_prefix(n, m);\n    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_GARNER\n#define SUISEN_GARNER\n\n#include <vector>\n#include\
@@ -62,16 +60,14 @@ data:
     \ (mod m_i)\n     */\n    int garner(std::vector<std::pair<int, int>> eq, int\
     \ m) {\n        const int n = eq.size();\n        std::vector<long long> a(n);\n\
     \n        auto calc_prefix = [&](int i, long long mod) {\n            long long\
-    \ res = 0;\n            for (int j = 0; j < i; ++j) {\n                long long\
-    \ t = a[j];\n                for (int k = 0; k < j; ++k) {\n                 \
-    \   long long mk = eq[k].second;\n                    t *= mk;\n             \
-    \       t %= mod;\n                }\n                res += t;\n            \
-    \    if (res >= mod) res -= mod;\n            }\n            return res;\n   \
-    \     };\n    \n        for (int i = 0; i < n; ++i) {\n            auto [xi, mi]\
-    \ = eq[i];\n            a[i] = (xi - calc_prefix(i, mi)) % mi;\n            if\
-    \ (a[i] < 0) a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n        \
-    \        long long mj = eq[j].second;\n                a[i] *= inv_mod(mj, mi);\n\
-    \                a[i] %= mi;\n            }\n        }\n        return calc_prefix(n,\
+    \ res = 0;\n            long long prd = 1;\n            for (int j = 0; j < i;\
+    \ ++j) {\n                (res += a[j] * prd) %= mod;\n                (prd *=\
+    \ eq[j].second) %= mod;\n            }\n            return res;\n        };\n\
+    \    \n        for (int i = 0; i < n; ++i) {\n            auto [xi, mi] = eq[i];\n\
+    \            a[i] = (xi - calc_prefix(i, mi)) % mi;\n            if (a[i] < 0)\
+    \ a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n                long\
+    \ long mj = eq[j].second;\n                a[i] *= inv_mod(mj, mi);\n        \
+    \        a[i] %= mi;\n            }\n        }\n        return calc_prefix(n,\
     \ m);\n    }\n} // namespace suisen\n\n\n#endif // SUISEN_GARNER\n"
   dependsOn:
   - library/number/ext_gcd.hpp
@@ -79,8 +75,8 @@ data:
   path: library/number/garner.hpp
   requiredBy:
   - library/convolution/multi_variate_convolution_circular.hpp
-  timestamp: '2022-11-13 03:53:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-11-13 06:07:28+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp

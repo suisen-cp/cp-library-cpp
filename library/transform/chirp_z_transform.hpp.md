@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
@@ -10,12 +10,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: chirp z-transform ($g _ k = f(a r^k)$)
     links: []
@@ -28,14 +28,14 @@ data:
     \ time\n     */\n    template <typename T, typename Convolution>\n    std::vector<T>\
     \ chirp_z_transform(std::vector<T> f, T a, T r, int m, Convolution &&convolution\
     \ = internal::default_convolution) {\n        const int n = f.size();\n      \
-    \  std::vector<T> g(m);\n        if (n == 0 or m == 0) return g;\n        if (r\
-    \ == 0) {\n            for (int i = 0; i < n; ++i) g[0] += f[i];\n           \
-    \ for (int k = 1; k < m; ++k) g[k] += f[0];\n            return g;\n        }\n\
-    \        T pow_a = 1;\n        for (int i = 0; i < n; ++i, pow_a *= a) f[i] *=\
-    \ pow_a;\n\n        const T w_inv = r.inv();\n\n        const int l = n + m -\
-    \ 1;\n\n        std::vector<T> pow_r_tri(l), pow_r_tri_inv(l);\n        pow_r_tri[0]\
+    \  std::vector<T> g(m);\n        if (n == 0 or m == 0) return g;\n        T pow_a\
+    \ = 1;\n        for (int i = 0; i < n; ++i, pow_a *= a) f[i] *= pow_a;\n     \
+    \   if (r == 0) {\n            for (int i = 0; i < n; ++i) g[0] += f[i];\n   \
+    \         for (int k = 1; k < m; ++k) g[k] += f[0];\n            return g;\n \
+    \       }\n        const T r_inv = r.inv();\n\n        const int l = n + m - 1;\n\
+    \n        std::vector<T> pow_r_tri(l), pow_r_tri_inv(l);\n        pow_r_tri[0]\
     \ = pow_r_tri_inv[0] = 1;\n\n        T pow_r = 1, pow_r_inv = 1;\n        for\
-    \ (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv *= w_inv) {\n            pow_r_tri[i]\
+    \ (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv *= r_inv) {\n            pow_r_tri[i]\
     \ = pow_r_tri[i - 1] * pow_r;\n            pow_r_tri_inv[i] = pow_r_tri_inv[i\
     \ - 1] * pow_r_inv;\n        }\n\n        std::vector<T> p(n), q(l);\n       \
     \ for (int i = 0; i < n; ++i) p[i] = f[i] * pow_r_tri_inv[i];\n        for (int\
@@ -52,14 +52,14 @@ data:
     \ time\n     */\n    template <typename T, typename Convolution>\n    std::vector<T>\
     \ chirp_z_transform(std::vector<T> f, T a, T r, int m, Convolution &&convolution\
     \ = internal::default_convolution) {\n        const int n = f.size();\n      \
-    \  std::vector<T> g(m);\n        if (n == 0 or m == 0) return g;\n        if (r\
-    \ == 0) {\n            for (int i = 0; i < n; ++i) g[0] += f[i];\n           \
-    \ for (int k = 1; k < m; ++k) g[k] += f[0];\n            return g;\n        }\n\
-    \        T pow_a = 1;\n        for (int i = 0; i < n; ++i, pow_a *= a) f[i] *=\
-    \ pow_a;\n\n        const T w_inv = r.inv();\n\n        const int l = n + m -\
-    \ 1;\n\n        std::vector<T> pow_r_tri(l), pow_r_tri_inv(l);\n        pow_r_tri[0]\
+    \  std::vector<T> g(m);\n        if (n == 0 or m == 0) return g;\n        T pow_a\
+    \ = 1;\n        for (int i = 0; i < n; ++i, pow_a *= a) f[i] *= pow_a;\n     \
+    \   if (r == 0) {\n            for (int i = 0; i < n; ++i) g[0] += f[i];\n   \
+    \         for (int k = 1; k < m; ++k) g[k] += f[0];\n            return g;\n \
+    \       }\n        const T r_inv = r.inv();\n\n        const int l = n + m - 1;\n\
+    \n        std::vector<T> pow_r_tri(l), pow_r_tri_inv(l);\n        pow_r_tri[0]\
     \ = pow_r_tri_inv[0] = 1;\n\n        T pow_r = 1, pow_r_inv = 1;\n        for\
-    \ (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv *= w_inv) {\n            pow_r_tri[i]\
+    \ (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv *= r_inv) {\n            pow_r_tri[i]\
     \ = pow_r_tri[i - 1] * pow_r;\n            pow_r_tri_inv[i] = pow_r_tri_inv[i\
     \ - 1] * pow_r_inv;\n        }\n\n        std::vector<T> p(n), q(l);\n       \
     \ for (int i = 0; i < n; ++i) p[i] = f[i] * pow_r_tri_inv[i];\n        for (int\
@@ -72,8 +72,8 @@ data:
   path: library/transform/chirp_z_transform.hpp
   requiredBy:
   - library/convolution/multi_variate_convolution_circular.hpp
-  timestamp: '2022-11-13 03:53:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-11-13 06:07:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp

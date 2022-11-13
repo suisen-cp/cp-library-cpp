@@ -4,7 +4,7 @@ data:
   - icon: ':warning:'
     path: library/template.hpp
     title: Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

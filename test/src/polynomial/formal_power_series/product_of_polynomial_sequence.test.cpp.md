@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/division_of_polynomials
+    PROBLEM: https://judge.yosupo.jp/problem/product_of_polynomial_sequence
     links:
-    - https://judge.yosupo.jp/problem/division_of_polynomials
+    - https://judge.yosupo.jp/problem/product_of_polynomial_sequence
   bundledCode: "#line 1 \"test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\n\
-    \n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/product_of_polynomial_sequence\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
     \nusing mint = atcoder::modint998244353;\n\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
     \n\n\n\n#include <limits>\n#include <optional>\n#include <queue>\n\n#line 10 \"\
     library/polynomial/formal_power_series.hpp\"\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
@@ -523,7 +523,7 @@ data:
     \ g = FormalPowerSeries<mint>::prod(fs);\n    const int m = g.size();\n    for\
     \ (int i = 0; i < m; ++i) {\n        std::cout << g[i].val();\n        if (i +\
     \ 1 < m) std::cout << ' ';\n    }\n    std::cout << '\\n';\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/division_of_polynomials\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/product_of_polynomial_sequence\"\
     \n\n#include <iostream>\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\
     \nusing mint = atcoder::modint998244353;\n\n#include \"library/polynomial/formal_power_series.hpp\"\
     \nusing suisen::FormalPowerSeries;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
@@ -543,8 +543,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
   requiredBy: []
-  timestamp: '2022-11-10 03:30:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-13 06:07:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
 layout: document
