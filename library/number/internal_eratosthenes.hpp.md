@@ -2,19 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: library/convolution/multi_variate_convolution_circular.hpp
+    title: Multi Variate Convolution Circular
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
   - icon: ':warning:'
     path: library/number/index_calculus.hpp
     title: Index Calculus
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':heavy_check_mark:'
@@ -28,6 +31,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc238_g.test.cpp
     title: test/src/algorithm/mo/abc238_g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
@@ -58,9 +67,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/internal_eratosthenes.hpp\"\n\n\n\n#include\
@@ -127,6 +136,7 @@ data:
   isVerificationFile: false
   path: library/number/internal_eratosthenes.hpp
   requiredBy:
+  - library/convolution/multi_variate_convolution_circular.hpp
   - library/number/sieve_of_eratosthenes.hpp
   - library/number/index_calculus.hpp
   - library/number/tetration_mod.hpp
@@ -135,9 +145,11 @@ data:
   - library/number/sieve_of_eratosthenes_constexpr.hpp
   - library/number/fast_factorize.hpp
   timestamp: '2021-07-22 14:46:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/transform/multiple/divide_both.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
   - test/src/number/sieve_of_eratosthenes/flatten.test.cpp

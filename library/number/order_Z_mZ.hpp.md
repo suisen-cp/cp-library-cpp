@@ -1,35 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: library/convolution/multi_variate_convolution_circular.hpp
+    title: Multi Variate Convolution Circular
+  - icon: ':question:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/order_Z_mZ.hpp\"\n\n\n\n#include <map>\n\
@@ -472,10 +481,13 @@ data:
   isVerificationFile: false
   path: library/number/order_Z_mZ.hpp
   requiredBy:
+  - library/convolution/multi_variate_convolution_circular.hpp
   - library/number/primitive_root.hpp
   timestamp: '2022-10-20 19:29:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/number/primitive_root/primitive_root.test.cpp
   - test/src/number/primitive_root/dummy.test.cpp
 documentation_of: library/number/order_Z_mZ.hpp

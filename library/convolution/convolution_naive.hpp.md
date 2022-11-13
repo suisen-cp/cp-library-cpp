@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_large.hpp
     title: Convolution (Large)
+  - icon: ':question:'
+    path: library/convolution/multi_variate_convolution_circular.hpp
+    title: Multi Variate Convolution Circular
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
@@ -24,9 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/convolution_large/convolution_large.test.cpp
     title: test/src/convolution/convolution_large/convolution_large.test.cpp
-  _isVerificationFailed: false
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/convolution_naive.hpp\"\n\n\n\n#include\
@@ -52,10 +61,13 @@ data:
   - library/convolution/convolution_2_64.hpp
   - library/convolution/convolution_large.hpp
   - library/convolution/arbitrary_mod_convolution.hpp
+  - library/convolution/multi_variate_convolution_circular.hpp
   timestamp: '2022-05-05 17:36:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/convolution/convolution_large/convolution_large.test.cpp
   - test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
   - test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp

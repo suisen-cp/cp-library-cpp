@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/graph/dulmage_mendelsohn_decomposition.hpp
     title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
+    path: library/graph/edge_coloring_of_bipartite_graph.hpp
+    title: Edge Coloring Of Bipartite Graph
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
@@ -18,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
+    title: test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/string/palindromic_tree/abc237_h.test.cpp
     title: test/src/string/palindromic_tree/abc237_h.test.cpp
@@ -212,10 +218,12 @@ data:
   isVerificationFile: false
   path: library/graph/bipartite_matching.hpp
   requiredBy:
+  - library/graph/edge_coloring_of_bipartite_graph.hpp
   - library/graph/dulmage_mendelsohn_decomposition.hpp
   timestamp: '2022-06-28 04:44:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp

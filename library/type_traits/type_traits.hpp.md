@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
+  - icon: ':question:'
+    path: library/convolution/multi_variate_convolution_circular.hpp
+    title: Multi Variate Convolution Circular
   - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
@@ -79,16 +82,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   - icon: ':heavy_check_mark:'
@@ -130,6 +133,12 @@ data:
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
@@ -533,6 +542,7 @@ data:
   - library/convolution/array_subset_convolution.hpp
   - library/convolution/polynomial_eval.hpp
   - library/convolution/subset_convolution.hpp
+  - library/convolution/multi_variate_convolution_circular.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/number/deterministic_miller_rabin.hpp
   - library/number/tetration_mod.hpp
@@ -609,6 +619,8 @@ data:
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/tetration_mod/tetration_mod.test.cpp
   - test/src/number/primitive_root/primitive_root.test.cpp

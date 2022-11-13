@@ -2,13 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':question:'
+    path: library/convolution/multi_variate_convolution_circular.hpp
+    title: Multi Variate Convolution Circular
+  - icon: ':question:'
+    path: library/number/garner.hpp
+    title: Garner
   - icon: ':warning:'
     path: library/number/index_calculus.hpp
     title: Index Calculus
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - icon: ':x:'
+    path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/ext_gcd.hpp\"\n\n\n\n#include <cassert>\n\
@@ -45,10 +57,14 @@ data:
   isVerificationFile: false
   path: library/number/ext_gcd.hpp
   requiredBy:
+  - library/convolution/multi_variate_convolution_circular.hpp
   - library/number/index_calculus.hpp
+  - library/number/garner.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
 documentation_of: library/number/ext_gcd.hpp
 layout: document
 title: Ext Gcd

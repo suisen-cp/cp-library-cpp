@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':question:'

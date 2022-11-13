@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/tree/frequency_table_of_tree_distance.hpp
     title: Frequency Table Of Tree Distance
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/timer.hpp
     title: Timer
   _extendedRequiredBy: []

@@ -2,11 +2,26 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: library/convolution/arbitrary_mod_convolution.hpp
+    title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
+  - icon: ':question:'
+    path: library/convolution/convolution_naive.hpp
+    title: Naive Convolution
+  - icon: ':question:'
+    path: library/convolution/multi_variate_convolution_circular.hpp
+    title: Multi Variate Convolution Circular
+  - icon: ':question:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
   - icon: ':question:'
+    path: library/number/ext_gcd.hpp
+    title: Ext Gcd
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
+  - icon: ':question:'
+    path: library/number/garner.hpp
+    title: Garner
   - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
@@ -19,9 +34,9 @@ data:
   - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
-  - icon: ':heavy_check_mark:'
-    path: library/number/util.hpp
-    title: Util
+  - icon: ':question:'
+    path: library/transform/chirp_z_transform.hpp
+    title: Chirp Z Transform
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
@@ -32,27 +47,86 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+    PROBLEM: https://judge.yosupo.jp/problem/bitwise_xor_convolution
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
-  bundledCode: "#line 1 \"test/src/number/primitive_root/dummy.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
-    \n\n#include <iostream>\n\n#include <atcoder/modint>\n\n#line 1 \"library/number/primitive_root.hpp\"\
-    \n\n\n\n#line 1 \"library/number/order_Z_mZ.hpp\"\n\n\n\n#include <map>\n#include\
-    \ <tuple>\n\n#line 1 \"library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n\
-    #line 6 \"library/number/fast_factorize.hpp\"\n#include <random>\n#include <numeric>\n\
-    #include <utility>\n\n#line 1 \"library/number/deterministic_miller_rabin.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <cstdint>\n#include <iterator>\n\n#line 1\
-    \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
-    \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
-    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
-    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
-    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
-    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
-    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
-    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
-    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    - https://judge.yosupo.jp/problem/bitwise_xor_convolution
+  bundledCode: "#line 1 \"test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\n\
+    \n#include <iostream>\n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \n#line 1 \"library/convolution/multi_variate_convolution_circular.hpp\"\n\n\n\
+    \n#line 5 \"library/convolution/multi_variate_convolution_circular.hpp\"\n\n#line\
+    \ 1 \"library/transform/chirp_z_transform.hpp\"\n\n\n\n#include <algorithm>\n\
+    #include <vector>\n\n#include <atcoder/convolution>\n\n/**\n * @brief chirp z-transform\
+    \ ($g _ k = f(a r^k)$)\n*/\n\nnamespace suisen {\n    namespace internal {\n \
+    \       const auto default_convolution = [](const auto &a, const auto &b) { return\
+    \ atcoder::convolution(a, b); };\n    } // namespace internal\n    /**\n     *\
+    \ @brief Calculates f(ar^k) for k=0,...,m-1 in O(M(n+m-1)+n+m) time\n     */\n\
+    \    template <typename T, typename Convolution>\n    std::vector<T> chirp_z_transform(std::vector<T>\
+    \ f, T a, T r, int m, Convolution &&convolution = internal::default_convolution)\
+    \ {\n        const int n = f.size();\n        std::vector<T> g(m);\n        if\
+    \ (n == 0 or m == 0) return g;\n        if (r == 0) {\n            for (int i\
+    \ = 0; i < n; ++i) g[0] += f[i];\n            for (int k = 1; k < m; ++k) g[k]\
+    \ += f[0];\n            return g;\n        }\n        T pow_a = 1;\n        for\
+    \ (int i = 0; i < n; ++i, pow_a *= a) f[i] *= pow_a;\n\n        const T w_inv\
+    \ = r.inv();\n\n        const int l = n + m - 1;\n\n        std::vector<T> pow_r_tri(l),\
+    \ pow_r_tri_inv(l);\n        pow_r_tri[0] = pow_r_tri_inv[0] = 1;\n\n        T\
+    \ pow_r = 1, pow_r_inv = 1;\n        for (int i = 1; i < l; ++i, pow_r *= r, pow_r_inv\
+    \ *= w_inv) {\n            pow_r_tri[i] = pow_r_tri[i - 1] * pow_r;\n        \
+    \    pow_r_tri_inv[i] = pow_r_tri_inv[i - 1] * pow_r_inv;\n        }\n\n     \
+    \   std::vector<T> p(n), q(l);\n        for (int i = 0; i < n; ++i) p[i] = f[i]\
+    \ * pow_r_tri_inv[i];\n        for (int i = 0; i < l; ++i) q[i] = pow_r_tri[i];\n\
+    \        std::reverse(p.begin(), p.end());\n        std::vector<T> pq = convolution(p,\
+    \ q);\n        for (int k = 0; k < m; ++k) {\n            g[k] = pow_r_tri_inv[k]\
+    \ * pq[n - 1 + k];\n        }\n\n        return g;\n    }\n} // namespace suisen\n\
+    \n\n\n#line 1 \"library/convolution/arbitrary_mod_convolution.hpp\"\n\n\n\n#line\
+    \ 6 \"library/convolution/arbitrary_mod_convolution.hpp\"\n\n#line 1 \"library/convolution/convolution_naive.hpp\"\
+    \n\n\n\n#line 5 \"library/convolution/convolution_naive.hpp\"\n\nnamespace suisen::internal\
+    \ {\n    template <typename T>\n    std::vector<T> convolution_naive(const std::vector<T>&\
+    \ a, const std::vector<T>& b) {\n        const int n = a.size(), m = b.size();\n\
+    \        std::vector<T> c(n + m - 1);\n        if (n < m) {\n            for (int\
+    \ j = 0; j < m; j++) for (int i = 0; i < n; i++) c[i + j] += a[i] * b[j];\n  \
+    \      } else {\n            for (int i = 0; i < n; i++) for (int j = 0; j < m;\
+    \ j++) c[i + j] += a[i] * b[j];\n        }\n        return c;\n    }\n} // namespace\
+    \ suisen\n\n\n\n#line 8 \"library/convolution/arbitrary_mod_convolution.hpp\"\n\
+    \nnamespace suisen {\n    template <typename mint, atcoder::internal::is_modint_t<mint>*\
+    \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
+    \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
+    \n        if constexpr (atcoder::internal::is_static_modint<mint>::value) {\n\
+    \            int maxz = 1;\n            while (not ((mint::mod() - 1) & maxz))\
+    \ maxz <<= 1;\n            int z = 1;\n            while (z < n + m - 1) z <<=\
+    \ 1;\n            if (z <= maxz) return atcoder::convolution<mint>(a, b);\n  \
+    \      }\n\n        if (n == 0 or m == 0) return {};\n        if (std::min(n,\
+    \ m) <= 120) return internal::convolution_naive(a, b);\n\n        static constexpr\
+    \ long long MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2\
+    \ = 167772161;  // 2^25\n        static constexpr long long MOD3 = 469762049;\
+    \  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n        static\
+    \ constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1, MOD2).second;\n\
+    \        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
+    \ MOD3).second;\n\n        std::vector<int> a2(n), b2(m);\n        for (int i\
+    \ = 0; i < n; ++i) a2[i] = a[i].val();\n        for (int i = 0; i < m; ++i) b2[i]\
+    \ = b[i].val();\n\n        auto c1 = atcoder::convolution<MOD1>(a2, b2);\n   \
+    \     auto c2 = atcoder::convolution<MOD2>(a2, b2);\n        auto c3 = atcoder::convolution<MOD3>(a2,\
+    \ b2);\n\n        const long long m1m2 = mint(M1M2).val();\n        std::vector<mint>\
+    \ c(n + m - 1);\n        for (int i = 0; i < n + m - 1; ++i) {\n            //\
+    \ Garner's Algorithm\n            // X = x1 + x2 * m1 + x3 * m1 * m2\n       \
+    \     // x1 = c1[i], x2 = (c2[i] - x1) / m1 (mod m2), x3 = (c3[i] - x1 - x2 *\
+    \ m1) / m2 (mod m3)\n            long long x1 = c1[i];\n            long long\
+    \ x2 = (atcoder::static_modint<MOD2>(c2[i] - x1) * INV_M1_MOD2).val();\n     \
+    \       long long x3 = (atcoder::static_modint<MOD3>(c3[i] - x1 - x2 * MOD1) *\
+    \ INV_M1M2_MOD3).val();\n            c[i] = x1 + x2 * MOD1 + x3 * m1m2;\n    \
+    \    }\n        return c;\n    }\n} // namespace suisen\n\n\n\n#line 8 \"library/convolution/multi_variate_convolution_circular.hpp\"\
+    \n\n#line 1 \"library/number/deterministic_miller_rabin.hpp\"\n\n\n\n#include\
+    \ <cassert>\n#include <cstdint>\n#include <iterator>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
+    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -113,38 +187,41 @@ data:
     \ 4>(n2);\n        } else if (n2 < THRESHOLD_5) {\n            return miller_rabin<BASE_5,\
     \ 5>(n2);\n        } else if (n2 < THRESHOLD_6) {\n            return miller_rabin<BASE_6,\
     \ 6>(n2);\n        } else {\n            return miller_rabin<BASE_7, 7>(n2);\n\
-    \        }\n    }\n} // namespace suisen::miller_rabin\n\n\n#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\
-    \n\n\n\n#line 6 \"library/number/sieve_of_eratosthenes.hpp\"\n#include <vector>\n\
-    \n#line 1 \"library/number/internal_eratosthenes.hpp\"\n\n\n\n#line 6 \"library/number/internal_eratosthenes.hpp\"\
-    \n\nnamespace suisen::internal::sieve {\n\nconstexpr std::uint8_t K = 8;\nconstexpr\
-    \ std::uint8_t PROD = 2 * 3 * 5;\nconstexpr std::uint8_t RM[K] = { 1,  7, 11,\
-    \ 13, 17, 19, 23, 29 };\nconstexpr std::uint8_t DR[K] = { 6,  4,  2,  4,  2, \
-    \ 4,  6,  2 };\nconstexpr std::uint8_t DF[K][K] = {\n    { 0, 0, 0, 0, 0, 0, 0,\
-    \ 1 }, { 1, 1, 1, 0, 1, 1, 1, 1 },\n    { 2, 2, 0, 2, 0, 2, 2, 1 }, { 3, 1, 1,\
-    \ 2, 1, 1, 3, 1 },\n    { 3, 3, 1, 2, 1, 3, 3, 1 }, { 4, 2, 2, 2, 2, 2, 4, 1 },\n\
-    \    { 5, 3, 1, 4, 1, 3, 5, 1 }, { 6, 4, 2, 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t\
-    \ DRP[K] = { 48, 32, 16, 32, 16, 32, 48, 16 };\nconstexpr std::uint8_t DFP[K][K]\
-    \ = {\n    {  0,  0,  0,  0,  0,  0,  0,  8 }, {  8,  8,  8,  0,  8,  8,  8, \
-    \ 8 },\n    { 16, 16,  0, 16,  0, 16, 16,  8 }, { 24,  8,  8, 16,  8,  8, 24,\
-    \  8 },\n    { 24, 24,  8, 16,  8, 24, 24,  8 }, { 32, 16, 16, 16, 16, 16, 32,\
-    \  8 },\n    { 40, 24,  8, 32,  8, 24, 40,  8 }, { 48, 32, 16, 32, 16, 32, 48,\
-    \  8 },\n};\n\nconstexpr std::uint8_t MASK[K][K] = {\n    { 0x01, 0x02, 0x04,\
-    \ 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02, 0x20, 0x10, 0x01, 0x80, 0x08, 0x04,\
-    \ 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02, 0x80, 0x08, 0x20 }, { 0x08, 0x01,\
-    \ 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n    { 0x10, 0x80, 0x02, 0x04, 0x20, 0x40,\
-    \ 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02, 0x40, 0x01, 0x10, 0x04 },\n    { 0x40,\
-    \ 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02 }, { 0x80, 0x40, 0x20, 0x10, 0x08,\
-    \ 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t OFFSET[K][K] = {\n    { 0, 1,\
-    \ 2, 3, 4, 5, 6, 7, },\n    { 1, 5, 4, 0, 7, 3, 2, 6, },\n    { 2, 4, 0, 6, 1,\
-    \ 7, 3, 5, },\n    { 3, 0, 6, 5, 2, 1, 7, 4, },\n    { 4, 7, 1, 2, 5, 6, 0, 3,\
-    \ },\n    { 5, 3, 7, 1, 6, 0, 4, 2, },\n    { 6, 2, 3, 7, 0, 4, 5, 1, },\n   \
-    \ { 7, 6, 5, 4, 3, 2, 1, 0, },\n};\n\nconstexpr std::uint8_t mask_to_index(const\
-    \ std::uint8_t bits) {\n    switch (bits) {\n        case 1 << 0: return 0;\n\
-    \        case 1 << 1: return 1;\n        case 1 << 2: return 2;\n        case\
-    \ 1 << 3: return 3;\n        case 1 << 4: return 4;\n        case 1 << 5: return\
-    \ 5;\n        case 1 << 6: return 6;\n        case 1 << 7: return 7;\n       \
-    \ default: assert(false);\n    }\n}\n} // namespace suisen::internal::sieve\n\n\
-    \n#line 9 \"library/number/sieve_of_eratosthenes.hpp\"\n\nnamespace suisen {\n\
+    \        }\n    }\n} // namespace suisen::miller_rabin\n\n\n#line 1 \"library/number/primitive_root.hpp\"\
+    \n\n\n\n#line 1 \"library/number/order_Z_mZ.hpp\"\n\n\n\n#include <map>\n#include\
+    \ <tuple>\n\n#line 1 \"library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n\
+    #line 6 \"library/number/fast_factorize.hpp\"\n#include <random>\n#include <numeric>\n\
+    #include <utility>\n\n#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\
+    \n\n#line 7 \"library/number/sieve_of_eratosthenes.hpp\"\n\n#line 1 \"library/number/internal_eratosthenes.hpp\"\
+    \n\n\n\n#line 6 \"library/number/internal_eratosthenes.hpp\"\n\nnamespace suisen::internal::sieve\
+    \ {\n\nconstexpr std::uint8_t K = 8;\nconstexpr std::uint8_t PROD = 2 * 3 * 5;\n\
+    constexpr std::uint8_t RM[K] = { 1,  7, 11, 13, 17, 19, 23, 29 };\nconstexpr std::uint8_t\
+    \ DR[K] = { 6,  4,  2,  4,  2,  4,  6,  2 };\nconstexpr std::uint8_t DF[K][K]\
+    \ = {\n    { 0, 0, 0, 0, 0, 0, 0, 1 }, { 1, 1, 1, 0, 1, 1, 1, 1 },\n    { 2, 2,\
+    \ 0, 2, 0, 2, 2, 1 }, { 3, 1, 1, 2, 1, 1, 3, 1 },\n    { 3, 3, 1, 2, 1, 3, 3,\
+    \ 1 }, { 4, 2, 2, 2, 2, 2, 4, 1 },\n    { 5, 3, 1, 4, 1, 3, 5, 1 }, { 6, 4, 2,\
+    \ 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t DRP[K] = { 48, 32, 16, 32, 16,\
+    \ 32, 48, 16 };\nconstexpr std::uint8_t DFP[K][K] = {\n    {  0,  0,  0,  0, \
+    \ 0,  0,  0,  8 }, {  8,  8,  8,  0,  8,  8,  8,  8 },\n    { 16, 16,  0, 16,\
+    \  0, 16, 16,  8 }, { 24,  8,  8, 16,  8,  8, 24,  8 },\n    { 24, 24,  8, 16,\
+    \  8, 24, 24,  8 }, { 32, 16, 16, 16, 16, 16, 32,  8 },\n    { 40, 24,  8, 32,\
+    \  8, 24, 40,  8 }, { 48, 32, 16, 32, 16, 32, 48,  8 },\n};\n\nconstexpr std::uint8_t\
+    \ MASK[K][K] = {\n    { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02,\
+    \ 0x20, 0x10, 0x01, 0x80, 0x08, 0x04, 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02,\
+    \ 0x80, 0x08, 0x20 }, { 0x08, 0x01, 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n  \
+    \  { 0x10, 0x80, 0x02, 0x04, 0x20, 0x40, 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02,\
+    \ 0x40, 0x01, 0x10, 0x04 },\n    { 0x40, 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02\
+    \ }, { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t\
+    \ OFFSET[K][K] = {\n    { 0, 1, 2, 3, 4, 5, 6, 7, },\n    { 1, 5, 4, 0, 7, 3,\
+    \ 2, 6, },\n    { 2, 4, 0, 6, 1, 7, 3, 5, },\n    { 3, 0, 6, 5, 2, 1, 7, 4, },\n\
+    \    { 4, 7, 1, 2, 5, 6, 0, 3, },\n    { 5, 3, 7, 1, 6, 0, 4, 2, },\n    { 6,\
+    \ 2, 3, 7, 0, 4, 5, 1, },\n    { 7, 6, 5, 4, 3, 2, 1, 0, },\n};\n\nconstexpr std::uint8_t\
+    \ mask_to_index(const std::uint8_t bits) {\n    switch (bits) {\n        case\
+    \ 1 << 0: return 0;\n        case 1 << 1: return 1;\n        case 1 << 2: return\
+    \ 2;\n        case 1 << 3: return 3;\n        case 1 << 4: return 4;\n       \
+    \ case 1 << 5: return 5;\n        case 1 << 6: return 6;\n        case 1 << 7:\
+    \ return 7;\n        default: assert(false);\n    }\n}\n} // namespace suisen::internal::sieve\n\
+    \n\n#line 9 \"library/number/sieve_of_eratosthenes.hpp\"\n\nnamespace suisen {\n\
     \ntemplate <unsigned int N>\nclass SimpleSieve {\n    private:\n        static\
     \ constexpr unsigned int siz = N / internal::sieve::PROD + 1;\n        static\
     \ std::uint8_t flag[siz];\n    public:\n        SimpleSieve() {\n            using\
@@ -373,127 +450,154 @@ data:
     \       }\n    };\n} // namespace suisen\n\n\n#line 5 \"library/number/primitive_root.hpp\"\
     \n\nnamespace suisen {\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
     \ std::nullptr_t> = nullptr>\n    T primitive_root(T p) {\n        return OrderMod<T>{p}.primitive_root();\n\
-    \    }\n} // namespace suisen\n\n\n#line 1 \"library/number/util.hpp\"\n\n\n\n\
-    #include <array>\n#line 10 \"library/number/util.hpp\"\n\n/**\n * @brief Utilities\n\
-    */\n\nnamespace suisen {\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    T powi(T a, int b) {\n        T res = 1, pow_a\
-    \ = a;\n        for (; b; b >>= 1) {\n            if (b & 1) res *= pow_a;\n \
-    \           pow_a *= pow_a;\n        }\n        return res;\n    }\n\n    /**\n\
-    \     * @brief Calculates the prime factorization of n in O(\u221An).\n     *\
-    \ @tparam T integer type\n     * @param n integer to factorize\n     * @return\
-    \ vector of { prime, exponent }. It is guaranteed that prime is ascending.\n \
-    \    */\n    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n    std::vector<std::pair<T, int>> factorize(T n) {\n        static\
-    \ constexpr std::array primes{ 2, 3, 5, 7, 11, 13 };\n        static constexpr\
-    \ int next_prime = 17;\n        static constexpr int siz = std::array{ 1, 2, 8,\
-    \ 48, 480, 5760, 92160 } [primes.size() - 1] ;\n        static constexpr int period\
-    \ = [] {\n            int res = 1;\n            for (auto e : primes) res *= e;\n\
-    \            return res;\n        }();\n        static constexpr struct S : public\
-    \ std::array<int, siz> {\n            constexpr S() {\n                for (int\
-    \ i = next_prime, j = 0; i < period + next_prime; i += 2) {\n                \
-    \    bool ok = true;\n                    for (int p : primes) ok &= i % p > 0;\n\
-    \                    if (ok) (*this)[j++] = i - next_prime;\n                }\n\
-    \            }\n        } s{};\n\n        assert(n > 0);\n        std::vector<std::pair<T,\
-    \ int>> res;\n        auto f = [&res, &n](int p) {\n            if (n % p) return;\n\
-    \            int cnt = 0;\n            do n /= p, ++cnt; while (n % p == 0);\n\
-    \            res.emplace_back(p, cnt);\n        };\n        for (int p : primes)\
-    \ f(p);\n        for (T b = next_prime; b * b <= n; b += period) {\n         \
-    \   for (int offset : s) f(b + offset);\n        }\n        if (n != 1) res.emplace_back(n,\
-    \ 1);\n        return res;\n    }\n\n    /**\n     * @brief Enumerates divisors\
-    \ of n from its prime-factorized form in O(# of divisors of n) time.\n     * @tparam\
-    \ T integer type\n     * @param factorized a prime-factorized form of n (a vector\
-    \ of { prime, exponent })\n     * @return vector of divisors (NOT sorted)\n  \
-    \   */\n    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n    std::vector<T> divisors(const std::vector<std::pair<T, int>>&\
-    \ factorized) {\n        std::vector<T> res{ 1 };\n        for (auto [p, c] :\
-    \ factorized) {\n            for (int i = 0, sz = res.size(); i < sz; ++i) {\n\
-    \                T d = res[i];\n                for (int j = 0; j < c; ++j) res.push_back(d\
-    \ *= p);\n            }\n        }\n        return res;\n    }\n    /**\n    \
-    \ * @brief Enumerates divisors of n in O(\u221An) time.\n     * @tparam T integer\
-    \ type\n     * @param n\n     * @return vector of divisors (NOT sorted)\n    \
-    \ */\n    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n    std::vector<T> divisors(T n) {\n        return divisors(factorize(n));\n\
-    \    }\n    /**\n     * @brief Calculates the divisors for i=1,...,n in O(n log\
-    \ n) time.\n     * @param n upper bound (closed)\n     * @return 2-dim vector\
-    \ a of length n+1, where a[i] is the vector of divisors of i.\n     */\n    std::vector<std::vector<int>>\
-    \ divisors_table(int n) {\n        std::vector<std::vector<int>> divs(n + 1);\n\
-    \        for (int i = 1; i <= n; ++i) {\n            for (int j = i; j <= n; ++j)\
-    \ divs[j].push_back(i);\n        }\n        return divs;\n    }\n\n    /**\n \
-    \    * @brief Calculates \u03C6(n) from its prime-factorized form in O(log n).\n\
-    \     * @tparam T integer type\n     * @param factorized a prime-factorized form\
-    \ of n (a vector of { prime, exponent })\n     * @return \u03C6(n)\n     */\n\
-    \    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n    T totient(const std::vector<std::pair<T, int>>& factorized)\
-    \ {\n        T res = 1;\n        for (const auto& [p, c] : factorized) res *=\
-    \ (p - 1) * powi(p, c - 1);\n        return res;\n    }\n    /**\n     * @brief\
-    \ Calculates \u03C6(n) in O(\u221An).\n     * @tparam T integer type\n     * @param\
-    \ n\n     * @return \u03C6(n)\n     */\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    T totient(T n) {\n        return totient(factorize(n));\n\
-    \    }\n    /**\n     * @brief Calculates \u03C6(i) for i=1,...,n.\n     * @param\
-    \ n upper bound (closed)\n     * @return vector a of length n+1, where a[i]=\u03C6\
-    (i) for i=1,...,n\n     */\n    std::vector<int> totient_table(int n) {\n    \
-    \    std::vector<int> res(n + 1);\n        for (int i = 0; i <= n; ++i) res[i]\
-    \ = (i & 1) == 0 ? i >> 1 : i;\n        for (int p = 3; p * p <= n; p += 2) {\n\
-    \            if (res[p] != p) continue;\n            for (int q = p; q <= n; q\
-    \ += p) res[q] /= p, res[q] *= p - 1;\n        }\n        return res;\n    }\n\
-    \n    /**\n     * @brief Calculates \u03BB(n) from its prime-factorized form in\
-    \ O(log n).\n     * @tparam T integer type\n     * @param factorized a prime-factorized\
-    \ form of n (a vector of { prime, exponent })\n     * @return \u03BB(n)\n    \
-    \ */\n    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n    T carmichael(const std::vector<std::pair<T, int>>& factorized)\
-    \ {\n        T res = 1;\n        for (const auto &[p, c] : factorized) {\n   \
-    \         res = std::lcm(res, ((p - 1) * powi(p, c - 1)) >> (p == 2 and c >= 3));\n\
-    \        }\n        return res;\n    }\n    /**\n     * @brief Calculates \u03BB\
-    (n) in O(\u221An).\n     * @tparam T integer type\n     * @param n\n     * @return\
-    \ \u03BB(n)\n     */\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    T carmichael(T n) {\n        return carmichael(factorize(n));\n\
-    \    }\n} // namespace suisen\n\n\n#line 10 \"test/src/number/primitive_root/dummy.test.cpp\"\
-    \n\nusing mint = atcoder::modint;\n\nvoid test() {\n    constexpr int n = 100000;\n\
-    \    suisen::Sieve<n> sieve;\n    std::vector<int> totient = suisen::totient_table(n);\n\
-    \n    for (int i = 2; i <= 100; ++i) {\n        auto f = sieve.factorize(i);\n\
-    \        if (f.size() == 1) {\n            if (f[0].first == 2 and f[0].second\
-    \ >= 3) continue;\n        } else if (f.size() == 2) {\n            if (f[0].first\
-    \ != 2 or f[0].second != 1) continue;\n        } else {\n            continue;\n\
-    \        }\n        const int t = totient[i];\n        int g = suisen::primitive_root(i);\n\
-    \        mint::set_mod(i);\n        for (int d : sieve.divisors(t)) if (d != t)\
-    \ {\n            if (mint(g).pow(d).val() == 1) {\n                std::cout <<\
-    \ \"p = \" << i << \", g = \" << g << \", d = \" << d << std::endl;\n        \
-    \    }\n        }\n    }\n}\n\nint main() {\n    test();\n    std::cout << \"\
-    Hello World\" << std::endl;\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
-    \n\n#include <iostream>\n\n#include <atcoder/modint>\n\n#include \"library/number/primitive_root.hpp\"\
-    \n#include \"library/number/sieve_of_eratosthenes.hpp\"\n#include \"library/number/util.hpp\"\
-    \n\nusing mint = atcoder::modint;\n\nvoid test() {\n    constexpr int n = 100000;\n\
-    \    suisen::Sieve<n> sieve;\n    std::vector<int> totient = suisen::totient_table(n);\n\
-    \n    for (int i = 2; i <= 100; ++i) {\n        auto f = sieve.factorize(i);\n\
-    \        if (f.size() == 1) {\n            if (f[0].first == 2 and f[0].second\
-    \ >= 3) continue;\n        } else if (f.size() == 2) {\n            if (f[0].first\
-    \ != 2 or f[0].second != 1) continue;\n        } else {\n            continue;\n\
-    \        }\n        const int t = totient[i];\n        int g = suisen::primitive_root(i);\n\
-    \        mint::set_mod(i);\n        for (int d : sieve.divisors(t)) if (d != t)\
-    \ {\n            if (mint(g).pow(d).val() == 1) {\n                std::cout <<\
-    \ \"p = \" << i << \", g = \" << g << \", d = \" << d << std::endl;\n        \
-    \    }\n        }\n    }\n}\n\nint main() {\n    test();\n    std::cout << \"\
-    Hello World\" << std::endl;\n    return 0;\n}\n"
+    \    }\n} // namespace suisen\n\n\n#line 1 \"library/number/garner.hpp\"\n\n\n\
+    \n#line 1 \"library/number/ext_gcd.hpp\"\n\n\n\n#line 7 \"library/number/ext_gcd.hpp\"\
+    \n\nnamespace suisen {\nconstexpr long long safe_mod(long long x, long long m)\
+    \ {\n    x %= m;\n    return x < 0 ? x + m : x;\n}\n\n// returns {x,y,g} s.t.\
+    \ ax+by=g=gcd(a,b)>=0. \nstd::tuple<long long, long long, long long> ext_gcd(long\
+    \ long a, long long b) {\n    long long x = 1, y = 0;\n    long long z = 0, w\
+    \ = 1;\n    long long tmp;\n    while (b) {\n        long long p = a / b, q =\
+    \ a % b;\n        tmp = x - y * p; x = y; y = tmp;\n        tmp = z - w * p; z\
+    \ = w; w = tmp;\n        a = b; b = q;\n    }\n    if (a >= 0) return {x, z, a};\n\
+    \    else return {-x, -z, -a};\n}\n\n// returns {x,g} s.t. a*x=g (mod m)\nstd::pair<long\
+    \ long, long long> gcd_inv(long long a, long long m) {\n    auto [x, y, g] = ext_gcd(a,\
+    \ m);\n    return {safe_mod(x, m), g};\n}\n\n// returns x s.t. a*x=1 (mod m) if\
+    \ exists, otherwise throws runtime error.\nlong long inv_mod(long long a, long\
+    \ long mod) {\n    auto [inv, y, g] = ext_gcd(a, mod);\n    assert(g == 1);\n\
+    \    return safe_mod(inv, mod);\n}\n} // namespace suisen\n\n\n#line 6 \"library/number/garner.hpp\"\
+    \n\nnamespace suisen {\n    /**\n     * @brief Calculates x mod m s.t. x = x_i\
+    \ (mod m_i). m_i should be coprime each other.\n     * @param eq vector of { x_i,\
+    \ m_i }\n     * @return x mod m s.t. x = x_i (mod m_i)\n     */\n    int garner(std::vector<std::pair<int,\
+    \ int>> eq, int m) {\n        const int n = eq.size();\n        std::vector<long\
+    \ long> a(n);\n\n        auto calc_prefix = [&](int i, long long mod) {\n    \
+    \        long long res = 0;\n            for (int j = 0; j < i; ++j) {\n     \
+    \           long long t = a[j];\n                for (int k = 0; k < j; ++k) {\n\
+    \                    long long mk = eq[k].second;\n                    t *= mk;\n\
+    \                    t %= mod;\n                }\n                res += t;\n\
+    \                if (res >= mod) res -= mod;\n            }\n            return\
+    \ res;\n        };\n    \n        for (int i = 0; i < n; ++i) {\n            auto\
+    \ [xi, mi] = eq[i];\n            a[i] = (xi - calc_prefix(i, mi)) % mi;\n    \
+    \        if (a[i] < 0) a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n\
+    \                long long mj = eq[j].second;\n                a[i] *= inv_mod(mj,\
+    \ mi);\n                a[i] %= mi;\n            }\n        }\n        return\
+    \ calc_prefix(n, m);\n    }\n} // namespace suisen\n\n\n\n#line 12 \"library/convolution/multi_variate_convolution_circular.hpp\"\
+    \n\nnamespace suisen {\n    namespace internal {\n        template <typename mint,\
+    \ std::enable_if_t<atcoder::internal::is_modint<mint>::value, std::nullptr_t>\
+    \ = nullptr>\n        struct multi_variate_convolution_circular {\n          \
+    \  multi_variate_convolution_circular() {}\n            multi_variate_convolution_circular(std::vector<int>\
+    \ n) : _d(n.size()), _l(std::reduce(n.begin(), n.end(), 1, std::multiplies<int>())),\
+    \ _n(n), _g(_d), _ig(_d) {\n                assert(miller_rabin::is_prime(mint::mod()));\n\
+    \                mint g = primitive_root(mint::mod());\n                for (int\
+    \ i = 0; i < _d; ++i) {\n                    assert((mint::mod() - 1) % n[i] ==\
+    \ 0);\n                    _g[i] = g.pow((mint::mod() - 1) / n[i]);\n        \
+    \            _ig[i] = _g[i].inv();\n                }\n            }\n\n     \
+    \       std::vector<mint> convolution(std::vector<mint> f, std::vector<mint> g)\
+    \ {\n                fft(f, false), fft(g, false);\n                for (int i\
+    \ = 0; i < _l; ++i) f[i] *= g[i];\n                fft(f, true);\n           \
+    \     return f;\n            }\n            std::vector<mint> operator()(const\
+    \ std::vector<mint>& f, const std::vector<mint>& g) {\n                return\
+    \ convolution(f, g);\n            }\n        private:\n            int _d, _l;\n\
+    \            std::vector<int> _n;\n            std::vector<mint> _g, _ig;\n\n\
+    \            void fft(std::vector<mint>& f, bool inverse) {\n                const\
+    \ auto& g = inverse ? _g : _ig;\n                for (int i = 0, block = 1; i\
+    \ < _d; ++i) {\n                    std::vector<mint> x(_n[i]);\n            \
+    \        const int nblock = block * _n[i];\n                    for (int l = 0;\
+    \ l + nblock <= _l; l += nblock) {\n                        for (int start = l;\
+    \ start < l + block; ++start) {\n                            for (int p = 0; p\
+    \ < _n[i]; ++p) x[p] = f[start + p * block];\n                            x =\
+    \ chirp_z_transform<mint>(x, 1, g[i], _n[i], arbitrary_mod_convolution<mint>);\n\
+    \                            for (int p = 0; p < _n[i]; ++p) f[start + p * block]\
+    \ = x[p];\n                        }\n                    }\n                \
+    \    block = nblock;\n                }\n                if (inverse) {\n    \
+    \                mint iz = mint(f.size()).inv();\n                    for (auto&\
+    \ e : f) e *= iz;\n                }\n            }\n        };\n    }\n\n   \
+    \ template <typename mint, std::enable_if_t<atcoder::internal::is_modint<mint>::value,\
+    \ std::nullptr_t> = nullptr>\n    struct multi_variate_convolution_circular {\n\
+    \    private:\n        using mint2 = atcoder::dynamic_modint<102938478>;\n   \
+    \ public:\n        multi_variate_convolution_circular() = default;\n        multi_variate_convolution_circular(std::vector<int>\
+    \ n) : _d(n.size()), _l(std::reduce(n.begin(), n.end(), 1, std::multiplies<int>())),\
+    \ _n(n) {\n            const __int128_t max_val = __int128_t(mint::mod() - 1)\
+    \ * (mint::mod() - 1) * _l;\n\n            const int t = std::reduce(n.begin(),\
+    \ n.end(), 1, [](int x, int y) { return std::lcm(x, y); });\n\n            if\
+    \ ((mint::mod() - 1) % t == 0) {\n                _mods = { mint::mod() };\n \
+    \           } else {\n                __int128_t prod = 1;\n                for\
+    \ (int k = 1000000000 / t; k >= 0; --k) if (const int p = k * t + 1; miller_rabin::is_prime(p))\
+    \ {\n                    _mods.push_back(p);\n                    prod *= p;\n\
+    \                    if (prod >= max_val) break;\n                }\n        \
+    \        assert(prod >= max_val);\n            }\n            const int m = _mods.size();\n\
+    \            _cnvs.resize(m);\n            for (int i = 0; i < m; ++i) with_kth_mod(i,\
+    \ [&, this] {\n                _cnvs[i] = internal::multi_variate_convolution_circular<mint2>(_n);\n\
+    \            });\n        }\n\n        std::vector<mint> convolution(std::vector<mint>\
+    \ f, const std::vector<mint>& g) {\n            assert(int(f.size()) == _l and\
+    \ int(g.size()) == _l);\n            if (_l <= 60) return convolution_naive(f,\
+    \ g);\n            const int m = _mods.size();\n            std::vector res(m,\
+    \ std::vector<int>(_l));\n            for (int i = 0; i < m; ++i) with_kth_mod(i,\
+    \ [&, this] {\n                std::vector<mint2> f2(_l), g2(_l);\n          \
+    \      for (int j = 0; j < _l; ++j) f2[j] = f[j].val(), g2[j] = g[j].val();\n\
+    \                std::vector<mint2> h = _cnvs[i](f2, g2);\n                for\
+    \ (int j = 0; j < _l; ++j) res[i][j] = h[j].val();\n            });\n        \
+    \    std::vector<mint> h(_l);\n            for (int j = 0; j < _l; ++j) {\n  \
+    \              std::vector<std::pair<int, int>> eq(m);\n                for (int\
+    \ i = 0; i < m; ++i) {\n                    eq[i] = { res[i][j], _mods[i] };\n\
+    \                }\n                h[j] = garner(eq, mint::mod());\n        \
+    \    }\n            return h;\n        }\n        std::vector<mint> operator()(const\
+    \ std::vector<mint>& f, const std::vector<mint>& g) {\n            return convolution(f,\
+    \ g);\n        }\n\n        std::vector<mint> convolution_naive(const std::vector<mint>&\
+    \ f, const std::vector<mint>& g) {\n            std::vector<mint> h(_l);\n   \
+    \         for (int i = 0; i < _l; ++i) for (int j = 0; j < _l; ++j) {\n      \
+    \          int k = 0;\n                for (int d = 0, i2 = i, j2 = j, prd = 1;\
+    \ d < _d; ++d) {\n                    k += prd * ((i2 + j2) % _n[d]);\n      \
+    \              i2 /= _n[d], j2 /= _n[d], prd *= _n[d];\n                }\n  \
+    \              h[k] += f[i] * g[j];\n            }\n            return h;\n  \
+    \      }\n    private:\n        int _d, _l;\n        std::vector<int> _n;\n  \
+    \      std::vector<int> _mods;\n        std::vector<internal::multi_variate_convolution_circular<mint2>>\
+    \ _cnvs;\n\n        template <typename F>\n        void with_kth_mod(int k, F&&\
+    \ f) {\n            int old_mod = mint2::mod();\n            mint2::set_mod(_mods[k]);\n\
+    \            f();\n            if (old_mod >= 1) mint2::set_mod(old_mod);\n  \
+    \      }\n    };\n} // namespace suisen\n\n\n\n#line 10 \"test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp\"\
+    \n\nint main() {\n    using suisen::multi_variate_convolution_circular;\n\n  \
+    \  std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    int n;\n\
+    \    std::cin >> n;\n\n    std::vector<mint> a(1 << n), b(1 << n);\n\n    for\
+    \ (int i = 0, v; i < 1 << n; ++i) std::cin >> v, a[i] = v;\n    for (int i = 0,\
+    \ v; i < 1 << n; ++i) std::cin >> v, b[i] = v;\n\n    multi_variate_convolution_circular<mint>\
+    \ conv(std::vector<int>(n, 2));\n\n    std::vector<mint> c = conv(a, b);\n   \
+    \ for (int i = 0; i < 1 << n; ++i) std::cout << c[i].val() << \" \\n\"[i == (1\
+    \ << n) - 1];\n\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_xor_convolution\"\
+    \n\n#include <iostream>\n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \n#include \"library/convolution/multi_variate_convolution_circular.hpp\"\n\n\
+    int main() {\n    using suisen::multi_variate_convolution_circular;\n\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    std::vector<mint>\
+    \ a(1 << n), b(1 << n);\n\n    for (int i = 0, v; i < 1 << n; ++i) std::cin >>\
+    \ v, a[i] = v;\n    for (int i = 0, v; i < 1 << n; ++i) std::cin >> v, b[i] =\
+    \ v;\n\n    multi_variate_convolution_circular<mint> conv(std::vector<int>(n,\
+    \ 2));\n\n    std::vector<mint> c = conv(a, b);\n    for (int i = 0; i < 1 <<\
+    \ n; ++i) std::cout << c[i].val() << \" \\n\"[i == (1 << n) - 1];\n\n    return\
+    \ 0;\n}"
   dependsOn:
+  - library/convolution/multi_variate_convolution_circular.hpp
+  - library/transform/chirp_z_transform.hpp
+  - library/convolution/arbitrary_mod_convolution.hpp
+  - library/convolution/convolution_naive.hpp
+  - library/number/deterministic_miller_rabin.hpp
+  - library/type_traits/type_traits.hpp
   - library/number/primitive_root.hpp
   - library/number/order_Z_mZ.hpp
   - library/number/fast_factorize.hpp
-  - library/number/deterministic_miller_rabin.hpp
-  - library/type_traits/type_traits.hpp
   - library/number/sieve_of_eratosthenes.hpp
   - library/number/internal_eratosthenes.hpp
-  - library/number/util.hpp
+  - library/number/garner.hpp
+  - library/number/ext_gcd.hpp
   isVerificationFile: true
-  path: test/src/number/primitive_root/dummy.test.cpp
+  path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-10-20 19:29:51+09:00'
+  timestamp: '2022-11-13 03:53:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/number/primitive_root/dummy.test.cpp
+documentation_of: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/number/primitive_root/dummy.test.cpp
-- /verify/test/src/number/primitive_root/dummy.test.cpp.html
-title: test/src/number/primitive_root/dummy.test.cpp
+- /verify/test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+- /verify/test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp.html
+title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
 ---

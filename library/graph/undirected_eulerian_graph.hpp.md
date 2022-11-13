@@ -20,22 +20,22 @@ data:
     \ used(n);\n            for (int i = 0; i < n; ++i) {\n                const std::size_t\
     \ sz = g[i].size();\n                edge_num += sz;\n                used[i].resize(sz,\
     \ false);\n                if (sz & 1) return std::nullopt;\n            }\n \
-    \           edge_num /= 2;\n            std::vector<int> res;\n            auto\
-    \ dfs = [&](auto dfs, int u) -> void {\n                for (std::size_t i = 0;\
-    \ i < g[u].size(); ++i) {\n                    if (used[u][i]) continue;\n   \
-    \                 const int v = g[u][i];\n                    used[u][i] = true;\n\
-    \                    assert(not used[v][inv[u][i]]);\n                    used[v][inv[u][i]]\
-    \ = true;\n                    dfs(dfs, v);\n                }\n             \
-    \   res.push_back(u);\n            };\n            dfs(dfs, start);\n        \
-    \    if (res.size() != edge_num + 1) return std::nullopt;\n            return\
-    \ res;\n        }\n        std::optional<std::vector<int>> eulerian_trail() {\n\
-    \            int s = -1, t = -1, invalid = -1;\n            for (int i = 0; i\
-    \ < n; ++i) if (g[i].size() & 1) (s < 0 ? s : t < 0 ? t : invalid) = i;\n    \
-    \        if (s < 0 or t < 0 or invalid >= 0) return std::nullopt;\n          \
-    \  add_edge(s, t);\n            auto opt_res = eulerian_circuit(s);\n        \
-    \    if (not opt_res.has_value()) return std::nullopt;\n            auto res =\
-    \ *opt_res;\n            res.pop_back();\n            // remove edge (s, t)\n\
-    \            g[s].pop_back(), inv[s].pop_back();\n            g[t].pop_back(),\
+    \           edge_num /= 2;\n            std::vector<int> res;\n            std::vector<std::size_t>\
+    \ iter(n);\n            auto dfs = [&](auto dfs, int u) -> void {\n          \
+    \      for (std::size_t &i = iter[u]; i < g[u].size(); ++i) {\n              \
+    \      if (used[u][i]) continue;\n                    const int v = g[u][i];\n\
+    \                    used[u][i] = true;\n                    assert(not used[v][inv[u][i]]);\n\
+    \                    used[v][inv[u][i]] = true;\n                    dfs(dfs,\
+    \ v);\n                }\n                res.push_back(u);\n            };\n\
+    \            dfs(dfs, start);\n            if (res.size() != edge_num + 1) return\
+    \ std::nullopt;\n            return res;\n        }\n        std::optional<std::vector<int>>\
+    \ eulerian_trail() {\n            int s = -1, t = -1, invalid = -1;\n        \
+    \    for (int i = 0; i < n; ++i) if (g[i].size() & 1) (s < 0 ? s : t < 0 ? t :\
+    \ invalid) = i;\n            if (s < 0 or t < 0 or invalid >= 0) return std::nullopt;\n\
+    \            add_edge(s, t);\n            auto opt_res = eulerian_circuit(s);\n\
+    \            if (not opt_res.has_value()) return std::nullopt;\n            auto\
+    \ res = *opt_res;\n            res.pop_back();\n            // remove edge (s,\
+    \ t)\n            g[s].pop_back(), inv[s].pop_back();\n            g[t].pop_back(),\
     \ inv[t].pop_back();\n            if (res.back() == t) return res;\n         \
     \   auto is_st_edge = [&](int u, int v) {\n                return (u == s and\
     \ v == t) or (u == t and v == s);\n            };\n            std::rotate(res.begin(),\
@@ -57,22 +57,22 @@ data:
     \ used(n);\n            for (int i = 0; i < n; ++i) {\n                const std::size_t\
     \ sz = g[i].size();\n                edge_num += sz;\n                used[i].resize(sz,\
     \ false);\n                if (sz & 1) return std::nullopt;\n            }\n \
-    \           edge_num /= 2;\n            std::vector<int> res;\n            auto\
-    \ dfs = [&](auto dfs, int u) -> void {\n                for (std::size_t i = 0;\
-    \ i < g[u].size(); ++i) {\n                    if (used[u][i]) continue;\n   \
-    \                 const int v = g[u][i];\n                    used[u][i] = true;\n\
-    \                    assert(not used[v][inv[u][i]]);\n                    used[v][inv[u][i]]\
-    \ = true;\n                    dfs(dfs, v);\n                }\n             \
-    \   res.push_back(u);\n            };\n            dfs(dfs, start);\n        \
-    \    if (res.size() != edge_num + 1) return std::nullopt;\n            return\
-    \ res;\n        }\n        std::optional<std::vector<int>> eulerian_trail() {\n\
-    \            int s = -1, t = -1, invalid = -1;\n            for (int i = 0; i\
-    \ < n; ++i) if (g[i].size() & 1) (s < 0 ? s : t < 0 ? t : invalid) = i;\n    \
-    \        if (s < 0 or t < 0 or invalid >= 0) return std::nullopt;\n          \
-    \  add_edge(s, t);\n            auto opt_res = eulerian_circuit(s);\n        \
-    \    if (not opt_res.has_value()) return std::nullopt;\n            auto res =\
-    \ *opt_res;\n            res.pop_back();\n            // remove edge (s, t)\n\
-    \            g[s].pop_back(), inv[s].pop_back();\n            g[t].pop_back(),\
+    \           edge_num /= 2;\n            std::vector<int> res;\n            std::vector<std::size_t>\
+    \ iter(n);\n            auto dfs = [&](auto dfs, int u) -> void {\n          \
+    \      for (std::size_t &i = iter[u]; i < g[u].size(); ++i) {\n              \
+    \      if (used[u][i]) continue;\n                    const int v = g[u][i];\n\
+    \                    used[u][i] = true;\n                    assert(not used[v][inv[u][i]]);\n\
+    \                    used[v][inv[u][i]] = true;\n                    dfs(dfs,\
+    \ v);\n                }\n                res.push_back(u);\n            };\n\
+    \            dfs(dfs, start);\n            if (res.size() != edge_num + 1) return\
+    \ std::nullopt;\n            return res;\n        }\n        std::optional<std::vector<int>>\
+    \ eulerian_trail() {\n            int s = -1, t = -1, invalid = -1;\n        \
+    \    for (int i = 0; i < n; ++i) if (g[i].size() & 1) (s < 0 ? s : t < 0 ? t :\
+    \ invalid) = i;\n            if (s < 0 or t < 0 or invalid >= 0) return std::nullopt;\n\
+    \            add_edge(s, t);\n            auto opt_res = eulerian_circuit(s);\n\
+    \            if (not opt_res.has_value()) return std::nullopt;\n            auto\
+    \ res = *opt_res;\n            res.pop_back();\n            // remove edge (s,\
+    \ t)\n            g[s].pop_back(), inv[s].pop_back();\n            g[t].pop_back(),\
     \ inv[t].pop_back();\n            if (res.back() == t) return res;\n         \
     \   auto is_st_edge = [&](int u, int v) {\n                return (u == s and\
     \ v == t) or (u == t and v == s);\n            };\n            std::rotate(res.begin(),\
@@ -86,7 +86,7 @@ data:
   isVerificationFile: false
   path: library/graph/undirected_eulerian_graph.hpp
   requiredBy: []
-  timestamp: '2022-03-19 20:37:00+09:00'
+  timestamp: '2022-11-13 03:54:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/graph/undirected_eulerian_graph.hpp
