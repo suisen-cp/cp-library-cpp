@@ -12,13 +12,29 @@
 
 namespace suisen {
     namespace internal {
-        const auto default_convolution = [](const auto &a, const auto &b) { return atcoder::convolution(a, b); };
+        const auto default_convolution = [](const auto& a, const auto& b) { return atcoder::convolution(a, b); };
+
+        template <typename T>
+        std::vector<T> chirp_z_transform_naive(const std::vector<T> &f, T a, T r, int m) {
+            const int n = f.size();
+            std::vector<T> g(m);
+            T pow_r = 1;
+            for (int k = 0; k < m; ++k) {
+                T ark = a * pow_r, pow_ark = 1;
+                for (int i = 0; i < n; ++i) {
+                    g[k] += f[i] * pow_ark;
+                    pow_ark *= ark;
+                }
+                pow_r *= r;
+            }
+            return g;
+        }
     } // namespace internal
     /**
      * @brief Calculates f(ar^k) for k=0,...,m-1 in O(M(n+m-1)+n+m) time
      */
     template <typename T, typename Convolution>
-    std::vector<T> chirp_z_transform(std::vector<T> f, T a, T r, int m, Convolution &&convolution = internal::default_convolution) {
+    std::vector<T> chirp_z_transform(std::vector<T> f, T a, T r, int m, Convolution&& convolution = internal::default_convolution) {
         const int n = f.size();
         std::vector<T> g(m);
         if (n == 0 or m == 0) return g;
@@ -29,6 +45,7 @@ namespace suisen {
             for (int k = 1; k < m; ++k) g[k] += f[0];
             return g;
         }
+        if (n < 60) return internal::chirp_z_transform_naive(f, a, r, m);
         const T r_inv = r.inv();
 
         const int l = n + m - 1;
