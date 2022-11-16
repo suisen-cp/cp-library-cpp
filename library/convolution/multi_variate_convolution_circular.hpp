@@ -46,9 +46,24 @@ namespace suisen {
                     const int nblock = block * _n[i];
                     for (int l = 0; l + nblock <= _l; l += nblock) {
                         for (int start = l; start < l + block; ++start) {
-                            for (int p = 0; p < _n[i]; ++p) x[p] = f[start + p * block];
-                            x = chirp_z_transform<mint>(x, 1, g[i], _n[i], arbitrary_mod_convolution<mint>);
-                            for (int p = 0; p < _n[i]; ++p) f[start + p * block] = x[p];
+                            if (_n[i] == 2) {
+                                mint u = f[start], v = f[start + block];
+                                f[start] = u + v;
+                                f[start + block] = u - v;
+                            } else if (_n[i] == 3) {
+                                mint u = f[start], v = f[start + block], w = f[start + block + block];
+                                f[start] = u + v + w;
+                                f[start + block] = u + (v + w * g[i]) * g[i];
+                                f[start + block + block] = u + (w + v * g[i]) * g[i];
+                            } else {
+                                for (int p = 0; p < _n[i]; ++p) x[p] = f[start + p * block];
+                                if (_n[i] <= 100) {
+                                    x = internal::chirp_z_transform_naive<mint>(x, 1, g[i], _n[i]);
+                                } else {
+                                    x = chirp_z_transform<mint>(x, 1, g[i], _n[i], arbitrary_mod_convolution<mint>);
+                                }
+                                for (int p = 0; p < _n[i]; ++p) f[start + p * block] = x[p];
+                            }
                         }
                     }
                     block = nblock;
@@ -92,6 +107,8 @@ namespace suisen {
 
         std::vector<mint> convolution(std::vector<mint> f, const std::vector<mint>& g) {
             assert(int(f.size()) == _l and int(g.size()) == _l);
+            if (_d == 0) return { f[0] * g[0] };
+            if (_d == 1) return arbitrary_mod_convolution<mint>(f, g);
             if (_l <= 60) return convolution_naive(f, g);
             const int m = _mods.size();
             std::vector res(m, std::vector<int>(_l));

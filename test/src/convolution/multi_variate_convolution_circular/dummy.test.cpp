@@ -84,7 +84,7 @@ void perf_test1() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
     }
 }
 
@@ -108,7 +108,7 @@ void perf_test2() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
     }
 }
 
@@ -132,7 +132,7 @@ void perf_test3() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
     }
 }
 
@@ -156,7 +156,7 @@ void perf_test4() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
     }
 }
 
@@ -180,7 +180,7 @@ void perf_test5() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
     }
 }
 
@@ -204,7 +204,7 @@ void perf_test6() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
     }
 }
 
@@ -228,7 +228,7 @@ void perf_test7() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
     }
 }
 
@@ -252,7 +252,7 @@ void perf_test8() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
     }
 }
 
@@ -276,7 +276,7 @@ void perf_test9() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
     }
 }
 
@@ -300,7 +300,31 @@ void perf_test10() {
 
     if (elapsed > 2000) {
         std::cerr << "TLE" << std::endl;
-        // assert(false);
+        assert(false);
+    }
+}
+
+void perf_test11() {
+    using namespace suisen;
+
+    std::vector<int> n(1, 262144);
+    const int l = std::reduce(n.begin(), n.end(), 1, std::multiplies<int>()); // 262144
+
+    suisen::multi_variate_convolution_circular<mint> conv(n);
+
+    std::vector<mint> f(l), g(l);
+    std::iota(f.begin(), f.end(), 2348042);
+    std::iota(g.begin(), g.end(), 5439850);
+
+    Timer t;
+    std::vector<mint> h_actual = conv.convolution(f, g);
+    double elapsed = t.elapsed();
+    
+    std::cerr << "Solved in " << elapsed << " ms." << std::endl;
+
+    if (elapsed > 2000) {
+        std::cerr << "TLE" << std::endl;
+        assert(false);
     }
 }
 
@@ -318,6 +342,7 @@ void test() {
     perf_test8();
     perf_test9();
     perf_test10();
+    perf_test11();
 }
 
 int main() {
