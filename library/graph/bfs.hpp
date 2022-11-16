@@ -1,68 +1,71 @@
 #ifndef SUISEN_BFS
 #define SUISEN_BFS
 
-#include <limits>
-#include <map>
-#include <queue>
+#include <algorithm>
+#include <cstdint>
+#include <deque>
+#include <numeric>
+#include <utility>
 #include <vector>
 
 namespace suisen {
-template <typename Cost, typename Node, typename Container>
-class BFS_base {
-    protected:
-        Container _dist;
+    struct BFS {
+        static constexpr int unreachable = -1;
 
-        virtual Cost get_dist(const Node &node) const = 0;
+        BFS(int n = 0) : n(n), g(n) {}
+        template <typename Edges>
+        BFS(int n, const Edges& edges) : BFS(n) {
+            for (const auto& [u, v] : edges) add_edge(u, v);
+        }
+        BFS(const std::vector<std::vector<int>>& g) : n(g.size()), g(g) {}
 
-        template <typename Iterable, typename Graph>
-        auto bfs(const Iterable &src_list, const Graph g) -> decltype(src_list.begin(), src_list.end(), void()) {
-            std::deque<Node> dq;
-            for (auto &src : src_list) {
-                dq.push_back(src);
-                _dist[src] = 0;
-            }
+        void add_edge(int u, int v) {
+            g[u].push_back(v);
+            g[v].push_back(u);
+        }
+
+        std::vector<int> distance(const std::vector<int>& src) const {
+            std::vector<int> dist(n, unreachable);
+            for (int v : dist) dist[v] = 0;
+
+            std::deque<int> dq(src.begin(), src.end());
             while (dq.size()) {
-                Node u = dq.front(); dq.pop_front();
-                g(u, [&](const Node &v) {
-                    Cost old_dist = get_dist(v);
-                    Cost new_dist = get_dist(u) + 1;
-                    if (new_dist < old_dist) {
-                        _dist[v] = new_dist;
+                int u = dq.front();
+                dq.pop_front();
+                for (int v : g[u]) if (dist[v] == unreachable) {
+                    dist[v] = dist[u] + 1;
+                    dq.push_back(v);
+                }
+            }
+            return dist;
+        }
+        std::vector<int> distance(int s) const {
+            return distance(std::vector<int>{ s });
+        }
+
+        std::vector<std::vector<int>> connected_components() const {
+            std::vector<std::vector<int>> res;
+
+            std::vector<int8_t> vis(n, false);
+
+            for (int i = 0; i < n; ++i) if (not std::exchange(vis[i], true)) {
+                auto& cmp = res.emplace_back();
+                std::deque<int> dq{ i };
+                while (dq.size()) {
+                    int u = dq.front();
+                    dq.pop_front();
+                    cmp.push_back(u);
+                    for (int v : g[u]) if (not std::exchange(vis[v], true)) {
                         dq.push_back(v);
                     }
-                });
+                }
             }
+            return res;
         }
-    public:
-        static constexpr Cost INF = std::numeric_limits<Cost>::max();
-
-        inline Cost operator[](const Node &node)     const { return get_dist(node); }
-        inline bool is_reachable(const Node &node)   const { return get_dist(node) != INF; }
-        inline bool is_unreachable(const Node &node) const { return get_dist(node) == INF; }
-};
-
-template <typename Cost, typename Node = int, typename Container = std::vector<Cost>>
-class BFS : public BFS_base<Cost, Node, Container> {
-    using base = BFS_base<Cost, Node, Container>;
-    public:
-        template <typename Graph>
-        BFS(const Node n, const Node src, const Graph g) : base::_dist(n, this->INF) { this->bfs(std::vector<Node>{src}, g); }
-        template <typename Iterable, typename Graph>
-        BFS(const Node n, const Iterable &src_list, const Graph g) : base::_dist(n, this->INF) { this->bfs(src_list, g); }
-    protected:
-        inline Cost get_dist(const Node &node) const override { return this->_dist[node]; }
-};
-
-template <typename Cost, typename Node>
-class BFS<Cost, Node, std::map<Node, Cost>> : public BFS_base<Cost, Node, std::map<Node, Cost>> {
-    public:
-        template <typename Graph>
-        BFS(const Node src, const Graph g) { this->bfs(std::vector<Node>{src}, g); }
-        template <typename Iterable, typename Graph>
-        BFS(const Iterable &src_list, const Graph g) { this->bfs(src_list, g); }
-    protected:
-        inline Cost get_dist(const Node &node) const override { return this->_dist.count(node) ? this->_dist.at(node) : this->INF; }
-};
+    private:
+        int n;
+        std::vector<std::vector<int>> g;
+    };
 } // namespace suisen
 
 #endif // SUISEN_BFS
