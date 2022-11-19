@@ -9,7 +9,8 @@ namespace suisen {
      * returns p(λ) = det(λE - A)
      */
     template <typename T>
-    std::vector<T> characteristic_polynomial(const SquareMatrix<T> &A) {
+    std::vector<T> characteristic_polynomial(const Matrix<T> &A) {
+        A.assert_square();
         const int n = A.row_size();
         if (n == 0) return { T{1} };
         auto H = hessenberg_reduction(A);

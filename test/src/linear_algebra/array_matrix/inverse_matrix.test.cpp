@@ -32,7 +32,7 @@ int main() {
     for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) {
         std::cin >> A[i][j];
     }
-    auto opt_inv = A.inv();
+    auto opt_inv = A.safe_inv();
     if (not opt_inv.has_value()) {
         std::cout << -1 << std::endl;
     } else {

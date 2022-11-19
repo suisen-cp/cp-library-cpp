@@ -9,7 +9,8 @@ namespace suisen {
      * returns H := P^(-1) A P, where H is hessenberg matrix
      */
     template <typename T>
-    SquareMatrix<T> hessenberg_reduction(SquareMatrix<T> A) {
+    Matrix<T> hessenberg_reduction(Matrix<T> A) {
+        A.assert_square();
         const int n = A.row_size();
         for (int r = 0; r < n - 2; ++r) {
             int pivot = -1;

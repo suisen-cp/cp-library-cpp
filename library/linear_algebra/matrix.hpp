@@ -11,6 +11,7 @@ namespace suisen {
         std::vector<std::vector<T>> dat;
 
         Matrix() {}
+        Matrix(int n) : Matrix(n, n) {}
         Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m, fill_value)) {}
         Matrix(const std::vector<std::vector<T>>& dat) : dat(dat) {}
 
@@ -19,86 +20,87 @@ namespace suisen {
 
         operator std::vector<std::vector<T>>() const { return dat; }
 
-        bool operator==(const Matrix<T>& other) const { return this->dat == other.dat; }
-        bool operator!=(const Matrix<T>& other) const { return this->dat != other.dat; }
+        friend bool operator==(const Matrix<T> &A, const Matrix<T>& B) { return A.dat == B.dat; }
+        friend bool operator!=(const Matrix<T> &A, const Matrix<T>& B) { return A.dat != B.dat; }
 
         std::pair<int, int> shape() const { return dat.empty() ? std::make_pair<int, int>(0, 0) : std::make_pair<int, int>(dat.size(), dat[0].size()); }
         int row_size() const { return dat.size(); }
         int col_size() const { return dat.empty() ? 0 : dat[0].size(); }
 
-        Matrix<T>& operator+=(const Matrix<T>& other) {
-            assert(shape() == other.shape());
-            auto [n, m] = shape();
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) dat[i][j] += other[i][j];
-            return *this;
+        friend Matrix<T>& operator+=(Matrix<T>& A, const Matrix<T>& B) {
+            assert(A.shape() == B.shape());
+            auto [n, m] = A.shape();
+            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) A.dat[i][j] += B.dat[i][j];
+            return A;
         }
-        Matrix<T>& operator-=(const Matrix<T>& other) {
-            assert(shape() == other.shape());
-            auto [n, m] = shape();
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) dat[i][j] -= other[i][j];
-            return *this;
+        friend Matrix<T>& operator-=(Matrix<T>& A, const Matrix<T>& B) {
+            assert(A.shape() == B.shape());
+            auto [n, m] = A.shape();
+            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) A.dat[i][j] -= B.dat[i][j];
+            return A;
         }
-        Matrix<T>& operator*=(const Matrix<T>& other) { return *this = *this * other; }
-        Matrix<T>& operator*=(const T& val) {
-            for (auto &row : dat) for (auto &elm : row) elm *= val;
-            return *this;
+        friend Matrix<T>& operator*=(Matrix<T>& A, const Matrix<T>& B) { return A = A * B; }
+        friend Matrix<T>& operator*=(Matrix<T>& A, const T& val) {
+            for (auto &row : A.dat) for (auto &elm : row) elm *= val;
+            return A;
         }
-        Matrix<T>& operator/=(const T& val) { return *this *= T(1) / val; }
-        Matrix<T> operator+(const Matrix<T>& other) const { Matrix<T> res = *this; res += other; return res; }
-        Matrix<T> operator-(const Matrix<T>& other) const { Matrix<T> res = *this; res -= other; return res; }
-        Matrix<T> operator*(const Matrix<T>& other) const {
-            auto [n, m] = shape();
-            auto [m2, l] = other.shape();
-            assert(m == m2);
+        friend Matrix<T>& operator/=(Matrix<T>& A, const T& val) { return A *= T(1) / val; }
+        friend Matrix<T>& operator/=(Matrix<T>& A, const Matrix<T> &B) { return A *= B.inv(); }
+    
+        friend Matrix<T> operator+(Matrix<T> A, const Matrix<T>& B) { A += B; return A; }
+        friend Matrix<T> operator-(Matrix<T> A, const Matrix<T>& B) { A -= B; return A; }
+        friend Matrix<T> operator*(const Matrix<T> &A, const Matrix<T>& B) {
+            assert(A.col_size() == B.row_size());
+            const int n = A.row_size(), m = A.col_size(), l = B.col_size();
             std::vector res(n, std::vector(l, T(0)));
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) for (int k = 0; k < l; ++k) res[i][k] += (*this)[i][j] * other[j][k];
+            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) for (int k = 0; k < l; ++k) res[i][k] += A.dat[i][j] * B.dat[j][k];
             return res;
         }
-        Matrix<T> operator*(const T& val) const { Matrix<T> res = *this; res *= val; return res; }
-        Matrix<T> operator/(const T& val) const { Matrix<T> res = *this; res /= val; return res; }
+        friend Matrix<T> operator*(const T& val, Matrix<T> A) { A *= val; return A; }
+        friend Matrix<T> operator*(Matrix<T> A, const T& val) { A *= val; return A; }
+        friend Matrix<T> operator/(const Matrix<T> &A, const Matrix<T>& B) { return A * B.inv(); }
+        friend Matrix<T> operator/(Matrix<T> A, const T& val) { A /= val; return A; }
+        friend Matrix<T> operator/(const T& val, const Matrix<T> &A) { return val * A.inv(); }
 
-        std::vector<T> operator*(const std::vector<T>& x) const {
-            auto [n, m] = shape();
+        friend std::vector<T> operator*(const Matrix<T> &A, const std::vector<T>& x) {
+            const auto [n, m] = A.shape();
             assert(m == int(x.size()));
             std::vector<T> b(n, T(0));
-            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) b[i] += dat[i][j] * x[j];
+            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) b[i] += A.dat[i][j] * x[j];
             return b;
         }
-    };
 
-    template <typename T>
-    struct SquareMatrix : public Matrix<T> {
-        SquareMatrix() {}
-        SquareMatrix(int n, T fill_value = T(0)) : Matrix<T>::Matrix(n, n, fill_value) {}
-        SquareMatrix(const std::vector<std::vector<T>>& dat) : Matrix<T>::Matrix(dat) {
-            auto [n, m] = this->shape();
-            assert(n == m);
+        static Matrix<T> e0(int n) { return Matrix<T>(n, Identity::ADD); }
+        static Matrix<T> e1(int n) { return Matrix<T>(n, Identity::MUL); }
+
+        Matrix<T> pow(long long b) const {
+            assert_square();
+            assert(b >= 0);
+            Matrix<T> res = e1(row_size()), p = *this;
+            for (; b; b >>= 1) {
+                if (b & 1) res *= p;
+                p *= p;
+            }
+            return res;
         }
+        Matrix<T> inv() const { return *safe_inv(); }
 
-        int size() const { return this->row_size(); }
-
-        bool operator==(const SquareMatrix<T>& other) const { return this->dat == other.dat; }
-        bool operator!=(const SquareMatrix<T>& other) const { return this->dat != other.dat; }
-
-        static SquareMatrix<T> e0(int n) { return SquareMatrix<T>(n, false, /* dummy */ 0); }
-        static SquareMatrix<T> e1(int n) { return SquareMatrix<T>(n, true, /* dummy */ 0); }
-
-        static std::optional<SquareMatrix<T>> inv(SquareMatrix<T> A) {
-            int n = A.size();
+        std::optional<Matrix<T>> safe_inv() const {
+            assert_square();
+            Matrix<T> A = *this;
+            const int n = A.row_size();
             for (int i = 0; i < n; ++i) {
                 A[i].resize(2 * n, T{ 0 });
                 A[i][n + i] = T{ 1 };
             }
             for (int i = 0; i < n; ++i) {
-                int pivot = -1;
                 for (int k = i; k < n; ++k) if (A[k][i] != T{ 0 }) {
-                    pivot = k;
+                    std::swap(A[i], A[k]);
+                    T c = T { 1 } / A[i][i];
+                    for (int j = i; j < 2 * n; ++j) A[i][j] *= c;
                     break;
                 }
-                if (pivot < 0) return std::nullopt;
-                std::swap(A[i], A[pivot]);
-                T coef = T{ 1 } / A[i][i];
-                for (int j = i; j < 2 * n; ++j) A[i][j] *= coef;
+                if (A[i][i] == T{ 0 }) return std::nullopt;
                 for (int k = 0; k < n; ++k) if (k != i and A[k][i] != T{ 0 }) {
                     T c = A[k][i];
                     for (int j = i; j < 2 * n; ++j) A[k][j] -= c * A[i][j];
@@ -107,9 +109,12 @@ namespace suisen {
             for (auto& row : A.dat) row.erase(row.begin(), row.begin() + n);
             return A;
         }
-        static T det(SquareMatrix<T> A) {
+
+        T det() const {
+            assert_square();
+            Matrix<T> A = *this;
             bool sgn = false;
-            const int n = A.size();
+            const int n = A.row_size();
             for (int j = 0; j < n; ++j) for (int i = j + 1; i < n; ++i) if (A[i][j] != T { 0 }) {
                 std::swap(A[j], A[i]);
                 T q = A[i][j] / A[j][j];
@@ -120,9 +125,11 @@ namespace suisen {
             for (int i = 0; i < n; ++i) res *= A[i][i];
             return res;
         }
-        static T det_arbitrary_mod(SquareMatrix<T> A) {
+        T det_arbitrary_mod() const {
+            assert_square();
+            Matrix<T> A = *this;
             bool sgn = false;
-            const int n = A.size();
+            const int n = A.row_size();
             for (int j = 0; j < n; ++j) for (int i = j + 1; i < n; ++i) {
                 for (; A[i][j].val(); sgn = not sgn) {
                     std::swap(A[j], A[i]);
@@ -134,34 +141,13 @@ namespace suisen {
             for (int i = 0; i < n; ++i) res *= A[i][i];
             return res;
         }
-        SquareMatrix<T>& inv_inplace() {
-            return *this = *SquareMatrix<T>::inv(std::move(*this));
-        }
-        SquareMatrix<T> inv() const {
-            return *SquareMatrix<T>::inv(*this);
-        }
-        T det() const {
-            return SquareMatrix<T>::det(*this);
-        }
-        T det_arbitrary_mod() const {
-            return SquareMatrix<T>::det_arbitrary_mod(*this);
-        }
-
-        SquareMatrix<T>& operator/=(const SquareMatrix<T>& other) { return *this *= other.inv(); }
-        SquareMatrix<T>  operator/ (const SquareMatrix<T>& other) const { SquareMatrix<T> res = *this; res /= other; return res; }
-
-        SquareMatrix<T> pow(long long b) {
-            assert(b >= 0);
-            SquareMatrix<T> res(SquareMatrix<T>::e1(size())), p(*this);
-            for (; b; b >>= 1) {
-                if (b & 1) res *= p;
-                p *= p;
-            }
-            return res;
-        }
+        void assert_square() const { assert(row_size() == col_size()); }
     private:
-        SquareMatrix(int n, bool mult_identity, int) : Matrix<T>::Matrix(n, n) {
-            if (mult_identity) for (int i = 0; i < n; ++i) this->dat[i][i] = 1;
+        enum class Identity {
+            ADD, MUL
+        };
+        Matrix(int n, Identity ident) : Matrix<T>::Matrix(n) {
+            if (ident == Identity::MUL) for (int i = 0; i < n; ++i) dat[i][i] = 1;
         }
     };
 } // namespace suisen

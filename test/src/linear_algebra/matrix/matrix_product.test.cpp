@@ -12,19 +12,15 @@ int main() {
     int n, m, k;
     std::cin >> n >> m >> k;
     Matrix<mint> A(n, m), B(m, k);
-    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {
-        int val;
-        std::cin >> val;
-        A[i][j] = val;
+    for (int i = 0; i < n; ++i) for (int j = 0, val; j < m; ++j) {
+        std::cin >> val, A[i][j] = val;
     }
-    for (int i = 0; i < m; ++i) for (int j = 0; j < k; ++j) {
-        int val;
-        std::cin >> val;
-        B[i][j] = val;
+    for (int i = 0; i < m; ++i) for (int j = 0, val; j < k; ++j) {
+        std::cin >> val, B[i][j] = val;
     }
-    A *= B;
+    Matrix<mint> C = A * B;
     for (int i = 0; i < n; ++i) for (int j = 0; j < k; ++j) {
-        std::cout << A[i][j].val() << " \n"[j == k - 1];
+        std::cout << C[i][j].val() << " \n"[j == k - 1];
     }
     return 0;
 }

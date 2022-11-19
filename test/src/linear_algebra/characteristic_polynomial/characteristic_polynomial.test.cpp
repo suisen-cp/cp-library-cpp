@@ -17,7 +17,7 @@ std::ostream& operator<<(std::ostream& out, const mint &a) {
 
 #include "library/linear_algebra/characteristic_polynomial.hpp"
 
-using suisen::SquareMatrix;
+using suisen::Matrix;
 using suisen::characteristic_polynomial;
 
 int main() {
@@ -27,7 +27,7 @@ int main() {
     int n;
     std::cin >> n;
 
-    SquareMatrix<mint> A(n);
+    Matrix<mint> A(n);
     for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) std::cin >> A[i][j];
 
     std::vector<mint> p = characteristic_polynomial(A);

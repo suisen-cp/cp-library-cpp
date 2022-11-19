@@ -6,7 +6,7 @@
 #include "library/linear_algebra/matrix.hpp"
 
 using mint = atcoder::modint;
-using suisen::SquareMatrix;
+using suisen::Matrix;
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -16,12 +16,10 @@ int main() {
     std::cin >> n >> m;
 
     mint::set_mod(m);
-    SquareMatrix<mint> A(n);
-    for (int i = 0; i < n; ++i) for (int j = 0; j < n; ++j) {
-        int val;
-        std::cin >> val;
-        A[i][j] = val;
+    Matrix<mint> A(n);
+    for (int i = 0; i < n; ++i) for (int j = 0, val; j < n; ++j) {
+        std::cin >> val, A[i][j] = val;
     }
-    std::cout << SquareMatrix<mint>::det_arbitrary_mod(A).val() << '\n';
+    std::cout << A.det_arbitrary_mod().val() << '\n';
     return 0;
 }
