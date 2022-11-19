@@ -9,6 +9,9 @@ using mint = atcoder::modint998244353;
 using suisen::Matrix;
 
 int main() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+
     int n, m, k;
     std::cin >> n >> m >> k;
     Matrix<mint> A(n, m), B(m, k);
