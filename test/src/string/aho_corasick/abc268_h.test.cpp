@@ -7,12 +7,12 @@
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
- 
+
     std::string s;
     std::cin >> s;
     int n;
     std::cin >> n;
- 
+
     suisen::AhoCorasick ac;
     for (int i = 0; i < n; ++i) {
         std::string t;
@@ -32,6 +32,6 @@ int main() {
         }
     }
     std::cout << ans << std::endl;
- 
+
     return 0;
 }

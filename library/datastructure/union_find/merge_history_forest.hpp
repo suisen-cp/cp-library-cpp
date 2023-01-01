@@ -64,7 +64,7 @@ namespace suisen {
         int current_time() const { return _time; }
         int created_time(int vid) const { return _created_time[vid]; }
 
-        std::vector<int> group(int i, int time) {
+        std::vector<int> group(int i, int time = std::numeric_limits<int>::max()) {
             int root = i;
             while (_parent[root] >= 0 and _created_time[_parent[root]] <= time) root = _parent[root];
             std::vector<int> res;
@@ -78,7 +78,7 @@ namespace suisen {
             dfs(dfs, root);
             return res;
         }
-        std::vector<std::vector<int>> groups(int time) {
+        std::vector<std::vector<int>> groups(int time = std::numeric_limits<int>::max()) {
             std::vector<std::vector<int>> res;
             const int n = leaf_num();
             std::vector<bool> seen(n, false);
@@ -92,6 +92,8 @@ namespace suisen {
             int a = get_lca(u, v);
             return _created_time[a] <= time;
         }
+
+        using base_type::same;
 
     private:
         std::vector<std::vector<int>> _g;

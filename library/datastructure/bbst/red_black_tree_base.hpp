@@ -112,6 +112,21 @@ namespace suisen::bbst::internal {
         static std::pair<tree_type, value_type> pop_front(tree_type node) { return erase(node, 0); }
         static std::pair<tree_type, value_type> pop_back(tree_type node) { return erase(node, size(node) - 1); }
 
+        template <typename Fun>
+        static tree_type update_value(tree_type node, size_type k, Fun &&fun) {
+            auto [tl, top, tr] = split_range(node, k, k + 1);
+            top->_val = fun(top->_val);
+            return merge(merge(tl, top), tr);
+        }
+        static tree_type set(tree_type node, size_type k, value_type val) {
+            return update_value(node, k, [&val]{ return val; });
+        }
+        static std::pair<tree_type, value_type> get(tree_type node, size_type k) {
+            auto [tl, top, tr] = split_range(node, k, k + 1);
+            value_type res = top->_val;
+            return { merge(merge(tl, top), tr), res };
+        }
+
         template <typename U>
         static tree_type build(const std::vector<U>& a, int l, int r) {
             if (r - l == 1) return create_leaf(a[l]);

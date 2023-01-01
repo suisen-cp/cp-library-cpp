@@ -108,7 +108,7 @@ namespace suisen {
         std::vector<mint> convolution(std::vector<mint> f, const std::vector<mint>& g) {
             assert(int(f.size()) == _l and int(g.size()) == _l);
             if (_d == 0) return { f[0] * g[0] };
-            if (_d == 1) return arbitrary_mod_convolution<mint>(f, g);
+            // if (_d == 1) return arbitrary_mod_convolution<mint>(f, g);
             if (_l <= 60) return convolution_naive(f, g);
             const int m = _mods.size();
             std::vector res(m, std::vector<int>(_l));

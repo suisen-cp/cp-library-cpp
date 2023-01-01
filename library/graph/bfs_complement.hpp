@@ -34,7 +34,7 @@ namespace suisen {
             }();
 
             std::vector<int> dist(n, unreachable);
-            for (int v : dist) dist[v] = 0;
+            for (int v : src) dist[v] = 0;
 
             std::vector<int8_t> adj(n);
             std::deque<int> dq(src.begin(), src.end());

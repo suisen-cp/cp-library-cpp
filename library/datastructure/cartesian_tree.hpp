@@ -6,8 +6,6 @@
 #include <functional>
 #include <vector>
 
-#include "library/type_traits/type_traits.hpp"
-
 namespace suisen {
     struct CartesianTree : public std::vector<std::array<int, 2>> {
         using base_type = std::vector<std::array<int, 2>>;
@@ -33,7 +31,7 @@ namespace suisen {
         }
     };
 
-    template <typename T, typename Comparator, constraints_t<is_comparator<Comparator, T>> = nullptr>
+    template <typename Comparator>
     struct CartesianTreeBuilder {
         CartesianTreeBuilder() {}
         template <typename RandomAccessibleContainer>
@@ -78,6 +76,9 @@ namespace suisen {
             return par;
         }
     };
+
+    using MinCartesianTreeBuilder = CartesianTreeBuilder<std::less<>>;
+    using MaxCartesianTreeBuilder = CartesianTreeBuilder<std::greater<>>;
 } // namespace suisen
 
 #endif // SUISEN_CARTESIAN_TREE

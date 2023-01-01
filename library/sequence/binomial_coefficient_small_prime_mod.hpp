@@ -1,7 +1,7 @@
 #ifndef SUISEN_BINOMIAL_COEFFICIENT_SMALL_P
 #define SUISEN_BINOMIAL_COEFFICIENT_SMALL_P
 
-#include "library/sequence/binomial_coefficient.hpp"
+#include "library/math/factorial.hpp"
 
 namespace suisen {
     template <typename mint>
@@ -10,7 +10,8 @@ namespace suisen {
             return binom(n, r);
         }
         static mint binom(long long n, long long r) {
-            static const std::vector<std::vector<mint>> table = binom_table<mint>(mint::mod() - 1);
+            factorial<mint> fac(mint::mod() - 1);
+
             if (r < 0 or n < r) return 0;
             r = std::min(r, n - r);
             // Lucas's theorem
@@ -18,7 +19,7 @@ namespace suisen {
             while (r) {
                 int ni = n % mint::mod(), ri = r % mint::mod();
                 if (ni < ri) return 0;
-                res *= table[ni][ri];
+                res *= fac.binom(ni, ri);
                 n = n / mint::mod(), r = r / mint::mod();
             }
             return res;

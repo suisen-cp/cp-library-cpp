@@ -66,7 +66,7 @@ namespace suisen {
                 path.push_back(cur);
                 index_type m = (lr[0] + lr[1]) >> 1;
                 bool b = i >= m;
-                push(cur);
+                push(cur, lr[0], lr[1]);
                 cur = pool[cur].ch[b], lr[not b] = m;
             }
             pool[cur].dat = fun(pool[cur].dat);
