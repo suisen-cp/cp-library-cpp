@@ -2,20 +2,23 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: chirp z-transform ($g _ k = f(a r^k)$)
     links: []
@@ -89,10 +92,11 @@ data:
   requiredBy:
   - library/convolution/multi_variate_convolution_circular.hpp
   timestamp: '2022-11-16 20:35:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
 documentation_of: library/transform/chirp_z_transform.hpp
 layout: document
 title: "chirp z-transform (\u8A55\u4FA1\u70B9\u304C\u7B49\u5DEE\u6570\u5217\u3092\u6210\

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
     title: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/union_find/merge_history_forest.hpp\"\
@@ -43,31 +43,32 @@ data:
     \ new_root);\n                _root[s] = new_root;\n            }\n        }\n\
     \n        int current_time() const { return _time; }\n        int created_time(int\
     \ vid) const { return _created_time[vid]; }\n\n        std::vector<int> group(int\
-    \ i, int time) {\n            int root = i;\n            while (_parent[root]\
-    \ >= 0 and _created_time[_parent[root]] <= time) root = _parent[root];\n     \
-    \       std::vector<int> res;\n            auto dfs = [&, this](auto dfs, int\
-    \ u) -> void {\n                if (is_forest_leaf(u)) {\n                   \
-    \ res.push_back(u);\n                } else {\n                    for (int v\
-    \ : _g[u]) dfs(dfs, v);\n                }\n            };\n            dfs(dfs,\
-    \ root);\n            return res;\n        }\n        std::vector<std::vector<int>>\
-    \ groups(int time) {\n            std::vector<std::vector<int>> res;\n       \
-    \     const int n = leaf_num();\n            std::vector<bool> seen(n, false);\n\
-    \            for (int i = 0; i < n; ++i) if (not seen[i]) for (int v : res.emplace_back(group(i,\
+    \ i, int time = std::numeric_limits<int>::max()) {\n            int root = i;\n\
+    \            while (_parent[root] >= 0 and _created_time[_parent[root]] <= time)\
+    \ root = _parent[root];\n            std::vector<int> res;\n            auto dfs\
+    \ = [&, this](auto dfs, int u) -> void {\n                if (is_forest_leaf(u))\
+    \ {\n                    res.push_back(u);\n                } else {\n       \
+    \             for (int v : _g[u]) dfs(dfs, v);\n                }\n          \
+    \  };\n            dfs(dfs, root);\n            return res;\n        }\n     \
+    \   std::vector<std::vector<int>> groups(int time = std::numeric_limits<int>::max())\
+    \ {\n            std::vector<std::vector<int>> res;\n            const int n =\
+    \ leaf_num();\n            std::vector<bool> seen(n, false);\n            for\
+    \ (int i = 0; i < n; ++i) if (not seen[i]) for (int v : res.emplace_back(group(i,\
     \ time))) seen[v] = true;\n            return res;\n        }\n\n        template\
     \ <typename GetLCA>\n        bool same(int u, int v, int time, GetLCA&& get_lca)\
     \ {\n            if (not base_type::same(u, v)) return false;\n            int\
     \ a = get_lca(u, v);\n            return _created_time[a] <= time;\n        }\n\
-    \n    private:\n        std::vector<std::vector<int>> _g;\n        std::vector<int>\
-    \ _parent;\n        std::vector<int> _root;\n\n        // sum of the number of\
-    \ calls of function `merge` and those of `merge_simultaneously`\n        int _time;\n\
-    \        std::vector<int> _created_time;\n\n        void merge_dfs(int u, int\
-    \ new_root) {\n            for (int v : _g[u]) merge_dfs(v, new_root), _g[v].shrink_to_fit();\n\
-    \            create_edge(new_root, _root[u]);\n            _g[u].clear();\n  \
-    \      }\n\n        int create_node() {\n            _g.emplace_back();\n    \
-    \        _created_time.push_back(_time);\n            _parent.push_back(-1);\n\
-    \            return _g.size() - 1;\n        }\n        void create_edge(int new_root,\
-    \ int old_root) {\n            _g[new_root].push_back(old_root);\n           \
-    \ _parent[old_root] = new_root;\n        }\n        static int floor_log2(int\
+    \n        using base_type::same;\n\n    private:\n        std::vector<std::vector<int>>\
+    \ _g;\n        std::vector<int> _parent;\n        std::vector<int> _root;\n\n\
+    \        // sum of the number of calls of function `merge` and those of `merge_simultaneously`\n\
+    \        int _time;\n        std::vector<int> _created_time;\n\n        void merge_dfs(int\
+    \ u, int new_root) {\n            for (int v : _g[u]) merge_dfs(v, new_root),\
+    \ _g[v].shrink_to_fit();\n            create_edge(new_root, _root[u]);\n     \
+    \       _g[u].clear();\n        }\n\n        int create_node() {\n           \
+    \ _g.emplace_back();\n            _created_time.push_back(_time);\n          \
+    \  _parent.push_back(-1);\n            return _g.size() - 1;\n        }\n    \
+    \    void create_edge(int new_root, int old_root) {\n            _g[new_root].push_back(old_root);\n\
+    \            _parent[old_root] = new_root;\n        }\n        static int floor_log2(int\
     \ n) {\n            int res = 0;\n            while (1 << (res + 1) <= n) ++res;\n\
     \            return res;\n        }\n    };\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_MERGE_HISTORY_FOREST\n#define SUISEN_MERGE_HISTORY_FOREST\n\
@@ -102,31 +103,32 @@ data:
     \ new_root);\n                _root[s] = new_root;\n            }\n        }\n\
     \n        int current_time() const { return _time; }\n        int created_time(int\
     \ vid) const { return _created_time[vid]; }\n\n        std::vector<int> group(int\
-    \ i, int time) {\n            int root = i;\n            while (_parent[root]\
-    \ >= 0 and _created_time[_parent[root]] <= time) root = _parent[root];\n     \
-    \       std::vector<int> res;\n            auto dfs = [&, this](auto dfs, int\
-    \ u) -> void {\n                if (is_forest_leaf(u)) {\n                   \
-    \ res.push_back(u);\n                } else {\n                    for (int v\
-    \ : _g[u]) dfs(dfs, v);\n                }\n            };\n            dfs(dfs,\
-    \ root);\n            return res;\n        }\n        std::vector<std::vector<int>>\
-    \ groups(int time) {\n            std::vector<std::vector<int>> res;\n       \
-    \     const int n = leaf_num();\n            std::vector<bool> seen(n, false);\n\
-    \            for (int i = 0; i < n; ++i) if (not seen[i]) for (int v : res.emplace_back(group(i,\
+    \ i, int time = std::numeric_limits<int>::max()) {\n            int root = i;\n\
+    \            while (_parent[root] >= 0 and _created_time[_parent[root]] <= time)\
+    \ root = _parent[root];\n            std::vector<int> res;\n            auto dfs\
+    \ = [&, this](auto dfs, int u) -> void {\n                if (is_forest_leaf(u))\
+    \ {\n                    res.push_back(u);\n                } else {\n       \
+    \             for (int v : _g[u]) dfs(dfs, v);\n                }\n          \
+    \  };\n            dfs(dfs, root);\n            return res;\n        }\n     \
+    \   std::vector<std::vector<int>> groups(int time = std::numeric_limits<int>::max())\
+    \ {\n            std::vector<std::vector<int>> res;\n            const int n =\
+    \ leaf_num();\n            std::vector<bool> seen(n, false);\n            for\
+    \ (int i = 0; i < n; ++i) if (not seen[i]) for (int v : res.emplace_back(group(i,\
     \ time))) seen[v] = true;\n            return res;\n        }\n\n        template\
     \ <typename GetLCA>\n        bool same(int u, int v, int time, GetLCA&& get_lca)\
     \ {\n            if (not base_type::same(u, v)) return false;\n            int\
     \ a = get_lca(u, v);\n            return _created_time[a] <= time;\n        }\n\
-    \n    private:\n        std::vector<std::vector<int>> _g;\n        std::vector<int>\
-    \ _parent;\n        std::vector<int> _root;\n\n        // sum of the number of\
-    \ calls of function `merge` and those of `merge_simultaneously`\n        int _time;\n\
-    \        std::vector<int> _created_time;\n\n        void merge_dfs(int u, int\
-    \ new_root) {\n            for (int v : _g[u]) merge_dfs(v, new_root), _g[v].shrink_to_fit();\n\
-    \            create_edge(new_root, _root[u]);\n            _g[u].clear();\n  \
-    \      }\n\n        int create_node() {\n            _g.emplace_back();\n    \
-    \        _created_time.push_back(_time);\n            _parent.push_back(-1);\n\
-    \            return _g.size() - 1;\n        }\n        void create_edge(int new_root,\
-    \ int old_root) {\n            _g[new_root].push_back(old_root);\n           \
-    \ _parent[old_root] = new_root;\n        }\n        static int floor_log2(int\
+    \n        using base_type::same;\n\n    private:\n        std::vector<std::vector<int>>\
+    \ _g;\n        std::vector<int> _parent;\n        std::vector<int> _root;\n\n\
+    \        // sum of the number of calls of function `merge` and those of `merge_simultaneously`\n\
+    \        int _time;\n        std::vector<int> _created_time;\n\n        void merge_dfs(int\
+    \ u, int new_root) {\n            for (int v : _g[u]) merge_dfs(v, new_root),\
+    \ _g[v].shrink_to_fit();\n            create_edge(new_root, _root[u]);\n     \
+    \       _g[u].clear();\n        }\n\n        int create_node() {\n           \
+    \ _g.emplace_back();\n            _created_time.push_back(_time);\n          \
+    \  _parent.push_back(-1);\n            return _g.size() - 1;\n        }\n    \
+    \    void create_edge(int new_root, int old_root) {\n            _g[new_root].push_back(old_root);\n\
+    \            _parent[old_root] = new_root;\n        }\n        static int floor_log2(int\
     \ n) {\n            int res = 0;\n            while (1 << (res + 1) <= n) ++res;\n\
     \            return res;\n        }\n    };\n} // namespace suisen\n\n\n#endif\
     \ // SUISEN_MERGE_HISTORY_FOREST\n"
@@ -134,8 +136,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/union_find/merge_history_forest.hpp
   requiredBy: []
-  timestamp: '2022-03-15 15:38:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-01 18:21:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
 documentation_of: library/datastructure/union_find/merge_history_forest.hpp

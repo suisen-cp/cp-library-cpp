@@ -1,32 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':heavy_check_mark:'
-    path: library/sequence/binomial_coefficient.hpp
-    title: Binomial Coefficient
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/binomial_coefficient_small_prime_mod.hpp
     title: Binomial Coefficient Small Prime Mod
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/powers.hpp
     title: Powers
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/stirling_number2.hpp
     title: Stirling Number2
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/sequence/stirling_number2_small_prime_mod.hpp\"\n\
@@ -98,27 +95,19 @@ data:
     \          dp[i][0] = 0, dp[i][i] = 1;\n            for (int j = 1; j < i; ++j)\
     \ dp[i][j] = dp[i - 1][j - 1] + j * dp[i - 1][j];\n        }\n        return dp;\n\
     \    }\n} // namespace suisen\n\n\n#line 1 \"library/sequence/binomial_coefficient_small_prime_mod.hpp\"\
-    \n\n\n\n#line 1 \"library/sequence/binomial_coefficient.hpp\"\n\n\n\n#line 5 \"\
-    library/sequence/binomial_coefficient.hpp\"\n\nnamespace suisen {\n    template\
-    \ <typename T>\n    std::vector<std::vector<T>> binom_table(int n) {\n       \
-    \ std::vector<std::vector<T>> binom(n + 1, std::vector<T>(n + 1));\n        for\
-    \ (int i = 0; i <= n; ++i) {\n            binom[i][0] = binom[i][i] = 1;\n   \
-    \         for (int j = 1; j < i; ++j) {\n                binom[i][j] = binom[i\
-    \ - 1][j - 1] + binom[i - 1][j];\n            }\n        }\n        return binom;\n\
-    \    }\n} // namespace suisen\n\n\n\n#line 5 \"library/sequence/binomial_coefficient_small_prime_mod.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint>\n    struct BinomialCoefficientSmallPrimeMod\
+    \n\n\n\n#line 5 \"library/sequence/binomial_coefficient_small_prime_mod.hpp\"\n\
+    \nnamespace suisen {\n    template <typename mint>\n    struct BinomialCoefficientSmallPrimeMod\
     \ {\n        mint operator()(long long n, long long r) const {\n            return\
     \ binom(n, r);\n        }\n        static mint binom(long long n, long long r)\
-    \ {\n            static const std::vector<std::vector<mint>> table = binom_table<mint>(mint::mod()\
-    \ - 1);\n            if (r < 0 or n < r) return 0;\n            r = std::min(r,\
-    \ n - r);\n            // Lucas's theorem\n            mint res = 1;\n       \
-    \     while (r) {\n                int ni = n % mint::mod(), ri = r % mint::mod();\n\
-    \                if (ni < ri) return 0;\n                res *= table[ni][ri];\n\
-    \                n = n / mint::mod(), r = r / mint::mod();\n            }\n  \
-    \          return res;\n        }\n    };\n} // namespace suisen\n\n\n\n#line\
-    \ 6 \"library/sequence/stirling_number2_small_prime_mod.hpp\"\n\nnamespace suisen\
-    \ {\n    template <typename mint>\n    struct StirlingNumber2SmallPrimeMod {\n\
-    \        mint operator()(long long n, long long k) const {\n            return\
+    \ {\n            factorial<mint> fac(mint::mod() - 1);\n\n            if (r <\
+    \ 0 or n < r) return 0;\n            r = std::min(r, n - r);\n            // Lucas's\
+    \ theorem\n            mint res = 1;\n            while (r) {\n              \
+    \  int ni = n % mint::mod(), ri = r % mint::mod();\n                if (ni < ri)\
+    \ return 0;\n                res *= fac.binom(ni, ri);\n                n = n\
+    \ / mint::mod(), r = r / mint::mod();\n            }\n            return res;\n\
+    \        }\n    };\n} // namespace suisen\n\n\n\n#line 6 \"library/sequence/stirling_number2_small_prime_mod.hpp\"\
+    \n\nnamespace suisen {\n    template <typename mint>\n    struct StirlingNumber2SmallPrimeMod\
+    \ {\n        mint operator()(long long n, long long k) const {\n            return\
     \ s2(n, k);\n        }\n        static mint s2(long long n, long long k) {\n \
     \           static const std::vector<std::vector<mint>> table = stirling_number2_table<mint>(mint::mod()\
     \ - 1);\n            static const BinomialCoefficientSmallPrimeMod<mint> binom{};\n\
@@ -148,12 +137,11 @@ data:
   - library/sequence/powers.hpp
   - library/number/linear_sieve.hpp
   - library/sequence/binomial_coefficient_small_prime_mod.hpp
-  - library/sequence/binomial_coefficient.hpp
   isVerificationFile: false
   path: library/sequence/stirling_number2_small_prime_mod.hpp
   requiredBy: []
-  timestamp: '2022-10-13 23:32:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-01 18:21:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
 documentation_of: library/sequence/stirling_number2_small_prime_mod.hpp

@@ -367,15 +367,15 @@ data:
   timestamp: '2022-07-10 19:58:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
-  - test/src/integral_geom/geometry/abc259_d.test.cpp
-  - test/src/integral_geom/geometry/CGL_3_A.test.cpp
-  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
   - test/src/integral_geom/geometry/CGL_2_B.test.cpp
+  - test/src/integral_geom/geometry/CGL_3_C.test.cpp
+  - test/src/integral_geom/geometry/CGL_3_A.test.cpp
+  - test/src/integral_geom/geometry/abc259_d.test.cpp
+  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
   - test/src/integral_geom/geometry/CGL_2_A.test.cpp
   - test/src/integral_geom/geometry/CGL_3_B.test.cpp
-  - test/src/integral_geom/geometry/CGL_3_C.test.cpp
   - test/src/integral_geom/geometry/CGL_1_C.test.cpp
+  - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
 documentation_of: library/integral_geom/geometry.hpp
 layout: document
 title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19\

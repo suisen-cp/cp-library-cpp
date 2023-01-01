@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   _extendedRequiredBy:
@@ -21,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/lagrange_interpolation.hpp\"\n\n\n\n\
@@ -135,10 +135,10 @@ data:
   requiredBy:
   - library/math/sum_i^d_r^i.hpp
   timestamp: '2022-07-23 23:55:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp

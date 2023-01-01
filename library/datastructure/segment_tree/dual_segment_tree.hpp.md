@@ -90,9 +90,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
+  - test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
-  - test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
 documentation_of: library/datastructure/segment_tree/dual_segment_tree.hpp
 layout: document
 title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"

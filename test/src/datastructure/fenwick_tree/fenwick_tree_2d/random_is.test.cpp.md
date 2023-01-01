@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -29,18 +29,27 @@ data:
   bundledCode: "#line 1 \"test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp\"\
     \n#define PROBLEM \"https://atcoder.jp/contests/arc108/tasks/arc108_e\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/math/inv_mods.hpp\"\
-    \n\n\n\n#include <vector>\n\nnamespace suisen {\ntemplate <typename mint>\nclass\
-    \ inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int n) { ensure(n);\
-    \ }\n        const mint& operator[](int i) const {\n            ensure(i);\n \
-    \           return invs[i];\n        }\n        static void ensure(int n) {\n\
-    \            int sz = invs.size();\n            if (sz < 2) invs = {0, 1}, sz\
-    \ = 2;\n            if (sz < n + 1) {\n                invs.resize(n + 1);\n \
-    \               for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) *\
-    \ invs[mod % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
-    \ invs;\n        static constexpr int mod = mint::mod();\n};\ntemplate <typename\
-    \ mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 1 \"library/datastructure/segment_tree/segment_tree.hpp\"\
-    \n\n\n\n#include <cassert>\n#line 6 \"library/datastructure/segment_tree/segment_tree.hpp\"\
-    \n\n#line 1 \"library/util/update_proxy_object.hpp\"\n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#include <vector>\n\nnamespace suisen {\n    template <typename mint>\n\
+    \    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
+    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
+    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
+    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
+    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
+    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
+    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
+    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
+    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
+    \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
+    \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
+    \ }\n        mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n    \
+    \    rp[n] = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i]\
+    \ = rp[i + 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n       \
+    \ for (int i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n      \
+    \      ip *= vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 1 \"\
+    library/datastructure/segment_tree/segment_tree.hpp\"\n\n\n\n#include <cassert>\n\
+    #line 6 \"library/datastructure/segment_tree/segment_tree.hpp\"\n\n#line 1 \"\
+    library/util/update_proxy_object.hpp\"\n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
@@ -210,7 +219,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   requiredBy: []
-  timestamp: '2022-06-14 00:04:21+09:00'
+  timestamp: '2023-01-01 18:21:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp

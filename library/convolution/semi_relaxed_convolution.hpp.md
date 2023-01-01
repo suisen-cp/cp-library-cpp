@@ -74,8 +74,8 @@ data:
   timestamp: '2022-06-07 17:31:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/semi_relaxed_convolution/abc213_h.test.cpp
   - test/src/convolution/semi_relaxed_convolution/convolution_mod.test.cpp
+  - test/src/convolution/semi_relaxed_convolution/abc213_h.test.cpp
 documentation_of: library/convolution/semi_relaxed_convolution.hpp
 layout: document
 title: Semi Relaxed Convolution

@@ -96,24 +96,33 @@ data:
     \ tr) , erased_value };\n        }\n        static std::pair<tree_type, value_type>\
     \ pop_front(tree_type node) { return erase(node, 0); }\n        static std::pair<tree_type,\
     \ value_type> pop_back(tree_type node) { return erase(node, size(node) - 1); }\n\
-    \n        template <typename U>\n        static tree_type build(const std::vector<U>&\
-    \ a, int l, int r) {\n            if (r - l == 1) return create_leaf(a[l]);\n\
-    \            int m = (l + r) >> 1;\n            return merge(build(a, l, m), build(a,\
-    \ m, r));\n        }\n        template <typename U>\n        static tree_type\
-    \ build(const std::vector<U>& a) {\n            return a.empty() ? empty_tree()\
-    \ : build(a, 0, a.size());\n        }\n\n        template <typename OutputIterator>\n\
-    \        static void dump(tree_type node, OutputIterator it) {\n            if\
-    \ (empty(node)) return;\n            auto dfs = [&](auto dfs, tree_type cur) ->\
-    \ void {\n                if (cur->is_leaf()) {\n                    *it++ = cur->_val;\n\
-    \                    return;\n                }\n                dfs(dfs, cur->_ch[0]);\n\
-    \                dfs(dfs, cur->_ch[1]);\n            };\n            dfs(dfs,\
-    \ node);\n        }\n\n        // Don't use on persistent tree.\n        static\
-    \ void free(tree_type node) {\n            auto dfs = [&](auto dfs, tree_type\
-    \ cur) -> void {\n                if (not cur) return;\n                dfs(dfs,\
-    \ cur->_ch[0]);\n                dfs(dfs, cur->_ch[1]);\n                free_node(cur);\n\
-    \            };\n            dfs(dfs, node);\n        }\n\n        template <typename\
-    \ ToStr>\n        static std::string to_string(tree_type node, ToStr f) {\n  \
-    \          std::vector<value_type> dat;\n            node_type::dump(node, std::back_inserter(dat));\n\
+    \n        template <typename Fun>\n        static tree_type update_value(tree_type\
+    \ node, size_type k, Fun &&fun) {\n            auto [tl, top, tr] = split_range(node,\
+    \ k, k + 1);\n            top->_val = fun(top->_val);\n            return merge(merge(tl,\
+    \ top), tr);\n        }\n        static tree_type set(tree_type node, size_type\
+    \ k, value_type val) {\n            return update_value(node, k, [&val]{ return\
+    \ val; });\n        }\n        static std::pair<tree_type, value_type> get(tree_type\
+    \ node, size_type k) {\n            auto [tl, top, tr] = split_range(node, k,\
+    \ k + 1);\n            value_type res = top->_val;\n            return { merge(merge(tl,\
+    \ top), tr), res };\n        }\n\n        template <typename U>\n        static\
+    \ tree_type build(const std::vector<U>& a, int l, int r) {\n            if (r\
+    \ - l == 1) return create_leaf(a[l]);\n            int m = (l + r) >> 1;\n   \
+    \         return merge(build(a, l, m), build(a, m, r));\n        }\n        template\
+    \ <typename U>\n        static tree_type build(const std::vector<U>& a) {\n  \
+    \          return a.empty() ? empty_tree() : build(a, 0, a.size());\n        }\n\
+    \n        template <typename OutputIterator>\n        static void dump(tree_type\
+    \ node, OutputIterator it) {\n            if (empty(node)) return;\n         \
+    \   auto dfs = [&](auto dfs, tree_type cur) -> void {\n                if (cur->is_leaf())\
+    \ {\n                    *it++ = cur->_val;\n                    return;\n   \
+    \             }\n                dfs(dfs, cur->_ch[0]);\n                dfs(dfs,\
+    \ cur->_ch[1]);\n            };\n            dfs(dfs, node);\n        }\n\n  \
+    \      // Don't use on persistent tree.\n        static void free(tree_type node)\
+    \ {\n            auto dfs = [&](auto dfs, tree_type cur) -> void {\n         \
+    \       if (not cur) return;\n                dfs(dfs, cur->_ch[0]);\n       \
+    \         dfs(dfs, cur->_ch[1]);\n                free_node(cur);\n          \
+    \  };\n            dfs(dfs, node);\n        }\n\n        template <typename ToStr>\n\
+    \        static std::string to_string(tree_type node, ToStr f) {\n           \
+    \ std::vector<value_type> dat;\n            node_type::dump(node, std::back_inserter(dat));\n\
     \            std::ostringstream res;\n            int siz = dat.size();\n    \
     \        res << '[';\n            for (int i = 0; i < siz; ++i) {\n          \
     \      res << f(dat[i]);\n                if (i != siz - 1) res << \", \";\n \
@@ -216,7 +225,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/bbst/persistent_red_black_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-03-03 17:52:43+09:00'
+  timestamp: '2023-01-01 18:21:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/datastructure/bbst/persistent_red_black_segment_tree.hpp

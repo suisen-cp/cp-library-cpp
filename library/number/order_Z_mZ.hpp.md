@@ -1,45 +1,48 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/order_Z_mZ.hpp\"\n\n\n\n#include <map>\n\
@@ -482,15 +485,16 @@ data:
   isVerificationFile: false
   path: library/number/order_Z_mZ.hpp
   requiredBy:
-  - library/convolution/multi_variate_convolution_circular.hpp
   - library/number/primitive_root.hpp
+  - library/convolution/multi_variate_convolution_circular.hpp
   timestamp: '2022-10-20 19:29:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/number/primitive_root/primitive_root.test.cpp
   - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
 documentation_of: library/number/order_Z_mZ.hpp
 layout: document
 title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$

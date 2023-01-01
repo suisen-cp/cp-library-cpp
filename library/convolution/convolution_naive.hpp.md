@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_large.hpp
     title: Convolution (Large)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
@@ -28,15 +28,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/convolution_large/convolution_large.test.cpp
     title: test/src/convolution/convolution_large/convolution_large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/convolution_naive.hpp\"\n\n\n\n#include\
@@ -59,16 +62,17 @@ data:
   isVerificationFile: false
   path: library/convolution/convolution_naive.hpp
   requiredBy:
-  - library/convolution/convolution_2_64.hpp
-  - library/convolution/convolution_large.hpp
   - library/convolution/arbitrary_mod_convolution.hpp
   - library/convolution/multi_variate_convolution_circular.hpp
+  - library/convolution/convolution_2_64.hpp
+  - library/convolution/convolution_large.hpp
   timestamp: '2022-05-05 17:36:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
   - test/src/convolution/convolution_large/convolution_large.test.cpp
   - test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
   - test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp

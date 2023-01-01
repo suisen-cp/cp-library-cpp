@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/graph/bfs_complement/AOJ_2744.test.cpp
     title: test/src/graph/bfs_complement/AOJ_2744.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/bfs_complement.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -25,7 +25,7 @@ data:
     \                for (int v : src) is_src[v] = true;\n                std::vector<int>\
     \ s;\n                for (int i = 0; i < n; ++i) if (not is_src[i]) s.push_back(i);\n\
     \                return s;\n            }();\n\n            std::vector<int> dist(n,\
-    \ unreachable);\n            for (int v : dist) dist[v] = 0;\n\n            std::vector<int8_t>\
+    \ unreachable);\n            for (int v : src) dist[v] = 0;\n\n            std::vector<int8_t>\
     \ adj(n);\n            std::deque<int> dq(src.begin(), src.end());\n         \
     \   while (dq.size()) {\n                int u = dq.front();\n               \
     \ dq.pop_front();\n                for (int v : g[u]) adj[v] = true;\n       \
@@ -65,7 +65,7 @@ data:
     \                for (int v : src) is_src[v] = true;\n                std::vector<int>\
     \ s;\n                for (int i = 0; i < n; ++i) if (not is_src[i]) s.push_back(i);\n\
     \                return s;\n            }();\n\n            std::vector<int> dist(n,\
-    \ unreachable);\n            for (int v : dist) dist[v] = 0;\n\n            std::vector<int8_t>\
+    \ unreachable);\n            for (int v : src) dist[v] = 0;\n\n            std::vector<int8_t>\
     \ adj(n);\n            std::deque<int> dq(src.begin(), src.end());\n         \
     \   while (dq.size()) {\n                int u = dq.front();\n               \
     \ dq.pop_front();\n                for (int v : g[u]) adj[v] = true;\n       \
@@ -95,8 +95,8 @@ data:
   isVerificationFile: false
   path: library/graph/bfs_complement.hpp
   requiredBy: []
-  timestamp: '2022-11-16 20:35:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-01 18:21:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/graph/bfs_complement/AOJ_2744.test.cpp
 documentation_of: library/graph/bfs_complement.hpp

@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
@@ -140,8 +140,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
 documentation_of: library/transform/walsh_hadamard.hpp
 layout: document
 title: "Walsh Hadamard \u5909\u63DB"

@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/sps.hpp
     title: Set Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/hafnian.hpp\"\n\n\n\n#line 1 \"library/math/sps.hpp\"\
@@ -96,20 +96,28 @@ data:
     \ mint()) {\n    return a.pow(b);\n}\ntemplate <typename mint>\nauto inv(mint\
     \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 1 \"\
     library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace\
-    \ suisen {\ntemplate <typename mint>\nclass inv_mods {\n    public:\n        inv_mods()\
-    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
-    \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
-    \        static void ensure(int n) {\n            int sz = invs.size();\n    \
-    \        if (sz < 2) invs = {0, 1}, sz = 2;\n            if (sz < n + 1) {\n \
-    \               invs.resize(n + 1);\n                for (int i = sz; i <= n;\
-    \ ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n            }\n       \
-    \ }\n    private:\n        static std::vector<mint> invs;\n        static constexpr\
-    \ int mod = mint::mod();\n};\ntemplate <typename mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n\
-    }\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\n\nnamespace suisen {\n \
-    \   template <typename T>\n    struct FPSNaive : std::vector<T> {\n        static\
-    \ inline int MAX_SIZE = std::numeric_limits<int>::max() / 2;\n\n        using\
-    \ value_type = T;\n        using element_type = rec_value_type_t<T>;\n       \
-    \ using std::vector<value_type>::vector;\n\n        FPSNaive(const std::initializer_list<value_type>\
+    \ suisen {\n    template <typename mint>\n    class inv_mods {\n    public:\n\
+    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
+    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
+    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
+    \ = invs.size();\n            if (sz < 2) invs = { 0, 1 }, sz = 2;\n         \
+    \   if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
+    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
+    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
+    \        static constexpr int mod = mint::mod();\n    };\n    template <typename\
+    \ mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\n    template <typename\
+    \ mint>\n    std::vector<mint> get_invs(const std::vector<mint>& vs) {\n     \
+    \   const int n = vs.size();\n\n        mint p = 1;\n        for (auto& e : vs)\
+    \ {\n            p *= e;\n            assert(e != 0);\n        }\n        mint\
+    \ ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n        rp[n] = 1;\n\
+    \        for (int i = n - 1; i >= 0; --i) {\n            rp[i] = rp[i + 1] * vs[i];\n\
+    \        }\n        std::vector<mint> res(n);\n        for (int i = 0; i < n;\
+    \ ++i) {\n            res[i] = ip * rp[i + 1];\n            ip *= vs[i];\n   \
+    \     }\n        return res;\n    }\n}\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\
+    \n\nnamespace suisen {\n    template <typename T>\n    struct FPSNaive : std::vector<T>\
+    \ {\n        static inline int MAX_SIZE = std::numeric_limits<int>::max() / 2;\n\
+    \n        using value_type = T;\n        using element_type = rec_value_type_t<T>;\n\
+    \        using std::vector<value_type>::vector;\n\n        FPSNaive(const std::initializer_list<value_type>\
     \ l) : std::vector<value_type>::vector(l) {}\n        FPSNaive(const std::vector<value_type>&\
     \ v) : std::vector<value_type>::vector(v) {}\n\n        static void set_max_size(int\
     \ n) {\n            FPSNaive<T>::MAX_SIZE = n;\n        }\n\n        const value_type\
@@ -487,8 +495,8 @@ data:
   isVerificationFile: false
   path: library/linear_algebra/hafnian.hpp
   requiredBy: []
-  timestamp: '2022-10-14 04:52:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-01 18:21:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
 documentation_of: library/linear_algebra/hafnian.hpp

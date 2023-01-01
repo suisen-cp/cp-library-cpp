@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []

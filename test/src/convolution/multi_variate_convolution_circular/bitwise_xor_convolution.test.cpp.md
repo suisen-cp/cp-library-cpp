@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/ext_gcd.hpp
     title: Ext Gcd
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/garner.hpp
     title: Garner's Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/chirp_z_transform.hpp
     title: "chirp z-transform (\u8A55\u4FA1\u70B9\u304C\u7B49\u5DEE\u6570\u5217\u3092\
       \u6210\u3059\u5834\u5408\u306E Multipoint Evaluation)"
@@ -44,9 +44,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_xor_convolution
@@ -549,12 +549,12 @@ data:
     \            });\n        }\n\n        std::vector<mint> convolution(std::vector<mint>\
     \ f, const std::vector<mint>& g) {\n            assert(int(f.size()) == _l and\
     \ int(g.size()) == _l);\n            if (_d == 0) return { f[0] * g[0] };\n  \
-    \          if (_d == 1) return arbitrary_mod_convolution<mint>(f, g);\n      \
-    \      if (_l <= 60) return convolution_naive(f, g);\n            const int m\
-    \ = _mods.size();\n            std::vector res(m, std::vector<int>(_l));\n   \
-    \         for (int i = 0; i < m; ++i) with_kth_mod(i, [&, this] {\n          \
-    \      std::vector<mint2> f2(_l), g2(_l);\n                for (int j = 0; j <\
-    \ _l; ++j) f2[j] = f[j].val(), g2[j] = g[j].val();\n                std::vector<mint2>\
+    \          // if (_d == 1) return arbitrary_mod_convolution<mint>(f, g);\n   \
+    \         if (_l <= 60) return convolution_naive(f, g);\n            const int\
+    \ m = _mods.size();\n            std::vector res(m, std::vector<int>(_l));\n \
+    \           for (int i = 0; i < m; ++i) with_kth_mod(i, [&, this] {\n        \
+    \        std::vector<mint2> f2(_l), g2(_l);\n                for (int j = 0; j\
+    \ < _l; ++j) f2[j] = f[j].val(), g2[j] = g[j].val();\n                std::vector<mint2>\
     \ h = _cnvs[i](f2, g2);\n                for (int j = 0; j < _l; ++j) res[i][j]\
     \ = h[j].val();\n            });\n            std::vector<mint> h(_l);\n     \
     \       for (int j = 0; j < _l; ++j) {\n                std::vector<std::pair<int,\
@@ -611,8 +611,8 @@ data:
   isVerificationFile: true
   path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-11-16 20:35:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-01 18:21:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
 layout: document

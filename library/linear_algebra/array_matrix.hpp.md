@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
@@ -263,10 +263,10 @@ data:
   timestamp: '2022-11-19 17:34:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/linear_algebra/array_matrix/matrix_det.test.cpp
   - test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
   - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
-  - test/src/linear_algebra/array_matrix/matrix_det.test.cpp
 documentation_of: library/linear_algebra/array_matrix.hpp
 layout: document
 title: Array Matrix

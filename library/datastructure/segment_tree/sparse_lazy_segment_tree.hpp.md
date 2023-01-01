@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
     title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
     title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp\"\
@@ -49,7 +49,7 @@ data:
     \ path;\n            pool_index_type cur = root;\n            for (std::array<index_type,\
     \ 2> lr { 0, n }; lr[1] - lr[0] > 1;) {\n                path.push_back(cur);\n\
     \                index_type m = (lr[0] + lr[1]) >> 1;\n                bool b\
-    \ = i >= m;\n                push(cur);\n                cur = pool[cur].ch[b],\
+    \ = i >= m;\n                push(cur, lr[0], lr[1]);\n                cur = pool[cur].ch[b],\
     \ lr[not b] = m;\n            }\n            pool[cur].dat = fun(pool[cur].dat);\n\
     \            while (path.size()) update(path.back()), path.pop_back();\n     \
     \   }\n        void set(index_type i, const value_type& val) {\n            apply_fun(i,\
@@ -125,10 +125,10 @@ data:
     \ pool_index_type cur = root;\n            for (std::array<index_type, 2> lr {\
     \ 0, n }; lr[1] - lr[0] > 1;) {\n                path.push_back(cur);\n      \
     \          index_type m = (lr[0] + lr[1]) >> 1;\n                bool b = i >=\
-    \ m;\n                push(cur);\n                cur = pool[cur].ch[b], lr[not\
-    \ b] = m;\n            }\n            pool[cur].dat = fun(pool[cur].dat);\n  \
-    \          while (path.size()) update(path.back()), path.pop_back();\n       \
-    \ }\n        void set(index_type i, const value_type& val) {\n            apply_fun(i,\
+    \ m;\n                push(cur, lr[0], lr[1]);\n                cur = pool[cur].ch[b],\
+    \ lr[not b] = m;\n            }\n            pool[cur].dat = fun(pool[cur].dat);\n\
+    \            while (path.size()) update(path.back()), path.pop_back();\n     \
+    \   }\n        void set(index_type i, const value_type& val) {\n            apply_fun(i,\
     \ [&val](const value_type&) { return val; });\n        }\n        void apply(index_type\
     \ i, const operator_type& f) {\n            apply_fun(i, [&f, i](const value_type&\
     \ val) { return mapping(f, val, i, i + 1); });\n        }\n\n        value_type\
@@ -170,11 +170,11 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-06-14 00:05:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-01-01 18:21:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
   - test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
+  - test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
 documentation_of: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
 layout: document
 title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\

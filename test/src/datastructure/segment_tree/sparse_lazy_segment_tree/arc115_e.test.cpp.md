@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\
       \u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc115/tasks/arc115_e
@@ -52,7 +52,7 @@ data:
     \ path;\n            pool_index_type cur = root;\n            for (std::array<index_type,\
     \ 2> lr { 0, n }; lr[1] - lr[0] > 1;) {\n                path.push_back(cur);\n\
     \                index_type m = (lr[0] + lr[1]) >> 1;\n                bool b\
-    \ = i >= m;\n                push(cur);\n                cur = pool[cur].ch[b],\
+    \ = i >= m;\n                push(cur, lr[0], lr[1]);\n                cur = pool[cur].ch[b],\
     \ lr[not b] = m;\n            }\n            pool[cur].dat = fun(pool[cur].dat);\n\
     \            while (path.size()) update(path.back()), path.pop_back();\n     \
     \   }\n        void set(index_type i, const value_type& val) {\n            apply_fun(i,\
@@ -129,8 +129,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   requiredBy: []
-  timestamp: '2022-06-14 00:05:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-01 18:21:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
 layout: document

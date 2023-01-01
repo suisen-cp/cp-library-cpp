@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/relaxed_convolution.hpp
     title: Relaxed Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
@@ -21,18 +21,26 @@ data:
     \n#define PROBLEM \"https://atcoder.jp/contests/abc230/tasks/abc230_h\"\n\n#include\
     \ <iostream>\n\n#include <atcoder/modint>\n#include <atcoder/convolution>\n\n\
     using mint = atcoder::modint998244353;\n\n#line 1 \"library/math/inv_mods.hpp\"\
-    \n\n\n\n#include <vector>\n\nnamespace suisen {\ntemplate <typename mint>\nclass\
-    \ inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int n) { ensure(n);\
-    \ }\n        const mint& operator[](int i) const {\n            ensure(i);\n \
-    \           return invs[i];\n        }\n        static void ensure(int n) {\n\
-    \            int sz = invs.size();\n            if (sz < 2) invs = {0, 1}, sz\
-    \ = 2;\n            if (sz < n + 1) {\n                invs.resize(n + 1);\n \
-    \               for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) *\
-    \ invs[mod % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
-    \ invs;\n        static constexpr int mod = mint::mod();\n};\ntemplate <typename\
-    \ mint>\nstd::vector<mint> inv_mods<mint>::invs{};\n}\n\n\n#line 1 \"library/convolution/relaxed_convolution.hpp\"\
-    \n\n\n\n#line 5 \"library/convolution/relaxed_convolution.hpp\"\n\nnamespace suisen\
-    \ {\n    // reference: https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c\n\
+    \n\n\n\n#include <vector>\n\nnamespace suisen {\n    template <typename mint>\n\
+    \    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
+    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
+    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
+    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
+    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
+    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
+    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
+    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
+    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
+    \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
+    \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
+    \ }\n        mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n    \
+    \    rp[n] = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i]\
+    \ = rp[i + 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n       \
+    \ for (int i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n      \
+    \      ip *= vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 1 \"\
+    library/convolution/relaxed_convolution.hpp\"\n\n\n\n#line 5 \"library/convolution/relaxed_convolution.hpp\"\
+    \n\nnamespace suisen {\n    // reference: https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c\n\
     \    template <typename T>\n    struct RelaxedConvolution {\n        using value_type\
     \ = T;\n        using polynomial_type = std::vector<value_type>;\n        using\
     \ convolution_type = polynomial_type(*)(const polynomial_type&, const polynomial_type&);\n\
@@ -87,7 +95,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
   requiredBy: []
-  timestamp: '2022-06-07 17:31:21+09:00'
+  timestamp: '2023-01-01 18:21:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/relaxed_convolution/abc230_h.test.cpp

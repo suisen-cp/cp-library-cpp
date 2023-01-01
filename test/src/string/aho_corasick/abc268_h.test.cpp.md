@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/string/aho_corasick.hpp
     title: Aho Corasick
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc268/tasks/abc268_Ex
@@ -47,32 +47,32 @@ data:
     \ int>> _next;\n        std::vector<int> _marks;\n        std::vector<int> _count;\n\
     \        bool _built = true;\n    };\n} // namespace suisen\n\n\n\n#line 6 \"\
     test/src/string/aho_corasick/abc268_h.test.cpp\"\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n \n    std::string s;\n    std::cin >> s;\n    int\
-    \ n;\n    std::cin >> n;\n \n    suisen::AhoCorasick ac;\n    for (int i = 0;\
-    \ i < n; ++i) {\n        std::string t;\n        std::cin >> t;\n        ac.add(t);\n\
+    \    std::cin.tie(nullptr);\n\n    std::string s;\n    std::cin >> s;\n    int\
+    \ n;\n    std::cin >> n;\n\n    suisen::AhoCorasick ac;\n    for (int i = 0; i\
+    \ < n; ++i) {\n        std::string t;\n        std::cin >> t;\n        ac.add(t);\n\
     \    }\n    ac.build();\n \n    int ans = 0;\n    int state = ac.init_state();\n\
     \    for (char c : s) {\n        if (int next_state = ac.next_state(state, c);\
     \ ac.count_suffix_matching(next_state)) {\n            ++ans;\n            state\
     \ = ac.init_state();\n        } else {\n            state = next_state;\n    \
-    \    }\n    }\n    std::cout << ans << std::endl;\n \n    return 0;\n}\n"
+    \    }\n    }\n    std::cout << ans << std::endl;\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc268/tasks/abc268_Ex\"\n\n\
     #include <iostream>\n\n#include \"library/string/aho_corasick.hpp\"\n\nint main()\
-    \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n \n  \
-    \  std::string s;\n    std::cin >> s;\n    int n;\n    std::cin >> n;\n \n   \
-    \ suisen::AhoCorasick ac;\n    for (int i = 0; i < n; ++i) {\n        std::string\
-    \ t;\n        std::cin >> t;\n        ac.add(t);\n    }\n    ac.build();\n \n\
-    \    int ans = 0;\n    int state = ac.init_state();\n    for (char c : s) {\n\
-    \        if (int next_state = ac.next_state(state, c); ac.count_suffix_matching(next_state))\
-    \ {\n            ++ans;\n            state = ac.init_state();\n        } else\
-    \ {\n            state = next_state;\n        }\n    }\n    std::cout << ans <<\
-    \ std::endl;\n \n    return 0;\n}"
+    \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n   \
+    \ std::string s;\n    std::cin >> s;\n    int n;\n    std::cin >> n;\n\n    suisen::AhoCorasick\
+    \ ac;\n    for (int i = 0; i < n; ++i) {\n        std::string t;\n        std::cin\
+    \ >> t;\n        ac.add(t);\n    }\n    ac.build();\n \n    int ans = 0;\n   \
+    \ int state = ac.init_state();\n    for (char c : s) {\n        if (int next_state\
+    \ = ac.next_state(state, c); ac.count_suffix_matching(next_state)) {\n       \
+    \     ++ans;\n            state = ac.init_state();\n        } else {\n       \
+    \     state = next_state;\n        }\n    }\n    std::cout << ans << std::endl;\n\
+    \n    return 0;\n}"
   dependsOn:
   - library/string/aho_corasick.hpp
   isVerificationFile: true
   path: test/src/string/aho_corasick/abc268_h.test.cpp
   requiredBy: []
-  timestamp: '2022-10-15 19:53:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-01-01 18:21:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/string/aho_corasick/abc268_h.test.cpp
 layout: document
