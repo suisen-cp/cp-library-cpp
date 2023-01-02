@@ -61,15 +61,16 @@ namespace suisen {
     template <typename mint>
     struct RelaxedLog {
         mint append(const mint& fi) {
-            invf.append(fi);
-
             static inv_mods<mint> invs;
+            f.push_back(fi);
             const int i = g.size();
             if (i == 0) {
-                assert(fi == 1);
+                assert(f[i] == 1);
                 g.push_back(0);
+            } else if (i == 1) {
+                g.push_back(f[i]);
             } else {
-                g.push_back(df_invf.append(i * fi, invf[i - 1]) * invs[i]);
+                g.push_back(f[i] - fg.append((i - 1) * g[i - 1], f[i - 1]) * invs[i]);
             }
             return g.back();
         }
@@ -77,9 +78,8 @@ namespace suisen {
             return g[i];
         }
     private:
-        std::vector<mint> g;
-        RelaxedConvolution<mint> df_invf{ internal::fps_relaxed::convolve<mint> };
-        RelaxedInv<mint> invf;
+        std::vector<mint> f, g;
+        RelaxedConvolution<mint> fg{ internal::fps_relaxed::convolve<mint> };
     };
 
     template <typename mint>
@@ -90,22 +90,27 @@ namespace suisen {
             if (k == 0) {
                 return g.emplace_back(g.empty() ? 1 : 0);
             }
+            static inv_mods<mint> invs;
             if (is_zero) {
                 if (fi == 0) {
                     z = std::min(z + k, 1000000000LL);
                 } else {
                     is_zero = false;
-                    c = fi.pow(k);
                     inv_base = fi.inv();
                 }
             }
             if (not is_zero) {
-                f.push_back(fi * inv_base);
+                f.push_back(fi);
             }
             if (index < z) {
                 g.push_back(0);
+            } else if (index == z) {
+                g.push_back(f[0].pow(k));
             } else {
-                g.push_back(c * exp_k_log_f.append(k * log_f.append(f[index - z])));
+                int i = index - z;
+                mint v1 = fg1.append(mint(k - (i - 1)) * g[z + i - 1], f[i]);
+                mint v2 = fg2.append(g[z + i - 1], mint(k) * (i - 1) * f[i]);
+                g.push_back((v1 + v2) * inv_base * invs[i]);
             }
             ++index;
             return g.back();
@@ -118,14 +123,11 @@ namespace suisen {
         long long z = 0;
         long long index = 0;
         bool is_zero = true;
-        mint c = 0;
         mint inv_base = 0;
 
-        std::vector<mint> f;
-        std::vector<mint> g;
-
-        RelaxedLog<mint> log_f;
-        RelaxedExp<mint> exp_k_log_f;
+        std::vector<mint> f, g;
+        RelaxedConvolution<mint> fg1{ internal::fps_relaxed::convolve<mint> };
+        RelaxedConvolution<mint> fg2{ internal::fps_relaxed::convolve<mint> };
     };
 
     template <typename mint>
