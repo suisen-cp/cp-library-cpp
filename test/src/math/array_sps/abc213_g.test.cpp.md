@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/array_sps.hpp
     title: Array Sps
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/array_fps_naive.hpp
     title: Array Fps Naive
   - icon: ':question:'
@@ -32,9 +32,9 @@ data:
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc213/tasks/abc213_g
@@ -453,7 +453,7 @@ data:
   path: test/src/math/array_sps/abc213_g.test.cpp
   requiredBy: []
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/array_sps/abc213_g.test.cpp
 layout: document

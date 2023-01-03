@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':question:'
@@ -32,12 +32,12 @@ data:
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/hafnian.hpp\"\n\n\n\n#line 1 \"library/math/sps.hpp\"\
@@ -496,7 +496,7 @@ data:
   path: library/linear_algebra/hafnian.hpp
   requiredBy: []
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
 documentation_of: library/linear_algebra/hafnian.hpp

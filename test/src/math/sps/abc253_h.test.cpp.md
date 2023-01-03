@@ -20,7 +20,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':question:'

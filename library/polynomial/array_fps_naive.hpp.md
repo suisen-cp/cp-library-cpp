@@ -11,14 +11,14 @@ data:
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/array_sps.hpp
     title: Array Sps
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
     title: test/src/math/array_sps/arc105_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/array_fps_naive.hpp\"\n\n\n\n#include\
@@ -349,7 +349,7 @@ data:
   - library/convolution/array_subset_convolution.hpp
   - library/math/array_sps.hpp
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp

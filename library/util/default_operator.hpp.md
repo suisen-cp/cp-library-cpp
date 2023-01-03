@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp
     title: Bitwise And Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
@@ -35,14 +35,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':warning:'
@@ -132,10 +132,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
     title: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
   - icon: ':x:'

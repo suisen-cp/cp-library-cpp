@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp
     title: Bitwise And Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
   - icon: ':warning:'
@@ -20,14 +20,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/xor_convolution.hpp
     title: Bitwise Xor Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   - icon: ':question:'
@@ -57,10 +57,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/xor_convolution/xor_convolution.test.cpp
     title: test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
   - icon: ':x:'

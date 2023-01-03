@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
     title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
     title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp\"\
@@ -171,7 +171,7 @@ data:
   path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
   requiredBy: []
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   - test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp

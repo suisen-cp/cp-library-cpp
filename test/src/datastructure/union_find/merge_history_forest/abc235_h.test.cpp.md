@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/merge_history_forest.hpp
     title: "\u30DE\u30FC\u30B8\u904E\u7A0B\u3092\u8868\u3059\u68EE"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc235/tasks/abc235_Ex
@@ -132,7 +132,7 @@ data:
   path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
   requiredBy: []
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
 layout: document

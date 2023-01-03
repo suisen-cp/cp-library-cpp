@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/array_fps_naive.hpp
     title: Array Fps Naive
   - icon: ':question:'
@@ -29,7 +29,7 @@ data:
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
   - icon: ':x:'
@@ -46,7 +46,7 @@ data:
     title: test/src/math/array_sps/arc105_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/array_sps.hpp\"\n\n\n\n#line 1 \"library/convolution/array_subset_convolution.hpp\"\
@@ -526,7 +526,7 @@ data:
   path: library/math/array_sps.hpp
   requiredBy: []
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/array_sps/abc253_h_2.test.cpp
   - test/src/math/array_sps/abc236_h.test.cpp

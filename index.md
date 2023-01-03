@@ -58,7 +58,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/arbitrary_mod_convolution.hpp
       title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/convolution/array_subset_convolution.hpp
       title: Array Subset Convolution
     - icon: ':heavy_check_mark:'
@@ -313,7 +313,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree_beats.hpp
       title: Segment Tree Beats
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\
         \u5B57\u96C6\u5408\u304C\u758E\u306A\u5834\u5408)"
@@ -331,7 +331,7 @@ data:
     - icon: ':x:'
       path: library/datastructure/union_find/linked_union_find.hpp
       title: "\u9023\u7D50\u6210\u5206\u3092\u53D6\u5F97\u3067\u304D\u308B Union Find"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/merge_history_forest.hpp
       title: "\u30DE\u30FC\u30B8\u904E\u7A0B\u3092\u8868\u3059\u68EE"
     - icon: ':heavy_check_mark:'
@@ -403,13 +403,13 @@ data:
       title: Segment Intersections
   - name: library/graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/bfs.hpp
       title: Bfs
     - icon: ':warning:'
       path: library/graph/bfs01.hpp
       title: 01 BFS
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/bfs_complement.hpp
       title: library/graph/bfs_complement.hpp
     - icon: ':heavy_check_mark:'
@@ -479,6 +479,9 @@ data:
     - icon: ':warning:'
       path: library/graph/remove_multiedges.hpp
       title: "\u591A\u91CD\u8FBA\u9664\u53BB"
+    - icon: ':warning:'
+      path: library/graph/scc_tournament.hpp
+      title: library/graph/scc_tournament.hpp
     - icon: ':heavy_check_mark:'
       path: library/graph/segment_tree_graph.hpp
       title: Segment Tree Graph
@@ -552,7 +555,7 @@ data:
     - icon: ':warning:'
       path: library/linear_algebra/gaussian_elimination_f2.hpp
       title: Gaussian Elimination $\mathbb{F} _ 2$
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/hafnian.hpp
       title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\
         \u4E0A\u3052)"
@@ -565,12 +568,12 @@ data:
     - icon: ':warning:'
       path: library/linear_algebra/matrix_f2.hpp
       title: Matrix $\mathbb{F} _ 2$
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/xor_base.hpp
       title: "XOR \u57FA\u5E95"
   - name: library/math
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/array_sps.hpp
       title: Array Sps
     - icon: ':heavy_check_mark:'
@@ -591,7 +594,7 @@ data:
     - icon: ':question:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/sps.hpp
       title: Set Power Series
     - icon: ':heavy_check_mark:'
@@ -642,6 +645,9 @@ data:
     - icon: ':question:'
       path: library/number/linear_sieve.hpp
       title: "\u7DDA\u5F62\u7BE9"
+    - icon: ':x:'
+      path: library/number/min_of_mod_of_linear.hpp
+      title: library/number/min_of_mod_of_linear.hpp
     - icon: ':warning:'
       path: library/number/mobius_function.hpp
       title: Mobius Function
@@ -678,7 +684,7 @@ data:
       title: Util
   - name: library/polynomial
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/array_fps_naive.hpp
       title: Array Fps Naive
     - icon: ':heavy_check_mark:'
@@ -1410,10 +1416,10 @@ data:
       title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - name: test/src/datastructure/segment_tree/sparse_lazy_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
   - name: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum
@@ -1444,7 +1450,7 @@ data:
       title: test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
   - name: test/src/datastructure/union_find/merge_history_forest
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
       title: test/src/datastructure/union_find/merge_history_forest/abc235_h.test.cpp
   - name: test/src/datastructure/union_find/persistent_union_find
@@ -1600,7 +1606,7 @@ data:
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - name: test/src/graph/bfs_complement
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/bfs_complement/AOJ_2744.test.cpp
       title: test/src/graph/bfs_complement/AOJ_2744.test.cpp
   - name: test/src/graph/biconnected_components
@@ -1798,7 +1804,7 @@ data:
       title: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
   - name: test/src/linear_algebra/hafnian
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
       title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - name: test/src/linear_algebra/matrix
@@ -1817,12 +1823,12 @@ data:
       title: test/src/linear_algebra/matrix/matrix_product.test.cpp
   - name: test/src/linear_algebra/xor_base
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/xor_base/AOJ_3277.test.cpp
       title: test/src/linear_algebra/xor_base/AOJ_3277.test.cpp
   - name: test/src/math/array_sps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/array_sps/abc213_g.test.cpp
       title: test/src/math/array_sps/abc213_g.test.cpp
     - icon: ':x:'
@@ -1908,6 +1914,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/kth_root_round/kth_root_integer.test.cpp
       title: test/src/number/kth_root_round/kth_root_integer.test.cpp
+  - name: test/src/number/min_of_mod_of_linear
+    pages:
+    - icon: ':x:'
+      path: test/src/number/min_of_mod_of_linear/min_of_mod_of_linear.test.cpp
+      title: test/src/number/min_of_mod_of_linear/min_of_mod_of_linear.test.cpp
   - name: test/src/number/primitive_root
     pages:
     - icon: ':heavy_check_mark:'

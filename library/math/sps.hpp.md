@@ -28,12 +28,12 @@ data:
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/src/math/sps/arc105_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/sps.hpp\"\n\n\n\n#line 1 \"library/convolution/subset_convolution.hpp\"\
@@ -568,7 +568,7 @@ data:
   requiredBy:
   - library/linear_algebra/hafnian.hpp
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/math/sps/abc253_h_2.test.cpp
   - test/src/math/sps/abc236_h.test.cpp

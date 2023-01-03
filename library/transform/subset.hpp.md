@@ -9,7 +9,7 @@ data:
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
   - icon: ':warning:'
@@ -18,24 +18,24 @@ data:
   - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/array_sps.hpp
     title: Array Sps
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/sps.hpp
     title: Set Power Series
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_sps/abc213_g.test.cpp
     title: test/src/math/array_sps/abc213_g.test.cpp
   - icon: ':x:'
