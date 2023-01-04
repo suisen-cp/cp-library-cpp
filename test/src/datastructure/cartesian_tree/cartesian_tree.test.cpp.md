@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/cartesian_tree.hpp
     title: Cartesian Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cartesian_tree
@@ -55,23 +55,23 @@ data:
     \ // namespace suisen\n\n\n#line 6 \"test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp\"\
     \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    int n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for (int &e :\
-    \ a) std::cin >> e;\n    suisen::CartesianTreeBuilder<int, std::less<int>> t(a);\n\
-    \    for (int i = 0; i < n; ++i) {\n        int p = t.parent(i);\n        std::cout\
-    \ << (p < 0 ? i : p) << \" \\n\"[i == n - 1];\n    }\n    return 0;\n}\n"
+    \ a) std::cin >> e;\n    suisen::MinCartesianTreeBuilder t(a);\n    for (int i\
+    \ = 0; i < n; ++i) {\n        int p = t.parent(i);\n        std::cout << (p <\
+    \ 0 ? i : p) << \" \\n\"[i == n - 1];\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cartesian_tree\"\n\n#include\
     \ <iostream>\n\n#include \"library/datastructure/cartesian_tree.hpp\"\n\nint main()\
     \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n    int\
     \ n;\n    std::cin >> n;\n    std::vector<int> a(n);\n    for (int &e : a) std::cin\
-    \ >> e;\n    suisen::CartesianTreeBuilder<int, std::less<int>> t(a);\n    for\
-    \ (int i = 0; i < n; ++i) {\n        int p = t.parent(i);\n        std::cout <<\
-    \ (p < 0 ? i : p) << \" \\n\"[i == n - 1];\n    }\n    return 0;\n}"
+    \ >> e;\n    suisen::MinCartesianTreeBuilder t(a);\n    for (int i = 0; i < n;\
+    \ ++i) {\n        int p = t.parent(i);\n        std::cout << (p < 0 ? i : p) <<\
+    \ \" \\n\"[i == n - 1];\n    }\n    return 0;\n}"
   dependsOn:
   - library/datastructure/cartesian_tree.hpp
   isVerificationFile: true
   path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-02 17:33:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
 layout: document

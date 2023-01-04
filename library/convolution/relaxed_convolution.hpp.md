@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: library/polynomial/formal_power_series_relaxed.hpp
   _extendedVerifiedWith:
@@ -12,24 +12,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/relaxed_convolution/convolution_mod.test.cpp
     title: test/src/convolution/relaxed_convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c
@@ -91,7 +91,7 @@ data:
   requiredBy:
   - library/polynomial/formal_power_series_relaxed.hpp
   timestamp: '2022-06-07 17:31:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp

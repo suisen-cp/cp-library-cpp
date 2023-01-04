@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/relaxed_convolution.hpp
     title: Relaxed Convolution
   - icon: ':question:'
@@ -12,24 +12,24 @@ data:
     title: Modint Extension
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/formal_power_series_relaxed.hpp\"\n\n\
@@ -118,33 +118,37 @@ data:
     \ i) const {\n            return g[i];\n        }\n    private:\n        std::vector<mint>\
     \ g;\n        RelaxedConvolution<mint> df_g{ internal::fps_relaxed::convolve<mint>\
     \ };\n    };\n\n    template <typename mint>\n    struct RelaxedLog {\n      \
-    \  mint append(const mint& fi) {\n            invf.append(fi);\n\n           \
-    \ static inv_mods<mint> invs;\n            const int i = g.size();\n         \
-    \   if (i == 0) {\n                assert(fi == 1);\n                g.push_back(0);\n\
-    \            } else {\n                g.push_back(df_invf.append(i * fi, invf[i\
-    \ - 1]) * invs[i]);\n            }\n            return g.back();\n        }\n\
-    \        mint operator[](int i) const {\n            return g[i];\n        }\n\
-    \    private:\n        std::vector<mint> g;\n        RelaxedConvolution<mint>\
-    \ df_invf{ internal::fps_relaxed::convolve<mint> };\n        RelaxedInv<mint>\
-    \ invf;\n    };\n\n    template <typename mint>\n    struct RelaxedPow {\n   \
-    \     RelaxedPow(long long k = 0) : k(k) {}\n\n        mint append(const mint&\
-    \ fi) {\n            if (k == 0) {\n                return g.emplace_back(g.empty()\
-    \ ? 1 : 0);\n            }\n            if (is_zero) {\n                if (fi\
-    \ == 0) {\n                    z = std::min(z + k, 1000000000LL);\n          \
-    \      } else {\n                    is_zero = false;\n                    c =\
-    \ fi.pow(k);\n                    inv_base = fi.inv();\n                }\n  \
-    \          }\n            if (not is_zero) {\n                f.push_back(fi *\
-    \ inv_base);\n            }\n            if (index < z) {\n                g.push_back(0);\n\
-    \            } else {\n                g.push_back(c * exp_k_log_f.append(k *\
-    \ log_f.append(f[index - z])));\n            }\n            ++index;\n       \
-    \     return g.back();\n        }\n        mint operator[](int i) const {\n  \
-    \          return g[i];\n        }\n    private:\n        long long k;\n     \
-    \   long long z = 0;\n        long long index = 0;\n        bool is_zero = true;\n\
-    \        mint c = 0;\n        mint inv_base = 0;\n\n        std::vector<mint>\
-    \ f;\n        std::vector<mint> g;\n\n        RelaxedLog<mint> log_f;\n      \
-    \  RelaxedExp<mint> exp_k_log_f;\n    };\n\n    template <typename mint>\n   \
-    \ struct RelaxedSqrt {\n        std::optional<mint> append(const mint& fi) {\n\
-    \            if (g.empty()) {\n                auto opt_g0 = safe_sqrt(fi);\n\
+    \  mint append(const mint& fi) {\n            static inv_mods<mint> invs;\n  \
+    \          f.push_back(fi);\n            const int i = g.size();\n           \
+    \ if (i == 0) {\n                assert(f[i] == 1);\n                g.push_back(0);\n\
+    \            } else if (i == 1) {\n                g.push_back(f[i]);\n      \
+    \      } else {\n                g.push_back(f[i] - fg.append((i - 1) * g[i -\
+    \ 1], f[i - 1]) * invs[i]);\n            }\n            return g.back();\n   \
+    \     }\n        mint operator[](int i) const {\n            return g[i];\n  \
+    \      }\n    private:\n        std::vector<mint> f, g;\n        RelaxedConvolution<mint>\
+    \ fg{ internal::fps_relaxed::convolve<mint> };\n    };\n\n    template <typename\
+    \ mint>\n    struct RelaxedPow {\n        RelaxedPow(long long k = 0) : k(k) {}\n\
+    \n        mint append(const mint& fi) {\n            if (k == 0) {\n         \
+    \       return g.emplace_back(g.empty() ? 1 : 0);\n            }\n           \
+    \ static inv_mods<mint> invs;\n            if (is_zero) {\n                if\
+    \ (fi == 0) {\n                    z = std::min(z + k, 1000000000LL);\n      \
+    \          } else {\n                    is_zero = false;\n                  \
+    \  inv_base = fi.inv();\n                }\n            }\n            if (not\
+    \ is_zero) {\n                f.push_back(fi);\n            }\n            if\
+    \ (index < z) {\n                g.push_back(0);\n            } else if (index\
+    \ == z) {\n                g.push_back(f[0].pow(k));\n            } else {\n \
+    \               int i = index - z;\n                mint v1 = fg1.append(mint(k\
+    \ - (i - 1)) * g[z + i - 1], f[i]);\n                mint v2 = fg2.append(g[z\
+    \ + i - 1], mint(k) * (i - 1) * f[i]);\n                g.push_back((v1 + v2)\
+    \ * inv_base * invs[i]);\n            }\n            ++index;\n            return\
+    \ g.back();\n        }\n        mint operator[](int i) const {\n            return\
+    \ g[i];\n        }\n    private:\n        long long k;\n        long long z =\
+    \ 0;\n        long long index = 0;\n        bool is_zero = true;\n        mint\
+    \ inv_base = 0;\n\n        std::vector<mint> f, g;\n        RelaxedConvolution<mint>\
+    \ fg1{ internal::fps_relaxed::convolve<mint> };\n        RelaxedConvolution<mint>\
+    \ fg2{ internal::fps_relaxed::convolve<mint> };\n    };\n\n    template <typename\
+    \ mint>\n    struct RelaxedSqrt {\n        std::optional<mint> append(const mint&\
+    \ fi) {\n            if (g.empty()) {\n                auto opt_g0 = safe_sqrt(fi);\n\
     \                if (not opt_g0) return std::nullopt;\n                mint g0\
     \ = *opt_g0;\n                c = (2 * g0).inv();\n                return g.emplace_back(g0);\n\
     \            } else if (g.size() == 1) {\n                return g.emplace_back(c\
@@ -177,33 +181,37 @@ data:
     \  mint operator[](int i) const {\n            return g[i];\n        }\n    private:\n\
     \        std::vector<mint> g;\n        RelaxedConvolution<mint> df_g{ internal::fps_relaxed::convolve<mint>\
     \ };\n    };\n\n    template <typename mint>\n    struct RelaxedLog {\n      \
-    \  mint append(const mint& fi) {\n            invf.append(fi);\n\n           \
-    \ static inv_mods<mint> invs;\n            const int i = g.size();\n         \
-    \   if (i == 0) {\n                assert(fi == 1);\n                g.push_back(0);\n\
-    \            } else {\n                g.push_back(df_invf.append(i * fi, invf[i\
-    \ - 1]) * invs[i]);\n            }\n            return g.back();\n        }\n\
-    \        mint operator[](int i) const {\n            return g[i];\n        }\n\
-    \    private:\n        std::vector<mint> g;\n        RelaxedConvolution<mint>\
-    \ df_invf{ internal::fps_relaxed::convolve<mint> };\n        RelaxedInv<mint>\
-    \ invf;\n    };\n\n    template <typename mint>\n    struct RelaxedPow {\n   \
-    \     RelaxedPow(long long k = 0) : k(k) {}\n\n        mint append(const mint&\
-    \ fi) {\n            if (k == 0) {\n                return g.emplace_back(g.empty()\
-    \ ? 1 : 0);\n            }\n            if (is_zero) {\n                if (fi\
-    \ == 0) {\n                    z = std::min(z + k, 1000000000LL);\n          \
-    \      } else {\n                    is_zero = false;\n                    c =\
-    \ fi.pow(k);\n                    inv_base = fi.inv();\n                }\n  \
-    \          }\n            if (not is_zero) {\n                f.push_back(fi *\
-    \ inv_base);\n            }\n            if (index < z) {\n                g.push_back(0);\n\
-    \            } else {\n                g.push_back(c * exp_k_log_f.append(k *\
-    \ log_f.append(f[index - z])));\n            }\n            ++index;\n       \
-    \     return g.back();\n        }\n        mint operator[](int i) const {\n  \
-    \          return g[i];\n        }\n    private:\n        long long k;\n     \
-    \   long long z = 0;\n        long long index = 0;\n        bool is_zero = true;\n\
-    \        mint c = 0;\n        mint inv_base = 0;\n\n        std::vector<mint>\
-    \ f;\n        std::vector<mint> g;\n\n        RelaxedLog<mint> log_f;\n      \
-    \  RelaxedExp<mint> exp_k_log_f;\n    };\n\n    template <typename mint>\n   \
-    \ struct RelaxedSqrt {\n        std::optional<mint> append(const mint& fi) {\n\
-    \            if (g.empty()) {\n                auto opt_g0 = safe_sqrt(fi);\n\
+    \  mint append(const mint& fi) {\n            static inv_mods<mint> invs;\n  \
+    \          f.push_back(fi);\n            const int i = g.size();\n           \
+    \ if (i == 0) {\n                assert(f[i] == 1);\n                g.push_back(0);\n\
+    \            } else if (i == 1) {\n                g.push_back(f[i]);\n      \
+    \      } else {\n                g.push_back(f[i] - fg.append((i - 1) * g[i -\
+    \ 1], f[i - 1]) * invs[i]);\n            }\n            return g.back();\n   \
+    \     }\n        mint operator[](int i) const {\n            return g[i];\n  \
+    \      }\n    private:\n        std::vector<mint> f, g;\n        RelaxedConvolution<mint>\
+    \ fg{ internal::fps_relaxed::convolve<mint> };\n    };\n\n    template <typename\
+    \ mint>\n    struct RelaxedPow {\n        RelaxedPow(long long k = 0) : k(k) {}\n\
+    \n        mint append(const mint& fi) {\n            if (k == 0) {\n         \
+    \       return g.emplace_back(g.empty() ? 1 : 0);\n            }\n           \
+    \ static inv_mods<mint> invs;\n            if (is_zero) {\n                if\
+    \ (fi == 0) {\n                    z = std::min(z + k, 1000000000LL);\n      \
+    \          } else {\n                    is_zero = false;\n                  \
+    \  inv_base = fi.inv();\n                }\n            }\n            if (not\
+    \ is_zero) {\n                f.push_back(fi);\n            }\n            if\
+    \ (index < z) {\n                g.push_back(0);\n            } else if (index\
+    \ == z) {\n                g.push_back(f[0].pow(k));\n            } else {\n \
+    \               int i = index - z;\n                mint v1 = fg1.append(mint(k\
+    \ - (i - 1)) * g[z + i - 1], f[i]);\n                mint v2 = fg2.append(g[z\
+    \ + i - 1], mint(k) * (i - 1) * f[i]);\n                g.push_back((v1 + v2)\
+    \ * inv_base * invs[i]);\n            }\n            ++index;\n            return\
+    \ g.back();\n        }\n        mint operator[](int i) const {\n            return\
+    \ g[i];\n        }\n    private:\n        long long k;\n        long long z =\
+    \ 0;\n        long long index = 0;\n        bool is_zero = true;\n        mint\
+    \ inv_base = 0;\n\n        std::vector<mint> f, g;\n        RelaxedConvolution<mint>\
+    \ fg1{ internal::fps_relaxed::convolve<mint> };\n        RelaxedConvolution<mint>\
+    \ fg2{ internal::fps_relaxed::convolve<mint> };\n    };\n\n    template <typename\
+    \ mint>\n    struct RelaxedSqrt {\n        std::optional<mint> append(const mint&\
+    \ fi) {\n            if (g.empty()) {\n                auto opt_g0 = safe_sqrt(fi);\n\
     \                if (not opt_g0) return std::nullopt;\n                mint g0\
     \ = *opt_g0;\n                c = (2 * g0).inv();\n                return g.emplace_back(g0);\n\
     \            } else if (g.size() == 1) {\n                return g.emplace_back(c\
@@ -220,8 +228,8 @@ data:
   isVerificationFile: false
   path: library/polynomial/formal_power_series_relaxed.hpp
   requiredBy: []
-  timestamp: '2023-01-02 15:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-01-02 17:34:00+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
