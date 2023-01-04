@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sps/abc253_h.test.cpp
     title: test/src/math/sps/abc253_h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/count_spanning_trees.hpp\"\n\n\n\n\
@@ -151,7 +151,7 @@ data:
   path: library/linear_algebra/count_spanning_trees.hpp
   requiredBy: []
   timestamp: '2022-11-19 18:46:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/sps/abc253_h.test.cpp
 documentation_of: library/linear_algebra/count_spanning_trees.hpp

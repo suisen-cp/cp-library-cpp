@@ -1,0 +1,183 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: library/convolution/relaxed_convolution.hpp
+    title: Relaxed Convolution
+  - icon: ':question:'
+    path: library/math/inv_mods.hpp
+    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
+  - icon: ':question:'
+    path: library/math/modint_extension.hpp
+    title: Modint Extension
+  - icon: ':x:'
+    path: library/polynomial/formal_power_series_relaxed.hpp
+    title: library/polynomial/formal_power_series_relaxed.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
+    links:
+    - https://judge.yosupo.jp/problem/exp_of_formal_power_series
+  bundledCode: "#line 1 \"test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#line 1 \"library/polynomial/formal_power_series_relaxed.hpp\"\
+    \n\n\n\n#include <atcoder/convolution>\n#line 1 \"library/math/inv_mods.hpp\"\n\
+    \n\n\n#include <vector>\n\nnamespace suisen {\n    template <typename mint>\n\
+    \    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
+    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
+    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
+    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
+    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
+    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
+    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
+    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
+    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
+    \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
+    \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
+    \ }\n        mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n    \
+    \    rp[n] = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i]\
+    \ = rp[i + 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n       \
+    \ for (int i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n      \
+    \      ip *= vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 1 \"\
+    library/convolution/relaxed_convolution.hpp\"\n\n\n\n#line 5 \"library/convolution/relaxed_convolution.hpp\"\
+    \n\nnamespace suisen {\n    // reference: https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c\n\
+    \    template <typename T>\n    struct RelaxedConvolution {\n        using value_type\
+    \ = T;\n        using polynomial_type = std::vector<value_type>;\n        using\
+    \ convolution_type = polynomial_type(*)(const polynomial_type&, const polynomial_type&);\n\
+    \n        RelaxedConvolution() = default;\n        RelaxedConvolution(const convolution_type\
+    \ &convolve) : _convolve(convolve), _n(0), _f{}, _g{}, _h{} {}\n\n        void\
+    \ set_convolve_function(const convolution_type &convolve) {\n            _convolve\
+    \ = convolve;\n        }\n\n        value_type append(const value_type &fi, const\
+    \ value_type &gi) {\n            ++_n;\n            _f.push_back(fi), _g.push_back(gi);\n\
+    \            for (int p = 1;; p <<= 1) {\n                int l1 = _n - p, r1\
+    \ = _n, l2 = p - 1, r2 = l2 + p;\n                add(l1 + l2, range_convolve(l1,\
+    \ r1, l2, r2));\n                if (l1 == l2) break;\n                add(l1\
+    \ + l2, range_convolve(l2, r2, l1, r1));\n                if (not (_n & p)) break;\n\
+    \            }\n            return _h[_n - 1];\n        }\n\n        const value_type&\
+    \ operator[](int i) const {\n            return _h[i];\n        }\n        polynomial_type\
+    \ get() const {\n            return _h;\n        }\n\n    private:\n        convolution_type\
+    \ _convolve = [](const polynomial_type&, const polynomial_type&) -> polynomial_type\
+    \ { assert(false); };\n        int _n;\n        polynomial_type _f, _g, _h;\n\n\
+    \        polynomial_type range_convolve(int l1, int r1, int l2, int r2) {\n  \
+    \          return _convolve(polynomial_type(_f.begin() + l1, _f.begin() + r1),\
+    \ polynomial_type(_g.begin() + l2, _g.begin() + r2));\n        }\n\n        void\
+    \ add(std::size_t bias, const polynomial_type &h) {\n            if (_h.size()\
+    \ < bias + h.size()) _h.resize(bias + h.size());\n            for (std::size_t\
+    \ i = 0; i < h.size(); ++i) _h[bias + i] += h[i];\n        }\n    };\n} // namespace\
+    \ suisen\n\n\n\n#line 1 \"library/math/modint_extension.hpp\"\n\n\n\n#include\
+    \ <cassert>\n#include <optional>\n\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
+    \ * calculates x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename\
+    \ mint>\nstd::optional<mint> safe_sqrt(mint a) {\n    static int p = mint::mod();\n\
+    \    if (a == 0) return std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n\
+    \    if (a.pow((p - 1) / 2) != 1) return std::nullopt;\n    mint b = 1;\n    while\
+    \ (b.pow((p - 1) / 2) == 1) ++b;\n    static int tlz = __builtin_ctz(p - 1), q\
+    \ = (p - 1) >> tlz;\n    mint x = a.pow((q + 1) / 2);\n    b = b.pow(q);\n   \
+    \ for (int shift = 2; x * x != a; ++shift) {\n        mint e = a.inv() * x * x;\n\
+    \        if (e.pow(1 << (tlz - shift)) != 1) x *= b;\n        b *= b;\n    }\n\
+    \    return std::make_optional(x);\n}\n\n/**\n * calculates x s.t. x^2 = a mod\
+    \ p in O((log p)^2).\n * if not exists, raises runtime error.\n */\ntemplate <typename\
+    \ mint>\nauto sqrt(mint a) -> decltype(mint::mod(), mint()) {\n    return *safe_sqrt(a);\n\
+    }\ntemplate <typename mint>\nauto log(mint a) -> decltype(mint::mod(), mint())\
+    \ {\n    assert(a == 1);\n    return 0;\n}\ntemplate <typename mint>\nauto exp(mint\
+    \ a) -> decltype(mint::mod(), mint()) {\n    assert(a == 0);\n    return 1;\n\
+    }\ntemplate <typename mint, typename T>\nauto pow(mint a, T b) -> decltype(mint::mod(),\
+    \ mint()) {\n    return a.pow(b);\n}\ntemplate <typename mint>\nauto inv(mint\
+    \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 8 \"\
+    library/polynomial/formal_power_series_relaxed.hpp\"\n\nnamespace suisen {\n \
+    \   namespace internal::fps_relaxed {\n        template <typename mint>\n    \
+    \    using polynomial_type = typename RelaxedConvolution<mint>::polynomial_type;\n\
+    \n        template <typename mint>\n        polynomial_type<mint> convolve(const\
+    \ polynomial_type<mint> &f, const polynomial_type<mint> &g) {\n            return\
+    \ atcoder::convolution(f, g);\n        }\n    }\n    \n    template <typename\
+    \ mint>\n    struct RelaxedInv {\n        mint append(const mint& fi) {\n    \
+    \        const int i = g.size();\n            if (i == 0) {\n                assert(fi\
+    \ != 0);\n                g.push_back(fi.inv());\n            } else {\n     \
+    \           g.push_back(-g[0] * fg.append(fi, g[i - 1]));\n            }\n   \
+    \         return g.back();\n        }\n        mint operator[](int i) const {\n\
+    \            return g[i];\n        }\n    private:\n        std::vector<mint>\
+    \ g;\n        RelaxedConvolution<mint> fg{ internal::fps_relaxed::convolve<mint>\
+    \ };\n    };\n\n    template <typename mint>\n    struct RelaxedExp {\n      \
+    \  mint append(const mint& fi) {\n            static inv_mods<mint> invs;\n  \
+    \          const int i = g.size();\n            if (i == 0) {\n              \
+    \  assert(fi == 0);\n                g.push_back(1);\n            } else {\n \
+    \               g.push_back(df_g.append(i * fi, g[i - 1]) * invs[i]);\n      \
+    \      }\n            return g.back();\n        }\n        mint operator[](int\
+    \ i) const {\n            return g[i];\n        }\n    private:\n        std::vector<mint>\
+    \ g;\n        RelaxedConvolution<mint> df_g{ internal::fps_relaxed::convolve<mint>\
+    \ };\n    };\n\n    template <typename mint>\n    struct RelaxedLog {\n      \
+    \  mint append(const mint& fi) {\n            invf.append(fi);\n\n           \
+    \ static inv_mods<mint> invs;\n            const int i = g.size();\n         \
+    \   if (i == 0) {\n                assert(fi == 1);\n                g.push_back(0);\n\
+    \            } else {\n                g.push_back(df_invf.append(i * fi, invf[i\
+    \ - 1]) * invs[i]);\n            }\n            return g.back();\n        }\n\
+    \        mint operator[](int i) const {\n            return g[i];\n        }\n\
+    \    private:\n        std::vector<mint> g;\n        RelaxedConvolution<mint>\
+    \ df_invf{ internal::fps_relaxed::convolve<mint> };\n        RelaxedInv<mint>\
+    \ invf;\n    };\n\n    template <typename mint>\n    struct RelaxedPow {\n   \
+    \     RelaxedPow(long long k = 0) : k(k) {}\n\n        mint append(const mint&\
+    \ fi) {\n            if (k == 0) {\n                return g.emplace_back(g.empty()\
+    \ ? 1 : 0);\n            }\n            if (is_zero) {\n                if (fi\
+    \ == 0) {\n                    z = std::min(z + k, 1000000000LL);\n          \
+    \      } else {\n                    is_zero = false;\n                    c =\
+    \ fi.pow(k);\n                    inv_base = fi.inv();\n                }\n  \
+    \          }\n            if (not is_zero) {\n                f.push_back(fi *\
+    \ inv_base);\n            }\n            if (index < z) {\n                g.push_back(0);\n\
+    \            } else {\n                g.push_back(c * exp_k_log_f.append(k *\
+    \ log_f.append(f[index - z])));\n            }\n            ++index;\n       \
+    \     return g.back();\n        }\n        mint operator[](int i) const {\n  \
+    \          return g[i];\n        }\n    private:\n        long long k;\n     \
+    \   long long z = 0;\n        long long index = 0;\n        bool is_zero = true;\n\
+    \        mint c = 0;\n        mint inv_base = 0;\n\n        std::vector<mint>\
+    \ f;\n        std::vector<mint> g;\n\n        RelaxedLog<mint> log_f;\n      \
+    \  RelaxedExp<mint> exp_k_log_f;\n    };\n\n    template <typename mint>\n   \
+    \ struct RelaxedSqrt {\n        std::optional<mint> append(const mint& fi) {\n\
+    \            if (g.empty()) {\n                auto opt_g0 = safe_sqrt(fi);\n\
+    \                if (not opt_g0) return std::nullopt;\n                mint g0\
+    \ = *opt_g0;\n                c = (2 * g0).inv();\n                return g.emplace_back(g0);\n\
+    \            } else if (g.size() == 1) {\n                return g.emplace_back(c\
+    \ * fi);\n            } else {\n                mint gi = c * (fi - gg.append(g.back(),\
+    \ g.back()));\n                return g.emplace_back(gi);\n            }\n   \
+    \     }\n        mint operator[](int i) const {\n            return g[i];\n  \
+    \      }\n    private:\n        mint c = 0;\n        std::vector<mint> g;\n  \
+    \      RelaxedConvolution<mint> gg{ internal::fps_relaxed::convolve<mint> };\n\
+    \    };\n} // namespace suisen\n\n\n\n#line 6 \"test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nstd::istream& operator>>(std::istream&\
+    \ in, mint &a) {\n    long long e; in >> e; a = e;\n    return in;\n}\n\nstd::ostream&\
+    \ operator<<(std::ostream& out, const mint &a) {\n    out << a.val();\n    return\
+    \ out;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n;\n    std::cin >> n;\n    \n    suisen::RelaxedExp<mint> exp_f;\n\
+    \    for (int i = 0; i < n; ++i) {\n        mint v;\n        std::cin >> v;\n\
+    \        std::cout << exp_f.append(v) << \" \\n\"[i == n - 1];\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/exp_of_formal_power_series\"\
+    \n\n#include <iostream>\n#include <atcoder/modint>\n#include \"library/polynomial/formal_power_series_relaxed.hpp\"\
+    \n\nusing mint = atcoder::modint998244353;\n\nstd::istream& operator>>(std::istream&\
+    \ in, mint &a) {\n    long long e; in >> e; a = e;\n    return in;\n}\n\nstd::ostream&\
+    \ operator<<(std::ostream& out, const mint &a) {\n    out << a.val();\n    return\
+    \ out;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n;\n    std::cin >> n;\n    \n    suisen::RelaxedExp<mint> exp_f;\n\
+    \    for (int i = 0; i < n; ++i) {\n        mint v;\n        std::cin >> v;\n\
+    \        std::cout << exp_f.append(v) << \" \\n\"[i == n - 1];\n    }\n}"
+  dependsOn:
+  - library/polynomial/formal_power_series_relaxed.hpp
+  - library/math/inv_mods.hpp
+  - library/convolution/relaxed_convolution.hpp
+  - library/math/modint_extension.hpp
+  isVerificationFile: true
+  path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
+  requiredBy: []
+  timestamp: '2023-01-02 15:27:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
+layout: document
+redirect_from:
+- /verify/test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
+- /verify/test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp.html
+title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
+---

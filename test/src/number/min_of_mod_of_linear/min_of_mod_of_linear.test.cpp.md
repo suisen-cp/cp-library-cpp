@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/min_of_mod_of_linear.hpp
     title: library/number/min_of_mod_of_linear.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_of_mod_of_linear
@@ -50,7 +50,7 @@ data:
   path: test/src/number/min_of_mod_of_linear/min_of_mod_of_linear.test.cpp
   requiredBy: []
   timestamp: '2023-01-02 12:13:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/min_of_mod_of_linear/min_of_mod_of_linear.test.cpp
 layout: document
