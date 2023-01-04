@@ -122,8 +122,6 @@ data:
   - test/src/string/rolling_hash/abc141_e.test.cpp
 documentation_of: library/number/modint_2^61m1.hpp
 layout: document
-redirect_from:
-- /library/library/number/modint_2^61m1.hpp
-- /library/library/number/modint_2^61m1.hpp.html
-title: library/number/modint_2^61m1.hpp
+title: Modint 2^61m1
 ---
+## Modint 2^61m1

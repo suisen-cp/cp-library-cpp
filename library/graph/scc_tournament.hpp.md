@@ -42,8 +42,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/scc_tournament.hpp
 layout: document
-redirect_from:
-- /library/library/graph/scc_tournament.hpp
-- /library/library/graph/scc_tournament.hpp.html
-title: library/graph/scc_tournament.hpp
+title: Scc Tournament
 ---
+## Scc Tournament

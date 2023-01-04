@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

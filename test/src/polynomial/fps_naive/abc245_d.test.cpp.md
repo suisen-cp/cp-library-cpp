@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc245/tasks/abc245_d
@@ -264,7 +264,7 @@ data:
   path: test/src/polynomial/fps_naive/abc245_d.test.cpp
   requiredBy: []
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/fps_naive/abc245_d.test.cpp
 layout: document

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/binomial_coefficient_small_prime_mod.hpp
     title: Binomial Coefficient Small Prime Mod
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number1_small_prime_mod.hpp
     title: Stirling Number of the First Kind (Small Prime Mod)
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_small_p_large_n
@@ -154,7 +154,7 @@ data:
   path: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   requiredBy: []
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
 layout: document

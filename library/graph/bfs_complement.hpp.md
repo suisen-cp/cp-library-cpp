@@ -101,8 +101,6 @@ data:
   - test/src/graph/bfs_complement/AOJ_2744.test.cpp
 documentation_of: library/graph/bfs_complement.hpp
 layout: document
-redirect_from:
-- /library/library/graph/bfs_complement.hpp
-- /library/library/graph/bfs_complement.hpp.html
-title: library/graph/bfs_complement.hpp
+title: Bfs Complement
 ---
+## Bfs Complement

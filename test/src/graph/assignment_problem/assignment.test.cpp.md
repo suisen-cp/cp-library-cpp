@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/graph/assignment_problem.hpp
-    title: library/graph/assignment_problem.hpp
+    title: Assignment Problem
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

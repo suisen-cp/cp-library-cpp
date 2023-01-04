@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/eulerian_number.hpp
     title: Eulerian Number
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number2.hpp
     title: Stirling Number2
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number2_small_prime_mod.hpp
     title: Stirling Number2 Small Prime Mod
   _extendedVerifiedWith:
@@ -27,27 +27,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/sequence/powers.hpp\"\n\n\n\n#include <cstdint>\n\
@@ -100,7 +100,7 @@ data:
   - library/sequence/stirling_number2_small_prime_mod.hpp
   - library/sequence/eulerian_number.hpp
   timestamp: '2022-07-10 22:02:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp

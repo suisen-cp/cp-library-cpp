@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/polynomial_taylor_shift.hpp\"\n\n\n\n\
@@ -66,7 +66,7 @@ data:
   path: library/polynomial/polynomial_taylor_shift.hpp
   requiredBy: []
   timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp

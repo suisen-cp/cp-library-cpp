@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/prod_f(r^k_x).hpp
     title: $\left(\prod_{k=0}^{m-1} f(r^k x)\right) \bmod x^N$
   - icon: ':x:'
@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - icon: ':x:'

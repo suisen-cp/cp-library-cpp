@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/number/min_of_mod_of_linear.hpp
-    title: library/number/min_of_mod_of_linear.hpp
+    title: Min Of Mod Of Linear
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

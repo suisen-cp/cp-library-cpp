@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/partition_number/partition_function.test.cpp
     title: test/src/sequence/partition_number/partition_function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/partition_number/partition_function_2.test.cpp
     title: test/src/sequence/partition_number/partition_function_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/sequence/partition_number.hpp\"\n\n\n\n#include\
@@ -37,7 +37,7 @@ data:
   path: library/sequence/partition_number.hpp
   requiredBy: []
   timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/sequence/partition_number/partition_function_2.test.cpp
   - test/src/sequence/partition_number/partition_function.test.cpp

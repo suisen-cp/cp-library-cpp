@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/binomial_coefficient_small_prime_mod.hpp
     title: Binomial Coefficient Small Prime Mod
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/sequence/stirling_number1_small_prime_mod.hpp\"\n\
@@ -147,7 +147,7 @@ data:
   path: library/sequence/stirling_number1_small_prime_mod.hpp
   requiredBy: []
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
 documentation_of: library/sequence/stirling_number1_small_prime_mod.hpp

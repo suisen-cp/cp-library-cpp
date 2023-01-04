@@ -142,8 +142,6 @@ data:
   - test/src/graph/assignment_problem/assignment.test.cpp
 documentation_of: library/graph/assignment_problem.hpp
 layout: document
-redirect_from:
-- /library/library/graph/assignment_problem.hpp
-- /library/library/graph/assignment_problem.hpp.html
-title: library/graph/assignment_problem.hpp
+title: Assignment Problem
 ---
+## Assignment Problem

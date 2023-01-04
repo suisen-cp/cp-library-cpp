@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number1_small_prime_mod.hpp
     title: Stirling Number of the First Kind (Small Prime Mod)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1/abc247_h.test.cpp
     title: test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/sequence/stirling_number1.hpp\"\n\n\n\n#include\
@@ -158,7 +158,7 @@ data:
   requiredBy:
   - library/sequence/stirling_number1_small_prime_mod.hpp
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp

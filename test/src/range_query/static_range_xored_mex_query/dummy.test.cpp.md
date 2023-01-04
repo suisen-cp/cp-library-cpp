@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/range_query/static_range_xored_mex_query.hpp
     title: Static Range Xored Mex Query
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

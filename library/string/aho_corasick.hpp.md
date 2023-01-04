@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/aho_corasick/abc268_h.test.cpp
     title: test/src/string/aho_corasick/abc268_h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/string/aho_corasick.hpp\"\n\n\n\n#include <cassert>\n\
@@ -76,7 +76,7 @@ data:
   path: library/string/aho_corasick.hpp
   requiredBy: []
   timestamp: '2022-09-11 20:50:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/string/aho_corasick/abc268_h.test.cpp
 documentation_of: library/string/aho_corasick.hpp

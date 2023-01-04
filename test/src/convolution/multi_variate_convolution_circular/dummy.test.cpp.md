@@ -39,7 +39,7 @@ data:
     path: library/transform/chirp_z_transform.hpp
     title: "chirp z-transform (\u8A55\u4FA1\u70B9\u304C\u7B49\u5DEE\u6570\u5217\u3092\
       \u6210\u3059\u5834\u5408\u306E Multipoint Evaluation)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'

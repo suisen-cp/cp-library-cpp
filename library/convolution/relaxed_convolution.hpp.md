@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/formal_power_series_relaxed.hpp
-    title: library/polynomial/formal_power_series_relaxed.hpp
+    title: Formal Power Series Relaxed
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/relaxed_convolution/abc230_h.test.cpp

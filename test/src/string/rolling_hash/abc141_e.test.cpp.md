@@ -6,7 +6,7 @@ data:
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':x:'
     path: library/number/modint_2^61m1.hpp
-    title: library/number/modint_2^61m1.hpp
+    title: Modint 2^61m1
   - icon: ':x:'
     path: library/string/rolling_hash.hpp
     title: Rolling Hash

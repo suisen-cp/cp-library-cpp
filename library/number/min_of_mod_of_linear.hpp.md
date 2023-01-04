@@ -53,8 +53,6 @@ data:
   - test/src/number/min_of_mod_of_linear/min_of_mod_of_linear.test.cpp
 documentation_of: library/number/min_of_mod_of_linear.hpp
 layout: document
-redirect_from:
-- /library/library/number/min_of_mod_of_linear.hpp
-- /library/library/number/min_of_mod_of_linear.hpp.html
-title: library/number/min_of_mod_of_linear.hpp
+title: Min Of Mod Of Linear
 ---
+## Min Of Mod Of Linear
