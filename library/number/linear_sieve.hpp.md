@@ -6,8 +6,8 @@ data:
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
   - icon: ':warning:'
-    path: library/number/anymod_binom.hpp
-    title: "\u4EFB\u610F mod \u3067\u306E\u4E8C\u9805\u4FC2\u6570\u5217\u6319"
+    path: library/sequence/binomial_coefficitnt_enumeration.hpp
+    title: library/sequence/binomial_coefficitnt_enumeration.hpp
   - icon: ':heavy_check_mark:'
     path: library/sequence/eulerian_number.hpp
     title: Eulerian Number
@@ -107,12 +107,12 @@ data:
   isVerificationFile: false
   path: library/number/linear_sieve.hpp
   requiredBy:
-  - library/number/anymod_binom.hpp
   - library/math/sum_i^d_r^i.hpp
   - library/sequence/powers.hpp
   - library/sequence/stirling_number2.hpp
   - library/sequence/stirling_number2_small_prime_mod.hpp
   - library/sequence/eulerian_number.hpp
+  - library/sequence/binomial_coefficitnt_enumeration.hpp
   timestamp: '2021-08-04 13:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

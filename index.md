@@ -591,7 +591,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
     - icon: ':heavy_check_mark:'
@@ -608,9 +608,9 @@ data:
       title: Util
   - name: library/number
     pages:
-    - icon: ':warning:'
-      path: library/number/anymod_binom.hpp
-      title: "\u4EFB\u610F mod \u3067\u306E\u4E8C\u9805\u4FC2\u6570\u5217\u6319"
+    - icon: ':heavy_check_mark:'
+      path: library/number/barrett_reduction.hpp
+      title: library/number/barrett_reduction.hpp
     - icon: ':heavy_check_mark:'
       path: library/number/deterministic_miller_rabin.hpp
       title: Deterministic Miller Rabin
@@ -654,7 +654,7 @@ data:
     - icon: ':warning:'
       path: library/number/mobius_function.hpp
       title: Mobius Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/number/modint_2^61m1.hpp
       title: Modint 2^61m1
     - icon: ':heavy_check_mark:'
@@ -752,12 +752,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/sequence/bernoulli_number.hpp
       title: Bernoulli Number
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/sequence/binomial_coefficient.hpp
       title: Binomial Coefficient
     - icon: ':heavy_check_mark:'
       path: library/sequence/binomial_coefficient_small_prime_mod.hpp
       title: Binomial Coefficient Small Prime Mod
+    - icon: ':warning:'
+      path: library/sequence/binomial_coefficitnt_enumeration.hpp
+      title: library/sequence/binomial_coefficitnt_enumeration.hpp
     - icon: ':heavy_check_mark:'
       path: library/sequence/eulerian_number.hpp
       title: Eulerian Number
@@ -802,7 +805,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/palindromic_tree.hpp
       title: "Palindromic Tree (\u56DE\u6587\u6728)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/string/rolling_hash.hpp
       title: Rolling Hash
     - icon: ':warning:'
@@ -2154,6 +2157,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
       title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
+  - name: test/src/sequence/binomial_coefficient
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
+      title: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
   - name: test/src/sequence/eulerian_number
     pages:
     - icon: ':heavy_check_mark:'
@@ -2246,7 +2254,7 @@ data:
       title: test/src/string/palindromic_tree/yuki263.test.cpp
   - name: test/src/string/rolling_hash
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/string/rolling_hash/abc141_e.test.cpp
       title: test/src/string/rolling_hash/abc141_e.test.cpp
   - name: test/src/string/run_enumerate
