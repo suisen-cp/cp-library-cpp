@@ -127,14 +127,14 @@ namespace suisen::bbst::internal {
             return { merge(merge(tl, top), tr), res };
         }
 
-        template <typename U>
-        static tree_type build(const std::vector<U>& a, int l, int r) {
+        template <typename Seq>
+        static tree_type build(const Seq& a, int l, int r) {
             if (r - l == 1) return create_leaf(a[l]);
             int m = (l + r) >> 1;
             return merge(build(a, l, m), build(a, m, r));
         }
-        template <typename U>
-        static tree_type build(const std::vector<U>& a) {
+        template <typename Seq>
+        static tree_type build(const Seq& a) {
             return a.empty() ? empty_tree() : build(a, 0, a.size());
         }
 
