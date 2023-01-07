@@ -10,13 +10,11 @@
 namespace suisen {
     namespace internal::dynamic_rolling_hash {
         struct BaseGen {
-            static constexpr int max_base = 100000;
-            static inline std::mt19937 rng{ std::random_device{}() };
-            static inline Sieve<max_base> sieve{};
+            static inline std::mt19937_64 rng{ std::random_device{}() };
+            static inline std::uniform_int_distribution<uint64_t> dist{ 0, modint2p61m1::mod() - 1 };
             
             static uint32_t generate() {
-                // [1, max_base]
-                return rng() % max_base + 1;
+                return dist(rng);
             }
         };
 
