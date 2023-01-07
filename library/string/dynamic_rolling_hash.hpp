@@ -13,14 +13,10 @@ namespace suisen {
             static constexpr int max_base = 100000;
             static inline std::mt19937 rng{ std::random_device{}() };
             static inline Sieve<max_base> sieve{};
-
+            
             static uint32_t generate() {
-                uint32_t base;
-                do {
-                    base = rng() % (max_base - 10) + 10;
-                    base -= (base & 1) == 0;
-                } while (not sieve.is_prime(base));
-                return base;
+                // [1, max_base]
+                return rng() % max_base + 1;
             }
         };
 
@@ -122,11 +118,9 @@ namespace suisen {
     public:
         using hash = typename hash_::hash_type;
 
-        DynamicRollingHash() {}
+        DynamicRollingHash(): _seq(nullptr) {}
         template <typename Seq>
-        DynamicRollingHash(const Seq& a): DynamicRollingHash() {
-            _seq = node::build(a);
-        }
+        DynamicRollingHash(const Seq& a): _seq(node::build(a)) {}
 
         static void init_pool(size_t reserving_node_num) {
             node::init_pool(reserving_node_num);
