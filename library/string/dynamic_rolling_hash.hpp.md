@@ -360,10 +360,72 @@ data:
     \  namespace internal::dynamic_rolling_hash {\n        struct BaseGen {\n    \
     \        static constexpr int max_base = 100000;\n            static inline std::mt19937\
     \ rng{ std::random_device{}() };\n            static inline Sieve<max_base> sieve{};\n\
-    \n            static uint32_t generate() {\n                uint32_t base;\n \
-    \               do {\n                    base = rng() % (max_base - 10) + 10;\n\
-    \                    base -= (base & 1) == 0;\n                } while (not sieve.is_prime(base));\n\
-    \                return base;\n            }\n        };\n\n        template <size_t\
+    \            \n            static uint32_t generate() {\n                // [1,\
+    \ max_base]\n                return rng() % max_base + 1;\n            }\n   \
+    \     };\n\n        template <size_t id>\n        uint32_t base() {\n        \
+    \    static uint32_t _base = 0;\n            return _base ? _base : (_base = BaseGen::generate());\n\
+    \        }\n\n        template <size_t base_num_>\n        struct Hash {\n   \
+    \         static constexpr size_t base_num = base_num_;\n\n            using child_type\
+    \ = Hash<base_num - 1>;\n            using hash_type = std::array<uint64_t, base_num>;\n\
+    \n            modint2p61m1 hash;\n            modint2p61m1 offset;\n\n       \
+    \     child_type hash_lo;\n\n            Hash() : Hash(0) {}\n            template\
+    \ <typename T>\n            Hash(const T& val): hash(val), offset(base<base_num>()),\
+    \ hash_lo(val) {}\n\n            operator hash_type() const {\n              \
+    \  hash_type res;\n                store_hash(res);\n                return res;\n\
+    \            }\n\n            template <typename Container>\n            void\
+    \ store_hash(Container& h) const {\n                h[base_num - 1] = hash.val();\n\
+    \                hash_lo.store_hash(h);\n            }\n\n            static Hash\
+    \ identity() {\n                return { 0, 1, child_type::identity() };\n   \
+    \         }\n            static Hash merge(const Hash &l, const Hash &r) {\n \
+    \               return { l.hash * r.offset + r.hash, l.offset * r.offset, child_type::merge(l.hash_lo,\
+    \ r.hash_lo) };\n            }\n            static Hash merge_noref(Hash l, Hash\
+    \ r) {\n                return merge(l, r);\n            }\n        private:\n\
+    \            Hash(const modint2p61m1& hash, const modint2p61m1& offset, const\
+    \ child_type& hash_lo): hash(hash), offset(offset), hash_lo(hash_lo) {}\n    \
+    \    };\n\n        template <>\n        struct Hash<1> {\n            static constexpr\
+    \ size_t base_num = 1;\n\n            modint2p61m1 hash;\n            modint2p61m1\
+    \ offset;\n\n            using hash_type = uint64_t;\n\n            Hash() : Hash(0)\
+    \ {}\n            template <typename T>\n            Hash(const T& val): hash(val),\
+    \ offset(base<base_num>()) {}\n\n            operator hash_type() const {\n  \
+    \              return hash.val();\n            }\n\n            template <typename\
+    \ Container>\n            void store_hash(Container& h) const {\n            \
+    \    h[0] = hash.val();\n            }\n\n            static Hash identity() {\n\
+    \                return { 0, 1 };\n            }\n            static Hash merge(const\
+    \ Hash &l, const Hash &r) {\n                return { l.hash * r.offset + r.hash,\
+    \ l.offset * r.offset };\n            }\n            static Hash merge_noref(Hash\
+    \ l, Hash r) {\n                return merge(l, r);\n            }\n        private:\n\
+    \            Hash(const modint2p61m1& hash, const modint2p61m1& offset): hash(hash),\
+    \ offset(offset) {}\n        };\n    }\n\n    template <std::size_t base_num>\n\
+    \    using Hash = internal::dynamic_rolling_hash::Hash<base_num>;\n\n    template\
+    \ <size_t base_num_ = 1>\n    struct DynamicRollingHash {\n        static constexpr\
+    \ size_t base_num = base_num_;\n    private:\n        using hash_ = Hash<base_num>;\n\
+    \n        using node = bbst::segtree::RedBlackTreeNode<hash_, hash_::merge_noref,\
+    \ hash_::identity>;\n\n        node* _seq;\n    public:\n        using hash =\
+    \ typename hash_::hash_type;\n\n        DynamicRollingHash(): _seq(nullptr) {}\n\
+    \        template <typename Seq>\n        DynamicRollingHash(const Seq& a): _seq(node::build(a))\
+    \ {}\n\n        static void init_pool(size_t reserving_node_num) {\n         \
+    \   node::init_pool(reserving_node_num);\n        }\n\n        template <typename\
+    \ T>\n        void set(size_t k, const T& val) {\n            _seq = node::update_value(_seq,\
+    \ k, val);\n        }\n        template <typename T>\n        void insert(size_t\
+    \ k, const T& val) {\n            _seq = node::insert(_seq, k, val);\n       \
+    \ }\n        template <typename T>\n        void push_back(const T& val) {\n \
+    \           insert(node::size(_seq), val);\n        }\n        template <typename\
+    \ T>\n        void push_front(const T& val) {\n            insert(0, val);\n \
+    \       }\n        void erase(size_t k) {\n            _seq = node::erase(_seq,\
+    \ k).first;\n        }\n        void pop_back() {\n            erase(node::size(_seq)\
+    \ - 1);\n        }\n        void pop_front() {\n            erase(0);\n      \
+    \  }\n\n        hash operator()(int l, int r) {\n            hash_ res;\n    \
+    \        std::tie(_seq, res) = node::prod(_seq, l, r);\n            return res;\n\
+    \        }\n    };\n}\n\n\n"
+  code: "#ifndef SUISEN_DYNAMIC_ROLLING_HASH\n#define SUISEN_DYNAMIC_ROLLING_HASH\n\
+    \n#include <random>\n\n#include \"library/number/sieve_of_eratosthenes.hpp\"\n\
+    #include \"library/number/modint_2^61m1.hpp\"\n#include \"library/datastructure/bbst/red_black_segment_tree.hpp\"\
+    \n\nnamespace suisen {\n    namespace internal::dynamic_rolling_hash {\n     \
+    \   struct BaseGen {\n            static constexpr int max_base = 100000;\n  \
+    \          static inline std::mt19937 rng{ std::random_device{}() };\n       \
+    \     static inline Sieve<max_base> sieve{};\n            \n            static\
+    \ uint32_t generate() {\n                // [1, max_base]\n                return\
+    \ rng() % max_base + 1;\n            }\n        };\n\n        template <size_t\
     \ id>\n        uint32_t base() {\n            static uint32_t _base = 0;\n   \
     \         return _base ? _base : (_base = BaseGen::generate());\n        }\n\n\
     \        template <size_t base_num_>\n        struct Hash {\n            static\
@@ -403,88 +465,22 @@ data:
     \ size_t base_num = base_num_;\n    private:\n        using hash_ = Hash<base_num>;\n\
     \n        using node = bbst::segtree::RedBlackTreeNode<hash_, hash_::merge_noref,\
     \ hash_::identity>;\n\n        node* _seq;\n    public:\n        using hash =\
-    \ typename hash_::hash_type;\n\n        DynamicRollingHash() {}\n        template\
-    \ <typename Seq>\n        DynamicRollingHash(const Seq& a): DynamicRollingHash()\
-    \ {\n            _seq = node::build(a);\n        }\n\n        static void init_pool(size_t\
-    \ reserving_node_num) {\n            node::init_pool(reserving_node_num);\n  \
-    \      }\n\n        template <typename T>\n        void set(size_t k, const T&\
-    \ val) {\n            _seq = node::update_value(_seq, k, val);\n        }\n  \
-    \      template <typename T>\n        void insert(size_t k, const T& val) {\n\
-    \            _seq = node::insert(_seq, k, val);\n        }\n        template <typename\
-    \ T>\n        void push_back(const T& val) {\n            insert(node::size(_seq),\
-    \ val);\n        }\n        template <typename T>\n        void push_front(const\
-    \ T& val) {\n            insert(0, val);\n        }\n        void erase(size_t\
-    \ k) {\n            _seq = node::erase(_seq, k).first;\n        }\n        void\
-    \ pop_back() {\n            erase(node::size(_seq) - 1);\n        }\n        void\
-    \ pop_front() {\n            erase(0);\n        }\n\n        hash operator()(int\
-    \ l, int r) {\n            hash_ res;\n            std::tie(_seq, res) = node::prod(_seq,\
-    \ l, r);\n            return res;\n        }\n    };\n}\n\n\n"
-  code: "#ifndef SUISEN_DYNAMIC_ROLLING_HASH\n#define SUISEN_DYNAMIC_ROLLING_HASH\n\
-    \n#include <random>\n\n#include \"library/number/sieve_of_eratosthenes.hpp\"\n\
-    #include \"library/number/modint_2^61m1.hpp\"\n#include \"library/datastructure/bbst/red_black_segment_tree.hpp\"\
-    \n\nnamespace suisen {\n    namespace internal::dynamic_rolling_hash {\n     \
-    \   struct BaseGen {\n            static constexpr int max_base = 100000;\n  \
-    \          static inline std::mt19937 rng{ std::random_device{}() };\n       \
-    \     static inline Sieve<max_base> sieve{};\n\n            static uint32_t generate()\
-    \ {\n                uint32_t base;\n                do {\n                  \
-    \  base = rng() % (max_base - 10) + 10;\n                    base -= (base & 1)\
-    \ == 0;\n                } while (not sieve.is_prime(base));\n               \
-    \ return base;\n            }\n        };\n\n        template <size_t id>\n  \
-    \      uint32_t base() {\n            static uint32_t _base = 0;\n           \
-    \ return _base ? _base : (_base = BaseGen::generate());\n        }\n\n       \
-    \ template <size_t base_num_>\n        struct Hash {\n            static constexpr\
-    \ size_t base_num = base_num_;\n\n            using child_type = Hash<base_num\
-    \ - 1>;\n            using hash_type = std::array<uint64_t, base_num>;\n\n   \
-    \         modint2p61m1 hash;\n            modint2p61m1 offset;\n\n           \
-    \ child_type hash_lo;\n\n            Hash() : Hash(0) {}\n            template\
-    \ <typename T>\n            Hash(const T& val): hash(val), offset(base<base_num>()),\
-    \ hash_lo(val) {}\n\n            operator hash_type() const {\n              \
-    \  hash_type res;\n                store_hash(res);\n                return res;\n\
-    \            }\n\n            template <typename Container>\n            void\
-    \ store_hash(Container& h) const {\n                h[base_num - 1] = hash.val();\n\
-    \                hash_lo.store_hash(h);\n            }\n\n            static Hash\
-    \ identity() {\n                return { 0, 1, child_type::identity() };\n   \
-    \         }\n            static Hash merge(const Hash &l, const Hash &r) {\n \
-    \               return { l.hash * r.offset + r.hash, l.offset * r.offset, child_type::merge(l.hash_lo,\
-    \ r.hash_lo) };\n            }\n            static Hash merge_noref(Hash l, Hash\
-    \ r) {\n                return merge(l, r);\n            }\n        private:\n\
-    \            Hash(const modint2p61m1& hash, const modint2p61m1& offset, const\
-    \ child_type& hash_lo): hash(hash), offset(offset), hash_lo(hash_lo) {}\n    \
-    \    };\n\n        template <>\n        struct Hash<1> {\n            static constexpr\
-    \ size_t base_num = 1;\n\n            modint2p61m1 hash;\n            modint2p61m1\
-    \ offset;\n\n            using hash_type = uint64_t;\n\n            Hash() : Hash(0)\
-    \ {}\n            template <typename T>\n            Hash(const T& val): hash(val),\
-    \ offset(base<base_num>()) {}\n\n            operator hash_type() const {\n  \
-    \              return hash.val();\n            }\n\n            template <typename\
-    \ Container>\n            void store_hash(Container& h) const {\n            \
-    \    h[0] = hash.val();\n            }\n\n            static Hash identity() {\n\
-    \                return { 0, 1 };\n            }\n            static Hash merge(const\
-    \ Hash &l, const Hash &r) {\n                return { l.hash * r.offset + r.hash,\
-    \ l.offset * r.offset };\n            }\n            static Hash merge_noref(Hash\
-    \ l, Hash r) {\n                return merge(l, r);\n            }\n        private:\n\
-    \            Hash(const modint2p61m1& hash, const modint2p61m1& offset): hash(hash),\
-    \ offset(offset) {}\n        };\n    }\n\n    template <std::size_t base_num>\n\
-    \    using Hash = internal::dynamic_rolling_hash::Hash<base_num>;\n\n    template\
-    \ <size_t base_num_ = 1>\n    struct DynamicRollingHash {\n        static constexpr\
-    \ size_t base_num = base_num_;\n    private:\n        using hash_ = Hash<base_num>;\n\
-    \n        using node = bbst::segtree::RedBlackTreeNode<hash_, hash_::merge_noref,\
-    \ hash_::identity>;\n\n        node* _seq;\n    public:\n        using hash =\
-    \ typename hash_::hash_type;\n\n        DynamicRollingHash() {}\n        template\
-    \ <typename Seq>\n        DynamicRollingHash(const Seq& a): DynamicRollingHash()\
-    \ {\n            _seq = node::build(a);\n        }\n\n        static void init_pool(size_t\
-    \ reserving_node_num) {\n            node::init_pool(reserving_node_num);\n  \
-    \      }\n\n        template <typename T>\n        void set(size_t k, const T&\
-    \ val) {\n            _seq = node::update_value(_seq, k, val);\n        }\n  \
-    \      template <typename T>\n        void insert(size_t k, const T& val) {\n\
-    \            _seq = node::insert(_seq, k, val);\n        }\n        template <typename\
-    \ T>\n        void push_back(const T& val) {\n            insert(node::size(_seq),\
-    \ val);\n        }\n        template <typename T>\n        void push_front(const\
-    \ T& val) {\n            insert(0, val);\n        }\n        void erase(size_t\
-    \ k) {\n            _seq = node::erase(_seq, k).first;\n        }\n        void\
-    \ pop_back() {\n            erase(node::size(_seq) - 1);\n        }\n        void\
-    \ pop_front() {\n            erase(0);\n        }\n\n        hash operator()(int\
-    \ l, int r) {\n            hash_ res;\n            std::tie(_seq, res) = node::prod(_seq,\
-    \ l, r);\n            return res;\n        }\n    };\n}\n\n#endif // SUISEN_DYNAMIC_ROLLING_HASH\n"
+    \ typename hash_::hash_type;\n\n        DynamicRollingHash(): _seq(nullptr) {}\n\
+    \        template <typename Seq>\n        DynamicRollingHash(const Seq& a): _seq(node::build(a))\
+    \ {}\n\n        static void init_pool(size_t reserving_node_num) {\n         \
+    \   node::init_pool(reserving_node_num);\n        }\n\n        template <typename\
+    \ T>\n        void set(size_t k, const T& val) {\n            _seq = node::update_value(_seq,\
+    \ k, val);\n        }\n        template <typename T>\n        void insert(size_t\
+    \ k, const T& val) {\n            _seq = node::insert(_seq, k, val);\n       \
+    \ }\n        template <typename T>\n        void push_back(const T& val) {\n \
+    \           insert(node::size(_seq), val);\n        }\n        template <typename\
+    \ T>\n        void push_front(const T& val) {\n            insert(0, val);\n \
+    \       }\n        void erase(size_t k) {\n            _seq = node::erase(_seq,\
+    \ k).first;\n        }\n        void pop_back() {\n            erase(node::size(_seq)\
+    \ - 1);\n        }\n        void pop_front() {\n            erase(0);\n      \
+    \  }\n\n        hash operator()(int l, int r) {\n            hash_ res;\n    \
+    \        std::tie(_seq, res) = node::prod(_seq, l, r);\n            return res;\n\
+    \        }\n    };\n}\n\n#endif // SUISEN_DYNAMIC_ROLLING_HASH\n"
   dependsOn:
   - library/number/sieve_of_eratosthenes.hpp
   - library/number/internal_eratosthenes.hpp
@@ -495,7 +491,7 @@ data:
   isVerificationFile: false
   path: library/string/dynamic_rolling_hash.hpp
   requiredBy: []
-  timestamp: '2023-01-08 02:32:10+09:00'
+  timestamp: '2023-01-08 04:19:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/string/dynamic_rolling_hash.hpp
