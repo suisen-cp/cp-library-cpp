@@ -358,17 +358,17 @@ data:
     \ value(node->_ch[1]));\n            return node;\n        }\n    };\n}\n\n\n\
     #line 9 \"library/string/dynamic_rolling_hash.hpp\"\n\nnamespace suisen {\n  \
     \  namespace internal::dynamic_rolling_hash {\n        struct BaseGen {\n    \
-    \        static constexpr int max_base = 100000;\n            static inline std::mt19937\
-    \ rng{ std::random_device{}() };\n            static inline Sieve<max_base> sieve{};\n\
-    \            \n            static uint32_t generate() {\n                // [1,\
-    \ max_base]\n                return rng() % max_base + 1;\n            }\n   \
-    \     };\n\n        template <size_t id>\n        uint32_t base() {\n        \
-    \    static uint32_t _base = 0;\n            return _base ? _base : (_base = BaseGen::generate());\n\
-    \        }\n\n        template <size_t base_num_>\n        struct Hash {\n   \
-    \         static constexpr size_t base_num = base_num_;\n\n            using child_type\
-    \ = Hash<base_num - 1>;\n            using hash_type = std::array<uint64_t, base_num>;\n\
-    \n            modint2p61m1 hash;\n            modint2p61m1 offset;\n\n       \
-    \     child_type hash_lo;\n\n            Hash() : Hash(0) {}\n            template\
+    \        static inline std::mt19937_64 rng{ std::random_device{}() };\n      \
+    \      static inline std::uniform_int_distribution<uint64_t> dist{ 0, modint2p61m1::mod()\
+    \ - 1 };\n            \n            static uint32_t generate() {\n           \
+    \     return dist(rng);\n            }\n        };\n\n        template <size_t\
+    \ id>\n        uint32_t base() {\n            static uint32_t _base = 0;\n   \
+    \         return _base ? _base : (_base = BaseGen::generate());\n        }\n\n\
+    \        template <size_t base_num_>\n        struct Hash {\n            static\
+    \ constexpr size_t base_num = base_num_;\n\n            using child_type = Hash<base_num\
+    \ - 1>;\n            using hash_type = std::array<uint64_t, base_num>;\n\n   \
+    \         modint2p61m1 hash;\n            modint2p61m1 offset;\n\n           \
+    \ child_type hash_lo;\n\n            Hash() : Hash(0) {}\n            template\
     \ <typename T>\n            Hash(const T& val): hash(val), offset(base<base_num>()),\
     \ hash_lo(val) {}\n\n            operator hash_type() const {\n              \
     \  hash_type res;\n                store_hash(res);\n                return res;\n\
@@ -421,18 +421,17 @@ data:
     \n#include <random>\n\n#include \"library/number/sieve_of_eratosthenes.hpp\"\n\
     #include \"library/number/modint_2^61m1.hpp\"\n#include \"library/datastructure/bbst/red_black_segment_tree.hpp\"\
     \n\nnamespace suisen {\n    namespace internal::dynamic_rolling_hash {\n     \
-    \   struct BaseGen {\n            static constexpr int max_base = 100000;\n  \
-    \          static inline std::mt19937 rng{ std::random_device{}() };\n       \
-    \     static inline Sieve<max_base> sieve{};\n            \n            static\
-    \ uint32_t generate() {\n                // [1, max_base]\n                return\
-    \ rng() % max_base + 1;\n            }\n        };\n\n        template <size_t\
-    \ id>\n        uint32_t base() {\n            static uint32_t _base = 0;\n   \
-    \         return _base ? _base : (_base = BaseGen::generate());\n        }\n\n\
-    \        template <size_t base_num_>\n        struct Hash {\n            static\
-    \ constexpr size_t base_num = base_num_;\n\n            using child_type = Hash<base_num\
-    \ - 1>;\n            using hash_type = std::array<uint64_t, base_num>;\n\n   \
-    \         modint2p61m1 hash;\n            modint2p61m1 offset;\n\n           \
-    \ child_type hash_lo;\n\n            Hash() : Hash(0) {}\n            template\
+    \   struct BaseGen {\n            static inline std::mt19937_64 rng{ std::random_device{}()\
+    \ };\n            static inline std::uniform_int_distribution<uint64_t> dist{\
+    \ 0, modint2p61m1::mod() - 1 };\n            \n            static uint32_t generate()\
+    \ {\n                return dist(rng);\n            }\n        };\n\n        template\
+    \ <size_t id>\n        uint32_t base() {\n            static uint32_t _base =\
+    \ 0;\n            return _base ? _base : (_base = BaseGen::generate());\n    \
+    \    }\n\n        template <size_t base_num_>\n        struct Hash {\n       \
+    \     static constexpr size_t base_num = base_num_;\n\n            using child_type\
+    \ = Hash<base_num - 1>;\n            using hash_type = std::array<uint64_t, base_num>;\n\
+    \n            modint2p61m1 hash;\n            modint2p61m1 offset;\n\n       \
+    \     child_type hash_lo;\n\n            Hash() : Hash(0) {}\n            template\
     \ <typename T>\n            Hash(const T& val): hash(val), offset(base<base_num>()),\
     \ hash_lo(val) {}\n\n            operator hash_type() const {\n              \
     \  hash_type res;\n                store_hash(res);\n                return res;\n\
@@ -491,7 +490,7 @@ data:
   isVerificationFile: false
   path: library/string/dynamic_rolling_hash.hpp
   requiredBy: []
-  timestamp: '2023-01-08 04:19:15+09:00'
+  timestamp: '2023-01-08 05:15:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/string/dynamic_rolling_hash.hpp
