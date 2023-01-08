@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/string/dynamic_rolling_hash.hpp
+    title: Dynamic Rolling Hash
   - icon: ':heavy_check_mark:'
     path: library/string/rolling_hash.hpp
     title: Rolling Hash
@@ -115,6 +118,7 @@ data:
   isVerificationFile: false
   path: library/number/modint_2^61m1.hpp
   requiredBy:
+  - library/string/dynamic_rolling_hash.hpp
   - library/string/rolling_hash.hpp
   timestamp: '2023-01-01 18:21:45+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -58,6 +58,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/persistent_union_find.hpp
     title: "\u6C38\u7D9A Union Find"
+  - icon: ':warning:'
+    path: library/string/dynamic_rolling_hash.hpp
+    title: Dynamic Rolling Hash
   - icon: ':heavy_check_mark:'
     path: library/tree/link_cut_tree.hpp
     title: Link Cut Tree
@@ -206,6 +209,7 @@ data:
   - library/tree/link_cut_tree_path_foldable_lazy.hpp
   - library/tree/link_cut_tree_base.hpp
   - library/tree/link_cut_tree_path_foldable.hpp
+  - library/string/dynamic_rolling_hash.hpp
   timestamp: '2022-02-13 16:56:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

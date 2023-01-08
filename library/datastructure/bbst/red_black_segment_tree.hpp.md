@@ -12,6 +12,9 @@ data:
     path: library/datastructure/bbst/persistent_red_black_segment_tree.hpp
     title: "\u533A\u9593\u548C\u53D6\u5F97\u304C\u53EF\u80FD\u306A\u6C38\u7D9A\u8D64\
       \u9ED2\u6728"
+  - icon: ':warning:'
+    path: library/string/dynamic_rolling_hash.hpp
+    title: Dynamic Rolling Hash
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp
@@ -104,25 +107,24 @@ data:
     \ val; });\n        }\n        static std::pair<tree_type, value_type> get(tree_type\
     \ node, size_type k) {\n            auto [tl, top, tr] = split_range(node, k,\
     \ k + 1);\n            value_type res = top->_val;\n            return { merge(merge(tl,\
-    \ top), tr), res };\n        }\n\n        template <typename U>\n        static\
-    \ tree_type build(const std::vector<U>& a, int l, int r) {\n            if (r\
-    \ - l == 1) return create_leaf(a[l]);\n            int m = (l + r) >> 1;\n   \
-    \         return merge(build(a, l, m), build(a, m, r));\n        }\n        template\
-    \ <typename U>\n        static tree_type build(const std::vector<U>& a) {\n  \
-    \          return a.empty() ? empty_tree() : build(a, 0, a.size());\n        }\n\
-    \n        template <typename OutputIterator>\n        static void dump(tree_type\
-    \ node, OutputIterator it) {\n            if (empty(node)) return;\n         \
-    \   auto dfs = [&](auto dfs, tree_type cur) -> void {\n                if (cur->is_leaf())\
-    \ {\n                    *it++ = cur->_val;\n                    return;\n   \
-    \             }\n                dfs(dfs, cur->_ch[0]);\n                dfs(dfs,\
-    \ cur->_ch[1]);\n            };\n            dfs(dfs, node);\n        }\n\n  \
-    \      // Don't use on persistent tree.\n        static void free(tree_type node)\
-    \ {\n            auto dfs = [&](auto dfs, tree_type cur) -> void {\n         \
-    \       if (not cur) return;\n                dfs(dfs, cur->_ch[0]);\n       \
-    \         dfs(dfs, cur->_ch[1]);\n                free_node(cur);\n          \
-    \  };\n            dfs(dfs, node);\n        }\n\n        template <typename ToStr>\n\
-    \        static std::string to_string(tree_type node, ToStr f) {\n           \
-    \ std::vector<value_type> dat;\n            node_type::dump(node, std::back_inserter(dat));\n\
+    \ top), tr), res };\n        }\n\n        template <typename Seq>\n        static\
+    \ tree_type build(const Seq& a, int l, int r) {\n            if (r - l == 1) return\
+    \ create_leaf(a[l]);\n            int m = (l + r) >> 1;\n            return merge(build(a,\
+    \ l, m), build(a, m, r));\n        }\n        template <typename Seq>\n      \
+    \  static tree_type build(const Seq& a) {\n            return a.empty() ? empty_tree()\
+    \ : build(a, 0, a.size());\n        }\n\n        template <typename OutputIterator>\n\
+    \        static void dump(tree_type node, OutputIterator it) {\n            if\
+    \ (empty(node)) return;\n            auto dfs = [&](auto dfs, tree_type cur) ->\
+    \ void {\n                if (cur->is_leaf()) {\n                    *it++ = cur->_val;\n\
+    \                    return;\n                }\n                dfs(dfs, cur->_ch[0]);\n\
+    \                dfs(dfs, cur->_ch[1]);\n            };\n            dfs(dfs,\
+    \ node);\n        }\n\n        // Don't use on persistent tree.\n        static\
+    \ void free(tree_type node) {\n            auto dfs = [&](auto dfs, tree_type\
+    \ cur) -> void {\n                if (not cur) return;\n                dfs(dfs,\
+    \ cur->_ch[0]);\n                dfs(dfs, cur->_ch[1]);\n                free_node(cur);\n\
+    \            };\n            dfs(dfs, node);\n        }\n\n        template <typename\
+    \ ToStr>\n        static std::string to_string(tree_type node, ToStr f) {\n  \
+    \          std::vector<value_type> dat;\n            node_type::dump(node, std::back_inserter(dat));\n\
     \            std::ostringstream res;\n            int siz = dat.size();\n    \
     \        res << '[';\n            for (int i = 0; i < siz; ++i) {\n          \
     \      res << f(dat[i]);\n                if (i != siz - 1) res << \", \";\n \
@@ -208,7 +210,8 @@ data:
   path: library/datastructure/bbst/red_black_segment_tree.hpp
   requiredBy:
   - library/datastructure/bbst/persistent_red_black_segment_tree.hpp
-  timestamp: '2023-01-01 18:21:45+09:00'
+  - library/string/dynamic_rolling_hash.hpp
+  timestamp: '2023-01-08 02:32:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/bbst/red_black_segment_tree/abc238_f.test.cpp

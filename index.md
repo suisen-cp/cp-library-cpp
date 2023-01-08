@@ -796,6 +796,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/compare_substring.hpp
       title: Compare Substring
+    - icon: ':warning:'
+      path: library/string/dynamic_rolling_hash.hpp
+      title: Dynamic Rolling Hash
     - icon: ':heavy_check_mark:'
       path: library/string/manacher.hpp
       title: Manacher

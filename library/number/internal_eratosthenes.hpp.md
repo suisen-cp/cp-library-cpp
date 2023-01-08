@@ -28,6 +28,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/tetration_mod.hpp
     title: $a\uparrow\uparrow b \bmod m$
+  - icon: ':warning:'
+    path: library/string/dynamic_rolling_hash.hpp
+    title: Dynamic Rolling Hash
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc238_g.test.cpp
@@ -148,6 +151,7 @@ data:
   - library/number/fast_factorize.hpp
   - library/number/primitive_root.hpp
   - library/convolution/multi_variate_convolution_circular.hpp
+  - library/string/dynamic_rolling_hash.hpp
   timestamp: '2021-07-22 14:46:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
