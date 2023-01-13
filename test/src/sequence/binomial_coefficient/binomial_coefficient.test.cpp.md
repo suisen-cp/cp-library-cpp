@@ -23,17 +23,17 @@ data:
     \n\n\n#include <cassert>\n#include <vector>\n#include <atcoder/math>\n\n#line\
     \ 1 \"library/number/barrett_reduction.hpp\"\n\n\n\n#include <cstdint>\n#include\
     \ <utility>\n\nnamespace suisen {\n    struct BarrettReduction {\n        uint32_t\
-    \ m;\n        uint64_t im;\n        BarrettReduction(uint32_t m) : m(m), im(uint64_t(-1)\
-    \ / m + 1) {}\n\n        std::pair<uint64_t, uint32_t> quorem(uint64_t n) const\
-    \ {\n            uint64_t q = uint64_t((__uint128_t(n) * im) >> 64);\n       \
-    \     int64_t r = n - q * m;\n            if (r < 0) --q, r += m;\n          \
-    \  return std::make_pair(q, r);\n        }\n        uint32_t quo(uint64_t n) const\
-    \ {\n            return quorem(n).first;\n        }\n        uint32_t rem(uint64_t\
-    \ n) const {\n            return quorem(n).second;\n        }\n\n        template\
-    \ <typename Head, typename ...Tails>\n        uint32_t mul(Head &&head, Tails\
-    \ &&...tails) const {\n            if constexpr (sizeof...(tails)) {\n       \
-    \         return rem(uint64_t(head) * mul(std::forward<Tails>(tails)...));\n \
-    \           } else {\n                return head;\n            }\n        }\n\
+    \ m;\n        uint64_t im;\n        BarrettReduction() = default;\n        BarrettReduction(uint32_t\
+    \ m) : m(m), im(uint64_t(-1) / m + 1) {}\n\n        std::pair<uint64_t, uint32_t>\
+    \ quorem(uint64_t n) const {\n            uint64_t q = uint64_t((__uint128_t(n)\
+    \ * im) >> 64);\n            int64_t r = n - q * m;\n            if (r < 0) --q,\
+    \ r += m;\n            return std::make_pair(q, r);\n        }\n        uint32_t\
+    \ quo(uint64_t n) const {\n            return quorem(n).first;\n        }\n  \
+    \      uint32_t rem(uint64_t n) const {\n            return quorem(n).second;\n\
+    \        }\n\n        template <typename Head, typename ...Tails>\n        uint32_t\
+    \ mul(Head &&head, Tails &&...tails) const {\n            if constexpr (sizeof...(tails))\
+    \ {\n                return rem(uint64_t(head) * mul(std::forward<Tails>(tails)...));\n\
+    \            } else {\n                return head;\n            }\n        }\n\
     \    };\n} // namespace suisen\n\n\n\n#line 9 \"library/sequence/binomial_coefficient.hpp\"\
     \n\nnamespace suisen {\n    template <typename T>\n    std::vector<std::vector<T>>\
     \ binom_table(int n) {\n        std::vector<std::vector<T>> binom(n + 1, std::vector<T>(n\
@@ -107,7 +107,7 @@ data:
   isVerificationFile: true
   path: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2023-01-08 00:05:04+09:00'
+  timestamp: '2023-01-14 03:03:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp

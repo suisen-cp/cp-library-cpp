@@ -61,15 +61,15 @@ data:
   isVerificationFile: false
   path: library/number/ext_gcd.hpp
   requiredBy:
-  - library/number/garner.hpp
-  - library/number/index_calculus.hpp
   - library/convolution/multi_variate_convolution_circular.hpp
+  - library/number/index_calculus.hpp
+  - library/number/garner.hpp
   timestamp: '2021-07-17 02:33:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
 documentation_of: library/number/ext_gcd.hpp
 layout: document
 title: Ext Gcd

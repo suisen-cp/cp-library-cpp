@@ -231,11 +231,11 @@ data:
   timestamp: '2023-01-02 17:34:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
 documentation_of: library/polynomial/formal_power_series_relaxed.hpp
 layout: document
 title: Formal Power Series Relaxed

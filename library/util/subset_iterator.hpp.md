@@ -142,8 +142,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/sps/abc253_h.test.cpp
-  - test/src/util/subset_iterator/dummy_all_subset.test.cpp
   - test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
+  - test/src/util/subset_iterator/dummy_all_subset.test.cpp
   - test/src/util/subset_iterator/dummy_all_setbit.test.cpp
 documentation_of: library/util/subset_iterator.hpp
 layout: document

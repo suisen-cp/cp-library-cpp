@@ -655,6 +655,9 @@ data:
       path: library/number/mobius_function.hpp
       title: Mobius Function
     - icon: ':heavy_check_mark:'
+      path: library/number/mod_sqrt.hpp
+      title: library/number/mod_sqrt.hpp
+    - icon: ':heavy_check_mark:'
       path: library/number/modint_2^61m1.hpp
       title: Modint 2^61m1
     - icon: ':heavy_check_mark:'
@@ -1936,6 +1939,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/min_of_mod_of_linear/min_of_mod_of_linear.test.cpp
       title: test/src/number/min_of_mod_of_linear/min_of_mod_of_linear.test.cpp
+  - name: test/src/number/mod_sqrt
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/mod_sqrt/dummy.test.cpp
+      title: test/src/number/mod_sqrt/dummy.test.cpp
   - name: test/src/number/primitive_root
     pages:
     - icon: ':heavy_check_mark:'

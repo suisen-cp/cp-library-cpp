@@ -93,13 +93,13 @@ data:
   timestamp: '2022-06-07 17:31:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
   - test/src/convolution/relaxed_convolution/abc230_h.test.cpp
   - test/src/convolution/relaxed_convolution/convolution_mod.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
 documentation_of: library/convolution/relaxed_convolution.hpp
 layout: document
 title: Relaxed Convolution

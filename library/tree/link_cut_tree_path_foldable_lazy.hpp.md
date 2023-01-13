@@ -271,9 +271,9 @@ data:
   timestamp: '2022-06-23 03:06:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/tree/link_cut_tree_path_foldable_lazy/dummy1.test.cpp
   - test/src/tree/link_cut_tree_path_foldable_lazy/GRL_5_E.test.cpp
   - test/src/tree/link_cut_tree_path_foldable_lazy/yuki399.test.cpp
+  - test/src/tree/link_cut_tree_path_foldable_lazy/dummy1.test.cpp
 documentation_of: library/tree/link_cut_tree_path_foldable_lazy.hpp
 layout: document
 title: "\u30D1\u30B9\u548C\u53D6\u5F97\u30FB\u30D1\u30B9\u4F5C\u7528\u304C\u3067\u304D\

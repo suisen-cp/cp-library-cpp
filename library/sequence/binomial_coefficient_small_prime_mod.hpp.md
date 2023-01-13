@@ -73,8 +73,8 @@ data:
   isVerificationFile: false
   path: library/sequence/binomial_coefficient_small_prime_mod.hpp
   requiredBy:
-  - library/sequence/stirling_number1_small_prime_mod.hpp
   - library/sequence/stirling_number2_small_prime_mod.hpp
+  - library/sequence/stirling_number1_small_prime_mod.hpp
   timestamp: '2023-01-01 18:21:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

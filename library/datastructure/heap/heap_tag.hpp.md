@@ -38,8 +38,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/heap/heap_tag.hpp
   requiredBy:
-  - library/datastructure/priority_queue.hpp
   - library/datastructure/heap/binary_heap.hpp
+  - library/datastructure/priority_queue.hpp
   timestamp: '2022-09-29 21:45:35+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

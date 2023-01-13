@@ -81,9 +81,9 @@ data:
   timestamp: '2022-11-13 06:07:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
 documentation_of: library/number/garner.hpp
 layout: document
 title: Garner's Algorithm
