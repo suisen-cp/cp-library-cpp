@@ -8,6 +8,7 @@ namespace suisen {
     struct BarrettReduction {
         uint32_t m;
         uint64_t im;
+        BarrettReduction() = default;
         BarrettReduction(uint32_t m) : m(m), im(uint64_t(-1) / m + 1) {}
 
         std::pair<uint64_t, uint32_t> quorem(uint64_t n) const {
