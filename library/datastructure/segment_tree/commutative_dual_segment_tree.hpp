@@ -36,7 +36,7 @@ namespace suisen {
         void apply(int k, const F& f) {
             if (k < m) {
                 lazy[k] = composition(f, lazy[k]);
-            } else {
+            } else if (k - m < n) {
                 data[k - m] = mapping(f, data[k - m]);
             }
         }

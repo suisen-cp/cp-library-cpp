@@ -13,8 +13,17 @@ namespace suisen {
         RationalFPS(const FPSType& num = { 0 }, const FPSType& den = { 1 }) : num(num), den(den) {}
         RationalFPS(const std::pair<FPSType, FPSType>& p) : num(p.first), den(p.second) {}
 
-        FPSType to_fps(int max_deg) const {
-            return (num * den.inv(max_deg)).pre_inplace(max_deg);
+        FPSType to_fps(int n) const {
+            int dlz = 0;
+            while (dlz < den.size() and den[dlz] == 0) ++dlz;
+            int nlz = 0;
+            while (nlz < num.size() and num[nlz] == 0) ++nlz;
+            assert(dlz != den.size());
+            if (nlz == num.size()) {
+                return FPSType(n, mint(0));
+            }
+            assert(dlz <= nlz);
+            return ((num >> dlz) * (den >> dlz).inv(n)).cut(n);
         }
 
         RationalFPS<FPSType> operator+() const { return *this; }

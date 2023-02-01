@@ -3,20 +3,10 @@
 
 #include <atcoder/convolution>
 #include "library/math/inv_mods.hpp"
-#include "library/convolution/relaxed_convolution.hpp"
+#include "library/convolution/relaxed_convolution_ntt.hpp"
 #include "library/math/modint_extension.hpp"
 
 namespace suisen {
-    namespace internal::fps_relaxed {
-        template <typename mint>
-        using polynomial_type = typename RelaxedConvolution<mint>::polynomial_type;
-
-        template <typename mint>
-        polynomial_type<mint> convolve(const polynomial_type<mint> &f, const polynomial_type<mint> &g) {
-            return atcoder::convolution(f, g);
-        }
-    }
-    
     template <typename mint>
     struct RelaxedInv {
         mint append(const mint& fi) {
@@ -34,7 +24,7 @@ namespace suisen {
         }
     private:
         std::vector<mint> g;
-        RelaxedConvolution<mint> fg{ internal::fps_relaxed::convolve<mint> };
+        RelaxedConvolutionNTT<mint> fg;
     };
 
     template <typename mint>
@@ -55,7 +45,7 @@ namespace suisen {
         }
     private:
         std::vector<mint> g;
-        RelaxedConvolution<mint> df_g{ internal::fps_relaxed::convolve<mint> };
+        RelaxedConvolutionNTT<mint> df_g;
     };
 
     template <typename mint>
@@ -79,7 +69,7 @@ namespace suisen {
         }
     private:
         std::vector<mint> f, g;
-        RelaxedConvolution<mint> fg{ internal::fps_relaxed::convolve<mint> };
+        RelaxedConvolutionNTT<mint> fg;
     };
 
     template <typename mint>
@@ -126,8 +116,8 @@ namespace suisen {
         mint inv_base = 0;
 
         std::vector<mint> f, g;
-        RelaxedConvolution<mint> fg1{ internal::fps_relaxed::convolve<mint> };
-        RelaxedConvolution<mint> fg2{ internal::fps_relaxed::convolve<mint> };
+        RelaxedConvolutionNTT<mint> fg1;
+        RelaxedConvolutionNTT<mint> fg2;
     };
 
     template <typename mint>
@@ -152,7 +142,7 @@ namespace suisen {
     private:
         mint c = 0;
         std::vector<mint> g;
-        RelaxedConvolution<mint> gg{ internal::fps_relaxed::convolve<mint> };
+        RelaxedConvolutionNTT<mint> gg;
     };
 } // namespace suisen
 
