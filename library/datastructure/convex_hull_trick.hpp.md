@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
@@ -145,8 +145,8 @@ data:
   timestamp: '2022-10-30 21:37:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
   - test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
+  - test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
   - test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
 documentation_of: library/datastructure/convex_hull_trick.hpp
 layout: document

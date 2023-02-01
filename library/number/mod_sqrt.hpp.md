@@ -153,8 +153,6 @@ data:
   - test/src/number/mod_sqrt/dummy.test.cpp
 documentation_of: library/number/mod_sqrt.hpp
 layout: document
-redirect_from:
-- /library/library/number/mod_sqrt.hpp
-- /library/library/number/mod_sqrt.hpp.html
-title: library/number/mod_sqrt.hpp
+title: Mod Sqrt
 ---
+## Mod Sqrt

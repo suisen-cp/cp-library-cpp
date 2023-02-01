@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
@@ -189,7 +189,27 @@ data:
     \ v, const std::string& sep, const std::string& end) {\n    std::ostringstream\
     \ ss;\n    for (auto it = v.begin(); it != v.end();) {\n        ss << *it;\n \
     \       if (++it != v.end()) ss << sep;\n    }\n    ss << end;\n    return ss.str();\n\
-    }\n\nnamespace suisen {}\nusing namespace suisen;\nusing namespace std;\n"
+    }\n\ntemplate <typename Func, typename Seq>\nauto transform_to_vector(const Func\
+    \ &f, const Seq &s) {\n    std::vector<std::invoke_result_t<Func, typename Seq::value_type>>\
+    \ v;\n    v.reserve(std::size(s)), std::transform(std::begin(s), std::end(s),\
+    \ std::back_inserter(v), f);\n    return v;\n}\ntemplate <typename T, typename\
+    \ Seq>\nauto copy_to_vector(const Seq &s) {\n    std::vector<T> v;\n    v.reserve(std::size(s)),\
+    \ std::copy(std::begin(s), std::end(s), std::back_inserter(v));\n    return v;\n\
+    }\ntemplate <typename Seq>\nSeq concat(Seq s, const Seq &t) {\n    s.reserve(std::size(s)\
+    \ + std::size(t));\n    std::copy(std::begin(t), std::end(t), std::back_inserter(s));\n\
+    \    return s;\n}\ntemplate <typename Seq>\nstd::vector<Seq> split(const Seq s,\
+    \ typename Seq::value_type delim) {\n    std::vector<Seq> res;\n    for (auto\
+    \ itl = std::begin(s), itr = itl;; itl = ++itr) {\n        while (itr != std::end(s)\
+    \ and *itr != delim) ++itr;\n        res.emplace_back(itl, itr);\n        if (itr\
+    \ == std::end(s)) return res;\n    }\n}\n\nint digit_to_int(char c) { return c\
+    \ - '0'; }\nint lowercase_to_int(char c) { return c - 'a'; }\nint uppercase_to_int(char\
+    \ c) { return c - 'A'; }\n\nstd::vector<int> digit_str_to_ints(const std::string\
+    \ &s) {\n    return transform_to_vector(digit_to_int, s);\n}\nstd::vector<int>\
+    \ lowercase_str_to_ints(const std::string &s) {\n    return transform_to_vector(lowercase_to_int,\
+    \ s);\n}\nstd::vector<int> uppercase_str_to_ints(const std::string &s) {\n   \
+    \ return transform_to_vector(uppercase_to_int, s);\n}\n\nconst std::string Yes\
+    \ = \"Yes\", No = \"No\", YES = \"YES\", NO = \"NO\";\n\nnamespace suisen {}\n\
+    using namespace suisen;\nusing namespace std;\n"
   code: "#include <bits/stdc++.h>\n\n#ifdef _MSC_VER\n#  include <intrin.h>\n#else\n\
     #  include <x86intrin.h>\n#endif\n\n#include \"library/type_traits/type_traits.hpp\"\
     \n\n// ! type aliases\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\n\n\
@@ -332,14 +352,34 @@ data:
     \ v, const std::string& sep, const std::string& end) {\n    std::ostringstream\
     \ ss;\n    for (auto it = v.begin(); it != v.end();) {\n        ss << *it;\n \
     \       if (++it != v.end()) ss << sep;\n    }\n    ss << end;\n    return ss.str();\n\
-    }\n\nnamespace suisen {}\nusing namespace suisen;\nusing namespace std;\n"
+    }\n\ntemplate <typename Func, typename Seq>\nauto transform_to_vector(const Func\
+    \ &f, const Seq &s) {\n    std::vector<std::invoke_result_t<Func, typename Seq::value_type>>\
+    \ v;\n    v.reserve(std::size(s)), std::transform(std::begin(s), std::end(s),\
+    \ std::back_inserter(v), f);\n    return v;\n}\ntemplate <typename T, typename\
+    \ Seq>\nauto copy_to_vector(const Seq &s) {\n    std::vector<T> v;\n    v.reserve(std::size(s)),\
+    \ std::copy(std::begin(s), std::end(s), std::back_inserter(v));\n    return v;\n\
+    }\ntemplate <typename Seq>\nSeq concat(Seq s, const Seq &t) {\n    s.reserve(std::size(s)\
+    \ + std::size(t));\n    std::copy(std::begin(t), std::end(t), std::back_inserter(s));\n\
+    \    return s;\n}\ntemplate <typename Seq>\nstd::vector<Seq> split(const Seq s,\
+    \ typename Seq::value_type delim) {\n    std::vector<Seq> res;\n    for (auto\
+    \ itl = std::begin(s), itr = itl;; itl = ++itr) {\n        while (itr != std::end(s)\
+    \ and *itr != delim) ++itr;\n        res.emplace_back(itl, itr);\n        if (itr\
+    \ == std::end(s)) return res;\n    }\n}\n\nint digit_to_int(char c) { return c\
+    \ - '0'; }\nint lowercase_to_int(char c) { return c - 'a'; }\nint uppercase_to_int(char\
+    \ c) { return c - 'A'; }\n\nstd::vector<int> digit_str_to_ints(const std::string\
+    \ &s) {\n    return transform_to_vector(digit_to_int, s);\n}\nstd::vector<int>\
+    \ lowercase_str_to_ints(const std::string &s) {\n    return transform_to_vector(lowercase_to_int,\
+    \ s);\n}\nstd::vector<int> uppercase_str_to_ints(const std::string &s) {\n   \
+    \ return transform_to_vector(uppercase_to_int, s);\n}\n\nconst std::string Yes\
+    \ = \"Yes\", No = \"No\", YES = \"YES\", NO = \"NO\";\n\nnamespace suisen {}\n\
+    using namespace suisen;\nusing namespace std;\n"
   dependsOn:
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
   path: library/template.hpp
   requiredBy:
   - library/template.cpp
-  timestamp: '2022-11-06 23:07:33+09:00'
+  timestamp: '2023-02-02 02:15:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.hpp

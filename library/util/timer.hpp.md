@@ -55,8 +55,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/csr_graph/dummy.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
 documentation_of: library/util/timer.hpp
 layout: document
 title: Timer

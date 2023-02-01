@@ -55,8 +55,6 @@ data:
   - test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
 documentation_of: library/number/barrett_reduction.hpp
 layout: document
-redirect_from:
-- /library/library/number/barrett_reduction.hpp
-- /library/library/number/barrett_reduction.hpp.html
-title: library/number/barrett_reduction.hpp
+title: Barrett Reduction
 ---
+## Barrett Reduction

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   - icon: ':heavy_check_mark:'
@@ -18,7 +18,7 @@ data:
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'
@@ -364,11 +364,11 @@ data:
   timestamp: '2023-01-01 18:21:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/array_sps/abc253_h_2.test.cpp
-  - test/src/math/array_sps/abc213_g.test.cpp
+  - test/src/math/array_sps/abc236_h.test.cpp
   - test/src/math/array_sps/arc105_f.test.cpp
   - test/src/math/array_sps/abc253_h.test.cpp
-  - test/src/math/array_sps/abc236_h.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
+  - test/src/math/array_sps/abc213_g.test.cpp
 documentation_of: library/convolution/array_subset_convolution.hpp
 layout: document
 title: Array Subset Convolution

@@ -102,9 +102,9 @@ data:
   timestamp: '2022-11-13 03:53:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
 documentation_of: library/convolution/arbitrary_mod_convolution.hpp
 layout: document

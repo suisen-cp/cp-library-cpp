@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/tetration_mod.hpp
     title: $a\uparrow\uparrow b \bmod m$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

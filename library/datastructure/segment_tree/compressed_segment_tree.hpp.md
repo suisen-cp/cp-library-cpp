@@ -145,8 +145,8 @@ data:
   timestamp: '2022-10-31 00:30:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/segment_tree/compressed_segment_tree/abc266_h_2.test.cpp
   - test/src/datastructure/segment_tree/compressed_segment_tree/abc266_h.test.cpp
+  - test/src/datastructure/segment_tree/compressed_segment_tree/abc266_h_2.test.cpp
 documentation_of: library/datastructure/segment_tree/compressed_segment_tree.hpp
 layout: document
 title: "\u4EFB\u610F\u6B21\u5143 Segment Tree"

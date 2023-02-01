@@ -7,7 +7,7 @@ data:
     title: $\displaystyle \sum _ i i ^ d r ^ i$
   - icon: ':warning:'
     path: library/sequence/binomial_coefficitnt_enumeration.hpp
-    title: library/sequence/binomial_coefficitnt_enumeration.hpp
+    title: Binomial Coefficitnt Enumeration
   - icon: ':heavy_check_mark:'
     path: library/sequence/eulerian_number.hpp
     title: Eulerian Number
@@ -107,24 +107,24 @@ data:
   isVerificationFile: false
   path: library/number/linear_sieve.hpp
   requiredBy:
-  - library/sequence/powers.hpp
-  - library/sequence/eulerian_number.hpp
   - library/sequence/binomial_coefficitnt_enumeration.hpp
-  - library/sequence/stirling_number2_small_prime_mod.hpp
+  - library/sequence/powers.hpp
   - library/sequence/stirling_number2.hpp
+  - library/sequence/eulerian_number.hpp
+  - library/sequence/stirling_number2_small_prime_mod.hpp
   - library/math/sum_i^d_r^i.hpp
   timestamp: '2021-08-04 13:32:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
 documentation_of: library/number/linear_sieve.hpp
 layout: document
 title: "\u7DDA\u5F62\u7BE9"

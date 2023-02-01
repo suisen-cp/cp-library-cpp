@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
@@ -343,12 +343,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/dummy.test.cpp
   - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
 documentation_of: library/datastructure/wavelet_matrix.hpp
 layout: document
 title: Wavelet Matrix

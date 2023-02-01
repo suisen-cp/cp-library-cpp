@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\u53EF\
       \u63DB\u306A\u5834\u5408)"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\
@@ -43,10 +43,10 @@ data:
     \ f);\n            }\n        }\n    protected:\n        int n, m;\n        std::vector<T>\
     \ data;\n        std::vector<F> lazy;\n\n        void apply(int k, const F& f)\
     \ {\n            if (k < m) {\n                lazy[k] = composition(f, lazy[k]);\n\
-    \            } else {\n                data[k - m] = mapping(f, data[k - m]);\n\
-    \            }\n        }\n    private:\n        static int ceil_pow2(int n) {\n\
-    \            int m = 1;\n            while (m < n) m <<= 1;\n            return\
-    \ m;\n        }\n    };\n} // namespace suisen\n\n#endif // SUISEN_COM_DUAL_SEGTREE\n\
+    \            } else if (k - m < n) {\n                data[k - m] = mapping(f,\
+    \ data[k - m]);\n            }\n        }\n    private:\n        static int ceil_pow2(int\
+    \ n) {\n            int m = 1;\n            while (m < n) m <<= 1;\n         \
+    \   return m;\n        }\n    };\n} // namespace suisen\n\n#endif // SUISEN_COM_DUAL_SEGTREE\n\
     #line 5 \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\n\nnamespace\
     \ suisen {\n    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F,\
     \ F), F(*id)()>\n    struct DualSegmentTree : public CommutativeDualSegmentTree<T,\
@@ -86,13 +86,13 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree/dual_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-07-16 03:53:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-02-02 02:15:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
+  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
-  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-  - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
 documentation_of: library/datastructure/segment_tree/dual_segment_tree.hpp
 layout: document
 title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"

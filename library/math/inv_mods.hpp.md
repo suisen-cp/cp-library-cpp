@@ -21,16 +21,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
     title: Array Fps Naive
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: library/polynomial/compose_exp.hpp
+    title: Compose Exp
+  - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: Formal Power Series Relaxed
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
@@ -49,6 +52,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
     title: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/semi_relaxed_convolution_ntt/exp_of_formal_power_series.test.cpp
+    title: test/src/convolution/semi_relaxed_convolution_ntt/exp_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
@@ -97,6 +103,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
+  - icon: ':x:'
+    path: test/src/polynomial/compose_exp/arc154_f.test.cpp
+    title: test/src/polynomial/compose_exp/arc154_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
     title: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
@@ -133,19 +142,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -253,9 +262,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\n\
@@ -300,92 +309,95 @@ data:
   isVerificationFile: false
   path: library/math/inv_mods.hpp
   requiredBy:
-  - library/linear_algebra/hafnian.hpp
-  - library/convolution/array_subset_convolution.hpp
-  - library/convolution/subset_convolution.hpp
   - library/sequence/stirling_number1.hpp
   - library/sequence/stirling_number1_small_prime_mod.hpp
-  - library/math/array_sps.hpp
-  - library/math/sps.hpp
+  - library/linear_algebra/hafnian.hpp
+  - library/polynomial/fps_naive.hpp
+  - library/polynomial/compose_exp.hpp
+  - library/polynomial/fps.hpp
   - library/polynomial/array_fps_naive.hpp
   - library/polynomial/formal_power_series_relaxed.hpp
-  - library/polynomial/subset_sum.hpp
-  - library/polynomial/fps_naive.hpp
   - library/polynomial/formal_power_series.hpp
-  - library/polynomial/fps.hpp
+  - library/polynomial/subset_sum.hpp
+  - library/convolution/subset_convolution.hpp
+  - library/convolution/array_subset_convolution.hpp
+  - library/math/sps.hpp
+  - library/math/array_sps.hpp
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - test/src/convolution/relaxed_convolution/abc230_h.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
   - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - test/src/sequence/partition_number/partition_function.test.cpp
-  - test/src/sequence/partition_number/partition_function_2.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/math/sps/abc253_h_2.test.cpp
-  - test/src/math/sps/abc213_g.test.cpp
-  - test/src/math/sps/arc105_f.test.cpp
-  - test/src/math/sps/abc253_h.test.cpp
-  - test/src/math/sps/abc236_h.test.cpp
-  - test/src/math/array_sps/abc253_h_2.test.cpp
-  - test/src/math/array_sps/abc213_g.test.cpp
-  - test/src/math/array_sps/arc105_f.test.cpp
-  - test/src/math/array_sps/abc253_h.test.cpp
-  - test/src/math/array_sps/abc236_h.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
+  - test/src/sequence/stirling_number1/abc247_h.test.cpp
+  - test/src/sequence/partition_number/partition_function.test.cpp
+  - test/src/sequence/partition_number/partition_function_2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
   - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
+  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
   - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/fps_naive/abc245_d.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
   - test/src/polynomial/fps/inv_of_fps.test.cpp
-  - test/src/polynomial/fps/division_of_polynomials.test.cpp
   - test/src/polynomial/fps/pow_of_fps.test.cpp
-  - test/src/polynomial/fps/log_of_fps.test.cpp
+  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/fps/exp_of_fps.test.cpp
+  - test/src/polynomial/fps/log_of_fps.test.cpp
+  - test/src/polynomial/fps/division_of_polynomials.test.cpp
   - test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/compose_exp/arc154_f.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
+  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
+  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/convolution/semi_relaxed_convolution_ntt/exp_of_formal_power_series.test.cpp
+  - test/src/convolution/relaxed_convolution/abc230_h.test.cpp
+  - test/src/math/product_of_differences/yuki1938.test.cpp
+  - test/src/math/array_sps/abc236_h.test.cpp
+  - test/src/math/array_sps/arc105_f.test.cpp
+  - test/src/math/array_sps/abc253_h.test.cpp
+  - test/src/math/array_sps/abc253_h_2.test.cpp
+  - test/src/math/array_sps/abc213_g.test.cpp
+  - test/src/math/sps/abc236_h.test.cpp
+  - test/src/math/sps/arc105_f.test.cpp
+  - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/sps/abc253_h_2.test.cpp
+  - test/src/math/sps/abc213_g.test.cpp
 documentation_of: library/math/inv_mods.hpp
 layout: document
 title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy:
@@ -161,9 +161,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
 documentation_of: library/sequence/stirling_number1.hpp
 layout: document
 title: Stirling Number1

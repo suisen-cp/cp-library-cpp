@@ -7,6 +7,9 @@ data:
     title: Affine Clamp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
     title: test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
   _isVerificationFailed: false
@@ -81,6 +84,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
+  - test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/algebra/monoid/affine.hpp
 layout: document
 title: Affine

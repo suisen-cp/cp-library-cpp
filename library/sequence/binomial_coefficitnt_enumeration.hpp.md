@@ -136,8 +136,6 @@ data:
   verifiedWith: []
 documentation_of: library/sequence/binomial_coefficitnt_enumeration.hpp
 layout: document
-redirect_from:
-- /library/library/sequence/binomial_coefficitnt_enumeration.hpp
-- /library/library/sequence/binomial_coefficitnt_enumeration.hpp.html
-title: library/sequence/binomial_coefficitnt_enumeration.hpp
+title: Binomial Coefficitnt Enumeration
 ---
+## Binomial Coefficitnt Enumeration

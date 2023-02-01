@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: library/polynomial/compose_exp.hpp
+    title: Compose Exp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/polynomial/compose_exp/arc154_f.test.cpp
+    title: test/src/polynomial/compose_exp/arc154_f.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/rational_fps.hpp\"\n\n\n\n#include <queue>\n\
@@ -14,25 +20,30 @@ data:
     \        \n        FPSType num, den;\n        RationalFPS(const FPSType& num =\
     \ { 0 }, const FPSType& den = { 1 }) : num(num), den(den) {}\n        RationalFPS(const\
     \ std::pair<FPSType, FPSType>& p) : num(p.first), den(p.second) {}\n\n       \
-    \ FPSType to_fps(int max_deg) const {\n            return (num * den.inv(max_deg)).pre_inplace(max_deg);\n\
-    \        }\n\n        RationalFPS<FPSType> operator+() const { return *this; }\n\
-    \        RationalFPS<FPSType> operator-() const { return { -num, den }; }\n\n\
-    \        friend RationalFPS<FPSType> operator+(const RationalFPS& lhs, const RationalFPS&\
-    \ rhs) {\n            return { lhs.num * rhs.den + lhs.den * rhs.num, lhs.den\
-    \ * rhs.den };\n        }\n        friend RationalFPS<FPSType> operator-(const\
+    \ FPSType to_fps(int n) const {\n            int dlz = 0;\n            while (dlz\
+    \ < den.size() and den[dlz] == 0) ++dlz;\n            int nlz = 0;\n         \
+    \   while (nlz < num.size() and num[nlz] == 0) ++nlz;\n            assert(dlz\
+    \ != den.size());\n            if (nlz == num.size()) {\n                return\
+    \ FPSType(n, mint(0));\n            }\n            assert(dlz <= nlz);\n     \
+    \       return ((num >> dlz) * (den >> dlz).inv(n)).cut(n);\n        }\n\n   \
+    \     RationalFPS<FPSType> operator+() const { return *this; }\n        RationalFPS<FPSType>\
+    \ operator-() const { return { -num, den }; }\n\n        friend RationalFPS<FPSType>\
+    \ operator+(const RationalFPS& lhs, const RationalFPS& rhs) {\n            return\
+    \ { lhs.num * rhs.den + lhs.den * rhs.num, lhs.den * rhs.den };\n        }\n \
+    \       friend RationalFPS<FPSType> operator-(const RationalFPS& lhs, const RationalFPS&\
+    \ rhs) {\n            return { lhs.num * rhs.den - lhs.den * rhs.num, lhs.den\
+    \ * rhs.den };\n        }\n        friend RationalFPS<FPSType> operator*(const\
     \ RationalFPS& lhs, const RationalFPS& rhs) {\n            return { lhs.num *\
-    \ rhs.den - lhs.den * rhs.num, lhs.den * rhs.den };\n        }\n        friend\
-    \ RationalFPS<FPSType> operator*(const RationalFPS& lhs, const RationalFPS& rhs)\
-    \ {\n            return { lhs.num * rhs.num, lhs.den * rhs.den };\n        }\n\
-    \        friend RationalFPS<FPSType> operator*(const RationalFPS& lhs, const mint&\
-    \ val) {\n            return { lhs.num * val, lhs.den };\n        }\n        friend\
-    \ RationalFPS<FPSType> operator/(const RationalFPS& lhs, const mint& val) {\n\
-    \            return { lhs.num, lhs.den * val };\n        }\n        friend RationalFPS<FPSType>\
-    \ operator*(const mint& val, const RationalFPS& lhs) {\n            return { lhs.num\
+    \ rhs.num, lhs.den * rhs.den };\n        }\n        friend RationalFPS<FPSType>\
+    \ operator*(const RationalFPS& lhs, const mint& val) {\n            return { lhs.num\
     \ * val, lhs.den };\n        }\n        friend RationalFPS<FPSType> operator/(const\
-    \ mint& val, const RationalFPS& lhs) {\n            return { lhs.den * val, lhs.num\
-    \ };\n        }\n\n        RationalFPS<FPSType>& operator+=(const RationalFPS&\
-    \ rhs) { return *this = *this + rhs; }\n        RationalFPS<FPSType>& operator-=(const\
+    \ RationalFPS& lhs, const mint& val) {\n            return { lhs.num, lhs.den\
+    \ * val };\n        }\n        friend RationalFPS<FPSType> operator*(const mint&\
+    \ val, const RationalFPS& lhs) {\n            return { lhs.num * val, lhs.den\
+    \ };\n        }\n        friend RationalFPS<FPSType> operator/(const mint& val,\
+    \ const RationalFPS& lhs) {\n            return { lhs.den * val, lhs.num };\n\
+    \        }\n\n        RationalFPS<FPSType>& operator+=(const RationalFPS& rhs)\
+    \ { return *this = *this + rhs; }\n        RationalFPS<FPSType>& operator-=(const\
     \ RationalFPS& rhs) { return *this = *this - rhs; }\n        RationalFPS<FPSType>&\
     \ operator*=(const RationalFPS& rhs) { return *this = *this * rhs; }\n       \
     \ RationalFPS<FPSType>& operator*=(const mint& val) { return num *= val, *this;\
@@ -60,25 +71,30 @@ data:
     \        \n        FPSType num, den;\n        RationalFPS(const FPSType& num =\
     \ { 0 }, const FPSType& den = { 1 }) : num(num), den(den) {}\n        RationalFPS(const\
     \ std::pair<FPSType, FPSType>& p) : num(p.first), den(p.second) {}\n\n       \
-    \ FPSType to_fps(int max_deg) const {\n            return (num * den.inv(max_deg)).pre_inplace(max_deg);\n\
-    \        }\n\n        RationalFPS<FPSType> operator+() const { return *this; }\n\
-    \        RationalFPS<FPSType> operator-() const { return { -num, den }; }\n\n\
-    \        friend RationalFPS<FPSType> operator+(const RationalFPS& lhs, const RationalFPS&\
-    \ rhs) {\n            return { lhs.num * rhs.den + lhs.den * rhs.num, lhs.den\
-    \ * rhs.den };\n        }\n        friend RationalFPS<FPSType> operator-(const\
+    \ FPSType to_fps(int n) const {\n            int dlz = 0;\n            while (dlz\
+    \ < den.size() and den[dlz] == 0) ++dlz;\n            int nlz = 0;\n         \
+    \   while (nlz < num.size() and num[nlz] == 0) ++nlz;\n            assert(dlz\
+    \ != den.size());\n            if (nlz == num.size()) {\n                return\
+    \ FPSType(n, mint(0));\n            }\n            assert(dlz <= nlz);\n     \
+    \       return ((num >> dlz) * (den >> dlz).inv(n)).cut(n);\n        }\n\n   \
+    \     RationalFPS<FPSType> operator+() const { return *this; }\n        RationalFPS<FPSType>\
+    \ operator-() const { return { -num, den }; }\n\n        friend RationalFPS<FPSType>\
+    \ operator+(const RationalFPS& lhs, const RationalFPS& rhs) {\n            return\
+    \ { lhs.num * rhs.den + lhs.den * rhs.num, lhs.den * rhs.den };\n        }\n \
+    \       friend RationalFPS<FPSType> operator-(const RationalFPS& lhs, const RationalFPS&\
+    \ rhs) {\n            return { lhs.num * rhs.den - lhs.den * rhs.num, lhs.den\
+    \ * rhs.den };\n        }\n        friend RationalFPS<FPSType> operator*(const\
     \ RationalFPS& lhs, const RationalFPS& rhs) {\n            return { lhs.num *\
-    \ rhs.den - lhs.den * rhs.num, lhs.den * rhs.den };\n        }\n        friend\
-    \ RationalFPS<FPSType> operator*(const RationalFPS& lhs, const RationalFPS& rhs)\
-    \ {\n            return { lhs.num * rhs.num, lhs.den * rhs.den };\n        }\n\
-    \        friend RationalFPS<FPSType> operator*(const RationalFPS& lhs, const mint&\
-    \ val) {\n            return { lhs.num * val, lhs.den };\n        }\n        friend\
-    \ RationalFPS<FPSType> operator/(const RationalFPS& lhs, const mint& val) {\n\
-    \            return { lhs.num, lhs.den * val };\n        }\n        friend RationalFPS<FPSType>\
-    \ operator*(const mint& val, const RationalFPS& lhs) {\n            return { lhs.num\
+    \ rhs.num, lhs.den * rhs.den };\n        }\n        friend RationalFPS<FPSType>\
+    \ operator*(const RationalFPS& lhs, const mint& val) {\n            return { lhs.num\
     \ * val, lhs.den };\n        }\n        friend RationalFPS<FPSType> operator/(const\
-    \ mint& val, const RationalFPS& lhs) {\n            return { lhs.den * val, lhs.num\
-    \ };\n        }\n\n        RationalFPS<FPSType>& operator+=(const RationalFPS&\
-    \ rhs) { return *this = *this + rhs; }\n        RationalFPS<FPSType>& operator-=(const\
+    \ RationalFPS& lhs, const mint& val) {\n            return { lhs.num, lhs.den\
+    \ * val };\n        }\n        friend RationalFPS<FPSType> operator*(const mint&\
+    \ val, const RationalFPS& lhs) {\n            return { lhs.num * val, lhs.den\
+    \ };\n        }\n        friend RationalFPS<FPSType> operator/(const mint& val,\
+    \ const RationalFPS& lhs) {\n            return { lhs.den * val, lhs.num };\n\
+    \        }\n\n        RationalFPS<FPSType>& operator+=(const RationalFPS& rhs)\
+    \ { return *this = *this + rhs; }\n        RationalFPS<FPSType>& operator-=(const\
     \ RationalFPS& rhs) { return *this = *this - rhs; }\n        RationalFPS<FPSType>&\
     \ operator*=(const RationalFPS& rhs) { return *this = *this * rhs; }\n       \
     \ RationalFPS<FPSType>& operator*=(const mint& val) { return num *= val, *this;\
@@ -103,10 +119,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/polynomial/rational_fps.hpp
-  requiredBy: []
-  timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - library/polynomial/compose_exp.hpp
+  timestamp: '2023-02-02 02:15:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/src/polynomial/compose_exp/arc154_f.test.cpp
 documentation_of: library/polynomial/rational_fps.hpp
 layout: document
 title: Rational Fps

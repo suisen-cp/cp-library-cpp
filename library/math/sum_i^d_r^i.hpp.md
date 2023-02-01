@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
@@ -265,8 +265,8 @@ data:
   timestamp: '2022-10-17 20:08:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
 documentation_of: library/math/sum_i^d_r^i.hpp
 layout: document
 title: $\displaystyle \sum _ i i ^ d r ^ i$

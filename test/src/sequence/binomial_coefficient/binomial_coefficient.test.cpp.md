@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/number/barrett_reduction.hpp
-    title: library/number/barrett_reduction.hpp
+    title: Barrett Reduction
   - icon: ':heavy_check_mark:'
     path: library/sequence/binomial_coefficient.hpp
     title: Binomial Coefficient
