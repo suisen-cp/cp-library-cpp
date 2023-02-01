@@ -245,10 +245,10 @@ namespace suisen {
         int binary_search_find_first(const Predicate& f) const { return node_type::binary_search(_root, f); }
         // comp(T t, U u) = (t < u)
         template <typename U, typename Compare = std::less<>>
-        int lower_bound(const U& target, Compare comp = {}) { return node_type::lower_bound(_root, target, comp); }
+        int lower_bound(const U& target, Compare comp = {}) const { return node_type::lower_bound(_root, target, comp); }
         // comp(T u, U t) = (u < t)
         template <typename U, typename Compare = std::less<>>
-        int upper_bound(const U& target, Compare comp = {}) { return node_type::upper_bound(_root, target, comp); }
+        int upper_bound(const U& target, Compare comp = {}) const { return node_type::upper_bound(_root, target, comp); }
 
         // Returns max{ r | f(op(A[l], ..., A[r-1])) = true }
         template <typename Predicate>

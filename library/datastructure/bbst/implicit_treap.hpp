@@ -49,6 +49,8 @@ namespace suisen {
             assert(k < size_t(size()));
             return node_type::get(_root, k);
         }
+        value_type& front() { return (*this)[0]; }
+        value_type& back() { return (*this)[size() - 1]; }
         const value_type& front() const { return (*this)[0]; }
         const value_type& back() const { return (*this)[size() - 1]; }
 
@@ -93,10 +95,10 @@ namespace suisen {
         int binary_search_find_first(const Predicate& f) const { return node_type::binary_search(_root, f); }
         // comp(T t, U u) = (t < u)
         template <typename U, typename Compare = std::less<>>
-        int lower_bound(const U& target, Compare comp = {}) { return node_type::lower_bound(_root, target, comp); }
+        int lower_bound(const U& target, Compare comp = {}) const { return node_type::lower_bound(_root, target, comp); }
         // comp(T u, U t) = (u < t)
         template <typename U, typename Compare = std::less<>>
-        int upper_bound(const U& target, Compare comp = {}) { return node_type::upper_bound(_root, target, comp); }
+        int upper_bound(const U& target, Compare comp = {}) const { return node_type::upper_bound(_root, target, comp); }
 
         using iterator = typename node_type::iterator;
         using reverse_iterator = typename node_type::reverse_iterator;
