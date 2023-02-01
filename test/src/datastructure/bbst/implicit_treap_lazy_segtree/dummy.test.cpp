@@ -14,7 +14,7 @@ std::ostream& operator<<(std::ostream &out, const std::vector<T> &a) {
 
 #include "library/datastructure/bbst/implicit_treap_lazy_segtree.hpp"
 
-template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F, T)>
+template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F, T, int)>
 struct NaiveSolutionForLazySegmentTree {
     NaiveSolutionForLazySegmentTree() = default;
     NaiveSolutionForLazySegmentTree(const std::vector<T> &dat) : _n(dat.size()), _dat(dat) {}
@@ -54,7 +54,7 @@ struct NaiveSolutionForLazySegmentTree {
     }
     void apply(int l, int r, const F &f) {
         assert(0 <= l and l <= r and r <= _n);
-        for (int i = l; i < r; ++i) _dat[i] = mapping(f, _dat[i]);
+        for (int i = l; i < r; ++i) _dat[i] = mapping(f, _dat[i], 1);
     }
 
     void reverse_all() {
@@ -106,23 +106,7 @@ private:
  * Range Update Range Sum
  */
 
-struct S {
-    long long sum;
-    int len;
-    S() = default;
-    S(long long sum, int len) : sum(sum), len(len) {}
-
-    bool operator==(const S &other) const {
-        return sum == other.sum and len == other.len;
-    }
-    bool operator!=(const S &other) const {
-        return not operator==(other);
-    }
-};
-
-std::ostream& operator<<(std::ostream &out, const S &a) {
-    return out << a.sum;
-}
+using S = long long;
 
 struct F {
     static constexpr int identity = std::numeric_limits<int>::max();
@@ -133,16 +117,16 @@ struct F {
 };
 
 S op(S x, S y) {
-    return S{ x.sum + y.sum, x.len + y.len };
+    return x + y;
 }
 S e() {
-    return S{ 0LL, 0 };
+    return 0;
 }
 S toggle(S x) {
     return x;
 }
-S mapping(F f, S x) {
-    return f.val == F::identity ? x : S{ (long long) f.val * x.len, x.len };
+S mapping(F f, S x, int len) {
+    return f.val == F::identity ? x : (long long) f.val * len;
 }
 F composition(F f, F g) {
     return f.val == F::identity ? g : f;
@@ -178,7 +162,7 @@ void test() {
     std::mt19937 rng{std::random_device{}()};
 
     std::vector<S> init(N);
-    for (int i = 0; i < N; ++i) init[i] = { (long long) rng() % MAX_VAL, 1 };
+    for (int i = 0; i < N; ++i) init[i] = rng() % MAX_VAL;
     
     Tree t1(init);
     Naive t2(init);
@@ -190,12 +174,12 @@ void test() {
             assert(t1.get(i) == t2.get(i));
         } else if (query_type == Q_set) {
             const int i = rng() % N;
-            const S v = { (long long) rng() % MAX_VAL, 1 };
+            const S v = rng() % MAX_VAL;
             t1.set(i, v);
             t2.set(i, v);
         } else if (query_type == Q_insert) {
             const int i = rng() % (N + 1);
-            const S v = { (long long) rng() % MAX_VAL, 1 };
+            const S v = rng() % MAX_VAL;
             t1.insert(i, v);
             t2.insert(i, v);
             ++N;
@@ -235,14 +219,14 @@ void test() {
         } else if (query_type == Q_max_right) {
             const int l = rng() % (N + 1);
             const int r = l + rng() % (N - l + 1);
-            long long sum = std::max(0LL, t2.prod(l, r).sum + int(rng() % MAX_VAL) - MAX_VAL / 2);
-            auto pred = [&](const S &x) { return x.sum <= sum; };
+            long long sum = std::max(0LL, t2.prod(l, r) + int(rng() % MAX_VAL) - MAX_VAL / 2);
+            auto pred = [&](const S &x) { return x <= sum; };
             assert(t1.max_right(l, pred) == t2.max_right(l, pred));
         } else if (query_type == Q_min_left) {
             const int l = rng() % (N + 1);
             const int r = l + rng() % (N - l + 1);
-            long long sum = std::max(0LL, t2.prod(l, r).sum + int(rng() % MAX_VAL) - MAX_VAL / 2);
-            auto pred = [&](const S &x) { return x.sum <= sum; };
+            long long sum = std::max(0LL, t2.prod(l, r) + int(rng() % MAX_VAL) - MAX_VAL / 2);
+            auto pred = [&](const S &x) { return x <= sum; };
             assert(t1.min_left(r, pred) == t2.min_left(r, pred));
         } else {
             assert(false);
@@ -250,8 +234,83 @@ void test() {
     }
 }
 
+void test2() {
+    std::mt19937 rng{ std::random_device{}() };
+    Tree seq;
+    const int n = 300, k = 20;
+
+    std::vector<S> q(n * k);
+    for (int i = 0; i < n * k; ++i) {
+        q[i] = i % n;
+    }
+    std::shuffle(q.begin(), q.end(), rng);
+
+    for (int v : q) {
+        if (rng() % 2) {
+            int k = seq.lower_bound(v);
+            assert(k == 0 or seq[k - 1] < v);
+            assert(k == seq.size() or seq[k] >= v);
+            seq.insert(k, v);
+        } else {
+            int k = seq.upper_bound(v);
+            assert(k == 0 or seq[k - 1] <= v);
+            assert(k == seq.size() or seq[k] > v);
+            seq.insert(k, v);
+        }
+    }
+
+    std::vector<S> sorted = q;
+    std::sort(sorted.begin(), sorted.end());
+
+    assert(std::equal(sorted.begin(), sorted.end(), seq.begin()));
+    assert(std::equal(sorted.rbegin(), sorted.rend(), seq.rbegin()));
+
+    for (int i = 0; i < n * k; ++i) {
+        assert(*seq.kth_iterator(i) == i / k);
+    }
+
+    for (int q = 0; q < 10000; ++q) {
+        int a = rng() % (n * k + 1);
+        int b = rng() % (n * k + 1);
+        int d = b - a;
+        assert(seq.kth_iterator(a) + d == seq.kth_iterator(b));
+        assert(seq.kth_iterator(a) == seq.kth_iterator(b) - d);
+    }
+
+    std::vector<S> naive = sorted;
+
+    for (int q = 0; q < 500; ++q) {
+        if (rng() % 2) {
+            int l = rng() % (n * k + 1);
+            int r = rng() % (n * k + 1);
+            if (l > r) std::swap(l, r);
+            seq.reverse(l, r);
+            std::reverse(naive.begin() + l, naive.begin() + r);
+        } else {
+            assert(std::equal(naive.begin(), naive.end(), seq.begin()));
+            assert(std::equal(naive.rbegin(), naive.rend(), seq.rbegin()));
+            std::vector<S> dump = seq.dump();
+            assert(std::equal(naive.begin(), naive.end(), dump.begin()));
+        }
+    }
+
+    // for (S& e : seq) --e; // Compile Error 
+    // for (S& e : naive) --e;
+    // assert(std::equal(naive.begin(), naive.end(), seq.begin()));
+    // assert(std::equal(naive.rbegin(), naive.rend(), seq.rbegin()));
+
+    const Tree& const_seq = const_cast<const Tree&>(seq);
+    assert(std::equal(naive.begin(), naive.end(), const_seq.begin()));
+    assert(std::equal(naive.rbegin(), naive.rend(), const_seq.rbegin()));
+
+    for (int i = 0; i < n * k; ++i) {
+        assert(const_seq[i] == naive[i]);
+    }
+}
+
 int main() {
     test();
+    test2();
     std::cout << "Hello World" << std::endl;
     return 0;
 }

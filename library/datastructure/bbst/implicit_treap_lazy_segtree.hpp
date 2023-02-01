@@ -5,14 +5,15 @@
 
 namespace suisen {
     namespace internal::implicit_treap {
-        template <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T), typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>
+        template <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T), typename F, T(*mapping)(F, T, int), F(*composition)(F, F), F(*id)()>
         struct RangeOperateRangeProductNode: Node<T, RangeOperateRangeProductNode<T, op, e, toggle, F, mapping, composition, id>> {
             using base = Node<T, RangeOperateRangeProductNode<T, op, e, toggle, F, mapping, composition, id>>;
             using node_pointer = typename base::node_pointer;
             using value_type = typename base::value_type;
+            using operator_type = F;
 
             value_type _sum;
-            F _laz;
+            operator_type _laz;
             RangeOperateRangeProductNode(const value_type& val): base(val), _sum(val), _laz(id()) {}
 
             // ----- override ----- //
@@ -23,7 +24,7 @@ namespace suisen {
             }
             static void push(node_pointer t) {
                 base::push(t);
-                F& laz = lazy(t);
+                operator_type& laz = lazy(t);
                 apply_all(base::child0(t), laz);
                 apply_all(base::child1(t), laz);
                 laz = id();
@@ -51,21 +52,21 @@ namespace suisen {
                 return { base::merge(tl, tm, tr), res };
             }
 
-            static F& lazy(node_pointer t) {
+            static operator_type& lazy(node_pointer t) {
                 return base::node(t)._laz;
             }
-            static node_pointer apply_all(node_pointer t, const F& f) {
+            static node_pointer apply_all(node_pointer t, const operator_type& f) {
                 if (t != base::null) {
-                    F& laz = lazy(t);
+                    operator_type& laz = lazy(t);
                     laz = composition(f, laz);
                     value_type& val = base::value(t);
-                    val = mapping(f, val);
+                    val = mapping(f, val, 1);
                     value_type& sum = prod_all(t);
-                    sum = mapping(f, sum);
+                    sum = mapping(f, sum, base::size(t));
                 }
                 return t;
             }
-            static node_pointer apply(node_pointer t, size_t l, size_t r, const F& f) {
+            static node_pointer apply(node_pointer t, size_t l, size_t r, const operator_type& f) {
                 auto [tl, tm, tr] = base::split(t, l, r);
                 return base::merge(tl, apply_all(tm, f), tr);
             }
@@ -146,11 +147,10 @@ namespace suisen {
         };
     }
 
-    template <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T), typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>
+    template <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T), typename F, T(*mapping)(F, T, int), F(*composition)(F, F), F(*id)()>
     class DynamicLazySegmentTree {
         using node_type = internal::implicit_treap::RangeOperateRangeProductNode<T, op, e, toggle, F, mapping, composition, id>;
         using node_pointer = typename node_type::node_pointer;
-        using value_type = typename node_type::value_type;
 
         node_pointer _root;
 
@@ -158,6 +158,9 @@ namespace suisen {
         DynamicLazySegmentTree(node_pointer root, node_pointer_construct): _root(root) {}
 
     public:
+        using value_type = typename node_type::value_type;
+        using operator_type = typename node_type::operator_type;
+
         DynamicLazySegmentTree(): _root(node_type::empty_node()) {}
         explicit DynamicLazySegmentTree(size_t n, const value_type& fill_value = {}): _root(node_type::build(n, fill_value)) {}
         template <typename U>
@@ -167,34 +170,20 @@ namespace suisen {
             node_type::delete_tree(_root);
             _root = node_type::empty_node();
         }
-        void clear() {
-            free();
-        }
+        void clear() { free(); }
 
-        static void reserve(size_t capacity) {
-            node_type::reserve(capacity);
-        }
+        static void reserve(size_t capacity) { node_type::reserve(capacity); }
 
-        bool empty() const {
-            return node_type::empty(_root);
-        }
-        int size() const {
-            return node_type::safe_size(_root);
-        }
+        bool empty() const { return node_type::empty(_root); }
+        int size() const { return node_type::safe_size(_root); }
 
-        const value_type& operator[](size_t k) const {
-            return get(k);
-        }
+        const value_type& operator[](size_t k) const { return get(k); }
         const value_type& get(size_t k) const {
             assert(k < size_t(size()));
             return node_type::get(_root, k);
         }
-        const value_type& front() const {
-            return get(0);
-        }
-        const value_type& back() const {
-            return get(size() - 1);
-        }
+        const value_type& front() const { return get(0); }
+        const value_type& back() const { return get(size() - 1); }
         void set(size_t k, const value_type& val) {
             assert(k < size_t(size()));
             _root = node_type::set(_root, k, [&](const value_type&) { return val; });
@@ -205,43 +194,29 @@ namespace suisen {
             _root = node_type::set(_root, k, [&](const value_type& val) { return f(val); });
         }
 
-        value_type prod_all() const {
-            return node_type::safe_prod(_root);
-        }
+        value_type prod_all() const { return node_type::safe_prod(_root); }
         value_type prod(size_t l, size_t r) {
             value_type res;
             std::tie(_root, res) = node_type::prod(_root, l, r);
             return res;
         }
 
-        void apply_all(const F& f) {
-            _root = node_type::apply_all(_root, f);
-        }
-        void apply(size_t l, size_t r, const F& f) {
-            _root = node_type::apply(_root, l, r, f);
-        }
+        void apply_all(const operator_type& f) { _root = node_type::apply_all(_root, f); }
+        void apply(size_t l, size_t r, const operator_type& f) { _root = node_type::apply(_root, l, r, f); }
 
         void insert(size_t k, const value_type& val) {
             assert(k <= size_t(size()));
             _root = node_type::insert(_root, k, val);
         }
-        void push_front(const value_type& val) {
-            _root = node_type::push_front(_root, val);
-        }
-        void push_back(const value_type& val) {
-            _root = node_type::push_back(_root, val);
-        }
+        void push_front(const value_type& val) { _root = node_type::push_front(_root, val); }
+        void push_back(const value_type& val) { _root = node_type::push_back(_root, val); }
 
         void erase(size_t k) {
             assert(k <= size_t(size()));
             _root = node_type::erase(_root, k);
         }
-        void pop_front() {
-            _root = node_type::pop_front(_root);
-        }
-        void pop_back() {
-            _root = node_type::pop_back(_root);
-        }
+        void pop_front() { _root = node_type::pop_front(_root); }
+        void pop_back() { _root = node_type::pop_back(_root); }
 
         DynamicLazySegmentTree split(size_t k) {
             assert(k <= size_t(size()));
@@ -249,9 +224,7 @@ namespace suisen {
             std::tie(_root, root_r) = node_type::split(_root, k);
             return DynamicLazySegmentTree(root_r, node_pointer_construct{});
         }
-        void merge(DynamicLazySegmentTree r) {
-            _root = node_type::merge(_root, r._root);
-        }
+        void merge(DynamicLazySegmentTree r) { _root = node_type::merge(_root, r._root); }
 
         void rotate(size_t k) {
             assert(k <= size_t(size()));
@@ -260,24 +233,22 @@ namespace suisen {
 
         void reverse(size_t l, size_t r) {
             assert(l <= r and r <= size_t(size()));
-            if (r - l >= 2) {
-                _root = node_type::reverse(_root, l, r);
-            }
+            if (r - l >= 2) _root = node_type::reverse(_root, l, r);
         }
-        void reverse_all() {
-            _root = node_type::reverse_all(_root);
-        }
+        void reverse_all() { _root = node_type::reverse_all(_root); }
 
-        std::vector<value_type> dump() const {
-            return node_type::dump(_root);
-        }
+        std::vector<value_type> dump() const { return node_type::dump(_root); }
 
         // Returns the first i s.t. f(A[i]) = true by binary search.
         // Requirement: f(A[i]) is monotonic.
         template <typename Predicate>
-        int binary_search_find_first(const Predicate& f) const {
-            return node_type::binary_search(_root, f);
-        }
+        int binary_search_find_first(const Predicate& f) const { return node_type::binary_search(_root, f); }
+        // comp(T t, U u) = (t < u)
+        template <typename U, typename Compare = std::less<>>
+        int lower_bound(const U& target, Compare comp = {}) { return node_type::lower_bound(_root, target, comp); }
+        // comp(T u, U t) = (u < t)
+        template <typename U, typename Compare = std::less<>>
+        int upper_bound(const U& target, Compare comp = {}) { return node_type::upper_bound(_root, target, comp); }
 
         // Returns max{ r | f(op(A[l], ..., A[r-1])) = true }
         template <typename Predicate>
@@ -294,15 +265,23 @@ namespace suisen {
             return res;
         }
 
-        auto begin() {
-            return node_type::begin(_root);
-        }
-        auto end() {
-            return node_type::end(_root);
-        }
-        auto kth_iterator(size_t k) {
-            return node_type::kth_iterator(_root, k);
-        }
+        using iterator = typename node_type::const_iterator;
+        using reverse_iterator = typename node_type::const_reverse_iterator;
+        using const_iterator = typename node_type::const_iterator;
+        using const_reverse_iterator = typename node_type::const_reverse_iterator;
+
+        iterator begin() const { return cbegin(); }
+        iterator end() const { return cend(); }
+        iterator kth_iterator(size_t k) const { return kth_const_iterator(k); }
+        reverse_iterator rbegin() const { return crbegin(); }
+        reverse_iterator rend() const { return crend(); }
+        reverse_iterator kth_reverse_iterator(size_t k) const { return kth_const_reverse_iterator(k); }
+        const_iterator cbegin() const { return node_type::cbegin(_root); }
+        const_iterator cend() const { return node_type::cend(_root); }
+        const_iterator kth_const_iterator(size_t k) const { return node_type::kth_const_iterator(_root, k); }
+        const_reverse_iterator crbegin() const { return node_type::crbegin(_root); }
+        const_reverse_iterator crend() const { return node_type::crend(_root); }
+        const_reverse_iterator kth_const_reverse_iterator(size_t k) const { return node_type::kth_const_reverse_iterator(_root, k); }
     };
 } // namespace suisen
 

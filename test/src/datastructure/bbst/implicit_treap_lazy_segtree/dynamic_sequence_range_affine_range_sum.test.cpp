@@ -18,23 +18,20 @@ std::ostream& operator<<(std::ostream& out, const mint &a) {
 #include "library/datastructure/bbst/implicit_treap_lazy_segtree.hpp"
 #include "library/algebra/monoid/affine.hpp"
 
-struct S {
-    mint sum;
-    int len;
-};
+using S = mint;
 using F = suisen::Affine<mint>;
 
 S op(S x, S y) {
-    return { x.sum + y.sum, x.len + y.len };
+    return x + y;
 }
 S e() {
-    return { 0, 0 };
+    return 0;
 }
 S toggle(S x) {
     return x;
 }
-S mapping(F f, S x) {
-    return { f.a * x.sum + f.b * x.len, x.len };
+S mapping(F f, S x, int len) {
+    return f.a * x + f.b * len;
 }
 F composition(F f, F g) {
     return f.compose(g);
@@ -52,9 +49,9 @@ int main() {
     int n, q;
     std::cin >> n >> q;
 
-    std::vector<S> init(n, S { 0, 1 });
+    std::vector<S> init(n);
     for (int i = 0; i < n; ++i) {
-        std::cin >> init[i].sum;
+        std::cin >> init[i];
     }
 
     Sequence seq(init);
@@ -66,7 +63,7 @@ int main() {
             int i;
             mint x;
             std::cin >> i >> x;
-            seq.insert(i, { x, 1 });
+            seq.insert(i, x);
         } else if (qtype == 1) {
             int i;
             std::cin >> i;
@@ -83,7 +80,7 @@ int main() {
         } else {
             int l, r;
             std::cin >> l >> r;
-            std::cout << seq.prod(l, r).sum << '\n';
+            std::cout << seq.prod(l, r) << '\n';
         }
     }
 
