@@ -21,16 +21,17 @@ data:
     \n#define PROBLEM \"https://atcoder.jp/contests/abc238/tasks/abc238_f\"\n\n#include\
     \ <iostream>\n#line 1 \"library/datastructure/bbst/implicit_treap_segtree.hpp\"\
     \n\n\n\n#line 1 \"library/datastructure/bbst/implicit_treap_base.hpp\"\n\n\n\n\
-    #include <cassert>\n#include <cstdint>\n#include <string>\n#include <random>\n\
-    #include <tuple>\n#include <vector>\n#include <utility>\n\nnamespace suisen::internal::implicit_treap\
-    \ {\n    template <typename T, typename Derived>\n    struct Node {\n        using\
-    \ random_engine = std::mt19937;\n        static inline random_engine rng{ std::random_device{}()\
-    \ };\n\n        using node_type = Derived;\n        using node_pointer = uint32_t;\n\
-    \        using priority_type = std::invoke_result_t<random_engine>;\n\n      \
-    \  using size_type = uint32_t;\n\n        using difference_type = int32_t;\n \
-    \       using value_type = T;\n        using pointer = value_type*;\n        using\
-    \ const_pointer = const value_type*;\n        using reference = value_type&;\n\
-    \        using const_reference = const value_type&;\n\n        static inline std::vector<node_type>\
+    #include <cassert>\n#include <cstdint>\n#include <optional>\n#include <string>\n\
+    #include <random>\n#include <tuple>\n#include <vector>\n#include <utility>\n\n\
+    namespace suisen::internal::implicit_treap {\n    template <typename T, typename\
+    \ Derived>\n    struct Node {\n        using random_engine = std::mt19937;\n \
+    \       static inline random_engine rng{ std::random_device{}() };\n\n       \
+    \ using node_type = Derived;\n        using node_pointer = uint32_t;\n       \
+    \ using priority_type = std::invoke_result_t<random_engine>;\n\n        using\
+    \ size_type = uint32_t;\n\n        using difference_type = int32_t;\n        using\
+    \ value_type = T;\n        using pointer = value_type*;\n        using const_pointer\
+    \ = const value_type*;\n        using reference = value_type&;\n        using\
+    \ const_reference = const value_type&;\n\n        static inline std::vector<node_type>\
     \ _nodes{};\n        static inline std::vector<node_pointer> _erased{};\n\n  \
     \      static constexpr node_pointer null = ~node_pointer(0);\n\n        node_pointer\
     \ _ch[2]{ null, null };\n        value_type _val;\n        size_type _size;\n\
@@ -74,21 +75,39 @@ data:
     \          res = push_back(res, std::move(e));\n            }\n            return\
     \ res;\n        }\n\n        static std::pair<node_pointer, node_pointer> split(node_pointer\
     \ t, size_type k) {\n            if (t == null) {\n                return { null,\
-    \ null };\n            }\n            node_type::push(t);\n            if (const\
-    \ size_type lsiz = safe_size(child0(t)); k <= lsiz) {\n                auto [ll,\
-    \ lr] = split(child0(t), k);\n                set_child0(t, lr);\n           \
-    \     return { ll, node_type::update(t) };\n            } else {\n           \
-    \     auto [rl, rr] = split(child1(t), k - (lsiz + 1));\n                set_child1(t,\
-    \ rl);\n                return { node_type::update(t), rr };\n            }\n\
-    \        }\n        static std::tuple<node_pointer, node_pointer, node_pointer>\
-    \ split(node_pointer t, size_type l, size_type r) {\n            auto [tlm, tr]\
-    \ = split(t, r);\n            auto [tl, tm] = split(tlm, l);\n            return\
-    \ { tl, tm, tr };\n        }\n        static node_pointer merge(node_pointer tl,\
-    \ node_pointer tr) {\n            if (tl == null or tr == null) {\n          \
-    \      return tl ^ tr ^ null;\n            }\n            if (priority(tl) < priority(tr))\
-    \ {\n                node_type::push(tr);\n                set_child0(tr, merge(tl,\
-    \ child0(tr)));\n                return node_type::update(tr);\n            }\
-    \ else {\n                node_type::push(tl);\n                set_child1(tl,\
+    \ null };\n            }\n            node_type::push(t);\n            if (k ==\
+    \ 0) {\n                return { null, t };\n            }\n            if (k\
+    \ == size(t)) {\n                return { t, null };\n            }\n        \
+    \    if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {\n         \
+    \       auto [ll, lr] = split(child0(t), k);\n                set_child0(t, lr);\n\
+    \                return { ll, node_type::update(t) };\n            } else {\n\
+    \                auto [rl, rr] = split(child1(t), k - (lsiz + 1));\n         \
+    \       set_child1(t, rl);\n                return { node_type::update(t), rr\
+    \ };\n            }\n        }\n        static std::tuple<node_pointer, node_pointer,\
+    \ node_pointer> split(node_pointer t, size_type l, size_type r) {\n          \
+    \  auto [tlm, tr] = split(t, r);\n            auto [tl, tm] = split(tlm, l);\n\
+    \            return { tl, tm, tr };\n        }\n        // Split immediately before\
+    \ the first element that satisfies the condition.\n        template <typename\
+    \ Predicate>\n        static std::pair<node_pointer, node_pointer> split_binary_search(node_pointer\
+    \ t, const Predicate& f) {\n            if (t == null) {\n                return\
+    \ { null, null };\n            }\n            node_type::push(t);\n          \
+    \  if (f(value(t))) {\n                auto [ll, lr] = split_binary_search(child0(t),\
+    \ f);\n                set_child0(t, lr);\n                return { ll, node_type::update(t)\
+    \ };\n            } else {\n                auto [rl, rr] = split_binary_search(child1(t),\
+    \ f);\n                set_child1(t, rl);\n                return { node_type::update(t),\
+    \ rr };\n            }\n        }\n\n        template <typename Compare = std::less<>>\n\
+    \        static std::pair<node_pointer, node_pointer> split_lower_bound(node_pointer\
+    \ t, const value_type& target, const Compare& comp) {\n            return split_binary_search(t,\
+    \ [&](const value_type& v) { return not comp(v, target); });\n        }\n    \
+    \    template <typename Compare = std::less<>>\n        static std::pair<node_pointer,\
+    \ node_pointer> split_upper_bound(node_pointer t, const value_type& target, const\
+    \ Compare& comp) {\n            return split_binary_search(t, [&](const value_type&\
+    \ v) { return comp(target, v); });\n        }\n\n        static node_pointer merge(node_pointer\
+    \ tl, node_pointer tr) {\n            if (tl == null or tr == null) {\n      \
+    \          return tl ^ tr ^ null;\n            }\n            if (priority(tl)\
+    \ < priority(tr)) {\n                node_type::push(tr);\n                set_child0(tr,\
+    \ merge(tl, child0(tr)));\n                return node_type::update(tr);\n   \
+    \         } else {\n                node_type::push(tl);\n                set_child1(tl,\
     \ merge(child1(tl), tr));\n                return node_type::update(tl);\n   \
     \         }\n        }\n        static node_pointer merge(node_pointer tl, node_pointer\
     \ tm, node_pointer tr) {\n            return merge(merge(tl, tm), tr);\n     \
@@ -103,62 +122,133 @@ data:
     \ {\n                    set_child1(t, insert_impl(child1(t), k - (lsiz + 1),\
     \ new_node));\n                }\n                return node_type::update(t);\n\
     \            }\n        }\n        template <typename ...Args>\n        static\
-    \ node_pointer insert(node_pointer t, size_type k, Args &&...args) { return insert_impl(t,\
-    \ k, create_node(std::forward<Args>(args)...)); }\n        template <typename\
-    \ ...Args>\n        static node_pointer push_front(node_pointer t, Args &&...args)\
-    \ { return insert(t, 0, std::forward<Args>(args)...); }\n        template <typename\
-    \ ...Args>\n        static node_pointer push_back(node_pointer t, Args &&...args)\
-    \ { return insert(t, safe_size(t), std::forward<Args>(args)...); }\n\n       \
-    \ static node_pointer erase(node_pointer t, size_type k) {\n            node_type::push(t);\n\
-    \            if (const size_type lsiz = safe_size(child0(t)); k == lsiz) {\n \
-    \               delete_node(t);\n                return merge(child0(t), child1(t));\n\
-    \            } else if (k < lsiz) {\n                set_child0(t, erase(child0(t),\
-    \ k));\n                return node_type::update(t);\n            } else {\n \
-    \               set_child1(t, erase(child1(t), k - (lsiz + 1)));\n           \
-    \     return node_type::update(t);\n            }\n        }\n        static node_pointer\
-    \ pop_front(node_pointer t) { return erase(t, 0); }\n        static node_pointer\
-    \ pop_back(node_pointer t) { return erase(t, safe_size(t) - 1); }\n\n        static\
-    \ node_pointer rotate(node_pointer t, size_type k) {\n            auto [tl, tr]\
-    \ = split(t, k);\n            return merge(tr, tl);\n        }\n\n        static\
-    \ value_type& get(node_pointer t, size_type k) {\n            while (true) {\n\
-    \                node_type::push(t);\n                if (const size_type lsiz\
-    \ = safe_size(child0(t)); k == lsiz) {\n                    return value(t);\n\
-    \                } else if (k < lsiz) {\n                    t = child0(t);\n\
-    \                } else {\n                    k -= lsiz + 1;\n              \
-    \      t = child1(t);\n                }\n            }\n        }\n\n       \
-    \ template <typename Func>\n        static node_pointer set_update(node_pointer\
-    \ t, size_type k, const Func& f) {\n            node_type::push(t);\n        \
-    \    if (const size_type lsiz = safe_size(child0(t)); k == lsiz) {\n         \
-    \       value_type& val = value(t);\n                val = f(const_cast<const\
-    \ value_type&>(val));\n            } else if (k < lsiz) {\n                set_child0(t,\
-    \ set_update(child0(t), k, f));\n            } else {\n                set_child1(t,\
-    \ set_update(child1(t), k - (lsiz + 1), f));\n            }\n            return\
-    \ node_type::update(t);\n        }\n\n        static node_pointer reverse_all(node_pointer\
-    \ t) {\n            if (t != null) {\n                reversed(t) ^= true;\n \
-    \               std::swap(child0(t), child1(t));\n            }\n            return\
-    \ t;\n        }\n        static node_pointer reverse(node_pointer t, size_type\
-    \ l, size_type r) {\n            auto [tl, tm, tr] = split(t, l, r);\n       \
-    \     return merge(tl, Derived::reverse_all(tm), tr);\n        }\n\n        static\
-    \ std::vector<value_type> dump(node_pointer t) {\n            std::vector<value_type>\
-    \ res;\n            res.reserve(safe_size(t));\n            auto rec = [&](auto\
-    \ rec, node_pointer t) -> void {\n                if (t == null) return;\n   \
-    \             node_type::push(t);\n                rec(rec, child0(t));\n    \
-    \            res.push_back(value(t));\n                rec(rec, child1(t));\n\
-    \            };\n            rec(rec, t);\n            return res;\n        }\n\
-    \n        // Predicate : (value, index) -> { false, true }\n        template <typename\
-    \ Predicate>\n        static size_type binary_search(node_pointer t, const Predicate&\
-    \ f) {\n            int ng = -1, ok = safe_size(t);\n            while (ok - ng\
-    \ > 1) {\n                node_type::push(t);\n                if (const int root\
-    \ = ng + safe_size(child0(t)) + 1; f(value(t), root)) {\n                    ok\
-    \ = root, t = child0(t);\n                } else {\n                    ng = root,\
-    \ t = child1(t);\n                }\n            }\n            return ok;\n \
-    \       }\n\n        // comp(T t, U u) = (t < u)\n        template <typename U,\
-    \ typename Compare = std::less<>>\n        static size_type lower_bound(node_pointer\
-    \ t, const U& target, Compare comp = {}) {\n            return binary_search(t,\
-    \ [&](const value_type& v, int) { return not comp(v, target); });\n        }\n\
-    \        // comp(T u, U t) = (u < t)\n        template <typename U, typename Compare\
-    \ = std::less<>>\n        static size_type upper_bound(node_pointer t, const U&\
-    \ target, Compare comp = {}) {\n            return binary_search(t, [&](const\
+    \ node_pointer insert(node_pointer t, size_type k, Args &&...args) {\n       \
+    \     return insert_impl(t, k, create_node(std::forward<Args>(args)...));\n  \
+    \      }\n        template <typename ...Args>\n        static node_pointer push_front(node_pointer\
+    \ t, Args &&...args) {\n            return insert(t, 0, std::forward<Args>(args)...);\n\
+    \        }\n        template <typename ...Args>\n        static node_pointer push_back(node_pointer\
+    \ t, Args &&...args) {\n            return insert(t, safe_size(t), std::forward<Args>(args)...);\n\
+    \        }\n\n        // Insert a new node immediately before the first element\
+    \ that satisfies the condition.\n        // Returns { node, position to insert\
+    \ }\n        template <typename Predicate>\n        static std::pair<node_pointer,\
+    \ size_type> insert_binary_search_impl(node_pointer t, const Predicate& f, node_pointer\
+    \ new_node) {\n            if (t == null) {\n                return { new_node,\
+    \ 0 };\n            }\n            if (priority(new_node) > priority(t)) {\n \
+    \               auto [tl, tr] = split_binary_search(t, f);\n                set_child0(new_node,\
+    \ tl);\n                set_child1(new_node, tr);\n                return { node_type::update(new_node),\
+    \ safe_size(tl) };\n            } else {\n                node_type::push(t);\n\
+    \                if (f(value(t))) {\n                    auto [c0, pos] = insert_binary_search_impl(child0(t),\
+    \ f, new_node);\n                    set_child0(t, c0);\n                    return\
+    \ { node_type::update(t), pos };\n                } else {\n                 \
+    \   auto [c1, pos] = insert_binary_search_impl(child1(t), f, new_node);\n    \
+    \                set_child1(t, c1);\n                    return { node_type::update(t),\
+    \ pos + safe_size(child0(t)) + 1 };\n                }\n            }\n      \
+    \  }\n        template <typename Predicate, typename ...Args>\n        static\
+    \ std::pair<node_pointer, size_type> insert_binary_search(node_pointer t, const\
+    \ Predicate& f, Args &&...args) {\n            return insert_binary_search_impl(t,\
+    \ f, create_node(std::forward<Args>(args)...));\n        }\n        template <typename\
+    \ Compare = std::less<>>\n        static std::pair<node_pointer, size_type> insert_lower_bound(node_pointer\
+    \ t, const value_type& v, Compare comp) {\n            return insert_binary_search(t,\
+    \ [&](const value_type& x) { return not comp(x, v); }, v);\n        }\n      \
+    \  template <typename Compare = std::less<>>\n        static std::pair<node_pointer,\
+    \ size_type> insert_upper_bound(node_pointer t, const value_type& v, Compare comp)\
+    \ {\n            return insert_binary_search(t, [&](const value_type& x) { return\
+    \ comp(v, x); }, v);\n        }\n\n        static std::pair<node_pointer, value_type>\
+    \ erase(node_pointer t, size_type k) {\n            node_type::push(t);\n    \
+    \        if (const size_type lsiz = safe_size(child0(t)); k == lsiz) {\n     \
+    \           delete_node(t);\n                return { merge(child0(t), child1(t)),\
+    \ std::move(value(t)) };\n            } else if (k < lsiz) {\n               \
+    \ auto [c0, v] = erase(child0(t), k);\n                set_child0(t, c0);\n  \
+    \              return { node_type::update(t), std::move(v) };\n            } else\
+    \ {\n                auto [c1, v] = erase(child1(t), k - (lsiz + 1));\n      \
+    \          set_child1(t, c1);\n                return { node_type::update(t),\
+    \ std::move(v) };\n            }\n        }\n        static std::pair<node_pointer,\
+    \ value_type> pop_front(node_pointer t) { return erase(t, 0); }\n        static\
+    \ std::pair<node_pointer, value_type> pop_back(node_pointer t) { return erase(t,\
+    \ safe_size(t) - 1); }\n\n        // Erase the first element that satisfies the\
+    \ condition f if it also satisfies the condition g.\n        // returns { node,\
+    \ optional(position, value) }\n        template <typename Predicate, typename\
+    \ RemovePredicate>\n        static std::pair<node_pointer, std::optional<std::pair<size_type,\
+    \ value_type>>> erase_binary_search(node_pointer t, const Predicate& f, const\
+    \ RemovePredicate& g) {\n            if (t == null) return { null, std::nullopt\
+    \ };\n            node_type::push(t);\n            if (f(value(t))) {\n      \
+    \          auto [c0, erased] = erase_binary_search(child0(t), f, g);\n       \
+    \         if (erased) {\n                    set_child0(t, c0);\n            \
+    \        return { node_type::update(t), std::move(erased) };\n               \
+    \ } else if (g(value(t))) {\n                    delete_node(t);\n           \
+    \         std::pair<size_type, value_type> erased_entry{ safe_size(child0(t)),\
+    \ std::move(value(t)) };\n                    return { merge(child0(t), child1(t)),\
+    \ std::move(erased_entry) };\n                } else {\n                    return\
+    \ { t, std::nullopt };\n                }\n            } else {\n            \
+    \    auto [c1, erased] = erase_binary_search(child1(t), f, g);\n             \
+    \   if (erased) {\n                    set_child1(t, c1);\n                  \
+    \  size_type &pos = erased->first;\n                    pos += safe_size(child0(t))\
+    \ + 1;\n                    return { node_type::update(t), std::move(erased) };\n\
+    \                } else {\n                    return { t, std::nullopt };\n \
+    \               }\n            }\n        }\n        template <typename Compare\
+    \ = std::less<>>\n        static std::pair<node_pointer, std::optional<std::pair<size_type,\
+    \ value_type>>> erase_lower_bound(node_pointer t, const value_type& v, Compare\
+    \ comp) {\n            return erase_binary_search(\n                t,\n     \
+    \           [&](const value_type& x) { return not comp(x, v); },\n           \
+    \     [] { return true; }\n            );\n        }\n        template <typename\
+    \ Compare = std::less<>>\n        static std::pair<node_pointer, std::optional<std::pair<size_type,\
+    \ value_type>>> erase_upper_bound(node_pointer t, const value_type& v, Compare\
+    \ comp) {\n            return erase_binary_search(\n                t,\n     \
+    \           [&](const value_type& x) { return comp(v, x); },\n               \
+    \ [] { return true; }\n            );\n        }\n        template <typename Compare\
+    \ = std::less<>>\n        static std::pair<node_pointer, std::optional<std::pair<size_type,\
+    \ value_type>>> erase_if_exists(node_pointer t, const value_type& v, Compare comp)\
+    \ {\n            return erase_binary_search(\n                t,\n           \
+    \     [&](const value_type& x) { return not comp(x, v); },\n                [&](const\
+    \ value_type& x) { return not comp(v, x); }\n            );\n        }\n\n   \
+    \     static node_pointer rotate(node_pointer t, size_type k) {\n            auto\
+    \ [tl, tr] = split(t, k);\n            return merge(tr, tl);\n        }\n    \
+    \    static node_pointer rotate(node_pointer t, size_type l, size_type m, size_type\
+    \ r) {\n            auto [tl, tm, tr] = split(t, l, r);\n            return merge(tl,\
+    \ rotate(tm, m - l), tr);\n        }\n\n        static value_type& get(node_pointer\
+    \ t, size_type k) {\n            while (true) {\n                node_type::push(t);\n\
+    \                if (const size_type lsiz = safe_size(child0(t)); k == lsiz) {\n\
+    \                    return value(t);\n                } else if (k < lsiz) {\n\
+    \                    t = child0(t);\n                } else {\n              \
+    \      k -= lsiz + 1;\n                    t = child1(t);\n                }\n\
+    \            }\n        }\n\n        template <typename Func>\n        static\
+    \ node_pointer set_update(node_pointer t, size_type k, const Func& f) {\n    \
+    \        node_type::push(t);\n            if (const size_type lsiz = safe_size(child0(t));\
+    \ k == lsiz) {\n                value_type& val = value(t);\n                val\
+    \ = f(const_cast<const value_type&>(val));\n            } else if (k < lsiz) {\n\
+    \                set_child0(t, set_update(child0(t), k, f));\n            } else\
+    \ {\n                set_child1(t, set_update(child1(t), k - (lsiz + 1), f));\n\
+    \            }\n            return node_type::update(t);\n        }\n\n      \
+    \  static node_pointer reverse_all(node_pointer t) {\n            if (t != null)\
+    \ {\n                reversed(t) ^= true;\n                std::swap(child0(t),\
+    \ child1(t));\n            }\n            return t;\n        }\n        static\
+    \ node_pointer reverse(node_pointer t, size_type l, size_type r) {\n         \
+    \   auto [tl, tm, tr] = split(t, l, r);\n            return merge(tl, Derived::reverse_all(tm),\
+    \ tr);\n        }\n\n        static std::vector<value_type> dump(node_pointer\
+    \ t) {\n            std::vector<value_type> res;\n            res.reserve(safe_size(t));\n\
+    \            auto rec = [&](auto rec, node_pointer t) -> void {\n            \
+    \    if (t == null) return;\n                node_type::push(t);\n           \
+    \     rec(rec, child0(t));\n                res.push_back(value(t));\n       \
+    \         rec(rec, child1(t));\n            };\n            rec(rec, t);\n   \
+    \         return res;\n        }\n\n        // Find the first element that satisfies\
+    \ the condition f : (value, index) -> { false, true }.\n        // Returns { optional(value),\
+    \ position }\n        template <typename Predicate>\n        static std::pair<size_type,\
+    \ std::optional<value_type>> binary_search(node_pointer t, const Predicate& f)\
+    \ {\n            node_pointer res = null;\n            int ng = -1, ok = safe_size(t);\n\
+    \            while (ok - ng > 1) {\n                node_type::push(t);\n    \
+    \            if (const int root = ng + safe_size(child0(t)) + 1; f(value(t), root))\
+    \ {\n                    res = t;\n                    ok = root, t = child0(t);\n\
+    \                } else {\n                    ng = root, t = child1(t);\n   \
+    \             }\n            }\n            if (res == null) {\n             \
+    \   return { ok, std::nullopt };\n            } else {\n                return\
+    \ { ok, value(res) };\n            }\n        }\n\n        // comp(T t, U u) =\
+    \ (t < u)\n        template <typename U, typename Compare = std::less<>>\n   \
+    \     static std::pair<size_type, std::optional<value_type>> lower_bound(node_pointer\
+    \ t, const U& target, Compare comp) {\n            return binary_search(t, [&](const\
+    \ value_type& v, int) { return not comp(v, target); });\n        }\n        //\
+    \ comp(T u, U t) = (u < t)\n        template <typename U, typename Compare = std::less<>>\n\
+    \        static std::pair<size_type, std::optional<value_type>> upper_bound(node_pointer\
+    \ t, const U& target, Compare comp) {\n            return binary_search(t, [&](const\
     \ value_type& v, int) { return comp(target, v); });\n        }\n\n        template\
     \ <bool reversed_, bool constant_>\n        struct NodeIterator {\n          \
     \  static constexpr bool constant = constant_;\n            static constexpr bool\
@@ -331,42 +421,120 @@ data:
     \ {\n            assert(k <= size_t(size()));\n            _root = node_type::insert(_root,\
     \ k, val);\n        }\n        void push_front(const value_type& val) { _root\
     \ = node_type::push_front(_root, val); }\n        void push_back(const value_type&\
-    \ val) { _root = node_type::push_back(_root, val); }\n\n        void erase(size_t\
-    \ k) {\n            assert(k <= size_t(size()));\n            _root = node_type::erase(_root,\
-    \ k);\n        }\n        void pop_front() { _root = node_type::pop_front(_root);\
-    \ }\n        void pop_back() { _root = node_type::pop_back(_root); }\n\n     \
-    \   DynamicSegmentTree split(size_t k) {\n            assert(k <= size_t(size()));\n\
-    \            node_pointer root_r;\n            std::tie(_root, root_r) = node_type::split(_root,\
-    \ k);\n            return DynamicSegmentTree(root_r, node_pointer_construct{});\n\
-    \        }\n        void merge(DynamicSegmentTree r) { _root = node_type::merge(_root,\
+    \ val) { _root = node_type::push_back(_root, val); }\n\n        // Insert a new\
+    \ value immediately before the first element that satisfies the condition f.\n\
+    \        // Returns: the inserted position\n        // Requirements: f(A[i]) must\
+    \ be monotonic\n        template <typename Predicate>\n        int insert_binary_search(const\
+    \ value_type& val, const Predicate &f) {\n            int pos;\n            std::tie(_root,\
+    \ pos) = node_type::insert_binary_search(_root, f, val);\n            return pos;\n\
+    \        }\n        // Insert a new value immediately before the first element\
+    \ that is greater than or equal to the new value.\n        // Returns: the inserted\
+    \ position\n        // Requirements: sequence is sorted\n        template <typename\
+    \ Compare = std::less<>>\n        int insert_lower_bound(const value_type& val,\
+    \ const Compare &comp = {}) {\n            int pos;\n            std::tie(_root,\
+    \ pos) = node_type::insert_lower_bound(_root, val, comp);\n            return\
+    \ pos;\n        }\n        // Insert a new value immediately before the first\
+    \ element that is greater than the new value.\n        // Returns: the inserted\
+    \ position\n        // Requirements: sequence is sorted\n        template <typename\
+    \ Compare = std::less<>>\n        int insert_upper_bound(const value_type& val,\
+    \ const Compare &comp = {}) {\n            int pos;\n            std::tie(_root,\
+    \ pos) = node_type::insert_upper_bound(_root, val, comp);\n            return\
+    \ pos;\n        }\n\n        value_type erase(size_t k) {\n            assert(k\
+    \ <= size_t(size()));\n            value_type v;\n            std::tie(_root,\
+    \ v) = node_type::erase(_root, k);\n            return v;\n        }\n       \
+    \ value_type pop_front() { return erase(0); }\n        value_type pop_back() {\
+    \ return erase(size() - 1); }\n\n        // Erase the first element that satisfies\
+    \ the condition f if it also satisfies the condition g.\n        // returns optional(position,\
+    \ value)\n        // Requirements: sequence is sorted\n        template <typename\
+    \ Predicate, typename RemovePredicate>\n        std::optional<std::pair<int, value_type>>\
+    \ erase_binary_search(const Predicate &f, const RemovePredicate& g) {\n      \
+    \      auto [root, erased] = node_type::erase_binary_search(_root, f, g);\n  \
+    \          _root = root;\n            if (erased) {\n                return std::pair<int,\
+    \ value_type>{ erased->first, erased->second };\n            } else {\n      \
+    \          return std::nullopt;\n            }\n        }\n        // Erase the\
+    \ first element that is greater than or equal to val.\n        // returns optional(position,\
+    \ value)\n        // Requirements: sequence is sorted\n        template <typename\
+    \ Compare = std::less<>>\n        std::optional<std::pair<int, value_type>> erase_lower_bound(const\
+    \ value_type &val, const Compare &comp = {}) {\n            auto [root, erased]\
+    \ = node_type::erase_lower_bound(_root, val, comp);\n            _root = root;\n\
+    \            if (erased) {\n                return std::pair<int, value_type>{\
+    \ erased->first, erased->second };\n            } else {\n                return\
+    \ std::nullopt;\n            }\n        }\n        // Erase the first element\
+    \ that is greater than val.\n        // returns optional(position, value)\n  \
+    \      // Requirements: sequence is sorted\n        template <typename Compare\
+    \ = std::less<>>\n        std::optional<std::pair<int, value_type>> erase_upper_bound(const\
+    \ value_type &val, const Compare &comp = {}) {\n            auto [root, erased]\
+    \ = node_type::erase_upper_bound(_root, val, comp);\n            _root = root;\n\
+    \            if (erased) {\n                return std::pair<int, value_type>{\
+    \ erased->first, erased->second };\n            } else {\n                return\
+    \ std::nullopt;\n            }\n        }\n        // Erase the first element\
+    \ that is equal to val.\n        // returns optional(position, value)\n      \
+    \  // Requirements: sequence is sorted\n        template <typename Compare = std::less<>>\n\
+    \        std::optional<std::pair<int, value_type>> erase_if_exists(const value_type\
+    \ &val, const Compare &comp = {}) {\n            auto [root, erased] = node_type::erase_if_exists(_root,\
+    \ val, comp);\n            _root = root;\n            if (erased) {\n        \
+    \        return std::pair<int, value_type>{ erased->first, erased->second };\n\
+    \            } else {\n                return std::nullopt;\n            }\n \
+    \       }\n\n        // Split immediately before the k-th element.\n        DynamicSegmentTree\
+    \ split(size_t k) {\n            assert(k <= size_t(size()));\n            node_pointer\
+    \ root_r;\n            std::tie(_root, root_r) = node_type::split(_root, k);\n\
+    \            return DynamicSegmentTree(root_r, node_pointer_construct{});\n  \
+    \      }\n        // Split immediately before the first element that satisfies\
+    \ the condition.\n        // Requirements: f(A[i]) must be monotonic\n       \
+    \ template <typename Predicate>\n        DynamicSegmentTree split_binary_search(const\
+    \ Predicate &f) {\n            node_pointer root_r;\n            std::tie(_root,\
+    \ root_r) = node_type::split_binary_search(_root, f);\n            return DynamicSegmentTree(root_r,\
+    \ node_pointer_construct{});\n        }\n        // Split immediately before the\
+    \ first element that is greater than or equal to val.\n        // Requirements:\
+    \ sequence is sorted\n        template <typename Compare = std::less<>>\n    \
+    \    DynamicSegmentTree split_lower_bound(const value_type &val, const Compare\
+    \ &comp = {}) {\n            node_pointer root_r;\n            std::tie(_root,\
+    \ root_r) = node_type::split_lower_bound(_root, val, comp);\n            return\
+    \ DynamicSegmentTree(root_r, node_pointer_construct{});\n        }\n        //\
+    \ Split immediately before the first element that is greater than val.\n     \
+    \   // Requirements: sequence is sorted\n        template <typename Compare =\
+    \ std::less<>>\n        DynamicSegmentTree split_upper_bound(const value_type\
+    \ &val, const Compare &comp = {}) {\n            node_pointer root_r;\n      \
+    \      std::tie(_root, root_r) = node_type::split_upper_bound(_root, val, comp);\n\
+    \            return DynamicSegmentTree(root_r, node_pointer_construct{});\n  \
+    \      }\n\n        void merge(DynamicSegmentTree r) { _root = node_type::merge(_root,\
     \ r._root); }\n\n        void rotate(size_t k) {\n            assert(k <= size_t(size()));\n\
-    \            _root = node_type::rotate(_root, k);\n        }\n\n        void reverse(size_t\
-    \ l, size_t r) {\n            assert(l <= r and r <= size_t(size()));\n      \
-    \      if (r - l >= 2) _root = node_type::reverse(_root, l, r);\n        }\n \
-    \       void reverse_all() { _root = node_type::reverse_all(_root); }\n\n    \
-    \    std::vector<value_type> dump() const { return node_type::dump(_root); }\n\
-    \n        // Returns the first i s.t. f(A[i]) = true by binary search.\n     \
-    \   // Requirement: f(A[i]) is monotonic.\n        template <typename Predicate>\n\
-    \        int binary_search_find_first(const Predicate& f) const { return node_type::binary_search(_root,\
-    \ f); }\n        // comp(T t, U u) = (t < u)\n        template <typename U, typename\
-    \ Compare = std::less<>>\n        int lower_bound(const U& target, Compare comp\
-    \ = {}) { return node_type::lower_bound(_root, target, comp); }\n        // comp(T\
-    \ u, U t) = (u < t)\n        template <typename U, typename Compare = std::less<>>\n\
-    \        int upper_bound(const U& target, Compare comp = {}) { return node_type::upper_bound(_root,\
-    \ target, comp); }\n\n        // Returns max{ r | f(op(A[l], ..., A[r-1])) = true\
-    \ }\n        template <typename Predicate>\n        int max_right(size_t l, const\
-    \ Predicate& f) {\n            size_t res;\n            std::tie(_root, res) =\
-    \ node_type::max_right(_root, l, f);\n            return res;\n        }\n   \
-    \     // Returns min{ l | f(op(A[l], ..., A[r-1])) = true }\n        template\
-    \ <typename Predicate>\n        int min_left(size_t r, const Predicate& f) {\n\
-    \            size_t res;\n            std::tie(_root, res) = node_type::min_left(_root,\
-    \ r, f);\n            return res;\n        }\n\n        using iterator = typename\
-    \ node_type::const_iterator;\n        using reverse_iterator = typename node_type::const_reverse_iterator;\n\
-    \        using const_iterator = typename node_type::const_iterator;\n        using\
-    \ const_reverse_iterator = typename node_type::const_reverse_iterator;\n\n   \
-    \     iterator begin() const { return cbegin(); }\n        iterator end() const\
-    \ { return cend(); }\n        iterator kth_iterator(size_t k) const { return kth_const_iterator(k);\
-    \ }\n        reverse_iterator rbegin() const { return crbegin(); }\n        reverse_iterator\
+    \            _root = node_type::rotate(_root, k);\n        }\n        void rotate(size_t\
+    \ l, size_t m, size_t r) {\n            assert(l <= m and m <= r and r <= size_t(size()));\n\
+    \            _root = node_type::rotate(_root, l, m, r);\n        }\n\n       \
+    \ void reverse(size_t l, size_t r) {\n            assert(l <= r and r <= size_t(size()));\n\
+    \            if (r - l >= 2) _root = node_type::reverse(_root, l, r);\n      \
+    \  }\n        void reverse_all() { _root = node_type::reverse_all(_root); }\n\n\
+    \        std::vector<value_type> dump() const { return node_type::dump(_root);\
+    \ }\n\n        // Find the first element that satisfies the condition f.\n   \
+    \     // Returns { position, optional(value) }\n        // Requirements: f(A[i])\
+    \ must be monotonic\n        template <typename Predicate>\n        std::pair<int,\
+    \ std::optional<value_type>> binary_search(const Predicate& f) const {\n     \
+    \       auto [pos, val] = node_type::binary_search(_root, f);\n            return\
+    \ { pos, std::move(val) };\n        }\n        // comp(T t, U u) = (t < u)\n \
+    \       // Requirements: sequence is sorted\n        template <typename U, typename\
+    \ Compare = std::less<>>\n        std::pair<int, std::optional<value_type>> lower_bound(const\
+    \ U& target, Compare comp = {}) const {\n            auto [pos, val] = node_type::lower_bound(_root,\
+    \ target, comp);\n            return { pos, std::move(val) };\n        }\n   \
+    \     // comp(T u, U t) = (u < t)\n        // Requirements: sequence is sorted\n\
+    \        template <typename U, typename Compare = std::less<>>\n        std::pair<int,\
+    \ std::optional<value_type>> upper_bound(const U& target, Compare comp = {}) const\
+    \ {\n            auto [pos, val] = node_type::upper_bound(_root, target, comp);\n\
+    \            return { pos, std::move(val) };\n        }\n\n        // Returns\
+    \ max{ r | f(op(A[l], ..., A[r-1])) = true }\n        template <typename Predicate>\n\
+    \        int max_right(size_t l, const Predicate& f) {\n            size_t res;\n\
+    \            std::tie(_root, res) = node_type::max_right(_root, l, f);\n     \
+    \       return res;\n        }\n        // Returns min{ l | f(op(A[l], ..., A[r-1]))\
+    \ = true }\n        template <typename Predicate>\n        int min_left(size_t\
+    \ r, const Predicate& f) {\n            size_t res;\n            std::tie(_root,\
+    \ res) = node_type::min_left(_root, r, f);\n            return res;\n        }\n\
+    \n        using iterator = typename node_type::const_iterator;\n        using\
+    \ reverse_iterator = typename node_type::const_reverse_iterator;\n        using\
+    \ const_iterator = typename node_type::const_iterator;\n        using const_reverse_iterator\
+    \ = typename node_type::const_reverse_iterator;\n\n        iterator begin() const\
+    \ { return cbegin(); }\n        iterator end() const { return cend(); }\n    \
+    \    iterator kth_iterator(size_t k) const { return kth_const_iterator(k); }\n\
+    \        reverse_iterator rbegin() const { return crbegin(); }\n        reverse_iterator\
     \ rend() const { return crend(); }\n        reverse_iterator kth_reverse_iterator(size_t\
     \ k) const { return kth_const_reverse_iterator(k); }\n        const_iterator cbegin()\
     \ const { return node_type::cbegin(_root); }\n        const_iterator cend() const\
@@ -418,7 +586,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/bbst/implicit_treap_segtree/abc238_f.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 07:52:53+09:00'
+  timestamp: '2023-02-02 10:47:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/bbst/implicit_treap_segtree/abc238_f.test.cpp

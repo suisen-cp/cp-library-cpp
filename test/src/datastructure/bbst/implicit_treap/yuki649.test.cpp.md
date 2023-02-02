@@ -14,39 +14,38 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_d
+    PROBLEM: https://yukicoder.me/problems/no/649
     links:
-    - https://atcoder.jp/contests/abc237/tasks/abc237_d
-  bundledCode: "#line 1 \"test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_d\"\n\n#include\
-    \ <iostream>\n#line 1 \"library/datastructure/bbst/implicit_treap.hpp\"\n\n\n\n\
-    #line 1 \"library/datastructure/bbst/implicit_treap_base.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#include <cstdint>\n#include <optional>\n#include <string>\n#include\
-    \ <random>\n#include <tuple>\n#include <vector>\n#include <utility>\n\nnamespace\
-    \ suisen::internal::implicit_treap {\n    template <typename T, typename Derived>\n\
-    \    struct Node {\n        using random_engine = std::mt19937;\n        static\
-    \ inline random_engine rng{ std::random_device{}() };\n\n        using node_type\
-    \ = Derived;\n        using node_pointer = uint32_t;\n        using priority_type\
-    \ = std::invoke_result_t<random_engine>;\n\n        using size_type = uint32_t;\n\
-    \n        using difference_type = int32_t;\n        using value_type = T;\n  \
-    \      using pointer = value_type*;\n        using const_pointer = const value_type*;\n\
-    \        using reference = value_type&;\n        using const_reference = const\
-    \ value_type&;\n\n        static inline std::vector<node_type> _nodes{};\n   \
-    \     static inline std::vector<node_pointer> _erased{};\n\n        static constexpr\
-    \ node_pointer null = ~node_pointer(0);\n\n        node_pointer _ch[2]{ null,\
-    \ null };\n        value_type _val;\n        size_type _size;\n        priority_type\
-    \ _priority;\n\n        bool _rev = false;\n\n        Node(const value_type val\
-    \ = {}): _val(val), _size(1), _priority(rng()) {}\n\n        static void reserve(size_type\
-    \ capacity) { _nodes.reserve(capacity); }\n\n        static node_type& node(node_pointer\
-    \ t) { return _nodes[t]; }\n        static const node_type& const_node(node_pointer\
-    \ t) { return _nodes[t]; }\n\n        static value_type& value(node_pointer t)\
-    \ { return node(t)._val; }\n        static value_type set_value(node_pointer t,\
-    \ const value_type& new_val) { return std::exchange(value(t), new_val); }\n\n\
-    \        static bool empty(node_pointer t) { return t == null; }\n        static\
-    \ size_type& size(node_pointer t) { return node(t)._size; }\n        static size_type\
-    \ safe_size(node_pointer t) { return empty(t) ? 0 : size(t); }\n\n        static\
-    \ priority_type priority(node_pointer t) { return const_node(t)._priority; }\n\
-    \n        static node_pointer& child0(node_pointer t) { return node(t)._ch[0];\
+    - https://yukicoder.me/problems/no/649
+  bundledCode: "#line 1 \"test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp\"\
+    \n#define PROBLEM \"https://yukicoder.me/problems/no/649\"\n\n#include <iostream>\n\
+    \n#line 1 \"library/datastructure/bbst/implicit_treap.hpp\"\n\n\n\n#line 1 \"\
+    library/datastructure/bbst/implicit_treap_base.hpp\"\n\n\n\n#include <cassert>\n\
+    #include <cstdint>\n#include <optional>\n#include <string>\n#include <random>\n\
+    #include <tuple>\n#include <vector>\n#include <utility>\n\nnamespace suisen::internal::implicit_treap\
+    \ {\n    template <typename T, typename Derived>\n    struct Node {\n        using\
+    \ random_engine = std::mt19937;\n        static inline random_engine rng{ std::random_device{}()\
+    \ };\n\n        using node_type = Derived;\n        using node_pointer = uint32_t;\n\
+    \        using priority_type = std::invoke_result_t<random_engine>;\n\n      \
+    \  using size_type = uint32_t;\n\n        using difference_type = int32_t;\n \
+    \       using value_type = T;\n        using pointer = value_type*;\n        using\
+    \ const_pointer = const value_type*;\n        using reference = value_type&;\n\
+    \        using const_reference = const value_type&;\n\n        static inline std::vector<node_type>\
+    \ _nodes{};\n        static inline std::vector<node_pointer> _erased{};\n\n  \
+    \      static constexpr node_pointer null = ~node_pointer(0);\n\n        node_pointer\
+    \ _ch[2]{ null, null };\n        value_type _val;\n        size_type _size;\n\
+    \        priority_type _priority;\n\n        bool _rev = false;\n\n        Node(const\
+    \ value_type val = {}): _val(val), _size(1), _priority(rng()) {}\n\n        static\
+    \ void reserve(size_type capacity) { _nodes.reserve(capacity); }\n\n        static\
+    \ node_type& node(node_pointer t) { return _nodes[t]; }\n        static const\
+    \ node_type& const_node(node_pointer t) { return _nodes[t]; }\n\n        static\
+    \ value_type& value(node_pointer t) { return node(t)._val; }\n        static value_type\
+    \ set_value(node_pointer t, const value_type& new_val) { return std::exchange(value(t),\
+    \ new_val); }\n\n        static bool empty(node_pointer t) { return t == null;\
+    \ }\n        static size_type& size(node_pointer t) { return node(t)._size; }\n\
+    \        static size_type safe_size(node_pointer t) { return empty(t) ? 0 : size(t);\
+    \ }\n\n        static priority_type priority(node_pointer t) { return const_node(t)._priority;\
+    \ }\n\n        static node_pointer& child0(node_pointer t) { return node(t)._ch[0];\
     \ }\n        static node_pointer& child1(node_pointer t) { return node(t)._ch[1];\
     \ }\n        static node_pointer child(node_pointer t, bool b) { return node(t)._ch[b];\
     \ }\n        static node_pointer set_child0(node_pointer t, node_pointer cid)\
@@ -480,38 +479,38 @@ data:
     \ }\n        const_reverse_iterator crend() const { return node_type::crend(_root);\
     \ }\n        const_reverse_iterator kth_const_reverse_iterator(size_t k) const\
     \ { return node_type::kth_const_reverse_iterator(_root, k); }\n    };\n} // namespace\
-    \ suisen\n\n\n\n#line 5 \"test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp\"\
-    \n\nusing Sequence = suisen::DynamicArray<int>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n;\n    std::string s;\n    std::cin >>\
-    \ n >> s;\n\n    Sequence t;\n    t.push_back(0);\n\n    int pos = 0;\n    for\
-    \ (int i = 0; i < n; ++i) {\n        if (s[i] == 'L') {\n            t.insert(pos,\
-    \ i + 1);\n        } else {\n            t.insert(++pos, i + 1);\n        }\n\
-    \    }\n    std::vector<int> res = t.dump();\n\n    for (int i = 0; i <= n; ++i)\
-    \ {\n        std::cout << res[i] << \" \\n\"[i == n];\n    }\n\n    return 0;\n\
-    }\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_d\"\n\n\
-    #include <iostream>\n#include \"library/datastructure/bbst/implicit_treap.hpp\"\
-    \n\nusing Sequence = suisen::DynamicArray<int>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n;\n    std::string s;\n    std::cin >>\
-    \ n >> s;\n\n    Sequence t;\n    t.push_back(0);\n\n    int pos = 0;\n    for\
-    \ (int i = 0; i < n; ++i) {\n        if (s[i] == 'L') {\n            t.insert(pos,\
-    \ i + 1);\n        } else {\n            t.insert(++pos, i + 1);\n        }\n\
-    \    }\n    std::vector<int> res = t.dump();\n\n    for (int i = 0; i <= n; ++i)\
-    \ {\n        std::cout << res[i] << \" \\n\"[i == n];\n    }\n\n    return 0;\n\
-    }\n"
+    \ suisen\n\n\n\n#line 6 \"test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int q, k;\n    std::cin >> q >> k;\n\n    using suisen::DynamicArray;\n\n\
+    \    DynamicArray<long long> a;\n    while (q-- > 0) {\n        int t;\n     \
+    \   std::cin >> t;\n        if (t == 1) {\n            long long v;\n        \
+    \    std::cin >> v;\n            a.insert_lower_bound(v);\n        } else {\n\
+    \            if (a.size() < k) {\n                std::cout << -1 << '\\n';\n\
+    \            } else {\n                std::cout << a.erase(k - 1) << '\\n';\n\
+    \            }\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/649\"\n\n#include <iostream>\n\
+    \n#include \"library/datastructure/bbst/implicit_treap.hpp\"\n\nint main() {\n\
+    \    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    int\
+    \ q, k;\n    std::cin >> q >> k;\n\n    using suisen::DynamicArray;\n\n    DynamicArray<long\
+    \ long> a;\n    while (q-- > 0) {\n        int t;\n        std::cin >> t;\n  \
+    \      if (t == 1) {\n            long long v;\n            std::cin >> v;\n \
+    \           a.insert_lower_bound(v);\n        } else {\n            if (a.size()\
+    \ < k) {\n                std::cout << -1 << '\\n';\n            } else {\n  \
+    \              std::cout << a.erase(k - 1) << '\\n';\n            }\n        }\n\
+    \    }\n}"
   dependsOn:
   - library/datastructure/bbst/implicit_treap.hpp
   - library/datastructure/bbst/implicit_treap_base.hpp
   isVerificationFile: true
-  path: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
+  path: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
   requiredBy: []
   timestamp: '2023-02-02 10:47:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
+documentation_of: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
-- /verify/test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp.html
-title: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
+- /verify/test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
+- /verify/test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp.html
+title: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
 ---

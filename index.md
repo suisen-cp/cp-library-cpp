@@ -1192,6 +1192,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/implicit_treap/dummy.test.cpp
       title: test/src/datastructure/bbst/implicit_treap/dummy.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
+      title: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
   - name: test/src/datastructure/bbst/implicit_treap_dual_segtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -2130,7 +2133,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
     - icon: ':x:'

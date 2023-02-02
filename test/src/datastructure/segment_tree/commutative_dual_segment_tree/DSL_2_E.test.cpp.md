@@ -18,9 +18,9 @@ data:
   bundledCode: "#line 1 \"test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp\"\
     \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
     \n\n#include <iostream>\n\n#line 1 \"library/datastructure/segment_tree/commutative_dual_segment_tree.hpp\"\
-    \n\n#define SUISEN_DUAL_SEGTREE\n\n#include <cassert>\n#include <vector>\n\nnamespace\
-    \ suisen {\n    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F,\
-    \ F), F(*id)()>\n    struct CommutativeDualSegmentTree {\n        CommutativeDualSegmentTree()\
+    \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n    template\
+    \ <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n\
+    \    struct CommutativeDualSegmentTree {\n        CommutativeDualSegmentTree()\
     \ {}\n        CommutativeDualSegmentTree(std::vector<T>&& a) : n(a.size()), m(ceil_pow2(a.size())),\
     \ data(std::move(a)), lazy(m, id()) {}\n        CommutativeDualSegmentTree(const\
     \ std::vector<T>& a) : CommutativeDualSegmentTree(std::vector<T>(a)) {}\n    \
@@ -38,8 +38,7 @@ data:
     \            } else if (k - m < n) {\n                data[k - m] = mapping(f,\
     \ data[k - m]);\n            }\n        }\n    private:\n        static int ceil_pow2(int\
     \ n) {\n            int m = 1;\n            while (m < n) m <<= 1;\n         \
-    \   return m;\n        }\n    };\n} // namespace suisen\n\n#endif // SUISEN_COM_DUAL_SEGTREE\n\
-    #line 6 \"test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp\"\
+    \   return m;\n        }\n    };\n} // namespace suisen\n\n\n#line 6 \"test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp\"\
     \nusing suisen::CommutativeDualSegmentTree;\n\nint mapping(int f, int x) { return\
     \ f + x; }\nint composition(int f, int g) { return f + g; }\nint id() { return\
     \ 0; }\n\nint main() {\n    int n, q;\n    std::cin >> n >> q;\n    CommutativeDualSegmentTree<int,\
@@ -63,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 02:15:56+09:00'
+  timestamp: '2023-02-02 10:47:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
