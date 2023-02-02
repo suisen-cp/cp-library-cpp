@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: Formal Power Series Relaxed
   _extendedRequiredBy: []

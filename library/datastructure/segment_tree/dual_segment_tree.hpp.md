@@ -10,18 +10,18 @@ data:
   - icon: ':x:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
     title: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\
@@ -87,7 +87,7 @@ data:
   path: library/datastructure/segment_tree/dual_segment_tree.hpp
   requiredBy: []
   timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
   - test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp

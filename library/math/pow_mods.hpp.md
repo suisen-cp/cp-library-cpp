@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/compose_exp/arc154_f.test.cpp
     title: test/src/polynomial/compose_exp/arc154_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/string/rolling_hash/abc141_e.test.cpp
     title: test/src/string/rolling_hash/abc141_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/pow_mods.hpp\"\n\n\n\n#include <vector>\n\n\
@@ -76,7 +76,7 @@ data:
   - library/string/rolling_hash.hpp
   - library/math/sum_i^d_r^i.hpp
   timestamp: '2021-11-28 20:19:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/compose_exp/arc154_f.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp

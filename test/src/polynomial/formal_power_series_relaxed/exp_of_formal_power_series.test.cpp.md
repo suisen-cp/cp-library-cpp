@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: Formal Power Series Relaxed
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/exp_of_formal_power_series
@@ -186,7 +186,7 @@ data:
   path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
   requiredBy: []
   timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
 layout: document

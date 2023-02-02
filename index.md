@@ -300,7 +300,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/compressed_segment_tree.hpp
       title: "\u4EFB\u610F\u6B21\u5143 Segment Tree"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -606,7 +606,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
     - icon: ':question:'
@@ -615,7 +615,7 @@ data:
     - icon: ':question:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
     - icon: ':heavy_check_mark:'
@@ -724,19 +724,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/compose_exp.hpp
       title: Compose Exp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/formal_power_series.hpp
       title: Formal Power Series
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/formal_power_series_relaxed.hpp
       title: Formal Power Series Relaxed
     - icon: ':heavy_check_mark:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
     - icon: ':heavy_check_mark:'
@@ -754,7 +754,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/prod_f(r^k_x).hpp
       title: $\left(\prod_{k=0}^{m-1} f(r^k x)\right) \bmod x^N$
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/rational_fps.hpp
       title: Rational Fps
     - icon: ':heavy_check_mark:'
@@ -966,7 +966,7 @@ data:
       title: Tree Isomorphism Classification
   - name: library/type_traits
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
   - name: library/util
@@ -1406,13 +1406,13 @@ data:
     - icon: ':x:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/range_affine_point_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
   - name: test/src/datastructure/segment_tree/lazy_segment_tree
@@ -2078,7 +2078,7 @@ data:
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - name: test/src/polynomial/compose_exp
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/compose_exp/arc154_f.test.cpp
       title: test/src/polynomial/compose_exp/arc154_f.test.cpp
   - name: test/src/polynomial/formal_power_series
@@ -2121,13 +2121,13 @@ data:
       title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
   - name: test/src/polynomial/formal_power_series_relaxed
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     - icon: ':x:'

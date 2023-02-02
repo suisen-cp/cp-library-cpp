@@ -21,19 +21,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/array_fps_naive.hpp
     title: Array Fps Naive
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/compose_exp.hpp
     title: Compose Exp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: Formal Power Series Relaxed
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':heavy_check_mark:'
@@ -103,7 +103,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/compose_exp/arc154_f.test.cpp
     title: test/src/polynomial/compose_exp/arc154_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -142,13 +142,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
   - icon: ':x:'

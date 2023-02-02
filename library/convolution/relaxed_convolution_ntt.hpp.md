@@ -2,20 +2,20 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: Formal Power Series Relaxed
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/relaxed_convolution_ntt/convolution_mod.test.cpp
     title: test/src/convolution/relaxed_convolution_ntt/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
   - icon: ':x:'

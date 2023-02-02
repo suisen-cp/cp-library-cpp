@@ -12,13 +12,13 @@ data:
     title: Modint Extension
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/formal_power_series_relaxed.hpp\"\n\n\
@@ -231,7 +231,7 @@ data:
   path: library/polynomial/formal_power_series_relaxed.hpp
   requiredBy: []
   timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
