@@ -1,5 +1,5 @@
 #ifndef SUISEN_COM_DUAL_SEGTREE
-#define SUISEN_DUAL_SEGTREE
+#define SUISEN_COM_DUAL_SEGTREE
 
 #include <cassert>
 #include <vector>
