@@ -247,20 +247,26 @@ void test2() {
 
     for (int v : q) {
         if (rng() % 2) {
-            int k = seq.lower_bound(v);
+            int k = seq.insert_lower_bound(v);
             assert(k == 0 or seq[k - 1] < v);
-            assert(k == seq.size() or seq[k] >= v);
-            seq.insert(k, v);
+            assert(k == seq.size() - 1 or seq[k + 1] >= v);
         } else {
-            int k = seq.upper_bound(v);
+            int k = seq.insert_upper_bound(v);
             assert(k == 0 or seq[k - 1] <= v);
-            assert(k == seq.size() or seq[k] > v);
-            seq.insert(k, v);
+            assert(k == seq.size() - 1 or seq[k + 1] > v);
         }
+    }
+
+    for (int v : q) {
+        int k = seq.erase_if_exists(v)->first;
+        assert(k == 0 or seq[k - 1] < v);
+        assert(k == seq.size() or seq[k] >= v);
     }
 
     std::vector<S> sorted = q;
     std::sort(sorted.begin(), sorted.end());
+
+    seq = sorted;
 
     assert(std::equal(sorted.begin(), sorted.end(), seq.begin()));
     assert(std::equal(sorted.rbegin(), sorted.rend(), seq.rbegin()));

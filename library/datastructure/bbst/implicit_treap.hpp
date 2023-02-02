@@ -61,24 +61,137 @@ namespace suisen {
         void push_front(const value_type& val) { _root = node_type::push_front(_root, val); }
         void push_back(const value_type& val) { _root = node_type::push_back(_root, val); }
 
-        void erase(size_t k) {
-            assert(k <= size_t(size()));
-            _root = node_type::erase(_root, k);
+        // Insert a new value immediately before the first element that satisfies the condition f.
+        // Returns: the inserted position
+        // Requirements: f(A[i]) must be monotonic
+        template <typename Predicate>
+        int insert_binary_search(const value_type& val, const Predicate &f) {
+            int pos;
+            std::tie(_root, pos) = node_type::insert_binary_search(_root, f, val);
+            return pos;
         }
-        void pop_front() { _root = node_type::pop_front(_root); }
-        void pop_back() { _root = node_type::pop_back(_root); }
+        // Insert a new value immediately before the first element that is greater than or equal to the new value.
+        // Returns: the inserted position
+        // Requirements: sequence is sorted
+        template <typename Compare = std::less<>>
+        int insert_lower_bound(const value_type& val, const Compare &comp = {}) {
+            int pos;
+            std::tie(_root, pos) = node_type::insert_lower_bound(_root, val, comp);
+            return pos;
+        }
+        // Insert a new value immediately before the first element that is greater than the new value.
+        // Returns: the inserted position
+        // Requirements: sequence is sorted
+        template <typename Compare = std::less<>>
+        int insert_upper_bound(const value_type& val, const Compare &comp = {}) {
+            int pos;
+            std::tie(_root, pos) = node_type::insert_upper_bound(_root, val, comp);
+            return pos;
+        }
 
+        value_type erase(size_t k) {
+            assert(k <= size_t(size()));
+            value_type v;
+            std::tie(_root, v) = node_type::erase(_root, k);
+            return v;
+        }
+        value_type pop_front() { return erase(0); }
+        value_type pop_back() { return erase(size() - 1); }
+
+        // Erase the first element that satisfies the condition f if it also satisfies the condition g.
+        // returns optional(position, value)
+        // Requirements: sequence is sorted
+        template <typename Predicate, typename RemovePredicate>
+        std::optional<std::pair<int, value_type>> erase_binary_search(const Predicate &f, const RemovePredicate& g) {
+            auto [root, erased] = node_type::erase_binary_search(_root, f, g);
+            _root = root;
+            if (erased) {
+                return std::pair<int, value_type>{ erased->first, erased->second };
+            } else {
+                return std::nullopt;
+            }
+        }
+        // Erase the first element that is greater than or equal to val.
+        // returns optional(position, value)
+        // Requirements: sequence is sorted
+        template <typename Compare = std::less<>>
+        std::optional<std::pair<int, value_type>> erase_lower_bound(const value_type &val, const Compare &comp = {}) {
+            auto [root, erased] = node_type::erase_lower_bound(_root, val, comp);
+            _root = root;
+            if (erased) {
+                return std::pair<int, value_type>{ erased->first, erased->second };
+            } else {
+                return std::nullopt;
+            }
+        }
+        // Erase the first element that is greater than val.
+        // returns optional(position, value)
+        // Requirements: sequence is sorted
+        template <typename Compare = std::less<>>
+        std::optional<std::pair<int, value_type>> erase_upper_bound(const value_type &val, const Compare &comp = {}) {
+            auto [root, erased] = node_type::erase_upper_bound(_root, val, comp);
+            _root = root;
+            if (erased) {
+                return std::pair<int, value_type>{ erased->first, erased->second };
+            } else {
+                return std::nullopt;
+            }
+        }
+        // Erase the first element that is equal to val.
+        // returns optional(position, value)
+        // Requirements: sequence is sorted
+        template <typename Compare = std::less<>>
+        std::optional<std::pair<int, value_type>> erase_if_exists(const value_type &val, const Compare &comp = {}) {
+            auto [root, erased] = node_type::erase_if_exists(_root, val, comp);
+            _root = root;
+            if (erased) {
+                return std::pair<int, value_type>{ erased->first, erased->second };
+            } else {
+                return std::nullopt;
+            }
+        }
+
+        // Split immediately before the k-th element.
         DynamicArray split(size_t k) {
             assert(k <= size_t(size()));
             node_pointer root_r;
             std::tie(_root, root_r) = node_type::split(_root, k);
             return DynamicArray(root_r, node_pointer_construct{});
         }
+        // Split immediately before the first element that satisfies the condition.
+        // Requirements: f(A[i]) must be monotonic
+        template <typename Predicate>
+        DynamicArray split_binary_search(const Predicate &f) {
+            node_pointer root_r;
+            std::tie(_root, root_r) = node_type::split_binary_search(_root, f);
+            return DynamicArray(root_r, node_pointer_construct{});
+        }
+        // Split immediately before the first element that is greater than or equal to val.
+        // Requirements: sequence is sorted
+        template <typename Compare = std::less<>>
+        DynamicArray split_lower_bound(const value_type &val, const Compare &comp = {}) {
+            node_pointer root_r;
+            std::tie(_root, root_r) = node_type::split_lower_bound(_root, val, comp);
+            return DynamicArray(root_r, node_pointer_construct{});
+        }
+        // Split immediately before the first element that is greater than val.
+        // Requirements: sequence is sorted
+        template <typename Compare = std::less<>>
+        DynamicArray split_upper_bound(const value_type &val, const Compare &comp = {}) {
+            node_pointer root_r;
+            std::tie(_root, root_r) = node_type::split_upper_bound(_root, val, comp);
+            return DynamicArray(root_r, node_pointer_construct{});
+        }
+
         void merge(DynamicArray r) { _root = node_type::merge(_root, r._root); }
 
         void rotate(size_t k) {
             assert(k <= size_t(size()));
             _root = node_type::rotate(_root, k);
+        }
+        void rotate(size_t l, size_t m, size_t r) {
+            assert(l <= m and m <= r and r <= size_t(size()));
+            _root = node_type::rotate(_root, l, m, r);
         }
 
         void reverse(size_t l, size_t r) {
@@ -89,16 +202,28 @@ namespace suisen {
 
         std::vector<value_type> dump() const { return node_type::dump(_root); }
 
-        // Returns the first i s.t. f(A[i]) = true by binary search.
-        // Requirement: f(A[i]) is monotonic.
+        // Find the first element that satisfies the condition f.
+        // Returns { position, optional(value) }
+        // Requirements: f(A[i]) must be monotonic
         template <typename Predicate>
-        int binary_search_find_first(const Predicate& f) const { return node_type::binary_search(_root, f); }
+        std::pair<int, std::optional<value_type>> binary_search(const Predicate& f) const {
+            auto [pos, val] = node_type::binary_search(_root, f);
+            return { pos, std::move(val) };
+        }
         // comp(T t, U u) = (t < u)
+        // Requirements: sequence is sorted
         template <typename U, typename Compare = std::less<>>
-        int lower_bound(const U& target, Compare comp = {}) const { return node_type::lower_bound(_root, target, comp); }
+        std::pair<int, std::optional<value_type>> lower_bound(const U& target, Compare comp = {}) const {
+            auto [pos, val] = node_type::lower_bound(_root, target, comp);
+            return { pos, std::move(val) };
+        }
         // comp(T u, U t) = (u < t)
+        // Requirements: sequence is sorted
         template <typename U, typename Compare = std::less<>>
-        int upper_bound(const U& target, Compare comp = {}) const { return node_type::upper_bound(_root, target, comp); }
+        std::pair<int, std::optional<value_type>> upper_bound(const U& target, Compare comp = {}) const {
+            auto [pos, val] = node_type::upper_bound(_root, target, comp);
+            return { pos, std::move(val) };
+        }
 
         using iterator = typename node_type::iterator;
         using reverse_iterator = typename node_type::reverse_iterator;

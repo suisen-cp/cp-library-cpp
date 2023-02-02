@@ -3,6 +3,7 @@
 
 #include <cassert>
 #include <cstdint>
+#include <optional>
 #include <string>
 #include <random>
 #include <tuple>
@@ -113,6 +114,12 @@ namespace suisen::internal::implicit_treap {
                 return { null, null };
             }
             node_type::push(t);
+            if (k == 0) {
+                return { null, t };
+            }
+            if (k == size(t)) {
+                return { t, null };
+            }
             if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {
                 auto [ll, lr] = split(child0(t), k);
                 set_child0(t, lr);
@@ -128,6 +135,33 @@ namespace suisen::internal::implicit_treap {
             auto [tl, tm] = split(tlm, l);
             return { tl, tm, tr };
         }
+        // Split immediately before the first element that satisfies the condition.
+        template <typename Predicate>
+        static std::pair<node_pointer, node_pointer> split_binary_search(node_pointer t, const Predicate& f) {
+            if (t == null) {
+                return { null, null };
+            }
+            node_type::push(t);
+            if (f(value(t))) {
+                auto [ll, lr] = split_binary_search(child0(t), f);
+                set_child0(t, lr);
+                return { ll, node_type::update(t) };
+            } else {
+                auto [rl, rr] = split_binary_search(child1(t), f);
+                set_child1(t, rl);
+                return { node_type::update(t), rr };
+            }
+        }
+
+        template <typename Compare = std::less<>>
+        static std::pair<node_pointer, node_pointer> split_lower_bound(node_pointer t, const value_type& target, const Compare& comp) {
+            return split_binary_search(t, [&](const value_type& v) { return not comp(v, target); });
+        }
+        template <typename Compare = std::less<>>
+        static std::pair<node_pointer, node_pointer> split_upper_bound(node_pointer t, const value_type& target, const Compare& comp) {
+            return split_binary_search(t, [&](const value_type& v) { return comp(target, v); });
+        }
+
         static node_pointer merge(node_pointer tl, node_pointer tr) {
             if (tl == null or tr == null) {
                 return tl ^ tr ^ null;
@@ -165,31 +199,136 @@ namespace suisen::internal::implicit_treap {
             }
         }
         template <typename ...Args>
-        static node_pointer insert(node_pointer t, size_type k, Args &&...args) { return insert_impl(t, k, create_node(std::forward<Args>(args)...)); }
+        static node_pointer insert(node_pointer t, size_type k, Args &&...args) {
+            return insert_impl(t, k, create_node(std::forward<Args>(args)...));
+        }
         template <typename ...Args>
-        static node_pointer push_front(node_pointer t, Args &&...args) { return insert(t, 0, std::forward<Args>(args)...); }
+        static node_pointer push_front(node_pointer t, Args &&...args) {
+            return insert(t, 0, std::forward<Args>(args)...);
+        }
         template <typename ...Args>
-        static node_pointer push_back(node_pointer t, Args &&...args) { return insert(t, safe_size(t), std::forward<Args>(args)...); }
+        static node_pointer push_back(node_pointer t, Args &&...args) {
+            return insert(t, safe_size(t), std::forward<Args>(args)...);
+        }
 
-        static node_pointer erase(node_pointer t, size_type k) {
+        // Insert a new node immediately before the first element that satisfies the condition.
+        // Returns { node, position to insert }
+        template <typename Predicate>
+        static std::pair<node_pointer, size_type> insert_binary_search_impl(node_pointer t, const Predicate& f, node_pointer new_node) {
+            if (t == null) {
+                return { new_node, 0 };
+            }
+            if (priority(new_node) > priority(t)) {
+                auto [tl, tr] = split_binary_search(t, f);
+                set_child0(new_node, tl);
+                set_child1(new_node, tr);
+                return { node_type::update(new_node), safe_size(tl) };
+            } else {
+                node_type::push(t);
+                if (f(value(t))) {
+                    auto [c0, pos] = insert_binary_search_impl(child0(t), f, new_node);
+                    set_child0(t, c0);
+                    return { node_type::update(t), pos };
+                } else {
+                    auto [c1, pos] = insert_binary_search_impl(child1(t), f, new_node);
+                    set_child1(t, c1);
+                    return { node_type::update(t), pos + safe_size(child0(t)) + 1 };
+                }
+            }
+        }
+        template <typename Predicate, typename ...Args>
+        static std::pair<node_pointer, size_type> insert_binary_search(node_pointer t, const Predicate& f, Args &&...args) {
+            return insert_binary_search_impl(t, f, create_node(std::forward<Args>(args)...));
+        }
+        template <typename Compare = std::less<>>
+        static std::pair<node_pointer, size_type> insert_lower_bound(node_pointer t, const value_type& v, Compare comp) {
+            return insert_binary_search(t, [&](const value_type& x) { return not comp(x, v); }, v);
+        }
+        template <typename Compare = std::less<>>
+        static std::pair<node_pointer, size_type> insert_upper_bound(node_pointer t, const value_type& v, Compare comp) {
+            return insert_binary_search(t, [&](const value_type& x) { return comp(v, x); }, v);
+        }
+
+        static std::pair<node_pointer, value_type> erase(node_pointer t, size_type k) {
             node_type::push(t);
             if (const size_type lsiz = safe_size(child0(t)); k == lsiz) {
                 delete_node(t);
-                return merge(child0(t), child1(t));
+                return { merge(child0(t), child1(t)), std::move(value(t)) };
             } else if (k < lsiz) {
-                set_child0(t, erase(child0(t), k));
-                return node_type::update(t);
+                auto [c0, v] = erase(child0(t), k);
+                set_child0(t, c0);
+                return { node_type::update(t), std::move(v) };
             } else {
-                set_child1(t, erase(child1(t), k - (lsiz + 1)));
-                return node_type::update(t);
+                auto [c1, v] = erase(child1(t), k - (lsiz + 1));
+                set_child1(t, c1);
+                return { node_type::update(t), std::move(v) };
             }
         }
-        static node_pointer pop_front(node_pointer t) { return erase(t, 0); }
-        static node_pointer pop_back(node_pointer t) { return erase(t, safe_size(t) - 1); }
+        static std::pair<node_pointer, value_type> pop_front(node_pointer t) { return erase(t, 0); }
+        static std::pair<node_pointer, value_type> pop_back(node_pointer t) { return erase(t, safe_size(t) - 1); }
+
+        // Erase the first element that satisfies the condition f if it also satisfies the condition g.
+        // returns { node, optional(position, value) }
+        template <typename Predicate, typename RemovePredicate>
+        static std::pair<node_pointer, std::optional<std::pair<size_type, value_type>>> erase_binary_search(node_pointer t, const Predicate& f, const RemovePredicate& g) {
+            if (t == null) return { null, std::nullopt };
+            node_type::push(t);
+            if (f(value(t))) {
+                auto [c0, erased] = erase_binary_search(child0(t), f, g);
+                if (erased) {
+                    set_child0(t, c0);
+                    return { node_type::update(t), std::move(erased) };
+                } else if (g(value(t))) {
+                    delete_node(t);
+                    std::pair<size_type, value_type> erased_entry{ safe_size(child0(t)), std::move(value(t)) };
+                    return { merge(child0(t), child1(t)), std::move(erased_entry) };
+                } else {
+                    return { t, std::nullopt };
+                }
+            } else {
+                auto [c1, erased] = erase_binary_search(child1(t), f, g);
+                if (erased) {
+                    set_child1(t, c1);
+                    size_type &pos = erased->first;
+                    pos += safe_size(child0(t)) + 1;
+                    return { node_type::update(t), std::move(erased) };
+                } else {
+                    return { t, std::nullopt };
+                }
+            }
+        }
+        template <typename Compare = std::less<>>
+        static std::pair<node_pointer, std::optional<std::pair<size_type, value_type>>> erase_lower_bound(node_pointer t, const value_type& v, Compare comp) {
+            return erase_binary_search(
+                t,
+                [&](const value_type& x) { return not comp(x, v); },
+                [] { return true; }
+            );
+        }
+        template <typename Compare = std::less<>>
+        static std::pair<node_pointer, std::optional<std::pair<size_type, value_type>>> erase_upper_bound(node_pointer t, const value_type& v, Compare comp) {
+            return erase_binary_search(
+                t,
+                [&](const value_type& x) { return comp(v, x); },
+                [] { return true; }
+            );
+        }
+        template <typename Compare = std::less<>>
+        static std::pair<node_pointer, std::optional<std::pair<size_type, value_type>>> erase_if_exists(node_pointer t, const value_type& v, Compare comp) {
+            return erase_binary_search(
+                t,
+                [&](const value_type& x) { return not comp(x, v); },
+                [&](const value_type& x) { return not comp(v, x); }
+            );
+        }
 
         static node_pointer rotate(node_pointer t, size_type k) {
             auto [tl, tr] = split(t, k);
             return merge(tr, tl);
+        }
+        static node_pointer rotate(node_pointer t, size_type l, size_type m, size_type r) {
+            auto [tl, tm, tr] = split(t, l, r);
+            return merge(tl, rotate(tm, m - l), tr);
         }
 
         static value_type& get(node_pointer t, size_type k) {
@@ -246,29 +385,36 @@ namespace suisen::internal::implicit_treap {
             return res;
         }
 
-        // Predicate : (value, index) -> { false, true }
+        // Find the first element that satisfies the condition f : (value, index) -> { false, true }.
+        // Returns { optional(value), position }
         template <typename Predicate>
-        static size_type binary_search(node_pointer t, const Predicate& f) {
+        static std::pair<size_type, std::optional<value_type>> binary_search(node_pointer t, const Predicate& f) {
+            node_pointer res = null;
             int ng = -1, ok = safe_size(t);
             while (ok - ng > 1) {
                 node_type::push(t);
                 if (const int root = ng + safe_size(child0(t)) + 1; f(value(t), root)) {
+                    res = t;
                     ok = root, t = child0(t);
                 } else {
                     ng = root, t = child1(t);
                 }
             }
-            return ok;
+            if (res == null) {
+                return { ok, std::nullopt };
+            } else {
+                return { ok, value(res) };
+            }
         }
 
         // comp(T t, U u) = (t < u)
         template <typename U, typename Compare = std::less<>>
-        static size_type lower_bound(node_pointer t, const U& target, Compare comp = {}) {
+        static std::pair<size_type, std::optional<value_type>> lower_bound(node_pointer t, const U& target, Compare comp) {
             return binary_search(t, [&](const value_type& v, int) { return not comp(v, target); });
         }
         // comp(T u, U t) = (u < t)
         template <typename U, typename Compare = std::less<>>
-        static size_type upper_bound(node_pointer t, const U& target, Compare comp = {}) {
+        static std::pair<size_type, std::optional<value_type>> upper_bound(node_pointer t, const U& target, Compare comp) {
             return binary_search(t, [&](const value_type& v, int) { return comp(target, v); });
         }
 
