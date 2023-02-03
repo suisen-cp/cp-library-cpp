@@ -6,18 +6,18 @@
 #include <vector>
 
 template <typename T>
-std::ostream& operator<<(std::ostream& out, const std::vector<T>& a) {
+std::ostream& operator<<(std::ostream &out, const std::vector<T> &a) {
     out << '{';
-    for (auto& e : a) out << e << ',';
+    for (auto &e : a) out << e << ',';
     return out << '}';
 }
 
-#include "library/datastructure/bbst/implicit_treap.hpp"
+#include "library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp"
 
-template <typename T>
-struct NaiveSolutionForDynamicArray {
-    NaiveSolutionForDynamicArray() = default;
-    NaiveSolutionForDynamicArray(const std::vector<T>& dat): _n(dat.size()), _dat(dat) {}
+template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F, T, int)>
+struct NaiveSolutionForLazySegmentTree {
+    NaiveSolutionForLazySegmentTree() = default;
+    NaiveSolutionForLazySegmentTree(const std::vector<T> &dat) : _n(dat.size()), _dat(dat) {}
 
     T get(int i) const {
         assert(0 <= i and i < _n);
@@ -39,6 +39,24 @@ struct NaiveSolutionForDynamicArray {
         _dat.erase(_dat.begin() + i);
     }
 
+    T prod_all() const {
+        return prod(0, _n);
+    }
+    T prod(int l, int r) const {
+        assert(0 <= l and l <= r and r <= _n);
+        T res = e();
+        for (int i = l; i < r; ++i) res = op(res, _dat[i]);
+        return res;
+    }
+
+    void apply_all(const F &f) {
+        apply(0, _n, f);
+    }
+    void apply(int l, int r, const F &f) {
+        assert(0 <= l and l <= r and r <= _n);
+        for (int i = l; i < r; ++i) _dat[i] = mapping(f, _dat[i], 1);
+    }
+
     void reverse_all() {
         reverse(0, _n);
     }
@@ -54,6 +72,30 @@ struct NaiveSolutionForDynamicArray {
         std::rotate(_dat.begin(), _dat.begin() + i, _dat.end());
     }
 
+    template <typename Pred>
+    int max_right(int l, Pred &&pred) const {
+        assert(0 <= l and l <= _n);
+        T sum = e();
+        for (int r = l; r < _n; ++r) {
+            T next_sum = op(sum, _dat[r]);
+            if (not pred(next_sum)) return r;
+            sum = std::move(next_sum);
+        }
+        return _n;
+    }
+
+    template <typename Pred>
+    int min_left(int r, Pred &&pred) const {
+        assert(0 <= r and r <= _n);
+        T sum = e();
+        for (int l = r; l > 0; --l) {
+            T next_sum = op(_dat[l - 1], sum);
+            if (not pred(next_sum)) return l;
+            sum = std::move(next_sum);
+        }
+        return 0;
+    }
+
     std::vector<T> dump() { return _dat; }
 private:
     int _n;
@@ -61,32 +103,67 @@ private:
 };
 
 /**
- * Range Update Point Get
+ * Range Update Range Sum
  */
 
-using S = int;
+using S = long long;
 
-using Tree = suisen::DynamicArray<S>;
-using Naive = NaiveSolutionForDynamicArray<S>;
+struct F {
+    static constexpr int identity = std::numeric_limits<int>::max();
+
+    int val;
+    F() : val(identity) {}
+    F(int val) : val(val) {}
+};
+
+S op(S x, S y) {
+    return x + y;
+}
+S e() {
+    return 0;
+}
+S toggle(S x) {
+    return x;
+}
+S mapping(F f, S x, int len) {
+    return f.val == F::identity ? x : (long long) f.val * len;
+}
+F composition(F f, F g) {
+    return f.val == F::identity ? g : f;
+}
+F id() {
+    return F{};
+}
+
+using Tree = suisen::ReversibleDynamicLazySegmentTree<S, op, e, toggle, F, mapping, composition, id>;
+using Naive = NaiveSolutionForLazySegmentTree<S, op, e, F, mapping>;
 
 #include <random>
 #include <algorithm>
 
 constexpr int Q_get = 0;
 constexpr int Q_set = 1;
-constexpr int Q_insert = 2;
-constexpr int Q_erase = 3;
-constexpr int Q_rotate = 4;
-constexpr int QueryTypeNum = 5;
+constexpr int Q_insert = 10;
+constexpr int Q_erase = 11;
+constexpr int Q_rotate = 12;
+constexpr int Q_prod = 2;
+constexpr int Q_prod_all = 3;
+constexpr int Q_apply = 4;
+constexpr int Q_apply_all = 5;
+constexpr int Q_reverse = 6;
+constexpr int Q_reverse_all = 7;
+constexpr int Q_max_right = 8;
+constexpr int Q_min_left = 9;
+constexpr int QueryTypeNum = 13;
 
 void test() {
     int N = 3000, Q = 3000, MAX_VAL = 1000000000;
 
-    std::mt19937 rng{ std::random_device{}() };
+    std::mt19937 rng{std::random_device{}()};
 
     std::vector<S> init(N);
     for (int i = 0; i < N; ++i) init[i] = rng() % MAX_VAL;
-
+    
     Tree t1(init);
     Naive t2(init);
 
@@ -94,11 +171,11 @@ void test() {
         const int query_type = rng() % QueryTypeNum;
         if (query_type == Q_get) {
             const int i = rng() % N;
-            assert(t1[i] == t2.get(i));
+            assert(t1.get(i) == t2.get(i));
         } else if (query_type == Q_set) {
             const int i = rng() % N;
             const S v = rng() % MAX_VAL;
-            t1[i] = v;
+            t1.set(i, v);
             t2.set(i, v);
         } else if (query_type == Q_insert) {
             const int i = rng() % (N + 1);
@@ -115,6 +192,42 @@ void test() {
             const int i = rng() % (N + 1);
             t1.rotate(i);
             t2.rotate(i);
+        } else if (query_type == Q_prod) {
+            const int l = rng() % (N + 1);
+            const int r = l + rng() % (N - l + 1);
+            assert(t1.prod(l, r) == t2.prod(l, r));
+        } else if (query_type == Q_prod_all) {
+            assert(t1.prod_all() == t2.prod_all());
+        } else if (query_type == Q_apply) {
+            const int l = rng() % (N + 1);
+            const int r = l + rng() % (N - l + 1);
+            const int f = rng() % MAX_VAL;
+            t1.apply(l, r, f);
+            t2.apply(l, r, f);
+        } else if (query_type == Q_apply_all) {
+            const int f = rng() % MAX_VAL;
+            t1.apply_all(f);
+            t2.apply_all(f);
+        } else if (query_type == Q_reverse) {
+            const int l = rng() % (N + 1);
+            const int r = l + rng() % (N - l + 1);
+            t1.reverse(l, r);
+            t2.reverse(l, r);
+        } else if (query_type == Q_reverse_all) {
+            t1.reverse_all();
+            t2.reverse_all();
+        } else if (query_type == Q_max_right) {
+            const int l = rng() % (N + 1);
+            const int r = l + rng() % (N - l + 1);
+            long long sum = std::max(0LL, t2.prod(l, r) + int(rng() % MAX_VAL) - MAX_VAL / 2);
+            auto pred = [&](const S &x) { return x <= sum; };
+            assert(t1.max_right(l, pred) == t2.max_right(l, pred));
+        } else if (query_type == Q_min_left) {
+            const int l = rng() % (N + 1);
+            const int r = l + rng() % (N - l + 1);
+            long long sum = std::max(0LL, t2.prod(l, r) + int(rng() % MAX_VAL) - MAX_VAL / 2);
+            auto pred = [&](const S &x) { return x <= sum; };
+            assert(t1.min_left(r, pred) == t2.min_left(r, pred));
         } else {
             assert(false);
         }
@@ -126,7 +239,7 @@ void test2() {
     Tree seq;
     const int n = 300, k = 20;
 
-    std::vector<int> q(n * k);
+    std::vector<S> q(n * k);
     for (int i = 0; i < n * k; ++i) {
         q[i] = i % n;
     }
@@ -150,10 +263,9 @@ void test2() {
         assert(k == seq.size() or seq[k] >= v);
     }
 
-    std::vector<int> sorted = q;
+    std::vector<S> sorted = q;
     std::sort(sorted.begin(), sorted.end());
 
-    seq.free();
     seq = sorted;
 
     assert(std::equal(sorted.begin(), sorted.end(), seq.begin()));
@@ -224,13 +336,27 @@ void test2() {
         }
     }
 
-    std::vector<int> naive = sorted;
+    std::vector<S> naive = sorted;
     assert(std::equal(naive.begin(), naive.end(), seq.begin()));
 
-    for (int& e : seq) --e;
-    for (int& e : naive) --e;
-    assert(std::equal(naive.begin(), naive.end(), seq.begin()));
-    assert(std::equal(naive.rbegin(), naive.rend(), seq.rbegin()));
+    for (int q = 0; q < 500; ++q) {
+        if (rng() % 2) {
+            int l = rng() % (n * k + 1);
+            int r = rng() % (n * k + 1);
+            if (l > r) std::swap(l, r);
+            seq.reverse(l, r);
+            std::reverse(naive.begin() + l, naive.begin() + r);
+        } else {
+            assert(naive == seq.dump());
+            assert(std::equal(naive.begin(), naive.end(), seq.begin()));
+            assert(std::equal(naive.rbegin(), naive.rend(), seq.rbegin()));
+        }
+    }
+
+    // for (S& e : seq) --e; // Compile Error 
+    // for (S& e : naive) --e;
+    // assert(std::equal(naive.begin(), naive.end(), seq.begin()));
+    // assert(std::equal(naive.rbegin(), naive.rend(), seq.rbegin()));
 
     const Tree& const_seq = const_cast<const Tree&>(seq);
     assert(std::equal(naive.begin(), naive.end(), const_seq.begin()));
@@ -244,7 +370,6 @@ void test2() {
 int main() {
     test();
     test2();
-
     std::cout << "Hello World" << std::endl;
     return 0;
 }

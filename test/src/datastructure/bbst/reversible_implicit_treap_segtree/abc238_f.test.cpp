@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc238/tasks/abc238_f"
 
 #include <iostream>
-#include "library/datastructure/bbst/implicit_treap_segtree.hpp"
+#include "library/datastructure/bbst/reversible_implicit_treap_segtree.hpp"
 
 #include <atcoder/modint>
  
@@ -13,8 +13,11 @@ mint op(mint x, mint y) {
 mint e() {
     return 0;
 }
-
-using Sequence = suisen::DynamicSegmentTree<mint, op, e>;
+mint toggle(mint x) {
+    return x;
+}
+ 
+using Sequence = suisen::ReversibleDynamicSegmentTree<mint, op, e, toggle>;
  
 int main() {
     std::ios::sync_with_stdio(false);

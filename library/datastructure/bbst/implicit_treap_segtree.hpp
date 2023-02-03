@@ -5,9 +5,9 @@
 
 namespace suisen {
     namespace internal::implicit_treap {
-        template <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T)>
-        struct RangeProductNode: Node<T, RangeProductNode<T, op, e, toggle>> {
-            using base = Node<T, RangeProductNode<T, op, e, toggle>>;
+        template <typename T, T(*op)(T, T), T(*e)()>
+        struct RangeProductNode: Node<T, RangeProductNode<T, op, e>> {
+            using base = Node<T, RangeProductNode<T, op, e>>;
             using node_pointer = typename base::node_pointer;
             using value_type = typename base::value_type;
 
@@ -20,22 +20,13 @@ namespace suisen {
                 prod_all(t) = op(op(safe_prod(base::child0(t)), base::value(t)), safe_prod(base::child1(t)));
                 return t;
             }
-            static node_pointer reverse_all(node_pointer t) {
-                if (t != base::null) {
-                    base::reversed(t) ^= true;
-                    std::swap(base::child0(t), base::child1(t));
-                    value_type& sum = prod_all(t);
-                    sum = toggle(sum);
-                }
-                return t;
-            }
 
             // ----- new features ----- //
             static value_type& prod_all(node_pointer t) {
                 return base::node(t)._sum;
             }
             static value_type safe_prod(node_pointer t) {
-                return t == base::null ? e() : prod_all(t);
+                return base::is_null(t) ? e() : prod_all(t);
             }
             static std::pair<node_pointer, value_type> prod(node_pointer t, size_t l, size_t r) {
                 auto [tl, tm, tr] = base::split(t, l, r);
@@ -53,7 +44,7 @@ namespace suisen {
                 assert(f(sum));
 
                 uint32_t r = 0;
-                while (t != base::null) {
+                while (base::is_not_null(t)) {
                     base::push(t);
 
                     node_pointer lch = base::child0(t);
@@ -87,7 +78,7 @@ namespace suisen {
                 assert(f(sum));
 
                 uint32_t l = base::safe_size(t);
-                while (t != base::null) {
+                while (base::is_not_null(t)) {
                     base::push(t);
 
                     node_pointer rch = base::child1(t);
@@ -118,9 +109,9 @@ namespace suisen {
         };
     }
 
-    template <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T)>
+    template <typename T, T(*op)(T, T), T(*e)()>
     class DynamicSegmentTree {
-        using node_type = internal::implicit_treap::RangeProductNode<T, op, e, toggle>;
+        using node_type = internal::implicit_treap::RangeProductNode<T, op, e>;
         using node_pointer = typename node_type::node_pointer;
 
         node_pointer _root;
@@ -312,12 +303,6 @@ namespace suisen {
             _root = node_type::rotate(_root, l, m, r);
         }
 
-        void reverse(size_t l, size_t r) {
-            assert(l <= r and r <= size_t(size()));
-            if (r - l >= 2) _root = node_type::reverse(_root, l, r);
-        }
-        void reverse_all() { _root = node_type::reverse_all(_root); }
-
         std::vector<value_type> dump() const { return node_type::dump(_root); }
 
         // Find the first element that satisfies the condition f.
@@ -365,16 +350,12 @@ namespace suisen {
 
         iterator begin() const { return cbegin(); }
         iterator end() const { return cend(); }
-        iterator kth_iterator(size_t k) const { return kth_const_iterator(k); }
         reverse_iterator rbegin() const { return crbegin(); }
         reverse_iterator rend() const { return crend(); }
-        reverse_iterator kth_reverse_iterator(size_t k) const { return kth_const_reverse_iterator(k); }
         const_iterator cbegin() const { return node_type::cbegin(_root); }
         const_iterator cend() const { return node_type::cend(_root); }
-        const_iterator kth_const_iterator(size_t k) const { return node_type::kth_const_iterator(_root, k); }
         const_reverse_iterator crbegin() const { return node_type::crbegin(_root); }
         const_reverse_iterator crend() const { return node_type::crend(_root); }
-        const_reverse_iterator kth_const_reverse_iterator(size_t k) const { return node_type::kth_const_reverse_iterator(_root, k); }
     };
 } // namespace suisen
 

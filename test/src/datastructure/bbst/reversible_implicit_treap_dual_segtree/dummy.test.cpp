@@ -6,18 +6,18 @@
 #include <vector>
 
 template <typename T>
-std::ostream& operator<<(std::ostream& out, const std::vector<T>& a) {
+std::ostream& operator<<(std::ostream &out, const std::vector<T> &a) {
     out << '{';
-    for (auto& e : a) out << e << ',';
+    for (auto &e : a) out << e << ',';
     return out << '}';
 }
 
-#include "library/datastructure/bbst/implicit_treap.hpp"
+#include "library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp"
 
-template <typename T>
-struct NaiveSolutionForDynamicArray {
-    NaiveSolutionForDynamicArray() = default;
-    NaiveSolutionForDynamicArray(const std::vector<T>& dat): _n(dat.size()), _dat(dat) {}
+template <typename T, typename F, T(*mapping)(F, T)>
+struct NaiveSolutionForDualSegmentTree {
+    NaiveSolutionForDualSegmentTree() = default;
+    NaiveSolutionForDualSegmentTree(const std::vector<T> &dat) : _n(dat.size()), _dat(dat) {}
 
     T get(int i) const {
         assert(0 <= i and i < _n);
@@ -37,6 +37,14 @@ struct NaiveSolutionForDynamicArray {
         assert(0 <= i and i < _n);
         --_n;
         _dat.erase(_dat.begin() + i);
+    }
+
+    void apply_all(const F &f) {
+        apply(0, _n, f);
+    }
+    void apply(int l, int r, const F &f) {
+        assert(0 <= l and l <= r and r <= _n);
+        for (int i = l; i < r; ++i) _dat[i] = mapping(f, _dat[i]);
     }
 
     void reverse_all() {
@@ -66,8 +74,26 @@ private:
 
 using S = int;
 
-using Tree = suisen::DynamicArray<S>;
-using Naive = NaiveSolutionForDynamicArray<S>;
+struct F {
+    static constexpr int identity = std::numeric_limits<int>::max();
+
+    int val;
+    F() : val(identity) {}
+    F(int val) : val(val) {}
+};
+
+S mapping(F f, S x) {
+    return f.val == F::identity ? x : f.val;
+}
+F composition(F f, F g) {
+    return f.val == F::identity ? g : f.val;
+}
+F id() {
+    return F{};
+}
+
+using Tree = suisen::ReversibleDynamicDualSegmentTree<S, F, mapping, composition, id>;
+using Naive = NaiveSolutionForDualSegmentTree<S, F, mapping>;
 
 #include <random>
 #include <algorithm>
@@ -76,17 +102,21 @@ constexpr int Q_get = 0;
 constexpr int Q_set = 1;
 constexpr int Q_insert = 2;
 constexpr int Q_erase = 3;
-constexpr int Q_rotate = 4;
-constexpr int QueryTypeNum = 5;
+constexpr int Q_rotate = 8;
+constexpr int Q_apply = 4;
+constexpr int Q_apply_all = 5;
+constexpr int Q_reverse = 6;
+constexpr int Q_reverse_all = 7;
+constexpr int QueryTypeNum = 9;
 
 void test() {
     int N = 3000, Q = 3000, MAX_VAL = 1000000000;
 
-    std::mt19937 rng{ std::random_device{}() };
+    std::mt19937 rng{std::random_device{}()};
 
     std::vector<S> init(N);
     for (int i = 0; i < N; ++i) init[i] = rng() % MAX_VAL;
-
+    
     Tree t1(init);
     Naive t2(init);
 
@@ -115,6 +145,24 @@ void test() {
             const int i = rng() % (N + 1);
             t1.rotate(i);
             t2.rotate(i);
+        } else if (query_type == Q_apply) {
+            const int l = rng() % (N + 1);
+            const int r = l + rng() % (N - l + 1);
+            const int f = rng() % MAX_VAL;
+            t1.apply(l, r, f);
+            t2.apply(l, r, f);
+        } else if (query_type == Q_apply_all) {
+            const int f = rng() % MAX_VAL;
+            t1.apply_all(f);
+            t2.apply_all(f);
+        } else if (query_type == Q_reverse) {
+            const int l = rng() % (N + 1);
+            const int r = l + rng() % (N - l + 1);
+            t1.reverse(l, r);
+            t2.reverse(l, r);
+        } else if (query_type == Q_reverse_all) {
+            t1.reverse_all();
+            t2.reverse_all();
         } else {
             assert(false);
         }
@@ -153,7 +201,6 @@ void test2() {
     std::vector<int> sorted = q;
     std::sort(sorted.begin(), sorted.end());
 
-    seq.free();
     seq = sorted;
 
     assert(std::equal(sorted.begin(), sorted.end(), seq.begin()));
@@ -227,6 +274,20 @@ void test2() {
     std::vector<int> naive = sorted;
     assert(std::equal(naive.begin(), naive.end(), seq.begin()));
 
+    for (int q = 0; q < 500; ++q) {
+        if (rng() % 2) {
+            int l = rng() % (n * k + 1);
+            int r = rng() % (n * k + 1);
+            if (l > r) std::swap(l, r);
+            seq.reverse(l, r);
+            std::reverse(naive.begin() + l, naive.begin() + r);
+        } else {
+            assert(naive == seq.dump());
+            assert(std::equal(naive.begin(), naive.end(), seq.begin()));
+            assert(std::equal(naive.rbegin(), naive.rend(), seq.rbegin()));
+        }
+    }
+
     for (int& e : seq) --e;
     for (int& e : naive) --e;
     assert(std::equal(naive.begin(), naive.end(), seq.begin()));
@@ -241,10 +302,10 @@ void test2() {
     }
 }
 
+
 int main() {
     test();
     test2();
-
     std::cout << "Hello World" << std::endl;
     return 0;
 }

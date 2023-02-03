@@ -1,34 +1,34 @@
-#ifndef SUISEN_IMPLICIT_TREAP
-#define SUISEN_IMPLICIT_TREAP
+#ifndef SUISEN_REVERSIBLE_IMPLICIT_TREAP
+#define SUISEN_REVERSIBLE_IMPLICIT_TREAP
 
-#include "library/datastructure/bbst/implicit_treap_base.hpp"
+#include "library/datastructure/bbst/reversible_implicit_treap_base.hpp"
 
 namespace suisen {
     namespace internal::implicit_treap {
         template <typename T>
-        struct DefaultNode: Node<T, DefaultNode<T>> {
-            using base = Node<T, DefaultNode<T>>;
+        struct ReversibleDefaultNode: ReversibleNode<T, ReversibleDefaultNode<T>> {
+            using base = ReversibleNode<T, ReversibleDefaultNode<T>>;
             using base::base;
         };
     }
 
     template <typename T>
-    class DynamicArray {
-        using node_type = internal::implicit_treap::DefaultNode<T>;
+    class ReversibleDynamicArray {
+        using node_type = internal::implicit_treap::ReversibleDefaultNode<T>;
         using node_pointer = typename node_type::node_pointer;
 
         node_pointer _root;
 
         struct node_pointer_construct {};
-        DynamicArray(node_pointer root, node_pointer_construct): _root(root) {}
+        ReversibleDynamicArray(node_pointer root, node_pointer_construct): _root(root) {}
 
     public:
         using value_type = typename node_type::value_type;
 
-        DynamicArray(): _root(node_type::empty_node()) {}
-        explicit DynamicArray(size_t n, const value_type& fill_value = {}): _root(node_type::build(n, fill_value)) {}
+        ReversibleDynamicArray(): _root(node_type::empty_node()) {}
+        explicit ReversibleDynamicArray(size_t n, const value_type& fill_value = {}): _root(node_type::build(n, fill_value)) {}
         template <typename U>
-        DynamicArray(const std::vector<U>& dat) : _root(node_type::build(dat.begin(), dat.end())) {}
+        ReversibleDynamicArray(const std::vector<U>& dat) : _root(node_type::build(dat.begin(), dat.end())) {}
 
         void free() {
             node_type::delete_tree(_root);
@@ -152,38 +152,38 @@ namespace suisen {
         }
 
         // Split immediately before the k-th element.
-        DynamicArray split(size_t k) {
+        ReversibleDynamicArray split(size_t k) {
             assert(k <= size_t(size()));
             node_pointer root_r;
             std::tie(_root, root_r) = node_type::split(_root, k);
-            return DynamicArray(root_r, node_pointer_construct{});
+            return ReversibleDynamicArray(root_r, node_pointer_construct{});
         }
         // Split immediately before the first element that satisfies the condition.
         // Requirements: f(A[i]) must be monotonic
         template <typename Predicate>
-        DynamicArray split_binary_search(const Predicate &f) {
+        ReversibleDynamicArray split_binary_search(const Predicate &f) {
             node_pointer root_r;
             std::tie(_root, root_r) = node_type::split_binary_search(_root, f);
-            return DynamicArray(root_r, node_pointer_construct{});
+            return ReversibleDynamicArray(root_r, node_pointer_construct{});
         }
         // Split immediately before the first element that is greater than or equal to val.
         // Requirements: sequence is sorted
         template <typename Compare = std::less<>>
-        DynamicArray split_lower_bound(const value_type &val, const Compare &comp = {}) {
+        ReversibleDynamicArray split_lower_bound(const value_type &val, const Compare &comp = {}) {
             node_pointer root_r;
             std::tie(_root, root_r) = node_type::split_lower_bound(_root, val, comp);
-            return DynamicArray(root_r, node_pointer_construct{});
+            return ReversibleDynamicArray(root_r, node_pointer_construct{});
         }
         // Split immediately before the first element that is greater than val.
         // Requirements: sequence is sorted
         template <typename Compare = std::less<>>
-        DynamicArray split_upper_bound(const value_type &val, const Compare &comp = {}) {
+        ReversibleDynamicArray split_upper_bound(const value_type &val, const Compare &comp = {}) {
             node_pointer root_r;
             std::tie(_root, root_r) = node_type::split_upper_bound(_root, val, comp);
-            return DynamicArray(root_r, node_pointer_construct{});
+            return ReversibleDynamicArray(root_r, node_pointer_construct{});
         }
 
-        void merge(DynamicArray r) { _root = node_type::merge(_root, r._root); }
+        void merge(ReversibleDynamicArray r) { _root = node_type::merge(_root, r._root); }
 
         void rotate(size_t k) {
             assert(k <= size_t(size()));
@@ -193,6 +193,12 @@ namespace suisen {
             assert(l <= m and m <= r and r <= size_t(size()));
             _root = node_type::rotate(_root, l, m, r);
         }
+
+        void reverse(size_t l, size_t r) {
+            assert(l <= r and r <= size_t(size()));
+            if (r - l >= 2) _root = node_type::reverse(_root, l, r);
+        }
+        void reverse_all() { _root = node_type::reverse_all(_root); }
 
         std::vector<value_type> dump() const { return node_type::dump(_root); }
 
@@ -226,19 +232,25 @@ namespace suisen {
 
         iterator begin() { return node_type::begin(_root); }
         iterator end() { return node_type::end(_root); }
+        iterator kth_iterator(size_t k) { return node_type::kth_iterator(_root, k); }
         reverse_iterator rbegin() { return node_type::rbegin(_root); }
         reverse_iterator rend() { return node_type::rend(_root); }
+        reverse_iterator kth_reverse_iterator(size_t k) { return node_type::kth_reverse_iterator(_root, k); }
 
         const_iterator begin() const { return cbegin(); }
         const_iterator end() const { return cend(); }
+        const_iterator kth_iterator(size_t k) const { return kth_const_iterator(k); }
         const_reverse_iterator rbegin() const { return crbegin(); }
         const_reverse_iterator rend() const { return crend(); }
+        const_reverse_iterator kth_reverse_iterator(size_t k) const { return kth_const_reverse_iterator(k); }
         const_iterator cbegin() const { return node_type::cbegin(_root); }
         const_iterator cend() const { return node_type::cend(_root); }
+        const_iterator kth_const_iterator(size_t k) const { return node_type::kth_const_iterator(_root, k); }
         const_reverse_iterator crbegin() const { return node_type::crbegin(_root); }
         const_reverse_iterator crend() const { return node_type::crend(_root); }
+        const_reverse_iterator kth_const_reverse_iterator(size_t k) const { return node_type::kth_const_reverse_iterator(_root, k); }
     };
 } // namespace suisen
 
 
-#endif // SUISEN_IMPLICIT_TREAP
+#endif // SUISEN_REVERSIBLE_IMPLICIT_TREAP

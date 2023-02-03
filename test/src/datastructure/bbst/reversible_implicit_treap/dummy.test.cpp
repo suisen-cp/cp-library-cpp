@@ -12,7 +12,7 @@ std::ostream& operator<<(std::ostream& out, const std::vector<T>& a) {
     return out << '}';
 }
 
-#include "library/datastructure/bbst/implicit_treap.hpp"
+#include "library/datastructure/bbst/reversible_implicit_treap.hpp"
 
 template <typename T>
 struct NaiveSolutionForDynamicArray {
@@ -66,7 +66,7 @@ private:
 
 using S = int;
 
-using Tree = suisen::DynamicArray<S>;
+using Tree = suisen::ReversibleDynamicArray<S>;
 using Naive = NaiveSolutionForDynamicArray<S>;
 
 #include <random>
@@ -77,7 +77,9 @@ constexpr int Q_set = 1;
 constexpr int Q_insert = 2;
 constexpr int Q_erase = 3;
 constexpr int Q_rotate = 4;
-constexpr int QueryTypeNum = 5;
+constexpr int Q_reverse = 5;
+constexpr int Q_reverse_all = 6;
+constexpr int QueryTypeNum = 7;
 
 void test() {
     int N = 3000, Q = 3000, MAX_VAL = 1000000000;
@@ -115,6 +117,14 @@ void test() {
             const int i = rng() % (N + 1);
             t1.rotate(i);
             t2.rotate(i);
+        } else if (query_type == Q_reverse) {
+            const int l = rng() % (N + 1);
+            const int r = l + rng() % (N - l + 1);
+            t1.reverse(l, r);
+            t2.reverse(l, r);
+        } else if (query_type == Q_reverse_all) {
+            t1.reverse_all();
+            t2.reverse_all();
         } else {
             assert(false);
         }
@@ -226,6 +236,20 @@ void test2() {
 
     std::vector<int> naive = sorted;
     assert(std::equal(naive.begin(), naive.end(), seq.begin()));
+
+    for (int q = 0; q < 500; ++q) {
+        if (rng() % 2) {
+            int l = rng() % (n * k + 1);
+            int r = rng() % (n * k + 1);
+            if (l > r) std::swap(l, r);
+            seq.reverse(l, r);
+            std::reverse(naive.begin() + l, naive.begin() + r);
+        } else {
+            assert(std::equal(naive.begin(), naive.end(), seq.begin()));
+            assert(std::equal(naive.rbegin(), naive.rend(), seq.rbegin()));
+            assert(naive == seq.dump());
+        }
+    }
 
     for (int& e : seq) --e;
     for (int& e : naive) --e;

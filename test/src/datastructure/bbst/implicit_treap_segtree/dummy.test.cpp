@@ -106,11 +106,8 @@ S op(S x, S y) {
 S e() {
     return 0;
 }
-S toggle(S x) {
-    return x;
-}
 
-using Tree = suisen::DynamicSegmentTree<S, op, e, toggle>;
+using Tree = suisen::DynamicSegmentTree<S, op, e>;
 using Naive = NaiveSolutionForSegmentTree<S, op, e>;
 
 #include <random>
@@ -120,14 +117,12 @@ constexpr int Q_get = 0;
 constexpr int Q_set = 1;
 constexpr int Q_insert = 4;
 constexpr int Q_erase = 5;
-constexpr int Q_rotate = 10;
+constexpr int Q_rotate = 8;
 constexpr int Q_prod = 2;
 constexpr int Q_prod_all = 3;
-constexpr int Q_reverse = 6;
-constexpr int Q_reverse_all = 7;
-constexpr int Q_max_right = 8;
-constexpr int Q_min_left = 9;
-constexpr int QueryTypeNum = 11;
+constexpr int Q_max_right = 6;
+constexpr int Q_min_left = 7;
+constexpr int QueryTypeNum = 9;
 
 void test() {
     int N = 3000, Q = 3000, MAX_VAL = 1000000000;
@@ -171,14 +166,6 @@ void test() {
             assert(t1.prod(l, r) == t2.prod(l, r));
         } else if (query_type == Q_prod_all) {
             assert(t1.prod_all() == t2.prod_all());
-        } else if (query_type == Q_reverse) {
-            const int l = rng() % (N + 1);
-            const int r = l + rng() % (N - l + 1);
-            t1.reverse(l, r);
-            t2.reverse(l, r);
-        } else if (query_type == Q_reverse_all) {
-            t1.reverse_all();
-            t2.reverse_all();
         } else if (query_type == Q_max_right) {
             const int l = rng() % (N + 1);
             const int r = l + rng() % (N - l + 1);
@@ -235,33 +222,72 @@ void test2() {
     assert(std::equal(sorted.rbegin(), sorted.rend(), seq.rbegin()));
 
     for (int i = 0; i < n * k; ++i) {
-        assert(*seq.kth_iterator(i) == i / k);
+        assert(seq.begin()[i] == i / k);
+    }
+
+    {
+        auto it = seq.begin();
+        for (int q = 0; q < 100000; ++q) {
+            int a = rng() % (n * k + 1);
+            auto it2 = seq.begin() + a;
+            it += it2 - it;
+            if (a < n * k) {
+                assert(*it == a / k);
+            }
+        }
     }
 
     for (int q = 0; q < 10000; ++q) {
         int a = rng() % (n * k + 1);
         int b = rng() % (n * k + 1);
         int d = b - a;
-        assert(seq.kth_iterator(a) + d == seq.kth_iterator(b));
-        assert(seq.kth_iterator(a) == seq.kth_iterator(b) - d);
+        assert((seq.begin() + a) + d == seq.begin() + b);
+        assert(seq.begin() + a == (seq.begin() + b) - d);
+
+        auto it1 = seq.begin() + a;
+        auto it2 = seq.begin() + b;
+
+        if (d > 0) {
+            assert(not (it1 == it2));
+            assert(it1 != it2);
+            assert(not (it1 > it2));
+            assert(not (it1 >= it2));
+            assert(it1 < it2);
+            assert(it1 <= it2);
+        } else if (d < 0) {
+            assert(not (it1 == it2));
+            assert(it1 != it2);
+            assert(not (it1 < it2));
+            assert(not (it1 <= it2));
+            assert(it1 > it2);
+            assert(it1 >= it2);
+        } else {
+            assert(not (it1 != it2));
+            assert(it1 == it2);
+            assert(not (it1 > it2));
+            assert(not (it1 < it2));
+            assert(it1 <= it2);
+            assert(it1 >= it2);
+        }
+
+        if (a != n * k and b != n * k) {
+            assert(*it1 == a / k);
+            assert(*it2 == b / k);
+
+            it1 += d;
+
+            assert(not (it1 != it2));
+            assert(it1 == it2);
+            assert(not (it1 < it2));
+            assert(not (it1 > it2));
+            assert(it1 <= it2);
+            assert(it1 >= it2);
+            assert(*it1 == *it2);
+        }
     }
 
     std::vector<S> naive = sorted;
-
-    for (int q = 0; q < 500; ++q) {
-        if (rng() % 2) {
-            int l = rng() % (n * k + 1);
-            int r = rng() % (n * k + 1);
-            if (l > r) std::swap(l, r);
-            seq.reverse(l, r);
-            std::reverse(naive.begin() + l, naive.begin() + r);
-        } else {
-            assert(std::equal(naive.begin(), naive.end(), seq.begin()));
-            assert(std::equal(naive.rbegin(), naive.rend(), seq.rbegin()));
-            std::vector<S> dump = seq.dump();
-            assert(std::equal(naive.begin(), naive.end(), dump.begin()));
-        }
-    }
+    assert(std::equal(naive.begin(), naive.end(), seq.begin()));
 
     // for (S& e : seq) --e; // Compile Error 
     // for (S& e : naive) --e;

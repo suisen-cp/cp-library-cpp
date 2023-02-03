@@ -15,7 +15,7 @@ std::ostream& operator<<(std::ostream& out, const mint &a) {
     return out;
 }
 
-#include "library/datastructure/bbst/implicit_treap_lazy_segtree.hpp"
+#include "library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp"
 #include "library/algebra/monoid/affine.hpp"
 
 using S = mint;
@@ -40,7 +40,7 @@ F id() {
     return F::id();
 }
 
-using Sequence = suisen::DynamicLazySegmentTree<S, op, e, toggle, F, mapping, composition, id>;
+using Sequence = suisen::ReversibleDynamicLazySegmentTree<S, op, e, toggle, F, mapping, composition, id>;
 
 int main() {
     std::ios::sync_with_stdio(false);
