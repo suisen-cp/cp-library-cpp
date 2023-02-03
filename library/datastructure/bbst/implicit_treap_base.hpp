@@ -1,6 +1,7 @@
 #ifndef SUISEN_IMPLICIT_TREAP_BASE
 #define SUISEN_IMPLICIT_TREAP_BASE
 
+#include <algorithm>
 #include <cassert>
 #include <cstdint>
 #include <optional>
@@ -16,9 +17,12 @@ namespace suisen::internal::implicit_treap {
         using random_engine = std::mt19937;
         static inline random_engine rng{ std::random_device{}() };
 
+        using priority_type = std::invoke_result_t<random_engine>;
+
+        static priority_type random_priority() { return rng(); }
+
         using node_type = Derived;
         using node_pointer = uint32_t;
-        using priority_type = std::invoke_result_t<random_engine>;
 
         using size_type = uint32_t;
 
@@ -41,7 +45,7 @@ namespace suisen::internal::implicit_treap {
 
         node_pointer _prev = null, _next = null;
 
-        Node(const value_type val = {}): _val(val), _size(1), _priority(rng()) {}
+        Node(const value_type val = {}): _val(val), _size(1), _priority(random_priority()) {}
 
         static void reserve(size_type capacity) { _nodes.reserve(capacity); }
 
@@ -58,7 +62,8 @@ namespace suisen::internal::implicit_treap {
         static size_type& size(node_pointer t) { return node(t)._size; }
         static size_type safe_size(node_pointer t) { return empty(t) ? 0 : size(t); }
 
-        static priority_type priority(node_pointer t) { return const_node(t)._priority; }
+        static priority_type& priority(node_pointer t) { return node(t)._priority; }
+        static void set_priority(node_pointer t, priority_type new_priority) { priority(t) = new_priority; }
 
         static node_pointer& prev(node_pointer t) { return node(t)._prev; }
         static node_pointer& next(node_pointer t) { return node(t)._next; }
@@ -66,7 +71,6 @@ namespace suisen::internal::implicit_treap {
 
         static node_pointer min(node_pointer t) {
             while (true) {
-                node_type::push(t);
                 node_pointer nt = child0(t);
                 if (is_null(nt)) return t;
                 t = nt;
@@ -74,7 +78,6 @@ namespace suisen::internal::implicit_treap {
         }
         static node_pointer max(node_pointer t) {
             while (true) {
-                node_type::push(t);
                 node_pointer nt = child1(t);
                 if (is_null(nt)) return t;
                 t = nt;
@@ -92,7 +95,6 @@ namespace suisen::internal::implicit_treap {
             size(t) = safe_size(child0(t)) + safe_size(child1(t)) + 1;
             return t;
         }
-        static void push(node_pointer) {}
 
         static node_pointer empty_node() { return null; }
         template <typename ...Args>
@@ -118,11 +120,33 @@ namespace suisen::internal::implicit_treap {
 
         template <typename ...Args>
         static node_pointer build(Args &&... args) {
-            node_pointer res = empty_node();
-            for (auto&& e : std::vector<value_type>(std::forward<Args>(args)...)) {
-                res = push_back(res, std::move(e));
-            }
-            return res;
+            std::vector<value_type> dat(std::forward<Args>(args)...);
+
+            const size_t n = dat.size();
+
+            std::vector<priority_type> priorities(n);
+            std::generate(priorities.begin(), priorities.end(), random_priority);
+            std::make_heap(priorities.begin(), priorities.end());
+
+            std::vector<node_pointer> nodes(n);
+
+            auto rec = [&](auto rec, size_t heap_index, size_t dat_index_offset) -> std::pair<size_t, node_pointer> {
+                if (heap_index >= n) return { 0, null };
+                auto [lsiz, lch] = rec(rec, 2 * heap_index + 1, dat_index_offset);
+                dat_index_offset += lsiz;
+                node_pointer root = create_node(std::move(dat[dat_index_offset]));
+                nodes[dat_index_offset] = root;
+                set_priority(root, priorities[heap_index]);
+                if (dat_index_offset) {
+                    link(nodes[dat_index_offset - 1], root);
+                }
+                dat_index_offset += 1;
+                auto [rsiz, rch] = rec(rec, 2 * heap_index + 2, dat_index_offset);
+                set_child0(root, lch);
+                set_child1(root, rch);
+                return { lsiz + 1 + rsiz, node_type::update(root) };
+            };
+            return rec(rec, 0, 0).second;
         }
 
         static std::pair<node_pointer, node_pointer> split(node_pointer t, size_type k) {
@@ -132,7 +156,6 @@ namespace suisen::internal::implicit_treap {
             static std::vector<node_pointer> lp{}, rp{};
 
             while (true) {
-                node_type::push(t);
                 if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {
                     if (rp.size()) set_child0(rp.back(), t);
                     rp.push_back(t);
@@ -160,35 +183,9 @@ namespace suisen::internal::implicit_treap {
             auto [tl, tm] = split(tlm, l);
             return { tl, tm, tr };
         }
-        // Split immediately before the first element that satisfies the condition.
-        template <typename Predicate>
-        static std::pair<node_pointer, node_pointer> split_binary_search(node_pointer t, const Predicate& f) {
-            if (is_null(t)) {
-                return { null, null };
-            }
-            node_type::push(t);
-            if (f(value(t))) {
-                auto [l, tl] = split_binary_search(child0(t), f);
-                set_child0(t, tl);
-                return { l, node_type::update(t) };
-            } else {
-                auto [tr, r] = split_binary_search(child1(t), f);
-                set_child1(t, tr);
-                return { node_type::update(t), r };
-            }
-        }
-        template <typename Compare = std::less<>>
-        static std::pair<node_pointer, node_pointer> split_lower_bound(node_pointer t, const value_type& target, const Compare& comp) {
-            return split_binary_search(t, [&](const value_type& v) { return not comp(v, target); });
-        }
-        template <typename Compare = std::less<>>
-        static std::pair<node_pointer, node_pointer> split_upper_bound(node_pointer t, const value_type& target, const Compare& comp) {
-            return split_binary_search(t, [&](const value_type& v) { return comp(target, v); });
-        }
 
         static node_pointer merge_impl(node_pointer tl, node_pointer tr) {
             if (priority(tl) < priority(tr)) {
-                node_type::push(tr);
                 if (node_pointer tm = child0(tr); is_null(tm)) {
                     link(max(tl), tr);
                     set_child0(tr, tl);
@@ -197,7 +194,6 @@ namespace suisen::internal::implicit_treap {
                 }
                 return node_type::update(tr);
             } else {
-                node_type::push(tl);
                 if (node_pointer tm = child1(tl); is_null(tm)) {
                     link(tl, min(tr));
                     set_child1(tl, tr);
@@ -215,6 +211,7 @@ namespace suisen::internal::implicit_treap {
         static node_pointer merge(node_pointer tl, node_pointer tm, node_pointer tr) {
             return merge(merge(tl, tm), tr);
         }
+
         static node_pointer insert_impl(node_pointer t, size_type k, node_pointer new_node) {
             if (is_null(t)) return new_node;
             static std::vector<node_pointer> st;
@@ -238,7 +235,6 @@ namespace suisen::internal::implicit_treap {
                     }
                     return t;
                 } else {
-                    node_type::push(t);
                     if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {
                         if (k == lsiz) link(new_node, t);
                         st.push_back(t), b = false;
@@ -256,59 +252,8 @@ namespace suisen::internal::implicit_treap {
         static node_pointer insert(node_pointer t, size_type k, Args &&...args) {
             return insert_impl(t, k, create_node(std::forward<Args>(args)...));
         }
-        template <typename ...Args>
-        static node_pointer push_front(node_pointer t, Args &&...args) {
-            return insert(t, 0, std::forward<Args>(args)...);
-        }
-        template <typename ...Args>
-        static node_pointer push_back(node_pointer t, Args &&...args) {
-            return insert(t, safe_size(t), std::forward<Args>(args)...);
-        }
-
-        // Insert a new node immediately before the first element that satisfies the condition.
-        // Returns { node, position to insert }
-        template <typename Predicate>
-        static std::pair<node_pointer, size_type> insert_binary_search_impl(node_pointer t, const Predicate& f, node_pointer new_node) {
-            if (is_null(t)) {
-                return { new_node, 0 };
-            }
-            if (priority(new_node) > priority(t)) {
-                auto [tl, tr] = split_binary_search(t, f);
-                if (is_not_null(tl)) link(max(tl), t);
-                if (is_not_null(tr)) link(min(tr), t);
-                set_child0(new_node, tl);
-                set_child1(new_node, tr);
-                return { node_type::update(new_node), safe_size(tl) };
-            } else {
-                node_type::push(t);
-                if (f(value(t))) {
-                    auto [c0, pos] = insert_binary_search_impl(child0(t), f, new_node);
-                    set_child0(t, c0);
-                    if (is_null(next(new_node))) link(new_node, t);
-                    return { node_type::update(t), pos };
-                } else {
-                    auto [c1, pos] = insert_binary_search_impl(child1(t), f, new_node);
-                    set_child1(t, c1);
-                    if (is_null(prev(new_node))) link(t, new_node);
-                    return { node_type::update(t), pos + safe_size(child0(t)) + 1 };
-                }
-            }
-        }
-        template <typename Predicate, typename ...Args>
-        static std::pair<node_pointer, size_type> insert_binary_search(node_pointer t, const Predicate& f, Args &&...args) {
-            return insert_binary_search_impl(t, f, create_node(std::forward<Args>(args)...));
-        }
-        template <typename Compare = std::less<>>
-        static std::pair<node_pointer, size_type> insert_lower_bound(node_pointer t, const value_type& v, Compare comp) {
-            return insert_binary_search(t, [&](const value_type& x) { return not comp(x, v); }, v);
-        }
-        template <typename Compare = std::less<>>
-        static std::pair<node_pointer, size_type> insert_upper_bound(node_pointer t, const value_type& v, Compare comp) {
-            return insert_binary_search(t, [&](const value_type& x) { return comp(v, x); }, v);
-        }
 
         static std::pair<node_pointer, value_type> erase(node_pointer t, size_type k) {
-            node_type::push(t);
             if (const size_type lsiz = safe_size(child0(t)); k == lsiz) {
                 delete_node(t);
                 return { merge(child0(t), child1(t)), std::move(value(t)) };
@@ -324,66 +269,6 @@ namespace suisen::internal::implicit_treap {
                 return { node_type::update(t), std::move(v) };
             }
         }
-        static std::pair<node_pointer, value_type> pop_front(node_pointer t) { return erase(t, 0); }
-        static std::pair<node_pointer, value_type> pop_back(node_pointer t) { return erase(t, safe_size(t) - 1); }
-
-        // Erase the first element that satisfies the condition f if it also satisfies the condition g.
-        // returns { node, optional(position, value) }
-        template <typename Predicate, typename RemovePredicate>
-        static std::pair<node_pointer, std::optional<std::pair<size_type, value_type>>> erase_binary_search(node_pointer t, const Predicate& f, const RemovePredicate& g) {
-            if (is_null(t)) return { null, std::nullopt };
-            node_type::push(t);
-            if (f(value(t))) {
-                auto [c0, erased] = erase_binary_search(child0(t), f, g);
-                if (erased) {
-                    set_child0(t, c0);
-                    size_type& pos = erased->first;
-                    if (is_not_null(c0) and pos == safe_size(c0)) link(max(c0), t);
-                    return { node_type::update(t), std::move(erased) };
-                } else if (g(value(t))) {
-                    delete_node(t);
-                    std::pair<size_type, value_type> erased_entry{ safe_size(child0(t)), std::move(value(t)) };
-                    return { merge(child0(t), child1(t)), std::move(erased_entry) };
-                } else {
-                    return { t, std::nullopt };
-                }
-            } else {
-                auto [c1, erased] = erase_binary_search(child1(t), f, g);
-                if (erased) {
-                    set_child1(t, c1);
-                    size_type& pos = erased->first;
-                    if (is_not_null(c1) and pos == 0) link(t, min(c1));
-                    pos += safe_size(child0(t)) + 1;
-                    return { node_type::update(t), std::move(erased) };
-                } else {
-                    return { t, std::nullopt };
-                }
-            }
-        }
-        template <typename Compare = std::less<>>
-        static std::pair<node_pointer, std::optional<std::pair<size_type, value_type>>> erase_lower_bound(node_pointer t, const value_type& v, Compare comp) {
-            return erase_binary_search(
-                t,
-                [&](const value_type& x) { return not comp(x, v); },
-                [] { return true; }
-            );
-        }
-        template <typename Compare = std::less<>>
-        static std::pair<node_pointer, std::optional<std::pair<size_type, value_type>>> erase_upper_bound(node_pointer t, const value_type& v, Compare comp) {
-            return erase_binary_search(
-                t,
-                [&](const value_type& x) { return comp(v, x); },
-                [] { return true; }
-            );
-        }
-        template <typename Compare = std::less<>>
-        static std::pair<node_pointer, std::optional<std::pair<size_type, value_type>>> erase_if_exists(node_pointer t, const value_type& v, Compare comp) {
-            return erase_binary_search(
-                t,
-                [&](const value_type& x) { return not comp(x, v); },
-                [&](const value_type& x) { return not comp(v, x); }
-            );
-        }
 
         static node_pointer rotate(node_pointer t, size_type k) {
             auto [tl, tr] = split(t, k);
@@ -394,23 +279,8 @@ namespace suisen::internal::implicit_treap {
             return merge(tl, rotate(tm, m - l), tr);
         }
 
-        static value_type& get(node_pointer t, size_type k) {
-            while (true) {
-                node_type::push(t);
-                if (const size_type lsiz = safe_size(child0(t)); k == lsiz) {
-                    return value(t);
-                } else if (k < lsiz) {
-                    t = child0(t);
-                } else {
-                    k -= lsiz + 1;
-                    t = child1(t);
-                }
-            }
-        }
-
         template <typename Func>
         static node_pointer set_update(node_pointer t, size_type k, const Func& f) {
-            node_type::push(t);
             if (const size_type lsiz = safe_size(child0(t)); k == lsiz) {
                 value_type& val = value(t);
                 val = f(const_cast<const value_type&>(val));
@@ -427,7 +297,6 @@ namespace suisen::internal::implicit_treap {
             res.reserve(safe_size(t));
             auto rec = [&](auto rec, node_pointer t) -> void {
                 if (is_null(t)) return;
-                node_type::push(t);
                 rec(rec, child0(t));
                 res.push_back(value(t));
                 rec(rec, child1(t));
@@ -436,68 +305,39 @@ namespace suisen::internal::implicit_treap {
             return res;
         }
 
-        // Find the first element that satisfies the condition f : (value, index) -> { false, true }.
-        // Returns { optional(value), position }
-        template <typename Predicate>
-        static std::pair<size_type, std::optional<value_type>> binary_search(node_pointer t, const Predicate& f) {
-            node_pointer res = null;
-            int ng = -1, ok = safe_size(t);
-            while (ok - ng > 1) {
-                node_type::push(t);
-                if (const int root = ng + safe_size(child0(t)) + 1; f(value(t), root)) {
-                    res = t;
-                    ok = root, t = child0(t);
-                } else {
-                    ng = root, t = child1(t);
-                }
-            }
-            if (is_null(res)) {
-                return { ok, std::nullopt };
-            } else {
-                return { ok, value(res) };
-            }
-        }
-
-        // comp(T t, U u) = (t < u)
-        template <typename U, typename Compare = std::less<>>
-        static std::pair<size_type, std::optional<value_type>> lower_bound(node_pointer t, const U& target, Compare comp) {
-            return binary_search(t, [&](const value_type& v, int) { return not comp(v, target); });
-        }
-        // comp(T u, U t) = (u < t)
-        template <typename U, typename Compare = std::less<>>
-        static std::pair<size_type, std::optional<value_type>> upper_bound(node_pointer t, const U& target, Compare comp) {
-            return binary_search(t, [&](const value_type& v, int) { return comp(target, v); });
-        }
-
         template <bool reversed_, bool constant_>
         struct NodeIterator {
             static constexpr bool constant = constant_;
             static constexpr bool reversed = reversed_;
 
+            friend Node;
+            friend Derived;
+
             using difference_type = Node::difference_type;
             using value_type = Node::value_type;
             using pointer = std::conditional_t<constant, Node::const_pointer, Node::pointer>;
             using reference = std::conditional_t<constant, Node::const_reference, Node::reference>;
-            using iterator_cateogory = std::random_access_iterator_tag;
+            using iterator_category = std::random_access_iterator_tag;
 
-            NodeIterator(): root(null), index(0) {}
+            NodeIterator(): NodeIterator(null) {}
+            explicit NodeIterator(node_pointer root): NodeIterator(root, 0, null) {}
+            NodeIterator(const NodeIterator<reversed, not constant>& it): NodeIterator(it._root, it._index, it._cur) {}
 
-            reference operator*() {
-                if (is_null(cur) and index != safe_size(root)) {
-                    cur = root;
-                    for (size_type k = index;;) {
-                        node_type::push(cur);
-                        if (size_type siz = safe_size(child(cur, reversed)); k == siz) {
+            reference operator*() const {
+                if (is_null(_cur) and _index != safe_size(_root)) {
+                    _cur = _root;
+                    for (size_type k = _index;;) {
+                        if (size_type siz = safe_size(child(_cur, reversed)); k == siz) {
                             break;
                         } else if (k < siz) {
-                            cur = child(cur, reversed);
+                            _cur = child(_cur, reversed);
                         } else {
-                            cur = child(cur, not reversed);
+                            _cur = child(_cur, not reversed);
                             k -= siz + 1;
                         }
                     }
                 }
-                return value(cur);
+                return value(_cur);
             }
             reference operator[](difference_type k) const { return *((*this) + k); }
 
@@ -511,42 +351,86 @@ namespace suisen::internal::implicit_treap {
             friend NodeIterator operator+(difference_type k, NodeIterator it) { return it += k; }
             friend NodeIterator operator-(NodeIterator it, difference_type k) { return it -= k; }
 
-            friend difference_type operator-(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index - rhs.index; }
+            friend difference_type operator-(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs._index - rhs._index; }
 
-            friend bool operator==(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index == rhs.index; }
-            friend bool operator!=(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index != rhs.index; }
-            friend bool operator<(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index < rhs.index; }
-            friend bool operator>(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index > rhs.index; }
-            friend bool operator<=(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index <= rhs.index; }
-            friend bool operator>=(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index >= rhs.index; }
+            friend bool operator==(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs._index == rhs._index; }
+            friend bool operator!=(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs._index != rhs._index; }
+            friend bool operator<(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs._index < rhs._index; }
+            friend bool operator>(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs._index > rhs._index; }
+            friend bool operator<=(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs._index <= rhs._index; }
+            friend bool operator>=(const NodeIterator& lhs, const NodeIterator& rhs) { return lhs._index >= rhs._index; }
 
-            static NodeIterator begin(node_pointer root) { return NodeIterator(root, 0); }
-            static NodeIterator end(node_pointer root) { return NodeIterator(root, safe_size(root)); }
+            static NodeIterator begin(node_pointer root) { return NodeIterator(root, 0, null); }
+            static NodeIterator end(node_pointer root) { return NodeIterator(root, safe_size(root), null); }
+
+            int size() const { return safe_size(_root); }
+            int index() const { return _index; }
         private:
-            node_pointer root;
-            size_type index;
-            node_pointer cur = null; // it==end() or uninitialized (updates only index)
+            node_pointer _root;
+            size_type _index;
+            mutable node_pointer _cur; // it==end() or uninitialized (updates only index)
 
-            NodeIterator(node_pointer root, size_type index): root(root), index(index) {}
+            NodeIterator(node_pointer root, size_type index, node_pointer cur): _root(root), _index(index), _cur(cur) {}
 
             void suc(difference_type k) {
-                index += k;
-                if (index == safe_size(root) or std::abs(k) >= 10) cur = null;
-                if (is_null(cur)) return;
+                _index += k;
+                if (_index == safe_size(_root) or std::abs(k) >= 20) _cur = null;
+                if (is_null(_cur)) return;
 
                 const bool positive = k < 0 ? (k = -k, reversed) : not reversed;
 
                 if (positive) {
-                    while (k-- > 0) cur = next(cur);
+                    while (k-- > 0) _cur = next(_cur);
                 } else {
-                    while (k-- > 0) cur = prev(cur);
+                    while (k-- > 0) _cur = prev(_cur);
                 }
+            }
+
+            node_pointer root() const { return _root; }
+            void set_root(node_pointer new_root, size_type new_index) { _root = new_root, _index = new_index; }
+
+            node_pointer get_child0() const { return child0(_cur); }
+            node_pointer get_child1() const { return child1(_cur); }
+
+            template <typename Predicate>
+            static NodeIterator binary_search(node_pointer t, const Predicate& f) {
+                NodeIterator res(t, safe_size(t), null);
+                if (is_null(t)) return res;
+
+                NodeIterator it(t, safe_size(child0(t)), t);
+                while (is_not_null(it._cur)) {
+                    if (f(it)) {
+                        res = it;
+                        it._cur = it.get_child0();
+                        it._index -= is_null(it._cur) ? 1 : safe_size(it.get_child1()) + 1;
+                    } else {
+                        it._cur = it.get_child1();
+                        it._index += is_null(it._cur) ? 1 : safe_size(it.get_child0()) + 1;
+                    }
+                }
+                return res;
+            }
+
+            size_type get_gap_index_left() const {
+                if constexpr (reversed) return size() - index();
+                else return index();
+            }
+            size_type get_element_index_left() const {
+                if constexpr (reversed) return size() - index() - 1;
+                else return index();
             }
         };
         using iterator = NodeIterator<false, false>;
         using reverse_iterator = NodeIterator<true, false>;
         using const_iterator = NodeIterator<false, true>;
         using const_reverse_iterator = NodeIterator<true, true>;
+
+        template <typename>
+        struct is_node_iterator: std::false_type {};
+        template <bool reversed_, bool constant_>
+        struct is_node_iterator<NodeIterator<reversed_, constant_>>: std::true_type {};
+        template <typename X>
+        static constexpr bool is_node_iterator_v = is_node_iterator<X>::value;
 
         static iterator begin(node_pointer t) { return iterator::begin(t); }
         static iterator end(node_pointer t) { return iterator::end(t); }
@@ -556,6 +440,36 @@ namespace suisen::internal::implicit_treap {
         static const_iterator cend(node_pointer t) { return const_iterator::end(t); }
         static const_reverse_iterator crbegin(node_pointer t) { return const_reverse_iterator::begin(t); }
         static const_reverse_iterator crend(node_pointer t) { return const_reverse_iterator::end(t); }
+
+        // Find the first element that satisfies the condition f : iterator -> { false, true }.
+        // Returns const_iterator
+        template <typename Iterator, typename Predicate, std::enable_if_t<is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>
+        static Iterator binary_search(node_pointer t, const Predicate& f) {
+            return Iterator::binary_search(t, f);
+        }
+        // comp(T t, U u) = (t < u)
+        template <typename Iterator, typename U, typename Compare = std::less<>, std::enable_if_t<is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>
+        static Iterator lower_bound(node_pointer t, const U& target, Compare comp) {
+            return binary_search<Iterator>(t, [&](Iterator it) { return not comp(*it, target); });
+        }
+        // comp(T u, U t) = (u < t)
+        template <typename Iterator, typename U, typename Compare = std::less<>, std::enable_if_t<is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>
+        static Iterator upper_bound(node_pointer t, const U& target, Compare comp) {
+            return binary_search<Iterator>(t, [&](Iterator it) { return comp(target, *it); });
+        }
+
+        template <typename Iterator, std::enable_if_t<is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>
+        static node_pointer insert(Iterator it, const value_type& val) {
+            return insert(it.root(), it.get_gap_index_left(), val);
+        }
+        template <typename Iterator, std::enable_if_t<is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>
+        static std::pair<node_pointer, value_type> erase(Iterator it) {
+            return erase(it.root(), it.get_element_index_left());
+        }
+        template <typename Iterator, std::enable_if_t<is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>
+        static std::pair<node_pointer, node_pointer> split(Iterator it) {
+            return split(it.root(), it.get_gap_index_left());
+        }
     };
 } // namespace suisen::internal::implicit_treap
 

@@ -134,18 +134,24 @@ void test2() {
 
     for (int v : q) {
         if (rng() % 2) {
-            int k = seq.insert_lower_bound(v);
+            auto it = seq.lower_bound(v);
+            seq.insert(it, v);
+            int k = it.index();
             assert(k == 0 or seq[k - 1] < v);
             assert(k == seq.size() - 1 or seq[k + 1] >= v);
         } else {
-            int k = seq.insert_upper_bound(v);
+            auto it = seq.upper_bound(v);
+            seq.insert(it, v);
+            int k = it.index();
             assert(k == 0 or seq[k - 1] <= v);
             assert(k == seq.size() - 1 or seq[k + 1] > v);
         }
     }
 
     for (int v : q) {
-        int k = seq.erase_if_exists(v)->first;
+        auto it = seq.lower_bound(v);
+        int k = it.index();
+        seq.erase(it);
         assert(k == 0 or seq[k - 1] < v);
         assert(k == seq.size() or seq[k] >= v);
     }

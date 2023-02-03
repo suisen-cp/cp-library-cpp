@@ -137,6 +137,7 @@ void test() {
 
     for (int i = 0; i < Q; ++i) {
         const int query_type = rng() % QueryTypeNum;
+
         if (query_type == Q_get) {
             const int i = rng() % N;
             assert(t1.get(i) == t2.get(i));
@@ -171,13 +172,21 @@ void test() {
             const int r = l + rng() % (N - l + 1);
             long long sum = std::max(0LL, t2.prod(l, r) + int(rng() % MAX_VAL) - MAX_VAL / 2);
             auto pred = [&](const S &x) { return x <= sum; };
-            assert(t1.max_right(l, pred) == t2.max_right(l, pred));
+
+            int r1 = t1.max_right(l, pred).index();
+            int r2 = t2.max_right(l, pred);
+
+            assert(r1 == r2);
         } else if (query_type == Q_min_left) {
             const int l = rng() % (N + 1);
             const int r = l + rng() % (N - l + 1);
             long long sum = std::max(0LL, t2.prod(l, r) + int(rng() % MAX_VAL) - MAX_VAL / 2);
             auto pred = [&](const S &x) { return x <= sum; };
-            assert(t1.min_left(r, pred) == t2.min_left(r, pred));
+
+            int l1 = t1.min_left(r, pred).index();
+            int l2 = t2.min_left(r, pred);
+
+            assert(l1 == l2);
         } else {
             assert(false);
         }
@@ -197,18 +206,24 @@ void test2() {
 
     for (int v : q) {
         if (rng() % 2) {
-            int k = seq.insert_lower_bound(v);
+            auto it = seq.lower_bound(v);
+            seq.insert(it, v);
+            int k = it.index();
             assert(k == 0 or seq[k - 1] < v);
             assert(k == seq.size() - 1 or seq[k + 1] >= v);
         } else {
-            int k = seq.insert_upper_bound(v);
+            auto it = seq.upper_bound(v);
+            seq.insert(it, v);
+            int k = it.index();
             assert(k == 0 or seq[k - 1] <= v);
             assert(k == seq.size() - 1 or seq[k + 1] > v);
         }
     }
 
     for (int v : q) {
-        int k = seq.erase_if_exists(v)->first;
+        auto it = seq.lower_bound(v);
+        int k = it.index();
+        seq.erase(it);
         assert(k == 0 or seq[k - 1] < v);
         assert(k == seq.size() or seq[k] >= v);
     }

@@ -38,73 +38,35 @@ namespace suisen {
                 return base::set_update(t, k, f);
             }
 
+            using const_iterator = typename base::const_iterator;
+
             template <typename Predicate>
-            static uint32_t max_right(node_pointer t, const Predicate& f) {
-                value_type sum = e();
-                assert(f(sum));
-
-                uint32_t r = 0;
-                while (base::is_not_null(t)) {
-                    base::push(t);
-
-                    node_pointer lch = base::child0(t);
-
-                    value_type nxt_sum = op(sum, safe_prod(lch));
-                    if (f(nxt_sum)) {
-                        r += base::safe_size(lch);
-                        sum = op(nxt_sum, base::value(t));
-                        if (f(sum)) {
-                            ++r;
-                            t = base::child1(t);
-                        } else {
-                            break;
-                        }
-                    } else {
-                        t = lch;
-                    }
-                }
-                return r;
-            }
-            template <typename Predicate>
-            static std::pair<node_pointer, uint32_t> max_right(node_pointer t, uint32_t l, const Predicate& f) {
+            static std::pair<node_pointer, const_iterator> max_right(node_pointer t, size_t l, const Predicate& f) {
                 auto [tl, tr] = base::split(t, l);
-                size_t w = max_right(tr, f);
-                t = base::merge(tl, tr);
-                return { t, l + w };
-            }
-            template <typename Predicate>
-            static uint32_t min_left(node_pointer t, const Predicate& f) {
                 value_type sum = e();
                 assert(f(sum));
-
-                uint32_t l = base::safe_size(t);
-                while (base::is_not_null(t)) {
-                    base::push(t);
-
-                    node_pointer rch = base::child1(t);
-
-                    value_type nxt_sum = op(safe_prod(rch), sum);
-                    if (f(nxt_sum)) {
-                        l -= base::safe_size(rch);
-                        sum = op(base::value(t), nxt_sum);
-                        if (f(sum)) {
-                            --l;
-                            t = base::child0(t);
-                        } else {
-                            break;
-                        }
-                    } else {
-                        t = rch;
+                const_iterator it = base::template binary_search<const_iterator>(
+                    tr, [&](const_iterator it) {
+                        value_type nxt_sum = op(op(sum, safe_prod(it.get_child0())), *it);
+                        return f(nxt_sum) ? (sum = std::move(nxt_sum), false) : true;
                     }
-                }
-                return l;
+                );
+                it.set_root(t = base::merge(tl, tr), l + it.index());
+                return { t, it };
             }
             template <typename Predicate>
-            static std::pair<node_pointer, uint32_t> min_left(node_pointer t, uint32_t r, const Predicate& f) {
+            static std::pair<node_pointer, const_iterator> min_left(node_pointer t, size_t r, const Predicate& f) {
                 auto [tl, tr] = base::split(t, r);
-                size_t l = min_left(tl, f);
-                t = base::merge(tl, tr);
-                return { t, l };
+                value_type sum = e();
+                assert(f(sum));
+                const_iterator it = base::template binary_search<const_iterator>(
+                    tl, [&](const_iterator it) {
+                        value_type nxt_sum = op(*it, op(safe_prod(it.get_child1()), sum));
+                        return f(nxt_sum) ? (sum = std::move(nxt_sum), true) : false;
+                    }
+                );
+                it.set_root(t = base::merge(tl, tr), it.index());
+                return { t, it };
             }
         };
     }
@@ -141,10 +103,10 @@ namespace suisen {
         const value_type& operator[](size_t k) const { return get(k); }
         const value_type& get(size_t k) const {
             assert(k < size_t(size()));
-            return node_type::get(_root, k);
+            return cbegin()[k];
         }
-        const value_type& front() const { return get(0); }
-        const value_type& back() const { return get(size() - 1); }
+        const value_type& front() const { return *cbegin(); }
+        const value_type& back() const { return *crbegin(); }
 
         void set(size_t k, const value_type& val) {
             assert(k < size_t(size()));
@@ -167,36 +129,8 @@ namespace suisen {
             assert(k <= size_t(size()));
             _root = node_type::insert(_root, k, val);
         }
-        void push_front(const value_type& val) { _root = node_type::push_front(_root, val); }
-        void push_back(const value_type& val) { _root = node_type::push_back(_root, val); }
-
-        // Insert a new value immediately before the first element that satisfies the condition f.
-        // Returns: the inserted position
-        // Requirements: f(A[i]) must be monotonic
-        template <typename Predicate>
-        int insert_binary_search(const value_type& val, const Predicate &f) {
-            int pos;
-            std::tie(_root, pos) = node_type::insert_binary_search(_root, f, val);
-            return pos;
-        }
-        // Insert a new value immediately before the first element that is greater than or equal to the new value.
-        // Returns: the inserted position
-        // Requirements: sequence is sorted
-        template <typename Compare = std::less<>>
-        int insert_lower_bound(const value_type& val, const Compare &comp = {}) {
-            int pos;
-            std::tie(_root, pos) = node_type::insert_lower_bound(_root, val, comp);
-            return pos;
-        }
-        // Insert a new value immediately before the first element that is greater than the new value.
-        // Returns: the inserted position
-        // Requirements: sequence is sorted
-        template <typename Compare = std::less<>>
-        int insert_upper_bound(const value_type& val, const Compare &comp = {}) {
-            int pos;
-            std::tie(_root, pos) = node_type::insert_upper_bound(_root, val, comp);
-            return pos;
-        }
+        void push_front(const value_type& val) { insert(0, val); }
+        void push_back(const value_type& val) { insert(size(), val); }
 
         value_type erase(size_t k) {
             assert(k <= size_t(size()));
@@ -207,88 +141,11 @@ namespace suisen {
         value_type pop_front() { return erase(0); }
         value_type pop_back() { return erase(size() - 1); }
 
-        // Erase the first element that satisfies the condition f if it also satisfies the condition g.
-        // returns optional(position, value)
-        // Requirements: sequence is sorted
-        template <typename Predicate, typename RemovePredicate>
-        std::optional<std::pair<int, value_type>> erase_binary_search(const Predicate &f, const RemovePredicate& g) {
-            auto [root, erased] = node_type::erase_binary_search(_root, f, g);
-            _root = root;
-            if (erased) {
-                return std::pair<int, value_type>{ erased->first, erased->second };
-            } else {
-                return std::nullopt;
-            }
-        }
-        // Erase the first element that is greater than or equal to val.
-        // returns optional(position, value)
-        // Requirements: sequence is sorted
-        template <typename Compare = std::less<>>
-        std::optional<std::pair<int, value_type>> erase_lower_bound(const value_type &val, const Compare &comp = {}) {
-            auto [root, erased] = node_type::erase_lower_bound(_root, val, comp);
-            _root = root;
-            if (erased) {
-                return std::pair<int, value_type>{ erased->first, erased->second };
-            } else {
-                return std::nullopt;
-            }
-        }
-        // Erase the first element that is greater than val.
-        // returns optional(position, value)
-        // Requirements: sequence is sorted
-        template <typename Compare = std::less<>>
-        std::optional<std::pair<int, value_type>> erase_upper_bound(const value_type &val, const Compare &comp = {}) {
-            auto [root, erased] = node_type::erase_upper_bound(_root, val, comp);
-            _root = root;
-            if (erased) {
-                return std::pair<int, value_type>{ erased->first, erased->second };
-            } else {
-                return std::nullopt;
-            }
-        }
-        // Erase the first element that is equal to val.
-        // returns optional(position, value)
-        // Requirements: sequence is sorted
-        template <typename Compare = std::less<>>
-        std::optional<std::pair<int, value_type>> erase_if_exists(const value_type &val, const Compare &comp = {}) {
-            auto [root, erased] = node_type::erase_if_exists(_root, val, comp);
-            _root = root;
-            if (erased) {
-                return std::pair<int, value_type>{ erased->first, erased->second };
-            } else {
-                return std::nullopt;
-            }
-        }
-
         // Split immediately before the k-th element.
         DynamicSegmentTree split(size_t k) {
             assert(k <= size_t(size()));
             node_pointer root_r;
             std::tie(_root, root_r) = node_type::split(_root, k);
-            return DynamicSegmentTree(root_r, node_pointer_construct{});
-        }
-        // Split immediately before the first element that satisfies the condition.
-        // Requirements: f(A[i]) must be monotonic
-        template <typename Predicate>
-        DynamicSegmentTree split_binary_search(const Predicate &f) {
-            node_pointer root_r;
-            std::tie(_root, root_r) = node_type::split_binary_search(_root, f);
-            return DynamicSegmentTree(root_r, node_pointer_construct{});
-        }
-        // Split immediately before the first element that is greater than or equal to val.
-        // Requirements: sequence is sorted
-        template <typename Compare = std::less<>>
-        DynamicSegmentTree split_lower_bound(const value_type &val, const Compare &comp = {}) {
-            node_pointer root_r;
-            std::tie(_root, root_r) = node_type::split_lower_bound(_root, val, comp);
-            return DynamicSegmentTree(root_r, node_pointer_construct{});
-        }
-        // Split immediately before the first element that is greater than val.
-        // Requirements: sequence is sorted
-        template <typename Compare = std::less<>>
-        DynamicSegmentTree split_upper_bound(const value_type &val, const Compare &comp = {}) {
-            node_pointer root_r;
-            std::tie(_root, root_r) = node_type::split_upper_bound(_root, val, comp);
             return DynamicSegmentTree(root_r, node_pointer_construct{});
         }
 
@@ -305,44 +162,6 @@ namespace suisen {
 
         std::vector<value_type> dump() const { return node_type::dump(_root); }
 
-        // Find the first element that satisfies the condition f.
-        // Returns { position, optional(value) }
-        // Requirements: f(A[i]) must be monotonic
-        template <typename Predicate>
-        std::pair<int, std::optional<value_type>> binary_search(const Predicate& f) const {
-            auto [pos, val] = node_type::binary_search(_root, f);
-            return { pos, std::move(val) };
-        }
-        // comp(T t, U u) = (t < u)
-        // Requirements: sequence is sorted
-        template <typename U, typename Compare = std::less<>>
-        std::pair<int, std::optional<value_type>> lower_bound(const U& target, Compare comp = {}) const {
-            auto [pos, val] = node_type::lower_bound(_root, target, comp);
-            return { pos, std::move(val) };
-        }
-        // comp(T u, U t) = (u < t)
-        // Requirements: sequence is sorted
-        template <typename U, typename Compare = std::less<>>
-        std::pair<int, std::optional<value_type>> upper_bound(const U& target, Compare comp = {}) const {
-            auto [pos, val] = node_type::upper_bound(_root, target, comp);
-            return { pos, std::move(val) };
-        }
-
-        // Returns max{ r | f(op(A[l], ..., A[r-1])) = true }
-        template <typename Predicate>
-        int max_right(size_t l, const Predicate& f) {
-            size_t res;
-            std::tie(_root, res) = node_type::max_right(_root, l, f);
-            return res;
-        }
-        // Returns min{ l | f(op(A[l], ..., A[r-1])) = true }
-        template <typename Predicate>
-        int min_left(size_t r, const Predicate& f) {
-            size_t res;
-            std::tie(_root, res) = node_type::min_left(_root, r, f);
-            return res;
-        }
-
         using iterator = typename node_type::const_iterator;
         using reverse_iterator = typename node_type::const_reverse_iterator;
         using const_iterator = typename node_type::const_iterator;
@@ -356,6 +175,87 @@ namespace suisen {
         const_iterator cend() const { return node_type::cend(_root); }
         const_reverse_iterator crbegin() const { return node_type::crbegin(_root); }
         const_reverse_iterator crend() const { return node_type::crend(_root); }
+
+        // Returns the iterator with index max{ r | f(op(A[l], ..., A[r-1])) = true } (0 <= r <= size())
+        template <typename Predicate>
+        iterator max_right(size_t l, const Predicate& f) {
+            assert(l <= size_t(size()));
+            iterator it;
+            std::tie(_root, it) = node_type::max_right(_root, l, f);
+            return it;
+        }
+        // Returns the iterator with index min{ l | f(op(A[l], ..., A[r-1])) = true } (0 <= l <= size())
+        template <typename Predicate>
+        iterator min_left(size_t r, const Predicate& f) {
+            assert(r <= size_t(size()));
+            iterator it;
+            std::tie(_root, it) = node_type::min_left(_root, r, f);
+            return it;
+        }
+
+        // Find the first element that satisfies the condition f.
+        // Returns { position, optional(value) }
+        // Requirements: f(A[i]) must be monotonic
+        template <typename Predicate>
+        iterator binary_search(const Predicate& f) {
+            return node_type::template binary_search<iterator>(_root, f);
+        }
+        // comp(T t, U u) = (t < u)
+        // Requirements: sequence is sorted
+        template <typename U, typename Compare = std::less<>>
+        iterator lower_bound(const U& target, Compare comp = {}) {
+            return node_type::template lower_bound<iterator>(_root, target, comp);
+        }
+        // comp(T u, U t) = (u < t)
+        // Requirements: sequence is sorted
+        template <typename U, typename Compare = std::less<>>
+        iterator upper_bound(const U& target, Compare comp = {}) {
+            return node_type::template upper_bound<iterator>(_root, target, comp);
+        }
+        // Find the first element that satisfies the condition f.
+        // Returns { position, optional(value) }
+        // Requirements: f(A[i]) must be monotonic
+        template <typename Predicate>
+        const_iterator binary_search(const Predicate& f) const {
+            return node_type::template binary_search<const_iterator>(_root, f);
+        }
+        // comp(T t, U u) = (t < u)
+        // Requirements: sequence is sorted
+        template <typename U, typename Compare = std::less<>>
+        const_iterator lower_bound(const U& target, Compare comp = {}) const {
+            return node_type::template lower_bound<const_iterator>(_root, target, comp);
+        }
+        // comp(T u, U t) = (u < t)
+        // Requirements: sequence is sorted
+        template <typename U, typename Compare = std::less<>>
+        const_iterator upper_bound(const U& target, Compare comp = {}) const {
+            return node_type::template upper_bound<const_iterator>(_root, target, comp);
+        }
+ 
+        template <typename Iterator, std::enable_if_t<node_type::template is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>
+        void insert(Iterator it, const value_type &val) {
+            _root = node_type::insert(it, val);
+        }
+        template <typename Iterator, std::enable_if_t<node_type::template is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>
+        value_type erase(Iterator it) {
+            value_type erased;
+            std::tie(_root, erased) = node_type::erase(it);
+            return erased;
+        }
+        template <typename Iterator, std::enable_if_t<node_type::template is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>
+        DynamicSegmentTree split(Iterator it) {
+            node_pointer root_r;
+            std::tie(_root, root_r) = node_type::split(it);
+            return DynamicSegmentTree(root_r, node_pointer_construct{});
+        }
+
+        // handling internal nodes
+        using internal_node = node_type;
+        using internal_node_pointer = node_pointer;
+
+        internal_node_pointer& root_node() { return _root; }
+        const internal_node_pointer& root_node() const { return _root; }
+        void set_root_node(internal_node_pointer new_root) { root_node() = new_root; }
     };
 } // namespace suisen
 

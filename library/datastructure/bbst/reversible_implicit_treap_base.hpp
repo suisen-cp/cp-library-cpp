@@ -1,6 +1,7 @@
 #ifndef SUISEN_IMPLICIT_TREAP_ERVERSIBLE_BASE
 #define SUISEN_IMPLICIT_TREAP_ERVERSIBLE_BASE
 
+#include <algorithm>
 #include <cassert>
 #include <cstdint>
 #include <optional>
@@ -16,9 +17,12 @@ namespace suisen::internal::implicit_treap {
         using random_engine = std::mt19937;
         static inline random_engine rng{ std::random_device{}() };
 
+        using priority_type = std::invoke_result_t<random_engine>;
+
+        static priority_type random_priority() { return rng(); }
+
         using node_type = Derived;
         using node_pointer = uint32_t;
-        using priority_type = std::invoke_result_t<random_engine>;
 
         using size_type = uint32_t;
 
@@ -41,7 +45,7 @@ namespace suisen::internal::implicit_treap {
 
         bool _rev = false;
 
-        ReversibleNode(const value_type val = {}): _val(val), _size(1), _priority(rng()) {}
+        ReversibleNode(const value_type val = {}): _val(val), _size(1), _priority(random_priority()) {}
 
         static void reserve(size_type capacity) { _nodes.reserve(capacity); }
 
@@ -55,7 +59,8 @@ namespace suisen::internal::implicit_treap {
         static size_type& size(node_pointer t) { return node(t)._size; }
         static size_type safe_size(node_pointer t) { return empty(t) ? 0 : size(t); }
 
-        static priority_type priority(node_pointer t) { return const_node(t)._priority; }
+        static priority_type& priority(node_pointer t) { return node(t)._priority; }
+        static void set_priority(node_pointer t, priority_type new_priority) { priority(t) = new_priority; }
 
         static node_pointer& child0(node_pointer t) { return node(t)._ch[0]; }
         static node_pointer& child1(node_pointer t) { return node(t)._ch[1]; }
@@ -103,11 +108,30 @@ namespace suisen::internal::implicit_treap {
 
         template <typename ...Args>
         static node_pointer build(Args &&... args) {
-            node_pointer res = empty_node();
-            for (auto&& e : std::vector<value_type>(std::forward<Args>(args)...)) {
-                res = push_back(res, std::move(e));
-            }
-            return res;
+            std::vector<value_type> dat(std::forward<Args>(args)...);
+
+            const size_t n = dat.size();
+
+            std::vector<priority_type> priorities(n);
+            std::generate(priorities.begin(), priorities.end(), random_priority);
+            std::make_heap(priorities.begin(), priorities.end());
+
+            std::vector<node_pointer> nodes(n);
+
+            auto rec = [&](auto rec, size_t heap_index, size_t dat_index_offset) -> std::pair<size_t, node_pointer> {
+                if (heap_index >= n) return { 0, null };
+                auto [lsiz, lch] = rec(rec, 2 * heap_index + 1, dat_index_offset);
+                dat_index_offset += lsiz;
+                node_pointer root = create_node(std::move(dat[dat_index_offset]));
+                nodes[dat_index_offset] = root;
+                set_priority(root, priorities[heap_index]);
+                dat_index_offset += 1;
+                auto [rsiz, rch] = rec(rec, 2 * heap_index + 2, dat_index_offset);
+                set_child0(root, lch);
+                set_child1(root, rch);
+                return { lsiz + 1 + rsiz, node_type::update(root) };
+            };
+            return rec(rec, 0, 0).second;
         }
 
         static std::pair<node_pointer, node_pointer> split(node_pointer t, size_type k) {
