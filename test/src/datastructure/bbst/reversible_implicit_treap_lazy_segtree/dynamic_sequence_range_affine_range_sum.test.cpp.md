@@ -5,11 +5,11 @@ data:
     path: library/algebra/monoid/affine.hpp
     title: Affine
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/bbst/implicit_treap_base.hpp
-    title: Implicit Treap Base
+    path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
+    title: library/datastructure/bbst/reversible_implicit_treap_base.hpp
   - icon: ':heavy_check_mark:'
-    path: library/datastructure/bbst/implicit_treap_lazy_segtree.hpp
-    title: Implicit Treap Lazy Segtree
+    path: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
+    title: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,20 +20,20 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
-  bundledCode: "#line 1 \"test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+  bundledCode: "#line 1 \"test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n\n#include <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
     \nstd::istream& operator>>(std::istream& in, mint &a) {\n    long long e; in >>\
     \ e; a = e;\n    return in;\n}\n\nstd::ostream& operator<<(std::ostream& out,\
-    \ const mint &a) {\n    out << a.val();\n    return out;\n}\n\n#line 1 \"library/datastructure/bbst/implicit_treap_lazy_segtree.hpp\"\
-    \n\n\n\n#line 1 \"library/datastructure/bbst/implicit_treap_base.hpp\"\n\n\n\n\
-    #include <cassert>\n#include <cstdint>\n#include <optional>\n#include <string>\n\
-    #include <random>\n#include <tuple>\n#include <vector>\n#include <utility>\n\n\
-    namespace suisen::internal::implicit_treap {\n    template <typename T, typename\
-    \ Derived>\n    struct Node {\n        using random_engine = std::mt19937;\n \
-    \       static inline random_engine rng{ std::random_device{}() };\n\n       \
-    \ using node_type = Derived;\n        using node_pointer = uint32_t;\n       \
-    \ using priority_type = std::invoke_result_t<random_engine>;\n\n        using\
+    \ const mint &a) {\n    out << a.val();\n    return out;\n}\n\n#line 1 \"library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp\"\
+    \n\n\n\n#line 1 \"library/datastructure/bbst/reversible_implicit_treap_base.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <cstdint>\n#include <optional>\n#include\
+    \ <string>\n#include <random>\n#include <tuple>\n#include <vector>\n#include <utility>\n\
+    \nnamespace suisen::internal::implicit_treap {\n    template <typename T, typename\
+    \ Derived>\n    struct ReversibleNode {\n        using random_engine = std::mt19937;\n\
+    \        static inline random_engine rng{ std::random_device{}() };\n\n      \
+    \  using node_type = Derived;\n        using node_pointer = uint32_t;\n      \
+    \  using priority_type = std::invoke_result_t<random_engine>;\n\n        using\
     \ size_type = uint32_t;\n\n        using difference_type = int32_t;\n        using\
     \ value_type = T;\n        using pointer = value_type*;\n        using const_pointer\
     \ = const value_type*;\n        using reference = value_type&;\n        using\
@@ -41,7 +41,7 @@ data:
     \ _nodes{};\n        static inline std::vector<node_pointer> _erased{};\n\n  \
     \      static constexpr node_pointer null = ~node_pointer(0);\n\n        node_pointer\
     \ _ch[2]{ null, null };\n        value_type _val;\n        size_type _size;\n\
-    \        priority_type _priority;\n\n        bool _rev = false;\n\n        Node(const\
+    \        priority_type _priority;\n\n        bool _rev = false;\n\n        ReversibleNode(const\
     \ value_type val = {}): _val(val), _size(1), _priority(rng()) {}\n\n        static\
     \ void reserve(size_type capacity) { _nodes.reserve(capacity); }\n\n        static\
     \ node_type& node(node_pointer t) { return _nodes[t]; }\n        static const\
@@ -54,24 +54,26 @@ data:
     \ }\n\n        static priority_type priority(node_pointer t) { return const_node(t)._priority;\
     \ }\n\n        static node_pointer& child0(node_pointer t) { return node(t)._ch[0];\
     \ }\n        static node_pointer& child1(node_pointer t) { return node(t)._ch[1];\
-    \ }\n        static node_pointer child(node_pointer t, bool b) { return node(t)._ch[b];\
+    \ }\n        static node_pointer& child(node_pointer t, bool b) { return node(t)._ch[b];\
     \ }\n        static node_pointer set_child0(node_pointer t, node_pointer cid)\
     \ { return std::exchange(child0(t), cid); }\n        static node_pointer set_child1(node_pointer\
-    \ t, node_pointer cid) { return std::exchange(child1(t), cid); }\n\n        static\
-    \ bool& reversed(node_pointer t) { return node(t)._rev; }\n\n        static node_pointer\
-    \ update(node_pointer t) { // t : not null\n            size(t) = safe_size(child0(t))\
-    \ + safe_size(child1(t)) + 1;\n            return t;\n        }\n        static\
-    \ bool push(node_pointer t) { // t : not null\n            bool rev = t != null\
-    \ and std::exchange(reversed(t), false);\n            if (rev) {\n           \
-    \     reverse_all(child0(t));\n                reverse_all(child1(t));\n     \
-    \       }\n            return rev;\n        }\n\n        static node_pointer empty_node()\
-    \ { return null; }\n        template <typename ...Args>\n        static node_pointer\
-    \ create_node(Args &&...args) {\n            if (_erased.size()) {\n         \
-    \       node_pointer res = _erased.back();\n                _erased.pop_back();\n\
-    \                node(res) = node_type(std::forward<Args>(args)...);\n       \
-    \         return res;\n            } else {\n                node_pointer res\
-    \ = _nodes.size();\n                _nodes.emplace_back(std::forward<Args>(args)...);\n\
-    \                return res;\n            }\n        }\n        static void delete_node(node_pointer\
+    \ t, node_pointer cid) { return std::exchange(child1(t), cid); }\n        static\
+    \ node_pointer set_child(node_pointer t, bool b, node_pointer cid) { return std::exchange(child(t,\
+    \ b), cid); }\n\n        static bool& reversed(node_pointer t) { return node(t)._rev;\
+    \ }\n\n        static node_pointer update(node_pointer t) { // t : not null\n\
+    \            size(t) = safe_size(child0(t)) + safe_size(child1(t)) + 1;\n    \
+    \        return t;\n        }\n        static bool push(node_pointer t) { // t\
+    \ : not null\n            bool rev = t != null and std::exchange(reversed(t),\
+    \ false);\n            if (rev) {\n                reverse_all(child0(t));\n \
+    \               reverse_all(child1(t));\n            }\n            return rev;\n\
+    \        }\n\n        static node_pointer empty_node() { return null; }\n    \
+    \    template <typename ...Args>\n        static node_pointer create_node(Args\
+    \ &&...args) {\n            if (_erased.size()) {\n                node_pointer\
+    \ res = _erased.back();\n                _erased.pop_back();\n               \
+    \ node(res) = node_type(std::forward<Args>(args)...);\n                return\
+    \ res;\n            } else {\n                node_pointer res = _nodes.size();\n\
+    \                _nodes.emplace_back(std::forward<Args>(args)...);\n         \
+    \       return res;\n            }\n        }\n        static void delete_node(node_pointer\
     \ t) { _erased.push_back(t); }\n        static void delete_tree(node_pointer t)\
     \ {\n            if (t == null) return;\n            delete_tree(child0(t));\n\
     \            delete_tree(child1(t));\n            delete_node(t);\n        }\n\
@@ -80,26 +82,32 @@ data:
     \ (auto&& e : std::vector<value_type>(std::forward<Args>(args)...)) {\n      \
     \          res = push_back(res, std::move(e));\n            }\n            return\
     \ res;\n        }\n\n        static std::pair<node_pointer, node_pointer> split(node_pointer\
-    \ t, size_type k) {\n            if (t == null) {\n                return { null,\
-    \ null };\n            }\n            node_type::push(t);\n            if (k ==\
-    \ 0) {\n                return { null, t };\n            }\n            if (k\
-    \ == size(t)) {\n                return { t, null };\n            }\n        \
-    \    if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {\n         \
-    \       auto [ll, lr] = split(child0(t), k);\n                set_child0(t, lr);\n\
-    \                return { ll, node_type::update(t) };\n            } else {\n\
-    \                auto [rl, rr] = split(child1(t), k - (lsiz + 1));\n         \
-    \       set_child1(t, rl);\n                return { node_type::update(t), rr\
-    \ };\n            }\n        }\n        static std::tuple<node_pointer, node_pointer,\
-    \ node_pointer> split(node_pointer t, size_type l, size_type r) {\n          \
-    \  auto [tlm, tr] = split(t, r);\n            auto [tl, tm] = split(tlm, l);\n\
-    \            return { tl, tm, tr };\n        }\n        // Split immediately before\
-    \ the first element that satisfies the condition.\n        template <typename\
-    \ Predicate>\n        static std::pair<node_pointer, node_pointer> split_binary_search(node_pointer\
-    \ t, const Predicate& f) {\n            if (t == null) {\n                return\
-    \ { null, null };\n            }\n            node_type::push(t);\n          \
-    \  if (f(value(t))) {\n                auto [ll, lr] = split_binary_search(child0(t),\
-    \ f);\n                set_child0(t, lr);\n                return { ll, node_type::update(t)\
-    \ };\n            } else {\n                auto [rl, rr] = split_binary_search(child1(t),\
+    \ t, size_type k) {\n            if (k == 0) return { null, t };\n           \
+    \ if (k == size(t)) return { t, null };\n\n            static std::vector<node_pointer>\
+    \ lp{}, rp{};\n\n            while (true) {\n                node_type::push(t);\n\
+    \                if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {\n\
+    \                    if (rp.size()) set_child0(rp.back(), t);\n              \
+    \      rp.push_back(t);\n                    if (k == lsiz) {\n              \
+    \          node_pointer& lch = child0(t);\n                        if (lp.size())\
+    \ set_child1(lp.back(), lch);\n\n                        node_pointer lt = std::exchange(lch,\
+    \ null), rt = null;\n                        while (lp.size()) node_type::update(lt\
+    \ = lp.back()), lp.pop_back();\n                        while (rp.size()) node_type::update(rt\
+    \ = rp.back()), rp.pop_back();\n                        return { lt, rt };\n \
+    \                   }\n                    t = child0(t);\n                } else\
+    \ {\n                    if (lp.size()) set_child1(lp.back(), t);\n          \
+    \          lp.push_back(t);\n                    t = child1(t);\n            \
+    \        k -= lsiz + 1;\n                }\n            }\n        }\n       \
+    \ static std::tuple<node_pointer, node_pointer, node_pointer> split(node_pointer\
+    \ t, size_type l, size_type r) {\n            auto [tlm, tr] = split(t, r);\n\
+    \            auto [tl, tm] = split(tlm, l);\n            return { tl, tm, tr };\n\
+    \        }\n        // Split immediately before the first element that satisfies\
+    \ the condition.\n        template <typename Predicate>\n        static std::pair<node_pointer,\
+    \ node_pointer> split_binary_search(node_pointer t, const Predicate& f) {\n  \
+    \          if (t == null) {\n                return { null, null };\n        \
+    \    }\n            node_type::push(t);\n            if (f(value(t))) {\n    \
+    \            auto [ll, lr] = split_binary_search(child0(t), f);\n            \
+    \    set_child0(t, lr);\n                return { ll, node_type::update(t) };\n\
+    \            } else {\n                auto [rl, rr] = split_binary_search(child1(t),\
     \ f);\n                set_child1(t, rl);\n                return { node_type::update(t),\
     \ rr };\n            }\n        }\n\n        template <typename Compare = std::less<>>\n\
     \        static std::pair<node_pointer, node_pointer> split_lower_bound(node_pointer\
@@ -119,18 +127,25 @@ data:
     \ tm, node_pointer tr) {\n            return merge(merge(tl, tm), tr);\n     \
     \   }\n        static node_pointer insert_impl(node_pointer t, size_type k, node_pointer\
     \ new_node) {\n            if (t == null) {\n                return new_node;\n\
-    \            }\n            if (priority(new_node) > priority(t)) {\n        \
-    \        auto [tl, tr] = split(t, k);\n                set_child0(new_node, tl);\n\
-    \                set_child1(new_node, tr);\n                return node_type::update(new_node);\n\
-    \            } else {\n                node_type::push(t);\n                if\
-    \ (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {\n               \
-    \     set_child0(t, insert_impl(child0(t), k, new_node));\n                } else\
-    \ {\n                    set_child1(t, insert_impl(child1(t), k - (lsiz + 1),\
-    \ new_node));\n                }\n                return node_type::update(t);\n\
-    \            }\n        }\n        template <typename ...Args>\n        static\
-    \ node_pointer insert(node_pointer t, size_type k, Args &&...args) {\n       \
-    \     return insert_impl(t, k, create_node(std::forward<Args>(args)...));\n  \
-    \      }\n        template <typename ...Args>\n        static node_pointer push_front(node_pointer\
+    \            }\n            static std::vector<std::pair<node_pointer, bool>>\
+    \ st;\n\n            while (true) {\n                if (t == null or priority(new_node)\
+    \ > priority(t)) {\n                    if (t != null) {\n                   \
+    \     auto [tl, tr] = split(t, k);\n                        set_child0(new_node,\
+    \ tl);\n                        set_child1(new_node, tr);\n                  \
+    \      t = node_type::update(new_node);\n                    } else {\n      \
+    \                  t = new_node;\n                    }\n                    while\
+    \ (st.size()) {\n                        auto [p, b] = st.back();\n          \
+    \              set_child(p, b, t), st.pop_back();\n                        t =\
+    \ node_type::update(p);\n                    }\n                    return t;\n\
+    \                } else {\n                    node_type::push(t);\n         \
+    \           if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {\n  \
+    \                      st.emplace_back(t, 0);\n                        t = child0(t);\n\
+    \                    } else {\n                        st.emplace_back(t, 1);\n\
+    \                        t = child1(t);\n                        k -= lsiz + 1;\n\
+    \                    }\n                }\n            }\n        }\n        template\
+    \ <typename ...Args>\n        static node_pointer insert(node_pointer t, size_type\
+    \ k, Args &&...args) {\n            return insert_impl(t, k, create_node(std::forward<Args>(args)...));\n\
+    \        }\n        template <typename ...Args>\n        static node_pointer push_front(node_pointer\
     \ t, Args &&...args) {\n            return insert(t, 0, std::forward<Args>(args)...);\n\
     \        }\n        template <typename ...Args>\n        static node_pointer push_back(node_pointer\
     \ t, Args &&...args) {\n            return insert(t, safe_size(t), std::forward<Args>(args)...);\n\
@@ -188,7 +203,7 @@ data:
     \ { t, std::nullopt };\n                }\n            } else {\n            \
     \    auto [c1, erased] = erase_binary_search(child1(t), f, g);\n             \
     \   if (erased) {\n                    set_child1(t, c1);\n                  \
-    \  size_type &pos = erased->first;\n                    pos += safe_size(child0(t))\
+    \  size_type& pos = erased->first;\n                    pos += safe_size(child0(t))\
     \ + 1;\n                    return { node_type::update(t), std::move(erased) };\n\
     \                } else {\n                    return { t, std::nullopt };\n \
     \               }\n            }\n        }\n        template <typename Compare\
@@ -258,28 +273,29 @@ data:
     \ value_type& v, int) { return comp(target, v); });\n        }\n\n        template\
     \ <bool reversed_, bool constant_>\n        struct NodeIterator {\n          \
     \  static constexpr bool constant = constant_;\n            static constexpr bool\
-    \ reversed = reversed_;\n\n            using difference_type = Node::difference_type;\n\
-    \            using value_type = Node::value_type;\n            using pointer =\
-    \ std::conditional_t<constant, Node::const_pointer, Node::pointer>;\n        \
-    \    using reference = std::conditional_t<constant, Node::const_reference, Node::reference>;\n\
-    \            using iterator_cateogory = std::random_access_iterator_tag;\n\n \
-    \           NodeIterator(): root(null), index(0) {}\n            NodeIterator(node_pointer\
-    \ root, size_type index): root(root), index(index) {}\n\n            reference\
-    \ operator*() const { return value(stk.back()); }\n            reference operator[](difference_type\
-    \ k) const { return *((*this) + k); }\n\n            NodeIterator& operator++()\
-    \ { return *this += 1; }\n            NodeIterator& operator--() { return *this\
-    \ -= 1; }\n            NodeIterator& operator+=(difference_type k) { return suc(+k),\
-    \ * this; }\n            NodeIterator& operator-=(difference_type k) { return\
-    \ suc(-k), * this; }\n            NodeIterator operator++(int) { NodeIterator\
-    \ res = *this; ++(*this); return res; }\n            NodeIterator operator--(int)\
-    \ { NodeIterator res = *this; --(*this); return res; }\n            friend NodeIterator\
-    \ operator+(NodeIterator it, difference_type k) { return it += k; }\n        \
-    \    friend NodeIterator operator+(difference_type k, NodeIterator it) { return\
-    \ it += k; }\n            friend NodeIterator operator-(NodeIterator it, difference_type\
-    \ k) { return it -= k; }\n\n            friend difference_type operator-(const\
-    \ NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index - rhs.index;\
-    \ }\n\n            friend bool operator==(const NodeIterator& lhs, const NodeIterator&\
-    \ rhs) { return lhs.index == rhs.index; }\n            friend bool operator!=(const\
+    \ reversed = reversed_;\n\n            using difference_type = ReversibleNode::difference_type;\n\
+    \            using value_type = ReversibleNode::value_type;\n            using\
+    \ pointer = std::conditional_t<constant, ReversibleNode::const_pointer, ReversibleNode::pointer>;\n\
+    \            using reference = std::conditional_t<constant, ReversibleNode::const_reference,\
+    \ ReversibleNode::reference>;\n            using iterator_cateogory = std::random_access_iterator_tag;\n\
+    \n            NodeIterator(): root(null), index(0) {}\n\n            reference\
+    \ operator*() {\n                if (stk.empty() and index != safe_size(root))\
+    \ down(root, index, not reversed);\n                return value(stk.back());\n\
+    \            }\n            reference operator[](difference_type k) const { return\
+    \ *((*this) + k); }\n\n            NodeIterator& operator++() { return *this +=\
+    \ 1; }\n            NodeIterator& operator--() { return *this -= 1; }\n      \
+    \      NodeIterator& operator+=(difference_type k) { return suc(+k), * this; }\n\
+    \            NodeIterator& operator-=(difference_type k) { return suc(-k), * this;\
+    \ }\n            NodeIterator operator++(int) { NodeIterator res = *this; ++(*this);\
+    \ return res; }\n            NodeIterator operator--(int) { NodeIterator res =\
+    \ *this; --(*this); return res; }\n            friend NodeIterator operator+(NodeIterator\
+    \ it, difference_type k) { return it += k; }\n            friend NodeIterator\
+    \ operator+(difference_type k, NodeIterator it) { return it += k; }\n        \
+    \    friend NodeIterator operator-(NodeIterator it, difference_type k) { return\
+    \ it -= k; }\n\n            friend difference_type operator-(const NodeIterator&\
+    \ lhs, const NodeIterator& rhs) { return lhs.index - rhs.index; }\n\n        \
+    \    friend bool operator==(const NodeIterator& lhs, const NodeIterator& rhs)\
+    \ { return lhs.index == rhs.index; }\n            friend bool operator!=(const\
     \ NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index != rhs.index;\
     \ }\n            friend bool operator<(const NodeIterator& lhs, const NodeIterator&\
     \ rhs) { return lhs.index < rhs.index; }\n            friend bool operator>(const\
@@ -287,70 +303,56 @@ data:
     \ }\n            friend bool operator<=(const NodeIterator& lhs, const NodeIterator&\
     \ rhs) { return lhs.index <= rhs.index; }\n            friend bool operator>=(const\
     \ NodeIterator& lhs, const NodeIterator& rhs) { return lhs.index >= rhs.index;\
-    \ }\n\n            static NodeIterator kth_iter(node_pointer t, size_type k) {\n\
-    \                NodeIterator it(t, k);\n                if (k == safe_size(t))\
-    \ return it;\n                auto& stk = it.stk;\n                while (t !=\
-    \ null) {\n                    node_type::push(t);\n                    stk.push_back(t);\n\
-    \                    if (size_type siz = safe_size(child(t, reversed)); k == siz)\
-    \ {\n                        break;\n                    } else if (k < siz) {\n\
-    \                        t = child(t, reversed);\n                    } else {\n\
-    \                        k -= siz + 1;\n                        t = child(t, not\
-    \ reversed);\n                    }\n                }\n                return\
-    \ it;\n            }\n        private:\n            node_pointer root;\n     \
-    \       size_type index;\n            std::vector<node_pointer> stk;\n\n     \
-    \       void up(const bool positive) {\n                node_pointer t = stk.back();\n\
-    \                do {\n                    stk.pop_back();\n                 \
-    \   if (stk.empty() or t == child(stk.back(), not positive)) break;\n        \
-    \            t = stk.back();\n                } while (stk.size());\n        \
-    \    }\n            void down(node_pointer t, size_type k, const bool positive)\
-    \ {\n                while (true) {\n                    node_type::push(t);\n\
-    \                    stk.push_back(t);\n\n                    if (size_type siz\
-    \ = safe_size(child(t, not positive)); k == siz) {\n                        break;\n\
-    \                    } else if (k < siz) {\n                        t = child(t,\
-    \ not positive);\n                    } else {\n                        k -= siz\
-    \ + 1;\n                        t = child(t, positive);\n                    }\n\
-    \                }\n            }\n            void suc(difference_type k) {\n\
-    \                index += k;\n                const bool positive = k < 0 ? (k\
-    \ = -k, reversed) : not reversed;\n                if (k and stk.empty()) {\n\
-    \                    for (node_pointer t = root; t != null; t = child(t, not positive))\
-    \ {\n                        node_type::push(t);\n                        stk.push_back(t);\n\
-    \                    }\n                    --k;\n                }\n        \
-    \        while (k) {\n                    node_pointer t = child(stk.back(), positive);\n\
-    \                    if (difference_type siz = safe_size(t); k > siz) {\n    \
-    \                    up(positive);\n                        k -= siz + 1;\n  \
-    \                  } else {\n                        down(t, k - 1, positive);\n\
-    \                        break;\n                    }\n                }\n  \
-    \          }\n        };\n        using iterator = NodeIterator<false, false>;\n\
-    \        using reverse_iterator = NodeIterator<true, false>;\n        using const_iterator\
+    \ }\n\n            static NodeIterator begin(node_pointer root) { return NodeIterator(root,\
+    \ 0); }\n            static NodeIterator end(node_pointer root) { return NodeIterator(root,\
+    \ safe_size(root)); }\n        private:\n            node_pointer root;\n    \
+    \        size_type index;\n            std::vector<node_pointer> stk;\n\n    \
+    \        NodeIterator(node_pointer root, size_type index): root(root), index(index)\
+    \ {}\n\n            void up(const bool positive) {\n                node_pointer\
+    \ t = stk.back();\n                while (true) {\n                    stk.pop_back();\n\
+    \                    if (t == child(stk.back(), not positive)) return;\n     \
+    \               t = stk.back();\n                }\n            }\n          \
+    \  void down(node_pointer t, size_type k, const bool positive) {\n           \
+    \     while (true) {\n                    node_type::push(t);\n              \
+    \      stk.push_back(t);\n\n                    if (size_type siz = safe_size(child(t,\
+    \ not positive)); k == siz) {\n                        break;\n              \
+    \      } else if (k < siz) {\n                        t = child(t, not positive);\n\
+    \                    } else {\n                        k -= siz + 1;\n       \
+    \                 t = child(t, positive);\n                    }\n           \
+    \     }\n            }\n            void suc(difference_type k) {\n          \
+    \      index += k;\n                if (index == safe_size(root)) stk.clear();\n\
+    \                if (stk.empty()) return;\n\n                const bool positive\
+    \ = k < 0 ? (k = -k, reversed) : not reversed;\n                while (k) {\n\
+    \                    node_pointer t = child(stk.back(), positive);\n         \
+    \           if (difference_type siz = safe_size(t); k > siz) {\n             \
+    \           up(positive);\n                        k -= siz + 1;\n           \
+    \         } else {\n                        down(t, k - 1, positive);\n      \
+    \                  break;\n                    }\n                }\n        \
+    \    }\n        };\n        using iterator = NodeIterator<false, false>;\n   \
+    \     using reverse_iterator = NodeIterator<true, false>;\n        using const_iterator\
     \ = NodeIterator<false, true>;\n        using const_reverse_iterator = NodeIterator<true,\
-    \ true>;\n\n        static iterator begin(node_pointer t) { return ++iterator(t,\
-    \ -1); }\n        static iterator end(node_pointer t) { return iterator(t, safe_size(t));\
-    \ }\n        static iterator kth_iterator(node_pointer t, size_type k) { return\
-    \ iterator::kth_iter(t, k); }\n        static reverse_iterator rbegin(node_pointer\
-    \ t) { return ++reverse_iterator(t, -1); }\n        static reverse_iterator rend(node_pointer\
-    \ t) { return reverse_iterator(t, safe_size(t)); }\n        static reverse_iterator\
-    \ kth_reverse_iterator(node_pointer t, size_type k) { return reverse_iterator::kth_iter(t,\
-    \ k); }\n        static const_iterator cbegin(node_pointer t) { return ++const_iterator(t,\
-    \ -1); }\n        static const_iterator cend(node_pointer t) { return const_iterator(t,\
-    \ safe_size(t)); }\n        static const_iterator kth_const_iterator(node_pointer\
-    \ t, size_type k) { return const_iterator::kth_iter(t, k); }\n        static const_reverse_iterator\
-    \ crbegin(node_pointer t) { return ++const_reverse_iterator(t, -1); }\n      \
-    \  static const_reverse_iterator crend(node_pointer t) { return const_reverse_iterator(t,\
-    \ safe_size(t)); }\n        static const_reverse_iterator kth_const_reverse_iterator(node_pointer\
-    \ t, size_type k) { return const_reverse_iterator::kth_iter(t, k); }\n    };\n\
-    } // namespace suisen::internal::implicit_treap\n\n\n#line 5 \"library/datastructure/bbst/implicit_treap_lazy_segtree.hpp\"\
-    \n\nnamespace suisen {\n    namespace internal::implicit_treap {\n        template\
-    \ <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T), typename F, T(*mapping)(F,\
-    \ T, int), F(*composition)(F, F), F(*id)()>\n        struct RangeOperateRangeProductNode:\
-    \ Node<T, RangeOperateRangeProductNode<T, op, e, toggle, F, mapping, composition,\
-    \ id>> {\n            using base = Node<T, RangeOperateRangeProductNode<T, op,\
-    \ e, toggle, F, mapping, composition, id>>;\n            using node_pointer =\
-    \ typename base::node_pointer;\n            using value_type = typename base::value_type;\n\
+    \ true>;\n\n        static iterator begin(node_pointer t) { return iterator::begin(t);\
+    \ }\n        static iterator end(node_pointer t) { return iterator::end(t); }\n\
+    \        static reverse_iterator rbegin(node_pointer t) { return reverse_iterator::begin(t);\
+    \ }\n        static reverse_iterator rend(node_pointer t) { return reverse_iterator::end(t);\
+    \ }\n        static const_iterator cbegin(node_pointer t) { return const_iterator::begin(t);\
+    \ }\n        static const_iterator cend(node_pointer t) { return const_iterator::end(t);\
+    \ }\n        static const_reverse_iterator crbegin(node_pointer t) { return const_reverse_iterator::begin(t);\
+    \ }\n        static const_reverse_iterator crend(node_pointer t) { return const_reverse_iterator::end(t);\
+    \ }\n    };\n} // namespace suisen::internal::implicit_treap\n\n\n\n#line 5 \"\
+    library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp\"\n\nnamespace\
+    \ suisen {\n    namespace internal::implicit_treap {\n        template <typename\
+    \ T, T(*op)(T, T), T(*e)(), T(*toggle)(T), typename F, T(*mapping)(F, T, int),\
+    \ F(*composition)(F, F), F(*id)()>\n        struct ReversibleRangeOperateRangeProductNode:\
+    \ ReversibleNode<T, ReversibleRangeOperateRangeProductNode<T, op, e, toggle, F,\
+    \ mapping, composition, id>> {\n            using base = ReversibleNode<T, ReversibleRangeOperateRangeProductNode<T,\
+    \ op, e, toggle, F, mapping, composition, id>>;\n            using node_pointer\
+    \ = typename base::node_pointer;\n            using value_type = typename base::value_type;\n\
     \            using operator_type = F;\n\n            value_type _sum;\n      \
-    \      operator_type _laz;\n            RangeOperateRangeProductNode(const value_type&\
-    \ val): base(val), _sum(val), _laz(id()) {}\n\n            // ----- override -----\
-    \ //\n            static node_pointer update(node_pointer t) {\n             \
-    \   base::update(t);\n                prod_all(t) = op(op(safe_prod(base::child0(t)),\
+    \      operator_type _laz;\n            ReversibleRangeOperateRangeProductNode(const\
+    \ value_type& val): base(val), _sum(val), _laz(id()) {}\n\n            // -----\
+    \ override ----- //\n            static node_pointer update(node_pointer t) {\n\
+    \                base::update(t);\n                prod_all(t) = op(op(safe_prod(base::child0(t)),\
     \ base::value(t)), safe_prod(base::child1(t)));\n                return t;\n \
     \           }\n            static void push(node_pointer t) {\n              \
     \  base::push(t);\n                operator_type& laz = lazy(t);\n           \
@@ -414,37 +416,38 @@ data:
     \ r);\n                size_t l = min_left(tl, f);\n                t = base::merge(tl,\
     \ tr);\n                return { t, l };\n            }\n        };\n    }\n\n\
     \    template <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T), typename F, T(*mapping)(F,\
-    \ T, int), F(*composition)(F, F), F(*id)()>\n    class DynamicLazySegmentTree\
-    \ {\n        using node_type = internal::implicit_treap::RangeOperateRangeProductNode<T,\
+    \ T, int), F(*composition)(F, F), F(*id)()>\n    class ReversibleDynamicLazySegmentTree\
+    \ {\n        using node_type = internal::implicit_treap::ReversibleRangeOperateRangeProductNode<T,\
     \ op, e, toggle, F, mapping, composition, id>;\n        using node_pointer = typename\
     \ node_type::node_pointer;\n\n        node_pointer _root;\n\n        struct node_pointer_construct\
-    \ {};\n        DynamicLazySegmentTree(node_pointer root, node_pointer_construct):\
+    \ {};\n        ReversibleDynamicLazySegmentTree(node_pointer root, node_pointer_construct):\
     \ _root(root) {}\n\n    public:\n        using value_type = typename node_type::value_type;\n\
-    \        using operator_type = typename node_type::operator_type;\n\n        DynamicLazySegmentTree():\
-    \ _root(node_type::empty_node()) {}\n        explicit DynamicLazySegmentTree(size_t\
+    \        using operator_type = typename node_type::operator_type;\n\n        ReversibleDynamicLazySegmentTree():\
+    \ _root(node_type::empty_node()) {}\n        explicit ReversibleDynamicLazySegmentTree(size_t\
     \ n, const value_type& fill_value = {}): _root(node_type::build(n, fill_value))\
-    \ {}\n        template <typename U>\n        DynamicLazySegmentTree(const std::vector<U>&\
-    \ dat) : _root(node_type::build(dat.begin(), dat.end())) {}\n\n        void free()\
-    \ {\n            node_type::delete_tree(_root);\n            _root = node_type::empty_node();\n\
-    \        }\n        void clear() { free(); }\n\n        static void reserve(size_t\
-    \ capacity) { node_type::reserve(capacity); }\n\n        bool empty() const {\
-    \ return node_type::empty(_root); }\n        int size() const { return node_type::safe_size(_root);\
-    \ }\n\n        const value_type& operator[](size_t k) const { return get(k); }\n\
-    \        const value_type& get(size_t k) const {\n            assert(k < size_t(size()));\n\
-    \            return node_type::get(_root, k);\n        }\n        const value_type&\
-    \ front() const { return get(0); }\n        const value_type& back() const { return\
-    \ get(size() - 1); }\n        void set(size_t k, const value_type& val) {\n  \
-    \          assert(k < size_t(size()));\n            _root = node_type::set(_root,\
-    \ k, [&](const value_type&) { return val; });\n        }\n        template <typename\
-    \ Func>\n        void apply(size_t k, const Func& f) {\n            assert(k <\
-    \ size_t(size()));\n            _root = node_type::set(_root, k, [&](const value_type&\
-    \ val) { return f(val); });\n        }\n\n        value_type prod_all() const\
-    \ { return node_type::safe_prod(_root); }\n        value_type prod(size_t l, size_t\
-    \ r) {\n            value_type res;\n            std::tie(_root, res) = node_type::prod(_root,\
-    \ l, r);\n            return res;\n        }\n\n        void apply_all(const operator_type&\
-    \ f) { _root = node_type::apply_all(_root, f); }\n        void apply(size_t l,\
-    \ size_t r, const operator_type& f) { _root = node_type::apply(_root, l, r, f);\
-    \ }\n\n        void insert(size_t k, const value_type& val) {\n            assert(k\
+    \ {}\n        template <typename U>\n        ReversibleDynamicLazySegmentTree(const\
+    \ std::vector<U>& dat) : _root(node_type::build(dat.begin(), dat.end())) {}\n\n\
+    \        void free() {\n            node_type::delete_tree(_root);\n         \
+    \   _root = node_type::empty_node();\n        }\n        void clear() { free();\
+    \ }\n\n        static void reserve(size_t capacity) { node_type::reserve(capacity);\
+    \ }\n\n        bool empty() const { return node_type::empty(_root); }\n      \
+    \  int size() const { return node_type::safe_size(_root); }\n\n        const value_type&\
+    \ operator[](size_t k) const { return get(k); }\n        const value_type& get(size_t\
+    \ k) const {\n            assert(k < size_t(size()));\n            return node_type::get(_root,\
+    \ k);\n        }\n        const value_type& front() const { return get(0); }\n\
+    \        const value_type& back() const { return get(size() - 1); }\n        void\
+    \ set(size_t k, const value_type& val) {\n            assert(k < size_t(size()));\n\
+    \            _root = node_type::set(_root, k, [&](const value_type&) { return\
+    \ val; });\n        }\n        template <typename Func>\n        void apply(size_t\
+    \ k, const Func& f) {\n            assert(k < size_t(size()));\n            _root\
+    \ = node_type::set(_root, k, [&](const value_type& val) { return f(val); });\n\
+    \        }\n\n        value_type prod_all() const { return node_type::safe_prod(_root);\
+    \ }\n        value_type prod(size_t l, size_t r) {\n            value_type res;\n\
+    \            std::tie(_root, res) = node_type::prod(_root, l, r);\n          \
+    \  return res;\n        }\n\n        void apply_all(const operator_type& f) {\
+    \ _root = node_type::apply_all(_root, f); }\n        void apply(size_t l, size_t\
+    \ r, const operator_type& f) { _root = node_type::apply(_root, l, r, f); }\n\n\
+    \        void insert(size_t k, const value_type& val) {\n            assert(k\
     \ <= size_t(size()));\n            _root = node_type::insert(_root, k, val);\n\
     \        }\n        void push_front(const value_type& val) { _root = node_type::push_front(_root,\
     \ val); }\n        void push_back(const value_type& val) { _root = node_type::push_back(_root,\
@@ -502,29 +505,29 @@ data:
     \ comp);\n            _root = root;\n            if (erased) {\n             \
     \   return std::pair<int, value_type>{ erased->first, erased->second };\n    \
     \        } else {\n                return std::nullopt;\n            }\n     \
-    \   }\n\n        // Split immediately before the k-th element.\n        DynamicLazySegmentTree\
+    \   }\n\n        // Split immediately before the k-th element.\n        ReversibleDynamicLazySegmentTree\
     \ split(size_t k) {\n            assert(k <= size_t(size()));\n            node_pointer\
     \ root_r;\n            std::tie(_root, root_r) = node_type::split(_root, k);\n\
-    \            return DynamicLazySegmentTree(root_r, node_pointer_construct{});\n\
+    \            return ReversibleDynamicLazySegmentTree(root_r, node_pointer_construct{});\n\
     \        }\n        // Split immediately before the first element that satisfies\
     \ the condition.\n        // Requirements: f(A[i]) must be monotonic\n       \
-    \ template <typename Predicate>\n        DynamicLazySegmentTree split_binary_search(const\
+    \ template <typename Predicate>\n        ReversibleDynamicLazySegmentTree split_binary_search(const\
     \ Predicate &f) {\n            node_pointer root_r;\n            std::tie(_root,\
-    \ root_r) = node_type::split_binary_search(_root, f);\n            return DynamicLazySegmentTree(root_r,\
+    \ root_r) = node_type::split_binary_search(_root, f);\n            return ReversibleDynamicLazySegmentTree(root_r,\
     \ node_pointer_construct{});\n        }\n        // Split immediately before the\
     \ first element that is greater than or equal to val.\n        // Requirements:\
     \ sequence is sorted\n        template <typename Compare = std::less<>>\n    \
-    \    DynamicLazySegmentTree split_lower_bound(const value_type &val, const Compare\
-    \ &comp = {}) {\n            node_pointer root_r;\n            std::tie(_root,\
+    \    ReversibleDynamicLazySegmentTree split_lower_bound(const value_type &val,\
+    \ const Compare &comp = {}) {\n            node_pointer root_r;\n            std::tie(_root,\
     \ root_r) = node_type::split_lower_bound(_root, val, comp);\n            return\
-    \ DynamicLazySegmentTree(root_r, node_pointer_construct{});\n        }\n     \
-    \   // Split immediately before the first element that is greater than val.\n\
-    \        // Requirements: sequence is sorted\n        template <typename Compare\
-    \ = std::less<>>\n        DynamicLazySegmentTree split_upper_bound(const value_type\
-    \ &val, const Compare &comp = {}) {\n            node_pointer root_r;\n      \
-    \      std::tie(_root, root_r) = node_type::split_upper_bound(_root, val, comp);\n\
-    \            return DynamicLazySegmentTree(root_r, node_pointer_construct{});\n\
-    \        }\n        void merge(DynamicLazySegmentTree r) { _root = node_type::merge(_root,\
+    \ ReversibleDynamicLazySegmentTree(root_r, node_pointer_construct{});\n      \
+    \  }\n        // Split immediately before the first element that is greater than\
+    \ val.\n        // Requirements: sequence is sorted\n        template <typename\
+    \ Compare = std::less<>>\n        ReversibleDynamicLazySegmentTree split_upper_bound(const\
+    \ value_type &val, const Compare &comp = {}) {\n            node_pointer root_r;\n\
+    \            std::tie(_root, root_r) = node_type::split_upper_bound(_root, val,\
+    \ comp);\n            return ReversibleDynamicLazySegmentTree(root_r, node_pointer_construct{});\n\
+    \        }\n        void merge(ReversibleDynamicLazySegmentTree r) { _root = node_type::merge(_root,\
     \ r._root); }\n\n        void rotate(size_t k) {\n            assert(k <= size_t(size()));\n\
     \            _root = node_type::rotate(_root, k);\n        }\n        void rotate(size_t\
     \ l, size_t m, size_t r) {\n            assert(l <= m and m <= r and r <= size_t(size()));\n\
@@ -598,14 +601,14 @@ data:
     \ V>{ a, b }; }\n\n        friend std::istream& operator<<(std::istream& in, Affine<T>\
     \ &f) { return in >> f.a >> f.b; }\n        friend std::ostream& operator>>(std::ostream&\
     \ out, const Affine<T> &f) { return out << f.a << ' ' << f.b; }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 20 \"test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+    \ namespace suisen\n\n\n#line 20 \"test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp\"\
     \n\nusing S = mint;\nusing F = suisen::Affine<mint>;\n\nS op(S x, S y) {\n   \
     \ return x + y;\n}\nS e() {\n    return 0;\n}\nS toggle(S x) {\n    return x;\n\
     }\nS mapping(F f, S x, int len) {\n    return f.a * x + f.b * len;\n}\nF composition(F\
     \ f, F g) {\n    return f.compose(g);\n}\nF id() {\n    return F::id();\n}\n\n\
-    using Sequence = suisen::DynamicLazySegmentTree<S, op, e, toggle, F, mapping,\
-    \ composition, id>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n \
-    \   std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<S>\
+    using Sequence = suisen::ReversibleDynamicLazySegmentTree<S, op, e, toggle, F,\
+    \ mapping, composition, id>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<S>\
     \ init(n);\n    for (int i = 0; i < n; ++i) {\n        std::cin >> init[i];\n\
     \    }\n\n    Sequence seq(init);\n    for (int qid = 0; qid < q; ++qid) {\n \
     \       int qtype;\n        std::cin >> qtype;\n\n        if (qtype == 0) {\n\
@@ -622,12 +625,12 @@ data:
     \n\n#include <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
     \nstd::istream& operator>>(std::istream& in, mint &a) {\n    long long e; in >>\
     \ e; a = e;\n    return in;\n}\n\nstd::ostream& operator<<(std::ostream& out,\
-    \ const mint &a) {\n    out << a.val();\n    return out;\n}\n\n#include \"library/datastructure/bbst/implicit_treap_lazy_segtree.hpp\"\
+    \ const mint &a) {\n    out << a.val();\n    return out;\n}\n\n#include \"library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp\"\
     \n#include \"library/algebra/monoid/affine.hpp\"\n\nusing S = mint;\nusing F =\
     \ suisen::Affine<mint>;\n\nS op(S x, S y) {\n    return x + y;\n}\nS e() {\n \
     \   return 0;\n}\nS toggle(S x) {\n    return x;\n}\nS mapping(F f, S x, int len)\
     \ {\n    return f.a * x + f.b * len;\n}\nF composition(F f, F g) {\n    return\
-    \ f.compose(g);\n}\nF id() {\n    return F::id();\n}\n\nusing Sequence = suisen::DynamicLazySegmentTree<S,\
+    \ f.compose(g);\n}\nF id() {\n    return F::id();\n}\n\nusing Sequence = suisen::ReversibleDynamicLazySegmentTree<S,\
     \ op, e, toggle, F, mapping, composition, id>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<S>\
     \ init(n);\n    for (int i = 0; i < n; ++i) {\n        std::cin >> init[i];\n\
@@ -643,19 +646,19 @@ data:
     \ r;\n            std::cin >> l >> r;\n            std::cout << seq.prod(l, r)\
     \ << '\\n';\n        }\n    }\n\n}"
   dependsOn:
-  - library/datastructure/bbst/implicit_treap_lazy_segtree.hpp
-  - library/datastructure/bbst/implicit_treap_base.hpp
+  - library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
+  - library/datastructure/bbst/reversible_implicit_treap_base.hpp
   - library/algebra/monoid/affine.hpp
   isVerificationFile: true
-  path: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
+  path: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 10:47:12+09:00'
+  timestamp: '2023-02-04 02:55:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
+documentation_of: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
-- /verify/test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp.html
-title: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
+- /verify/test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
+- /verify/test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp.html
+title: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
 ---

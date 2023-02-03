@@ -108,7 +108,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/convolution/relaxed_convolution.hpp
       title: Relaxed Convolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/relaxed_convolution_ntt.hpp
       title: Relaxed Convolution Ntt
     - icon: ':heavy_check_mark:'
@@ -251,6 +251,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/red_black_tree_base.hpp
       title: Red Black Tree Base
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/bbst/reversible_implicit_treap.hpp
+      title: library/datastructure/bbst/reversible_implicit_treap.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
+      title: library/datastructure/bbst/reversible_implicit_treap_base.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
+      title: library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
+      title: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
+      title: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
   - name: library/datastructure/fenwick_tree
     pages:
     - icon: ':warning:'
@@ -609,10 +624,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
     - icon: ':heavy_check_mark:'
@@ -730,7 +745,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/formal_power_series.hpp
       title: Formal Power Series
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/formal_power_series_relaxed.hpp
       title: Formal Power Series Relaxed
     - icon: ':heavy_check_mark:'
@@ -1205,9 +1220,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dummy.test.cpp
       title: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dummy.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
-      title: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/bbst/implicit_treap_segtree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1236,6 +1248,38 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
       title: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
+  - name: test/src/datastructure/bbst/reversible_implicit_treap
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
+      title: test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/reversible_implicit_treap/dummy.test.cpp
+      title: test/src/datastructure/bbst/reversible_implicit_treap/dummy.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/reversible_implicit_treap/yuki649.test.cpp
+      title: test/src/datastructure/bbst/reversible_implicit_treap/yuki649.test.cpp
+  - name: test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree/dummy.test.cpp
+      title: test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree/dummy.test.cpp
+  - name: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dummy.test.cpp
+      title: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dummy.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
+      title: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
+  - name: test/src/datastructure/bbst/reversible_implicit_treap_segtree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
+      title: test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
+      title: test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
   - name: test/src/datastructure/binary_trie
     pages:
     - icon: ':heavy_check_mark:'
@@ -2136,7 +2180,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
   - name: test/src/polynomial/fps
