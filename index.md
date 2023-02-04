@@ -201,18 +201,12 @@ data:
       title: Wavelet Matrix
   - name: library/datastructure/bbst
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/bbst/implicit_treap.hpp
       title: Implicit Treap
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/bbst/implicit_treap_base.hpp
       title: Implicit Treap Base
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/bbst/implicit_treap_dual_segtree.hpp
-      title: Implicit Treap Dual Segtree
-    - icon: ':heavy_check_mark:'
-      path: library/datastructure/bbst/implicit_treap_lazy_segtree.hpp
-      title: Implicit Treap Lazy Segtree
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/implicit_treap_segtree.hpp
       title: Implicit Treap Segtree
@@ -1204,22 +1198,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
       title: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
+    - icon: ':x:'
+      path: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
+      title: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/implicit_treap/dummy.test.cpp
       title: test/src/datastructure/bbst/implicit_treap/dummy.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
       title: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
-  - name: test/src/datastructure/bbst/implicit_treap_dual_segtree
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/bbst/implicit_treap_dual_segtree/dummy.test.cpp
-      title: test/src/datastructure/bbst/implicit_treap_dual_segtree/dummy.test.cpp
-  - name: test/src/datastructure/bbst/implicit_treap_lazy_segtree
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dummy.test.cpp
-      title: test/src/datastructure/bbst/implicit_treap_lazy_segtree/dummy.test.cpp
   - name: test/src/datastructure/bbst/implicit_treap_segtree
     pages:
     - icon: ':heavy_check_mark:'

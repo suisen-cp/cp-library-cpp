@@ -24,36 +24,40 @@ data:
     \ &a) {\n    out << '{';\n    for (auto &e : a) out << e << ',';\n    return out\
     \ << '}';\n}\n\n#line 1 \"library/datastructure/bbst/reversible_implicit_treap_segtree.hpp\"\
     \n\n\n\n#line 1 \"library/datastructure/bbst/reversible_implicit_treap_base.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <cstdint>\n#include <optional>\n#include\
-    \ <string>\n#include <random>\n#include <tuple>\n#line 11 \"library/datastructure/bbst/reversible_implicit_treap_base.hpp\"\
+    \n\n\n\n#line 5 \"library/datastructure/bbst/reversible_implicit_treap_base.hpp\"\
+    \n#include <cassert>\n#include <cstdint>\n#include <optional>\n#include <string>\n\
+    #include <random>\n#include <tuple>\n#line 12 \"library/datastructure/bbst/reversible_implicit_treap_base.hpp\"\
     \n#include <utility>\n\nnamespace suisen::internal::implicit_treap {\n    template\
     \ <typename T, typename Derived>\n    struct ReversibleNode {\n        using random_engine\
     \ = std::mt19937;\n        static inline random_engine rng{ std::random_device{}()\
-    \ };\n\n        using node_type = Derived;\n        using node_pointer = uint32_t;\n\
-    \        using priority_type = std::invoke_result_t<random_engine>;\n\n      \
-    \  using size_type = uint32_t;\n\n        using difference_type = int32_t;\n \
-    \       using value_type = T;\n        using pointer = value_type*;\n        using\
-    \ const_pointer = const value_type*;\n        using reference = value_type&;\n\
-    \        using const_reference = const value_type&;\n\n        static inline std::vector<node_type>\
+    \ };\n\n        using priority_type = std::invoke_result_t<random_engine>;\n\n\
+    \        static priority_type random_priority() { return rng(); }\n\n        using\
+    \ node_type = Derived;\n        using node_pointer = uint32_t;\n\n        using\
+    \ size_type = uint32_t;\n\n        using difference_type = int32_t;\n        using\
+    \ value_type = T;\n        using pointer = value_type*;\n        using const_pointer\
+    \ = const value_type*;\n        using reference = value_type&;\n        using\
+    \ const_reference = const value_type&;\n\n        static inline std::vector<node_type>\
     \ _nodes{};\n        static inline std::vector<node_pointer> _erased{};\n\n  \
     \      static constexpr node_pointer null = ~node_pointer(0);\n\n        node_pointer\
     \ _ch[2]{ null, null };\n        value_type _val;\n        size_type _size;\n\
     \        priority_type _priority;\n\n        bool _rev = false;\n\n        ReversibleNode(const\
-    \ value_type val = {}): _val(val), _size(1), _priority(rng()) {}\n\n        static\
-    \ void reserve(size_type capacity) { _nodes.reserve(capacity); }\n\n        static\
-    \ node_type& node(node_pointer t) { return _nodes[t]; }\n        static const\
-    \ node_type& const_node(node_pointer t) { return _nodes[t]; }\n\n        static\
-    \ value_type& value(node_pointer t) { return node(t)._val; }\n        static value_type\
-    \ set_value(node_pointer t, const value_type& new_val) { return std::exchange(value(t),\
-    \ new_val); }\n\n        static bool empty(node_pointer t) { return t == null;\
-    \ }\n        static size_type& size(node_pointer t) { return node(t)._size; }\n\
-    \        static size_type safe_size(node_pointer t) { return empty(t) ? 0 : size(t);\
-    \ }\n\n        static priority_type priority(node_pointer t) { return const_node(t)._priority;\
-    \ }\n\n        static node_pointer& child0(node_pointer t) { return node(t)._ch[0];\
-    \ }\n        static node_pointer& child1(node_pointer t) { return node(t)._ch[1];\
-    \ }\n        static node_pointer& child(node_pointer t, bool b) { return node(t)._ch[b];\
-    \ }\n        static node_pointer set_child0(node_pointer t, node_pointer cid)\
-    \ { return std::exchange(child0(t), cid); }\n        static node_pointer set_child1(node_pointer\
+    \ value_type val = {}): _val(val), _size(1), _priority(random_priority()) {}\n\
+    \n        static void reserve(size_type capacity) { _nodes.reserve(capacity);\
+    \ }\n\n        static node_type& node(node_pointer t) { return _nodes[t]; }\n\
+    \        static const node_type& const_node(node_pointer t) { return _nodes[t];\
+    \ }\n\n        static value_type& value(node_pointer t) { return node(t)._val;\
+    \ }\n        static value_type set_value(node_pointer t, const value_type& new_val)\
+    \ { return std::exchange(value(t), new_val); }\n\n        static bool empty(node_pointer\
+    \ t) { return t == null; }\n        static size_type& size(node_pointer t) { return\
+    \ node(t)._size; }\n        static size_type safe_size(node_pointer t) { return\
+    \ empty(t) ? 0 : size(t); }\n\n        static priority_type& priority(node_pointer\
+    \ t) { return node(t)._priority; }\n        static void set_priority(node_pointer\
+    \ t, priority_type new_priority) { priority(t) = new_priority; }\n\n        static\
+    \ node_pointer& child0(node_pointer t) { return node(t)._ch[0]; }\n        static\
+    \ node_pointer& child1(node_pointer t) { return node(t)._ch[1]; }\n        static\
+    \ node_pointer& child(node_pointer t, bool b) { return node(t)._ch[b]; }\n   \
+    \     static node_pointer set_child0(node_pointer t, node_pointer cid) { return\
+    \ std::exchange(child0(t), cid); }\n        static node_pointer set_child1(node_pointer\
     \ t, node_pointer cid) { return std::exchange(child1(t), cid); }\n        static\
     \ node_pointer set_child(node_pointer t, bool b, node_pointer cid) { return std::exchange(child(t,\
     \ b), cid); }\n\n        static bool& reversed(node_pointer t) { return node(t)._rev;\
@@ -75,20 +79,32 @@ data:
     \ {\n            if (t == null) return;\n            delete_tree(child0(t));\n\
     \            delete_tree(child1(t));\n            delete_node(t);\n        }\n\
     \n        template <typename ...Args>\n        static node_pointer build(Args\
-    \ &&... args) {\n            node_pointer res = empty_node();\n            for\
-    \ (auto&& e : std::vector<value_type>(std::forward<Args>(args)...)) {\n      \
-    \          res = push_back(res, std::move(e));\n            }\n            return\
-    \ res;\n        }\n\n        static std::pair<node_pointer, node_pointer> split(node_pointer\
-    \ t, size_type k) {\n            if (k == 0) return { null, t };\n           \
-    \ if (k == size(t)) return { t, null };\n\n            static std::vector<node_pointer>\
-    \ lp{}, rp{};\n\n            while (true) {\n                node_type::push(t);\n\
-    \                if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {\n\
-    \                    if (rp.size()) set_child0(rp.back(), t);\n              \
-    \      rp.push_back(t);\n                    if (k == lsiz) {\n              \
-    \          node_pointer& lch = child0(t);\n                        if (lp.size())\
-    \ set_child1(lp.back(), lch);\n\n                        node_pointer lt = std::exchange(lch,\
-    \ null), rt = null;\n                        while (lp.size()) node_type::update(lt\
-    \ = lp.back()), lp.pop_back();\n                        while (rp.size()) node_type::update(rt\
+    \ &&... args) {\n            std::vector<value_type> dat(std::forward<Args>(args)...);\n\
+    \n            const size_t n = dat.size();\n\n            std::vector<priority_type>\
+    \ priorities(n);\n            std::generate(priorities.begin(), priorities.end(),\
+    \ random_priority);\n            std::make_heap(priorities.begin(), priorities.end());\n\
+    \n            std::vector<node_pointer> nodes(n);\n\n            auto rec = [&](auto\
+    \ rec, size_t heap_index, size_t dat_index_offset) -> std::pair<size_t, node_pointer>\
+    \ {\n                if (heap_index >= n) return { 0, null };\n              \
+    \  auto [lsiz, lch] = rec(rec, 2 * heap_index + 1, dat_index_offset);\n      \
+    \          dat_index_offset += lsiz;\n                node_pointer root = create_node(std::move(dat[dat_index_offset]));\n\
+    \                nodes[dat_index_offset] = root;\n                set_priority(root,\
+    \ priorities[heap_index]);\n                dat_index_offset += 1;\n         \
+    \       auto [rsiz, rch] = rec(rec, 2 * heap_index + 2, dat_index_offset);\n \
+    \               set_child0(root, lch);\n                set_child1(root, rch);\n\
+    \                return { lsiz + 1 + rsiz, node_type::update(root) };\n      \
+    \      };\n            return rec(rec, 0, 0).second;\n        }\n\n        static\
+    \ std::pair<node_pointer, node_pointer> split(node_pointer t, size_type k) {\n\
+    \            if (k == 0) return { null, t };\n            if (k == size(t)) return\
+    \ { t, null };\n\n            static std::vector<node_pointer> lp{}, rp{};\n\n\
+    \            while (true) {\n                node_type::push(t);\n           \
+    \     if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {\n        \
+    \            if (rp.size()) set_child0(rp.back(), t);\n                    rp.push_back(t);\n\
+    \                    if (k == lsiz) {\n                        node_pointer& lch\
+    \ = child0(t);\n                        if (lp.size()) set_child1(lp.back(), lch);\n\
+    \n                        node_pointer lt = std::exchange(lch, null), rt = null;\n\
+    \                        while (lp.size()) node_type::update(lt = lp.back()),\
+    \ lp.pop_back();\n                        while (rp.size()) node_type::update(rt\
     \ = rp.back()), rp.pop_back();\n                        return { lt, rt };\n \
     \                   }\n                    t = child0(t);\n                } else\
     \ {\n                    if (lp.size()) set_child1(lp.back(), t);\n          \
@@ -802,7 +818,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
   requiredBy: []
-  timestamp: '2023-02-04 02:55:53+09:00'
+  timestamp: '2023-02-04 08:57:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp

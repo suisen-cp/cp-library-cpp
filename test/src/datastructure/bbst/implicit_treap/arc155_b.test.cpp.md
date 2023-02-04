@@ -2,47 +2,40 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: library/datastructure/bbst/implicit_treap.hpp
+    title: Implicit Treap
+  - icon: ':question:'
     path: library/datastructure/bbst/implicit_treap_base.hpp
     title: Implicit Treap Base
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
-    title: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
-  - icon: ':x:'
-    path: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
-    title: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/bbst/implicit_treap/dummy.test.cpp
-    title: test/src/datastructure/bbst/implicit_treap/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
-    title: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
-  bundledCode: "#line 1 \"library/datastructure/bbst/implicit_treap.hpp\"\n\n\n\n\
-    #line 1 \"library/datastructure/bbst/implicit_treap_base.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <cassert>\n#include <cstdint>\n#include <optional>\n#include\
-    \ <string>\n#include <random>\n#include <tuple>\n#include <vector>\n#include <utility>\n\
-    \nnamespace suisen::internal::implicit_treap {\n    template <typename T, typename\
-    \ Derived>\n    struct Node {\n        using random_engine = std::mt19937;\n \
-    \       static inline random_engine rng{ std::random_device{}() };\n\n       \
-    \ using priority_type = std::invoke_result_t<random_engine>;\n\n        static\
-    \ priority_type random_priority() { return rng(); }\n\n        using node_type\
-    \ = Derived;\n        using node_pointer = uint32_t;\n\n        using size_type\
-    \ = uint32_t;\n\n        using difference_type = int32_t;\n        using value_type\
-    \ = T;\n        using pointer = value_type*;\n        using const_pointer = const\
-    \ value_type*;\n        using reference = value_type&;\n        using const_reference\
-    \ = const value_type&;\n\n        static inline std::vector<node_type> _nodes{};\n\
-    \        static inline std::vector<node_pointer> _erased{};\n\n        static\
-    \ constexpr node_pointer null = ~node_pointer(0);\n\n        node_pointer _ch[2]{\
-    \ null, null };\n        value_type _val;\n        size_type _size;\n        priority_type\
-    \ _priority;\n\n        node_pointer _prev = null, _next = null;\n\n        Node(const\
-    \ value_type val = {}): _val(val), _size(1), _priority(random_priority()) {}\n\
-    \n        static void reserve(size_type capacity) { _nodes.reserve(capacity);\
+  bundledCode: "#line 1 \"test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp\"\
+    \n\n#include <algorithm>\n#include <iostream>\n\n#line 1 \"library/datastructure/bbst/implicit_treap.hpp\"\
+    \n\n\n\n#line 1 \"library/datastructure/bbst/implicit_treap_base.hpp\"\n\n\n\n\
+    #line 5 \"library/datastructure/bbst/implicit_treap_base.hpp\"\n#include <cassert>\n\
+    #include <cstdint>\n#include <optional>\n#include <string>\n#include <random>\n\
+    #include <tuple>\n#include <vector>\n#include <utility>\n\nnamespace suisen::internal::implicit_treap\
+    \ {\n    template <typename T, typename Derived>\n    struct Node {\n        using\
+    \ random_engine = std::mt19937;\n        static inline random_engine rng{ std::random_device{}()\
+    \ };\n\n        using priority_type = std::invoke_result_t<random_engine>;\n\n\
+    \        static priority_type random_priority() { return rng(); }\n\n        using\
+    \ node_type = Derived;\n        using node_pointer = uint32_t;\n\n        using\
+    \ size_type = uint32_t;\n\n        using difference_type = int32_t;\n        using\
+    \ value_type = T;\n        using pointer = value_type*;\n        using const_pointer\
+    \ = const value_type*;\n        using reference = value_type&;\n        using\
+    \ const_reference = const value_type&;\n\n        static inline std::vector<node_type>\
+    \ _nodes{};\n        static inline std::vector<node_pointer> _erased{};\n\n  \
+    \      static constexpr node_pointer null = ~node_pointer(0);\n\n        node_pointer\
+    \ _ch[2]{ null, null };\n        value_type _val;\n        size_type _size;\n\
+    \        priority_type _priority;\n\n        node_pointer _prev = null, _next\
+    \ = null;\n\n        Node(const value_type val = {}): _val(val), _size(1), _priority(random_priority())\
+    \ {}\n\n        static void reserve(size_type capacity) { _nodes.reserve(capacity);\
     \ }\n\n        static bool is_null(node_pointer t) { return t == null; }\n   \
     \     static bool is_not_null(node_pointer t) { return not is_null(t); }\n\n \
     \       static node_type& node(node_pointer t) { return _nodes[t]; }\n       \
@@ -391,117 +384,52 @@ data:
     \        using internal_node_pointer = node_pointer;\n\n        internal_node_pointer&\
     \ root_node() { return _root; }\n        const internal_node_pointer& root_node()\
     \ const { return _root; }\n        void set_root_node(internal_node_pointer new_root)\
-    \ { root_node() = new_root; }\n    };\n} // namespace suisen\n\n\n\n"
-  code: "#ifndef SUISEN_IMPLICIT_TREAP\n#define SUISEN_IMPLICIT_TREAP\n\n#include\
-    \ \"library/datastructure/bbst/implicit_treap_base.hpp\"\n\nnamespace suisen {\n\
-    \    namespace internal::implicit_treap {\n        template <typename T>\n   \
-    \     struct DefaultNode: Node<T, DefaultNode<T>> {\n            using base =\
-    \ Node<T, DefaultNode<T>>;\n            using base::base;\n        };\n    }\n\
-    \n    template <typename T>\n    class DynamicArray {\n        using node_type\
-    \ = internal::implicit_treap::DefaultNode<T>;\n        using node_pointer = typename\
-    \ node_type::node_pointer;\n\n        node_pointer _root;\n\n        struct node_pointer_construct\
-    \ {};\n        DynamicArray(node_pointer root, node_pointer_construct): _root(root)\
-    \ {}\n\n    public:\n        using value_type = typename node_type::value_type;\n\
-    \n        DynamicArray(): _root(node_type::empty_node()) {}\n        explicit\
-    \ DynamicArray(size_t n, const value_type& fill_value = {}): _root(node_type::build(n,\
-    \ fill_value)) {}\n        template <typename U>\n        DynamicArray(const std::vector<U>&\
-    \ dat) : _root(node_type::build(dat.begin(), dat.end())) {}\n\n        void free()\
-    \ {\n            node_type::delete_tree(_root);\n            _root = node_type::empty_node();\n\
-    \        }\n        void clear() { free(); }\n\n        static void reserve(size_t\
-    \ capacity) { node_type::reserve(capacity); }\n\n        bool empty() const {\
-    \ return node_type::empty(_root); }\n        int size() const { return node_type::safe_size(_root);\
-    \ }\n\n        value_type& operator[](size_t k) {\n            assert(k < size_t(size()));\n\
-    \            return begin()[k];\n        }\n        const value_type& operator[](size_t\
-    \ k) const {\n            assert(k < size_t(size()));\n            return cbegin()[k];\n\
-    \        }\n        value_type& front() { return *begin(); }\n        value_type&\
-    \ back() { return *rbegin(); }\n        const value_type& front() const { return\
-    \ *cbegin(); }\n        const value_type& back() const { return *crbegin(); }\n\
-    \n        void insert(size_t k, const value_type& val) {\n            assert(k\
-    \ <= size_t(size()));\n            _root = node_type::insert(_root, k, val);\n\
-    \        }\n        void push_front(const value_type& val) { insert(0, val); }\n\
-    \        void push_back(const value_type& val) { insert(size(), val); }\n\n  \
-    \      value_type erase(size_t k) {\n            assert(k <= size_t(size()));\n\
-    \            value_type v;\n            std::tie(_root, v) = node_type::erase(_root,\
-    \ k);\n            return v;\n        }\n        value_type pop_front() { return\
-    \ erase(0); }\n        value_type pop_back() { return erase(size() - 1); }\n\n\
-    \        // Split immediately before the k-th element.\n        DynamicArray split(size_t\
-    \ k) {\n            assert(k <= size_t(size()));\n            node_pointer root_r;\n\
-    \            std::tie(_root, root_r) = node_type::split(_root, k);\n         \
-    \   return DynamicArray(root_r, node_pointer_construct{});\n        }\n\n    \
-    \    void merge(DynamicArray r) { _root = node_type::merge(_root, r._root); }\n\
-    \n        void rotate(size_t k) {\n            assert(k <= size_t(size()));\n\
-    \            _root = node_type::rotate(_root, k);\n        }\n        void rotate(size_t\
-    \ l, size_t m, size_t r) {\n            assert(l <= m and m <= r and r <= size_t(size()));\n\
-    \            _root = node_type::rotate(_root, l, m, r);\n        }\n\n       \
-    \ std::vector<value_type> dump() const { return node_type::dump(_root); }\n\n\
-    \        using iterator = typename node_type::iterator;\n        using reverse_iterator\
-    \ = typename node_type::reverse_iterator;\n        using const_iterator = typename\
-    \ node_type::const_iterator;\n        using const_reverse_iterator = typename\
-    \ node_type::const_reverse_iterator;\n\n        iterator begin() { return node_type::begin(_root);\
-    \ }\n        iterator end() { return node_type::end(_root); }\n        reverse_iterator\
-    \ rbegin() { return node_type::rbegin(_root); }\n        reverse_iterator rend()\
-    \ { return node_type::rend(_root); }\n\n        const_iterator begin() const {\
-    \ return cbegin(); }\n        const_iterator end() const { return cend(); }\n\
-    \        const_reverse_iterator rbegin() const { return crbegin(); }\n       \
-    \ const_reverse_iterator rend() const { return crend(); }\n        const_iterator\
-    \ cbegin() const { return node_type::cbegin(_root); }\n        const_iterator\
-    \ cend() const { return node_type::cend(_root); }\n        const_reverse_iterator\
-    \ crbegin() const { return node_type::crbegin(_root); }\n        const_reverse_iterator\
-    \ crend() const { return node_type::crend(_root); }\n\n        // Find the first\
-    \ element that satisfies the condition f.\n        // Returns { position, optional(value)\
-    \ }\n        // Requirements: f(A[i]) must be monotonic\n        template <typename\
-    \ Predicate>\n        iterator binary_search(const Predicate& f) {\n         \
-    \   return node_type::template binary_search<iterator>(_root, f);\n        }\n\
-    \        // comp(T t, U u) = (t < u)\n        // Requirements: sequence is sorted\n\
-    \        template <typename U, typename Compare = std::less<>>\n        iterator\
-    \ lower_bound(const U& target, Compare comp = {}) {\n            return node_type::template\
-    \ lower_bound<iterator>(_root, target, comp);\n        }\n        // comp(T u,\
-    \ U t) = (u < t)\n        // Requirements: sequence is sorted\n        template\
-    \ <typename U, typename Compare = std::less<>>\n        iterator upper_bound(const\
-    \ U& target, Compare comp = {}) {\n            return node_type::template upper_bound<iterator>(_root,\
-    \ target, comp);\n        }\n        // Find the first element that satisfies\
-    \ the condition f.\n        // Returns { position, optional(value) }\n       \
-    \ // Requirements: f(A[i]) must be monotonic\n        template <typename Predicate>\n\
-    \        const_iterator binary_search(const Predicate& f) const {\n          \
-    \  return node_type::template binary_search<const_iterator>(_root, f);\n     \
-    \   }\n        // comp(T t, U u) = (t < u)\n        // Requirements: sequence\
-    \ is sorted\n        template <typename U, typename Compare = std::less<>>\n \
-    \       const_iterator lower_bound(const U& target, Compare comp = {}) const {\n\
-    \            return node_type::template lower_bound<const_iterator>(_root, target,\
-    \ comp);\n        }\n        // comp(T u, U t) = (u < t)\n        // Requirements:\
-    \ sequence is sorted\n        template <typename U, typename Compare = std::less<>>\n\
-    \        const_iterator upper_bound(const U& target, Compare comp = {}) const\
-    \ {\n            return node_type::template upper_bound<const_iterator>(_root,\
-    \ target, comp);\n        }\n \n        template <typename Iterator, std::enable_if_t<node_type::template\
-    \ is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>\n        void insert(Iterator\
-    \ it, const value_type &val) {\n            _root = node_type::insert(it, val);\n\
-    \        }\n        template <typename Iterator, std::enable_if_t<node_type::template\
-    \ is_node_iterator_v<Iterator>, std::nullptr_t> = nullptr>\n        value_type\
-    \ erase(Iterator it) {\n            value_type erased;\n            std::tie(_root,\
-    \ erased) = node_type::erase(it);\n            return erased;\n        }\n   \
-    \     template <typename Iterator, std::enable_if_t<node_type::template is_node_iterator_v<Iterator>,\
-    \ std::nullptr_t> = nullptr>\n        DynamicArray split(Iterator it) {\n    \
-    \        node_pointer root_r;\n            std::tie(_root, root_r) = node_type::split(it);\n\
-    \            return DynamicArray(root_r, node_pointer_construct{});\n        }\n\
-    \n        // handling internal nodes\n        using internal_node = node_type;\n\
-    \        using internal_node_pointer = node_pointer;\n\n        internal_node_pointer&\
-    \ root_node() { return _root; }\n        const internal_node_pointer& root_node()\
-    \ const { return _root; }\n        void set_root_node(internal_node_pointer new_root)\
-    \ { root_node() = new_root; }\n    };\n} // namespace suisen\n\n\n#endif // SUISEN_IMPLICIT_TREAP\n"
+    \ { root_node() = new_root; }\n    };\n} // namespace suisen\n\n\n\n#line 6 \"\
+    test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp\"\n\nusing Set =\
+    \ suisen::DynamicArray<long long>;\n \nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n \n    int q;\n    long long a, b;\n    std::cin\
+    \ >> q >> a >> b;\n \n    Set st = std::vector{ a - b, a + b };\n \n    while\
+    \ (q --> 0) {\n        int t;\n        long long a2, b2;\n        std::cin >>\
+    \ t >> a2 >> b2;\n        if (t == 1) {\n            st.insert(st.lower_bound(a2\
+    \ - b2), a2 - b2);\n            st.insert(st.lower_bound(a2 + b2), a2 + b2);\n\
+    \        } else {\n            long long l = a2, r = b2;\n            auto it\
+    \ = st.lower_bound(l);\n            if (it != st.end() and *it <= r) {\n     \
+    \           std::cout << 0 << '\\n';\n            } else {\n                long\
+    \ long ans = std::numeric_limits<long long>::max();\n                if (it !=\
+    \ st.end()) {\n                    ans = std::min(ans, std::abs(*it - r));\n \
+    \               }\n                if (it != st.begin()) {\n                 \
+    \   ans = std::min(ans, std::abs(*--it - l));\n                }\n           \
+    \     std::cout << ans << '\\n';\n            }\n        }\n    }\n    return\
+    \ 0;\n}\n"
+  code: "\n#include <algorithm>\n#include <iostream>\n\n#include \"library/datastructure/bbst/implicit_treap.hpp\"\
+    \n\nusing Set = suisen::DynamicArray<long long>;\n \nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n \n    int q;\n    long long a, b;\n    std::cin\
+    \ >> q >> a >> b;\n \n    Set st = std::vector{ a - b, a + b };\n \n    while\
+    \ (q --> 0) {\n        int t;\n        long long a2, b2;\n        std::cin >>\
+    \ t >> a2 >> b2;\n        if (t == 1) {\n            st.insert(st.lower_bound(a2\
+    \ - b2), a2 - b2);\n            st.insert(st.lower_bound(a2 + b2), a2 + b2);\n\
+    \        } else {\n            long long l = a2, r = b2;\n            auto it\
+    \ = st.lower_bound(l);\n            if (it != st.end() and *it <= r) {\n     \
+    \           std::cout << 0 << '\\n';\n            } else {\n                long\
+    \ long ans = std::numeric_limits<long long>::max();\n                if (it !=\
+    \ st.end()) {\n                    ans = std::min(ans, std::abs(*it - r));\n \
+    \               }\n                if (it != st.begin()) {\n                 \
+    \   ans = std::min(ans, std::abs(*--it - l));\n                }\n           \
+    \     std::cout << ans << '\\n';\n            }\n        }\n    }\n    return\
+    \ 0;\n}"
   dependsOn:
+  - library/datastructure/bbst/implicit_treap.hpp
   - library/datastructure/bbst/implicit_treap_base.hpp
-  isVerificationFile: false
-  path: library/datastructure/bbst/implicit_treap.hpp
+  isVerificationFile: true
+  path: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
   requiredBy: []
   timestamp: '2023-02-04 08:57:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/src/datastructure/bbst/implicit_treap/dummy.test.cpp
-  - test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
-  - test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
-  - test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
-documentation_of: library/datastructure/bbst/implicit_treap.hpp
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
 layout: document
-title: Implicit Treap
+redirect_from:
+- /verify/test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
+- /verify/test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp.html
+title: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
 ---
-## Implicit Treap
