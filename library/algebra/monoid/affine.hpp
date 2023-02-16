@@ -37,6 +37,13 @@ namespace suisen {
         friend Affine<T> operator+(Affine<T> f, const Affine<T> &g) { f += g; return f; }
         friend Affine<T> operator-(Affine<T> f, const Affine<T> &g) { f -= g; return f; }
 
+        friend bool operator==(const Affine<T> &f, const Affine<T> &g) { return f.a == g.a and f.b == g.b; }
+        friend bool operator!=(const Affine<T> &f, const Affine<T> &g) { return not (f == g); }
+        friend bool operator< (const Affine<T> &f, const Affine<T> &g) { return f.a < g.a or (f.a == g.a and f.b < g.b); }
+        friend bool operator<=(const Affine<T> &f, const Affine<T> &g) { return not (g < f); }
+        friend bool operator> (const Affine<T> &f, const Affine<T> &g) { return g < f; }
+        friend bool operator>=(const Affine<T> &f, const Affine<T> &g) { return not (f < g); }
+
         template <typename U = T, typename V = T>
         operator std::pair<U, V>() { return std::pair<U, V>{ a, b }; }
         template <typename U = T, typename V = T>
