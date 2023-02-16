@@ -34,51 +34,54 @@ data:
     \ std::vector<object_type>;\n\n        constexpr ptr32() : ptr(null) {}\n    \
     \    explicit constexpr ptr32(int ptr) : ptr(ptr) {}\n\n        object_type& operator*()\
     \ const { return pool[ptr]; }\n        object_type* operator->() const { return\
-    \ &pool[ptr]; }\n        constexpr operator bool() const { return ptr != null;\
-    \ }\n        constexpr operator int() const { return ptr; }\n\n        friend\
-    \ constexpr bool operator==(const ptr32& l, const ptr32& r) { return l.ptr ==\
-    \ r.ptr; }\n        friend constexpr bool operator!=(const ptr32& l, const ptr32&\
-    \ r) { return l.ptr != r.ptr; }\n        friend constexpr bool operator<(const\
-    \ ptr32& l, const ptr32& r) { return l.ptr < r.ptr; }\n        friend constexpr\
-    \ bool operator<=(const ptr32& l, const ptr32& r) { return l.ptr <= r.ptr; }\n\
-    \        friend constexpr bool operator>(const ptr32& l, const ptr32& r) { return\
-    \ l.ptr > r.ptr; }\n        friend constexpr bool operator>=(const ptr32& l, const\
-    \ ptr32& r) { return l.ptr >= r.ptr; }\n\n        template <typename ...Args>\n\
-    \        static ptr32 alloc(Args &&...args) {\n            if (del.size()) {\n\
-    \                ptr32 ptr(del.back());\n                del.pop_back();\n   \
-    \             *ptr = object_type(std::forward<Args>(args)...);\n             \
-    \   return ptr;\n            } else {\n                ptr32 ptr(pool.size());\n\
+    \ &pool[ptr]; }\n\n        constexpr operator bool() const { return ptr != null;\
+    \ }\n        constexpr operator int() const { return ptr; }\n\n        constexpr\
+    \ bool is_not_null() const { return bool(*this); }\n        constexpr bool is_null()\
+    \ const { return not bool(*this); }\n\n        friend constexpr bool operator==(const\
+    \ ptr32& l, const ptr32& r) { return l.ptr == r.ptr; }\n        friend constexpr\
+    \ bool operator!=(const ptr32& l, const ptr32& r) { return l.ptr != r.ptr; }\n\
+    \        friend constexpr bool operator<(const ptr32& l, const ptr32& r) { return\
+    \ l.ptr < r.ptr; }\n        friend constexpr bool operator<=(const ptr32& l, const\
+    \ ptr32& r) { return l.ptr <= r.ptr; }\n        friend constexpr bool operator>(const\
+    \ ptr32& l, const ptr32& r) { return l.ptr > r.ptr; }\n        friend constexpr\
+    \ bool operator>=(const ptr32& l, const ptr32& r) { return l.ptr >= r.ptr; }\n\
+    \n        template <typename ...Args>\n        static ptr32 alloc(Args &&...args)\
+    \ {\n            if (del.size()) {\n                ptr32 ptr(del.back());\n \
+    \               del.pop_back();\n                *ptr = object_type(std::forward<Args>(args)...);\n\
+    \                return ptr;\n            } else {\n                ptr32 ptr(pool.size());\n\
     \                pool.emplace_back(std::forward<Args>(args)...);\n           \
     \     return ptr;\n            }\n        }\n        static void dealloc(ptr32\
-    \ p) {\n            del.push_back(p);\n        }\n        static void reserve(size_t\
-    \ capacity) {\n            pool.reserve(capacity);\n        }\n    private:\n\
-    \        static inline pool_type pool{};\n        static inline std::vector<ptr32>\
-    \ del{};\n\n        int ptr;\n    };\n} // namespace suisen\n\n\n\n#line 16 \"\
-    library/datastructure/bbst/reversible_implicit_treap_base.hpp\"\n\nnamespace suisen::internal::implicit_treap\
-    \ {\n    template <typename T, typename Derived>\n    struct ReversibleNode {\n\
-    \        using random_engine = std::mt19937;\n        static inline random_engine\
-    \ rng{ std::random_device{}() };\n\n        using priority_type = uint32_t;\n\n\
-    \        static priority_type random_priority() {\n            return rng();\n\
-    \        }\n\n        using node_type = Derived;\n        using node_pointer =\
-    \ ptr32<node_type>;\n\n        using size_type = uint32_t;\n\n        using difference_type\
-    \ = int32_t;\n        using value_type = T;\n        using pointer = value_type*;\n\
-    \        using const_pointer = const value_type*;\n        using reference = value_type&;\n\
-    \        using const_reference = const value_type&;\n\n        node_pointer _ch[2]{\
-    \ node_pointer{}, node_pointer{} };\n        value_type _val;\n        size_type\
-    \ _size;\n        priority_type _priority;\n\n        bool _rev = false;\n\n \
-    \       ReversibleNode(const value_type val = {}): _val(val), _size(1), _priority(random_priority())\
-    \ {}\n\n        static void reserve(size_type capacity) { node_pointer::reserve(capacity);\
-    \ }\n\n        static value_type& value(node_pointer t) { return t->_val; }\n\
-    \        static value_type set_value(node_pointer t, const value_type& new_val)\
-    \ { return std::exchange(value(t), new_val); }\n\n        static constexpr bool\
-    \ empty(node_pointer t) { return not t; }\n        static size_type& size(node_pointer\
-    \ t) { return t->_size; }\n        static size_type safe_size(node_pointer t)\
-    \ { return t ? t->_size : 0; }\n\n        static priority_type& priority(node_pointer\
-    \ t) { return t->_priority; }\n        static void set_priority(node_pointer t,\
-    \ priority_type new_priority) { priority(t) = new_priority; }\n\n        static\
-    \ node_pointer& child0(node_pointer t) { return t->_ch[0]; }\n        static node_pointer&\
-    \ child1(node_pointer t) { return t->_ch[1]; }\n        static node_pointer& child(node_pointer\
-    \ t, bool b) { return t->_ch[b]; }\n        static node_pointer set_child0(node_pointer\
+    \ p) {\n            del.push_back(p);\n        }\n        static void dealloc_all(bool\
+    \ shrink) {\n            pool.clear(), del.clear();\n            if (shrink) pool.shrink_to_fit(),\
+    \ del.shrink_to_fit();\n        }\n        static void reserve(size_t capacity)\
+    \ {\n            pool.reserve(capacity);\n        }\n    private:\n        static\
+    \ inline pool_type pool{};\n        static inline std::vector<ptr32> del{};\n\n\
+    \        int ptr;\n    };\n} // namespace suisen\n\n\n\n#line 16 \"library/datastructure/bbst/reversible_implicit_treap_base.hpp\"\
+    \n\nnamespace suisen::internal::implicit_treap {\n    template <typename T, typename\
+    \ Derived>\n    struct ReversibleNode {\n        using random_engine = std::mt19937;\n\
+    \        static inline random_engine rng{ std::random_device{}() };\n\n      \
+    \  using priority_type = uint32_t;\n\n        static priority_type random_priority()\
+    \ {\n            return rng();\n        }\n\n        using node_type = Derived;\n\
+    \        using node_pointer = ptr32<node_type>;\n\n        using size_type = uint32_t;\n\
+    \n        using difference_type = int32_t;\n        using value_type = T;\n  \
+    \      using pointer = value_type*;\n        using const_pointer = const value_type*;\n\
+    \        using reference = value_type&;\n        using const_reference = const\
+    \ value_type&;\n\n        node_pointer _ch[2]{ node_pointer{}, node_pointer{}\
+    \ };\n        value_type _val;\n        size_type _size;\n        priority_type\
+    \ _priority;\n\n        bool _rev = false;\n\n        ReversibleNode(const value_type\
+    \ val = {}): _val(val), _size(1), _priority(random_priority()) {}\n\n        static\
+    \ void reserve(size_type capacity) { node_pointer::reserve(capacity); }\n\n  \
+    \      static value_type& value(node_pointer t) { return t->_val; }\n        static\
+    \ value_type set_value(node_pointer t, const value_type& new_val) { return std::exchange(value(t),\
+    \ new_val); }\n\n        static constexpr bool empty(node_pointer t) { return\
+    \ not t; }\n        static size_type& size(node_pointer t) { return t->_size;\
+    \ }\n        static size_type safe_size(node_pointer t) { return t ? t->_size\
+    \ : 0; }\n\n        static priority_type& priority(node_pointer t) { return t->_priority;\
+    \ }\n        static void set_priority(node_pointer t, priority_type new_priority)\
+    \ { priority(t) = new_priority; }\n\n        static node_pointer& child0(node_pointer\
+    \ t) { return t->_ch[0]; }\n        static node_pointer& child1(node_pointer t)\
+    \ { return t->_ch[1]; }\n        static node_pointer& child(node_pointer t, bool\
+    \ b) { return t->_ch[b]; }\n        static node_pointer set_child0(node_pointer\
     \ t, node_pointer cid) { return std::exchange(child0(t), cid); }\n        static\
     \ node_pointer set_child1(node_pointer t, node_pointer cid) { return std::exchange(child1(t),\
     \ cid); }\n        static node_pointer set_child(node_pointer t, bool b, node_pointer\
@@ -674,7 +677,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/bbst/reversible_implicit_treap.hpp
   requiredBy: []
-  timestamp: '2023-02-16 17:01:00+09:00'
+  timestamp: '2023-02-16 17:36:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/bbst/reversible_implicit_treap/dummy.test.cpp
