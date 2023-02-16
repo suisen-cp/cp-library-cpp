@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':heavy_check_mark:'
@@ -21,13 +21,13 @@ data:
     \n\n\n\n#line 1 \"library/polynomial/multi_point_eval.hpp\"\n\n\n\n#include <vector>\n\
     \nnamespace suisen {\n    template <typename FPSType, typename T>\n    std::vector<typename\
     \ FPSType::value_type> multi_point_eval(const FPSType& f, const std::vector<T>&\
-    \ xs) {\n        int n = xs.size();\n        std::vector<FPSType> seg(2 * n);\n\
-    \        for (int i = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i], 1 };\n    \
-    \    for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n \
-    \       seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i) seg[i] =\
-    \ seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type> ys(n);\n\
-    \        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n        return ys;\n\
-    \    }\n} // namespace suisen\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \ xs) {\n        int n = xs.size();\n        if (n == 0) return {};\n        std::vector<FPSType>\
+    \ seg(2 * n);\n        for (int i = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i],\
+    \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
+    \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
+    \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
+    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
+    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: false
   path: library/convolution/polynomial_eval_multipoint_eval.hpp
   requiredBy: []
-  timestamp: '2022-07-21 04:00:33+09:00'
+  timestamp: '2023-02-16 15:43:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

@@ -627,7 +627,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
     - icon: ':heavy_check_mark:'
@@ -678,7 +678,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/kth_root_round.hpp
       title: $\lfloor a ^ {\frac{1}{k}}\rfloor, \lceil a ^ {\frac{1}{k}}\rceil$
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/linear_sieve.hpp
       title: "\u7DDA\u5F62\u7BE9"
     - icon: ':heavy_check_mark:'
@@ -748,10 +748,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/polynomial/lagrange_interpolation.hpp
       title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/polynomial/multi_point_eval.hpp
       title: Multi Point Evaluation
     - icon: ':heavy_check_mark:'
@@ -809,7 +809,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/sequence/partition_number.hpp
       title: Partition Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/sequence/powers.hpp
       title: Powers
     - icon: ':heavy_check_mark:'
@@ -886,6 +886,9 @@ data:
       path: library/transform/divisor.hpp
       title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
         \u30B9\u5909\u63DB"
+    - icon: ':warning:'
+      path: library/transform/kronecker.hpp
+      title: library/transform/kronecker.hpp
     - icon: ':heavy_check_mark:'
       path: library/transform/kronecker_power.hpp
       title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
@@ -976,6 +979,9 @@ data:
   - name: library/type_traits
     pages:
     - icon: ':heavy_check_mark:'
+      path: library/type_traits/operator.hpp
+      title: library/type_traits/operator.hpp
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
   - name: library/util
@@ -1026,6 +1032,9 @@ data:
       path: library/util/run_length_encoder.hpp
       title: "Run Length Encoder (\u30E9\u30F3\u30EC\u30F3\u30AF\u30B9\u5727\u7E2E\
         )"
+    - icon: ':warning:'
+      path: library/util/step_view.hpp
+      title: library/util/step_view.hpp
     - icon: ':question:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
@@ -2212,7 +2221,7 @@ data:
       title: test/src/polynomial/fps_naive/abc245_d.test.cpp
   - name: test/src/polynomial/lagrange_interpolation
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
       title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     - icon: ':heavy_check_mark:'

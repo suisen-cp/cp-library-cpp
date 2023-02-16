@@ -6,13 +6,13 @@ data:
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
   - icon: ':heavy_check_mark:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   _extendedVerifiedWith:
@@ -28,7 +28,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -43,31 +43,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/multi_point_eval.hpp\"\n\n\n\n#include\
     \ <vector>\n\nnamespace suisen {\n    template <typename FPSType, typename T>\n\
     \    std::vector<typename FPSType::value_type> multi_point_eval(const FPSType&\
-    \ f, const std::vector<T>& xs) {\n        int n = xs.size();\n        std::vector<FPSType>\
-    \ seg(2 * n);\n        for (int i = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i],\
-    \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
-    \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
-    \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
-    \ return ys;\n    }\n} // namespace suisen\n\n\n"
+    \ f, const std::vector<T>& xs) {\n        int n = xs.size();\n        if (n ==\
+    \ 0) return {};\n        std::vector<FPSType> seg(2 * n);\n        for (int i\
+    \ = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i], 1 };\n        for (int i = n\
+    \ - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        seg[1] = f %\
+    \ seg[1];\n        for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];\n\
+    \        std::vector<typename FPSType::value_type> ys(n);\n        for (int i\
+    \ = 0; i < n; ++i) ys[i] = seg[n + i][0];\n        return ys;\n    }\n} // namespace\
+    \ suisen\n\n\n"
   code: "#ifndef SUISEN_MULTI_POINT_EVALUATION\n#define SUISEN_MULTI_POINT_EVALUATION\n\
     \n#include <vector>\n\nnamespace suisen {\n    template <typename FPSType, typename\
     \ T>\n    std::vector<typename FPSType::value_type> multi_point_eval(const FPSType&\
-    \ f, const std::vector<T>& xs) {\n        int n = xs.size();\n        std::vector<FPSType>\
-    \ seg(2 * n);\n        for (int i = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i],\
-    \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
-    \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
-    \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
-    \ return ys;\n    }\n} // namespace suisen\n\n#endif // SUISEN_MULTI_POINT_EVALUATION"
+    \ f, const std::vector<T>& xs) {\n        int n = xs.size();\n        if (n ==\
+    \ 0) return {};\n        std::vector<FPSType> seg(2 * n);\n        for (int i\
+    \ = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i], 1 };\n        for (int i = n\
+    \ - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        seg[1] = f %\
+    \ seg[1];\n        for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];\n\
+    \        std::vector<typename FPSType::value_type> ys(n);\n        for (int i\
+    \ = 0; i < n; ++i) ys[i] = seg[n + i][0];\n        return ys;\n    }\n} // namespace\
+    \ suisen\n\n#endif // SUISEN_MULTI_POINT_EVALUATION"
   dependsOn: []
   isVerificationFile: false
   path: library/polynomial/multi_point_eval.hpp
@@ -76,8 +78,8 @@ data:
   - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/math/product_of_differences.hpp
   - library/math/sum_i^d_r^i.hpp
-  timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-02-16 15:43:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp

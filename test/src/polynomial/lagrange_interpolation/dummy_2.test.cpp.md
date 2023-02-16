@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':heavy_check_mark:'
@@ -537,13 +537,13 @@ data:
     #line 1 \"library/polynomial/multi_point_eval.hpp\"\n\n\n\n#line 5 \"library/polynomial/multi_point_eval.hpp\"\
     \n\nnamespace suisen {\n    template <typename FPSType, typename T>\n    std::vector<typename\
     \ FPSType::value_type> multi_point_eval(const FPSType& f, const std::vector<T>&\
-    \ xs) {\n        int n = xs.size();\n        std::vector<FPSType> seg(2 * n);\n\
-    \        for (int i = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i], 1 };\n    \
-    \    for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n \
-    \       seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i) seg[i] =\
-    \ seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type> ys(n);\n\
-    \        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n        return ys;\n\
-    \    }\n} // namespace suisen\n\n\n#line 6 \"library/math/product_of_differences.hpp\"\
+    \ xs) {\n        int n = xs.size();\n        if (n == 0) return {};\n        std::vector<FPSType>\
+    \ seg(2 * n);\n        for (int i = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i],\
+    \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
+    \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
+    \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
+    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
+    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 6 \"library/math/product_of_differences.hpp\"\
     \n\nnamespace suisen {\n    /**\n     * O(N(logN)^2)\n     * return the vector\
     \ p of length xs.size() s.t. p[i]=\u03A0[j!=i](x[i]-x[j])\n     */\n    template\
     \ <typename FPSType, typename T>\n    std::vector<typename FPSType::value_type>\
@@ -683,7 +683,7 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   requiredBy: []
-  timestamp: '2023-01-01 18:21:45+09:00'
+  timestamp: '2023-02-16 15:43:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp

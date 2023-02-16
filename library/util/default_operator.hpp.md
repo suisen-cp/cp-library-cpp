@@ -52,6 +52,9 @@ data:
     path: library/transform/divisor.hpp
     title: "\u7D04\u6570\u7CFB\u30BC\u30FC\u30BF\u5909\u63DB\u30FB\u30E1\u30D3\u30A6\
       \u30B9\u5909\u63DB"
+  - icon: ':warning:'
+    path: library/transform/kronecker.hpp
+    title: library/transform/kronecker.hpp
   - icon: ':heavy_check_mark:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
@@ -248,6 +251,7 @@ data:
   - library/transform/supset.hpp
   - library/transform/kronecker_power.hpp
   - library/transform/subset.hpp
+  - library/transform/kronecker.hpp
   - library/transform/divisor.hpp
   - library/tree/contour_sum.hpp
   - library/tree/range_contour_sum_invertible.hpp
