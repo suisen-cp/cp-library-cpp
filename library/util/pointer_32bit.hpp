@@ -16,8 +16,12 @@ namespace suisen {
 
         object_type& operator*() const { return pool[ptr]; }
         object_type* operator->() const { return &pool[ptr]; }
+
         constexpr operator bool() const { return ptr != null; }
         constexpr operator int() const { return ptr; }
+
+        constexpr bool is_not_null() const { return bool(*this); }
+        constexpr bool is_null() const { return not bool(*this); }
 
         friend constexpr bool operator==(const ptr32& l, const ptr32& r) { return l.ptr == r.ptr; }
         friend constexpr bool operator!=(const ptr32& l, const ptr32& r) { return l.ptr != r.ptr; }
@@ -41,6 +45,10 @@ namespace suisen {
         }
         static void dealloc(ptr32 p) {
             del.push_back(p);
+        }
+        static void dealloc_all(bool shrink) {
+            pool.clear(), del.clear();
+            if (shrink) pool.shrink_to_fit(), del.shrink_to_fit();
         }
         static void reserve(size_t capacity) {
             pool.reserve(capacity);
