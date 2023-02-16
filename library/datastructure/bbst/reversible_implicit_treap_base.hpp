@@ -12,6 +12,8 @@
 #include <vector>
 #include <utility>
 
+#include "library/util/pointer_32bit.hpp"
+
 namespace suisen::internal::implicit_treap {
     template <typename T, typename Derived>
     struct ReversibleNode {
@@ -25,7 +27,7 @@ namespace suisen::internal::implicit_treap {
         }
 
         using node_type = Derived;
-        using node_pointer = uint32_t;
+        using node_pointer = ptr32<node_type>;
 
         using size_type = uint32_t;
 
@@ -36,12 +38,7 @@ namespace suisen::internal::implicit_treap {
         using reference = value_type&;
         using const_reference = const value_type&;
 
-        static inline std::vector<node_type> _nodes{};
-        static inline std::vector<node_pointer> _erased{};
-
-        static constexpr node_pointer null = ~node_pointer(0);
-
-        node_pointer _ch[2]{ null, null };
+        node_pointer _ch[2]{ node_pointer{}, node_pointer{} };
         value_type _val;
         size_type _size;
         priority_type _priority;
@@ -50,29 +47,26 @@ namespace suisen::internal::implicit_treap {
 
         ReversibleNode(const value_type val = {}): _val(val), _size(1), _priority(random_priority()) {}
 
-        static void reserve(size_type capacity) { _nodes.reserve(capacity); }
+        static void reserve(size_type capacity) { node_pointer::reserve(capacity); }
 
-        static node_type& node(node_pointer t) { return _nodes[t]; }
-        static const node_type& const_node(node_pointer t) { return _nodes[t]; }
-
-        static value_type& value(node_pointer t) { return node(t)._val; }
+        static value_type& value(node_pointer t) { return t->_val; }
         static value_type set_value(node_pointer t, const value_type& new_val) { return std::exchange(value(t), new_val); }
 
-        static bool empty(node_pointer t) { return t == null; }
-        static size_type& size(node_pointer t) { return node(t)._size; }
-        static size_type safe_size(node_pointer t) { return empty(t) ? 0 : size(t); }
+        static constexpr bool empty(node_pointer t) { return not t; }
+        static size_type& size(node_pointer t) { return t->_size; }
+        static size_type safe_size(node_pointer t) { return t ? t->_size : 0; }
 
-        static priority_type& priority(node_pointer t) { return node(t)._priority; }
+        static priority_type& priority(node_pointer t) { return t->_priority; }
         static void set_priority(node_pointer t, priority_type new_priority) { priority(t) = new_priority; }
 
-        static node_pointer& child0(node_pointer t) { return node(t)._ch[0]; }
-        static node_pointer& child1(node_pointer t) { return node(t)._ch[1]; }
-        static node_pointer& child(node_pointer t, bool b) { return node(t)._ch[b]; }
+        static node_pointer& child0(node_pointer t) { return t->_ch[0]; }
+        static node_pointer& child1(node_pointer t) { return t->_ch[1]; }
+        static node_pointer& child(node_pointer t, bool b) { return t->_ch[b]; }
         static node_pointer set_child0(node_pointer t, node_pointer cid) { return std::exchange(child0(t), cid); }
         static node_pointer set_child1(node_pointer t, node_pointer cid) { return std::exchange(child1(t), cid); }
         static node_pointer set_child(node_pointer t, bool b, node_pointer cid) { return std::exchange(child(t, b), cid); }
 
-        static bool& reversed(node_pointer t) { return node(t)._rev; }
+        static bool& reversed(node_pointer t) { return t->_rev; }
 
         static node_pointer update(node_pointer t) { // t : not null
             size(t) = safe_size(child0(t)) + safe_size(child1(t)) + 1;
@@ -85,26 +79,12 @@ namespace suisen::internal::implicit_treap {
             }
         }
 
-        static node_pointer empty_node() { return null; }
-        template <typename ...Args>
-        static node_pointer create_node(Args &&...args) {
-            if (_erased.size()) {
-                node_pointer res = _erased.back();
-                _erased.pop_back();
-                node(res) = node_type(std::forward<Args>(args)...);
-                return res;
-            } else {
-                node_pointer res = _nodes.size();
-                _nodes.emplace_back(std::forward<Args>(args)...);
-                return res;
-            }
-        }
-        static void delete_node(node_pointer t) { _erased.push_back(t); }
+        static constexpr node_pointer empty_node() { return node_pointer{}; }
         static void delete_tree(node_pointer t) {
-            if (t == null) return;
+            if (not t) return;
             delete_tree(child0(t));
             delete_tree(child1(t));
-            delete_node(t);
+            node_pointer::dealloc(t);
         }
 
         template <typename ...Args>
@@ -113,7 +93,7 @@ namespace suisen::internal::implicit_treap {
 
             const size_t n = dat.size();
 
-            if (n == 0) return null;
+            if (n == 0) return empty_node();
 
             std::vector<priority_type> priorities(n);
             std::generate(priorities.begin(), priorities.end(), random_priority);
@@ -128,7 +108,7 @@ namespace suisen::internal::implicit_treap {
                 size_t heap_index = (fpow2 | ((bbst_index - 1) >> 1)) >> __builtin_ctz(bbst_index);
                 if (heap_index <= n) {
                     size_t index = bbst_index - skipped;
-                    nodes[heap_index - 1] = create_node(std::move(dat[index - 1]));
+                    nodes[heap_index - 1] = node_pointer::alloc(std::move(dat[index - 1]));
                     set_priority(nodes[heap_index - 1], priorities[heap_index - 1]);
                 } else {
                     ++skipped;
@@ -144,8 +124,8 @@ namespace suisen::internal::implicit_treap {
         }
 
         static std::pair<node_pointer, node_pointer> split(node_pointer t, size_type k) {
-            if (k == 0) return { null, t };
-            if (k == size(t)) return { t, null };
+            if (k == 0) return { empty_node(), t };
+            if (k == size(t)) return { t, empty_node() };
 
             static std::vector<node_pointer> lp{}, rp{};
 
@@ -158,7 +138,7 @@ namespace suisen::internal::implicit_treap {
                         node_pointer& lch = child0(t);
                         if (lp.size()) set_child1(lp.back(), lch);
 
-                        node_pointer lt = std::exchange(lch, null), rt = null;
+                        node_pointer lt = std::exchange(lch, empty_node()), rt = empty_node();
                         while (lp.size()) node_type::update(lt = lp.back()), lp.pop_back();
                         while (rp.size()) node_type::update(rt = rp.back()), rp.pop_back();
                         return { lt, rt };
@@ -180,8 +160,8 @@ namespace suisen::internal::implicit_treap {
         // Split immediately before the first element that satisfies the condition.
         template <typename Predicate>
         static std::pair<node_pointer, node_pointer> split_binary_search(node_pointer t, const Predicate& f) {
-            if (t == null) {
-                return { null, null };
+            if (not t) {
+                return { empty_node(), empty_node() };
             }
             node_type::push(t);
             if (f(value(t))) {
@@ -205,8 +185,8 @@ namespace suisen::internal::implicit_treap {
         }
 
         static node_pointer merge(node_pointer tl, node_pointer tr) {
-            if (tl == null or tr == null) {
-                return tl ^ tr ^ null;
+            if (not (tl and tr)) {
+                return tl ? tl : tr;
             }
             if (priority(tl) < priority(tr)) {
                 node_type::push(tr);
@@ -222,7 +202,7 @@ namespace suisen::internal::implicit_treap {
             return merge(merge(tl, tm), tr);
         }
         static node_pointer insert_impl(node_pointer t, size_type k, node_pointer new_node) {
-            if (t == null) {
+            if (not t) {
                 return new_node;
             }
             static std::vector<node_pointer> st;
@@ -230,8 +210,8 @@ namespace suisen::internal::implicit_treap {
             node_pointer* p = nullptr;
 
             while (true) {
-                if (t == null or priority(new_node) > priority(t)) {
-                    if (t != null) {
+                if ((not t) or priority(new_node) > priority(t)) {
+                    if (t) {
                         auto [tl, tr] = split(t, k);
                         set_child0(new_node, tl);
                         set_child1(new_node, tr);
@@ -258,7 +238,7 @@ namespace suisen::internal::implicit_treap {
         }
         template <typename ...Args>
         static node_pointer insert(node_pointer t, size_type k, Args &&...args) {
-            return insert_impl(t, k, create_node(std::forward<Args>(args)...));
+            return insert_impl(t, k, node_pointer::alloc(std::forward<Args>(args)...));
         }
         template <typename ...Args>
         static node_pointer push_front(node_pointer t, Args &&...args) {
@@ -273,7 +253,7 @@ namespace suisen::internal::implicit_treap {
         // Returns { node, position to insert }
         template <typename Predicate>
         static std::pair<node_pointer, size_type> insert_binary_search_impl(node_pointer t, const Predicate& f, node_pointer new_node) {
-            if (t == null) {
+            if (not t) {
                 return { new_node, 0 };
             }
             if (priority(new_node) > priority(t)) {
@@ -296,7 +276,7 @@ namespace suisen::internal::implicit_treap {
         }
         template <typename Predicate, typename ...Args>
         static std::pair<node_pointer, size_type> insert_binary_search(node_pointer t, const Predicate& f, Args &&...args) {
-            return insert_binary_search_impl(t, f, create_node(std::forward<Args>(args)...));
+            return insert_binary_search_impl(t, f, node_pointer::alloc(std::forward<Args>(args)...));
         }
         template <typename Compare = std::less<>>
         static std::pair<node_pointer, size_type> insert_lower_bound(node_pointer t, const value_type& v, Compare comp) {
@@ -310,7 +290,7 @@ namespace suisen::internal::implicit_treap {
         static std::pair<node_pointer, value_type> erase(node_pointer t, size_type k) {
             node_type::push(t);
             if (const size_type lsiz = safe_size(child0(t)); k == lsiz) {
-                delete_node(t);
+                node_pointer::dealloc(t);
                 return { merge(child0(t), child1(t)), std::move(value(t)) };
             } else if (k < lsiz) {
                 auto [c0, v] = erase(child0(t), k);
@@ -329,7 +309,7 @@ namespace suisen::internal::implicit_treap {
         // returns { node, optional(position, value) }
         template <typename Predicate, typename RemovePredicate>
         static std::pair<node_pointer, std::optional<std::pair<size_type, value_type>>> erase_binary_search(node_pointer t, const Predicate& f, const RemovePredicate& g) {
-            if (t == null) return { null, std::nullopt };
+            if (not t) return { empty_node(), std::nullopt };
             node_type::push(t);
             if (f(value(t))) {
                 auto [c0, erased] = erase_binary_search(child0(t), f, g);
@@ -337,7 +317,7 @@ namespace suisen::internal::implicit_treap {
                     set_child0(t, c0);
                     return { node_type::update(t), std::move(erased) };
                 } else if (g(value(t))) {
-                    delete_node(t);
+                    node_pointer::dealloc(t);
                     std::pair<size_type, value_type> erased_entry{ safe_size(child0(t)), std::move(value(t)) };
                     return { merge(child0(t), child1(t)), std::move(erased_entry) };
                 } else {
@@ -418,7 +398,7 @@ namespace suisen::internal::implicit_treap {
         }
 
         static node_pointer reverse_all(node_pointer t) {
-            if (t != null) {
+            if (t) {
                 reversed(t) ^= true;
                 std::swap(child0(t), child1(t));
             }
@@ -433,7 +413,7 @@ namespace suisen::internal::implicit_treap {
             std::vector<value_type> res;
             res.reserve(safe_size(t));
             auto rec = [&](auto rec, node_pointer t) -> void {
-                if (t == null) return;
+                if (not t) return;
                 node_type::push(t);
                 rec(rec, child0(t));
                 res.push_back(value(t));
@@ -447,7 +427,7 @@ namespace suisen::internal::implicit_treap {
         // Returns { optional(value), position }
         template <typename Predicate>
         static std::pair<size_type, std::optional<value_type>> binary_search(node_pointer t, const Predicate& f) {
-            node_pointer res = null;
+            node_pointer res = empty_node();
             int ng = -1, ok = safe_size(t);
             while (ok - ng > 1) {
                 node_type::push(t);
@@ -458,7 +438,7 @@ namespace suisen::internal::implicit_treap {
                     ng = root, t = child1(t);
                 }
             }
-            if (res == null) {
+            if (not res) {
                 return { ok, std::nullopt };
             } else {
                 return { ok, value(res) };
@@ -467,11 +447,11 @@ namespace suisen::internal::implicit_treap {
 
         // for debug
         static void check_heap(node_pointer t) {
-            if (node_pointer lch = child0(t); lch != null) {
+            if (node_pointer lch = child0(t)) {
                 check_heap(lch);
                 assert(priority(t) >= priority(lch));
             }
-            if (node_pointer rch = child1(t); rch != null) {
+            if (node_pointer rch = child1(t)) {
                 check_heap(rch);
                 assert(priority(t) >= priority(rch));
             }
@@ -499,7 +479,7 @@ namespace suisen::internal::implicit_treap {
             using reference = std::conditional_t<constant, ReversibleNode::const_reference, ReversibleNode::reference>;
             using iterator_cateogory = std::random_access_iterator_tag;
 
-            NodeIterator(): root(null), index(0) {}
+            NodeIterator(): root(empty_node()), index(0) {}
 
             reference operator*() {
                 if (stk.empty() and index != safe_size(root)) down(root, index, not reversed);

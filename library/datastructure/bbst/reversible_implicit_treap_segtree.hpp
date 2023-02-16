@@ -21,7 +21,7 @@ namespace suisen {
                 return t;
             }
             static node_pointer reverse_all(node_pointer t) {
-                if (t != base::null) {
+                if (t) {
                     base::reversed(t) ^= true;
                     std::swap(base::child0(t), base::child1(t));
                     value_type& sum = prod_all(t);
@@ -32,10 +32,10 @@ namespace suisen {
 
             // ----- new features ----- //
             static value_type& prod_all(node_pointer t) {
-                return base::node(t)._sum;
+                return t->_sum;
             }
             static value_type safe_prod(node_pointer t) {
-                return t == base::null ? e() : prod_all(t);
+                return t ? prod_all(t) : e();
             }
             static std::pair<node_pointer, value_type> prod(node_pointer t, size_t l, size_t r) {
                 auto [tl, tm, tr] = base::split(t, l, r);
@@ -53,7 +53,7 @@ namespace suisen {
                 assert(f(sum));
 
                 uint32_t r = 0;
-                while (t != base::null) {
+                while (t) {
                     base::push(t);
 
                     node_pointer lch = base::child0(t);
@@ -87,7 +87,7 @@ namespace suisen {
                 assert(f(sum));
 
                 uint32_t l = base::safe_size(t);
-                while (t != base::null) {
+                while (t) {
                     base::push(t);
 
                     node_pointer rch = base::child1(t);

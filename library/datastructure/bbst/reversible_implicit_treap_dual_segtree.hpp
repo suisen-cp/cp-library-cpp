@@ -3,6 +3,7 @@
 
 #include "library/datastructure/bbst/reversible_implicit_treap_base.hpp"
 #include "library/type_traits/operator.hpp"
+#include "library/debug/warning.hpp"
 
 namespace suisen {
     namespace internal::implicit_treap {
@@ -28,6 +29,7 @@ namespace suisen {
                         laz = id();
                     }
                 } else {
+                    static warning warning_("operator==(F, F) is not defined, so the performance maybe worse.");
                     apply_all(base::child0(t), laz);
                     apply_all(base::child1(t), laz);
                     laz = id();
@@ -36,10 +38,10 @@ namespace suisen {
 
             // ----- new features ----- //
             static operator_type& lazy(node_pointer t) {
-                return base::node(t)._laz;
+                return t->_laz;
             }
             static node_pointer apply_all(node_pointer t, const operator_type& f) {
-                if (t != base::null) {
+                if (t) {
                     operator_type& laz = lazy(t);
                     laz = composition(f, laz);
                     value_type& val = base::value(t);
