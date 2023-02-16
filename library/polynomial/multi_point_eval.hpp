@@ -7,6 +7,7 @@ namespace suisen {
     template <typename FPSType, typename T>
     std::vector<typename FPSType::value_type> multi_point_eval(const FPSType& f, const std::vector<T>& xs) {
         int n = xs.size();
+        if (n == 0) return {};
         std::vector<FPSType> seg(2 * n);
         for (int i = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i], 1 };
         for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];

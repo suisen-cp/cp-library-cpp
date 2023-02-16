@@ -50,11 +50,12 @@ int main() {
     std::cin >> n >> q;
 
     std::vector<S> init(n);
-    for (int i = 0; i < n; ++i) {
-        std::cin >> init[i];
-    }
+    for (auto &e : init) std::cin >> e;
 
-    Sequence seq(init);
+    Sequence::reserve(1000000);
+
+    Sequence seq(std::move(init));
+
     for (int qid = 0; qid < q; ++qid) {
         int qtype;
         std::cin >> qtype;
@@ -83,5 +84,4 @@ int main() {
             std::cout << seq.prod(l, r) << '\n';
         }
     }
-
 }

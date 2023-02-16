@@ -2,6 +2,7 @@
 #define SUISEN_REVERSIBLE_IMPLICIT_TREAP_DUAL_SEGTREE
 
 #include "library/datastructure/bbst/reversible_implicit_treap_base.hpp"
+#include "library/type_traits/operator.hpp"
 
 namespace suisen {
     namespace internal::implicit_treap {
@@ -19,9 +20,18 @@ namespace suisen {
             static void push(node_pointer t) {
                 base::push(t);
                 operator_type& laz = lazy(t);
-                apply_all(base::child0(t), laz);
-                apply_all(base::child1(t), laz);
-                laz = id();
+                if constexpr (has_operator_equal_to<operator_type>::value) {
+                    if (not (laz == id())) {
+                        operator_type& laz = lazy(t);
+                        apply_all(base::child0(t), laz);
+                        apply_all(base::child1(t), laz);
+                        laz = id();
+                    }
+                } else {
+                    apply_all(base::child0(t), laz);
+                    apply_all(base::child1(t), laz);
+                    laz = id();
+                }
             }
 
             // ----- new features ----- //
@@ -268,23 +278,25 @@ namespace suisen {
 
         iterator begin() { return node_type::begin(_root); }
         iterator end() { return node_type::end(_root); }
-        iterator kth_iterator(size_t k) { return node_type::kth_iterator(_root, k); }
         reverse_iterator rbegin() { return node_type::rbegin(_root); }
         reverse_iterator rend() { return node_type::rend(_root); }
-        reverse_iterator kth_reverse_iterator(size_t k) { return node_type::kth_reverse_iterator(_root, k); }
 
         const_iterator begin() const { return cbegin(); }
         const_iterator end() const { return cend(); }
-        const_iterator kth_iterator(size_t k) const { return kth_const_iterator(k); }
         const_reverse_iterator rbegin() const { return crbegin(); }
         const_reverse_iterator rend() const { return crend(); }
-        const_reverse_iterator kth_reverse_iterator(size_t k) const { return kth_const_reverse_iterator(k); }
         const_iterator cbegin() const { return node_type::cbegin(_root); }
         const_iterator cend() const { return node_type::cend(_root); }
-        const_iterator kth_const_iterator(size_t k) const { return node_type::kth_const_iterator(_root, k); }
         const_reverse_iterator crbegin() const { return node_type::crbegin(_root); }
         const_reverse_iterator crend() const { return node_type::crend(_root); }
-        const_reverse_iterator kth_const_reverse_iterator(size_t k) const { return node_type::kth_const_reverse_iterator(_root, k); }
+
+        // handling internal nodes
+        using internal_node = node_type;
+        using internal_node_pointer = node_pointer;
+
+        internal_node_pointer& root_node() { return _root; }
+        const internal_node_pointer& root_node() const { return _root; }
+        void set_root_node(internal_node_pointer new_root) { root_node() = new_root; }
     };
 } // namespace suisen
 

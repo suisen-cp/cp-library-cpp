@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <chrono>
 #include <cstdint>
 #include <optional>
 #include <string>
@@ -17,9 +18,11 @@ namespace suisen::internal::implicit_treap {
         using random_engine = std::mt19937;
         static inline random_engine rng{ std::random_device{}() };
 
-        using priority_type = std::invoke_result_t<random_engine>;
+        using priority_type = uint32_t;
 
-        static priority_type random_priority() { return rng(); }
+        static priority_type random_priority() {
+            return rng();
+        }
 
         using node_type = Derived;
         using node_pointer = uint32_t;
@@ -75,13 +78,11 @@ namespace suisen::internal::implicit_treap {
             size(t) = safe_size(child0(t)) + safe_size(child1(t)) + 1;
             return t;
         }
-        static bool push(node_pointer t) { // t : not null
-            bool rev = t != null and std::exchange(reversed(t), false);
-            if (rev) {
+        static void push(node_pointer t) { // t : not null
+            if (std::exchange(reversed(t), false)) {
                 reverse_all(child0(t));
                 reverse_all(child1(t));
             }
-            return rev;
         }
 
         static node_pointer empty_node() { return null; }
@@ -112,26 +113,34 @@ namespace suisen::internal::implicit_treap {
 
             const size_t n = dat.size();
 
+            if (n == 0) return null;
+
             std::vector<priority_type> priorities(n);
             std::generate(priorities.begin(), priorities.end(), random_priority);
             std::make_heap(priorities.begin(), priorities.end());
 
             std::vector<node_pointer> nodes(n);
 
-            auto rec = [&](auto rec, size_t heap_index, size_t dat_index_offset) -> std::pair<size_t, node_pointer> {
-                if (heap_index >= n) return { 0, null };
-                auto [lsiz, lch] = rec(rec, 2 * heap_index + 1, dat_index_offset);
-                dat_index_offset += lsiz;
-                node_pointer root = create_node(std::move(dat[dat_index_offset]));
-                nodes[dat_index_offset] = root;
-                set_priority(root, priorities[heap_index]);
-                dat_index_offset += 1;
-                auto [rsiz, rch] = rec(rec, 2 * heap_index + 2, dat_index_offset);
-                set_child0(root, lch);
-                set_child1(root, rch);
-                return { lsiz + 1 + rsiz, node_type::update(root) };
-            };
-            return rec(rec, 0, 0).second;
+            size_t fpow2 = 1;
+            while ((fpow2 << 1) <= n) fpow2 <<= 1;
+
+            for (size_t bbst_index = 1, skipped = 0; bbst_index < 2 * fpow2; ++bbst_index) {
+                size_t heap_index = (fpow2 | ((bbst_index - 1) >> 1)) >> __builtin_ctz(bbst_index);
+                if (heap_index <= n) {
+                    size_t index = bbst_index - skipped;
+                    nodes[heap_index - 1] = create_node(std::move(dat[index - 1]));
+                    set_priority(nodes[heap_index - 1], priorities[heap_index - 1]);
+                } else {
+                    ++skipped;
+                }
+            }
+            for (size_t i = fpow2 - 1; i >= 1; --i) {
+                size_t li = 2 * i, ri = 2 * i + 1;
+                if (li <= n) set_child0(nodes[i - 1], nodes[li - 1]);
+                if (ri <= n) set_child1(nodes[i - 1], nodes[ri - 1]);
+                node_type::update(nodes[i - 1]);
+            }
+            return nodes[0];
         }
 
         static std::pair<node_pointer, node_pointer> split(node_pointer t, size_type k) {
@@ -216,7 +225,9 @@ namespace suisen::internal::implicit_treap {
             if (t == null) {
                 return new_node;
             }
-            static std::vector<std::pair<node_pointer, bool>> st;
+            static std::vector<node_pointer> st;
+
+            node_pointer* p = nullptr;
 
             while (true) {
                 if (t == null or priority(new_node) > priority(t)) {
@@ -228,20 +239,18 @@ namespace suisen::internal::implicit_treap {
                     } else {
                         t = new_node;
                     }
+                    if (p) *p = t;
                     while (st.size()) {
-                        auto [p, b] = st.back();
-                        set_child(p, b, t), st.pop_back();
-                        t = node_type::update(p);
+                        t = node_type::update(st.back()), st.pop_back();
                     }
                     return t;
                 } else {
                     node_type::push(t);
+                    st.push_back(t);
                     if (const size_type lsiz = safe_size(child0(t)); k <= lsiz) {
-                        st.emplace_back(t, 0);
-                        t = child0(t);
+                        t = *(p = &child0(t));
                     } else {
-                        st.emplace_back(t, 1);
-                        t = child1(t);
+                        t = *(p = &child1(t));
                         k -= lsiz + 1;
                     }
                 }
@@ -453,6 +462,18 @@ namespace suisen::internal::implicit_treap {
                 return { ok, std::nullopt };
             } else {
                 return { ok, value(res) };
+            }
+        }
+
+        // for debug
+        static void check_heap(node_pointer t) {
+            if (node_pointer lch = child0(t); lch != null) {
+                check_heap(lch);
+                assert(priority(t) >= priority(lch));
+            }
+            if (node_pointer rch = child1(t); rch != null) {
+                check_heap(rch);
+                assert(priority(t) >= priority(rch));
             }
         }
 

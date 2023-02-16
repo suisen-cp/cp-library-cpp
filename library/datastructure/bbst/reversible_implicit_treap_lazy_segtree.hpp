@@ -3,6 +3,8 @@
 
 #include "library/datastructure/bbst/reversible_implicit_treap_base.hpp"
 
+#include "library/type_traits/operator.hpp"
+
 namespace suisen {
     namespace internal::implicit_treap {
         template <typename T, T(*op)(T, T), T(*e)(), T(*toggle)(T), typename F, T(*mapping)(F, T, int), F(*composition)(F, F), F(*id)()>
@@ -25,9 +27,18 @@ namespace suisen {
             static void push(node_pointer t) {
                 base::push(t);
                 operator_type& laz = lazy(t);
-                apply_all(base::child0(t), laz);
-                apply_all(base::child1(t), laz);
-                laz = id();
+                if constexpr (has_operator_equal_to<operator_type>::value) {
+                    if (not (laz == id())) {
+                        operator_type& laz = lazy(t);
+                        apply_all(base::child0(t), laz);
+                        apply_all(base::child1(t), laz);
+                        laz = id();
+                    }
+                } else {
+                    apply_all(base::child0(t), laz);
+                    apply_all(base::child1(t), laz);
+                    laz = id();
+                }
             }
             static node_pointer reverse_all(node_pointer t) {
                 if (t != base::null) {
@@ -215,7 +226,7 @@ namespace suisen {
         // Returns: the inserted position
         // Requirements: f(A[i]) must be monotonic
         template <typename Predicate>
-        int insert_binary_search(const value_type& val, const Predicate &f) {
+        int insert_binary_search(const value_type& val, const Predicate& f) {
             int pos;
             std::tie(_root, pos) = node_type::insert_binary_search(_root, f, val);
             return pos;
@@ -224,7 +235,7 @@ namespace suisen {
         // Returns: the inserted position
         // Requirements: sequence is sorted
         template <typename Compare = std::less<>>
-        int insert_lower_bound(const value_type& val, const Compare &comp = {}) {
+        int insert_lower_bound(const value_type& val, const Compare& comp = {}) {
             int pos;
             std::tie(_root, pos) = node_type::insert_lower_bound(_root, val, comp);
             return pos;
@@ -233,7 +244,7 @@ namespace suisen {
         // Returns: the inserted position
         // Requirements: sequence is sorted
         template <typename Compare = std::less<>>
-        int insert_upper_bound(const value_type& val, const Compare &comp = {}) {
+        int insert_upper_bound(const value_type& val, const Compare& comp = {}) {
             int pos;
             std::tie(_root, pos) = node_type::insert_upper_bound(_root, val, comp);
             return pos;
@@ -252,7 +263,7 @@ namespace suisen {
         // returns optional(position, value)
         // Requirements: sequence is sorted
         template <typename Predicate, typename RemovePredicate>
-        std::optional<std::pair<int, value_type>> erase_binary_search(const Predicate &f, const RemovePredicate& g) {
+        std::optional<std::pair<int, value_type>> erase_binary_search(const Predicate& f, const RemovePredicate& g) {
             auto [root, erased] = node_type::erase_binary_search(_root, f, g);
             _root = root;
             if (erased) {
@@ -265,7 +276,7 @@ namespace suisen {
         // returns optional(position, value)
         // Requirements: sequence is sorted
         template <typename Compare = std::less<>>
-        std::optional<std::pair<int, value_type>> erase_lower_bound(const value_type &val, const Compare &comp = {}) {
+        std::optional<std::pair<int, value_type>> erase_lower_bound(const value_type& val, const Compare& comp = {}) {
             auto [root, erased] = node_type::erase_lower_bound(_root, val, comp);
             _root = root;
             if (erased) {
@@ -278,7 +289,7 @@ namespace suisen {
         // returns optional(position, value)
         // Requirements: sequence is sorted
         template <typename Compare = std::less<>>
-        std::optional<std::pair<int, value_type>> erase_upper_bound(const value_type &val, const Compare &comp = {}) {
+        std::optional<std::pair<int, value_type>> erase_upper_bound(const value_type& val, const Compare& comp = {}) {
             auto [root, erased] = node_type::erase_upper_bound(_root, val, comp);
             _root = root;
             if (erased) {
@@ -291,7 +302,7 @@ namespace suisen {
         // returns optional(position, value)
         // Requirements: sequence is sorted
         template <typename Compare = std::less<>>
-        std::optional<std::pair<int, value_type>> erase_if_exists(const value_type &val, const Compare &comp = {}) {
+        std::optional<std::pair<int, value_type>> erase_if_exists(const value_type& val, const Compare& comp = {}) {
             auto [root, erased] = node_type::erase_if_exists(_root, val, comp);
             _root = root;
             if (erased) {
@@ -311,7 +322,7 @@ namespace suisen {
         // Split immediately before the first element that satisfies the condition.
         // Requirements: f(A[i]) must be monotonic
         template <typename Predicate>
-        ReversibleDynamicLazySegmentTree split_binary_search(const Predicate &f) {
+        ReversibleDynamicLazySegmentTree split_binary_search(const Predicate& f) {
             node_pointer root_r;
             std::tie(_root, root_r) = node_type::split_binary_search(_root, f);
             return ReversibleDynamicLazySegmentTree(root_r, node_pointer_construct{});
@@ -319,7 +330,7 @@ namespace suisen {
         // Split immediately before the first element that is greater than or equal to val.
         // Requirements: sequence is sorted
         template <typename Compare = std::less<>>
-        ReversibleDynamicLazySegmentTree split_lower_bound(const value_type &val, const Compare &comp = {}) {
+        ReversibleDynamicLazySegmentTree split_lower_bound(const value_type& val, const Compare& comp = {}) {
             node_pointer root_r;
             std::tie(_root, root_r) = node_type::split_lower_bound(_root, val, comp);
             return ReversibleDynamicLazySegmentTree(root_r, node_pointer_construct{});
@@ -327,7 +338,7 @@ namespace suisen {
         // Split immediately before the first element that is greater than val.
         // Requirements: sequence is sorted
         template <typename Compare = std::less<>>
-        ReversibleDynamicLazySegmentTree split_upper_bound(const value_type &val, const Compare &comp = {}) {
+        ReversibleDynamicLazySegmentTree split_upper_bound(const value_type& val, const Compare& comp = {}) {
             node_pointer root_r;
             std::tie(_root, root_r) = node_type::split_upper_bound(_root, val, comp);
             return ReversibleDynamicLazySegmentTree(root_r, node_pointer_construct{});
@@ -396,16 +407,20 @@ namespace suisen {
 
         iterator begin() const { return cbegin(); }
         iterator end() const { return cend(); }
-        iterator kth_iterator(size_t k) const { return kth_const_iterator(k); }
         reverse_iterator rbegin() const { return crbegin(); }
         reverse_iterator rend() const { return crend(); }
-        reverse_iterator kth_reverse_iterator(size_t k) const { return kth_const_reverse_iterator(k); }
         const_iterator cbegin() const { return node_type::cbegin(_root); }
         const_iterator cend() const { return node_type::cend(_root); }
-        const_iterator kth_const_iterator(size_t k) const { return node_type::kth_const_iterator(_root, k); }
         const_reverse_iterator crbegin() const { return node_type::crbegin(_root); }
         const_reverse_iterator crend() const { return node_type::crend(_root); }
-        const_reverse_iterator kth_const_reverse_iterator(size_t k) const { return node_type::kth_const_reverse_iterator(_root, k); }
+
+        // handling internal nodes
+        using internal_node = node_type;
+        using internal_node_pointer = node_pointer;
+
+        internal_node_pointer& root_node() { return _root; }
+        const internal_node_pointer& root_node() const { return _root; }
+        void set_root_node(internal_node_pointer new_root) { root_node() = new_root; }
     };
 } // namespace suisen
 

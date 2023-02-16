@@ -365,16 +365,20 @@ namespace suisen {
 
         iterator begin() const { return cbegin(); }
         iterator end() const { return cend(); }
-        iterator kth_iterator(size_t k) const { return kth_const_iterator(k); }
         reverse_iterator rbegin() const { return crbegin(); }
         reverse_iterator rend() const { return crend(); }
-        reverse_iterator kth_reverse_iterator(size_t k) const { return kth_const_reverse_iterator(k); }
         const_iterator cbegin() const { return node_type::cbegin(_root); }
         const_iterator cend() const { return node_type::cend(_root); }
-        const_iterator kth_const_iterator(size_t k) const { return node_type::kth_const_iterator(_root, k); }
         const_reverse_iterator crbegin() const { return node_type::crbegin(_root); }
         const_reverse_iterator crend() const { return node_type::crend(_root); }
-        const_reverse_iterator kth_const_reverse_iterator(size_t k) const { return node_type::kth_const_reverse_iterator(_root, k); }
+
+        // handling internal nodes
+        using internal_node = node_type;
+        using internal_node_pointer = node_pointer;
+
+        internal_node_pointer& root_node() { return _root; }
+        const internal_node_pointer& root_node() const { return _root; }
+        void set_root_node(internal_node_pointer new_root) { root_node() = new_root; }
     };
 } // namespace suisen
 
