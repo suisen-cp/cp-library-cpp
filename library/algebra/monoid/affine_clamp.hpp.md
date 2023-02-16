@@ -34,14 +34,22 @@ data:
     \ Affine<T> &g) { a -= g.a, b -= g.b; return *this; }\n        friend Affine<T>\
     \ operator+(Affine<T> f, const Affine<T> &g) { f += g; return f; }\n        friend\
     \ Affine<T> operator-(Affine<T> f, const Affine<T> &g) { f -= g; return f; }\n\
-    \n        template <typename U = T, typename V = T>\n        operator std::pair<U,\
-    \ V>() { return std::pair<U, V>{ a, b }; }\n        template <typename U = T,\
-    \ typename V = T>\n        operator std::tuple<U, V>() { return std::tuple<U,\
-    \ V>{ a, b }; }\n\n        friend std::istream& operator<<(std::istream& in, Affine<T>\
-    \ &f) { return in >> f.a >> f.b; }\n        friend std::ostream& operator>>(std::ostream&\
-    \ out, const Affine<T> &f) { return out << f.a << ' ' << f.b; }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 9 \"library/algebra/monoid/affine_clamp.hpp\"\n\n\
-    namespace suisen {\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
+    \n        friend bool operator==(const Affine<T> &f, const Affine<T> &g) { return\
+    \ f.a == g.a and f.b == g.b; }\n        friend bool operator!=(const Affine<T>\
+    \ &f, const Affine<T> &g) { return not (f == g); }\n        friend bool operator<\
+    \ (const Affine<T> &f, const Affine<T> &g) { return f.a < g.a or (f.a == g.a and\
+    \ f.b < g.b); }\n        friend bool operator<=(const Affine<T> &f, const Affine<T>\
+    \ &g) { return not (g < f); }\n        friend bool operator> (const Affine<T>\
+    \ &f, const Affine<T> &g) { return g < f; }\n        friend bool operator>=(const\
+    \ Affine<T> &f, const Affine<T> &g) { return not (f < g); }\n\n        template\
+    \ <typename U = T, typename V = T>\n        operator std::pair<U, V>() { return\
+    \ std::pair<U, V>{ a, b }; }\n        template <typename U = T, typename V = T>\n\
+    \        operator std::tuple<U, V>() { return std::tuple<U, V>{ a, b }; }\n\n\
+    \        friend std::istream& operator<<(std::istream& in, Affine<T> &f) { return\
+    \ in >> f.a >> f.b; }\n        friend std::ostream& operator>>(std::ostream& out,\
+    \ const Affine<T> &f) { return out << f.a << ' ' << f.b; }\n    };\n} // namespace\
+    \ suisen\n\n\n#line 9 \"library/algebra/monoid/affine_clamp.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
     \ std::nullptr_t> = nullptr>\n    struct AffineClamp : public Affine<T> {\n  \
     \      static constexpr T neg_inf = std::numeric_limits<T>::min();\n        static\
     \ constexpr T pos_inf = std::numeric_limits<T>::max();\n\n        T l, r;\n  \
@@ -92,7 +100,7 @@ data:
   isVerificationFile: false
   path: library/algebra/monoid/affine_clamp.hpp
   requiredBy: []
-  timestamp: '2022-08-21 18:19:17+09:00'
+  timestamp: '2023-02-16 15:44:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/algebra/monoid/affine_clamp.hpp

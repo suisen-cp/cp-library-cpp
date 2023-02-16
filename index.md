@@ -406,6 +406,9 @@ data:
     - icon: ':warning:'
       path: library/debug/tree.hpp
       title: Tree
+    - icon: ':heavy_check_mark:'
+      path: library/debug/warning.hpp
+      title: library/debug/warning.hpp
   - name: library/dp
     pages:
     - icon: ':heavy_check_mark:'
@@ -627,7 +630,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
     - icon: ':heavy_check_mark:'
@@ -678,7 +681,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/kth_root_round.hpp
       title: $\lfloor a ^ {\frac{1}{k}}\rfloor, \lceil a ^ {\frac{1}{k}}\rceil$
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/linear_sieve.hpp
       title: "\u7DDA\u5F62\u7BE9"
     - icon: ':heavy_check_mark:'
@@ -748,10 +751,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/lagrange_interpolation.hpp
       title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/multi_point_eval.hpp
       title: Multi Point Evaluation
     - icon: ':heavy_check_mark:'
@@ -809,7 +812,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/sequence/partition_number.hpp
       title: Partition Number
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/sequence/powers.hpp
       title: Powers
     - icon: ':heavy_check_mark:'
@@ -1025,6 +1028,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/permutation.hpp
       title: Permutation
+    - icon: ':heavy_check_mark:'
+      path: library/util/pointer_32bit.hpp
+      title: library/util/pointer_32bit.hpp
     - icon: ':warning:'
       path: library/util/rot90.hpp
       title: Rot90
@@ -2221,7 +2227,7 @@ data:
       title: test/src/polynomial/fps_naive/abc245_d.test.cpp
   - name: test/src/polynomial/lagrange_interpolation
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
       title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     - icon: ':heavy_check_mark:'

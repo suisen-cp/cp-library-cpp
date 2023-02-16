@@ -42,14 +42,22 @@ data:
     \ Affine<T> &g) { a -= g.a, b -= g.b; return *this; }\n        friend Affine<T>\
     \ operator+(Affine<T> f, const Affine<T> &g) { f += g; return f; }\n        friend\
     \ Affine<T> operator-(Affine<T> f, const Affine<T> &g) { f -= g; return f; }\n\
-    \n        template <typename U = T, typename V = T>\n        operator std::pair<U,\
-    \ V>() { return std::pair<U, V>{ a, b }; }\n        template <typename U = T,\
-    \ typename V = T>\n        operator std::tuple<U, V>() { return std::tuple<U,\
-    \ V>{ a, b }; }\n\n        friend std::istream& operator<<(std::istream& in, Affine<T>\
-    \ &f) { return in >> f.a >> f.b; }\n        friend std::ostream& operator>>(std::ostream&\
-    \ out, const Affine<T> &f) { return out << f.a << ' ' << f.b; }\n    };\n} //\
-    \ namespace suisen\n\n\n#line 1 \"library/datastructure/deque_aggregation.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <vector>\n\n/**\n * [Idea] reference : https://motsu-xe.hatenablog.com/entry/2021/05/13/224016\n\
+    \n        friend bool operator==(const Affine<T> &f, const Affine<T> &g) { return\
+    \ f.a == g.a and f.b == g.b; }\n        friend bool operator!=(const Affine<T>\
+    \ &f, const Affine<T> &g) { return not (f == g); }\n        friend bool operator<\
+    \ (const Affine<T> &f, const Affine<T> &g) { return f.a < g.a or (f.a == g.a and\
+    \ f.b < g.b); }\n        friend bool operator<=(const Affine<T> &f, const Affine<T>\
+    \ &g) { return not (g < f); }\n        friend bool operator> (const Affine<T>\
+    \ &f, const Affine<T> &g) { return g < f; }\n        friend bool operator>=(const\
+    \ Affine<T> &f, const Affine<T> &g) { return not (f < g); }\n\n        template\
+    \ <typename U = T, typename V = T>\n        operator std::pair<U, V>() { return\
+    \ std::pair<U, V>{ a, b }; }\n        template <typename U = T, typename V = T>\n\
+    \        operator std::tuple<U, V>() { return std::tuple<U, V>{ a, b }; }\n\n\
+    \        friend std::istream& operator<<(std::istream& in, Affine<T> &f) { return\
+    \ in >> f.a >> f.b; }\n        friend std::ostream& operator>>(std::ostream& out,\
+    \ const Affine<T> &f) { return out << f.a << ' ' << f.b; }\n    };\n} // namespace\
+    \ suisen\n\n\n#line 1 \"library/datastructure/deque_aggregation.hpp\"\n\n\n\n\
+    #include <cassert>\n#include <vector>\n\n/**\n * [Idea] reference : https://motsu-xe.hatenablog.com/entry/2021/05/13/224016\n\
     \ * \n * SWAG + simulate a deque with 2 stacks\n * \n * [Operations] reference\
     \ : https://www.slideshare.net/catupper/amortize-analysis-of-deque-with-2-stack\n\
     \ * \n * `l`, `r` is a stack of { value, sum }\n * \n *     accumulate\n *   \
@@ -185,7 +193,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-08-21 18:20:38+09:00'
+  timestamp: '2023-02-16 15:44:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp

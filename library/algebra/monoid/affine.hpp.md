@@ -39,13 +39,21 @@ data:
     \ Affine<T> &g) { a -= g.a, b -= g.b; return *this; }\n        friend Affine<T>\
     \ operator+(Affine<T> f, const Affine<T> &g) { f += g; return f; }\n        friend\
     \ Affine<T> operator-(Affine<T> f, const Affine<T> &g) { f -= g; return f; }\n\
-    \n        template <typename U = T, typename V = T>\n        operator std::pair<U,\
-    \ V>() { return std::pair<U, V>{ a, b }; }\n        template <typename U = T,\
-    \ typename V = T>\n        operator std::tuple<U, V>() { return std::tuple<U,\
-    \ V>{ a, b }; }\n\n        friend std::istream& operator<<(std::istream& in, Affine<T>\
-    \ &f) { return in >> f.a >> f.b; }\n        friend std::ostream& operator>>(std::ostream&\
-    \ out, const Affine<T> &f) { return out << f.a << ' ' << f.b; }\n    };\n} //\
-    \ namespace suisen\n\n\n"
+    \n        friend bool operator==(const Affine<T> &f, const Affine<T> &g) { return\
+    \ f.a == g.a and f.b == g.b; }\n        friend bool operator!=(const Affine<T>\
+    \ &f, const Affine<T> &g) { return not (f == g); }\n        friend bool operator<\
+    \ (const Affine<T> &f, const Affine<T> &g) { return f.a < g.a or (f.a == g.a and\
+    \ f.b < g.b); }\n        friend bool operator<=(const Affine<T> &f, const Affine<T>\
+    \ &g) { return not (g < f); }\n        friend bool operator> (const Affine<T>\
+    \ &f, const Affine<T> &g) { return g < f; }\n        friend bool operator>=(const\
+    \ Affine<T> &f, const Affine<T> &g) { return not (f < g); }\n\n        template\
+    \ <typename U = T, typename V = T>\n        operator std::pair<U, V>() { return\
+    \ std::pair<U, V>{ a, b }; }\n        template <typename U = T, typename V = T>\n\
+    \        operator std::tuple<U, V>() { return std::tuple<U, V>{ a, b }; }\n\n\
+    \        friend std::istream& operator<<(std::istream& in, Affine<T> &f) { return\
+    \ in >> f.a >> f.b; }\n        friend std::ostream& operator>>(std::ostream& out,\
+    \ const Affine<T> &f) { return out << f.a << ' ' << f.b; }\n    };\n} // namespace\
+    \ suisen\n\n\n"
   code: "#ifndef SUISEN_AFFINE\n#define SUISEN_AFFINE\n\n#include <iostream>\n#include\
     \ <utility>\n\nnamespace suisen {\n    template <typename T>\n    struct Affine\
     \ {\n        T a, b;\n        Affine(const T &a = 1, const T &b = 0) : a(a), b(b)\
@@ -67,20 +75,27 @@ data:
     \ return *this; }\n        Affine<T>& operator-=(const Affine<T> &g) { a -= g.a,\
     \ b -= g.b; return *this; }\n        friend Affine<T> operator+(Affine<T> f, const\
     \ Affine<T> &g) { f += g; return f; }\n        friend Affine<T> operator-(Affine<T>\
-    \ f, const Affine<T> &g) { f -= g; return f; }\n\n        template <typename U\
-    \ = T, typename V = T>\n        operator std::pair<U, V>() { return std::pair<U,\
-    \ V>{ a, b }; }\n        template <typename U = T, typename V = T>\n        operator\
-    \ std::tuple<U, V>() { return std::tuple<U, V>{ a, b }; }\n\n        friend std::istream&\
-    \ operator<<(std::istream& in, Affine<T> &f) { return in >> f.a >> f.b; }\n  \
-    \      friend std::ostream& operator>>(std::ostream& out, const Affine<T> &f)\
-    \ { return out << f.a << ' ' << f.b; }\n    };\n} // namespace suisen\n\n#endif\
-    \ // SUISEN_AFFINE\n"
+    \ f, const Affine<T> &g) { f -= g; return f; }\n\n        friend bool operator==(const\
+    \ Affine<T> &f, const Affine<T> &g) { return f.a == g.a and f.b == g.b; }\n  \
+    \      friend bool operator!=(const Affine<T> &f, const Affine<T> &g) { return\
+    \ not (f == g); }\n        friend bool operator< (const Affine<T> &f, const Affine<T>\
+    \ &g) { return f.a < g.a or (f.a == g.a and f.b < g.b); }\n        friend bool\
+    \ operator<=(const Affine<T> &f, const Affine<T> &g) { return not (g < f); }\n\
+    \        friend bool operator> (const Affine<T> &f, const Affine<T> &g) { return\
+    \ g < f; }\n        friend bool operator>=(const Affine<T> &f, const Affine<T>\
+    \ &g) { return not (f < g); }\n\n        template <typename U = T, typename V\
+    \ = T>\n        operator std::pair<U, V>() { return std::pair<U, V>{ a, b }; }\n\
+    \        template <typename U = T, typename V = T>\n        operator std::tuple<U,\
+    \ V>() { return std::tuple<U, V>{ a, b }; }\n\n        friend std::istream& operator<<(std::istream&\
+    \ in, Affine<T> &f) { return in >> f.a >> f.b; }\n        friend std::ostream&\
+    \ operator>>(std::ostream& out, const Affine<T> &f) { return out << f.a << ' '\
+    \ << f.b; }\n    };\n} // namespace suisen\n\n#endif // SUISEN_AFFINE\n"
   dependsOn: []
   isVerificationFile: false
   path: library/algebra/monoid/affine.hpp
   requiredBy:
   - library/algebra/monoid/affine_clamp.hpp
-  timestamp: '2022-08-21 18:19:17+09:00'
+  timestamp: '2023-02-16 15:44:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
