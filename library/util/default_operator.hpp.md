@@ -32,17 +32,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/union_find/weighted_union_find.hpp
     title: Weighted Union Find
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
     title: library/math/array_set_power_series.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: library/math/set_power_series.hpp
   - icon: ':warning:'
@@ -126,16 +126,16 @@ data:
   - icon: ':x:'
     path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
     title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
     title: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
     title: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
     title: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':x:'
@@ -168,10 +168,10 @@ data:
   - icon: ':x:'
     path: test/src/math/set_power_series/arc105_f.test.cpp
     title: test/src/math/set_power_series/arc105_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
     title: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
     title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - icon: ':heavy_check_mark:'

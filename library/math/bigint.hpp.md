@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/unsigned_bigint.hpp
     title: library/math/unsigned_bigint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_A.test.cpp
     title: test/src/math/bigint/NTL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_B.test.cpp
     title: test/src/math/bigint/NTL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_D.test.cpp
     title: test/src/math/bigint/NTL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_E.test.cpp
     title: test/src/math/bigint/NTL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_F.test.cpp
     title: test/src/math/bigint/NTL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/many_aplusb_128bit.test.cpp
     title: test/src/math/bigint/many_aplusb_128bit.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/bigint.hpp\"\n\n\n\n#line 1 \"library/math/unsigned_bigint.hpp\"\
@@ -514,7 +514,7 @@ data:
   path: library/math/bigint.hpp
   requiredBy: []
   timestamp: '2023-05-11 13:27:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/bigint/many_aplusb_128bit.test.cpp
   - test/src/math/bigint/NTL_2_F.test.cpp

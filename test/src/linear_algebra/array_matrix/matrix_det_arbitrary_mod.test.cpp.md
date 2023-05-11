@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_det_arbitrary_mod
@@ -170,7 +170,7 @@ data:
   path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   requiredBy: []
   timestamp: '2023-05-11 13:21:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
 layout: document

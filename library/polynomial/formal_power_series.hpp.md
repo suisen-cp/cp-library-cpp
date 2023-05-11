@@ -63,10 +63,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - icon: ':heavy_check_mark:'

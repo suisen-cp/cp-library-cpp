@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':heavy_check_mark:'

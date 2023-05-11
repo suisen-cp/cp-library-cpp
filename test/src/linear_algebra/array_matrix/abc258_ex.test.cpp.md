@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/linear_algebra/array_matrix.hpp
     title: Array Matrix
   - icon: ':question:'

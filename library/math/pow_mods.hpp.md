@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
   - icon: ':heavy_check_mark:'
@@ -12,10 +12,10 @@ data:
     path: library/string/rolling_hash.hpp
     title: Rolling Hash
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':x:'

@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
@@ -81,7 +81,7 @@ data:
   - icon: ':warning:'
     path: library/math/factorial_large.hpp
     title: library/math/factorial_large.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: library/math/set_power_series.hpp
   - icon: ':heavy_check_mark:'
@@ -246,7 +246,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/functional_graph/abc254_g.test.cpp
     title: test/src/graph/functional_graph/abc254_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':x:'
@@ -264,7 +264,7 @@ data:
   - icon: ':x:'
     path: test/src/math/array_set_power_series/arc105_f.test.cpp
     title: test/src/math/array_set_power_series/arc105_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
   - icon: ':x:'
@@ -282,10 +282,10 @@ data:
   - icon: ':x:'
     path: test/src/math/set_power_series/arc105_f.test.cpp
     title: test/src/math/set_power_series/arc105_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
     title: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
     title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -381,16 +381,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps_naive/abc245_d.test.cpp
     title: test/src/polynomial/fps_naive/abc245_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - icon: ':heavy_check_mark:'

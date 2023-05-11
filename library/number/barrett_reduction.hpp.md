@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/binomial_coefficient.hpp
     title: Binomial Coefficient
   - icon: ':x:'
     path: library/util/step_sum.hpp
     title: library/util/step_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
     title: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/src/util/step_sum/dummy.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/barrett_reduction.hpp\"\n\n\n\n#include <array>\n\
@@ -59,7 +59,7 @@ data:
   - library/sequence/binomial_coefficient.hpp
   - library/util/step_sum.hpp
   timestamp: '2023-05-11 13:33:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
   - test/src/util/step_sum/dummy.test.cpp

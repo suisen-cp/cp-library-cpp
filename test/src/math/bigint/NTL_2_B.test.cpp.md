@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/bigint.hpp
     title: "\u591A\u500D\u9577\u6574\u6570"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/unsigned_bigint.hpp
     title: library/math/unsigned_bigint.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_2_B
@@ -416,7 +416,7 @@ data:
   path: test/src/math/bigint/NTL_2_B.test.cpp
   requiredBy: []
   timestamp: '2023-05-11 13:27:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/bigint/NTL_2_B.test.cpp
 layout: document

@@ -6,12 +6,12 @@ data:
   - icon: ':x:'
     path: test/src/number/enumerate_quotient/divide_both.test.cpp
     title: test/src/number/enumerate_quotient/divide_both.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/enumerate_quotient/enumerate_quotients.test.cpp
     title: test/src/number/enumerate_quotient/enumerate_quotients.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Runs f(q) for each q>0 s.t. (there exists an integer x s.t. floor(n/x)=q)
       in ascending order.
@@ -127,7 +127,7 @@ data:
   path: library/number/enumerate_quotient.hpp
   requiredBy: []
   timestamp: '2023-05-11 13:32:09+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/number/enumerate_quotient/enumerate_quotients.test.cpp
   - test/src/number/enumerate_quotient/divide_both.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
   _extendedRequiredBy:
@@ -9,10 +9,10 @@ data:
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/bigint.hpp
     title: "\u591A\u500D\u9577\u6574\u6570"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/unsigned_bigint.hpp
     title: library/math/unsigned_bigint.hpp
   _extendedVerifiedWith:
@@ -28,27 +28,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_A.test.cpp
     title: test/src/math/bigint/NTL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_B.test.cpp
     title: test/src/math/bigint/NTL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_D.test.cpp
     title: test/src/math/bigint/NTL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_E.test.cpp
     title: test/src/math/bigint/NTL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_F.test.cpp
     title: test/src/math/bigint/NTL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/many_aplusb_128bit.test.cpp
     title: test/src/math/bigint/many_aplusb_128bit.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/arbitrary_mod_convolution.hpp\"\n\n\n\
@@ -169,7 +169,7 @@ data:
   - library/math/unsigned_bigint.hpp
   - library/math/bigint.hpp
   timestamp: '2023-05-11 13:19:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp

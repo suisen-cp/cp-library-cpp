@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/number/enumerate_quotient.hpp
     title: "\u5546\u5217\u6319"
   _extendedRequiredBy: []

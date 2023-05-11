@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/number/barrett_reduction.hpp
     title: Barrett Reduction
   _extendedRequiredBy: []

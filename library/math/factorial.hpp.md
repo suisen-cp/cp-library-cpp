@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: library/math/factorial_large.hpp
     title: library/math/factorial_large.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':warning:'
@@ -60,10 +60,10 @@ data:
   - icon: ':x:'
     path: test/src/math/set_power_series/abc253_h_2.test.cpp
     title: test/src/math/set_power_series/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':heavy_check_mark:'

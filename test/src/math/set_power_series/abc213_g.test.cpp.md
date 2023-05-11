@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: library/math/set_power_series.hpp
   - icon: ':question:'

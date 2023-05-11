@@ -9,18 +9,18 @@ data:
   - icon: ':x:'
     path: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
     title: test/src/linear_algebra/array_matrix/abc258_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
     title: test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
     title: test/src/linear_algebra/array_matrix/matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
     title: test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/array_matrix.hpp\"\n\n\n\n#include\
@@ -259,7 +259,7 @@ data:
   path: library/linear_algebra/array_matrix.hpp
   requiredBy: []
   timestamp: '2023-05-11 13:21:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/linear_algebra/array_matrix/inverse_matrix.test.cpp
   - test/src/linear_algebra/array_matrix/abc258_ex.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
   - icon: ':question:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':question:'

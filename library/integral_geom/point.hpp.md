@@ -37,10 +37,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/geometry/CGL_3_B.test.cpp
     title: test/src/integral_geom/geometry/CGL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/geometry/CGL_3_C.test.cpp
     title: test/src/integral_geom/geometry/CGL_3_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/geometry/CGL_7_A.test.cpp
     title: test/src/integral_geom/geometry/CGL_7_A.test.cpp
   - icon: ':x:'

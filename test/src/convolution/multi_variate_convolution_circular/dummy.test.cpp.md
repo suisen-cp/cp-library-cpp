@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
   - icon: ':heavy_check_mark:'

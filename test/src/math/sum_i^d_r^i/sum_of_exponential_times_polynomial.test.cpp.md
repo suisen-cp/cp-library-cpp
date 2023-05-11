@@ -7,22 +7,22 @@ data:
   - icon: ':question:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
   - icon: ':question:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: Powers
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
@@ -242,7 +242,7 @@ data:
   path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   requiredBy: []
   timestamp: '2023-05-11 13:37:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
 layout: document

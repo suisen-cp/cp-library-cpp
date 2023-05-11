@@ -18,7 +18,7 @@ data:
   - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,10 +57,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
