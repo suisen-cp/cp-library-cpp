@@ -5,7 +5,7 @@
 
 using mint = atcoder::modint1000000007;
 
-#include "library/tree/rerooting.hpp"
+#include "library/tree/rerooting_invertible.hpp"
 
 using DP = std::pair<mint, int>;
 
@@ -16,7 +16,7 @@ int main() {
     int n;
     std::cin >> n;
 
-    suisen::Rerooting g(n);
+    suisen::RerootingInvertible g(n);
 
     for (int i = 0; i < n - 1; ++i) {
         int u, v;
@@ -40,6 +40,9 @@ int main() {
         },
         []() {
             return DP{ 1, 0 };
+        },
+        [](const DP& x) {
+            return DP{ x.first.inv(), -x.second };
         },
         [&](const DP& x) {
             return DP{ x.first * inv(x.second + 1) , x.second + 1 };

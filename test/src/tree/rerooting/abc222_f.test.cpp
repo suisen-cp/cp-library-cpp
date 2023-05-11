@@ -1,25 +1,15 @@
 #define PROBLEM "https://atcoder.jp/contests/abc222/tasks/abc222_f"
 
 #include <iostream>
+#include <limits>
+
 #include "library/tree/rerooting.hpp"
-using suisen::ReRooting;
 
-constexpr long long inf = std::numeric_limits<long long>::max();
+using DP = long long;
+using VWeight = long long;
+using EWeight = long long;
 
-std::vector<long long> d;
-
-long long op(long long x, long long y) {
-    return x > y ? x : y;
-}
-long long e() {
-    return -inf;
-}
-long long add_subtree_root(long long val, int, int) {
-    return val;
-}
-long long trans_to_par(long long val, int v, int, long long w) {
-    return op(d[v], val) + w;
-}
+constexpr DP inf = std::numeric_limits<DP>::max() / 2;
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -27,16 +17,36 @@ int main() {
 
     int n;
     std::cin >> n;
-    ReRooting<long long, op, e, add_subtree_root, long long, trans_to_par> g(n);
+
+    suisen::RerootingWeighted<VWeight, EWeight> g(n);
+
     for (int i = 0; i < n - 1; ++i) {
-        int u, v, c;
-        std::cin >> u >> v >> c;
-        g.add_edge(--u, --v, c);
+        int u, v, w;
+        std::cin >> u >> v >> w;
+        --u, --v;
+        g.add_edge(u, v, w);
     }
-    d.resize(n);
-    for (auto& e : d) std::cin >> e;
-    for (const auto& e : g.rerooting()) {
-        std::cout << e << '\n';
+
+    std::vector<VWeight> d(n);
+    for (auto &e : d) std::cin >> e;
+    g.set_vertex_weights(d);
+
+    std::vector ans = g.run_dp(
+        [](const DP& x, const DP& y) {
+            return std::max(x, y);
+        },
+        []() {
+            return -inf;
+        },
+        [](const DP& x, const VWeight& vw, const EWeight& ew) {
+            return std::max(x, vw) + ew;
+        },
+        [](const DP& x, const VWeight&) {
+            return x;
+        }
+    );
+
+    for (const DP& v : ans) {
+        std::cout << v << '\n';
     }
-    return 0;
 }
