@@ -14,7 +14,7 @@ namespace suisen {
         seg[1] = f % seg[1];
         for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];
         std::vector<typename FPSType::value_type> ys(n);
-        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];
+        for (int i = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n + i][0] : 0;
         return ys;
     }
 } // namespace suisen
