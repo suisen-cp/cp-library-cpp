@@ -27,10 +27,10 @@ int main() {
     while (q --> 0) {
         Point p;
         std::cin >> p;
-        Containment c = contains(poly, p);
-        if (c == Containment::IN) {
+        Inclusion c = contains(poly, p);
+        if (c == Inclusion::IN) {
             std::cout << 2 << '\n';
-        } else if (c == Containment::ON) {
+        } else if (c == Inclusion::ON) {
             std::cout << 1 << '\n';
         } else {
             std::cout << 0 << '\n';
