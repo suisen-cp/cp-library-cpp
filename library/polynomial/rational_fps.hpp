@@ -10,6 +10,7 @@ namespace suisen {
         using mint = typename FPSType::value_type;
         
         FPSType num, den;
+        RationalFPS(const mint &v) : RationalFPS(FPSType{ v }) {}
         RationalFPS(const FPSType& num = { 0 }, const FPSType& den = { 1 }) : num(num), den(den) {}
         RationalFPS(const std::pair<FPSType, FPSType>& p) : num(p.first), den(p.second) {}
 
@@ -59,6 +60,11 @@ namespace suisen {
 
         RationalFPS<FPSType> inv() const { return { den, num }; }
         RationalFPS<FPSType>& inv_inplace() { return std::swap(num, den), * this; }
+
+        void cut(int n) {
+            if (int(num.size()) > n) num.resize(n);
+            if (int(den.size()) > n) den.resize(n);
+        }
 
         FPSType normalize() {
             auto [q, r] = num.div_mod(den);
