@@ -15,7 +15,6 @@ namespace suisen {
     >
     struct ArrayMatrix : public std::array<std::array<T, M>, N> {
     private:
-        enum Operator { Add, Mul };
         template <typename DummyType = void>
         static constexpr bool is_square_v = N == M;
         template <size_t X, size_t Y>
@@ -26,9 +25,10 @@ namespace suisen {
         using row_type = std::array<T, M>;
 
         using base_type::base_type;
-        ArrayMatrix() : ArrayMatrix(_zero()) {}
-        ArrayMatrix(T fill_value) {
-            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) (*this)[i][j] = fill_value;
+        ArrayMatrix(T diag_val = _zero()) {
+            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) {
+                (*this)[i][j] = (i == j ? diag_val : _zero());
+            }
         }
         ArrayMatrix(const container_type& c) : base_type{ c } {}
         ArrayMatrix(const std::initializer_list<row_type>& c) {
@@ -40,8 +40,8 @@ namespace suisen {
             }
         }
 
-        static ArrayMatrix e0() { return ArrayMatrix(Operator::Add); }
-        static MatrixType<M, M> e1() { return MatrixType<M, M>(Operator::Mul); }
+        static ArrayMatrix e0() { return ArrayMatrix(_zero()); }
+        static MatrixType<M, M> e1() { return MatrixType<M, M>(_one()); }
 
         int size() const {
             static_assert(is_square_v<>);
@@ -79,11 +79,17 @@ namespace suisen {
         template <size_t K>
         friend MatrixType<N, K> operator*(const ArrayMatrix& A, const MatrixType<M, K>& B) {
             MatrixType<N, K> C;
-            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) for (size_t k = 0; k < K; ++k) C[i][k] = _add(C[i][k], _mul(A[i][j], B[j][k]));
+            for (size_t i = 0; i < N; ++i) {
+                C[i].fill(_zero());
+                for (size_t j = 0; j < M; ++j) for (size_t k = 0; k < K; ++k) C[i][k] = _add(C[i][k], _mul(A[i][j], B[j][k]));
+            }
             return C;
         }
         friend ArrayMatrix operator*(ArrayMatrix A, const T& val) { A *= val; return A; }
-        friend ArrayMatrix operator*(const T& val, ArrayMatrix A) { A *= val; return A; }
+        friend ArrayMatrix operator*(const T& val, ArrayMatrix A) {
+            for (size_t i = 0; i < N; ++i) for (size_t j = 0; j < M; ++j) A[i][j] = _mul(val, A[i][j]);
+            return A;
+        }
         friend std::array<T, N> operator*(const ArrayMatrix& A, const std::array<T, M>& x) {
             std::array<T, N> b;
             b.fill(_zero());
@@ -160,10 +166,6 @@ namespace suisen {
             T res = sgn ? -1 : +1;
             for (size_t i = 0; i < N; ++i) res *= A[i][i];
             return res;
-        }
-    private:
-        ArrayMatrix(Operator op) : ArrayMatrix(_zero()) {
-            if (op == Operator::Mul) for (size_t i = 0; i < N; ++i) (*this)[i][i] = _one();
         }
     };
     template <
