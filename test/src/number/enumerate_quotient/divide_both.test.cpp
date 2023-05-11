@@ -23,7 +23,7 @@ int main() {
             if (it != memo.end()) return it->second;
         }
         long long res = (long long) (r - l) * (r - l);
-        for (auto [lg, rg, qs] : enumerate_multiple_quotients(std::array<int, 2>{l, r})) {
+        for (auto [lg, rg, qs] : multiple_quotients_ranges(std::array<int, 2>{l, r})) {
             if (lg == 1 and rg == 1) continue;
             auto [nl, nr] = qs;
             res -= (rg - lg + 1) * self(self, nl, nr);
@@ -32,7 +32,7 @@ int main() {
     };
     long long whole_pairs = (long long) (r - l) * (r - l);
     long long divisor_pairs = 0;
-    for (auto [lg, rg, q] : enumerate_quotients(r)) {
+    for (auto [lg, rg, q] : quotient_ranges(r)) {
         divisor_pairs += (long long) std::max(0, (rg - std::max(lg - 1, l))) * q;
     }
     divisor_pairs += divisor_pairs - (r - l);
