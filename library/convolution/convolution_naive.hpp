@@ -4,14 +4,14 @@
 #include <vector>
 
 namespace suisen::internal {
-    template <typename T>
-    std::vector<T> convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {
+    template <typename T, typename R = T>
+    std::vector<R> convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {
         const int n = a.size(), m = b.size();
-        std::vector<T> c(n + m - 1);
+        std::vector<R> c(n + m - 1);
         if (n < m) {
-            for (int j = 0; j < m; j++) for (int i = 0; i < n; i++) c[i + j] += a[i] * b[j];
+            for (int j = 0; j < m; j++) for (int i = 0; i < n; i++) c[i + j] += R(a[i]) * b[j];
         } else {
-            for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j] += a[i] * b[j];
+            for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j] += R(a[i]) * b[j];
         }
         return c;
     }
