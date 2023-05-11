@@ -8,29 +8,28 @@ namespace suisen {
     struct BlockCutForest {
         BlockCutForest() = default;
         BlockCutForest(const BiconnectedComponents &bcc)
-            : _edge_comp_num(bcc.edge_component_num()), _isolated_vertex_num(bcc.isolated_vertex_num()), _art_num(bcc.articulation_points().size()), _node_num(_edge_comp_num + _isolated_vertex_num + _art_num), _g(_node_num), _vertex_num(_node_num) {
+            : _edge_comp_num(bcc.edge_component_num()), _isolated_vertex_num(bcc.isolated_vertex_num()), _art_num(bcc.articulation_points().size()), _node_num(_edge_comp_num + _isolated_vertex_num + _art_num), _g(_node_num), _vertex_num(_node_num), _comp_id(bcc.vertex_num(), -1) {
             std::vector<int> art_id(bcc.vertex_num(), -1);
             int next_id = _edge_comp_num + _isolated_vertex_num;
             for (int v : bcc.articulation_points()) art_id[v] = next_id++;
 
-            std::vector<int> comp_id(bcc.vertex_num(), -1);
             for (int edge_id = 0; edge_id < bcc.edge_num(); ++edge_id) {
                 const int cid = bcc[edge_id];
                 const auto &[u, v] = bcc.edge(edge_id);
-                comp_id[u] = comp_id[v] = cid;
+                _comp_id[u] = _comp_id[v] = cid;
                 if (int vid = art_id[u]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);
                 if (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);
             }
             int isolated_vertex_id = _edge_comp_num;
             for (int v : bcc.isolated_vertices()) {
-                comp_id[v] = isolated_vertex_id++;
+                _comp_id[v] = isolated_vertex_id++;
             }
 
             remove_multiedges(_g);
 
             for (int v = 0; v < bcc.vertex_num(); ++v) {
                 if (int vid = art_id[v]; vid < 0) {
-                    ++_vertex_num[comp_id[v]];
+                    ++_vertex_num[_comp_id[v]];
                 } else {
                     _vertex_num[vid] = 1;
                     for (int cid : _g[vid]) ++_vertex_num[cid];
@@ -49,6 +48,10 @@ namespace suisen {
 
         int vertex_num(int id) const { return _vertex_num[id]; }
 
+        int component_id(int vertex) const {
+            return _comp_id[vertex];
+        }
+
     private:
         int _edge_comp_num;
         int _isolated_vertex_num;
@@ -56,6 +59,7 @@ namespace suisen {
         int _node_num;
         std::vector<std::vector<int>> _g;
         std::vector<int> _vertex_num;
+        std::vector<int> _comp_id;
     };
 } // namespace suisen
 
