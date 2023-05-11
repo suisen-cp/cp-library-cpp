@@ -11,7 +11,7 @@ namespace suisen {
         using void_weight = std::monostate;
 
         template <typename VertexWeight, typename EdgeWeight>
-        struct Rerooting {
+        struct RerootingInvertible {
             using vertex_weight = VertexWeight;
             using edge_weight = EdgeWeight;
     private:
@@ -41,9 +41,9 @@ namespace suisen {
                 std::is_invocable_r<DP, AddRoot, DP>
             >;
     public:
-            Rerooting() : _w{} {}
-            explicit Rerooting(int n) : _w(n) {}
-            explicit Rerooting(const std::vector<vertex_weight>& w) : _w(w) {}
+            RerootingInvertible() : _w{} {}
+            explicit RerootingInvertible(int n) : _w(n) {}
+            explicit RerootingInvertible(const std::vector<vertex_weight>& w) : _w(w) {}
 
             void reserve(int n) {
                 _w.reserve(n);
@@ -69,16 +69,17 @@ namespace suisen {
              * add_subtree_root : (T, vertex_weight, edge_weight) -> T        // add subroot, edge to parent
              * add_root         : (T, vertex_weight) -> T                    // add root
             */
-            template <typename Op, typename E, typename AddSubtreeRoot, typename AddRoot,
+            template <typename Op, typename E, typename Inv, typename AddSubtreeRoot, typename AddRoot,
                 typename DP = std::decay_t<std::invoke_result_t<E>>,
                 std::enable_if_t<std::conjunction_v<
                     std::is_invocable_r<DP, Op, DP, DP>,
                     std::is_invocable_r<DP, E>,
+                    std::is_invocable_r<DP, Inv, DP>,
                     is_add_subtree_root<DP, AddSubtreeRoot>,
                     is_add_root<DP, AddRoot>
                 >, std::nullptr_t> = nullptr
             >
-            std::vector<DP> run_dp(const Op& op, const E& e, const AddSubtreeRoot& add_subtree_root, const AddRoot& add_root) const {
+            std::vector<DP> run_dp(const Op& op, const E& e, const Inv &inv, const AddSubtreeRoot& add_subtree_root, const AddRoot& add_root) const {
                 auto add_subtree_root_ = [&add_subtree_root](const DP &val, const vertex_weight& vw, const edge_weight& ew) {
                     if constexpr (std::negation_v<is_vertex_weight_void>) {
                         if constexpr (std::negation_v<is_edge_weight_void>) {
@@ -114,34 +115,14 @@ namespace suisen {
                         dp[u] = op(dp[u], add_subtree_root_(dp[v], _w[v], w));
                     }
                 }] { dfs(dfs, 0, -1); }();
-                dp[0] = add_root_(dp[0], _w[0]);
-
-                [dfs = [&, this](auto dfs, int u, int p, const DP& sum_p) -> void {
-                    auto get_sum = [&](int v) {
-                        return v == p ? sum_p : dp[v];
-                    };
-
-                    const int siz = g[u].size();
-                    std::vector<DP> sum_r(siz + 1, e());
-                    for (int i = siz - 1; i >= 0; --i) {
-                        const auto& [v, w] = g[u][i];
-                        sum_r[i] = op(sum_r[i + 1], add_subtree_root_(get_sum(v), _w[v], w));
+                [dfs = [&, this](auto dfs, int u, int p) -> void {
+                    for (const auto& [v, w] : g[u]) if (v != p) {
+                        DP sum_u = op(dp[u], inv(add_subtree_root_(dp[v], _w[v], w)));
+                        dp[v] = op(dp[v], add_subtree_root_(sum_u, _w[u], w));
+                        dfs(dfs, v, u);
                     }
-
-                    DP sum_l = e();
-                    for (int i = 0; i < siz; ++i) {
-                        const auto& [v, w] = g[u][i];
-                        DP nxt_sum_l = op(sum_l, add_subtree_root_(get_sum(v), _w[v], w));
-                        if (v != p) {
-                            DP sum_lr = op(sum_l, sum_r[i + 1]);
-                            DP sum_v = op(dp[v], add_subtree_root_(sum_lr, _w[u], w));
-                            dp[v] = add_root_(sum_v, _w[v]);
-                            dfs(dfs, v, u, sum_lr);
-                        }
-                        sum_l = std::move(nxt_sum_l);
-                    }
-                }, &e] { dfs(dfs, 0, -1, e()); }();
-
+                    dp[u] = add_root_(dp[u], _w[u]);
+                }] { dfs(dfs, 0, -1); }();
                 return dp;
             }
 
@@ -190,13 +171,13 @@ namespace suisen {
             };
         };
     }
-    using Rerooting = internal::rerooting::Rerooting<internal::rerooting::void_weight, internal::rerooting::void_weight>;
+    using RerootingInvertible = internal::rerooting::RerootingInvertible<internal::rerooting::void_weight, internal::rerooting::void_weight>;
     template <typename VertexWeight>
-    using RerootingVertexWeighted = internal::rerooting::Rerooting<VertexWeight, internal::rerooting::void_weight>;
+    using RerootingInvertibleVertexWeighted = internal::rerooting::RerootingInvertible<VertexWeight, internal::rerooting::void_weight>;
     template <typename EdgeWeight>
-    using RerootingEdgeWeighted = internal::rerooting::Rerooting<internal::rerooting::void_weight, EdgeWeight>;
+    using RerootingInvertibleEdgeWeighted = internal::rerooting::RerootingInvertible<internal::rerooting::void_weight, EdgeWeight>;
     template <typename VertexWeight, typename EdgeWeighted>
-    using RerootingWeighted = internal::rerooting::Rerooting<VertexWeight, EdgeWeighted>;
+    using RerootingInvertibleWeighted = internal::rerooting::RerootingInvertible<VertexWeight, EdgeWeighted>;
 } // namsepace suisen
 
 #endif // SUISEN_REROOTING
