@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D"
 
 #include <iostream>
+#include <limits>
 
 #include "library/datastructure/segment_tree/dual_segment_tree.hpp"
 using suisen::DualSegmentTree;
