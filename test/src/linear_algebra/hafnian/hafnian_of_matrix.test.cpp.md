@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
-    path: library/math/sps.hpp
-    title: Set Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: library/math/set_power_series.hpp
+    title: library/math/set_power_series.hpp
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -47,7 +47,7 @@ data:
   bundledCode: "#line 1 \"test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\n\n#include\
     \ <iostream>\n\n#include <atcoder/modint>\n\n#line 1 \"library/linear_algebra/hafnian.hpp\"\
-    \n\n\n\n#line 1 \"library/math/sps.hpp\"\n\n\n\n#line 1 \"library/convolution/subset_convolution.hpp\"\
+    \n\n\n\n#line 1 \"library/math/set_power_series.hpp\"\n\n\n\n#line 1 \"library/convolution/subset_convolution.hpp\"\
     \n\n\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n\
     #include <cmath>\n#include <limits>\n#include <type_traits>\n#include <vector>\n\
     \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
@@ -358,77 +358,96 @@ data:
     \ ra = ranked_subset_transform::ranked_zeta(a), rb = ranked_subset_transform::ranked_zeta(b);\n\
     \        for (int i = 0; i < n; ++i) ra[i] = ra[i].mul(rb[i], ra[i].size());\n\
     \        return ranked_subset_transform::deranked_mobius(ra);\n    }\n} // namespace\
-    \ suisen\n\n\n#line 5 \"library/math/sps.hpp\"\n\nnamespace suisen {\n    template\
-    \ <typename T>\n    struct SPS : public std::vector<T> {\n        using base_type\
-    \ = std::vector<T>;\n        using value_type = typename base_type::value_type;\n\
-    \        using size_type = typename base_type::size_type;\n\n        using polynomial_type\
-    \ = ranked_subset_transform::polynomial_t<value_type>;\n\n        using base_type::vector;\n\
-    \n        SPS() : SPS(0) {}\n        SPS(size_type n) : SPS(n, value_type{ 0 })\
-    \ {}\n        SPS(size_type n, const value_type& val) : SPS(std::vector<value_type>(1\
-    \ << n, val)) {}\n        SPS(const base_type& a) : SPS(base_type(a)) {}\n   \
-    \     SPS(base_type&& a) : base_type(std::move(a)) {\n            const int n\
-    \ = this->size();\n            assert(n == (-n & n));\n        }\n        SPS(std::initializer_list<value_type>\
-    \ l) : SPS(base_type(l)) {}\n\n        static SPS one(int n) {\n            SPS\
+    \ suisen\n\n\n#line 5 \"library/math/set_power_series.hpp\"\n\nnamespace suisen\
+    \ {\n    template <typename T>\n    struct SetPowerSeries: public std::vector<T>\
+    \ {\n        using base_type = std::vector<T>;\n        using value_type = typename\
+    \ base_type::value_type;\n        using size_type = typename base_type::size_type;\n\
+    \n        using polynomial_type = ranked_subset_transform::polynomial_t<value_type>;\n\
+    \n        using base_type::vector;\n\n        SetPowerSeries(): SetPowerSeries(0)\
+    \ {}\n        SetPowerSeries(size_type n): SetPowerSeries(n, value_type{ 0 })\
+    \ {}\n        SetPowerSeries(size_type n, const value_type& val): SetPowerSeries(std::vector<value_type>(1\
+    \ << n, val)) {}\n        SetPowerSeries(const base_type& a): SetPowerSeries(base_type(a))\
+    \ {}\n        SetPowerSeries(base_type&& a): base_type(std::move(a)) {\n     \
+    \       const int n = this->size();\n            assert(n == (-n & n));\n    \
+    \    }\n        SetPowerSeries(std::initializer_list<value_type> l): SetPowerSeries(base_type(l))\
+    \ {}\n\n        static SetPowerSeries one(int n) {\n            SetPowerSeries\
     \ f(n, value_type{ 0 });\n            f[0] = value_type{ 1 };\n            return\
     \ f;\n        }\n\n        void set_cardinality(int n) {\n            this->resize(1\
     \ << n, value_type{ 0 });\n        }\n        int cardinality() const {\n    \
-    \        return __builtin_ctz(this->size());\n        }\n\n        SPS cut_lower(size_type\
-    \ p) const {\n            return SPS(this->begin(), this->begin() + p);\n    \
-    \    }\n        SPS cut_upper(size_type p) const {\n            return SPS(this->begin()\
-    \ + p, this->begin() + p + p);\n        }\n\n        void concat(const SPS& upper)\
-    \ {\n            assert(this->size() == upper.size());\n            this->insert(this->end(),\
-    \ upper.begin(), upper.end());\n        }\n\n        SPS operator+() const {\n\
-    \            return *this;\n        }\n        SPS operator-() const {\n     \
-    \       SPS res(*this);\n            for (auto& e : res) e = -e;\n           \
-    \ return res;\n        }\n        SPS& operator+=(const SPS& g) {\n          \
-    \  for (size_type i = 0; i < g.size(); ++i) (*this)[i] += g[i];\n            return\
-    \ *this;\n        }\n        SPS& operator-=(const SPS& g) {\n            for\
-    \ (size_type i = 0; i < g.size(); ++i) (*this)[i] -= g[i];\n            return\
-    \ *this;\n        }\n        SPS& operator*=(const SPS& g) {\n            return\
-    \ *this = (zeta() *= g).mobius_inplace();\n        }\n        SPS& operator*=(const\
-    \ value_type &c) {\n            for (auto& e : *this) e *= c;\n            return\
-    \ *this;\n        }\n        SPS& operator/=(const value_type &c) {\n        \
-    \    value_type inv_c = ::inv(c);\n            for (auto& e : *this) e *= inv_c;\n\
-    \            return *this;\n        }\n        friend SPS operator+(SPS f, const\
-    \ SPS& g) { f += g; return f; }\n        friend SPS operator-(SPS f, const SPS&\
-    \ g) { f -= g; return f; }\n        friend SPS operator*(SPS f, const SPS& g)\
-    \ { f *= g; return f; }\n        friend SPS operator*(SPS f, const value_type\
-    \ &c) { f *= c; return f; }\n        friend SPS operator*(const value_type &c,\
-    \ SPS f) { f *= c; return f; }\n        friend SPS operator/(SPS f, const value_type\
-    \ &c) { f /= c; return f; }\n\n        SPS inv() {\n            return zeta().inv_inplace().mobius_inplace();\n\
-    \        }\n        SPS sqrt() {\n            return zeta().sqrt_inplace().mobius_inplace();\n\
-    \        }\n        SPS exp() {\n            return zeta().exp_inplace().mobius_inplace();\n\
-    \        }\n        SPS log() {\n            return zeta().log_inplace().mobius_inplace();\n\
-    \        }\n        SPS pow(long long k) {\n            return zeta().pow_inplace(k).mobius_inplace();\n\
-    \        }\n\n        struct ZetaSPS : public std::vector<polynomial_type> {\n\
-    \            using base_type = std::vector<polynomial_type>;\n            ZetaSPS()\
-    \ = default;\n            ZetaSPS(const SPS<value_type>& f) : base_type::vector(ranked_subset_transform::ranked_zeta(f)),\
-    \ _d(f.cardinality()) {}\n\n            ZetaSPS operator+() const {\n        \
-    \        return *this;\n            }\n            ZetaSPS operator-() const {\n\
-    \                ZetaSPS res(*this);\n                for (auto& f : res) f =\
-    \ -f;\n                return res;\n            }\n            friend ZetaSPS\
-    \ operator+(ZetaSPS f, const ZetaSPS& g) { f += g; return f; }\n            friend\
-    \ ZetaSPS operator-(ZetaSPS f, const ZetaSPS& g) { f -= g; return f; }\n     \
-    \       friend ZetaSPS operator*(ZetaSPS f, const ZetaSPS& g) { f *= g; return\
-    \ f; }\n            friend ZetaSPS operator*(ZetaSPS f, const value_type &c) {\
-    \ f *= c; return f; }\n            friend ZetaSPS operator*(const value_type &c,\
-    \ ZetaSPS f) { f *= c; return f; }\n            friend ZetaSPS operator/(ZetaSPS\
-    \ f, const value_type &c) { f /= c; return f; }\n\n            ZetaSPS& operator+=(const\
+    \        return __builtin_ctz(this->size());\n        }\n\n        SetPowerSeries\
+    \ cut_lower(size_type p) const {\n            return SetPowerSeries(this->begin(),\
+    \ this->begin() + p);\n        }\n        SetPowerSeries cut_upper(size_type p)\
+    \ const {\n            return SetPowerSeries(this->begin() + p, this->begin()\
+    \ + p + p);\n        }\n\n        void concat(const SetPowerSeries& upper) {\n\
+    \            assert(this->size() == upper.size());\n            this->insert(this->end(),\
+    \ upper.begin(), upper.end());\n        }\n\n        SetPowerSeries operator+()\
+    \ const {\n            return *this;\n        }\n        SetPowerSeries operator-()\
+    \ const {\n            SetPowerSeries res(*this);\n            for (auto& e :\
+    \ res) e = -e;\n            return res;\n        }\n        SetPowerSeries& operator+=(const\
+    \ SetPowerSeries& g) {\n            for (size_type i = 0; i < g.size(); ++i) (*this)[i]\
+    \ += g[i];\n            return *this;\n        }\n        SetPowerSeries& operator-=(const\
+    \ SetPowerSeries& g) {\n            for (size_type i = 0; i < g.size(); ++i) (*this)[i]\
+    \ -= g[i];\n            return *this;\n        }\n        SetPowerSeries& operator*=(const\
+    \ SetPowerSeries& g) {\n            return *this = (zeta() *= g).mobius_inplace();\n\
+    \        }\n        SetPowerSeries& operator*=(const value_type& c) {\n      \
+    \      for (auto& e : *this) e *= c;\n            return *this;\n        }\n \
+    \       SetPowerSeries& operator/=(const value_type& c) {\n            value_type\
+    \ inv_c = ::inv(c);\n            for (auto& e : *this) e *= inv_c;\n         \
+    \   return *this;\n        }\n        friend SetPowerSeries operator+(SetPowerSeries\
+    \ f, const SetPowerSeries& g) { f += g; return f; }\n        friend SetPowerSeries\
+    \ operator-(SetPowerSeries f, const SetPowerSeries& g) { f -= g; return f; }\n\
+    \        friend SetPowerSeries operator*(SetPowerSeries f, const SetPowerSeries&\
+    \ g) { f *= g; return f; }\n        friend SetPowerSeries operator*(SetPowerSeries\
+    \ f, const value_type& c) { f *= c; return f; }\n        friend SetPowerSeries\
+    \ operator*(const value_type& c, SetPowerSeries f) { f *= c; return f; }\n   \
+    \     friend SetPowerSeries operator/(SetPowerSeries f, const value_type& c) {\
+    \ f /= c; return f; }\n\n        SetPowerSeries inv() {\n            return zeta().inv_inplace().mobius_inplace();\n\
+    \        }\n        SetPowerSeries sqrt() {\n            return zeta().sqrt_inplace().mobius_inplace();\n\
+    \        }\n        SetPowerSeries exp() {\n            return zeta().exp_inplace().mobius_inplace();\n\
+    \        }\n        SetPowerSeries log() {\n            return zeta().log_inplace().mobius_inplace();\n\
+    \        }\n        SetPowerSeries pow(long long k) {\n            return zeta().pow_inplace(k).mobius_inplace();\n\
+    \        }\n\n        static SetPowerSeries polynomial_composite(std::vector<T>\
+    \ f, const SetPowerSeries& g) {\n            const int n = g.cardinality();\n\
+    \            std::vector<ZetaSPS> dp(n + 1);\n            for (int k = 0; k <=\
+    \ n; ++k) {\n                T eval_g0 = 0;\n                for (int j = f.size();\
+    \ j-- > 0;) eval_g0 = eval_g0 * g[0] + f[j];\n                dp[k] = ZetaSPS({\
+    \ eval_g0 });\n\n                if (const int l = f.size()) {\n             \
+    \       for (int j = 1; j < l; ++j) f[j - 1] = f[j] * j;\n                   \
+    \ f.pop_back();\n                }\n            }\n            for (int m = 1;\
+    \ m <= n; ++m) {\n                ZetaSPS hi_g = g.cut_upper(1 << (m - 1)).zeta();\n\
+    \                for (int k = 0; k <= n - m; ++k) {\n                    dp[k].concat(dp[k\
+    \ + 1] * hi_g);\n                }\n                dp.pop_back();\n         \
+    \   }\n            return dp[0].mobius_inplace();\n        }\n\n        struct\
+    \ ZetaSPS: public std::vector<polynomial_type> {\n            using base_type\
+    \ = std::vector<polynomial_type>;\n            using base_type::vector;\n    \
+    \        ZetaSPS() = default;\n            ZetaSPS(const SetPowerSeries<value_type>&\
+    \ f): base_type::vector(ranked_subset_transform::ranked_zeta(f)), _d(f.cardinality())\
+    \ {}\n\n            ZetaSPS operator+() const {\n                return *this;\n\
+    \            }\n            ZetaSPS operator-() const {\n                ZetaSPS\
+    \ res(*this);\n                for (auto& f : res) f = -f;\n                return\
+    \ res;\n            }\n            friend ZetaSPS operator+(ZetaSPS f, const ZetaSPS&\
+    \ g) { f += g; return f; }\n            friend ZetaSPS operator-(ZetaSPS f, const\
+    \ ZetaSPS& g) { f -= g; return f; }\n            friend ZetaSPS operator*(ZetaSPS\
+    \ f, const ZetaSPS& g) { f *= g; return f; }\n            friend ZetaSPS operator*(ZetaSPS\
+    \ f, const value_type& c) { f *= c; return f; }\n            friend ZetaSPS operator*(const\
+    \ value_type& c, ZetaSPS f) { f *= c; return f; }\n            friend ZetaSPS\
+    \ operator/(ZetaSPS f, const value_type& c) { f /= c; return f; }\n\n        \
+    \    ZetaSPS& operator+=(const ZetaSPS& rhs) {\n                assert(_d == rhs._d);\n\
+    \                for (int i = 0; i < 1 << _d; ++i) (*this)[i] += rhs[i];\n   \
+    \             return *this;\n            }\n            ZetaSPS& operator-=(const\
     \ ZetaSPS& rhs) {\n                assert(_d == rhs._d);\n                for\
-    \ (int i = 0; i < 1 << _d; ++i) (*this)[i] += rhs[i];\n                return\
-    \ *this;\n            }\n            ZetaSPS& operator-=(const ZetaSPS& rhs) {\n\
-    \                assert(_d == rhs._d);\n                for (int i = 0; i < 1\
-    \ << _d; ++i) (*this)[i] -= rhs[i];\n                return *this;\n         \
-    \   }\n            ZetaSPS& operator*=(value_type c) {\n                for (auto&\
-    \ f : *this) f *= c;\n                return *this;\n            }\n         \
-    \   ZetaSPS& operator/=(value_type c) {\n                value_type inv_c = ::inv(c);\n\
-    \                for (auto& f : *this) f *= inv_c;\n                return *this;\n\
-    \            }\n            ZetaSPS& operator*=(const ZetaSPS& rhs) {\n      \
-    \          assert(_d == rhs._d);\n                for (size_type i = 0; i < size_type(1)\
-    \ << _d; ++i) (*this)[i] = (*this)[i].mul(rhs[i], _d + 1);\n                return\
-    \ *this;\n            }\n            ZetaSPS inv()  const { auto f = ZetaSPS(*this).inv_inplace();\
-    \  return f; }\n            ZetaSPS sqrt() const { auto f = ZetaSPS(*this).sqrt_inplace();\
-    \ return f; }\n            ZetaSPS exp()  const { auto f = ZetaSPS(*this).exp_inplace();\
+    \ (int i = 0; i < 1 << _d; ++i) (*this)[i] -= rhs[i];\n                return\
+    \ *this;\n            }\n            ZetaSPS& operator*=(value_type c) {\n   \
+    \             for (auto& f : *this) f *= c;\n                return *this;\n \
+    \           }\n            ZetaSPS& operator/=(value_type c) {\n             \
+    \   value_type inv_c = ::inv(c);\n                for (auto& f : *this) f *= inv_c;\n\
+    \                return *this;\n            }\n            ZetaSPS& operator*=(const\
+    \ ZetaSPS& rhs) {\n                assert(_d == rhs._d);\n                for\
+    \ (size_type i = 0; i < size_type(1) << _d; ++i) (*this)[i] = (*this)[i].mul(rhs[i],\
+    \ _d + 1);\n                return *this;\n            }\n            ZetaSPS\
+    \ inv()  const { auto f = ZetaSPS(*this).inv_inplace();  return f; }\n       \
+    \     ZetaSPS sqrt() const { auto f = ZetaSPS(*this).sqrt_inplace(); return f;\
+    \ }\n            ZetaSPS exp()  const { auto f = ZetaSPS(*this).exp_inplace();\
     \  return f; }\n            ZetaSPS log()  const { auto f = ZetaSPS(*this).log_inplace();\
     \  return f; }\n            ZetaSPS pow(long long k) const { auto f = ZetaSPS(*this).pow_inplace(k);\
     \ return f; }\n            ZetaSPS& inv_inplace() {\n                for (auto&\
@@ -444,20 +463,20 @@ data:
     \ {\n                assert(_d == rhs._d);\n                this->reserve(1 <<\
     \ (_d + 1));\n                for (size_type i = 0; i < size_type(1) << _d; ++i)\
     \ {\n                    this->push_back((rhs[i] << 1) += (*this)[i]);\n     \
-    \           }\n                ++_d;\n            }\n            SPS<value_type>\
+    \           }\n                ++_d;\n            }\n            SetPowerSeries<value_type>\
     \ mobius_inplace() {\n                return ranked_subset_transform::deranked_mobius<value_type>(*this);\n\
-    \            }\n            SPS<value_type> mobius() const {\n               \
-    \ auto rf = ZetaSPS(*this);\n                return ranked_subset_transform::deranked_mobius<value_type>(rf);\n\
+    \            }\n            SetPowerSeries<value_type> mobius() const {\n    \
+    \            auto rf = ZetaSPS(*this);\n                return ranked_subset_transform::deranked_mobius<value_type>(rf);\n\
     \            }\n        private:\n            int _d;\n        };\n\n        ZetaSPS\
     \ zeta() const {\n            return ZetaSPS(*this);\n        }\n    };\n} //\
     \ namespace suisen\n\n\n#line 5 \"library/linear_algebra/hafnian.hpp\"\n\nnamespace\
     \ suisen {\n    template <typename T, typename U = T, std::enable_if_t<std::is_constructible_v<T,\
-    \ U>, std::nullptr_t> = nullptr>\n    T hafnian(const std::vector<std::vector<U>>\
-    \ &mat) {\n        const int n = mat.size();\n        assert(n % 2 == 0);\n\n\
-    \        using ZetaSPS = typename SPS<T>::ZetaSPS;\n\n        std::vector P(n,\
-    \ std::vector<ZetaSPS>(n));\n        for (int i = 0; i < n; ++i) for (int j =\
-    \ 0; j < i; ++j) {\n            P[i][j] = SPS<T>{ mat[i][j] }.zeta();\n      \
-    \      assert(mat[i][j] == mat[j][i]);\n        }\n        ZetaSPS h = SPS<T>{\
+    \ U>, std::nullptr_t> = nullptr>\n    T hafnian(const std::vector<std::vector<U>>&\
+    \ mat) {\n        const int n = mat.size();\n        assert(n % 2 == 0);\n\n \
+    \       using ZetaSPS = typename SetPowerSeries<T>::ZetaSPS;\n\n        std::vector\
+    \ P(n, std::vector<ZetaSPS>(n));\n        for (int i = 0; i < n; ++i) for (int\
+    \ j = 0; j < i; ++j) {\n            P[i][j] = SetPowerSeries<T>{ mat[i][j] }.zeta();\n\
+    \            assert(mat[i][j] == mat[j][i]);\n        }\n        ZetaSPS h = SetPowerSeries<T>{\
     \ 1 }.zeta();\n        for (int i = 0; i < n / 2 - 1; ++i) {\n            const\
     \ int lv = n - 2 * (i + 1), rv = lv + 1;\n\n            h.concat(h * P[rv][lv]);\n\
     \n            std::vector<ZetaSPS> zPlr(lv);\n            for (int k = 0; k <\
@@ -465,8 +484,8 @@ data:
     \            for (int j = 0; j < lv; ++j) for (int k = 0; k < j; ++k) {\n    \
     \            P[j][k].concat((P[lv][j] + P[lv][k]) * (P[rv][j] + P[rv][k]) - zPlr[j]\
     \ - zPlr[k]);\n            }\n            P.pop_back(), P.pop_back();\n      \
-    \  }\n        SPS<T> f = h.mobius_inplace(), g = P[1][0].mobius_inplace();\n \
-    \       T res = 0;\n        for (int i = 0, siz = h.size(); i < siz; ++i) {\n\
+    \  }\n        SetPowerSeries<T> f = h.mobius_inplace(), g = P[1][0].mobius_inplace();\n\
+    \        T res = 0;\n        for (int i = 0, siz = h.size(); i < siz; ++i) {\n\
     \            res += f[i] * g[siz - i - 1];\n        }\n        return res;\n \
     \   }\n} // namespace suisen\n\n\n#line 8 \"test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n;\n    std::cin\
@@ -481,7 +500,7 @@ data:
     \ << std::endl;\n}"
   dependsOn:
   - library/linear_algebra/hafnian.hpp
-  - library/math/sps.hpp
+  - library/math/set_power_series.hpp
   - library/convolution/subset_convolution.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
@@ -493,8 +512,8 @@ data:
   isVerificationFile: true
   path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-11 13:23:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
 layout: document

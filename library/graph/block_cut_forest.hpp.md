@@ -128,21 +128,20 @@ data:
     \  BlockCutForest(const BiconnectedComponents &bcc)\n            : _edge_comp_num(bcc.edge_component_num()),\
     \ _isolated_vertex_num(bcc.isolated_vertex_num()), _art_num(bcc.articulation_points().size()),\
     \ _node_num(_edge_comp_num + _isolated_vertex_num + _art_num), _g(_node_num),\
-    \ _vertex_num(_node_num) {\n            std::vector<int> art_id(bcc.vertex_num(),\
-    \ -1);\n            int next_id = _edge_comp_num + _isolated_vertex_num;\n   \
-    \         for (int v : bcc.articulation_points()) art_id[v] = next_id++;\n\n \
-    \           std::vector<int> comp_id(bcc.vertex_num(), -1);\n            for (int\
-    \ edge_id = 0; edge_id < bcc.edge_num(); ++edge_id) {\n                const int\
-    \ cid = bcc[edge_id];\n                const auto &[u, v] = bcc.edge(edge_id);\n\
-    \                comp_id[u] = comp_id[v] = cid;\n                if (int vid =\
-    \ art_id[u]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n     \
-    \           if (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
+    \ _vertex_num(_node_num), _comp_id(bcc.vertex_num(), -1) {\n            std::vector<int>\
+    \ art_id(bcc.vertex_num(), -1);\n            int next_id = _edge_comp_num + _isolated_vertex_num;\n\
+    \            for (int v : bcc.articulation_points()) art_id[v] = next_id++;\n\n\
+    \            for (int edge_id = 0; edge_id < bcc.edge_num(); ++edge_id) {\n  \
+    \              const int cid = bcc[edge_id];\n                const auto &[u,\
+    \ v] = bcc.edge(edge_id);\n                _comp_id[u] = _comp_id[v] = cid;\n\
+    \                if (int vid = art_id[u]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
+    \                if (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
     \            }\n            int isolated_vertex_id = _edge_comp_num;\n       \
-    \     for (int v : bcc.isolated_vertices()) {\n                comp_id[v] = isolated_vertex_id++;\n\
+    \     for (int v : bcc.isolated_vertices()) {\n                _comp_id[v] = isolated_vertex_id++;\n\
     \            }\n\n            remove_multiedges(_g);\n\n            for (int v\
     \ = 0; v < bcc.vertex_num(); ++v) {\n                if (int vid = art_id[v];\
-    \ vid < 0) {\n                    ++_vertex_num[comp_id[v]];\n               \
-    \ } else {\n                    _vertex_num[vid] = 1;\n                    for\
+    \ vid < 0) {\n                    ++_vertex_num[_comp_id[v]];\n              \
+    \  } else {\n                    _vertex_num[vid] = 1;\n                    for\
     \ (int cid : _g[vid]) ++_vertex_num[cid];\n                }\n            }\n\
     \        }\n\n        int size() const { return _edge_comp_num + _isolated_vertex_num\
     \ + _art_num; }\n        \n        bool is_articulation_point(int id)    const\
@@ -151,31 +150,33 @@ data:
     \ id)       const { return id >= _edge_comp_num and is_biconnected_component(id);\
     \ }\n\n        const std::vector<int>& operator[](int id) const { return _g[id];\
     \ }\n        std::vector<int>& operator[](int id) { return _g[id]; }\n\n     \
-    \   int vertex_num(int id) const { return _vertex_num[id]; }\n\n    private:\n\
+    \   int vertex_num(int id) const { return _vertex_num[id]; }\n\n        int component_id(int\
+    \ vertex) const {\n            return _comp_id[vertex];\n        }\n\n    private:\n\
     \        int _edge_comp_num;\n        int _isolated_vertex_num;\n        int _art_num;\n\
     \        int _node_num;\n        std::vector<std::vector<int>> _g;\n        std::vector<int>\
-    \ _vertex_num;\n    };\n} // namespace suisen\n\n\n\n"
+    \ _vertex_num;\n        std::vector<int> _comp_id;\n    };\n} // namespace suisen\n\
+    \n\n\n"
   code: "#ifndef SUISEN_BLOCK_CUT_FOREST\n#define SUISEN_BLOCK_CUT_FOREST\n\n#include\
     \ \"library/graph/remove_multiedges.hpp\"\n#include \"library/graph/biconnected_components.hpp\"\
     \n\nnamespace suisen {\n    struct BlockCutForest {\n        BlockCutForest()\
     \ = default;\n        BlockCutForest(const BiconnectedComponents &bcc)\n     \
     \       : _edge_comp_num(bcc.edge_component_num()), _isolated_vertex_num(bcc.isolated_vertex_num()),\
     \ _art_num(bcc.articulation_points().size()), _node_num(_edge_comp_num + _isolated_vertex_num\
-    \ + _art_num), _g(_node_num), _vertex_num(_node_num) {\n            std::vector<int>\
-    \ art_id(bcc.vertex_num(), -1);\n            int next_id = _edge_comp_num + _isolated_vertex_num;\n\
-    \            for (int v : bcc.articulation_points()) art_id[v] = next_id++;\n\n\
-    \            std::vector<int> comp_id(bcc.vertex_num(), -1);\n            for\
-    \ (int edge_id = 0; edge_id < bcc.edge_num(); ++edge_id) {\n                const\
-    \ int cid = bcc[edge_id];\n                const auto &[u, v] = bcc.edge(edge_id);\n\
-    \                comp_id[u] = comp_id[v] = cid;\n                if (int vid =\
-    \ art_id[u]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n     \
-    \           if (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
+    \ + _art_num), _g(_node_num), _vertex_num(_node_num), _comp_id(bcc.vertex_num(),\
+    \ -1) {\n            std::vector<int> art_id(bcc.vertex_num(), -1);\n        \
+    \    int next_id = _edge_comp_num + _isolated_vertex_num;\n            for (int\
+    \ v : bcc.articulation_points()) art_id[v] = next_id++;\n\n            for (int\
+    \ edge_id = 0; edge_id < bcc.edge_num(); ++edge_id) {\n                const int\
+    \ cid = bcc[edge_id];\n                const auto &[u, v] = bcc.edge(edge_id);\n\
+    \                _comp_id[u] = _comp_id[v] = cid;\n                if (int vid\
+    \ = art_id[u]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n   \
+    \             if (int vid = art_id[v]; vid >= 0) _g[vid].push_back(cid), _g[cid].push_back(vid);\n\
     \            }\n            int isolated_vertex_id = _edge_comp_num;\n       \
-    \     for (int v : bcc.isolated_vertices()) {\n                comp_id[v] = isolated_vertex_id++;\n\
+    \     for (int v : bcc.isolated_vertices()) {\n                _comp_id[v] = isolated_vertex_id++;\n\
     \            }\n\n            remove_multiedges(_g);\n\n            for (int v\
     \ = 0; v < bcc.vertex_num(); ++v) {\n                if (int vid = art_id[v];\
-    \ vid < 0) {\n                    ++_vertex_num[comp_id[v]];\n               \
-    \ } else {\n                    _vertex_num[vid] = 1;\n                    for\
+    \ vid < 0) {\n                    ++_vertex_num[_comp_id[v]];\n              \
+    \  } else {\n                    _vertex_num[vid] = 1;\n                    for\
     \ (int cid : _g[vid]) ++_vertex_num[cid];\n                }\n            }\n\
     \        }\n\n        int size() const { return _edge_comp_num + _isolated_vertex_num\
     \ + _art_num; }\n        \n        bool is_articulation_point(int id)    const\
@@ -184,10 +185,12 @@ data:
     \ id)       const { return id >= _edge_comp_num and is_biconnected_component(id);\
     \ }\n\n        const std::vector<int>& operator[](int id) const { return _g[id];\
     \ }\n        std::vector<int>& operator[](int id) { return _g[id]; }\n\n     \
-    \   int vertex_num(int id) const { return _vertex_num[id]; }\n\n    private:\n\
+    \   int vertex_num(int id) const { return _vertex_num[id]; }\n\n        int component_id(int\
+    \ vertex) const {\n            return _comp_id[vertex];\n        }\n\n    private:\n\
     \        int _edge_comp_num;\n        int _isolated_vertex_num;\n        int _art_num;\n\
     \        int _node_num;\n        std::vector<std::vector<int>> _g;\n        std::vector<int>\
-    \ _vertex_num;\n    };\n} // namespace suisen\n\n\n#endif // SUISEN_BLOCK_CUT_FOREST\n"
+    \ _vertex_num;\n        std::vector<int> _comp_id;\n    };\n} // namespace suisen\n\
+    \n\n#endif // SUISEN_BLOCK_CUT_FOREST\n"
   dependsOn:
   - library/graph/remove_multiedges.hpp
   - library/graph/biconnected_components.hpp
@@ -195,7 +198,7 @@ data:
   isVerificationFile: false
   path: library/graph/block_cut_forest.hpp
   requiredBy: []
-  timestamp: '2022-07-16 16:39:50+09:00'
+  timestamp: '2023-05-11 13:20:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/graph/block_cut_forest.hpp

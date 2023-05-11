@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
   _extendedRequiredBy: []
@@ -17,14 +17,14 @@ data:
   bundledCode: "#line 1 \"library/convolution/convolution_large.hpp\"\n\n\n\n#include\
     \ <atcoder/convolution>\n\n#line 1 \"library/convolution/convolution_naive.hpp\"\
     \n\n\n\n#include <vector>\n\nnamespace suisen::internal {\n    template <typename\
-    \ T>\n    std::vector<T> convolution_naive(const std::vector<T>& a, const std::vector<T>&\
-    \ b) {\n        const int n = a.size(), m = b.size();\n        std::vector<T>\
-    \ c(n + m - 1);\n        if (n < m) {\n            for (int j = 0; j < m; j++)\
-    \ for (int i = 0; i < n; i++) c[i + j] += a[i] * b[j];\n        } else {\n   \
-    \         for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j] +=\
-    \ a[i] * b[j];\n        }\n        return c;\n    }\n} // namespace suisen\n\n\
-    \n\n#line 7 \"library/convolution/convolution_large.hpp\"\n\nnamespace suisen\
-    \ {\n    template <typename mint, atcoder::internal::is_static_modint_t<mint>*\
+    \ T, typename R = T>\n    std::vector<R> convolution_naive(const std::vector<T>&\
+    \ a, const std::vector<T>& b) {\n        const int n = a.size(), m = b.size();\n\
+    \        std::vector<R> c(n + m - 1);\n        if (n < m) {\n            for (int\
+    \ j = 0; j < m; j++) for (int i = 0; i < n; i++) c[i + j] += R(a[i]) * b[j];\n\
+    \        } else {\n            for (int i = 0; i < n; i++) for (int j = 0; j <\
+    \ m; j++) c[i + j] += R(a[i]) * b[j];\n        }\n        return c;\n    }\n}\
+    \ // namespace suisen\n\n\n\n#line 7 \"library/convolution/convolution_large.hpp\"\
+    \n\nnamespace suisen {\n    template <typename mint, atcoder::internal::is_static_modint_t<mint>*\
     \ = nullptr>\n    std::vector<mint> convolution_large(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        static constexpr int max_size = (mint::mod()\
     \ - 1) & -(mint::mod() - 1);\n        static constexpr int half_size = max_size\
@@ -85,7 +85,7 @@ data:
   isVerificationFile: false
   path: library/convolution/convolution_large.hpp
   requiredBy: []
-  timestamp: '2022-05-05 17:36:05+09:00'
+  timestamp: '2023-05-11 13:19:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/convolution_large/convolution_large.test.cpp

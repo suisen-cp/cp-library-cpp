@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\
@@ -26,18 +26,18 @@ data:
     \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
     \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
     \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
-    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
-    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n\
+    \ + i][0] : 0;\n        return ys;\n    }\n} // namespace suisen\n\n\n#line 1\
+    \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
+    \nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
+    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
+    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
+    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
+    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
+    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
+    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
+    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -82,8 +82,8 @@ data:
   isVerificationFile: false
   path: library/convolution/polynomial_eval_multipoint_eval.hpp
   requiredBy: []
-  timestamp: '2023-02-16 15:43:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-11 13:37:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/convolution/polynomial_eval_multipoint_eval.hpp

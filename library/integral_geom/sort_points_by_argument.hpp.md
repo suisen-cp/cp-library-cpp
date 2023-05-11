@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/integral_geom/point.hpp
     title: Point
   _extendedRequiredBy: []
@@ -111,8 +111,8 @@ data:
   timestamp: '2022-07-10 19:58:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
   - test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
+  - test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
 documentation_of: library/integral_geom/sort_points_by_argument.hpp
 layout: document
 title: "\u504F\u89D2\u30BD\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19)"

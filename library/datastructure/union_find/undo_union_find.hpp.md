@@ -76,8 +76,8 @@ data:
   path: library/datastructure/union_find/undo_union_find.hpp
   requiredBy:
   - library/datastructure/union_find/undo_union_find_component_sum.hpp
-  - library/algorithm/offline_dynamic_connectivity.hpp
   - library/algorithm/offline_dynamic_connectivity_component_sum.hpp
+  - library/algorithm/offline_dynamic_connectivity.hpp
   timestamp: '2022-06-27 18:51:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/sps/abc253_h.test.cpp
-    title: test/src/math/sps/abc253_h.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/src/math/set_power_series/abc253_h.test.cpp
+    title: test/src/math/set_power_series/abc253_h.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/count_spanning_trees.hpp\"\n\n\n\n\
@@ -151,9 +151,9 @@ data:
   path: library/linear_algebra/count_spanning_trees.hpp
   requiredBy: []
   timestamp: '2022-11-19 18:46:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
 documentation_of: library/linear_algebra/count_spanning_trees.hpp
 layout: document
 title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\u6570\

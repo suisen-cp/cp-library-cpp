@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_2_64.hpp
     title: Convolution $(\mathrm{mod}\ 2 ^ {64})$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
   _extendedRequiredBy: []
@@ -22,14 +22,15 @@ data:
     #include <iostream>\n#line 1 \"library/convolution/convolution_2_64.hpp\"\n\n\n\
     \n#include <atcoder/convolution>\n#line 6 \"library/convolution/convolution_2_64.hpp\"\
     \n\n#line 1 \"library/convolution/convolution_naive.hpp\"\n\n\n\n#include <vector>\n\
-    \nnamespace suisen::internal {\n    template <typename T>\n    std::vector<T>\
-    \ convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {\n    \
-    \    const int n = a.size(), m = b.size();\n        std::vector<T> c(n + m - 1);\n\
-    \        if (n < m) {\n            for (int j = 0; j < m; j++) for (int i = 0;\
-    \ i < n; i++) c[i + j] += a[i] * b[j];\n        } else {\n            for (int\
-    \ i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j] += a[i] * b[j];\n  \
-    \      }\n        return c;\n    }\n} // namespace suisen\n\n\n\n#line 8 \"library/convolution/convolution_2_64.hpp\"\
-    \n\nnamespace suisen {\n    namespace internal::convolution_2_64 {\n        std::vector<unsigned\
+    \nnamespace suisen::internal {\n    template <typename T, typename R = T>\n  \
+    \  std::vector<R> convolution_naive(const std::vector<T>& a, const std::vector<T>&\
+    \ b) {\n        const int n = a.size(), m = b.size();\n        std::vector<R>\
+    \ c(n + m - 1);\n        if (n < m) {\n            for (int j = 0; j < m; j++)\
+    \ for (int i = 0; i < n; i++) c[i + j] += R(a[i]) * b[j];\n        } else {\n\
+    \            for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j]\
+    \ += R(a[i]) * b[j];\n        }\n        return c;\n    }\n} // namespace suisen\n\
+    \n\n\n#line 8 \"library/convolution/convolution_2_64.hpp\"\n\nnamespace suisen\
+    \ {\n    namespace internal::convolution_2_64 {\n        std::vector<unsigned\
     \ long long> convolution_6mod(const std::vector<unsigned long long>& a, const\
     \ std::vector<unsigned long long>& b) {\n            int n = int(a.size()), m\
     \ = int(b.size());\n\n            static constexpr long long MOD1 = 754974721;\
@@ -149,7 +150,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp
   requiredBy: []
-  timestamp: '2022-05-08 18:56:02+09:00'
+  timestamp: '2023-05-11 13:19:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp

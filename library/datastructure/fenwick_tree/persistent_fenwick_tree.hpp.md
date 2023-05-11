@@ -149,8 +149,8 @@ data:
   timestamp: '2022-06-14 00:04:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
   - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/abc253_f.test.cpp
 documentation_of: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
 layout: document
 title: Persistent Fenwick Tree

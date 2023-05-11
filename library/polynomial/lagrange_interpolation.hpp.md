@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/lagrange_interpolation.hpp\"\n\n\n\n\
@@ -42,16 +42,16 @@ data:
     \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
     \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
     \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
-    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 6 \"library/math/product_of_differences.hpp\"\
-    \n\nnamespace suisen {\n    /**\n     * O(N(logN)^2)\n     * return the vector\
-    \ p of length xs.size() s.t. p[i]=\u03A0[j!=i](x[i]-x[j])\n     */\n    template\
-    \ <typename FPSType, typename T>\n    std::vector<typename FPSType::value_type>\
-    \ product_of_differences(const std::vector<T>& xs) {\n        // f(x):=\u03A0\
-    _i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0[j!=i](x-x[j])\n        // => f'(x[i])=\u03A0\
-    [j!=i](x[i]-x[j])\n        const int n = xs.size();\n        std::deque<FPSType>\
-    \ dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], 1 });\n\
-    \        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
+    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n\
+    \ + i][0] : 0;\n        return ys;\n    }\n} // namespace suisen\n\n\n#line 6\
+    \ \"library/math/product_of_differences.hpp\"\n\nnamespace suisen {\n    /**\n\
+    \     * O(N(logN)^2)\n     * return the vector p of length xs.size() s.t. p[i]=\u03A0\
+    [j!=i](x[i]-x[j])\n     */\n    template <typename FPSType, typename T>\n    std::vector<typename\
+    \ FPSType::value_type> product_of_differences(const std::vector<T>& xs) {\n  \
+    \      // f(x):=\u03A0_i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0[j!=i](x-x[j])\n\
+    \        // => f'(x[i])=\u03A0[j!=i](x[i]-x[j])\n        const int n = xs.size();\n\
+    \        std::deque<FPSType> dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{\
+    \ -xs[i], 1 });\n        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
     \            dq.pop_front();\n            auto g = std::move(dq.front());\n  \
     \          dq.pop_front();\n            dq.push_back(f * g);\n        }\n    \
     \    auto f = std::move(dq.front());\n        f.diff_inplace();\n        return\
@@ -134,14 +134,14 @@ data:
   path: library/polynomial/lagrange_interpolation.hpp
   requiredBy:
   - library/math/sum_i^d_r^i.hpp
-  timestamp: '2023-02-16 15:43:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-11 13:37:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
 documentation_of: library/polynomial/lagrange_interpolation.hpp
 layout: document
 title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"

@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
     title: test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
+    title: test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -803,8 +806,9 @@ data:
   timestamp: '2023-02-16 17:36:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
 documentation_of: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
 layout: document
 redirect_from:

@@ -209,8 +209,8 @@ data:
   timestamp: '2022-09-05 23:57:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/tree/point_set_range_contour_sum/dummy.test.cpp
   - test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/src/tree/point_set_range_contour_sum/dummy.test.cpp
 documentation_of: library/tree/point_set_range_contour_sum.hpp
 layout: document
 title: Point Set Range Contour Sum

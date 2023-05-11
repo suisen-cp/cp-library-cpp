@@ -21,7 +21,7 @@ data:
     \ u, int v) {\n            g[u].push_back(v);\n            g[v].push_back(u);\n\
     \        }\n\n        std::vector<int> distance(const std::vector<int>& src) const\
     \ {\n            std::vector<int> dist(n, unreachable);\n            for (int\
-    \ v : dist) dist[v] = 0;\n\n            std::deque<int> dq(src.begin(), src.end());\n\
+    \ v : src) dist[v] = 0;\n\n            std::deque<int> dq(src.begin(), src.end());\n\
     \            while (dq.size()) {\n                int u = dq.front();\n      \
     \          dq.pop_front();\n                for (int v : g[u]) if (dist[v] ==\
     \ unreachable) {\n                    dist[v] = dist[u] + 1;\n               \
@@ -49,7 +49,7 @@ data:
     \ u, int v) {\n            g[u].push_back(v);\n            g[v].push_back(u);\n\
     \        }\n\n        std::vector<int> distance(const std::vector<int>& src) const\
     \ {\n            std::vector<int> dist(n, unreachable);\n            for (int\
-    \ v : dist) dist[v] = 0;\n\n            std::deque<int> dq(src.begin(), src.end());\n\
+    \ v : src) dist[v] = 0;\n\n            std::deque<int> dq(src.begin(), src.end());\n\
     \            while (dq.size()) {\n                int u = dq.front();\n      \
     \          dq.pop_front();\n                for (int v : g[u]) if (dist[v] ==\
     \ unreachable) {\n                    dist[v] = dist[u] + 1;\n               \
@@ -71,7 +71,7 @@ data:
   isVerificationFile: false
   path: library/graph/bfs.hpp
   requiredBy: []
-  timestamp: '2022-11-16 20:35:20+09:00'
+  timestamp: '2023-05-11 13:19:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/bfs_complement/AOJ_2744.test.cpp

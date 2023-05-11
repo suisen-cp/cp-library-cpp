@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation
@@ -474,9 +474,10 @@ data:
     \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
     \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
     \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
-    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 10 \"test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
+    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n\
+    \ + i][0] : 0;\n        return ys;\n    }\n} // namespace suisen\n\n\n#line 10\
+    \ \"test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp\"\n\n\
+    using mint = atcoder::modint998244353;\n\nint main() {\n    suisen::FPS<mint>::set_multiplication([](const\
     \ auto &a, const auto &b) { return atcoder::convolution(a, b); });\n    \n   \
     \ int n, m;\n    std::cin >> n >> m;\n    suisen::FPS<mint> f(n);\n    for (int\
     \ i = 0; i < n; ++i) {\n        int coef;\n        std::cin >> coef;\n       \
@@ -507,8 +508,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2023-02-16 15:43:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-11 13:37:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
 layout: document

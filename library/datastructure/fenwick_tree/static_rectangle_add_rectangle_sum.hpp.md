@@ -182,8 +182,8 @@ data:
   timestamp: '2022-07-02 19:24:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
 documentation_of: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
 layout: document
 title: Static Rectangle Add Rectangle Sum

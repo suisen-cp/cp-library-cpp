@@ -2,50 +2,53 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: library/math/factorial_large.hpp
+    title: library/math/factorial_large.hpp
+  - icon: ':x:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
     title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/multi_point_eval.hpp\"\n\n\n\n#include\
@@ -57,8 +60,8 @@ data:
     \ - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        seg[1] = f %\
     \ seg[1];\n        for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];\n\
     \        std::vector<typename FPSType::value_type> ys(n);\n        for (int i\
-    \ = 0; i < n; ++i) ys[i] = seg[n + i][0];\n        return ys;\n    }\n} // namespace\
-    \ suisen\n\n\n"
+    \ = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n + i][0] : 0;\n        return\
+    \ ys;\n    }\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_MULTI_POINT_EVALUATION\n#define SUISEN_MULTI_POINT_EVALUATION\n\
     \n#include <vector>\n\nnamespace suisen {\n    template <typename FPSType, typename\
     \ T>\n    std::vector<typename FPSType::value_type> multi_point_eval(const FPSType&\
@@ -68,28 +71,29 @@ data:
     \ - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n        seg[1] = f %\
     \ seg[1];\n        for (int i = 2; i < 2 * n; ++i) seg[i] = seg[i / 2] % seg[i];\n\
     \        std::vector<typename FPSType::value_type> ys(n);\n        for (int i\
-    \ = 0; i < n; ++i) ys[i] = seg[n + i][0];\n        return ys;\n    }\n} // namespace\
-    \ suisen\n\n#endif // SUISEN_MULTI_POINT_EVALUATION"
+    \ = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n + i][0] : 0;\n        return\
+    \ ys;\n    }\n} // namespace suisen\n\n#endif // SUISEN_MULTI_POINT_EVALUATION"
   dependsOn: []
   isVerificationFile: false
   path: library/polynomial/multi_point_eval.hpp
   requiredBy:
-  - library/polynomial/lagrange_interpolation.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
+  - library/polynomial/lagrange_interpolation.hpp
   - library/math/product_of_differences.hpp
+  - library/math/factorial_large.hpp
   - library/math/sum_i^d_r^i.hpp
-  timestamp: '2023-02-16 15:43:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-11 13:37:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
+  - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
 documentation_of: library/polynomial/multi_point_eval.hpp
 layout: document
 title: Multi Point Evaluation

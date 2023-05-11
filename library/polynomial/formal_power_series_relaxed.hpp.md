@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/convolution/relaxed_convolution_ntt.hpp
     title: Relaxed Convolution Ntt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
   _extendedRequiredBy: []
@@ -233,11 +233,11 @@ data:
   timestamp: '2023-02-02 02:15:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
 documentation_of: library/polynomial/formal_power_series_relaxed.hpp
 layout: document
 title: Formal Power Series Relaxed

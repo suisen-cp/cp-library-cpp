@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'
@@ -196,11 +196,11 @@ data:
   timestamp: '2022-05-31 16:25:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree.hpp
 layout: document

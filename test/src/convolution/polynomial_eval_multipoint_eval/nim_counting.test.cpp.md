@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\
       \u5909\u63DB (\u4EEE\u79F0)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/transform/walsh_hadamard.hpp
     title: "Walsh Hadamard \u5909\u63DB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_h
@@ -570,14 +570,15 @@ data:
     \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
     \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
     \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
-    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 6 \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint, auto transform, auto transform_inv>\n\
-    \    std::vector<mint> polynomial_eval(std::vector<mint> &&a, const FPS<mint>\
-    \ &f) {\n        transform(a);\n        a = multi_point_eval(f, a);\n        transform_inv(a);\n\
-    \        return a;\n    }\n\n    template <typename mint, auto transform, auto\
-    \ transform_inv>\n    std::vector<mint> polynomial_eval(const std::vector<mint>\
-    \ &a, const FPS<mint> &f) {\n        return polynomial_eval<mint, transform, transform_inv>(std::vector<mint>(a),\
+    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n\
+    \ + i][0] : 0;\n        return ys;\n    }\n} // namespace suisen\n\n\n#line 6\
+    \ \"library/convolution/polynomial_eval_multipoint_eval.hpp\"\n\nnamespace suisen\
+    \ {\n    template <typename mint, auto transform, auto transform_inv>\n    std::vector<mint>\
+    \ polynomial_eval(std::vector<mint> &&a, const FPS<mint> &f) {\n        transform(a);\n\
+    \        a = multi_point_eval(f, a);\n        transform_inv(a);\n        return\
+    \ a;\n    }\n\n    template <typename mint, auto transform, auto transform_inv>\n\
+    \    std::vector<mint> polynomial_eval(const std::vector<mint> &a, const FPS<mint>\
+    \ &f) {\n        return polynomial_eval<mint, transform, transform_inv>(std::vector<mint>(a),\
     \ f);\n    }\n} // namespace suisen\n\n\n#line 10 \"test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp\"\
     \nusing namespace suisen;\n\nusing mint = atcoder::modint998244353;\n\nconstexpr\
     \ int M = 1 << 16;\n\nint main() {\n    FPS<mint>::set_multiplication([](const\
@@ -615,8 +616,8 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2023-02-16 15:43:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-11 13:37:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 layout: document

@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/compose_exp.hpp
     title: Compose Exp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/rational_fps.hpp
     title: Rational Fps
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc154/tasks/arc154_f
@@ -577,15 +577,16 @@ data:
     \n\n\n\n#line 5 \"library/polynomial/rational_fps.hpp\"\n#include <utility>\n\n\
     namespace suisen {\n    template <typename FPSType>\n    struct RationalFPS {\n\
     \        using mint = typename FPSType::value_type;\n        \n        FPSType\
-    \ num, den;\n        RationalFPS(const FPSType& num = { 0 }, const FPSType& den\
-    \ = { 1 }) : num(num), den(den) {}\n        RationalFPS(const std::pair<FPSType,\
-    \ FPSType>& p) : num(p.first), den(p.second) {}\n\n        FPSType to_fps(int\
-    \ n) const {\n            int dlz = 0;\n            while (dlz < den.size() and\
-    \ den[dlz] == 0) ++dlz;\n            int nlz = 0;\n            while (nlz < num.size()\
-    \ and num[nlz] == 0) ++nlz;\n            assert(dlz != den.size());\n        \
-    \    if (nlz == num.size()) {\n                return FPSType(n, mint(0));\n \
-    \           }\n            assert(dlz <= nlz);\n            return ((num >> dlz)\
-    \ * (den >> dlz).inv(n)).cut(n);\n        }\n\n        RationalFPS<FPSType> operator+()\
+    \ num, den;\n        RationalFPS(const mint &v) : RationalFPS(FPSType{ v }) {}\n\
+    \        RationalFPS(const FPSType& num = { 0 }, const FPSType& den = { 1 }) :\
+    \ num(num), den(den) {}\n        RationalFPS(const std::pair<FPSType, FPSType>&\
+    \ p) : num(p.first), den(p.second) {}\n\n        FPSType to_fps(int n) const {\n\
+    \            int dlz = 0;\n            while (dlz < den.size() and den[dlz] ==\
+    \ 0) ++dlz;\n            int nlz = 0;\n            while (nlz < num.size() and\
+    \ num[nlz] == 0) ++nlz;\n            assert(dlz != den.size());\n            if\
+    \ (nlz == num.size()) {\n                return FPSType(n, mint(0));\n       \
+    \     }\n            assert(dlz <= nlz);\n            return ((num >> dlz) * (den\
+    \ >> dlz).inv(n)).cut(n);\n        }\n\n        RationalFPS<FPSType> operator+()\
     \ const { return *this; }\n        RationalFPS<FPSType> operator-() const { return\
     \ { -num, den }; }\n\n        friend RationalFPS<FPSType> operator+(const RationalFPS&\
     \ lhs, const RationalFPS& rhs) {\n            return { lhs.num * rhs.den + lhs.den\
@@ -609,10 +610,12 @@ data:
     \ num *= val, *this; }\n        RationalFPS<FPSType>& operator/=(const mint& val)\
     \ { return den *= val, *this; }\n\n        RationalFPS<FPSType> inv() const {\
     \ return { den, num }; }\n        RationalFPS<FPSType>& inv_inplace() { return\
-    \ std::swap(num, den), * this; }\n\n        FPSType normalize() {\n          \
-    \  auto [q, r] = num.div_mod(den);\n            num = std::move(r);\n        \
-    \    return q;\n        }\n\n        static RationalFPS<FPSType> sum(const std::vector<RationalFPS<FPSType>>&\
-    \ fs) {\n            auto comp = [](const RationalFPS<FPSType>& f, const RationalFPS<FPSType>&\
+    \ std::swap(num, den), * this; }\n\n        void cut(int n) {\n            if\
+    \ (int(num.size()) > n) num.resize(n);\n            if (int(den.size()) > n) den.resize(n);\n\
+    \        }\n\n        FPSType normalize() {\n            auto [q, r] = num.div_mod(den);\n\
+    \            num = std::move(r);\n            return q;\n        }\n\n       \
+    \ static RationalFPS<FPSType> sum(const std::vector<RationalFPS<FPSType>>& fs)\
+    \ {\n            auto comp = [](const RationalFPS<FPSType>& f, const RationalFPS<FPSType>&\
     \ g) {\n                return f.den.size() > g.den.size();\n            };\n\
     \            std::priority_queue<RationalFPS<FPSType>, std::vector<RationalFPS<FPSType>>,\
     \ decltype(comp)> pq{ comp };\n            for (const auto& f : fs) pq.push(f);\n\
@@ -674,8 +677,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/compose_exp/arc154_f.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-11 13:36:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/compose_exp/arc154_f.test.cpp
 layout: document

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
     path: library/transform/chirp_z_transform.hpp
     title: "chirp z-transform (\u8A55\u4FA1\u70B9\u304C\u7B49\u5DEE\u6570\u5217\u3092\
       \u6210\u3059\u5834\u5408\u306E Multipoint Evaluation)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   - icon: ':heavy_check_mark:'
@@ -93,14 +93,15 @@ data:
     \        }\n\n        return g;\n    }\n} // namespace suisen\n\n\n\n#line 1 \"\
     library/convolution/arbitrary_mod_convolution.hpp\"\n\n\n\n#line 6 \"library/convolution/arbitrary_mod_convolution.hpp\"\
     \n\n#line 1 \"library/convolution/convolution_naive.hpp\"\n\n\n\n#line 5 \"library/convolution/convolution_naive.hpp\"\
-    \n\nnamespace suisen::internal {\n    template <typename T>\n    std::vector<T>\
-    \ convolution_naive(const std::vector<T>& a, const std::vector<T>& b) {\n    \
-    \    const int n = a.size(), m = b.size();\n        std::vector<T> c(n + m - 1);\n\
-    \        if (n < m) {\n            for (int j = 0; j < m; j++) for (int i = 0;\
-    \ i < n; i++) c[i + j] += a[i] * b[j];\n        } else {\n            for (int\
-    \ i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j] += a[i] * b[j];\n  \
-    \      }\n        return c;\n    }\n} // namespace suisen\n\n\n\n#line 8 \"library/convolution/arbitrary_mod_convolution.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint, atcoder::internal::is_modint_t<mint>*\
+    \n\nnamespace suisen::internal {\n    template <typename T, typename R = T>\n\
+    \    std::vector<R> convolution_naive(const std::vector<T>& a, const std::vector<T>&\
+    \ b) {\n        const int n = a.size(), m = b.size();\n        std::vector<R>\
+    \ c(n + m - 1);\n        if (n < m) {\n            for (int j = 0; j < m; j++)\
+    \ for (int i = 0; i < n; i++) c[i + j] += R(a[i]) * b[j];\n        } else {\n\
+    \            for (int i = 0; i < n; i++) for (int j = 0; j < m; j++) c[i + j]\
+    \ += R(a[i]) * b[j];\n        }\n        return c;\n    }\n} // namespace suisen\n\
+    \n\n\n#line 8 \"library/convolution/arbitrary_mod_convolution.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename mint, atcoder::internal::is_modint_t<mint>*\
     \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
     \n        if constexpr (atcoder::internal::is_static_modint<mint>::value) {\n\
@@ -126,9 +127,31 @@ data:
     \ x2 = (atcoder::static_modint<MOD2>(c2[i] - x1) * INV_M1_MOD2).val();\n     \
     \       long long x3 = (atcoder::static_modint<MOD3>(c3[i] - x1 - x2 * MOD1) *\
     \ INV_M1M2_MOD3).val();\n            c[i] = x1 + x2 * MOD1 + x3 * m1m2;\n    \
-    \    }\n        return c;\n    }\n} // namespace suisen\n\n\n\n#line 8 \"library/convolution/multi_variate_convolution_circular.hpp\"\
-    \n\n#line 1 \"library/number/deterministic_miller_rabin.hpp\"\n\n\n\n#include\
-    \ <cassert>\n#include <cstdint>\n#include <iterator>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \    }\n        return c;\n    }\n\n    std::vector<__uint128_t> convolution_int(const\
+    \ std::vector<int> &a, const std::vector<int> &b) {\n        int n = int(a.size()),\
+    \ m = int(b.size());\n\n        auto check_nonnegative = [](int e) { return e\
+    \ >= 0; };\n        assert(std::all_of(a.begin(), a.end(), check_nonnegative));\n\
+    \        assert(std::all_of(b.begin(), b.end(), check_nonnegative));\n\n     \
+    \   if (n == 0 or m == 0) return {};\n        if (std::min(n, m) <= 120) return\
+    \ internal::convolution_naive<int, __uint128_t>(a, b);\n\n        static constexpr\
+    \ long long MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2\
+    \ = 167772161;  // 2^25\n        static constexpr long long MOD3 = 469762049;\
+    \  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n        static\
+    \ constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1, MOD2).second;\n\
+    \        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
+    \ MOD3).second;\n\n        auto c1 = atcoder::convolution<MOD1>(a, b);\n     \
+    \   auto c2 = atcoder::convolution<MOD2>(a, b);\n        auto c3 = atcoder::convolution<MOD3>(a,\
+    \ b);\n        std::vector<__uint128_t> c(n + m - 1);\n        for (int i = 0;\
+    \ i < n + m - 1; ++i) {\n            // Garner's Algorithm\n            // X =\
+    \ x1 + x2 * m1 + x3 * m1 * m2\n            // x1 = c1[i], x2 = (c2[i] - x1) /\
+    \ m1 (mod m2), x3 = (c3[i] - x1 - x2 * m1) / m2 (mod m3)\n            int x1 =\
+    \ c1[i];\n            int x2 = (atcoder::static_modint<MOD2>(c2[i] - x1) * INV_M1_MOD2).val();\n\
+    \            int x3 = (atcoder::static_modint<MOD3>(c3[i] - x1 - x2 * MOD1) *\
+    \ INV_M1M2_MOD3).val();\n            c[i] = x1 + x2 * MOD1 + __uint128_t(x3) *\
+    \ M1M2;\n        }\n        return c;\n    }\n} // namespace suisen\n\n\n\n#line\
+    \ 8 \"library/convolution/multi_variate_convolution_circular.hpp\"\n\n#line 1\
+    \ \"library/number/deterministic_miller_rabin.hpp\"\n\n\n\n#include <cassert>\n\
+    #include <cstdint>\n#include <iterator>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
     \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
@@ -950,7 +973,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 02:15:56+09:00'
+  timestamp: '2023-05-11 13:19:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp

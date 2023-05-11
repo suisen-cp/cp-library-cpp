@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/powers.hpp
     title: Powers
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial
@@ -121,16 +121,16 @@ data:
     \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
     \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
     \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i][0];\n       \
-    \ return ys;\n    }\n} // namespace suisen\n\n\n#line 6 \"library/math/product_of_differences.hpp\"\
-    \n\nnamespace suisen {\n    /**\n     * O(N(logN)^2)\n     * return the vector\
-    \ p of length xs.size() s.t. p[i]=\u03A0[j!=i](x[i]-x[j])\n     */\n    template\
-    \ <typename FPSType, typename T>\n    std::vector<typename FPSType::value_type>\
-    \ product_of_differences(const std::vector<T>& xs) {\n        // f(x):=\u03A0\
-    _i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0[j!=i](x-x[j])\n        // => f'(x[i])=\u03A0\
-    [j!=i](x[i]-x[j])\n        const int n = xs.size();\n        std::deque<FPSType>\
-    \ dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{ -xs[i], 1 });\n\
-    \        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
+    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n\
+    \ + i][0] : 0;\n        return ys;\n    }\n} // namespace suisen\n\n\n#line 6\
+    \ \"library/math/product_of_differences.hpp\"\n\nnamespace suisen {\n    /**\n\
+    \     * O(N(logN)^2)\n     * return the vector p of length xs.size() s.t. p[i]=\u03A0\
+    [j!=i](x[i]-x[j])\n     */\n    template <typename FPSType, typename T>\n    std::vector<typename\
+    \ FPSType::value_type> product_of_differences(const std::vector<T>& xs) {\n  \
+    \      // f(x):=\u03A0_i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0[j!=i](x-x[j])\n\
+    \        // => f'(x[i])=\u03A0[j!=i](x[i]-x[j])\n        const int n = xs.size();\n\
+    \        std::deque<FPSType> dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{\
+    \ -xs[i], 1 });\n        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
     \            dq.pop_front();\n            auto g = std::move(dq.front());\n  \
     \          dq.pop_front();\n            dq.push_back(f * g);\n        }\n    \
     \    auto f = std::move(dq.front());\n        f.diff_inplace();\n        return\
@@ -241,8 +241,8 @@ data:
   isVerificationFile: true
   path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2023-02-16 15:43:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-11 13:37:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
 layout: document

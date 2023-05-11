@@ -80,8 +80,8 @@ data:
   timestamp: '2022-07-10 18:49:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
   - test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
+  - test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
   - test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
 documentation_of: library/integral_geom/convex_hull.hpp
 layout: document

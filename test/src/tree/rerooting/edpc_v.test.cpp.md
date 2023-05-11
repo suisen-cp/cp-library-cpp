@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/rerooting.hpp
     title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/dp/tasks/dp_v
@@ -17,72 +17,152 @@ data:
   bundledCode: "#line 1 \"test/src/tree/rerooting/edpc_v.test.cpp\"\n#define PROBLEM\
     \ \"https://atcoder.jp/contests/dp/tasks/dp_v\"\n\n#include <iostream>\n#include\
     \ <atcoder/modint>\n\nusing mint = atcoder::modint;\n\n#line 1 \"library/tree/rerooting.hpp\"\
-    \n\n\n\n#include <vector>\n\nnamespace suisen {\n    template <\n        // type\
-    \ of DP array elements\n        typename dp_value_type,\n        // merge children\
-    \ ((op, dp_value_type) is required to be commutative monoid)\n        dp_value_type(*op)(dp_value_type,\
-    \ dp_value_type),\n        // identity element of op\n        dp_value_type(*e)(),\n\
-    \        // add info as a root of subtree; add_subtree_root(dp[child], child,\
-    \ parent)\n        dp_value_type(*add_subtree_root)(dp_value_type, int, int),\n\
-    \        // type of weights on the edges\n        typename edge_data_type,\n \
-    \       // transition from child to parent using edge weight; trans_to_par(dp[child],\
-    \ child, parent, weight(child, parent))\n        dp_value_type(*trans_to_par)(dp_value_type,\
-    \ int, int, edge_data_type)\n    >\n    struct ReRooting : public std::vector<std::vector<std::pair<int,\
-    \ edge_data_type>>> {\n        using base_type = std::vector<std::vector<std::pair<int,\
-    \ edge_data_type>>>;\n        public:\n            static constexpr int NIL =\
-    \ -1;\n\n            using base_type::base_type;\n\n            void add_edge(int\
-    \ u, int v, const edge_data_type& w) {\n                (*this)[u].emplace_back(v,\
-    \ w);\n                (*this)[v].emplace_back(u, w);\n            }\n\n     \
-    \       const std::vector<dp_value_type>& rerooting(int initial_root = 0) {\n\
-    \                const int n = this->size();\n                dp.resize(n), to_par.resize(n);\n\
-    \                dfs_subtree(initial_root, NIL);\n                dfs(initial_root,\
-    \ NIL, e());\n                return dp;\n            }\n\n        private:\n\
-    \            std::vector<dp_value_type> dp, to_par;\n\n            void dfs_subtree(int\
-    \ u, int p) {\n                dp[u] = e();\n                for (auto [v, w]\
-    \ : (*this)[u]) {\n                    if (v == p) continue;\n               \
-    \     dfs_subtree(v, u);\n                    dp[u] = op(dp[u], to_par[v] = trans_to_par(add_subtree_root(dp[v],\
-    \ v, u), v, u, w));\n                }\n            }\n            void dfs(int\
-    \ u, int p, dp_value_type from_p) {\n                dp[u] = add_subtree_root(dp[u],\
-    \ u, NIL);\n                const int sz = (*this)[u].size();\n              \
-    \  std::vector<dp_value_type> cum_l { e() };\n                cum_l.reserve(sz\
-    \ + 1);\n                for (const auto& [v, _] : (*this)[u]) cum_l.push_back(op(cum_l.back(),\
-    \ v == p ? from_p : to_par[v]));\n                dp_value_type cum_r = e();\n\
-    \                for (int i = sz - 1; i >= 0; --i) {\n                    const\
-    \ auto& [v, w] = (*this)[u][i];\n                    if (v == p) {\n         \
-    \               cum_r = op(from_p, cum_r);\n                    } else {\n   \
-    \                     dp_value_type from_u = trans_to_par(add_subtree_root(op(cum_l[i],\
-    \ cum_r), u, v), u, v, w);\n                        dp[v] = op(dp[v], from_u);\n\
-    \                        dfs(v, u, from_u);\n                        cum_r = op(to_par[v],\
-    \ cum_r);\n                    }\n                }\n            }\n    };\n}\
-    \ // namsepace suisen\n\n\n#line 9 \"test/src/tree/rerooting/edpc_v.test.cpp\"\
-    \nusing suisen::ReRooting;\n\nmint op(mint x, mint y) {\n    return x * y;\n}\n\
-    mint e() {\n    return 1;\n}\nmint add_subtree_root(mint val, int, int) {\n  \
-    \  return val;\n}\nmint trans_to_par(mint val, int, int, std::nullptr_t) {\n \
-    \   return val + 1;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \n\n\n\n#include <cassert>\n#include <tuple>\n#include <vector>\n#include <variant>\n\
+    \nnamespace suisen {\n    namespace internal::rerooting {\n        using void_weight\
+    \ = std::monostate;\n\n        template <typename VertexWeight, typename EdgeWeight>\n\
+    \        struct Rerooting {\n            using vertex_weight = VertexWeight;\n\
+    \            using edge_weight = EdgeWeight;\n    private:\n            using\
+    \ is_vertex_weight_void = std::is_same<vertex_weight, void_weight>;\n        \
+    \    using is_edge_weight_void = std::is_same<edge_weight, void_weight>;\n   \
+    \         static constexpr bool is_vertex_weight_void_v = is_vertex_weight_void::value;\n\
+    \            static constexpr bool is_edge_weight_void_v = is_edge_weight_void::value;\n\
+    \n            template <typename DP, typename AddSubtreeRoot>\n            using\
+    \ is_add_subtree_root = std::conditional_t<\n                std::negation_v<is_vertex_weight_void>,\n\
+    \                std::conditional_t<\n                    std::negation_v<is_edge_weight_void>,\n\
+    \                    std::is_invocable_r<DP, AddSubtreeRoot, DP, vertex_weight,\
+    \ edge_weight>,\n                    std::is_invocable_r<DP, AddSubtreeRoot, DP,\
+    \ vertex_weight>\n                >,\n                std::conditional_t<\n  \
+    \                  std::negation_v<is_edge_weight_void>,\n                   \
+    \ std::is_invocable_r<DP, AddSubtreeRoot, DP, edge_weight>,\n                \
+    \    std::is_invocable_r<DP, AddSubtreeRoot, DP>\n                >\n        \
+    \    >;\n            template <typename DP, typename AddRoot>\n            using\
+    \ is_add_root = std::conditional_t<\n                std::negation_v<is_vertex_weight_void>,\n\
+    \                std::is_invocable_r<DP, AddRoot, DP, vertex_weight>,\n      \
+    \          std::is_invocable_r<DP, AddRoot, DP>\n            >;\n    public:\n\
+    \            Rerooting() : _w{} {}\n            explicit Rerooting(int n) : _w(n)\
+    \ {}\n            explicit Rerooting(const std::vector<vertex_weight>& w) : _w(w)\
+    \ {}\n\n            void reserve(int n) {\n                _w.reserve(n);\n  \
+    \          }\n\n            void add_vertex(const vertex_weight& w) {\n      \
+    \          _w.emplace_back(w);\n            }\n            void add_edge(int u,\
+    \ int v, const edge_weight& w = {}) {\n                const int n = _w.size();\n\
+    \                assert(0 <= u and u < n);\n                assert(0 <= v and\
+    \ v < n);\n                _e.emplace_back(u, v, w);\n            }\n        \
+    \    void set_vertex_weights(const std::vector<vertex_weight>& w) {\n        \
+    \        assert(w.size() == _w.size());\n                _w = w;\n           \
+    \ }\n\n            /**\n             * op               : (T, T) -> T        \
+    \                       // commutative monoid\n             * e              \
+    \  : () -> T                                   // identity\n             * add_subtree_root\
+    \ : (T, vertex_weight, edge_weight) -> T        // add subroot, edge to parent\n\
+    \             * add_root         : (T, vertex_weight) -> T                   \
+    \ // add root\n            */\n            template <typename Op, typename E,\
+    \ typename AddSubtreeRoot, typename AddRoot,\n                typename DP = std::decay_t<std::invoke_result_t<E>>,\n\
+    \                std::enable_if_t<std::conjunction_v<\n                    std::is_invocable_r<DP,\
+    \ Op, DP, DP>,\n                    std::is_invocable_r<DP, E>,\n            \
+    \        is_add_subtree_root<DP, AddSubtreeRoot>,\n                    is_add_root<DP,\
+    \ AddRoot>\n                >, std::nullptr_t> = nullptr\n            >\n    \
+    \        std::vector<DP> run_dp(const Op& op, const E& e, const AddSubtreeRoot&\
+    \ add_subtree_root, const AddRoot& add_root) const {\n                auto add_subtree_root_\
+    \ = [&add_subtree_root](const DP &val, const vertex_weight& vw, const edge_weight&\
+    \ ew) {\n                    if constexpr (std::negation_v<is_vertex_weight_void>)\
+    \ {\n                        if constexpr (std::negation_v<is_edge_weight_void>)\
+    \ {\n                            return add_subtree_root(val, vw, ew);\n     \
+    \                   } else {\n                            return add_subtree_root(val,\
+    \ vw);\n                        }\n                    } else {\n            \
+    \            if constexpr (std::negation_v<is_edge_weight_void>) {\n         \
+    \                   return add_subtree_root(val, ew);\n                      \
+    \  } else {\n                            return add_subtree_root(val);\n     \
+    \                   }\n                    }\n                };\n           \
+    \     auto add_root_ = [&add_root](const DP &val, const vertex_weight& vw) {\n\
+    \                    if constexpr (std::negation_v<is_vertex_weight_void>) {\n\
+    \                        return add_root(val, vw);\n                    } else\
+    \ {\n                        return add_root(val);\n                    }\n  \
+    \              };\n\n                const int n = _w.size();\n\n            \
+    \    GraphCSR g(n, _e);\n\n                std::vector<DP> dp(n, e());\n\n   \
+    \             [dfs = [&, this](auto dfs, int u, int p) -> void {\n           \
+    \         for (const auto& [v, w] : g[u]) if (v != p) {\n                    \
+    \    dfs(dfs, v, u);\n                        dp[u] = op(dp[u], add_subtree_root_(dp[v],\
+    \ _w[v], w));\n                    }\n                }] { dfs(dfs, 0, -1); }();\n\
+    \                dp[0] = add_root_(dp[0], _w[0]);\n\n                [dfs = [&,\
+    \ this](auto dfs, int u, int p, const DP& sum_p) -> void {\n                 \
+    \   auto get_sum = [&](int v) {\n                        return v == p ? sum_p\
+    \ : dp[v];\n                    };\n\n                    const int siz = g[u].size();\n\
+    \                    std::vector<DP> sum_r(siz + 1, e());\n                  \
+    \  for (int i = siz - 1; i >= 0; --i) {\n                        const auto& [v,\
+    \ w] = g[u][i];\n                        sum_r[i] = op(sum_r[i + 1], add_subtree_root_(get_sum(v),\
+    \ _w[v], w));\n                    }\n\n                    DP sum_l = e();\n\
+    \                    for (int i = 0; i < siz; ++i) {\n                       \
+    \ const auto& [v, w] = g[u][i];\n                        DP nxt_sum_l = op(sum_l,\
+    \ add_subtree_root_(get_sum(v), _w[v], w));\n                        if (v !=\
+    \ p) {\n                            DP sum_lr = op(sum_l, sum_r[i + 1]);\n   \
+    \                         DP sum_v = op(dp[v], add_subtree_root_(sum_lr, _w[u],\
+    \ w));\n                            dp[v] = add_root_(sum_v, _w[v]);\n       \
+    \                     dfs(dfs, v, u, sum_lr);\n                        }\n   \
+    \                     sum_l = std::move(nxt_sum_l);\n                    }\n \
+    \               }, &e] { dfs(dfs, 0, -1, e()); }();\n\n                return\
+    \ dp;\n            }\n\n        private:\n            std::vector<vertex_weight>\
+    \ _w;\n            std::vector<std::tuple<int, int, edge_weight>> _e;\n\n    \
+    \        struct GraphCSR {\n                GraphCSR(int n, const std::vector<std::tuple<int,\
+    \ int, edge_weight>>& edges) : _n(n), _m(edges.size()), _edges(2 * _m), _start(_n\
+    \ + 1) {\n                    for (const auto& [u, v, w] : edges) {\n        \
+    \                ++_start[u];\n                        ++_start[v];\n        \
+    \            }\n                    for (int i = 1; i <= _n; ++i) {\n        \
+    \                _start[i] += _start[i - 1];\n                    }\n        \
+    \            for (const auto& [u, v, w] : edges) {\n                        _edges[--_start[u]]\
+    \ = { v, w };\n                        _edges[--_start[v]] = { u, w };\n     \
+    \               }\n                }\n            private:\n                using\
+    \ edge_type = std::pair<int, edge_weight>;\n                using iterator = typename\
+    \ std::vector<edge_type>::const_iterator;\n\n                struct AdjacentListView\
+    \ {\n                    AdjacentListView(const iterator& l, const iterator& r)\
+    \ : _l(l), _r(r) {}\n\n                    int size() const { return _r - _l;\
+    \ }\n\n                    const edge_type& operator[](int i) const { return *(_l\
+    \ + i); }\n\n                    iterator begin() const { return _l; }\n     \
+    \               iterator end() const { return _r; }\n                private:\n\
+    \                    iterator _l, _r;\n                };\n            public:\n\
+    \                AdjacentListView operator[](int u) const {\n                \
+    \    return AdjacentListView(_edges.begin() + _start[u], _edges.begin() + _start[u\
+    \ + 1]);\n                }\n            private:\n                int _n, _m;\n\
+    \                std::vector<std::pair<int, edge_weight>> _edges;\n          \
+    \      std::vector<int> _start;\n            };\n        };\n    }\n    using\
+    \ Rerooting = internal::rerooting::Rerooting<internal::rerooting::void_weight,\
+    \ internal::rerooting::void_weight>;\n    template <typename VertexWeight>\n \
+    \   using RerootingVertexWeighted = internal::rerooting::Rerooting<VertexWeight,\
+    \ internal::rerooting::void_weight>;\n    template <typename EdgeWeight>\n   \
+    \ using RerootingEdgeWeighted = internal::rerooting::Rerooting<internal::rerooting::void_weight,\
+    \ EdgeWeight>;\n    template <typename VertexWeight, typename EdgeWeighted>\n\
+    \    using RerootingWeighted = internal::rerooting::Rerooting<VertexWeight, EdgeWeighted>;\n\
+    } // namsepace suisen\n\n\n#line 9 \"test/src/tree/rerooting/edpc_v.test.cpp\"\
+    \n\nusing DP = std::array<mint, 2>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n\n    int n, m;\n    std::cin >> n >> m;\n\n    mint::set_mod(m);\n\
-    \n    ReRooting<mint, op, e, add_subtree_root, std::nullptr_t, trans_to_par> g(n);\n\
-    \    for (int i = 0; i < n - 1; ++i) {\n        int x, y;\n        std::cin >>\
-    \ x >> y;\n        --x, --y;\n        g.add_edge(x, y, nullptr);\n    }\n\n  \
-    \  for (mint e : g.rerooting()) {\n        std::cout << e.val() << '\\n';\n  \
-    \  }\n    return 0;\n}\n"
+    \n    suisen::Rerooting g(n);\n\n    for (int i = 0; i < n - 1; ++i) {\n     \
+    \   int u, v;\n        std::cin >> u >> v;\n        --u, --v;\n        g.add_edge(u,\
+    \ v);\n    }\n\n    std::vector ans = g.run_dp(\n        [](const DP& x, const\
+    \ DP& y) {\n            return DP{ x[0] * y[0], (x[0] + x[1]) * (y[0] + y[1])\
+    \ - (x[0] * y[0]) };\n        },\n        []() {\n            return DP{ 1, 0\
+    \ };\n        },\n        [](const DP& x) {\n            return DP{ x[0], x[0]\
+    \ + x[1] };\n        },\n        [](const DP& x) {\n            return DP{ x[0],\
+    \ x[0] + x[1] };\n        }\n    );\n\n    for (const DP& v : ans) {\n       \
+    \ std::cout << v[1].val() << '\\n';\n    }\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/dp/tasks/dp_v\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint;\n\n#include\
-    \ \"library/tree/rerooting.hpp\"\nusing suisen::ReRooting;\n\nmint op(mint x,\
-    \ mint y) {\n    return x * y;\n}\nmint e() {\n    return 1;\n}\nmint add_subtree_root(mint\
-    \ val, int, int) {\n    return val;\n}\nmint trans_to_par(mint val, int, int,\
-    \ std::nullptr_t) {\n    return val + 1;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n, m;\n    std::cin >> n >> m;\n\n    mint::set_mod(m);\n\
-    \n    ReRooting<mint, op, e, add_subtree_root, std::nullptr_t, trans_to_par> g(n);\n\
-    \    for (int i = 0; i < n - 1; ++i) {\n        int x, y;\n        std::cin >>\
-    \ x >> y;\n        --x, --y;\n        g.add_edge(x, y, nullptr);\n    }\n\n  \
-    \  for (mint e : g.rerooting()) {\n        std::cout << e.val() << '\\n';\n  \
-    \  }\n    return 0;\n}"
+    \ \"library/tree/rerooting.hpp\"\n\nusing DP = std::array<mint, 2>;\n\nint main()\
+    \ {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n   \
+    \ int n, m;\n    std::cin >> n >> m;\n\n    mint::set_mod(m);\n\n    suisen::Rerooting\
+    \ g(n);\n\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        std::cin\
+    \ >> u >> v;\n        --u, --v;\n        g.add_edge(u, v);\n    }\n\n    std::vector\
+    \ ans = g.run_dp(\n        [](const DP& x, const DP& y) {\n            return\
+    \ DP{ x[0] * y[0], (x[0] + x[1]) * (y[0] + y[1]) - (x[0] * y[0]) };\n        },\n\
+    \        []() {\n            return DP{ 1, 0 };\n        },\n        [](const\
+    \ DP& x) {\n            return DP{ x[0], x[0] + x[1] };\n        },\n        [](const\
+    \ DP& x) {\n            return DP{ x[0], x[0] + x[1] };\n        }\n    );\n\n\
+    \    for (const DP& v : ans) {\n        std::cout << v[1].val() << '\\n';\n  \
+    \  }\n}"
   dependsOn:
   - library/tree/rerooting.hpp
   isVerificationFile: true
   path: test/src/tree/rerooting/edpc_v.test.cpp
   requiredBy: []
-  timestamp: '2021-10-12 21:48:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-11 13:28:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/tree/rerooting/edpc_v.test.cpp
 layout: document

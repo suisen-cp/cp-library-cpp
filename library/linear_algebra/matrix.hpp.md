@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/linear_algebra/characteristic_polynomial.hpp
     title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/linear_algebra/count_spanning_trees.hpp
     title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
       \u6570\u3048\u4E0A\u3052"
@@ -28,12 +28,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/matrix/matrix_product.test.cpp
     title: test/src/linear_algebra/matrix/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/sps/abc253_h.test.cpp
-    title: test/src/math/sps/abc253_h.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/src/math/set_power_series/abc253_h.test.cpp
+    title: test/src/math/set_power_series/abc253_h.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -274,18 +274,18 @@ data:
   isVerificationFile: false
   path: library/linear_algebra/matrix.hpp
   requiredBy:
-  - library/linear_algebra/hessenberg_reduction.hpp
-  - library/linear_algebra/count_spanning_trees.hpp
   - library/linear_algebra/characteristic_polynomial.hpp
+  - library/linear_algebra/count_spanning_trees.hpp
+  - library/linear_algebra/hessenberg_reduction.hpp
   timestamp: '2022-11-19 18:46:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
   - test/src/linear_algebra/matrix/inverse_matrix.test.cpp
+  - test/src/linear_algebra/matrix/matrix_product.test.cpp
   - test/src/linear_algebra/matrix/matrix_det_arbitrary_mod.test.cpp
   - test/src/linear_algebra/matrix/matrix_det.test.cpp
-  - test/src/linear_algebra/matrix/matrix_product.test.cpp
-  - test/src/math/sps/abc253_h.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
 documentation_of: library/linear_algebra/matrix.hpp
 layout: document
 title: Matrix

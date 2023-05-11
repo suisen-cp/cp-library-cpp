@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
-  - icon: ':heavy_check_mark:'
-    path: library/math/array_sps.hpp
-    title: Array Sps
+  - icon: ':x:'
+    path: library/math/array_set_power_series.hpp
+    title: library/math/array_set_power_series.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/array_sps/abc213_g.test.cpp
-    title: test/src/math/array_sps/abc213_g.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/array_sps/abc236_h.test.cpp
-    title: test/src/math/array_sps/abc236_h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/array_sps/abc253_h.test.cpp
-    title: test/src/math/array_sps/abc253_h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/array_sps/abc253_h_2.test.cpp
-    title: test/src/math/array_sps/abc253_h_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/math/array_sps/arc105_f.test.cpp
-    title: test/src/math/array_sps/arc105_f.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/src/math/array_set_power_series/abc213_g.test.cpp
+    title: test/src/math/array_set_power_series/abc213_g.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_set_power_series/abc236_h.test.cpp
+    title: test/src/math/array_set_power_series/abc236_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_set_power_series/abc253_h.test.cpp
+    title: test/src/math/array_set_power_series/abc253_h.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_set_power_series/abc253_h_2.test.cpp
+    title: test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - icon: ':x:'
+    path: test/src/math/array_set_power_series/arc105_f.test.cpp
+    title: test/src/math/array_set_power_series/arc105_f.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/array_fps_naive.hpp\"\n\n\n\n#include\
@@ -347,15 +347,15 @@ data:
   path: library/polynomial/array_fps_naive.hpp
   requiredBy:
   - library/convolution/array_subset_convolution.hpp
-  - library/math/array_sps.hpp
+  - library/math/array_set_power_series.hpp
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/math/array_sps/abc236_h.test.cpp
-  - test/src/math/array_sps/arc105_f.test.cpp
-  - test/src/math/array_sps/abc253_h.test.cpp
-  - test/src/math/array_sps/abc253_h_2.test.cpp
-  - test/src/math/array_sps/abc213_g.test.cpp
+  - test/src/math/array_set_power_series/abc253_h.test.cpp
+  - test/src/math/array_set_power_series/abc236_h.test.cpp
+  - test/src/math/array_set_power_series/abc213_g.test.cpp
+  - test/src/math/array_set_power_series/arc105_f.test.cpp
+  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
 documentation_of: library/polynomial/array_fps_naive.hpp
 layout: document
 title: Array Fps Naive
