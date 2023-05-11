@@ -14,9 +14,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
+    PROBLEM: https://atcoder.jp/contests/arc155/tasks/arc155_b
+    links:
+    - https://atcoder.jp/contests/arc155/tasks/arc155_b
   bundledCode: "#line 1 \"test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp\"\
-    \n\n#include <algorithm>\n#include <iostream>\n\n#line 1 \"library/datastructure/bbst/implicit_treap.hpp\"\
+    \n#define PROBLEM \"https://atcoder.jp/contests/arc155/tasks/arc155_b\"\n\n#include\
+    \ <algorithm>\n#include <iostream>\n\n#line 1 \"library/datastructure/bbst/implicit_treap.hpp\"\
     \n\n\n\n#line 1 \"library/datastructure/bbst/implicit_treap_base.hpp\"\n\n\n\n\
     #line 5 \"library/datastructure/bbst/implicit_treap_base.hpp\"\n#include <cassert>\n\
     #include <cstdint>\n#include <optional>\n#include <string>\n#include <random>\n\
@@ -384,7 +387,7 @@ data:
     \        using internal_node_pointer = node_pointer;\n\n        internal_node_pointer&\
     \ root_node() { return _root; }\n        const internal_node_pointer& root_node()\
     \ const { return _root; }\n        void set_root_node(internal_node_pointer new_root)\
-    \ { root_node() = new_root; }\n    };\n} // namespace suisen\n\n\n\n#line 6 \"\
+    \ { root_node() = new_root; }\n    };\n} // namespace suisen\n\n\n\n#line 7 \"\
     test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp\"\n\nusing Set =\
     \ suisen::DynamicArray<long long>;\n \nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n \n    int q;\n    long long a, b;\n    std::cin\
@@ -401,7 +404,8 @@ data:
     \   ans = std::min(ans, std::abs(*--it - l));\n                }\n           \
     \     std::cout << ans << '\\n';\n            }\n        }\n    }\n    return\
     \ 0;\n}\n"
-  code: "\n#include <algorithm>\n#include <iostream>\n\n#include \"library/datastructure/bbst/implicit_treap.hpp\"\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/arc155/tasks/arc155_b\"\n\n\
+    #include <algorithm>\n#include <iostream>\n\n#include \"library/datastructure/bbst/implicit_treap.hpp\"\
     \n\nusing Set = suisen::DynamicArray<long long>;\n \nint main() {\n    std::ios::sync_with_stdio(false);\n\
     \    std::cin.tie(nullptr);\n \n    int q;\n    long long a, b;\n    std::cin\
     \ >> q >> a >> b;\n \n    Set st = std::vector{ a - b, a + b };\n \n    while\
@@ -423,7 +427,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
   requiredBy: []
-  timestamp: '2023-02-04 08:57:06+09:00'
+  timestamp: '2023-05-11 14:44:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
