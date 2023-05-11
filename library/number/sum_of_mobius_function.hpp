@@ -16,10 +16,10 @@ namespace suisen {
             for (long long p = 2; p < _sz_s; ++p) {
                 if (mpf[p]) continue;
                 mpf[p] = p;
-                dat[p] = -1;
+                mobius[p] = -1;
                 for (long long q = p * 2; q < _sz_s; q += p) {
                     if (not mpf[q]) mpf[q] = p;
-                    dat[q] = q % (p * p) ? -dat[q] : 0;
+                    mobius[q] = q % (p * p) ? -mobius[q] : 0;
                 }
             }
             for (uint32_t i = 1; i < _sz_s; ++i) _dp_s[i] = mobius[i] + _dp_s[i - 1];
