@@ -8,6 +8,8 @@
 
 #include "library/integral_geom/point.hpp"
 
+#include "library/integral_geom/inclusion.hpp"
+
 namespace suisen::integral_geometry {
     // relations between three points X, Y, Z.
     struct ISP {
@@ -17,8 +19,6 @@ namespace suisen::integral_geometry {
         static constexpr int BACK = -2;    // |bbbbbbbbbbbbbbb| Z is in 'd' => ISP = -2
         static constexpr int MIDDLE = 0;   // +---------------+ Z is in 'e' => ISP =  0
     };
-
-    enum class Containment { OUT, ON, IN };
 
     int sgn(coordinate_t x) { return x < 0 ? -1 : x > 0 ? +1 : 0; }
     int compare(coordinate_t x, coordinate_t y) { return sgn(x - y); }
@@ -91,31 +91,31 @@ namespace suisen::integral_geometry {
         return is_parallel(l1, l2) and det(l1.b - l1.a, l2.a - l1.a) == 0;
     }
 
-    Containment contains(const Line& l, const Point& p) {
-        if (l.a.x == l.b.x) return p.x == l.a.x ? Containment::ON : Containment::OUT;
+    Inclusion contains(const Line& l, const Point& p) {
+        if (l.a.x == l.b.x) return p.x == l.a.x ? Inclusion::ON : Inclusion::OUT;
         coordinate_t a = p.x - l.a.x, b = p.y - l.a.y, c = l.b.x - p.x, d = l.b.y - p.y;
-        return b * c == a * d ? Containment::ON : Containment::OUT;
+        return b * c == a * d ? Inclusion::ON : Inclusion::OUT;
     }
-    Containment contains(const Ray& l, const Point& p) {
-        if (contains(Line { l.a, l.b }, p) == Containment::OUT) return Containment::OUT;
+    Inclusion contains(const Ray& l, const Point& p) {
+        if (contains(Line { l.a, l.b }, p) == Inclusion::OUT) return Inclusion::OUT;
         if (l.a.x == l.b.x) {
-            if (l.a.y < l.b.y) return p.y >= l.a.y ? Containment::ON : Containment::OUT;
-            else return p.y <= l.a.y ? Containment::ON : Containment::OUT;
+            if (l.a.y < l.b.y) return p.y >= l.a.y ? Inclusion::ON : Inclusion::OUT;
+            else return p.y <= l.a.y ? Inclusion::ON : Inclusion::OUT;
         } else if (l.a.x < l.b.x) {
-            return p.x >= l.a.x ? Containment::ON : Containment::OUT;
+            return p.x >= l.a.x ? Inclusion::ON : Inclusion::OUT;
         } else {
-            return p.x <= l.a.x ? Containment::ON : Containment::OUT;
+            return p.x <= l.a.x ? Inclusion::ON : Inclusion::OUT;
         }
     }
-    Containment contains(const Segment& l, const Point& p) {
-        if (contains(Line { l.a, l.b }, p) == Containment::OUT) return Containment::OUT;
+    Inclusion contains(const Segment& l, const Point& p) {
+        if (contains(Line { l.a, l.b }, p) == Inclusion::OUT) return Inclusion::OUT;
         if (l.a.x == l.b.x) {
-            if (l.a.y < l.b.y) return p.y >= l.a.y and p.y <= l.b.y ? Containment::ON : Containment::OUT;
-            else return p.y >= l.b.y and p.y <= l.a.y ? Containment::ON : Containment::OUT;
+            if (l.a.y < l.b.y) return p.y >= l.a.y and p.y <= l.b.y ? Inclusion::ON : Inclusion::OUT;
+            else return p.y >= l.b.y and p.y <= l.a.y ? Inclusion::ON : Inclusion::OUT;
         } else if (l.a.x < l.b.x) {
-            return p.x >= l.a.x and p.x <= l.b.x ? Containment::ON : Containment::OUT;
+            return p.x >= l.a.x and p.x <= l.b.x ? Inclusion::ON : Inclusion::OUT;
         } else {
-            return p.x >= l.b.x and p.x <= l.a.x ? Containment::ON : Containment::OUT;
+            return p.x >= l.b.x and p.x <= l.a.x ? Inclusion::ON : Inclusion::OUT;
         }
     }
 
@@ -175,7 +175,7 @@ namespace suisen::integral_geometry {
         return true;
     }
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_3_C
-    Containment contains(const Polygon& poly, const Point& p) {
+    Inclusion contains(const Polygon& poly, const Point& p) {
         bool in = false;
         int sz = poly.size();
         for (int i = 0; i < sz; ++i) {
@@ -184,9 +184,9 @@ namespace suisen::integral_geometry {
             Point a = poly[i] - p, b = poly[j] - p;
             if (a.y > b.y) std::swap(a, b);
             if (a.y <= 0 and b.y > 0 and det(a, b) < 0) in = not in;
-            if (det(a, b) == 0 and dot(a, b) <= 0) return Containment::ON;
+            if (det(a, b) == 0 and dot(a, b) <= 0) return Inclusion::ON;
         }
-        return in ? Containment::IN : Containment::OUT;
+        return in ? Inclusion::IN : Inclusion::OUT;
     }
 
     std::pair<int, int> convex_diameter(const Polygon& convex) {
@@ -230,11 +230,11 @@ namespace suisen::integral_geometry {
         return tangent_num(c1, c2) == 2;
     }
 
-    Containment contains(const Circle& c, const Point& p) {
+    Inclusion contains(const Circle& c, const Point& p) {
         coordinate_t df = square_abs(c.center - p) - c.radius * c.radius;
-        if (df > 0) return Containment::OUT;
-        if (df < 0) return Containment::IN;
-        return Containment::ON;
+        if (df > 0) return Inclusion::OUT;
+        if (df < 0) return Inclusion::IN;
+        return Inclusion::ON;
     }
 } // namespace suisen::integral_geometry
 
