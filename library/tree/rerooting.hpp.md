@@ -12,12 +12,12 @@ data:
   - icon: ':x:'
     path: test/src/tree/rerooting/edpc_v.test.cpp
     title: test/src/tree/rerooting/edpc_v.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/rerooting/tree_path_composite_sum.test.cpp
     title: test/src/tree/rerooting/tree_path_composite_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/rerooting.hpp\"\n\n\n\n#include <cassert>\n\
@@ -255,7 +255,7 @@ data:
   path: library/tree/rerooting.hpp
   requiredBy: []
   timestamp: '2023-05-11 13:24:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/tree/rerooting/edpc_v.test.cpp
   - test/src/tree/rerooting/abc222_f.test.cpp

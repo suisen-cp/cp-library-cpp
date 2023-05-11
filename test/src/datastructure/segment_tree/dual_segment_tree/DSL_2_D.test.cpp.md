@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\u53EF\
       \u63DB\u306A\u5834\u5408)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
@@ -20,7 +20,7 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
   bundledCode: "#line 1 \"test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp\"\
     \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
-    \n\n#include <iostream>\n\n#line 1 \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\
+    \n\n#include <iostream>\n#include <limits>\n\n#line 1 \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\
     \n\n\n\n#line 1 \"library/datastructure/segment_tree/commutative_dual_segment_tree.hpp\"\
     \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n    template\
     \ <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n\
@@ -58,7 +58,7 @@ data:
     \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n    DualSegmentTree(int,\
     \ T)->DualSegmentTree<T, F, mapping, composition, id>;\n\n    template <typename\
     \ T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n    DualSegmentTree(std::vector<T>)->DualSegmentTree<T,\
-    \ F, mapping, composition, id>;\n} // namespace suisen\n\n\n\n#line 6 \"test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp\"\
+    \ F, mapping, composition, id>;\n} // namespace suisen\n\n\n\n#line 7 \"test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp\"\
     \nusing suisen::DualSegmentTree;\n\nint mapping(int f, int x) {\n    return f\
     \ < 0 ? x : f;\n}\nint composition(int f, int g) {\n    return f < 0 ? g : f;\n\
     }\nint id() {\n    return -1;\n}\n\nint main() {\n    int n, q;\n    std::cin\
@@ -69,7 +69,7 @@ data:
     \ i;\n            std::cin >> i;\n            std::cout << seg[i] << '\\n';\n\
     \        }\n    }\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
-    \n\n#include <iostream>\n\n#include \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\
+    \n\n#include <iostream>\n#include <limits>\n\n#include \"library/datastructure/segment_tree/dual_segment_tree.hpp\"\
     \nusing suisen::DualSegmentTree;\n\nint mapping(int f, int x) {\n    return f\
     \ < 0 ? x : f;\n}\nint composition(int f, int g) {\n    return f < 0 ? g : f;\n\
     }\nint id() {\n    return -1;\n}\n\nint main() {\n    int n, q;\n    std::cin\
@@ -85,8 +85,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 10:47:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-11 14:24:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
 layout: document

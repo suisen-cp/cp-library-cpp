@@ -5,19 +5,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/sequence/binomial_coefficient.hpp
     title: Binomial Coefficient
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/util/step_sum.hpp
     title: library/util/step_sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
     title: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/util/step_sum/dummy.test.cpp
     title: test/src/util/step_sum/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/barrett_reduction.hpp\"\n\n\n\n#include <array>\n\
@@ -59,7 +59,7 @@ data:
   - library/sequence/binomial_coefficient.hpp
   - library/util/step_sum.hpp
   timestamp: '2023-05-11 13:33:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
   - test/src/util/step_sum/dummy.test.cpp

@@ -314,14 +314,14 @@ data:
       title: Interval Heap
   - name: library/datastructure/segment_tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\
         \u53EF\u63DB\u306A\u5834\u5408)"
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/compressed_segment_tree.hpp
       title: "\u4EFB\u610F\u6B21\u5143 Segment Tree"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -674,7 +674,7 @@ data:
       title: Util
   - name: library/number
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/barrett_reduction.hpp
       title: Barrett Reduction
     - icon: ':heavy_check_mark:'
@@ -1012,7 +1012,7 @@ data:
     - icon: ':warning:'
       path: library/tree/range_contour_sum_invertible.hpp
       title: Range Contour Sum Invertible
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/tree/rerooting.hpp
       title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
     - icon: ':x:'
@@ -1080,7 +1080,7 @@ data:
       path: library/util/run_length_encoder.hpp
       title: "Run Length Encoder (\u30E9\u30F3\u30EC\u30F3\u30AF\u30B9\u5727\u7E2E\
         )"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/util/step_sum.hpp
       title: library/util/step_sum.hpp
     - icon: ':warning:'
@@ -1500,7 +1500,7 @@ data:
       title: test/src/datastructure/segment_tree/compressed_segment_tree/abc266_h_2.test.cpp
   - name: test/src/datastructure/segment_tree/dual_segment_tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
       title: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2614,7 +2614,7 @@ data:
     - icon: ':x:'
       path: test/src/tree/rerooting/edpc_v.test.cpp
       title: test/src/tree/rerooting/edpc_v.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/tree_path_composite_sum.test.cpp
       title: test/src/tree/rerooting/tree_path_composite_sum.test.cpp
   - name: test/src/tree/rerooting_invertible
@@ -2634,7 +2634,7 @@ data:
       title: test/src/util/coordinate_compressor/dummy.test.cpp
   - name: test/src/util/step_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/step_sum/dummy.test.cpp
       title: test/src/util/step_sum/dummy.test.cpp
   - name: test/src/util/subset_iterator
