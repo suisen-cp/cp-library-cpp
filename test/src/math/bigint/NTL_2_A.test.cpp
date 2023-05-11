@@ -3,13 +3,13 @@
 #include <iostream>
 
 #include "library/math/bigint.hpp"
-using suisen::BigInt;
+using suisen::bigint;
 
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
 
-    BigInt a, b;
+    bigint a, b;
     std::cin >> a >> b;
     std::cout << a + b << std::endl;
     return 0;

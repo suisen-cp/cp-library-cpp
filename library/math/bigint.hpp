@@ -1,197 +1,241 @@
 #ifndef SUISEN_STRING_BIGINT
 #define SUISEN_STRING_BIGINT
 
-#include <atcoder/convolution>
-#include <algorithm>
-#include <cassert>
-#include <iostream>
-#include <vector>
+#include "library/math/unsigned_bigint.hpp"
 
 namespace suisen {
-    struct BigInt {
-        BigInt() : BigInt(0) {}
+    struct bigint {
+        static inline struct { operator bigint() const { return bigint{ unsigned_bigint::ZERO }; }; } const ZERO{};
+        static inline struct { operator bigint() const { return bigint{ unsigned_bigint::ONE }; }; } const ONE{};
+
+        bigint() : _neg(false), _dat{} {}
+
         template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-        BigInt(T v) {
-            if (v < 0) {
-                negative = true;
-                v = -v;
-            } else {
-                negative = false;
-            }
-            for (; v; v /= 10) d.push_back(v % 10);
-            ensure_size(1);
-            fix_sign();
-        }
-        BigInt(const std::string &s) {
-            negative = false;
-            for (auto it = s.rbegin(); it != s.rend(); ++it) {
-                if (*it == '-') {
-                    negative = true;
-                } else {
-                    int v = *it - '0';
-                    assert(0 <= v and v <= 9);
-                    d.push_back(v);
+        bigint(T v) {
+            _neg = false;
+            if constexpr (std::is_signed_v<T>) {
+                if (v < 0) {
+                    _neg = true;
+                    v = -v;
                 }
             }
-            ensure_size(1);
-            fix_sign();
+            _dat = unsigned_bigint(v);
         }
-
-        void swap(BigInt &other) { d.swap(other.d), std::swap(negative, other.negative); }
-
-        friend int compare_abs(const BigInt &lhs, const BigInt &rhs) {
-            if (lhs.d.size() != rhs.d.size()) return lhs.d.size() < rhs.d.size() ? -1 : +1;
-            for (size_t i = lhs.d.size(); i --> 0;) {
-                if (lhs.d[i] != rhs.d[i]) return lhs.d[i] < rhs.d[i] ? -1 : +1;
+        bigint(const std::string& s) {
+            if (s.front() == '-') {
+                _neg = true;
+                _dat = unsigned_bigint(s.substr(1));
+                fix_sign();
+            } else {
+                _neg = false;
+                _dat = unsigned_bigint(s);
             }
-            return 0;
         }
-        friend int compare(const BigInt &lhs, const BigInt &rhs) {
-            if (lhs.negative != rhs.negative) return lhs.negative ? -1 : +1;
-            int res = compare_abs(lhs, rhs);
-            return lhs.negative ? -res : +res;
+        bigint(const char* s) : bigint(std::string(s)) {}
+
+        bigint(const unsigned_bigint& dat) : _neg(false), _dat(dat) {}
+        bigint(unsigned_bigint&& dat) : _neg(false), _dat(std::move(dat)) {}
+
+        operator bool() const {
+            return bool(_dat);
         }
-        friend bool operator< (const BigInt &lhs, const BigInt &rhs) { return compare(lhs, rhs) <  0; }
-        friend bool operator<=(const BigInt &lhs, const BigInt &rhs) { return compare(lhs, rhs) <= 0; }
-        friend bool operator> (const BigInt &lhs, const BigInt &rhs) { return compare(lhs, rhs) >  0; }
-        friend bool operator>=(const BigInt &lhs, const BigInt &rhs) { return compare(lhs, rhs) >= 0; }
-        friend bool operator==(const BigInt &lhs, const BigInt &rhs) { return compare(lhs, rhs) == 0; }
-        friend bool operator!=(const BigInt &lhs, const BigInt &rhs) { return compare(lhs, rhs) != 0; }
 
-        operator bool() const { return d != std::vector<int>{ 0 }; }
+        friend bool operator<(const bigint& a, const bigint& b) {
+            if (a._neg xor b._neg) {
+                return a._neg;
+            } else if (a._neg) {
+                return a._dat > b._dat;
+            } else {
+                return a._dat < b._dat;
+            }
+        }
+        friend bool operator<=(const bigint& a, const bigint& b) {
+            return not (b < a);
+        }
+        friend bool operator>(const bigint& a, const bigint& b) {
+            return b < a;
+        }
+        friend bool operator>=(const bigint& a, const bigint& b) {
+            return not (a < b);
+        }
 
-        BigInt operator+() const {
+        friend bigint& operator<<=(bigint& a, int shamt) {
+            a._dat <<= shamt;
+            return a;
+        }
+        friend bigint operator<<(bigint a, int shamt) {
+            a <<= shamt;
+            return a;
+        }
+        friend bigint& operator>>=(bigint& a, int shamt) {
+            a._dat >>= shamt;
+            a.fix_sign();
+            return a;
+        }
+        friend bigint operator>>(bigint a, int shamt) {
+            a >>= shamt;
+            a.fix_sign();
+            return a;
+        }
+
+        bigint operator+() const {
             return *this;
         }
-        BigInt operator-() const {
-            BigInt res = *this;
-            res.negative = not res.negative;
-            res.fix_sign();
-            return res;
+        bigint operator-() const {
+            return bigint(_dat, not _neg);
         }
 
-        friend BigInt operator+(const BigInt &lhs, const BigInt &rhs) {
-            if (not rhs) return lhs;
-            if (lhs.negative == rhs.negative) {
-                BigInt res = BigInt::add_unsigned(lhs.d, rhs.d);
-                res.negative = lhs.negative;
-                res.fix_sign();
-                return res;
+        bigint& operator++() {
+            if (_neg) {
+                --_dat;
+                fix_sign();
             } else {
-                return lhs - (-rhs);
+                ++_dat;
             }
+            return *this;
         }
-        friend BigInt operator-(const BigInt &lhs, const BigInt &rhs) {
-            if (not rhs) return lhs;
-            if (lhs.negative == rhs.negative) {
-                int c = compare_abs(lhs, rhs);
-                BigInt res;
-                if (c >= 0) {
-                    res = BigInt::sub_unsigned(lhs.d, rhs.d);
+        bigint operator++(int) {
+            bigint res = *this;
+            ++*this;
+            return res;
+        }
+        bigint& operator--() {
+            if (_neg) {
+                ++_dat;
+            } else if (_dat) {
+                --_dat;
+            } else {
+                _neg = true;
+                _dat = unsigned_bigint::ONE;
+            }
+            return *this;
+        }
+        bigint operator--(int) {
+            bigint res = *this;
+            --*this;
+            return res;
+        }
+        friend bigint& operator+=(bigint& a, const bigint& b) {
+            if (a._neg xor b._neg) {
+                if (a._dat >= b._dat) {
+                    a._dat -= b._dat;
                 } else {
-                    res = BigInt::sub_unsigned(rhs.d, lhs.d);
-                    res.negative = not res.negative;
+                    a._dat = b._dat - a._dat;
+                    a._neg = not a._neg;
                 }
-                if (lhs.negative) res.negative = not res.negative;
-                res.fix_sign();
-                return res;
+                a.fix_sign();
             } else {
-                return lhs + (-rhs);
+                a._dat += b._dat;
+            }
+            return a;
+        }
+        friend bigint operator+(const bigint& a, const bigint& b) {
+            bigint c = a;
+            c += b;
+            return c;
+        }
+        friend bigint& operator-=(bigint& a, const bigint& b) {
+            if (a._neg xor b._neg) {
+                a._dat += b._dat;
+            } else {
+                if (a._dat >= b._dat) {
+                    a._dat -= b._dat;
+                } else {
+                    a._dat = b._dat - a._dat;
+                    a._neg = not a._neg;
+                }
+                a.fix_sign();
+            }
+            return a;
+        }
+        friend bigint operator-(const bigint& a, const bigint& b) {
+            bigint c = a;
+            c -= b;
+            return c;
+        }
+        friend bigint& operator*=(bigint& a, const bigint& b) {
+            return a = a * b;
+        }
+        friend bigint operator*(const bigint& a, const bigint& b) {
+            return bigint(a._dat * b._dat, a._neg xor b._neg);
+        }
+
+        static std::pair<bigint, bigint> divmod(bigint a, bigint b) {
+            auto [q, r] = unsigned_bigint::divmod(a._dat, b._dat);
+            return { bigint(std::move(q), a._neg xor b._neg), bigint(std::move(r), a._neg) };
+        }
+        friend bigint& operator/=(bigint& a, const bigint& b) {
+            return a = a / b;
+        }
+        friend bigint operator/(const bigint& a, const bigint& b) {
+            return divmod(a, b).first;
+        }
+        friend bigint& operator%=(bigint& a, const bigint& b) {
+            return a = a % b;
+        }
+        friend bigint operator%(const bigint& a, const bigint& b) {
+            return divmod(a, b).second;
+        }
+
+#define CAST_PRIMITIVE(type)                \
+        operator type() const {             \
+            type res = _dat;                \
+            return _neg ? -res : res;       \
+        }                                   \
+
+        CAST_PRIMITIVE(unsigned int)
+        CAST_PRIMITIVE(unsigned long)
+        CAST_PRIMITIVE(unsigned long long)
+        CAST_PRIMITIVE(__uint128_t)
+        CAST_PRIMITIVE(float)
+        CAST_PRIMITIVE(double)
+        CAST_PRIMITIVE(long double)
+#undef CAST_PRIMITIVE
+
+#define CAST_SIGNED_INT(type)                                       \
+        operator type() const {                                     \
+            return static_cast<std::make_unsigned_t<type>>(*this);  \
+        }                                                           \
+
+        CAST_SIGNED_INT(int)
+        CAST_SIGNED_INT(long)
+        CAST_SIGNED_INT(long long)
+#undef CAST_SIGNED_INT
+
+        operator __int128_t() const {
+            return static_cast<__uint128_t>(*this);
+        }
+
+        operator unsigned_bigint() const {
+            assert(not _neg);
+            return _dat;
+        }
+
+        operator std::string() const {
+            if (_neg) {
+                return '-' + std::string(_dat);
+            } else {
+                return std::string(_dat);
             }
         }
-        friend BigInt operator*(const BigInt &lhs, const BigInt &rhs) {
-            BigInt res(atcoder::convolution<998244353>(lhs.d, rhs.d));
-            res.fix_carry();
-            res.cut_leading_zeros();
-            res.negative = lhs.negative ^ rhs.negative;
-            res.fix_sign();
-            return res;
-        }
 
-        BigInt& operator+=(const BigInt &rhs) { return *this = *this + rhs; }
-        BigInt& operator-=(const BigInt &rhs) { return *this = *this - rhs; }
-        BigInt& operator*=(const BigInt &rhs) { return *this = *this * rhs; }
-
-        BigInt& operator++() { return *this += BigInt(1); }
-        BigInt& operator--() { return *this -= BigInt(1); }
-        BigInt operator++(int) { return std::exchange(*this, *this + BigInt(1)); }
-        BigInt operator--(int) { return std::exchange(*this, *this - BigInt(1)); }
-
-        BigInt& muleq_pow_of_10(size_t shamt) {
-            if (*this) d.insert(d.begin(), shamt, 0);
-            return *this;
-        }
-        BigInt mul_pow_of_10(size_t shamt) {
-            return BigInt(*this).muleq_pow_of_10(shamt);
-        }
-        BigInt& diveq_pow_of_10(size_t shamt) {
-            d.erase(d.begin(), d.begin() + std::min(d.size() - 1, shamt));
-            fix_sign();
-            return *this;
-        }
-        BigInt div_pow_of_10(size_t shamt) {
-            return BigInt(*this).diveq_pow_of_10(shamt);
-        }
-
-        friend std::ostream& operator<<(std::ostream &out, const BigInt &v) {
-            if (v.negative) out << '-';
-            for (auto it = v.d.rbegin(); it != v.d.rend(); ++it) out << *it;
-            return out;
-        }
-        friend std::istream& operator>>(std::istream &in, BigInt &v) {
+        friend std::istream& operator>>(std::istream& in, bigint& v) {
             std::string s;
-            in >> s;
-            v = BigInt(std::move(s));
+            in >> s, v = s;
             return in;
         }
-
-        const std::vector<int>& digits() const {
-            return d;
+        friend std::ostream& operator<<(std::ostream& out, const bigint& v) {
+            return out << std::string(v);
         }
-
     private:
-        bool negative;
-        std::vector<int> d;
+        bigint(const unsigned_bigint& dat, bool neg) : _neg(neg), _dat(dat) { fix_sign(); }
+        bigint(unsigned_bigint&& dat, bool neg) : _neg(neg), _dat(std::move(dat)) { fix_sign(); }
 
-        BigInt(std::vector<int> &&d) : negative(false), d(std::move(d)) {}
-        BigInt(const std::vector<int> &d) : negative(false), d(d) {}
-        BigInt(std::vector<int>::const_iterator start, std::vector<int>::const_iterator last) : negative(false), d(start, last) {}
-
-        BigInt substr(size_t l, size_t r) const { return BigInt(d.begin() + l, d.begin() + r); }
-
-        void ensure_size(size_t n) { if (d.size() < n) d.resize(n, 0); }
-
-        void cut_leading_zeros() { while (d.size() > 1 and d.back() == 0) d.pop_back(); }
+        bool _neg;
+        unsigned_bigint _dat;
 
         void fix_sign() {
-            if (not *this) negative = false;
-        }
-
-        void fix_carry() {
-            int carry = 0;
-            for (size_t i = 0; i < d.size(); ++i) {
-                d[i] += carry;
-                int q = d[i] / 10, r = d[i] % 10;
-                if (r < 0) --q, r += 10;
-                carry = q, d[i] = r;
-            }
-            for (; carry; carry /= 10) d.push_back(carry % 10);
-            cut_leading_zeros();
-        }
-
-        static BigInt add_unsigned(std::vector<int> lhs, const std::vector<int> &rhs) {
-            if (lhs.size() < rhs.size()) return add_unsigned(rhs, lhs);
-            for (size_t i = 0; i < rhs.size(); ++i) lhs[i] += rhs[i];
-            BigInt res(lhs);
-            res.fix_carry();
-            return res;
-        }
-        static BigInt sub_unsigned(std::vector<int> lhs, const std::vector<int> &rhs) {
-            assert(lhs.size() >= rhs.size());
-            for (size_t i = 0; i < rhs.size(); ++i) lhs[i] -= rhs[i];
-            BigInt res(lhs);
-            res.fix_carry();
-            return res;
+            if (_neg and not _dat) _neg = false;
         }
     };
 } // namespace suisen
