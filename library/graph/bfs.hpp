@@ -26,7 +26,7 @@ namespace suisen {
 
         std::vector<int> distance(const std::vector<int>& src) const {
             std::vector<int> dist(n, unreachable);
-            for (int v : dist) dist[v] = 0;
+            for (int v : src) dist[v] = 0;
 
             std::deque<int> dq(src.begin(), src.end());
             while (dq.size()) {
