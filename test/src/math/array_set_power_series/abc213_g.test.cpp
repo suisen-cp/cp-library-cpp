@@ -5,7 +5,7 @@
 
 using mint = atcoder::modint998244353;
 
-#include "library/math/array_sps.hpp"
+#include "library/math/array_set_power_series.hpp"
 
 using namespace suisen;
 
@@ -20,16 +20,16 @@ int main() {
         c[(1 << u) | (1 << v)] = 1;
     }
     suisen::subset_transform::zeta(c);
-    suisen::ArraySPS<mint, 18> g(n);
+    suisen::ArraySetPowerSeries<mint, 18> g(n);
     for (int i = 0; i < 1 << n; ++i) {
         g[i] = mint(2).pow(c[i]);
     }
 
-    assert(g.inv() * g == (suisen::ArraySPS<mint, 18>::one(n)));
+    assert(g.inv() * g == (suisen::ArraySetPowerSeries<mint, 18>::one(n)));
 
     auto f = g.log();
     assert(g == f.exp());
-    
+
     std::vector<mint> ans(n, 0);
     int full = (1 << n) - 1;
     for (int i = 1; i < 1 << n; i += 2) {

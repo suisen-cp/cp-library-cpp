@@ -6,12 +6,12 @@
 using mint = atcoder::modint998244353;
 
 #include "library/math/factorial.hpp"
-#include "library/math/sps.hpp"
+#include "library/math/array_set_power_series.hpp"
 
 int main() {
     int n, m;
     std::cin >> n >> m;
- 
+
     std::vector g(n, std::vector<int>(n, 0));
 
     for (int i = 0; i < m; ++i) {
@@ -20,8 +20,8 @@ int main() {
         --u, --v;
         ++g[u][v], ++g[v][u];
     }
- 
-    suisen::SPS<mint> f(0);
+
+    suisen::ArraySetPowerSeries<mint, 15> f(0);
     for (int u = 0; u < n; ++u) {
         std::vector<mint> e(1 << u);
         for (int v = 0; v < u; ++v) e[1 << v] = g[u][v];
@@ -37,7 +37,7 @@ int main() {
     const auto f6 = F.pow(6).mobius();
     const auto f7 = F.pow(7).mobius();
 
-    auto prod = [&](const auto &a, const auto &b) {
+    auto prod = [&](const auto& a, const auto& b) {
         mint ans = 0;
         int mask = (1 << n) - 1;
         for (int s = 0; s < 1 << n; ++s) ans += a[s] * b[~s & mask];
@@ -74,13 +74,13 @@ int main() {
         }
         assert(false);
     };
-    
+
     suisen::factorial<mint> fac(n);
     std::vector<mint> ans;
     for (int k = 1; k <= n - 1; ++k) {
         mint ans = fac.fac(k) * fac.fac_inv(n - k) * calc(n - k) / mint(m).pow(k);
         std::cout << ans.val() << std::endl;
     }
- 
+
     return 0;
 }

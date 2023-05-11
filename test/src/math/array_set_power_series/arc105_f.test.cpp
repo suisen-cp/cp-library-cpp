@@ -5,8 +5,7 @@
 
 using mint = atcoder::modint998244353;
 
-#include "library/math/sps.hpp"
-#include "library/transform/subset.hpp"
+#include "library/math/array_set_power_series.hpp"
 
 using namespace suisen;
 
@@ -24,18 +23,18 @@ int main() {
     mint inv_2 = mint(2).inv();
     std::vector<mint> pow_2(m + 1, 0), pow_inv_2(m + 1, 0);
     pow_2[0] = pow_inv_2[0] = 1;
-    for (int i = 1; i <= m ;++i) {
+    for (int i = 1; i <= m;++i) {
         pow_inv_2[i] = pow_inv_2[i - 1] * inv_2;
         pow_2[i] = pow_2[i - 1] * 2;
     }
-    SPS<mint> p(n);
+    ArraySetPowerSeries<mint, 18> p(n);
     for (int i = 0; i < 1 << n; ++i) {
         p[i] = pow_inv_2[c[i]];
     }
-    SPS<mint> q = p.pow(2);
+    ArraySetPowerSeries<mint, 18> q = p.pow(2);
     for (int i = 0; i < 1 << n; ++i) {
         q[i] *= pow_2[c[i]];
     }
-    std::cout << q.sqrt().log().back().val() << std::endl;
+    std::cout << q.zeta().sqrt_inplace().log_inplace().mobius_inplace().back().val() << std::endl;
     return 0;
 }

@@ -6,7 +6,7 @@
 using mint = atcoder::modint998244353;
 
 #include "library/math/factorial.hpp"
-#include "library/math/array_sps.hpp"
+#include "library/math/array_set_power_series.hpp"
 
 int main() {
     int n, m;
@@ -20,8 +20,8 @@ int main() {
         --u, --v;
         ++g[u][v], ++g[v][u];
     }
- 
-    suisen::ArraySPS<mint, 15> t(0);
+
+    suisen::ArraySetPowerSeries<mint, 15> t(0);
     for (int u = 0; u < n; ++u) {
         std::vector<mint> e(1 << u);
         for (int v = 0; v < u; ++v) e[1 << v] = g[u][v];
@@ -31,7 +31,7 @@ int main() {
         t.concat(g.exp());
     }
 
-    suisen::ArraySPS<suisen::ArrayFPSNaive<mint, 15>, 15> f(n);
+    suisen::ArraySetPowerSeries<suisen::ArrayFPSNaive<mint, 15>, 15> f(n);
     for (int s = 1; s < 1 << n; ++s) {
         f[s][1] = t[s];
     }

@@ -5,7 +5,7 @@
 
 using mint = atcoder::modint998244353;
 
-#include "library/math/sps.hpp"
+#include "library/math/set_power_series.hpp"
 #include "library/transform/subset.hpp"
 
 using namespace suisen;
@@ -21,12 +21,12 @@ int main() {
         c[(1 << u) | (1 << v)] = 1;
     }
     suisen::subset_transform::zeta(c);
-    suisen::SPS<mint> g(n);
+    suisen::SetPowerSeries<mint> g(n);
     for (int i = 0; i < 1 << n; ++i) {
         g[i] = mint(2).pow(c[i]);
     }
 
-    assert(g.inv() * g == suisen::SPS<mint>::one(n));
+    assert(g.inv() * g == suisen::SetPowerSeries<mint>::one(n));
 
     auto f = g.log();
     auto h = f.exp();

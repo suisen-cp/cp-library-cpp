@@ -5,7 +5,7 @@
 
 namespace suisen {
     template <typename T>
-    struct SPS : public std::vector<T> {
+    struct SetPowerSeries: public std::vector<T> {
         using base_type = std::vector<T>;
         using value_type = typename base_type::value_type;
         using size_type = typename base_type::size_type;
@@ -14,18 +14,18 @@ namespace suisen {
 
         using base_type::vector;
 
-        SPS() : SPS(0) {}
-        SPS(size_type n) : SPS(n, value_type{ 0 }) {}
-        SPS(size_type n, const value_type& val) : SPS(std::vector<value_type>(1 << n, val)) {}
-        SPS(const base_type& a) : SPS(base_type(a)) {}
-        SPS(base_type&& a) : base_type(std::move(a)) {
+        SetPowerSeries(): SetPowerSeries(0) {}
+        SetPowerSeries(size_type n): SetPowerSeries(n, value_type{ 0 }) {}
+        SetPowerSeries(size_type n, const value_type& val): SetPowerSeries(std::vector<value_type>(1 << n, val)) {}
+        SetPowerSeries(const base_type& a): SetPowerSeries(base_type(a)) {}
+        SetPowerSeries(base_type&& a): base_type(std::move(a)) {
             const int n = this->size();
             assert(n == (-n & n));
         }
-        SPS(std::initializer_list<value_type> l) : SPS(base_type(l)) {}
+        SetPowerSeries(std::initializer_list<value_type> l): SetPowerSeries(base_type(l)) {}
 
-        static SPS one(int n) {
-            SPS f(n, value_type{ 0 });
+        static SetPowerSeries one(int n) {
+            SetPowerSeries f(n, value_type{ 0 });
             f[0] = value_type{ 1 };
             return f;
         }
@@ -37,73 +37,97 @@ namespace suisen {
             return __builtin_ctz(this->size());
         }
 
-        SPS cut_lower(size_type p) const {
-            return SPS(this->begin(), this->begin() + p);
+        SetPowerSeries cut_lower(size_type p) const {
+            return SetPowerSeries(this->begin(), this->begin() + p);
         }
-        SPS cut_upper(size_type p) const {
-            return SPS(this->begin() + p, this->begin() + p + p);
+        SetPowerSeries cut_upper(size_type p) const {
+            return SetPowerSeries(this->begin() + p, this->begin() + p + p);
         }
 
-        void concat(const SPS& upper) {
+        void concat(const SetPowerSeries& upper) {
             assert(this->size() == upper.size());
             this->insert(this->end(), upper.begin(), upper.end());
         }
 
-        SPS operator+() const {
+        SetPowerSeries operator+() const {
             return *this;
         }
-        SPS operator-() const {
-            SPS res(*this);
+        SetPowerSeries operator-() const {
+            SetPowerSeries res(*this);
             for (auto& e : res) e = -e;
             return res;
         }
-        SPS& operator+=(const SPS& g) {
+        SetPowerSeries& operator+=(const SetPowerSeries& g) {
             for (size_type i = 0; i < g.size(); ++i) (*this)[i] += g[i];
             return *this;
         }
-        SPS& operator-=(const SPS& g) {
+        SetPowerSeries& operator-=(const SetPowerSeries& g) {
             for (size_type i = 0; i < g.size(); ++i) (*this)[i] -= g[i];
             return *this;
         }
-        SPS& operator*=(const SPS& g) {
+        SetPowerSeries& operator*=(const SetPowerSeries& g) {
             return *this = (zeta() *= g).mobius_inplace();
         }
-        SPS& operator*=(const value_type &c) {
+        SetPowerSeries& operator*=(const value_type& c) {
             for (auto& e : *this) e *= c;
             return *this;
         }
-        SPS& operator/=(const value_type &c) {
+        SetPowerSeries& operator/=(const value_type& c) {
             value_type inv_c = ::inv(c);
             for (auto& e : *this) e *= inv_c;
             return *this;
         }
-        friend SPS operator+(SPS f, const SPS& g) { f += g; return f; }
-        friend SPS operator-(SPS f, const SPS& g) { f -= g; return f; }
-        friend SPS operator*(SPS f, const SPS& g) { f *= g; return f; }
-        friend SPS operator*(SPS f, const value_type &c) { f *= c; return f; }
-        friend SPS operator*(const value_type &c, SPS f) { f *= c; return f; }
-        friend SPS operator/(SPS f, const value_type &c) { f /= c; return f; }
+        friend SetPowerSeries operator+(SetPowerSeries f, const SetPowerSeries& g) { f += g; return f; }
+        friend SetPowerSeries operator-(SetPowerSeries f, const SetPowerSeries& g) { f -= g; return f; }
+        friend SetPowerSeries operator*(SetPowerSeries f, const SetPowerSeries& g) { f *= g; return f; }
+        friend SetPowerSeries operator*(SetPowerSeries f, const value_type& c) { f *= c; return f; }
+        friend SetPowerSeries operator*(const value_type& c, SetPowerSeries f) { f *= c; return f; }
+        friend SetPowerSeries operator/(SetPowerSeries f, const value_type& c) { f /= c; return f; }
 
-        SPS inv() {
+        SetPowerSeries inv() {
             return zeta().inv_inplace().mobius_inplace();
         }
-        SPS sqrt() {
+        SetPowerSeries sqrt() {
             return zeta().sqrt_inplace().mobius_inplace();
         }
-        SPS exp() {
+        SetPowerSeries exp() {
             return zeta().exp_inplace().mobius_inplace();
         }
-        SPS log() {
+        SetPowerSeries log() {
             return zeta().log_inplace().mobius_inplace();
         }
-        SPS pow(long long k) {
+        SetPowerSeries pow(long long k) {
             return zeta().pow_inplace(k).mobius_inplace();
         }
 
-        struct ZetaSPS : public std::vector<polynomial_type> {
+        static SetPowerSeries polynomial_composite(std::vector<T> f, const SetPowerSeries& g) {
+            const int n = g.cardinality();
+            std::vector<ZetaSPS> dp(n + 1);
+            for (int k = 0; k <= n; ++k) {
+                T eval_g0 = 0;
+                for (int j = f.size(); j-- > 0;) eval_g0 = eval_g0 * g[0] + f[j];
+                dp[k] = ZetaSPS({ eval_g0 });
+
+                if (const int l = f.size()) {
+                    for (int j = 1; j < l; ++j) f[j - 1] = f[j] * j;
+                    f.pop_back();
+                }
+            }
+            for (int m = 1; m <= n; ++m) {
+                ZetaSPS hi_g = g.cut_upper(1 << (m - 1)).zeta();
+                for (int k = 0; k <= n - m; ++k) {
+                    dp[k].concat(dp[k + 1] * hi_g);
+                }
+                dp.pop_back();
+            }
+            return dp[0].mobius_inplace();
+        }
+
+        struct ZetaSPS: public std::vector<polynomial_type> {
             using base_type = std::vector<polynomial_type>;
+            using base_type::vector;
             ZetaSPS() = default;
-            ZetaSPS(const SPS<value_type>& f) : base_type::vector(ranked_subset_transform::ranked_zeta(f)), _d(f.cardinality()) {}
+            ZetaSPS(const SetPowerSeries<value_type>& f): base_type::vector(ranked_subset_transform::ranked_zeta(f)), _d(f.cardinality()) {}
 
             ZetaSPS operator+() const {
                 return *this;
@@ -116,9 +140,9 @@ namespace suisen {
             friend ZetaSPS operator+(ZetaSPS f, const ZetaSPS& g) { f += g; return f; }
             friend ZetaSPS operator-(ZetaSPS f, const ZetaSPS& g) { f -= g; return f; }
             friend ZetaSPS operator*(ZetaSPS f, const ZetaSPS& g) { f *= g; return f; }
-            friend ZetaSPS operator*(ZetaSPS f, const value_type &c) { f *= c; return f; }
-            friend ZetaSPS operator*(const value_type &c, ZetaSPS f) { f *= c; return f; }
-            friend ZetaSPS operator/(ZetaSPS f, const value_type &c) { f /= c; return f; }
+            friend ZetaSPS operator*(ZetaSPS f, const value_type& c) { f *= c; return f; }
+            friend ZetaSPS operator*(const value_type& c, ZetaSPS f) { f *= c; return f; }
+            friend ZetaSPS operator/(ZetaSPS f, const value_type& c) { f /= c; return f; }
 
             ZetaSPS& operator+=(const ZetaSPS& rhs) {
                 assert(_d == rhs._d);
@@ -177,10 +201,10 @@ namespace suisen {
                 }
                 ++_d;
             }
-            SPS<value_type> mobius_inplace() {
+            SetPowerSeries<value_type> mobius_inplace() {
                 return ranked_subset_transform::deranked_mobius<value_type>(*this);
             }
-            SPS<value_type> mobius() const {
+            SetPowerSeries<value_type> mobius() const {
                 auto rf = ZetaSPS(*this);
                 return ranked_subset_transform::deranked_mobius<value_type>(rf);
             }

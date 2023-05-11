@@ -1,22 +1,22 @@
 #ifndef SUISEN_HAFNIAN
 #define SUISEN_HAFNIAN
 
-#include "library/math/sps.hpp"
+#include "library/math/set_power_series.hpp"
 
 namespace suisen {
     template <typename T, typename U = T, std::enable_if_t<std::is_constructible_v<T, U>, std::nullptr_t> = nullptr>
-    T hafnian(const std::vector<std::vector<U>> &mat) {
+    T hafnian(const std::vector<std::vector<U>>& mat) {
         const int n = mat.size();
         assert(n % 2 == 0);
 
-        using ZetaSPS = typename SPS<T>::ZetaSPS;
+        using ZetaSPS = typename SetPowerSeries<T>::ZetaSPS;
 
         std::vector P(n, std::vector<ZetaSPS>(n));
         for (int i = 0; i < n; ++i) for (int j = 0; j < i; ++j) {
-            P[i][j] = SPS<T>{ mat[i][j] }.zeta();
+            P[i][j] = SetPowerSeries<T>{ mat[i][j] }.zeta();
             assert(mat[i][j] == mat[j][i]);
         }
-        ZetaSPS h = SPS<T>{ 1 }.zeta();
+        ZetaSPS h = SetPowerSeries<T>{ 1 }.zeta();
         for (int i = 0; i < n / 2 - 1; ++i) {
             const int lv = n - 2 * (i + 1), rv = lv + 1;
 
@@ -32,7 +32,7 @@ namespace suisen {
             }
             P.pop_back(), P.pop_back();
         }
-        SPS<T> f = h.mobius_inplace(), g = P[1][0].mobius_inplace();
+        SetPowerSeries<T> f = h.mobius_inplace(), g = P[1][0].mobius_inplace();
         T res = 0;
         for (int i = 0, siz = h.size(); i < siz; ++i) {
             res += f[i] * g[siz - i - 1];

@@ -5,7 +5,7 @@
 #include <atcoder/modint>
 using mint = atcoder::modint998244353;
 
-#include "library/math/array_sps.hpp"
+#include "library/math/set_power_series.hpp"
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -15,7 +15,7 @@ int main() {
     uint64_t m;
     std::cin >> n >> m;
     std::vector<uint64_t> d(n);
-    for (auto &e : d) std::cin >> e;
+    for (auto& e : d) std::cin >> e;
 
     std::vector<mint> h(n + 1);
     mint fac = 1;
@@ -25,8 +25,8 @@ int main() {
     }
 
     std::vector<uint64_t> lcm(1 << n, 1);
- 
-    suisen::ArraySPS<mint, 17> f(n);
+
+    suisen::SetPowerSeries<mint> f(n);
     for (std::size_t s = 1; s < 1U << n; ++s) {
         std::size_t i = __builtin_ctz(s);
         std::size_t t = s ^ (1U << i);

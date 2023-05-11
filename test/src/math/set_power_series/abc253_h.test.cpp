@@ -8,7 +8,7 @@ using mint = atcoder::modint998244353;
 #include "library/util/subset_iterator.hpp"
 #include "library/linear_algebra/count_spanning_trees.hpp"
 #include "library/math/factorial.hpp"
-#include "library/math/sps.hpp"
+#include "library/math/set_power_series.hpp"
 
 int main() {
     int n, m;
@@ -23,7 +23,7 @@ int main() {
 
     suisen::FPSNaive<mint>::set_max_size(n + 1);
 
-    suisen::SPS<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));
+    suisen::SetPowerSeries<suisen::FPSNaive<mint>> f(n, suisen::FPSNaive<mint>(n));
     for (int s = 1; s < 1 << n; ++s) {
         std::vector<int> ids(n, -1);
         int id = 0;
