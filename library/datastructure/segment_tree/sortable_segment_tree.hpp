@@ -627,9 +627,11 @@ namespace suisen {
         };
 
         outer_node_pointer _root;
+        SortableSegmentTree(outer_node_pointer root) : _root(root) {}
     public:
-        SortableSegmentTree() : _root(nullptr) {}
-        SortableSegmentTree(const std::vector<std::pair<key_type, value_type>>& dat) : _root(outer_node::build(dat)) {}
+        SortableSegmentTree() : SortableSegmentTree(nullptr) {}
+        SortableSegmentTree(const std::vector<std::pair<key_type, value_type>>& dat) : SortableSegmentTree(outer_node::build(dat)) {}
+
         ~SortableSegmentTree() {
             outer_node::dealloc_all(_root);
         }
@@ -687,6 +689,16 @@ namespace suisen {
         }
         std::pair<key_type, value_type> pop_front() { erase(0); }
         std::pair<key_type, value_type> pop_back() { erase(size() - 1); }
+
+        SortableSegmentTree split(size_type i) {
+            assert(0 <= i and i <= size());
+            auto [root_l, root_r] = outer_node::split_at(_root, i);
+            _root = root_l;
+            return SortableSegmentTree{ root_r };
+        }
+        void concat(SortableSegmentTree tr) {
+            _root = outer_node::concat(_root, tr->_root);
+        }
 
         value_type prod(size_type l, size_type r) {
             assert(0 <= l and l <= r and r <= size());
