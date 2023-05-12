@@ -13,6 +13,7 @@ namespace suisen {
 
         constexpr ptr32() : ptr(null) {}
         explicit constexpr ptr32(int ptr) : ptr(ptr) {}
+        constexpr ptr32(std::nullptr_t) : ptr(null) {}
 
         object_type& operator*() const { return pool[ptr]; }
         object_type* operator->() const { return &pool[ptr]; }
@@ -50,7 +51,7 @@ namespace suisen {
             pool.clear(), del.clear();
             if (shrink) pool.shrink_to_fit(), del.shrink_to_fit();
         }
-        static void reserve(size_t capacity) {
+        static void reserve(std::size_t capacity) {
             pool.reserve(capacity);
         }
     private:
