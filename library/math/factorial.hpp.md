@@ -54,6 +54,9 @@ data:
   - icon: ':x:'
     path: test/src/math/array_set_power_series/abc253_h_2.test.cpp
     title: test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
+    title: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'
     path: test/src/math/set_power_series/abc253_h.test.cpp
     title: test/src/math/set_power_series/abc253_h.test.cpp
@@ -210,6 +213,7 @@ data:
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/math/set_power_series/abc253_h.test.cpp
   - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/src/math/util/abc240_g.test.cpp

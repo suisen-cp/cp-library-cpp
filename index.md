@@ -254,10 +254,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/red_black_tree_base.hpp
       title: Red Black Tree Base
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/bbst/reversible_implicit_treap.hpp
       title: library/datastructure/bbst/reversible_implicit_treap.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
       title: library/datastructure/bbst/reversible_implicit_treap_base.hpp
     - icon: ':heavy_check_mark:'
@@ -266,7 +266,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
       title: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
       title: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
   - name: library/datastructure/fenwick_tree
@@ -355,6 +355,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree_beats.hpp
       title: Segment Tree Beats
+    - icon: ':heavy_check_mark:'
+      path: library/datastructure/segment_tree/sortable_segment_tree.hpp
+      title: library/datastructure/segment_tree/sortable_segment_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/sparse_lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\
@@ -1070,7 +1073,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/permutation.hpp
       title: Permutation
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/util/pointer_32bit.hpp
       title: library/util/pointer_32bit.hpp
     - icon: ':warning:'
@@ -1089,6 +1092,9 @@ data:
     - icon: ':question:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
+    - icon: ':warning:'
+      path: library/util/sum_count.hpp
+      title: library/util/sum_count.hpp
     - icon: ':heavy_check_mark:'
       path: library/util/timer.hpp
       title: Timer
@@ -1297,7 +1303,7 @@ data:
       title: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
   - name: test/src/datastructure/bbst/reversible_implicit_treap
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
       title: test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1321,7 +1327,7 @@ data:
       title: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/bbst/reversible_implicit_treap_segtree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
       title: test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1595,6 +1601,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+  - name: test/src/datastructure/segment_tree/sortable_segment_tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
+      title: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
   - name: test/src/datastructure/segment_tree/sparse_lazy_segment_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -2054,6 +2065,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/bigint/many_aplusb_128bit.test.cpp
       title: test/src/math/bigint/many_aplusb_128bit.test.cpp
+  - name: test/src/math/factorial
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
+      title: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
   - name: test/src/math/product_of_differences
     pages:
     - icon: ':heavy_check_mark:'
