@@ -9,17 +9,17 @@ data:
     title: library/util/pointer_32bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
+    PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_g
     links:
-    - https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
-  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
-    \n\n#include <iostream>\n\n#line 1 \"library/datastructure/segment_tree/sortable_segment_tree.hpp\"\
+    - https://atcoder.jp/contests/abc237/tasks/abc237_g
+  bundledCode: "#line 1 \"test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp\"\
+    \n#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_g\"\n\n#include\
+    \ <iostream>\n#include <variant>\n\n#line 1 \"library/datastructure/segment_tree/sortable_segment_tree.hpp\"\
     \n\n\n\n#line 1 \"library/util/pointer_32bit.hpp\"\n\n\n\n#include <vector>\n\n\
     namespace suisen {\n    template <typename Object>\n    struct ptr32 {\n     \
     \   static constexpr int null = -1;\n\n        using object_type = Object;\n \
@@ -499,68 +499,44 @@ data:
     \ {\n            std::vector<std::pair<key_type, value_type>> res(size());\n \
     \           auto it = res.begin();\n            foreach([&it](const key_type&\
     \ key, const value_type& val) { *it++ = std::pair{ key, val }; });\n         \
-    \   return res;\n        }\n    };\n} // namespace suisen\n\n\n#line 6 \"test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp\"\
-    \n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\nusing\
-    \ S = std::tuple<mint, mint, mint>;\nS make(mint a, mint b) {\n    return { a,\
-    \ b, b };\n}\nS op(S x, S y) {\n    const auto& [xa, xb, rxb] = x;\n    const\
-    \ auto& [ya, yb, ryb] = y;\n    return { xa * ya, ya * xb + yb, xa * ryb + rxb\
-    \ };\n}\nS e() {\n    return { 1, 0, 0 };\n}\nS toggle(S x) {\n    const auto&\
-    \ [xa, xb, rxb] = x;\n    return { xa, rxb, xb };\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    using SortableSegmentTree = suisen::SortableSegmentTree<S,\
-    \ op, e, toggle>;\n    using size_type = SortableSegmentTree::size_type;\n   \
-    \ using key_type = SortableSegmentTree::key_type;\n\n    int n, q;\n    std::cin\
-    \ >> n >> q;\n\n    std::vector<std::pair<key_type, S>> init(n);\n    for (int\
-    \ i = 0; i < n; ++i) {\n        key_type p;\n        int a, b;\n        std::cin\
-    \ >> p >> a >> b;\n        init[i] = { p, make(a, b) };\n    }\n\n    SortableSegmentTree\
-    \ seg(init);\n    while (q --> 0) {\n        int query_type;\n        std::cin\
-    \ >> query_type;\n        if (query_type == 0) {\n            size_type i;\n \
-    \           key_type p;\n            int a, b;\n            std::cin >> i >> p\
-    \ >> a >> b;\n            seg.set_key_value(i, p, make(a, b));\n        } else\
-    \ if (query_type == 1) {\n            size_type l, r;\n            int x;\n  \
-    \          std::cin >> l >> r >> x;\n            auto [a, b, _] = seg.prod(l,\
-    \ r);\n            std::cout << (a * x + b).val() << '\\n';\n        } else if\
-    \ (query_type == 2) {\n            size_type l, r;\n            std::cin >> l\
-    \ >> r;\n            seg.sort_asc(l, r);\n        } else {\n            size_type\
-    \ l, r;\n            std::cin >> l >> r;\n            seg.sort_dsc(l, r);\n  \
-    \      }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
-    \n\n#include <iostream>\n\n#include \"library/datastructure/segment_tree/sortable_segment_tree.hpp\"\
-    \n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\nusing\
-    \ S = std::tuple<mint, mint, mint>;\nS make(mint a, mint b) {\n    return { a,\
-    \ b, b };\n}\nS op(S x, S y) {\n    const auto& [xa, xb, rxb] = x;\n    const\
-    \ auto& [ya, yb, ryb] = y;\n    return { xa * ya, ya * xb + yb, xa * ryb + rxb\
-    \ };\n}\nS e() {\n    return { 1, 0, 0 };\n}\nS toggle(S x) {\n    const auto&\
-    \ [xa, xb, rxb] = x;\n    return { xa, rxb, xb };\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    using SortableSegmentTree = suisen::SortableSegmentTree<S,\
-    \ op, e, toggle>;\n    using size_type = SortableSegmentTree::size_type;\n   \
-    \ using key_type = SortableSegmentTree::key_type;\n\n    int n, q;\n    std::cin\
-    \ >> n >> q;\n\n    std::vector<std::pair<key_type, S>> init(n);\n    for (int\
-    \ i = 0; i < n; ++i) {\n        key_type p;\n        int a, b;\n        std::cin\
-    \ >> p >> a >> b;\n        init[i] = { p, make(a, b) };\n    }\n\n    SortableSegmentTree\
-    \ seg(init);\n    while (q --> 0) {\n        int query_type;\n        std::cin\
-    \ >> query_type;\n        if (query_type == 0) {\n            size_type i;\n \
-    \           key_type p;\n            int a, b;\n            std::cin >> i >> p\
-    \ >> a >> b;\n            seg.set_key_value(i, p, make(a, b));\n        } else\
-    \ if (query_type == 1) {\n            size_type l, r;\n            int x;\n  \
-    \          std::cin >> l >> r >> x;\n            auto [a, b, _] = seg.prod(l,\
-    \ r);\n            std::cout << (a * x + b).val() << '\\n';\n        } else if\
-    \ (query_type == 2) {\n            size_type l, r;\n            std::cin >> l\
-    \ >> r;\n            seg.sort_asc(l, r);\n        } else {\n            size_type\
-    \ l, r;\n            std::cin >> l >> r;\n            seg.sort_dsc(l, r);\n  \
-    \      }\n    }\n}"
+    \   return res;\n        }\n    };\n} // namespace suisen\n\n\n#line 7 \"test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp\"\
+    \n\nusing S = std::monostate;\nS op(S, S) { return {}; }\nS e() { return {}; }\n\
+    S toggle(S) { return {}; }\n\nusing SortableSegmentTree = suisen::SortableSegmentTree<S,\
+    \ op, e, toggle>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n   \
+    \ std::cin.tie(nullptr);\n\n    int n, q, x;\n    std::cin >> n >> q >> x;\n\n\
+    \    std::vector<std::pair<int, S>> init(n);\n    for (int i = 0; i < n; ++i)\
+    \ {\n        std::cin >> init[i].first;\n    }\n    SortableSegmentTree seg(init);\n\
+    \n    while (q --> 0) {\n        int c, l, r;\n        std::cin >> c >> l >> r;\n\
+    \        --l;\n        if (c == 1) {\n            seg.sort_asc(l, r);\n      \
+    \  } else {\n            seg.sort_dsc(l, r);\n        }\n    }\n    int pos =\
+    \ 1;\n    seg.foreach([&](int key, S) {\n        if (key == x) std::cout << pos\
+    \ << '\\n';\n        ++pos;\n    });\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_g\"\n\n\
+    #include <iostream>\n#include <variant>\n\n#include \"library/datastructure/segment_tree/sortable_segment_tree.hpp\"\
+    \n\nusing S = std::monostate;\nS op(S, S) { return {}; }\nS e() { return {}; }\n\
+    S toggle(S) { return {}; }\n\nusing SortableSegmentTree = suisen::SortableSegmentTree<S,\
+    \ op, e, toggle>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n   \
+    \ std::cin.tie(nullptr);\n\n    int n, q, x;\n    std::cin >> n >> q >> x;\n\n\
+    \    std::vector<std::pair<int, S>> init(n);\n    for (int i = 0; i < n; ++i)\
+    \ {\n        std::cin >> init[i].first;\n    }\n    SortableSegmentTree seg(init);\n\
+    \n    while (q --> 0) {\n        int c, l, r;\n        std::cin >> c >> l >> r;\n\
+    \        --l;\n        if (c == 1) {\n            seg.sort_asc(l, r);\n      \
+    \  } else {\n            seg.sort_dsc(l, r);\n        }\n    }\n    int pos =\
+    \ 1;\n    seg.foreach([&](int key, S) {\n        if (key == x) std::cout << pos\
+    \ << '\\n';\n        ++pos;\n    });\n}"
   dependsOn:
   - library/datastructure/segment_tree/sortable_segment_tree.hpp
   - library/util/pointer_32bit.hpp
   isVerificationFile: true
-  path: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
+  path: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
   requiredBy: []
   timestamp: '2023-05-13 03:28:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
+documentation_of: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
-- /verify/test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp.html
-title: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
+- /verify/test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
+- /verify/test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp.html
+title: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
 ---

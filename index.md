@@ -355,7 +355,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree_beats.hpp
       title: Segment Tree Beats
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/sortable_segment_tree.hpp
       title: library/datastructure/segment_tree/sortable_segment_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1603,6 +1603,9 @@ data:
       title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - name: test/src/datastructure/segment_tree/sortable_segment_tree
     pages:
+    - icon: ':x:'
+      path: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
+      title: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
       title: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp

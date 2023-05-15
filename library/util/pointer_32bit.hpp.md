@@ -17,7 +17,7 @@ data:
   - icon: ':question:'
     path: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
     title: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/sortable_segment_tree.hpp
     title: library/datastructure/segment_tree/sortable_segment_tree.hpp
   _extendedVerifiedWith:
@@ -48,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
     title: test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
+    title: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
     title: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
@@ -129,6 +132,7 @@ data:
   timestamp: '2023-05-13 02:46:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
   - test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp

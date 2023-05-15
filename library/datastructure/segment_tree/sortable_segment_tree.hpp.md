@@ -6,12 +6,15 @@ data:
     title: library/util/pointer_32bit.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
+    title: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
     title: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/sortable_segment_tree.hpp\"\
@@ -416,9 +419,10 @@ data:
     \ {\n                    foreach(child0(t), rev, f);\n                    inner_node::foreach(inner(t),\
     \ reversed(t), f);\n                    foreach(child1(t), rev, f);\n        \
     \        }\n            }\n        };\n\n        outer_node_pointer _root;\n \
-    \   public:\n        SortableSegmentTree() : _root(nullptr) {}\n        SortableSegmentTree(const\
-    \ std::vector<std::pair<key_type, value_type>>& dat) : _root(outer_node::build(dat))\
-    \ {}\n        ~SortableSegmentTree() {\n            outer_node::dealloc_all(_root);\n\
+    \       SortableSegmentTree(outer_node_pointer root) : _root(root) {}\n    public:\n\
+    \        SortableSegmentTree() : SortableSegmentTree(nullptr) {}\n        SortableSegmentTree(const\
+    \ std::vector<std::pair<key_type, value_type>>& dat) : SortableSegmentTree(outer_node::build(dat))\
+    \ {}\n\n        ~SortableSegmentTree() {\n            outer_node::dealloc_all(_root);\n\
     \        }\n\n        size_type size() {\n            return outer_node::safe_size(_root);\n\
     \        }\n\n        auto operator[](size_type k) {\n            struct proxy\
     \ {\n                outer_node_pointer root;\n                size_type k;\n\
@@ -452,14 +456,19 @@ data:
     \ };\n            outer_node::dealloc_node(tm);\n            return res;\n   \
     \     }\n        std::pair<key_type, value_type> pop_front() { erase(0); }\n \
     \       std::pair<key_type, value_type> pop_back() { erase(size() - 1); }\n\n\
-    \        value_type prod(size_type l, size_type r) {\n            assert(0 <=\
-    \ l and l <= r and r <= size());\n            if (l == r) return e();\n      \
-    \      if (r - l == 1) return (*this)[l];\n            return outer_node::prod(_root,\
-    \ l, r);\n        }\n\n        enum struct SortingPolicy { ascending, descending\
-    \ };\n        void sort(size_type l, size_type r, SortingPolicy policy = SortingPolicy::ascending)\
-    \ {\n            assert(0 <= l and l <= r and r <= size());\n            if (l\
-    \ == r) return;\n            auto [tl, tm, tr] = outer_node::split_at_range(_root,\
-    \ l, r);\n            _root = outer_node::concat(tl, outer_node::alloc_node(outer_node::merge_all(tm),\
+    \        SortableSegmentTree split(size_type i) {\n            assert(0 <= i and\
+    \ i <= size());\n            auto [root_l, root_r] = outer_node::split_at(_root,\
+    \ i);\n            _root = root_l;\n            return SortableSegmentTree{ root_r\
+    \ };\n        }\n        void concat(SortableSegmentTree tr) {\n            _root\
+    \ = outer_node::concat(_root, tr->_root);\n        }\n\n        value_type prod(size_type\
+    \ l, size_type r) {\n            assert(0 <= l and l <= r and r <= size());\n\
+    \            if (l == r) return e();\n            if (r - l == 1) return (*this)[l];\n\
+    \            return outer_node::prod(_root, l, r);\n        }\n\n        enum\
+    \ struct SortingPolicy { ascending, descending };\n        void sort(size_type\
+    \ l, size_type r, SortingPolicy policy = SortingPolicy::ascending) {\n       \
+    \     assert(0 <= l and l <= r and r <= size());\n            if (l == r) return;\n\
+    \            auto [tl, tm, tr] = outer_node::split_at_range(_root, l, r);\n  \
+    \          _root = outer_node::concat(tl, outer_node::alloc_node(outer_node::merge_all(tm),\
     \ policy == SortingPolicy::descending), tr);\n        }\n        void sort_asc(size_type\
     \ l, size_type r) { sort(l, r, SortingPolicy::ascending); }\n        void sort_dsc(size_type\
     \ l, size_type r) { sort(l, r, SortingPolicy::descending); }\n\n        // returns\
@@ -861,9 +870,10 @@ data:
     \ {\n                    foreach(child0(t), rev, f);\n                    inner_node::foreach(inner(t),\
     \ reversed(t), f);\n                    foreach(child1(t), rev, f);\n        \
     \        }\n            }\n        };\n\n        outer_node_pointer _root;\n \
-    \   public:\n        SortableSegmentTree() : _root(nullptr) {}\n        SortableSegmentTree(const\
-    \ std::vector<std::pair<key_type, value_type>>& dat) : _root(outer_node::build(dat))\
-    \ {}\n        ~SortableSegmentTree() {\n            outer_node::dealloc_all(_root);\n\
+    \       SortableSegmentTree(outer_node_pointer root) : _root(root) {}\n    public:\n\
+    \        SortableSegmentTree() : SortableSegmentTree(nullptr) {}\n        SortableSegmentTree(const\
+    \ std::vector<std::pair<key_type, value_type>>& dat) : SortableSegmentTree(outer_node::build(dat))\
+    \ {}\n\n        ~SortableSegmentTree() {\n            outer_node::dealloc_all(_root);\n\
     \        }\n\n        size_type size() {\n            return outer_node::safe_size(_root);\n\
     \        }\n\n        auto operator[](size_type k) {\n            struct proxy\
     \ {\n                outer_node_pointer root;\n                size_type k;\n\
@@ -897,14 +907,19 @@ data:
     \ };\n            outer_node::dealloc_node(tm);\n            return res;\n   \
     \     }\n        std::pair<key_type, value_type> pop_front() { erase(0); }\n \
     \       std::pair<key_type, value_type> pop_back() { erase(size() - 1); }\n\n\
-    \        value_type prod(size_type l, size_type r) {\n            assert(0 <=\
-    \ l and l <= r and r <= size());\n            if (l == r) return e();\n      \
-    \      if (r - l == 1) return (*this)[l];\n            return outer_node::prod(_root,\
-    \ l, r);\n        }\n\n        enum struct SortingPolicy { ascending, descending\
-    \ };\n        void sort(size_type l, size_type r, SortingPolicy policy = SortingPolicy::ascending)\
-    \ {\n            assert(0 <= l and l <= r and r <= size());\n            if (l\
-    \ == r) return;\n            auto [tl, tm, tr] = outer_node::split_at_range(_root,\
-    \ l, r);\n            _root = outer_node::concat(tl, outer_node::alloc_node(outer_node::merge_all(tm),\
+    \        SortableSegmentTree split(size_type i) {\n            assert(0 <= i and\
+    \ i <= size());\n            auto [root_l, root_r] = outer_node::split_at(_root,\
+    \ i);\n            _root = root_l;\n            return SortableSegmentTree{ root_r\
+    \ };\n        }\n        void concat(SortableSegmentTree tr) {\n            _root\
+    \ = outer_node::concat(_root, tr->_root);\n        }\n\n        value_type prod(size_type\
+    \ l, size_type r) {\n            assert(0 <= l and l <= r and r <= size());\n\
+    \            if (l == r) return e();\n            if (r - l == 1) return (*this)[l];\n\
+    \            return outer_node::prod(_root, l, r);\n        }\n\n        enum\
+    \ struct SortingPolicy { ascending, descending };\n        void sort(size_type\
+    \ l, size_type r, SortingPolicy policy = SortingPolicy::ascending) {\n       \
+    \     assert(0 <= l and l <= r and r <= size());\n            if (l == r) return;\n\
+    \            auto [tl, tm, tr] = outer_node::split_at_range(_root, l, r);\n  \
+    \          _root = outer_node::concat(tl, outer_node::alloc_node(outer_node::merge_all(tm),\
     \ policy == SortingPolicy::descending), tr);\n        }\n        void sort_asc(size_type\
     \ l, size_type r) { sort(l, r, SortingPolicy::ascending); }\n        void sort_dsc(size_type\
     \ l, size_type r) { sort(l, r, SortingPolicy::descending); }\n\n        // returns\
@@ -939,9 +954,10 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree/sortable_segment_tree.hpp
   requiredBy: []
-  timestamp: '2023-05-13 02:46:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-13 03:28:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
   - test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
 documentation_of: library/datastructure/segment_tree/sortable_segment_tree.hpp
 layout: document
