@@ -2,6 +2,7 @@
 #define SUISEN_POINT_GET_RANGE_CONTOUR_OPERATE
 
 #include <algorithm>
+#include <array>
 #include <cassert>
 #include <cstdint>
 #include <deque>

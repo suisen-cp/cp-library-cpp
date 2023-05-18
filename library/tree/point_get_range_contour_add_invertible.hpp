@@ -2,6 +2,7 @@
 #define SUISEN_POINT_GET_RANGE_CONTOUR_ADD_INVERTIBLE
 
 #include <algorithm>
+#include <array>
 #include <cassert>
 #include <cstdint>
 #include <deque>
