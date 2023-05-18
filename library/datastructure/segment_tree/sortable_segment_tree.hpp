@@ -209,46 +209,35 @@ namespace suisen {
                 return { lt, rt };
             }
 
-            static inner_node_pointer concat_nonnull(inner_node_pointer tl, inner_node_pointer tr) {
-                assert(max_key(tl) < min_key(tr));
-                if (priority(tl) < priority(tr)) {
-                    if (inner_node_pointer tm = child0(tr); not tm) {
-                        set_child0(tr, tl);
-                    } else {
-                        set_child0(tr, concat_nonnull(tl, tm));
-                    }
-                    return update(tr);
-                } else {
-                    if (inner_node_pointer tm = child1(tl); not tm) {
-                        set_child1(tl, tr);
-                    } else {
-                        set_child1(tl, concat_nonnull(tm, tr));
-                    }
-                    return update(tl);
-                }
-            }
             static inner_node_pointer concat(inner_node_pointer tl, inner_node_pointer tr) {
                 if (not tl) return tr;
                 if (not tr) return tl;
-                return concat_nonnull(tl, tr);
+                assert(max_key(tl) < min_key(tr));
+                if (priority(tl) < priority(tr)) {
+                    set_child0(tr, concat(tl, child0(tr)));
+                    return update(tr);
+                } else {
+                    set_child1(tl, concat(child1(tl), tr));
+                    return update(tl);
+                }
             }
             static inner_node_pointer merge(inner_node_pointer t1, inner_node_pointer t2) {
                 if (not t1) return t2;
                 if (not t2) return t1;
                 if (key(t1) > key(t2)) std::swap(t1, t2);
-                if (max_key(t1) <= min_key(t2)) return concat_nonnull(t1, t2);
+                if (max_key(t1) <= min_key(t2)) return concat(t1, t2);
                 if (key(t1) <= min_key(t2)) {
                     inner_node_pointer tr = set_child1(t1, nullptr);
-                    return concat_nonnull(update(t1), merge(t2, tr));
+                    return concat(update(t1), merge(t2, tr));
                 } else if (max_key(t1) <= key(t2)) {
                     inner_node_pointer tl = set_child0(t2, nullptr);
-                    return concat_nonnull(merge(t1, tl), update(t2));
+                    return concat(merge(t1, tl), update(t2));
                 } else {
                     auto [t2_l, t2_r] = split_key(t2, key(t1));
                     assert(t2_l and t2_r);
                     inner_node_pointer tr = set_child1(t1, nullptr);
                     inner_node_pointer tl = update(t1);
-                    return concat_nonnull(merge(tl, t2_l), merge(tr, t2_r));
+                    return concat(merge(tl, t2_l), merge(tr, t2_r));
                 }
             }
 
@@ -515,27 +504,16 @@ namespace suisen {
                 return { tl, tm, tr };
             }
 
-            static outer_node_pointer concat_nonnull(outer_node_pointer tl, outer_node_pointer tr) {
-                if (priority(tl) < priority(tr)) {
-                    if (outer_node_pointer tm = child0(tr); not tm) {
-                        set_child0(tr, tl);
-                    } else {
-                        set_child0(tr, concat_nonnull(tl, tm));
-                    }
-                    return update(tr);
-                } else {
-                    if (outer_node_pointer tm = child1(tl); not tm) {
-                        set_child1(tl, tr);
-                    } else {
-                        set_child1(tl, concat_nonnull(tm, tr));
-                    }
-                    return update(tl);
-                }
-            }
             static outer_node_pointer concat(outer_node_pointer tl, outer_node_pointer tr) {
                 if (not tl) return tr;
                 if (not tr) return tl;
-                return concat_nonnull(tl, tr);
+                if (priority(tl) < priority(tr)) {
+                    set_child0(tr, concat(tl, child0(tr)));
+                    return update(tr);
+                } else {
+                    set_child1(tl, concat(child1(tl), tr));
+                    return update(tl);
+                }
             }
             static outer_node_pointer concat(outer_node_pointer tl, outer_node_pointer tm, outer_node_pointer tr) {
                 return concat(concat(tl, tm), tr);
@@ -579,7 +557,7 @@ namespace suisen {
                 auto [r, s] = max_right_prefix(tr, f);
                 return { concat(tl, tr), l + r, s };
             }
-            
+
             template <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>, std::nullptr_t> = nullptr>
             static std::pair<size_type, value_type> min_left_suffix(outer_node_pointer t, const Predicate& f) {
                 size_type l = safe_size(t);
