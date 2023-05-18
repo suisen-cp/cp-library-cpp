@@ -7,6 +7,8 @@
 #include <numeric>
 #include <utility>
 
+#include "library/type_traits/type_traits.hpp"
+
 #include "library/number/deterministic_miller_rabin.hpp"
 #include "library/number/sieve_of_eratosthenes.hpp"
 
