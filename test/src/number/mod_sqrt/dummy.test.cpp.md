@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/mod_sqrt.hpp
     title: Mod Sqrt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: Util
   _extendedRequiredBy: []

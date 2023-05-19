@@ -2,29 +2,29 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/garner.hpp
     title: Garner's Algorithm
   - icon: ':warning:'
     path: library/number/index_calculus.hpp
     title: Index Calculus
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/ext_gcd.hpp\"\n\n\n\n#include <cassert>\n\
@@ -287,7 +287,7 @@ data:
   - library/number/index_calculus.hpp
   - library/number/garner.hpp
   timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp

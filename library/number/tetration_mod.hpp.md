@@ -1,124 +1,162 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/montogomery.hpp
     title: library/number/montogomery.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
+  - icon: ':question:'
+    path: library/type_traits/type_traits.hpp
+    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/tetration_mod/tetration_mod.test.cpp
     title: test/src/number/tetration_mod/tetration_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: $a \uparrow \uparrow b \pmod{m}$
     links: []
   bundledCode: "#line 1 \"library/number/tetration_mod.hpp\"\n\n\n\n#include <numeric>\n\
     #include <optional>\n\n#line 1 \"library/number/fast_factorize.hpp\"\n\n\n\n#include\
     \ <cmath>\n#include <iostream>\n#include <random>\n#line 8 \"library/number/fast_factorize.hpp\"\
-    \n#include <utility>\n\n#line 1 \"library/number/deterministic_miller_rabin.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <cstdint>\n#include <type_traits>\n\n#line\
-    \ 1 \"library/number/montogomery.hpp\"\n\n\n\n#line 6 \"library/number/montogomery.hpp\"\
-    \n#include <limits>\n\nnamespace suisen {\n    namespace internal::montgomery\
-    \ {\n        template <typename Int, typename DInt>\n        struct Montgomery\
-    \ {\n        private:\n            static constexpr uint32_t bits = std::numeric_limits<Int>::digits;\n\
-    \            static constexpr Int mask = ~Int(0);\n            // R = 2**32 or\
-    \ 2**64\n\n            // 1. N is an odd number\n            // 2. N < R\n   \
-    \         // 3. gcd(N, R) = 1\n            // 4. R * R2 - N * N2 = 1\n       \
-    \     // 5. 0 < R2 < N\n            // 6. 0 < N2 < R\n            Int N, N2, R2;\n\
-    \n            // RR = R * R (mod N)\n            Int RR;\n        public:\n  \
-    \          constexpr Montgomery() = default;\n            explicit constexpr Montgomery(Int\
-    \ N) : N(N), N2(calcN2(N)), R2(calcR2(N, N2)), RR(calcRR(N)) {\n             \
-    \   assert(N & 1);\n            }\n\n            // @returns t * R (mod N)\n \
-    \           constexpr Int make(Int t) const {\n                return reduce(static_cast<DInt>(t)\
-    \ * RR);\n            }\n            // @returns T * R^(-1) (mod N)\n        \
-    \    constexpr Int reduce(DInt T) const {\n                // 0 <= T < RN\n\n\
-    \                // Note:\n                //  1. m = T * N2 (mod R)\n       \
-    \         //  2. 0 <= m < R\n                DInt m = modR(static_cast<DInt>(modR(T))\
-    \ * N2);\n\n                // Note:\n                //  T + m * N = T + T *\
-    \ N * N2 = T + T * (R * R2 - 1) = 0 (mod R)\n                //  => (T + m * N)\
-    \ / R is an integer.\n                //  => t * R = T + m * N = T (mod N)\n \
-    \               //  => t = T R^(-1) (mod N)\n                DInt t = divR(T +\
-    \ m * N);\n\n                // Note:\n                //  1. 0 <= T < RN\n  \
-    \              //  2. 0 <= mN < RN (because 0 <= m < R)\n                //  =>\
-    \ 0 <= T + mN < 2RN\n                //  => 0 <= t < 2N\n                return\
-    \ t >= N ? t - N : t;\n            }\n\n            constexpr Int add(Int A, Int\
-    \ B) const {\n                return (A += B) >= N ? A - N : A;\n            }\n\
-    \            constexpr Int sub(Int A, Int B) const {\n                return (A\
-    \ -= B) < 0 ? A + N : A;\n            }\n            constexpr Int mul(Int A,\
-    \ Int B) const {\n                return reduce(static_cast<DInt>(A) * B);\n \
-    \           }\n            constexpr Int div(Int A, Int B) const {\n         \
-    \       return reduce(static_cast<DInt>(A) * inv(B));\n            }\n       \
-    \     constexpr Int inv(Int A) const; // TODO: Implement\n\n            constexpr\
-    \ Int pow(Int A, long long b) const {\n                Int P = make(1);\n    \
-    \            for (; b; b >>= 1) {\n                    if (b & 1) P = mul(P, A);\n\
-    \                    A = mul(A, A);\n                }\n                return\
-    \ P;\n            }\n\n        private:\n            static constexpr Int divR(DInt\
-    \ t) { return t >> bits; }\n            static constexpr Int modR(DInt t) { return\
-    \ t & mask; }\n\n            static constexpr Int calcN2(Int N) {\n          \
-    \      // - N * N2 = 1 (mod R)\n                // N2 = -N^{-1} (mod R)\n\n  \
-    \              // calculates N^{-1} (mod R) by Newton's method\n             \
-    \   DInt invN = N; // = N^{-1} (mod 2^2)\n                for (uint32_t cur_bits\
-    \ = 2; cur_bits < bits; cur_bits *= 2) {\n                    // loop invariant:\
-    \ invN = N^{-1} (mod 2^cur_bits)\n\n                    // x = a^{-1} mod m =>\
-    \ x(2-ax) = a^{-1} mod m^2 because:\n                    //  ax = 1 (mod m)\n\
-    \                    //  => (ax-1)^2 = 0 (mod m^2)\n                    //  =>\
-    \ 2ax - a^2x^2 = 1 (mod m^2)\n                    //  => a(x(2-ax)) = 1 (mod m^2)\n\
-    \                    invN = modR(invN * modR(2 - N * invN));\n               \
-    \ }\n                assert(modR(N * invN) == 1);\n\n                return modR(-invN);\n\
-    \            }\n            static constexpr Int calcR2(Int N, Int N2) {\n   \
-    \             // R * R2 - N * N2 = 1\n                // => R2 = (1 + N * N2)\
-    \ / R\n                return divR(1 + static_cast<DInt>(N) * N2);\n         \
-    \   }\n            static constexpr Int calcRR(Int N) {\n                return\
-    \ -DInt(N) % N;\n            }\n        };\n    } // namespace internal::montgomery\n\
-    \    using Montgomery32 = internal::montgomery::Montgomery<uint32_t, uint64_t>;\n\
-    \    using Montgomery64 = internal::montgomery::Montgomery<uint64_t, __uint128_t>;\n\
-    } // namespace suisen\n\n\n\n#line 9 \"library/number/deterministic_miller_rabin.hpp\"\
+    \n#include <utility>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n\
+    #include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// ! utility\n\
+    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
+    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
+    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
+    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
+    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
+    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
+    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
+    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
+    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
+    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
+    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
+    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
+    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
+    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
+    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
+    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
+    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
+    } // namespace suisen\n\n\n#line 11 \"library/number/fast_factorize.hpp\"\n\n\
+    #line 1 \"library/number/deterministic_miller_rabin.hpp\"\n\n\n\n#include <array>\n\
+    #include <cassert>\n#include <cstdint>\n#include <iterator>\n#include <tuple>\n\
+    #line 10 \"library/number/deterministic_miller_rabin.hpp\"\n\n#line 1 \"library/number/montogomery.hpp\"\
+    \n\n\n\n#line 7 \"library/number/montogomery.hpp\"\n\nnamespace suisen {\n   \
+    \ namespace internal::montgomery {\n        template <typename Int, typename DInt>\n\
+    \        struct Montgomery {\n        private:\n            static constexpr uint32_t\
+    \ bits = std::numeric_limits<Int>::digits;\n            static constexpr Int mask\
+    \ = ~Int(0);\n            // R = 2**32 or 2**64\n\n            // 1. N is an odd\
+    \ number\n            // 2. N < R\n            // 3. gcd(N, R) = 1\n         \
+    \   // 4. R * R2 - N * N2 = 1\n            // 5. 0 < R2 < N\n            // 6.\
+    \ 0 < N2 < R\n            Int N, N2, R2;\n\n            // RR = R * R (mod N)\n\
+    \            Int RR;\n        public:\n            constexpr Montgomery() = default;\n\
+    \            explicit constexpr Montgomery(Int N) : N(N), N2(calcN2(N)), R2(calcR2(N,\
+    \ N2)), RR(calcRR(N)) {\n                assert(N & 1);\n            }\n\n   \
+    \         // @returns t * R (mod N)\n            constexpr Int make(Int t) const\
+    \ {\n                return reduce(static_cast<DInt>(t) * RR);\n            }\n\
+    \            // @returns T * R^(-1) (mod N)\n            constexpr Int reduce(DInt\
+    \ T) const {\n                // 0 <= T < RN\n\n                // Note:\n   \
+    \             //  1. m = T * N2 (mod R)\n                //  2. 0 <= m < R\n \
+    \               DInt m = modR(static_cast<DInt>(modR(T)) * N2);\n\n          \
+    \      // Note:\n                //  T + m * N = T + T * N * N2 = T + T * (R *\
+    \ R2 - 1) = 0 (mod R)\n                //  => (T + m * N) / R is an integer.\n\
+    \                //  => t * R = T + m * N = T (mod N)\n                //  =>\
+    \ t = T R^(-1) (mod N)\n                DInt t = divR(T + m * N);\n\n        \
+    \        // Note:\n                //  1. 0 <= T < RN\n                //  2.\
+    \ 0 <= mN < RN (because 0 <= m < R)\n                //  => 0 <= T + mN < 2RN\n\
+    \                //  => 0 <= t < 2N\n                return t >= N ? t - N : t;\n\
+    \            }\n\n            constexpr Int add(Int A, Int B) const {\n      \
+    \          return (A += B) >= N ? A - N : A;\n            }\n            constexpr\
+    \ Int sub(Int A, Int B) const {\n                return (A -= B) < 0 ? A + N :\
+    \ A;\n            }\n            constexpr Int mul(Int A, Int B) const {\n   \
+    \             return reduce(static_cast<DInt>(A) * B);\n            }\n      \
+    \      constexpr Int div(Int A, Int B) const {\n                return reduce(static_cast<DInt>(A)\
+    \ * inv(B));\n            }\n            constexpr Int inv(Int A) const; // TODO:\
+    \ Implement\n\n            constexpr Int pow(Int A, long long b) const {\n   \
+    \             Int P = make(1);\n                for (; b; b >>= 1) {\n       \
+    \             if (b & 1) P = mul(P, A);\n                    A = mul(A, A);\n\
+    \                }\n                return P;\n            }\n\n        private:\n\
+    \            static constexpr Int divR(DInt t) { return t >> bits; }\n       \
+    \     static constexpr Int modR(DInt t) { return t & mask; }\n\n            static\
+    \ constexpr Int calcN2(Int N) {\n                // - N * N2 = 1 (mod R)\n   \
+    \             // N2 = -N^{-1} (mod R)\n\n                // calculates N^{-1}\
+    \ (mod R) by Newton's method\n                DInt invN = N; // = N^{-1} (mod\
+    \ 2^2)\n                for (uint32_t cur_bits = 2; cur_bits < bits; cur_bits\
+    \ *= 2) {\n                    // loop invariant: invN = N^{-1} (mod 2^cur_bits)\n\
+    \n                    // x = a^{-1} mod m => x(2-ax) = a^{-1} mod m^2 because:\n\
+    \                    //  ax = 1 (mod m)\n                    //  => (ax-1)^2 =\
+    \ 0 (mod m^2)\n                    //  => 2ax - a^2x^2 = 1 (mod m^2)\n       \
+    \             //  => a(x(2-ax)) = 1 (mod m^2)\n                    invN = modR(invN\
+    \ * modR(2 - N * invN));\n                }\n                assert(modR(N * invN)\
+    \ == 1);\n\n                return modR(-invN);\n            }\n            static\
+    \ constexpr Int calcR2(Int N, Int N2) {\n                // R * R2 - N * N2 =\
+    \ 1\n                // => R2 = (1 + N * N2) / R\n                return divR(1\
+    \ + static_cast<DInt>(N) * N2);\n            }\n            static constexpr Int\
+    \ calcRR(Int N) {\n                return -DInt(N) % N;\n            }\n     \
+    \   };\n    } // namespace internal::montgomery\n    using Montgomery32 = internal::montgomery::Montgomery<uint32_t,\
+    \ uint64_t>;\n    using Montgomery64 = internal::montgomery::Montgomery<uint64_t,\
+    \ __uint128_t>;\n} // namespace suisen\n\n\n\n#line 12 \"library/number/deterministic_miller_rabin.hpp\"\
     \n\nnamespace suisen::miller_rabin {\n    namespace internal {\n        constexpr\
-    \ uint64_t THRESHOLD_1 = 341531ULL;\n        constexpr uint64_t BASE_1[] { 9345883071009581737ULL\
+    \ uint64_t THRESHOLD_1 = 341531ULL;\n        constexpr uint64_t BASE_1[]{ 9345883071009581737ULL\
     \ };\n\n        constexpr uint64_t THRESHOLD_2 = 1050535501ULL;\n        constexpr\
-    \ uint64_t BASE_2[] { 336781006125ULL, 9639812373923155ULL };\n\n        constexpr\
-    \ uint64_t THRESHOLD_3 = 350269456337ULL;\n        constexpr uint64_t BASE_3[]\
-    \ { 4230279247111683200ULL, 14694767155120705706ULL, 16641139526367750375ULL };\n\
+    \ uint64_t BASE_2[]{ 336781006125ULL, 9639812373923155ULL };\n\n        constexpr\
+    \ uint64_t THRESHOLD_3 = 350269456337ULL;\n        constexpr uint64_t BASE_3[]{\
+    \ 4230279247111683200ULL, 14694767155120705706ULL, 16641139526367750375ULL };\n\
     \n        constexpr uint64_t THRESHOLD_4 = 55245642489451ULL;\n        constexpr\
-    \ uint64_t BASE_4[] { 2ULL, 141889084524735ULL, 1199124725622454117ULL, 11096072698276303650ULL\
+    \ uint64_t BASE_4[]{ 2ULL, 141889084524735ULL, 1199124725622454117ULL, 11096072698276303650ULL\
     \ };\n\n        constexpr uint64_t THRESHOLD_5 = 7999252175582851ULL;\n      \
-    \  constexpr uint64_t BASE_5[] { 2ULL, 4130806001517ULL, 149795463772692060ULL,\
+    \  constexpr uint64_t BASE_5[]{ 2ULL, 4130806001517ULL, 149795463772692060ULL,\
     \ 186635894390467037ULL, 3967304179347715805ULL };\n\n        constexpr uint64_t\
-    \ THRESHOLD_6 = 585226005592931977ULL;\n        constexpr uint64_t BASE_6[] {\
-    \ 2ULL, 123635709730000ULL, 9233062284813009ULL, 43835965440333360ULL, 761179012939631437ULL,\
-    \ 1263739024124850375ULL };\n\n        constexpr uint64_t BASE_7[] { 2U, 325U,\
+    \ THRESHOLD_6 = 585226005592931977ULL;\n        constexpr uint64_t BASE_6[]{ 2ULL,\
+    \ 123635709730000ULL, 9233062284813009ULL, 43835965440333360ULL, 761179012939631437ULL,\
+    \ 1263739024124850375ULL };\n\n        constexpr uint64_t BASE_7[]{ 2U, 325U,\
     \ 9375U, 28178U, 450775U, 9780504U, 1795265022U };\n\n        template <auto BASE,\
     \ std::size_t SIZE>\n        constexpr bool miller_rabin(uint64_t n) {\n     \
     \       if (n == 2 or n == 3 or n == 5 or n == 7) return true;\n            if\
     \ (n <= 1 or n % 2 == 0 or n % 3 == 0 or n % 5 == 0 or n % 7 == 0) return false;\n\
-    \n            const uint64_t d = (n - 1) >> __builtin_ctzll(n - 1);\n\n      \
-    \      const Montgomery64 mg{n};\n\n            const uint64_t one = mg.make(1),\
-    \ minus_one = mg.make(n - 1);\n\n            for (std::size_t i = 0; i < SIZE;\
-    \ ++i) {\n                uint64_t p = BASE[i] % n;\n                if (p ==\
-    \ 0) continue;\n                uint64_t Y = mg.pow(mg.make(p), d);\n        \
-    \        if (Y == one) continue;\n                for (uint64_t t = d; Y != minus_one;\
-    \ t <<= 1) {\n                    Y = mg.mul(Y, Y);\n                    if (Y\
-    \ == one or t == n - 1) return false;\n                }\n            }\n    \
-    \        return true;\n        }\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    constexpr bool is_prime(T n) {\n        if constexpr\
-    \ (std::is_signed_v<T>) {\n            assert(n >= 0);\n        }\n        const\
-    \ std::make_unsigned_t<T> n_unsigned = n;\n        assert(n_unsigned <= std::numeric_limits<uint64_t>::max());\
-    \ // n < 2^64\n        using namespace internal;\n        if (n_unsigned < THRESHOLD_1)\
+    \            if (n < 121) return true;\n\n            const uint32_t s = __builtin_ctzll(n\
+    \ - 1); // >= 1\n            const uint64_t d = (n - 1) >> s;\n\n            const\
+    \ Montgomery64 mg{ n };\n\n            const uint64_t one = mg.make(1), minus_one\
+    \ = mg.make(n - 1);\n\n            for (std::size_t i = 0; i < SIZE; ++i) {\n\
+    \                uint64_t a = BASE[i] % n;\n                if (a == 0) continue;\n\
+    \                uint64_t Y = mg.pow(mg.make(a), d);\n                if (Y ==\
+    \ one) continue;\n                for (uint32_t r = 0;; ++r, Y = mg.mul(Y, Y))\
+    \ {\n                    // Y = a^(d 2^r)\n                    if (Y == minus_one)\
+    \ break;\n                    if (r == s - 1) return false;\n                }\n\
+    \            }\n            return true;\n        }\n    }\n\n    template <typename\
+    \ T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>\n    constexpr\
+    \ bool is_prime(T n) {\n        if constexpr (std::is_signed_v<T>) {\n       \
+    \     assert(n >= 0);\n        }\n        const std::make_unsigned_t<T> n_unsigned\
+    \ = n;\n        assert(n_unsigned <= std::numeric_limits<uint64_t>::max()); //\
+    \ n < 2^64\n        using namespace internal;\n        if (n_unsigned < THRESHOLD_1)\
     \ return miller_rabin<BASE_1, 1>(n_unsigned);\n        if (n_unsigned < THRESHOLD_2)\
     \ return miller_rabin<BASE_2, 2>(n_unsigned);\n        if (n_unsigned < THRESHOLD_3)\
     \ return miller_rabin<BASE_3, 3>(n_unsigned);\n        if (n_unsigned < THRESHOLD_4)\
@@ -247,46 +285,47 @@ data:
     \ j < index; ++j) {\n                        divs.push_back(d *= prime);\n   \
     \                 }\n                }\n            }\n            return divs;\n\
     \        }\n};\ntemplate <unsigned int N>\nunsigned int Sieve<N>::pf[Sieve<N>::base_max\
-    \ + internal::sieve::K];\n} // namespace suisen\n\n\n#line 12 \"library/number/fast_factorize.hpp\"\
+    \ + internal::sieve::K];\n} // namespace suisen\n\n\n#line 14 \"library/number/fast_factorize.hpp\"\
     \n\nnamespace suisen::fast_factorize {\n    namespace internal {\n        template\
     \ <typename T>\n        constexpr int floor_log2(T n) {\n            int i = 0;\n\
     \            while (n) n >>= 1, ++i;\n            return i - 1;\n        }\n \
     \       template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
-    \ = nullptr>\n        T pollard_rho(T n) {\n            using M = safely_multipliable_t<T>;\n\
+    \ = nullptr>\n        T pollard_rho(const T n) {\n            using M = safely_multipliable_t<T>;\n\
     \            const T m = T(1) << (floor_log2(n) / 5);\n\n            static std::mt19937_64\
     \ rng{std::random_device{}()};\n            std::uniform_int_distribution<T> dist(0,\
-    \ n - 1);\n\n            while (true) {\n                T c = dist(rng);\n  \
-    \              auto f = [&](T x) -> T { return (M(x) * x + c) % n; };\n      \
-    \          T x, y = 2, ys, q = 1, g = 1;\n                for (T r = 1; g == 1;\
-    \ r <<= 1) {\n                    x = y;\n                    for (T i = 0; i\
-    \ < r; ++i) y = f(y);\n                    for (T k = 0; k < r and g == 1; k +=\
-    \ m) {\n                        ys = y;\n                        for (T i = 0;\
-    \ i < std::min(m, r - k); ++i) y = f(y), q = M(q) * (x > y ? x - y : y - x) %\
-    \ n;\n                        g = std::gcd(q, n);\n                    }\n   \
-    \             }\n                if (g == n) {\n                    g = 1;\n \
-    \                   while (g == 1) ys = f(ys), g = std::gcd(x > ys ? x - ys :\
-    \ ys - x, n);\n                }\n                if (g < n) {\n             \
-    \       if (miller_rabin::is_prime(g)) return g;\n                    if (T d\
-    \ = n / g; miller_rabin::is_prime(d)) return d;\n                    return pollard_rho(g);\n\
-    \                }\n            }\n        }\n    }\n\n    template <typename\
-    \ T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>\n    std::vector<std::pair<T,\
-    \ int>> factorize(T n) {\n        static constexpr int threshold = 1000000;\n\
-    \        static Sieve<threshold> sieve;\n\n        std::vector<std::pair<T, int>>\
-    \ res;\n        if (n <= threshold) {\n            for (auto [p, q] : sieve.factorize(n))\
-    \ res.emplace_back(p, q);\n            return res;\n        }\n\n        if ((n\
-    \ & 1) == 0) {\n            int q = 0;\n            do ++q, n >>= 1; while ((n\
-    \ & 1) == 0);\n            res.emplace_back(2, q);\n        }\n        for (T\
-    \ p = 3; p * p <= n; p += 2) {\n            if (p >= 101 and n >= 1 << 20) {\n\
-    \                while (n > 1) {\n                    if (miller_rabin::is_prime(n))\
-    \ {\n                        res.emplace_back(std::exchange(n, 1), 1);\n     \
-    \               } else {\n                        p = internal::pollard_rho(n);\n\
-    \                        int q = 0;\n                        do ++q, n /= p; while\
-    \ (n % p == 0);\n                        res.emplace_back(p, q);\n           \
-    \         }\n                }\n                break;\n            }\n      \
-    \      if (n % p == 0) {\n                int q = 0;\n                do ++q,\
-    \ n /= p; while (n % p == 0);\n                res.emplace_back(p, q);\n     \
-    \       }\n        }\n        if (n > 1) res.emplace_back(n, 1);\n        return\
-    \ res;\n    }\n} // namespace suisen::fast_factorize\n\n\n#line 9 \"library/number/tetration_mod.hpp\"\
+    \ n - 1);\n\n            // const Montgomery64 mg{n};\n\n            while (true)\
+    \ {\n                T c = dist(rng);\n                auto f = [&](T x) -> T\
+    \ { return (M(x) * x + c) % n; };\n                T x, y = 2, ys, q = 1, g =\
+    \ 1;\n                for (T r = 1; g == 1; r <<= 1) {\n                    x\
+    \ = y;\n                    for (T i = 0; i < r; ++i) y = f(y);\n            \
+    \        for (T k = 0; k < r and g == 1; k += m) {\n                        ys\
+    \ = y;\n                        for (T i = 0; i < std::min(m, r - k); ++i) y =\
+    \ f(y), q = M(q) * (x > y ? x - y : y - x) % n;\n                        g = std::gcd(q,\
+    \ n);\n                    }\n                }\n                if (g == n) {\n\
+    \                    g = 1;\n                    while (g == 1) ys = f(ys), g\
+    \ = std::gcd(x > ys ? x - ys : ys - x, n);\n                }\n              \
+    \  if (g < n) {\n                    if (miller_rabin::is_prime(g)) return g;\n\
+    \                    if (T d = n / g; miller_rabin::is_prime(d)) return d;\n \
+    \                   return pollard_rho(g);\n                }\n            }\n\
+    \        }\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    std::vector<std::pair<T, int>> factorize(T n)\
+    \ {\n        static constexpr int threshold = 1000000;\n        static Sieve<threshold>\
+    \ sieve;\n\n        std::vector<std::pair<T, int>> res;\n        if (n <= threshold)\
+    \ {\n            for (auto [p, q] : sieve.factorize(n)) res.emplace_back(p, q);\n\
+    \            return res;\n        }\n\n        if ((n & 1) == 0) {\n         \
+    \   int q = 0;\n            do ++q, n >>= 1; while ((n & 1) == 0);\n         \
+    \   res.emplace_back(2, q);\n        }\n        for (T p = 3; p * p <= n; p +=\
+    \ 2) {\n            if (p >= 101 and n >= 1 << 20) {\n                while (n\
+    \ > 1) {\n                    if (miller_rabin::is_prime(n)) {\n             \
+    \           res.emplace_back(std::exchange(n, 1), 1);\n                    } else\
+    \ {\n                        p = internal::pollard_rho(n);\n                 \
+    \       int q = 0;\n                        do ++q, n /= p; while (n % p == 0);\n\
+    \                        res.emplace_back(p, q);\n                    }\n    \
+    \            }\n                break;\n            }\n            if (n % p ==\
+    \ 0) {\n                int q = 0;\n                do ++q, n /= p; while (n %\
+    \ p == 0);\n                res.emplace_back(p, q);\n            }\n        }\n\
+    \        if (n > 1) res.emplace_back(n, 1);\n        return res;\n    }\n} //\
+    \ namespace suisen::fast_factorize\n\n\n#line 9 \"library/number/tetration_mod.hpp\"\
     \n\n/**\n * @brief $a \\uparrow \\uparrow b \\pmod{m}$\n*/\n\nnamespace suisen\
     \ {\n    namespace internal::tetration_mod {\n        constexpr int max_value\
     \ = std::numeric_limits<int>::max();\n        int saturation_pow(int a, int b)\
@@ -349,6 +388,7 @@ data:
     \        }\n        return pow_mod(a, exponent, m);\n    }\n}\n\n#endif // SUISEN_TETRATION_MOD\n"
   dependsOn:
   - library/number/fast_factorize.hpp
+  - library/type_traits/type_traits.hpp
   - library/number/deterministic_miller_rabin.hpp
   - library/number/montogomery.hpp
   - library/number/sieve_of_eratosthenes.hpp
@@ -356,8 +396,8 @@ data:
   isVerificationFile: false
   path: library/number/tetration_mod.hpp
   requiredBy: []
-  timestamp: '2023-05-18 22:36:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-05-19 09:20:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/tetration_mod/tetration_mod.test.cpp
 documentation_of: library/number/tetration_mod.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
   _extendedRequiredBy: []

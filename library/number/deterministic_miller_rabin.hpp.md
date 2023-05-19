@@ -1,58 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/montogomery.hpp
     title: library/number/montogomery.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/tetration_mod.hpp
     title: $a\uparrow\uparrow b \bmod m$
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/deterministic_miller_rabin/primarity_test.test.cpp
     title: test/src/number/deterministic_miller_rabin/primarity_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/tetration_mod/tetration_mod.test.cpp
     title: test/src/number/tetration_mod/tetration_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/deterministic_miller_rabin.hpp\"\n\n\n\n\
-    #include <cassert>\n#include <cstdint>\n#include <type_traits>\n\n#line 1 \"library/number/montogomery.hpp\"\
+    #include <array>\n#include <cassert>\n#include <cstdint>\n#include <iterator>\n\
+    #include <tuple>\n#include <type_traits>\n\n#line 1 \"library/number/montogomery.hpp\"\
     \n\n\n\n#line 6 \"library/number/montogomery.hpp\"\n#include <limits>\n\nnamespace\
     \ suisen {\n    namespace internal::montgomery {\n        template <typename Int,\
     \ typename DInt>\n        struct Montgomery {\n        private:\n            static\
@@ -108,38 +109,40 @@ data:
     \ -DInt(N) % N;\n            }\n        };\n    } // namespace internal::montgomery\n\
     \    using Montgomery32 = internal::montgomery::Montgomery<uint32_t, uint64_t>;\n\
     \    using Montgomery64 = internal::montgomery::Montgomery<uint64_t, __uint128_t>;\n\
-    } // namespace suisen\n\n\n\n#line 9 \"library/number/deterministic_miller_rabin.hpp\"\
+    } // namespace suisen\n\n\n\n#line 12 \"library/number/deterministic_miller_rabin.hpp\"\
     \n\nnamespace suisen::miller_rabin {\n    namespace internal {\n        constexpr\
-    \ uint64_t THRESHOLD_1 = 341531ULL;\n        constexpr uint64_t BASE_1[] { 9345883071009581737ULL\
+    \ uint64_t THRESHOLD_1 = 341531ULL;\n        constexpr uint64_t BASE_1[]{ 9345883071009581737ULL\
     \ };\n\n        constexpr uint64_t THRESHOLD_2 = 1050535501ULL;\n        constexpr\
-    \ uint64_t BASE_2[] { 336781006125ULL, 9639812373923155ULL };\n\n        constexpr\
-    \ uint64_t THRESHOLD_3 = 350269456337ULL;\n        constexpr uint64_t BASE_3[]\
-    \ { 4230279247111683200ULL, 14694767155120705706ULL, 16641139526367750375ULL };\n\
+    \ uint64_t BASE_2[]{ 336781006125ULL, 9639812373923155ULL };\n\n        constexpr\
+    \ uint64_t THRESHOLD_3 = 350269456337ULL;\n        constexpr uint64_t BASE_3[]{\
+    \ 4230279247111683200ULL, 14694767155120705706ULL, 16641139526367750375ULL };\n\
     \n        constexpr uint64_t THRESHOLD_4 = 55245642489451ULL;\n        constexpr\
-    \ uint64_t BASE_4[] { 2ULL, 141889084524735ULL, 1199124725622454117ULL, 11096072698276303650ULL\
+    \ uint64_t BASE_4[]{ 2ULL, 141889084524735ULL, 1199124725622454117ULL, 11096072698276303650ULL\
     \ };\n\n        constexpr uint64_t THRESHOLD_5 = 7999252175582851ULL;\n      \
-    \  constexpr uint64_t BASE_5[] { 2ULL, 4130806001517ULL, 149795463772692060ULL,\
+    \  constexpr uint64_t BASE_5[]{ 2ULL, 4130806001517ULL, 149795463772692060ULL,\
     \ 186635894390467037ULL, 3967304179347715805ULL };\n\n        constexpr uint64_t\
-    \ THRESHOLD_6 = 585226005592931977ULL;\n        constexpr uint64_t BASE_6[] {\
-    \ 2ULL, 123635709730000ULL, 9233062284813009ULL, 43835965440333360ULL, 761179012939631437ULL,\
-    \ 1263739024124850375ULL };\n\n        constexpr uint64_t BASE_7[] { 2U, 325U,\
+    \ THRESHOLD_6 = 585226005592931977ULL;\n        constexpr uint64_t BASE_6[]{ 2ULL,\
+    \ 123635709730000ULL, 9233062284813009ULL, 43835965440333360ULL, 761179012939631437ULL,\
+    \ 1263739024124850375ULL };\n\n        constexpr uint64_t BASE_7[]{ 2U, 325U,\
     \ 9375U, 28178U, 450775U, 9780504U, 1795265022U };\n\n        template <auto BASE,\
     \ std::size_t SIZE>\n        constexpr bool miller_rabin(uint64_t n) {\n     \
     \       if (n == 2 or n == 3 or n == 5 or n == 7) return true;\n            if\
     \ (n <= 1 or n % 2 == 0 or n % 3 == 0 or n % 5 == 0 or n % 7 == 0) return false;\n\
-    \n            const uint64_t d = (n - 1) >> __builtin_ctzll(n - 1);\n\n      \
-    \      const Montgomery64 mg{n};\n\n            const uint64_t one = mg.make(1),\
-    \ minus_one = mg.make(n - 1);\n\n            for (std::size_t i = 0; i < SIZE;\
-    \ ++i) {\n                uint64_t p = BASE[i] % n;\n                if (p ==\
-    \ 0) continue;\n                uint64_t Y = mg.pow(mg.make(p), d);\n        \
-    \        if (Y == one) continue;\n                for (uint64_t t = d; Y != minus_one;\
-    \ t <<= 1) {\n                    Y = mg.mul(Y, Y);\n                    if (Y\
-    \ == one or t == n - 1) return false;\n                }\n            }\n    \
-    \        return true;\n        }\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    constexpr bool is_prime(T n) {\n        if constexpr\
-    \ (std::is_signed_v<T>) {\n            assert(n >= 0);\n        }\n        const\
-    \ std::make_unsigned_t<T> n_unsigned = n;\n        assert(n_unsigned <= std::numeric_limits<uint64_t>::max());\
-    \ // n < 2^64\n        using namespace internal;\n        if (n_unsigned < THRESHOLD_1)\
+    \            if (n < 121) return true;\n\n            const uint32_t s = __builtin_ctzll(n\
+    \ - 1); // >= 1\n            const uint64_t d = (n - 1) >> s;\n\n            const\
+    \ Montgomery64 mg{ n };\n\n            const uint64_t one = mg.make(1), minus_one\
+    \ = mg.make(n - 1);\n\n            for (std::size_t i = 0; i < SIZE; ++i) {\n\
+    \                uint64_t a = BASE[i] % n;\n                if (a == 0) continue;\n\
+    \                uint64_t Y = mg.pow(mg.make(a), d);\n                if (Y ==\
+    \ one) continue;\n                for (uint32_t r = 0;; ++r, Y = mg.mul(Y, Y))\
+    \ {\n                    // Y = a^(d 2^r)\n                    if (Y == minus_one)\
+    \ break;\n                    if (r == s - 1) return false;\n                }\n\
+    \            }\n            return true;\n        }\n    }\n\n    template <typename\
+    \ T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>\n    constexpr\
+    \ bool is_prime(T n) {\n        if constexpr (std::is_signed_v<T>) {\n       \
+    \     assert(n >= 0);\n        }\n        const std::make_unsigned_t<T> n_unsigned\
+    \ = n;\n        assert(n_unsigned <= std::numeric_limits<uint64_t>::max()); //\
+    \ n < 2^64\n        using namespace internal;\n        if (n_unsigned < THRESHOLD_1)\
     \ return miller_rabin<BASE_1, 1>(n_unsigned);\n        if (n_unsigned < THRESHOLD_2)\
     \ return miller_rabin<BASE_2, 2>(n_unsigned);\n        if (n_unsigned < THRESHOLD_3)\
     \ return miller_rabin<BASE_3, 3>(n_unsigned);\n        if (n_unsigned < THRESHOLD_4)\
@@ -148,38 +151,41 @@ data:
     \ return miller_rabin<BASE_6, 6>(n_unsigned);\n        return miller_rabin<BASE_7,\
     \ 7>(n_unsigned);\n    }\n} // namespace suisen::miller_rabin\n\n\n"
   code: "#ifndef SUISEN_DETERMINISTIC_MILLER_RABIN\n#define SUISEN_DETERMINISTIC_MILLER_RABIN\n\
-    \n#include <cassert>\n#include <cstdint>\n#include <type_traits>\n\n#include \"\
-    library/number/montogomery.hpp\"\n\nnamespace suisen::miller_rabin {\n    namespace\
-    \ internal {\n        constexpr uint64_t THRESHOLD_1 = 341531ULL;\n        constexpr\
-    \ uint64_t BASE_1[] { 9345883071009581737ULL };\n\n        constexpr uint64_t\
-    \ THRESHOLD_2 = 1050535501ULL;\n        constexpr uint64_t BASE_2[] { 336781006125ULL,\
-    \ 9639812373923155ULL };\n\n        constexpr uint64_t THRESHOLD_3 = 350269456337ULL;\n\
-    \        constexpr uint64_t BASE_3[] { 4230279247111683200ULL, 14694767155120705706ULL,\
-    \ 16641139526367750375ULL };\n\n        constexpr uint64_t THRESHOLD_4 = 55245642489451ULL;\n\
-    \        constexpr uint64_t BASE_4[] { 2ULL, 141889084524735ULL, 1199124725622454117ULL,\
-    \ 11096072698276303650ULL };\n\n        constexpr uint64_t THRESHOLD_5 = 7999252175582851ULL;\n\
-    \        constexpr uint64_t BASE_5[] { 2ULL, 4130806001517ULL, 149795463772692060ULL,\
+    \n#include <array>\n#include <cassert>\n#include <cstdint>\n#include <iterator>\n\
+    #include <tuple>\n#include <type_traits>\n\n#include \"library/number/montogomery.hpp\"\
+    \n\nnamespace suisen::miller_rabin {\n    namespace internal {\n        constexpr\
+    \ uint64_t THRESHOLD_1 = 341531ULL;\n        constexpr uint64_t BASE_1[]{ 9345883071009581737ULL\
+    \ };\n\n        constexpr uint64_t THRESHOLD_2 = 1050535501ULL;\n        constexpr\
+    \ uint64_t BASE_2[]{ 336781006125ULL, 9639812373923155ULL };\n\n        constexpr\
+    \ uint64_t THRESHOLD_3 = 350269456337ULL;\n        constexpr uint64_t BASE_3[]{\
+    \ 4230279247111683200ULL, 14694767155120705706ULL, 16641139526367750375ULL };\n\
+    \n        constexpr uint64_t THRESHOLD_4 = 55245642489451ULL;\n        constexpr\
+    \ uint64_t BASE_4[]{ 2ULL, 141889084524735ULL, 1199124725622454117ULL, 11096072698276303650ULL\
+    \ };\n\n        constexpr uint64_t THRESHOLD_5 = 7999252175582851ULL;\n      \
+    \  constexpr uint64_t BASE_5[]{ 2ULL, 4130806001517ULL, 149795463772692060ULL,\
     \ 186635894390467037ULL, 3967304179347715805ULL };\n\n        constexpr uint64_t\
-    \ THRESHOLD_6 = 585226005592931977ULL;\n        constexpr uint64_t BASE_6[] {\
-    \ 2ULL, 123635709730000ULL, 9233062284813009ULL, 43835965440333360ULL, 761179012939631437ULL,\
-    \ 1263739024124850375ULL };\n\n        constexpr uint64_t BASE_7[] { 2U, 325U,\
+    \ THRESHOLD_6 = 585226005592931977ULL;\n        constexpr uint64_t BASE_6[]{ 2ULL,\
+    \ 123635709730000ULL, 9233062284813009ULL, 43835965440333360ULL, 761179012939631437ULL,\
+    \ 1263739024124850375ULL };\n\n        constexpr uint64_t BASE_7[]{ 2U, 325U,\
     \ 9375U, 28178U, 450775U, 9780504U, 1795265022U };\n\n        template <auto BASE,\
     \ std::size_t SIZE>\n        constexpr bool miller_rabin(uint64_t n) {\n     \
     \       if (n == 2 or n == 3 or n == 5 or n == 7) return true;\n            if\
     \ (n <= 1 or n % 2 == 0 or n % 3 == 0 or n % 5 == 0 or n % 7 == 0) return false;\n\
-    \n            const uint64_t d = (n - 1) >> __builtin_ctzll(n - 1);\n\n      \
-    \      const Montgomery64 mg{n};\n\n            const uint64_t one = mg.make(1),\
-    \ minus_one = mg.make(n - 1);\n\n            for (std::size_t i = 0; i < SIZE;\
-    \ ++i) {\n                uint64_t p = BASE[i] % n;\n                if (p ==\
-    \ 0) continue;\n                uint64_t Y = mg.pow(mg.make(p), d);\n        \
-    \        if (Y == one) continue;\n                for (uint64_t t = d; Y != minus_one;\
-    \ t <<= 1) {\n                    Y = mg.mul(Y, Y);\n                    if (Y\
-    \ == one or t == n - 1) return false;\n                }\n            }\n    \
-    \        return true;\n        }\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
-    \ std::nullptr_t> = nullptr>\n    constexpr bool is_prime(T n) {\n        if constexpr\
-    \ (std::is_signed_v<T>) {\n            assert(n >= 0);\n        }\n        const\
-    \ std::make_unsigned_t<T> n_unsigned = n;\n        assert(n_unsigned <= std::numeric_limits<uint64_t>::max());\
-    \ // n < 2^64\n        using namespace internal;\n        if (n_unsigned < THRESHOLD_1)\
+    \            if (n < 121) return true;\n\n            const uint32_t s = __builtin_ctzll(n\
+    \ - 1); // >= 1\n            const uint64_t d = (n - 1) >> s;\n\n            const\
+    \ Montgomery64 mg{ n };\n\n            const uint64_t one = mg.make(1), minus_one\
+    \ = mg.make(n - 1);\n\n            for (std::size_t i = 0; i < SIZE; ++i) {\n\
+    \                uint64_t a = BASE[i] % n;\n                if (a == 0) continue;\n\
+    \                uint64_t Y = mg.pow(mg.make(a), d);\n                if (Y ==\
+    \ one) continue;\n                for (uint32_t r = 0;; ++r, Y = mg.mul(Y, Y))\
+    \ {\n                    // Y = a^(d 2^r)\n                    if (Y == minus_one)\
+    \ break;\n                    if (r == s - 1) return false;\n                }\n\
+    \            }\n            return true;\n        }\n    }\n\n    template <typename\
+    \ T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>\n    constexpr\
+    \ bool is_prime(T n) {\n        if constexpr (std::is_signed_v<T>) {\n       \
+    \     assert(n >= 0);\n        }\n        const std::make_unsigned_t<T> n_unsigned\
+    \ = n;\n        assert(n_unsigned <= std::numeric_limits<uint64_t>::max()); //\
+    \ n < 2^64\n        using namespace internal;\n        if (n_unsigned < THRESHOLD_1)\
     \ return miller_rabin<BASE_1, 1>(n_unsigned);\n        if (n_unsigned < THRESHOLD_2)\
     \ return miller_rabin<BASE_2, 2>(n_unsigned);\n        if (n_unsigned < THRESHOLD_3)\
     \ return miller_rabin<BASE_3, 3>(n_unsigned);\n        if (n_unsigned < THRESHOLD_4)\
@@ -197,8 +203,8 @@ data:
   - library/number/primitive_root.hpp
   - library/number/tetration_mod.hpp
   - library/number/fast_factorize.hpp
-  timestamp: '2023-05-18 22:36:14+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-05-19 09:20:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp

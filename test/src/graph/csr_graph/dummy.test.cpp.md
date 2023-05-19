@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/graph/csr_graph.hpp
     title: Graph (CSR Format)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/timer.hpp
     title: Timer
   _extendedRequiredBy: []

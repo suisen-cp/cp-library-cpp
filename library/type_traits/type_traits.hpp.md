@@ -9,6 +9,10 @@ data:
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
+    path: library/convolution/multi_variate_convolution_circular.hpp
+    title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
+      \u307F\u8FBC\u307F)"
+  - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
@@ -80,6 +84,18 @@ data:
   - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: library/math/set_power_series.hpp
+  - icon: ':heavy_check_mark:'
+    path: library/number/fast_factorize.hpp
+    title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
+  - icon: ':heavy_check_mark:'
+    path: library/number/order_Z_mZ.hpp
+    title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
+  - icon: ':heavy_check_mark:'
+    path: library/number/primitive_root.hpp
+    title: Primitive Root
+  - icon: ':heavy_check_mark:'
+    path: library/number/tetration_mod.hpp
+    title: $a\uparrow\uparrow b \bmod m$
   - icon: ':x:'
     path: library/polynomial/array_fps_naive.hpp
     title: Array Fps Naive
@@ -119,6 +135,15 @@ data:
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+    title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
@@ -260,6 +285,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
     title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/fast_factorize/factorize.test.cpp
+    title: test/src/number/fast_factorize/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/primitive_root/dummy.test.cpp
+    title: test/src/number/primitive_root/dummy.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/primitive_root/primitive_root.test.cpp
+    title: test/src/number/primitive_root/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/tetration_mod/tetration_mod.test.cpp
+    title: test/src/number/tetration_mod/tetration_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -527,6 +564,7 @@ data:
   - library/datastructure/convex_hull_trick.hpp
   - library/datastructure/range_foldable_map.hpp
   - library/convolution/subset_convolution.hpp
+  - library/convolution/multi_variate_convolution_circular.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/convolution/polynomial_eval.hpp
   - library/convolution/array_subset_convolution.hpp
@@ -543,6 +581,10 @@ data:
   - library/geom/segment_intersections.hpp
   - library/algorithm/inversion_number.hpp
   - library/template.cpp
+  - library/number/order_Z_mZ.hpp
+  - library/number/primitive_root.hpp
+  - library/number/tetration_mod.hpp
+  - library/number/fast_factorize.hpp
   - library/util/update_proxy_object.hpp
   - library/util/coordinate_compressor.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
@@ -586,6 +628,9 @@ data:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
@@ -652,6 +697,10 @@ data:
   - test/src/math/array_set_power_series/abc253_h_2.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/graph/functional_graph/abc254_g.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/number/fast_factorize/factorize.test.cpp
+  - test/src/number/tetration_mod/tetration_mod.test.cpp
   - test/src/util/coordinate_compressor/dummy.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
