@@ -11,17 +11,17 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1038
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree
     links:
-    - https://yukicoder.me/problems/no/1038
-  bundledCode: "#line 1 \"test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp\"\
-    \n#define PROBLEM \"https://yukicoder.me/problems/no/1038\"\n\n#include <iostream>\n\
-    \n#line 1 \"library/tree/point_get_range_contour_operate.hpp\"\n\n\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <cassert>\n#include <cstdint>\n#include\
-    \ <deque>\n#include <queue>\n#include <random>\n#include <tuple>\n#include <utility>\n\
-    \nnamespace suisen {\n    template <typename T, typename F, T(*mapping)(F, T),\
-    \ F(*composition)(F, F), F(*id)()>\n    struct PointGetRangeContourOperate {\n\
-    \        using value_type = T;\n        using operator_type = F;\n    private:\n\
+    - https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree
+  bundledCode: "#line 1 \"test/src/tree/point_get_range_contour_operate/vertex_get_range_contour_add_on_tree.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree\"\
+    \n\n#include <iostream>\n\n#line 1 \"library/tree/point_get_range_contour_operate.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cstdint>\n\
+    #include <deque>\n#include <queue>\n#include <random>\n#include <tuple>\n#include\
+    \ <utility>\n\nnamespace suisen {\n    template <typename T, typename F, T(*mapping)(F,\
+    \ T), F(*composition)(F, F), F(*id)()>\n    struct PointGetRangeContourOperate\
+    \ {\n        using value_type = T;\n        using operator_type = F;\n    private:\n\
     \        struct InternalCommutativeDualSegmentTree {\n            InternalCommutativeDualSegmentTree(int\
     \ n = 0) : _n(n), _laz(2 * _n, id()) {}\n            void apply(int l, int r,\
     \ const operator_type& f) {\n                l = std::max(l, 0), r = std::min(r,\
@@ -111,59 +111,47 @@ data:
     \     std::vector<value_type> _dat;\n        std::vector<TreeNode> _nodes;\n \
     \       std::vector<int> _par;\n        std::vector<std::array<AuxInfo, 30>> _info;\n\
     \        std::vector<std::array<sequence_type, 2>> _subtrees;\n    };\n} // namespace\
-    \ suisen\n\n\n#line 6 \"test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp\"\
-    \n\nlong long mapping(long long f, long long x) {\n    return f + x;\n}\nlong\
-    \ long composition(long long x, long long y) {\n    return x + y;\n}\nlong long\
-    \ id() {\n    return 0;\n}\n\n#include <chrono>\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    suisen::PointGetRangeContourOperate<long\
-    \ long, long long, mapping, composition, id> g(n);\n    for (int i = 0; i < n\
-    \ - 1; ++i) {\n        int u, v;\n        std::cin >> u >> v;\n        --u, --v;\n\
-    \        g.add_edge(u, v);\n    }\n\n    std::vector<std::tuple<int, int, int>>\
-    \ qs(q);\n    for (auto& [x, y, z] : qs) {\n        std::cin >> x >> y >> z;\n\
-    \        --x, ++y;\n    }\n    std::vector<long long> ans(q);\n\n    auto t1 =\
-    \ std::chrono::system_clock::now();\n    g.build(std::vector<long long>(n, 0LL));\n\
-    \    auto t2 = std::chrono::system_clock::now();\n    for (int i = 0; i < q; ++i)\
-    \ {\n        const auto& [x, y, z] = qs[i];\n        ans[i] = g.get(x);\n    \
-    \    g.apply(x, 0, y, z);\n    }\n    auto t3 = std::chrono::system_clock::now();\n\
-    \n    for (auto& e : ans) std::cout << e << '\\n';\n\n    auto build_time_ms =\
-    \ std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();\n  \
-    \  auto query_time_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t3\
-    \ - t2).count();\n\n    std::cerr << \"build : \" << build_time_ms << \" ms\"\
-    \ << std::endl;\n    std::cerr << \"query : \" << query_time_ms << \" ms\" <<\
-    \ std::endl;\n\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1038\"\n\n#include <iostream>\n\
-    \n#include \"library/tree/point_get_range_contour_operate.hpp\"\n\nlong long mapping(long\
-    \ long f, long long x) {\n    return f + x;\n}\nlong long composition(long long\
-    \ x, long long y) {\n    return x + y;\n}\nlong long id() {\n    return 0;\n}\n\
-    \n#include <chrono>\n\nint main() {\n    std::ios::sync_with_stdio(false);\n \
-    \   std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    suisen::PointGetRangeContourOperate<long\
-    \ long, long long, mapping, composition, id> g(n);\n    for (int i = 0; i < n\
-    \ - 1; ++i) {\n        int u, v;\n        std::cin >> u >> v;\n        --u, --v;\n\
-    \        g.add_edge(u, v);\n    }\n\n    std::vector<std::tuple<int, int, int>>\
-    \ qs(q);\n    for (auto& [x, y, z] : qs) {\n        std::cin >> x >> y >> z;\n\
-    \        --x, ++y;\n    }\n    std::vector<long long> ans(q);\n\n    auto t1 =\
-    \ std::chrono::system_clock::now();\n    g.build(std::vector<long long>(n, 0LL));\n\
-    \    auto t2 = std::chrono::system_clock::now();\n    for (int i = 0; i < q; ++i)\
-    \ {\n        const auto& [x, y, z] = qs[i];\n        ans[i] = g.get(x);\n    \
-    \    g.apply(x, 0, y, z);\n    }\n    auto t3 = std::chrono::system_clock::now();\n\
-    \n    for (auto& e : ans) std::cout << e << '\\n';\n\n    auto build_time_ms =\
-    \ std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count();\n  \
-    \  auto query_time_ms = std::chrono::duration_cast<std::chrono::milliseconds>(t3\
-    \ - t2).count();\n\n    std::cerr << \"build : \" << build_time_ms << \" ms\"\
-    \ << std::endl;\n    std::cerr << \"query : \" << query_time_ms << \" ms\" <<\
-    \ std::endl;\n\n    return 0;\n}"
+    \ suisen\n\n\n#line 6 \"test/src/tree/point_get_range_contour_operate/vertex_get_range_contour_add_on_tree.test.cpp\"\
+    \n\nusing T = long long;\nusing F = long long;\nT mapping(F f, T x) {\n    return\
+    \ f + x;\n}\nF composition(F f, F g) {\n    return f + g;\n}\nF id() {\n    return\
+    \ 0;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    using suisen::PointGetRangeContourOperate;\n\n    int n, q;\n    std::cin\
+    \ >> n >> q;\n\n    std::vector<T> a(n);\n    for (auto &e : a) std::cin >> e;\n\
+    \n    PointGetRangeContourOperate<T, F, mapping, composition, id> g(n);\n    for\
+    \ (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        std::cin >> u >> v;\n\
+    \        g.add_edge(u, v);\n    }\n    g.build(a);\n\n    while (q --> 0) {\n\
+    \        int query_type;\n        std::cin >> query_type;\n        if (query_type\
+    \ == 0) {\n            int p, l, r, x;\n            std::cin >> p >> l >> r >>\
+    \ x;\n            g.apply(p, l, r, x);\n        } else {\n            int p;\n\
+    \            std::cin >> p;\n            std::cout << g.get(p) << '\\n';\n   \
+    \     }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree\"\
+    \n\n#include <iostream>\n\n#include \"library/tree/point_get_range_contour_operate.hpp\"\
+    \n\nusing T = long long;\nusing F = long long;\nT mapping(F f, T x) {\n    return\
+    \ f + x;\n}\nF composition(F f, F g) {\n    return f + g;\n}\nF id() {\n    return\
+    \ 0;\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    using suisen::PointGetRangeContourOperate;\n\n    int n, q;\n    std::cin\
+    \ >> n >> q;\n\n    std::vector<T> a(n);\n    for (auto &e : a) std::cin >> e;\n\
+    \n    PointGetRangeContourOperate<T, F, mapping, composition, id> g(n);\n    for\
+    \ (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        std::cin >> u >> v;\n\
+    \        g.add_edge(u, v);\n    }\n    g.build(a);\n\n    while (q --> 0) {\n\
+    \        int query_type;\n        std::cin >> query_type;\n        if (query_type\
+    \ == 0) {\n            int p, l, r, x;\n            std::cin >> p >> l >> r >>\
+    \ x;\n            g.apply(p, l, r, x);\n        } else {\n            int p;\n\
+    \            std::cin >> p;\n            std::cout << g.get(p) << '\\n';\n   \
+    \     }\n    }\n}"
   dependsOn:
   - library/tree/point_get_range_contour_operate.hpp
   isVerificationFile: true
-  path: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
+  path: test/src/tree/point_get_range_contour_operate/vertex_get_range_contour_add_on_tree.test.cpp
   requiredBy: []
   timestamp: '2023-05-18 22:36:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
+documentation_of: test/src/tree/point_get_range_contour_operate/vertex_get_range_contour_add_on_tree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
-- /verify/test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp.html
-title: test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
+- /verify/test/src/tree/point_get_range_contour_operate/vertex_get_range_contour_add_on_tree.test.cpp
+- /verify/test/src/tree/point_get_range_contour_operate/vertex_get_range_contour_add_on_tree.test.cpp.html
+title: test/src/tree/point_get_range_contour_operate/vertex_get_range_contour_add_on_tree.test.cpp
 ---

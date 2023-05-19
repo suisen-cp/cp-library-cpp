@@ -187,6 +187,9 @@ data:
     path: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/src/tree/point_get_range_contour_add_invertible/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/src/tree/point_get_range_contour_add_invertible/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/src/tree/point_get_range_contour_add_invertible/yuki1038.test.cpp
     title: test/src/tree/point_get_range_contour_add_invertible/yuki1038.test.cpp
   _isVerificationFailed: true
@@ -286,6 +289,7 @@ data:
   - test/src/linear_algebra/array_matrix/matrix_det_arbitrary_mod.test.cpp
   - test/src/linear_algebra/array_matrix/matrix_det.test.cpp
   - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  - test/src/tree/point_get_range_contour_add_invertible/vertex_get_range_contour_add_on_tree.test.cpp
   - test/src/tree/point_get_range_contour_add_invertible/yuki1038.test.cpp
   - test/src/tree/point_add_range_contour_sum_invertible/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/src/datastructure/union_find/weighted_union_find/DSL_1_B.test.cpp

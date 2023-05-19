@@ -161,55 +161,48 @@ data:
     \ nullptr);\n                }\n\n                while (lp.size()) update(lt\
     \ = lp.back()), lp.pop_back();\n                while (rp.size()) update(rt =\
     \ rp.back()), rp.pop_back();\n\n                return { lt, rt };\n         \
-    \   }\n\n            static inner_node_pointer concat_nonnull(inner_node_pointer\
-    \ tl, inner_node_pointer tr) {\n                assert(max_key(tl) < min_key(tr));\n\
-    \                if (priority(tl) < priority(tr)) {\n                    if (inner_node_pointer\
-    \ tm = child0(tr); not tm) {\n                        set_child0(tr, tl);\n  \
-    \                  } else {\n                        set_child0(tr, concat_nonnull(tl,\
-    \ tm));\n                    }\n                    return update(tr);\n     \
-    \           } else {\n                    if (inner_node_pointer tm = child1(tl);\
-    \ not tm) {\n                        set_child1(tl, tr);\n                   \
-    \ } else {\n                        set_child1(tl, concat_nonnull(tm, tr));\n\
-    \                    }\n                    return update(tl);\n             \
-    \   }\n            }\n            static inner_node_pointer concat(inner_node_pointer\
-    \ tl, inner_node_pointer tr) {\n                if (not tl) return tr;\n     \
-    \           if (not tr) return tl;\n                return concat_nonnull(tl,\
-    \ tr);\n            }\n            static inner_node_pointer merge(inner_node_pointer\
-    \ t1, inner_node_pointer t2) {\n                if (not t1) return t2;\n     \
-    \           if (not t2) return t1;\n                if (key(t1) > key(t2)) std::swap(t1,\
-    \ t2);\n                if (max_key(t1) <= min_key(t2)) return concat_nonnull(t1,\
-    \ t2);\n                if (key(t1) <= min_key(t2)) {\n                    inner_node_pointer\
-    \ tr = set_child1(t1, nullptr);\n                    return concat_nonnull(update(t1),\
-    \ merge(t2, tr));\n                } else if (max_key(t1) <= key(t2)) {\n    \
-    \                inner_node_pointer tl = set_child0(t2, nullptr);\n          \
-    \          return concat_nonnull(merge(t1, tl), update(t2));\n               \
-    \ } else {\n                    auto [t2_l, t2_r] = split_key(t2, key(t1));\n\
-    \                    assert(t2_l and t2_r);\n                    inner_node_pointer\
-    \ tr = set_child1(t1, nullptr);\n                    inner_node_pointer tl = update(t1);\n\
-    \                    return concat_nonnull(merge(tl, t2_l), merge(tr, t2_r));\n\
-    \                }\n            }\n\n            template <typename Predicate,\
-    \ std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>, std::nullptr_t>\
-    \ = nullptr>\n            static std::pair<size_type, value_type> max_right(inner_node_pointer\
-    \ t, const Predicate& f, const value_type& init_sum = e()) {\n               \
-    \ size_type r = 0;\n                value_type s = init_sum;\n               \
-    \ while (t) {\n                    if (value_type nxt_s = op(s, safe_sum(child0(t)));\
-    \ f(nxt_s)) {\n                        s = std::move(nxt_s);\n               \
-    \         r += safe_size(child0(t));\n                        if (nxt_s = op(s,\
-    \ value(t)); f(nxt_s)) {\n                            s = std::move(nxt_s);\n\
-    \                            r += 1;\n                            t = child1(t);\n\
-    \                        } else break;\n                    } else {\n       \
-    \                 t = child0(t);\n                    }\n                }\n \
-    \               return { r, s };\n            }\n            template <typename\
-    \ Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>,\
-    \ std::nullptr_t> = nullptr>\n            static std::pair<size_type, value_type>\
-    \ min_left(inner_node_pointer t, const Predicate& f, const value_type& init_sum\
-    \ = e()) {\n                size_type l = safe_size(t);\n                value_type\
+    \   }\n\n            static inner_node_pointer concat(inner_node_pointer tl, inner_node_pointer\
+    \ tr) {\n                if (not tl) return tr;\n                if (not tr) return\
+    \ tl;\n                assert(max_key(tl) < min_key(tr));\n                if\
+    \ (priority(tl) < priority(tr)) {\n                    set_child0(tr, concat(tl,\
+    \ child0(tr)));\n                    return update(tr);\n                } else\
+    \ {\n                    set_child1(tl, concat(child1(tl), tr));\n           \
+    \         return update(tl);\n                }\n            }\n            static\
+    \ inner_node_pointer merge(inner_node_pointer t1, inner_node_pointer t2) {\n \
+    \               if (not t1) return t2;\n                if (not t2) return t1;\n\
+    \                if (key(t1) > key(t2)) std::swap(t1, t2);\n                if\
+    \ (max_key(t1) <= min_key(t2)) return concat(t1, t2);\n                if (key(t1)\
+    \ <= min_key(t2)) {\n                    inner_node_pointer tr = set_child1(t1,\
+    \ nullptr);\n                    return concat(update(t1), merge(t2, tr));\n \
+    \               } else if (max_key(t1) <= key(t2)) {\n                    inner_node_pointer\
+    \ tl = set_child0(t2, nullptr);\n                    return concat(merge(t1, tl),\
+    \ update(t2));\n                } else {\n                    auto [t2_l, t2_r]\
+    \ = split_key(t2, key(t1));\n                    assert(t2_l and t2_r);\n    \
+    \                inner_node_pointer tr = set_child1(t1, nullptr);\n          \
+    \          inner_node_pointer tl = update(t1);\n                    return concat(merge(tl,\
+    \ t2_l), merge(tr, t2_r));\n                }\n            }\n\n            template\
+    \ <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate,\
+    \ value_type>, std::nullptr_t> = nullptr>\n            static std::pair<size_type,\
+    \ value_type> max_right(inner_node_pointer t, const Predicate& f, const value_type&\
+    \ init_sum = e()) {\n                size_type r = 0;\n                value_type\
     \ s = init_sum;\n                while (t) {\n                    if (value_type\
-    \ nxt_s = op(safe_sum(child1(t)), s); f(nxt_s)) {\n                        s =\
-    \ std::move(nxt_s);\n                        l -= safe_size(child1(t));\n    \
-    \                    if (nxt_s = op(value(t), s); f(nxt_s)) {\n              \
-    \              s = std::move(nxt_s);\n                            l -= 1;\n  \
-    \                          t = child0(t);\n                        } else break;\n\
+    \ nxt_s = op(s, safe_sum(child0(t))); f(nxt_s)) {\n                        s =\
+    \ std::move(nxt_s);\n                        r += safe_size(child0(t));\n    \
+    \                    if (nxt_s = op(s, value(t)); f(nxt_s)) {\n              \
+    \              s = std::move(nxt_s);\n                            r += 1;\n  \
+    \                          t = child1(t);\n                        } else break;\n\
+    \                    } else {\n                        t = child0(t);\n      \
+    \              }\n                }\n                return { r, s };\n      \
+    \      }\n            template <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool,\
+    \ Predicate, value_type>, std::nullptr_t> = nullptr>\n            static std::pair<size_type,\
+    \ value_type> min_left(inner_node_pointer t, const Predicate& f, const value_type&\
+    \ init_sum = e()) {\n                size_type l = safe_size(t);\n           \
+    \     value_type s = init_sum;\n                while (t) {\n                \
+    \    if (value_type nxt_s = op(safe_sum(child1(t)), s); f(nxt_s)) {\n        \
+    \                s = std::move(nxt_s);\n                        l -= safe_size(child1(t));\n\
+    \                        if (nxt_s = op(value(t), s); f(nxt_s)) {\n          \
+    \                  s = std::move(nxt_s);\n                            l -= 1;\n\
+    \                            t = child0(t);\n                        } else break;\n\
     \                    } else {\n                        t = child1(t);\n      \
     \              }\n                }\n                return { l, s };\n      \
     \      }\n\n            template <typename Func, std::enable_if_t<std::is_invocable_r_v<void,\
@@ -350,63 +343,56 @@ data:
     \ outer_node_pointer> split_at_range(outer_node_pointer t, size_type l, size_type\
     \ r) {\n                auto [tlm, tr] = split_at(t, r);\n                auto\
     \ [tl, tm] = split_at(tlm, l);\n                return { tl, tm, tr };\n     \
-    \       }\n\n            static outer_node_pointer concat_nonnull(outer_node_pointer\
-    \ tl, outer_node_pointer tr) {\n                if (priority(tl) < priority(tr))\
-    \ {\n                    if (outer_node_pointer tm = child0(tr); not tm) {\n \
-    \                       set_child0(tr, tl);\n                    } else {\n  \
-    \                      set_child0(tr, concat_nonnull(tl, tm));\n             \
-    \       }\n                    return update(tr);\n                } else {\n\
-    \                    if (outer_node_pointer tm = child1(tl); not tm) {\n     \
-    \                   set_child1(tl, tr);\n                    } else {\n      \
-    \                  set_child1(tl, concat_nonnull(tm, tr));\n                 \
-    \   }\n                    return update(tl);\n                }\n           \
-    \ }\n            static outer_node_pointer concat(outer_node_pointer tl, outer_node_pointer\
-    \ tr) {\n                if (not tl) return tr;\n                if (not tr) return\
-    \ tl;\n                return concat_nonnull(tl, tr);\n            }\n       \
-    \     static outer_node_pointer concat(outer_node_pointer tl, outer_node_pointer\
-    \ tm, outer_node_pointer tr) {\n                return concat(concat(tl, tm),\
-    \ tr);\n            }\n\n            static inner_node_pointer merge_all(outer_node_pointer\
-    \ t) {\n                if (not t) return nullptr;\n                inner_node_pointer\
-    \ res = inner_node::merge(inner_node::merge(merge_all(child0(t)), inner(t)), merge_all(child1(t)));\n\
-    \                inner(t) = nullptr;\n                dealloc_node(t);\n     \
-    \           return res;\n            }\n\n            template <typename Predicate,\
-    \ std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>, std::nullptr_t>\
-    \ = nullptr>\n            static std::pair<size_type, value_type> max_right_prefix(outer_node_pointer\
-    \ t, const Predicate& f) {\n                size_type r = 0;\n               \
-    \ value_type s = e();\n                while (t) {\n                    if (value_type\
-    \ nxt_s = op(s, safe_sum(child0(t))); f(nxt_s)) {\n                        s =\
-    \ std::move(nxt_s);\n                        r += safe_size(child0(t));\n    \
-    \                    if (nxt_s = op(s, inner_sum(t)); f(nxt_s)) {\n          \
-    \                  s = std::move(nxt_s);\n                            r += inner_size(t);\n\
-    \                            t = child1(t);\n                        } else {\n\
-    \                            size_type r_inner;\n                            std::tie(r_inner,\
-    \ s) = inner_node::max_right(inner(t), f, s);\n                            r +=\
-    \ r_inner;\n                            break;\n                        }\n  \
-    \                  } else {\n                        t = child0(t);\n        \
-    \            }\n                }\n                return { r, s };\n        \
-    \    }\n            template <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool,\
-    \ Predicate, value_type>, std::nullptr_t> = nullptr>\n            static std::tuple<outer_node_pointer,\
+    \       }\n\n            static outer_node_pointer concat(outer_node_pointer tl,\
+    \ outer_node_pointer tr) {\n                if (not tl) return tr;\n         \
+    \       if (not tr) return tl;\n                if (priority(tl) < priority(tr))\
+    \ {\n                    set_child0(tr, concat(tl, child0(tr)));\n           \
+    \         return update(tr);\n                } else {\n                    set_child1(tl,\
+    \ concat(child1(tl), tr));\n                    return update(tl);\n         \
+    \       }\n            }\n            static outer_node_pointer concat(outer_node_pointer\
+    \ tl, outer_node_pointer tm, outer_node_pointer tr) {\n                return\
+    \ concat(concat(tl, tm), tr);\n            }\n\n            static inner_node_pointer\
+    \ merge_all(outer_node_pointer t) {\n                if (not t) return nullptr;\n\
+    \                inner_node_pointer res = inner_node::merge(inner_node::merge(merge_all(child0(t)),\
+    \ inner(t)), merge_all(child1(t)));\n                inner(t) = nullptr;\n   \
+    \             dealloc_node(t);\n                return res;\n            }\n\n\
+    \            template <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool,\
+    \ Predicate, value_type>, std::nullptr_t> = nullptr>\n            static std::pair<size_type,\
+    \ value_type> max_right_prefix(outer_node_pointer t, const Predicate& f) {\n \
+    \               size_type r = 0;\n                value_type s = e();\n      \
+    \          while (t) {\n                    if (value_type nxt_s = op(s, safe_sum(child0(t)));\
+    \ f(nxt_s)) {\n                        s = std::move(nxt_s);\n               \
+    \         r += safe_size(child0(t));\n                        if (nxt_s = op(s,\
+    \ inner_sum(t)); f(nxt_s)) {\n                            s = std::move(nxt_s);\n\
+    \                            r += inner_size(t);\n                           \
+    \ t = child1(t);\n                        } else {\n                         \
+    \   size_type r_inner;\n                            std::tie(r_inner, s) = inner_node::max_right(inner(t),\
+    \ f, s);\n                            r += r_inner;\n                        \
+    \    break;\n                        }\n                    } else {\n       \
+    \                 t = child0(t);\n                    }\n                }\n \
+    \               return { r, s };\n            }\n            template <typename\
+    \ Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>,\
+    \ std::nullptr_t> = nullptr>\n            static std::tuple<outer_node_pointer,\
     \ size_type, value_type> max_right(outer_node_pointer t, size_type l, const Predicate&\
     \ f) {\n                auto [tl, tr] = split_at(t, l);\n                auto\
     \ [r, s] = max_right_prefix(tr, f);\n                return { concat(tl, tr),\
-    \ l + r, s };\n            }\n            \n            template <typename Predicate,\
-    \ std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>, std::nullptr_t>\
-    \ = nullptr>\n            static std::pair<size_type, value_type> min_left_suffix(outer_node_pointer\
-    \ t, const Predicate& f) {\n                size_type l = safe_size(t);\n    \
-    \            value_type s = e();\n                while (t) {\n              \
-    \      if (value_type nxt_s = op(safe_sum(child1(t)), s); f(nxt_s)) {\n      \
-    \                  s = std::move(nxt_s);\n                        l -= safe_size(child1(t));\n\
-    \                        if (nxt_s = op(inner_sum(t), s); f(nxt_s)) {\n      \
-    \                      s = std::move(nxt_s);\n                            l -=\
-    \ inner_size(t);\n                            t = child0(t);\n               \
-    \         } else {\n                            size_type l_inner;\n         \
-    \                   std::tie(l_inner, s) = inner_node::min_left(inner(t), f, s);\n\
-    \                            l -= inner_size(t) - l_inner;\n                 \
-    \           break;\n                        }\n                    } else {\n\
-    \                        t = child1(t);\n                    }\n             \
-    \   }\n                return { l, s };\n            }\n            template <typename\
-    \ Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>,\
-    \ std::nullptr_t> = nullptr>\n            static std::tuple<outer_node_pointer,\
+    \ l + r, s };\n            }\n\n            template <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool,\
+    \ Predicate, value_type>, std::nullptr_t> = nullptr>\n            static std::pair<size_type,\
+    \ value_type> min_left_suffix(outer_node_pointer t, const Predicate& f) {\n  \
+    \              size_type l = safe_size(t);\n                value_type s = e();\n\
+    \                while (t) {\n                    if (value_type nxt_s = op(safe_sum(child1(t)),\
+    \ s); f(nxt_s)) {\n                        s = std::move(nxt_s);\n           \
+    \             l -= safe_size(child1(t));\n                        if (nxt_s =\
+    \ op(inner_sum(t), s); f(nxt_s)) {\n                            s = std::move(nxt_s);\n\
+    \                            l -= inner_size(t);\n                           \
+    \ t = child0(t);\n                        } else {\n                         \
+    \   size_type l_inner;\n                            std::tie(l_inner, s) = inner_node::min_left(inner(t),\
+    \ f, s);\n                            l -= inner_size(t) - l_inner;\n        \
+    \                    break;\n                        }\n                    }\
+    \ else {\n                        t = child1(t);\n                    }\n    \
+    \            }\n                return { l, s };\n            }\n            template\
+    \ <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate,\
+    \ value_type>, std::nullptr_t> = nullptr>\n            static std::tuple<outer_node_pointer,\
     \ size_type, value_type> min_left(outer_node_pointer t, size_type r, const Predicate&\
     \ f) {\n                auto [tl, tr] = split_at(t, r);\n                auto\
     \ [l, s] = min_left_suffix(tl, f);\n                return { concat(tl, tr), l,\
@@ -612,55 +598,48 @@ data:
     \ nullptr);\n                }\n\n                while (lp.size()) update(lt\
     \ = lp.back()), lp.pop_back();\n                while (rp.size()) update(rt =\
     \ rp.back()), rp.pop_back();\n\n                return { lt, rt };\n         \
-    \   }\n\n            static inner_node_pointer concat_nonnull(inner_node_pointer\
-    \ tl, inner_node_pointer tr) {\n                assert(max_key(tl) < min_key(tr));\n\
-    \                if (priority(tl) < priority(tr)) {\n                    if (inner_node_pointer\
-    \ tm = child0(tr); not tm) {\n                        set_child0(tr, tl);\n  \
-    \                  } else {\n                        set_child0(tr, concat_nonnull(tl,\
-    \ tm));\n                    }\n                    return update(tr);\n     \
-    \           } else {\n                    if (inner_node_pointer tm = child1(tl);\
-    \ not tm) {\n                        set_child1(tl, tr);\n                   \
-    \ } else {\n                        set_child1(tl, concat_nonnull(tm, tr));\n\
-    \                    }\n                    return update(tl);\n             \
-    \   }\n            }\n            static inner_node_pointer concat(inner_node_pointer\
-    \ tl, inner_node_pointer tr) {\n                if (not tl) return tr;\n     \
-    \           if (not tr) return tl;\n                return concat_nonnull(tl,\
-    \ tr);\n            }\n            static inner_node_pointer merge(inner_node_pointer\
-    \ t1, inner_node_pointer t2) {\n                if (not t1) return t2;\n     \
-    \           if (not t2) return t1;\n                if (key(t1) > key(t2)) std::swap(t1,\
-    \ t2);\n                if (max_key(t1) <= min_key(t2)) return concat_nonnull(t1,\
-    \ t2);\n                if (key(t1) <= min_key(t2)) {\n                    inner_node_pointer\
-    \ tr = set_child1(t1, nullptr);\n                    return concat_nonnull(update(t1),\
-    \ merge(t2, tr));\n                } else if (max_key(t1) <= key(t2)) {\n    \
-    \                inner_node_pointer tl = set_child0(t2, nullptr);\n          \
-    \          return concat_nonnull(merge(t1, tl), update(t2));\n               \
-    \ } else {\n                    auto [t2_l, t2_r] = split_key(t2, key(t1));\n\
-    \                    assert(t2_l and t2_r);\n                    inner_node_pointer\
-    \ tr = set_child1(t1, nullptr);\n                    inner_node_pointer tl = update(t1);\n\
-    \                    return concat_nonnull(merge(tl, t2_l), merge(tr, t2_r));\n\
-    \                }\n            }\n\n            template <typename Predicate,\
-    \ std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>, std::nullptr_t>\
-    \ = nullptr>\n            static std::pair<size_type, value_type> max_right(inner_node_pointer\
-    \ t, const Predicate& f, const value_type& init_sum = e()) {\n               \
-    \ size_type r = 0;\n                value_type s = init_sum;\n               \
-    \ while (t) {\n                    if (value_type nxt_s = op(s, safe_sum(child0(t)));\
-    \ f(nxt_s)) {\n                        s = std::move(nxt_s);\n               \
-    \         r += safe_size(child0(t));\n                        if (nxt_s = op(s,\
-    \ value(t)); f(nxt_s)) {\n                            s = std::move(nxt_s);\n\
-    \                            r += 1;\n                            t = child1(t);\n\
-    \                        } else break;\n                    } else {\n       \
-    \                 t = child0(t);\n                    }\n                }\n \
-    \               return { r, s };\n            }\n            template <typename\
-    \ Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>,\
-    \ std::nullptr_t> = nullptr>\n            static std::pair<size_type, value_type>\
-    \ min_left(inner_node_pointer t, const Predicate& f, const value_type& init_sum\
-    \ = e()) {\n                size_type l = safe_size(t);\n                value_type\
+    \   }\n\n            static inner_node_pointer concat(inner_node_pointer tl, inner_node_pointer\
+    \ tr) {\n                if (not tl) return tr;\n                if (not tr) return\
+    \ tl;\n                assert(max_key(tl) < min_key(tr));\n                if\
+    \ (priority(tl) < priority(tr)) {\n                    set_child0(tr, concat(tl,\
+    \ child0(tr)));\n                    return update(tr);\n                } else\
+    \ {\n                    set_child1(tl, concat(child1(tl), tr));\n           \
+    \         return update(tl);\n                }\n            }\n            static\
+    \ inner_node_pointer merge(inner_node_pointer t1, inner_node_pointer t2) {\n \
+    \               if (not t1) return t2;\n                if (not t2) return t1;\n\
+    \                if (key(t1) > key(t2)) std::swap(t1, t2);\n                if\
+    \ (max_key(t1) <= min_key(t2)) return concat(t1, t2);\n                if (key(t1)\
+    \ <= min_key(t2)) {\n                    inner_node_pointer tr = set_child1(t1,\
+    \ nullptr);\n                    return concat(update(t1), merge(t2, tr));\n \
+    \               } else if (max_key(t1) <= key(t2)) {\n                    inner_node_pointer\
+    \ tl = set_child0(t2, nullptr);\n                    return concat(merge(t1, tl),\
+    \ update(t2));\n                } else {\n                    auto [t2_l, t2_r]\
+    \ = split_key(t2, key(t1));\n                    assert(t2_l and t2_r);\n    \
+    \                inner_node_pointer tr = set_child1(t1, nullptr);\n          \
+    \          inner_node_pointer tl = update(t1);\n                    return concat(merge(tl,\
+    \ t2_l), merge(tr, t2_r));\n                }\n            }\n\n            template\
+    \ <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate,\
+    \ value_type>, std::nullptr_t> = nullptr>\n            static std::pair<size_type,\
+    \ value_type> max_right(inner_node_pointer t, const Predicate& f, const value_type&\
+    \ init_sum = e()) {\n                size_type r = 0;\n                value_type\
     \ s = init_sum;\n                while (t) {\n                    if (value_type\
-    \ nxt_s = op(safe_sum(child1(t)), s); f(nxt_s)) {\n                        s =\
-    \ std::move(nxt_s);\n                        l -= safe_size(child1(t));\n    \
-    \                    if (nxt_s = op(value(t), s); f(nxt_s)) {\n              \
-    \              s = std::move(nxt_s);\n                            l -= 1;\n  \
-    \                          t = child0(t);\n                        } else break;\n\
+    \ nxt_s = op(s, safe_sum(child0(t))); f(nxt_s)) {\n                        s =\
+    \ std::move(nxt_s);\n                        r += safe_size(child0(t));\n    \
+    \                    if (nxt_s = op(s, value(t)); f(nxt_s)) {\n              \
+    \              s = std::move(nxt_s);\n                            r += 1;\n  \
+    \                          t = child1(t);\n                        } else break;\n\
+    \                    } else {\n                        t = child0(t);\n      \
+    \              }\n                }\n                return { r, s };\n      \
+    \      }\n            template <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool,\
+    \ Predicate, value_type>, std::nullptr_t> = nullptr>\n            static std::pair<size_type,\
+    \ value_type> min_left(inner_node_pointer t, const Predicate& f, const value_type&\
+    \ init_sum = e()) {\n                size_type l = safe_size(t);\n           \
+    \     value_type s = init_sum;\n                while (t) {\n                \
+    \    if (value_type nxt_s = op(safe_sum(child1(t)), s); f(nxt_s)) {\n        \
+    \                s = std::move(nxt_s);\n                        l -= safe_size(child1(t));\n\
+    \                        if (nxt_s = op(value(t), s); f(nxt_s)) {\n          \
+    \                  s = std::move(nxt_s);\n                            l -= 1;\n\
+    \                            t = child0(t);\n                        } else break;\n\
     \                    } else {\n                        t = child1(t);\n      \
     \              }\n                }\n                return { l, s };\n      \
     \      }\n\n            template <typename Func, std::enable_if_t<std::is_invocable_r_v<void,\
@@ -801,63 +780,56 @@ data:
     \ outer_node_pointer> split_at_range(outer_node_pointer t, size_type l, size_type\
     \ r) {\n                auto [tlm, tr] = split_at(t, r);\n                auto\
     \ [tl, tm] = split_at(tlm, l);\n                return { tl, tm, tr };\n     \
-    \       }\n\n            static outer_node_pointer concat_nonnull(outer_node_pointer\
-    \ tl, outer_node_pointer tr) {\n                if (priority(tl) < priority(tr))\
-    \ {\n                    if (outer_node_pointer tm = child0(tr); not tm) {\n \
-    \                       set_child0(tr, tl);\n                    } else {\n  \
-    \                      set_child0(tr, concat_nonnull(tl, tm));\n             \
-    \       }\n                    return update(tr);\n                } else {\n\
-    \                    if (outer_node_pointer tm = child1(tl); not tm) {\n     \
-    \                   set_child1(tl, tr);\n                    } else {\n      \
-    \                  set_child1(tl, concat_nonnull(tm, tr));\n                 \
-    \   }\n                    return update(tl);\n                }\n           \
-    \ }\n            static outer_node_pointer concat(outer_node_pointer tl, outer_node_pointer\
-    \ tr) {\n                if (not tl) return tr;\n                if (not tr) return\
-    \ tl;\n                return concat_nonnull(tl, tr);\n            }\n       \
-    \     static outer_node_pointer concat(outer_node_pointer tl, outer_node_pointer\
-    \ tm, outer_node_pointer tr) {\n                return concat(concat(tl, tm),\
-    \ tr);\n            }\n\n            static inner_node_pointer merge_all(outer_node_pointer\
-    \ t) {\n                if (not t) return nullptr;\n                inner_node_pointer\
-    \ res = inner_node::merge(inner_node::merge(merge_all(child0(t)), inner(t)), merge_all(child1(t)));\n\
-    \                inner(t) = nullptr;\n                dealloc_node(t);\n     \
-    \           return res;\n            }\n\n            template <typename Predicate,\
-    \ std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>, std::nullptr_t>\
-    \ = nullptr>\n            static std::pair<size_type, value_type> max_right_prefix(outer_node_pointer\
-    \ t, const Predicate& f) {\n                size_type r = 0;\n               \
-    \ value_type s = e();\n                while (t) {\n                    if (value_type\
-    \ nxt_s = op(s, safe_sum(child0(t))); f(nxt_s)) {\n                        s =\
-    \ std::move(nxt_s);\n                        r += safe_size(child0(t));\n    \
-    \                    if (nxt_s = op(s, inner_sum(t)); f(nxt_s)) {\n          \
-    \                  s = std::move(nxt_s);\n                            r += inner_size(t);\n\
-    \                            t = child1(t);\n                        } else {\n\
-    \                            size_type r_inner;\n                            std::tie(r_inner,\
-    \ s) = inner_node::max_right(inner(t), f, s);\n                            r +=\
-    \ r_inner;\n                            break;\n                        }\n  \
-    \                  } else {\n                        t = child0(t);\n        \
-    \            }\n                }\n                return { r, s };\n        \
-    \    }\n            template <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool,\
-    \ Predicate, value_type>, std::nullptr_t> = nullptr>\n            static std::tuple<outer_node_pointer,\
+    \       }\n\n            static outer_node_pointer concat(outer_node_pointer tl,\
+    \ outer_node_pointer tr) {\n                if (not tl) return tr;\n         \
+    \       if (not tr) return tl;\n                if (priority(tl) < priority(tr))\
+    \ {\n                    set_child0(tr, concat(tl, child0(tr)));\n           \
+    \         return update(tr);\n                } else {\n                    set_child1(tl,\
+    \ concat(child1(tl), tr));\n                    return update(tl);\n         \
+    \       }\n            }\n            static outer_node_pointer concat(outer_node_pointer\
+    \ tl, outer_node_pointer tm, outer_node_pointer tr) {\n                return\
+    \ concat(concat(tl, tm), tr);\n            }\n\n            static inner_node_pointer\
+    \ merge_all(outer_node_pointer t) {\n                if (not t) return nullptr;\n\
+    \                inner_node_pointer res = inner_node::merge(inner_node::merge(merge_all(child0(t)),\
+    \ inner(t)), merge_all(child1(t)));\n                inner(t) = nullptr;\n   \
+    \             dealloc_node(t);\n                return res;\n            }\n\n\
+    \            template <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool,\
+    \ Predicate, value_type>, std::nullptr_t> = nullptr>\n            static std::pair<size_type,\
+    \ value_type> max_right_prefix(outer_node_pointer t, const Predicate& f) {\n \
+    \               size_type r = 0;\n                value_type s = e();\n      \
+    \          while (t) {\n                    if (value_type nxt_s = op(s, safe_sum(child0(t)));\
+    \ f(nxt_s)) {\n                        s = std::move(nxt_s);\n               \
+    \         r += safe_size(child0(t));\n                        if (nxt_s = op(s,\
+    \ inner_sum(t)); f(nxt_s)) {\n                            s = std::move(nxt_s);\n\
+    \                            r += inner_size(t);\n                           \
+    \ t = child1(t);\n                        } else {\n                         \
+    \   size_type r_inner;\n                            std::tie(r_inner, s) = inner_node::max_right(inner(t),\
+    \ f, s);\n                            r += r_inner;\n                        \
+    \    break;\n                        }\n                    } else {\n       \
+    \                 t = child0(t);\n                    }\n                }\n \
+    \               return { r, s };\n            }\n            template <typename\
+    \ Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>,\
+    \ std::nullptr_t> = nullptr>\n            static std::tuple<outer_node_pointer,\
     \ size_type, value_type> max_right(outer_node_pointer t, size_type l, const Predicate&\
     \ f) {\n                auto [tl, tr] = split_at(t, l);\n                auto\
     \ [r, s] = max_right_prefix(tr, f);\n                return { concat(tl, tr),\
-    \ l + r, s };\n            }\n            \n            template <typename Predicate,\
-    \ std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>, std::nullptr_t>\
-    \ = nullptr>\n            static std::pair<size_type, value_type> min_left_suffix(outer_node_pointer\
-    \ t, const Predicate& f) {\n                size_type l = safe_size(t);\n    \
-    \            value_type s = e();\n                while (t) {\n              \
-    \      if (value_type nxt_s = op(safe_sum(child1(t)), s); f(nxt_s)) {\n      \
-    \                  s = std::move(nxt_s);\n                        l -= safe_size(child1(t));\n\
-    \                        if (nxt_s = op(inner_sum(t), s); f(nxt_s)) {\n      \
-    \                      s = std::move(nxt_s);\n                            l -=\
-    \ inner_size(t);\n                            t = child0(t);\n               \
-    \         } else {\n                            size_type l_inner;\n         \
-    \                   std::tie(l_inner, s) = inner_node::min_left(inner(t), f, s);\n\
-    \                            l -= inner_size(t) - l_inner;\n                 \
-    \           break;\n                        }\n                    } else {\n\
-    \                        t = child1(t);\n                    }\n             \
-    \   }\n                return { l, s };\n            }\n            template <typename\
-    \ Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate, value_type>,\
-    \ std::nullptr_t> = nullptr>\n            static std::tuple<outer_node_pointer,\
+    \ l + r, s };\n            }\n\n            template <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool,\
+    \ Predicate, value_type>, std::nullptr_t> = nullptr>\n            static std::pair<size_type,\
+    \ value_type> min_left_suffix(outer_node_pointer t, const Predicate& f) {\n  \
+    \              size_type l = safe_size(t);\n                value_type s = e();\n\
+    \                while (t) {\n                    if (value_type nxt_s = op(safe_sum(child1(t)),\
+    \ s); f(nxt_s)) {\n                        s = std::move(nxt_s);\n           \
+    \             l -= safe_size(child1(t));\n                        if (nxt_s =\
+    \ op(inner_sum(t), s); f(nxt_s)) {\n                            s = std::move(nxt_s);\n\
+    \                            l -= inner_size(t);\n                           \
+    \ t = child0(t);\n                        } else {\n                         \
+    \   size_type l_inner;\n                            std::tie(l_inner, s) = inner_node::min_left(inner(t),\
+    \ f, s);\n                            l -= inner_size(t) - l_inner;\n        \
+    \                    break;\n                        }\n                    }\
+    \ else {\n                        t = child1(t);\n                    }\n    \
+    \            }\n                return { l, s };\n            }\n            template\
+    \ <typename Predicate, std::enable_if_t<std::is_invocable_r_v<bool, Predicate,\
+    \ value_type>, std::nullptr_t> = nullptr>\n            static std::tuple<outer_node_pointer,\
     \ size_type, value_type> min_left(outer_node_pointer t, size_type r, const Predicate&\
     \ f) {\n                auto [tl, tr] = split_at(t, r);\n                auto\
     \ [l, s] = min_left_suffix(tl, f);\n                return { concat(tl, tr), l,\
@@ -954,7 +926,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree/sortable_segment_tree.hpp
   requiredBy: []
-  timestamp: '2023-05-13 03:28:45+09:00'
+  timestamp: '2023-05-18 22:35:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
