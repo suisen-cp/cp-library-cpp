@@ -21,12 +21,14 @@ namespace suisen::fast_factorize {
             return i - 1;
         }
         template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
-        T pollard_rho(T n) {
+        T pollard_rho(const T n) {
             using M = safely_multipliable_t<T>;
             const T m = T(1) << (floor_log2(n) / 5);
 
             static std::mt19937_64 rng{std::random_device{}()};
             std::uniform_int_distribution<T> dist(0, n - 1);
+
+            // const Montgomery64 mg{n};
 
             while (true) {
                 T c = dist(rng);
