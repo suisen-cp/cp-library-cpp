@@ -148,6 +148,7 @@ namespace suisen {
             }
             std::reverse(f.begin(), f.end()), std::reverse(g.begin(), g.end());
             const int qd = fd - gd;
+            f.cut(qd + 1);
             FormalPowerSeries q = f * g.inv(qd + 1);
             q.cut(qd + 1);
             std::reverse(q.begin(), q.end());
