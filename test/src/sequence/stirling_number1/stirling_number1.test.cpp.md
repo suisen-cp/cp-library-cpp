@@ -24,9 +24,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind
@@ -554,7 +554,7 @@ data:
   path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
   requiredBy: []
   timestamp: '2023-05-21 05:26:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/sequence/stirling_number1/stirling_number1.test.cpp
 layout: document

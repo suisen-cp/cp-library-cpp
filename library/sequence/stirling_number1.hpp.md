@@ -18,10 +18,10 @@ data:
   - icon: ':x:'
     path: test/src/sequence/stirling_number1/abc247_h.test.cpp
     title: test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - icon: ':heavy_check_mark:'

@@ -2,23 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: library/math/inv_mods.hpp
-    title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
-    path: library/math/modint_extension.hpp
-    title: Modint Extension
+    path: library/linear_algebra/matrix.hpp
+    title: Matrix
   - icon: ':heavy_check_mark:'
     path: library/polynomial/compose.hpp
     title: "\u5408\u6210"
-  - icon: ':question:'
-    path: library/polynomial/formal_power_series.hpp
-    title: Formal Power Series
-  - icon: ':question:'
-    path: library/polynomial/fps_naive.hpp
-    title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
-    path: library/type_traits/type_traits.hpp
-    title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -32,553 +20,179 @@ data:
   bundledCode: "#line 1 \"test/src/polynomial/compose/composition_of_formal_power_series.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/composition_of_formal_power_series\"\
     \n\n#include <iostream>\n\n#line 1 \"library/polynomial/compose.hpp\"\n\n\n\n\
-    #include <cmath>\n#include <atcoder/convolution>\n\nnamespace suisen {\n    template\
-    \ <typename FPSType>\n    FPSType compose(const FPSType& f, FPSType g, const int\
-    \ n) {\n        if (f.empty()) return {};\n        if (g.empty()) return { f[0]\
-    \ };\n\n        if (int(g.size()) > n) {\n            g.resize(n);\n        }\n\
-    \n        const int sqn = ::sqrt(f.size()) + 1;\n\n        std::vector<FPSType>\
-    \ pow_g_small(sqn);\n        pow_g_small[0] = { 1 };\n        for (int i = 1;\
-    \ i < sqn; ++i) {\n            pow_g_small[i] = pow_g_small[i - 1] * g;\n    \
-    \        pow_g_small[i].resize(n);\n        }\n        const FPSType g_large =\
-    \ pow_g_small.back() * g;\n\n        FPSType pow_g_large{ 1 };\n\n        FPSType\
-    \ h(n);\n        for (int i = 0; i < sqn; ++i) {\n            FPSType hi(n);\n\
-    \            for (int j = 0; j < sqn; ++j) {\n                const int ij = i\
-    \ * sqn + j;\n                if (ij >= int(f.size())) break;\n\n            \
-    \    const auto c = f[ij];\n                const FPSType& gj = pow_g_small[j];\n\
-    \n                for (int k = 0; k < int(gj.size()); ++k) {\n               \
-    \     hi[k] += c * gj[k];\n                }\n            }\n            hi =\
-    \ pow_g_large * hi;\n            for (int k = 0; k < n; ++k) {\n             \
-    \   h[k] += hi[k];\n            }\n            pow_g_large = pow_g_large * g_large;\n\
-    \            pow_g_large.resize(n);\n        }\n        return h;\n    }\n\n}\
-    \ // namespace suisen\n\n\n\n#line 6 \"test/src/polynomial/compose/composition_of_formal_power_series.test.cpp\"\
+    #include <cmath>\n#include <atcoder/convolution>\n\n#line 1 \"library/linear_algebra/matrix.hpp\"\
+    \n\n\n\n#include <algorithm>\n#include <cassert>\n#include <optional>\n#include\
+    \ <vector>\n\nnamespace suisen {\n    template <typename T>\n    struct Matrix\
+    \ {\n        std::vector<std::vector<T>> dat;\n\n        Matrix() {}\n       \
+    \ Matrix(int n) : Matrix(n, n) {}\n        Matrix(int n, int m, T fill_value =\
+    \ T(0)) : dat(n, std::vector<T>(m, fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>&\
+    \ dat) : dat(dat) {}\n\n        const std::vector<T>& operator[](int i) const\
+    \ { return dat[i]; }\n        std::vector<T>& operator[](int i) { return dat[i];\
+    \ }\n\n        operator std::vector<std::vector<T>>() const { return dat; }\n\n\
+    \        friend bool operator==(const Matrix<T>& A, const Matrix<T>& B) { return\
+    \ A.dat == B.dat; }\n        friend bool operator!=(const Matrix<T>& A, const\
+    \ Matrix<T>& B) { return A.dat != B.dat; }\n\n        std::pair<int, int> shape()\
+    \ const { return dat.empty() ? std::make_pair<int, int>(0, 0) : std::make_pair<int,\
+    \ int>(dat.size(), dat[0].size()); }\n        int row_size() const { return dat.size();\
+    \ }\n        int col_size() const { return dat.empty() ? 0 : dat[0].size(); }\n\
+    \n        friend Matrix<T>& operator+=(Matrix<T>& A, const Matrix<T>& B) {\n \
+    \           assert(A.shape() == B.shape());\n            auto [n, m] = A.shape();\n\
+    \            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) A.dat[i][j]\
+    \ += B.dat[i][j];\n            return A;\n        }\n        friend Matrix<T>&\
+    \ operator-=(Matrix<T>& A, const Matrix<T>& B) {\n            assert(A.shape()\
+    \ == B.shape());\n            auto [n, m] = A.shape();\n            for (int i\
+    \ = 0; i < n; ++i) for (int j = 0; j < m; ++j) A.dat[i][j] -= B.dat[i][j];\n \
+    \           return A;\n        }\n        friend Matrix<T>& operator*=(Matrix<T>&\
+    \ A, const Matrix<T>& B) { return A = A * B; }\n        friend Matrix<T>& operator*=(Matrix<T>&\
+    \ A, const T& val) {\n            for (auto& row : A.dat) for (auto& elm : row)\
+    \ elm *= val;\n            return A;\n        }\n        friend Matrix<T>& operator/=(Matrix<T>&\
+    \ A, const T& val) { return A *= T(1) / val; }\n        friend Matrix<T>& operator/=(Matrix<T>&\
+    \ A, const Matrix<T>& B) { return A *= B.inv(); }\n\n        friend Matrix<T>\
+    \ operator+(Matrix<T> A, const Matrix<T>& B) { A += B; return A; }\n        friend\
+    \ Matrix<T> operator-(Matrix<T> A, const Matrix<T>& B) { A -= B; return A; }\n\
+    \        friend Matrix<T> operator*(const Matrix<T>& A, const Matrix<T>& B) {\n\
+    \            assert(A.col_size() == B.row_size());\n            const int n =\
+    \ A.row_size(), m = A.col_size(), l = B.col_size();\n\n            if (std::min({\
+    \ n, m, l }) <= 70) {\n                // naive\n                Matrix<T> C(n,\
+    \ l);\n                for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j)\
+    \ for (int k = 0; k < l; ++k) {\n                    C.dat[i][k] += A.dat[i][j]\
+    \ * B.dat[j][k];\n                }\n                return C;\n            }\n\
+    \n            // strassen\n            const int nl = 0, nm = n >> 1, nr = nm\
+    \ + nm;\n            const int ml = 0, mm = m >> 1, mr = mm + mm;\n          \
+    \  const int ll = 0, lm = l >> 1, lr = lm + lm;\n\n            auto A00 = A.submatrix(nl,\
+    \ nm, ml, mm), A01 = A.submatrix(nl, nm, mm, mr);\n            auto A10 = A.submatrix(nm,\
+    \ nr, ml, mm), A11 = A.submatrix(nm, nr, mm, mr);\n\n            auto B00 = B.submatrix(ml,\
+    \ mm, ll, lm), B01 = B.submatrix(ml, mm, lm, lr);\n            auto B10 = B.submatrix(mm,\
+    \ mr, ll, lm), B11 = B.submatrix(mm, mr, lm, lr);\n\n            auto P0 = (A00\
+    \ + A11) * (B00 + B11);\n            auto P1 = (A10 + A11) * B00;\n          \
+    \  auto P2 = A00 * (B01 - B11);\n            auto P3 = A11 * (B10 - B00);\n  \
+    \          auto P4 = (A00 + A01) * B11;\n            auto P5 = (A10 - A00) * (B00\
+    \ + B01);\n            auto P6 = (A01 - A11) * (B10 + B11);\n\n            Matrix<T>\
+    \ C(n, l);\n\n            C.assign_submatrix(nl, ll, P0 + P3 - P4 + P6), C.assign_submatrix(nl,\
+    \ lm, P2 + P4);\n            C.assign_submatrix(nm, ll, P1 + P3), C.assign_submatrix(nm,\
+    \ lm, P0 + P2 - P1 + P5);\n\n            // fractions\n            if (l != lr)\
+    \ {\n                for (int i = 0; i < nr; ++i) for (int j = 0; j < mr; ++j)\
+    \ C.dat[i][lr] += A.dat[i][j] * B.dat[j][lr];\n            }\n            if (m\
+    \ != mr) {\n                for (int i = 0; i < nr; ++i) for (int k = 0; k < l;\
+    \ ++k) C.dat[i][k] += A.dat[i][mr] * B.dat[mr][k];\n            }\n          \
+    \  if (n != nr) {\n                for (int j = 0; j < m; ++j) for (int k = 0;\
+    \ k < l; ++k) C.dat[nr][k] += A.dat[nr][j] * B.dat[j][k];\n            }\n\n \
+    \           return C;\n        }\n        friend Matrix<T> operator*(const T&\
+    \ val, Matrix<T> A) { A *= val; return A; }\n        friend Matrix<T> operator*(Matrix<T>\
+    \ A, const T& val) { A *= val; return A; }\n        friend Matrix<T> operator/(const\
+    \ Matrix<T>& A, const Matrix<T>& B) { return A * B.inv(); }\n        friend Matrix<T>\
+    \ operator/(Matrix<T> A, const T& val) { A /= val; return A; }\n        friend\
+    \ Matrix<T> operator/(const T& val, const Matrix<T>& A) { return val * A.inv();\
+    \ }\n\n        friend std::vector<T> operator*(const Matrix<T>& A, const std::vector<T>&\
+    \ x) {\n            const auto [n, m] = A.shape();\n            assert(m == int(x.size()));\n\
+    \            std::vector<T> b(n, T(0));\n            for (int i = 0; i < n; ++i)\
+    \ for (int j = 0; j < m; ++j) b[i] += A.dat[i][j] * x[j];\n            return\
+    \ b;\n        }\n\n        static Matrix<T> e0(int n) { return Matrix<T>(n, Identity::ADD);\
+    \ }\n        static Matrix<T> e1(int n) { return Matrix<T>(n, Identity::MUL);\
+    \ }\n\n        Matrix<T> pow(long long b) const {\n            assert_square();\n\
+    \            assert(b >= 0);\n            Matrix<T> res = e1(row_size()), p =\
+    \ *this;\n            for (; b; b >>= 1) {\n                if (b & 1) res *=\
+    \ p;\n                p *= p;\n            }\n            return res;\n      \
+    \  }\n        Matrix<T> inv() const { return *safe_inv(); }\n\n        std::optional<Matrix<T>>\
+    \ safe_inv() const {\n            assert_square();\n            Matrix<T> A =\
+    \ *this;\n            const int n = A.row_size();\n            for (int i = 0;\
+    \ i < n; ++i) {\n                A[i].resize(2 * n, T{ 0 });\n               \
+    \ A[i][n + i] = T{ 1 };\n            }\n            for (int i = 0; i < n; ++i)\
+    \ {\n                for (int k = i; k < n; ++k) if (A[k][i] != T{ 0 }) {\n  \
+    \                  std::swap(A[i], A[k]);\n                    T c = T{ 1 } /\
+    \ A[i][i];\n                    for (int j = i; j < 2 * n; ++j) A[i][j] *= c;\n\
+    \                    break;\n                }\n                if (A[i][i] ==\
+    \ T{ 0 }) return std::nullopt;\n                for (int k = 0; k < n; ++k) if\
+    \ (k != i and A[k][i] != T{ 0 }) {\n                    T c = A[k][i];\n     \
+    \               for (int j = i; j < 2 * n; ++j) A[k][j] -= c * A[i][j];\n    \
+    \            }\n            }\n            for (auto& row : A.dat) row.erase(row.begin(),\
+    \ row.begin() + n);\n            return A;\n        }\n\n        T det() const\
+    \ {\n            assert_square();\n            Matrix<T> A = *this;\n        \
+    \    bool sgn = false;\n            const int n = A.row_size();\n            for\
+    \ (int j = 0; j < n; ++j) for (int i = j + 1; i < n; ++i) if (A[i][j] != T{ 0\
+    \ }) {\n                std::swap(A[j], A[i]);\n                T q = A[i][j]\
+    \ / A[j][j];\n                for (int k = j; k < n; ++k) A[i][k] -= A[j][k] *\
+    \ q;\n                sgn = not sgn;\n            }\n            T res = sgn ?\
+    \ T{ -1 } : T{ +1 };\n            for (int i = 0; i < n; ++i) res *= A[i][i];\n\
+    \            return res;\n        }\n        T det_arbitrary_mod() const {\n \
+    \           assert_square();\n            Matrix<T> A = *this;\n            bool\
+    \ sgn = false;\n            const int n = A.row_size();\n            for (int\
+    \ j = 0; j < n; ++j) for (int i = j + 1; i < n; ++i) {\n                for (;\
+    \ A[i][j].val(); sgn = not sgn) {\n                    std::swap(A[j], A[i]);\n\
+    \                    T q = A[i][j].val() / A[j][j].val();\n                  \
+    \  for (int k = j; k < n; ++k) A[i][k] -= A[j][k] * q;\n                }\n  \
+    \          }\n            T res = sgn ? -1 : +1;\n            for (int i = 0;\
+    \ i < n; ++i) res *= A[i][i];\n            return res;\n        }\n        void\
+    \ assert_square() const { assert(row_size() == col_size()); }\n\n        Matrix<T>\
+    \ submatrix(int row_begin, int row_end, int col_begin, int col_end) const {\n\
+    \            Matrix<T> A(row_end - row_begin, col_end - col_begin);\n        \
+    \    for (int i = row_begin; i < row_end; ++i) for (int j = col_begin; j < col_end;\
+    \ ++j) {\n                A[i - row_begin][j - col_begin] = dat[i][j];\n     \
+    \       }\n            return A;\n        }\n        void assign_submatrix(int\
+    \ row_begin, int col_begin, const Matrix<T>& A) {\n            const int n = A.row_size(),\
+    \ m = A.col_size();\n            assert(row_begin + n <= row_size() and col_begin\
+    \ + m <= col_size());\n            for (int i = 0; i < n; ++i) for (int j = 0;\
+    \ j < m; ++j) {\n                dat[row_begin + i][col_begin + j] = A[i][j];\n\
+    \            }\n        }\n    private:\n        enum class Identity {\n     \
+    \       ADD, MUL\n        };\n        Matrix(int n, Identity ident) : Matrix<T>::Matrix(n)\
+    \ {\n            if (ident == Identity::MUL) for (int i = 0; i < n; ++i) dat[i][i]\
+    \ = 1;\n        }\n    };\n} // namespace suisen\n\n\n#line 8 \"library/polynomial/compose.hpp\"\
+    \n\nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> compose(const\
+    \ std::vector<mint>& f, std::vector<mint> g, const int n) {\n        if (f.empty())\
+    \ return {};\n        if (g.empty()) return { f[0] };\n\n        const int sqn\
+    \ = ::sqrt(f.size()) + 1;\n\n        const int z = [n]{\n            int z = 1;\n\
+    \            while (z < 2 * n - 1) z <<= 1;\n            return z;\n        }();\n\
+    \        const mint iz = mint(z).inv();\n\n        g.resize(n), g.resize(z);\n\
+    \        atcoder::internal::butterfly(g);\n\n        auto mult_g = [&](std::vector<mint>\
+    \ a) {\n            a.resize(z);\n            atcoder::internal::butterfly(a);\n\
+    \            for (int j = 0; j < z; ++j) a[j] *= g[j] * iz;\n            atcoder::internal::butterfly_inv(a);\n\
+    \            a.resize(n);\n            return a;\n        };\n\n        Matrix<mint>\
+    \ pow_g(sqn, n);\n        pow_g[0][0] = 1;\n        for (int i = 1; i < sqn; ++i)\
+    \ {\n            pow_g[i] = mult_g(pow_g[i - 1]);\n        }\n\n        std::vector<mint>\
+    \ gl = mult_g(pow_g[sqn - 1]);\n        gl.resize(z);\n        atcoder::internal::butterfly(gl);\n\
+    \n        std::vector<mint> pow_gl(z);\n        pow_gl[0] = 1;\n\n        Matrix<mint>\
+    \ F(sqn, sqn);\n        for (int i = 0; i < sqn; ++i) for (int j = 0; j < sqn;\
+    \ ++j) {\n            if (int ij = i * sqn + j; ij < int(f.size())) {\n      \
+    \          F[i][j] = f[ij];\n            }\n        }\n        Matrix<mint> H\
+    \ = F * pow_g;\n\n        std::vector<mint> h(n);\n        for (int i = 0; i <\
+    \ sqn; ++i) {\n            auto &hi = H[i];\n            hi.resize(z);\n     \
+    \       atcoder::internal::butterfly(pow_gl);\n            atcoder::internal::butterfly(hi);\n\
+    \            for (int k = 0; k < z; ++k) {\n                hi[k] *= pow_gl[k]\
+    \ * iz;\n                pow_gl[k] *= gl[k] * iz;\n            }\n           \
+    \ atcoder::internal::butterfly_inv(pow_gl);\n            atcoder::internal::butterfly_inv(hi);\n\
+    \            for (int k = 0; k < n; ++k) {\n                h[k] += hi[k];\n \
+    \           }\n            for (int k = n; k < z; ++k) {\n                pow_gl[k]\
+    \ = 0;\n            }\n            hi.clear(), hi.shrink_to_fit();\n        }\n\
+    \        return h;\n    }\n\n} // namespace suisen\n\n\n\n#line 6 \"test/src/polynomial/compose/composition_of_formal_power_series.test.cpp\"\
     \n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\nnamespace\
     \ atcoder {\n    std::istream& operator>>(std::istream& in, mint &a) {\n     \
     \   long long e; in >> e; a = e;\n        return in;\n    }\n    \n    std::ostream&\
     \ operator<<(std::ostream& out, const mint &a) {\n        out << a.val();\n  \
-    \      return out;\n    }\n} // namespace atcoder\n\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
-    \n\n\n\n#include <limits>\n#include <optional>\n#include <queue>\n\n#line 10 \"\
-    library/polynomial/formal_power_series.hpp\"\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
-    \n\n\n\n#include <cassert>\n#line 7 \"library/polynomial/fps_naive.hpp\"\n#include\
-    \ <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
-    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
-    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
-    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
-    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
-    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
-    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
-    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
-    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
-    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
-    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
-    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
-    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
-    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
-    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
-    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 11 \"library/polynomial/fps_naive.hpp\"\n\n#line\
-    \ 1 \"library/math/modint_extension.hpp\"\n\n\n\n#line 6 \"library/math/modint_extension.hpp\"\
-    \n\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n * calculates\
-    \ x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename mint>\nstd::optional<mint>\
-    \ safe_sqrt(mint a) {\n    static int p = mint::mod();\n    if (a == 0) return\
-    \ std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n    if\
-    \ (a.pow((p - 1) / 2) != 1) return std::nullopt;\n    mint b = 1;\n    while (b.pow((p\
-    \ - 1) / 2) == 1) ++b;\n    static int tlz = __builtin_ctz(p - 1), q = (p - 1)\
-    \ >> tlz;\n    mint x = a.pow((q + 1) / 2);\n    b = b.pow(q);\n    for (int shift\
-    \ = 2; x * x != a; ++shift) {\n        mint e = a.inv() * x * x;\n        if (e.pow(1\
-    \ << (tlz - shift)) != 1) x *= b;\n        b *= b;\n    }\n    return std::make_optional(x);\n\
-    }\n\n/**\n * calculates x s.t. x^2 = a mod p in O((log p)^2).\n * if not exists,\
-    \ raises runtime error.\n */\ntemplate <typename mint>\nauto sqrt(mint a) -> decltype(mint::mod(),\
-    \ mint()) {\n    return *safe_sqrt(a);\n}\ntemplate <typename mint>\nauto log(mint\
-    \ a) -> decltype(mint::mod(), mint()) {\n    assert(a == 1);\n    return 0;\n\
-    }\ntemplate <typename mint>\nauto exp(mint a) -> decltype(mint::mod(), mint())\
-    \ {\n    assert(a == 0);\n    return 1;\n}\ntemplate <typename mint, typename\
-    \ T>\nauto pow(mint a, T b) -> decltype(mint::mod(), mint()) {\n    return a.pow(b);\n\
-    }\ntemplate <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint())\
-    \ {\n    return a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n\
-    #line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
-    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
-    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
-    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
-    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
-    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
-    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
-    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
-    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
-    \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
-    \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
-    \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
-    \ }\n        mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n    \
-    \    rp[n] = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i]\
-    \ = rp[i + 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n       \
-    \ for (int i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n      \
-    \      ip *= vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 14 \"\
-    library/polynomial/fps_naive.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ T>\n    struct FPSNaive : std::vector<T> {\n        static inline int MAX_SIZE\
-    \ = std::numeric_limits<int>::max() / 2;\n\n        using value_type = T;\n  \
-    \      using element_type = rec_value_type_t<T>;\n        using std::vector<value_type>::vector;\n\
-    \n        FPSNaive(const std::initializer_list<value_type> l) : std::vector<value_type>::vector(l)\
-    \ {}\n        FPSNaive(const std::vector<value_type>& v) : std::vector<value_type>::vector(v)\
-    \ {}\n\n        static void set_max_size(int n) {\n            FPSNaive<T>::MAX_SIZE\
-    \ = n;\n        }\n\n        const value_type operator[](int n) const {\n    \
-    \        return n <= deg() ? unsafe_get(n) : value_type{ 0 };\n        }\n   \
-    \     value_type& operator[](int n) {\n            return ensure_deg(n), unsafe_get(n);\n\
-    \        }\n\n        int size() const {\n            return std::vector<value_type>::size();\n\
-    \        }\n        int deg() const {\n            return size() - 1;\n      \
-    \  }\n        int normalize() {\n            while (size() and this->back() ==\
-    \ value_type{ 0 }) this->pop_back();\n            return deg();\n        }\n \
-    \       FPSNaive& cut_inplace(int n) {\n            if (size() > n) this->resize(std::max(0,\
-    \ n));\n            return *this;\n        }\n        FPSNaive cut(int n) const\
-    \ {\n            FPSNaive f = FPSNaive(*this).cut_inplace(n);\n            return\
-    \ f;\n        }\n\n        FPSNaive operator+() const {\n            return FPSNaive(*this);\n\
-    \        }\n        FPSNaive operator-() const {\n            FPSNaive f(*this);\n\
-    \            for (auto& e : f) e = -e;\n            return f;\n        }\n   \
-    \     FPSNaive& operator++() { return ++(*this)[0], * this; }\n        FPSNaive&\
-    \ operator--() { return --(*this)[0], * this; }\n        FPSNaive& operator+=(const\
-    \ value_type x) { return (*this)[0] += x, *this; }\n        FPSNaive& operator-=(const\
-    \ value_type x) { return (*this)[0] -= x, *this; }\n        FPSNaive& operator+=(const\
-    \ FPSNaive& g) {\n            ensure_deg(g.deg());\n            for (int i = 0;\
-    \ i <= g.deg(); ++i) unsafe_get(i) += g.unsafe_get(i);\n            return *this;\n\
-    \        }\n        FPSNaive& operator-=(const FPSNaive& g) {\n            ensure_deg(g.deg());\n\
-    \            for (int i = 0; i <= g.deg(); ++i) unsafe_get(i) -= g.unsafe_get(i);\n\
-    \            return *this;\n        }\n        FPSNaive& operator*=(const FPSNaive&\
-    \ g) { return *this = *this * g; }\n        FPSNaive& operator*=(const value_type\
-    \ x) {\n            for (auto& e : *this) e *= x;\n            return *this;\n\
-    \        }\n        FPSNaive& operator/=(const FPSNaive& g) { return *this = *this\
-    \ / g; }\n        FPSNaive& operator%=(const FPSNaive& g) { return *this = *this\
-    \ % g; }\n        FPSNaive& operator<<=(const int shamt) {\n            this->insert(this->begin(),\
-    \ shamt, value_type{ 0 });\n            return *this;\n        }\n        FPSNaive&\
-    \ operator>>=(const int shamt) {\n            if (shamt > size()) this->clear();\n\
-    \            else this->erase(this->begin(), this->begin() + shamt);\n       \
-    \     return *this;\n        }\n\n        friend FPSNaive operator+(FPSNaive f,\
-    \ const FPSNaive& g) { f += g; return f; }\n        friend FPSNaive operator+(FPSNaive\
-    \ f, const value_type& x) { f += x; return f; }\n        friend FPSNaive operator-(FPSNaive\
-    \ f, const FPSNaive& g) { f -= g; return f; }\n        friend FPSNaive operator-(FPSNaive\
-    \ f, const value_type& x) { f -= x; return f; }\n        friend FPSNaive operator*(const\
-    \ FPSNaive& f, const FPSNaive& g) {\n            if (f.empty() or g.empty()) return\
-    \ FPSNaive{};\n            const int n = f.size(), m = g.size();\n           \
-    \ FPSNaive h(std::min(MAX_SIZE, n + m - 1));\n            for (int i = 0; i <\
-    \ n; ++i) for (int j = 0; j < m; ++j) {\n                if (i + j >= MAX_SIZE)\
-    \ break;\n                h.unsafe_get(i + j) += f.unsafe_get(i) * g.unsafe_get(j);\n\
-    \            }\n            return h;\n        }\n        friend FPSNaive operator*(FPSNaive\
-    \ f, const value_type& x) { f *= x; return f; }\n        friend FPSNaive operator/(FPSNaive\
-    \ f, const FPSNaive& g) { return std::move(f.div_mod(g).first); }\n        friend\
-    \ FPSNaive operator%(FPSNaive f, const FPSNaive& g) { return std::move(f.div_mod(g).second);\
-    \ }\n        friend FPSNaive operator*(const value_type x, FPSNaive f) { f *=\
-    \ x; return f; }\n        friend FPSNaive operator<<(FPSNaive f, const int shamt)\
-    \ { f <<= shamt; return f; }\n        friend FPSNaive operator>>(FPSNaive f, const\
-    \ int shamt) { f >>= shamt; return f; }\n\n        std::pair<FPSNaive, FPSNaive>\
-    \ div_mod(FPSNaive g) const {\n            FPSNaive f = *this;\n            const\
-    \ int fd = f.normalize(), gd = g.normalize();\n            assert(gd >= 0);\n\
-    \            if (fd < gd) return { FPSNaive{}, f };\n            if (gd == 0)\
-    \ return { f *= g.unsafe_get(0).inv(), FPSNaive{} };\n            const int k\
-    \ = f.deg() - gd;\n            value_type head_inv = g.unsafe_get(gd).inv();\n\
-    \            FPSNaive q(k + 1);\n            for (int i = k; i >= 0; --i) {\n\
-    \                value_type div = f.unsafe_get(i + gd) * head_inv;\n         \
-    \       q.unsafe_get(i) = div;\n                for (int j = 0; j <= gd; ++j)\
-    \ f.unsafe_get(i + j) -= div * g.unsafe_get(j);\n            }\n            f.cut_inplace(gd);\n\
-    \            f.normalize();\n            return { q, f };\n        }\n\n     \
-    \   friend bool operator==(const FPSNaive& f, const FPSNaive& g) {\n         \
-    \   const int n = f.size(), m = g.size();\n            if (n < m) return g ==\
-    \ f;\n            for (int i = 0; i < m; ++i) if (f.unsafe_get(i) != g.unsafe_get(i))\
-    \ return false;\n            for (int i = m; i < n; ++i) if (f.unsafe_get(i) !=\
-    \ 0) return false;\n            return true;\n        }\n        friend bool operator!=(const\
-    \ FPSNaive& f, const FPSNaive& g) {\n            return not (f == g);\n      \
-    \  }\n\n        FPSNaive mul(const FPSNaive& g, int n = -1) const {\n        \
-    \    if (n < 0) n = size();\n            if (this->empty() or g.empty()) return\
-    \ FPSNaive{};\n            const int m = size(), k = g.size();\n            FPSNaive\
-    \ h(std::min(n, m + k - 1));\n            for (int i = 0; i < m; ++i) {\n    \
-    \            for (int j = 0, jr = std::min(k, n - i); j < jr; ++j) {\n       \
-    \             h.unsafe_get(i + j) += unsafe_get(i) * g.unsafe_get(j);\n      \
-    \          }\n            }\n            return h;\n        }\n        FPSNaive\
-    \ diff() const {\n            if (this->empty()) return {};\n            FPSNaive\
-    \ g(size() - 1);\n            for (int i = 1; i <= deg(); ++i) g.unsafe_get(i\
-    \ - 1) = unsafe_get(i) * i;\n            return g;\n        }\n        FPSNaive\
-    \ intg() const {\n            const int n = size();\n            FPSNaive g(n\
-    \ + 1);\n            for (int i = 0; i < n; ++i) g.unsafe_get(i + 1) = unsafe_get(i)\
-    \ * invs[i + 1];\n            if (g.deg() > MAX_SIZE) g.cut_inplace(MAX_SIZE);\n\
-    \            return g;\n        }\n        FPSNaive inv(int n = -1) const {\n\
-    \            if (n < 0) n = size();\n            FPSNaive g(n);\n            const\
-    \ value_type inv_f0 = ::inv(unsafe_get(0));\n            g.unsafe_get(0) = inv_f0;\n\
-    \            for (int i = 1; i < n; ++i) {\n                for (int j = 1; j\
-    \ <= i; ++j) g.unsafe_get(i) -= g.unsafe_get(i - j) * (*this)[j];\n          \
-    \      g.unsafe_get(i) *= inv_f0;\n            }\n            return g;\n    \
-    \    }\n        FPSNaive exp(int n = -1) const {\n            if (n < 0) n = size();\n\
-    \            assert(unsafe_get(0) == value_type{ 0 });\n            FPSNaive g(n);\n\
-    \            g.unsafe_get(0) = value_type{ 1 };\n            for (int i = 1; i\
-    \ < n; ++i) {\n                for (int j = 1; j <= i; ++j) g.unsafe_get(i) +=\
-    \ j * g.unsafe_get(i - j) * (*this)[j];\n                g.unsafe_get(i) *= invs[i];\n\
-    \            }\n            return g;\n        }\n        FPSNaive log(int n =\
-    \ -1) const {\n            if (n < 0) n = size();\n            assert(unsafe_get(0)\
-    \ == value_type{ 1 });\n            FPSNaive g(n);\n            g.unsafe_get(0)\
-    \ = value_type{ 0 };\n            for (int i = 1; i < n; ++i) {\n            \
-    \    g.unsafe_get(i) = i * (*this)[i];\n                for (int j = 1; j < i;\
-    \ ++j) g.unsafe_get(i) -= (i - j) * g.unsafe_get(i - j) * (*this)[j];\n      \
-    \          g.unsafe_get(i) *= invs[i];\n            }\n            return g;\n\
-    \        }\n        FPSNaive pow(const long long k, int n = -1) const {\n    \
-    \        if (n < 0) n = size();\n            if (k == 0) {\n                FPSNaive\
-    \ res(n);\n                res[0] = 1;\n                return res;\n        \
-    \    }\n            int z = 0;\n            while (z < size() and unsafe_get(z)\
-    \ == value_type{ 0 }) ++z;\n            if (z == size() or z > (n - 1) / k) return\
-    \ FPSNaive(n, 0);\n            const int m = n - z * k;\n\n            FPSNaive\
-    \ g(m);\n            const value_type inv_f0 = ::inv(unsafe_get(z));\n       \
-    \     g.unsafe_get(0) = unsafe_get(z).pow(k);\n            for (int i = 1; i <\
-    \ m; ++i) {\n                for (int j = 1; j <= i; ++j) g.unsafe_get(i) += (element_type{\
-    \ k } *j - (i - j)) * g.unsafe_get(i - j) * (*this)[z + j];\n                g.unsafe_get(i)\
-    \ *= inv_f0 * invs[i];\n            }\n            g <<= z * k;\n            return\
-    \ g;\n        }\n\n        std::optional<FPSNaive> safe_sqrt(int n = -1) const\
-    \ {\n            if (n < 0) n = size();\n            int dl = 0;\n           \
-    \ while (dl < size() and unsafe_get(dl) == value_type{ 0 }) ++dl;\n          \
-    \  if (dl == size()) return FPSNaive(n, 0);\n            if (dl & 1) return std::nullopt;\n\
-    \n            const int m = n - dl / 2;\n\n            FPSNaive g(m);\n      \
-    \      auto opt_g0 = ::safe_sqrt((*this)[dl]);\n            if (not opt_g0.has_value())\
-    \ return std::nullopt;\n            g.unsafe_get(0) = *opt_g0;\n            value_type\
-    \ inv_2g0 = ::inv(2 * g.unsafe_get(0));\n            for (int i = 1; i < m; ++i)\
-    \ {\n                g.unsafe_get(i) = (*this)[dl + i];\n                for (int\
-    \ j = 1; j < i; ++j) g.unsafe_get(i) -= g.unsafe_get(j) * g.unsafe_get(i - j);\n\
-    \                g.unsafe_get(i) *= inv_2g0;\n            }\n            g <<=\
-    \ dl / 2;\n            return g;\n        }\n        FPSNaive sqrt(int n = -1)\
-    \ const {\n            if (n < 0) n = size();\n            return *safe_sqrt(n);\n\
-    \        }\n\n        value_type eval(value_type x) const {\n            value_type\
-    \ y = 0;\n            for (int i = size() - 1; i >= 0; --i) y = y * x + unsafe_get(i);\n\
-    \            return y;\n        }\n\n    private:\n        static inline inv_mods<element_type>\
-    \ invs;\n\n        void ensure_deg(int d) {\n            if (deg() < d) this->resize(d\
-    \ + 1, value_type{ 0 });\n        }\n        const value_type& unsafe_get(int\
-    \ i) const {\n            return std::vector<value_type>::operator[](i);\n   \
-    \     }\n        value_type& unsafe_get(int i) {\n            return std::vector<value_type>::operator[](i);\n\
-    \        }\n    };\n} // namespace suisen\n\ntemplate <typename mint>\nsuisen::FPSNaive<mint>\
-    \ sqrt(suisen::FPSNaive<mint> a) {\n    return a.sqrt();\n}\ntemplate <typename\
-    \ mint>\nsuisen::FPSNaive<mint> log(suisen::FPSNaive<mint> a) {\n    return a.log();\n\
-    }\ntemplate <typename mint>\nsuisen::FPSNaive<mint> exp(suisen::FPSNaive<mint>\
-    \ a) {\n    return a.exp();\n}\ntemplate <typename mint, typename T>\nsuisen::FPSNaive<mint>\
-    \ pow(suisen::FPSNaive<mint> a, T b) {\n    return a.pow(b);\n}\ntemplate <typename\
-    \ mint>\nsuisen::FPSNaive<mint> inv(suisen::FPSNaive<mint> a) {\n    return a.inv();\n\
-    }\n\n\n#line 14 \"library/polynomial/formal_power_series.hpp\"\n\nnamespace suisen\
-    \ {\n    template <typename mint, atcoder::internal::is_static_modint_t<mint>*\
-    \ = nullptr>\n    struct FormalPowerSeries : std::vector<mint> {\n        using\
-    \ base_type = std::vector<mint>;\n        using value_type = typename base_type::value_type;\n\
-    \        using base_type::vector;\n\n        FormalPowerSeries(const std::initializer_list<value_type>\
-    \ l) : std::vector<value_type>::vector(l) {}\n        FormalPowerSeries(const\
-    \ std::vector<value_type>& v) : std::vector<value_type>::vector(v) {}\n\n    \
-    \    int size() const noexcept {\n            return base_type::size();\n    \
-    \    }\n        int deg() const noexcept {\n            return size() - 1;\n \
-    \       }\n        void ensure(int n) {\n            if (size() < n) this->resize(n);\n\
-    \        }\n\n        value_type safe_get(int d) const {\n            return d\
-    \ <= deg() ? (*this)[d] : 0;\n        }\n        value_type& safe_get(int d) {\n\
-    \            ensure(d + 1);\n            return (*this)[d];\n        }\n\n   \
-    \     FormalPowerSeries& cut_trailing_zeros() {\n            while (size() and\
-    \ this->back() == 0) this->pop_back();\n            return *this;\n        }\n\
-    \        FormalPowerSeries& cut(int n) {\n            if (size() > n) this->resize(std::max(0,\
-    \ n));\n            return *this;\n        }\n        FormalPowerSeries cut_copy(int\
-    \ n) const {\n            FormalPowerSeries res(this->begin(), this->begin() +\
-    \ std::min(size(), n));\n            res.ensure(n);\n            return res;\n\
-    \        }\n        FormalPowerSeries cut_copy(int l, int r) const {\n       \
-    \     if (l >= size()) return FormalPowerSeries(r - l, 0);\n            FormalPowerSeries\
-    \ res(this->begin() + l, this->begin() + std::min(size(), r));\n            res.ensure(r\
-    \ - l);\n            return res;\n        }\n\n        /* Unary Operations */\n\
-    \n        FormalPowerSeries operator+() const { return *this; }\n        FormalPowerSeries\
-    \ operator-() const {\n            FormalPowerSeries res = *this;\n          \
-    \  for (auto& e : res) e = -e;\n            return res;\n        }\n        FormalPowerSeries&\
-    \ operator++() { return ++safe_get(0), * this; }\n        FormalPowerSeries& operator--()\
-    \ { return --safe_get(0), * this; }\n        FormalPowerSeries operator++(int)\
-    \ {\n            FormalPowerSeries res = *this;\n            ++(*this);\n    \
-    \        return res;\n        }\n        FormalPowerSeries operator--(int) {\n\
-    \            FormalPowerSeries res = *this;\n            --(*this);\n        \
-    \    return res;\n        }\n\n        /* Binary Operations With Constant */\n\
-    \n        FormalPowerSeries& operator+=(const value_type& x) { return safe_get(0)\
-    \ += x, *this; }\n        FormalPowerSeries& operator-=(const value_type& x) {\
-    \ return safe_get(0) -= x, *this; }\n        FormalPowerSeries& operator*=(const\
-    \ value_type& x) {\n            for (auto& e : *this) e *= x;\n            return\
-    \ *this;\n        }\n        FormalPowerSeries& operator/=(const value_type& x)\
-    \ { return *this *= x.inv(); }\n\n        friend FormalPowerSeries operator+(FormalPowerSeries\
-    \ f, const value_type& x) { f += x; return f; }\n        friend FormalPowerSeries\
-    \ operator+(const value_type& x, FormalPowerSeries f) { f += x; return f; }\n\
-    \        friend FormalPowerSeries operator-(FormalPowerSeries f, const value_type&\
-    \ x) { f -= x; return f; }\n        friend FormalPowerSeries operator-(const value_type&\
-    \ x, FormalPowerSeries f) { f -= x; return -f; }\n        friend FormalPowerSeries\
-    \ operator*(FormalPowerSeries f, const value_type& x) { f *= x; return f; }\n\
-    \        friend FormalPowerSeries operator*(const value_type& x, FormalPowerSeries\
-    \ f) { f *= x; return f; }\n        friend FormalPowerSeries operator/(FormalPowerSeries\
-    \ f, const value_type& x) { f /= x; return f; }\n\n        /* Binary Operations\
-    \ With Formal Power Series */\n\n        FormalPowerSeries& operator+=(const FormalPowerSeries&\
-    \ g) {\n            const int n = g.size();\n            ensure(n);\n        \
-    \    for (int i = 0; i < n; ++i) (*this)[i] += g[i];\n            return *this;\n\
-    \        }\n        FormalPowerSeries& operator-=(const FormalPowerSeries& g)\
-    \ {\n            const int n = g.size();\n            ensure(n);\n           \
-    \ for (int i = 0; i < n; ++i) (*this)[i] -= g[i];\n            return *this;\n\
-    \        }\n        FormalPowerSeries& operator*=(const FormalPowerSeries& g)\
-    \ { return *this = *this * g; }\n        FormalPowerSeries& operator/=(const FormalPowerSeries&\
-    \ g) { return *this = *this / g; }\n        FormalPowerSeries& operator%=(const\
-    \ FormalPowerSeries& g) { return *this = *this % g; }\n\n        friend FormalPowerSeries\
-    \ operator+(FormalPowerSeries f, const FormalPowerSeries& g) { f += g; return\
-    \ f; }\n        friend FormalPowerSeries operator-(FormalPowerSeries f, const\
-    \ FormalPowerSeries& g) { f -= g; return f; }\n        friend FormalPowerSeries\
-    \ operator*(const FormalPowerSeries& f, const FormalPowerSeries& g) {\n      \
-    \      const int siz_f = f.size(), siz_g = g.size();\n            if (siz_f <\
-    \ siz_g) return g * f;\n            if (std::min(siz_f, siz_g) <= 60) return atcoder::convolution(f,\
-    \ g);\n            const int deg = siz_f + siz_g - 2;\n            int fpow2 =\
-    \ 1;\n            while ((fpow2 << 1) <= deg) fpow2 <<= 1;\n            if (const\
-    \ int dif = deg - fpow2 + 1; dif <= 10) {\n                FormalPowerSeries h\
-    \ = atcoder::convolution(std::vector<mint>(f.begin(), f.end() - dif), g);\n  \
-    \              h.resize(h.size() + dif);\n                for (int i = siz_f -\
-    \ dif; i < siz_f; ++i) for (int j = 0; j < siz_g; ++j) {\n                   \
-    \ h[i + j] += f[i] * g[j];\n                }\n                return h;\n   \
-    \         }\n            return atcoder::convolution(f, g);\n        }\n     \
-    \   friend FormalPowerSeries operator/(FormalPowerSeries f, FormalPowerSeries\
-    \ g) {\n            if (f.size() < 60) return FPSNaive<mint>(f).div_mod(g).first;\n\
-    \            f.cut_trailing_zeros(), g.cut_trailing_zeros();\n            const\
-    \ int fd = f.deg(), gd = g.deg();\n            assert(gd >= 0);\n            if\
-    \ (fd < gd) return {};\n            if (gd == 0) {\n                f /= g[0];\n\
-    \                return f;\n            }\n            std::reverse(f.begin(),\
-    \ f.end()), std::reverse(g.begin(), g.end());\n            const int qd = fd -\
-    \ gd;\n            f.cut(qd + 1);\n            FormalPowerSeries q = f * g.inv(qd\
-    \ + 1);\n            q.cut(qd + 1);\n            std::reverse(q.begin(), q.end());\n\
-    \            return q;\n        }\n        friend FormalPowerSeries operator%(const\
-    \ FormalPowerSeries& f, const FormalPowerSeries& g) { return f.div_mod(g).second;\
-    \ }\n        std::pair<FormalPowerSeries, FormalPowerSeries> div_mod(const FormalPowerSeries&\
-    \ g) const {\n            if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
-    \                return { q, r };\n            }\n            FormalPowerSeries\
-    \ q = *this / g, r = *this - g * q;\n            r.cut_trailing_zeros();\n   \
-    \         return { q, r };\n        }\n\n        /* Shift Operations */\n\n  \
-    \      FormalPowerSeries& operator<<=(const int shamt) {\n            return this->insert(this->begin(),\
-    \ shamt, 0), * this;\n        }\n        FormalPowerSeries& operator>>=(const\
-    \ int shamt) {\n            return this->erase(this->begin(), this->begin() +\
-    \ std::min(shamt, size())), * this;\n        }\n        friend FormalPowerSeries\
-    \ operator<<(FormalPowerSeries f, const int shamt) { f <<= shamt; return f; }\n\
-    \        friend FormalPowerSeries operator>>(FormalPowerSeries f, const int shamt)\
-    \ { f >>= shamt; return f; }\n\n        /* Compare */\n\n        friend bool operator==(const\
-    \ FormalPowerSeries& f, const FormalPowerSeries& g) {\n            const int n\
-    \ = f.size(), m = g.size();\n            if (n < m) return g == f;\n         \
-    \   for (int i = 0; i < m; ++i) if (f[i] != g[i]) return false;\n            for\
-    \ (int i = m; i < n; ++i) if (f[i] != 0) return false;\n            return true;\n\
-    \        }\n        friend bool operator!=(const FormalPowerSeries& f, const FormalPowerSeries&\
-    \ g) { return not (f == g); }\n\n        /* Other Operations */\n\n        FormalPowerSeries&\
-    \ diff_inplace() {\n            const int n = size();\n            for (int i\
-    \ = 1; i < n; ++i) (*this)[i - 1] = (*this)[i] * i;\n            return (*this)[n\
-    \ - 1] = 0, *this;\n        }\n        FormalPowerSeries diff() const {\n    \
-    \        FormalPowerSeries res = *this;\n            res.diff_inplace();\n   \
-    \         return res;\n        }\n        FormalPowerSeries& intg_inplace() {\n\
-    \            const int n = size();\n            inv_mods<value_type> invs(n);\n\
-    \            this->resize(n + 1);\n            for (int i = n; i > 0; --i) (*this)[i]\
-    \ = (*this)[i - 1] * invs[i];\n            return (*this)[0] = 0, *this;\n   \
-    \     }\n        FormalPowerSeries intg() const {\n            FormalPowerSeries\
-    \ res = *this;\n            res.intg_inplace();\n            return res;\n   \
-    \     }\n\n        FormalPowerSeries& inv_inplace(int n = -1) { return *this =\
-    \ inv(n); }\n        // reference: https://opt-cp.com/fps-fast-algorithms/\n \
-    \       FormalPowerSeries inv(int n = -1) const {\n            if (n < 0) n =\
-    \ size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).inv();\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return inv_sparse(std::move(*sp_f),\
-    \ n);\n            FormalPowerSeries f_fft, g_fft;\n            FormalPowerSeries\
-    \ g{ (*this)[0].inv() };\n            for (int k = 1; k < n; k *= 2) {\n     \
-    \           f_fft = cut_copy(2 * k), g_fft = g.cut_copy(2 * k);\n            \
-    \    atcoder::internal::butterfly(f_fft);\n                atcoder::internal::butterfly(g_fft);\n\
-    \                update_inv(k, f_fft, g_fft, g);\n            }\n            g.resize(n);\n\
-    \            return g;\n        }\n        FormalPowerSeries& log_inplace(int\
-    \ n = -1) { return *this = log(n); }\n        FormalPowerSeries log(int n = -1)\
-    \ const {\n            assert(safe_get(0) == 1);\n            if (n < 0) n = size();\n\
-    \            if (n < 60) return FPSNaive<mint>(cut_copy(n)).log();\n         \
-    \   if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return log_sparse(std::move(*sp_f),\
-    \ n);\n            FormalPowerSeries res = inv(n) * diff();\n            res.resize(n\
-    \ - 1);\n            return res.intg();\n        }\n        FormalPowerSeries&\
-    \ exp_inplace(int n = -1) { return *this = exp(n); }\n        // https://arxiv.org/pdf/1301.5804.pdf\n\
-    \        FormalPowerSeries exp(int n = -1) const {\n            assert(safe_get(0)\
-    \ == 0);\n            if (n < 0) n = size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).exp();\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return exp_sparse(std::move(*sp_f),\
-    \ n);\n            // h = *this\n            // f = exp(h) mod x ^ k\n       \
-    \     // g = f^{-1} mod x ^ k\n            FormalPowerSeries dh = diff();\n  \
-    \          FormalPowerSeries f{ 1 }, f_fft;\n            FormalPowerSeries g{\
-    \ 1 }, g_fft;\n            for (int k = 1; k < n; k *= 2) {\n                f_fft\
-    \ = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\n              \
-    \  if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n                FormalPowerSeries\
-    \ t = f.cut_copy(k);\n                t.diff_inplace();\n                {\n \
-    \                   FormalPowerSeries r = dh.cut_copy(k);\n                  \
-    \  r.back() = 0;\n                    atcoder::internal::butterfly(r);\n     \
-    \               for (int i = 0; i < k; ++i) r[i] *= f_fft[i];\n              \
-    \      atcoder::internal::butterfly_inv(r);\n                    r /= -k;\n  \
-    \                  t += r;\n                    t <<= 1, t[0] = t[k], t.pop_back();\n\
-    \                }\n                t.resize(2 * k);\n                atcoder::internal::butterfly(t);\n\
-    \                g_fft = g.cut_copy(2 * k);\n                atcoder::internal::butterfly(g_fft);\n\
-    \                for (int i = 0; i < 2 * k; ++i) t[i] *= g_fft[i];\n         \
-    \       atcoder::internal::butterfly_inv(t);\n                t.resize(k);\n \
-    \               t /= 2 * k;\n\n                FormalPowerSeries v = cut_copy(2\
-    \ * k) >>= k;\n                t <<= k - 1;\n                t.intg_inplace();\n\
-    \                for (int i = 0; i < k; ++i) v[i] -= t[k + i];\n\n           \
-    \     v.resize(2 * k);\n                atcoder::internal::butterfly(v);\n   \
-    \             for (int i = 0; i < 2 * k; ++i) v[i] *= f_fft[i];\n            \
-    \    atcoder::internal::butterfly_inv(v);\n                v.resize(k);\n    \
-    \            v /= 2 * k;\n\n                f.resize(2 * k);\n               \
-    \ for (int i = 0; i < k; ++i) f[k + i] = v[i];\n            }\n            f.cut(n);\n\
-    \            return f;\n        }\n\n        FormalPowerSeries& pow_inplace(long\
-    \ long k, int n = -1) { return *this = pow(k, n); }\n        FormalPowerSeries\
-    \ pow(const long long k, int n = -1) const {\n            if (n < 0) n = size();\n\
-    \            if (n < 60) return FPSNaive<mint>(cut_copy(n)).pow(k);\n        \
-    \    if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return pow_sparse(std::move(*sp_f),\
-    \ k, n);\n            if (k == 0) {\n                FormalPowerSeries f{ 1 };\n\
-    \                f.resize(n);\n                return f;\n            }\n    \
-    \        int tlz = 0;\n            while (tlz < size() and (*this)[tlz] == 0)\
-    \ ++tlz;\n            if (tlz == size() or tlz > (n - 1) / k) return FormalPowerSeries(n,\
-    \ 0);\n            const int m = n - tlz * k;\n            FormalPowerSeries f\
-    \ = *this >> tlz;\n            value_type base = f[0];\n            return ((((f\
-    \ /= base).log(m) *= k).exp(m) *= base.pow(k)) <<= (tlz * k));\n        }\n\n\
-    \        std::optional<FormalPowerSeries> safe_sqrt(int n = -1) const {\n    \
-    \        if (n < 0) n = size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f),\
-    \ n);\n            int tlz = 0;\n            while (tlz < size() and (*this)[tlz]\
-    \ == 0) ++tlz;\n            if (tlz == size()) return FormalPowerSeries(n, 0);\n\
-    \            if (tlz & 1) return std::nullopt;\n            const int m = n -\
-    \ tlz / 2;\n\n            FormalPowerSeries h(this->begin() + tlz, this->end());\n\
-    \            auto q0 = ::safe_sqrt(h[0]);\n            if (not q0.has_value())\
-    \ return std::nullopt;\n\n            FormalPowerSeries f{ *q0 }, f_fft, g{ q0->inv()\
-    \ }, g_fft;\n            for (int k = 1; k < m; k *= 2) {\n                f_fft\
-    \ = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\n              \
-    \  if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n                g_fft = g.cut_copy(2\
-    \ * k);\n                atcoder::internal::butterfly(g_fft);\n              \
-    \  FormalPowerSeries h_fft = h.cut_copy(2 * k);\n                atcoder::internal::butterfly(h_fft);\n\
-    \                for (int i = 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i]\
-    \ * f_fft[i]) * g_fft[i];\n                atcoder::internal::butterfly_inv(h_fft);\n\
-    \                f.resize(2 * k);\n                const value_type iz = value_type(4\
-    \ * k).inv();\n                for (int i = 0; i < k; ++i) f[k + i] = h_fft[k\
-    \ + i] * iz;\n            }\n            f.resize(m), f <<= (tlz / 2);\n     \
-    \       return f;\n        }\n        FormalPowerSeries& sqrt_inplace(int n =\
-    \ -1) { return *this = sqrt(n); }\n        FormalPowerSeries sqrt(int n = -1)\
-    \ const {\n            return *safe_sqrt(n);\n        }\n\n        value_type\
-    \ eval(value_type x) const {\n            value_type y = 0;\n            for (int\
-    \ i = size() - 1; i >= 0; --i) y = y * x + (*this)[i];\n            return y;\n\
-    \        }\n\n        static FormalPowerSeries prod(const std::vector<FormalPowerSeries>&\
-    \ fs) {\n            if (fs.empty()) return { 1 };\n            std::deque<FormalPowerSeries>\
-    \ dq(fs.begin(), fs.end());\n            std::sort(dq.begin(), dq.end(), [](auto&\
-    \ f, auto& g) { return f.size() < g.size(); });\n            while (dq.size()\
-    \ >= 2) {\n                dq.push_back(dq[0] * dq[1]);\n                dq.pop_front();\n\
-    \                dq.pop_front();\n            }\n            return dq.front();\n\
-    \        }\n\n        std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int\
-    \ max_size) const {\n            std::vector<std::pair<int, value_type>> res;\n\
-    \            for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i)\
-    \ if (value_type v = (*this)[i]; v != 0) res.emplace_back(i, v);\n           \
-    \ if (int(res.size()) > max_size) return std::nullopt;\n            return res;\n\
-    \        }\n\n    private:\n        static void update_inv(const int k, FormalPowerSeries&\
-    \ f_fft, FormalPowerSeries& g_fft, FormalPowerSeries& g) {\n            FormalPowerSeries\
-    \ fg(2 * k);\n            for (int i = 0; i < 2 * k; ++i) fg[i] = f_fft[i] * g_fft[i];\n\
-    \            atcoder::internal::butterfly_inv(fg);\n            fg >>= k, fg.resize(2\
-    \ * k);\n            atcoder::internal::butterfly(fg);\n            for (int i\
-    \ = 0; i < 2 * k; ++i) fg[i] *= g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
-    \            const value_type iz = value_type(2 * k).inv(), c = -iz * iz;\n  \
-    \          g.resize(2 * k);\n            for (int i = 0; i < k; ++i) g[k + i]\
-    \ = fg[i] * c;\n        }\n\n        static FormalPowerSeries div_fps_sparse(const\
-    \ FormalPowerSeries& f, const std::vector<std::pair<int, value_type>>& g, int\
-    \ n) {\n            const int siz = g.size();\n            assert(siz and g[0].first\
-    \ == 0);\n            const value_type inv_g0 = g[0].second.inv();\n         \
-    \   FormalPowerSeries h(n);\n            for (int i = 0; i < n; ++i) {\n     \
-    \           value_type v = f.safe_get(i);\n                for (int idx = 1; idx\
-    \ < siz; ++idx) {\n                    const auto& [j, gj] = g[idx];\n       \
-    \             if (j > i) break;\n                    v -= gj * h[i - j];\n   \
-    \             }\n                h[i] = v * inv_g0;\n            }\n         \
-    \   return h;\n        }\n        static FormalPowerSeries inv_sparse(const std::vector<std::pair<int,\
-    \ value_type>>& g, const int n) {\n            return div_fps_sparse(FormalPowerSeries{\
-    \ 1 }, g, n);\n        }\n        static FormalPowerSeries exp_sparse(const std::vector<std::pair<int,\
-    \ value_type>>& f, const int n) {\n            const int siz = f.size();\n   \
-    \         assert(not siz or f[0].first != 0);\n            FormalPowerSeries g(n);\n\
-    \            g[0] = 1;\n            inv_mods<value_type> invs(n);\n          \
-    \  for (int i = 1; i < n; ++i) {\n                value_type v = 0;\n        \
-    \        for (const auto& [j, fj] : f) {\n                    if (j > i) break;\n\
-    \                    v += j * fj * g[i - j];\n                }\n            \
-    \    v *= invs[i];\n                g[i] = v;\n            }\n            return\
-    \ g;\n        }\n        static FormalPowerSeries log_sparse(const std::vector<std::pair<int,\
-    \ value_type>>& f, const int n) {\n            const int siz = f.size();\n   \
-    \         assert(siz and f[0].first == 0 and f[0].second == 1);\n            FormalPowerSeries\
-    \ g(n);\n            for (int idx = 1; idx < siz; ++idx) {\n                const\
-    \ auto& [j, fj] = f[idx];\n                if (j >= n) break;\n              \
-    \  g[j] = j * fj;\n            }\n            inv_mods<value_type> invs(n);\n\
-    \            for (int i = 1; i < n; ++i) {\n                value_type v = g[i];\n\
-    \                for (int idx = 1; idx < siz; ++idx) {\n                    const\
-    \ auto& [j, fj] = f[idx];\n                    if (j > i) break;\n           \
-    \         v -= fj * g[i - j] * (i - j);\n                }\n                v\
-    \ *= invs[i];\n                g[i] = v;\n            }\n            return g;\n\
-    \        }\n        static FormalPowerSeries pow_sparse(const std::vector<std::pair<int,\
-    \ value_type>>& f, const long long k, const int n) {\n            if (k == 0)\
-    \ {\n                FormalPowerSeries res(n, 0);\n                res[0] = 1;\n\
-    \                return res;\n            }\n            const int siz = f.size();\n\
-    \            if (not siz) return FormalPowerSeries(n, 0);\n            const int\
-    \ p = f[0].first;\n            if (p > (n - 1) / k) return FormalPowerSeries(n,\
-    \ 0);\n            const value_type inv_f0 = f[0].second.inv();\n            const\
-    \ int lz = p * k;\n            FormalPowerSeries g(n);\n            g[lz] = f[0].second.pow(k);\n\
-    \            inv_mods<value_type> invs(n);\n            for (int i = 1; lz + i\
-    \ < n; ++i) {\n                value_type v = 0;\n                for (int idx\
-    \ = 1; idx < siz; ++idx) {\n                    auto [j, fj] = f[idx];\n     \
-    \               j -= p;\n                    if (j > i) break;\n             \
-    \       v += fj * g[lz + i - j] * (value_type(k) * j - (i - j));\n           \
-    \     }\n                v *= invs[i] * inv_f0;\n                g[lz + i] = v;\n\
-    \            }\n            return g;\n        }\n        static std::optional<FormalPowerSeries>\
-    \ safe_sqrt_sparse(const std::vector<std::pair<int, value_type>>& f, const int\
-    \ n) {\n            const int siz = f.size();\n            if (not siz) return\
-    \ FormalPowerSeries(n, 0);\n            const int p = f[0].first;\n          \
-    \  if (p % 2 == 1) return std::nullopt;\n            if (p / 2 >= n) return FormalPowerSeries(n,\
-    \ 0);\n            const value_type inv_f0 = f[0].second.inv();\n            const\
-    \ int lz = p / 2;\n            FormalPowerSeries g(n);\n            auto opt_g0\
-    \ = ::safe_sqrt(f[0].second);\n            if (not opt_g0.has_value()) return\
-    \ std::nullopt;\n            g[lz] = *opt_g0;\n            value_type k = mint(2).inv();\n\
-    \            inv_mods<value_type> invs(n);\n            for (int i = 1; lz + i\
-    \ < n; ++i) {\n                value_type v = 0;\n                for (int idx\
-    \ = 1; idx < siz; ++idx) {\n                    auto [j, fj] = f[idx];\n     \
-    \               j -= p;\n                    if (j > i) break;\n             \
-    \       v += fj * g[lz + i - j] * (k * j - (i - j));\n                }\n    \
-    \            v *= invs[i] * inv_f0;\n                g[lz + i] = v;\n        \
-    \    }\n            return g;\n        }\n        static FormalPowerSeries sqrt_sparse(const\
-    \ std::vector<std::pair<int, value_type>>& f, const int n) {\n            return\
-    \ *safe_sqrt(f, n);\n        }\n    };\n} // namespace suisen\n\ntemplate <typename\
-    \ mint>\nsuisen::FormalPowerSeries<mint> sqrt(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.sqrt();\n}\ntemplate <typename mint>\nsuisen::FormalPowerSeries<mint>\
-    \ log(suisen::FormalPowerSeries<mint> a) {\n    return a.log();\n}\ntemplate <typename\
-    \ mint>\nsuisen::FormalPowerSeries<mint> exp(suisen::FormalPowerSeries<mint> a)\
-    \ {\n    return a.exp();\n}\ntemplate <typename mint, typename T>\nsuisen::FormalPowerSeries<mint>\
-    \ pow(suisen::FormalPowerSeries<mint> a, T b) {\n    return a.pow(b);\n}\ntemplate\
-    \ <typename mint>\nsuisen::FormalPowerSeries<mint> inv(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.inv();\n}\n\n\n#line 24 \"test/src/polynomial/compose/composition_of_formal_power_series.test.cpp\"\
-    \n\nusing fps = suisen::FormalPowerSeries<mint>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    fps a(n),\
-    \ b(n);\n    for (auto &e : a) std::cin >> e;\n    for (auto &e : b) std::cin\
-    \ >> e;\n\n    fps c = suisen::compose(a, b, n);\n    for (int i = 0; i < n; ++i)\
-    \ {\n        std::cout << c[i];\n        if (i + 1 != n) std::cout << ' ';\n \
-    \   }\n    std::cout << '\\n';\n}\n"
+    \      return out;\n    }\n} // namespace atcoder\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    std::vector<mint>\
+    \ a(n), b(n);\n    for (auto &e : a) std::cin >> e;\n    for (auto &e : b) std::cin\
+    \ >> e;\n\n    std::vector<mint> c = suisen::compose(a, b, n);\n    for (int i\
+    \ = 0; i < n; ++i) {\n        std::cout << c[i];\n        if (i + 1 != n) std::cout\
+    \ << ' ';\n    }\n    std::cout << '\\n';\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/composition_of_formal_power_series\"\
     \n\n#include <iostream>\n\n#include \"library/polynomial/compose.hpp\"\n\n#include\
     \ <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\nnamespace atcoder\
     \ {\n    std::istream& operator>>(std::istream& in, mint &a) {\n        long long\
     \ e; in >> e; a = e;\n        return in;\n    }\n    \n    std::ostream& operator<<(std::ostream&\
     \ out, const mint &a) {\n        out << a.val();\n        return out;\n    }\n\
-    } // namespace atcoder\n\n#include \"library/polynomial/formal_power_series.hpp\"\
-    \n\nusing fps = suisen::FormalPowerSeries<mint>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    fps a(n),\
-    \ b(n);\n    for (auto &e : a) std::cin >> e;\n    for (auto &e : b) std::cin\
-    \ >> e;\n\n    fps c = suisen::compose(a, b, n);\n    for (int i = 0; i < n; ++i)\
-    \ {\n        std::cout << c[i];\n        if (i + 1 != n) std::cout << ' ';\n \
-    \   }\n    std::cout << '\\n';\n}"
+    } // namespace atcoder\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    std::vector<mint>\
+    \ a(n), b(n);\n    for (auto &e : a) std::cin >> e;\n    for (auto &e : b) std::cin\
+    \ >> e;\n\n    std::vector<mint> c = suisen::compose(a, b, n);\n    for (int i\
+    \ = 0; i < n; ++i) {\n        std::cout << c[i];\n        if (i + 1 != n) std::cout\
+    \ << ' ';\n    }\n    std::cout << '\\n';\n}"
   dependsOn:
   - library/polynomial/compose.hpp
-  - library/polynomial/formal_power_series.hpp
-  - library/polynomial/fps_naive.hpp
-  - library/type_traits/type_traits.hpp
-  - library/math/modint_extension.hpp
-  - library/math/inv_mods.hpp
+  - library/linear_algebra/matrix.hpp
   isVerificationFile: true
   path: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 06:42:03+09:00'
+  timestamp: '2023-05-21 07:28:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp

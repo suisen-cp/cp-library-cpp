@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/partition_number.hpp
     title: Partition Number
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/partition_function
@@ -498,7 +498,7 @@ data:
   path: test/src/sequence/partition_number/partition_function.test.cpp
   requiredBy: []
   timestamp: '2023-05-21 05:26:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/sequence/partition_number/partition_function.test.cpp
 layout: document

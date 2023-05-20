@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: library/sequence/powers.hpp
     title: Powers
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number2.hpp
     title: Stirling Number2
   - icon: ':heavy_check_mark:'

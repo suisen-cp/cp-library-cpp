@@ -153,7 +153,7 @@ data:
       path: library/datastructure/convex_hull_trick.hpp
       title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\
         \u306A\u3044\u5834\u5408)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/deque_aggregation.hpp
       title: "SWAG \u3092 Deque \u306B\u62E1\u5F35\u3057\u305F\u3084\u3064"
     - icon: ':heavy_check_mark:'
@@ -805,16 +805,16 @@ data:
     - icon: ':question:'
       path: library/polynomial/multi_point_eval.hpp
       title: Multi Point Evaluation
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/polynomial_gcd.hpp
       title: Polynomial Gcd
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/polynomial_interpolation.hpp
       title: "\u88DC\u9593\u591A\u9805\u5F0F"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/polynomial_taylor_shift.hpp
       title: Polynomial Taylor Shift
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/prod_f(r^k_x).hpp
       title: $\left(\prod_{k=0}^{m-1} f(r^k x)\right) \bmod x^N$
     - icon: ':x:'
@@ -823,7 +823,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/shift_of_sampling_points.hpp
       title: Shift of Sampling Points of Polynomial
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/subset_sum.hpp
       title: Subset Sum
     - icon: ':warning:'
@@ -842,7 +842,7 @@ data:
     - icon: ':warning:'
       path: library/sequence/bell_number.hpp
       title: Bell Number
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/sequence/bernoulli_number.hpp
       title: Bernoulli Number
     - icon: ':heavy_check_mark:'
@@ -857,13 +857,13 @@ data:
     - icon: ':warning:'
       path: library/sequence/binomial_coefficitnt_enumeration.hpp
       title: Binomial Coefficitnt Enumeration
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/sequence/eulerian_number.hpp
       title: Eulerian Number
     - icon: ':heavy_check_mark:'
       path: library/sequence/montmort_number.hpp
       title: Montmort Number
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/sequence/partition_number.hpp
       title: Partition Number
     - icon: ':question:'
@@ -875,7 +875,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/sequence/stirling_number1_small_prime_mod.hpp
       title: Stirling Number of the First Kind (Small Prime Mod)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/sequence/stirling_number2.hpp
       title: Stirling Number2
     - icon: ':heavy_check_mark:'
@@ -2356,33 +2356,33 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
       title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - name: test/src/polynomial/polynomial_gcd
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
       title: test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
   - name: test/src/polynomial/polynomial_interpolation
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
       title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
       title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
   - name: test/src/polynomial/polynomial_taylor_shift
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
       title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
       title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - name: test/src/polynomial/prod_f(r^k_x)
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
       title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - name: test/src/polynomial/shift_of_sampling_points
@@ -2392,10 +2392,10 @@ data:
       title: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
   - name: test/src/polynomial/subset_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
       title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
       title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - name: test/src/range_query/static_range_inversion_number_query
@@ -2410,10 +2410,10 @@ data:
       title: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
   - name: test/src/sequence/bernoulli_number
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
       title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
       title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
   - name: test/src/sequence/binomial_coefficient
@@ -2423,10 +2423,10 @@ data:
       title: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
   - name: test/src/sequence/eulerian_number
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
       title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
       title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2439,10 +2439,10 @@ data:
       title: test/src/sequence/montmort_number/montmort_number_mod.test.cpp
   - name: test/src/sequence/partition_number
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/partition_number/partition_function.test.cpp
       title: test/src/sequence/partition_number/partition_function.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/partition_number/partition_function_2.test.cpp
       title: test/src/sequence/partition_number/partition_function_2.test.cpp
   - name: test/src/sequence/stirling_number1
@@ -2450,10 +2450,10 @@ data:
     - icon: ':x:'
       path: test/src/sequence/stirling_number1/abc247_h.test.cpp
       title: test/src/sequence/stirling_number1/abc247_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
       title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
       title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - name: test/src/sequence/stirling_number1_small_prime_mod
@@ -2463,10 +2463,10 @@ data:
       title: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - name: test/src/sequence/stirling_number2
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
       title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
       title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   - name: test/src/sequence/stirling_number2_small_prime_mod

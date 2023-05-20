@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hessenberg_reduction.hpp
     title: Hessenberg Reduction
+  - icon: ':heavy_check_mark:'
+    path: library/polynomial/compose.hpp
+    title: "\u5408\u6210"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
@@ -31,6 +34,9 @@ data:
   - icon: ':x:'
     path: test/src/math/set_power_series/abc253_h.test.cpp
     title: test/src/math/set_power_series/abc253_h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
+    title: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -277,6 +283,7 @@ data:
   - library/linear_algebra/characteristic_polynomial.hpp
   - library/linear_algebra/count_spanning_trees.hpp
   - library/linear_algebra/hessenberg_reduction.hpp
+  - library/polynomial/compose.hpp
   timestamp: '2022-11-19 18:46:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -285,6 +292,7 @@ data:
   - test/src/linear_algebra/matrix/matrix_product.test.cpp
   - test/src/linear_algebra/matrix/matrix_det_arbitrary_mod.test.cpp
   - test/src/linear_algebra/matrix/matrix_det.test.cpp
+  - test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
   - test/src/math/set_power_series/abc253_h.test.cpp
 documentation_of: library/linear_algebra/matrix.hpp
 layout: document
