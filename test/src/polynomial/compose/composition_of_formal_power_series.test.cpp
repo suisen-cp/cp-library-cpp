@@ -20,10 +20,6 @@ namespace atcoder {
     }
 } // namespace atcoder
 
-#include "library/polynomial/formal_power_series.hpp"
-
-using fps = suisen::FormalPowerSeries<mint>;
-
 int main() {
     std::ios::sync_with_stdio(false);
     std::cin.tie(nullptr);
@@ -31,11 +27,11 @@ int main() {
     int n;
     std::cin >> n;
 
-    fps a(n), b(n);
+    std::vector<mint> a(n), b(n);
     for (auto &e : a) std::cin >> e;
     for (auto &e : b) std::cin >> e;
 
-    fps c = suisen::compose(a, b, n);
+    std::vector<mint> c = suisen::compose(a, b, n);
     for (int i = 0; i < n; ++i) {
         std::cout << c[i];
         if (i + 1 != n) std::cout << ' ';
