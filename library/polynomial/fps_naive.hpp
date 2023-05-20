@@ -128,7 +128,9 @@ namespace suisen {
                 q.unsafe_get(i) = div;
                 for (int j = 0; j <= gd; ++j) f.unsafe_get(i + j) -= div * g.unsafe_get(j);
             }
-            return { q, f.cut_inplace(gd) };
+            f.cut_inplace(gd);
+            f.normalize();
+            return { q, f };
         }
 
         friend bool operator==(const FPSNaive& f, const FPSNaive& g) {
