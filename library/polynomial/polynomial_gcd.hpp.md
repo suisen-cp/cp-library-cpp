@@ -131,8 +131,6 @@ data:
   - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
 documentation_of: library/polynomial/polynomial_gcd.hpp
 layout: document
-redirect_from:
-- /library/library/polynomial/polynomial_gcd.hpp
-- /library/library/polynomial/polynomial_gcd.hpp.html
-title: library/polynomial/polynomial_gcd.hpp
+title: Polynomial Gcd
 ---
+## Polynomial Gcd

@@ -778,6 +778,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
+    - icon: ':heavy_check_mark:'
+      path: library/polynomial/compose.hpp
+      title: "\u5408\u6210"
     - icon: ':x:'
       path: library/polynomial/compose_exp.hpp
       title: Compose Exp
@@ -804,7 +807,7 @@ data:
       title: Multi Point Evaluation
     - icon: ':x:'
       path: library/polynomial/polynomial_gcd.hpp
-      title: library/polynomial/polynomial_gcd.hpp
+      title: Polynomial Gcd
     - icon: ':x:'
       path: library/polynomial/polynomial_interpolation.hpp
       title: "\u88DC\u9593\u591A\u9805\u5F0F"
@@ -2227,6 +2230,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
+  - name: test/src/polynomial/compose
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
+      title: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
   - name: test/src/polynomial/compose_exp
     pages:
     - icon: ':x:'
@@ -2269,10 +2277,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
       title: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
   - name: test/src/polynomial/formal_power_series_relaxed
@@ -2294,37 +2302,37 @@ data:
       title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
   - name: test/src/polynomial/fps
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/division_of_polynomials.test.cpp
       title: test/src/polynomial/fps/division_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/exp_of_fps.test.cpp
       title: test/src/polynomial/fps/exp_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/inv_of_fps.test.cpp
       title: test/src/polynomial/fps/inv_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/log_of_fps.test.cpp
       title: test/src/polynomial/fps/log_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/pow_of_fps.test.cpp
       title: test/src/polynomial/fps/pow_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
       title: test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
   - name: test/src/polynomial/fps_naive
@@ -2337,15 +2345,15 @@ data:
     - icon: ':x:'
       path: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
       title: test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
       title: test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
       title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   - name: test/src/polynomial/multi_point_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
       title: test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
     - icon: ':x:'

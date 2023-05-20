@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
+    title: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
   - icon: ':x:'
     path: test/src/polynomial/compose_exp/arc154_f.test.cpp
     title: test/src/polynomial/compose_exp/arc154_f.test.cpp
@@ -60,13 +63,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
     title: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   - icon: ':x:'
@@ -913,6 +916,7 @@ data:
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
+  - test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp

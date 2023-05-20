@@ -7,6 +7,9 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
+  - icon: ':heavy_check_mark:'
+    path: library/polynomial/compose.hpp
+    title: "\u5408\u6210"
   - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
@@ -23,27 +26,50 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/composition_of_formal_power_series
     links:
-    - https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
-  bundledCode: "#line 1 \"test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
-    \n\n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
-    \ <atcoder/convolution>\n\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
+    - https://judge.yosupo.jp/problem/composition_of_formal_power_series
+  bundledCode: "#line 1 \"test/src/polynomial/compose/composition_of_formal_power_series.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/composition_of_formal_power_series\"\
+    \n\n#include <iostream>\n\n#line 1 \"library/polynomial/compose.hpp\"\n\n\n\n\
+    #include <cmath>\n#include <atcoder/convolution>\n\nnamespace suisen {\n    template\
+    \ <typename FPSType>\n    FPSType compose(const FPSType& f, FPSType g, const int\
+    \ n) {\n        if (f.empty()) return {};\n        if (g.empty()) return { f[0]\
+    \ };\n\n        if (int(g.size()) > n) {\n            g.resize(n);\n        }\n\
+    \n        const int sqn = ::sqrt(f.size()) + 1;\n\n        std::vector<FPSType>\
+    \ pow_g_small(sqn);\n        pow_g_small[0] = { 1 };\n        for (int i = 1;\
+    \ i < sqn; ++i) {\n            pow_g_small[i] = pow_g_small[i - 1] * g;\n    \
+    \        pow_g_small[i].resize(n);\n        }\n        const FPSType g_large =\
+    \ pow_g_small.back() * g;\n\n        FPSType pow_g_large{ 1 };\n\n        FPSType\
+    \ h(n);\n        for (int i = 0; i < sqn; ++i) {\n            FPSType hi(n);\n\
+    \            for (int j = 0; j < sqn; ++j) {\n                const int ij = i\
+    \ * sqn + j;\n                if (ij >= int(f.size())) break;\n\n            \
+    \    const auto c = f[ij];\n                const FPSType& gj = pow_g_small[j];\n\
+    \n                for (int k = 0; k < int(gj.size()); ++k) {\n               \
+    \     hi[k] += c * gj[k];\n                }\n            }\n            hi =\
+    \ pow_g_large * hi;\n            for (int k = 0; k < n; ++k) {\n             \
+    \   h[k] += hi[k];\n            }\n            pow_g_large = pow_g_large * g_large;\n\
+    \            pow_g_large.resize(n);\n        }\n        return h;\n    }\n\n}\
+    \ // namespace suisen\n\n\n\n#line 6 \"test/src/polynomial/compose/composition_of_formal_power_series.test.cpp\"\
+    \n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\nnamespace\
+    \ atcoder {\n    std::istream& operator>>(std::istream& in, mint &a) {\n     \
+    \   long long e; in >> e; a = e;\n        return in;\n    }\n    \n    std::ostream&\
+    \ operator<<(std::ostream& out, const mint &a) {\n        out << a.val();\n  \
+    \      return out;\n    }\n} // namespace atcoder\n\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
     \n\n\n\n#include <limits>\n#include <optional>\n#include <queue>\n\n#line 10 \"\
     library/polynomial/formal_power_series.hpp\"\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\
-    \n#include <type_traits>\n#line 9 \"library/polynomial/fps_naive.hpp\"\n\n#line\
-    \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
-    \n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\nusing constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
-    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
-    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n        return std::forward<Then>(then);\n\
-    \    } else {\n        return std::forward<OrElse>(or_else);\n    }\n}\n\n// !\
-    \ function\ntemplate <typename ReturnType, typename Callable, typename ...Args>\n\
-    using is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable, Args...>,\
-    \ ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T,\
-    \ F, T>;\ntemplate <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \n\n\n\n#include <cassert>\n#line 7 \"library/polynomial/fps_naive.hpp\"\n#include\
+    \ <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
+    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
+    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
+    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
+    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
+    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
     \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
     \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
     template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
@@ -522,40 +548,43 @@ data:
     \ {\n    return a.exp();\n}\ntemplate <typename mint, typename T>\nsuisen::FormalPowerSeries<mint>\
     \ pow(suisen::FormalPowerSeries<mint> a, T b) {\n    return a.pow(b);\n}\ntemplate\
     \ <typename mint>\nsuisen::FormalPowerSeries<mint> inv(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.inv();\n}\n\n\n#line 10 \"test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n;\n    std::cin\
-    \ >> n;\n    suisen::FormalPowerSeries<mint> f(n);\n    for (int i = 0; i < n;\
-    \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
-    \    }\n    auto opt_g = f.safe_sqrt();\n    if (not opt_g.has_value()) {\n  \
-    \      std::cout << -1 << std::endl;\n        return 0;\n    }\n    auto g = std::move(*opt_g);\n\
-    \    for (int i = 0; i < n; ++i) {\n        std::cout << g[i].val() << \" \\n\"\
-    [i == n - 1];\n    }\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
-    \n\n#include <iostream>\n#include <vector>\n\n#include <atcoder/modint>\n#include\
-    \ <atcoder/convolution>\n\n#include \"library/polynomial/formal_power_series.hpp\"\
-    \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n;\n    std::cin\
-    \ >> n;\n    suisen::FormalPowerSeries<mint> f(n);\n    for (int i = 0; i < n;\
-    \ ++i) {\n        int coef;\n        std::cin >> coef;\n        f[i] = coef;\n\
-    \    }\n    auto opt_g = f.safe_sqrt();\n    if (not opt_g.has_value()) {\n  \
-    \      std::cout << -1 << std::endl;\n        return 0;\n    }\n    auto g = std::move(*opt_g);\n\
-    \    for (int i = 0; i < n; ++i) {\n        std::cout << g[i].val() << \" \\n\"\
-    [i == n - 1];\n    }\n    return 0;\n}"
+    \ a) {\n    return a.inv();\n}\n\n\n#line 24 \"test/src/polynomial/compose/composition_of_formal_power_series.test.cpp\"\
+    \n\nusing fps = suisen::FormalPowerSeries<mint>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    fps a(n),\
+    \ b(n);\n    for (auto &e : a) std::cin >> e;\n    for (auto &e : b) std::cin\
+    \ >> e;\n\n    fps c = suisen::compose(a, b, n);\n    for (int i = 0; i < n; ++i)\
+    \ {\n        std::cout << c[i];\n        if (i + 1 != n) std::cout << ' ';\n \
+    \   }\n    std::cout << '\\n';\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/composition_of_formal_power_series\"\
+    \n\n#include <iostream>\n\n#include \"library/polynomial/compose.hpp\"\n\n#include\
+    \ <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\nnamespace atcoder\
+    \ {\n    std::istream& operator>>(std::istream& in, mint &a) {\n        long long\
+    \ e; in >> e; a = e;\n        return in;\n    }\n    \n    std::ostream& operator<<(std::ostream&\
+    \ out, const mint &a) {\n        out << a.val();\n        return out;\n    }\n\
+    } // namespace atcoder\n\n#include \"library/polynomial/formal_power_series.hpp\"\
+    \n\nusing fps = suisen::FormalPowerSeries<mint>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n\n    fps a(n),\
+    \ b(n);\n    for (auto &e : a) std::cin >> e;\n    for (auto &e : b) std::cin\
+    \ >> e;\n\n    fps c = suisen::compose(a, b, n);\n    for (int i = 0; i < n; ++i)\
+    \ {\n        std::cout << c[i];\n        if (i + 1 != n) std::cout << ' ';\n \
+    \   }\n    std::cout << '\\n';\n}"
   dependsOn:
+  - library/polynomial/compose.hpp
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
   isVerificationFile: true
-  path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+  path: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 05:26:26+09:00'
+  timestamp: '2023-05-21 06:42:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+documentation_of: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-- /verify/test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp.html
-title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+- /verify/test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
+- /verify/test/src/polynomial/compose/composition_of_formal_power_series.test.cpp.html
+title: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
 ---

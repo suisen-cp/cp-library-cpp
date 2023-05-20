@@ -15,7 +15,7 @@ data:
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':x:'
     path: library/polynomial/polynomial_gcd.hpp
-    title: library/polynomial/polynomial_gcd.hpp
+    title: Polynomial Gcd
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
