@@ -41,10 +41,10 @@ data:
       \u3052)"
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
-    title: library/math/array_set_power_series.hpp
+    title: Array Set Power Series
   - icon: ':question:'
     path: library/math/set_power_series.hpp
-    title: library/math/set_power_series.hpp
+    title: Set Power Series
   - icon: ':warning:'
     path: library/string/rolling_hash_field.hpp
     title: "Rolling Hash (\u4E00\u822C\u306E\u4F53)"
@@ -54,7 +54,7 @@ data:
       \u30B9\u5909\u63DB"
   - icon: ':warning:'
     path: library/transform/kronecker.hpp
-    title: library/transform/kronecker.hpp
+    title: Kronecker
   - icon: ':question:'
     path: library/transform/kronecker_power.hpp
     title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\

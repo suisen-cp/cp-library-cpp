@@ -10,7 +10,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/math/factorial_large.hpp
-    title: library/math/factorial_large.hpp
+    title: Factorial Large
   - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number1_small_prime_mod.hpp
     title: Stirling Number of the First Kind (Small Prime Mod)
@@ -21,15 +21,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/sequence/stirling_number1.hpp\"\n\n\n\n#include\
@@ -162,7 +162,7 @@ data:
   - library/sequence/stirling_number1_small_prime_mod.hpp
   - library/math/factorial_large.hpp
   timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp

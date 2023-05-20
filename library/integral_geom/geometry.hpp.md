@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/integral_geom/inclusion.hpp
-    title: library/integral_geom/inclusion.hpp
+    title: Inclusion
   - icon: ':question:'
     path: library/integral_geom/point.hpp
     title: Point

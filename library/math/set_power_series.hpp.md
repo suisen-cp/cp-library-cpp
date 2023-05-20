@@ -623,8 +623,6 @@ data:
   - test/src/math/set_power_series/abc253_h_2.test.cpp
 documentation_of: library/math/set_power_series.hpp
 layout: document
-redirect_from:
-- /library/library/math/set_power_series.hpp
-- /library/library/math/set_power_series.hpp.html
-title: library/math/set_power_series.hpp
+title: Set Power Series
 ---
+## Set Power Series

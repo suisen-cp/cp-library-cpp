@@ -62,7 +62,8 @@ data:
     \            undo_data(_sum[_history.back().first]);\n            _dat[_history.back().first]\
     \ = _history.back().second, _history.pop_back();\n        }\n        void rollback()\
     \ {\n            while (_history.size()) undo();\n        }\n        const T&\
-    \ sum(int x) const {\n            return _sum[root(x)];\n        }\n    protected:\n\
+    \ sum(int x) const {\n            return _sum[root(x)];\n        }\n        T&\
+    \ sum(int x) {\n            return _sum[root(x)];\n        }\n    protected:\n\
     \        std::vector<T> _sum;\n    };\n} // namespace suisen\n\n\n\n#line 10 \"\
     library/algorithm/offline_dynamic_connectivity_component_sum.hpp\"\n\nnamespace\
     \ suisen {\n    struct OfflineDynamicConnectivityComponentSum {\n        OfflineDynamicConnectivityComponentSum()\
@@ -148,7 +149,7 @@ data:
   isVerificationFile: false
   path: library/algorithm/offline_dynamic_connectivity_component_sum.hpp
   requiredBy: []
-  timestamp: '2022-06-27 18:52:05+09:00'
+  timestamp: '2023-05-21 01:49:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/algorithm/offline_dynamic_connectivity_component_sum/dynamic_graph_vertex_add_component_sum.test.cpp

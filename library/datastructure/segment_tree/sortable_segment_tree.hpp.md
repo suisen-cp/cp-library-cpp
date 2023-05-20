@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/util/pointer_32bit.hpp
-    title: library/util/pointer_32bit.hpp
+    title: Pointer 32bit
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -933,8 +933,6 @@ data:
   - test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
 documentation_of: library/datastructure/segment_tree/sortable_segment_tree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/segment_tree/sortable_segment_tree.hpp
-- /library/library/datastructure/segment_tree/sortable_segment_tree.hpp.html
-title: library/datastructure/segment_tree/sortable_segment_tree.hpp
+title: Sortable Segment Tree
 ---
+## Sortable Segment Tree

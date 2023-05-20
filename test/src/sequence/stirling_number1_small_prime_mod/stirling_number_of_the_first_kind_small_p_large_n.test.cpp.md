@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/sequence/binomial_coefficient_small_prime_mod.hpp
     title: Binomial Coefficient Small Prime Mod
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
   - icon: ':heavy_check_mark:'

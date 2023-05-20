@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/math/factorial_large.hpp
-    title: library/math/factorial_large.hpp
+    title: Factorial Large
   - icon: ':heavy_check_mark:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
@@ -14,7 +14,7 @@ data:
   - icon: ':x:'
     path: library/polynomial/compose_exp.hpp
     title: Compose Exp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
   - icon: ':heavy_check_mark:'
@@ -23,22 +23,22 @@ data:
   - icon: ':warning:'
     path: library/sequence/bell_number.hpp
     title: Bell Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/bernoulli_number.hpp
     title: Bernoulli Number
   - icon: ':heavy_check_mark:'
     path: library/sequence/binomial_coefficient_small_prime_mod.hpp
     title: Binomial Coefficient Small Prime Mod
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/eulerian_number.hpp
     title: Eulerian Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
   - icon: ':heavy_check_mark:'
     path: library/sequence/stirling_number1_small_prime_mod.hpp
     title: Stirling Number of the First Kind (Small Prime Mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/stirling_number2.hpp
     title: Stirling Number2
   - icon: ':heavy_check_mark:'
@@ -78,10 +78,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,10 +90,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,7 +108,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -117,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   - icon: ':heavy_check_mark:'

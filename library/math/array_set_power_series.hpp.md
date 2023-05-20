@@ -548,8 +548,6 @@ data:
   - test/src/math/array_set_power_series/abc253_h_2.test.cpp
 documentation_of: library/math/array_set_power_series.hpp
 layout: document
-redirect_from:
-- /library/library/math/array_set_power_series.hpp
-- /library/library/math/array_set_power_series.hpp.html
-title: library/math/array_set_power_series.hpp
+title: Array Set Power Series
 ---
+## Array Set Power Series

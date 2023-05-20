@@ -84,8 +84,6 @@ data:
   - test/src/util/step_sum/dummy.test.cpp
 documentation_of: library/util/step_sum.hpp
 layout: document
-redirect_from:
-- /library/library/util/step_sum.hpp
-- /library/library/util/step_sum.hpp.html
-title: library/util/step_sum.hpp
+title: Step Sum
 ---
+## Step Sum

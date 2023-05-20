@@ -175,8 +175,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/queue_aggregation.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/queue_aggregation.hpp
-- /library/library/datastructure/queue_aggregation.hpp.html
-title: library/datastructure/queue_aggregation.hpp
+title: Queue Aggregation
 ---
+## Queue Aggregation

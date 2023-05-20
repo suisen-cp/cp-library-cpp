@@ -65,8 +65,6 @@ data:
   verifiedWith: []
 documentation_of: library/dp/grid_connectivity.hpp
 layout: document
-redirect_from:
-- /library/library/dp/grid_connectivity.hpp
-- /library/library/dp/grid_connectivity.hpp.html
-title: library/dp/grid_connectivity.hpp
+title: Grid Connectivity
 ---
+## Grid Connectivity

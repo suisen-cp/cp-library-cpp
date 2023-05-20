@@ -6,7 +6,7 @@ data:
     title: Default Operator
   - icon: ':warning:'
     path: library/util/step_view.hpp
-    title: library/util/step_view.hpp
+    title: Step View
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -188,8 +188,6 @@ data:
   verifiedWith: []
 documentation_of: library/transform/kronecker.hpp
 layout: document
-redirect_from:
-- /library/library/transform/kronecker.hpp
-- /library/library/transform/kronecker.hpp.html
-title: library/transform/kronecker.hpp
+title: Kronecker
 ---
+## Kronecker

@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/partition_number.hpp
     title: Partition Number
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/partition_function
@@ -324,12 +324,12 @@ data:
     \ (fd < gd) return {};\n            if (gd == 0) {\n                f /= g[0];\n\
     \                return f;\n            }\n            std::reverse(f.begin(),\
     \ f.end()), std::reverse(g.begin(), g.end());\n            const int qd = fd -\
-    \ gd;\n            FormalPowerSeries q = f * g.inv(qd + 1);\n            q.cut(qd\
-    \ + 1);\n            std::reverse(q.begin(), q.end());\n            return q;\n\
-    \        }\n        friend FormalPowerSeries operator%(const FormalPowerSeries&\
-    \ f, const FormalPowerSeries& g) { return f.div_mod(g).second; }\n        std::pair<FormalPowerSeries,\
-    \ FormalPowerSeries> div_mod(const FormalPowerSeries& g) const {\n           \
-    \ if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
+    \ gd;\n            f.cut(qd + 1);\n            FormalPowerSeries q = f * g.inv(qd\
+    \ + 1);\n            q.cut(qd + 1);\n            std::reverse(q.begin(), q.end());\n\
+    \            return q;\n        }\n        friend FormalPowerSeries operator%(const\
+    \ FormalPowerSeries& f, const FormalPowerSeries& g) { return f.div_mod(g).second;\
+    \ }\n        std::pair<FormalPowerSeries, FormalPowerSeries> div_mod(const FormalPowerSeries&\
+    \ g) const {\n            if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
     \                return { q, r };\n            }\n            FormalPowerSeries\
     \ q = *this / g, r = *this - g * q;\n            r.cut_trailing_zeros();\n   \
     \         return { q, r };\n        }\n\n        /* Shift Operations */\n\n  \
@@ -555,8 +555,8 @@ data:
   isVerificationFile: true
   path: test/src/sequence/partition_number/partition_function_2.test.cpp
   requiredBy: []
-  timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-21 01:49:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/sequence/partition_number/partition_function_2.test.cpp
 layout: document

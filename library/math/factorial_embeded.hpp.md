@@ -62,8 +62,6 @@ data:
   verifiedWith: []
 documentation_of: library/math/factorial_embeded.hpp
 layout: document
-redirect_from:
-- /library/library/math/factorial_embeded.hpp
-- /library/library/math/factorial_embeded.hpp.html
-title: library/math/factorial_embeded.hpp
+title: Factorial Embeded
 ---
+## Factorial Embeded

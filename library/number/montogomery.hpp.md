@@ -186,8 +186,6 @@ data:
   - test/src/number/tetration_mod/tetration_mod.test.cpp
 documentation_of: library/number/montogomery.hpp
 layout: document
-redirect_from:
-- /library/library/number/montogomery.hpp
-- /library/library/number/montogomery.hpp.html
-title: library/number/montogomery.hpp
+title: Montogomery
 ---
+## Montogomery

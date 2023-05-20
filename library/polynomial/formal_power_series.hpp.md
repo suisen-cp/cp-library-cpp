@@ -16,7 +16,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/math/factorial_large.hpp
-    title: library/math/factorial_large.hpp
+    title: Factorial Large
   - icon: ':x:'
     path: library/polynomial/compose_exp.hpp
     title: Compose Exp
@@ -27,6 +27,9 @@ data:
   - icon: ':x:'
     path: test/src/polynomial/compose_exp/arc154_f.test.cpp
     title: test/src/polynomial/compose_exp/arc154_f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
+    title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
     title: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
@@ -57,43 +60,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
     title: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
     title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
     title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/partition_number/partition_function_2.test.cpp
     title: test/src/sequence/partition_number/partition_function_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   _isVerificationFailed: true
@@ -395,12 +398,12 @@ data:
     \ (fd < gd) return {};\n            if (gd == 0) {\n                f /= g[0];\n\
     \                return f;\n            }\n            std::reverse(f.begin(),\
     \ f.end()), std::reverse(g.begin(), g.end());\n            const int qd = fd -\
-    \ gd;\n            FormalPowerSeries q = f * g.inv(qd + 1);\n            q.cut(qd\
-    \ + 1);\n            std::reverse(q.begin(), q.end());\n            return q;\n\
-    \        }\n        friend FormalPowerSeries operator%(const FormalPowerSeries&\
-    \ f, const FormalPowerSeries& g) { return f.div_mod(g).second; }\n        std::pair<FormalPowerSeries,\
-    \ FormalPowerSeries> div_mod(const FormalPowerSeries& g) const {\n           \
-    \ if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
+    \ gd;\n            f.cut(qd + 1);\n            FormalPowerSeries q = f * g.inv(qd\
+    \ + 1);\n            q.cut(qd + 1);\n            std::reverse(q.begin(), q.end());\n\
+    \            return q;\n        }\n        friend FormalPowerSeries operator%(const\
+    \ FormalPowerSeries& f, const FormalPowerSeries& g) { return f.div_mod(g).second;\
+    \ }\n        std::pair<FormalPowerSeries, FormalPowerSeries> div_mod(const FormalPowerSeries&\
+    \ g) const {\n            if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
     \                return { q, r };\n            }\n            FormalPowerSeries\
     \ q = *this / g, r = *this - g * q;\n            r.cut_trailing_zeros();\n   \
     \         return { q, r };\n        }\n\n        /* Shift Operations */\n\n  \
@@ -678,12 +681,12 @@ data:
     \ (fd < gd) return {};\n            if (gd == 0) {\n                f /= g[0];\n\
     \                return f;\n            }\n            std::reverse(f.begin(),\
     \ f.end()), std::reverse(g.begin(), g.end());\n            const int qd = fd -\
-    \ gd;\n            FormalPowerSeries q = f * g.inv(qd + 1);\n            q.cut(qd\
-    \ + 1);\n            std::reverse(q.begin(), q.end());\n            return q;\n\
-    \        }\n        friend FormalPowerSeries operator%(const FormalPowerSeries&\
-    \ f, const FormalPowerSeries& g) { return f.div_mod(g).second; }\n        std::pair<FormalPowerSeries,\
-    \ FormalPowerSeries> div_mod(const FormalPowerSeries& g) const {\n           \
-    \ if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
+    \ gd;\n            f.cut(qd + 1);\n            FormalPowerSeries q = f * g.inv(qd\
+    \ + 1);\n            q.cut(qd + 1);\n            std::reverse(q.begin(), q.end());\n\
+    \            return q;\n        }\n        friend FormalPowerSeries operator%(const\
+    \ FormalPowerSeries& f, const FormalPowerSeries& g) { return f.div_mod(g).second;\
+    \ }\n        std::pair<FormalPowerSeries, FormalPowerSeries> div_mod(const FormalPowerSeries&\
+    \ g) const {\n            if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
     \                return { q, r };\n            }\n            FormalPowerSeries\
     \ q = *this / g, r = *this - g * q;\n            r.cut_trailing_zeros();\n   \
     \         return { q, r };\n        }\n\n        /* Shift Operations */\n\n  \
@@ -890,7 +893,7 @@ data:
   requiredBy:
   - library/polynomial/compose_exp.hpp
   - library/math/factorial_large.hpp
-  timestamp: '2023-01-01 18:21:45+09:00'
+  timestamp: '2023-05-21 01:49:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
@@ -903,6 +906,7 @@ data:
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
+  - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp

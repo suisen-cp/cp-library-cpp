@@ -7,9 +7,9 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
-    path: library/math/product_of_differences.hpp
-    title: Product Of Differences
+  - icon: ':heavy_check_mark:'
+    path: library/polynomial/convert_to_newton_basis.hpp
+    title: Convert To Newton Basis
   - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
@@ -17,35 +17,32 @@ data:
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
-    path: library/polynomial/lagrange_interpolation.hpp
-    title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':question:'
-    path: library/polynomial/multi_point_eval.hpp
-    title: Multi Point Evaluation
-  - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
+    PROBLEM: https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
-  bundledCode: "#line 1 \"test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
-    \n\n#include <iostream>\n#include <set>\n#include <random>\n\n#include <atcoder/modint>\n\
-    #include <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\n#line\
-    \ 1 \"library/polynomial/formal_power_series.hpp\"\n\n\n\n#include <limits>\n\
-    #include <optional>\n#include <queue>\n\n#line 10 \"library/polynomial/formal_power_series.hpp\"\
-    \n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n#include\
-    \ <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\n#include <type_traits>\n\
-    #include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line\
-    \ 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n// ! utility\n\
-    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    - https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis
+  bundledCode: "#line 1 \"test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis\"\
+    \n\n#include <iostream>\n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \nnamespace atcoder {\n    std::istream& operator>>(std::istream& in, mint &a)\
+    \ {\n        long long e; in >> e; a = e;\n        return in;\n    }\n    \n \
+    \   std::ostream& operator<<(std::ostream& out, const mint &a) {\n        out\
+    \ << a.val();\n        return out;\n    }\n} // namespace atcoder\n\n#line 1 \"\
+    library/polynomial/formal_power_series.hpp\"\n\n\n\n#include <limits>\n#include\
+    \ <optional>\n#include <queue>\n\n#line 9 \"library/polynomial/formal_power_series.hpp\"\
+    \n#include <atcoder/convolution>\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
+    \n\n\n\n#include <cassert>\n#include <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\
+    \n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
+    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
+    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
     \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
@@ -532,164 +529,58 @@ data:
     \ {\n    return a.exp();\n}\ntemplate <typename mint, typename T>\nsuisen::FormalPowerSeries<mint>\
     \ pow(suisen::FormalPowerSeries<mint> a, T b) {\n    return a.pow(b);\n}\ntemplate\
     \ <typename mint>\nsuisen::FormalPowerSeries<mint> inv(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.inv();\n}\n\n\n#line 1 \"library/polynomial/lagrange_interpolation.hpp\"\
-    \n\n\n\n#line 1 \"library/math/product_of_differences.hpp\"\n\n\n\n#include <deque>\n\
-    #line 1 \"library/polynomial/multi_point_eval.hpp\"\n\n\n\n#line 5 \"library/polynomial/multi_point_eval.hpp\"\
-    \n\nnamespace suisen {\n    template <typename FPSType, typename T>\n    std::vector<typename\
-    \ FPSType::value_type> multi_point_eval(const FPSType& f, const std::vector<T>&\
-    \ xs) {\n        int n = xs.size();\n        if (n == 0) return {};\n        std::vector<FPSType>\
-    \ seg(2 * n);\n        for (int i = 0; i < n; ++i) seg[n + i] = FPSType{ -xs[i],\
-    \ 1 };\n        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i *\
-    \ 2 + 1];\n        seg[1] = f % seg[1];\n        for (int i = 2; i < 2 * n; ++i)\
-    \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
-    \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n\
-    \ + i][0] : 0;\n        return ys;\n    }\n} // namespace suisen\n\n\n#line 6\
-    \ \"library/math/product_of_differences.hpp\"\n\nnamespace suisen {\n    /**\n\
-    \     * O(N(logN)^2)\n     * return the vector p of length xs.size() s.t. p[i]=\u03A0\
-    [j!=i](x[i]-x[j])\n     */\n    template <typename FPSType, typename T>\n    std::vector<typename\
-    \ FPSType::value_type> product_of_differences(const std::vector<T>& xs) {\n  \
-    \      // f(x):=\u03A0_i(x-x[i])\n        // => f'(x)=\u03A3_i \u03A0[j!=i](x-x[j])\n\
-    \        // => f'(x[i])=\u03A0[j!=i](x[i]-x[j])\n        const int n = xs.size();\n\
-    \        std::deque<FPSType> dq;\n        for (int i = 0; i < n; ++i) dq.push_back(FPSType{\
-    \ -xs[i], 1 });\n        while (dq.size() >= 2) {\n            auto f = std::move(dq.front());\n\
-    \            dq.pop_front();\n            auto g = std::move(dq.front());\n  \
-    \          dq.pop_front();\n            dq.push_back(f * g);\n        }\n    \
-    \    auto f = std::move(dq.front());\n        f.diff_inplace();\n        return\
-    \ multi_point_eval<FPSType, T>(f, xs);\n    }\n} // namespace suisen\n\n\n\n#line\
-    \ 5 \"library/polynomial/lagrange_interpolation.hpp\"\n\nnamespace suisen {\n\
-    \    // O(N^2+NlogP)\n    template <typename T>\n    T lagrange_interpolation_naive(const\
-    \ std::vector<T>& xs, const std::vector<T>& ys, const T t) {\n        const int\
-    \ n = xs.size();\n        assert(int(ys.size()) == n);\n\n        T p{ 1 };\n\
-    \        for (int i = 0; i < n; ++i) p *= t - xs[i];\n\n        T res{ 0 };\n\
-    \        for (int i = 0; i < n; ++i) {\n            T w = 1;\n            for\
-    \ (int j = 0; j < n; ++j) if (j != i) w *= xs[i] - xs[j];\n            res +=\
-    \ ys[i] * (t == xs[i] ? 1 : p / (w * (t - xs[i])));\n        }\n        return\
-    \ res;\n    }\n\n    // O(N(logN)^2+NlogP)\n    template <typename FPSType, typename\
-    \ T>\n    typename FPSType::value_type lagrange_interpolation(const std::vector<T>&\
-    \ xs, const std::vector<T>& ys, const T t) {\n        const int n = xs.size();\n\
-    \        assert(int(ys.size()) == n);\n\n        std::vector<FPSType> seg(2 *\
-    \ n);\n        for (int i = 0; i < n; ++i) seg[n + i] = FPSType {-xs[i], 1};\n\
-    \        for (int i = n - 1; i > 0; --i) seg[i] = seg[i * 2] * seg[i * 2 + 1];\n\
-    \        seg[1] = seg[1].diff() % seg[1];\n        for (int i = 2; i < 2 * n;\
-    \ ++i) seg[i] = seg[i / 2] % seg[i];\n\n        using mint = typename FPSType::value_type;\n\
-    \        mint p{ 1 };\n        for (int i = 0; i < n; ++i) p *= t - xs[i];\n\n\
-    \        mint res{ 0 };\n        for (int i = 0; i < n; ++i) {\n            mint\
-    \ w = seg[n + i][0];\n            res += ys[i] * (t == xs[i] ? 1 : p / (w * (t\
-    \ - xs[i])));\n        }\n        return res;\n    }\n\n    // xs[i] = ai + b\n\
-    \    // requirement: for all 0\u2264i<j<n, ai+b \u2262 aj+b mod p\n    template\
-    \ <typename T>\n    T lagrange_interpolation_arithmetic_progression(T a, T b,\
-    \ const std::vector<T>& ys, const T t) {\n        const int n = ys.size();\n \
-    \       T fac = 1;\n        for (int i = 1; i < n; ++i) fac *= i;\n        std::vector<T>\
-    \ fac_inv(n), suf(n);\n        fac_inv[n - 1] = T(1) / fac;\n        suf[n - 1]\
-    \ = 1;\n        for (int i = n - 1; i > 0; --i) {\n            fac_inv[i - 1]\
-    \ = fac_inv[i] * i;\n            suf[i - 1] = suf[i] * (t - (a * i + b));\n  \
-    \      }\n        T pre = 1, res = 0;\n        for (int i = 0; i < n; ++i) {\n\
-    \            T val = ys[i] * pre * suf[i] * fac_inv[i] * fac_inv[n - i - 1];\n\
-    \            if ((n - 1 - i) & 1) res -= val;\n            else              \
-    \   res += val;\n            pre *= t - (a * i + b);\n        }\n        return\
-    \ res / a.pow(n - 1);\n    }\n    // x = 0, 1, ...\n    template <typename T>\n\
-    \    T lagrange_interpolation_arithmetic_progression(const std::vector<T>& ys,\
-    \ const T t) {\n        return lagrange_interpolation_arithmetic_progression(T{1},\
-    \ T{0}, ys, t);\n    }\n} // namespace suisen\n\n\n\n#line 14 \"test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp\"\
-    \n\ntemplate <int N>\nvoid test() {\n    std::mt19937 rng{ std::random_device{}()\
-    \ };\n    std::uniform_int_distribution<int> dist(0, mint::mod() - 1);\n\n   \
-    \ std::vector<mint> f(N);\n    for (int i = 0; i < N; ++i) f[i] = dist(rng);\n\
-    \n    auto eval = [&f](mint x) -> mint {\n        mint y = 0;\n        for (int\
-    \ i = N - 1; i >= 0; --i) y = y * x + f[i];\n        return y;\n    };\n\n   \
-    \ std::vector<mint> xs(N), ys(N);\n\n    [&] {\n        std::set<int> st;\n  \
-    \      for (int i = 0; i < N; ++i) {\n            do xs[i] = dist(rng); while\
-    \ (st.count(xs[i].val()));\n            st.insert(xs[i].val());\n            ys[i]\
-    \ = eval(xs[i]);\n        }\n    }();\n\n    auto check = [&](mint t) {\n    \
-    \    mint expected = eval(t);\n        mint actual_fast = suisen::lagrange_interpolation<suisen::FormalPowerSeries<mint>>(xs,\
-    \ ys, t);\n        mint actual_naive = suisen::lagrange_interpolation_naive(xs,\
-    \ ys, t);\n        assert(expected == actual_naive);\n        assert(expected\
-    \ == actual_fast);\n    };\n\n    for (int i = 0; i < N; ++i) {\n        check(xs[i]);\n\
-    \    }\n    for (int i = 0; i < N; ++i) {\n        check(dist(rng));\n    }\n\
-    }\n\ntemplate <int N>\nvoid test_arithmetic_progression() {\n    std::mt19937\
-    \ rng{ std::random_device{}() };\n    std::uniform_int_distribution<int> dist(0,\
-    \ mint::mod() - 1);\n\n    std::vector<mint> f(N);\n    for (int i = 0; i < N;\
-    \ ++i) f[i] = dist(rng);\n\n    auto eval = [&f](mint x) -> mint {\n        mint\
-    \ y = 0;\n        for (int i = N - 1; i >= 0; --i) y = y * x + f[i];\n       \
-    \ return y;\n    };\n\n    auto do_test = [&](mint a, mint b) {\n        std::vector<mint>\
-    \ xs(N), ys(N);\n\n        for (int i = 0; i < N; ++i) {\n            xs[i] =\
-    \ a * i + b;\n            ys[i] = eval(xs[i]);\n        }\n\n        auto check\
-    \ = [&](mint t) {\n            mint expected = eval(t);\n            mint actual_arith\
-    \ = suisen::lagrange_interpolation_arithmetic_progression(a, b, ys, t);\n    \
-    \        mint actual_fast = suisen::lagrange_interpolation<suisen::FormalPowerSeries<mint>>(xs,\
-    \ ys, t);\n            mint actual_naive = suisen::lagrange_interpolation_naive(xs,\
-    \ ys, t);\n            assert(expected == actual_arith);\n            assert(expected\
-    \ == actual_naive);\n            assert(expected == actual_fast);\n        };\n\
-    \n        for (int i = 0; i < N; ++i) {\n            check(xs[i]);\n        }\n\
-    \        for (int i = 0; i < N; ++i) {\n            check(dist(rng));\n      \
-    \  }\n    };\n\n    mint a = dist(rng);\n    while (a == 0) a = dist(rng);\n \
-    \   do_test(a, dist(rng));\n}\n\nvoid test_arithmetic_progression_zero() {\n \
-    \   std::mt19937 rng{ std::random_device{}() };\n    std::uniform_int_distribution<int>\
-    \ dist(0, mint::mod() - 1);\n\n    mint a = 0, b = dist(rng), y = dist(rng), t\
-    \ = dist(rng);\n\n    mint expected = y;\n    mint actual = suisen::lagrange_interpolation_arithmetic_progression(a,\
-    \ b, { y }, t);\n    assert(expected == actual);\n}\n\nint main() {\n    test<100>();\n\
-    \    test_arithmetic_progression<100>();\n    test_arithmetic_progression_zero();\n\
-    \    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
-    \n\n#include <iostream>\n#include <set>\n#include <random>\n\n#include <atcoder/modint>\n\
-    #include <atcoder/convolution>\n\nusing mint = atcoder::modint998244353;\n\n#include\
-    \ \"library/polynomial/formal_power_series.hpp\"\n#include \"library/polynomial/lagrange_interpolation.hpp\"\
-    \n\ntemplate <int N>\nvoid test() {\n    std::mt19937 rng{ std::random_device{}()\
-    \ };\n    std::uniform_int_distribution<int> dist(0, mint::mod() - 1);\n\n   \
-    \ std::vector<mint> f(N);\n    for (int i = 0; i < N; ++i) f[i] = dist(rng);\n\
-    \n    auto eval = [&f](mint x) -> mint {\n        mint y = 0;\n        for (int\
-    \ i = N - 1; i >= 0; --i) y = y * x + f[i];\n        return y;\n    };\n\n   \
-    \ std::vector<mint> xs(N), ys(N);\n\n    [&] {\n        std::set<int> st;\n  \
-    \      for (int i = 0; i < N; ++i) {\n            do xs[i] = dist(rng); while\
-    \ (st.count(xs[i].val()));\n            st.insert(xs[i].val());\n            ys[i]\
-    \ = eval(xs[i]);\n        }\n    }();\n\n    auto check = [&](mint t) {\n    \
-    \    mint expected = eval(t);\n        mint actual_fast = suisen::lagrange_interpolation<suisen::FormalPowerSeries<mint>>(xs,\
-    \ ys, t);\n        mint actual_naive = suisen::lagrange_interpolation_naive(xs,\
-    \ ys, t);\n        assert(expected == actual_naive);\n        assert(expected\
-    \ == actual_fast);\n    };\n\n    for (int i = 0; i < N; ++i) {\n        check(xs[i]);\n\
-    \    }\n    for (int i = 0; i < N; ++i) {\n        check(dist(rng));\n    }\n\
-    }\n\ntemplate <int N>\nvoid test_arithmetic_progression() {\n    std::mt19937\
-    \ rng{ std::random_device{}() };\n    std::uniform_int_distribution<int> dist(0,\
-    \ mint::mod() - 1);\n\n    std::vector<mint> f(N);\n    for (int i = 0; i < N;\
-    \ ++i) f[i] = dist(rng);\n\n    auto eval = [&f](mint x) -> mint {\n        mint\
-    \ y = 0;\n        for (int i = N - 1; i >= 0; --i) y = y * x + f[i];\n       \
-    \ return y;\n    };\n\n    auto do_test = [&](mint a, mint b) {\n        std::vector<mint>\
-    \ xs(N), ys(N);\n\n        for (int i = 0; i < N; ++i) {\n            xs[i] =\
-    \ a * i + b;\n            ys[i] = eval(xs[i]);\n        }\n\n        auto check\
-    \ = [&](mint t) {\n            mint expected = eval(t);\n            mint actual_arith\
-    \ = suisen::lagrange_interpolation_arithmetic_progression(a, b, ys, t);\n    \
-    \        mint actual_fast = suisen::lagrange_interpolation<suisen::FormalPowerSeries<mint>>(xs,\
-    \ ys, t);\n            mint actual_naive = suisen::lagrange_interpolation_naive(xs,\
-    \ ys, t);\n            assert(expected == actual_arith);\n            assert(expected\
-    \ == actual_naive);\n            assert(expected == actual_fast);\n        };\n\
-    \n        for (int i = 0; i < N; ++i) {\n            check(xs[i]);\n        }\n\
-    \        for (int i = 0; i < N; ++i) {\n            check(dist(rng));\n      \
-    \  }\n    };\n\n    mint a = dist(rng);\n    while (a == 0) a = dist(rng);\n \
-    \   do_test(a, dist(rng));\n}\n\nvoid test_arithmetic_progression_zero() {\n \
-    \   std::mt19937 rng{ std::random_device{}() };\n    std::uniform_int_distribution<int>\
-    \ dist(0, mint::mod() - 1);\n\n    mint a = 0, b = dist(rng), y = dist(rng), t\
-    \ = dist(rng);\n\n    mint expected = y;\n    mint actual = suisen::lagrange_interpolation_arithmetic_progression(a,\
-    \ b, { y }, t);\n    assert(expected == actual);\n}\n\nint main() {\n    test<100>();\n\
-    \    test_arithmetic_progression<100>();\n    test_arithmetic_progression_zero();\n\
-    \    std::cout << \"Hello World\" << std::endl;\n    return 0;\n}"
+    \ a) {\n    return a.inv();\n}\n\n\n#line 1 \"library/polynomial/convert_to_newton_basis.hpp\"\
+    \n\n\n\n#include <tuple>\n#line 6 \"library/polynomial/convert_to_newton_basis.hpp\"\
+    \n\nnamespace suisen {\n    // Returns b=(b_0,...,b_{N-1}) s.t. f(x) = Sum[i=0,N-1]\
+    \ b_i Prod[j=0,i-1](x - p_j)\n    template <typename FPSType>\n    std::vector<typename\
+    \ FPSType::value_type> convert_to_newton_basis(const FPSType& f, const std::vector<typename\
+    \ FPSType::value_type>& p) {\n        const int n = p.size();\n        assert(f.size()\
+    \ == n);\n\n        int m = 1;\n        while (m < n) m <<= 1;\n\n        std::vector<FPSType>\
+    \ seg(2 * m);\n        for (int i = 0; i < m; ++i) {\n            seg[m + i] =\
+    \ { i < n ? -p[i] : 0, 1 };\n        }\n        for (int i = m - 1; i > 0; --i)\
+    \ {\n            if (((i + 1) & -(i + 1)) == (i + 1)) continue; // i = 2^k - 1\n\
+    \            seg[i] = seg[2 * i] * seg[2 * i + 1];\n        }\n\n        seg[1]\
+    \ = f;\n        for (int i = 1; i < m; ++i) {\n            std::tie(seg[2 * i\
+    \ + 1], seg[2 * i]) = seg[i].div_mod(seg[2 * i]);\n        }\n\n        std::vector<typename\
+    \ FPSType::value_type> b(n);\n        for (int i = 0; i < n; ++i) {\n        \
+    \    b[i] = seg[m + i].safe_get(0);\n        }\n        return b;\n    }\n} //\
+    \ namespace suisen\n\n\n\n#line 23 \"test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n;\n    std::cin >> n;\n\n    suisen::FormalPowerSeries<mint> f(n);\n\
+    \    for (auto &e : f) std::cin >> e;\n    std::vector<mint> p(n);\n    for (auto\
+    \ &e : p) std::cin >> e;\n\n    std::vector<mint> b = suisen::convert_to_newton_basis(f,\
+    \ p);\n    for (int i = 0; i < n; ++i) {\n        std::cout << b[i];\n       \
+    \ if (i + 1 != n) std::cout << ' ';\n    }\n    std::cout << '\\n';\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/conversion_from_monomial_basis_to_newton_basis\"\
+    \n\n#include <iostream>\n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \nnamespace atcoder {\n    std::istream& operator>>(std::istream& in, mint &a)\
+    \ {\n        long long e; in >> e; a = e;\n        return in;\n    }\n    \n \
+    \   std::ostream& operator<<(std::ostream& out, const mint &a) {\n        out\
+    \ << a.val();\n        return out;\n    }\n} // namespace atcoder\n\n#include\
+    \ \"library/polynomial/formal_power_series.hpp\"\n#include \"library/polynomial/convert_to_newton_basis.hpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n;\n    std::cin >> n;\n\n    suisen::FormalPowerSeries<mint> f(n);\n\
+    \    for (auto &e : f) std::cin >> e;\n    std::vector<mint> p(n);\n    for (auto\
+    \ &e : p) std::cin >> e;\n\n    std::vector<mint> b = suisen::convert_to_newton_basis(f,\
+    \ p);\n    for (int i = 0; i < n; ++i) {\n        std::cout << b[i];\n       \
+    \ if (i + 1 != n) std::cout << ' ';\n    }\n    std::cout << '\\n';\n}"
   dependsOn:
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
-  - library/polynomial/lagrange_interpolation.hpp
-  - library/math/product_of_differences.hpp
-  - library/polynomial/multi_point_eval.hpp
+  - library/polynomial/convert_to_newton_basis.hpp
   isVerificationFile: true
-  path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
+  path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 01:49:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-21 01:49:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
+documentation_of: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-- /verify/test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp.html
-title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
+- /verify/test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
+- /verify/test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp.html
+title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
 ---

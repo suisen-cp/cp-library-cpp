@@ -4,22 +4,22 @@ data:
   _extendedRequiredBy:
   - icon: ':question:'
     path: library/datastructure/bbst/reversible_implicit_treap.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap.hpp
+    title: Reversible Implicit Treap
   - icon: ':question:'
     path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_base.hpp
+    title: Reversible Implicit Treap Base
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
+    title: Reversible Implicit Treap Dual Segtree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
+    title: Reversible Implicit Treap Lazy Segtree
   - icon: ':question:'
     path: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
+    title: Reversible Implicit Treap Segtree
   - icon: ':question:'
     path: library/datastructure/segment_tree/sortable_segment_tree.hpp
-    title: library/datastructure/segment_tree/sortable_segment_tree.hpp
+    title: Sortable Segment Tree
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
@@ -145,8 +145,6 @@ data:
   - test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree/dummy.test.cpp
 documentation_of: library/util/pointer_32bit.hpp
 layout: document
-redirect_from:
-- /library/library/util/pointer_32bit.hpp
-- /library/library/util/pointer_32bit.hpp.html
-title: library/util/pointer_32bit.hpp
+title: Pointer 32bit
 ---
+## Pointer 32bit

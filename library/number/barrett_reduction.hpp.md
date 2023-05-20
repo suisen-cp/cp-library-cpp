@@ -7,7 +7,7 @@ data:
     title: Binomial Coefficient
   - icon: ':heavy_check_mark:'
     path: library/util/step_sum.hpp
-    title: library/util/step_sum.hpp
+    title: Step Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp

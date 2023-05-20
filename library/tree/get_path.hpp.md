@@ -33,8 +33,6 @@ data:
   verifiedWith: []
 documentation_of: library/tree/get_path.hpp
 layout: document
-redirect_from:
-- /library/library/tree/get_path.hpp
-- /library/library/tree/get_path.hpp.html
-title: library/tree/get_path.hpp
+title: Get Path
 ---
+## Get Path

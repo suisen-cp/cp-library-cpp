@@ -7,7 +7,7 @@ data:
     title: "\u6700\u8FD1\u70B9\u5BFE (\u6574\u6570\u5EA7\u6A19)"
   - icon: ':warning:'
     path: library/integral_geom/convex_hull_inclusion.hpp
-    title: library/integral_geom/convex_hull_inclusion.hpp
+    title: Convex Hull Inclusion
   - icon: ':warning:'
     path: library/integral_geom/farthest_pair.hpp
     title: Farthest Pair
@@ -75,8 +75,6 @@ data:
   - test/src/integral_geom/geometry/CGL_7_A.test.cpp
 documentation_of: library/integral_geom/inclusion.hpp
 layout: document
-redirect_from:
-- /library/library/integral_geom/inclusion.hpp
-- /library/library/integral_geom/inclusion.hpp.html
-title: library/integral_geom/inclusion.hpp
+title: Inclusion
 ---
+## Inclusion

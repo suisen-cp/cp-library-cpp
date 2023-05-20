@@ -235,8 +235,6 @@ data:
   verifiedWith: []
 documentation_of: library/sequence/binomial_coefficient_small_r_offline.hpp
 layout: document
-redirect_from:
-- /library/library/sequence/binomial_coefficient_small_r_offline.hpp
-- /library/library/sequence/binomial_coefficient_small_r_offline.hpp.html
-title: library/sequence/binomial_coefficient_small_r_offline.hpp
+title: Binomial Coefficient Small R Offline
 ---
+## Binomial Coefficient Small R Offline

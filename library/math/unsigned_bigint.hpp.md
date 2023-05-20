@@ -549,8 +549,6 @@ data:
   - test/src/math/bigint/NTL_2_E.test.cpp
 documentation_of: library/math/unsigned_bigint.hpp
 layout: document
-redirect_from:
-- /library/library/math/unsigned_bigint.hpp
-- /library/library/math/unsigned_bigint.hpp.html
-title: library/math/unsigned_bigint.hpp
+title: Unsigned Bigint
 ---
+## Unsigned Bigint

@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/sequence/bernoulli_number.hpp\"\n\n\n\n#line 1 \"\
@@ -60,7 +60,7 @@ data:
   path: library/sequence/bernoulli_number.hpp
   requiredBy: []
   timestamp: '2022-07-21 04:00:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
   - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp

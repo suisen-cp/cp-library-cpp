@@ -6,7 +6,7 @@ data:
     title: Deterministic Miller Rabin
   - icon: ':heavy_check_mark:'
     path: library/number/montogomery.hpp
-    title: library/number/montogomery.hpp
+    title: Montogomery
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -12,7 +12,7 @@ data:
     title: "\u591A\u500D\u9577\u6574\u6570"
   - icon: ':heavy_check_mark:'
     path: library/math/unsigned_bigint.hpp
-    title: library/math/unsigned_bigint.hpp
+    title: Unsigned Bigint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

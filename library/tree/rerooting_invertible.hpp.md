@@ -231,8 +231,6 @@ data:
   - test/src/tree/rerooting_invertible/abc160_f.test.cpp
 documentation_of: library/tree/rerooting_invertible.hpp
 layout: document
-redirect_from:
-- /library/library/tree/rerooting_invertible.hpp
-- /library/library/tree/rerooting_invertible.hpp.html
-title: library/tree/rerooting_invertible.hpp
+title: Rerooting Invertible
 ---
+## Rerooting Invertible

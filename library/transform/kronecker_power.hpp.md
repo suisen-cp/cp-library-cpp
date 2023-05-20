@@ -26,10 +26,10 @@ data:
       \u3052)"
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
-    title: library/math/array_set_power_series.hpp
+    title: Array Set Power Series
   - icon: ':question:'
     path: library/math/set_power_series.hpp
-    title: library/math/set_power_series.hpp
+    title: Set Power Series
   - icon: ':question:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\

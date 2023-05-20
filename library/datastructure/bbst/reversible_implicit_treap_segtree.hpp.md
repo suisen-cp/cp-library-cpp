@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_base.hpp
+    title: Reversible Implicit Treap Base
   - icon: ':question:'
     path: library/util/pointer_32bit.hpp
-    title: library/util/pointer_32bit.hpp
+    title: Pointer 32bit
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -812,8 +812,6 @@ data:
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
 documentation_of: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
-- /library/library/datastructure/bbst/reversible_implicit_treap_segtree.hpp.html
-title: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
+title: Reversible Implicit Treap Segtree
 ---
+## Reversible Implicit Treap Segtree

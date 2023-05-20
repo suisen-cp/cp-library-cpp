@@ -6,7 +6,7 @@ data:
     title: Barrett Reduction
   - icon: ':heavy_check_mark:'
     path: library/util/step_sum.hpp
-    title: library/util/step_sum.hpp
+    title: Step Sum
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/integral_geom/inclusion.hpp
-    title: library/integral_geom/inclusion.hpp
+    title: Inclusion
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -182,8 +182,6 @@ data:
   verifiedWith: []
 documentation_of: library/integral_geom/convex_hull_inclusion.hpp
 layout: document
-redirect_from:
-- /library/library/integral_geom/convex_hull_inclusion.hpp
-- /library/library/integral_geom/convex_hull_inclusion.hpp.html
-title: library/integral_geom/convex_hull_inclusion.hpp
+title: Convex Hull Inclusion
 ---
+## Convex Hull Inclusion

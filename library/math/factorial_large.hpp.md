@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
   - icon: ':question:'
@@ -334,12 +334,12 @@ data:
     \ (fd < gd) return {};\n            if (gd == 0) {\n                f /= g[0];\n\
     \                return f;\n            }\n            std::reverse(f.begin(),\
     \ f.end()), std::reverse(g.begin(), g.end());\n            const int qd = fd -\
-    \ gd;\n            FormalPowerSeries q = f * g.inv(qd + 1);\n            q.cut(qd\
-    \ + 1);\n            std::reverse(q.begin(), q.end());\n            return q;\n\
-    \        }\n        friend FormalPowerSeries operator%(const FormalPowerSeries&\
-    \ f, const FormalPowerSeries& g) { return f.div_mod(g).second; }\n        std::pair<FormalPowerSeries,\
-    \ FormalPowerSeries> div_mod(const FormalPowerSeries& g) const {\n           \
-    \ if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
+    \ gd;\n            f.cut(qd + 1);\n            FormalPowerSeries q = f * g.inv(qd\
+    \ + 1);\n            q.cut(qd + 1);\n            std::reverse(q.begin(), q.end());\n\
+    \            return q;\n        }\n        friend FormalPowerSeries operator%(const\
+    \ FormalPowerSeries& f, const FormalPowerSeries& g) { return f.div_mod(g).second;\
+    \ }\n        std::pair<FormalPowerSeries, FormalPowerSeries> div_mod(const FormalPowerSeries&\
+    \ g) const {\n            if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
     \                return { q, r };\n            }\n            FormalPowerSeries\
     \ q = *this / g, r = *this - g * q;\n            r.cut_trailing_zeros();\n   \
     \         return { q, r };\n        }\n\n        /* Shift Operations */\n\n  \
@@ -647,13 +647,11 @@ data:
   isVerificationFile: false
   path: library/math/factorial_large.hpp
   requiredBy: []
-  timestamp: '2023-05-11 13:37:15+09:00'
+  timestamp: '2023-05-21 01:49:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/factorial_large.hpp
 layout: document
-redirect_from:
-- /library/library/math/factorial_large.hpp
-- /library/library/math/factorial_large.hpp.html
-title: library/math/factorial_large.hpp
+title: Factorial Large
 ---
+## Factorial Large

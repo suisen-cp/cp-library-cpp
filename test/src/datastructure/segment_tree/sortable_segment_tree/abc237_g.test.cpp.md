@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/datastructure/segment_tree/sortable_segment_tree.hpp
-    title: library/datastructure/segment_tree/sortable_segment_tree.hpp
+    title: Sortable Segment Tree
   - icon: ':question:'
     path: library/util/pointer_32bit.hpp
-    title: library/util/pointer_32bit.hpp
+    title: Pointer 32bit
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

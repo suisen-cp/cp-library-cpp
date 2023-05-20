@@ -48,8 +48,6 @@ data:
   verifiedWith: []
 documentation_of: library/algorithm/maximum_square.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/maximum_square.hpp
-- /library/library/algorithm/maximum_square.hpp.html
-title: library/algorithm/maximum_square.hpp
+title: Maximum Square
 ---
+## Maximum Square

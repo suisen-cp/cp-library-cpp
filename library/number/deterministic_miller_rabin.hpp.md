@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/number/montogomery.hpp
-    title: library/number/montogomery.hpp
+    title: Montogomery
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp

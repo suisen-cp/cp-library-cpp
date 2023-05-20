@@ -3,16 +3,16 @@ data:
   _extendedDependsOn:
   - icon: ':question:'
     path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_base.hpp
+    title: Reversible Implicit Treap Base
   - icon: ':heavy_check_mark:'
     path: library/debug/warning.hpp
-    title: library/debug/warning.hpp
+    title: Warning
   - icon: ':heavy_check_mark:'
     path: library/type_traits/operator.hpp
-    title: library/type_traits/operator.hpp
+    title: Operator
   - icon: ':question:'
     path: library/util/pointer_32bit.hpp
-    title: library/util/pointer_32bit.hpp
+    title: Pointer 32bit
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -783,8 +783,6 @@ data:
   - test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree/dummy.test.cpp
 documentation_of: library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
-- /library/library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp.html
-title: library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
+title: Reversible Implicit Treap Dual Segtree
 ---
+## Reversible Implicit Treap Dual Segtree

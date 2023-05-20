@@ -22,7 +22,7 @@ data:
     title: Modint Extension
   - icon: ':question:'
     path: library/math/set_power_series.hpp
-    title: library/math/set_power_series.hpp
+    title: Set Power Series
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"

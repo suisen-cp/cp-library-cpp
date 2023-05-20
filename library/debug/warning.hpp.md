@@ -4,10 +4,10 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
+    title: Reversible Implicit Treap Dual Segtree
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
+    title: Reversible Implicit Treap Lazy Segtree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree/dummy.test.cpp
@@ -45,8 +45,6 @@ data:
   - test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree/dummy.test.cpp
 documentation_of: library/debug/warning.hpp
 layout: document
-redirect_from:
-- /library/library/debug/warning.hpp
-- /library/library/debug/warning.hpp.html
-title: library/debug/warning.hpp
+title: Warning
 ---
+## Warning

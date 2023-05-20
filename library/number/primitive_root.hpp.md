@@ -12,7 +12,7 @@ data:
     title: Internal Eratosthenes
   - icon: ':heavy_check_mark:'
     path: library/number/montogomery.hpp
-    title: library/number/montogomery.hpp
+    title: Montogomery
   - icon: ':heavy_check_mark:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$

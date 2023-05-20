@@ -6,19 +6,19 @@ data:
     title: Affine
   - icon: ':question:'
     path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_base.hpp
+    title: Reversible Implicit Treap Base
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
-    title: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
+    title: Reversible Implicit Treap Lazy Segtree
   - icon: ':heavy_check_mark:'
     path: library/debug/warning.hpp
-    title: library/debug/warning.hpp
+    title: Warning
   - icon: ':heavy_check_mark:'
     path: library/type_traits/operator.hpp
-    title: library/type_traits/operator.hpp
+    title: Operator
   - icon: ':question:'
     path: library/util/pointer_32bit.hpp
-    title: library/util/pointer_32bit.hpp
+    title: Pointer 32bit
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

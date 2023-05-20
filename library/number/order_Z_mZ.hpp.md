@@ -12,7 +12,7 @@ data:
     title: Internal Eratosthenes
   - icon: ':heavy_check_mark:'
     path: library/number/montogomery.hpp
-    title: library/number/montogomery.hpp
+    title: Montogomery
   - icon: ':heavy_check_mark:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"

@@ -75,8 +75,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/sum_count.hpp
 layout: document
-redirect_from:
-- /library/library/util/sum_count.hpp
-- /library/library/util/sum_count.hpp.html
-title: library/util/sum_count.hpp
+title: Sum Count
 ---
+## Sum Count

@@ -9,7 +9,7 @@ data:
     title: Naive Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/unsigned_bigint.hpp
-    title: library/math/unsigned_bigint.hpp
+    title: Unsigned Bigint
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'

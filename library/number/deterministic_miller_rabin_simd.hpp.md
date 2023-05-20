@@ -119,8 +119,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/deterministic_miller_rabin_simd.hpp
 layout: document
-redirect_from:
-- /library/library/number/deterministic_miller_rabin_simd.hpp
-- /library/library/number/deterministic_miller_rabin_simd.hpp.html
-title: library/number/deterministic_miller_rabin_simd.hpp
+title: Deterministic Miller Rabin Simd
 ---
+## Deterministic Miller Rabin Simd

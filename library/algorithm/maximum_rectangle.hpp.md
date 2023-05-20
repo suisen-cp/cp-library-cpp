@@ -79,8 +79,6 @@ data:
   verifiedWith: []
 documentation_of: library/algorithm/maximum_rectangle.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/maximum_rectangle.hpp
-- /library/library/algorithm/maximum_rectangle.hpp.html
-title: library/algorithm/maximum_rectangle.hpp
+title: Maximum Rectangle
 ---
+## Maximum Rectangle

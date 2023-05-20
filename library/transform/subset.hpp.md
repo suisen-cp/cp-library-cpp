@@ -24,10 +24,10 @@ data:
       \u3052)"
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
-    title: library/math/array_set_power_series.hpp
+    title: Array Set Power Series
   - icon: ':question:'
     path: library/math/set_power_series.hpp
-    title: library/math/set_power_series.hpp
+    title: Set Power Series
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp

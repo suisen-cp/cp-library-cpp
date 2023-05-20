@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: library/tree/rerooting_invertible.hpp
-    title: library/tree/rerooting_invertible.hpp
+    title: Rerooting Invertible
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

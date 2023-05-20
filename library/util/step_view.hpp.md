@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/transform/kronecker.hpp
-    title: library/transform/kronecker.hpp
+    title: Kronecker
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -103,8 +103,6 @@ data:
   verifiedWith: []
 documentation_of: library/util/step_view.hpp
 layout: document
-redirect_from:
-- /library/library/util/step_view.hpp
-- /library/library/util/step_view.hpp.html
-title: library/util/step_view.hpp
+title: Step View
 ---
+## Step View

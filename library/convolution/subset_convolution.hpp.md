@@ -31,7 +31,7 @@ data:
       \u3052)"
   - icon: ':question:'
     path: library/math/set_power_series.hpp
-    title: library/math/set_power_series.hpp
+    title: Set Power Series
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp

@@ -20,7 +20,7 @@ data:
     title: "\u591A\u500D\u9577\u6574\u6570"
   - icon: ':heavy_check_mark:'
     path: library/math/unsigned_bigint.hpp
-    title: library/math/unsigned_bigint.hpp
+    title: Unsigned Bigint
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp

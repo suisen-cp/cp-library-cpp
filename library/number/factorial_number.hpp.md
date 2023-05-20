@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':warning:'
     path: library/datastructure/fenwick_tree/fenwick_tree_set.hpp
-    title: library/datastructure/fenwick_tree/fenwick_tree_set.hpp
+    title: Fenwick Tree Set
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -220,8 +220,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/factorial_number.hpp
 layout: document
-redirect_from:
-- /library/library/number/factorial_number.hpp
-- /library/library/number/factorial_number.hpp.html
-title: library/number/factorial_number.hpp
+title: Factorial Number
 ---
+## Factorial Number
