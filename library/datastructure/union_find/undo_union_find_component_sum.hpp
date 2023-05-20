@@ -34,6 +34,9 @@ namespace suisen {
         const T& sum(int x) const {
             return _sum[root(x)];
         }
+        T& sum(int x) {
+            return _sum[root(x)];
+        }
     protected:
         std::vector<T> _sum;
     };
