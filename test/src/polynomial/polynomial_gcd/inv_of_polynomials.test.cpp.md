@@ -7,37 +7,42 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
-    path: library/polynomial/bostan_mori.hpp
-    title: Bostan Mori
   - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
+  - icon: ':x:'
+    path: library/polynomial/polynomial_gcd.hpp
+    title: library/polynomial/polynomial_gcd.hpp
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+    PROBLEM: https://judge.yosupo.jp/problem/inv_of_polynomials
     links:
-    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
-  bundledCode: "#line 1 \"test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
-    \n\n#include <iostream>\n\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
-    \n\n\n\n#include <limits>\n#include <optional>\n#include <queue>\n\n#include <atcoder/modint>\n\
-    #include <atcoder/convolution>\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
-    \n\n\n\n#include <cassert>\n#include <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\
-    \n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
-    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    - https://judge.yosupo.jp/problem/inv_of_polynomials
+  bundledCode: "#line 1 \"test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_polynomials\"\n\n#include\
+    \ <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \nnamespace atcoder {\n    std::istream& operator>>(std::istream& in, mint& a)\
+    \ {\n        long long e; in >> e; a = e;\n        return in;\n    }\n\n    std::ostream&\
+    \ operator<<(std::ostream& out, const mint& a) {\n        out << a.val();\n  \
+    \      return out;\n    }\n} // namespace atcoder\n\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
+    \n\n\n\n#include <limits>\n#include <optional>\n#include <queue>\n\n#line 9 \"\
+    library/polynomial/formal_power_series.hpp\"\n#include <atcoder/convolution>\n\
+    \n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n#include\
+    \ <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\n#include <type_traits>\n\
+    #include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line\
+    \ 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n// ! utility\n\
+    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
     \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
@@ -524,59 +529,101 @@ data:
     \ {\n    return a.exp();\n}\ntemplate <typename mint, typename T>\nsuisen::FormalPowerSeries<mint>\
     \ pow(suisen::FormalPowerSeries<mint> a, T b) {\n    return a.pow(b);\n}\ntemplate\
     \ <typename mint>\nsuisen::FormalPowerSeries<mint> inv(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.inv();\n}\n\n\n#line 1 \"library/polynomial/bostan_mori.hpp\"\
-    \n\n\n\nnamespace suisen {\n    template <typename FPSType>\n    typename FPSType::value_type\
-    \ bostan_mori(FPSType P, FPSType Q, unsigned long long n) {\n        auto alternate\
-    \ = [](FPSType&& a, bool odd) -> FPSType&& {\n            int i = 0;\n       \
-    \     for (int j = odd; j < a.size(); j += 2) a[i++] = a[j];\n            a.erase(a.begin()\
-    \ + i, a.end());\n            return std::move(a);\n        };\n        for (;\
-    \ n; n >>= 1) {\n            if (n < int(P.size())) P.resize(n + 1);\n       \
-    \     if (n < int(Q.size())) Q.resize(n + 1);\n            FPSType mQ = Q;\n \
-    \           for (int i = 1; i < Q.size(); i += 2) mQ[i] = -mQ[i];\n          \
-    \  P = alternate(P * mQ, n & 1);\n            Q = alternate(Q * mQ, 0);\n    \
-    \    }\n        return P[0];\n    }\n\n    template <typename FPSType>\n    typename\
-    \ FPSType::value_type nth_term_of_linearly_recurrent_sequence(const FPSType& a,\
-    \ const FPSType& c, const unsigned long long n) {\n        const int K = c.size();\n\
-    \        assert(K <= a.size());\n        FPSType Q(K + 1);\n        Q[0] = 1;\n\
-    \        for (int i = 0; i < K; ++i) {\n            Q[i + 1] = -c[i];\n      \
-    \  }\n        FPSType P = a * Q;\n        P.cut(K);\n        return bostan_mori(P,\
-    \ Q, n);\n    }\n\n} // namespace suisen\n\n\n#line 7 \"test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp\"\
-    \nusing suisen::FormalPowerSeries;\n\nusing mint = atcoder::modint998244353;\n\
+    \ a) {\n    return a.inv();\n}\n\n\n#line 1 \"library/polynomial/polynomial_gcd.hpp\"\
+    \n\n\n\n#include <array>\n#line 6 \"library/polynomial/polynomial_gcd.hpp\"\n\
+    #include <tuple>\n\nnamespace suisen {\n    namespace internal::poly_gcd {\n \
+    \       template <typename Polynomial>\n        using PolynomialMatrix = std::array<std::array<Polynomial,\
+    \ 2>, 2>;\n\n        template <typename Polynomial>\n        PolynomialMatrix<Polynomial>\
+    \ e1() {\n            return { Polynomial{1}, Polynomial{}, Polynomial{}, Polynomial{1}\
+    \ };\n        }\n        template <typename Polynomial>\n        PolynomialMatrix<Polynomial>\
+    \ mul_mat(const PolynomialMatrix<Polynomial>& A, const PolynomialMatrix<Polynomial>&\
+    \ B) {\n            PolynomialMatrix<Polynomial> C{};\n            for (int i\
+    \ = 0; i < 2; ++i) {\n                for (int j = 0; j < 2; ++j) for (int k =\
+    \ 0; k < 2; ++k) C[i][k] += A[i][j] * B[j][k];\n                for (int j = 0;\
+    \ j < 2; ++j) C[i][j].cut_trailing_zeros();\n            }\n            return\
+    \ C;\n        }\n        template <typename Polynomial>\n        std::array<Polynomial,\
+    \ 2> mul_vec(const PolynomialMatrix<Polynomial>& A, const std::array<Polynomial,\
+    \ 2>& x) {\n            std::array<Polynomial, 2> y{};\n            for (int i\
+    \ = 0; i < 2; ++i) {\n                for (int j = 0; j < 2; ++j) y[i] += A[i][j]\
+    \ * x[j];\n                y[i].cut_trailing_zeros();\n            }\n       \
+    \     return y;\n        }\n\n        template <typename Polynomial>\n       \
+    \ std::pair<PolynomialMatrix<Polynomial>, Polynomial> half_gcd(Polynomial f, Polynomial\
+    \ g, int lo = -1) {\n            PolynomialMatrix<Polynomial> P = e1<Polynomial>();\n\
+    \            while (g.size()) {\n                assert(f.size() >= g.size());\n\
+    \                const int fd = f.deg(), gd = g.deg();\n                if (const\
+    \ int k = fd / 2; k > 128 and k <= gd) {\n                    PolynomialMatrix<Polynomial>\
+    \ Q = half_gcd(Polynomial(f.begin() + k, f.end()), Polynomial(g.begin() + k, g.end()),\
+    \ (fd - k) / 2).first;\n                    if (Q != e1<Polynomial>()) {\n   \
+    \                     auto [f2, g2] = mul_vec(Q, { std::move(f), std::move(g)\
+    \ });\n                        f = std::move(f2), g = std::move(g2);\n       \
+    \                 if (f.deg() <= lo) break;\n                        P = mul_mat(Q,\
+    \ P);\n                    }\n                }\n                if (g.deg() <=\
+    \ lo) break;\n                auto [p, q] = f.div_mod(g);\n                f =\
+    \ std::move(g), g = std::move(q);\n                P = mul_mat(PolynomialMatrix<Polynomial>{\
+    \ Polynomial{}, Polynomial{ 1 }, Polynomial{ 1 }, -p }, P);\n            }\n \
+    \           return { P, f };\n        }\n\n        // { x, y, g=gcd(a,b) (monic)\
+    \ } s.t. ax+by=g\n        template <typename Polynomial>\n        std::tuple<Polynomial,\
+    \ Polynomial, Polynomial> ext_gcd(Polynomial a, Polynomial b) {\n            bool\
+    \ swapped = false;\n            a.cut_trailing_zeros();\n            b.cut_trailing_zeros();\n\
+    \            if (a.size() < b.size()) std::swap(a, b), swapped = true;\n     \
+    \       auto [P, g] = half_gcd(a, b);\n            auto& [x, y] = P[0];\n    \
+    \        if (g.size()) {\n                auto c = g.back().inv();\n         \
+    \       x *= c, y *= c, g *= c;\n            }\n            if (swapped) std::swap(x,\
+    \ y);\n            return { x, y, g };\n        }\n    }\n\n    // @return { x,\
+    \ y, g=gcd(a,b) (monic) } s.t. ax+by=g\n    template <typename Polynomial>\n \
+    \   std::tuple<Polynomial, Polynomial, Polynomial> polynomial_ext_gcd(const Polynomial\
+    \ &a, const Polynomial &b) {\n        return internal::poly_gcd::ext_gcd(a, b);\n\
+    \    }\n    // @return { x, g=gcd(a,b) (monic) } s.t. ax=g (mod m)\n    template\
+    \ <typename Polynomial>\n    std::pair<Polynomial, Polynomial> polynomial_gcd_inv(const\
+    \ Polynomial &a, const Polynomial &m) {\n        auto [x, _, g] = polynomial_ext_gcd(a,\
+    \ m);\n        return { x, g };\n    }\n    // @return x s.t. ax=1 (mod m)\n \
+    \   template <typename Polynomial>\n    std::pair<Polynomial, Polynomial> polynomial_inv(const\
+    \ Polynomial &a, const Polynomial &m) {\n        auto [x, _, g] = polynomial_ext_gcd(a,\
+    \ m);\n        assert(g == Polynomial{1});\n        return x;\n    }\n    // @return\
+    \ gcd(a,b) (monic)\n    template <typename Polynomial>\n    std::tuple<Polynomial,\
+    \ Polynomial, Polynomial> polynomial_gcd(const Polynomial &a, const Polynomial\
+    \ &b) {\n        return std::get<2>(ext_gcd(a, b));\n    }\n} // namespace suisen\n\
+    \n\n\n#line 22 \"test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp\"\
+    \n\nusing fps = suisen::FormalPowerSeries<mint>;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n, m;\n    std::cin >> n >> m;\n\n    fps\
+    \ a(n), b(m);\n    for (auto& e : a) std::cin >> e;\n    for (auto& e : b) std::cin\
+    \ >> e;\n\n    auto [x, g] = suisen::polynomial_gcd_inv(a, b);\n    if (g == fps{\
+    \ 1 }) {\n        int T = x.size();\n        std::cout << T << '\\n';\n      \
+    \  for (int i = 0; i < T; ++i) {\n            std::cout << x[i];\n           \
+    \ if (i + 1 != T) std::cout << ' ';\n        }\n        std::cout << '\\n';\n\
+    \    } else {\n        std::cout << -1 << '\\n';\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inv_of_polynomials\"\n\n\
+    #include <iostream>\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \nnamespace atcoder {\n    std::istream& operator>>(std::istream& in, mint& a)\
+    \ {\n        long long e; in >> e; a = e;\n        return in;\n    }\n\n    std::ostream&\
+    \ operator<<(std::ostream& out, const mint& a) {\n        out << a.val();\n  \
+    \      return out;\n    }\n} // namespace atcoder\n\n#include \"library/polynomial/formal_power_series.hpp\"\
+    \n#include \"library/polynomial/polynomial_gcd.hpp\"\n\nusing fps = suisen::FormalPowerSeries<mint>;\n\
     \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    std::size_t d;\n    unsigned long long k;\n    std::cin >> d >> k;\n\n \
-    \   FormalPowerSeries<mint> a(d), c(d);\n    for (std::size_t i = 0; i < d; ++i)\
-    \ {\n        unsigned int v;\n        std::cin >> v;\n        a[i] = v;\n    }\n\
-    \    for (std::size_t i = 0; i < d; ++i) {\n        unsigned int v;\n        std::cin\
-    \ >> v;\n        c[i] = v;\n    }\n    \n    std::cout << suisen::nth_term_of_linearly_recurrent_sequence(a,\
-    \ c, k).val() << std::endl;\n    \n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
-    \n\n#include <iostream>\n\n#include \"library/polynomial/formal_power_series.hpp\"\
-    \n#include \"library/polynomial/bostan_mori.hpp\"\nusing suisen::FormalPowerSeries;\n\
-    \nusing mint = atcoder::modint998244353;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    std::size_t d;\n    unsigned long long k;\n\
-    \    std::cin >> d >> k;\n\n    FormalPowerSeries<mint> a(d), c(d);\n    for (std::size_t\
-    \ i = 0; i < d; ++i) {\n        unsigned int v;\n        std::cin >> v;\n    \
-    \    a[i] = v;\n    }\n    for (std::size_t i = 0; i < d; ++i) {\n        unsigned\
-    \ int v;\n        std::cin >> v;\n        c[i] = v;\n    }\n    \n    std::cout\
-    \ << suisen::nth_term_of_linearly_recurrent_sequence(a, c, k).val() << std::endl;\n\
-    \    \n    return 0;\n}"
+    \n    int n, m;\n    std::cin >> n >> m;\n\n    fps a(n), b(m);\n    for (auto&\
+    \ e : a) std::cin >> e;\n    for (auto& e : b) std::cin >> e;\n\n    auto [x,\
+    \ g] = suisen::polynomial_gcd_inv(a, b);\n    if (g == fps{ 1 }) {\n        int\
+    \ T = x.size();\n        std::cout << T << '\\n';\n        for (int i = 0; i <\
+    \ T; ++i) {\n            std::cout << x[i];\n            if (i + 1 != T) std::cout\
+    \ << ' ';\n        }\n        std::cout << '\\n';\n    } else {\n        std::cout\
+    \ << -1 << '\\n';\n    }\n}"
   dependsOn:
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
-  - library/polynomial/bostan_mori.hpp
+  - library/polynomial/polynomial_gcd.hpp
   isVerificationFile: true
-  path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
+  path: test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
   requiredBy: []
   timestamp: '2023-05-21 05:26:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
+documentation_of: test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
-- /verify/test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp.html
-title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
+- /verify/test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
+- /verify/test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp.html
+title: test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
 ---
