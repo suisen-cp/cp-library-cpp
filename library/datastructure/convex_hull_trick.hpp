@@ -36,6 +36,10 @@ namespace suisen {
 
         static constexpr T inf = std::numeric_limits<T>::max();
     public:
+        bool has_line() const {
+            return not this->empty();
+        }
+
         void add_line(T slope, T intercept) {
             if constexpr (not is_min_query) slope = -slope, intercept = -intercept;
             auto it = this->emplace(slope, intercept, inf);
