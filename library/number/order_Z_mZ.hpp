@@ -47,11 +47,12 @@ namespace suisen {
     template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
     struct OrderMod {
         using U = std::make_unsigned_t<T>;
+        OrderMod() = default;
         OrderMod(T m) : _mod(m) {
             auto factorized = fast_factorize::factorize<T>(_mod);
             _is_prime = factorized.size() == 1;
-            _lambda = carmichael(factorized);
-            _phi = totient(factorized);
+            _lambda = _carmichael(factorized);
+            _phi = _totient(factorized);
             for (auto [p, q] : fast_factorize::factorize<T>(_lambda)) {
                 U r = 1;
                 for (int i = 0; i < q; ++i) r *= p;
@@ -64,14 +65,14 @@ namespace suisen {
                 using mint = atcoder::dynamic_modint<1000000000>;
                 U old_mod = mint::mod();
                 mint::set_mod(_mod);
-                bool res = is_primitive_root_impl<mint>(a);
+                bool res = _is_primitive_root_impl<mint>(a);
                 mint::set_mod(old_mod);
                 return res;
             } else {
                 using mint = internal::order_prime_mod::mint64<1000000000>;
                 U old_mod = mint::mod();
                 mint::set_mod(_mod);
-                bool res = is_primitive_root_impl<mint>(a);
+                bool res = _is_primitive_root_impl<mint>(a);
                 mint::set_mod(old_mod);
                 return res;
             }
@@ -80,9 +81,9 @@ namespace suisen {
         T primitive_root() const {
             assert(_lambda == _phi);
             if (_mod < 1ULL << 32) {
-                return primitive_root_impl<std::mt19937>();
+                return _primitive_root_impl<std::mt19937>();
             } else {
-                return primitive_root_impl<std::mt19937_64>();
+                return _primitive_root_impl<std::mt19937_64>();
             }
         }
 
@@ -91,14 +92,14 @@ namespace suisen {
                 using mint = atcoder::dynamic_modint<1000000000>;
                 U old_mod = mint::mod();
                 mint::set_mod(_mod);
-                T res = order_impl<mint>(a);
+                T res = _order_impl<mint>(a);
                 mint::set_mod(old_mod);
                 return res;
             } else {
                 using mint = internal::order_prime_mod::mint64<1000000000>;
                 U old_mod = mint::mod();
                 mint::set_mod(_mod);
-                T res = order_impl<mint>(a);
+                T res = _order_impl<mint>(a);
                 mint::set_mod(old_mod);
                 return res;
             }
@@ -106,6 +107,20 @@ namespace suisen {
 
         T mod() const {
             return _mod;
+        }
+        T totient() const {
+            return _phi;
+        }
+        T carmichael() const {
+            return _lambda;
+        }
+        bool is_prime() const {
+            return _is_prime;
+        }
+        std::vector<T> carmichael_prime_factors() const {
+            std::vector<T> res;
+            for (const auto &e : _fac_lambda) res.push_back(std::get<0>(e));
+            return res;
         }
 
     private:
@@ -116,7 +131,7 @@ namespace suisen {
 
         std::vector<std::tuple<U, int, U>> _fac_lambda;
 
-        static T carmichael(const std::vector<std::pair<T, int>>& factorized) {
+        static T _carmichael(const std::vector<std::pair<T, int>>& factorized) {
             T lambda = 1;
             for (auto [p, ep] : factorized) {
                 T phi = p - 1;
@@ -126,7 +141,7 @@ namespace suisen {
             }
             return lambda;
         }
-        static T totient(const std::vector<std::pair<T, int>>& factorized) {
+        static T _totient(const std::vector<std::pair<T, int>>& factorized) {
             T t = 1;
             for (const auto& [p, ep] : factorized) {
                 t *= p - 1;
@@ -136,7 +151,7 @@ namespace suisen {
         }
 
         template <typename mint>
-        bool is_primitive_root_impl(U a) const {
+        bool _is_primitive_root_impl(U a) const {
             if (_lambda != _phi) return false;
             if (_mod == 2) return a % 2 == 1;
 
@@ -174,7 +189,7 @@ namespace suisen {
         }
 
         template <typename Rng>
-        T primitive_root_impl() const {
+        T _primitive_root_impl() const {
             if (_mod == 2) return 1;
 
             Rng rng{ std::random_device{}() };
@@ -188,7 +203,7 @@ namespace suisen {
         }
 
         template <typename mint>
-        U order_impl(U a) const {
+        U _order_impl(U a) const {
             if (_mod == 2) return a % 2 == 1;
 
             const int k = _fac_lambda.size();
