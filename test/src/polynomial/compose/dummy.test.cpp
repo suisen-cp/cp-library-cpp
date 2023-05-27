@@ -23,15 +23,13 @@ namespace atcoder {
 std::vector<mint> naive(std::vector<mint> f, std::vector<mint> g, int n) {
     if (n == 0) return {};
 
-    f.resize(n);
-
     std::vector<mint> powg(n);
     powg[0] = 1;
 
     std::vector<mint> fg(n);
-    for (int i = 0; i < n; ++i) {
+    for (mint fi : f) {
         for (int j = 0; j < n; ++j) {
-            fg[j] += f[i] * powg[j];
+            fg[j] += fi * powg[j];
         }
         powg = atcoder::convolution(powg, g);
         powg.resize(n);

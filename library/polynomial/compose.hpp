@@ -17,23 +17,26 @@ namespace suisen {
         // taylor shift f(x + [x^0]g)
         const std::vector<mint> fa = [&]{
             const mint a = std::exchange(g[0], 0);
-            std::vector<mint> fac(n), fac_inv(n);
+            const int siz_f = f.size();
+            
+            std::vector<mint> fac(siz_f), fac_inv(siz_f);
             fac[0] = 1;
-            for (int i = 1; i <= n - 1; ++i) fac[i] = fac[i - 1] * i;
-            fac_inv[n - 1] = fac[n - 1].inv();
-            for (int i = n - 1; i >= 1; --i) fac_inv[i - 1] = fac_inv[i] * i;
+            for (int i = 1; i <= siz_f - 1; ++i) fac[i] = fac[i - 1] * i;
+            fac_inv[siz_f - 1] = fac[siz_f - 1].inv();
+            for (int i = siz_f - 1; i >= 1; --i) fac_inv[i - 1] = fac_inv[i] * i;
 
-            std::vector<mint> ec(n), fa(n);
+            std::vector<mint> ec(siz_f), fa(siz_f);
             mint p = 1;
-            for (int i = 0; i < n; ++i, p *= a) {
+            for (int i = 0; i < siz_f; ++i, p *= a) {
                 ec[i] = p * fac_inv[i];
-                fa[n - 1 - i] = (i < int(f.size()) ? f[i] : 0) * fac[i];
+                fa[siz_f - 1 - i] = (i < int(f.size()) ? f[i] : 0) * fac[i];
             }
-            fa = atcoder::convolution(fa, ec), fa.resize(n);
+            fa = atcoder::convolution(fa, ec), fa.resize(siz_f);
             std::reverse(fa.begin(), fa.end());
-            for (int i = 0; i < n; ++i) {
+            for (int i = 0; i < siz_f; ++i) {
                 fa[i] *= fac_inv[i];
             }
+            if (siz_f > n) fa.resize(n);
             return fa;
         }();
 
