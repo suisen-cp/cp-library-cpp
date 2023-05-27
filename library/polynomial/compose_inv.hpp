@@ -71,7 +71,7 @@ namespace suisen {
             // - H = H_q, I = I_q
             // - g[0,qB) is calculated
 
-            // I_q / x^{qB}
+            // (I_q / x^{qB}) / H_q
             fps J = fps(I.begin() + q * B, I.begin() + (q * B + B)) * H.cut_copy(B).inv(B);
             J.resize(B);
 
