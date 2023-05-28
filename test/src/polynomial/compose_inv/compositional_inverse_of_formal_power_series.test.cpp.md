@@ -7,117 +7,39 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
+  - icon: ':heavy_check_mark:'
+    path: library/polynomial/compose_inv.hpp
+    title: "\u9006\u95A2\u6570"
+  - icon: ':question:'
+    path: library/polynomial/formal_power_series.hpp
+    title: Formal Power Series
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: library/math/factorial_large.hpp
-    title: Factorial Large
-  - icon: ':x:'
-    path: library/polynomial/compose_exp.hpp
-    title: Compose Exp
-  - icon: ':heavy_check_mark:'
-    path: library/polynomial/compose_inv.hpp
-    title: "\u9006\u95A2\u6570"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
-    title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
-  - icon: ':x:'
-    path: test/src/polynomial/compose_exp/arc154_f.test.cpp
-    title: test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
-    title: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-    title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-    title: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-    title: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-    title: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-    title: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-    title: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-    title: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-    title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-    title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-    title: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-    title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
-    title: test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-    title: test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-    title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-    title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-    title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-    title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-    title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/partition_number/partition_function_2.test.cpp
-    title: test/src/sequence/partition_number/partition_function_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-    title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-    title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series
     links:
-    - https://arxiv.org/pdf/1301.5804.pdf
-    - https://opt-cp.com/fps-fast-algorithms/
-  bundledCode: "#line 1 \"library/polynomial/formal_power_series.hpp\"\n\n\n\n#include\
-    \ <limits>\n#include <optional>\n#include <queue>\n\n#include <atcoder/modint>\n\
-    #include <atcoder/convolution>\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
+    - https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series
+  bundledCode: "#line 1 \"test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series\"\
+    \n\n#include <iostream>\n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \nnamespace atcoder {\n    std::istream& operator>>(std::istream& in, mint &a)\
+    \ {\n        long long e; in >> e; a = e;\n        return in;\n    }\n    \n \
+    \   std::ostream& operator<<(std::ostream& out, const mint &a) {\n        out\
+    \ << a.val();\n        return out;\n    }\n} // namespace atcoder\n\n#line 1 \"\
+    library/polynomial/compose_inv.hpp\"\n\n\n\n#line 5 \"library/polynomial/compose_inv.hpp\"\
+    \n#include <atcoder/convolution>\n\n#line 1 \"library/polynomial/formal_power_series.hpp\"\
+    \n\n\n\n#include <limits>\n#include <optional>\n#include <queue>\n\n#line 10 \"\
+    library/polynomial/formal_power_series.hpp\"\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
     \n\n\n\n#include <cassert>\n#include <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\
     \n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
@@ -608,334 +530,77 @@ data:
     \ {\n    return a.exp();\n}\ntemplate <typename mint, typename T>\nsuisen::FormalPowerSeries<mint>\
     \ pow(suisen::FormalPowerSeries<mint> a, T b) {\n    return a.pow(b);\n}\ntemplate\
     \ <typename mint>\nsuisen::FormalPowerSeries<mint> inv(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.inv();\n}\n\n\n"
-  code: "#ifndef SUISEN_FORMAL_POWER_SERIES\n#define SUISEN_FORMAL_POWER_SERIES\n\n\
-    #include <limits>\n#include <optional>\n#include <queue>\n\n#include <atcoder/modint>\n\
-    #include <atcoder/convolution>\n\n#include \"library/polynomial/fps_naive.hpp\"\
-    \n#include \"library/math/inv_mods.hpp\"\n#include \"library/math/modint_extension.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint, atcoder::internal::is_static_modint_t<mint>*\
-    \ = nullptr>\n    struct FormalPowerSeries : std::vector<mint> {\n        using\
-    \ base_type = std::vector<mint>;\n        using value_type = typename base_type::value_type;\n\
-    \        using base_type::vector;\n\n        FormalPowerSeries(const std::initializer_list<value_type>\
-    \ l) : std::vector<value_type>::vector(l) {}\n        FormalPowerSeries(const\
-    \ std::vector<value_type>& v) : std::vector<value_type>::vector(v) {}\n\n    \
-    \    int size() const noexcept {\n            return base_type::size();\n    \
-    \    }\n        int deg() const noexcept {\n            return size() - 1;\n \
-    \       }\n        void ensure(int n) {\n            if (size() < n) this->resize(n);\n\
-    \        }\n\n        value_type safe_get(int d) const {\n            return d\
-    \ <= deg() ? (*this)[d] : 0;\n        }\n        value_type& safe_get(int d) {\n\
-    \            ensure(d + 1);\n            return (*this)[d];\n        }\n\n   \
-    \     FormalPowerSeries& cut_trailing_zeros() {\n            while (size() and\
-    \ this->back() == 0) this->pop_back();\n            return *this;\n        }\n\
-    \        FormalPowerSeries& cut(int n) {\n            if (size() > n) this->resize(std::max(0,\
-    \ n));\n            return *this;\n        }\n        FormalPowerSeries cut_copy(int\
-    \ n) const {\n            FormalPowerSeries res(this->begin(), this->begin() +\
-    \ std::min(size(), n));\n            res.ensure(n);\n            return res;\n\
-    \        }\n        FormalPowerSeries cut_copy(int l, int r) const {\n       \
-    \     if (l >= size()) return FormalPowerSeries(r - l, 0);\n            FormalPowerSeries\
-    \ res(this->begin() + l, this->begin() + std::min(size(), r));\n            res.ensure(r\
-    \ - l);\n            return res;\n        }\n\n        /* Unary Operations */\n\
-    \n        FormalPowerSeries operator+() const { return *this; }\n        FormalPowerSeries\
-    \ operator-() const {\n            FormalPowerSeries res = *this;\n          \
-    \  for (auto& e : res) e = -e;\n            return res;\n        }\n        FormalPowerSeries&\
-    \ operator++() { return ++safe_get(0), * this; }\n        FormalPowerSeries& operator--()\
-    \ { return --safe_get(0), * this; }\n        FormalPowerSeries operator++(int)\
-    \ {\n            FormalPowerSeries res = *this;\n            ++(*this);\n    \
-    \        return res;\n        }\n        FormalPowerSeries operator--(int) {\n\
-    \            FormalPowerSeries res = *this;\n            --(*this);\n        \
-    \    return res;\n        }\n\n        /* Binary Operations With Constant */\n\
-    \n        FormalPowerSeries& operator+=(const value_type& x) { return safe_get(0)\
-    \ += x, *this; }\n        FormalPowerSeries& operator-=(const value_type& x) {\
-    \ return safe_get(0) -= x, *this; }\n        FormalPowerSeries& operator*=(const\
-    \ value_type& x) {\n            for (auto& e : *this) e *= x;\n            return\
-    \ *this;\n        }\n        FormalPowerSeries& operator/=(const value_type& x)\
-    \ { return *this *= x.inv(); }\n\n        friend FormalPowerSeries operator+(FormalPowerSeries\
-    \ f, const value_type& x) { f += x; return f; }\n        friend FormalPowerSeries\
-    \ operator+(const value_type& x, FormalPowerSeries f) { f += x; return f; }\n\
-    \        friend FormalPowerSeries operator-(FormalPowerSeries f, const value_type&\
-    \ x) { f -= x; return f; }\n        friend FormalPowerSeries operator-(const value_type&\
-    \ x, FormalPowerSeries f) { f -= x; return -f; }\n        friend FormalPowerSeries\
-    \ operator*(FormalPowerSeries f, const value_type& x) { f *= x; return f; }\n\
-    \        friend FormalPowerSeries operator*(const value_type& x, FormalPowerSeries\
-    \ f) { f *= x; return f; }\n        friend FormalPowerSeries operator/(FormalPowerSeries\
-    \ f, const value_type& x) { f /= x; return f; }\n\n        /* Binary Operations\
-    \ With Formal Power Series */\n\n        FormalPowerSeries& operator+=(const FormalPowerSeries&\
-    \ g) {\n            const int n = g.size();\n            ensure(n);\n        \
-    \    for (int i = 0; i < n; ++i) (*this)[i] += g[i];\n            return *this;\n\
-    \        }\n        FormalPowerSeries& operator-=(const FormalPowerSeries& g)\
-    \ {\n            const int n = g.size();\n            ensure(n);\n           \
-    \ for (int i = 0; i < n; ++i) (*this)[i] -= g[i];\n            return *this;\n\
-    \        }\n        FormalPowerSeries& operator*=(const FormalPowerSeries& g)\
-    \ { return *this = *this * g; }\n        FormalPowerSeries& operator/=(const FormalPowerSeries&\
-    \ g) { return *this = *this / g; }\n        FormalPowerSeries& operator%=(const\
-    \ FormalPowerSeries& g) { return *this = *this % g; }\n\n        friend FormalPowerSeries\
-    \ operator+(FormalPowerSeries f, const FormalPowerSeries& g) { f += g; return\
-    \ f; }\n        friend FormalPowerSeries operator-(FormalPowerSeries f, const\
-    \ FormalPowerSeries& g) { f -= g; return f; }\n        friend FormalPowerSeries\
-    \ operator*(const FormalPowerSeries& f, const FormalPowerSeries& g) {\n      \
-    \      const int siz_f = f.size(), siz_g = g.size();\n            if (siz_f <\
-    \ siz_g) return g * f;\n            if (std::min(siz_f, siz_g) <= 60) return atcoder::convolution(f,\
-    \ g);\n            const int deg = siz_f + siz_g - 2;\n            int fpow2 =\
-    \ 1;\n            while ((fpow2 << 1) <= deg) fpow2 <<= 1;\n            if (const\
-    \ int dif = deg - fpow2 + 1; dif <= 10) {\n                FormalPowerSeries h\
-    \ = atcoder::convolution(std::vector<mint>(f.begin(), f.end() - dif), g);\n  \
-    \              h.resize(h.size() + dif);\n                for (int i = siz_f -\
-    \ dif; i < siz_f; ++i) for (int j = 0; j < siz_g; ++j) {\n                   \
-    \ h[i + j] += f[i] * g[j];\n                }\n                return h;\n   \
-    \         }\n            return atcoder::convolution(f, g);\n        }\n     \
-    \   friend FormalPowerSeries operator/(FormalPowerSeries f, FormalPowerSeries\
-    \ g) {\n            if (f.size() < 60) return FPSNaive<mint>(f).div_mod(g).first;\n\
-    \            f.cut_trailing_zeros(), g.cut_trailing_zeros();\n            const\
-    \ int fd = f.deg(), gd = g.deg();\n            assert(gd >= 0);\n            if\
-    \ (fd < gd) return {};\n            if (gd == 0) {\n                f /= g[0];\n\
-    \                return f;\n            }\n            std::reverse(f.begin(),\
-    \ f.end()), std::reverse(g.begin(), g.end());\n            const int qd = fd -\
-    \ gd;\n            f.cut(qd + 1);\n            FormalPowerSeries q = f * g.inv(qd\
-    \ + 1);\n            q.cut(qd + 1);\n            std::reverse(q.begin(), q.end());\n\
-    \            return q;\n        }\n        friend FormalPowerSeries operator%(const\
-    \ FormalPowerSeries& f, const FormalPowerSeries& g) { return f.div_mod(g).second;\
-    \ }\n        std::pair<FormalPowerSeries, FormalPowerSeries> div_mod(const FormalPowerSeries&\
-    \ g) const {\n            if (size() < 60) {\n                auto [q, r] = FPSNaive<mint>(*this).div_mod(g);\n\
-    \                return { q, r };\n            }\n            FormalPowerSeries\
-    \ q = *this / g, r = *this - g * q;\n            r.cut_trailing_zeros();\n   \
-    \         return { q, r };\n        }\n\n        /* Shift Operations */\n\n  \
-    \      FormalPowerSeries& operator<<=(const int shamt) {\n            return this->insert(this->begin(),\
-    \ shamt, 0), * this;\n        }\n        FormalPowerSeries& operator>>=(const\
-    \ int shamt) {\n            return this->erase(this->begin(), this->begin() +\
-    \ std::min(shamt, size())), * this;\n        }\n        friend FormalPowerSeries\
-    \ operator<<(FormalPowerSeries f, const int shamt) { f <<= shamt; return f; }\n\
-    \        friend FormalPowerSeries operator>>(FormalPowerSeries f, const int shamt)\
-    \ { f >>= shamt; return f; }\n\n        /* Compare */\n\n        friend bool operator==(const\
-    \ FormalPowerSeries& f, const FormalPowerSeries& g) {\n            const int n\
-    \ = f.size(), m = g.size();\n            if (n < m) return g == f;\n         \
-    \   for (int i = 0; i < m; ++i) if (f[i] != g[i]) return false;\n            for\
-    \ (int i = m; i < n; ++i) if (f[i] != 0) return false;\n            return true;\n\
-    \        }\n        friend bool operator!=(const FormalPowerSeries& f, const FormalPowerSeries&\
-    \ g) { return not (f == g); }\n\n        /* Other Operations */\n\n        FormalPowerSeries&\
-    \ diff_inplace() {\n            const int n = size();\n            for (int i\
-    \ = 1; i < n; ++i) (*this)[i - 1] = (*this)[i] * i;\n            return (*this)[n\
-    \ - 1] = 0, *this;\n        }\n        FormalPowerSeries diff() const {\n    \
-    \        FormalPowerSeries res = *this;\n            res.diff_inplace();\n   \
-    \         return res;\n        }\n        FormalPowerSeries& intg_inplace() {\n\
-    \            const int n = size();\n            inv_mods<value_type> invs(n);\n\
-    \            this->resize(n + 1);\n            for (int i = n; i > 0; --i) (*this)[i]\
-    \ = (*this)[i - 1] * invs[i];\n            return (*this)[0] = 0, *this;\n   \
-    \     }\n        FormalPowerSeries intg() const {\n            FormalPowerSeries\
-    \ res = *this;\n            res.intg_inplace();\n            return res;\n   \
-    \     }\n\n        FormalPowerSeries& inv_inplace(int n = -1) { return *this =\
-    \ inv(n); }\n        // reference: https://opt-cp.com/fps-fast-algorithms/\n \
-    \       FormalPowerSeries inv(int n = -1) const {\n            if (n < 0) n =\
-    \ size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).inv();\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return inv_sparse(std::move(*sp_f),\
-    \ n);\n            FormalPowerSeries f_fft, g_fft;\n            FormalPowerSeries\
-    \ g{ (*this)[0].inv() };\n            for (int k = 1; k < n; k *= 2) {\n     \
-    \           f_fft = cut_copy(2 * k), g_fft = g.cut_copy(2 * k);\n            \
-    \    atcoder::internal::butterfly(f_fft);\n                atcoder::internal::butterfly(g_fft);\n\
-    \                update_inv(k, f_fft, g_fft, g);\n            }\n            g.resize(n);\n\
-    \            return g;\n        }\n        FormalPowerSeries& log_inplace(int\
-    \ n = -1) { return *this = log(n); }\n        FormalPowerSeries log(int n = -1)\
-    \ const {\n            assert(safe_get(0) == 1);\n            if (n < 0) n = size();\n\
-    \            if (n < 60) return FPSNaive<mint>(cut_copy(n)).log();\n         \
-    \   if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return log_sparse(std::move(*sp_f),\
-    \ n);\n            FormalPowerSeries res = inv(n) * diff();\n            res.resize(n\
-    \ - 1);\n            return res.intg();\n        }\n        FormalPowerSeries&\
-    \ exp_inplace(int n = -1) { return *this = exp(n); }\n        // https://arxiv.org/pdf/1301.5804.pdf\n\
-    \        FormalPowerSeries exp(int n = -1) const {\n            assert(safe_get(0)\
-    \ == 0);\n            if (n < 0) n = size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).exp();\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return exp_sparse(std::move(*sp_f),\
-    \ n);\n            // h = *this\n            // f = exp(h) mod x ^ k\n       \
-    \     // g = f^{-1} mod x ^ k\n            FormalPowerSeries dh = diff();\n  \
-    \          FormalPowerSeries f{ 1 }, f_fft;\n            FormalPowerSeries g{\
-    \ 1 }, g_fft;\n            for (int k = 1; k < n; k *= 2) {\n                f_fft\
-    \ = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\n              \
-    \  if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n                FormalPowerSeries\
-    \ t = f.cut_copy(k);\n                t.diff_inplace();\n                {\n \
-    \                   FormalPowerSeries r = dh.cut_copy(k);\n                  \
-    \  r.back() = 0;\n                    atcoder::internal::butterfly(r);\n     \
-    \               for (int i = 0; i < k; ++i) r[i] *= f_fft[i];\n              \
-    \      atcoder::internal::butterfly_inv(r);\n                    r /= -k;\n  \
-    \                  t += r;\n                    t <<= 1, t[0] = t[k], t.pop_back();\n\
-    \                }\n                t.resize(2 * k);\n                atcoder::internal::butterfly(t);\n\
-    \                g_fft = g.cut_copy(2 * k);\n                atcoder::internal::butterfly(g_fft);\n\
-    \                for (int i = 0; i < 2 * k; ++i) t[i] *= g_fft[i];\n         \
-    \       atcoder::internal::butterfly_inv(t);\n                t.resize(k);\n \
-    \               t /= 2 * k;\n\n                FormalPowerSeries v = cut_copy(2\
-    \ * k) >>= k;\n                t <<= k - 1;\n                t.intg_inplace();\n\
-    \                for (int i = 0; i < k; ++i) v[i] -= t[k + i];\n\n           \
-    \     v.resize(2 * k);\n                atcoder::internal::butterfly(v);\n   \
-    \             for (int i = 0; i < 2 * k; ++i) v[i] *= f_fft[i];\n            \
-    \    atcoder::internal::butterfly_inv(v);\n                v.resize(k);\n    \
-    \            v /= 2 * k;\n\n                f.resize(2 * k);\n               \
-    \ for (int i = 0; i < k; ++i) f[k + i] = v[i];\n            }\n            f.cut(n);\n\
-    \            return f;\n        }\n\n        FormalPowerSeries& pow_inplace(long\
-    \ long k, int n = -1) { return *this = pow(k, n); }\n        FormalPowerSeries\
-    \ pow(const long long k, int n = -1) const {\n            if (n < 0) n = size();\n\
-    \            if (n < 60) return FPSNaive<mint>(cut_copy(n)).pow(k);\n        \
-    \    if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return pow_sparse(std::move(*sp_f),\
-    \ k, n);\n            if (k == 0) {\n                FormalPowerSeries f{ 1 };\n\
-    \                f.resize(n);\n                return f;\n            }\n    \
-    \        int tlz = 0;\n            while (tlz < size() and (*this)[tlz] == 0)\
-    \ ++tlz;\n            if (tlz == size() or tlz > (n - 1) / k) return FormalPowerSeries(n,\
-    \ 0);\n            const int m = n - tlz * k;\n            FormalPowerSeries f\
-    \ = *this >> tlz;\n            value_type base = f[0];\n            return ((((f\
-    \ /= base).log(m) *= k).exp(m) *= base.pow(k)) <<= (tlz * k));\n        }\n\n\
-    \        std::optional<FormalPowerSeries> safe_sqrt(int n = -1) const {\n    \
-    \        if (n < 0) n = size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).safe_sqrt();\n\
-    \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return safe_sqrt_sparse(std::move(*sp_f),\
-    \ n);\n            int tlz = 0;\n            while (tlz < size() and (*this)[tlz]\
-    \ == 0) ++tlz;\n            if (tlz == size()) return FormalPowerSeries(n, 0);\n\
-    \            if (tlz & 1) return std::nullopt;\n            const int m = n -\
-    \ tlz / 2;\n\n            FormalPowerSeries h(this->begin() + tlz, this->end());\n\
-    \            auto q0 = ::safe_sqrt(h[0]);\n            if (not q0.has_value())\
-    \ return std::nullopt;\n\n            FormalPowerSeries f{ *q0 }, f_fft, g{ q0->inv()\
-    \ }, g_fft;\n            for (int k = 1; k < m; k *= 2) {\n                f_fft\
-    \ = f.cut_copy(2 * k), atcoder::internal::butterfly(f_fft);\n\n              \
-    \  if (k > 1) update_inv(k / 2, f_fft, g_fft, g);\n\n                g_fft = g.cut_copy(2\
-    \ * k);\n                atcoder::internal::butterfly(g_fft);\n              \
-    \  FormalPowerSeries h_fft = h.cut_copy(2 * k);\n                atcoder::internal::butterfly(h_fft);\n\
-    \                for (int i = 0; i < 2 * k; ++i) h_fft[i] = (h_fft[i] - f_fft[i]\
-    \ * f_fft[i]) * g_fft[i];\n                atcoder::internal::butterfly_inv(h_fft);\n\
-    \                f.resize(2 * k);\n                const value_type iz = value_type(4\
-    \ * k).inv();\n                for (int i = 0; i < k; ++i) f[k + i] = h_fft[k\
-    \ + i] * iz;\n            }\n            f.resize(m), f <<= (tlz / 2);\n     \
-    \       return f;\n        }\n        FormalPowerSeries& sqrt_inplace(int n =\
-    \ -1) { return *this = sqrt(n); }\n        FormalPowerSeries sqrt(int n = -1)\
-    \ const {\n            return *safe_sqrt(n);\n        }\n\n        value_type\
-    \ eval(value_type x) const {\n            value_type y = 0;\n            for (int\
-    \ i = size() - 1; i >= 0; --i) y = y * x + (*this)[i];\n            return y;\n\
-    \        }\n\n        static FormalPowerSeries prod(const std::vector<FormalPowerSeries>&\
-    \ fs) {\n            if (fs.empty()) return { 1 };\n            std::deque<FormalPowerSeries>\
-    \ dq(fs.begin(), fs.end());\n            std::sort(dq.begin(), dq.end(), [](auto&\
-    \ f, auto& g) { return f.size() < g.size(); });\n            while (dq.size()\
-    \ >= 2) {\n                dq.push_back(dq[0] * dq[1]);\n                dq.pop_front();\n\
-    \                dq.pop_front();\n            }\n            return dq.front();\n\
-    \        }\n\n        std::optional<std::vector<std::pair<int, value_type>>> sparse_fps_format(int\
-    \ max_size) const {\n            std::vector<std::pair<int, value_type>> res;\n\
-    \            for (int i = 0; i <= deg() and int(res.size()) <= max_size; ++i)\
-    \ if (value_type v = (*this)[i]; v != 0) res.emplace_back(i, v);\n           \
-    \ if (int(res.size()) > max_size) return std::nullopt;\n            return res;\n\
-    \        }\n\n    private:\n        static void update_inv(const int k, FormalPowerSeries&\
-    \ f_fft, FormalPowerSeries& g_fft, FormalPowerSeries& g) {\n            FormalPowerSeries\
-    \ fg(2 * k);\n            for (int i = 0; i < 2 * k; ++i) fg[i] = f_fft[i] * g_fft[i];\n\
-    \            atcoder::internal::butterfly_inv(fg);\n            fg >>= k, fg.resize(2\
-    \ * k);\n            atcoder::internal::butterfly(fg);\n            for (int i\
-    \ = 0; i < 2 * k; ++i) fg[i] *= g_fft[i];\n            atcoder::internal::butterfly_inv(fg);\n\
-    \            const value_type iz = value_type(2 * k).inv(), c = -iz * iz;\n  \
-    \          g.resize(2 * k);\n            for (int i = 0; i < k; ++i) g[k + i]\
-    \ = fg[i] * c;\n        }\n\n        static FormalPowerSeries div_fps_sparse(const\
-    \ FormalPowerSeries& f, const std::vector<std::pair<int, value_type>>& g, int\
-    \ n) {\n            const int siz = g.size();\n            assert(siz and g[0].first\
-    \ == 0);\n            const value_type inv_g0 = g[0].second.inv();\n         \
-    \   FormalPowerSeries h(n);\n            for (int i = 0; i < n; ++i) {\n     \
-    \           value_type v = f.safe_get(i);\n                for (int idx = 1; idx\
-    \ < siz; ++idx) {\n                    const auto& [j, gj] = g[idx];\n       \
-    \             if (j > i) break;\n                    v -= gj * h[i - j];\n   \
-    \             }\n                h[i] = v * inv_g0;\n            }\n         \
-    \   return h;\n        }\n        static FormalPowerSeries inv_sparse(const std::vector<std::pair<int,\
-    \ value_type>>& g, const int n) {\n            return div_fps_sparse(FormalPowerSeries{\
-    \ 1 }, g, n);\n        }\n        static FormalPowerSeries exp_sparse(const std::vector<std::pair<int,\
-    \ value_type>>& f, const int n) {\n            const int siz = f.size();\n   \
-    \         assert(not siz or f[0].first != 0);\n            FormalPowerSeries g(n);\n\
-    \            g[0] = 1;\n            inv_mods<value_type> invs(n);\n          \
-    \  for (int i = 1; i < n; ++i) {\n                value_type v = 0;\n        \
-    \        for (const auto& [j, fj] : f) {\n                    if (j > i) break;\n\
-    \                    v += j * fj * g[i - j];\n                }\n            \
-    \    v *= invs[i];\n                g[i] = v;\n            }\n            return\
-    \ g;\n        }\n        static FormalPowerSeries log_sparse(const std::vector<std::pair<int,\
-    \ value_type>>& f, const int n) {\n            const int siz = f.size();\n   \
-    \         assert(siz and f[0].first == 0 and f[0].second == 1);\n            FormalPowerSeries\
-    \ g(n);\n            for (int idx = 1; idx < siz; ++idx) {\n                const\
-    \ auto& [j, fj] = f[idx];\n                if (j >= n) break;\n              \
-    \  g[j] = j * fj;\n            }\n            inv_mods<value_type> invs(n);\n\
-    \            for (int i = 1; i < n; ++i) {\n                value_type v = g[i];\n\
-    \                for (int idx = 1; idx < siz; ++idx) {\n                    const\
-    \ auto& [j, fj] = f[idx];\n                    if (j > i) break;\n           \
-    \         v -= fj * g[i - j] * (i - j);\n                }\n                v\
-    \ *= invs[i];\n                g[i] = v;\n            }\n            return g;\n\
-    \        }\n        static FormalPowerSeries pow_sparse(const std::vector<std::pair<int,\
-    \ value_type>>& f, const long long k, const int n) {\n            if (k == 0)\
-    \ {\n                FormalPowerSeries res(n, 0);\n                res[0] = 1;\n\
-    \                return res;\n            }\n            const int siz = f.size();\n\
-    \            if (not siz) return FormalPowerSeries(n, 0);\n            const int\
-    \ p = f[0].first;\n            if (p > (n - 1) / k) return FormalPowerSeries(n,\
-    \ 0);\n            const value_type inv_f0 = f[0].second.inv();\n            const\
-    \ int lz = p * k;\n            FormalPowerSeries g(n);\n            g[lz] = f[0].second.pow(k);\n\
-    \            inv_mods<value_type> invs(n);\n            for (int i = 1; lz + i\
-    \ < n; ++i) {\n                value_type v = 0;\n                for (int idx\
-    \ = 1; idx < siz; ++idx) {\n                    auto [j, fj] = f[idx];\n     \
-    \               j -= p;\n                    if (j > i) break;\n             \
-    \       v += fj * g[lz + i - j] * (value_type(k) * j - (i - j));\n           \
-    \     }\n                v *= invs[i] * inv_f0;\n                g[lz + i] = v;\n\
-    \            }\n            return g;\n        }\n        static std::optional<FormalPowerSeries>\
-    \ safe_sqrt_sparse(const std::vector<std::pair<int, value_type>>& f, const int\
-    \ n) {\n            const int siz = f.size();\n            if (not siz) return\
-    \ FormalPowerSeries(n, 0);\n            const int p = f[0].first;\n          \
-    \  if (p % 2 == 1) return std::nullopt;\n            if (p / 2 >= n) return FormalPowerSeries(n,\
-    \ 0);\n            const value_type inv_f0 = f[0].second.inv();\n            const\
-    \ int lz = p / 2;\n            FormalPowerSeries g(n);\n            auto opt_g0\
-    \ = ::safe_sqrt(f[0].second);\n            if (not opt_g0.has_value()) return\
-    \ std::nullopt;\n            g[lz] = *opt_g0;\n            value_type k = mint(2).inv();\n\
-    \            inv_mods<value_type> invs(n);\n            for (int i = 1; lz + i\
-    \ < n; ++i) {\n                value_type v = 0;\n                for (int idx\
-    \ = 1; idx < siz; ++idx) {\n                    auto [j, fj] = f[idx];\n     \
-    \               j -= p;\n                    if (j > i) break;\n             \
-    \       v += fj * g[lz + i - j] * (k * j - (i - j));\n                }\n    \
-    \            v *= invs[i] * inv_f0;\n                g[lz + i] = v;\n        \
-    \    }\n            return g;\n        }\n        static FormalPowerSeries sqrt_sparse(const\
-    \ std::vector<std::pair<int, value_type>>& f, const int n) {\n            return\
-    \ *safe_sqrt(f, n);\n        }\n    };\n} // namespace suisen\n\ntemplate <typename\
-    \ mint>\nsuisen::FormalPowerSeries<mint> sqrt(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.sqrt();\n}\ntemplate <typename mint>\nsuisen::FormalPowerSeries<mint>\
-    \ log(suisen::FormalPowerSeries<mint> a) {\n    return a.log();\n}\ntemplate <typename\
-    \ mint>\nsuisen::FormalPowerSeries<mint> exp(suisen::FormalPowerSeries<mint> a)\
-    \ {\n    return a.exp();\n}\ntemplate <typename mint, typename T>\nsuisen::FormalPowerSeries<mint>\
-    \ pow(suisen::FormalPowerSeries<mint> a, T b) {\n    return a.pow(b);\n}\ntemplate\
-    \ <typename mint>\nsuisen::FormalPowerSeries<mint> inv(suisen::FormalPowerSeries<mint>\
-    \ a) {\n    return a.inv();\n}\n\n#endif // SUISEN_FORMAL_POWER_SERIES\n"
+    \ a) {\n    return a.inv();\n}\n\n\n#line 8 \"library/polynomial/compose_inv.hpp\"\
+    \n\nnamespace suisen {\n    // @return g mod x^n s.t. f(g(x))=g(f(x))=x (mod x^n)\n\
+    \    template <typename mint>\n    std::vector<mint> compositional_inv(std::vector<mint>\
+    \ f, const int n) {\n        using fps = FormalPowerSeries<mint>;\n\n        assert(f[0]\
+    \ == 0);\n        assert(f[1] != 0);\n\n        if (n == 0) return {};\n     \
+    \   if (n == 1) return { 0 };\n\n        f.erase(f.begin());\n        f.resize(n);\n\
+    \n        const int B = ::sqrt(n) + 1;\n\n        const int z = [n]{\n       \
+    \     int z = 1;\n            while (z < 2 * n - 1) z <<= 1;\n            return\
+    \ z;\n        }();\n        const mint iz = mint(z).inv();\n        \n       \
+    \ f.resize(z);\n        atcoder::internal::butterfly(f);\n        auto mul_f =\
+    \ [&](std::vector<mint> a) {\n            a.resize(z);\n            atcoder::internal::butterfly(a);\n\
+    \            for (int j = 0; j < z; ++j) a[j] *= f[j] * iz;\n            atcoder::internal::butterfly_inv(a);\n\
+    \            a.resize(n);\n            return a;\n        };\n\n        std::vector<fps>\
+    \ h(B + 1, fps(n));\n        h[0][0] = 1;\n        for (int i = 1; i <= B; ++i)\
+    \ {\n            h[i] = mul_f(h[i - 1]);\n        }\n\n        std::vector<mint>&\
+    \ hB = h[B];\n        hB.resize(z);\n        atcoder::internal::butterfly(hB);\n\
+    \        auto mul_hB = [&](std::vector<mint> a) {\n            a.resize(z);\n\
+    \            atcoder::internal::butterfly(a);\n            for (int j = 0; j <\
+    \ z; ++j) a[j] *= hB[j] * iz;\n            atcoder::internal::butterfly_inv(a);\n\
+    \            a.resize(n);\n            return a;\n        };\n\n        fps H(n);\n\
+    \        H[0] = 1;\n\n        fps g(B * B);\n\n        fps I(B * B);\n       \
+    \ I[1] = 1;\n        for (int q = 0; q < B; ++q) {\n            // loop invariant\n\
+    \            // - H = H_q, I = I_q\n            // - g[0,qB) is calculated\n\n\
+    \            // I_q / x^{qB}\n            fps J = fps(I.begin() + q * B, I.begin()\
+    \ + (q * B + B)) * H.cut_copy(B).inv(B);\n            J.resize(B);\n\n       \
+    \     for (int r = 0; r < B; ++r) {\n                for (int i = 0; i < r; ++i)\
+    \ {\n                    J[r] -= J[i] * h[i][r - i];\n                }\n    \
+    \            J[r] /= h[r][0];\n            }\n            std::move(J.begin(),\
+    \ J.end(), g.begin() + (B * q));\n\n            if (q == B - 1) break;\n\n   \
+    \         // update I_q\n            const int siz_q = n - q * B;\n          \
+    \  J.assign(siz_q, 0);\n            for (int r = 0; r < B; ++r) {\n          \
+    \      const mint gr = g[q * B + r];\n                for (int k = 0; k < siz_q\
+    \ - r; ++k) {\n                    J[r + k] += gr * h[r][k];\n               \
+    \ }\n            }\n            J *= H.cut_copy(siz_q);\n            for (int\
+    \ k = 0; k < siz_q; ++k) {\n                I[q * B + k] -= J[k];\n          \
+    \  }\n\n            // update H_q\n            H = mul_hB(H);\n        }\n   \
+    \     g.resize(n);\n        return g;\n    }\n} // namespace suisen\n\n\n\n#line\
+    \ 22 \"test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp\"\
+    \n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \n    int n;\n    std::cin >> n;\n    \n    std::vector<mint> a(n);\n    for (auto\
+    \ &e : a) std::cin >> e;\n\n    std::vector<mint> b = suisen::compositional_inv(a,\
+    \ n);\n    for (auto &e : b) std::cout << e << ' ';\n    std::cout << '\\n';\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series\"\
+    \n\n#include <iostream>\n\n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\
+    \nnamespace atcoder {\n    std::istream& operator>>(std::istream& in, mint &a)\
+    \ {\n        long long e; in >> e; a = e;\n        return in;\n    }\n    \n \
+    \   std::ostream& operator<<(std::ostream& out, const mint &a) {\n        out\
+    \ << a.val();\n        return out;\n    }\n} // namespace atcoder\n\n#include\
+    \ \"library/polynomial/compose_inv.hpp\"\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
+    \    std::cin.tie(nullptr);\n\n    int n;\n    std::cin >> n;\n    \n    std::vector<mint>\
+    \ a(n);\n    for (auto &e : a) std::cin >> e;\n\n    std::vector<mint> b = suisen::compositional_inv(a,\
+    \ n);\n    for (auto &e : b) std::cout << e << ' ';\n    std::cout << '\\n';\n\
+    }"
   dependsOn:
+  - library/polynomial/compose_inv.hpp
+  - library/polynomial/formal_power_series.hpp
   - library/polynomial/fps_naive.hpp
   - library/type_traits/type_traits.hpp
   - library/math/modint_extension.hpp
   - library/math/inv_mods.hpp
-  isVerificationFile: false
-  path: library/polynomial/formal_power_series.hpp
-  requiredBy:
-  - library/polynomial/compose_exp.hpp
-  - library/polynomial/compose_inv.hpp
-  - library/math/factorial_large.hpp
-  timestamp: '2023-05-21 05:26:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - test/src/sequence/partition_number/partition_function_2.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-  - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-documentation_of: library/polynomial/formal_power_series.hpp
+  isVerificationFile: true
+  path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
+  requiredBy: []
+  timestamp: '2023-05-27 03:49:43+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
 layout: document
-title: Formal Power Series
+redirect_from:
+- /verify/test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
+- /verify/test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp.html
+title: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
 ---
-## Formal Power Series

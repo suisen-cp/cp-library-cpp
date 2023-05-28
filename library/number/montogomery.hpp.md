@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
+  - icon: ':warning:'
+    path: library/number/fast_discrete_logarithm.hpp
+    title: library/number/fast_discrete_logarithm.hpp
   - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
@@ -169,6 +172,7 @@ data:
   requiredBy:
   - library/convolution/multi_variate_convolution_circular.hpp
   - library/number/deterministic_miller_rabin.hpp
+  - library/number/fast_discrete_logarithm.hpp
   - library/number/order_Z_mZ.hpp
   - library/number/primitive_root.hpp
   - library/number/tetration_mod.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/convex_hull_trick.hpp
     title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\
       \u306A\u3044\u5834\u5408)"
@@ -10,9 +10,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc228/tasks/abc228_h
@@ -70,10 +70,11 @@ data:
     \ std::less<>> {\n        using iterator = typename std::multiset<internal::convex_hull_trick::Line<T>>::iterator;\n\
     \        using MultT = safely_multipliable_t<T>;\n        using Line = internal::convex_hull_trick::Line<T>;\n\
     \n        static constexpr T inf = std::numeric_limits<T>::max();\n    public:\n\
-    \        void add_line(T slope, T intercept) {\n            if constexpr (not\
-    \ is_min_query) slope = -slope, intercept = -intercept;\n            auto it =\
-    \ this->emplace(slope, intercept, inf);\n            auto itl = it;\n        \
-    \    for (; itl != this->begin();) {\n                if (update_intersec_right(--itl,\
+    \        bool has_line() const {\n            return not this->empty();\n    \
+    \    }\n\n        void add_line(T slope, T intercept) {\n            if constexpr\
+    \ (not is_min_query) slope = -slope, intercept = -intercept;\n            auto\
+    \ it = this->emplace(slope, intercept, inf);\n            auto itl = it;\n   \
+    \         for (; itl != this->begin();) {\n                if (update_intersec_right(--itl,\
     \ it)) {\n                    ++itl;\n                    break;\n           \
     \     }\n            }\n            auto itm = this->erase(itl, it), itr = std::next(itm);\n\
     \            if (not update_intersec_right(itm, itr)) {\n                update_intersec_right(--itm,\
@@ -119,8 +120,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
   requiredBy: []
-  timestamp: '2022-10-30 21:37:43+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-27 03:49:56+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
 layout: document

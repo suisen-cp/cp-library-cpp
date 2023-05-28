@@ -6,18 +6,18 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
     title: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
     title: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
     title: test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/convex_hull_trick.hpp\"\n\n\n\n#include\
@@ -70,10 +70,11 @@ data:
     \ std::less<>> {\n        using iterator = typename std::multiset<internal::convex_hull_trick::Line<T>>::iterator;\n\
     \        using MultT = safely_multipliable_t<T>;\n        using Line = internal::convex_hull_trick::Line<T>;\n\
     \n        static constexpr T inf = std::numeric_limits<T>::max();\n    public:\n\
-    \        void add_line(T slope, T intercept) {\n            if constexpr (not\
-    \ is_min_query) slope = -slope, intercept = -intercept;\n            auto it =\
-    \ this->emplace(slope, intercept, inf);\n            auto itl = it;\n        \
-    \    for (; itl != this->begin();) {\n                if (update_intersec_right(--itl,\
+    \        bool has_line() const {\n            return not this->empty();\n    \
+    \    }\n\n        void add_line(T slope, T intercept) {\n            if constexpr\
+    \ (not is_min_query) slope = -slope, intercept = -intercept;\n            auto\
+    \ it = this->emplace(slope, intercept, inf);\n            auto itl = it;\n   \
+    \         for (; itl != this->begin();) {\n                if (update_intersec_right(--itl,\
     \ it)) {\n                    ++itl;\n                    break;\n           \
     \     }\n            }\n            auto itm = this->erase(itl, it), itr = std::next(itm);\n\
     \            if (not update_intersec_right(itm, itr)) {\n                update_intersec_right(--itm,\
@@ -112,10 +113,11 @@ data:
     \ std::less<>> {\n        using iterator = typename std::multiset<internal::convex_hull_trick::Line<T>>::iterator;\n\
     \        using MultT = safely_multipliable_t<T>;\n        using Line = internal::convex_hull_trick::Line<T>;\n\
     \n        static constexpr T inf = std::numeric_limits<T>::max();\n    public:\n\
-    \        void add_line(T slope, T intercept) {\n            if constexpr (not\
-    \ is_min_query) slope = -slope, intercept = -intercept;\n            auto it =\
-    \ this->emplace(slope, intercept, inf);\n            auto itl = it;\n        \
-    \    for (; itl != this->begin();) {\n                if (update_intersec_right(--itl,\
+    \        bool has_line() const {\n            return not this->empty();\n    \
+    \    }\n\n        void add_line(T slope, T intercept) {\n            if constexpr\
+    \ (not is_min_query) slope = -slope, intercept = -intercept;\n            auto\
+    \ it = this->emplace(slope, intercept, inf);\n            auto itl = it;\n   \
+    \         for (; itl != this->begin();) {\n                if (update_intersec_right(--itl,\
     \ it)) {\n                    ++itl;\n                    break;\n           \
     \     }\n            }\n            auto itm = this->erase(itl, it), itr = std::next(itm);\n\
     \            if (not update_intersec_right(itm, itr)) {\n                update_intersec_right(--itm,\
@@ -142,8 +144,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/convex_hull_trick.hpp
   requiredBy: []
-  timestamp: '2022-10-30 21:37:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-27 03:49:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
   - test/src/datastructure/convex_hull_trick/abc228_h.test.cpp

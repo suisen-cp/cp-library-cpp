@@ -27,6 +27,9 @@ data:
   - icon: ':x:'
     path: library/polynomial/compose_exp.hpp
     title: Compose Exp
+  - icon: ':heavy_check_mark:'
+    path: library/polynomial/compose_inv.hpp
+    title: "\u9006\u95A2\u6570"
   - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
@@ -115,6 +118,9 @@ data:
   - icon: ':x:'
     path: test/src/polynomial/compose_exp/arc154_f.test.cpp
     title: test/src/polynomial/compose_exp/arc154_f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
+    title: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
     title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
@@ -331,6 +337,7 @@ data:
   - library/sequence/stirling_number1.hpp
   - library/polynomial/array_fps_naive.hpp
   - library/polynomial/compose_exp.hpp
+  - library/polynomial/compose_inv.hpp
   - library/polynomial/subset_sum.hpp
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/formal_power_series_relaxed.hpp
@@ -388,6 +395,7 @@ data:
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
   - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp

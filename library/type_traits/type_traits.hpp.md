@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/convex_hull_trick.hpp
     title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\
       \u306A\u3044\u5834\u5408)"
@@ -84,6 +84,9 @@ data:
   - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
+  - icon: ':warning:'
+    path: library/number/fast_discrete_logarithm.hpp
+    title: library/number/fast_discrete_logarithm.hpp
   - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
@@ -102,6 +105,9 @@ data:
   - icon: ':x:'
     path: library/polynomial/compose_exp.hpp
     title: Compose Exp
+  - icon: ':heavy_check_mark:'
+    path: library/polynomial/compose_inv.hpp
+    title: "\u9006\u95A2\u6570"
   - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
@@ -162,10 +168,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
     title: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
     title: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -306,6 +312,9 @@ data:
   - icon: ':x:'
     path: test/src/polynomial/compose_exp/arc154_f.test.cpp
     title: test/src/polynomial/compose_exp/arc154_f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
+    title: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
     title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
@@ -577,6 +586,7 @@ data:
   - library/range_query/static_range_xored_mex_query.hpp
   - library/polynomial/array_fps_naive.hpp
   - library/polynomial/compose_exp.hpp
+  - library/polynomial/compose_inv.hpp
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/fps_naive.hpp
   - library/polynomial/fps.hpp
@@ -587,6 +597,7 @@ data:
   - library/geom/segment_intersections.hpp
   - library/algorithm/inversion_number.hpp
   - library/template.cpp
+  - library/number/fast_discrete_logarithm.hpp
   - library/number/order_Z_mZ.hpp
   - library/number/primitive_root.hpp
   - library/number/tetration_mod.hpp
@@ -673,6 +684,7 @@ data:
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
   - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp

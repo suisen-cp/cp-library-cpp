@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/number/fast_discrete_logarithm.hpp
+    title: library/number/fast_discrete_logarithm.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp
@@ -56,7 +59,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/number/discrete_logarithm.hpp
-  requiredBy: []
+  requiredBy:
+  - library/number/fast_discrete_logarithm.hpp
   timestamp: '2022-09-28 21:35:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -9,9 +9,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/garner.hpp
     title: Garner's Algorithm
-  - icon: ':warning:'
-    path: library/number/index_calculus.hpp
-    title: Index Calculus
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
@@ -284,7 +281,6 @@ data:
   path: library/number/ext_gcd.hpp
   requiredBy:
   - library/convolution/multi_variate_convolution_circular.hpp
-  - library/number/index_calculus.hpp
   - library/number/garner.hpp
   timestamp: '2023-02-02 02:15:56+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -9,6 +9,9 @@ data:
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
+  - icon: ':warning:'
+    path: library/number/fast_discrete_logarithm.hpp
+    title: library/number/fast_discrete_logarithm.hpp
   - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
@@ -199,6 +202,7 @@ data:
   path: library/number/deterministic_miller_rabin.hpp
   requiredBy:
   - library/convolution/multi_variate_convolution_circular.hpp
+  - library/number/fast_discrete_logarithm.hpp
   - library/number/order_Z_mZ.hpp
   - library/number/primitive_root.hpp
   - library/number/tetration_mod.hpp

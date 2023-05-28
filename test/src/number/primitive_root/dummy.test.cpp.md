@@ -354,44 +354,50 @@ data:
     \        static uint64_t safe_mod(long long val) { return (val %= _mod) < 0 ?\
     \ val + _mod : val; }\n        };\n    }\n\n    template <typename T, std::enable_if_t<std::is_integral_v<T>,\
     \ std::nullptr_t> = nullptr>\n    struct OrderMod {\n        using U = std::make_unsigned_t<T>;\n\
-    \        OrderMod(T m) : _mod(m) {\n            auto factorized = fast_factorize::factorize<T>(_mod);\n\
-    \            _is_prime = factorized.size() == 1;\n            _lambda = carmichael(factorized);\n\
-    \            _phi = totient(factorized);\n            for (auto [p, q] : fast_factorize::factorize<T>(_lambda))\
+    \        OrderMod() = default;\n        OrderMod(T m) : _mod(m) {\n          \
+    \  auto factorized = fast_factorize::factorize<T>(_mod);\n            _is_prime\
+    \ = factorized.size() == 1;\n            _lambda = _carmichael(factorized);\n\
+    \            _phi = _totient(factorized);\n            for (auto [p, q] : fast_factorize::factorize<T>(_lambda))\
     \ {\n                U r = 1;\n                for (int i = 0; i < q; ++i) r *=\
     \ p;\n                _fac_lambda.emplace_back(p, q, r);\n            }\n    \
     \    }\n\n        bool is_primitive_root(U a) const {\n            if (_mod <\
     \ 1ULL << 32) {\n                using mint = atcoder::dynamic_modint<1000000000>;\n\
     \                U old_mod = mint::mod();\n                mint::set_mod(_mod);\n\
-    \                bool res = is_primitive_root_impl<mint>(a);\n               \
-    \ mint::set_mod(old_mod);\n                return res;\n            } else {\n\
+    \                bool res = _is_primitive_root_impl<mint>(a);\n              \
+    \  mint::set_mod(old_mod);\n                return res;\n            } else {\n\
     \                using mint = internal::order_prime_mod::mint64<1000000000>;\n\
     \                U old_mod = mint::mod();\n                mint::set_mod(_mod);\n\
-    \                bool res = is_primitive_root_impl<mint>(a);\n               \
-    \ mint::set_mod(old_mod);\n                return res;\n            }\n      \
-    \  }\n\n        T primitive_root() const {\n            assert(_lambda == _phi);\n\
-    \            if (_mod < 1ULL << 32) {\n                return primitive_root_impl<std::mt19937>();\n\
-    \            } else {\n                return primitive_root_impl<std::mt19937_64>();\n\
+    \                bool res = _is_primitive_root_impl<mint>(a);\n              \
+    \  mint::set_mod(old_mod);\n                return res;\n            }\n     \
+    \   }\n\n        T primitive_root() const {\n            assert(_lambda == _phi);\n\
+    \            if (_mod < 1ULL << 32) {\n                return _primitive_root_impl<std::mt19937>();\n\
+    \            } else {\n                return _primitive_root_impl<std::mt19937_64>();\n\
     \            }\n        }\n\n        T operator()(U a) const {\n            if\
     \ (_mod < 1ULL << 32) {\n                using mint = atcoder::dynamic_modint<1000000000>;\n\
     \                U old_mod = mint::mod();\n                mint::set_mod(_mod);\n\
-    \                T res = order_impl<mint>(a);\n                mint::set_mod(old_mod);\n\
+    \                T res = _order_impl<mint>(a);\n                mint::set_mod(old_mod);\n\
     \                return res;\n            } else {\n                using mint\
     \ = internal::order_prime_mod::mint64<1000000000>;\n                U old_mod\
     \ = mint::mod();\n                mint::set_mod(_mod);\n                T res\
-    \ = order_impl<mint>(a);\n                mint::set_mod(old_mod);\n          \
-    \      return res;\n            }\n        }\n\n        T mod() const {\n    \
-    \        return _mod;\n        }\n\n    private:\n        U _mod;\n        U _phi;\n\
-    \        U _lambda;\n        bool _is_prime;\n\n        std::vector<std::tuple<U,\
-    \ int, U>> _fac_lambda;\n\n        static T carmichael(const std::vector<std::pair<T,\
+    \ = _order_impl<mint>(a);\n                mint::set_mod(old_mod);\n         \
+    \       return res;\n            }\n        }\n\n        T mod() const {\n   \
+    \         return _mod;\n        }\n        T totient() const {\n            return\
+    \ _phi;\n        }\n        T carmichael() const {\n            return _lambda;\n\
+    \        }\n        bool is_prime() const {\n            return _is_prime;\n \
+    \       }\n        std::vector<T> carmichael_prime_factors() const {\n       \
+    \     std::vector<T> res;\n            for (const auto &e : _fac_lambda) res.push_back(std::get<0>(e));\n\
+    \            return res;\n        }\n\n    private:\n        U _mod;\n       \
+    \ U _phi;\n        U _lambda;\n        bool _is_prime;\n\n        std::vector<std::tuple<U,\
+    \ int, U>> _fac_lambda;\n\n        static T _carmichael(const std::vector<std::pair<T,\
     \ int>>& factorized) {\n            T lambda = 1;\n            for (auto [p, ep]\
     \ : factorized) {\n                T phi = p - 1;\n                int exponent\
     \ = ep - (1 + (p == 2 and ep >= 3));\n                for (int i = 0; i < exponent;\
     \ ++i) phi *= p;\n                lambda = std::lcm(lambda, phi);\n          \
-    \  }\n            return lambda;\n        }\n        static T totient(const std::vector<std::pair<T,\
+    \  }\n            return lambda;\n        }\n        static T _totient(const std::vector<std::pair<T,\
     \ int>>& factorized) {\n            T t = 1;\n            for (const auto& [p,\
     \ ep] : factorized) {\n                t *= p - 1;\n                for (int i\
     \ = 0; i < ep - 1; ++i) t *= p;\n            }\n            return t;\n      \
-    \  }\n\n        template <typename mint>\n        bool is_primitive_root_impl(U\
+    \  }\n\n        template <typename mint>\n        bool _is_primitive_root_impl(U\
     \ a) const {\n            if (_lambda != _phi) return false;\n            if (_mod\
     \ == 2) return a % 2 == 1;\n\n            const int k = _fac_lambda.size();\n\
     \            U x = _lambda;\n            for (const auto& [p, q, pq] : _fac_lambda)\
@@ -409,12 +415,12 @@ data:
     \ {\n                    if (not dfs(dfs, m, r, rval)) return false;\n       \
     \         }\n\n                return true;\n            };\n            return\
     \ dfs(dfs, 0, k, b);\n        }\n\n        template <typename Rng>\n        T\
-    \ primitive_root_impl() const {\n            if (_mod == 2) return 1;\n\n    \
-    \        Rng rng{ std::random_device{}() };\n            while (true) {\n    \
-    \            U a = rng() % (_mod - 2) + 2;\n                while (not _is_prime\
+    \ _primitive_root_impl() const {\n            if (_mod == 2) return 1;\n\n   \
+    \         Rng rng{ std::random_device{}() };\n            while (true) {\n   \
+    \             U a = rng() % (_mod - 2) + 2;\n                while (not _is_prime\
     \ and std::gcd(a, _mod) != 1) {\n                    a = rng() % (_mod - 2) +\
     \ 2;\n                }\n                if (is_primitive_root(a)) return a;\n\
-    \            }\n        }\n\n        template <typename mint>\n        U order_impl(U\
+    \            }\n        }\n\n        template <typename mint>\n        U _order_impl(U\
     \ a) const {\n            if (_mod == 2) return a % 2 == 1;\n\n            const\
     \ int k = _fac_lambda.size();\n\n            U res = 1;\n\n            auto update\
     \ = [&](U p, mint val) {\n                while (val.val() != 1) {\n         \
@@ -550,7 +556,7 @@ data:
   isVerificationFile: true
   path: test/src/number/primitive_root/dummy.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 09:20:50+09:00'
+  timestamp: '2023-05-27 03:50:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/primitive_root/dummy.test.cpp

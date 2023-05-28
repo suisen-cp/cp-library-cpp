@@ -149,7 +149,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: Compressed Wavelet Matrix
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/convex_hull_trick.hpp
       title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\
         \u306A\u3044\u5834\u5408)"
@@ -701,6 +701,9 @@ data:
     - icon: ':warning:'
       path: library/number/factorized_form.hpp
       title: library/number/factorized_form.hpp
+    - icon: ':warning:'
+      path: library/number/fast_discrete_logarithm.hpp
+      title: library/number/fast_discrete_logarithm.hpp
     - icon: ':heavy_check_mark:'
       path: library/number/fast_factorize.hpp
       title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
@@ -711,9 +714,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/garner.hpp
       title: Garner's Algorithm
-    - icon: ':warning:'
-      path: library/number/index_calculus.hpp
-      title: Index Calculus
     - icon: ':heavy_check_mark:'
       path: library/number/internal_eratosthenes.hpp
       title: Internal Eratosthenes
@@ -784,6 +784,9 @@ data:
     - icon: ':x:'
       path: library/polynomial/compose_exp.hpp
       title: Compose Exp
+    - icon: ':heavy_check_mark:'
+      path: library/polynomial/compose_inv.hpp
+      title: "\u9006\u95A2\u6570"
     - icon: ':heavy_check_mark:'
       path: library/polynomial/convert_to_newton_basis.hpp
       title: Convert To Newton Basis
@@ -1385,10 +1388,10 @@ data:
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - name: test/src/datastructure/convex_hull_trick
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
       title: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
       title: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2240,6 +2243,11 @@ data:
     - icon: ':x:'
       path: test/src/polynomial/compose_exp/arc154_f.test.cpp
       title: test/src/polynomial/compose_exp/arc154_f.test.cpp
+  - name: test/src/polynomial/compose_inv
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
+      title: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   - name: test/src/polynomial/convert_to_newton_basis
     pages:
     - icon: ':heavy_check_mark:'
