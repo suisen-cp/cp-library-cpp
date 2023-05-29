@@ -21,23 +21,25 @@ data:
     \ res;\n        if (f.empty()) return res;\n\n        if (std::find_if(g.begin(),\
     \ g.end(), [](mint x) { return x != 0; }) == g.end()) return res[0] = f[0], res;\n\
     \n        // taylor shift f(x + [x^0]g)\n        const std::vector<mint> fa =\
-    \ [&]{\n            const mint a = std::exchange(g[0], 0);\n            std::vector<mint>\
-    \ fac(n), fac_inv(n);\n            fac[0] = 1;\n            for (int i = 1; i\
-    \ <= n - 1; ++i) fac[i] = fac[i - 1] * i;\n            fac_inv[n - 1] = fac[n\
-    \ - 1].inv();\n            for (int i = n - 1; i >= 1; --i) fac_inv[i - 1] = fac_inv[i]\
-    \ * i;\n\n            std::vector<mint> ec(n), fa(n);\n            mint p = 1;\n\
-    \            for (int i = 0; i < n; ++i, p *= a) {\n                ec[i] = p\
-    \ * fac_inv[i];\n                fa[n - 1 - i] = (i < int(f.size()) ? f[i] : 0)\
-    \ * fac[i];\n            }\n            fa = atcoder::convolution(fa, ec), fa.resize(n);\n\
-    \            std::reverse(fa.begin(), fa.end());\n            for (int i = 0;\
-    \ i < n; ++i) {\n                fa[i] *= fac_inv[i];\n            }\n       \
-    \     return fa;\n        }();\n\n        const int sqn = ::sqrt(f.size()) + 1;\n\
-    \n        const int z = [n]{\n            int z = 1;\n            while (z < 2\
-    \ * n - 1) z <<= 1;\n            return z;\n        }();\n        const mint iz\
-    \ = mint(z).inv();\n\n        g.erase(g.begin());\n        g.resize(z);\n    \
-    \    atcoder::internal::butterfly(g);\n\n        auto mult_g = [&](std::vector<mint>\
-    \ a) {\n            a.resize(z);\n            atcoder::internal::butterfly(a);\n\
-    \            for (int j = 0; j < z; ++j) a[j] *= g[j] * iz;\n            atcoder::internal::butterfly_inv(a);\n\
+    \ [&]{\n            const mint a = std::exchange(g[0], 0);\n            const\
+    \ int siz_f = f.size();\n            \n            std::vector<mint> fac(siz_f),\
+    \ fac_inv(siz_f);\n            fac[0] = 1;\n            for (int i = 1; i <= siz_f\
+    \ - 1; ++i) fac[i] = fac[i - 1] * i;\n            fac_inv[siz_f - 1] = fac[siz_f\
+    \ - 1].inv();\n            for (int i = siz_f - 1; i >= 1; --i) fac_inv[i - 1]\
+    \ = fac_inv[i] * i;\n\n            std::vector<mint> ec(siz_f), fa(siz_f);\n \
+    \           mint p = 1;\n            for (int i = 0; i < siz_f; ++i, p *= a) {\n\
+    \                ec[i] = p * fac_inv[i];\n                fa[siz_f - 1 - i] =\
+    \ (i < int(f.size()) ? f[i] : 0) * fac[i];\n            }\n            fa = atcoder::convolution(fa,\
+    \ ec), fa.resize(siz_f);\n            std::reverse(fa.begin(), fa.end());\n  \
+    \          for (int i = 0; i < siz_f; ++i) {\n                fa[i] *= fac_inv[i];\n\
+    \            }\n            if (siz_f > n) fa.resize(n);\n            return fa;\n\
+    \        }();\n\n        const int sqn = ::sqrt(f.size()) + 1;\n\n        const\
+    \ int z = [n]{\n            int z = 1;\n            while (z < 2 * n - 1) z <<=\
+    \ 1;\n            return z;\n        }();\n        const mint iz = mint(z).inv();\n\
+    \n        g.erase(g.begin());\n        g.resize(z);\n        atcoder::internal::butterfly(g);\n\
+    \n        auto mult_g = [&](std::vector<mint> a) {\n            a.resize(z);\n\
+    \            atcoder::internal::butterfly(a);\n            for (int j = 0; j <\
+    \ z; ++j) a[j] *= g[j] * iz;\n            atcoder::internal::butterfly_inv(a);\n\
     \            a.resize(n);\n            return a;\n        };\n\n        std::vector<std::vector<mint>>\
     \ pow_g(sqn, std::vector<mint>(n));\n        pow_g[0][0] = 1;\n        for (int\
     \ i = 1; i < sqn; ++i) {\n            pow_g[i] = mult_g(pow_g[i - 1]);\n     \
@@ -65,23 +67,25 @@ data:
     \ res;\n        if (f.empty()) return res;\n\n        if (std::find_if(g.begin(),\
     \ g.end(), [](mint x) { return x != 0; }) == g.end()) return res[0] = f[0], res;\n\
     \n        // taylor shift f(x + [x^0]g)\n        const std::vector<mint> fa =\
-    \ [&]{\n            const mint a = std::exchange(g[0], 0);\n            std::vector<mint>\
-    \ fac(n), fac_inv(n);\n            fac[0] = 1;\n            for (int i = 1; i\
-    \ <= n - 1; ++i) fac[i] = fac[i - 1] * i;\n            fac_inv[n - 1] = fac[n\
-    \ - 1].inv();\n            for (int i = n - 1; i >= 1; --i) fac_inv[i - 1] = fac_inv[i]\
-    \ * i;\n\n            std::vector<mint> ec(n), fa(n);\n            mint p = 1;\n\
-    \            for (int i = 0; i < n; ++i, p *= a) {\n                ec[i] = p\
-    \ * fac_inv[i];\n                fa[n - 1 - i] = (i < int(f.size()) ? f[i] : 0)\
-    \ * fac[i];\n            }\n            fa = atcoder::convolution(fa, ec), fa.resize(n);\n\
-    \            std::reverse(fa.begin(), fa.end());\n            for (int i = 0;\
-    \ i < n; ++i) {\n                fa[i] *= fac_inv[i];\n            }\n       \
-    \     return fa;\n        }();\n\n        const int sqn = ::sqrt(f.size()) + 1;\n\
-    \n        const int z = [n]{\n            int z = 1;\n            while (z < 2\
-    \ * n - 1) z <<= 1;\n            return z;\n        }();\n        const mint iz\
-    \ = mint(z).inv();\n\n        g.erase(g.begin());\n        g.resize(z);\n    \
-    \    atcoder::internal::butterfly(g);\n\n        auto mult_g = [&](std::vector<mint>\
-    \ a) {\n            a.resize(z);\n            atcoder::internal::butterfly(a);\n\
-    \            for (int j = 0; j < z; ++j) a[j] *= g[j] * iz;\n            atcoder::internal::butterfly_inv(a);\n\
+    \ [&]{\n            const mint a = std::exchange(g[0], 0);\n            const\
+    \ int siz_f = f.size();\n            \n            std::vector<mint> fac(siz_f),\
+    \ fac_inv(siz_f);\n            fac[0] = 1;\n            for (int i = 1; i <= siz_f\
+    \ - 1; ++i) fac[i] = fac[i - 1] * i;\n            fac_inv[siz_f - 1] = fac[siz_f\
+    \ - 1].inv();\n            for (int i = siz_f - 1; i >= 1; --i) fac_inv[i - 1]\
+    \ = fac_inv[i] * i;\n\n            std::vector<mint> ec(siz_f), fa(siz_f);\n \
+    \           mint p = 1;\n            for (int i = 0; i < siz_f; ++i, p *= a) {\n\
+    \                ec[i] = p * fac_inv[i];\n                fa[siz_f - 1 - i] =\
+    \ (i < int(f.size()) ? f[i] : 0) * fac[i];\n            }\n            fa = atcoder::convolution(fa,\
+    \ ec), fa.resize(siz_f);\n            std::reverse(fa.begin(), fa.end());\n  \
+    \          for (int i = 0; i < siz_f; ++i) {\n                fa[i] *= fac_inv[i];\n\
+    \            }\n            if (siz_f > n) fa.resize(n);\n            return fa;\n\
+    \        }();\n\n        const int sqn = ::sqrt(f.size()) + 1;\n\n        const\
+    \ int z = [n]{\n            int z = 1;\n            while (z < 2 * n - 1) z <<=\
+    \ 1;\n            return z;\n        }();\n        const mint iz = mint(z).inv();\n\
+    \n        g.erase(g.begin());\n        g.resize(z);\n        atcoder::internal::butterfly(g);\n\
+    \n        auto mult_g = [&](std::vector<mint> a) {\n            a.resize(z);\n\
+    \            atcoder::internal::butterfly(a);\n            for (int j = 0; j <\
+    \ z; ++j) a[j] *= g[j] * iz;\n            atcoder::internal::butterfly_inv(a);\n\
     \            a.resize(n);\n            return a;\n        };\n\n        std::vector<std::vector<mint>>\
     \ pow_g(sqn, std::vector<mint>(n));\n        pow_g[0][0] = 1;\n        for (int\
     \ i = 1; i < sqn; ++i) {\n            pow_g[i] = mult_g(pow_g[i - 1]);\n     \
@@ -107,7 +111,7 @@ data:
   isVerificationFile: false
   path: library/polynomial/compose.hpp
   requiredBy: []
-  timestamp: '2023-05-27 18:14:40+09:00'
+  timestamp: '2023-05-27 18:49:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
@@ -118,13 +122,11 @@ title: "\u5408\u6210"
 ---
 ## 合成
 
-多項式 $\displaystyle f(x) = \sum _ {i = 0} ^ {N - 1} a _ i x ^ i,\ g(x) = \sum _ {i = 0} ^ {M - 1} b _ i x ^ i$ に対して合成 $(f\circ g)(x) \pmod{x ^ K}$ を $O(NK + \sqrt{N}K\log K + M)$ 時間で計算するライブラリ。
+多項式 $\displaystyle f(x) = \sum _ {i = 0} ^ {N - 1} a _ i x ^ i,\ g(x) = \sum _ {i = 0} ^ {M - 1} b _ i x ^ i$ に対して合成 $(f\circ g)(x) \pmod{x ^ K}$ を $O(NK + \sqrt{N}K\log K)$ 時間で計算するライブラリ。
 
 ## アルゴリズム
 
-$a:= \lbrack x ^ 0\rbrack g$ とする。
-
-まず、$g\leftarrow g \bmod x ^ K$ とする。この部分の計算量は $O(M + K)$ である。
+以下は全て $\mathrm{mod}\ x ^ K$ で計算する。
 
 $\displaystyle f\circ g = \sum _ {i = 0} ^ {N - 1} a _ i g ^ i$ を計算したい。$B \coloneqq \lceil \sqrt{N} \rceil$ とすれば $\displaystyle f\circ g = \sum _ {i = 0} ^ {B - 1} (g ^ B) ^ i \sum _ {j = 0} ^ {B - 1} a _ {iB + j} g ^ j$ と表せる。ただし $i \geq N$ に対して $a _ i = 0$ とする。
 
@@ -132,14 +134,15 @@ $g ^ 0, g ^ 1, \ldots, g ^ {B - 1}$ および $G\coloneqq g ^ B$ に対して $G
 
 この前計算の結果を用いれば、各 $i=0,1,\ldots,B-1$ に対して、$\displaystyle \sum _ {j = 0} ^ {B - 1}a _ {iB + j} g ^ j \bmod x ^ K$ を $O(\sqrt{N} K)$ 時間で計算できる。従って、$\displaystyle \left(G ^ i \sum _ {j = 0} ^ {B - 1}a _ {iB + j} g ^ j\right) \bmod x ^ K$ の計算は $O(\sqrt{N} K + K \log K)$ 時間で可能である。
 
-以上をまとめると、全体の計算量は $O(NK + \sqrt{N}K\log K + M)$ 時間となる。
+以上をまとめると、全体の計算量は $O(NK + \sqrt{N}K\log K)$ 時間となる。
 
-## 定数倍高速化 (1)
+## 高速化 (1)
 
 $g ^ i,G ^ i$ の前計算において、$\mathbf{FFT}(g)$ や $\mathbf{FFT}(G)$ を $1$ 回しか計算しないことで定数倍高速化を図ることができる。
 
-## 定数倍高速化 (2)
+## 高速化 (2)
 
-$\lbrack x ^ 0 \rbrack g = 0$ が成り立つ場合、$\displaystyle f\circ g = \sum _ {i = 0} ^ {B - 1} x ^ {Bi} ((g / x) ^ B) ^ i \sum _ {j = 0} ^ {B - 1} a _ {iB + j} x ^ j (g / x) ^ j$ において $\displaystyle \sum _ {j = 0} ^ {B - 1} a _ {iB + j} x ^ j (g / x) ^ j$ は $\mathrm{mod}\ x ^ {N - iB}$ で求めれば十分である。従って、$NK$ に付く係数をおよそ $1/2$ 倍に削減できる。
+$\lbrack x ^ 0 \rbrack g = 0$ が成り立つ場合、$\displaystyle f\circ g = \sum _ {i = 0} ^ {B - 1} x ^ {Bi} ((g / x) ^ B) ^ i \sum _ {j = 0} ^ {B - 1} a _ {iB + j} x ^ j (g / x) ^ j$ において $\displaystyle \sum _ {j = 0} ^ {B - 1} a _ {iB + j} x ^ j (g / x) ^ j$ は $\mathrm{mod}\ x ^ {N - iB}$ で求めれば十分である。従って、$NK$ に付く係数をおよそ $1/2$ 倍に削減できる。またこの場合は $f\leftarrow f \bmod x ^ K$ としてもよいので、計算量は本質的に改善されて $O(\min(N,K)K + \sqrt{\min(N,K)}K\log K)$ 時間となる。
 
-$\lbrack x ^ 0 \rbrack g \neq 0$ の場合は $f$ を taylor shift して $f(x) \leftarrow f(x + \lbrack x ^ 0 \rbrack g)$ とおき直すことで $\lbrack x ^ 0 \rbrack g = 0$ の場合に帰着できる。帰着に掛かる計算量は $O(N\log N)$ であり、サイズ $N$ の畳み込み $1$ 回が支配的であるから全体の実行時間と比較して十分短い時間実行可能である。
+$\lbrack x ^ 0 \rbrack g \neq 0$ の場合は $f$ を taylor shift して $f \leftarrow f(x + \lbrack x ^ 0 \rbrack g)$ とおき直すことで $\lbrack x ^ 0 \rbrack g = 0$ の場合に帰着できる。帰着に掛かる計算量は $O(N\log N)$ であり、計算量は $O(\min(N,K)K + \sqrt{\min(N,K)}K\log K + N \log N)$ である。なお、$K \leq \log N$ など $K$ が極端に小さい場合は、$N\log N$ の項が支配的になるため帰着を行わない方が高速となる可能性がある。
+
