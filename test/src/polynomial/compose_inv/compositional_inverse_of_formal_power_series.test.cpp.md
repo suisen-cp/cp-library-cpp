@@ -553,11 +553,11 @@ data:
     \        H[0] = 1;\n\n        fps g(B * B);\n\n        fps I(B * B);\n       \
     \ I[1] = 1;\n        for (int q = 0; q < B; ++q) {\n            // loop invariant\n\
     \            // - H = H_q, I = I_q\n            // - g[0,qB) is calculated\n\n\
-    \            // I_q / x^{qB}\n            fps J = fps(I.begin() + q * B, I.begin()\
-    \ + (q * B + B)) * H.cut_copy(B).inv(B);\n            J.resize(B);\n\n       \
-    \     for (int r = 0; r < B; ++r) {\n                for (int i = 0; i < r; ++i)\
-    \ {\n                    J[r] -= J[i] * h[i][r - i];\n                }\n    \
-    \            J[r] /= h[r][0];\n            }\n            std::move(J.begin(),\
+    \            // (I_q / x^{qB}) / H_q\n            fps J = fps(I.begin() + q *\
+    \ B, I.begin() + (q * B + B)) * H.cut_copy(B).inv(B);\n            J.resize(B);\n\
+    \n            for (int r = 0; r < B; ++r) {\n                for (int i = 0; i\
+    \ < r; ++i) {\n                    J[r] -= J[i] * h[i][r - i];\n             \
+    \   }\n                J[r] /= h[r][0];\n            }\n            std::move(J.begin(),\
     \ J.end(), g.begin() + (B * q));\n\n            if (q == B - 1) break;\n\n   \
     \         // update I_q\n            const int siz_q = n - q * B;\n          \
     \  J.assign(siz_q, 0);\n            for (int r = 0; r < B; ++r) {\n          \
@@ -594,7 +594,7 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2023-05-27 03:49:43+09:00'
+  timestamp: '2023-05-27 18:14:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp

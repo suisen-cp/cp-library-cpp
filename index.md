@@ -2238,6 +2238,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
       title: test/src/polynomial/compose/composition_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/compose/dummy.test.cpp
+      title: test/src/polynomial/compose/dummy.test.cpp
   - name: test/src/polynomial/compose_exp
     pages:
     - icon: ':x:'
