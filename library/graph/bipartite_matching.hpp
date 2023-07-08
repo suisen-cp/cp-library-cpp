@@ -12,7 +12,7 @@ namespace suisen {
     struct BipartiteMatching {
         static constexpr int ABSENT = -1;
 
-        BipartiteMatching() {}
+        BipartiteMatching() = default;
         BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n, ABSENT), _to_l(_m, ABSENT), _g(n + m) {}
 
         void add_edge(int fr, int to) {

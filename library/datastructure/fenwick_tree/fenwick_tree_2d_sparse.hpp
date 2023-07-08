@@ -13,7 +13,7 @@ namespace suisen {
     template <typename T>
     class FenwickTree2DSparse {
     public:
-        FenwickTree2DSparse() {}
+        FenwickTree2DSparse() = default;
         explicit FenwickTree2DSparse(int x_num) : n(x_num + 1), data(n), points(), pos_x(), pos_y(n) {}
 
         void add_point(int x, int y) {

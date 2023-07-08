@@ -49,6 +49,11 @@ namespace suisen {
             _built = true;
         }
 
+
+        int state_num() const {
+            return this->nodes.size();
+        }
+
         int init_state() const {
             return 0;
         }

@@ -8,7 +8,7 @@ namespace suisen {
     template <typename T>
     class FenwickTree2D {
     public:
-        FenwickTree2D() {}
+        FenwickTree2D() = default;
         explicit FenwickTree2D(int n, int m) : n(n), m(m), data(n, std::vector<T>(m, T{})) {}
         void add(int i, int j, T v) {
             for (int x = i + 1; x <= n; x += (x & -x)) for (int y = j + 1; y <= m; y += (y & -y)) {

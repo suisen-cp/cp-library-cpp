@@ -6,7 +6,7 @@
 
 namespace suisen {
     struct LinkedUnionFind : public UnionFind {
-        LinkedUnionFind() {}
+        LinkedUnionFind() = default;
         explicit LinkedUnionFind(int n) : UnionFind(n), _link(n) {
             std::iota(_link.begin(), _link.end(), 0);
         }

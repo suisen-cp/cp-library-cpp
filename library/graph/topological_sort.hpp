@@ -10,7 +10,7 @@ class topological_sort {
         topological_sort(const std::vector<std::vector<int>> &g): _n(g.size()) {
             build(g);
         }
-        bool is_dag() const { return _ord.size() == _n; }
+        bool is_dag() const { return int(_ord.size()) == _n; }
         const std::vector<int>& sorted() const { return _ord; }
         int operator[](int i) const { return _ord[i]; }
     private:

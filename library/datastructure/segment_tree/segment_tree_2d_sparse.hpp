@@ -11,7 +11,7 @@ namespace suisen {
 template <typename T, T(*op)(T, T), T(*e)()>
 class SegmentTree2DSparse {
     public:
-        SegmentTree2DSparse() {}
+        SegmentTree2DSparse() = default;
         explicit SegmentTree2DSparse(int x_num) : n(x_num + 1), m(ceil_pow2(n)), data(m * 2), points(), pos_x(), pos_y(m * 2) {}
 
         void add_point(int x, int y) {

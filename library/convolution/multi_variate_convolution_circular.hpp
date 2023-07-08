@@ -14,7 +14,7 @@ namespace suisen {
     namespace internal {
         template <typename mint, std::enable_if_t<atcoder::internal::is_modint<mint>::value, std::nullptr_t> = nullptr>
         struct multi_variate_convolution_circular {
-            multi_variate_convolution_circular() {}
+            multi_variate_convolution_circular() = default;
             multi_variate_convolution_circular(std::vector<int> n) : _d(n.size()), _l(std::reduce(n.begin(), n.end(), 1, std::multiplies<int>())), _n(n), _g(_d), _ig(_d) {
                 assert(miller_rabin::is_prime(mint::mod()));
                 mint g = primitive_root(mint::mod());

@@ -11,7 +11,7 @@ namespace suisen {
     struct Matrix {
         std::vector<std::vector<T>> dat;
 
-        Matrix() {}
+        Matrix() = default;
         Matrix(int n) : Matrix(n, n) {}
         Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m, fill_value)) {}
         Matrix(const std::vector<std::vector<T>>& dat) : dat(dat) {}

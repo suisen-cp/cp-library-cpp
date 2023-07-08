@@ -15,7 +15,7 @@ namespace suisen {
     struct IntervalHeap {
         using value_type = T;
 
-        IntervalHeap() {}
+        IntervalHeap() = default;
         IntervalHeap(const Comp& comp) : _comp(comp) {}
 
         void reserve(int capacity) { _dat.reserve(capacity); }

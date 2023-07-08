@@ -76,7 +76,7 @@ namespace suisen {
             node_type::pool = pool_type(capacity);
         }
 
-        PersistentArray() {}
+        PersistentArray() = default;
         explicit PersistentArray(int n, const value_type& val = value_type{}) : PersistentArray(std::vector<value_type>(n, val)) {}
         PersistentArray(const std::vector<value_type>& init) : _n(init.size()), _root(node_type::build(init)) {}
 

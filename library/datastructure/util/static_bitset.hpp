@@ -11,7 +11,7 @@ namespace suisen {
     private:
         static constexpr std::size_t L = (N + 63) >> 6;
     public:
-        static_bitset() {}
+        static_bitset() = default;
         static_bitset(std::array<uint64_t, L> data) : _data(data) {}
 
         static_bitset<N>& operator&=(const static_bitset<N>& rhs) {

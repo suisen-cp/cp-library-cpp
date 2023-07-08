@@ -151,7 +151,7 @@ namespace suisen {
             get_upper_hull(br, r, 2 * k + 1, seg, res);
         }
     public:
-        DynamicConvexHullOffline() {}
+        DynamicConvexHullOffline() = default;
 
         template <typename T>
         DynamicConvexHullOffline(const std::vector<T>& xs) {

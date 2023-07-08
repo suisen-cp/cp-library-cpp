@@ -6,7 +6,7 @@
 namespace suisen {
     template <int base_as_int, typename mint>
     struct static_pow_mods {
-        static_pow_mods() {}
+        static_pow_mods() = default;
         static_pow_mods(int n) { ensure(n); }
         const mint& operator[](int i) const {
             ensure(i);
@@ -26,7 +26,7 @@ namespace suisen {
 
     template <typename mint>
     struct pow_mods {
-        pow_mods() {}
+        pow_mods() = default;
         pow_mods(mint base, int n) : base(base) { ensure(n); }
         const mint& operator[](int i) const {
             ensure(i);

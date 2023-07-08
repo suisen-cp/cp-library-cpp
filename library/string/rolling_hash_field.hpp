@@ -23,7 +23,7 @@ namespace suisen {
     struct RollingHashField {
         using hash_type = std::array<T, base_num>;
 
-        RollingHashField() {}
+        RollingHashField() = default;
 
         hash_type operator()(int l, int r) {
             ensure_pows(r - l);

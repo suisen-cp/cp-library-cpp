@@ -38,7 +38,7 @@ namespace suisen {
         using modint_type = mint;
         using hash_type = decltype(mint::mod());
 
-        RollingHash() {}
+        RollingHash() = default;
         RollingHash(const std::vector<int> &a) : n(a.size()) {
             for (int base_id = 0; base_id < base_num; ++base_id) {
                 hash[base_id].resize(n + 1);

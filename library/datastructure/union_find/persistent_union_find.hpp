@@ -10,7 +10,7 @@ namespace suisen {
     struct PersistentUnionFind {
         using array_type = PersistentArray<int, 4>;
 
-        PersistentUnionFind() {}
+        PersistentUnionFind() = default;
         explicit PersistentUnionFind(int n) : _n(n), _dat(_n, -1) {}
 
         static void init_pool(int capacity) {

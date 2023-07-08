@@ -7,7 +7,7 @@
 namespace suisen {
     template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>
     struct CommutativeDualSegmentTree {
-        CommutativeDualSegmentTree() {}
+        CommutativeDualSegmentTree() = default;
         CommutativeDualSegmentTree(std::vector<T>&& a) : n(a.size()), m(ceil_pow2(a.size())), data(std::move(a)), lazy(m, id()) {}
         CommutativeDualSegmentTree(const std::vector<T>& a) : CommutativeDualSegmentTree(std::vector<T>(a)) {}
         CommutativeDualSegmentTree(int n, const T& fill_value) : CommutativeDualSegmentTree(std::vector<T>(n, fill_value)) {}

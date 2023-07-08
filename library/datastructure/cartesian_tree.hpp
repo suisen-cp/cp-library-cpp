@@ -33,7 +33,7 @@ namespace suisen {
 
     template <typename Comparator>
     struct CartesianTreeBuilder {
-        CartesianTreeBuilder() {}
+        CartesianTreeBuilder() = default;
         template <typename RandomAccessibleContainer>
         CartesianTreeBuilder(const RandomAccessibleContainer& a, Comparator comp = Comparator{}) : n(a.size()), comp(comp), par(calc_par(a, comp)) {}
 

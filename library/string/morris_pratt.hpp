@@ -21,12 +21,21 @@ namespace suisen {
         template <typename RandomAccessibleContainer>
         auto morris_pratt(const RandomAccessibleContainer &s) { return morris_pratt(s.begin(), s.end()); }
 
+        template <typename RandomAccessIterator>
+        std::vector<int> all_periods(RandomAccessIterator start, RandomAccessIterator last, bool accept_fragment = true) {
+            auto mp = morris_pratt(start, last);
+            const int n = mp.size() - 1;
+            std::vector<int> res;
+            for (int r = n; r; r = mp[r]) {
+                if (int p = n - mp[r]; accept_fragment or n % p == 0) res.push_back(p);
+            }
+            return res;
+        }
+
         template <typename RandomAccessIterator, typename OutputIterator>
         void min_period(RandomAccessIterator start, RandomAccessIterator last, OutputIterator result, bool accept_fragment = true) {
-            auto mp = morris_pratt(start, last);
-            int n = mp.size() - 1, p = n - mp[n];
-            int l = not accept_fragment and n % p ? n : p;
-            while (l --> 0) *result++ = *start++;
+            int p = all_periods(start, last, accept_fragment)[0];
+            while (p --> 0) *result++ = *start++;
         }
         template <typename RandomAccessibleContainer>
         RandomAccessibleContainer min_period(RandomAccessibleContainer s, bool accept_fragment = true) {
@@ -37,7 +46,7 @@ namespace suisen {
 
         template <typename RandomAccessibleContainer>
         struct MatcherMP {
-            MatcherMP() {}
+            MatcherMP() = default;
             MatcherMP(const RandomAccessibleContainer &s) : s(s), mp(morris_pratt(s)) {}
             vector<int> operator()(const RandomAccessibleContainer &t) const {
                 const int n = s.size(), m = t.size();

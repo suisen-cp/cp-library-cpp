@@ -7,7 +7,7 @@
 namespace suisen {
     template <typename T, T(*op)(T, T), T(*e)()>
     struct SegmentTree2D {
-        SegmentTree2D() {}
+        SegmentTree2D() = default;
         SegmentTree2D(int n, int m) : SegmentTree2D(std::vector(2 * n, std::vector(2 * m, e()))) {}
         SegmentTree2D(const std::vector<std::vector<T>> &a) : n(a.size()), m(n == 0 ? 0 : a[0].size()), dat(2 * n, std::vector<T>(2 * m, e())) {
             for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) {

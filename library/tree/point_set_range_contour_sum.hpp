@@ -14,7 +14,7 @@
 namespace suisen {
     template <typename T, T(*op)(T, T), T(*e)()>
     struct PointSetRangeContourSum {
-        PointSetRangeContourSum() {}
+        PointSetRangeContourSum() = default;
         PointSetRangeContourSum(int n, const T &fill_value) : PointSetRangeContourSum(std::vector<T>(n, fill_value)) {}
         PointSetRangeContourSum(const std::vector<T> &dat) : _n(dat.size()), _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat) {
             _par.reserve(2 * _n);
@@ -33,7 +33,7 @@ namespace suisen {
             std::vector<int> _sep;
             segtree_type _seq;
 
-            Node() {}
+            Node() = default;
             Node(const std::vector<std::vector<int>>& g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const bool child_index, std::vector<std::vector<AuxData>>& info, const std::vector<T> &dat, int siz) {
                 std::vector<T> reordered_dat(siz);
                 _sep.push_back(0);

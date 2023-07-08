@@ -8,7 +8,7 @@
 
 namespace suisen {
     struct UndirectedEulerianGraph {
-        UndirectedEulerianGraph() {}
+        UndirectedEulerianGraph() = default;
         UndirectedEulerianGraph(int n) : n(n), g(n), inv(n) {}
 
         void add_edge(int u, int v) {

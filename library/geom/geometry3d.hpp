@@ -186,7 +186,7 @@ namespace suisen::geometry3d {
     struct Plane {
         Point normal_vec; // = [a, b, c]
         coordinate_t d;
-        Plane() {}
+        Plane() = default;
         Plane(const Point &p, const Point &q, const Point &r) : normal_vec(normalized((q - p) * (r - p))), d(-inner_product(normal_vec, p)) {}
         Plane(const coordinate_t &a, coordinate_t &b, coordinate_t &c, coordinate_t &d) : normal_vec(normalized({a, b, c})), d(d / abs({a, b, c})) {}
     };

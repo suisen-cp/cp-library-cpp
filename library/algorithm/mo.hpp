@@ -8,7 +8,7 @@
 
 namespace suisen {
     struct Mo {
-        Mo() {}
+        Mo() = default;
         Mo(const int n, const std::vector<std::pair<int, int>> &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries), ord(q) {
             std::iota(ord.begin(), ord.end(), 0);
             std::sort(

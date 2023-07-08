@@ -14,7 +14,7 @@ namespace suisen {
 
         using convolution_t = std::vector<value_type> (*)(const std::vector<value_type> &, const std::vector<value_type> &);
 
-        VecSparseFPS() {}
+        VecSparseFPS() = default;
         template <typename IT, typename VT>
         VecSparseFPS(std::vector<std::pair<IT, VT>> data, bool sorted = false) {
             if (not sorted) std::sort(data.begin(), data.end(), [](auto &p1, auto &p2) { return p1.first < p2.first; });

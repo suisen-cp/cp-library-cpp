@@ -8,7 +8,7 @@
 namespace suisen {
     template <typename T, auto zero = default_operator::zero<T>, auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>
     struct CumulativeSum2D {
-        CumulativeSum2D() {}
+        CumulativeSum2D() = default;
         CumulativeSum2D(const std::vector<std::vector<T>> &a) : n(a.size()), m(n == 0 ? 0 : a[0].size()), s(n + 1, std::vector<T>(m + 1, zero())) {
             for (size_t i = 0; i < n; ++i) for (size_t j = 0; j < m; ++j) {
                 s[i + 1][j + 1] = sub(add(add(a[i][j], s[i + 1][j]), s[i][j + 1]), s[i][j]);

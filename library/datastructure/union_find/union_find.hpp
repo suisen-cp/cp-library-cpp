@@ -6,7 +6,7 @@
 
 namespace suisen {
     struct UnionFind {
-        UnionFind() {}
+        UnionFind() = default;
         explicit UnionFind(int _n) : _n(_n), _dat(_n, -1) {}
         // Get the root of `x`. equivalent to `operator[](x)`
         int root(int x) {

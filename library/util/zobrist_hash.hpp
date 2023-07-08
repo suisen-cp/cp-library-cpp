@@ -51,7 +51,7 @@ namespace suisen {
     struct VecZobristHash : public ZobristHashBase<std::vector<std::make_unsigned_t<HashType>>, std::size_t, HashType, VecZobristHash<HashType>> {
         using Base = ZobristHashBase<std::vector<std::make_unsigned_t<HashType>>, std::size_t, HashType, VecZobristHash<HashType>>;
 
-        VecZobristHash() {}
+        VecZobristHash() = default;
         VecZobristHash(typename Base::value_type max_val) : Base(max_val + 1) {
             std::generate(this->h.begin(), this->h.end(), this->rng);
         }
@@ -80,7 +80,7 @@ namespace suisen {
     struct MapZobristHash : public ZobristHashBase<std::map<ValueType, std::make_unsigned_t<HashType>>, ValueType, HashType, MapZobristHash<ValueType, HashType>> {
         using Base = ZobristHashBase<std::map<ValueType, std::make_unsigned_t<HashType>>, ValueType, HashType, MapZobristHash<ValueType, HashType>>;
 
-        MapZobristHash() {}
+        MapZobristHash() = default;
         template <typename Container>
         MapZobristHash(const Container& universal_set) {
             for (auto& val : universal_set) this->h[val] = (this->rng)();

@@ -5,7 +5,7 @@
 
 namespace suisen {
     struct Manacher {
-        Manacher() {}
+        Manacher() = default;
         template <typename Container>
         Manacher(const Container& container, const typename Container::value_type& dummy) : _n(container.size()), _r(2 * _n + 1) {
             std::vector v{ dummy };

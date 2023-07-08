@@ -7,7 +7,7 @@ namespace suisen {
     template <typename mint>
     class inv_mods {
     public:
-        inv_mods() {}
+        inv_mods() = default;
         inv_mods(int n) { ensure(n); }
         const mint& operator[](int i) const {
             ensure(i);

@@ -10,7 +10,7 @@ namespace suisen {
         template <typename T, typename index_t = int, typename Container = std::vector<T>>
         class FenwickTreeBase {
         public:
-            FenwickTreeBase() {}
+            FenwickTreeBase() = default;
             explicit FenwickTreeBase(index_t n) : n(n) {}
 
             int size() const {

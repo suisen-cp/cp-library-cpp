@@ -360,6 +360,33 @@ std::vector<int> uppercase_str_to_ints(const std::string &s) {
     return transform_to_vector(uppercase_to_int, s);
 }
 
+template <typename T, typename ToKey, typename CompareValue = std::less<>,
+    std::enable_if_t<
+        std::conjunction_v<
+            std::is_invocable<ToKey, T>,
+            std::is_invocable_r<bool, CompareValue, std::invoke_result_t<ToKey, T>, std::invoke_result_t<ToKey, T>
+        >
+    >, std::nullptr_t> = nullptr
+>
+auto comparator(const ToKey &to_key, const CompareValue &compare_value = std::less<>()) {
+    return [to_key, compare_value](const T& x, const T& y) { return compare_value(to_key(x), to_key(y)); };
+}
+
+template <typename ToKey, std::enable_if_t<std::is_invocable_v<ToKey, int>, std::nullptr_t> = nullptr>
+std::vector<int> sorted_indices(int n, const ToKey &to_key) {
+    std::vector<int> p(n);
+    std::iota(p.begin(), p.end(), 0);
+    std::sort(p.begin(), p.end(), comparator<int>(to_key));
+    return p;
+}
+template <typename Compare, std::enable_if_t<std::is_invocable_r_v<bool, Compare, int, int>, std::nullptr_t> = nullptr>
+std::vector<int> sorted_indices(int n, const Compare &compare) {
+    std::vector<int> p(n);
+    std::iota(p.begin(), p.end(), 0);
+    std::sort(p.begin(), p.end(), compare);
+    return p;
+}
+
 const std::string Yes = "Yes", No = "No", YES = "YES", NO = "NO";
 
 namespace suisen {}

@@ -7,7 +7,7 @@
 namespace suisen {
     template <typename T, typename U = T>
     struct factorial {
-        factorial() {}
+        factorial() = default;
         factorial(int n) { ensure(n); }
 
         static void ensure(const int n) {
