@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: library/datastructure/union_find/linked_union_find.hpp
     title: "\u9023\u7D50\u6210\u5206\u3092\u53D6\u5F97\u3067\u304D\u308B Union Find"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/union_find/union_find.hpp
     title: Union Find
   _extendedRequiredBy: []

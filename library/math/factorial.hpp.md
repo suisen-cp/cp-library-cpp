@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: library/math/factorial_large.hpp
     title: Factorial Large
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':warning:'
@@ -54,7 +54,7 @@ data:
   - icon: ':x:'
     path: test/src/math/array_set_power_series/abc253_h_2.test.cpp
     title: test/src/math/array_set_power_series/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
     title: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'
@@ -63,10 +63,10 @@ data:
   - icon: ':x:'
     path: test/src/math/set_power_series/abc253_h_2.test.cpp
     title: test/src/math/set_power_series/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':x:'
@@ -125,7 +125,7 @@ data:
     title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n\
@@ -191,7 +191,7 @@ data:
   - library/polynomial/polynomial_taylor_shift.hpp
   - library/polynomial/compose_exp.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp

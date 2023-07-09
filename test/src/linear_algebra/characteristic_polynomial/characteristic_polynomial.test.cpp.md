@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/characteristic_polynomial.hpp
     title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hessenberg_reduction.hpp
     title: Hessenberg Reduction
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/characteristic_polynomial
@@ -205,7 +205,7 @@ data:
   path: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
   requiredBy: []
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
 layout: document

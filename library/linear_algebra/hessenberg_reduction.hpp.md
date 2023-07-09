@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/characteristic_polynomial.hpp
     title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
     title: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - http://www.phys.uri.edu/nigh/NumRec/bookfpdf/f11-5.pdf
@@ -175,7 +175,7 @@ data:
   requiredBy:
   - library/linear_algebra/characteristic_polynomial.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
 documentation_of: library/linear_algebra/hessenberg_reduction.hpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
     title: test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/edge_coloring_of_bipartite_graph.hpp\"\n\n\
@@ -278,7 +278,7 @@ data:
   path: library/graph/edge_coloring_of_bipartite_graph.hpp
   requiredBy: []
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
 documentation_of: library/graph/edge_coloring_of_bipartite_graph.hpp

@@ -8,10 +8,10 @@ data:
     path: library/linear_algebra/count_spanning_trees.hpp
     title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
       \u6570\u3048\u4E0A\u3052"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -20,7 +20,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
   - icon: ':question:'

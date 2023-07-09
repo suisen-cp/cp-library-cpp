@@ -16,10 +16,10 @@ data:
   - icon: ':x:'
     path: test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
     title: test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
     title: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/union_find/union_find/unionfind.test.cpp
     title: test/src/datastructure/union_find/union_find/unionfind.test.cpp
   - icon: ':x:'
@@ -27,7 +27,7 @@ data:
     title: test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/union_find/union_find.hpp\"\n\n\n\n\
@@ -83,7 +83,7 @@ data:
   - library/datastructure/union_find/union_find_lazy.hpp
   - library/datastructure/union_find/linked_union_find.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
   - test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp

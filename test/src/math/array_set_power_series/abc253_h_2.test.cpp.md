@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
     title: Array Set Power Series
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'

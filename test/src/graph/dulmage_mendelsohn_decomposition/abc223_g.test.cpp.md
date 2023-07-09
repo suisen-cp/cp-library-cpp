@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: library/graph/bipartite_graph_recognition.hpp
     title: Bipartite Graph Recognition
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/graph/dulmage_mendelsohn_decomposition.hpp
     title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
   _extendedRequiredBy: []

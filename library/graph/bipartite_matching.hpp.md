@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/graph/dulmage_mendelsohn_decomposition.hpp
     title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/edge_coloring_of_bipartite_graph.hpp
     title: Edge Coloring Of Bipartite Graph
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
     title: test/src/graph/bipartite_matching/bipartite_matching.test.cpp
   - icon: ':x:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
     title: test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/src/string/palindromic_tree/abc237_h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/bipartite_matching.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -221,7 +221,7 @@ data:
   - library/graph/dulmage_mendelsohn_decomposition.hpp
   - library/graph/edge_coloring_of_bipartite_graph.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/string/palindromic_tree/abc237_h.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
