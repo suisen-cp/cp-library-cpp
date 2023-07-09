@@ -24,13 +24,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/division_of_polynomials.test.cpp
     title: test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/exp_of_fps.test.cpp
     title: test/src/polynomial/fps/exp_of_fps.test.cpp
   - icon: ':x:'

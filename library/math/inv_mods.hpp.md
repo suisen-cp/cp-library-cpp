@@ -33,7 +33,7 @@ data:
   - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: Formal Power Series Relaxed
   - icon: ':question:'
@@ -124,64 +124,64 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
     title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
     title: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
     title: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
     title: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
     title: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
     title: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
     title: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/division_of_polynomials.test.cpp
     title: test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/fps/exp_of_fps.test.cpp
     title: test/src/polynomial/fps/exp_of_fps.test.cpp
   - icon: ':x:'
