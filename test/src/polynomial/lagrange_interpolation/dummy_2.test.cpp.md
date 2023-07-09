@@ -7,19 +7,19 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -96,15 +96,15 @@ data:
     }\ntemplate <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint())\
     \ {\n    return a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n\
     #line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
-    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
-    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
-    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
-    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
-    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
-    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
-    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
-    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() = default;\n  \
+    \      inv_mods(int n) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return invs[i];\n        }\n        static\
+    \ void ensure(int n) {\n            int sz = invs.size();\n            if (sz\
+    \ < 2) invs = { 0, 1 }, sz = 2;\n            if (sz < n + 1) {\n             \
+    \   invs.resize(n + 1);\n                for (int i = sz; i <= n; ++i) invs[i]\
+    \ = mint(mod - mod / i) * invs[mod % i];\n            }\n        }\n    private:\n\
+    \        static std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n\
+    \    };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
     \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
     \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
     \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
@@ -683,8 +683,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 05:26:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
 layout: document

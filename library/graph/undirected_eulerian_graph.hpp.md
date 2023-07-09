@@ -11,10 +11,10 @@ data:
   bundledCode: "#line 1 \"library/graph/undirected_eulerian_graph.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <optional>\n#include <vector>\n\n\
     namespace suisen {\n    struct UndirectedEulerianGraph {\n        UndirectedEulerianGraph()\
-    \ {}\n        UndirectedEulerianGraph(int n) : n(n), g(n), inv(n) {}\n\n     \
-    \   void add_edge(int u, int v) {\n            const int su = g[u].size();\n \
-    \           g[u].push_back(v);\n            const int sv = g[v].size();\n    \
-    \        g[v].push_back(u);\n            inv[u].push_back(sv);\n            inv[v].push_back(su);\n\
+    \ = default;\n        UndirectedEulerianGraph(int n) : n(n), g(n), inv(n) {}\n\
+    \n        void add_edge(int u, int v) {\n            const int su = g[u].size();\n\
+    \            g[u].push_back(v);\n            const int sv = g[v].size();\n   \
+    \         g[v].push_back(u);\n            inv[u].push_back(sv);\n            inv[v].push_back(su);\n\
     \        }\n\n        std::optional<std::vector<int>> eulerian_circuit(int start\
     \ = 0) {\n            std::size_t edge_num = 0;\n            std::vector<std::vector<bool>>\
     \ used(n);\n            for (int i = 0; i < n; ++i) {\n                const std::size_t\
@@ -48,10 +48,10 @@ data:
   code: "#ifndef SUISEN_UNDIRECTED_EULERIAN_GRAPH\n#define SUISEN_UNDIRECTED_EULERIAN_GRAPH\n\
     \n#include <algorithm>\n#include <cassert>\n#include <optional>\n#include <vector>\n\
     \nnamespace suisen {\n    struct UndirectedEulerianGraph {\n        UndirectedEulerianGraph()\
-    \ {}\n        UndirectedEulerianGraph(int n) : n(n), g(n), inv(n) {}\n\n     \
-    \   void add_edge(int u, int v) {\n            const int su = g[u].size();\n \
-    \           g[u].push_back(v);\n            const int sv = g[v].size();\n    \
-    \        g[v].push_back(u);\n            inv[u].push_back(sv);\n            inv[v].push_back(su);\n\
+    \ = default;\n        UndirectedEulerianGraph(int n) : n(n), g(n), inv(n) {}\n\
+    \n        void add_edge(int u, int v) {\n            const int su = g[u].size();\n\
+    \            g[u].push_back(v);\n            const int sv = g[v].size();\n   \
+    \         g[v].push_back(u);\n            inv[u].push_back(sv);\n            inv[v].push_back(su);\n\
     \        }\n\n        std::optional<std::vector<int>> eulerian_circuit(int start\
     \ = 0) {\n            std::size_t edge_num = 0;\n            std::vector<std::vector<bool>>\
     \ used(n);\n            for (int i = 0; i < n; ++i) {\n                const std::size_t\
@@ -86,7 +86,7 @@ data:
   isVerificationFile: false
   path: library/graph/undirected_eulerian_graph.hpp
   requiredBy: []
-  timestamp: '2022-11-13 03:54:30+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/graph/undirected_eulerian_graph.hpp

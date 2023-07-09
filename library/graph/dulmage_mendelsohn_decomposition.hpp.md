@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/dulmage_mendelsohn_decomposition.hpp\"\n\n\
@@ -25,9 +25,9 @@ data:
     \n\n\n#include <algorithm>\n#include <cassert>\n#include <deque>\n#include <random>\n\
     #include <utility>\n#include <vector>\n\nnamespace suisen {\n    struct BipartiteMatching\
     \ {\n        static constexpr int ABSENT = -1;\n\n        BipartiteMatching()\
-    \ {}\n        BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n, ABSENT),\
-    \ _to_l(_m, ABSENT), _g(n + m) {}\n\n        void add_edge(int fr, int to) {\n\
-    \            _g[fr].push_back(to), _f = -1;\n        }\n\n        // template\
+    \ = default;\n        BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n,\
+    \ ABSENT), _to_l(_m, ABSENT), _g(n + m) {}\n\n        void add_edge(int fr, int\
+    \ to) {\n            _g[fr].push_back(to), _f = -1;\n        }\n\n        // template\
     \ <bool shuffle = true>\n        // int solve_heuristics() {\n        //     if\
     \ (_f >= 0) return _f;\n\n        //     static std::mt19937 rng(std::random_device{}());\n\
     \        //     if constexpr (shuffle) for (auto& adj : _g) std::shuffle(adj.begin(),\
@@ -183,12 +183,12 @@ data:
   isVerificationFile: false
   path: library/graph/dulmage_mendelsohn_decomposition.hpp
   requiredBy: []
-  timestamp: '2022-06-28 04:44:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
-  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
+  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
+  - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
 documentation_of: library/graph/dulmage_mendelsohn_decomposition.hpp
 layout: document
 title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"

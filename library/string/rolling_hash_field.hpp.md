@@ -45,7 +45,7 @@ data:
     \        auto neg = default_operator::neg<T>,\n        auto mul = default_operator::mul<T>,\n\
     \        auto one = default_operator::one<T>\n    >\n    struct RollingHashField\
     \ {\n        using hash_type = std::array<T, base_num>;\n\n        RollingHashField()\
-    \ {}\n\n        hash_type operator()(int l, int r) {\n            ensure_pows(r\
+    \ = default;\n\n        hash_type operator()(int l, int r) {\n            ensure_pows(r\
     \ - l);\n            hash_type res;\n            for (size_t base_id = 0; base_id\
     \ < base_num; ++base_id) {\n                res[base_id] = add(hash[base_id][r],\
     \ neg(mul(hash[base_id][l], pows[base_id][r - l])));\n            }\n        \
@@ -92,7 +92,7 @@ data:
     \        auto neg = default_operator::neg<T>,\n        auto mul = default_operator::mul<T>,\n\
     \        auto one = default_operator::one<T>\n    >\n    struct RollingHashField\
     \ {\n        using hash_type = std::array<T, base_num>;\n\n        RollingHashField()\
-    \ {}\n\n        hash_type operator()(int l, int r) {\n            ensure_pows(r\
+    \ = default;\n\n        hash_type operator()(int l, int r) {\n            ensure_pows(r\
     \ - l);\n            hash_type res;\n            for (size_t base_id = 0; base_id\
     \ < base_num; ++base_id) {\n                res[base_id] = add(hash[base_id][r],\
     \ neg(mul(hash[base_id][l], pows[base_id][r - l])));\n            }\n        \
@@ -136,7 +136,7 @@ data:
   isVerificationFile: false
   path: library/string/rolling_hash_field.hpp
   requiredBy: []
-  timestamp: '2022-10-23 23:58:35+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/string/rolling_hash_field.hpp

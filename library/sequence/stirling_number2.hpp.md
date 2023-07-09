@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/sequence/powers.hpp
     title: Powers
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/stirling_number2_small_prime_mod.hpp
     title: Stirling Number2 Small Prime Mod
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/sequence/stirling_number2.hpp\"\n\n\n\n#line 1 \"\
     library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n#include <vector>\n\n\
     namespace suisen {\n    template <typename T, typename U = T>\n    struct factorial\
-    \ {\n        factorial() {}\n        factorial(int n) { ensure(n); }\n\n     \
-    \   static void ensure(const int n) {\n            int sz = _fac.size();\n   \
-    \         if (n + 1 <= sz) return;\n            int new_size = std::max(n + 1,\
-    \ sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n  \
-    \          for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n  \
-    \          _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n            for\
-    \ (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n   \
-    \     }\n\n        T fac(const int i) {\n            ensure(i);\n            return\
-    \ _fac[i];\n        }\n        T operator()(int i) {\n            return fac(i);\n\
-    \        }\n        U fac_inv(const int i) {\n            ensure(i);\n       \
-    \     return _fac_inv[i];\n        }\n        U binom(const int n, const int r)\
-    \ {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
+    \ {\n        factorial() = default;\n        factorial(int n) { ensure(n); }\n\
+    \n        static void ensure(const int n) {\n            int sz = _fac.size();\n\
+    \            if (n + 1 <= sz) return;\n            int new_size = std::max(n +\
+    \ 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
+    \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
+    \            _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n           \
+    \ for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n\
+    \        }\n\n        T fac(const int i) {\n            ensure(i);\n         \
+    \   return _fac[i];\n        }\n        T operator()(int i) {\n            return\
+    \ fac(i);\n        }\n        U fac_inv(const int i) {\n            ensure(i);\n\
+    \            return _fac_inv[i];\n        }\n        U binom(const int n, const\
+    \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
     \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
     \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
     \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
@@ -122,12 +122,12 @@ data:
   path: library/sequence/stirling_number2.hpp
   requiredBy:
   - library/sequence/stirling_number2_small_prime_mod.hpp
-  timestamp: '2022-10-13 23:32:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
 documentation_of: library/sequence/stirling_number2.hpp
 layout: document
 title: Stirling Number2

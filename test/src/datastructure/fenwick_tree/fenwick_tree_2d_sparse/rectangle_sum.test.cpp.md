@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':heavy_check_mark:'
@@ -26,10 +26,10 @@ data:
     #include <map>\n#include <unordered_map>\n\nnamespace suisen {\n    namespace\
     \ internal {\n        template <typename T, typename index_t = int, typename Container\
     \ = std::vector<T>>\n        class FenwickTreeBase {\n        public:\n      \
-    \      FenwickTreeBase() {}\n            explicit FenwickTreeBase(index_t n) :\
-    \ n(n) {}\n\n            int size() const {\n                return n;\n     \
-    \       }\n            void add(index_t i, T v) {\n                for (++i; i\
-    \ <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
+    \      FenwickTreeBase() = default;\n            explicit FenwickTreeBase(index_t\
+    \ n) : n(n) {}\n\n            int size() const {\n                return n;\n\
+    \            }\n            void add(index_t i, T v) {\n                for (++i;\
+    \ i <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
     \ l, index_t r) const {\n                return sum(r) - sum(l);\n           \
     \ }\n            auto operator[](int i) {\n                struct {\n        \
     \            int i;\n                    FenwickTreeBase& ft;\n              \
@@ -66,7 +66,7 @@ data:
     \ = internal::FenwickTreeBase<T, index_t, internal::cond_map_t<index_t, T, use_unordered_map>>;\n\
     \n} // namespace suisen\n\n\n#line 10 \"library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp\"\
     \n\nnamespace suisen {\n\n    template <typename T>\n    class FenwickTree2DSparse\
-    \ {\n    public:\n        FenwickTree2DSparse() {}\n        explicit FenwickTree2DSparse(int\
+    \ {\n    public:\n        FenwickTree2DSparse() = default;\n        explicit FenwickTree2DSparse(int\
     \ x_num) : n(x_num + 1), data(n), points(), pos_x(), pos_y(n) {}\n\n        void\
     \ add_point(int x, int y) {\n            built = false;\n            pos_x.push_back(x);\n\
     \            points.emplace_back(x, y);\n        }\n\n        void build() {\n\
@@ -140,7 +140,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-07-02 19:24:24+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp

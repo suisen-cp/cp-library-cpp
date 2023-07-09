@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
@@ -11,7 +11,7 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []
@@ -129,13 +129,13 @@ data:
     \  data[k] = op(data[k * 2], data[k * 2 + 1]);\n        }\n};\n} // namespace\
     \ suisen\n\n\n\n#line 8 \"library/datastructure/segment_tree/segment_tree_2d_sparse.hpp\"\
     \n\nnamespace suisen {\n\ntemplate <typename T, T(*op)(T, T), T(*e)()>\nclass\
-    \ SegmentTree2DSparse {\n    public:\n        SegmentTree2DSparse() {}\n     \
-    \   explicit SegmentTree2DSparse(int x_num) : n(x_num + 1), m(ceil_pow2(n)), data(m\
-    \ * 2), points(), pos_x(), pos_y(m * 2) {}\n\n        void add_point(int x, int\
-    \ y) {\n            built = false;\n            pos_x.push_back(x);\n        \
-    \    points.emplace_back(x, y);\n        }\n\n        void build() {\n       \
-    \     static constexpr int inf = std::numeric_limits<int>::max();\n          \
-    \  built = true;\n            pos_x.push_back(inf);\n            std::sort(pos_x.begin(),\
+    \ SegmentTree2DSparse {\n    public:\n        SegmentTree2DSparse() = default;\n\
+    \        explicit SegmentTree2DSparse(int x_num) : n(x_num + 1), m(ceil_pow2(n)),\
+    \ data(m * 2), points(), pos_x(), pos_y(m * 2) {}\n\n        void add_point(int\
+    \ x, int y) {\n            built = false;\n            pos_x.push_back(x);\n \
+    \           points.emplace_back(x, y);\n        }\n\n        void build() {\n\
+    \            static constexpr int inf = std::numeric_limits<int>::max();\n   \
+    \         built = true;\n            pos_x.push_back(inf);\n            std::sort(pos_x.begin(),\
     \ pos_x.end());\n            pos_x.erase(std::unique(pos_x.begin(), pos_x.end()),\
     \ pos_x.end());\n            assert(int(pos_x.size()) <= n);\n            for\
     \ (const auto &[x, y] : points) {\n                for (int k = comp_x(x) + m;\
@@ -230,7 +230,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp

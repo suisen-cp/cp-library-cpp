@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/fenwick_tree/fenwick_tree_2d.hpp
     title: Fenwick Tree 2d
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc108/tasks/arc108_e
@@ -30,7 +30,7 @@ data:
     \n#define PROBLEM \"https://atcoder.jp/contests/arc108/tasks/arc108_e\"\n\n#include\
     \ <iostream>\n#include <atcoder/modint>\n\n#line 1 \"library/math/inv_mods.hpp\"\
     \n\n\n\n#include <vector>\n\nnamespace suisen {\n    template <typename mint>\n\
-    \    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
+    \    class inv_mods {\n    public:\n        inv_mods() = default;\n        inv_mods(int\
     \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
     \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
     \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
@@ -149,8 +149,8 @@ data:
     \ suisen\n\n\n\n#line 1 \"library/datastructure/fenwick_tree/fenwick_tree_2d.hpp\"\
     \n\n\n\n#line 5 \"library/datastructure/fenwick_tree/fenwick_tree_2d.hpp\"\n\n\
     namespace suisen {\n\n    template <typename T>\n    class FenwickTree2D {\n \
-    \   public:\n        FenwickTree2D() {}\n        explicit FenwickTree2D(int n,\
-    \ int m) : n(n), m(m), data(n, std::vector<T>(m, T{})) {}\n        void add(int\
+    \   public:\n        FenwickTree2D() = default;\n        explicit FenwickTree2D(int\
+    \ n, int m) : n(n), m(m), data(n, std::vector<T>(m, T{})) {}\n        void add(int\
     \ i, int j, T v) {\n            for (int x = i + 1; x <= n; x += (x & -x)) for\
     \ (int y = j + 1; y <= m; y += (y & -y)) {\n                data[x - 1][y - 1]\
     \ += v;\n            }\n        }\n        T sum(int xl, int xr, int yl, int yr)\
@@ -219,8 +219,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   requiredBy: []
-  timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
 layout: document

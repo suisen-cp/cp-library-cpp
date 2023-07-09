@@ -207,13 +207,27 @@ data:
     \ &s) {\n    return transform_to_vector(digit_to_int, s);\n}\nstd::vector<int>\
     \ lowercase_str_to_ints(const std::string &s) {\n    return transform_to_vector(lowercase_to_int,\
     \ s);\n}\nstd::vector<int> uppercase_str_to_ints(const std::string &s) {\n   \
-    \ return transform_to_vector(uppercase_to_int, s);\n}\n\nconst std::string Yes\
-    \ = \"Yes\", No = \"No\", YES = \"YES\", NO = \"NO\";\n\nnamespace suisen {}\n\
-    using namespace suisen;\nusing namespace std;\n#line 2 \"library/template.cpp\"\
-    \n\nstruct io_setup {\n    io_setup(int precision = 20) {\n        std::ios::sync_with_stdio(false);\n\
-    \        std::cin.tie(nullptr);\n        std::cout << std::fixed << std::setprecision(precision);\n\
-    \    }\n} io_setup_ {};\n\n// ! code from here\n\nint main() {\n    \n    return\
-    \ 0;\n}\n"
+    \ return transform_to_vector(uppercase_to_int, s);\n}\n\ntemplate <typename T,\
+    \ typename ToKey, typename CompareValue = std::less<>,\n    std::enable_if_t<\n\
+    \        std::conjunction_v<\n            std::is_invocable<ToKey, T>,\n     \
+    \       std::is_invocable_r<bool, CompareValue, std::invoke_result_t<ToKey, T>,\
+    \ std::invoke_result_t<ToKey, T>\n        >\n    >, std::nullptr_t> = nullptr\n\
+    >\nauto comparator(const ToKey &to_key, const CompareValue &compare_value = std::less<>())\
+    \ {\n    return [to_key, compare_value](const T& x, const T& y) { return compare_value(to_key(x),\
+    \ to_key(y)); };\n}\n\ntemplate <typename ToKey, std::enable_if_t<std::is_invocable_v<ToKey,\
+    \ int>, std::nullptr_t> = nullptr>\nstd::vector<int> sorted_indices(int n, const\
+    \ ToKey &to_key) {\n    std::vector<int> p(n);\n    std::iota(p.begin(), p.end(),\
+    \ 0);\n    std::sort(p.begin(), p.end(), comparator<int>(to_key));\n    return\
+    \ p;\n}\ntemplate <typename Compare, std::enable_if_t<std::is_invocable_r_v<bool,\
+    \ Compare, int, int>, std::nullptr_t> = nullptr>\nstd::vector<int> sorted_indices(int\
+    \ n, const Compare &compare) {\n    std::vector<int> p(n);\n    std::iota(p.begin(),\
+    \ p.end(), 0);\n    std::sort(p.begin(), p.end(), compare);\n    return p;\n}\n\
+    \nconst std::string Yes = \"Yes\", No = \"No\", YES = \"YES\", NO = \"NO\";\n\n\
+    namespace suisen {}\nusing namespace suisen;\nusing namespace std;\n#line 2 \"\
+    library/template.cpp\"\n\nstruct io_setup {\n    io_setup(int precision = 20)\
+    \ {\n        std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);\n\
+    \        std::cout << std::fixed << std::setprecision(precision);\n    }\n} io_setup_\
+    \ {};\n\n// ! code from here\n\nint main() {\n    \n    return 0;\n}\n"
   code: "#include \"library/template.hpp\"\n\nstruct io_setup {\n    io_setup(int\
     \ precision = 20) {\n        std::ios::sync_with_stdio(false);\n        std::cin.tie(nullptr);\n\
     \        std::cout << std::fixed << std::setprecision(precision);\n    }\n} io_setup_\
@@ -224,7 +238,7 @@ data:
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2023-02-02 02:15:56+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp

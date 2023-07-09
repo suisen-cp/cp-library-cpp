@@ -30,7 +30,7 @@ data:
     \                rec(rec, l, lm, m), res.emplace_back(l, r), rec(rec, m + 1, rm,\
     \ r);\n            };\n            rec(rec, 0, root, size());\n            return\
     \ res;\n        }\n    };\n\n    template <typename Comparator>\n    struct CartesianTreeBuilder\
-    \ {\n        CartesianTreeBuilder() {}\n        template <typename RandomAccessibleContainer>\n\
+    \ {\n        CartesianTreeBuilder() = default;\n        template <typename RandomAccessibleContainer>\n\
     \        CartesianTreeBuilder(const RandomAccessibleContainer& a, Comparator comp\
     \ = Comparator{}) : n(a.size()), comp(comp), par(calc_par(a, comp)) {}\n\n   \
     \     CartesianTree build() const {\n            int root = -1;\n            std::vector<std::array<int,\
@@ -70,7 +70,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-01-02 17:33:15+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/string/palindromic_tree.hpp
     title: "Palindromic Tree (\u56DE\u6587\u6728)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_Ex
@@ -22,8 +22,8 @@ data:
     \n#line 1 \"library/graph/bipartite_matching.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cassert>\n#include <deque>\n#include <random>\n#include <utility>\n\
     #include <vector>\n\nnamespace suisen {\n    struct BipartiteMatching {\n    \
-    \    static constexpr int ABSENT = -1;\n\n        BipartiteMatching() {}\n   \
-    \     BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n, ABSENT), _to_l(_m,\
+    \    static constexpr int ABSENT = -1;\n\n        BipartiteMatching() = default;\n\
+    \        BipartiteMatching(int n, int m) : _n(n), _m(m), _to_r(_n, ABSENT), _to_l(_m,\
     \ ABSENT), _g(n + m) {}\n\n        void add_edge(int fr, int to) {\n         \
     \   _g[fr].push_back(to), _f = -1;\n        }\n\n        // template <bool shuffle\
     \ = true>\n        // int solve_heuristics() {\n        //     if (_f >= 0) return\
@@ -261,8 +261,8 @@ data:
   isVerificationFile: true
   path: test/src/string/palindromic_tree/abc237_h.test.cpp
   requiredBy: []
-  timestamp: '2022-07-05 04:29:34+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/string/palindromic_tree/abc237_h.test.cpp
 layout: document

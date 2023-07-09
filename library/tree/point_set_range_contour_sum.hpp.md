@@ -3,22 +3,22 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
     title: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/tree/point_set_range_contour_sum.hpp\"\n\n\n\n#include\
     \ <array>\n#include <cstdint>\n#include <deque>\n#include <map>\n#include <queue>\n\
     #include <tuple>\n#include <utility>\n\n#include <atcoder/segtree>\n\nnamespace\
     \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)()>\n    struct PointSetRangeContourSum\
-    \ {\n        PointSetRangeContourSum() {}\n        PointSetRangeContourSum(int\
+    \ {\n        PointSetRangeContourSum() = default;\n        PointSetRangeContourSum(int\
     \ n, const T &fill_value) : PointSetRangeContourSum(std::vector<T>(n, fill_value))\
     \ {}\n        PointSetRangeContourSum(const std::vector<T> &dat) : _n(dat.size()),\
     \ _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat)\
@@ -27,7 +27,7 @@ data:
     \ op, e>;\n\n        struct AuxData {\n            int segtree_index;\n      \
     \      int8_t child_index;\n            int dep;\n        };\n\n        struct\
     \ Node {\n            std::vector<int> _sep;\n            segtree_type _seq;\n\
-    \n            Node() {}\n            Node(const std::vector<std::vector<int>>&\
+    \n            Node() = default;\n            Node(const std::vector<std::vector<int>>&\
     \ g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const\
     \ bool child_index, std::vector<std::vector<AuxData>>& info, const std::vector<T>\
     \ &dat, int siz) {\n                std::vector<T> reordered_dat(siz);\n     \
@@ -112,16 +112,16 @@ data:
     \n#include <array>\n#include <cstdint>\n#include <deque>\n#include <map>\n#include\
     \ <queue>\n#include <tuple>\n#include <utility>\n\n#include <atcoder/segtree>\n\
     \nnamespace suisen {\n    template <typename T, T(*op)(T, T), T(*e)()>\n    struct\
-    \ PointSetRangeContourSum {\n        PointSetRangeContourSum() {}\n        PointSetRangeContourSum(int\
-    \ n, const T &fill_value) : PointSetRangeContourSum(std::vector<T>(n, fill_value))\
-    \ {}\n        PointSetRangeContourSum(const std::vector<T> &dat) : _n(dat.size()),\
-    \ _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat)\
-    \ {\n            _par.reserve(2 * _n);\n            for (int i = 0; i < _n; ++i)\
-    \ _info[i].reserve(30);\n        }\n\n        using segtree_type = atcoder::segtree<T,\
-    \ op, e>;\n\n        struct AuxData {\n            int segtree_index;\n      \
-    \      int8_t child_index;\n            int dep;\n        };\n\n        struct\
-    \ Node {\n            std::vector<int> _sep;\n            segtree_type _seq;\n\
-    \n            Node() {}\n            Node(const std::vector<std::vector<int>>&\
+    \ PointSetRangeContourSum {\n        PointSetRangeContourSum() = default;\n  \
+    \      PointSetRangeContourSum(int n, const T &fill_value) : PointSetRangeContourSum(std::vector<T>(n,\
+    \ fill_value)) {}\n        PointSetRangeContourSum(const std::vector<T> &dat)\
+    \ : _n(dat.size()), _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n),\
+    \ _dat(dat) {\n            _par.reserve(2 * _n);\n            for (int i = 0;\
+    \ i < _n; ++i) _info[i].reserve(30);\n        }\n\n        using segtree_type\
+    \ = atcoder::segtree<T, op, e>;\n\n        struct AuxData {\n            int segtree_index;\n\
+    \            int8_t child_index;\n            int dep;\n        };\n\n       \
+    \ struct Node {\n            std::vector<int> _sep;\n            segtree_type\
+    \ _seq;\n\n            Node() = default;\n            Node(const std::vector<std::vector<int>>&\
     \ g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const\
     \ bool child_index, std::vector<std::vector<AuxData>>& info, const std::vector<T>\
     \ &dat, int siz) {\n                std::vector<T> reordered_dat(siz);\n     \
@@ -206,11 +206,11 @@ data:
   isVerificationFile: false
   path: library/tree/point_set_range_contour_sum.hpp
   requiredBy: []
-  timestamp: '2022-09-05 23:57:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/src/tree/point_set_range_contour_sum/dummy.test.cpp
+  - test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
 documentation_of: library/tree/point_set_range_contour_sum.hpp
 layout: document
 title: Point Set Range Contour Sum

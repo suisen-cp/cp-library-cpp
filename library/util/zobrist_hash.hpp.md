@@ -29,7 +29,7 @@ data:
     \ std::nullptr_t> = nullptr>\n    struct VecZobristHash : public ZobristHashBase<std::vector<std::make_unsigned_t<HashType>>,\
     \ std::size_t, HashType, VecZobristHash<HashType>> {\n        using Base = ZobristHashBase<std::vector<std::make_unsigned_t<HashType>>,\
     \ std::size_t, HashType, VecZobristHash<HashType>>;\n\n        VecZobristHash()\
-    \ {}\n        VecZobristHash(typename Base::value_type max_val) : Base(max_val\
+    \ = default;\n        VecZobristHash(typename Base::value_type max_val) : Base(max_val\
     \ + 1) {\n            std::generate(this->h.begin(), this->h.end(), this->rng);\n\
     \        }\n\n    protected:\n        static void ensure_key_existence(typename\
     \ Base::container_type& h, typename Base::value_type v, typename Base::rng_type&\
@@ -49,9 +49,9 @@ data:
     \ std::make_unsigned_t<HashType>>, ValueType, HashType, MapZobristHash<ValueType,\
     \ HashType>> {\n        using Base = ZobristHashBase<std::map<ValueType, std::make_unsigned_t<HashType>>,\
     \ ValueType, HashType, MapZobristHash<ValueType, HashType>>;\n\n        MapZobristHash()\
-    \ {}\n        template <typename Container>\n        MapZobristHash(const Container&\
-    \ universal_set) {\n            for (auto& val : universal_set) this->h[val] =\
-    \ (this->rng)();\n        }\n\n    protected:\n        static void ensure_key_existence(typename\
+    \ = default;\n        template <typename Container>\n        MapZobristHash(const\
+    \ Container& universal_set) {\n            for (auto& val : universal_set) this->h[val]\
+    \ = (this->rng)();\n        }\n\n    protected:\n        static void ensure_key_existence(typename\
     \ Base::container_type& h, const typename Base::value_type &v, typename Base::rng_type&\
     \ rng) {\n            if (auto it = h.find(v); it == h.end()) h[v] = rng();\n\
     \        }\n    };\n\n} // namespace suisen\n\n\n\n"
@@ -76,7 +76,7 @@ data:
     \ std::nullptr_t> = nullptr>\n    struct VecZobristHash : public ZobristHashBase<std::vector<std::make_unsigned_t<HashType>>,\
     \ std::size_t, HashType, VecZobristHash<HashType>> {\n        using Base = ZobristHashBase<std::vector<std::make_unsigned_t<HashType>>,\
     \ std::size_t, HashType, VecZobristHash<HashType>>;\n\n        VecZobristHash()\
-    \ {}\n        VecZobristHash(typename Base::value_type max_val) : Base(max_val\
+    \ = default;\n        VecZobristHash(typename Base::value_type max_val) : Base(max_val\
     \ + 1) {\n            std::generate(this->h.begin(), this->h.end(), this->rng);\n\
     \        }\n\n    protected:\n        static void ensure_key_existence(typename\
     \ Base::container_type& h, typename Base::value_type v, typename Base::rng_type&\
@@ -96,9 +96,9 @@ data:
     \ std::make_unsigned_t<HashType>>, ValueType, HashType, MapZobristHash<ValueType,\
     \ HashType>> {\n        using Base = ZobristHashBase<std::map<ValueType, std::make_unsigned_t<HashType>>,\
     \ ValueType, HashType, MapZobristHash<ValueType, HashType>>;\n\n        MapZobristHash()\
-    \ {}\n        template <typename Container>\n        MapZobristHash(const Container&\
-    \ universal_set) {\n            for (auto& val : universal_set) this->h[val] =\
-    \ (this->rng)();\n        }\n\n    protected:\n        static void ensure_key_existence(typename\
+    \ = default;\n        template <typename Container>\n        MapZobristHash(const\
+    \ Container& universal_set) {\n            for (auto& val : universal_set) this->h[val]\
+    \ = (this->rng)();\n        }\n\n    protected:\n        static void ensure_key_existence(typename\
     \ Base::container_type& h, const typename Base::value_type &v, typename Base::rng_type&\
     \ rng) {\n            if (auto it = h.find(v); it == h.end()) h[v] = rng();\n\
     \        }\n    };\n\n} // namespace suisen\n\n\n#endif // SUISEN_ZOBRIST_HASH\n"
@@ -106,7 +106,7 @@ data:
   isVerificationFile: false
   path: library/util/zobrist_hash.hpp
   requiredBy: []
-  timestamp: '2022-01-15 00:28:33+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/util/zobrist_hash.hpp

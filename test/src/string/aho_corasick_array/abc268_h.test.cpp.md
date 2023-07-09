@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/string/aho_corasick_array.hpp
     title: Aho Corasick Array
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/string/trie_array.hpp
     title: Trie Array
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc268/tasks/abc268_Ex
@@ -75,8 +75,9 @@ data:
     \ += this->nodes[link].count;\n                        dq.push_back(nxt);\n  \
     \                  } else {\n                        nxt = link;\n           \
     \         }\n                }\n            }\n            _built = true;\n  \
-    \      }\n\n        int init_state() const {\n            return 0;\n        }\n\
-    \        int next_state(int state, key_type c) const {\n            assert(_built);\n\
+    \      }\n\n\n        int state_num() const {\n            return this->nodes.size();\n\
+    \        }\n\n        int init_state() const {\n            return 0;\n      \
+    \  }\n        int next_state(int state, key_type c) const {\n            assert(_built);\n\
     \            return this->nodes[state][c - offset];\n        }\n        int count_suffix_matching(int\
     \ state) const {\n            assert(_built);\n            return this->nodes[state].count;\n\
     \        }\n    private:\n        bool _built = false;\n    };\n\n} // namespace\
@@ -107,8 +108,8 @@ data:
   isVerificationFile: true
   path: test/src/string/aho_corasick_array/abc268_h.test.cpp
   requiredBy: []
-  timestamp: '2022-11-06 23:07:53+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/string/aho_corasick_array/abc268_h.test.cpp
 layout: document

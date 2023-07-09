@@ -94,7 +94,7 @@ data:
     \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 1 \"\
     library/math/inv_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen {\n \
     \   template <typename mint>\n    class inv_mods {\n    public:\n        inv_mods()\
-    \ {}\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
+    \ = default;\n        inv_mods(int n) { ensure(n); }\n        const mint& operator[](int\
     \ i) const {\n            ensure(i);\n            return invs[i];\n        }\n\
     \        static void ensure(int n) {\n            int sz = invs.size();\n    \
     \        if (sz < 2) invs = { 0, 1 }, sz = 2;\n            if (sz < n + 1) {\n\
@@ -346,16 +346,16 @@ data:
   isVerificationFile: false
   path: library/polynomial/array_fps_naive.hpp
   requiredBy:
-  - library/convolution/array_subset_convolution.hpp
   - library/math/array_set_power_series.hpp
-  timestamp: '2023-01-01 18:21:45+09:00'
+  - library/convolution/array_subset_convolution.hpp
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/math/array_set_power_series/abc253_h.test.cpp
   - test/src/math/array_set_power_series/abc236_h.test.cpp
-  - test/src/math/array_set_power_series/abc213_g.test.cpp
-  - test/src/math/array_set_power_series/arc105_f.test.cpp
   - test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - test/src/math/array_set_power_series/arc105_f.test.cpp
+  - test/src/math/array_set_power_series/abc213_g.test.cpp
 documentation_of: library/polynomial/array_fps_naive.hpp
 layout: document
 title: Array Fps Naive

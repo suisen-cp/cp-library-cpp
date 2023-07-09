@@ -40,28 +40,36 @@ data:
     \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 7 \"library/util/cumulative_sum.hpp\"\
     \n\nnamespace suisen {\n    template <typename T, auto zero = default_operator::zero<T>,\
     \ auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \    struct CumulativeSum {\n        CumulativeSum() {}\n        CumulativeSum(const\
+    \    struct CumulativeSum {\n        CumulativeSum() = default;\n        CumulativeSum(const\
     \ std::vector<T> &a) : n(a.size()), s(n + 1, zero()) {\n            for (size_t\
     \ i = 0; i < n; ++i) s[i + 1] = add(a[i], s[i]);\n        }\n        T operator()(size_t\
     \ l, size_t r) const {\n            assert(l <= r and r <= n);\n            return\
-    \ sub(s[r], s[l]);\n        }\n    private:\n        size_t n;\n        std::vector<T>\
-    \ s;\n    };\n}\n\n\n"
+    \ sub(s[r], s[l]);\n        }\n        T sum(size_t l, size_t r) const {\n   \
+    \         return (*this)(l, r);\n        }\n        void push_back(const T& v)\
+    \ {\n            if (s.empty()) s.push_back(zero());\n            T new_sum =\
+    \ add(s.back(), v);\n            ++n, s.push_back(std::move(new_sum));\n     \
+    \   }\n    private:\n        size_t n;\n        std::vector<T> s;\n    };\n}\n\
+    \n\n"
   code: "#ifndef SUISEN_CUMULATIVE_SUM\n#define SUISEN_CUMULATIVE_SUM\n\n#include\
     \ <cassert>\n#include <vector>\n#include \"library/util/default_operator.hpp\"\
     \n\nnamespace suisen {\n    template <typename T, auto zero = default_operator::zero<T>,\
     \ auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \    struct CumulativeSum {\n        CumulativeSum() {}\n        CumulativeSum(const\
+    \    struct CumulativeSum {\n        CumulativeSum() = default;\n        CumulativeSum(const\
     \ std::vector<T> &a) : n(a.size()), s(n + 1, zero()) {\n            for (size_t\
     \ i = 0; i < n; ++i) s[i + 1] = add(a[i], s[i]);\n        }\n        T operator()(size_t\
     \ l, size_t r) const {\n            assert(l <= r and r <= n);\n            return\
-    \ sub(s[r], s[l]);\n        }\n    private:\n        size_t n;\n        std::vector<T>\
-    \ s;\n    };\n}\n\n#endif // SUISEN_CUMULATIVE_SUM\n"
+    \ sub(s[r], s[l]);\n        }\n        T sum(size_t l, size_t r) const {\n   \
+    \         return (*this)(l, r);\n        }\n        void push_back(const T& v)\
+    \ {\n            if (s.empty()) s.push_back(zero());\n            T new_sum =\
+    \ add(s.back(), v);\n            ++n, s.push_back(std::move(new_sum));\n     \
+    \   }\n    private:\n        size_t n;\n        std::vector<T> s;\n    };\n}\n\
+    \n#endif // SUISEN_CUMULATIVE_SUM\n"
   dependsOn:
   - library/util/default_operator.hpp
   isVerificationFile: false
   path: library/util/cumulative_sum.hpp
   requiredBy: []
-  timestamp: '2022-01-31 13:34:34+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/util/cumulative_sum.hpp

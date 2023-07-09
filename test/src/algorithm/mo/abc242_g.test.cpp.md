@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/algorithm/mo.hpp
     title: Mo
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc242/tasks/abc242_g
@@ -18,9 +18,9 @@ data:
     \ \"https://atcoder.jp/contests/abc242/tasks/abc242_g\"\n\n#include <iostream>\n\
     \n#line 1 \"library/algorithm/mo.hpp\"\n\n\n\n#include <algorithm>\n#include <cmath>\n\
     #include <numeric>\n#include <vector>\n\nnamespace suisen {\n    struct Mo {\n\
-    \        Mo() {}\n        Mo(const int n, const std::vector<std::pair<int, int>>\
-    \ &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries), ord(q)\
-    \ {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
+    \        Mo() = default;\n        Mo(const int n, const std::vector<std::pair<int,\
+    \ int>> &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries),\
+    \ ord(q) {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
     \                ord.begin(), ord.end(),\n                [&, this](int i, int\
     \ j) {\n                    const auto &[li, ri] = qs[i];\n                  \
     \  const auto &[lj, rj] = qs[j];\n                    const int bi = li / b, bj\
@@ -86,8 +86,8 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/mo/abc242_g.test.cpp
   requiredBy: []
-  timestamp: '2022-03-19 20:36:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/algorithm/mo/abc242_g.test.cpp
 layout: document

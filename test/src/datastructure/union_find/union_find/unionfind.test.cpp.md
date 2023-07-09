@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/datastructure/union_find/union_find.hpp
     title: Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -18,10 +18,10 @@ data:
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include <iostream>\n\
     #line 1 \"library/datastructure/union_find/union_find.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <vector>\n\nnamespace suisen {\n    struct UnionFind {\n        UnionFind()\
-    \ {}\n        explicit UnionFind(int _n) : _n(_n), _dat(_n, -1) {}\n        //\
-    \ Get the root of `x`. equivalent to `operator[](x)`\n        int root(int x)\
-    \ {\n            static std::vector<int> buf;\n            while (_dat[x] >= 0)\
-    \ buf.push_back(x), x = _dat[x];\n            while (buf.size()) _dat[buf.back()]\
+    \ = default;\n        explicit UnionFind(int _n) : _n(_n), _dat(_n, -1) {}\n \
+    \       // Get the root of `x`. equivalent to `operator[](x)`\n        int root(int\
+    \ x) {\n            static std::vector<int> buf;\n            while (_dat[x] >=\
+    \ 0) buf.push_back(x), x = _dat[x];\n            while (buf.size()) _dat[buf.back()]\
     \ = x, buf.pop_back();\n            return x;\n        }\n        // Get the root\
     \ of `x`. euivalent to `root(x)`\n        int operator[](int x) {\n          \
     \  return root(x);\n        }\n        // Merge two vertices `x` and `y`.\n  \
@@ -57,8 +57,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/union_find/union_find/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-07-05 04:32:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/union_find/union_find/unionfind.test.cpp
 layout: document

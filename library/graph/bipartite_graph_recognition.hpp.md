@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/bipartite_graph_recognition.hpp\"\n\n\n\n\
@@ -46,7 +46,7 @@ data:
   path: library/graph/bipartite_graph_recognition.hpp
   requiredBy: []
   timestamp: '2022-03-17 16:17:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
 documentation_of: library/graph/bipartite_graph_recognition.hpp

@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: $\left(\prod_{k=0}^{m-1} f(r^k x)\right) \bmod x^N$
     links: []
   bundledCode: "#line 1 \"library/polynomial/prod_f(r^k_x).hpp\"\n\n\n\n#line 1 \"\
     library/math/pow_mods.hpp\"\n\n\n\n#include <vector>\n\nnamespace suisen {\n \
     \   template <int base_as_int, typename mint>\n    struct static_pow_mods {\n\
-    \        static_pow_mods() {}\n        static_pow_mods(int n) { ensure(n); }\n\
-    \        const mint& operator[](int i) const {\n            ensure(i);\n     \
-    \       return pows[i];\n        }\n        static void ensure(int n) {\n    \
-    \        int sz = pows.size();\n            if (sz > n) return;\n            pows.resize(n\
-    \ + 1);\n            for (int i = sz; i <= n; ++i) pows[i] = base * pows[i - 1];\n\
-    \        }\n    private:\n        static inline std::vector<mint> pows { 1 };\n\
-    \        static inline mint base = base_as_int;\n        static constexpr int\
-    \ mod = mint::mod();\n    };\n\n    template <typename mint>\n    struct pow_mods\
-    \ {\n        pow_mods() {}\n        pow_mods(mint base, int n) : base(base) {\
-    \ ensure(n); }\n        const mint& operator[](int i) const {\n            ensure(i);\n\
-    \            return pows[i];\n        }\n        void ensure(int n) const {\n\
+    \        static_pow_mods() = default;\n        static_pow_mods(int n) { ensure(n);\
+    \ }\n        const mint& operator[](int i) const {\n            ensure(i);\n \
+    \           return pows[i];\n        }\n        static void ensure(int n) {\n\
     \            int sz = pows.size();\n            if (sz > n) return;\n        \
     \    pows.resize(n + 1);\n            for (int i = sz; i <= n; ++i) pows[i] =\
-    \ base * pows[i - 1];\n        }\n    private:\n        mutable std::vector<mint>\
-    \ pows { 1 };\n        mint base;\n        static constexpr int mod = mint::mod();\n\
-    \    };\n}\n\n\n#line 5 \"library/polynomial/prod_f(r^k_x).hpp\"\n\n/**\n * @brief\
-    \ $\\left(\\prod_{k=0}^{m-1} f(r^k x)\\right) \\bmod x^N$\n */\n\nnamespace suisen\
-    \ {\n    namespace internal::prod_f_rk_x {\n        template <typename FPSType>\n\
-    \        FPSType prod_f_rk_x(FPSType f, typename FPSType::value_type r, int m,\
-    \ int result_size) {\n            using mint = typename FPSType::value_type;\n\
+    \ base * pows[i - 1];\n        }\n    private:\n        static inline std::vector<mint>\
+    \ pows { 1 };\n        static inline mint base = base_as_int;\n        static\
+    \ constexpr int mod = mint::mod();\n    };\n\n    template <typename mint>\n \
+    \   struct pow_mods {\n        pow_mods() = default;\n        pow_mods(mint base,\
+    \ int n) : base(base) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return pows[i];\n        }\n        void\
+    \ ensure(int n) const {\n            int sz = pows.size();\n            if (sz\
+    \ > n) return;\n            pows.resize(n + 1);\n            for (int i = sz;\
+    \ i <= n; ++i) pows[i] = base * pows[i - 1];\n        }\n    private:\n      \
+    \  mutable std::vector<mint> pows { 1 };\n        mint base;\n        static constexpr\
+    \ int mod = mint::mod();\n    };\n}\n\n\n#line 5 \"library/polynomial/prod_f(r^k_x).hpp\"\
+    \n\n/**\n * @brief $\\left(\\prod_{k=0}^{m-1} f(r^k x)\\right) \\bmod x^N$\n */\n\
+    \nnamespace suisen {\n    namespace internal::prod_f_rk_x {\n        template\
+    \ <typename FPSType>\n        FPSType prod_f_rk_x(FPSType f, typename FPSType::value_type\
+    \ r, int m, int result_size) {\n            using mint = typename FPSType::value_type;\n\
     \            pow_mods<mint> pow_r(r, result_size), pow_rm(r.pow(m), result_size);\n\
     \            if (auto opt_sp_f = f.sparse_fps_format(15); opt_sp_f.has_value())\
     \ {\n                bool all_invertible = true;\n                for (int i =\
@@ -112,8 +112,8 @@ data:
   isVerificationFile: false
   path: library/polynomial/prod_f(r^k_x).hpp
   requiredBy: []
-  timestamp: '2022-10-08 20:12:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
 documentation_of: library/polynomial/prod_f(r^k_x).hpp

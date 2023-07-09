@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/algorithm/mo.hpp
     title: Mo
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc238/tasks/abc238_g
@@ -148,9 +148,9 @@ data:
     \ + internal::sieve::K];\n} // namespace suisen\n\n\n#line 1 \"library/algorithm/mo.hpp\"\
     \n\n\n\n#include <algorithm>\n#line 6 \"library/algorithm/mo.hpp\"\n#include <numeric>\n\
     #line 8 \"library/algorithm/mo.hpp\"\n\nnamespace suisen {\n    struct Mo {\n\
-    \        Mo() {}\n        Mo(const int n, const std::vector<std::pair<int, int>>\
-    \ &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries), ord(q)\
-    \ {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
+    \        Mo() = default;\n        Mo(const int n, const std::vector<std::pair<int,\
+    \ int>> &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries),\
+    \ ord(q) {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
     \                ord.begin(), ord.end(),\n                [&, this](int i, int\
     \ j) {\n                    const auto &[li, ri] = qs[i];\n                  \
     \  const auto &[lj, rj] = qs[j];\n                    const int bi = li / b, bj\
@@ -235,8 +235,8 @@ data:
   isVerificationFile: true
   path: test/src/algorithm/mo/abc238_g.test.cpp
   requiredBy: []
-  timestamp: '2022-03-19 20:36:40+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/algorithm/mo/abc238_g.test.cpp
 layout: document

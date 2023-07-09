@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\u53EF\
       \u63DB\u306A\u5834\u5408)"
@@ -21,8 +21,8 @@ data:
     \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n    template\
     \ <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n\
     \    struct CommutativeDualSegmentTree {\n        CommutativeDualSegmentTree()\
-    \ {}\n        CommutativeDualSegmentTree(std::vector<T>&& a) : n(a.size()), m(ceil_pow2(a.size())),\
-    \ data(std::move(a)), lazy(m, id()) {}\n        CommutativeDualSegmentTree(const\
+    \ = default;\n        CommutativeDualSegmentTree(std::vector<T>&& a) : n(a.size()),\
+    \ m(ceil_pow2(a.size())), data(std::move(a)), lazy(m, id()) {}\n        CommutativeDualSegmentTree(const\
     \ std::vector<T>& a) : CommutativeDualSegmentTree(std::vector<T>(a)) {}\n    \
     \    CommutativeDualSegmentTree(int n, const T& fill_value) : CommutativeDualSegmentTree(std::vector<T>(n,\
     \ fill_value)) {}\n\n        T operator[](int i) const {\n            assert(0\
@@ -62,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 10:47:36+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/commutative_dual_segment_tree/DSL_2_E.test.cpp

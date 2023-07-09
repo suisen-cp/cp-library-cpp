@@ -112,29 +112,29 @@ data:
     \        return equals(p, q) and on(l, p) and on(m, q) ? std::make_optional(p)\
     \ : std::nullopt;\n    }\n\n    // Plane: ax + by + cz + d = 0\n    struct Plane\
     \ {\n        Point normal_vec; // = [a, b, c]\n        coordinate_t d;\n     \
-    \   Plane() {}\n        Plane(const Point &p, const Point &q, const Point &r)\
-    \ : normal_vec(normalized((q - p) * (r - p))), d(-inner_product(normal_vec, p))\
-    \ {}\n        Plane(const coordinate_t &a, coordinate_t &b, coordinate_t &c, coordinate_t\
-    \ &d) : normal_vec(normalized({a, b, c})), d(d / abs({a, b, c})) {}\n    };\n\n\
-    \    coordinate_t dist(const Plane &plane, const Point &p) {\n        return std::abs(inner_product(plane.normal_vec,\
-    \ p) + plane.d);\n    }\n    bool on(const Plane &plane, const Point &p) {\n \
-    \       return dist(plane, p) < EPS;\n    }\n    Point projection(const Plane\
-    \ &plane, const Point &p) {\n        coordinate_t d = dist(plane, p);\n      \
-    \  Point q = p + d * plane.normal_vec;\n        return on(plane, q) ? q : p -\
-    \ d * plane.normal_vec;\n    }\n\n    bool is_parallel(const Plane &plane, const\
-    \ Line &l) {\n        return is_orthogonal(plane.normal_vec, l.second - l.first);\n\
-    \    }\n    bool is_orthogonal(const Plane &plane, const Line &l) {\n        return\
-    \ is_parallel(plane.normal_vec, l.second - l.first);\n    }\n    coordinate_t\
-    \ dist(const Plane &plane, const Line &l) {\n        return is_parallel(plane,\
-    \ l) ? dist(plane, l.first) : 0;\n    }\n    coordinate_t dist(const Plane &plane,\
-    \ const Ray &l) {\n        Point h = projection(plane, l.first);\n        coordinate_t\
-    \ ip = inner_product(l.first - h, l.second - l.first);\n        return signum(ip)\
-    \ < 0 ? 0 : dist(h, l.first);\n    }\n    coordinate_t dist(const Plane &plane,\
-    \ const Segment &l) {\n        Point ha = projection(plane, l.first), hb = projection(plane,\
-    \ l.second);\n        coordinate_t ipa = inner_product(l.first - ha, l.second\
-    \ - l.first), ipb = inner_product(l.second - hb, l.first - l.second);\n      \
-    \  return signum(ipa) < 0 and signum(ipb) < 0 ? 0 : std::min(dist(plane, l.first),\
-    \ dist(plane, l.second));\n    }\n\n    template <typename line_t, std::enable_if_t<std::is_base_of_v<Line,\
+    \   Plane() = default;\n        Plane(const Point &p, const Point &q, const Point\
+    \ &r) : normal_vec(normalized((q - p) * (r - p))), d(-inner_product(normal_vec,\
+    \ p)) {}\n        Plane(const coordinate_t &a, coordinate_t &b, coordinate_t &c,\
+    \ coordinate_t &d) : normal_vec(normalized({a, b, c})), d(d / abs({a, b, c}))\
+    \ {}\n    };\n\n    coordinate_t dist(const Plane &plane, const Point &p) {\n\
+    \        return std::abs(inner_product(plane.normal_vec, p) + plane.d);\n    }\n\
+    \    bool on(const Plane &plane, const Point &p) {\n        return dist(plane,\
+    \ p) < EPS;\n    }\n    Point projection(const Plane &plane, const Point &p) {\n\
+    \        coordinate_t d = dist(plane, p);\n        Point q = p + d * plane.normal_vec;\n\
+    \        return on(plane, q) ? q : p - d * plane.normal_vec;\n    }\n\n    bool\
+    \ is_parallel(const Plane &plane, const Line &l) {\n        return is_orthogonal(plane.normal_vec,\
+    \ l.second - l.first);\n    }\n    bool is_orthogonal(const Plane &plane, const\
+    \ Line &l) {\n        return is_parallel(plane.normal_vec, l.second - l.first);\n\
+    \    }\n    coordinate_t dist(const Plane &plane, const Line &l) {\n        return\
+    \ is_parallel(plane, l) ? dist(plane, l.first) : 0;\n    }\n    coordinate_t dist(const\
+    \ Plane &plane, const Ray &l) {\n        Point h = projection(plane, l.first);\n\
+    \        coordinate_t ip = inner_product(l.first - h, l.second - l.first);\n \
+    \       return signum(ip) < 0 ? 0 : dist(h, l.first);\n    }\n    coordinate_t\
+    \ dist(const Plane &plane, const Segment &l) {\n        Point ha = projection(plane,\
+    \ l.first), hb = projection(plane, l.second);\n        coordinate_t ipa = inner_product(l.first\
+    \ - ha, l.second - l.first), ipb = inner_product(l.second - hb, l.first - l.second);\n\
+    \        return signum(ipa) < 0 and signum(ipb) < 0 ? 0 : std::min(dist(plane,\
+    \ l.first), dist(plane, l.second));\n    }\n\n    template <typename line_t, std::enable_if_t<std::is_base_of_v<Line,\
     \ line_t>, std::nullptr_t> = nullptr>\n    std::optional<Point> cross_point(const\
     \ Plane &plane, const line_t &l) {\n        if (on(plane, l.first)) return std::make_optional(l.first);\n\
     \        if (is_parallel(plane, l)) return std::nullopt;\n        Point ha = projection(plane,\
@@ -255,29 +255,29 @@ data:
     \        return equals(p, q) and on(l, p) and on(m, q) ? std::make_optional(p)\
     \ : std::nullopt;\n    }\n\n    // Plane: ax + by + cz + d = 0\n    struct Plane\
     \ {\n        Point normal_vec; // = [a, b, c]\n        coordinate_t d;\n     \
-    \   Plane() {}\n        Plane(const Point &p, const Point &q, const Point &r)\
-    \ : normal_vec(normalized((q - p) * (r - p))), d(-inner_product(normal_vec, p))\
-    \ {}\n        Plane(const coordinate_t &a, coordinate_t &b, coordinate_t &c, coordinate_t\
-    \ &d) : normal_vec(normalized({a, b, c})), d(d / abs({a, b, c})) {}\n    };\n\n\
-    \    coordinate_t dist(const Plane &plane, const Point &p) {\n        return std::abs(inner_product(plane.normal_vec,\
-    \ p) + plane.d);\n    }\n    bool on(const Plane &plane, const Point &p) {\n \
-    \       return dist(plane, p) < EPS;\n    }\n    Point projection(const Plane\
-    \ &plane, const Point &p) {\n        coordinate_t d = dist(plane, p);\n      \
-    \  Point q = p + d * plane.normal_vec;\n        return on(plane, q) ? q : p -\
-    \ d * plane.normal_vec;\n    }\n\n    bool is_parallel(const Plane &plane, const\
-    \ Line &l) {\n        return is_orthogonal(plane.normal_vec, l.second - l.first);\n\
-    \    }\n    bool is_orthogonal(const Plane &plane, const Line &l) {\n        return\
-    \ is_parallel(plane.normal_vec, l.second - l.first);\n    }\n    coordinate_t\
-    \ dist(const Plane &plane, const Line &l) {\n        return is_parallel(plane,\
-    \ l) ? dist(plane, l.first) : 0;\n    }\n    coordinate_t dist(const Plane &plane,\
-    \ const Ray &l) {\n        Point h = projection(plane, l.first);\n        coordinate_t\
-    \ ip = inner_product(l.first - h, l.second - l.first);\n        return signum(ip)\
-    \ < 0 ? 0 : dist(h, l.first);\n    }\n    coordinate_t dist(const Plane &plane,\
-    \ const Segment &l) {\n        Point ha = projection(plane, l.first), hb = projection(plane,\
-    \ l.second);\n        coordinate_t ipa = inner_product(l.first - ha, l.second\
-    \ - l.first), ipb = inner_product(l.second - hb, l.first - l.second);\n      \
-    \  return signum(ipa) < 0 and signum(ipb) < 0 ? 0 : std::min(dist(plane, l.first),\
-    \ dist(plane, l.second));\n    }\n\n    template <typename line_t, std::enable_if_t<std::is_base_of_v<Line,\
+    \   Plane() = default;\n        Plane(const Point &p, const Point &q, const Point\
+    \ &r) : normal_vec(normalized((q - p) * (r - p))), d(-inner_product(normal_vec,\
+    \ p)) {}\n        Plane(const coordinate_t &a, coordinate_t &b, coordinate_t &c,\
+    \ coordinate_t &d) : normal_vec(normalized({a, b, c})), d(d / abs({a, b, c}))\
+    \ {}\n    };\n\n    coordinate_t dist(const Plane &plane, const Point &p) {\n\
+    \        return std::abs(inner_product(plane.normal_vec, p) + plane.d);\n    }\n\
+    \    bool on(const Plane &plane, const Point &p) {\n        return dist(plane,\
+    \ p) < EPS;\n    }\n    Point projection(const Plane &plane, const Point &p) {\n\
+    \        coordinate_t d = dist(plane, p);\n        Point q = p + d * plane.normal_vec;\n\
+    \        return on(plane, q) ? q : p - d * plane.normal_vec;\n    }\n\n    bool\
+    \ is_parallel(const Plane &plane, const Line &l) {\n        return is_orthogonal(plane.normal_vec,\
+    \ l.second - l.first);\n    }\n    bool is_orthogonal(const Plane &plane, const\
+    \ Line &l) {\n        return is_parallel(plane.normal_vec, l.second - l.first);\n\
+    \    }\n    coordinate_t dist(const Plane &plane, const Line &l) {\n        return\
+    \ is_parallel(plane, l) ? dist(plane, l.first) : 0;\n    }\n    coordinate_t dist(const\
+    \ Plane &plane, const Ray &l) {\n        Point h = projection(plane, l.first);\n\
+    \        coordinate_t ip = inner_product(l.first - h, l.second - l.first);\n \
+    \       return signum(ip) < 0 ? 0 : dist(h, l.first);\n    }\n    coordinate_t\
+    \ dist(const Plane &plane, const Segment &l) {\n        Point ha = projection(plane,\
+    \ l.first), hb = projection(plane, l.second);\n        coordinate_t ipa = inner_product(l.first\
+    \ - ha, l.second - l.first), ipb = inner_product(l.second - hb, l.first - l.second);\n\
+    \        return signum(ipa) < 0 and signum(ipb) < 0 ? 0 : std::min(dist(plane,\
+    \ l.first), dist(plane, l.second));\n    }\n\n    template <typename line_t, std::enable_if_t<std::is_base_of_v<Line,\
     \ line_t>, std::nullptr_t> = nullptr>\n    std::optional<Point> cross_point(const\
     \ Plane &plane, const line_t &l) {\n        if (on(plane, l.first)) return std::make_optional(l.first);\n\
     \        if (is_parallel(plane, l)) return std::nullopt;\n        Point ha = projection(plane,\
@@ -299,7 +299,7 @@ data:
   isVerificationFile: false
   path: library/geom/geometry3d.hpp
   requiredBy: []
-  timestamp: '2021-11-23 20:32:10+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/geom/geometry3d.hpp

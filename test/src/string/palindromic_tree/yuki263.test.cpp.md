@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/string/palindromic_tree.hpp
     title: "Palindromic Tree (\u56DE\u6587\u6728)"
   _extendedRequiredBy: []

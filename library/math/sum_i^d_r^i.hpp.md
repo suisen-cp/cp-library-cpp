@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/sequence/powers.hpp
     title: Powers
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/sum_i^d_r^i.hpp\"\n\n\n\n#line 1 \"library/sequence/powers.hpp\"\
@@ -72,10 +72,10 @@ data:
     \ mint(i).pow(k) : res[mpf[i]] * res[i / mpf[i]];\n        return res;\n    }\n\
     } // namespace suisen\n\n\n#line 1 \"library/math/factorial.hpp\"\n\n\n\n#line\
     \ 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ T, typename U = T>\n    struct factorial {\n        factorial() {}\n       \
-    \ factorial(int n) { ensure(n); }\n\n        static void ensure(const int n) {\n\
-    \            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n   \
-    \         int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
+    \ T, typename U = T>\n    struct factorial {\n        factorial() = default;\n\
+    \        factorial(int n) { ensure(n); }\n\n        static void ensure(const int\
+    \ n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
+    \            int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
     \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
     \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
     \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
@@ -93,7 +93,7 @@ data:
     \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
     } // namespace suisen\n\n\n#line 1 \"library/math/pow_mods.hpp\"\n\n\n\n#line\
     \ 5 \"library/math/pow_mods.hpp\"\n\nnamespace suisen {\n    template <int base_as_int,\
-    \ typename mint>\n    struct static_pow_mods {\n        static_pow_mods() {}\n\
+    \ typename mint>\n    struct static_pow_mods {\n        static_pow_mods() = default;\n\
     \        static_pow_mods(int n) { ensure(n); }\n        const mint& operator[](int\
     \ i) const {\n            ensure(i);\n            return pows[i];\n        }\n\
     \        static void ensure(int n) {\n            int sz = pows.size();\n    \
@@ -101,7 +101,7 @@ data:
     \ (int i = sz; i <= n; ++i) pows[i] = base * pows[i - 1];\n        }\n    private:\n\
     \        static inline std::vector<mint> pows { 1 };\n        static inline mint\
     \ base = base_as_int;\n        static constexpr int mod = mint::mod();\n    };\n\
-    \n    template <typename mint>\n    struct pow_mods {\n        pow_mods() {}\n\
+    \n    template <typename mint>\n    struct pow_mods {\n        pow_mods() = default;\n\
     \        pow_mods(mint base, int n) : base(base) { ensure(n); }\n        const\
     \ mint& operator[](int i) const {\n            ensure(i);\n            return\
     \ pows[i];\n        }\n        void ensure(int n) const {\n            int sz\
@@ -262,11 +262,11 @@ data:
   isVerificationFile: false
   path: library/math/sum_i^d_r^i.hpp
   requiredBy: []
-  timestamp: '2023-05-11 13:37:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
 documentation_of: library/math/sum_i^d_r^i.hpp
 layout: document
 title: $\displaystyle \sum _ i i ^ d r ^ i$

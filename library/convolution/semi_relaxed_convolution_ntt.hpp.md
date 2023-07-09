@@ -83,8 +83,8 @@ data:
   timestamp: '2023-02-02 02:15:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/semi_relaxed_convolution_ntt/exp_of_formal_power_series.test.cpp
   - test/src/convolution/semi_relaxed_convolution_ntt/convolution_mod.test.cpp
+  - test/src/convolution/semi_relaxed_convolution_ntt/exp_of_formal_power_series.test.cpp
 documentation_of: library/convolution/semi_relaxed_convolution_ntt.hpp
 layout: document
 title: Semi Relaxed Convolution Ntt

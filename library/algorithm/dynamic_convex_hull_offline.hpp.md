@@ -86,8 +86,8 @@ data:
     \ (r <= bl) return get_upper_hull(l, r, 2 * k + 0, seg, res);\n            if\
     \ (br <= l) return get_upper_hull(l, r, 2 * k + 1, seg, res);\n            get_upper_hull(l,\
     \ bl, 2 * k + 0, seg, res);\n            get_upper_hull(br, r, 2 * k + 1, seg,\
-    \ res);\n        }\n    public:\n        DynamicConvexHullOffline() {}\n\n   \
-    \     template <typename T>\n        DynamicConvexHullOffline(const std::vector<T>&\
+    \ res);\n        }\n    public:\n        DynamicConvexHullOffline() = default;\n\
+    \n        template <typename T>\n        DynamicConvexHullOffline(const std::vector<T>&\
     \ xs) {\n            std::copy(xs.begin(), xs.end(), std::back_inserter(_xs));\n\
     \            std::sort(_xs.begin(), _xs.end());\n            _xs.erase(std::unique(_xs.begin(),\
     \ _xs.end()), _xs.end());\n            _m = ceil_pow2(_xs.size());\n         \
@@ -196,8 +196,8 @@ data:
     \ (r <= bl) return get_upper_hull(l, r, 2 * k + 0, seg, res);\n            if\
     \ (br <= l) return get_upper_hull(l, r, 2 * k + 1, seg, res);\n            get_upper_hull(l,\
     \ bl, 2 * k + 0, seg, res);\n            get_upper_hull(br, r, 2 * k + 1, seg,\
-    \ res);\n        }\n    public:\n        DynamicConvexHullOffline() {}\n\n   \
-    \     template <typename T>\n        DynamicConvexHullOffline(const std::vector<T>&\
+    \ res);\n        }\n    public:\n        DynamicConvexHullOffline() = default;\n\
+    \n        template <typename T>\n        DynamicConvexHullOffline(const std::vector<T>&\
     \ xs) {\n            std::copy(xs.begin(), xs.end(), std::back_inserter(_xs));\n\
     \            std::sort(_xs.begin(), _xs.end());\n            _xs.erase(std::unique(_xs.begin(),\
     \ _xs.end()), _xs.end());\n            _m = ceil_pow2(_xs.size());\n         \
@@ -235,7 +235,7 @@ data:
   isVerificationFile: false
   path: library/algorithm/dynamic_convex_hull_offline.hpp
   requiredBy: []
-  timestamp: '2022-03-31 17:13:23+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/algorithm/dynamic_convex_hull_offline/convex_layers.test.cpp

@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/string/aho_corasick_array.hpp
     title: Aho Corasick Array
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/string/aho_corasick_array/abc268_h.test.cpp
     title: test/src/string/aho_corasick_array/abc268_h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/string/trie_array.hpp\"\n\n\n\n#include <array>\n\
@@ -88,7 +88,7 @@ data:
   requiredBy:
   - library/string/aho_corasick_array.hpp
   timestamp: '2022-11-06 23:07:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/string/aho_corasick_array/abc268_h.test.cpp
 documentation_of: library/string/trie_array.hpp

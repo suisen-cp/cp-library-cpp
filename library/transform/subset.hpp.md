@@ -18,21 +18,21 @@ data:
   - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
     title: Array Set Power Series
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':x:'
@@ -65,10 +65,10 @@ data:
   - icon: ':x:'
     path: test/src/math/set_power_series/arc105_f.test.cpp
     title: test/src/math/set_power_series/arc105_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
     title: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
     title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   _isVerificationFailed: true
@@ -171,28 +171,28 @@ data:
   path: library/transform/subset.hpp
   requiredBy:
   - library/linear_algebra/hafnian.hpp
-  - library/convolution/subset_convolution.hpp
-  - library/convolution/array_subset_convolution.hpp
-  - library/convolution/or_convolution.hpp
-  - library/math/array_set_power_series.hpp
   - library/math/set_power_series.hpp
+  - library/math/array_set_power_series.hpp
+  - library/convolution/array_subset_convolution.hpp
+  - library/convolution/subset_convolution.hpp
+  - library/convolution/or_convolution.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/src/math/set_power_series/abc253_h.test.cpp
+  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/src/math/set_power_series/abc236_h.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/set_power_series/arc105_f.test.cpp
   - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
   - test/src/math/set_power_series/abc213_g.test.cpp
-  - test/src/math/set_power_series/arc105_f.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
   - test/src/math/array_set_power_series/abc253_h.test.cpp
   - test/src/math/array_set_power_series/abc236_h.test.cpp
-  - test/src/math/array_set_power_series/abc213_g.test.cpp
-  - test/src/math/array_set_power_series/arc105_f.test.cpp
   - test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - test/src/math/array_set_power_series/arc105_f.test.cpp
+  - test/src/math/array_set_power_series/abc213_g.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
 documentation_of: library/transform/subset.hpp
 layout: document
 title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\u30BF\

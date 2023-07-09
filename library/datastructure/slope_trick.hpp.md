@@ -110,9 +110,9 @@ data:
   timestamp: '2022-10-30 21:37:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/slope_trick/absolute_minima.test.cpp
   - test/src/datastructure/slope_trick/inc_dec_decomposition.test.cpp
   - test/src/datastructure/slope_trick/narrow_rectangles.test.cpp
-  - test/src/datastructure/slope_trick/absolute_minima.test.cpp
 documentation_of: library/datastructure/slope_trick.hpp
 layout: document
 title: Slope Trick

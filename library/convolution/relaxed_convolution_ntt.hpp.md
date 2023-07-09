@@ -2,31 +2,31 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: Formal Power Series Relaxed
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/relaxed_convolution_ntt/convolution_mod.test.cpp
     title: test/src/convolution/relaxed_convolution_ntt/convolution_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c
@@ -123,14 +123,14 @@ data:
   requiredBy:
   - library/polynomial/formal_power_series_relaxed.hpp
   timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/convolution/relaxed_convolution_ntt/convolution_mod.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
+  - test/src/convolution/relaxed_convolution_ntt/convolution_mod.test.cpp
 documentation_of: library/convolution/relaxed_convolution_ntt.hpp
 layout: document
 title: Relaxed Convolution Ntt

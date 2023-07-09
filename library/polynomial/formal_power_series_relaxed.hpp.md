@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/relaxed_convolution_ntt.hpp
     title: Relaxed Convolution Ntt
   - icon: ':question:'
@@ -12,48 +12,48 @@ data:
     title: Modint Extension
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/formal_power_series_relaxed.hpp\"\n\n\
     \n\n#include <atcoder/convolution>\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\
     \n#include <vector>\n\nnamespace suisen {\n    template <typename mint>\n    class\
-    \ inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int n) { ensure(n);\
-    \ }\n        const mint& operator[](int i) const {\n            ensure(i);\n \
-    \           return invs[i];\n        }\n        static void ensure(int n) {\n\
-    \            int sz = invs.size();\n            if (sz < 2) invs = { 0, 1 }, sz\
-    \ = 2;\n            if (sz < n + 1) {\n                invs.resize(n + 1);\n \
-    \               for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) *\
-    \ invs[mod % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
-    \ invs;\n        static constexpr int mod = mint::mod();\n    };\n    template\
-    \ <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\n    template\
-    \ <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>& vs)\
-    \ {\n        const int n = vs.size();\n\n        mint p = 1;\n        for (auto&\
-    \ e : vs) {\n            p *= e;\n            assert(e != 0);\n        }\n   \
-    \     mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n        rp[n]\
-    \ = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i] = rp[i +\
-    \ 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n        for (int\
-    \ i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n            ip *=\
-    \ vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 1 \"library/convolution/relaxed_convolution_ntt.hpp\"\
-    \n\n\n\n#line 5 \"library/convolution/relaxed_convolution_ntt.hpp\"\n\nnamespace\
-    \ suisen {\n    // reference: https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c\n\
+    \ inv_mods {\n    public:\n        inv_mods() = default;\n        inv_mods(int\
+    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
+    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
+    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
+    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
+    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
+    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
+    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
+    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
+    \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
+    \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
+    \ }\n        mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n    \
+    \    rp[n] = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i]\
+    \ = rp[i + 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n       \
+    \ for (int i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n      \
+    \      ip *= vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 1 \"\
+    library/convolution/relaxed_convolution_ntt.hpp\"\n\n\n\n#line 5 \"library/convolution/relaxed_convolution_ntt.hpp\"\
+    \n\nnamespace suisen {\n    // reference: https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c\n\
     \    template <typename mint>\n    struct RelaxedConvolutionNTT {\n        RelaxedConvolutionNTT():\
     \ _n(0), _f{}, _g{}, _h{} {}\n\n        mint append(const mint& fi, const mint&\
     \ gi) {\n            static constexpr int threshold_log = 6;\n            static\
@@ -230,14 +230,14 @@ data:
   isVerificationFile: false
   path: library/polynomial/formal_power_series_relaxed.hpp
   requiredBy: []
-  timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/inv_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/log_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/pow_of_formal_power_series.test.cpp
   - test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series_relaxed/exp_of_formal_power_series.test.cpp
 documentation_of: library/polynomial/formal_power_series_relaxed.hpp
 layout: document
 title: Formal Power Series Relaxed

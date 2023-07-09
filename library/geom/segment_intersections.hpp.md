@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/geom/segment_intersections.hpp\"\n\n\n\n#include\
@@ -147,10 +147,10 @@ data:
     \ <map>\n#include <unordered_map>\n\nnamespace suisen {\n    namespace internal\
     \ {\n        template <typename T, typename index_t = int, typename Container\
     \ = std::vector<T>>\n        class FenwickTreeBase {\n        public:\n      \
-    \      FenwickTreeBase() {}\n            explicit FenwickTreeBase(index_t n) :\
-    \ n(n) {}\n\n            int size() const {\n                return n;\n     \
-    \       }\n            void add(index_t i, T v) {\n                for (++i; i\
-    \ <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
+    \      FenwickTreeBase() = default;\n            explicit FenwickTreeBase(index_t\
+    \ n) : n(n) {}\n\n            int size() const {\n                return n;\n\
+    \            }\n            void add(index_t i, T v) {\n                for (++i;\
+    \ i <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
     \ l, index_t r) const {\n                return sum(r) - sum(l);\n           \
     \ }\n            auto operator[](int i) {\n                struct {\n        \
     \            int i;\n                    FenwickTreeBase& ft;\n              \
@@ -228,8 +228,8 @@ data:
   isVerificationFile: false
   path: library/geom/segment_intersections.hpp
   requiredBy: []
-  timestamp: '2022-07-02 19:24:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/geom/segment_intersections.hpp

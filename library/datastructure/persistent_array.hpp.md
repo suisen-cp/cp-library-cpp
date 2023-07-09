@@ -79,9 +79,9 @@ data:
     \       };\n                dfs(dfs, node, 0, 1);\n                return res;\n\
     \            }\n        };\n\n        static void init_pool(int capacity) {\n\
     \            node_type::pool = pool_type(capacity);\n        }\n\n        PersistentArray()\
-    \ {}\n        explicit PersistentArray(int n, const value_type& val = value_type{})\
-    \ : PersistentArray(std::vector<value_type>(n, val)) {}\n        PersistentArray(const\
-    \ std::vector<value_type>& init) : _n(init.size()), _root(node_type::build(init))\
+    \ = default;\n        explicit PersistentArray(int n, const value_type& val =\
+    \ value_type{}) : PersistentArray(std::vector<value_type>(n, val)) {}\n      \
+    \  PersistentArray(const std::vector<value_type>& init) : _n(init.size()), _root(node_type::build(init))\
     \ {}\n\n        int size() const {\n            return _n;\n        }\n      \
     \  const value_type& get(int id) {\n            return node_type::get(_root, id);\n\
     \        }\n        PersistentArray set(int id, const value_type& new_val) {\n\
@@ -137,9 +137,9 @@ data:
     \       };\n                dfs(dfs, node, 0, 1);\n                return res;\n\
     \            }\n        };\n\n        static void init_pool(int capacity) {\n\
     \            node_type::pool = pool_type(capacity);\n        }\n\n        PersistentArray()\
-    \ {}\n        explicit PersistentArray(int n, const value_type& val = value_type{})\
-    \ : PersistentArray(std::vector<value_type>(n, val)) {}\n        PersistentArray(const\
-    \ std::vector<value_type>& init) : _n(init.size()), _root(node_type::build(init))\
+    \ = default;\n        explicit PersistentArray(int n, const value_type& val =\
+    \ value_type{}) : PersistentArray(std::vector<value_type>(n, val)) {}\n      \
+    \  PersistentArray(const std::vector<value_type>& init) : _n(init.size()), _root(node_type::build(init))\
     \ {}\n\n        int size() const {\n            return _n;\n        }\n      \
     \  const value_type& get(int id) {\n            return node_type::get(_root, id);\n\
     \        }\n        PersistentArray set(int id, const value_type& new_val) {\n\
@@ -158,7 +158,7 @@ data:
   path: library/datastructure/persistent_array.hpp
   requiredBy:
   - library/datastructure/union_find/persistent_union_find.hpp
-  timestamp: '2022-07-02 19:24:50+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp

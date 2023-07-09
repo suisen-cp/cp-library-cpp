@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_6_A
@@ -152,10 +152,10 @@ data:
     \ <map>\n#include <unordered_map>\n\nnamespace suisen {\n    namespace internal\
     \ {\n        template <typename T, typename index_t = int, typename Container\
     \ = std::vector<T>>\n        class FenwickTreeBase {\n        public:\n      \
-    \      FenwickTreeBase() {}\n            explicit FenwickTreeBase(index_t n) :\
-    \ n(n) {}\n\n            int size() const {\n                return n;\n     \
-    \       }\n            void add(index_t i, T v) {\n                for (++i; i\
-    \ <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
+    \      FenwickTreeBase() = default;\n            explicit FenwickTreeBase(index_t\
+    \ n) : n(n) {}\n\n            int size() const {\n                return n;\n\
+    \            }\n            void add(index_t i, T v) {\n                for (++i;\
+    \ i <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
     \ l, index_t r) const {\n                return sum(r) - sum(l);\n           \
     \ }\n            auto operator[](int i) {\n                struct {\n        \
     \            int i;\n                    FenwickTreeBase& ft;\n              \
@@ -233,8 +233,8 @@ data:
   isVerificationFile: true
   path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2022-07-02 19:24:24+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/geom/segment_intersections/CGL_6_A.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   _extendedRequiredBy:
@@ -32,26 +32,26 @@ data:
     \n\n\n#include <vector>\n#include <map>\n#include <unordered_map>\n\nnamespace\
     \ suisen {\n    namespace internal {\n        template <typename T, typename index_t\
     \ = int, typename Container = std::vector<T>>\n        class FenwickTreeBase {\n\
-    \        public:\n            FenwickTreeBase() {}\n            explicit FenwickTreeBase(index_t\
-    \ n) : n(n) {}\n\n            int size() const {\n                return n;\n\
-    \            }\n            void add(index_t i, T v) {\n                for (++i;\
-    \ i <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
-    \ l, index_t r) const {\n                return sum(r) - sum(l);\n           \
-    \ }\n            auto operator[](int i) {\n                struct {\n        \
-    \            int i;\n                    FenwickTreeBase& ft;\n              \
-    \      operator T() const { return ft.sum(i, i + 1); }\n                    auto&\
-    \ operator++() { return *this += 1; }\n                    auto& operator--()\
-    \ { return *this -= 1; }\n                    auto& operator+=(T val) { ft.add(i,\
-    \ val); return *this; }\n                    auto& operator-=(T val) { ft.add(i,\
-    \ -val); return *this; }\n                    auto& operator*=(T val) { T cur\
-    \ = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }\n          \
-    \          auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur /\
-    \ val - cur); return *this; }\n                    auto& operator%=(T val) { T\
-    \ cur = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }\n      \
-    \              auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i, val\
-    \ - cur); return *this; }\n                } obj{ i, *this };\n              \
-    \  return obj;\n            }\n            T operator()(int l, int r) const {\
-    \ return sum(l, r); }\n\n            Container& get_internal_container() { return\
+    \        public:\n            FenwickTreeBase() = default;\n            explicit\
+    \ FenwickTreeBase(index_t n) : n(n) {}\n\n            int size() const {\n   \
+    \             return n;\n            }\n            void add(index_t i, T v) {\n\
+    \                for (++i; i <= n; i += (i & -i)) data[i - 1] += v;\n        \
+    \    }\n            T sum(index_t l, index_t r) const {\n                return\
+    \ sum(r) - sum(l);\n            }\n            auto operator[](int i) {\n    \
+    \            struct {\n                    int i;\n                    FenwickTreeBase&\
+    \ ft;\n                    operator T() const { return ft.sum(i, i + 1); }\n \
+    \                   auto& operator++() { return *this += 1; }\n              \
+    \      auto& operator--() { return *this -= 1; }\n                    auto& operator+=(T\
+    \ val) { ft.add(i, val); return *this; }\n                    auto& operator-=(T\
+    \ val) { ft.add(i, -val); return *this; }\n                    auto& operator*=(T\
+    \ val) { T cur = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }\n\
+    \                    auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i,\
+    \ cur / val - cur); return *this; }\n                    auto& operator%=(T val)\
+    \ { T cur = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }\n  \
+    \                  auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i,\
+    \ val - cur); return *this; }\n                } obj{ i, *this };\n          \
+    \      return obj;\n            }\n            T operator()(int l, int r) const\
+    \ { return sum(l, r); }\n\n            Container& get_internal_container() { return\
     \ data; }\n        protected:\n            index_t n;\n            Container data;\n\
     \            template <typename ...Args>\n            FenwickTreeBase(index_t\
     \ n, Args &&...args) : n(n), data(std::forward<Args>(args)...) {}\n        private:\n\
@@ -72,7 +72,7 @@ data:
     \ = internal::FenwickTreeBase<T, index_t, internal::cond_map_t<index_t, T, use_unordered_map>>;\n\
     \n} // namespace suisen\n\n\n#line 10 \"library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp\"\
     \n\nnamespace suisen {\n\n    template <typename T>\n    class FenwickTree2DSparse\
-    \ {\n    public:\n        FenwickTree2DSparse() {}\n        explicit FenwickTree2DSparse(int\
+    \ {\n    public:\n        FenwickTree2DSparse() = default;\n        explicit FenwickTree2DSparse(int\
     \ x_num) : n(x_num + 1), data(n), points(), pos_x(), pos_y(n) {}\n\n        void\
     \ add_point(int x, int y) {\n            built = false;\n            pos_x.push_back(x);\n\
     \            points.emplace_back(x, y);\n        }\n\n        void build() {\n\
@@ -123,7 +123,7 @@ data:
     \n#include <algorithm>\n#include <cassert>\n#include <limits>\n#include <tuple>\n\
     \n#include \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\n\nnamespace\
     \ suisen {\n\n    template <typename T>\n    class FenwickTree2DSparse {\n   \
-    \ public:\n        FenwickTree2DSparse() {}\n        explicit FenwickTree2DSparse(int\
+    \ public:\n        FenwickTree2DSparse() = default;\n        explicit FenwickTree2DSparse(int\
     \ x_num) : n(x_num + 1), data(n), points(), pos_x(), pos_y(n) {}\n\n        void\
     \ add_point(int x, int y) {\n            built = false;\n            pos_x.push_back(x);\n\
     \            points.emplace_back(x, y);\n        }\n\n        void build() {\n\
@@ -177,13 +177,13 @@ data:
   path: library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
   requiredBy:
   - library/datastructure/fenwick_tree/rectangle_add_rectangle_sum.hpp
-  timestamp: '2022-07-02 19:24:24+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
 layout: document
 title: "2D Binary Indexed Tree (\u70B9\u7FA4\u304C\u758E\u306A\u5834\u5408)"

@@ -5,34 +5,37 @@ data:
   - icon: ':x:'
     path: library/datastructure/union_find/linked_union_find.hpp
     title: "\u9023\u7D50\u6210\u5206\u3092\u53D6\u5F97\u3067\u304D\u308B Union Find"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/union_find/union_find_component_sum.hpp
     title: "\u9023\u7D50\u6210\u5206\u306E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u548C\
       \u3092\u53D6\u5F97\u3067\u304D\u308B Union Find"
+  - icon: ':warning:'
+    path: library/datastructure/union_find/union_find_lazy.hpp
+    title: Union Find with lazy propagation
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
     title: test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
     title: test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/union_find/union_find/unionfind.test.cpp
     title: test/src/datastructure/union_find/union_find/unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
     title: test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/union_find/union_find.hpp\"\n\n\n\n\
     #include <algorithm>\n#include <vector>\n\nnamespace suisen {\n    struct UnionFind\
-    \ {\n        UnionFind() {}\n        explicit UnionFind(int _n) : _n(_n), _dat(_n,\
-    \ -1) {}\n        // Get the root of `x`. equivalent to `operator[](x)`\n    \
-    \    int root(int x) {\n            static std::vector<int> buf;\n           \
-    \ while (_dat[x] >= 0) buf.push_back(x), x = _dat[x];\n            while (buf.size())\
+    \ {\n        UnionFind() = default;\n        explicit UnionFind(int _n) : _n(_n),\
+    \ _dat(_n, -1) {}\n        // Get the root of `x`. equivalent to `operator[](x)`\n\
+    \        int root(int x) {\n            static std::vector<int> buf;\n       \
+    \     while (_dat[x] >= 0) buf.push_back(x), x = _dat[x];\n            while (buf.size())\
     \ _dat[buf.back()] = x, buf.pop_back();\n            return x;\n        }\n  \
     \      // Get the root of `x`. euivalent to `root(x)`\n        int operator[](int\
     \ x) {\n            return root(x);\n        }\n        // Merge two vertices\
@@ -52,10 +55,10 @@ data:
     \ suisen\n\n\n"
   code: "#ifndef SUISEN_UNION_FIND\n#define SUISEN_UNION_FIND\n\n#include <algorithm>\n\
     #include <vector>\n\nnamespace suisen {\n    struct UnionFind {\n        UnionFind()\
-    \ {}\n        explicit UnionFind(int _n) : _n(_n), _dat(_n, -1) {}\n        //\
-    \ Get the root of `x`. equivalent to `operator[](x)`\n        int root(int x)\
-    \ {\n            static std::vector<int> buf;\n            while (_dat[x] >= 0)\
-    \ buf.push_back(x), x = _dat[x];\n            while (buf.size()) _dat[buf.back()]\
+    \ = default;\n        explicit UnionFind(int _n) : _n(_n), _dat(_n, -1) {}\n \
+    \       // Get the root of `x`. equivalent to `operator[](x)`\n        int root(int\
+    \ x) {\n            static std::vector<int> buf;\n            while (_dat[x] >=\
+    \ 0) buf.push_back(x), x = _dat[x];\n            while (buf.size()) _dat[buf.back()]\
     \ = x, buf.pop_back();\n            return x;\n        }\n        // Get the root\
     \ of `x`. euivalent to `root(x)`\n        int operator[](int x) {\n          \
     \  return root(x);\n        }\n        // Merge two vertices `x` and `y`.\n  \
@@ -76,15 +79,16 @@ data:
   isVerificationFile: false
   path: library/datastructure/union_find/union_find.hpp
   requiredBy:
-  - library/datastructure/union_find/linked_union_find.hpp
   - library/datastructure/union_find/union_find_component_sum.hpp
-  timestamp: '2022-06-27 18:51:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  - library/datastructure/union_find/union_find_lazy.hpp
+  - library/datastructure/union_find/linked_union_find.hpp
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
-  - test/src/datastructure/union_find/union_find/unionfind.test.cpp
-  - test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
   - test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp
+  - test/src/datastructure/union_find/union_find/DSL_1_A.test.cpp
+  - test/src/datastructure/union_find/union_find/unionfind.test.cpp
 documentation_of: library/datastructure/union_find/union_find.hpp
 layout: document
 title: Union Find

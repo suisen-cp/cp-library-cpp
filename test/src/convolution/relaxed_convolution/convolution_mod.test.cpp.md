@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/relaxed_convolution.hpp
     title: Relaxed Convolution
   _extendedRequiredBy: []

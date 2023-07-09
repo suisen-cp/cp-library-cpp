@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/point_set_range_contour_sum.hpp
     title: Point Set Range Contour Sum
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -20,16 +20,16 @@ data:
     \n\n\n\n#include <array>\n#include <cstdint>\n#include <deque>\n#include <map>\n\
     #include <queue>\n#include <tuple>\n#include <utility>\n\n#include <atcoder/segtree>\n\
     \nnamespace suisen {\n    template <typename T, T(*op)(T, T), T(*e)()>\n    struct\
-    \ PointSetRangeContourSum {\n        PointSetRangeContourSum() {}\n        PointSetRangeContourSum(int\
-    \ n, const T &fill_value) : PointSetRangeContourSum(std::vector<T>(n, fill_value))\
-    \ {}\n        PointSetRangeContourSum(const std::vector<T> &dat) : _n(dat.size()),\
-    \ _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n), _dat(dat)\
-    \ {\n            _par.reserve(2 * _n);\n            for (int i = 0; i < _n; ++i)\
-    \ _info[i].reserve(30);\n        }\n\n        using segtree_type = atcoder::segtree<T,\
-    \ op, e>;\n\n        struct AuxData {\n            int segtree_index;\n      \
-    \      int8_t child_index;\n            int dep;\n        };\n\n        struct\
-    \ Node {\n            std::vector<int> _sep;\n            segtree_type _seq;\n\
-    \n            Node() {}\n            Node(const std::vector<std::vector<int>>&\
+    \ PointSetRangeContourSum {\n        PointSetRangeContourSum() = default;\n  \
+    \      PointSetRangeContourSum(int n, const T &fill_value) : PointSetRangeContourSum(std::vector<T>(n,\
+    \ fill_value)) {}\n        PointSetRangeContourSum(const std::vector<T> &dat)\
+    \ : _n(dat.size()), _g(_n), _par(_n, -1), _removed(_n, false), _info(_n), _nodes(_n),\
+    \ _dat(dat) {\n            _par.reserve(2 * _n);\n            for (int i = 0;\
+    \ i < _n; ++i) _info[i].reserve(30);\n        }\n\n        using segtree_type\
+    \ = atcoder::segtree<T, op, e>;\n\n        struct AuxData {\n            int segtree_index;\n\
+    \            int8_t child_index;\n            int dep;\n        };\n\n       \
+    \ struct Node {\n            std::vector<int> _sep;\n            segtree_type\
+    \ _seq;\n\n            Node() = default;\n            Node(const std::vector<std::vector<int>>&\
     \ g, const std::vector<int8_t>& removed, const std::vector<int> &roots, const\
     \ bool child_index, std::vector<std::vector<AuxData>>& info, const std::vector<T>\
     \ &dat, int siz) {\n                std::vector<T> reordered_dat(siz);\n     \
@@ -219,8 +219,8 @@ data:
   isVerificationFile: true
   path: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
   requiredBy: []
-  timestamp: '2022-10-08 03:16:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/tree/point_set_range_contour_sum/dummy.test.cpp
 layout: document

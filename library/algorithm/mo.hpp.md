@@ -3,26 +3,26 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/algorithm/mo/abc174_f.test.cpp
     title: test/src/algorithm/mo/abc174_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/algorithm/mo/abc238_g.test.cpp
     title: test/src/algorithm/mo/abc238_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/algorithm/mo/abc242_g.test.cpp
     title: test/src/algorithm/mo/abc242_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
     title: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/algorithm/mo.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cmath>\n#include <numeric>\n#include <vector>\n\nnamespace suisen {\n\
-    \    struct Mo {\n        Mo() {}\n        Mo(const int n, const std::vector<std::pair<int,\
+    \    struct Mo {\n        Mo() = default;\n        Mo(const int n, const std::vector<std::pair<int,\
     \ int>> &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries),\
     \ ord(q) {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
     \                ord.begin(), ord.end(),\n                [&, this](int i, int\
@@ -63,9 +63,9 @@ data:
     \ 2 * q))));\n        }\n    };\n} // namespace suisen\n\n\n"
   code: "#ifndef SUISEN_MO\n#define SUISEN_MO\n\n#include <algorithm>\n#include <cmath>\n\
     #include <numeric>\n#include <vector>\n\nnamespace suisen {\n    struct Mo {\n\
-    \        Mo() {}\n        Mo(const int n, const std::vector<std::pair<int, int>>\
-    \ &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries), ord(q)\
-    \ {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
+    \        Mo() = default;\n        Mo(const int n, const std::vector<std::pair<int,\
+    \ int>> &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries),\
+    \ ord(q) {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
     \                ord.begin(), ord.end(),\n                [&, this](int i, int\
     \ j) {\n                    const auto &[li, ri] = qs[i];\n                  \
     \  const auto &[lj, rj] = qs[j];\n                    const int bi = li / b, bj\
@@ -106,13 +106,13 @@ data:
   isVerificationFile: false
   path: library/algorithm/mo.hpp
   requiredBy: []
-  timestamp: '2022-03-19 20:36:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/deque_aggregation/staticrmq.test.cpp
-  - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/algorithm/mo/abc174_f.test.cpp
   - test/src/algorithm/mo/abc242_g.test.cpp
+  - test/src/algorithm/mo/abc238_g.test.cpp
+  - test/src/datastructure/deque_aggregation/staticrmq.test.cpp
 documentation_of: library/algorithm/mo.hpp
 layout: document
 title: Mo

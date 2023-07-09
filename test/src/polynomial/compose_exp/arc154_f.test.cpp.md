@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':x:'
     path: library/polynomial/compose_exp.hpp
     title: Compose Exp
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
   - icon: ':question:'
@@ -43,18 +43,18 @@ data:
     \n#include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\n#line\
     \ 1 \"library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n#include <vector>\n\
     \nnamespace suisen {\n    template <typename T, typename U = T>\n    struct factorial\
-    \ {\n        factorial() {}\n        factorial(int n) { ensure(n); }\n\n     \
-    \   static void ensure(const int n) {\n            int sz = _fac.size();\n   \
-    \         if (n + 1 <= sz) return;\n            int new_size = std::max(n + 1,\
-    \ sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n  \
-    \          for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n  \
-    \          _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n            for\
-    \ (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n   \
-    \     }\n\n        T fac(const int i) {\n            ensure(i);\n            return\
-    \ _fac[i];\n        }\n        T operator()(int i) {\n            return fac(i);\n\
-    \        }\n        U fac_inv(const int i) {\n            ensure(i);\n       \
-    \     return _fac_inv[i];\n        }\n        U binom(const int n, const int r)\
-    \ {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
+    \ {\n        factorial() = default;\n        factorial(int n) { ensure(n); }\n\
+    \n        static void ensure(const int n) {\n            int sz = _fac.size();\n\
+    \            if (n + 1 <= sz) return;\n            int new_size = std::max(n +\
+    \ 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
+    \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
+    \            _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n           \
+    \ for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n\
+    \        }\n\n        T fac(const int i) {\n            ensure(i);\n         \
+    \   return _fac[i];\n        }\n        T operator()(int i) {\n            return\
+    \ fac(i);\n        }\n        U fac_inv(const int i) {\n            ensure(i);\n\
+    \            return _fac_inv[i];\n        }\n        U binom(const int n, const\
+    \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
     \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
     \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
     \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
@@ -64,7 +64,7 @@ data:
     \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
     \ suisen\n\n\n#line 1 \"library/math/pow_mods.hpp\"\n\n\n\n#line 5 \"library/math/pow_mods.hpp\"\
     \n\nnamespace suisen {\n    template <int base_as_int, typename mint>\n    struct\
-    \ static_pow_mods {\n        static_pow_mods() {}\n        static_pow_mods(int\
+    \ static_pow_mods {\n        static_pow_mods() = default;\n        static_pow_mods(int\
     \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
     \   ensure(i);\n            return pows[i];\n        }\n        static void ensure(int\
     \ n) {\n            int sz = pows.size();\n            if (sz > n) return;\n \
@@ -72,8 +72,8 @@ data:
     \ = base * pows[i - 1];\n        }\n    private:\n        static inline std::vector<mint>\
     \ pows { 1 };\n        static inline mint base = base_as_int;\n        static\
     \ constexpr int mod = mint::mod();\n    };\n\n    template <typename mint>\n \
-    \   struct pow_mods {\n        pow_mods() {}\n        pow_mods(mint base, int\
-    \ n) : base(base) { ensure(n); }\n        const mint& operator[](int i) const\
+    \   struct pow_mods {\n        pow_mods() = default;\n        pow_mods(mint base,\
+    \ int n) : base(base) { ensure(n); }\n        const mint& operator[](int i) const\
     \ {\n            ensure(i);\n            return pows[i];\n        }\n        void\
     \ ensure(int n) const {\n            int sz = pows.size();\n            if (sz\
     \ > n) return;\n            pows.resize(n + 1);\n            for (int i = sz;\
@@ -137,15 +137,15 @@ data:
     }\ntemplate <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint())\
     \ {\n    return a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n\
     #line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
-    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
-    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
-    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
-    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
-    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
-    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
-    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
-    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() = default;\n  \
+    \      inv_mods(int n) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return invs[i];\n        }\n        static\
+    \ void ensure(int n) {\n            int sz = invs.size();\n            if (sz\
+    \ < 2) invs = { 0, 1 }, sz = 2;\n            if (sz < n + 1) {\n             \
+    \   invs.resize(n + 1);\n                for (int i = sz; i <= n; ++i) invs[i]\
+    \ = mint(mod - mod / i) * invs[mod % i];\n            }\n        }\n    private:\n\
+    \        static std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n\
+    \    };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
     \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
     \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
     \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
@@ -677,7 +677,7 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/compose_exp/arc154_f.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 05:26:26+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/compose_exp/arc154_f.test.cpp

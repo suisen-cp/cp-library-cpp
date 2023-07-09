@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/number/modint_2^61m1.hpp
     title: Modint 2^61m1
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/string/rolling_hash/abc141_e.test.cpp
     title: test/src/string/rolling_hash/abc141_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/string/rolling_hash.hpp\"\n\n\n\n#include <array>\n\
     #include <cstdint>\n#include <string>\n#include <random>\n#include <vector>\n\n\
     #line 1 \"library/math/pow_mods.hpp\"\n\n\n\n#line 5 \"library/math/pow_mods.hpp\"\
     \n\nnamespace suisen {\n    template <int base_as_int, typename mint>\n    struct\
-    \ static_pow_mods {\n        static_pow_mods() {}\n        static_pow_mods(int\
+    \ static_pow_mods {\n        static_pow_mods() = default;\n        static_pow_mods(int\
     \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
     \   ensure(i);\n            return pows[i];\n        }\n        static void ensure(int\
     \ n) {\n            int sz = pows.size();\n            if (sz > n) return;\n \
@@ -29,8 +29,8 @@ data:
     \ = base * pows[i - 1];\n        }\n    private:\n        static inline std::vector<mint>\
     \ pows { 1 };\n        static inline mint base = base_as_int;\n        static\
     \ constexpr int mod = mint::mod();\n    };\n\n    template <typename mint>\n \
-    \   struct pow_mods {\n        pow_mods() {}\n        pow_mods(mint base, int\
-    \ n) : base(base) { ensure(n); }\n        const mint& operator[](int i) const\
+    \   struct pow_mods {\n        pow_mods() = default;\n        pow_mods(mint base,\
+    \ int n) : base(base) { ensure(n); }\n        const mint& operator[](int i) const\
     \ {\n            ensure(i);\n            return pows[i];\n        }\n        void\
     \ ensure(int n) const {\n            int sz = pows.size();\n            if (sz\
     \ > n) return;\n            pows.resize(n + 1);\n            for (int i = sz;\
@@ -97,7 +97,7 @@ data:
     \       res[i] = pow_mods<mint>(bases[i], 0);\n            }\n            return\
     \ res;\n        }\n    }\n\n    template <int base_num = 1, typename mint = modint2p61m1>\n\
     \    struct RollingHash {\n    public:\n        using modint_type = mint;\n  \
-    \      using hash_type = decltype(mint::mod());\n\n        RollingHash() {}\n\
+    \      using hash_type = decltype(mint::mod());\n\n        RollingHash() = default;\n\
     \        RollingHash(const std::vector<int> &a) : n(a.size()) {\n            for\
     \ (int base_id = 0; base_id < base_num; ++base_id) {\n                hash[base_id].resize(n\
     \ + 1);\n                hash[base_id][0] = 0;\n                for (int i = 0;\
@@ -146,10 +146,10 @@ data:
     \            return res;\n        }\n    }\n\n    template <int base_num = 1,\
     \ typename mint = modint2p61m1>\n    struct RollingHash {\n    public:\n     \
     \   using modint_type = mint;\n        using hash_type = decltype(mint::mod());\n\
-    \n        RollingHash() {}\n        RollingHash(const std::vector<int> &a) : n(a.size())\
-    \ {\n            for (int base_id = 0; base_id < base_num; ++base_id) {\n    \
-    \            hash[base_id].resize(n + 1);\n                hash[base_id][0] =\
-    \ 0;\n                for (int i = 0; i < n; ++i) hash[base_id][i + 1] = hash[base_id][i]\
+    \n        RollingHash() = default;\n        RollingHash(const std::vector<int>\
+    \ &a) : n(a.size()) {\n            for (int base_id = 0; base_id < base_num; ++base_id)\
+    \ {\n                hash[base_id].resize(n + 1);\n                hash[base_id][0]\
+    \ = 0;\n                for (int i = 0; i < n; ++i) hash[base_id][i + 1] = hash[base_id][i]\
     \ * bases[base_id] + a[i];\n            }\n        }\n\n        std::array<uint64_t,\
     \ base_num> operator()(int l, int r) {\n            std::array<uint64_t, base_num>\
     \ res;\n            for (int base_id = 0; base_id < base_num; ++base_id) {\n \
@@ -184,8 +184,8 @@ data:
   isVerificationFile: false
   path: library/string/rolling_hash.hpp
   requiredBy: []
-  timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/string/rolling_hash/abc141_e.test.cpp
 documentation_of: library/string/rolling_hash.hpp

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/datastructure/union_find/union_find.hpp
     title: Union Find
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
     title: test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/union_find/union_find_component_sum.hpp\"\
     \n\n\n\n#line 1 \"library/datastructure/union_find/union_find.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <vector>\n\nnamespace suisen {\n    struct UnionFind {\n\
-    \        UnionFind() {}\n        explicit UnionFind(int _n) : _n(_n), _dat(_n,\
-    \ -1) {}\n        // Get the root of `x`. equivalent to `operator[](x)`\n    \
-    \    int root(int x) {\n            static std::vector<int> buf;\n           \
-    \ while (_dat[x] >= 0) buf.push_back(x), x = _dat[x];\n            while (buf.size())\
+    \        UnionFind() = default;\n        explicit UnionFind(int _n) : _n(_n),\
+    \ _dat(_n, -1) {}\n        // Get the root of `x`. equivalent to `operator[](x)`\n\
+    \        int root(int x) {\n            static std::vector<int> buf;\n       \
+    \     while (_dat[x] >= 0) buf.push_back(x), x = _dat[x];\n            while (buf.size())\
     \ _dat[buf.back()] = x, buf.pop_back();\n            return x;\n        }\n  \
     \      // Get the root of `x`. euivalent to `root(x)`\n        int operator[](int\
     \ x) {\n            return root(x);\n        }\n        // Merge two vertices\
@@ -69,8 +69,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/union_find/union_find_component_sum.hpp
   requiredBy: []
-  timestamp: '2022-08-21 18:23:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
 documentation_of: library/datastructure/union_find/union_find_component_sum.hpp

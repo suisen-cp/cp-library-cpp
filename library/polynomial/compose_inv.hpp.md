@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
   - icon: ':question:'
@@ -18,12 +18,12 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
     title: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/compose_inv.hpp\"\n\n\n\n#include <atcoder/modint>\n\
@@ -84,15 +84,15 @@ data:
     }\ntemplate <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint())\
     \ {\n    return a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n\
     #line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
-    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
-    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
-    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
-    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
-    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
-    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
-    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
-    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() = default;\n  \
+    \      inv_mods(int n) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return invs[i];\n        }\n        static\
+    \ void ensure(int n) {\n            int sz = invs.size();\n            if (sz\
+    \ < 2) invs = { 0, 1 }, sz = 2;\n            if (sz < n + 1) {\n             \
+    \   invs.resize(n + 1);\n                for (int i = sz; i <= n; ++i) invs[i]\
+    \ = mint(mod - mod / i) * invs[mod % i];\n            }\n        }\n    private:\n\
+    \        static std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n\
+    \    };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
     \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
     \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
     \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
@@ -605,8 +605,8 @@ data:
   isVerificationFile: false
   path: library/polynomial/compose_inv.hpp
   requiredBy: []
-  timestamp: '2023-05-27 18:14:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
 documentation_of: library/polynomial/compose_inv.hpp

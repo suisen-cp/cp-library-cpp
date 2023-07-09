@@ -28,12 +28,12 @@ data:
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':x:'
@@ -51,15 +51,15 @@ data:
   - icon: ':x:'
     path: test/src/math/set_power_series/arc105_f.test.cpp
     title: test/src/math/set_power_series/arc105_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
     title: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
     title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/set_power_series.hpp\"\n\n\n\n#line 1 \"library/convolution/subset_convolution.hpp\"\
@@ -118,23 +118,23 @@ data:
     \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 1 \"\
     library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace\
     \ suisen {\n    template <typename mint>\n    class inv_mods {\n    public:\n\
-    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
-    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
-    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
-    \ = invs.size();\n            if (sz < 2) invs = { 0, 1 }, sz = 2;\n         \
-    \   if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
-    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
-    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
-    \        static constexpr int mod = mint::mod();\n    };\n    template <typename\
-    \ mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\n    template <typename\
-    \ mint>\n    std::vector<mint> get_invs(const std::vector<mint>& vs) {\n     \
-    \   const int n = vs.size();\n\n        mint p = 1;\n        for (auto& e : vs)\
-    \ {\n            p *= e;\n            assert(e != 0);\n        }\n        mint\
-    \ ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n        rp[n] = 1;\n\
-    \        for (int i = n - 1; i >= 0; --i) {\n            rp[i] = rp[i + 1] * vs[i];\n\
-    \        }\n        std::vector<mint> res(n);\n        for (int i = 0; i < n;\
-    \ ++i) {\n            res[i] = ip * rp[i + 1];\n            ip *= vs[i];\n   \
-    \     }\n        return res;\n    }\n}\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\
+    \        inv_mods() = default;\n        inv_mods(int n) { ensure(n); }\n     \
+    \   const mint& operator[](int i) const {\n            ensure(i);\n          \
+    \  return invs[i];\n        }\n        static void ensure(int n) {\n         \
+    \   int sz = invs.size();\n            if (sz < 2) invs = { 0, 1 }, sz = 2;\n\
+    \            if (sz < n + 1) {\n                invs.resize(n + 1);\n        \
+    \        for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod\
+    \ % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
+    \ invs;\n        static constexpr int mod = mint::mod();\n    };\n    template\
+    \ <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\n    template\
+    \ <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>& vs)\
+    \ {\n        const int n = vs.size();\n\n        mint p = 1;\n        for (auto&\
+    \ e : vs) {\n            p *= e;\n            assert(e != 0);\n        }\n   \
+    \     mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n        rp[n]\
+    \ = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i] = rp[i +\
+    \ 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n        for (int\
+    \ i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n            ip *=\
+    \ vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\
     \n\nnamespace suisen {\n    template <typename T>\n    struct FPSNaive : std::vector<T>\
     \ {\n        static inline int MAX_SIZE = std::numeric_limits<int>::max() / 2;\n\
     \n        using value_type = T;\n        using element_type = rec_value_type_t<T>;\n\
@@ -610,17 +610,17 @@ data:
   path: library/math/set_power_series.hpp
   requiredBy:
   - library/linear_algebra/hafnian.hpp
-  timestamp: '2023-05-21 05:26:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/src/math/set_power_series/abc253_h.test.cpp
+  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/src/math/set_power_series/abc236_h.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/set_power_series/arc105_f.test.cpp
   - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
   - test/src/math/set_power_series/abc213_g.test.cpp
-  - test/src/math/set_power_series/arc105_f.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
 documentation_of: library/math/set_power_series.hpp
 layout: document
 title: Set Power Series

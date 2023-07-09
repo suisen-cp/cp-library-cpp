@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
     title: Static Rectangle Add Rectangle Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
@@ -39,38 +39,38 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\n\n\
     \n\n#include <vector>\n#include <map>\n#include <unordered_map>\n\nnamespace suisen\
     \ {\n    namespace internal {\n        template <typename T, typename index_t\
     \ = int, typename Container = std::vector<T>>\n        class FenwickTreeBase {\n\
-    \        public:\n            FenwickTreeBase() {}\n            explicit FenwickTreeBase(index_t\
-    \ n) : n(n) {}\n\n            int size() const {\n                return n;\n\
-    \            }\n            void add(index_t i, T v) {\n                for (++i;\
-    \ i <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
-    \ l, index_t r) const {\n                return sum(r) - sum(l);\n           \
-    \ }\n            auto operator[](int i) {\n                struct {\n        \
-    \            int i;\n                    FenwickTreeBase& ft;\n              \
-    \      operator T() const { return ft.sum(i, i + 1); }\n                    auto&\
-    \ operator++() { return *this += 1; }\n                    auto& operator--()\
-    \ { return *this -= 1; }\n                    auto& operator+=(T val) { ft.add(i,\
-    \ val); return *this; }\n                    auto& operator-=(T val) { ft.add(i,\
-    \ -val); return *this; }\n                    auto& operator*=(T val) { T cur\
-    \ = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }\n          \
-    \          auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur /\
-    \ val - cur); return *this; }\n                    auto& operator%=(T val) { T\
-    \ cur = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }\n      \
-    \              auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i, val\
-    \ - cur); return *this; }\n                } obj{ i, *this };\n              \
-    \  return obj;\n            }\n            T operator()(int l, int r) const {\
-    \ return sum(l, r); }\n\n            Container& get_internal_container() { return\
+    \        public:\n            FenwickTreeBase() = default;\n            explicit\
+    \ FenwickTreeBase(index_t n) : n(n) {}\n\n            int size() const {\n   \
+    \             return n;\n            }\n            void add(index_t i, T v) {\n\
+    \                for (++i; i <= n; i += (i & -i)) data[i - 1] += v;\n        \
+    \    }\n            T sum(index_t l, index_t r) const {\n                return\
+    \ sum(r) - sum(l);\n            }\n            auto operator[](int i) {\n    \
+    \            struct {\n                    int i;\n                    FenwickTreeBase&\
+    \ ft;\n                    operator T() const { return ft.sum(i, i + 1); }\n \
+    \                   auto& operator++() { return *this += 1; }\n              \
+    \      auto& operator--() { return *this -= 1; }\n                    auto& operator+=(T\
+    \ val) { ft.add(i, val); return *this; }\n                    auto& operator-=(T\
+    \ val) { ft.add(i, -val); return *this; }\n                    auto& operator*=(T\
+    \ val) { T cur = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }\n\
+    \                    auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i,\
+    \ cur / val - cur); return *this; }\n                    auto& operator%=(T val)\
+    \ { T cur = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }\n  \
+    \                  auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i,\
+    \ val - cur); return *this; }\n                } obj{ i, *this };\n          \
+    \      return obj;\n            }\n            T operator()(int l, int r) const\
+    \ { return sum(l, r); }\n\n            Container& get_internal_container() { return\
     \ data; }\n        protected:\n            index_t n;\n            Container data;\n\
     \            template <typename ...Args>\n            FenwickTreeBase(index_t\
     \ n, Args &&...args) : n(n), data(std::forward<Args>(args)...) {}\n        private:\n\
@@ -94,10 +94,10 @@ data:
     #include <map>\n#include <unordered_map>\n\nnamespace suisen {\n    namespace\
     \ internal {\n        template <typename T, typename index_t = int, typename Container\
     \ = std::vector<T>>\n        class FenwickTreeBase {\n        public:\n      \
-    \      FenwickTreeBase() {}\n            explicit FenwickTreeBase(index_t n) :\
-    \ n(n) {}\n\n            int size() const {\n                return n;\n     \
-    \       }\n            void add(index_t i, T v) {\n                for (++i; i\
-    \ <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
+    \      FenwickTreeBase() = default;\n            explicit FenwickTreeBase(index_t\
+    \ n) : n(n) {}\n\n            int size() const {\n                return n;\n\
+    \            }\n            void add(index_t i, T v) {\n                for (++i;\
+    \ i <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
     \ l, index_t r) const {\n                return sum(r) - sum(l);\n           \
     \ }\n            auto operator[](int i) {\n                struct {\n        \
     \            int i;\n                    FenwickTreeBase& ft;\n              \
@@ -141,17 +141,17 @@ data:
   - library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
   - library/datastructure/fenwick_tree/rectangle_add_rectangle_sum.hpp
   - library/geom/segment_intersections.hpp
-  timestamp: '2022-07-02 19:24:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/datastructure/fenwick_tree/fenwick_tree.hpp
 layout: document

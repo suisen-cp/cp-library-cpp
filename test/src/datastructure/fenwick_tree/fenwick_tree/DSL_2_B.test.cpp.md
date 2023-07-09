@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   _extendedRequiredBy: []
@@ -20,26 +20,26 @@ data:
     \n\n\n\n#include <vector>\n#include <map>\n#include <unordered_map>\n\nnamespace\
     \ suisen {\n    namespace internal {\n        template <typename T, typename index_t\
     \ = int, typename Container = std::vector<T>>\n        class FenwickTreeBase {\n\
-    \        public:\n            FenwickTreeBase() {}\n            explicit FenwickTreeBase(index_t\
-    \ n) : n(n) {}\n\n            int size() const {\n                return n;\n\
-    \            }\n            void add(index_t i, T v) {\n                for (++i;\
-    \ i <= n; i += (i & -i)) data[i - 1] += v;\n            }\n            T sum(index_t\
-    \ l, index_t r) const {\n                return sum(r) - sum(l);\n           \
-    \ }\n            auto operator[](int i) {\n                struct {\n        \
-    \            int i;\n                    FenwickTreeBase& ft;\n              \
-    \      operator T() const { return ft.sum(i, i + 1); }\n                    auto&\
-    \ operator++() { return *this += 1; }\n                    auto& operator--()\
-    \ { return *this -= 1; }\n                    auto& operator+=(T val) { ft.add(i,\
-    \ val); return *this; }\n                    auto& operator-=(T val) { ft.add(i,\
-    \ -val); return *this; }\n                    auto& operator*=(T val) { T cur\
-    \ = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }\n          \
-    \          auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i, cur /\
-    \ val - cur); return *this; }\n                    auto& operator%=(T val) { T\
-    \ cur = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }\n      \
-    \              auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i, val\
-    \ - cur); return *this; }\n                } obj{ i, *this };\n              \
-    \  return obj;\n            }\n            T operator()(int l, int r) const {\
-    \ return sum(l, r); }\n\n            Container& get_internal_container() { return\
+    \        public:\n            FenwickTreeBase() = default;\n            explicit\
+    \ FenwickTreeBase(index_t n) : n(n) {}\n\n            int size() const {\n   \
+    \             return n;\n            }\n            void add(index_t i, T v) {\n\
+    \                for (++i; i <= n; i += (i & -i)) data[i - 1] += v;\n        \
+    \    }\n            T sum(index_t l, index_t r) const {\n                return\
+    \ sum(r) - sum(l);\n            }\n            auto operator[](int i) {\n    \
+    \            struct {\n                    int i;\n                    FenwickTreeBase&\
+    \ ft;\n                    operator T() const { return ft.sum(i, i + 1); }\n \
+    \                   auto& operator++() { return *this += 1; }\n              \
+    \      auto& operator--() { return *this -= 1; }\n                    auto& operator+=(T\
+    \ val) { ft.add(i, val); return *this; }\n                    auto& operator-=(T\
+    \ val) { ft.add(i, -val); return *this; }\n                    auto& operator*=(T\
+    \ val) { T cur = ft.sum(i, i + 1); ft.add(i, cur * val - cur); return *this; }\n\
+    \                    auto& operator/=(T val) { T cur = ft.sum(i, i + 1); ft.add(i,\
+    \ cur / val - cur); return *this; }\n                    auto& operator%=(T val)\
+    \ { T cur = ft.sum(i, i + 1); ft.add(i, cur % val - cur); return *this; }\n  \
+    \                  auto& operator =(T val) { T cur = ft.sum(i, i + 1); ft.add(i,\
+    \ val - cur); return *this; }\n                } obj{ i, *this };\n          \
+    \      return obj;\n            }\n            T operator()(int l, int r) const\
+    \ { return sum(l, r); }\n\n            Container& get_internal_container() { return\
     \ data; }\n        protected:\n            index_t n;\n            Container data;\n\
     \            template <typename ...Args>\n            FenwickTreeBase(index_t\
     \ n, Args &&...args) : n(n), data(std::forward<Args>(args)...) {}\n        private:\n\
@@ -80,7 +80,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2022-07-02 19:24:24+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp

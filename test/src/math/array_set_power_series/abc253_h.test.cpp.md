@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
     title: Array Set Power Series
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -48,18 +48,18 @@ data:
     \ <iostream>\n\n#include <atcoder/modint>\nusing mint = atcoder::modint998244353;\n\
     \n#line 1 \"library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n#include <vector>\n\
     \nnamespace suisen {\n    template <typename T, typename U = T>\n    struct factorial\
-    \ {\n        factorial() {}\n        factorial(int n) { ensure(n); }\n\n     \
-    \   static void ensure(const int n) {\n            int sz = _fac.size();\n   \
-    \         if (n + 1 <= sz) return;\n            int new_size = std::max(n + 1,\
-    \ sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n  \
-    \          for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n  \
-    \          _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n            for\
-    \ (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n   \
-    \     }\n\n        T fac(const int i) {\n            ensure(i);\n            return\
-    \ _fac[i];\n        }\n        T operator()(int i) {\n            return fac(i);\n\
-    \        }\n        U fac_inv(const int i) {\n            ensure(i);\n       \
-    \     return _fac_inv[i];\n        }\n        U binom(const int n, const int r)\
-    \ {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
+    \ {\n        factorial() = default;\n        factorial(int n) { ensure(n); }\n\
+    \n        static void ensure(const int n) {\n            int sz = _fac.size();\n\
+    \            if (n + 1 <= sz) return;\n            int new_size = std::max(n +\
+    \ 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
+    \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
+    \            _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n           \
+    \ for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n\
+    \        }\n\n        T fac(const int i) {\n            ensure(i);\n         \
+    \   return _fac[i];\n        }\n        T operator()(int i) {\n            return\
+    \ fac(i);\n        }\n        U fac_inv(const int i) {\n            ensure(i);\n\
+    \            return _fac_inv[i];\n        }\n        U binom(const int n, const\
+    \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
     \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
     \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
     \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
@@ -124,23 +124,23 @@ data:
     \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 1 \"\
     library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace\
     \ suisen {\n    template <typename mint>\n    class inv_mods {\n    public:\n\
-    \        inv_mods() {}\n        inv_mods(int n) { ensure(n); }\n        const\
-    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
-    \ invs[i];\n        }\n        static void ensure(int n) {\n            int sz\
-    \ = invs.size();\n            if (sz < 2) invs = { 0, 1 }, sz = 2;\n         \
-    \   if (sz < n + 1) {\n                invs.resize(n + 1);\n                for\
-    \ (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod % i];\n \
-    \           }\n        }\n    private:\n        static std::vector<mint> invs;\n\
-    \        static constexpr int mod = mint::mod();\n    };\n    template <typename\
-    \ mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\n    template <typename\
-    \ mint>\n    std::vector<mint> get_invs(const std::vector<mint>& vs) {\n     \
-    \   const int n = vs.size();\n\n        mint p = 1;\n        for (auto& e : vs)\
-    \ {\n            p *= e;\n            assert(e != 0);\n        }\n        mint\
-    \ ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n        rp[n] = 1;\n\
-    \        for (int i = n - 1; i >= 0; --i) {\n            rp[i] = rp[i + 1] * vs[i];\n\
-    \        }\n        std::vector<mint> res(n);\n        for (int i = 0; i < n;\
-    \ ++i) {\n            res[i] = ip * rp[i + 1];\n            ip *= vs[i];\n   \
-    \     }\n        return res;\n    }\n}\n\n\n#line 14 \"library/polynomial/array_fps_naive.hpp\"\
+    \        inv_mods() = default;\n        inv_mods(int n) { ensure(n); }\n     \
+    \   const mint& operator[](int i) const {\n            ensure(i);\n          \
+    \  return invs[i];\n        }\n        static void ensure(int n) {\n         \
+    \   int sz = invs.size();\n            if (sz < 2) invs = { 0, 1 }, sz = 2;\n\
+    \            if (sz < n + 1) {\n                invs.resize(n + 1);\n        \
+    \        for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod\
+    \ % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
+    \ invs;\n        static constexpr int mod = mint::mod();\n    };\n    template\
+    \ <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\n    template\
+    \ <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>& vs)\
+    \ {\n        const int n = vs.size();\n\n        mint p = 1;\n        for (auto&\
+    \ e : vs) {\n            p *= e;\n            assert(e != 0);\n        }\n   \
+    \     mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n        rp[n]\
+    \ = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i] = rp[i +\
+    \ 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n        for (int\
+    \ i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n            ip *=\
+    \ vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 14 \"library/polynomial/array_fps_naive.hpp\"\
     \n\nnamespace suisen {\n    template <typename T, std::size_t N>\n    struct ArrayFPSNaive\
     \ : std::array<T, N> {\n        static constexpr int SIZE = N;\n        static\
     \ constexpr int DEG = SIZE - 1;\n\n        using value_type = T;\n        using\
@@ -486,7 +486,7 @@ data:
   isVerificationFile: true
   path: test/src/math/array_set_power_series/abc253_h.test.cpp
   requiredBy: []
-  timestamp: '2023-05-11 13:23:19+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/array_set_power_series/abc253_h.test.cpp

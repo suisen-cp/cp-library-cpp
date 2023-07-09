@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
@@ -23,26 +23,27 @@ data:
     \n\n\n\n#include <vector>\n#include <atcoder/convolution>\n\n#line 1 \"library/math/factorial.hpp\"\
     \n\n\n\n#include <cassert>\n#line 6 \"library/math/factorial.hpp\"\n\nnamespace\
     \ suisen {\n    template <typename T, typename U = T>\n    struct factorial {\n\
-    \        factorial() {}\n        factorial(int n) { ensure(n); }\n\n        static\
-    \ void ensure(const int n) {\n            int sz = _fac.size();\n            if\
-    \ (n + 1 <= sz) return;\n            int new_size = std::max(n + 1, sz * 2);\n\
-    \            _fac.resize(new_size), _fac_inv.resize(new_size);\n            for\
-    \ (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size\
-    \ - 1] = U(1) / _fac[new_size - 1];\n            for (int i = new_size - 1; i\
-    \ > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n        }\n\n        T fac(const\
-    \ int i) {\n            ensure(i);\n            return _fac[i];\n        }\n \
-    \       T operator()(int i) {\n            return fac(i);\n        }\n       \
-    \ U fac_inv(const int i) {\n            ensure(i);\n            return _fac_inv[i];\n\
-    \        }\n        U binom(const int n, const int r) {\n            if (n < 0\
-    \ or r < 0 or n < r) return 0;\n            ensure(n);\n            return _fac[n]\
-    \ * _fac_inv[r] * _fac_inv[n - r];\n        }\n        U perm(const int n, const\
+    \        factorial() = default;\n        factorial(int n) { ensure(n); }\n\n \
+    \       static void ensure(const int n) {\n            int sz = _fac.size();\n\
+    \            if (n + 1 <= sz) return;\n            int new_size = std::max(n +\
+    \ 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
+    \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
+    \            _fac_inv[new_size - 1] = U(1) / _fac[new_size - 1];\n           \
+    \ for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] = _fac_inv[i] * i;\n\
+    \        }\n\n        T fac(const int i) {\n            ensure(i);\n         \
+    \   return _fac[i];\n        }\n        T operator()(int i) {\n            return\
+    \ fac(i);\n        }\n        U fac_inv(const int i) {\n            ensure(i);\n\
+    \            return _fac_inv[i];\n        }\n        U binom(const int n, const\
     \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
-    \            return _fac[n] * _fac_inv[n - r];\n        }\n    private:\n    \
-    \    static std::vector<T> _fac;\n        static std::vector<U> _fac_inv;\n  \
-    \  };\n    template <typename T, typename U>\n    std::vector<T> factorial<T,\
-    \ U>::_fac{ 1 };\n    template <typename T, typename U>\n    std::vector<U> factorial<T,\
-    \ U>::_fac_inv{ 1 };\n} // namespace suisen\n\n\n#line 8 \"library/polynomial/shift_of_sampling_points.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> shift_of_sampling_points(const\
+    \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
+    \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
+    \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
+    \ - r];\n        }\n    private:\n        static std::vector<T> _fac;\n      \
+    \  static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
+    \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
+    \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
+    \ suisen\n\n\n#line 8 \"library/polynomial/shift_of_sampling_points.hpp\"\n\n\
+    namespace suisen {\n    template <typename mint>\n    std::vector<mint> shift_of_sampling_points(const\
     \ std::vector<mint>& ys, mint t, int m) {\n        const int n = ys.size();\n\
     \        factorial<mint> fac(std::max(n, m));\n\n        std::vector<mint> b =\
     \ [&] {\n            std::vector<mint> f(n), g(n);\n            for (int i = 0;\
@@ -83,8 +84,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2022-10-15 19:12:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
 layout: document

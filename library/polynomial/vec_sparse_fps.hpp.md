@@ -14,11 +14,11 @@ data:
     \ std::nullptr_t> = nullptr>\n    struct VecSparseFPS {\n        using index_type\
     \ = IndexType;\n        using value_type = ValueType;\n\n        using convolution_t\
     \ = std::vector<value_type> (*)(const std::vector<value_type> &, const std::vector<value_type>\
-    \ &);\n\n        VecSparseFPS() {}\n        template <typename IT, typename VT>\n\
-    \        VecSparseFPS(std::vector<std::pair<IT, VT>> data, bool sorted = false)\
-    \ {\n            if (not sorted) std::sort(data.begin(), data.end(), [](auto &p1,\
-    \ auto &p2) { return p1.first < p2.first; });\n            for (const auto &[i,\
-    \ v] : data) add_to_last(i, v);\n        }\n\n        static void set_multiplication(convolution_t\
+    \ &);\n\n        VecSparseFPS() = default;\n        template <typename IT, typename\
+    \ VT>\n        VecSparseFPS(std::vector<std::pair<IT, VT>> data, bool sorted =\
+    \ false) {\n            if (not sorted) std::sort(data.begin(), data.end(), [](auto\
+    \ &p1, auto &p2) { return p1.first < p2.first; });\n            for (const auto\
+    \ &[i, v] : data) add_to_last(i, v);\n        }\n\n        static void set_multiplication(convolution_t\
     \ multiplication) {\n            VecSparseFPS<index_type, value_type>::mult =\
     \ multiplication;\n        }\n\n        value_type operator[](index_type i) {\n\
     \            auto it = std::upper_bound(_f.begin(), _f.end(), i, [](index_type\
@@ -86,11 +86,11 @@ data:
     \ std::nullptr_t> = nullptr>\n    struct VecSparseFPS {\n        using index_type\
     \ = IndexType;\n        using value_type = ValueType;\n\n        using convolution_t\
     \ = std::vector<value_type> (*)(const std::vector<value_type> &, const std::vector<value_type>\
-    \ &);\n\n        VecSparseFPS() {}\n        template <typename IT, typename VT>\n\
-    \        VecSparseFPS(std::vector<std::pair<IT, VT>> data, bool sorted = false)\
-    \ {\n            if (not sorted) std::sort(data.begin(), data.end(), [](auto &p1,\
-    \ auto &p2) { return p1.first < p2.first; });\n            for (const auto &[i,\
-    \ v] : data) add_to_last(i, v);\n        }\n\n        static void set_multiplication(convolution_t\
+    \ &);\n\n        VecSparseFPS() = default;\n        template <typename IT, typename\
+    \ VT>\n        VecSparseFPS(std::vector<std::pair<IT, VT>> data, bool sorted =\
+    \ false) {\n            if (not sorted) std::sort(data.begin(), data.end(), [](auto\
+    \ &p1, auto &p2) { return p1.first < p2.first; });\n            for (const auto\
+    \ &[i, v] : data) add_to_last(i, v);\n        }\n\n        static void set_multiplication(convolution_t\
     \ multiplication) {\n            VecSparseFPS<index_type, value_type>::mult =\
     \ multiplication;\n        }\n\n        value_type operator[](index_type i) {\n\
     \            auto it = std::upper_bound(_f.begin(), _f.end(), i, [](index_type\
@@ -156,7 +156,7 @@ data:
   isVerificationFile: false
   path: library/polynomial/vec_sparse_fps.hpp
   requiredBy: []
-  timestamp: '2022-05-14 03:01:53+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/polynomial/vec_sparse_fps.hpp

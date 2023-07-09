@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/relaxed_convolution_ntt.hpp
     title: Relaxed Convolution Ntt
   - icon: ':question:'
@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: Formal Power Series Relaxed
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
@@ -28,7 +28,7 @@ data:
     \n\n#include <iostream>\n#include <atcoder/modint>\n#line 1 \"library/polynomial/formal_power_series_relaxed.hpp\"\
     \n\n\n\n#include <atcoder/convolution>\n#line 1 \"library/math/inv_mods.hpp\"\n\
     \n\n\n#include <vector>\n\nnamespace suisen {\n    template <typename mint>\n\
-    \    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
+    \    class inv_mods {\n    public:\n        inv_mods() = default;\n        inv_mods(int\
     \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
     \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
     \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
@@ -203,8 +203,8 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
 layout: document

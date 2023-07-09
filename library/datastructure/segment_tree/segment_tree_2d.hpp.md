@@ -14,21 +14,21 @@ data:
   bundledCode: "#line 1 \"library/datastructure/segment_tree/segment_tree_2d.hpp\"\
     \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n    template\
     \ <typename T, T(*op)(T, T), T(*e)()>\n    struct SegmentTree2D {\n        SegmentTree2D()\
-    \ {}\n        SegmentTree2D(int n, int m) : SegmentTree2D(std::vector(2 * n, std::vector(2\
-    \ * m, e()))) {}\n        SegmentTree2D(const std::vector<std::vector<T>> &a)\
-    \ : n(a.size()), m(n == 0 ? 0 : a[0].size()), dat(2 * n, std::vector<T>(2 * m,\
-    \ e())) {\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j)\
-    \ {\n                dat[n + i][m + j] = a[i][j];\n            }\n           \
-    \ for (int i = 1; i < 2 * n; ++i) for (int j = m - 1; j > 0; --j) {\n        \
-    \        dat[i][j] = op(dat[i][2 * j + 0], dat[i][2 * j + 1]);\n            }\n\
-    \            for (int i = n - 1; i > 0; --i) for (int j = 1; j < 2 * m; ++j) {\n\
-    \                dat[i][j] = op(dat[2 * i + 0][j], dat[2 * i + 1][j]);\n     \
-    \       }\n        }\n\n        T operator()(int u, int d, int l, int r) const\
-    \ {\n            assert(0 <= u and u <= d and d <= n and 0 <= l and l <= r and\
-    \ r <= m);\n            auto inner_query = [&](const auto &seg) {\n          \
-    \      T res_l = e(), res_r = e();\n                for (int tl = l + m, tr =\
-    \ r + m; tl < tr; tl >>= 1, tr >>= 1) {\n                    if (tl & 1) res_l\
-    \ = op(res_l, seg[tl++]);\n                    if (tr & 1) res_r = op(seg[--tr],\
+    \ = default;\n        SegmentTree2D(int n, int m) : SegmentTree2D(std::vector(2\
+    \ * n, std::vector(2 * m, e()))) {}\n        SegmentTree2D(const std::vector<std::vector<T>>\
+    \ &a) : n(a.size()), m(n == 0 ? 0 : a[0].size()), dat(2 * n, std::vector<T>(2\
+    \ * m, e())) {\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m;\
+    \ ++j) {\n                dat[n + i][m + j] = a[i][j];\n            }\n      \
+    \      for (int i = 1; i < 2 * n; ++i) for (int j = m - 1; j > 0; --j) {\n   \
+    \             dat[i][j] = op(dat[i][2 * j + 0], dat[i][2 * j + 1]);\n        \
+    \    }\n            for (int i = n - 1; i > 0; --i) for (int j = 1; j < 2 * m;\
+    \ ++j) {\n                dat[i][j] = op(dat[2 * i + 0][j], dat[2 * i + 1][j]);\n\
+    \            }\n        }\n\n        T operator()(int u, int d, int l, int r)\
+    \ const {\n            assert(0 <= u and u <= d and d <= n and 0 <= l and l <=\
+    \ r and r <= m);\n            auto inner_query = [&](const auto &seg) {\n    \
+    \            T res_l = e(), res_r = e();\n                for (int tl = l + m,\
+    \ tr = r + m; tl < tr; tl >>= 1, tr >>= 1) {\n                    if (tl & 1)\
+    \ res_l = op(res_l, seg[tl++]);\n                    if (tr & 1) res_r = op(seg[--tr],\
     \ res_r);\n                }\n                return op(res_l, res_r);\n     \
     \       };\n            T res_u = e(), res_d = e();\n            for (int tu =\
     \ u + n, td = d + n; tu < td; tu >>= 1, td >>= 1) {\n                if (tu &\
@@ -48,21 +48,21 @@ data:
   code: "#ifndef SUISEN_SEGMENT_TREE_2D\n#define SUISEN_SEGMENT_TREE_2D\n\n#include\
     \ <cassert>\n#include <vector>\n\nnamespace suisen {\n    template <typename T,\
     \ T(*op)(T, T), T(*e)()>\n    struct SegmentTree2D {\n        SegmentTree2D()\
-    \ {}\n        SegmentTree2D(int n, int m) : SegmentTree2D(std::vector(2 * n, std::vector(2\
-    \ * m, e()))) {}\n        SegmentTree2D(const std::vector<std::vector<T>> &a)\
-    \ : n(a.size()), m(n == 0 ? 0 : a[0].size()), dat(2 * n, std::vector<T>(2 * m,\
-    \ e())) {\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j)\
-    \ {\n                dat[n + i][m + j] = a[i][j];\n            }\n           \
-    \ for (int i = 1; i < 2 * n; ++i) for (int j = m - 1; j > 0; --j) {\n        \
-    \        dat[i][j] = op(dat[i][2 * j + 0], dat[i][2 * j + 1]);\n            }\n\
-    \            for (int i = n - 1; i > 0; --i) for (int j = 1; j < 2 * m; ++j) {\n\
-    \                dat[i][j] = op(dat[2 * i + 0][j], dat[2 * i + 1][j]);\n     \
-    \       }\n        }\n\n        T operator()(int u, int d, int l, int r) const\
-    \ {\n            assert(0 <= u and u <= d and d <= n and 0 <= l and l <= r and\
-    \ r <= m);\n            auto inner_query = [&](const auto &seg) {\n          \
-    \      T res_l = e(), res_r = e();\n                for (int tl = l + m, tr =\
-    \ r + m; tl < tr; tl >>= 1, tr >>= 1) {\n                    if (tl & 1) res_l\
-    \ = op(res_l, seg[tl++]);\n                    if (tr & 1) res_r = op(seg[--tr],\
+    \ = default;\n        SegmentTree2D(int n, int m) : SegmentTree2D(std::vector(2\
+    \ * n, std::vector(2 * m, e()))) {}\n        SegmentTree2D(const std::vector<std::vector<T>>\
+    \ &a) : n(a.size()), m(n == 0 ? 0 : a[0].size()), dat(2 * n, std::vector<T>(2\
+    \ * m, e())) {\n            for (int i = 0; i < n; ++i) for (int j = 0; j < m;\
+    \ ++j) {\n                dat[n + i][m + j] = a[i][j];\n            }\n      \
+    \      for (int i = 1; i < 2 * n; ++i) for (int j = m - 1; j > 0; --j) {\n   \
+    \             dat[i][j] = op(dat[i][2 * j + 0], dat[i][2 * j + 1]);\n        \
+    \    }\n            for (int i = n - 1; i > 0; --i) for (int j = 1; j < 2 * m;\
+    \ ++j) {\n                dat[i][j] = op(dat[2 * i + 0][j], dat[2 * i + 1][j]);\n\
+    \            }\n        }\n\n        T operator()(int u, int d, int l, int r)\
+    \ const {\n            assert(0 <= u and u <= d and d <= n and 0 <= l and l <=\
+    \ r and r <= m);\n            auto inner_query = [&](const auto &seg) {\n    \
+    \            T res_l = e(), res_r = e();\n                for (int tl = l + m,\
+    \ tr = r + m; tl < tr; tl >>= 1, tr >>= 1) {\n                    if (tl & 1)\
+    \ res_l = op(res_l, seg[tl++]);\n                    if (tr & 1) res_r = op(seg[--tr],\
     \ res_r);\n                }\n                return op(res_l, res_r);\n     \
     \       };\n            T res_u = e(), res_d = e();\n            for (int tu =\
     \ u + n, td = d + n; tu < td; tu >>= 1, td >>= 1) {\n                if (tu &\
@@ -83,7 +83,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree/segment_tree_2d.hpp
   requiredBy: []
-  timestamp: '2022-01-17 22:14:37+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/segment_tree/segment_tree_2d/point_add_range_sum.test.cpp

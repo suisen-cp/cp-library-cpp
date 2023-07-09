@@ -8,10 +8,10 @@ data:
     path: library/linear_algebra/count_spanning_trees.hpp
     title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
       \u6570\u3048\u4E0A\u3052"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -20,7 +20,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
   - icon: ':question:'
@@ -116,7 +116,7 @@ data:
     \n\n\n\n#line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#include <algorithm>\n\
     #line 6 \"library/linear_algebra/matrix.hpp\"\n#include <optional>\n#include <vector>\n\
     \nnamespace suisen {\n    template <typename T>\n    struct Matrix {\n       \
-    \ std::vector<std::vector<T>> dat;\n\n        Matrix() {}\n        Matrix(int\
+    \ std::vector<std::vector<T>> dat;\n\n        Matrix() = default;\n        Matrix(int\
     \ n) : Matrix(n, n) {}\n        Matrix(int n, int m, T fill_value = T(0)) : dat(n,\
     \ std::vector<T>(m, fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>&\
     \ dat) : dat(dat) {}\n\n        const std::vector<T>& operator[](int i) const\
@@ -237,8 +237,8 @@ data:
     \ --A[v][u];\n        }\n        return A.det();\n    }\n} // namespace suisen\n\
     \n\n\n#line 1 \"library/math/factorial.hpp\"\n\n\n\n#line 6 \"library/math/factorial.hpp\"\
     \n\nnamespace suisen {\n    template <typename T, typename U = T>\n    struct\
-    \ factorial {\n        factorial() {}\n        factorial(int n) { ensure(n); }\n\
-    \n        static void ensure(const int n) {\n            int sz = _fac.size();\n\
+    \ factorial {\n        factorial() = default;\n        factorial(int n) { ensure(n);\
+    \ }\n\n        static void ensure(const int n) {\n            int sz = _fac.size();\n\
     \            if (n + 1 <= sz) return;\n            int new_size = std::max(n +\
     \ 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
     \            for (int i = sz; i < new_size; ++i) _fac[i] = _fac[i - 1] * i;\n\
@@ -312,15 +312,15 @@ data:
     }\ntemplate <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint())\
     \ {\n    return a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n\
     #line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
-    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
-    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
-    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
-    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
-    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
-    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
-    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
-    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() = default;\n  \
+    \      inv_mods(int n) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return invs[i];\n        }\n        static\
+    \ void ensure(int n) {\n            int sz = invs.size();\n            if (sz\
+    \ < 2) invs = { 0, 1 }, sz = 2;\n            if (sz < n + 1) {\n             \
+    \   invs.resize(n + 1);\n                for (int i = sz; i <= n; ++i) invs[i]\
+    \ = mint(mod - mod / i) * invs[mod % i];\n            }\n        }\n    private:\n\
+    \        static std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n\
+    \    };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
     \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
     \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
     \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
@@ -724,7 +724,7 @@ data:
   isVerificationFile: true
   path: test/src/math/set_power_series/abc253_h.test.cpp
   requiredBy: []
-  timestamp: '2023-05-21 05:26:26+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/set_power_series/abc253_h.test.cpp

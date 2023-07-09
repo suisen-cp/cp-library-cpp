@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/datastructure/union_find/union_find.hpp
     title: Union Find
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/union_find/union_find_component_sum.hpp
     title: "\u9023\u7D50\u6210\u5206\u306E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u548C\
       \u3092\u53D6\u5F97\u3067\u304D\u308B Union Find"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc183/tasks/abc183_f
@@ -23,10 +23,10 @@ data:
     \ <iostream>\n#include <map>\n\n#line 1 \"library/datastructure/union_find/union_find_component_sum.hpp\"\
     \n\n\n\n#line 1 \"library/datastructure/union_find/union_find.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <vector>\n\nnamespace suisen {\n    struct UnionFind {\n\
-    \        UnionFind() {}\n        explicit UnionFind(int _n) : _n(_n), _dat(_n,\
-    \ -1) {}\n        // Get the root of `x`. equivalent to `operator[](x)`\n    \
-    \    int root(int x) {\n            static std::vector<int> buf;\n           \
-    \ while (_dat[x] >= 0) buf.push_back(x), x = _dat[x];\n            while (buf.size())\
+    \        UnionFind() = default;\n        explicit UnionFind(int _n) : _n(_n),\
+    \ _dat(_n, -1) {}\n        // Get the root of `x`. equivalent to `operator[](x)`\n\
+    \        int root(int x) {\n            static std::vector<int> buf;\n       \
+    \     while (_dat[x] >= 0) buf.push_back(x), x = _dat[x];\n            while (buf.size())\
     \ _dat[buf.back()] = x, buf.pop_back();\n            return x;\n        }\n  \
     \      // Get the root of `x`. euivalent to `root(x)`\n        int operator[](int\
     \ x) {\n            return root(x);\n        }\n        // Merge two vertices\
@@ -94,8 +94,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
   requiredBy: []
-  timestamp: '2022-08-21 18:23:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/union_find/union_find_component_sum/abc183_f.test.cpp
 layout: document

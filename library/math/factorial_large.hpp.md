@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -10,16 +10,16 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
   - icon: ':question:'
@@ -99,15 +99,15 @@ data:
     }\ntemplate <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint())\
     \ {\n    return a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n\
     #line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() {}\n        inv_mods(int\
-    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
-    \   ensure(i);\n            return invs[i];\n        }\n        static void ensure(int\
-    \ n) {\n            int sz = invs.size();\n            if (sz < 2) invs = { 0,\
-    \ 1 }, sz = 2;\n            if (sz < n + 1) {\n                invs.resize(n +\
-    \ 1);\n                for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod\
-    \ / i) * invs[mod % i];\n            }\n        }\n    private:\n        static\
-    \ std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n \
-    \   };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() = default;\n  \
+    \      inv_mods(int n) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return invs[i];\n        }\n        static\
+    \ void ensure(int n) {\n            int sz = invs.size();\n            if (sz\
+    \ < 2) invs = { 0, 1 }, sz = 2;\n            if (sz < n + 1) {\n             \
+    \   invs.resize(n + 1);\n                for (int i = sz; i <= n; ++i) invs[i]\
+    \ = mint(mod - mod / i) * invs[mod % i];\n            }\n        }\n    private:\n\
+    \        static std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n\
+    \    };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
     \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
     \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
     \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
@@ -538,10 +538,10 @@ data:
     \ a) {\n    return a.inv();\n}\n\n\n#line 1 \"library/sequence/stirling_number1.hpp\"\
     \n\n\n\n#include <algorithm>\n#line 1 \"library/math/factorial.hpp\"\n\n\n\n#line\
     \ 6 \"library/math/factorial.hpp\"\n\nnamespace suisen {\n    template <typename\
-    \ T, typename U = T>\n    struct factorial {\n        factorial() {}\n       \
-    \ factorial(int n) { ensure(n); }\n\n        static void ensure(const int n) {\n\
-    \            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n   \
-    \         int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
+    \ T, typename U = T>\n    struct factorial {\n        factorial() = default;\n\
+    \        factorial(int n) { ensure(n); }\n\n        static void ensure(const int\
+    \ n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
+    \            int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
     \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
     \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
     \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
@@ -647,7 +647,7 @@ data:
   isVerificationFile: false
   path: library/math/factorial_large.hpp
   requiredBy: []
-  timestamp: '2023-05-21 05:26:26+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/math/factorial_large.hpp

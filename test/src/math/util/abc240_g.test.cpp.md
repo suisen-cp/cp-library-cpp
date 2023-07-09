@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/util.hpp
     title: Util
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc240/tasks/abc240_g
@@ -22,10 +22,10 @@ data:
     #include <atcoder/modint>\n\nusing mint = atcoder::modint998244353;\n\n#line 1\
     \ \"library/math/util.hpp\"\n\n\n\n#line 1 \"library/math/factorial.hpp\"\n\n\n\
     \n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n    template <typename\
-    \ T, typename U = T>\n    struct factorial {\n        factorial() {}\n       \
-    \ factorial(int n) { ensure(n); }\n\n        static void ensure(const int n) {\n\
-    \            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n   \
-    \         int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
+    \ T, typename U = T>\n    struct factorial {\n        factorial() = default;\n\
+    \        factorial(int n) { ensure(n); }\n\n        static void ensure(const int\
+    \ n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
+    \            int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
     \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
     \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
     \ - 1];\n            for (int i = new_size - 1; i > sz; --i) _fac_inv[i - 1] =\
@@ -72,8 +72,8 @@ data:
   isVerificationFile: true
   path: test/src/math/util/abc240_g.test.cpp
   requiredBy: []
-  timestamp: '2022-05-28 01:05:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/util/abc240_g.test.cpp
 layout: document

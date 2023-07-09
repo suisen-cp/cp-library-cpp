@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\u53EF\
       \u63DB\u306A\u5834\u5408)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc211/tasks/abc211_f
@@ -25,8 +25,8 @@ data:
     \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n    template\
     \ <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n\
     \    struct CommutativeDualSegmentTree {\n        CommutativeDualSegmentTree()\
-    \ {}\n        CommutativeDualSegmentTree(std::vector<T>&& a) : n(a.size()), m(ceil_pow2(a.size())),\
-    \ data(std::move(a)), lazy(m, id()) {}\n        CommutativeDualSegmentTree(const\
+    \ = default;\n        CommutativeDualSegmentTree(std::vector<T>&& a) : n(a.size()),\
+    \ m(ceil_pow2(a.size())), data(std::move(a)), lazy(m, id()) {}\n        CommutativeDualSegmentTree(const\
     \ std::vector<T>& a) : CommutativeDualSegmentTree(std::vector<T>(a)) {}\n    \
     \    CommutativeDualSegmentTree(int n, const T& fill_value) : CommutativeDualSegmentTree(std::vector<T>(n,\
     \ fill_value)) {}\n\n        T operator[](int i) const {\n            assert(0\
@@ -51,14 +51,15 @@ data:
     \  base_type::apply(l, r, f);\n        }\n    private:\n        void push(int\
     \ k) {\n            base_type::apply(2 * k, this->lazy[k]), base_type::apply(2\
     \ * k + 1, this->lazy[k]);\n            this->lazy[k] = id();\n        }\n   \
-    \     void push(int l, int r) {\n            static const int log = __builtin_ctz(this->m);\n\
-    \            l += this->m, r += this->m;\n            for (int i = log; (l >>\
-    \ i) << i != l; --i) push(l >> i);\n            for (int i = log; (r >> i) <<\
-    \ i != r; --i) push(r >> i);\n        }\n    };\n\n    template <typename T, typename\
-    \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n    DualSegmentTree(int,\
-    \ T)->DualSegmentTree<T, F, mapping, composition, id>;\n\n    template <typename\
-    \ T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n    DualSegmentTree(std::vector<T>)->DualSegmentTree<T,\
-    \ F, mapping, composition, id>;\n} // namespace suisen\n\n\n\n#line 8 \"test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp\"\
+    \     void push(int l, int r) {\n            const int log = __builtin_ctz(this->m);\n\
+    \n            l += this->m, r += this->m;\n\n            for (int i = log; i >=\
+    \ 1; i--) {\n                if (((l >> i) << i) != l) push(l >> i);\n       \
+    \         if (((r >> i) << i) != r) push((r - 1) >> i);\n            }\n     \
+    \   }\n    };\n\n    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F,\
+    \ F), F(*id)()>\n    DualSegmentTree(int, T)->DualSegmentTree<T, F, mapping, composition,\
+    \ id>;\n\n    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F,\
+    \ F), F(*id)()>\n    DualSegmentTree(std::vector<T>)->DualSegmentTree<T, F, mapping,\
+    \ composition, id>;\n} // namespace suisen\n\n\n\n#line 8 \"test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp\"\
     \nusing suisen::DualSegmentTree;\n\nconstexpr int M = 100010;\n\nint mapping(int\
     \ f, int x) { return f + x; }\nint composition(int f, int g) { return f + g; }\n\
     int id() { return 0; }\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
@@ -115,8 +116,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 10:47:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/dual_segment_tree/rectilinear_polygons.test.cpp
 layout: document

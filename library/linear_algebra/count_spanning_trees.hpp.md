@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []
@@ -18,11 +18,11 @@ data:
     #line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <optional>\n#include <vector>\n\nnamespace suisen {\n  \
     \  template <typename T>\n    struct Matrix {\n        std::vector<std::vector<T>>\
-    \ dat;\n\n        Matrix() {}\n        Matrix(int n) : Matrix(n, n) {}\n     \
-    \   Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m, fill_value))\
-    \ {}\n        Matrix(const std::vector<std::vector<T>>& dat) : dat(dat) {}\n\n\
-    \        const std::vector<T>& operator[](int i) const { return dat[i]; }\n  \
-    \      std::vector<T>& operator[](int i) { return dat[i]; }\n\n        operator\
+    \ dat;\n\n        Matrix() = default;\n        Matrix(int n) : Matrix(n, n) {}\n\
+    \        Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m,\
+    \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& dat) : dat(dat)\
+    \ {}\n\n        const std::vector<T>& operator[](int i) const { return dat[i];\
+    \ }\n        std::vector<T>& operator[](int i) { return dat[i]; }\n\n        operator\
     \ std::vector<std::vector<T>>() const { return dat; }\n\n        friend bool operator==(const\
     \ Matrix<T>& A, const Matrix<T>& B) { return A.dat == B.dat; }\n        friend\
     \ bool operator!=(const Matrix<T>& A, const Matrix<T>& B) { return A.dat != B.dat;\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: library/linear_algebra/count_spanning_trees.hpp
   requiredBy: []
-  timestamp: '2022-11-19 18:46:24+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/math/set_power_series/abc253_h.test.cpp

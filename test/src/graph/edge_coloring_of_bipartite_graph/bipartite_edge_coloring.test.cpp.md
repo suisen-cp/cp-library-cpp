@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/graph/edge_coloring_of_bipartite_graph.hpp
     title: Edge Coloring Of Bipartite Graph
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bipartite_edge_coloring
@@ -25,7 +25,7 @@ data:
     \n\n\n\n#line 6 \"library/graph/bipartite_matching.hpp\"\n#include <deque>\n#include\
     \ <random>\n#line 9 \"library/graph/bipartite_matching.hpp\"\n#include <vector>\n\
     \nnamespace suisen {\n    struct BipartiteMatching {\n        static constexpr\
-    \ int ABSENT = -1;\n\n        BipartiteMatching() {}\n        BipartiteMatching(int\
+    \ int ABSENT = -1;\n\n        BipartiteMatching() = default;\n        BipartiteMatching(int\
     \ n, int m) : _n(n), _m(m), _to_r(_n, ABSENT), _to_l(_m, ABSENT), _g(n + m) {}\n\
     \n        void add_edge(int fr, int to) {\n            _g[fr].push_back(to), _f\
     \ = -1;\n        }\n\n        // template <bool shuffle = true>\n        // int\
@@ -213,8 +213,8 @@ data:
   isVerificationFile: true
   path: test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
   requiredBy: []
-  timestamp: '2022-11-13 03:54:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
 layout: document

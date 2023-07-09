@@ -5,47 +5,47 @@ data:
   - icon: ':warning:'
     path: library/math/factorial_large.hpp
     title: Factorial Large
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/util.hpp
     title: Util
   - icon: ':x:'
     path: library/polynomial/compose_exp.hpp
     title: Compose Exp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':warning:'
     path: library/sequence/bell_number.hpp
     title: Bell Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/bernoulli_number.hpp
     title: Bernoulli Number
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/binomial_coefficient_small_prime_mod.hpp
     title: Binomial Coefficient Small Prime Mod
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/eulerian_number.hpp
     title: Eulerian Number
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/sequence/stirling_number1.hpp
     title: Stirling Number1
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/stirling_number1_small_prime_mod.hpp
     title: Stirling Number of the First Kind (Small Prime Mod)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/stirling_number2.hpp
     title: Stirling Number2
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/stirling_number2_small_prime_mod.hpp
     title: Stirling Number2 Small Prime Mod
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
     title: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
   - icon: ':x:'
@@ -54,7 +54,7 @@ data:
   - icon: ':x:'
     path: test/src/math/array_set_power_series/abc253_h_2.test.cpp
     title: test/src/math/array_set_power_series/abc253_h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
     title: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
   - icon: ':x:'
@@ -63,74 +63,74 @@ data:
   - icon: ':x:'
     path: test/src/math/set_power_series/abc253_h_2.test.cpp
     title: test/src/math/set_power_series/abc253_h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/util/abc240_g.test.cpp
     title: test/src/math/util/abc240_g.test.cpp
   - icon: ':x:'
     path: test/src/polynomial/compose_exp/arc154_f.test.cpp
     title: test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
     title: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
     title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/eulerian_number/yuki2005.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005.test.cpp
   - icon: ':x:'
     path: test/src/sequence/stirling_number1/abc247_h.test.cpp
     title: test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
     title: test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
     title: test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n\
     #include <vector>\n\nnamespace suisen {\n    template <typename T, typename U\
-    \ = T>\n    struct factorial {\n        factorial() {}\n        factorial(int\
+    \ = T>\n    struct factorial {\n        factorial() = default;\n        factorial(int\
     \ n) { ensure(n); }\n\n        static void ensure(const int n) {\n           \
     \ int sz = _fac.size();\n            if (n + 1 <= sz) return;\n            int\
     \ new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
@@ -152,7 +152,7 @@ data:
     \ suisen\n\n\n"
   code: "#ifndef SUISEN_FACTORIAL\n#define SUISEN_FACTORIAL\n\n#include <cassert>\n\
     #include <vector>\n\nnamespace suisen {\n    template <typename T, typename U\
-    \ = T>\n    struct factorial {\n        factorial() {}\n        factorial(int\
+    \ = T>\n    struct factorial {\n        factorial() = default;\n        factorial(int\
     \ n) { ensure(n); }\n\n        static void ensure(const int n) {\n           \
     \ int sz = _fac.size();\n            if (n + 1 <= sz) return;\n            int\
     \ new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size), _fac_inv.resize(new_size);\n\
@@ -176,49 +176,49 @@ data:
   isVerificationFile: false
   path: library/math/factorial.hpp
   requiredBy:
+  - library/math/factorial_large.hpp
+  - library/math/util.hpp
+  - library/math/sum_i^d_r^i.hpp
+  - library/sequence/bell_number.hpp
   - library/sequence/eulerian_number.hpp
   - library/sequence/stirling_number2.hpp
   - library/sequence/stirling_number1_small_prime_mod.hpp
-  - library/sequence/bell_number.hpp
-  - library/sequence/stirling_number1.hpp
   - library/sequence/bernoulli_number.hpp
-  - library/sequence/binomial_coefficient_small_prime_mod.hpp
   - library/sequence/stirling_number2_small_prime_mod.hpp
-  - library/polynomial/compose_exp.hpp
-  - library/polynomial/polynomial_taylor_shift.hpp
+  - library/sequence/binomial_coefficient_small_prime_mod.hpp
+  - library/sequence/stirling_number1.hpp
   - library/polynomial/shift_of_sampling_points.hpp
-  - library/math/util.hpp
-  - library/math/factorial_large.hpp
-  - library/math/sum_i^d_r^i.hpp
-  timestamp: '2022-05-28 01:05:03+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  - library/polynomial/polynomial_taylor_shift.hpp
+  - library/polynomial/compose_exp.hpp
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
-  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
+  - test/src/math/util/abc240_g.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/array_set_power_series/abc253_h.test.cpp
+  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - test/src/math/set_power_series/abc253_h.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
-  - test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/src/math/util/abc240_g.test.cpp
-  - test/src/math/array_set_power_series/abc253_h.test.cpp
-  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document
 title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"

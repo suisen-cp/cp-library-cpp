@@ -21,7 +21,7 @@ data:
     \ <type_traits>\n#include <utility>\n\nnamespace suisen {\n    template <\n  \
     \      typename T, typename Comp = std::less<T>,\n        std::enable_if_t<std::is_invocable_r_v<bool,\
     \ Comp, T, T>, std::nullptr_t> = nullptr\n    >\n    struct IntervalHeap {\n \
-    \       using value_type = T;\n\n        IntervalHeap() {}\n        IntervalHeap(const\
+    \       using value_type = T;\n\n        IntervalHeap() = default;\n        IntervalHeap(const\
     \ Comp& comp) : _comp(comp) {}\n\n        void reserve(int capacity) { _dat.reserve(capacity);\
     \ }\n\n        bool empty() const { return _dat.empty(); }\n        int size()\
     \ const { return _dat.size(); }\n\n        void push(const value_type& v) {\n\
@@ -112,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/heap/interval_heap/double_ended_priority_queue.test.cpp
   requiredBy: []
-  timestamp: '2022-10-13 20:07:57+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/heap/interval_heap/double_ended_priority_queue.test.cpp

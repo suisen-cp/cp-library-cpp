@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/binomial_coefficient_small_prime_mod.hpp
     title: Binomial Coefficient Small Prime Mod
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/sequence/powers.hpp
     title: Powers
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/stirling_number2.hpp
     title: Stirling Number2
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/sequence/stirling_number2_small_prime_mod.hpp
     title: Stirling Number2 Small Prime Mod
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_small_p_large_n
@@ -35,9 +35,9 @@ data:
     \n#line 1 \"library/sequence/stirling_number2_small_prime_mod.hpp\"\n\n\n\n#line\
     \ 1 \"library/sequence/stirling_number2.hpp\"\n\n\n\n#line 1 \"library/math/factorial.hpp\"\
     \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n    template\
-    \ <typename T, typename U = T>\n    struct factorial {\n        factorial() {}\n\
-    \        factorial(int n) { ensure(n); }\n\n        static void ensure(const int\
-    \ n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
+    \ <typename T, typename U = T>\n    struct factorial {\n        factorial() =\
+    \ default;\n        factorial(int n) { ensure(n); }\n\n        static void ensure(const\
+    \ int n) {\n            int sz = _fac.size();\n            if (n + 1 <= sz) return;\n\
     \            int new_size = std::max(n + 1, sz * 2);\n            _fac.resize(new_size),\
     \ _fac_inv.resize(new_size);\n            for (int i = sz; i < new_size; ++i)\
     \ _fac[i] = _fac[i - 1] * i;\n            _fac_inv[new_size - 1] = U(1) / _fac[new_size\
@@ -147,8 +147,8 @@ data:
   isVerificationFile: true
   path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   requiredBy: []
-  timestamp: '2023-01-01 18:21:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
 layout: document

@@ -40,7 +40,7 @@ data:
     \ }\n    } // default_operator\n} // namespace suisen\n\n\n#line 7 \"library/util/cumulative_sum_2d.hpp\"\
     \n\nnamespace suisen {\n    template <typename T, auto zero = default_operator::zero<T>,\
     \ auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \    struct CumulativeSum2D {\n        CumulativeSum2D() {}\n        CumulativeSum2D(const\
+    \    struct CumulativeSum2D {\n        CumulativeSum2D() = default;\n        CumulativeSum2D(const\
     \ std::vector<std::vector<T>> &a) : n(a.size()), m(n == 0 ? 0 : a[0].size()),\
     \ s(n + 1, std::vector<T>(m + 1, zero())) {\n            for (size_t i = 0; i\
     \ < n; ++i) for (size_t j = 0; j < m; ++j) {\n                s[i + 1][j + 1]\
@@ -54,7 +54,7 @@ data:
     \ <cassert>\n#include <vector>\n#include \"library/util/default_operator.hpp\"\
     \n\nnamespace suisen {\n    template <typename T, auto zero = default_operator::zero<T>,\
     \ auto add = default_operator::add<T>, auto sub = default_operator::sub<T>>\n\
-    \    struct CumulativeSum2D {\n        CumulativeSum2D() {}\n        CumulativeSum2D(const\
+    \    struct CumulativeSum2D {\n        CumulativeSum2D() = default;\n        CumulativeSum2D(const\
     \ std::vector<std::vector<T>> &a) : n(a.size()), m(n == 0 ? 0 : a[0].size()),\
     \ s(n + 1, std::vector<T>(m + 1, zero())) {\n            for (size_t i = 0; i\
     \ < n; ++i) for (size_t j = 0; j < m; ++j) {\n                s[i + 1][j + 1]\
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: library/util/cumulative_sum_2d.hpp
   requiredBy: []
-  timestamp: '2022-01-31 13:34:34+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/util/cumulative_sum_2d.hpp

@@ -85,9 +85,9 @@ data:
     \       };\n                dfs(dfs, node, 0, 1);\n                return res;\n\
     \            }\n        };\n\n        static void init_pool(int capacity) {\n\
     \            node_type::pool = pool_type(capacity);\n        }\n\n        PersistentArray()\
-    \ {}\n        explicit PersistentArray(int n, const value_type& val = value_type{})\
-    \ : PersistentArray(std::vector<value_type>(n, val)) {}\n        PersistentArray(const\
-    \ std::vector<value_type>& init) : _n(init.size()), _root(node_type::build(init))\
+    \ = default;\n        explicit PersistentArray(int n, const value_type& val =\
+    \ value_type{}) : PersistentArray(std::vector<value_type>(n, val)) {}\n      \
+    \  PersistentArray(const std::vector<value_type>& init) : _n(init.size()), _root(node_type::build(init))\
     \ {}\n\n        int size() const {\n            return _n;\n        }\n      \
     \  const value_type& get(int id) {\n            return node_type::get(_root, id);\n\
     \        }\n        PersistentArray set(int id, const value_type& new_val) {\n\
@@ -101,12 +101,12 @@ data:
     \ _root;\n        explicit PersistentArray(int n, node_pointer_type root) : _n(n),\
     \ _root(root) {}\n    };\n} // namespace suisen\n\n\n#line 8 \"library/datastructure/union_find/persistent_union_find.hpp\"\
     \n\nnamespace suisen {\n    struct PersistentUnionFind {\n        using array_type\
-    \ = PersistentArray<int, 4>;\n\n        PersistentUnionFind() {}\n        explicit\
-    \ PersistentUnionFind(int n) : _n(n), _dat(_n, -1) {}\n\n        static void init_pool(int\
-    \ capacity) {\n            array_type::init_pool(capacity);\n        }\n\n   \
-    \     // Get the root of `x`. equivalent to `operator[](x)`\n        int root(int\
-    \ x) {\n            static std::vector<int> buf;\n            while (true) {\n\
-    \                if (int r = _dat.get(x); r >= 0) buf.push_back(std::exchange(x,\
+    \ = PersistentArray<int, 4>;\n\n        PersistentUnionFind() = default;\n   \
+    \     explicit PersistentUnionFind(int n) : _n(n), _dat(_n, -1) {}\n\n       \
+    \ static void init_pool(int capacity) {\n            array_type::init_pool(capacity);\n\
+    \        }\n\n        // Get the root of `x`. equivalent to `operator[](x)`\n\
+    \        int root(int x) {\n            static std::vector<int> buf;\n       \
+    \     while (true) {\n                if (int r = _dat.get(x); r >= 0) buf.push_back(std::exchange(x,\
     \ r));\n                else break;\n            }\n            while (buf.size())\
     \ _dat.mut_set(buf.back(), x), buf.pop_back();\n            return x;\n      \
     \  }\n        // Get the root of `x`. euivalent to `root(x)`\n        int operator[](int\
@@ -156,7 +156,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-07-02 19:24:50+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/union_find/persistent_union_find/persistent_unionfind.test.cpp

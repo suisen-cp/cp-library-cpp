@@ -16,7 +16,7 @@ data:
     #include <utility>\n\nnamespace suisen {\n    template <\n        typename T,\
     \ typename Comp = std::less<T>,\n        std::enable_if_t<std::is_invocable_r_v<bool,\
     \ Comp, T, T>, std::nullptr_t> = nullptr\n    >\n    struct IntervalHeap {\n \
-    \       using value_type = T;\n\n        IntervalHeap() {}\n        IntervalHeap(const\
+    \       using value_type = T;\n\n        IntervalHeap() = default;\n        IntervalHeap(const\
     \ Comp& comp) : _comp(comp) {}\n\n        void reserve(int capacity) { _dat.reserve(capacity);\
     \ }\n\n        bool empty() const { return _dat.empty(); }\n        int size()\
     \ const { return _dat.size(); }\n\n        void push(const value_type& v) {\n\
@@ -87,15 +87,15 @@ data:
     \nnamespace suisen {\n    template <\n        typename T, typename Comp = std::less<T>,\n\
     \        std::enable_if_t<std::is_invocable_r_v<bool, Comp, T, T>, std::nullptr_t>\
     \ = nullptr\n    >\n    struct IntervalHeap {\n        using value_type = T;\n\
-    \n        IntervalHeap() {}\n        IntervalHeap(const Comp& comp) : _comp(comp)\
-    \ {}\n\n        void reserve(int capacity) { _dat.reserve(capacity); }\n\n   \
-    \     bool empty() const { return _dat.empty(); }\n        int size() const {\
-    \ return _dat.size(); }\n\n        void push(const value_type& v) {\n        \
-    \    _dat.push_back(v);\n            fix_up(_dat.size() - 1);\n        }\n   \
-    \     template <typename ...Args>\n        void emplace(Args &&...args) {\n  \
-    \          push(value_type(std::forward<Args>(args)...));\n        }\n\n     \
-    \   const value_type& max() const {\n            assert(_dat.size());\n      \
-    \      return _dat[max_heap_top_index()];\n        }\n        const value_type&\
+    \n        IntervalHeap() = default;\n        IntervalHeap(const Comp& comp) :\
+    \ _comp(comp) {}\n\n        void reserve(int capacity) { _dat.reserve(capacity);\
+    \ }\n\n        bool empty() const { return _dat.empty(); }\n        int size()\
+    \ const { return _dat.size(); }\n\n        void push(const value_type& v) {\n\
+    \            _dat.push_back(v);\n            fix_up(_dat.size() - 1);\n      \
+    \  }\n        template <typename ...Args>\n        void emplace(Args &&...args)\
+    \ {\n            push(value_type(std::forward<Args>(args)...));\n        }\n\n\
+    \        const value_type& max() const {\n            assert(_dat.size());\n \
+    \           return _dat[max_heap_top_index()];\n        }\n        const value_type&\
     \ min() const {\n            assert(_dat.size());\n            return _dat[min_heap_top_index()];\n\
     \        }\n\n        value_type pop_max() {\n            assert(_dat.size());\n\
     \            const int idx = max_heap_top_index();\n            std::swap(_dat[idx],\
@@ -157,7 +157,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/heap/interval_heap.hpp
   requiredBy: []
-  timestamp: '2022-09-29 21:45:35+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/heap/interval_heap/double_ended_priority_queue.test.cpp

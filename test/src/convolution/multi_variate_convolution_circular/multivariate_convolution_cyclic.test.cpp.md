@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/garner.hpp
     title: Garner's Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':heavy_check_mark:'
@@ -697,7 +697,7 @@ data:
     \n\nnamespace suisen {\n    namespace internal {\n        template <typename mint,\
     \ std::enable_if_t<atcoder::internal::is_modint<mint>::value, std::nullptr_t>\
     \ = nullptr>\n        struct multi_variate_convolution_circular {\n          \
-    \  multi_variate_convolution_circular() {}\n            multi_variate_convolution_circular(std::vector<int>\
+    \  multi_variate_convolution_circular() = default;\n            multi_variate_convolution_circular(std::vector<int>\
     \ n) : _d(n.size()), _l(std::reduce(n.begin(), n.end(), 1, std::multiplies<int>())),\
     \ _n(n), _g(_d), _ig(_d) {\n                assert(miller_rabin::is_prime(mint::mod()));\n\
     \                mint g = primitive_root(mint::mod());\n                for (int\
@@ -818,7 +818,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   requiredBy: []
-  timestamp: '2023-05-27 03:50:19+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp

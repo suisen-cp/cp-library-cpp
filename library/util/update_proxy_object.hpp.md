@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
     path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
     title: Range Chmin Chmax Add Range Sum
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - icon: ':heavy_check_mark:'
@@ -80,9 +80,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
     title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/update_proxy_object.hpp\"\n\n\n\n#line 1 \"\
@@ -158,32 +158,32 @@ data:
   isVerificationFile: false
   path: library/util/update_proxy_object.hpp
   requiredBy:
-  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
-  - library/datastructure/segment_tree/lazy_segment_tree.hpp
-  - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
-  - library/datastructure/segment_tree/segment_tree_beats.hpp
-  - library/datastructure/segment_tree/segment_tree.hpp
-  - library/datastructure/lazy_eval_map.hpp
-  - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - library/datastructure/segment_tree/segment_tree_beats.hpp
+  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+  - library/datastructure/segment_tree/segment_tree.hpp
+  - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
+  - library/datastructure/segment_tree/lazy_segment_tree.hpp
   - library/datastructure/range_foldable_map.hpp
+  - library/datastructure/range_foldable_dynamic_sequence.hpp
+  - library/datastructure/lazy_eval_map.hpp
   timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
-  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
+  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
+  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/util/update_proxy_object.hpp
 layout: document

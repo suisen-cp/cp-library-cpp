@@ -2,30 +2,30 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/linear_algebra/characteristic_polynomial.hpp
     title: "Characteristic Polynomial (\u7279\u6027\u591A\u9805\u5F0F)"
   - icon: ':x:'
     path: library/linear_algebra/count_spanning_trees.hpp
     title: "\u884C\u5217\u6728\u5B9A\u7406\u306B\u3088\u308B\u5168\u57DF\u6728\u306E\
       \u6570\u3048\u4E0A\u3052"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/linear_algebra/hessenberg_reduction.hpp
     title: Hessenberg Reduction
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
     title: test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/matrix/inverse_matrix.test.cpp
     title: test/src/linear_algebra/matrix/inverse_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/matrix/matrix_det.test.cpp
     title: test/src/linear_algebra/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/matrix/matrix_det_arbitrary_mod.test.cpp
     title: test/src/linear_algebra/matrix/matrix_det_arbitrary_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/matrix/matrix_product.test.cpp
     title: test/src/linear_algebra/matrix/matrix_product.test.cpp
   - icon: ':x:'
@@ -33,17 +33,17 @@ data:
     title: test/src/math/set_power_series/abc253_h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/linear_algebra/matrix.hpp\"\n\n\n\n#include <algorithm>\n\
     #include <cassert>\n#include <optional>\n#include <vector>\n\nnamespace suisen\
     \ {\n    template <typename T>\n    struct Matrix {\n        std::vector<std::vector<T>>\
-    \ dat;\n\n        Matrix() {}\n        Matrix(int n) : Matrix(n, n) {}\n     \
-    \   Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m, fill_value))\
-    \ {}\n        Matrix(const std::vector<std::vector<T>>& dat) : dat(dat) {}\n\n\
-    \        const std::vector<T>& operator[](int i) const { return dat[i]; }\n  \
-    \      std::vector<T>& operator[](int i) { return dat[i]; }\n\n        operator\
+    \ dat;\n\n        Matrix() = default;\n        Matrix(int n) : Matrix(n, n) {}\n\
+    \        Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m,\
+    \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& dat) : dat(dat)\
+    \ {}\n\n        const std::vector<T>& operator[](int i) const { return dat[i];\
+    \ }\n        std::vector<T>& operator[](int i) { return dat[i]; }\n\n        operator\
     \ std::vector<std::vector<T>>() const { return dat; }\n\n        friend bool operator==(const\
     \ Matrix<T>& A, const Matrix<T>& B) { return A.dat == B.dat; }\n        friend\
     \ bool operator!=(const Matrix<T>& A, const Matrix<T>& B) { return A.dat != B.dat;\
@@ -156,11 +156,11 @@ data:
   code: "#ifndef SUISEN_MATRIX\n#define SUISEN_MATRIX\n\n#include <algorithm>\n#include\
     \ <cassert>\n#include <optional>\n#include <vector>\n\nnamespace suisen {\n  \
     \  template <typename T>\n    struct Matrix {\n        std::vector<std::vector<T>>\
-    \ dat;\n\n        Matrix() {}\n        Matrix(int n) : Matrix(n, n) {}\n     \
-    \   Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m, fill_value))\
-    \ {}\n        Matrix(const std::vector<std::vector<T>>& dat) : dat(dat) {}\n\n\
-    \        const std::vector<T>& operator[](int i) const { return dat[i]; }\n  \
-    \      std::vector<T>& operator[](int i) { return dat[i]; }\n\n        operator\
+    \ dat;\n\n        Matrix() = default;\n        Matrix(int n) : Matrix(n, n) {}\n\
+    \        Matrix(int n, int m, T fill_value = T(0)) : dat(n, std::vector<T>(m,\
+    \ fill_value)) {}\n        Matrix(const std::vector<std::vector<T>>& dat) : dat(dat)\
+    \ {}\n\n        const std::vector<T>& operator[](int i) const { return dat[i];\
+    \ }\n        std::vector<T>& operator[](int i) { return dat[i]; }\n\n        operator\
     \ std::vector<std::vector<T>>() const { return dat; }\n\n        friend bool operator==(const\
     \ Matrix<T>& A, const Matrix<T>& B) { return A.dat == B.dat; }\n        friend\
     \ bool operator!=(const Matrix<T>& A, const Matrix<T>& B) { return A.dat != B.dat;\
@@ -277,14 +277,14 @@ data:
   - library/linear_algebra/characteristic_polynomial.hpp
   - library/linear_algebra/count_spanning_trees.hpp
   - library/linear_algebra/hessenberg_reduction.hpp
-  timestamp: '2022-11-19 18:46:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/linear_algebra/characteristic_polynomial/characteristic_polynomial.test.cpp
-  - test/src/linear_algebra/matrix/inverse_matrix.test.cpp
   - test/src/linear_algebra/matrix/matrix_product.test.cpp
   - test/src/linear_algebra/matrix/matrix_det_arbitrary_mod.test.cpp
   - test/src/linear_algebra/matrix/matrix_det.test.cpp
+  - test/src/linear_algebra/matrix/inverse_matrix.test.cpp
   - test/src/math/set_power_series/abc253_h.test.cpp
 documentation_of: library/linear_algebra/matrix.hpp
 layout: document

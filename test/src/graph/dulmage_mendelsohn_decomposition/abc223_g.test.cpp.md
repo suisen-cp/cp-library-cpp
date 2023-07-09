@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/graph/bipartite_graph_recognition.hpp
     title: Bipartite Graph Recognition
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/graph/dulmage_mendelsohn_decomposition.hpp
     title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc223/tasks/abc223_g
@@ -41,7 +41,7 @@ data:
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 7 \"library/graph/bipartite_matching.hpp\"\
     \n#include <random>\n#include <utility>\n#line 10 \"library/graph/bipartite_matching.hpp\"\
     \n\nnamespace suisen {\n    struct BipartiteMatching {\n        static constexpr\
-    \ int ABSENT = -1;\n\n        BipartiteMatching() {}\n        BipartiteMatching(int\
+    \ int ABSENT = -1;\n\n        BipartiteMatching() = default;\n        BipartiteMatching(int\
     \ n, int m) : _n(n), _m(m), _to_r(_n, ABSENT), _to_l(_m, ABSENT), _g(n + m) {}\n\
     \n        void add_edge(int fr, int to) {\n            _g[fr].push_back(to), _f\
     \ = -1;\n        }\n\n        // template <bool shuffle = true>\n        // int\
@@ -194,8 +194,8 @@ data:
   isVerificationFile: true
   path: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
   requiredBy: []
-  timestamp: '2022-06-28 04:44:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-09 04:04:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
 layout: document

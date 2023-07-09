@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/garner.hpp
     title: Garner's Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
   - icon: ':heavy_check_mark:'
@@ -31,7 +31,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/sieve_of_eratosthenes.hpp
     title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"
   - icon: ':heavy_check_mark:'
@@ -694,7 +694,7 @@ data:
     \n\nnamespace suisen {\n    namespace internal {\n        template <typename mint,\
     \ std::enable_if_t<atcoder::internal::is_modint<mint>::value, std::nullptr_t>\
     \ = nullptr>\n        struct multi_variate_convolution_circular {\n          \
-    \  multi_variate_convolution_circular() {}\n            multi_variate_convolution_circular(std::vector<int>\
+    \  multi_variate_convolution_circular() = default;\n            multi_variate_convolution_circular(std::vector<int>\
     \ n) : _d(n.size()), _l(std::reduce(n.begin(), n.end(), 1, std::multiplies<int>())),\
     \ _n(n), _g(_d), _ig(_d) {\n                assert(miller_rabin::is_prime(mint::mod()));\n\
     \                mint g = primitive_root(mint::mod());\n                for (int\
@@ -785,17 +785,17 @@ data:
     \n#include \"library/number/garner.hpp\"\n\nnamespace suisen {\n    namespace\
     \ internal {\n        template <typename mint, std::enable_if_t<atcoder::internal::is_modint<mint>::value,\
     \ std::nullptr_t> = nullptr>\n        struct multi_variate_convolution_circular\
-    \ {\n            multi_variate_convolution_circular() {}\n            multi_variate_convolution_circular(std::vector<int>\
-    \ n) : _d(n.size()), _l(std::reduce(n.begin(), n.end(), 1, std::multiplies<int>())),\
-    \ _n(n), _g(_d), _ig(_d) {\n                assert(miller_rabin::is_prime(mint::mod()));\n\
-    \                mint g = primitive_root(mint::mod());\n                for (int\
-    \ i = 0; i < _d; ++i) {\n                    assert((mint::mod() - 1) % n[i] ==\
-    \ 0);\n                    _g[i] = g.pow((mint::mod() - 1) / n[i]);\n        \
-    \            _ig[i] = _g[i].inv();\n                }\n            }\n\n     \
-    \       std::vector<mint> convolution(std::vector<mint> f, std::vector<mint> g)\
-    \ {\n                fft(f, false), fft(g, false);\n                for (int i\
-    \ = 0; i < _l; ++i) f[i] *= g[i];\n                fft(f, true);\n           \
-    \     return f;\n            }\n            std::vector<mint> operator()(const\
+    \ {\n            multi_variate_convolution_circular() = default;\n           \
+    \ multi_variate_convolution_circular(std::vector<int> n) : _d(n.size()), _l(std::reduce(n.begin(),\
+    \ n.end(), 1, std::multiplies<int>())), _n(n), _g(_d), _ig(_d) {\n           \
+    \     assert(miller_rabin::is_prime(mint::mod()));\n                mint g = primitive_root(mint::mod());\n\
+    \                for (int i = 0; i < _d; ++i) {\n                    assert((mint::mod()\
+    \ - 1) % n[i] == 0);\n                    _g[i] = g.pow((mint::mod() - 1) / n[i]);\n\
+    \                    _ig[i] = _g[i].inv();\n                }\n            }\n\
+    \n            std::vector<mint> convolution(std::vector<mint> f, std::vector<mint>\
+    \ g) {\n                fft(f, false), fft(g, false);\n                for (int\
+    \ i = 0; i < _l; ++i) f[i] *= g[i];\n                fft(f, true);\n         \
+    \       return f;\n            }\n            std::vector<mint> operator()(const\
     \ std::vector<mint>& f, const std::vector<mint>& g) {\n                return\
     \ convolution(f, g);\n            }\n        private:\n            int _d, _l;\n\
     \            std::vector<int> _n;\n            std::vector<mint> _g, _ig;\n\n\
@@ -886,12 +886,12 @@ data:
   isVerificationFile: false
   path: library/convolution/multi_variate_convolution_circular.hpp
   requiredBy: []
-  timestamp: '2023-05-27 03:50:19+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
 documentation_of: library/convolution/multi_variate_convolution_circular.hpp
 layout: document
 title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\u307F\

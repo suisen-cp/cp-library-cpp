@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/commutative_dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u4F5C\u7528\u304C\u53EF\
       \u63DB\u306A\u5834\u5408)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/dual_segment_tree.hpp
     title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   _extendedRequiredBy: []
@@ -25,8 +25,8 @@ data:
     \n\n\n\n#include <cassert>\n#include <vector>\n\nnamespace suisen {\n    template\
     \ <typename T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n\
     \    struct CommutativeDualSegmentTree {\n        CommutativeDualSegmentTree()\
-    \ {}\n        CommutativeDualSegmentTree(std::vector<T>&& a) : n(a.size()), m(ceil_pow2(a.size())),\
-    \ data(std::move(a)), lazy(m, id()) {}\n        CommutativeDualSegmentTree(const\
+    \ = default;\n        CommutativeDualSegmentTree(std::vector<T>&& a) : n(a.size()),\
+    \ m(ceil_pow2(a.size())), data(std::move(a)), lazy(m, id()) {}\n        CommutativeDualSegmentTree(const\
     \ std::vector<T>& a) : CommutativeDualSegmentTree(std::vector<T>(a)) {}\n    \
     \    CommutativeDualSegmentTree(int n, const T& fill_value) : CommutativeDualSegmentTree(std::vector<T>(n,\
     \ fill_value)) {}\n\n        T operator[](int i) const {\n            assert(0\
@@ -51,14 +51,15 @@ data:
     \  base_type::apply(l, r, f);\n        }\n    private:\n        void push(int\
     \ k) {\n            base_type::apply(2 * k, this->lazy[k]), base_type::apply(2\
     \ * k + 1, this->lazy[k]);\n            this->lazy[k] = id();\n        }\n   \
-    \     void push(int l, int r) {\n            static const int log = __builtin_ctz(this->m);\n\
-    \            l += this->m, r += this->m;\n            for (int i = log; (l >>\
-    \ i) << i != l; --i) push(l >> i);\n            for (int i = log; (r >> i) <<\
-    \ i != r; --i) push(r >> i);\n        }\n    };\n\n    template <typename T, typename\
-    \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n    DualSegmentTree(int,\
-    \ T)->DualSegmentTree<T, F, mapping, composition, id>;\n\n    template <typename\
-    \ T, typename F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)()>\n    DualSegmentTree(std::vector<T>)->DualSegmentTree<T,\
-    \ F, mapping, composition, id>;\n} // namespace suisen\n\n\n\n#line 7 \"test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp\"\
+    \     void push(int l, int r) {\n            const int log = __builtin_ctz(this->m);\n\
+    \n            l += this->m, r += this->m;\n\n            for (int i = log; i >=\
+    \ 1; i--) {\n                if (((l >> i) << i) != l) push(l >> i);\n       \
+    \         if (((r >> i) << i) != r) push((r - 1) >> i);\n            }\n     \
+    \   }\n    };\n\n    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F,\
+    \ F), F(*id)()>\n    DualSegmentTree(int, T)->DualSegmentTree<T, F, mapping, composition,\
+    \ id>;\n\n    template <typename T, typename F, T(*mapping)(F, T), F(*composition)(F,\
+    \ F), F(*id)()>\n    DualSegmentTree(std::vector<T>)->DualSegmentTree<T, F, mapping,\
+    \ composition, id>;\n} // namespace suisen\n\n\n\n#line 7 \"test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp\"\
     \nusing suisen::DualSegmentTree;\n\nint mapping(int f, int x) {\n    return f\
     \ < 0 ? x : f;\n}\nint composition(int f, int g) {\n    return f < 0 ? g : f;\n\
     }\nint id() {\n    return -1;\n}\n\nint main() {\n    int n, q;\n    std::cin\
@@ -85,7 +86,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2023-05-11 14:24:02+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/dual_segment_tree/DSL_2_D.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/algorithm/mo.hpp
     title: Mo
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/deque_aggregation.hpp
     title: "SWAG \u3092 Deque \u306B\u62E1\u5F35\u3057\u305F\u3084\u3064"
   _extendedRequiredBy: []
@@ -21,9 +21,9 @@ data:
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n\n#include <iostream>\n\
     \n#line 1 \"library/algorithm/mo.hpp\"\n\n\n\n#include <algorithm>\n#include <cmath>\n\
     #include <numeric>\n#include <vector>\n\nnamespace suisen {\n    struct Mo {\n\
-    \        Mo() {}\n        Mo(const int n, const std::vector<std::pair<int, int>>\
-    \ &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries), ord(q)\
-    \ {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
+    \        Mo() = default;\n        Mo(const int n, const std::vector<std::pair<int,\
+    \ int>> &queries) : n(n), q(queries.size()), b(bucket_size(n, q)), qs(queries),\
+    \ ord(q) {\n            std::iota(ord.begin(), ord.end(), 0);\n            std::sort(\n\
     \                ord.begin(), ord.end(),\n                [&, this](int i, int\
     \ j) {\n                    const auto &[li, ri] = qs[i];\n                  \
     \  const auto &[lj, rj] = qs[j];\n                    const int bi = li / b, bj\
@@ -192,7 +192,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2022-07-12 14:26:27+09:00'
+  timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/deque_aggregation/staticrmq.test.cpp

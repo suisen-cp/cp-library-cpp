@@ -120,15 +120,15 @@ data:
   path: library/graph/low_link.hpp
   requiredBy:
   - library/graph/block_cut_forest.hpp
-  - library/graph/two_edge_connected_components.hpp
   - library/graph/biconnected_components.hpp
+  - library/graph/two_edge_connected_components.hpp
   timestamp: '2022-07-16 16:39:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/graph/biconnected_components/biconnected_components.test.cpp
-  - test/src/graph/low_link/bridges.test.cpp
   - test/src/graph/low_link/articulation_points.test.cpp
+  - test/src/graph/low_link/bridges.test.cpp
   - test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
+  - test/src/graph/biconnected_components/biconnected_components.test.cpp
 documentation_of: library/graph/low_link.hpp
 layout: document
 title: Low Link
