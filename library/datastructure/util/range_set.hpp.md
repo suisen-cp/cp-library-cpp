@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/range_set/yuki674.test.cpp
     title: test/src/datastructure/util/range_set/yuki674.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/graph/functional_graph/abc254_g.test.cpp
     title: test/src/graph/functional_graph/abc254_g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/util/range_set.hpp\"\n\n\n\n#include\
@@ -141,7 +141,7 @@ data:
   path: library/datastructure/util/range_set.hpp
   requiredBy: []
   timestamp: '2022-04-10 03:29:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/util/range_set/yuki674.test.cpp
   - test/src/datastructure/util/range_set/DSL_4_A.test.cpp

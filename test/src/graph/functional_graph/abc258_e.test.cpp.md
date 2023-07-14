@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/graph/functional_graph.hpp
     title: Functional Graph
   _extendedRequiredBy: []

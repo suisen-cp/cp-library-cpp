@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
     title: Static Rectangle Add Rectangle Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   _extendedVerifiedWith:
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
     title: test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/fenwick_tree/fenwick_tree.hpp\"\n\n\
@@ -142,7 +142,7 @@ data:
   - library/datastructure/fenwick_tree/rectangle_add_rectangle_sum.hpp
   - library/geom/segment_intersections.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp

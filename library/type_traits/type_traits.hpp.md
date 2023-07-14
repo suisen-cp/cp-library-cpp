@@ -12,7 +12,7 @@ data:
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
   - icon: ':heavy_check_mark:'
@@ -40,16 +40,16 @@ data:
     path: library/datastructure/lazy_eval_dynamic_sequence.hpp
     title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
       \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/lazy_eval_map.hpp
     title: Lazy Eval Map
   - icon: ':heavy_check_mark:'
     path: library/datastructure/range_foldable_dynamic_sequence.hpp
     title: Range Foldable Dynamic Sequence
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/range_foldable_map.hpp
     title: Range Foldable Map
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':question:'
@@ -59,19 +59,19 @@ data:
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
     title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
       \u5834\u5408)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree_beats.hpp
     title: Segment Tree Beats
   - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
     title: Range Chmin Chmax Add Range Sum
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
@@ -81,22 +81,22 @@ data:
   - icon: ':warning:'
     path: library/math/factorial_large.hpp
     title: Factorial Large
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
   - icon: ':warning:'
     path: library/number/fast_discrete_logarithm.hpp
     title: library/number/fast_discrete_logarithm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/number/tetration_mod.hpp
     title: $a\uparrow\uparrow b \bmod m$
   - icon: ':x:'
@@ -105,19 +105,19 @@ data:
   - icon: ':x:'
     path: library/polynomial/compose_exp.hpp
     title: Compose Exp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/polynomial/compose_inv.hpp
     title: "\u9006\u95A2\u6570"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/range_query/static_range_xored_mex_query.hpp
     title: Static Range Xored Mex Query
   - icon: ':warning:'
@@ -131,10 +131,10 @@ data:
     title: "\u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u305F\u3061\u306E\u6700\u5C0F\
       \u5171\u901A\u7956\u5148\u95A2\u4FC2\u3092\u4FDD\u3063\u3066\u6728\u3092\u5727\
       \u7E2E\u3057\u3066\u3067\u304D\u308B\u88DC\u52A9\u7684\u306A\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
   - icon: ':question:'
@@ -150,7 +150,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - icon: ':x:'
@@ -186,7 +186,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
     title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -219,7 +219,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -237,19 +237,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/graph/functional_graph/abc254_g.test.cpp
     title: test/src/graph/functional_graph/abc254_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':x:'
@@ -267,7 +267,7 @@ data:
   - icon: ':x:'
     path: test/src/math/array_set_power_series/arc105_f.test.cpp
     title: test/src/math/array_set_power_series/arc105_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
   - icon: ':x:'
@@ -285,82 +285,82 @@ data:
   - icon: ':x:'
     path: test/src/math/set_power_series/arc105_f.test.cpp
     title: test/src/math/set_power_series/arc105_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
     title: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
     title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/number/tetration_mod/tetration_mod.test.cpp
     title: test/src/number/tetration_mod/tetration_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - icon: ':x:'
     path: test/src/polynomial/compose_exp/arc154_f.test.cpp
     title: test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
     title: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
     title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
     title: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
     title: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
     title: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
     title: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
     title: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
     title: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/division_of_polynomials.test.cpp
     title: test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
     title: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/fps/exp_of_fps.test.cpp
     title: test/src/polynomial/fps/exp_of_fps.test.cpp
   - icon: ':x:'
@@ -426,7 +426,7 @@ data:
   - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
     title: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
   - icon: ':x:'
@@ -462,28 +462,28 @@ data:
   - icon: ':x:'
     path: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
     title: test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
     title: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
     title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
     title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/util/coordinate_compressor/dummy.test.cpp
     title: test/src/util/coordinate_compressor/dummy.test.cpp
   _isVerificationFailed: true
@@ -492,71 +492,95 @@ data:
   attributes:
     links: []
   bundledCode: "#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
-    #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
-    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
-    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
-    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
-    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
-    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
-    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
-    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
-    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
-    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
-    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
-    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
-    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
-    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
-    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n"
+    #include <type_traits>\n\nnamespace suisen {\ntemplate <typename ...Types>\nusing\
+    \ constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\n\
+    template <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto)\
+    \ constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr (cond_v) return\
+    \ std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
+    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
+    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
+    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
+    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
+    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
+    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
+    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
+    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
+    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
+    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
+    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
+    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
+    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
+    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
+    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
+    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
+    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
+    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
+    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
+    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
+    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
+    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
+    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
+    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
+    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
+    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
+    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
+    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
+    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
+    \n\n"
   code: "#ifndef SUISEN_TYPE_TRITS\n#define SUISEN_TYPE_TRITS\n\n#include <limits>\n\
-    #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
-    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
-    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
-    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
-    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
-    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
-    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
-    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
-    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
-    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
-    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
-    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
-    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
-    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
-    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n#endif // SUISEN_TYPE_TRITS"
+    #include <type_traits>\n\nnamespace suisen {\ntemplate <typename ...Types>\nusing\
+    \ constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\n\
+    template <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto)\
+    \ constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr (cond_v) return\
+    \ std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
+    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
+    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
+    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
+    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
+    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
+    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
+    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
+    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
+    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
+    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
+    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
+    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
+    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
+    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
+    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
+    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
+    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
+    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
+    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
+    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
+    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
+    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
+    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
+    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
+    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
+    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
+    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
+    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
+    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
+    \n#endif // SUISEN_TYPE_TRITS"
   dependsOn: []
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
@@ -604,7 +628,7 @@ data:
   - library/convolution/multi_variate_convolution_circular.hpp
   - library/template.hpp
   - library/template.cpp
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2023-07-13 15:42:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp

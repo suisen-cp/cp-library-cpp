@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -21,73 +21,85 @@ data:
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\n\
     #include <iostream>\n#include <atcoder/segtree>\n\n#line 1 \"library/tree/heavy_light_decomposition.hpp\"\
     \n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
-    #include <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
-    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
-    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
-    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
-    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
-    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
-    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
-    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
-    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
-    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
-    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
-    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
-    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
-    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
-    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 5 \"library/tree/heavy_light_decomposition.hpp\"\
-    \n#include <vector>\n\nnamespace suisen {\nclass HeavyLightDecomposition {\n \
-    \   public:\n        template <typename Q>\n        using is_point_update_query\
-    \ = std::is_invocable<Q, int>;\n        template <typename Q>\n        using is_range_update_query\
-    \ = std::is_invocable<Q, int, int>;\n        template <typename Q, typename T>\n\
-    \        using is_point_get_query  = std::is_same<std::invoke_result_t<Q, int>,\
-    \ T>;\n        template <typename Q, typename T>\n        using is_range_fold_query\
-    \ = std::is_same<std::invoke_result_t<Q, int, int>, T>;\n\n        using Graph\
-    \ = std::vector<std::vector<int>>;\n\n        HeavyLightDecomposition() = default;\n\
-    \        HeavyLightDecomposition(Graph &g) : n(g.size()), visit(n), leave(n),\
-    \ head(n), ord(n), siz(n), par(n, -1), dep(n, 0) {\n            for (int i = 0;\
-    \ i < n; ++i) if (par[i] < 0) dfs(g, i, -1);\n            int time = 0;\n    \
-    \        for (int i = 0; i < n; ++i) if (par[i] < 0) hld(g, i, -1, time);\n  \
-    \      }\n        int size() const {\n            return n;\n        }\n     \
-    \   int lca(int u, int v) const {\n            for (;; v = par[head[v]]) {\n \
-    \               if (visit[u] > visit[v]) std::swap(u, v);\n                if\
-    \ (head[u] == head[v]) return u;\n            }\n        }\n        int la(int\
-    \ u, int k, int default_value = -1) const {\n            if (k < 0) return default_value;\n\
-    \            while (u >= 0) {\n                int h = head[u];\n            \
-    \    if (visit[u] - k >= visit[h]) return ord[visit[u] - k];\n               \
-    \ k -= visit[u] - visit[h] + 1;\n                u = par[h];\n            }\n\
-    \            return default_value;\n        }\n        int jump(int u, int v,\
-    \ int d, int default_value = -1) const {\n            if (d < 0) return default_value;\n\
-    \            const int w = lca(u, v);\n            int uw = dep[u] - dep[w];\n\
-    \            if (d <= uw) return la(u, d);\n            int vw = dep[v] - dep[w];\n\
-    \            return d <= uw + vw ? la(v, (uw + vw) - d) : default_value;\n   \
-    \     }\n        int dist(int u, int v) const {\n            return dep[u] + dep[v]\
-    \ - 2 * dep[lca(u, v)];\n        }\n        template <typename T, typename Q,\
-    \ typename F, constraints_t<is_range_fold_query<Q, T>, is_bin_op<F, T>> = nullptr>\n\
-    \        T fold_path(int u, int v, T identity, F bin_op, Q fold_query, bool is_edge_query\
-    \ = false) const {\n            T res = identity;\n            for (;; v = par[head[v]])\
-    \ {\n                if (visit[u] > visit[v]) std::swap(u, v);\n             \
-    \   if (head[u] == head[v]) break;\n                res = bin_op(fold_query(visit[head[v]],\
-    \ visit[v] + 1), res);\n            }\n            return bin_op(fold_query(visit[u]\
-    \ + is_edge_query, visit[v] + 1), res);\n        }\n        template <\n     \
-    \       typename T, typename Q1, typename Q2, typename F,\n            constraints_t<is_range_fold_query<Q1,\
+    #include <type_traits>\n\nnamespace suisen {\ntemplate <typename ...Types>\nusing\
+    \ constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\n\
+    template <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto)\
+    \ constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr (cond_v) return\
+    \ std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
+    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
+    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
+    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
+    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
+    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
+    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
+    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
+    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
+    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
+    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
+    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
+    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
+    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
+    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
+    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
+    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
+    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
+    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
+    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
+    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
+    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
+    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
+    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
+    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
+    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
+    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
+    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
+    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
+    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
+    \n\n#line 5 \"library/tree/heavy_light_decomposition.hpp\"\n#include <vector>\n\
+    \nnamespace suisen {\nclass HeavyLightDecomposition {\n    public:\n        template\
+    \ <typename Q>\n        using is_point_update_query = std::is_invocable<Q, int>;\n\
+    \        template <typename Q>\n        using is_range_update_query = std::is_invocable<Q,\
+    \ int, int>;\n        template <typename Q, typename T>\n        using is_point_get_query\
+    \  = std::is_same<std::invoke_result_t<Q, int>, T>;\n        template <typename\
+    \ Q, typename T>\n        using is_range_fold_query = std::is_same<std::invoke_result_t<Q,\
+    \ int, int>, T>;\n\n        using Graph = std::vector<std::vector<int>>;\n\n \
+    \       HeavyLightDecomposition() = default;\n        HeavyLightDecomposition(Graph\
+    \ &g) : n(g.size()), visit(n), leave(n), head(n), ord(n), siz(n), par(n, -1),\
+    \ dep(n, 0) {\n            for (int i = 0; i < n; ++i) if (par[i] < 0) dfs(g,\
+    \ i, -1);\n            int time = 0;\n            for (int i = 0; i < n; ++i)\
+    \ if (par[i] < 0) hld(g, i, -1, time);\n        }\n        int size() const {\n\
+    \            return n;\n        }\n        int lca(int u, int v) const {\n   \
+    \         for (;; v = par[head[v]]) {\n                if (visit[u] > visit[v])\
+    \ std::swap(u, v);\n                if (head[u] == head[v]) return u;\n      \
+    \      }\n        }\n        int la(int u, int k, int default_value = -1) const\
+    \ {\n            if (k < 0) return default_value;\n            while (u >= 0)\
+    \ {\n                int h = head[u];\n                if (visit[u] - k >= visit[h])\
+    \ return ord[visit[u] - k];\n                k -= visit[u] - visit[h] + 1;\n \
+    \               u = par[h];\n            }\n            return default_value;\n\
+    \        }\n        int jump(int u, int v, int d, int default_value = -1) const\
+    \ {\n            if (d < 0) return default_value;\n            const int w = lca(u,\
+    \ v);\n            int uw = dep[u] - dep[w];\n            if (d <= uw) return\
+    \ la(u, d);\n            int vw = dep[v] - dep[w];\n            return d <= uw\
+    \ + vw ? la(v, (uw + vw) - d) : default_value;\n        }\n        int dist(int\
+    \ u, int v) const {\n            return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n\
+    \        }\n        template <typename T, typename Q, typename F, constraints_t<is_range_fold_query<Q,\
+    \ T>, is_bin_op<F, T>> = nullptr>\n        T fold_path(int u, int v, T identity,\
+    \ F bin_op, Q fold_query, bool is_edge_query = false) const {\n            T res\
+    \ = identity;\n            for (;; v = par[head[v]]) {\n                if (visit[u]\
+    \ > visit[v]) std::swap(u, v);\n                if (head[u] == head[v]) break;\n\
+    \                res = bin_op(fold_query(visit[head[v]], visit[v] + 1), res);\n\
+    \            }\n            return bin_op(fold_query(visit[u] + is_edge_query,\
+    \ visit[v] + 1), res);\n        }\n        template <\n            typename T,\
+    \ typename Q1, typename Q2, typename F,\n            constraints_t<is_range_fold_query<Q1,\
     \ T>, is_range_fold_query<Q2, T>, is_bin_op<F, T>> = nullptr\n        >\n    \
     \    T fold_path_noncommutative(int u, int v, T identity, F bin_op, Q1 fold_query,\
     \ Q2 fold_query_rev, bool is_edge_query = false) const {\n            T res_u\
@@ -183,8 +195,8 @@ data:
   isVerificationFile: true
   path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-07-26 15:08:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-13 15:42:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
 layout: document

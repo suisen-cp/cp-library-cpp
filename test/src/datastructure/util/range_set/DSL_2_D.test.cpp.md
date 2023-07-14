@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/util/range_set.hpp
     title: Range Set
   _extendedRequiredBy: []

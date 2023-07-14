@@ -50,39 +50,51 @@ data:
     library/datastructure/segment_tree/segment_tree.hpp\"\n\n\n\n#include <cassert>\n\
     #line 6 \"library/datastructure/segment_tree/segment_tree.hpp\"\n\n#line 1 \"\
     library/util/update_proxy_object.hpp\"\n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
-    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\ntemplate\
+    \ <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
-    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
-    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
-    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
-    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
-    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
-    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
-    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
-    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
-    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
-    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
-    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
-    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
-    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
-    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 5 \"library/util/update_proxy_object.hpp\"\n\n\
-    namespace suisen {\n\ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    \ (cond_v) return std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
+    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
+    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
+    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
+    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
+    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
+    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
+    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
+    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
+    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
+    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
+    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
+    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
+    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
+    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
+    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
+    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
+    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
+    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
+    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
+    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
+    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
+    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
+    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
+    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
+    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
+    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
+    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
+    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
+    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
+    \n\n#line 5 \"library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\n\
+    template <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
     \ = nullptr>\nstruct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T\
     \ &v, UpdateFunc update) : v(v), update(update) {}\n        operator T() const\
     \ { return v; }\n        auto& operator++() && { ++v, update(); return *this;\
@@ -219,7 +231,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   requiredBy: []
-  timestamp: '2023-07-09 04:04:16+09:00'
+  timestamp: '2023-07-13 15:42:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp

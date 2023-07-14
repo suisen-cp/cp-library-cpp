@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
     title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/bostan_mori.hpp\"\n\n\n\nnamespace suisen\
@@ -53,7 +53,7 @@ data:
   path: library/polynomial/bostan_mori.hpp
   requiredBy: []
   timestamp: '2023-01-08 00:05:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp

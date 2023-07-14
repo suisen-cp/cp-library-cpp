@@ -11,13 +11,13 @@ data:
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
   - icon: ':heavy_check_mark:'
     path: library/number/ext_gcd.hpp
     title: Ext Gcd
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
   - icon: ':heavy_check_mark:'
@@ -26,13 +26,13 @@ data:
   - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/montogomery.hpp
     title: Montogomery
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   - icon: ':question:'
@@ -257,68 +257,79 @@ data:
     library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n#line 6 \"library/number/fast_factorize.hpp\"\
     \n#include <random>\n#include <numeric>\n#include <utility>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
-    // ! utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
-    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
-    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
-    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
-    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
-    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
-    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
-    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
-    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
-    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
-    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
-    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
-    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
-    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
-    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 11 \"library/number/fast_factorize.hpp\"\n\n\
-    #line 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\n\n#line 7 \"library/number/sieve_of_eratosthenes.hpp\"\
-    \n\n#line 1 \"library/number/internal_eratosthenes.hpp\"\n\n\n\n#line 6 \"library/number/internal_eratosthenes.hpp\"\
-    \n\nnamespace suisen::internal::sieve {\n\nconstexpr std::uint8_t K = 8;\nconstexpr\
-    \ std::uint8_t PROD = 2 * 3 * 5;\nconstexpr std::uint8_t RM[K] = { 1,  7, 11,\
-    \ 13, 17, 19, 23, 29 };\nconstexpr std::uint8_t DR[K] = { 6,  4,  2,  4,  2, \
-    \ 4,  6,  2 };\nconstexpr std::uint8_t DF[K][K] = {\n    { 0, 0, 0, 0, 0, 0, 0,\
-    \ 1 }, { 1, 1, 1, 0, 1, 1, 1, 1 },\n    { 2, 2, 0, 2, 0, 2, 2, 1 }, { 3, 1, 1,\
-    \ 2, 1, 1, 3, 1 },\n    { 3, 3, 1, 2, 1, 3, 3, 1 }, { 4, 2, 2, 2, 2, 2, 4, 1 },\n\
-    \    { 5, 3, 1, 4, 1, 3, 5, 1 }, { 6, 4, 2, 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t\
-    \ DRP[K] = { 48, 32, 16, 32, 16, 32, 48, 16 };\nconstexpr std::uint8_t DFP[K][K]\
-    \ = {\n    {  0,  0,  0,  0,  0,  0,  0,  8 }, {  8,  8,  8,  0,  8,  8,  8, \
-    \ 8 },\n    { 16, 16,  0, 16,  0, 16, 16,  8 }, { 24,  8,  8, 16,  8,  8, 24,\
-    \  8 },\n    { 24, 24,  8, 16,  8, 24, 24,  8 }, { 32, 16, 16, 16, 16, 16, 32,\
-    \  8 },\n    { 40, 24,  8, 32,  8, 24, 40,  8 }, { 48, 32, 16, 32, 16, 32, 48,\
-    \  8 },\n};\n\nconstexpr std::uint8_t MASK[K][K] = {\n    { 0x01, 0x02, 0x04,\
-    \ 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02, 0x20, 0x10, 0x01, 0x80, 0x08, 0x04,\
-    \ 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02, 0x80, 0x08, 0x20 }, { 0x08, 0x01,\
-    \ 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n    { 0x10, 0x80, 0x02, 0x04, 0x20, 0x40,\
-    \ 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02, 0x40, 0x01, 0x10, 0x04 },\n    { 0x40,\
-    \ 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02 }, { 0x80, 0x40, 0x20, 0x10, 0x08,\
-    \ 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t OFFSET[K][K] = {\n    { 0, 1,\
-    \ 2, 3, 4, 5, 6, 7, },\n    { 1, 5, 4, 0, 7, 3, 2, 6, },\n    { 2, 4, 0, 6, 1,\
-    \ 7, 3, 5, },\n    { 3, 0, 6, 5, 2, 1, 7, 4, },\n    { 4, 7, 1, 2, 5, 6, 0, 3,\
-    \ },\n    { 5, 3, 7, 1, 6, 0, 4, 2, },\n    { 6, 2, 3, 7, 0, 4, 5, 1, },\n   \
-    \ { 7, 6, 5, 4, 3, 2, 1, 0, },\n};\n\nconstexpr std::uint8_t mask_to_index(const\
-    \ std::uint8_t bits) {\n    switch (bits) {\n        case 1 << 0: return 0;\n\
-    \        case 1 << 1: return 1;\n        case 1 << 2: return 2;\n        case\
-    \ 1 << 3: return 3;\n        case 1 << 4: return 4;\n        case 1 << 5: return\
-    \ 5;\n        case 1 << 6: return 6;\n        case 1 << 7: return 7;\n       \
-    \ default: assert(false);\n    }\n}\n} // namespace suisen::internal::sieve\n\n\
-    \n#line 9 \"library/number/sieve_of_eratosthenes.hpp\"\n\nnamespace suisen {\n\
+    \ (cond_v) return std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
+    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
+    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
+    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
+    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
+    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
+    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
+    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
+    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
+    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
+    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
+    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
+    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
+    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
+    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
+    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
+    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
+    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
+    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
+    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
+    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
+    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
+    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
+    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
+    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
+    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
+    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
+    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
+    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
+    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
+    \n\n#line 11 \"library/number/fast_factorize.hpp\"\n\n#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\
+    \n\n\n\n#line 7 \"library/number/sieve_of_eratosthenes.hpp\"\n\n#line 1 \"library/number/internal_eratosthenes.hpp\"\
+    \n\n\n\n#line 6 \"library/number/internal_eratosthenes.hpp\"\n\nnamespace suisen::internal::sieve\
+    \ {\n\nconstexpr std::uint8_t K = 8;\nconstexpr std::uint8_t PROD = 2 * 3 * 5;\n\
+    constexpr std::uint8_t RM[K] = { 1,  7, 11, 13, 17, 19, 23, 29 };\nconstexpr std::uint8_t\
+    \ DR[K] = { 6,  4,  2,  4,  2,  4,  6,  2 };\nconstexpr std::uint8_t DF[K][K]\
+    \ = {\n    { 0, 0, 0, 0, 0, 0, 0, 1 }, { 1, 1, 1, 0, 1, 1, 1, 1 },\n    { 2, 2,\
+    \ 0, 2, 0, 2, 2, 1 }, { 3, 1, 1, 2, 1, 1, 3, 1 },\n    { 3, 3, 1, 2, 1, 3, 3,\
+    \ 1 }, { 4, 2, 2, 2, 2, 2, 4, 1 },\n    { 5, 3, 1, 4, 1, 3, 5, 1 }, { 6, 4, 2,\
+    \ 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t DRP[K] = { 48, 32, 16, 32, 16,\
+    \ 32, 48, 16 };\nconstexpr std::uint8_t DFP[K][K] = {\n    {  0,  0,  0,  0, \
+    \ 0,  0,  0,  8 }, {  8,  8,  8,  0,  8,  8,  8,  8 },\n    { 16, 16,  0, 16,\
+    \  0, 16, 16,  8 }, { 24,  8,  8, 16,  8,  8, 24,  8 },\n    { 24, 24,  8, 16,\
+    \  8, 24, 24,  8 }, { 32, 16, 16, 16, 16, 16, 32,  8 },\n    { 40, 24,  8, 32,\
+    \  8, 24, 40,  8 }, { 48, 32, 16, 32, 16, 32, 48,  8 },\n};\n\nconstexpr std::uint8_t\
+    \ MASK[K][K] = {\n    { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02,\
+    \ 0x20, 0x10, 0x01, 0x80, 0x08, 0x04, 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02,\
+    \ 0x80, 0x08, 0x20 }, { 0x08, 0x01, 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n  \
+    \  { 0x10, 0x80, 0x02, 0x04, 0x20, 0x40, 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02,\
+    \ 0x40, 0x01, 0x10, 0x04 },\n    { 0x40, 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02\
+    \ }, { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t\
+    \ OFFSET[K][K] = {\n    { 0, 1, 2, 3, 4, 5, 6, 7, },\n    { 1, 5, 4, 0, 7, 3,\
+    \ 2, 6, },\n    { 2, 4, 0, 6, 1, 7, 3, 5, },\n    { 3, 0, 6, 5, 2, 1, 7, 4, },\n\
+    \    { 4, 7, 1, 2, 5, 6, 0, 3, },\n    { 5, 3, 7, 1, 6, 0, 4, 2, },\n    { 6,\
+    \ 2, 3, 7, 0, 4, 5, 1, },\n    { 7, 6, 5, 4, 3, 2, 1, 0, },\n};\n\nconstexpr std::uint8_t\
+    \ mask_to_index(const std::uint8_t bits) {\n    switch (bits) {\n        case\
+    \ 1 << 0: return 0;\n        case 1 << 1: return 1;\n        case 1 << 2: return\
+    \ 2;\n        case 1 << 3: return 3;\n        case 1 << 4: return 4;\n       \
+    \ case 1 << 5: return 5;\n        case 1 << 6: return 6;\n        case 1 << 7:\
+    \ return 7;\n        default: assert(false);\n    }\n}\n} // namespace suisen::internal::sieve\n\
+    \n\n#line 9 \"library/number/sieve_of_eratosthenes.hpp\"\n\nnamespace suisen {\n\
     \ntemplate <unsigned int N>\nclass SimpleSieve {\n    private:\n        static\
     \ constexpr unsigned int siz = N / internal::sieve::PROD + 1;\n        static\
     \ std::uint8_t flag[siz];\n    public:\n        SimpleSieve() {\n            using\
@@ -1043,7 +1054,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   requiredBy: []
-  timestamp: '2023-07-09 04:04:16+09:00'
+  timestamp: '2023-07-13 15:42:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp

@@ -13,7 +13,7 @@ data:
     path: library/convolution/xor_convolution.hpp
     title: Bitwise Xor Convolution
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - icon: ':x:'

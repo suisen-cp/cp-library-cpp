@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
@@ -20,9 +20,9 @@ data:
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_h
@@ -113,53 +113,64 @@ data:
     \     const T inv_n = inv(n);\n        for (auto& val : a) val = mul(val, inv_n);\n\
     \    }\n} // namespace suisen::walsh_hadamard_transform\n\n\n\n#line 1 \"library/convolution/polynomial_eval.hpp\"\
     \n\n\n\n#line 5 \"library/convolution/polynomial_eval.hpp\"\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\n// !\
-    \ utility\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
+    \n\n\n\n#include <limits>\n#include <type_traits>\n\nnamespace suisen {\ntemplate\
+    \ <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
     \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
     \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) {\n        return std::forward<Then>(then);\n    } else {\n       \
-    \ return std::forward<OrElse>(or_else);\n    }\n}\n\n// ! function\ntemplate <typename\
-    \ ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
-    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
-    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
-    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
-    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
-    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
-    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
-    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
-    \ <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
-    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
-    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
-    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
-    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
-    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
-    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
-    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
-    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
-    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 7 \"library/convolution/polynomial_eval.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T, auto transform, auto transform_inv,\
+    \ (cond_v) return std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
+    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
+    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
+    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
+    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
+    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
+    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
+    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
+    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
+    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
+    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
+    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
+    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
+    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
+    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
+    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
+    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
+    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
+    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
+    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
+    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
+    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
+    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
+    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
+    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
+    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
+    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
+    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
+    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
+    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
+    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
+    \n\n#line 7 \"library/convolution/polynomial_eval.hpp\"\n\nnamespace suisen {\n\
+    \    template <typename T, auto transform, auto transform_inv, typename F, constraints_t<is_same_as_invoke_result<T,\
+    \ F, T>> = nullptr>\n    std::vector<T> polynomial_eval(std::vector<T> &&a, F\
+    \ f) {\n        transform(a);\n        for (auto &x : a) x = f(x);\n        transform_inv(a);\n\
+    \        return a;\n    }\n\n    template <typename T, auto transform, auto transform_inv,\
     \ typename F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\n  \
-    \  std::vector<T> polynomial_eval(std::vector<T> &&a, F f) {\n        transform(a);\n\
-    \        for (auto &x : a) x = f(x);\n        transform_inv(a);\n        return\
-    \ a;\n    }\n\n    template <typename T, auto transform, auto transform_inv, typename\
-    \ F, constraints_t<is_same_as_invoke_result<T, F, T>> = nullptr>\n    std::vector<T>\
-    \ polynomial_eval(const std::vector<T> &a, F f) {\n        return polynomial_eval<T,\
-    \ transform, transform_inv>(std::vector<T>(a), f);\n    }\n} // namespace suisen\n\
-    \n\n#line 8 \"test/src/convolution/polynomial_eval/nim_counting.test.cpp\"\nusing\
-    \ namespace suisen;\n\nusing mint = atcoder::modint998244353;\n\nconstexpr int\
-    \ M = 1 << 16;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
-    \n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint> c(M, 0);\n \
-    \   for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin >> v;\n  \
-    \      ++c[v];\n    }\n\n    using namespace walsh_hadamard_transform;\n\n   \
-    \ auto res = suisen::polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c,\
+    \  std::vector<T> polynomial_eval(const std::vector<T> &a, F f) {\n        return\
+    \ polynomial_eval<T, transform, transform_inv>(std::vector<T>(a), f);\n    }\n\
+    } // namespace suisen\n\n\n#line 8 \"test/src/convolution/polynomial_eval/nim_counting.test.cpp\"\
+    \nusing namespace suisen;\n\nusing mint = atcoder::modint998244353;\n\nconstexpr\
+    \ int M = 1 << 16;\n\nint main() {\n    std::ios::sync_with_stdio(false);\n  \
+    \  std::cin.tie(nullptr);\n\n    int n, k;\n    std::cin >> n >> k;\n\n    std::vector<mint>\
+    \ c(M, 0);\n    for (int i = 0; i < k; ++i) {\n        int v;\n        std::cin\
+    \ >> v;\n        ++c[v];\n    }\n\n    using namespace walsh_hadamard_transform;\n\
+    \n    auto res = suisen::polynomial_eval<mint, walsh_hadamard<mint>, walsh_hadamard_inv<mint>>(c,\
     \ [n](mint x) {\n        return x == 1 ? n : x * (x.pow(n) - 1) / (x - 1);\n \
     \       });\n\n    std::cout << std::accumulate(res.begin() + 1, res.end(), mint(0)).val()\
     \ << std::endl;\n\n    return 0;\n}\n"
@@ -184,8 +195,8 @@ data:
   isVerificationFile: true
   path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   requiredBy: []
-  timestamp: '2022-05-31 16:25:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-13 15:42:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/convolution/polynomial_eval/nim_counting.test.cpp
 layout: document

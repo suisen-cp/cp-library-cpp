@@ -103,7 +103,7 @@ data:
     - icon: ':warning:'
       path: library/convolution/or_convolution.hpp
       title: Bitwise Or Convolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/convolution/polynomial_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1"
@@ -140,7 +140,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/binary_trie_patricia.hpp
       title: Binary Trie Patricia
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/bit_vector.hpp
       title: Bit Vector
     - icon: ':heavy_check_mark:'
@@ -166,7 +166,7 @@ data:
       path: library/datastructure/lazy_eval_dynamic_sequence.hpp
       title: "\u53CD\u8EE2\u53EF\u80FD\u306A\u9045\u5EF6\u8A55\u4FA1\u4ED8\u304D\u5E73\
         \u8861\u4E8C\u5206\u63A2\u7D22\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/datastructure/lazy_eval_map.hpp
       title: Lazy Eval Map
     - icon: ':heavy_check_mark:'
@@ -187,7 +187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/range_foldable_dynamic_sequence.hpp
       title: Range Foldable Dynamic Sequence
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/datastructure/range_foldable_map.hpp
       title: Range Foldable Map
     - icon: ':heavy_check_mark:'
@@ -199,13 +199,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/sparse_table.hpp
       title: Sparse Table
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/datastructure/splay_tree_map.hpp
       title: Splay Tree Map
     - icon: ':warning:'
       path: library/datastructure/splay_tree_set.hpp
       title: Splay Tree Set
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
   - name: library/datastructure/bbst
@@ -277,7 +277,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
       title: Compressed Fenwick Tree Prefix
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/fenwick_tree/fenwick_tree.hpp
       title: Fenwick Tree
     - icon: ':x:'
@@ -324,7 +324,7 @@ data:
     - icon: ':question:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -352,7 +352,7 @@ data:
       path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
       title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
         \u5834\u5408)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/segment_tree_beats.hpp
       title: Segment Tree Beats
     - icon: ':question:'
@@ -410,7 +410,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/util/priority_sum.hpp
       title: Priority Sum
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/datastructure/util/range_set.hpp
       title: Range Set
     - icon: ':warning:'
@@ -452,7 +452,7 @@ data:
     - icon: ':warning:'
       path: library/geom/geometry3d.hpp
       title: "3\u6B21\u5143\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/geom/segment_intersections.hpp
       title: Segment Intersections
   - name: library/graph
@@ -508,7 +508,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/enumerate_triangles.hpp
       title: "\u4E09\u89D2\u5F62\u5217\u6319"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/graph/functional_graph.hpp
       title: Functional Graph
     - icon: ':heavy_check_mark:'
@@ -624,7 +624,7 @@ data:
     - icon: ':warning:'
       path: library/linear_algebra/gaussian_elimination_f2.hpp
       title: Gaussian Elimination $\mathbb{F} _ 2$
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/linear_algebra/hafnian.hpp
       title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\
         \u4E0A\u3052)"
@@ -669,7 +669,7 @@ data:
     - icon: ':question:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/math/set_power_series.hpp
       title: Set Power Series
     - icon: ':heavy_check_mark:'
@@ -686,7 +686,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/barrett_reduction.hpp
       title: Barrett Reduction
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/deterministic_miller_rabin.hpp
       title: Deterministic Miller Rabin
     - icon: ':warning:'
@@ -710,7 +710,7 @@ data:
     - icon: ':warning:'
       path: library/number/fast_discrete_logarithm.hpp
       title: library/number/fast_discrete_logarithm.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/fast_factorize.hpp
       title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':heavy_check_mark:'
@@ -741,13 +741,13 @@ data:
     - icon: ':x:'
       path: library/number/modint_2^61m1.hpp
       title: Modint 2^61m1
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/montogomery.hpp
       title: Montogomery
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/order_Z_mZ.hpp
       title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/primitive_root.hpp
       title: Primitive Root
     - icon: ':warning:'
@@ -766,10 +766,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/sum_of_totient_function.hpp
       title: Prefix Sum of Totient Function
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/number/tetration_mod.hpp
       title: $a\uparrow\uparrow b \bmod m$
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/util.hpp
       title: Util
   - name: library/polynomial
@@ -781,7 +781,7 @@ data:
       path: library/polynomial/berlekamp_massey.hpp
       title: "Berlekamp Massey (\u7DDA\u5F62\u56DE\u5E30\u6570\u5217\u306E\u4FC2\u6570\
         \u8A08\u7B97)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
     - icon: ':heavy_check_mark:'
@@ -790,19 +790,19 @@ data:
     - icon: ':x:'
       path: library/polynomial/compose_exp.hpp
       title: Compose Exp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/polynomial/compose_inv.hpp
       title: "\u9006\u95A2\u6570"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/polynomial/convert_to_newton_basis.hpp
       title: Convert To Newton Basis
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/polynomial/formal_power_series.hpp
       title: Formal Power Series
     - icon: ':heavy_check_mark:'
       path: library/polynomial/formal_power_series_relaxed.hpp
       title: Formal Power Series Relaxed
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
     - icon: ':question:'
@@ -843,7 +843,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/range_query/static_range_inversion_number_query.hpp
       title: Static Range Inversion Number Query
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/range_query/static_range_xored_mex_query.hpp
       title: Static Range Xored Mex Query
   - name: library/sequence
@@ -999,7 +999,7 @@ data:
     - icon: ':warning:'
       path: library/tree/get_path.hpp
       title: Get Path
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
     - icon: ':heavy_check_mark:'
@@ -1064,7 +1064,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: Container Utils
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/util/coordinate_compressor.hpp
       title: "\u5EA7\u6A19\u5727\u7E2E"
     - icon: ':warning:'
@@ -1231,7 +1231,7 @@ data:
       title: test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
   - name: test/src/convolution/polynomial_eval
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
       title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - name: test/src/convolution/polynomial_eval_multipoint_eval
@@ -1481,7 +1481,7 @@ data:
       title: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/lazy_eval_map
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
       title: test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
   - name: test/src/datastructure/monotonic_convex_hull_trick
@@ -1619,7 +1619,7 @@ data:
       title: test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
   - name: test/src/datastructure/segment_tree/segment_tree_beats
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1724,10 +1724,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - name: test/src/dp/longest_increasing_subsequence
@@ -1820,7 +1820,7 @@ data:
       title: test/src/geom/geometry/CGL_7_I.test.cpp
   - name: test/src/geom/segment_intersections
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - name: test/src/graph/assignment_problem
@@ -1890,7 +1890,7 @@ data:
       title: test/src/graph/enumerate_triangles/enumerate_triangles.test.cpp
   - name: test/src/graph/functional_graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/graph/functional_graph/abc254_g.test.cpp
       title: test/src/graph/functional_graph/abc254_g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2033,7 +2033,7 @@ data:
       title: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
   - name: test/src/linear_algebra/hafnian
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
       title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - name: test/src/linear_algebra/matrix
@@ -2099,7 +2099,7 @@ data:
       title: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
   - name: test/src/math/product_of_differences
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/product_of_differences/yuki1938.test.cpp
       title: test/src/math/product_of_differences/yuki1938.test.cpp
   - name: test/src/math/set_power_series
@@ -2119,10 +2119,10 @@ data:
     - icon: ':x:'
       path: test/src/math/set_power_series/arc105_f.test.cpp
       title: test/src/math/set_power_series/arc105_f.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
       title: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
       title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - name: test/src/math/sum_i^d_r^i
@@ -2158,7 +2158,7 @@ data:
       title: test/src/number/enumerate_quotient/enumerate_quotients.test.cpp
   - name: test/src/number/fast_factorize
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/fast_factorize/factorize.test.cpp
       title: test/src/number/fast_factorize/factorize.test.cpp
   - name: test/src/number/find_denominators
@@ -2183,10 +2183,10 @@ data:
       title: test/src/number/mod_sqrt/dummy.test.cpp
   - name: test/src/number/primitive_root
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/primitive_root/dummy.test.cpp
       title: test/src/number/primitive_root/dummy.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/primitive_root/primitive_root.test.cpp
       title: test/src/number/primitive_root/primitive_root.test.cpp
   - name: test/src/number/sieve_of_eratosthenes
@@ -2218,7 +2218,7 @@ data:
       title: test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
   - name: test/src/number/tetration_mod
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/tetration_mod/tetration_mod.test.cpp
       title: test/src/number/tetration_mod/tetration_mod.test.cpp
   - name: test/src/number/util
@@ -2233,10 +2233,10 @@ data:
       title: test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
   - name: test/src/polynomial/bostan_mori
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - name: test/src/polynomial/compose
@@ -2254,50 +2254,50 @@ data:
       title: test/src/polynomial/compose_exp/arc154_f.test.cpp
   - name: test/src/polynomial/compose_inv
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
       title: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   - name: test/src/polynomial/convert_to_newton_basis
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
       title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
   - name: test/src/polynomial/formal_power_series
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
       title: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
       title: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
       title: test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
       title: test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
       title: test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
       title: test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
       title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
   - name: test/src/polynomial/formal_power_series_relaxed
@@ -2319,13 +2319,13 @@ data:
       title: test/src/polynomial/formal_power_series_relaxed/sqrt_of_formal_power_series.test.cpp
   - name: test/src/polynomial/fps
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/fps/division_of_polynomials.test.cpp
       title: test/src/polynomial/fps/division_of_polynomials.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/fps/exp_of_fps.test.cpp
       title: test/src/polynomial/fps/exp_of_fps.test.cpp
     - icon: ':x:'
@@ -2422,7 +2422,7 @@ data:
       title: test/src/range_query/static_range_inversion_number_query/static_range_inversions_query.test.cpp
   - name: test/src/range_query/static_range_xored_mex_query
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
       title: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
   - name: test/src/sequence/bernoulli_number
@@ -2582,25 +2582,25 @@ data:
       title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   - name: test/src/tree/heavy_light_decomposition
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/level_ancestor
@@ -2706,7 +2706,7 @@ data:
       title: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
   - name: test/src/util/coordinate_compressor
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/util/coordinate_compressor/dummy.test.cpp
       title: test/src/util/coordinate_compressor/dummy.test.cpp
   - name: test/src/util/step_sum

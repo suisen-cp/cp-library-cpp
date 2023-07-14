@@ -24,49 +24,62 @@ data:
   bundledCode: "#line 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include\
     \ <cstddef>\n#include <cassert>\n#include <tuple>\n#include <vector>\n\n#line\
     \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include\
-    \ <type_traits>\n\nnamespace suisen {\n// ! utility\ntemplate <typename ...Types>\n\
-    using constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\n\
-    template <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto)\
-    \ constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr (cond_v) {\n\
-    \        return std::forward<Then>(then);\n    } else {\n        return std::forward<OrElse>(or_else);\n\
-    \    }\n}\n\n// ! function\ntemplate <typename ReturnType, typename Callable,\
-    \ typename ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
-    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
-    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
-    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
-    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
-    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
-    template <typename T, unsigned int n>\nstruct is_nbit { static constexpr bool\
-    \ value = bit_num<T> == n; };\ntemplate <typename T, unsigned int n>\nstatic constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T>\nstruct\
-    \ safely_multipliable {};\ntemplate <>\nstruct safely_multipliable<int> { using\
-    \ type = long long; };\ntemplate <>\nstruct safely_multipliable<long long> { using\
-    \ type = __int128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned int>\
-    \ { using type = unsigned long long; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long int> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<unsigned\
-    \ long long> { using type = __uint128_t; };\ntemplate <>\nstruct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <>\nstruct safely_multipliable<double> {\
-    \ using type = double; };\ntemplate <>\nstruct safely_multipliable<long double>\
-    \ { using type = long double; };\ntemplate <typename T>\nusing safely_multipliable_t\
-    \ = typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename =\
-    \ void>\nstruct rec_value_type {\n    using type = T;\n};\ntemplate <typename\
-    \ T>\nstruct rec_value_type<T, std::void_t<typename T::value_type>> {\n    using\
-    \ type = typename rec_value_type<typename T::value_type>::type;\n};\ntemplate\
-    \ <typename T>\nusing rec_value_type_t = typename rec_value_type<T>::type;\n\n\
-    } // namespace suisen\n\n\n#line 10 \"library/datastructure/dynamic_sequence.hpp\"\
-    \n\nnamespace suisen {\n\nnamespace internal::dynamic_sequence {\n\ntemplate <typename\
-    \ T, typename Derived>\nstruct DynamicSequenceNodeBase {\n    using node_ptr_t\
-    \ = Derived *;\n\n    T val;\n    int siz;\n    bool rev;\n    node_ptr_t ch[2]\
-    \ {nullptr, nullptr};\n\n    DynamicSequenceNodeBase() : val(), siz(1), rev(false)\
-    \ {}\n    DynamicSequenceNodeBase(const T &val) : val(val), siz(1), rev(false)\
-    \ {}\n\n    ~DynamicSequenceNodeBase() {\n        delete ch[0];\n        delete\
-    \ ch[1];\n    }\n\n    void update() {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n\
-    \    }\n    void push() {\n        reverse_all(this->ch[0], rev), reverse_all(this->ch[1],\
-    \ rev);\n        rev = false;\n    }\n    static int size(node_ptr_t node) {\n\
-    \        return node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t\
-    \ rotate(node_ptr_t node, bool is_right) {\n        node_ptr_t root = node->ch[is_right\
-    \ ^ true];\n        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
+    \ <type_traits>\n\nnamespace suisen {\ntemplate <typename ...Types>\nusing constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\ntemplate\
+    \ <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto) constexpr_if(Then&&\
+    \ then, OrElse&& or_else) {\n    if constexpr (cond_v) return std::forward<Then>(then);\n\
+    \    else return std::forward<OrElse>(or_else);\n}\n\n// ! function\ntemplate\
+    \ <typename ReturnType, typename Callable, typename ...Args>\nusing is_same_as_invoke_result\
+    \ = std::is_same<std::invoke_result_t<Callable, Args...>, ReturnType>;\ntemplate\
+    \ <typename F, typename T>\nusing is_uni_op = is_same_as_invoke_result<T, F, T>;\n\
+    template <typename F, typename T>\nusing is_bin_op = is_same_as_invoke_result<T,\
+    \ F, T, T>;\n\ntemplate <typename Comparator, typename T>\nusing is_comparator\
+    \ = std::is_same<std::invoke_result_t<Comparator, T, T>, bool>;\n\n// ! integral\n\
+    template <typename T, typename = constraints_t<std::is_integral<T>>>\nconstexpr\
+    \ int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\ntemplate\
+    \ <typename T, size_t n> struct is_nbit { static constexpr bool value = bit_num<T>\
+    \ == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v =\
+    \ is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
+    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
+    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
+    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
+    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
+    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
+    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
+    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
+    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
+    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
+    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
+    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
+    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
+    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
+    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
+    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
+    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
+    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
+    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
+    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
+    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
+    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
+    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
+    \n\n#line 10 \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace suisen\
+    \ {\n\nnamespace internal::dynamic_sequence {\n\ntemplate <typename T, typename\
+    \ Derived>\nstruct DynamicSequenceNodeBase {\n    using node_ptr_t = Derived *;\n\
+    \n    T val;\n    int siz;\n    bool rev;\n    node_ptr_t ch[2] {nullptr, nullptr};\n\
+    \n    DynamicSequenceNodeBase() : val(), siz(1), rev(false) {}\n    DynamicSequenceNodeBase(const\
+    \ T &val) : val(val), siz(1), rev(false) {}\n\n    ~DynamicSequenceNodeBase()\
+    \ {\n        delete ch[0];\n        delete ch[1];\n    }\n\n    void update()\
+    \ {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n    }\n    void push() {\n\
+    \        reverse_all(this->ch[0], rev), reverse_all(this->ch[1], rev);\n     \
+    \   rev = false;\n    }\n    static int size(node_ptr_t node) {\n        return\
+    \ node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t rotate(node_ptr_t\
+    \ node, bool is_right) {\n        node_ptr_t root = node->ch[is_right ^ true];\n\
+    \        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
     \ = node;\n        node->update(), root->update();\n        return root;\n   \
     \ }\n\n    static node_ptr_t splay(node_ptr_t node, int index) {\n        std::vector<node_ptr_t>\
     \ path;\n        node_ptr_t work_root = new Derived();\n        node_ptr_t work_leaf[2]\
@@ -295,7 +308,7 @@ data:
   requiredBy:
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
   - library/datastructure/range_foldable_dynamic_sequence.hpp
-  timestamp: '2022-05-31 16:25:25+09:00'
+  timestamp: '2023-07-13 15:42:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
