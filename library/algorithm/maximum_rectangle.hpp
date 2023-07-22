@@ -6,8 +6,8 @@
 
 namespace suisen {
     // f : (l, r, h) -> void
-    template <typename HistGram, typename Func>
-    void maximal_rectangles_hist(const HistGram& h, Func &&f) {
+    template <typename Histogram, typename Func>
+    void maximal_rectangles_hist(const Histogram& h, Func &&f) {
         using Value = std::decay_t<decltype(h[0])>;
 
         static_assert((std::is_invocable_v<Func, int, int, Value>));
