@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/compose_inv.hpp
     title: "\u9006\u95A2\u6570"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series
@@ -607,7 +607,7 @@ data:
   path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   requiredBy: []
   timestamp: '2023-07-13 15:42:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
 layout: document

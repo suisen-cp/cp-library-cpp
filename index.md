@@ -205,7 +205,7 @@ data:
     - icon: ':warning:'
       path: library/datastructure/splay_tree_set.hpp
       title: Splay Tree Set
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
   - name: library/datastructure/bbst
@@ -277,7 +277,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
       title: Compressed Fenwick Tree Prefix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/fenwick_tree.hpp
       title: Fenwick Tree
     - icon: ':x:'
@@ -452,7 +452,7 @@ data:
     - icon: ':warning:'
       path: library/geom/geometry3d.hpp
       title: "3\u6B21\u5143\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/segment_intersections.hpp
       title: Segment Intersections
   - name: library/graph
@@ -624,7 +624,7 @@ data:
     - icon: ':warning:'
       path: library/linear_algebra/gaussian_elimination_f2.hpp
       title: Gaussian Elimination $\mathbb{F} _ 2$
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/hafnian.hpp
       title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\
         \u4E0A\u3052)"
@@ -669,7 +669,7 @@ data:
     - icon: ':question:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/set_power_series.hpp
       title: Set Power Series
     - icon: ':heavy_check_mark:'
@@ -686,7 +686,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/barrett_reduction.hpp
       title: Barrett Reduction
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/deterministic_miller_rabin.hpp
       title: Deterministic Miller Rabin
     - icon: ':warning:'
@@ -710,7 +710,7 @@ data:
     - icon: ':warning:'
       path: library/number/fast_discrete_logarithm.hpp
       title: library/number/fast_discrete_logarithm.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/fast_factorize.hpp
       title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
     - icon: ':heavy_check_mark:'
@@ -741,13 +741,13 @@ data:
     - icon: ':x:'
       path: library/number/modint_2^61m1.hpp
       title: Modint 2^61m1
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/montogomery.hpp
       title: Montogomery
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/order_Z_mZ.hpp
       title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/primitive_root.hpp
       title: Primitive Root
     - icon: ':warning:'
@@ -766,10 +766,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/sum_of_totient_function.hpp
       title: Prefix Sum of Totient Function
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/number/tetration_mod.hpp
       title: $a\uparrow\uparrow b \bmod m$
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/util.hpp
       title: Util
   - name: library/polynomial
@@ -781,7 +781,7 @@ data:
       path: library/polynomial/berlekamp_massey.hpp
       title: "Berlekamp Massey (\u7DDA\u5F62\u56DE\u5E30\u6570\u5217\u306E\u4FC2\u6570\
         \u8A08\u7B97)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/bostan_mori.hpp
       title: Bostan Mori
     - icon: ':heavy_check_mark:'
@@ -790,19 +790,19 @@ data:
     - icon: ':x:'
       path: library/polynomial/compose_exp.hpp
       title: Compose Exp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/compose_inv.hpp
       title: "\u9006\u95A2\u6570"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/convert_to_newton_basis.hpp
       title: Convert To Newton Basis
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/formal_power_series.hpp
       title: Formal Power Series
     - icon: ':heavy_check_mark:'
       path: library/polynomial/formal_power_series_relaxed.hpp
       title: Formal Power Series Relaxed
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
     - icon: ':question:'
@@ -1724,10 +1724,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - name: test/src/dp/longest_increasing_subsequence
@@ -1820,7 +1820,7 @@ data:
       title: test/src/geom/geometry/CGL_7_I.test.cpp
   - name: test/src/geom/segment_intersections
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - name: test/src/graph/assignment_problem
@@ -2033,7 +2033,7 @@ data:
       title: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
   - name: test/src/linear_algebra/hafnian
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
       title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - name: test/src/linear_algebra/matrix
@@ -2099,7 +2099,7 @@ data:
       title: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
   - name: test/src/math/product_of_differences
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/product_of_differences/yuki1938.test.cpp
       title: test/src/math/product_of_differences/yuki1938.test.cpp
   - name: test/src/math/set_power_series
@@ -2119,10 +2119,10 @@ data:
     - icon: ':x:'
       path: test/src/math/set_power_series/arc105_f.test.cpp
       title: test/src/math/set_power_series/arc105_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
       title: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
       title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - name: test/src/math/sum_i^d_r^i
@@ -2158,7 +2158,7 @@ data:
       title: test/src/number/enumerate_quotient/enumerate_quotients.test.cpp
   - name: test/src/number/fast_factorize
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/fast_factorize/factorize.test.cpp
       title: test/src/number/fast_factorize/factorize.test.cpp
   - name: test/src/number/find_denominators
@@ -2183,10 +2183,10 @@ data:
       title: test/src/number/mod_sqrt/dummy.test.cpp
   - name: test/src/number/primitive_root
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/primitive_root/dummy.test.cpp
       title: test/src/number/primitive_root/dummy.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/primitive_root/primitive_root.test.cpp
       title: test/src/number/primitive_root/primitive_root.test.cpp
   - name: test/src/number/sieve_of_eratosthenes
@@ -2218,7 +2218,7 @@ data:
       title: test/src/number/sum_of_totient_function/sum_of_totient_function.test.cpp
   - name: test/src/number/tetration_mod
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/number/tetration_mod/tetration_mod.test.cpp
       title: test/src/number/tetration_mod/tetration_mod.test.cpp
   - name: test/src/number/util
@@ -2233,10 +2233,10 @@ data:
       title: test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
   - name: test/src/polynomial/bostan_mori
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
       title: test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - name: test/src/polynomial/compose
@@ -2254,23 +2254,23 @@ data:
       title: test/src/polynomial/compose_exp/arc154_f.test.cpp
   - name: test/src/polynomial/compose_inv
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
       title: test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   - name: test/src/polynomial/convert_to_newton_basis
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
       title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
   - name: test/src/polynomial/formal_power_series
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
       title: test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
       title: test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
       title: test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
     - icon: ':x:'

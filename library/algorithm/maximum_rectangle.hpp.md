@@ -10,8 +10,8 @@ data:
     links: []
   bundledCode: "#line 1 \"library/algorithm/maximum_rectangle.hpp\"\n\n\n\n#include\
     \ <tuple>\n#include <vector>\n\nnamespace suisen {\n    // f : (l, r, h) -> void\n\
-    \    template <typename HistGram, typename Func>\n    void maximal_rectangles_hist(const\
-    \ HistGram& h, Func &&f) {\n        using Value = std::decay_t<decltype(h[0])>;\n\
+    \    template <typename Histogram, typename Func>\n    void maximal_rectangles_hist(const\
+    \ Histogram& h, Func &&f) {\n        using Value = std::decay_t<decltype(h[0])>;\n\
     \n        static_assert((std::is_invocable_v<Func, int, int, Value>));\n\n   \
     \     const int n = h.size();\n        std::vector<std::pair<int, Value>> stack;\n\
     \        for (int r = 0; r <= n; ++r) {\n            Value hr = r < n ? h[r] :\
@@ -41,8 +41,8 @@ data:
     \n\n\n"
   code: "#ifndef SUISEN_MAXIMUM_RECTANGLE\n#define SUISEN_MAXIMUM_RECTANGLE\n\n#include\
     \ <tuple>\n#include <vector>\n\nnamespace suisen {\n    // f : (l, r, h) -> void\n\
-    \    template <typename HistGram, typename Func>\n    void maximal_rectangles_hist(const\
-    \ HistGram& h, Func &&f) {\n        using Value = std::decay_t<decltype(h[0])>;\n\
+    \    template <typename Histogram, typename Func>\n    void maximal_rectangles_hist(const\
+    \ Histogram& h, Func &&f) {\n        using Value = std::decay_t<decltype(h[0])>;\n\
     \n        static_assert((std::is_invocable_v<Func, int, int, Value>));\n\n   \
     \     const int n = h.size();\n        std::vector<std::pair<int, Value>> stack;\n\
     \        for (int r = 0; r <= n; ++r) {\n            Value hr = r < n ? h[r] :\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: library/algorithm/maximum_rectangle.hpp
   requiredBy: []
-  timestamp: '2023-05-11 13:17:42+09:00'
+  timestamp: '2023-07-22 10:22:24+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/algorithm/maximum_rectangle.hpp

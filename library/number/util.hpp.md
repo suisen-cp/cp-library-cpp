@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/number/mod_sqrt/dummy.test.cpp
     title: test/src/number/mod_sqrt/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/util/abc222_g.test.cpp
     title: test/src/number/util/abc222_g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Utilities
     links: []
@@ -175,7 +175,7 @@ data:
   path: library/number/util.hpp
   requiredBy: []
   timestamp: '2022-10-20 19:29:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/mod_sqrt/dummy.test.cpp
   - test/src/number/util/abc222_g.test.cpp
