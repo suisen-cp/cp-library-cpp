@@ -4,7 +4,10 @@ data:
   - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: library/sequence/sum_of_powers.hpp
+    title: library/sequence/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
@@ -58,12 +61,13 @@ data:
   - library/math/factorial.hpp
   isVerificationFile: false
   path: library/sequence/bernoulli_number.hpp
-  requiredBy: []
+  requiredBy:
+  - library/sequence/sum_of_powers.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
   - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
 documentation_of: library/sequence/bernoulli_number.hpp
 layout: document
 title: Bernoulli Number

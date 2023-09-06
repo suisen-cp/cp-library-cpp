@@ -57,8 +57,8 @@ data:
   timestamp: '2022-07-05 15:09:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/graph/enumerate_triangles/enumerate_triangles.test.cpp
   - test/src/graph/enumerate_triangles/abc258_g.test.cpp
+  - test/src/graph/enumerate_triangles/enumerate_triangles.test.cpp
 documentation_of: library/graph/enumerate_triangles.hpp
 layout: document
 title: "\u4E09\u89D2\u5F62\u5217\u6319"

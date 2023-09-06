@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
   - icon: ':question:'
@@ -40,106 +40,100 @@ data:
     \n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\n#include <type_traits>\n\
     #include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line\
-    \ 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\ntemplate <typename\
-    \ ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) return std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
-    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
-    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
-    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
-    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
-    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
-    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
-    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
-    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
-    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
-    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
-    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
-    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
-    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
-    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
-    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
-    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
-    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
-    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
-    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
-    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
-    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
-    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
-    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
-    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
-    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
-    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
-    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
-    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
-    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
-    \n\n#line 11 \"library/polynomial/fps_naive.hpp\"\n\n#line 1 \"library/math/modint_extension.hpp\"\
-    \n\n\n\n#line 6 \"library/math/modint_extension.hpp\"\n\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n\
-    \ * calculates x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename\
-    \ mint>\nstd::optional<mint> safe_sqrt(mint a) {\n    static int p = mint::mod();\n\
-    \    if (a == 0) return std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n\
-    \    if (a.pow((p - 1) / 2) != 1) return std::nullopt;\n    mint b = 1;\n    while\
-    \ (b.pow((p - 1) / 2) == 1) ++b;\n    static int tlz = __builtin_ctz(p - 1), q\
-    \ = (p - 1) >> tlz;\n    mint x = a.pow((q + 1) / 2);\n    b = b.pow(q);\n   \
-    \ for (int shift = 2; x * x != a; ++shift) {\n        mint e = a.inv() * x * x;\n\
-    \        if (e.pow(1 << (tlz - shift)) != 1) x *= b;\n        b *= b;\n    }\n\
-    \    return std::make_optional(x);\n}\n\n/**\n * calculates x s.t. x^2 = a mod\
-    \ p in O((log p)^2).\n * if not exists, raises runtime error.\n */\ntemplate <typename\
-    \ mint>\nauto sqrt(mint a) -> decltype(mint::mod(), mint()) {\n    return *safe_sqrt(a);\n\
-    }\ntemplate <typename mint>\nauto log(mint a) -> decltype(mint::mod(), mint())\
-    \ {\n    assert(a == 1);\n    return 0;\n}\ntemplate <typename mint>\nauto exp(mint\
-    \ a) -> decltype(mint::mod(), mint()) {\n    assert(a == 0);\n    return 1;\n\
-    }\ntemplate <typename mint, typename T>\nauto pow(mint a, T b) -> decltype(mint::mod(),\
-    \ mint()) {\n    return a.pow(b);\n}\ntemplate <typename mint>\nauto inv(mint\
-    \ a) -> decltype(mint::mod(), mint()) {\n    return a.inv();\n}\n\n\n#line 1 \"\
-    library/math/inv_mods.hpp\"\n\n\n\n#line 5 \"library/math/inv_mods.hpp\"\n\nnamespace\
-    \ suisen {\n    template <typename mint>\n    class inv_mods {\n    public:\n\
-    \        inv_mods() = default;\n        inv_mods(int n) { ensure(n); }\n     \
-    \   const mint& operator[](int i) const {\n            ensure(i);\n          \
-    \  return invs[i];\n        }\n        static void ensure(int n) {\n         \
-    \   int sz = invs.size();\n            if (sz < 2) invs = { 0, 1 }, sz = 2;\n\
-    \            if (sz < n + 1) {\n                invs.resize(n + 1);\n        \
-    \        for (int i = sz; i <= n; ++i) invs[i] = mint(mod - mod / i) * invs[mod\
-    \ % i];\n            }\n        }\n    private:\n        static std::vector<mint>\
-    \ invs;\n        static constexpr int mod = mint::mod();\n    };\n    template\
-    \ <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\n    template\
-    \ <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>& vs)\
-    \ {\n        const int n = vs.size();\n\n        mint p = 1;\n        for (auto&\
-    \ e : vs) {\n            p *= e;\n            assert(e != 0);\n        }\n   \
-    \     mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n        rp[n]\
-    \ = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i] = rp[i +\
-    \ 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n        for (int\
-    \ i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n            ip *=\
-    \ vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 14 \"library/polynomial/fps_naive.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T>\n    struct FPSNaive : std::vector<T>\
-    \ {\n        static inline int MAX_SIZE = std::numeric_limits<int>::max() / 2;\n\
-    \n        using value_type = T;\n        using element_type = rec_value_type_t<T>;\n\
-    \        using std::vector<value_type>::vector;\n\n        FPSNaive(const std::initializer_list<value_type>\
-    \ l) : std::vector<value_type>::vector(l) {}\n        FPSNaive(const std::vector<value_type>&\
-    \ v) : std::vector<value_type>::vector(v) {}\n\n        static void set_max_size(int\
-    \ n) {\n            FPSNaive<T>::MAX_SIZE = n;\n        }\n\n        const value_type\
-    \ operator[](int n) const {\n            return n <= deg() ? unsafe_get(n) : value_type{\
-    \ 0 };\n        }\n        value_type& operator[](int n) {\n            return\
-    \ ensure_deg(n), unsafe_get(n);\n        }\n\n        int size() const {\n   \
-    \         return std::vector<value_type>::size();\n        }\n        int deg()\
-    \ const {\n            return size() - 1;\n        }\n        int normalize()\
-    \ {\n            while (size() and this->back() == value_type{ 0 }) this->pop_back();\n\
-    \            return deg();\n        }\n        FPSNaive& cut_inplace(int n) {\n\
-    \            if (size() > n) this->resize(std::max(0, n));\n            return\
-    \ *this;\n        }\n        FPSNaive cut(int n) const {\n            FPSNaive\
-    \ f = FPSNaive(*this).cut_inplace(n);\n            return f;\n        }\n\n  \
-    \      FPSNaive operator+() const {\n            return FPSNaive(*this);\n   \
-    \     }\n        FPSNaive operator-() const {\n            FPSNaive f(*this);\n\
+    \ 6 \"library/type_traits/type_traits.hpp\"\nnamespace suisen {\n    template\
+    \ <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
+    \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
+    \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
+    \ std::numeric_limits<std::make_unsigned_t<T>>::digits; };\n    template <typename\
+    \ T> static constexpr int bitnum_v = bitnum<T>::value;\n    template <typename\
+    \ T, size_t n> struct is_nbit { static constexpr bool value = bitnum_v<T> == n;\
+    \ };\n    template <typename T, size_t n> static constexpr bool is_nbit_v = is_nbit<T,\
+    \ n>::value;\n\n    template <typename T, typename = std::nullptr_t> struct safely_multipliable\
+    \ { using type = T; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_signed<T>, is_nbit<T, 32>>> { using type = long long;\
+    \ };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 64>>> { using type = __int128_t; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> {\
+    \ using type = unsigned long long; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 64>>> { using type = __uint128_t;\
+    \ };\n    template <typename T> using safely_multipliable_t = typename safely_multipliable<T>::type;\n\
+    \n    template <typename T, typename = void> struct rec_value_type { using type\
+    \ = T; };\n    template <typename T> struct rec_value_type<T, std::void_t<typename\
+    \ T::value_type>> {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
+    \n    template <typename T> class is_iterable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_iterable_v = is_iterable<T>::value;\n\
+    \    template <typename T> class is_writable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \    template <typename T> class is_readable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_readable_v = is_readable<T>::value;\n\
+    } // namespace suisen\n\n#line 11 \"library/polynomial/fps_naive.hpp\"\n\n#line\
+    \ 1 \"library/math/modint_extension.hpp\"\n\n\n\n#line 6 \"library/math/modint_extension.hpp\"\
+    \n\n/**\n * refernce: https://37zigen.com/tonelli-shanks-algorithm/\n * calculates\
+    \ x s.t. x^2 = a mod p in O((log p)^2).\n */\ntemplate <typename mint>\nstd::optional<mint>\
+    \ safe_sqrt(mint a) {\n    static int p = mint::mod();\n    if (a == 0) return\
+    \ std::make_optional(0);\n    if (p == 2) return std::make_optional(a);\n    if\
+    \ (a.pow((p - 1) / 2) != 1) return std::nullopt;\n    mint b = 1;\n    while (b.pow((p\
+    \ - 1) / 2) == 1) ++b;\n    static int tlz = __builtin_ctz(p - 1), q = (p - 1)\
+    \ >> tlz;\n    mint x = a.pow((q + 1) / 2);\n    b = b.pow(q);\n    for (int shift\
+    \ = 2; x * x != a; ++shift) {\n        mint e = a.inv() * x * x;\n        if (e.pow(1\
+    \ << (tlz - shift)) != 1) x *= b;\n        b *= b;\n    }\n    return std::make_optional(x);\n\
+    }\n\n/**\n * calculates x s.t. x^2 = a mod p in O((log p)^2).\n * if not exists,\
+    \ raises runtime error.\n */\ntemplate <typename mint>\nauto sqrt(mint a) -> decltype(mint::mod(),\
+    \ mint()) {\n    return *safe_sqrt(a);\n}\ntemplate <typename mint>\nauto log(mint\
+    \ a) -> decltype(mint::mod(), mint()) {\n    assert(a == 1);\n    return 0;\n\
+    }\ntemplate <typename mint>\nauto exp(mint a) -> decltype(mint::mod(), mint())\
+    \ {\n    assert(a == 0);\n    return 1;\n}\ntemplate <typename mint, typename\
+    \ T>\nauto pow(mint a, T b) -> decltype(mint::mod(), mint()) {\n    return a.pow(b);\n\
+    }\ntemplate <typename mint>\nauto inv(mint a) -> decltype(mint::mod(), mint())\
+    \ {\n    return a.inv();\n}\n\n\n#line 1 \"library/math/inv_mods.hpp\"\n\n\n\n\
+    #line 5 \"library/math/inv_mods.hpp\"\n\nnamespace suisen {\n    template <typename\
+    \ mint>\n    class inv_mods {\n    public:\n        inv_mods() = default;\n  \
+    \      inv_mods(int n) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return invs[i];\n        }\n        static\
+    \ void ensure(int n) {\n            int sz = invs.size();\n            if (sz\
+    \ < 2) invs = { 0, 1 }, sz = 2;\n            if (sz < n + 1) {\n             \
+    \   invs.resize(n + 1);\n                for (int i = sz; i <= n; ++i) invs[i]\
+    \ = mint(mod - mod / i) * invs[mod % i];\n            }\n        }\n    private:\n\
+    \        static std::vector<mint> invs;\n        static constexpr int mod = mint::mod();\n\
+    \    };\n    template <typename mint>\n    std::vector<mint> inv_mods<mint>::invs{};\n\
+    \n    template <typename mint>\n    std::vector<mint> get_invs(const std::vector<mint>&\
+    \ vs) {\n        const int n = vs.size();\n\n        mint p = 1;\n        for\
+    \ (auto& e : vs) {\n            p *= e;\n            assert(e != 0);\n       \
+    \ }\n        mint ip = p.inv();\n\n        std::vector<mint> rp(n + 1);\n    \
+    \    rp[n] = 1;\n        for (int i = n - 1; i >= 0; --i) {\n            rp[i]\
+    \ = rp[i + 1] * vs[i];\n        }\n        std::vector<mint> res(n);\n       \
+    \ for (int i = 0; i < n; ++i) {\n            res[i] = ip * rp[i + 1];\n      \
+    \      ip *= vs[i];\n        }\n        return res;\n    }\n}\n\n\n#line 14 \"\
+    library/polynomial/fps_naive.hpp\"\n\nnamespace suisen {\n    template <typename\
+    \ T>\n    struct FPSNaive : std::vector<T> {\n        static inline int MAX_SIZE\
+    \ = std::numeric_limits<int>::max() / 2;\n\n        using value_type = T;\n  \
+    \      using element_type = rec_value_type_t<T>;\n        using std::vector<value_type>::vector;\n\
+    \n        FPSNaive(const std::initializer_list<value_type> l) : std::vector<value_type>::vector(l)\
+    \ {}\n        FPSNaive(const std::vector<value_type>& v) : std::vector<value_type>::vector(v)\
+    \ {}\n\n        static void set_max_size(int n) {\n            FPSNaive<T>::MAX_SIZE\
+    \ = n;\n        }\n\n        const value_type operator[](int n) const {\n    \
+    \        return n <= deg() ? unsafe_get(n) : value_type{ 0 };\n        }\n   \
+    \     value_type& operator[](int n) {\n            return ensure_deg(n), unsafe_get(n);\n\
+    \        }\n\n        int size() const {\n            return std::vector<value_type>::size();\n\
+    \        }\n        int deg() const {\n            return size() - 1;\n      \
+    \  }\n        int normalize() {\n            while (size() and this->back() ==\
+    \ value_type{ 0 }) this->pop_back();\n            return deg();\n        }\n \
+    \       FPSNaive& cut_inplace(int n) {\n            if (size() > n) this->resize(std::max(0,\
+    \ n));\n            return *this;\n        }\n        FPSNaive cut(int n) const\
+    \ {\n            FPSNaive f = FPSNaive(*this).cut_inplace(n);\n            return\
+    \ f;\n        }\n\n        FPSNaive operator+() const {\n            return FPSNaive(*this);\n\
+    \        }\n        FPSNaive operator-() const {\n            FPSNaive f(*this);\n\
     \            for (auto& e : f) e = -e;\n            return f;\n        }\n   \
     \     FPSNaive& operator++() { return ++(*this)[0], * this; }\n        FPSNaive&\
     \ operator--() { return --(*this)[0], * this; }\n        FPSNaive& operator+=(const\
@@ -591,7 +585,7 @@ data:
   isVerificationFile: true
   path: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
   requiredBy: []
-  timestamp: '2023-07-13 15:42:30+09:00'
+  timestamp: '2023-09-06 20:34:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp

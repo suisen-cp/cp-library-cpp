@@ -23,61 +23,57 @@ data:
     \ <algorithm>\n#include <iostream>\n#include <vector>\n\n#line 1 \"library/datastructure/convex_hull_trick.hpp\"\
     \n\n\n\n#include <cassert>\n#include <limits>\n#include <set>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
     \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <type_traits>\n\
-    \nnamespace suisen {\ntemplate <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) return std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
-    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
-    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
-    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
-    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
-    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
-    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
-    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
-    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
-    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
-    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
-    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
-    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
-    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
-    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
-    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
-    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
-    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
-    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
-    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
-    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
-    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
-    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
-    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
-    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
-    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
-    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
-    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
-    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
-    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
-    \n\n#line 9 \"library/datastructure/convex_hull_trick.hpp\"\n\nnamespace suisen\
-    \ {\n    namespace internal::convex_hull_trick {\n        template <typename T>\n\
-    \        struct Line {\n            // f(x)=ax+b,m=max{x|f=argmin_{f' in S}{f'(x)}}\n\
-    \            mutable T a, b, m;\n            Line(const T& a, const T& b, const\
-    \ T& m) : a(a), b(b), m(m) {}\n            bool operator<(const Line<T>& rhs)\
-    \ const { return a < rhs.a; }\n            bool operator<(const T& x) const {\
-    \ return not (m < x); }\n        };\n\n        template <typename T, std::enable_if_t<std::is_integral<T>::value,\
-    \ std::nullptr_t> = nullptr>\n        inline T div(const T& num, const T& den)\
-    \ {\n            return num / den - ((num ^ den) < 0 and num % den);\n       \
-    \ }\n        template <typename T, std::enable_if_t<std::negation<std::is_integral<T>>::value,\
-    \ std::nullptr_t> = nullptr>\n        inline T div(const T& num, const T& den)\
-    \ {\n            return num / den;\n        }\n    }\n\n    template <typename\
-    \ T, bool is_min_query = true>\n    class ConvexHullTrick : std::multiset<internal::convex_hull_trick::Line<T>,\
+    namespace suisen {\n    template <typename ...Constraints> using constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\n\
+    \    template <typename T, typename = std::nullptr_t> struct bitnum { static constexpr\
+    \ int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
+    \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
+    \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
+    \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
+    \ = bitnum_v<T> == n; };\n    template <typename T, size_t n> static constexpr\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n    template <typename T, typename\
+    \ = std::nullptr_t> struct safely_multipliable { using type = T; };\n    template\
+    \ <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 32>>> { using type = long long; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_signed<T>, is_nbit<T, 64>>> { using\
+    \ type = __int128_t; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> { using type = unsigned\
+    \ long long; };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_unsigned<T>,\
+    \ is_nbit<T, 64>>> { using type = __uint128_t; };\n    template <typename T> using\
+    \ safely_multipliable_t = typename safely_multipliable<T>::type;\n\n    template\
+    \ <typename T, typename = void> struct rec_value_type { using type = T; };\n \
+    \   template <typename T> struct rec_value_type<T, std::void_t<typename T::value_type>>\
+    \ {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
+    \n    template <typename T> class is_iterable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_iterable_v = is_iterable<T>::value;\n\
+    \    template <typename T> class is_writable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \    template <typename T> class is_readable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_readable_v = is_readable<T>::value;\n\
+    } // namespace suisen\n\n#line 9 \"library/datastructure/convex_hull_trick.hpp\"\
+    \n\nnamespace suisen {\n    namespace internal::convex_hull_trick {\n        template\
+    \ <typename T>\n        struct Line {\n            // f(x)=ax+b,m=max{x|f=argmin_{f'\
+    \ in S}{f'(x)}}\n            mutable T a, b, m;\n            Line(const T& a,\
+    \ const T& b, const T& m) : a(a), b(b), m(m) {}\n            bool operator<(const\
+    \ Line<T>& rhs) const { return a < rhs.a; }\n            bool operator<(const\
+    \ T& x) const { return not (m < x); }\n        };\n\n        template <typename\
+    \ T, std::enable_if_t<std::is_integral<T>::value, std::nullptr_t> = nullptr>\n\
+    \        inline T div(const T& num, const T& den) {\n            return num /\
+    \ den - ((num ^ den) < 0 and num % den);\n        }\n        template <typename\
+    \ T, std::enable_if_t<std::negation<std::is_integral<T>>::value, std::nullptr_t>\
+    \ = nullptr>\n        inline T div(const T& num, const T& den) {\n           \
+    \ return num / den;\n        }\n    }\n\n    template <typename T, bool is_min_query\
+    \ = true>\n    class ConvexHullTrick : std::multiset<internal::convex_hull_trick::Line<T>,\
     \ std::less<>> {\n        using iterator = typename std::multiset<internal::convex_hull_trick::Line<T>>::iterator;\n\
     \        using MultT = safely_multipliable_t<T>;\n        using Line = internal::convex_hull_trick::Line<T>;\n\
     \n        static constexpr T inf = std::numeric_limits<T>::max();\n    public:\n\
@@ -131,7 +127,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
   requiredBy: []
-  timestamp: '2023-07-13 15:42:30+09:00'
+  timestamp: '2023-09-06 20:34:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp

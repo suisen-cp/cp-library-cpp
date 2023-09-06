@@ -22,7 +22,7 @@ data:
   - icon: ':x:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
   - icon: ':heavy_check_mark:'
@@ -77,22 +77,22 @@ data:
   isVerificationFile: false
   path: library/polynomial/multi_point_eval.hpp
   requiredBy:
-  - library/math/factorial_large.hpp
-  - library/math/sum_i^d_r^i.hpp
-  - library/math/product_of_differences.hpp
   - library/polynomial/lagrange_interpolation.hpp
+  - library/math/factorial_large.hpp
+  - library/math/product_of_differences.hpp
+  - library/math/sum_i^d_r^i.hpp
   - library/convolution/polynomial_eval_multipoint_eval.hpp
   timestamp: '2023-05-11 13:37:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/product_of_differences/yuki1938.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
 documentation_of: library/polynomial/multi_point_eval.hpp
 layout: document

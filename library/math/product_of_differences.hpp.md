@@ -12,7 +12,7 @@ data:
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
   - icon: ':heavy_check_mark:'
@@ -78,17 +78,17 @@ data:
   isVerificationFile: false
   path: library/math/product_of_differences.hpp
   requiredBy:
-  - library/math/sum_i^d_r^i.hpp
   - library/polynomial/lagrange_interpolation.hpp
+  - library/math/sum_i^d_r^i.hpp
   timestamp: '2023-05-11 13:37:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/product_of_differences/yuki1938.test.cpp
 documentation_of: library/math/product_of_differences.hpp
 layout: document
 title: Product Of Differences

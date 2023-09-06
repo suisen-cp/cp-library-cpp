@@ -129,8 +129,8 @@ data:
   timestamp: '2023-05-11 13:32:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/number/enumerate_quotient/enumerate_quotients.test.cpp
   - test/src/number/enumerate_quotient/divide_both.test.cpp
+  - test/src/number/enumerate_quotient/enumerate_quotients.test.cpp
 documentation_of: library/number/enumerate_quotient.hpp
 layout: document
 title: "\u5546\u5217\u6319"

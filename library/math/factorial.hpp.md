@@ -44,6 +44,9 @@ data:
   - icon: ':x:'
     path: library/sequence/stirling_number2_small_prime_mod.hpp
     title: Stirling Number2 Small Prime Mod
+  - icon: ':warning:'
+    path: library/sequence/sum_of_powers.hpp
+    title: library/sequence/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
@@ -176,49 +179,50 @@ data:
   isVerificationFile: false
   path: library/math/factorial.hpp
   requiredBy:
-  - library/math/factorial_large.hpp
-  - library/math/util.hpp
-  - library/math/sum_i^d_r^i.hpp
-  - library/sequence/bell_number.hpp
-  - library/sequence/eulerian_number.hpp
-  - library/sequence/stirling_number2.hpp
-  - library/sequence/stirling_number1_small_prime_mod.hpp
-  - library/sequence/bernoulli_number.hpp
-  - library/sequence/stirling_number2_small_prime_mod.hpp
-  - library/sequence/binomial_coefficient_small_prime_mod.hpp
-  - library/sequence/stirling_number1.hpp
+  - library/polynomial/compose_exp.hpp
   - library/polynomial/shift_of_sampling_points.hpp
   - library/polynomial/polynomial_taylor_shift.hpp
-  - library/polynomial/compose_exp.hpp
+  - library/sequence/binomial_coefficient_small_prime_mod.hpp
+  - library/sequence/bell_number.hpp
+  - library/sequence/bernoulli_number.hpp
+  - library/sequence/stirling_number1_small_prime_mod.hpp
+  - library/sequence/stirling_number2.hpp
+  - library/sequence/stirling_number2_small_prime_mod.hpp
+  - library/sequence/eulerian_number.hpp
+  - library/sequence/sum_of_powers.hpp
+  - library/sequence/stirling_number1.hpp
+  - library/math/util.hpp
+  - library/math/factorial_large.hpp
+  - library/math/sum_i^d_r^i.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
-  - test/src/math/util/abc240_g.test.cpp
-  - test/src/math/set_power_series/abc253_h.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
-  - test/src/math/array_set_power_series/abc253_h.test.cpp
-  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
+  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/src/polynomial/compose_exp/arc154_f.test.cpp
+  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
+  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
-  - test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - test/src/math/array_set_power_series/abc253_h.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/util/abc240_g.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
+  - test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
 documentation_of: library/math/factorial.hpp
 layout: document
 title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"

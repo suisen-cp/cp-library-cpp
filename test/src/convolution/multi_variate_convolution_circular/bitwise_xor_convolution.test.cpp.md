@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
   - icon: ':heavy_check_mark:'
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
   - icon: ':heavy_check_mark:'
     path: library/number/ext_gcd.hpp
     title: Ext Gcd
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
   - icon: ':heavy_check_mark:'
@@ -26,13 +26,13 @@ data:
   - icon: ':question:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/montogomery.hpp
     title: Montogomery
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
   - icon: ':question:'
@@ -253,80 +253,75 @@ data:
     \n\n\n\n#include <map>\n#line 6 \"library/number/order_Z_mZ.hpp\"\n\n#line 1 \"\
     library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n#line 6 \"library/number/fast_factorize.hpp\"\
     \n#include <random>\n#include <numeric>\n#include <utility>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
-    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) return std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
-    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
-    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
-    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
-    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
-    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
-    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
-    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
-    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
-    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
-    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
-    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
-    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
-    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
-    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
-    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
-    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
-    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
-    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
-    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
-    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
-    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
-    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
-    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
-    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
-    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
-    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
-    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
-    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
-    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
-    \n\n#line 11 \"library/number/fast_factorize.hpp\"\n\n#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\
-    \n\n\n\n#line 7 \"library/number/sieve_of_eratosthenes.hpp\"\n\n#line 1 \"library/number/internal_eratosthenes.hpp\"\
-    \n\n\n\n#line 6 \"library/number/internal_eratosthenes.hpp\"\n\nnamespace suisen::internal::sieve\
-    \ {\n\nconstexpr std::uint8_t K = 8;\nconstexpr std::uint8_t PROD = 2 * 3 * 5;\n\
-    constexpr std::uint8_t RM[K] = { 1,  7, 11, 13, 17, 19, 23, 29 };\nconstexpr std::uint8_t\
-    \ DR[K] = { 6,  4,  2,  4,  2,  4,  6,  2 };\nconstexpr std::uint8_t DF[K][K]\
-    \ = {\n    { 0, 0, 0, 0, 0, 0, 0, 1 }, { 1, 1, 1, 0, 1, 1, 1, 1 },\n    { 2, 2,\
-    \ 0, 2, 0, 2, 2, 1 }, { 3, 1, 1, 2, 1, 1, 3, 1 },\n    { 3, 3, 1, 2, 1, 3, 3,\
-    \ 1 }, { 4, 2, 2, 2, 2, 2, 4, 1 },\n    { 5, 3, 1, 4, 1, 3, 5, 1 }, { 6, 4, 2,\
-    \ 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t DRP[K] = { 48, 32, 16, 32, 16,\
-    \ 32, 48, 16 };\nconstexpr std::uint8_t DFP[K][K] = {\n    {  0,  0,  0,  0, \
-    \ 0,  0,  0,  8 }, {  8,  8,  8,  0,  8,  8,  8,  8 },\n    { 16, 16,  0, 16,\
-    \  0, 16, 16,  8 }, { 24,  8,  8, 16,  8,  8, 24,  8 },\n    { 24, 24,  8, 16,\
-    \  8, 24, 24,  8 }, { 32, 16, 16, 16, 16, 16, 32,  8 },\n    { 40, 24,  8, 32,\
-    \  8, 24, 40,  8 }, { 48, 32, 16, 32, 16, 32, 48,  8 },\n};\n\nconstexpr std::uint8_t\
-    \ MASK[K][K] = {\n    { 0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02,\
-    \ 0x20, 0x10, 0x01, 0x80, 0x08, 0x04, 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02,\
-    \ 0x80, 0x08, 0x20 }, { 0x08, 0x01, 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n  \
-    \  { 0x10, 0x80, 0x02, 0x04, 0x20, 0x40, 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02,\
-    \ 0x40, 0x01, 0x10, 0x04 },\n    { 0x40, 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02\
-    \ }, { 0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t\
-    \ OFFSET[K][K] = {\n    { 0, 1, 2, 3, 4, 5, 6, 7, },\n    { 1, 5, 4, 0, 7, 3,\
-    \ 2, 6, },\n    { 2, 4, 0, 6, 1, 7, 3, 5, },\n    { 3, 0, 6, 5, 2, 1, 7, 4, },\n\
-    \    { 4, 7, 1, 2, 5, 6, 0, 3, },\n    { 5, 3, 7, 1, 6, 0, 4, 2, },\n    { 6,\
-    \ 2, 3, 7, 0, 4, 5, 1, },\n    { 7, 6, 5, 4, 3, 2, 1, 0, },\n};\n\nconstexpr std::uint8_t\
-    \ mask_to_index(const std::uint8_t bits) {\n    switch (bits) {\n        case\
-    \ 1 << 0: return 0;\n        case 1 << 1: return 1;\n        case 1 << 2: return\
-    \ 2;\n        case 1 << 3: return 3;\n        case 1 << 4: return 4;\n       \
-    \ case 1 << 5: return 5;\n        case 1 << 6: return 6;\n        case 1 << 7:\
-    \ return 7;\n        default: assert(false);\n    }\n}\n} // namespace suisen::internal::sieve\n\
-    \n\n#line 9 \"library/number/sieve_of_eratosthenes.hpp\"\n\nnamespace suisen {\n\
+    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\nnamespace suisen {\n\
+    \    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
+    \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
+    \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
+    \ std::numeric_limits<std::make_unsigned_t<T>>::digits; };\n    template <typename\
+    \ T> static constexpr int bitnum_v = bitnum<T>::value;\n    template <typename\
+    \ T, size_t n> struct is_nbit { static constexpr bool value = bitnum_v<T> == n;\
+    \ };\n    template <typename T, size_t n> static constexpr bool is_nbit_v = is_nbit<T,\
+    \ n>::value;\n\n    template <typename T, typename = std::nullptr_t> struct safely_multipliable\
+    \ { using type = T; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_signed<T>, is_nbit<T, 32>>> { using type = long long;\
+    \ };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 64>>> { using type = __int128_t; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> {\
+    \ using type = unsigned long long; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 64>>> { using type = __uint128_t;\
+    \ };\n    template <typename T> using safely_multipliable_t = typename safely_multipliable<T>::type;\n\
+    \n    template <typename T, typename = void> struct rec_value_type { using type\
+    \ = T; };\n    template <typename T> struct rec_value_type<T, std::void_t<typename\
+    \ T::value_type>> {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
+    \n    template <typename T> class is_iterable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_iterable_v = is_iterable<T>::value;\n\
+    \    template <typename T> class is_writable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \    template <typename T> class is_readable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_readable_v = is_readable<T>::value;\n\
+    } // namespace suisen\n\n#line 11 \"library/number/fast_factorize.hpp\"\n\n#line\
+    \ 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\n\n#line 7 \"library/number/sieve_of_eratosthenes.hpp\"\
+    \n\n#line 1 \"library/number/internal_eratosthenes.hpp\"\n\n\n\n#line 6 \"library/number/internal_eratosthenes.hpp\"\
+    \n\nnamespace suisen::internal::sieve {\n\nconstexpr std::uint8_t K = 8;\nconstexpr\
+    \ std::uint8_t PROD = 2 * 3 * 5;\nconstexpr std::uint8_t RM[K] = { 1,  7, 11,\
+    \ 13, 17, 19, 23, 29 };\nconstexpr std::uint8_t DR[K] = { 6,  4,  2,  4,  2, \
+    \ 4,  6,  2 };\nconstexpr std::uint8_t DF[K][K] = {\n    { 0, 0, 0, 0, 0, 0, 0,\
+    \ 1 }, { 1, 1, 1, 0, 1, 1, 1, 1 },\n    { 2, 2, 0, 2, 0, 2, 2, 1 }, { 3, 1, 1,\
+    \ 2, 1, 1, 3, 1 },\n    { 3, 3, 1, 2, 1, 3, 3, 1 }, { 4, 2, 2, 2, 2, 2, 4, 1 },\n\
+    \    { 5, 3, 1, 4, 1, 3, 5, 1 }, { 6, 4, 2, 4, 2, 4, 6, 1 },\n};\nconstexpr std::uint8_t\
+    \ DRP[K] = { 48, 32, 16, 32, 16, 32, 48, 16 };\nconstexpr std::uint8_t DFP[K][K]\
+    \ = {\n    {  0,  0,  0,  0,  0,  0,  0,  8 }, {  8,  8,  8,  0,  8,  8,  8, \
+    \ 8 },\n    { 16, 16,  0, 16,  0, 16, 16,  8 }, { 24,  8,  8, 16,  8,  8, 24,\
+    \  8 },\n    { 24, 24,  8, 16,  8, 24, 24,  8 }, { 32, 16, 16, 16, 16, 16, 32,\
+    \  8 },\n    { 40, 24,  8, 32,  8, 24, 40,  8 }, { 48, 32, 16, 32, 16, 32, 48,\
+    \  8 },\n};\n\nconstexpr std::uint8_t MASK[K][K] = {\n    { 0x01, 0x02, 0x04,\
+    \ 0x08, 0x10, 0x20, 0x40, 0x80 }, { 0x02, 0x20, 0x10, 0x01, 0x80, 0x08, 0x04,\
+    \ 0x40 },\n    { 0x04, 0x10, 0x01, 0x40, 0x02, 0x80, 0x08, 0x20 }, { 0x08, 0x01,\
+    \ 0x40, 0x20, 0x04, 0x02, 0x80, 0x10 },\n    { 0x10, 0x80, 0x02, 0x04, 0x20, 0x40,\
+    \ 0x01, 0x08 }, { 0x20, 0x08, 0x80, 0x02, 0x40, 0x01, 0x10, 0x04 },\n    { 0x40,\
+    \ 0x04, 0x08, 0x80, 0x01, 0x10, 0x20, 0x02 }, { 0x80, 0x40, 0x20, 0x10, 0x08,\
+    \ 0x04, 0x02, 0x01 },\n};\nconstexpr std::uint8_t OFFSET[K][K] = {\n    { 0, 1,\
+    \ 2, 3, 4, 5, 6, 7, },\n    { 1, 5, 4, 0, 7, 3, 2, 6, },\n    { 2, 4, 0, 6, 1,\
+    \ 7, 3, 5, },\n    { 3, 0, 6, 5, 2, 1, 7, 4, },\n    { 4, 7, 1, 2, 5, 6, 0, 3,\
+    \ },\n    { 5, 3, 7, 1, 6, 0, 4, 2, },\n    { 6, 2, 3, 7, 0, 4, 5, 1, },\n   \
+    \ { 7, 6, 5, 4, 3, 2, 1, 0, },\n};\n\nconstexpr std::uint8_t mask_to_index(const\
+    \ std::uint8_t bits) {\n    switch (bits) {\n        case 1 << 0: return 0;\n\
+    \        case 1 << 1: return 1;\n        case 1 << 2: return 2;\n        case\
+    \ 1 << 3: return 3;\n        case 1 << 4: return 4;\n        case 1 << 5: return\
+    \ 5;\n        case 1 << 6: return 6;\n        case 1 << 7: return 7;\n       \
+    \ default: assert(false);\n    }\n}\n} // namespace suisen::internal::sieve\n\n\
+    \n#line 9 \"library/number/sieve_of_eratosthenes.hpp\"\n\nnamespace suisen {\n\
     \ntemplate <unsigned int N>\nclass SimpleSieve {\n    private:\n        static\
     \ constexpr unsigned int siz = N / internal::sieve::PROD + 1;\n        static\
     \ std::uint8_t flag[siz];\n    public:\n        SimpleSieve() {\n            using\
@@ -578,125 +573,16 @@ data:
     \        return { safe_mod(x, m), g };\n    }\n\n    // returns x s.t. a*x=1 (mod\
     \ m) if exists, otherwise throws runtime error.\n    long long inv_mod(long long\
     \ a, long long mod) {\n        auto [inv, y, g] = ext_gcd(a, mod);\n        assert(g\
-    \ == 1);\n        return safe_mod(inv, mod);\n    }\n\n    class Solution {\n\
-    \        enum class SolutionType {\n            None, Arbitrary, Linear\n    \
-    \    };\n\n        friend struct Equation;\n\n        static constexpr long long\
-    \ neginf = std::numeric_limits<long long>::min() / 2;\n        static constexpr\
-    \ long long posinf = std::numeric_limits<long long>::max() / 2;\n\n        SolutionType\
-    \ t;\n        // if t == Linear:\n        //      x = x0 + k * cx,\n        //\
-    \      y = y0 + k * cy         (kxmin <= k <= kxmax and kymin <= k <= kymax)\n\
-    \        // if t == Arbitrary:\n        //      x = x0 + k * cx = k,    (kxmin\
-    \ <= k <= kxmax)\n        //      y = y0 + l * cy = l     (kymin <= l <= kymax)\n\
-    \        // if t == None:\n        //      No solution\n        long long x0,\
-    \ cx, y0, cy;\n        long long kxmin = neginf, kxmax = posinf;\n        long\
-    \ long kymin = neginf, kymax = posinf;\n\n        Solution(SolutionType t, long\
-    \ long x0 = 0, long long cx = 0, long long y0 = 0, long long cy = 0) : t(t), x0(x0),\
-    \ cx(cx), y0(y0), cy(cy) {}\n\n        long long get_x(long long k) const {\n\
-    \            return x0 + k * cx;\n        }\n        long long get_y(long long\
-    \ k) const {\n            return y0 + k * cy;\n        }\n        std::pair<long\
-    \ long, long long> get_pair(long long k) const {\n            return { get_x(k),\
-    \ get_y(k) };\n        }\n\n        std::optional<std::pair<long long, long long>>\
-    \ get_k_range() const {\n            long long kmin = std::max(kxmin, kymin);\n\
-    \            long long kmax = std::min(kxmax, kymax);\n            if (kmin <=\
-    \ kmax) {\n                return std::pair{ kmin, kmax };\n            } else\
-    \ {\n                return std::nullopt;\n            }\n        }\n\n      \
-    \  template <typename T>\n        static constexpr T fld(T x, T y) {\n       \
-    \     return x / y - ((x ^ y) < 0 and x % y);\n        }\n        template <typename\
-    \ T>\n        static constexpr T cld(T x, T y) {\n            return x / y + ((x\
-    \ ^ y) >= 0 and x % y);\n        }\n    public:\n        static Solution make_none()\
-    \ {\n            return Solution(SolutionType::None);\n        }\n        static\
-    \ Solution make_arbitrary() {\n            return Solution(SolutionType::Arbitrary,\
-    \ 0, 1, 0, 1);\n        }\n        static Solution make_linear(long long x0, long\
-    \ long cx, long long y0, long long cy) {\n            return Solution(SolutionType::Linear,\
-    \ x0, cx, y0, cy);\n        }\n\n        bool has_solution() const {\n       \
-    \     if (t == SolutionType::None) {\n                return false;\n        \
-    \    } else if (t == SolutionType::Arbitrary) {\n                return true;\n\
-    \            } else {\n                return get_k_range().has_value();\n   \
-    \         }\n        }\n        template <typename T = long long>\n        T count()\
-    \ const {\n            if (t == SolutionType::None) {\n                return\
-    \ 0;\n            } else if (t == SolutionType::Arbitrary) {\n               \
-    \ return T(kxmax - kxmin + 1) * T(kymax - kymin + 1);\n            } else {\n\
-    \                auto k_range = get_k_range();\n                if (k_range) {\n\
-    \                    return k_range->second - k_range->first + 1;\n          \
-    \      } else {\n                    return 0;\n                }\n          \
-    \  }\n        }\n\n        // restrict to x <= upper.\n        bool set_upper_x(long\
-    \ long upper) {\n            if (t == SolutionType::None) return false;\n    \
-    \        // x0 + k * cx <= upper\n            if (cx == 0) {\n               \
-    \ if (x0 > upper) t = SolutionType::None;\n            } else {\n            \
-    \    if (cx > 0) { // k <= (upper - x0) / cx\n                    kxmin = std::min(kxmin,\
-    \ fld(upper - x0, cx));\n                } else { // k >= (upper - x0) / cx\n\
-    \                    kxmax = std::max(kxmax, cld(upper - x0, cx));\n         \
-    \       }\n                if (kxmin > kxmax) t = SolutionType::None;\n      \
-    \      }\n            return t != SolutionType::None;\n        }\n        // restrict\
-    \ to x >= lower.\n        bool set_lower_x(long long lower) {\n            if\
-    \ (t == SolutionType::None) return false;\n            // x0 + k * cx >= lower\n\
-    \            if (cx == 0) {\n                if (x0 < lower) t = SolutionType::None;\n\
-    \            } else {\n                if (cx > 0) { // k >= (lower - x0) / cx\n\
-    \                    kxmin = std::max(kxmin, cld(lower - x0, cx));\n         \
-    \       } else { // k <= (lower - x0) / cx\n                    kxmax = std::min(kxmax,\
-    \ fld(lower - x0, cx));\n                }\n                if (kxmin > kxmax)\
-    \ t = SolutionType::None;\n            }\n            return t != SolutionType::None;\n\
-    \        }\n        bool set_lower_y(long long lower) {\n            if (t ==\
-    \ SolutionType::None) return false;\n            // y0 + k * cy >= lower\n   \
-    \         if (cy == 0) {\n                if (y0 < lower) t = SolutionType::None;\n\
-    \            } else {\n                if (cy > 0) { // k >= (lower - y0) / cy\n\
-    \                    kymin = std::max(kymin, cld(lower - y0, cy));\n         \
-    \       } else { // k <= (lower - y0) / cy\n                    kymax = std::min(kymax,\
-    \ fld(lower - y0, cy));\n                }\n                if (kymin > kymax)\
-    \ t = SolutionType::None;\n            }\n            return t != SolutionType::None;\n\
-    \        }\n        bool set_upper_y(long long upper) {\n            if (t ==\
-    \ SolutionType::None) return false;\n            // y0 + k * cy <= upper\n   \
-    \         if (cy == 0) {\n                if (y0 > upper) t = SolutionType::None;\n\
-    \            } else {\n                if (cy > 0) { // k <= (upper - y0) / cy\n\
-    \                    kymin = std::min(kymin, fld(upper - y0, cy));\n         \
-    \       } else { // k >= (upper - y0) / cy\n                    kymax = std::max(kymax,\
-    \ cld(upper - y0, cy));\n                }\n                if (kymin > kymax)\
-    \ t = SolutionType::None;\n            }\n            return t != SolutionType::None;\n\
-    \        }\n\n        std::pair<long long, long long> xmin_solution() const {\n\
-    \            assert(has_solution());\n            if (t == SolutionType::Arbitrary)\
-    \ {\n                return { kxmin, kymin };\n            } else {\n        \
-    \        auto [kl, kr] = *get_k_range();\n                if (cx == 0) {\n   \
-    \                 // avoid overflow\n                    return get_pair(kl !=\
-    \ neginf ? kl : kr != posinf ? kr : 0);\n                }\n                return\
-    \ get_pair(cx >= 0 ? kl : kr);\n            }\n        }\n        std::pair<long\
-    \ long, long long> xmax_solution() const {\n            assert(has_solution());\n\
-    \            if (t == SolutionType::Arbitrary) {\n                return { kxmax,\
-    \ kymax };\n            } else {\n                auto [kl, kr] = *get_k_range();\n\
-    \                if (cx == 0) {\n                    // avoid overflow\n     \
-    \               return get_pair(kl != neginf ? kl : kr != posinf ? kr : 0);\n\
-    \                }\n                return get_pair(cx <= 0 ? kl : kr);\n    \
-    \        }\n        }\n        std::pair<long long, long long> ymin_solution()\
-    \ const {\n            assert(has_solution());\n            if (t == SolutionType::Arbitrary)\
-    \ {\n                return { kxmin, kymin };\n            } else {\n        \
-    \        auto [kl, kr] = *get_k_range();\n                if (cy == 0) {\n   \
-    \                 // avoid overflow\n                    return get_pair(kl !=\
-    \ neginf ? kl : kr != posinf ? kr : 0);\n                }\n                return\
-    \ get_pair(cy >= 0 ? kl : kr);\n            }\n        }\n        std::pair<long\
-    \ long, long long> ymax_solution() const {\n            assert(has_solution());\n\
-    \            if (t == SolutionType::Arbitrary) {\n                return { kxmax,\
-    \ kymax };\n            } else {\n                auto [kl, kr] = *get_k_range();\n\
-    \                if (cy == 0) {\n                    // avoid overflow\n     \
-    \               return get_pair(kl != neginf ? kl : kr != posinf ? kr : 0);\n\
-    \                }\n                return get_pair(cy <= 0 ? kl : kr);\n    \
-    \        }\n        }\n    };\n\n    struct Equation {\n        long long a, b;\n\
-    \        long long x, y, g;\n\n        Equation(long long a, long long b): a(a),\
-    \ b(b) {\n            std::tie(x, y, g) = ext_gcd(a, b);\n        }\n\n      \
-    \  // solve ax + by = z\n        Solution solve(long long z) {\n            if\
-    \ (g == 0) {\n                if (z != 0) {\n                    return Solution::make_none();\n\
-    \                } else {\n                    return Solution::make_arbitrary();\n\
-    \                }\n            } else {\n                if (z % g) {\n     \
-    \               return Solution::make_none();\n                } else {\n    \
-    \                z /= g;\n                    return Solution::make_linear(x *\
-    \ z, b / g, y * z, -a / g);\n                }\n            }\n        }\n   \
-    \ };\n} // namespace suisen\n\n\n#line 6 \"library/number/garner.hpp\"\n\nnamespace\
-    \ suisen {\n    /**\n     * @brief Calculates x mod m s.t. x = x_i (mod m_i).\
-    \ m_i should be coprime each other.\n     * @param eq vector of { x_i, m_i }\n\
-    \     * @return x mod m s.t. x = x_i (mod m_i)\n     */\n    int garner(std::vector<std::pair<int,\
-    \ int>> eq, int m) {\n        const int n = eq.size();\n        std::vector<long\
-    \ long> a(n);\n\n        auto calc_prefix = [&](int i, long long mod) {\n    \
-    \        long long res = 0;\n            long long prd = 1;\n            for (int\
-    \ j = 0; j < i; ++j) {\n                (res += a[j] * prd) %= mod;\n        \
-    \        (prd *= eq[j].second) %= mod;\n            }\n            return res;\n\
+    \ == 1);\n        return safe_mod(inv, mod);\n    }\n} // namespace suisen\n\n\
+    \n#line 6 \"library/number/garner.hpp\"\n\nnamespace suisen {\n    /**\n     *\
+    \ @brief Calculates x mod m s.t. x = x_i (mod m_i). m_i should be coprime each\
+    \ other.\n     * @param eq vector of { x_i, m_i }\n     * @return x mod m s.t.\
+    \ x = x_i (mod m_i)\n     */\n    int garner(std::vector<std::pair<int, int>>\
+    \ eq, int m) {\n        const int n = eq.size();\n        std::vector<long long>\
+    \ a(n);\n\n        auto calc_prefix = [&](int i, long long mod) {\n          \
+    \  long long res = 0;\n            long long prd = 1;\n            for (int j\
+    \ = 0; j < i; ++j) {\n                (res += a[j] * prd) %= mod;\n          \
+    \      (prd *= eq[j].second) %= mod;\n            }\n            return res;\n\
     \        };\n    \n        for (int i = 0; i < n; ++i) {\n            auto [xi,\
     \ mi] = eq[i];\n            a[i] = (xi - calc_prefix(i, mi)) % mi;\n         \
     \   if (a[i] < 0) a[i] += mi;\n            for (int j = 0; j < i; ++j) {\n   \
@@ -827,7 +713,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   requiredBy: []
-  timestamp: '2023-07-13 15:42:30+09:00'
+  timestamp: '2023-09-06 20:35:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp

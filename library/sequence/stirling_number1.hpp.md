@@ -159,15 +159,15 @@ data:
   isVerificationFile: false
   path: library/sequence/stirling_number1.hpp
   requiredBy:
-  - library/math/factorial_large.hpp
   - library/sequence/stirling_number1_small_prime_mod.hpp
+  - library/math/factorial_large.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
+  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
 documentation_of: library/sequence/stirling_number1.hpp
 layout: document
 title: Stirling Number1

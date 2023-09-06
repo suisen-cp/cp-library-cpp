@@ -125,9 +125,9 @@ data:
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
 documentation_of: library/sequence/stirling_number2.hpp
 layout: document
 title: Stirling Number2

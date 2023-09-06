@@ -186,8 +186,8 @@ data:
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
+  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
 documentation_of: library/graph/dulmage_mendelsohn_decomposition.hpp
 layout: document

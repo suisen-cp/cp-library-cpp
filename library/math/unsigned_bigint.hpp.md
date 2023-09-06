@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/bigint.hpp
     title: "\u591A\u500D\u9577\u6574\u6570"
   _extendedVerifiedWith:
@@ -27,12 +27,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_F.test.cpp
     title: test/src/math/bigint/NTL_2_F.test.cpp
+  - icon: ':x:'
+    path: test/src/math/bigint/addition_of_big_integers.test.cpp
+    title: test/src/math/bigint/addition_of_big_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/many_aplusb_128bit.test.cpp
     title: test/src/math/bigint/many_aplusb_128bit.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/src/math/bigint/multiplication_of_big_integers.test.cpp
+    title: test/src/math/bigint/multiplication_of_big_integers.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/unsigned_bigint.hpp\"\n\n\n\n#include <iomanip>\n\
@@ -539,14 +545,16 @@ data:
   requiredBy:
   - library/math/bigint.hpp
   timestamp: '2023-05-11 13:27:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/math/bigint/NTL_2_A.test.cpp
-  - test/src/math/bigint/many_aplusb_128bit.test.cpp
-  - test/src/math/bigint/NTL_2_E.test.cpp
-  - test/src/math/bigint/NTL_2_D.test.cpp
   - test/src/math/bigint/NTL_2_B.test.cpp
+  - test/src/math/bigint/NTL_2_A.test.cpp
+  - test/src/math/bigint/NTL_2_D.test.cpp
   - test/src/math/bigint/NTL_2_F.test.cpp
+  - test/src/math/bigint/NTL_2_E.test.cpp
+  - test/src/math/bigint/addition_of_big_integers.test.cpp
+  - test/src/math/bigint/multiplication_of_big_integers.test.cpp
+  - test/src/math/bigint/many_aplusb_128bit.test.cpp
 documentation_of: library/math/unsigned_bigint.hpp
 layout: document
 title: Unsigned Bigint

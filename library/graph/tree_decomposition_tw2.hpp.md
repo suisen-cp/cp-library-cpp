@@ -300,9 +300,9 @@ data:
   timestamp: '2022-11-01 16:55:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
-  - test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
   - test/src/graph/tree_decomposition_tw2_dp/AOJ2405.test.cpp
+  - test/src/graph/tree_decomposition_tw2/nice_tree_decomposition_width_2.test.cpp
+  - test/src/graph/tree_decomposition_tw2/tree_decomposition_width_2.test.cpp
 documentation_of: library/graph/tree_decomposition_tw2.hpp
 layout: document
 title: Tree Decomposition Tw2

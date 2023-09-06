@@ -224,11 +224,11 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/string/palindromic_tree/abc237_h.test.cpp
-  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
+  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
-  - test/src/graph/bipartite_matching/bipartite_matching.test.cpp
   - test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
+  - test/src/graph/bipartite_matching/bipartite_matching.test.cpp
 documentation_of: library/graph/bipartite_matching.hpp
 layout: document
 title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"

@@ -118,8 +118,8 @@ data:
   isVerificationFile: false
   path: library/number/modint_2^61m1.hpp
   requiredBy:
-  - library/string/rolling_hash.hpp
   - library/string/dynamic_rolling_hash.hpp
+  - library/string/rolling_hash.hpp
   timestamp: '2023-01-01 18:21:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

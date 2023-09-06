@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
@@ -26,60 +26,55 @@ data:
     library/datastructure/wavelet_matrix.hpp\"\n\n\n\n#include <cassert>\n#include\
     \ <array>\n#include <type_traits>\n#include <limits>\n\n#line 1 \"library/datastructure/bit_vector.hpp\"\
     \n\n\n\n#include <cstdint>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
-    template <typename ...Types>\nusing constraints_t = std::enable_if_t<std::conjunction_v<Types...>,\
-    \ std::nullptr_t>;\ntemplate <bool cond_v, typename Then, typename OrElse>\nconstexpr\
-    \ decltype(auto) constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr\
-    \ (cond_v) return std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
-    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
-    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
-    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
-    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
-    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
-    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
-    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
-    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
-    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
-    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
-    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
-    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
-    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
-    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
-    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
-    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
-    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
-    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
-    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
-    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
-    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
-    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
-    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
-    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
-    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
-    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
-    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
-    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
-    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
-    \n\n#line 8 \"library/datastructure/bit_vector.hpp\"\n\nnamespace suisen {\n \
-    \   struct BitVector {\n        explicit BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L)\
-    \ + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}\n\
-    \        BitVector() : BitVector(0) {}\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
-    \ Gen, int>> = nullptr>\n        BitVector(int n, Gen gen) : BitVector(n) {\n\
-    \            build(gen);\n        }\n        BitVector& operator=(const BitVector&\
-    \ bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s\
-    \ = bv.cum_s, bits = bv.bits;\n            return *this;\n        }\n        BitVector&\
-    \ operator=(BitVector&& bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l\
-    \ = std::move(bv.cum_l), cum_s = std::move(bv.cum_s), bits = std::move(bv.bits);\n\
-    \            return *this;\n        }\n        template <typename Gen, constraints_t<is_same_as_invoke_result<bool,\
+    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\nnamespace suisen {\n\
+    \    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
+    \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
+    \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
+    \ std::numeric_limits<std::make_unsigned_t<T>>::digits; };\n    template <typename\
+    \ T> static constexpr int bitnum_v = bitnum<T>::value;\n    template <typename\
+    \ T, size_t n> struct is_nbit { static constexpr bool value = bitnum_v<T> == n;\
+    \ };\n    template <typename T, size_t n> static constexpr bool is_nbit_v = is_nbit<T,\
+    \ n>::value;\n\n    template <typename T, typename = std::nullptr_t> struct safely_multipliable\
+    \ { using type = T; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_signed<T>, is_nbit<T, 32>>> { using type = long long;\
+    \ };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 64>>> { using type = __int128_t; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> {\
+    \ using type = unsigned long long; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 64>>> { using type = __uint128_t;\
+    \ };\n    template <typename T> using safely_multipliable_t = typename safely_multipliable<T>::type;\n\
+    \n    template <typename T, typename = void> struct rec_value_type { using type\
+    \ = T; };\n    template <typename T> struct rec_value_type<T, std::void_t<typename\
+    \ T::value_type>> {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
+    \n    template <typename T> class is_iterable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_iterable_v = is_iterable<T>::value;\n\
+    \    template <typename T> class is_writable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \    template <typename T> class is_readable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_readable_v = is_readable<T>::value;\n\
+    } // namespace suisen\n\n#line 8 \"library/datastructure/bit_vector.hpp\"\n\n\
+    namespace suisen {\n    struct BitVector {\n        explicit BitVector(int n)\
+    \ : n(n), nl((n >> LOG_BLOCK_L) + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl, 0),\
+    \ cum_s(ns, 0), bits(ns, 0) {}\n        BitVector() : BitVector(0) {}\n      \
+    \  template <typename Gen, constraints_t<std::is_invocable_r<bool, Gen, int>>\
+    \ = nullptr>\n        BitVector(int n, Gen gen) : BitVector(n) {\n           \
+    \ build(gen);\n        }\n        BitVector& operator=(const BitVector& bv) {\n\
+    \            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = bv.cum_l, cum_s = bv.cum_s,\
+    \ bits = bv.bits;\n            return *this;\n        }\n        BitVector& operator=(BitVector&&\
+    \ bv) {\n            n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = std::move(bv.cum_l),\
+    \ cum_s = std::move(bv.cum_s), bits = std::move(bv.bits);\n            return\
+    \ *this;\n        }\n        template <typename Gen, constraints_t<std::is_invocable_r<bool,\
     \ Gen, int>> = nullptr>\n        void build(Gen gen) {\n            int i = 0;\n\
     \            for (int index_s = 1; index_s < ns; ++index_s) {\n              \
     \  int count = cum_s[index_s - 1];\n                for (; i < index_s << LOG_BLOCK_S;\
@@ -115,13 +110,13 @@ data:
     \ <typename T, int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits>\n\
     \    struct WaveletMatrix {\n        // default constructor\n        WaveletMatrix()\
     \ noexcept : n(0) {}\n        // builds WaveletMatrix from generating function\
-    \ typed as (int) -> T\n        template <typename Gen, constraints_t<is_same_as_invoke_result<T,\
+    \ typed as (int) -> T\n        template <typename Gen, constraints_t<std::is_invocable_r<T,\
     \ Gen, int>> = nullptr>\n        WaveletMatrix(int n, Gen generator) : n(n) {\n\
     \            build(generator);\n        }\n        // builds WaveletMatrix from\
     \ vector\n        template <typename U, constraints_t<std::is_constructible<T,\
     \ U>> = nullptr>\n        WaveletMatrix(const std::vector<U>& a) : WaveletMatrix(a.size(),\
     \ [&a](int i) { return T(a[i]); }) {}\n\n        // builds WaveletMatrix from\
-    \ generating function typed as (int) -> T\n        template <typename Gen, constraints_t<is_same_as_invoke_result<T,\
+    \ generating function typed as (int) -> T\n        template <typename Gen, constraints_t<std::is_invocable_r<T,\
     \ Gen, int>> = nullptr>\n        void build(Gen generator) {\n            std::vector<T>\
     \ a(n), l(n), r(n);\n            for (int i = 0; i < n; ++i) a[i] = generator(i);\n\
     \            for (int log = bit_num - 1; log >= 0; --log) {\n                bv[log]\
@@ -564,8 +559,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/wavelet_matrix/dummy.test.cpp
   requiredBy: []
-  timestamp: '2023-07-13 15:42:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-09-06 20:34:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/wavelet_matrix/dummy.test.cpp
 layout: document

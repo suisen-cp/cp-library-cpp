@@ -257,9 +257,9 @@ data:
   timestamp: '2023-05-11 13:24:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/tree/rerooting/edpc_v.test.cpp
-  - test/src/tree/rerooting/abc160_f.test.cpp
   - test/src/tree/rerooting/abc222_f.test.cpp
+  - test/src/tree/rerooting/abc160_f.test.cpp
+  - test/src/tree/rerooting/edpc_v.test.cpp
   - test/src/tree/rerooting/tree_path_composite_sum.test.cpp
 documentation_of: library/tree/rerooting.hpp
 layout: document

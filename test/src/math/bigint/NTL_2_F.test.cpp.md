@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/bigint.hpp
     title: "\u591A\u500D\u9577\u6574\u6570"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/math/unsigned_bigint.hpp
     title: Unsigned Bigint
   _extendedRequiredBy: []

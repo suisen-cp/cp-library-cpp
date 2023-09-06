@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy:
@@ -26,51 +26,45 @@ data:
   bundledCode: "#line 1 \"library/datastructure/range_foldable_map.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <tuple>\n\n#line 1 \"library/util/update_proxy_object.hpp\"\
     \n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
-    #include <type_traits>\n\nnamespace suisen {\ntemplate <typename ...Types>\nusing\
-    \ constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\n\
-    template <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto)\
-    \ constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr (cond_v) return\
-    \ std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
-    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
-    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
-    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
-    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
-    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
-    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
-    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
-    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
-    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
-    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
-    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
-    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
-    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
-    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
-    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
-    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
-    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
-    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
-    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
-    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
-    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
-    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
-    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
-    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
-    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
-    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
-    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
-    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
-    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
-    \n\n#line 5 \"library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\n\
-    template <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    #include <type_traits>\nnamespace suisen {\n    template <typename ...Constraints>\
+    \ using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\
+    \n    template <typename T, typename = std::nullptr_t> struct bitnum { static\
+    \ constexpr int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
+    \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
+    \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
+    \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
+    \ = bitnum_v<T> == n; };\n    template <typename T, size_t n> static constexpr\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n    template <typename T, typename\
+    \ = std::nullptr_t> struct safely_multipliable { using type = T; };\n    template\
+    \ <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 32>>> { using type = long long; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_signed<T>, is_nbit<T, 64>>> { using\
+    \ type = __int128_t; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> { using type = unsigned\
+    \ long long; };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_unsigned<T>,\
+    \ is_nbit<T, 64>>> { using type = __uint128_t; };\n    template <typename T> using\
+    \ safely_multipliable_t = typename safely_multipliable<T>::type;\n\n    template\
+    \ <typename T, typename = void> struct rec_value_type { using type = T; };\n \
+    \   template <typename T> struct rec_value_type<T, std::void_t<typename T::value_type>>\
+    \ {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
+    \n    template <typename T> class is_iterable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_iterable_v = is_iterable<T>::value;\n\
+    \    template <typename T> class is_writable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \    template <typename T> class is_readable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_readable_v = is_readable<T>::value;\n\
+    } // namespace suisen\n\n#line 5 \"library/util/update_proxy_object.hpp\"\n\n\
+    namespace suisen {\n\ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
     \ = nullptr>\nstruct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T\
     \ &v, UpdateFunc update) : v(v), update(update) {}\n        operator T() const\
     \ { return v; }\n        auto& operator++() && { ++v, update(); return *this;\
@@ -83,55 +77,35 @@ data:
     \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
     \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
     \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
-    \        template <typename F, constraints_t<is_uni_op<F, T>> = nullptr>\n   \
-    \     auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
-    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
-    #line 1 \"library/datastructure/splay_tree_map.hpp\"\n\n\n\n#line 5 \"library/datastructure/splay_tree_map.hpp\"\
-    \n#include <cstddef>\n#include <vector>\n#include <utility>\n\nnamespace suisen\
-    \ {\nnamespace internal::splay_tree_map {\n\ntemplate <typename Key, typename\
-    \ Val, typename Derived>\nstruct MapNodeBase {\n    using node_ptr_t = Derived\
-    \ *;\n\n    Key key;\n    Val val;\n    int siz;\n    node_ptr_t ch[2] {nullptr,\
-    \ nullptr};\n\n    MapNodeBase() : key(), val(), siz(1) {}\n    MapNodeBase(const\
-    \ Key &key, const Val &val) : key(key), val(val), siz(1) {}\n\n    ~MapNodeBase()\
-    \ {\n        delete ch[0];\n        delete ch[1];\n    }\n\n    void update()\
-    \ {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n    }\n    void push() {}\n\
-    \n    static int size(node_ptr_t node) {\n        return node == nullptr ? 0 :\
-    \ node->siz;\n    }\n\n    static node_ptr_t rotate(node_ptr_t node, bool is_right)\
-    \ {\n        node_ptr_t root = node->ch[is_right ^ true];\n        node->ch[is_right\
-    \ ^ true] = root->ch[is_right];\n        root->ch[is_right] = node;\n        node->update(),\
-    \ root->update();\n        return root;\n    }\n\n    static node_ptr_t splay_by_index(node_ptr_t\
-    \ node, int index) {\n        std::vector<node_ptr_t> path;\n        node_ptr_t\
-    \ work_root = new Derived();\n        node_ptr_t work_leaf[2] { work_root, work_root\
-    \ };\n        while (true) {\n            node->push();\n            int size_l\
-    \ = size(node->ch[0]);\n            bool is_right = index > size_l;\n        \
-    \    node_ptr_t next_node = node->ch[is_right];\n            if (index == size_l\
-    \ or next_node == nullptr) { // found the target node\n                break;\n\
-    \            }\n            if (is_right) {\n                index -= size_l +\
-    \ 1;\n            }\n            int size_l_ch = size(next_node->ch[0]);\n   \
-    \         if (index != size_l_ch) {\n                bool is_right_ch = index\
-    \ > size_l_ch;\n                if (is_right_ch == is_right) { // zig-zig\n  \
-    \                  if (is_right_ch) {\n                        index -= size_l_ch\
-    \ + 1;\n                    }\n                    next_node->push();\n      \
-    \              node = rotate(node, is_right ^ true);\n                    next_node\
-    \ = node->ch[is_right];\n                    if (next_node == nullptr) { // found\
-    \ the target node\n                        break;\n                    }\n   \
-    \             }\n            }\n            path.push_back(node);\n          \
-    \  work_leaf[is_right]->ch[is_right] = node;\n            work_leaf[is_right]\
-    \ = node;\n            node = next_node;\n        }\n        work_leaf[0]->ch[0]\
-    \ = node->ch[1];\n        work_leaf[1]->ch[1] = node->ch[0];\n        node->ch[0]\
-    \ = work_root->ch[1];\n        node->ch[1] = work_root->ch[0];\n    \n       \
-    \ work_root->ch[0] = work_root->ch[1] = nullptr;\n        delete work_root;\n\n\
-    \        while (path.size()) {\n            path.back()->update(), path.pop_back();\n\
-    \        }\n        node->update();\n\n        return node;\n    }\n\n    static\
-    \ node_ptr_t splay_by_key(node_ptr_t node, const Key &x) {\n        if (node ==\
-    \ nullptr) return node;\n        std::vector<node_ptr_t> path;\n        node_ptr_t\
-    \ work_root = new Derived();\n        node_ptr_t work_leaf[2] { work_root, work_root\
-    \ };\n        while (true) {\n            node->push();\n            if (x ==\
-    \ node->key) {\n                break;\n            }\n            bool is_right\
-    \ = x > node->key;\n            node_ptr_t next_node = node->ch[is_right];\n \
-    \           if (next_node == nullptr) {\n                break;\n            }\n\
-    \            if (x != next_node->key) {\n                bool is_right_ch = x\
-    \ > next_node->key;\n                if (is_right_ch == is_right) { // zig-zig\n\
+    \        template <typename F, constraints_t<is_same_as_invoke_result<T, F, T>>\
+    \ = nullptr>\n        auto& apply(F f) && { v = f(v), update(); return *this;\
+    \ }\n    private:\n        T &v;\n        UpdateFunc update;\n};\n\n} // namespace\
+    \ suisen\n\n\n#line 1 \"library/datastructure/splay_tree_map.hpp\"\n\n\n\n#line\
+    \ 5 \"library/datastructure/splay_tree_map.hpp\"\n#include <cstddef>\n#include\
+    \ <vector>\n#include <utility>\n\nnamespace suisen {\nnamespace internal::splay_tree_map\
+    \ {\n\ntemplate <typename Key, typename Val, typename Derived>\nstruct MapNodeBase\
+    \ {\n    using node_ptr_t = Derived *;\n\n    Key key;\n    Val val;\n    int\
+    \ siz;\n    node_ptr_t ch[2] {nullptr, nullptr};\n\n    MapNodeBase() : key(),\
+    \ val(), siz(1) {}\n    MapNodeBase(const Key &key, const Val &val) : key(key),\
+    \ val(val), siz(1) {}\n\n    ~MapNodeBase() {\n        delete ch[0];\n       \
+    \ delete ch[1];\n    }\n\n    void update() {\n        siz = 1 + size(ch[0]) +\
+    \ size(ch[1]);\n    }\n    void push() {}\n\n    static int size(node_ptr_t node)\
+    \ {\n        return node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t\
+    \ rotate(node_ptr_t node, bool is_right) {\n        node_ptr_t root = node->ch[is_right\
+    \ ^ true];\n        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
+    \ = node;\n        node->update(), root->update();\n        return root;\n   \
+    \ }\n\n    static node_ptr_t splay_by_index(node_ptr_t node, int index) {\n  \
+    \      std::vector<node_ptr_t> path;\n        node_ptr_t work_root = new Derived();\n\
+    \        node_ptr_t work_leaf[2] { work_root, work_root };\n        while (true)\
+    \ {\n            node->push();\n            int size_l = size(node->ch[0]);\n\
+    \            bool is_right = index > size_l;\n            node_ptr_t next_node\
+    \ = node->ch[is_right];\n            if (index == size_l or next_node == nullptr)\
+    \ { // found the target node\n                break;\n            }\n        \
+    \    if (is_right) {\n                index -= size_l + 1;\n            }\n  \
+    \          int size_l_ch = size(next_node->ch[0]);\n            if (index != size_l_ch)\
+    \ {\n                bool is_right_ch = index > size_l_ch;\n                if\
+    \ (is_right_ch == is_right) { // zig-zig\n                    if (is_right_ch)\
+    \ {\n                        index -= size_l_ch + 1;\n                    }\n\
     \                    next_node->push();\n                    node = rotate(node,\
     \ is_right ^ true);\n                    next_node = node->ch[is_right];\n   \
     \                 if (next_node == nullptr) { // found the target node\n     \
@@ -140,19 +114,39 @@ data:
     \ = node;\n            work_leaf[is_right] = node;\n            node = next_node;\n\
     \        }\n        work_leaf[0]->ch[0] = node->ch[1];\n        work_leaf[1]->ch[1]\
     \ = node->ch[0];\n        node->ch[0] = work_root->ch[1];\n        node->ch[1]\
-    \ = work_root->ch[0];\n\n        work_root->ch[0] = work_root->ch[1] = nullptr;\n\
+    \ = work_root->ch[0];\n    \n        work_root->ch[0] = work_root->ch[1] = nullptr;\n\
     \        delete work_root;\n\n        while (path.size()) {\n            path.back()->update(),\
     \ path.pop_back();\n        }\n        node->update();\n\n        return node;\n\
-    \    }\n    static std::pair<node_ptr_t, bool> find_key(node_ptr_t node, const\
-    \ Key &key) {\n        if (node == nullptr) return { node, false };\n        node\
-    \ = splay_by_key(node, key);\n        return { node, node->key == key };\n   \
-    \ }\n    static std::pair<node_ptr_t, node_ptr_t> split_by_index(node_ptr_t node,\
-    \ int k) {\n        if (k == 0) return { nullptr, node };\n        if (k == size(node))\
-    \ return { node, nullptr };\n        node_ptr_t r = splay_by_index(node, k);\n\
-    \        node_ptr_t l = r->ch[0];\n        r->ch[0] = nullptr;\n        r->update();\n\
-    \        return { l, r };\n    }\n    static std::tuple<node_ptr_t, node_ptr_t,\
-    \ node_ptr_t> split_by_index(node_ptr_t node, int l, int r) {\n        auto [tl,\
-    \ tmr] = split_by_index(node, l);\n        auto [tm, tr] = split_by_index(tmr,\
+    \    }\n\n    static node_ptr_t splay_by_key(node_ptr_t node, const Key &x) {\n\
+    \        if (node == nullptr) return node;\n        std::vector<node_ptr_t> path;\n\
+    \        node_ptr_t work_root = new Derived();\n        node_ptr_t work_leaf[2]\
+    \ { work_root, work_root };\n        while (true) {\n            node->push();\n\
+    \            if (x == node->key) {\n                break;\n            }\n  \
+    \          bool is_right = x > node->key;\n            node_ptr_t next_node =\
+    \ node->ch[is_right];\n            if (next_node == nullptr) {\n             \
+    \   break;\n            }\n            if (x != next_node->key) {\n          \
+    \      bool is_right_ch = x > next_node->key;\n                if (is_right_ch\
+    \ == is_right) { // zig-zig\n                    next_node->push();\n        \
+    \            node = rotate(node, is_right ^ true);\n                    next_node\
+    \ = node->ch[is_right];\n                    if (next_node == nullptr) { // found\
+    \ the target node\n                        break;\n                    }\n   \
+    \             }\n            }\n            path.push_back(node);\n          \
+    \  work_leaf[is_right]->ch[is_right] = node;\n            work_leaf[is_right]\
+    \ = node;\n            node = next_node;\n        }\n        work_leaf[0]->ch[0]\
+    \ = node->ch[1];\n        work_leaf[1]->ch[1] = node->ch[0];\n        node->ch[0]\
+    \ = work_root->ch[1];\n        node->ch[1] = work_root->ch[0];\n\n        work_root->ch[0]\
+    \ = work_root->ch[1] = nullptr;\n        delete work_root;\n\n        while (path.size())\
+    \ {\n            path.back()->update(), path.pop_back();\n        }\n        node->update();\n\
+    \n        return node;\n    }\n    static std::pair<node_ptr_t, bool> find_key(node_ptr_t\
+    \ node, const Key &key) {\n        if (node == nullptr) return { node, false };\n\
+    \        node = splay_by_key(node, key);\n        return { node, node->key ==\
+    \ key };\n    }\n    static std::pair<node_ptr_t, node_ptr_t> split_by_index(node_ptr_t\
+    \ node, int k) {\n        if (k == 0) return { nullptr, node };\n        if (k\
+    \ == size(node)) return { node, nullptr };\n        node_ptr_t r = splay_by_index(node,\
+    \ k);\n        node_ptr_t l = r->ch[0];\n        r->ch[0] = nullptr;\n       \
+    \ r->update();\n        return { l, r };\n    }\n    static std::tuple<node_ptr_t,\
+    \ node_ptr_t, node_ptr_t> split_by_index(node_ptr_t node, int l, int r) {\n  \
+    \      auto [tl, tmr] = split_by_index(node, l);\n        auto [tm, tr] = split_by_index(tmr,\
     \ r - l);\n        return { tl, tm, tr };\n    }\n    static std::pair<node_ptr_t,\
     \ node_ptr_t> split_by_key(node_ptr_t node, const Key &key) {\n        if (node\
     \ == nullptr) return { nullptr, nullptr };\n        node_ptr_t r = splay_by_key(node,\
@@ -381,7 +375,7 @@ data:
   path: library/datastructure/range_foldable_map.hpp
   requiredBy:
   - library/datastructure/lazy_eval_map.hpp
-  timestamp: '2023-07-13 15:42:30+09:00'
+  timestamp: '2023-09-06 20:34:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

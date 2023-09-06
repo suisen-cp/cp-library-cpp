@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
     title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
       \u5834\u5408)"
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -31,51 +31,45 @@ data:
     \n\n#line 1 \"library/datastructure/segment_tree/segment_tree.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <vector>\n\n#line 1 \"library/util/update_proxy_object.hpp\"\
     \n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n\
-    #include <type_traits>\n\nnamespace suisen {\ntemplate <typename ...Types>\nusing\
-    \ constraints_t = std::enable_if_t<std::conjunction_v<Types...>, std::nullptr_t>;\n\
-    template <bool cond_v, typename Then, typename OrElse>\nconstexpr decltype(auto)\
-    \ constexpr_if(Then&& then, OrElse&& or_else) {\n    if constexpr (cond_v) return\
-    \ std::forward<Then>(then);\n    else return std::forward<OrElse>(or_else);\n\
-    }\n\n// ! function\ntemplate <typename ReturnType, typename Callable, typename\
-    \ ...Args>\nusing is_same_as_invoke_result = std::is_same<std::invoke_result_t<Callable,\
-    \ Args...>, ReturnType>;\ntemplate <typename F, typename T>\nusing is_uni_op =\
-    \ is_same_as_invoke_result<T, F, T>;\ntemplate <typename F, typename T>\nusing\
-    \ is_bin_op = is_same_as_invoke_result<T, F, T, T>;\n\ntemplate <typename Comparator,\
-    \ typename T>\nusing is_comparator = std::is_same<std::invoke_result_t<Comparator,\
-    \ T, T>, bool>;\n\n// ! integral\ntemplate <typename T, typename = constraints_t<std::is_integral<T>>>\n\
-    constexpr int bit_num = std::numeric_limits<std::make_unsigned_t<T>>::digits;\n\
-    template <typename T, size_t n> struct is_nbit { static constexpr bool value =\
-    \ bit_num<T> == n; };\ntemplate <typename T, size_t n> static constexpr bool is_nbit_v\
-    \ = is_nbit<T, n>::value;\n\n// ?\ntemplate <typename T> struct safely_multipliable\
-    \ {};\ntemplate <> struct safely_multipliable<int> { using type = long long; };\n\
-    template <> struct safely_multipliable<long long> { using type = __int128_t; };\n\
-    template <> struct safely_multipliable<unsigned int> { using type = unsigned long\
-    \ long; };\ntemplate <> struct safely_multipliable<unsigned long int> { using\
-    \ type = __uint128_t; };\ntemplate <> struct safely_multipliable<unsigned long\
-    \ long> { using type = __uint128_t; };\ntemplate <> struct safely_multipliable<float>\
-    \ { using type = float; };\ntemplate <> struct safely_multipliable<double> { using\
-    \ type = double; };\ntemplate <> struct safely_multipliable<long double> { using\
-    \ type = long double; };\ntemplate <typename T> using safely_multipliable_t =\
-    \ typename safely_multipliable<T>::type;\n\ntemplate <typename T, typename = void>\
-    \ struct rec_value_type { using type = T; };\ntemplate <typename T> struct rec_value_type<T,\
-    \ std::void_t<typename T::value_type>> {\n    using type = typename rec_value_type<typename\
-    \ T::value_type>::type;\n};\ntemplate <typename T> using rec_value_type_t = typename\
-    \ rec_value_type<T>::type;\n\ntemplate <typename T> class is_iterable {\n    template\
-    \ <typename T_>\n    static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_iterable_v = is_iterable<T>::value;\n\ntemplate <typename\
-    \ T> class is_writable {\n    template <typename T_>\n    static auto test(T_\
-    \ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n    static\
-    \ std::false_type test(...);\npublic:\n    static constexpr bool value = decltype(test(std::declval<T>()))::value;\n\
-    };\ntemplate <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
-    \ntemplate <typename T> class is_readable {\n    template <typename T_>\n    static\
-    \ auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
-    \    static std::false_type test(...);\npublic:\n    static constexpr bool value\
-    \ = decltype(test(std::declval<T>()))::value;\n};\ntemplate <typename T> static\
-    \ constexpr bool is_readable_v = is_readable<T>::value;\n} // namespace suisen\n\
-    \n\n#line 5 \"library/util/update_proxy_object.hpp\"\n\nnamespace suisen {\n\n\
-    template <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
+    #include <type_traits>\nnamespace suisen {\n    template <typename ...Constraints>\
+    \ using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\
+    \n    template <typename T, typename = std::nullptr_t> struct bitnum { static\
+    \ constexpr int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
+    \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
+    \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
+    \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
+    \ = bitnum_v<T> == n; };\n    template <typename T, size_t n> static constexpr\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n    template <typename T, typename\
+    \ = std::nullptr_t> struct safely_multipliable { using type = T; };\n    template\
+    \ <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 32>>> { using type = long long; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_signed<T>, is_nbit<T, 64>>> { using\
+    \ type = __int128_t; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> { using type = unsigned\
+    \ long long; };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_unsigned<T>,\
+    \ is_nbit<T, 64>>> { using type = __uint128_t; };\n    template <typename T> using\
+    \ safely_multipliable_t = typename safely_multipliable<T>::type;\n\n    template\
+    \ <typename T, typename = void> struct rec_value_type { using type = T; };\n \
+    \   template <typename T> struct rec_value_type<T, std::void_t<typename T::value_type>>\
+    \ {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
+    \n    template <typename T> class is_iterable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_iterable_v = is_iterable<T>::value;\n\
+    \    template <typename T> class is_writable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::ostream&>() << e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_writable_v = is_writable<T>::value;\n\
+    \    template <typename T> class is_readable {\n        template <typename T_>\
+    \ static auto test(T_ e) -> decltype(std::declval<std::istream&>() >> e, std::true_type{});\n\
+    \        static std::false_type test(...);\n    public:\n        static constexpr\
+    \ bool value = decltype(test(std::declval<T>()))::value;\n    };\n    template\
+    \ <typename T> static constexpr bool is_readable_v = is_readable<T>::value;\n\
+    } // namespace suisen\n\n#line 5 \"library/util/update_proxy_object.hpp\"\n\n\
+    namespace suisen {\n\ntemplate <typename T, typename UpdateFunc, constraints_t<std::is_invocable<UpdateFunc>>\
     \ = nullptr>\nstruct UpdateProxyObject {\n    public:\n        UpdateProxyObject(T\
     \ &v, UpdateFunc update) : v(v), update(update) {}\n        operator T() const\
     \ { return v; }\n        auto& operator++() && { ++v, update(); return *this;\
@@ -88,30 +82,30 @@ data:
     \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
     \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
     \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
-    \        template <typename F, constraints_t<is_uni_op<F, T>> = nullptr>\n   \
-    \     auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
-    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
-    #line 8 \"library/datastructure/segment_tree/segment_tree.hpp\"\n\nnamespace suisen\
-    \ {\ntemplate <typename T, T(*op)(T, T), T(*e)()>\nclass SegmentTree {\n    public:\n\
-    \        SegmentTree() : SegmentTree(0) {}\n        explicit SegmentTree(int n)\
-    \ : SegmentTree(std::vector<T>(n, e())) {}\n        SegmentTree(const std::vector<T>\
-    \ &a) : n(a.size()), m(ceil_pow2(n)), data(2 * m, e()) {\n            build(a);\n\
-    \        }\n\n        void build(const std::vector<T> &a) {\n            assert(int(a.size())\
-    \ <= m);\n            std::copy(a.begin(), a.end(), data.begin() + m);\n     \
-    \       for (int k = m - 1; k > 0; --k) update(k);\n        }\n        const T&\
-    \ get(int i) const {\n            assert(0 <= i and i < n);\n            return\
-    \ data[i + m];\n        }\n        T operator()(int l, int r) const {\n      \
-    \      T res_l = e(), res_r = e();\n            for (l += m, r += m; l < r; l\
-    \ >>= 1, r >>= 1) {\n                if (l & 1) res_l = op(res_l, data[l++]);\n\
-    \                if (r & 1) res_r = op(data[--r], res_r);\n            }\n   \
-    \         return op(res_l, res_r);\n        }\n        T prod(int l, int r) const\
-    \ { return (*this)(l, r); }\n        T prefix_prod(int r) const { return (*this)(0,\
-    \ r); }\n        T suffix_prod(int l) const { return (*this)(l, m); }\n      \
-    \  T all_prod() const { return data[1]; }\n\n        void set(int i, const T &val)\
-    \ {\n            (*this)[i] = val;\n        }\n        auto operator[](int i)\
-    \ {\n            assert(0 <= i and i < n);\n            int k = i + m;\n     \
-    \       return UpdateProxyObject { data[k], [this, k]{ update_from(k); } };\n\
-    \        }\n\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
+    \        template <typename F, constraints_t<is_same_as_invoke_result<T, F, T>>\
+    \ = nullptr>\n        auto& apply(F f) && { v = f(v), update(); return *this;\
+    \ }\n    private:\n        T &v;\n        UpdateFunc update;\n};\n\n} // namespace\
+    \ suisen\n\n\n#line 8 \"library/datastructure/segment_tree/segment_tree.hpp\"\n\
+    \nnamespace suisen {\ntemplate <typename T, T(*op)(T, T), T(*e)()>\nclass SegmentTree\
+    \ {\n    public:\n        SegmentTree() : SegmentTree(0) {}\n        explicit\
+    \ SegmentTree(int n) : SegmentTree(std::vector<T>(n, e())) {}\n        SegmentTree(const\
+    \ std::vector<T> &a) : n(a.size()), m(ceil_pow2(n)), data(2 * m, e()) {\n    \
+    \        build(a);\n        }\n\n        void build(const std::vector<T> &a) {\n\
+    \            assert(int(a.size()) <= m);\n            std::copy(a.begin(), a.end(),\
+    \ data.begin() + m);\n            for (int k = m - 1; k > 0; --k) update(k);\n\
+    \        }\n        const T& get(int i) const {\n            assert(0 <= i and\
+    \ i < n);\n            return data[i + m];\n        }\n        T operator()(int\
+    \ l, int r) const {\n            T res_l = e(), res_r = e();\n            for\
+    \ (l += m, r += m; l < r; l >>= 1, r >>= 1) {\n                if (l & 1) res_l\
+    \ = op(res_l, data[l++]);\n                if (r & 1) res_r = op(data[--r], res_r);\n\
+    \            }\n            return op(res_l, res_r);\n        }\n        T prod(int\
+    \ l, int r) const { return (*this)(l, r); }\n        T prefix_prod(int r) const\
+    \ { return (*this)(0, r); }\n        T suffix_prod(int l) const { return (*this)(l,\
+    \ m); }\n        T all_prod() const { return data[1]; }\n\n        void set(int\
+    \ i, const T &val) {\n            (*this)[i] = val;\n        }\n        auto operator[](int\
+    \ i) {\n            assert(0 <= i and i < n);\n            int k = i + m;\n  \
+    \          return UpdateProxyObject { data[k], [this, k]{ update_from(k); } };\n\
+    \        }\n\n        template <typename Pred, constraints_t<std::is_invocable_r<bool,\
     \ Pred, T>> = nullptr>\n        int max_right(int l, const Pred &f) const {\n\
     \            assert(0 <= l and l <= n);\n            assert(f(e));\n         \
     \   if (l == n) return n;\n            l += m;\n            T sum_l = e;\n   \
@@ -122,7 +116,7 @@ data:
     \ l - m;\n                }\n                sum_l = op(sum_l, data[l]);\n   \
     \             l++;\n            } while ((l & -l) != l);\n            return n;\n\
     \        }\n        template <bool(*f)(T)>\n        int max_right(int l) { return\
-    \ max_right(l, f); }\n\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
+    \ max_right(l, f); }\n\n        template <typename Pred, constraints_t<std::is_invocable_r<bool,\
     \ Pred, T>> = nullptr>\n        int min_left(int r, const Pred &f) const {\n \
     \           assert(0 <= r && r <= n);\n            assert(f(e));\n           \
     \ if (r == 0) return 0;\n            r += m;\n            T sum_r = e;\n     \
@@ -171,13 +165,13 @@ data:
     \       auto operator[](const std::pair<int, int> &p) {\n            int x, y;\n\
     \            std::tie(x, y) = p;\n            return UpdateProxyObject { const_cast<T&>(get(x,\
     \ y)), [this, k = comp_x(x) + m, y]{ update_from(k, y); } };\n        }\n\n  \
-    \      template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred,\
+    \      template <typename Pred, constraints_t<std::is_invocable_r<bool, Pred,\
     \ T>> = nullptr>\n        int max_up(int l, int r, int d, const Pred &f) const\
     \ {\n            assert(built);\n            int res = std::numeric_limits<int>::max();\n\
     \            for (l = comp_x(l) + m, r = comp_x(r) + m; l < r; l >>= 1, r >>=\
     \ 1) {\n                if (l & 1) res = std::min(res, max_up(l++, d, f));\n \
     \               if (r & 1) res = std::min(res, max_up(--r, d, f));\n         \
-    \   }\n            return res;\n        }\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
+    \   }\n            return res;\n        }\n        template <typename Pred, constraints_t<std::is_invocable_r<bool,\
     \ Pred, T>> = nullptr>\n        int min_down(int l, int r, int u, const Pred &f)\
     \ const {\n            assert(built);\n            int res = std::numeric_limits<int>::min();\n\
     \            for (l = comp_x(l) + m, r = comp_x(r) + m; l < r; l >>= 1, r >>=\
@@ -193,11 +187,11 @@ data:
     \        int comp_y(int k, int y) const {\n            return std::lower_bound(pos_y[k].begin(),\
     \ pos_y[k].end(), y) - pos_y[k].begin();\n        }\n\n        T prod(int k, int\
     \ d, int u) const {\n            return data[k](comp_y(k, d), comp_y(k, u));\n\
-    \        }\n\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
+    \        }\n\n        template <typename Pred, constraints_t<std::is_invocable_r<bool,\
     \ Pred, T>> = nullptr>\n        int max_up(int k, int d, const Pred &f) const\
     \ {\n            const int u = data[k].max_right(comp_y(k, d), f);\n         \
     \   return u == int(pos_y[k].size()) ? std::numeric_limits<int>::max() : pos_y[k][u];\n\
-    \        }\n        template <typename Pred, constraints_t<is_same_as_invoke_result<bool,\
+    \        }\n        template <typename Pred, constraints_t<std::is_invocable_r<bool,\
     \ Pred, T>> = nullptr>\n        int min_down(int k, int u, const Pred &f) const\
     \ {\n            const int d = data[k].min_left(comp_y(k, u), f);\n          \
     \  return d == 0 ? std::numeric_limits<int>::min() : pos_y[k][d - 1] + 1;\n  \
@@ -256,8 +250,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-07-13 15:42:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-09-06 20:34:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
 layout: document

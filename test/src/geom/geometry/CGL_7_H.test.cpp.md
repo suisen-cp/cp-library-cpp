@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/geom/geometry.hpp
     title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.00001'
@@ -21,62 +21,63 @@ data:
     \n#line 1 \"library/geom/geometry.hpp\"\n\n\n\n#include <algorithm>\n#line 6 \"\
     library/geom/geometry.hpp\"\n#include <complex>\n#line 8 \"library/geom/geometry.hpp\"\
     \n#include <optional>\n#include <tuple>\n#include <variant>\n#include <vector>\n\
-    \nnamespace suisen {\nnamespace geometry {\n\n    using coordinate_t = long double;\n\
-    \    using Point = std::complex<coordinate_t>;\n\n    // operator\n\n    Point\
-    \ operator+(const Point &p, coordinate_t real) { return Point(p) + Point(real,\
-    \ 0); }\n    Point operator-(const Point &p, coordinate_t real) { return Point(p)\
-    \ - Point(real, 0); }\n    Point operator*(const Point &p, coordinate_t real)\
-    \ { return Point(p) * Point(real, 0); }\n    Point operator/(const Point &p, coordinate_t\
-    \ real) { return Point(p) / Point(real, 0); }\n    Point operator+(coordinate_t\
-    \ real, const Point &p) { return Point(real, 0) + Point(p); }\n    Point operator-(coordinate_t\
-    \ real, const Point &p) { return Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t\
-    \ real, const Point &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
+    \nnamespace suisen {\nnamespace geometry {\n    using coordinate_t = long double;\n\
+    \    using Point = std::complex<coordinate_t>;\n\n    coordinate_t getx(const\
+    \ Point& p) { return p.real(); }\n    coordinate_t gety(const Point& p) { return\
+    \ p.imag(); }\n\n    // operator\n\n    Point operator+(const Point &p, coordinate_t\
+    \ real) { return Point(p) + Point(real, 0); }\n    Point operator-(const Point\
+    \ &p, coordinate_t real) { return Point(p) - Point(real, 0); }\n    Point operator*(const\
+    \ Point &p, coordinate_t real) { return Point(p) * Point(real, 0); }\n    Point\
+    \ operator/(const Point &p, coordinate_t real) { return Point(p) / Point(real,\
+    \ 0); }\n    Point operator+(coordinate_t real, const Point &p) { return Point(real,\
+    \ 0) + Point(p); }\n    Point operator-(coordinate_t real, const Point &p) { return\
+    \ Point(real, 0) - Point(p); }\n    Point operator*(coordinate_t real, const Point\
+    \ &p) { return Point(real, 0) * Point(p); }\n    Point operator/(coordinate_t\
     \ real, const Point &p) { return Point(real, 0) / Point(p); }\n\n    std::istream&\
     \ operator>>(std::istream &in, Point &p) {\n        coordinate_t x, y;\n     \
     \   in >> x >> y;\n        p = Point(x, y);\n        return in;\n    }\n    std::ostream&\
-    \ operator<<(std::ostream &out, const Point &p) {\n        return out << p.real()\
-    \ << ' ' << p.imag();\n    }\n\n    // relations between three points X, Y, Z.\n\
-    \n    struct ISP {\n        static constexpr int L_CURVE = +1; // +---------------+\
-    \ Z is in 'a' => ISP = +1\n        static constexpr int R_CURVE = -1; // |aaaaaaaaaaaaaaa|\
-    \ Z is in 'b' => ISP = -1\n        static constexpr int FRONT   = +2; // |ddd\
-    \ X eee Y ccc| Z is in 'c' => ISP = +2\n        static constexpr int BACK    =\
-    \ -2; // |bbbbbbbbbbbbbbb| Z is in 'd' => ISP = -2\n        static constexpr int\
-    \ MIDDLE  =  0; // +---------------+ Z is in 'e' => ISP =  0\n    };\n\n    struct\
-    \ Sign {\n        static constexpr int NEGATIVE = -1;\n        static constexpr\
-    \ int ZERO = 0;\n        static constexpr int POSITIVE = +1;\n    };\n\n    enum\
-    \ class Containment {\n        OUT, ON, IN\n    };\n\n    constexpr Point ZERO\
-    \ = Point(0, 0);\n    constexpr Point ONE  = Point(1, 0);\n    constexpr Point\
-    \ I    = Point(0, 1);\n    constexpr coordinate_t EPS = 1e-9;\n    constexpr coordinate_t\
-    \ PI  = 3.14159265358979323846264338327950288419716939937510L;\n    constexpr\
-    \ coordinate_t E   = 2.71828182845904523536028747135266249775724709369995L;\n\n\
-    \    constexpr auto XY_COMPARATOR = [](const Point &p, const Point &q) {\n   \
-    \     return p.real() == q.real() ? p.imag() < q.imag() : p.real() < q.real();\n\
-    \    };\n    constexpr auto XY_COMPARATOR_GREATER = [](const Point &p, const Point\
-    \ &q) {\n        return p.real() == q.real() ? p.imag() > q.imag() : p.real()\
-    \ > q.real();\n    };\n    constexpr auto YX_COMPARATOR = [](const Point &p, const\
-    \ Point &q) {\n        return p.imag() == q.imag() ? p.real() < q.real() : p.imag()\
-    \ < q.imag();\n    };\n    constexpr auto YX_COMPARATOR_GREATER = [](const Point\
-    \ &p, const Point &q) {\n        return p.imag() == q.imag() ? p.real() > q.real()\
-    \ : p.imag() > q.imag();\n    };\n\n    int sgn(coordinate_t x) {\n        return\
-    \ x > EPS ? Sign::POSITIVE : x < -EPS ? Sign::NEGATIVE : Sign::ZERO;\n    }\n\
-    \    int compare(coordinate_t x, coordinate_t y) {\n        return sgn(x - y);\n\
-    \    }\n\n    auto cartesian(const coordinate_t real, const coordinate_t imag)\
-    \ {\n        return Point(real, imag);\n    }\n    auto polar(const coordinate_t\
-    \ rho, const coordinate_t theta) {\n        return Point(rho * std::cos(theta),\
-    \ rho * std::sin(theta));\n    }\n    auto cis(const coordinate_t theta) {\n \
-    \       return Point(std::cos(theta), std::sin(theta));\n    }\n    auto conj(const\
-    \ Point &z) {\n        return Point(z.real(), -z.imag());\n    }\n    auto arg(const\
-    \ Point &z) {\n        return std::atan2(z.imag(), z.real());\n    }\n    auto\
-    \ square_abs(const Point &z) {\n        return z.real() * z.real() + z.imag()\
-    \ * z.imag();\n    }\n    auto abs(const Point &z) {\n        return std::sqrt(square_abs(z));\n\
-    \    }\n    auto rot(const Point &z, const coordinate_t theta) {\n        return\
-    \ cis(theta) * z;\n    }\n    auto dot(const Point &a, const Point &b) {\n   \
-    \     return a.real() * b.real() + a.imag() * b.imag();\n    }\n    auto det(const\
-    \ Point &a, const Point &b) {\n        return a.real() * b.imag() - a.imag() *\
-    \ b.real();\n    }\n    bool equals(const Point &a, const Point &b) {\n      \
-    \  return sgn(a.real() - b.real()) == Sign::ZERO and sgn(a.imag() - b.imag())\
-    \ == Sign::ZERO;\n    }\n    bool equals(coordinate_t a, coordinate_t b) {\n \
-    \       return compare(a, b) == 0;\n    }\n    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\n\
+    \ operator<<(std::ostream &out, const Point &p) {\n        return out << getx(p)\
+    \ << ' ' << gety(p);\n    }\n}\n\nnamespace geometry {\n    // relations between\
+    \ three points X, Y, Z.\n\n    struct ISP {\n        static constexpr int L_CURVE\
+    \ = +1; // +---------------+ Z is in 'a' => ISP = +1\n        static constexpr\
+    \ int R_CURVE = -1; // |aaaaaaaaaaaaaaa| Z is in 'b' => ISP = -1\n        static\
+    \ constexpr int FRONT   = +2; // |ddd X eee Y ccc| Z is in 'c' => ISP = +2\n \
+    \       static constexpr int BACK    = -2; // |bbbbbbbbbbbbbbb| Z is in 'd' =>\
+    \ ISP = -2\n        static constexpr int MIDDLE  =  0; // +---------------+ Z\
+    \ is in 'e' => ISP =  0\n    };\n\n    struct Sign {\n        static constexpr\
+    \ int NEGATIVE = -1;\n        static constexpr int ZERO = 0;\n        static constexpr\
+    \ int POSITIVE = +1;\n    };\n\n    enum class Containment {\n        OUT, ON,\
+    \ IN\n    };\n\n    constexpr Point ZERO = Point(0, 0);\n    constexpr Point ONE\
+    \  = Point(1, 0);\n    constexpr Point I    = Point(0, 1);\n    constexpr coordinate_t\
+    \ EPS = 1e-9;\n    constexpr coordinate_t PI  = 3.14159265358979323846264338327950288419716939937510L;\n\
+    \    constexpr coordinate_t E   = 2.71828182845904523536028747135266249775724709369995L;\n\
+    \n    constexpr auto XY_COMPARATOR = [](const Point &p, const Point &q) {\n  \
+    \      return getx(p) == getx(q) ? gety(p) < gety(q) : getx(p) < getx(q);\n  \
+    \  };\n    constexpr auto XY_COMPARATOR_GREATER = [](const Point &p, const Point\
+    \ &q) {\n        return getx(p) == getx(q) ? gety(p) > gety(q) : getx(p) > getx(q);\n\
+    \    };\n    constexpr auto YX_COMPARATOR = [](const Point &p, const Point &q)\
+    \ {\n        return gety(p) == gety(q) ? getx(p) < getx(q) : gety(p) < gety(q);\n\
+    \    };\n    constexpr auto YX_COMPARATOR_GREATER = [](const Point &p, const Point\
+    \ &q) {\n        return gety(p) == gety(q) ? getx(p) > getx(q) : gety(p) > gety(q);\n\
+    \    };\n\n    int sgn(coordinate_t x) {\n        return x > EPS ? Sign::POSITIVE\
+    \ : x < -EPS ? Sign::NEGATIVE : Sign::ZERO;\n    }\n    int compare(coordinate_t\
+    \ x, coordinate_t y) {\n        return sgn(x - y);\n    }\n\n    auto cartesian(const\
+    \ coordinate_t real, const coordinate_t imag) {\n        return Point(real, imag);\n\
+    \    }\n    auto polar(const coordinate_t rho, const coordinate_t theta) {\n \
+    \       return Point(rho * std::cos(theta), rho * std::sin(theta));\n    }\n \
+    \   auto cis(const coordinate_t theta) {\n        return Point(std::cos(theta),\
+    \ std::sin(theta));\n    }\n    auto conj(const Point &z) {\n        return Point(getx(z),\
+    \ -gety(z));\n    }\n    auto arg(const Point &z) {\n        return std::atan2(gety(z),\
+    \ getx(z));\n    }\n    auto square_abs(const Point &z) {\n        return getx(z)\
+    \ * getx(z) + gety(z) * gety(z);\n    }\n    auto abs(const Point &z) {\n    \
+    \    return std::sqrt(square_abs(z));\n    }\n    auto rot(const Point &z, const\
+    \ coordinate_t theta) {\n        return cis(theta) * z;\n    }\n    auto dot(const\
+    \ Point &a, const Point &b) {\n        return getx(a) * getx(b) + gety(a) * gety(b);\n\
+    \    }\n    auto det(const Point &a, const Point &b) {\n        return getx(a)\
+    \ * gety(b) - gety(a) * getx(b);\n    }\n    bool equals(const Point &a, const\
+    \ Point &b) {\n        return sgn(getx(a) - getx(b)) == Sign::ZERO and sgn(gety(a)\
+    \ - gety(b)) == Sign::ZERO;\n    }\n    bool equals(coordinate_t a, coordinate_t\
+    \ b) {\n        return compare(a, b) == 0;\n    }\n    \n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_C\n\
     \    int isp(const Point &a, const Point &b, const Point &c) {\n        Point\
     \ ab = b - a, ac = c - a;\n        int s = sgn(det(ab, ac));\n        if (s ==\
     \ Sign::POSITIVE) return ISP::L_CURVE;\n        if (s == Sign::NEGATIVE) return\
@@ -90,33 +91,52 @@ data:
     \ - cnst) / coef_x, -1. };\n                b = { (-coef_y - cnst) / coef_x, +1.\
     \ };\n            } else {\n                a = { -1., (coef_x - cnst) / coef_y\
     \ };\n                b = { +1., (-coef_x - cnst) / coef_y };\n            }\n\
-    \        }\n    };\n    struct Ray {\n        Point a, b;\n        Ray() : Ray(ZERO,\
-    \ ZERO) {}\n        Ray(const Point &from, const Point &to) : a(from), b(to) {}\n\
-    \    };\n    struct Segment {\n        Point a, b;\n        Segment() : Segment(ZERO,\
-    \ ZERO) {}\n        Segment(const Point &from, const Point &to) : a(from), b(to)\
-    \ {}\n    };\n    struct Circle {\n        Point center;\n        coordinate_t\
-    \ radius;\n        Circle() : Circle(ZERO, 0) {}\n        Circle(const Point &c,\
-    \ const coordinate_t &r) : center(c), radius(r) {}\n    };\n\n    // Triangle\n\
-    \    \n    coordinate_t signed_area(const Point &a, const Point &b, const Point\
-    \ &c) {\n        return det(b - a, c - a) / 2;\n    }\n    coordinate_t area(const\
-    \ Point &a, const Point &b, const Point &c) {\n        return std::abs(signed_area(a,\
-    \ b, c));\n    }\n    Point pG(const Point &a, const Point &b, const Point &c)\
-    \ {\n        return (a + b + c) / 3;\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
-    \    Circle pI(const Point &a, const Point &b, const Point &c) {\n        auto\
-    \ la = std::abs(b - c), lb = std::abs(c - a), lc = std::abs(a - b);\n        auto\
-    \ l = la + lb + lc;\n        la /= l, lb /= l, lc /= l;\n        Point center\
-    \ = la * a + lb * b + lc * c;\n        auto radius = 2. * area(a, b, c) / l;\n\
+    \        }\n\n        template <size_t I> const std::tuple_element_t<I, Line>&\
+    \ get() const {\n            static_assert(I < std::tuple_size_v<Line>);\n   \
+    \         if constexpr (I == 0) return a;\n            else if constexpr (I ==\
+    \ 1) return b;\n        }\n        template <size_t I> std::tuple_element_t<I,\
+    \ Line>& get() {\n            static_assert(I < std::tuple_size_v<Line>);\n  \
+    \          if constexpr (I == 0) return a;\n            else if constexpr (I ==\
+    \ 1) return b;\n        }\n    };\n    struct Ray {\n        Point a, b;\n   \
+    \     Ray() : Ray(ZERO, ZERO) {}\n        Ray(const Point &from, const Point &to)\
+    \ : a(from), b(to) {}\n\n        template <size_t I> const std::tuple_element_t<I,\
+    \ Ray>& get() const {\n            static_assert(I < std::tuple_size_v<Ray>);\n\
+    \            if constexpr (I == 0) return a;\n            else if constexpr (I\
+    \ == 1) return b;\n        }\n        template <size_t I> std::tuple_element_t<I,\
+    \ Ray>& get() {\n            static_assert(I < std::tuple_size_v<Ray>);\n    \
+    \        if constexpr (I == 0) return a;\n            else if constexpr (I ==\
+    \ 1) return b;\n        }\n    };\n    struct Segment {\n        Point a, b;\n\
+    \        Segment() : Segment(ZERO, ZERO) {}\n        Segment(const Point &from,\
+    \ const Point &to) : a(from), b(to) {}\n\n        template <size_t I> const std::tuple_element_t<I,\
+    \ Segment>& get() const {\n            static_assert(I < std::tuple_size_v<Segment>);\n\
+    \            if constexpr (I == 0) return a;\n            else if constexpr (I\
+    \ == 1) return b;\n        }\n        template <size_t I> std::tuple_element_t<I,\
+    \ Segment>& get() {\n            static_assert(I < std::tuple_size_v<Segment>);\n\
+    \            if constexpr (I == 0) return a;\n            else if constexpr (I\
+    \ == 1) return b;\n        }\n    };\n    struct Circle {\n        Point center;\n\
+    \        coordinate_t radius;\n        Circle() : Circle(ZERO, 0) {}\n       \
+    \ Circle(const Point &c, const coordinate_t &r) : center(c), radius(r) {}\n  \
+    \  };\n\n    // Triangle\n    \n    coordinate_t signed_area(const Point &a, const\
+    \ Point &b, const Point &c) {\n        return det(b - a, c - a) / 2;\n    }\n\
+    \    coordinate_t area(const Point &a, const Point &b, const Point &c) {\n   \
+    \     return std::abs(signed_area(a, b, c));\n    }\n    Point pG(const Point\
+    \ &a, const Point &b, const Point &c) {\n        return (a + b + c) / 3;\n   \
+    \ }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B\n\
+    \    Circle pI(const Point &a, const Point &b, const Point &c) {\n        coordinate_t\
+    \ la = abs(b - c), lb = abs(c - a), lc = abs(a - b);\n        coordinate_t l =\
+    \ la + lb + lc;\n        la /= l, lb /= l, lc /= l;\n        Point center = la\
+    \ * a + lb * b + lc * c;\n        coordinate_t radius = 2 * area(a, b, c) / l;\n\
     \        return Circle(center, radius);\n    }\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C\n\
     \    Circle pO(const Point &a, const Point &b, const Point &c) {\n        Point\
-    \ ab = b - a, bc = c - b, ca = a - c;\n        auto la = square_abs(bc), lb =\
-    \ square_abs(ca), lc = square_abs(ab);\n        auto s = la * (lb + lc - la),\
-    \ t = lb * (lc + la - lb), u = lc * (la + lb - lc);\n        auto l = s + t +\
-    \ u;\n        s /= l, t /= l, u /= l;\n        Point center = a * s + b * t +\
-    \ c * u;\n        return Circle(center, std::abs(center - a));\n    }\n    Point\
-    \ pH(const Point &a, const Point &b, const Point &c) {\n        return a + b +\
-    \ c - 2 * pO(a, b, c).center;\n    }\n    auto pIabc(const Point &a, const Point\
-    \ &b, const Point &c) {\n        return std::make_tuple(pI(-a, b, c), pI(a, -b,\
-    \ c), pI(a, b, -c));\n    }\n\n    // Line\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\n\
+    \ ab = b - a, bc = c - b, ca = a - c;\n        coordinate_t la = square_abs(bc),\
+    \ lb = square_abs(ca), lc = square_abs(ab);\n        coordinate_t s = la * (lb\
+    \ + lc - la), t = lb * (lc + la - lb), u = lc * (la + lb - lc);\n        coordinate_t\
+    \ l = s + t + u;\n        s /= l, t /= l, u /= l;\n        Point center = a *\
+    \ s + b * t + c * u;\n        return Circle(center, abs(center - a));\n    }\n\
+    \    Point pH(const Point &a, const Point &b, const Point &c) {\n        return\
+    \ a + b + c - 2 * pO(a, b, c).center;\n    }\n    auto pIabc(const Point &a, const\
+    \ Point &b, const Point &c) {\n        return std::make_tuple(pI(-a, b, c), pI(a,\
+    \ -b, c), pI(a, b, -c));\n    }\n\n    // Line\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\n\
     \    template <typename line_t_1, typename line_t_2>\n    auto is_parallel(const\
     \ line_t_1 &l1, const line_t_2 &l2) -> decltype(l1.a, l1.b, l2.a, l2.b, bool())\
     \ {\n        return sgn(det(l1.b - l1.a, l2.b - l2.a)) == Sign::ZERO;\n    }\n\
@@ -209,8 +229,8 @@ data:
     \    Containment contains(const Polygon &poly, const Point &p) {\n        bool\
     \ in = false;\n        int sz = poly.size();\n        for (int i = 0; i < sz;\
     \ ++i) {\n            int j = i + 1;\n            if (j == sz) j -= sz;\n    \
-    \        Point a = poly[i] - p, b = poly[j] - p;\n            if (a.imag() > b.imag())\
-    \ std::swap(a, b);\n            if (sgn(a.imag()) <= 0 and sgn(b.imag()) > 0 and\
+    \        Point a = poly[i] - p, b = poly[j] - p;\n            if (gety(a) > gety(b))\
+    \ std::swap(a, b);\n            if (sgn(gety(a)) <= 0 and sgn(gety(b)) > 0 and\
     \ sgn(det(a, b)) < 0) in = not in;\n            if (sgn(det(a, b)) == 0 and sgn(dot(a,\
     \ b)) <= 0) return Containment::ON;\n        }\n        return in ? Containment::IN\
     \ : Containment::OUT;\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_4_B\n\
@@ -268,7 +288,7 @@ data:
     \    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_F\n\
     \    std::vector<Point> tangent_to_circle(const Circle &c, const Point &p) {\n\
     \        Containment cnt = contains(c, p);\n        if (cnt == Containment::IN)\
-    \ return {};\n        if (cnt == Containment::ON) return { p };\n        auto\
+    \ return {};\n        if (cnt == Containment::ON) return { p };\n        Point\
     \ v = c.center - p;\n        coordinate_t r = c.radius, d = abs(v), l = sqrt(d\
     \ * d - r * r);\n        coordinate_t t = std::asin(r / d);\n        return {\
     \ p + rot(v, t) * (l / d), p + rot(v, -t) * (l / d) };\n    }\n\n    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_G\n\
@@ -315,7 +335,19 @@ data:
     \ coordinate_t(0)));\n        coordinate_t a1 = r * r * std::acos(x / r);\n  \
     \      coordinate_t a2 = s * s * std::acos((d - x) / s);\n        coordinate_t\
     \ a12 = d * h;\n        return a1 + a2 - a12;\n    }\n}\n} // namespace suisen\n\
-    \n\n#line 9 \"test/src/geom/geometry/CGL_7_H.test.cpp\"\n\nusing namespace suisen::geometry;\n\
+    \nnamespace std {\n    template <> struct tuple_size<suisen::geometry::Segment>\
+    \ { static constexpr size_t value = 2; };\n    template <> struct tuple_element<0,\
+    \ suisen::geometry::Segment> { using type = suisen::geometry::Point; };\n    template\
+    \ <> struct tuple_element<1, suisen::geometry::Segment> { using type = suisen::geometry::Point;\
+    \ };\n    template <> struct tuple_size<suisen::geometry::Ray> { static constexpr\
+    \ size_t value = 2; };\n    template <> struct tuple_element<0, suisen::geometry::Ray>\
+    \ { using type = suisen::geometry::Point; };\n    template <> struct tuple_element<1,\
+    \ suisen::geometry::Ray> { using type = suisen::geometry::Point; };\n    template\
+    \ <> struct tuple_size<suisen::geometry::Line> { static constexpr size_t value\
+    \ = 2; };\n    template <> struct tuple_element<0, suisen::geometry::Line> { using\
+    \ type = suisen::geometry::Point; };\n    template <> struct tuple_element<1,\
+    \ suisen::geometry::Line> { using type = suisen::geometry::Point; };\n}\n\n\n\
+    #line 9 \"test/src/geom/geometry/CGL_7_H.test.cpp\"\n\nusing namespace suisen::geometry;\n\
     \nint main() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    std::cout << std::fixed << std::setprecision(20);\n\n    int n;\n    coordinate_t\
     \ r;\n    std::cin >> n >> r;\n    Polygon poly(n);\n    for (auto &p : poly)\
@@ -334,8 +366,8 @@ data:
   isVerificationFile: true
   path: test/src/geom/geometry/CGL_7_H.test.cpp
   requiredBy: []
-  timestamp: '2022-08-21 18:24:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-09-06 20:35:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/geom/geometry/CGL_7_H.test.cpp
 layout: document
