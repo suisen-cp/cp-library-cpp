@@ -12,9 +12,11 @@
 
 namespace suisen {
 namespace geometry {
-
     using coordinate_t = long double;
     using Point = std::complex<coordinate_t>;
+
+    coordinate_t getx(const Point& p) { return p.real(); }
+    coordinate_t gety(const Point& p) { return p.imag(); }
 
     // operator
 
@@ -34,9 +36,11 @@ namespace geometry {
         return in;
     }
     std::ostream& operator<<(std::ostream &out, const Point &p) {
-        return out << p.real() << ' ' << p.imag();
+        return out << getx(p) << ' ' << gety(p);
     }
+}
 
+namespace geometry {
     // relations between three points X, Y, Z.
 
     struct ISP {
@@ -65,16 +69,16 @@ namespace geometry {
     constexpr coordinate_t E   = 2.71828182845904523536028747135266249775724709369995L;
 
     constexpr auto XY_COMPARATOR = [](const Point &p, const Point &q) {
-        return p.real() == q.real() ? p.imag() < q.imag() : p.real() < q.real();
+        return getx(p) == getx(q) ? gety(p) < gety(q) : getx(p) < getx(q);
     };
     constexpr auto XY_COMPARATOR_GREATER = [](const Point &p, const Point &q) {
-        return p.real() == q.real() ? p.imag() > q.imag() : p.real() > q.real();
+        return getx(p) == getx(q) ? gety(p) > gety(q) : getx(p) > getx(q);
     };
     constexpr auto YX_COMPARATOR = [](const Point &p, const Point &q) {
-        return p.imag() == q.imag() ? p.real() < q.real() : p.imag() < q.imag();
+        return gety(p) == gety(q) ? getx(p) < getx(q) : gety(p) < gety(q);
     };
     constexpr auto YX_COMPARATOR_GREATER = [](const Point &p, const Point &q) {
-        return p.imag() == q.imag() ? p.real() > q.real() : p.imag() > q.imag();
+        return gety(p) == gety(q) ? getx(p) > getx(q) : gety(p) > gety(q);
     };
 
     int sgn(coordinate_t x) {
@@ -94,13 +98,13 @@ namespace geometry {
         return Point(std::cos(theta), std::sin(theta));
     }
     auto conj(const Point &z) {
-        return Point(z.real(), -z.imag());
+        return Point(getx(z), -gety(z));
     }
     auto arg(const Point &z) {
-        return std::atan2(z.imag(), z.real());
+        return std::atan2(gety(z), getx(z));
     }
     auto square_abs(const Point &z) {
-        return z.real() * z.real() + z.imag() * z.imag();
+        return getx(z) * getx(z) + gety(z) * gety(z);
     }
     auto abs(const Point &z) {
         return std::sqrt(square_abs(z));
@@ -109,13 +113,13 @@ namespace geometry {
         return cis(theta) * z;
     }
     auto dot(const Point &a, const Point &b) {
-        return a.real() * b.real() + a.imag() * b.imag();
+        return getx(a) * getx(b) + gety(a) * gety(b);
     }
     auto det(const Point &a, const Point &b) {
-        return a.real() * b.imag() - a.imag() * b.real();
+        return getx(a) * gety(b) - gety(a) * getx(b);
     }
     bool equals(const Point &a, const Point &b) {
-        return sgn(a.real() - b.real()) == Sign::ZERO and sgn(a.imag() - b.imag()) == Sign::ZERO;
+        return sgn(getx(a) - getx(b)) == Sign::ZERO and sgn(gety(a) - gety(b)) == Sign::ZERO;
     }
     bool equals(coordinate_t a, coordinate_t b) {
         return compare(a, b) == 0;
@@ -147,16 +151,49 @@ namespace geometry {
                 b = { +1., (-coef_x - cnst) / coef_y };
             }
         }
+
+        template <size_t I> const std::tuple_element_t<I, Line>& get() const {
+            static_assert(I < std::tuple_size_v<Line>);
+            if constexpr (I == 0) return a;
+            else if constexpr (I == 1) return b;
+        }
+        template <size_t I> std::tuple_element_t<I, Line>& get() {
+            static_assert(I < std::tuple_size_v<Line>);
+            if constexpr (I == 0) return a;
+            else if constexpr (I == 1) return b;
+        }
     };
     struct Ray {
         Point a, b;
         Ray() : Ray(ZERO, ZERO) {}
         Ray(const Point &from, const Point &to) : a(from), b(to) {}
+
+        template <size_t I> const std::tuple_element_t<I, Ray>& get() const {
+            static_assert(I < std::tuple_size_v<Ray>);
+            if constexpr (I == 0) return a;
+            else if constexpr (I == 1) return b;
+        }
+        template <size_t I> std::tuple_element_t<I, Ray>& get() {
+            static_assert(I < std::tuple_size_v<Ray>);
+            if constexpr (I == 0) return a;
+            else if constexpr (I == 1) return b;
+        }
     };
     struct Segment {
         Point a, b;
         Segment() : Segment(ZERO, ZERO) {}
         Segment(const Point &from, const Point &to) : a(from), b(to) {}
+
+        template <size_t I> const std::tuple_element_t<I, Segment>& get() const {
+            static_assert(I < std::tuple_size_v<Segment>);
+            if constexpr (I == 0) return a;
+            else if constexpr (I == 1) return b;
+        }
+        template <size_t I> std::tuple_element_t<I, Segment>& get() {
+            static_assert(I < std::tuple_size_v<Segment>);
+            if constexpr (I == 0) return a;
+            else if constexpr (I == 1) return b;
+        }
     };
     struct Circle {
         Point center;
@@ -178,22 +215,22 @@ namespace geometry {
     }
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_B
     Circle pI(const Point &a, const Point &b, const Point &c) {
-        auto la = std::abs(b - c), lb = std::abs(c - a), lc = std::abs(a - b);
-        auto l = la + lb + lc;
+        coordinate_t la = abs(b - c), lb = abs(c - a), lc = abs(a - b);
+        coordinate_t l = la + lb + lc;
         la /= l, lb /= l, lc /= l;
         Point center = la * a + lb * b + lc * c;
-        auto radius = 2. * area(a, b, c) / l;
+        coordinate_t radius = 2 * area(a, b, c) / l;
         return Circle(center, radius);
     }
     // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C
     Circle pO(const Point &a, const Point &b, const Point &c) {
         Point ab = b - a, bc = c - b, ca = a - c;
-        auto la = square_abs(bc), lb = square_abs(ca), lc = square_abs(ab);
-        auto s = la * (lb + lc - la), t = lb * (lc + la - lb), u = lc * (la + lb - lc);
-        auto l = s + t + u;
+        coordinate_t la = square_abs(bc), lb = square_abs(ca), lc = square_abs(ab);
+        coordinate_t s = la * (lb + lc - la), t = lb * (lc + la - lb), u = lc * (la + lb - lc);
+        coordinate_t l = s + t + u;
         s /= l, t /= l, u /= l;
         Point center = a * s + b * t + c * u;
-        return Circle(center, std::abs(center - a));
+        return Circle(center, abs(center - a));
     }
     Point pH(const Point &a, const Point &b, const Point &c) {
         return a + b + c - 2 * pO(a, b, c).center;
@@ -385,8 +422,8 @@ namespace geometry {
             int j = i + 1;
             if (j == sz) j -= sz;
             Point a = poly[i] - p, b = poly[j] - p;
-            if (a.imag() > b.imag()) std::swap(a, b);
-            if (sgn(a.imag()) <= 0 and sgn(b.imag()) > 0 and sgn(det(a, b)) < 0) in = not in;
+            if (gety(a) > gety(b)) std::swap(a, b);
+            if (sgn(gety(a)) <= 0 and sgn(gety(b)) > 0 and sgn(det(a, b)) < 0) in = not in;
             if (sgn(det(a, b)) == 0 and sgn(dot(a, b)) <= 0) return Containment::ON;
         }
         return in ? Containment::IN : Containment::OUT;
@@ -494,7 +531,7 @@ namespace geometry {
         Containment cnt = contains(c, p);
         if (cnt == Containment::IN) return {};
         if (cnt == Containment::ON) return { p };
-        auto v = c.center - p;
+        Point v = c.center - p;
         coordinate_t r = c.radius, d = abs(v), l = sqrt(d * d - r * r);
         coordinate_t t = std::asin(r / d);
         return { p + rot(v, t) * (l / d), p + rot(v, -t) * (l / d) };
@@ -577,5 +614,17 @@ namespace geometry {
     }
 }
 } // namespace suisen
+
+namespace std {
+    template <> struct tuple_size<suisen::geometry::Segment> { static constexpr size_t value = 2; };
+    template <> struct tuple_element<0, suisen::geometry::Segment> { using type = suisen::geometry::Point; };
+    template <> struct tuple_element<1, suisen::geometry::Segment> { using type = suisen::geometry::Point; };
+    template <> struct tuple_size<suisen::geometry::Ray> { static constexpr size_t value = 2; };
+    template <> struct tuple_element<0, suisen::geometry::Ray> { using type = suisen::geometry::Point; };
+    template <> struct tuple_element<1, suisen::geometry::Ray> { using type = suisen::geometry::Point; };
+    template <> struct tuple_size<suisen::geometry::Line> { static constexpr size_t value = 2; };
+    template <> struct tuple_element<0, suisen::geometry::Line> { using type = suisen::geometry::Point; };
+    template <> struct tuple_element<1, suisen::geometry::Line> { using type = suisen::geometry::Point; };
+}
 
 #endif // SUISEN_GEOMETRY
