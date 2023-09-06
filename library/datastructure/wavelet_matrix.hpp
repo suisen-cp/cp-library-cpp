@@ -14,7 +14,7 @@ namespace suisen {
         // default constructor
         WaveletMatrix() noexcept : n(0) {}
         // builds WaveletMatrix from generating function typed as (int) -> T
-        template <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>
+        template <typename Gen, constraints_t<std::is_invocable_r<T, Gen, int>> = nullptr>
         WaveletMatrix(int n, Gen generator) : n(n) {
             build(generator);
         }
@@ -23,7 +23,7 @@ namespace suisen {
         WaveletMatrix(const std::vector<U>& a) : WaveletMatrix(a.size(), [&a](int i) { return T(a[i]); }) {}
 
         // builds WaveletMatrix from generating function typed as (int) -> T
-        template <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>
+        template <typename Gen, constraints_t<std::is_invocable_r<T, Gen, int>> = nullptr>
         void build(Gen generator) {
             std::vector<T> a(n), l(n), r(n);
             for (int i = 0; i < n; ++i) a[i] = generator(i);

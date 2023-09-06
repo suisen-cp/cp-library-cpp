@@ -70,7 +70,7 @@ class SegmentTree2DSparse {
             return UpdateProxyObject { const_cast<T&>(get(x, y)), [this, k = comp_x(x) + m, y]{ update_from(k, y); } };
         }
 
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
+        template <typename Pred, constraints_t<std::is_invocable_r<bool, Pred, T>> = nullptr>
         int max_up(int l, int r, int d, const Pred &f) const {
             assert(built);
             int res = std::numeric_limits<int>::max();
@@ -80,7 +80,7 @@ class SegmentTree2DSparse {
             }
             return res;
         }
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
+        template <typename Pred, constraints_t<std::is_invocable_r<bool, Pred, T>> = nullptr>
         int min_down(int l, int r, int u, const Pred &f) const {
             assert(built);
             int res = std::numeric_limits<int>::min();
@@ -116,12 +116,12 @@ class SegmentTree2DSparse {
             return data[k](comp_y(k, d), comp_y(k, u));
         }
 
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
+        template <typename Pred, constraints_t<std::is_invocable_r<bool, Pred, T>> = nullptr>
         int max_up(int k, int d, const Pred &f) const {
             const int u = data[k].max_right(comp_y(k, d), f);
             return u == int(pos_y[k].size()) ? std::numeric_limits<int>::max() : pos_y[k][u];
         }
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
+        template <typename Pred, constraints_t<std::is_invocable_r<bool, Pred, T>> = nullptr>
         int min_down(int k, int u, const Pred &f) const {
             const int d = data[k].min_left(comp_y(k, u), f);
             return d == 0 ? std::numeric_limits<int>::min() : pos_y[k][d - 1] + 1;

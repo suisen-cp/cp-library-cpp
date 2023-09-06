@@ -15,7 +15,7 @@ namespace suisen {
         // default constructor
         CompressedWaveletMatrix() noexcept : WaveletMatrix<int, log_max_len>(0) {}
         // builds WaveletMatrix from generating function typed as (int) -> T
-        template <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>
+        template <typename Gen, constraints_t<std::is_invocable_r<T, Gen, int>> = nullptr>
         CompressedWaveletMatrix(int n, Gen generator) : WaveletMatrix<int, log_max_len>(n), comp(CoordinateCompressorBuilder<T>::build(n, generator)) {
             this->build([this, &generator](int i) { return comp[generator(i)]; });
         }

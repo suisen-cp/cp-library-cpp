@@ -47,7 +47,7 @@ class SegmentTree {
             return UpdateProxyObject { data[k], [this, k]{ update_from(k); } };
         }
 
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
+        template <typename Pred, constraints_t<std::is_invocable_r<bool, Pred, T>> = nullptr>
         int max_right(int l, const Pred &f) const {
             assert(0 <= l and l <= n);
             assert(f(e));
@@ -71,7 +71,7 @@ class SegmentTree {
         template <bool(*f)(T)>
         int max_right(int l) { return max_right(l, f); }
 
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, T>> = nullptr>
+        template <typename Pred, constraints_t<std::is_invocable_r<bool, Pred, T>> = nullptr>
         int min_left(int r, const Pred &f) const {
             assert(0 <= r && r <= n);
             assert(f(e));

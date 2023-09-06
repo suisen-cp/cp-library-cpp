@@ -10,7 +10,7 @@ namespace suisen {
     struct BitVector {
         explicit BitVector(int n) : n(n), nl((n >> LOG_BLOCK_L) + 1), ns((n >> LOG_BLOCK_S) + 1), cum_l(nl, 0), cum_s(ns, 0), bits(ns, 0) {}
         BitVector() : BitVector(0) {}
-        template <typename Gen, constraints_t<is_same_as_invoke_result<bool, Gen, int>> = nullptr>
+        template <typename Gen, constraints_t<std::is_invocable_r<bool, Gen, int>> = nullptr>
         BitVector(int n, Gen gen) : BitVector(n) {
             build(gen);
         }
@@ -22,7 +22,7 @@ namespace suisen {
             n = bv.n, nl = bv.nl, ns = bv.ns, cum_l = std::move(bv.cum_l), cum_s = std::move(bv.cum_s), bits = std::move(bv.bits);
             return *this;
         }
-        template <typename Gen, constraints_t<is_same_as_invoke_result<bool, Gen, int>> = nullptr>
+        template <typename Gen, constraints_t<std::is_invocable_r<bool, Gen, int>> = nullptr>
         void build(Gen gen) {
             int i = 0;
             for (int index_s = 1; index_s < ns; ++index_s) {

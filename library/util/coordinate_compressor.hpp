@@ -88,7 +88,7 @@ class CoordinateCompressorBuilder {
         CoordinateCompressorBuilder() : _xs(std::vector<T>{}) {}
         explicit CoordinateCompressorBuilder(const std::vector<T> &xs) : _xs(xs) {}
         explicit CoordinateCompressorBuilder(std::vector<T> &&xs) : _xs(std::move(xs)) {}
-        template <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>
+        template <typename Gen, constraints_t<std::is_invocable_r<T, Gen, int>> = nullptr>
         CoordinateCompressorBuilder(const int n, Gen generator) {
             reserve(n);
             for (int i = 0; i < n; ++i) push(generator(i));
@@ -134,7 +134,7 @@ class CoordinateCompressorBuilder {
             return CoordinateCompressorBuilder(std::move(xs)).build();
         }
         // Build compressor from generator.
-        template <typename Gen, constraints_t<is_same_as_invoke_result<T, Gen, int>> = nullptr>
+        template <typename Gen, constraints_t<std::is_invocable_r<T, Gen, int>> = nullptr>
         static auto build(const int n, Gen generator) {
             return CoordinateCompressorBuilder<T>(n, generator).build();
         }

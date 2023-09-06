@@ -24,6 +24,11 @@ class HeavyLightDecomposition {
             int time = 0;
             for (int i = 0; i < n; ++i) if (par[i] < 0) hld(g, i, -1, time);
         }
+        HeavyLightDecomposition(Graph &g, const vector<int> &roots) : n(g.size()), visit(n), leave(n), head(n), ord(n), siz(n), par(n, -1), dep(n, 0) {
+            for (int i : roots) dfs(g, i, -1);
+            int time = 0;
+            for (int i : roots) hld(g, i, -1, time);
+        }
         int size() const {
             return n;
         }
@@ -54,7 +59,7 @@ class HeavyLightDecomposition {
         int dist(int u, int v) const {
             return dep[u] + dep[v] - 2 * dep[lca(u, v)];
         }
-        template <typename T, typename Q, typename F, constraints_t<is_range_fold_query<Q, T>, is_bin_op<F, T>> = nullptr>
+        template <typename T, typename Q, typename F, constraints_t<is_range_fold_query<Q, T>, std::is_invocable_r<T, F, T, T>> = nullptr>
         T fold_path(int u, int v, T identity, F bin_op, Q fold_query, bool is_edge_query = false) const {
             T res = identity;
             for (;; v = par[head[v]]) {
@@ -66,7 +71,7 @@ class HeavyLightDecomposition {
         }
         template <
             typename T, typename Q1, typename Q2, typename F,
-            constraints_t<is_range_fold_query<Q1, T>, is_range_fold_query<Q2, T>, is_bin_op<F, T>> = nullptr
+            constraints_t<is_range_fold_query<Q1, T>, is_range_fold_query<Q2, T>, std::is_invocable_r<T, F, T, T>> = nullptr
         >
         T fold_path_noncommutative(int u, int v, T identity, F bin_op, Q1 fold_query, Q2 fold_query_rev, bool is_edge_query = false) const {
             T res_u = identity, res_v = identity;

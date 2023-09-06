@@ -55,7 +55,7 @@ namespace suisen {
         value_type get(int p) { return (*this)[p]; }
         void set(int p, value_type v) { (*this)[p] = v; }
 
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, value_type>> = nullptr>
+        template <typename Pred, constraints_t<std::is_invocable_r<bool, Pred, value_type>> = nullptr>
         int max_right(int l, Pred g) {
             assert(0 <= l && l <= n);
             assert(g(e()));
@@ -80,7 +80,7 @@ namespace suisen {
         template <bool(*f)(value_type)>
         int max_right(int l) { return max_right(l, f); }
 
-        template <typename Pred, constraints_t<is_same_as_invoke_result<bool, Pred, value_type>> = nullptr>
+        template <typename Pred, constraints_t<std::is_invocable_r<bool, Pred, value_type>> = nullptr>
         int min_left(int r, Pred g) {
             assert(0 <= r && r <= n);
             assert(g(e()));
