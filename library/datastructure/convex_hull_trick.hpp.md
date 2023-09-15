@@ -22,11 +22,11 @@ data:
     links: []
   bundledCode: "#line 1 \"library/datastructure/convex_hull_trick.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <limits>\n#include <set>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <type_traits>\n\
-    namespace suisen {\n    template <typename ...Constraints> using constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\n\
-    \    template <typename T, typename = std::nullptr_t> struct bitnum { static constexpr\
-    \ int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
+    \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <iostream>\n\
+    #include <type_traits>\n\nnamespace suisen {\n    template <typename ...Constraints>\
+    \ using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\
+    \n    template <typename T, typename = std::nullptr_t> struct bitnum { static\
+    \ constexpr int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
     \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
     \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
     \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
@@ -151,7 +151,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/convex_hull_trick.hpp
   requiredBy: []
-  timestamp: '2023-09-06 20:34:12+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/datastructure/convex_hull_trick/abc228_h.test.cpp

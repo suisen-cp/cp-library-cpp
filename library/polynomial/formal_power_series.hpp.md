@@ -91,6 +91,9 @@ data:
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - icon: ':x:'
+    path: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+    title: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - icon: ':x:'
@@ -120,8 +123,9 @@ data:
     #include <atcoder/convolution>\n\n#line 1 \"library/polynomial/fps_naive.hpp\"\
     \n\n\n\n#include <cassert>\n#include <cmath>\n#line 7 \"library/polynomial/fps_naive.hpp\"\
     \n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\nnamespace suisen {\n\
-    \    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <iostream>\n\
+    #line 7 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
     \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
     \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
     \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
@@ -909,37 +913,38 @@ data:
   - library/polynomial/compose_exp.hpp
   - library/polynomial/compose_inv.hpp
   - library/math/factorial_large.hpp
-  timestamp: '2023-09-06 20:34:12+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
-  - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
   - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
+  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
+  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
+  - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
   - test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
   - test/src/sequence/partition_number/partition_function_2.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
 documentation_of: library/polynomial/formal_power_series.hpp
 layout: document
 title: Formal Power Series

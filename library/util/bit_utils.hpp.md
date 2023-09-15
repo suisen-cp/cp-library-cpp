@@ -13,8 +13,8 @@ data:
     links: []
   bundledCode: "#line 1 \"library/util/bit_utils.hpp\"\n\n\n\n#ifdef _MSC_VER\n# \
     \ include <intrin.h>\n#else\n#  include <x86intrin.h>\n#endif\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <limits>\n#include <type_traits>\nnamespace suisen {\n    template\
-    \ <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \n\n\n\n#include <limits>\n#include <iostream>\n#include <type_traits>\n\nnamespace\
+    \ suisen {\n    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
     \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
     \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
     \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
@@ -97,7 +97,7 @@ data:
   isVerificationFile: false
   path: library/util/bit_utils.hpp
   requiredBy: []
-  timestamp: '2023-09-06 20:34:46+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/util/bit_utils.hpp

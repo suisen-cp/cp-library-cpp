@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: library/polynomial/rook_polynomial.hpp
+    title: library/polynomial/rook_polynomial.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
     title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
+  - icon: ':x:'
+    path: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+    title: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -46,10 +52,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/polynomial/convert_to_newton_basis.hpp
-  requiredBy: []
+  requiredBy:
+  - library/polynomial/rook_polynomial.hpp
   timestamp: '2023-05-21 01:49:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
   - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
 documentation_of: library/polynomial/convert_to_newton_basis.hpp
 layout: document

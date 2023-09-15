@@ -39,27 +39,27 @@ data:
     links: []
   bundledCode: "#line 1 \"library/tree/heavy_light_decomposition.hpp\"\n\n\n\n#line\
     \ 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include\
-    \ <type_traits>\nnamespace suisen {\n    template <typename ...Constraints> using\
-    \ constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\
-    \n    template <typename T, typename = std::nullptr_t> struct bitnum { static\
-    \ constexpr int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
-    \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
-    \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
-    \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
-    \ = bitnum_v<T> == n; };\n    template <typename T, size_t n> static constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n    template <typename T, typename\
-    \ = std::nullptr_t> struct safely_multipliable { using type = T; };\n    template\
-    \ <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
-    \ is_nbit<T, 32>>> { using type = long long; };\n    template <typename T> struct\
-    \ safely_multipliable<T, constraints_t<std::is_signed<T>, is_nbit<T, 64>>> { using\
-    \ type = __int128_t; };\n    template <typename T> struct safely_multipliable<T,\
-    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> { using type = unsigned\
-    \ long long; };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_unsigned<T>,\
-    \ is_nbit<T, 64>>> { using type = __uint128_t; };\n    template <typename T> using\
-    \ safely_multipliable_t = typename safely_multipliable<T>::type;\n\n    template\
-    \ <typename T, typename = void> struct rec_value_type { using type = T; };\n \
-    \   template <typename T> struct rec_value_type<T, std::void_t<typename T::value_type>>\
-    \ {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \ <iostream>\n#include <type_traits>\n\nnamespace suisen {\n    template <typename\
+    \ ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
+    \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
+    \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
+    \ std::numeric_limits<std::make_unsigned_t<T>>::digits; };\n    template <typename\
+    \ T> static constexpr int bitnum_v = bitnum<T>::value;\n    template <typename\
+    \ T, size_t n> struct is_nbit { static constexpr bool value = bitnum_v<T> == n;\
+    \ };\n    template <typename T, size_t n> static constexpr bool is_nbit_v = is_nbit<T,\
+    \ n>::value;\n\n    template <typename T, typename = std::nullptr_t> struct safely_multipliable\
+    \ { using type = T; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_signed<T>, is_nbit<T, 32>>> { using type = long long;\
+    \ };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 64>>> { using type = __int128_t; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> {\
+    \ using type = unsigned long long; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 64>>> { using type = __uint128_t;\
+    \ };\n    template <typename T> using safely_multipliable_t = typename safely_multipliable<T>::type;\n\
+    \n    template <typename T, typename = void> struct rec_value_type { using type\
+    \ = T; };\n    template <typename T> struct rec_value_type<T, std::void_t<typename\
+    \ T::value_type>> {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
     \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
     \n    template <typename T> class is_iterable {\n        template <typename T_>\
     \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
@@ -272,15 +272,15 @@ data:
   path: library/tree/heavy_light_decomposition.hpp
   requiredBy:
   - library/tree/auxiliary_tree.hpp
-  timestamp: '2023-09-06 20:34:12+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
   - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
   - test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
 documentation_of: library/tree/heavy_light_decomposition.hpp
 layout: document

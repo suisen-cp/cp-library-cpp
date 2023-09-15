@@ -172,24 +172,24 @@ data:
   isVerificationFile: false
   path: library/integral_geom/point.hpp
   requiredBy:
-  - library/integral_geom/geometry.hpp
   - library/integral_geom/sort_points_by_argument.hpp
-  - library/integral_geom/farthest_pair.hpp
+  - library/integral_geom/geometry.hpp
   - library/integral_geom/closest_pair.hpp
+  - library/integral_geom/farthest_pair.hpp
   timestamp: '2022-07-10 19:58:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
   - test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
-  - test/src/integral_geom/geometry/CGL_3_A.test.cpp
-  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
-  - test/src/integral_geom/geometry/CGL_2_B.test.cpp
-  - test/src/integral_geom/geometry/CGL_2_A.test.cpp
-  - test/src/integral_geom/geometry/CGL_3_B.test.cpp
-  - test/src/integral_geom/geometry/abc259_d.test.cpp
-  - test/src/integral_geom/geometry/CGL_1_C.test.cpp
-  - test/src/integral_geom/geometry/CGL_3_C.test.cpp
   - test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
+  - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
+  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
+  - test/src/integral_geom/geometry/abc259_d.test.cpp
+  - test/src/integral_geom/geometry/CGL_3_B.test.cpp
+  - test/src/integral_geom/geometry/CGL_1_C.test.cpp
+  - test/src/integral_geom/geometry/CGL_3_A.test.cpp
+  - test/src/integral_geom/geometry/CGL_2_A.test.cpp
+  - test/src/integral_geom/geometry/CGL_3_C.test.cpp
+  - test/src/integral_geom/geometry/CGL_2_B.test.cpp
 documentation_of: library/integral_geom/point.hpp
 layout: document
 title: Point

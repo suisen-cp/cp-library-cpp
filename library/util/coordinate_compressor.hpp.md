@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
     title: test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
   - icon: ':x:'
@@ -52,8 +52,8 @@ data:
     links: []
   bundledCode: "#line 1 \"library/util/coordinate_compressor.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <cassert>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#include <limits>\n#include <type_traits>\nnamespace suisen {\n    template\
-    \ <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \n\n\n\n#include <limits>\n#include <iostream>\n#include <type_traits>\n\nnamespace\
+    \ suisen {\n    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
     \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
     \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
     \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
@@ -273,22 +273,22 @@ data:
   isVerificationFile: false
   path: library/util/coordinate_compressor.hpp
   requiredBy:
-  - library/datastructure/compressed_wavelet_matrix.hpp
-  - library/algorithm/inversion_number.hpp
   - library/geom/segment_intersections.hpp
-  timestamp: '2023-09-06 20:34:12+09:00'
+  - library/algorithm/inversion_number.hpp
+  - library/datastructure/compressed_wavelet_matrix.hpp
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
-  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
-  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
   - test/src/util/coordinate_compressor/dummy.test.cpp
   - test/src/graph/functional_graph/abc254_g.test.cpp
   - test/src/geom/segment_intersections/CGL_6_A.test.cpp
+  - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
+  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
 documentation_of: library/util/coordinate_compressor.hpp
 layout: document
 title: "\u5EA7\u6A19\u5727\u7E2E"

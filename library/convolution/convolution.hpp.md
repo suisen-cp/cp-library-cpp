@@ -105,19 +105,19 @@ data:
   isVerificationFile: false
   path: library/convolution/convolution.hpp
   requiredBy:
-  - library/convolution/or_convolution.hpp
-  - library/convolution/xor_convolution.hpp
-  - library/convolution/lcm_convolution.hpp
-  - library/convolution/gcd_convolution.hpp
   - library/convolution/and_convolution.hpp
+  - library/convolution/lcm_convolution.hpp
+  - library/convolution/xor_convolution.hpp
+  - library/convolution/or_convolution.hpp
+  - library/convolution/gcd_convolution.hpp
   timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
-  - test/src/convolution/gcd_convolution/lcms.test.cpp
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/lcm_convolution/lcm_convolution.test.cpp
+  - test/src/convolution/gcd_convolution/lcms.test.cpp
+  - test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
 documentation_of: library/convolution/convolution.hpp
 layout: document
 title: Convolution

@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
     title: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -143,10 +143,10 @@ data:
   timestamp: '2022-04-10 03:29:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/graph/functional_graph/abc254_g.test.cpp
+  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
   - test/src/datastructure/util/range_set/DSL_2_D.test.cpp
   - test/src/datastructure/util/range_set/yuki674.test.cpp
-  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - test/src/graph/functional_graph/abc254_g.test.cpp
 documentation_of: library/datastructure/util/range_set.hpp
 layout: document
 title: Range Set

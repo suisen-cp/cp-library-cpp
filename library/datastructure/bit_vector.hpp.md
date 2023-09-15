@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   - icon: ':x:'
@@ -24,16 +24,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/dummy.test.cpp
     title: test/src/datastructure/wavelet_matrix/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
     title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - icon: ':x:'
@@ -46,8 +46,8 @@ data:
     links: []
   bundledCode: "#line 1 \"library/datastructure/bit_vector.hpp\"\n\n\n\n#include <cstdint>\n\
     #include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include\
-    \ <limits>\n#include <type_traits>\nnamespace suisen {\n    template <typename\
-    \ ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \ <limits>\n#include <iostream>\n#include <type_traits>\n\nnamespace suisen {\n\
+    \    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
     \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
     \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
     \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
@@ -176,20 +176,20 @@ data:
   isVerificationFile: false
   path: library/datastructure/bit_vector.hpp
   requiredBy:
-  - library/datastructure/wavelet_matrix.hpp
-  - library/datastructure/compressed_wavelet_matrix.hpp
   - library/range_query/static_range_xored_mex_query.hpp
-  timestamp: '2023-09-06 20:34:12+09:00'
+  - library/datastructure/compressed_wavelet_matrix.hpp
+  - library/datastructure/wavelet_matrix.hpp
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/wavelet_matrix/dummy.test.cpp
-  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
   - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
+  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/wavelet_matrix/dummy.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
 documentation_of: library/datastructure/bit_vector.hpp
 layout: document
 title: Bit Vector

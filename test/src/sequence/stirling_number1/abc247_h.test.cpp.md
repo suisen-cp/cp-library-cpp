@@ -39,8 +39,8 @@ data:
     \n\n\n\n#include <algorithm>\n#include <cassert>\n#line 8 \"library/polynomial/fps.hpp\"\
     \n\n#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#line 5 \"library/polynomial/fps_naive.hpp\"\
     \n#include <cmath>\n#include <limits>\n#include <type_traits>\n#include <vector>\n\
-    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
-    \nnamespace suisen {\n    template <typename ...Constraints> using constraints_t\
+    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 7 \"library/type_traits/type_traits.hpp\"\
+    \n\nnamespace suisen {\n    template <typename ...Constraints> using constraints_t\
     \ = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\n\
     \    template <typename T, typename = std::nullptr_t> struct bitnum { static constexpr\
     \ int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
@@ -579,7 +579,7 @@ data:
   isVerificationFile: true
   path: test/src/sequence/stirling_number1/abc247_h.test.cpp
   requiredBy: []
-  timestamp: '2023-09-06 20:34:12+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/sequence/stirling_number1/abc247_h.test.cpp

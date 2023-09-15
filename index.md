@@ -211,7 +211,7 @@ data:
     - icon: ':warning:'
       path: library/datastructure/splay_tree_set.hpp
       title: Splay Tree Set
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/wavelet_matrix.hpp
       title: Wavelet Matrix
   - name: library/datastructure/bbst
@@ -697,7 +697,7 @@ data:
       title: Util
   - name: library/number
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/number/barrett_reduction.hpp
       title: Barrett Reduction
     - icon: ':warning:'
@@ -755,6 +755,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/mod_sqrt.hpp
       title: Mod Sqrt
+    - icon: ':warning:'
+      path: library/number/modint.hpp
+      title: library/number/modint.hpp
     - icon: ':x:'
       path: library/number/modint_2^61m1.hpp
       title: Modint 2^61m1
@@ -846,6 +849,9 @@ data:
     - icon: ':x:'
       path: library/polynomial/rational_fps.hpp
       title: Rational Fps
+    - icon: ':x:'
+      path: library/polynomial/rook_polynomial.hpp
+      title: library/polynomial/rook_polynomial.hpp
     - icon: ':question:'
       path: library/polynomial/shift_of_sampling_points.hpp
       title: Shift of Sampling Points of Polynomial
@@ -871,7 +877,7 @@ data:
     - icon: ':x:'
       path: library/sequence/bernoulli_number.hpp
       title: Bernoulli Number
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/sequence/binomial_coefficient.hpp
       title: Binomial Coefficient
     - icon: ':x:'
@@ -1130,7 +1136,7 @@ data:
     - icon: ':warning:'
       path: library/util/search.hpp
       title: ''
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/util/step_sum.hpp
       title: Step Sum
     - icon: ':warning:'
@@ -1741,7 +1747,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
       title: test/src/datastructure/util/range_set/DSL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
       title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1749,16 +1755,16 @@ data:
       title: test/src/datastructure/util/range_set/yuki674.test.cpp
   - name: test/src/datastructure/wavelet_matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/dummy.test.cpp
       title: test/src/datastructure/wavelet_matrix/dummy.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
       title: test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
       title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
   - name: test/src/dp/longest_increasing_subsequence
@@ -2439,6 +2445,11 @@ data:
     - icon: ':x:'
       path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
       title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - name: test/src/polynomial/rook_polynomial
+    pages:
+    - icon: ':x:'
+      path: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+      title: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
   - name: test/src/polynomial/shift_of_sampling_points
     pages:
     - icon: ':x:'
@@ -2472,7 +2483,7 @@ data:
       title: test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
   - name: test/src/sequence/binomial_coefficient
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
       title: test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
   - name: test/src/sequence/eulerian_number
@@ -2748,7 +2759,7 @@ data:
       title: test/src/util/coordinate_compressor/dummy.test.cpp
   - name: test/src/util/step_sum
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/util/step_sum/dummy.test.cpp
       title: test/src/util/step_sum/dummy.test.cpp
   - name: test/src/util/subset_iterator

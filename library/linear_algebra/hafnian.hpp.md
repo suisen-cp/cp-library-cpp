@@ -44,8 +44,9 @@ data:
     \n\n\n\n#line 1 \"library/convolution/subset_convolution.hpp\"\n\n\n\n#line 1\
     \ \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n#include <cmath>\n\
     #include <limits>\n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\nnamespace suisen {\n\
-    \    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <iostream>\n\
+    #line 7 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
     \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
     \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
     \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
@@ -520,7 +521,7 @@ data:
   isVerificationFile: false
   path: library/linear_algebra/hafnian.hpp
   requiredBy: []
-  timestamp: '2023-09-06 20:34:12+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp

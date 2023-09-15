@@ -256,7 +256,7 @@ data:
     \n\n\n\n#include <map>\n#line 6 \"library/number/order_Z_mZ.hpp\"\n\n#line 1 \"\
     library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n#line 6 \"library/number/fast_factorize.hpp\"\
     \n#include <random>\n#include <numeric>\n#include <utility>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\nnamespace suisen {\n\
+    \n\n\n\n#line 7 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n\
     \    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
     \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
     \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
@@ -940,7 +940,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   requiredBy: []
-  timestamp: '2023-09-06 20:35:15+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp

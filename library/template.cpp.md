@@ -46,8 +46,8 @@ data:
     \        Int _val; const Int _step;\n        repinf_impl(Int l, IntStep step =\
     \ 1) : _val(l), _step(step) {}\n        IMPL_REPITER((true))\n    };\n#undef IMPL_REPITER\n\
     }\n#line 1 \"library/io/input_stream.hpp\"\n\n\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <type_traits>\n\
-    namespace suisen {\n    template <typename ...Constraints> using constraints_t\
+    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n#include <type_traits>\n\
+    \nnamespace suisen {\n    template <typename ...Constraints> using constraints_t\
     \ = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\n\
     \    template <typename T, typename = std::nullptr_t> struct bitnum { static constexpr\
     \ int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
@@ -215,7 +215,7 @@ data:
   isVerificationFile: false
   path: library/template.cpp
   requiredBy: []
-  timestamp: '2023-09-06 20:34:22+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: library/template.cpp

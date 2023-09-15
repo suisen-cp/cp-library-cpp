@@ -28,11 +28,11 @@ data:
     \ seg[i] = seg[i / 2] % seg[i];\n        std::vector<typename FPSType::value_type>\
     \ ys(n);\n        for (int i = 0; i < n; ++i) ys[i] = seg[n + i].size() ? seg[n\
     \ + i][0] : 0;\n        return ys;\n    }\n} // namespace suisen\n\n\n#line 1\
-    \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
-    namespace suisen {\n    template <typename ...Constraints> using constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\n\
-    \    template <typename T, typename = std::nullptr_t> struct bitnum { static constexpr\
-    \ int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
+    \ \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <iostream>\n\
+    #include <type_traits>\n\nnamespace suisen {\n    template <typename ...Constraints>\
+    \ using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\
+    \n    template <typename T, typename = std::nullptr_t> struct bitnum { static\
+    \ constexpr int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
     \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
     \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
     \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: library/convolution/polynomial_eval_multipoint_eval.hpp
   requiredBy: []
-  timestamp: '2023-09-06 20:34:12+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp

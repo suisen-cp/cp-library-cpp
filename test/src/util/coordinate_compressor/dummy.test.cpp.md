@@ -21,11 +21,11 @@ data:
     \ PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n\n#include <iostream>\n\n#line 1 \"library/util/coordinate_compressor.hpp\"\n\
     \n\n\n#include <algorithm>\n#include <cassert>\n#include <vector>\n\n#line 1 \"\
-    library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include <type_traits>\n\
-    namespace suisen {\n    template <typename ...Constraints> using constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\n\
-    \    template <typename T, typename = std::nullptr_t> struct bitnum { static constexpr\
-    \ int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
+    library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#line 6 \"library/type_traits/type_traits.hpp\"\
+    \n#include <type_traits>\n\nnamespace suisen {\n    template <typename ...Constraints>\
+    \ using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\
+    \n    template <typename T, typename = std::nullptr_t> struct bitnum { static\
+    \ constexpr int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
     \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
     \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
     \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
@@ -288,7 +288,7 @@ data:
   isVerificationFile: true
   path: test/src/util/coordinate_compressor/dummy.test.cpp
   requiredBy: []
-  timestamp: '2023-09-06 20:34:12+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/util/coordinate_compressor/dummy.test.cpp

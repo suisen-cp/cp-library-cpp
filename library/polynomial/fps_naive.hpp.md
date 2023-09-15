@@ -188,6 +188,9 @@ data:
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - icon: ':x:'
+    path: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+    title: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - icon: ':x:'
     path: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum.test.cpp
   - icon: ':x:'
@@ -233,28 +236,28 @@ data:
     links: []
   bundledCode: "#line 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n\
     #include <cmath>\n#include <limits>\n#include <type_traits>\n#include <vector>\n\
-    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\
-    \nnamespace suisen {\n    template <typename ...Constraints> using constraints_t\
-    \ = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\n\
-    \    template <typename T, typename = std::nullptr_t> struct bitnum { static constexpr\
-    \ int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
-    \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
-    \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
-    \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
-    \ = bitnum_v<T> == n; };\n    template <typename T, size_t n> static constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n    template <typename T, typename\
-    \ = std::nullptr_t> struct safely_multipliable { using type = T; };\n    template\
-    \ <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
-    \ is_nbit<T, 32>>> { using type = long long; };\n    template <typename T> struct\
-    \ safely_multipliable<T, constraints_t<std::is_signed<T>, is_nbit<T, 64>>> { using\
-    \ type = __int128_t; };\n    template <typename T> struct safely_multipliable<T,\
-    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> { using type = unsigned\
-    \ long long; };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_unsigned<T>,\
-    \ is_nbit<T, 64>>> { using type = __uint128_t; };\n    template <typename T> using\
-    \ safely_multipliable_t = typename safely_multipliable<T>::type;\n\n    template\
-    \ <typename T, typename = void> struct rec_value_type { using type = T; };\n \
-    \   template <typename T> struct rec_value_type<T, std::void_t<typename T::value_type>>\
-    \ {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\
+    \n#include <iostream>\n#line 7 \"library/type_traits/type_traits.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
+    \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
+    \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
+    \ std::numeric_limits<std::make_unsigned_t<T>>::digits; };\n    template <typename\
+    \ T> static constexpr int bitnum_v = bitnum<T>::value;\n    template <typename\
+    \ T, size_t n> struct is_nbit { static constexpr bool value = bitnum_v<T> == n;\
+    \ };\n    template <typename T, size_t n> static constexpr bool is_nbit_v = is_nbit<T,\
+    \ n>::value;\n\n    template <typename T, typename = std::nullptr_t> struct safely_multipliable\
+    \ { using type = T; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_signed<T>, is_nbit<T, 32>>> { using type = long long;\
+    \ };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 64>>> { using type = __int128_t; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> {\
+    \ using type = unsigned long long; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 64>>> { using type = __uint128_t;\
+    \ };\n    template <typename T> using safely_multipliable_t = typename safely_multipliable<T>::type;\n\
+    \n    template <typename T, typename = void> struct rec_value_type { using type\
+    \ = T; };\n    template <typename T> struct rec_value_type<T, std::void_t<typename\
+    \ T::value_type>> {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
     \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
     \n    template <typename T> class is_iterable {\n        template <typename T_>\
     \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
@@ -602,80 +605,81 @@ data:
   isVerificationFile: false
   path: library/polynomial/fps_naive.hpp
   requiredBy:
-  - library/linear_algebra/hafnian.hpp
   - library/polynomial/compose_exp.hpp
+  - library/polynomial/fps.hpp
   - library/polynomial/formal_power_series.hpp
   - library/polynomial/compose_inv.hpp
-  - library/polynomial/fps.hpp
-  - library/math/factorial_large.hpp
   - library/math/set_power_series.hpp
+  - library/math/factorial_large.hpp
   - library/convolution/subset_convolution.hpp
-  timestamp: '2023-09-06 20:34:12+09:00'
+  - library/linear_algebra/hafnian.hpp
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - test/src/polynomial/fps_naive/abc245_d.test.cpp
+  - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
-  - test/src/polynomial/fps_naive/abc245_d.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-  - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
+  - test/src/polynomial/fps/division_of_polynomials.test.cpp
+  - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/pow_of_fps.test.cpp
+  - test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/exp_of_fps.test.cpp
+  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/log_of_fps.test.cpp
+  - test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/fps/inv_of_fps.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
   - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - test/src/polynomial/fps/exp_of_fps.test.cpp
-  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - test/src/polynomial/fps/inv_of_fps.test.cpp
-  - test/src/polynomial/fps/log_of_fps.test.cpp
-  - test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/pow_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
+  - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
   - test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - test/src/sequence/partition_number/partition_function_2.test.cpp
-  - test/src/sequence/partition_number/partition_function.test.cpp
-  - test/src/math/set_power_series/arc105_f.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
-  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/src/math/set_power_series/abc236_h.test.cpp
-  - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - test/src/math/set_power_series/abc253_h.test.cpp
   - test/src/math/set_power_series/abc213_g.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/set_power_series/arc105_f.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
+  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - test/src/sequence/partition_number/partition_function_2.test.cpp
+  - test/src/sequence/partition_number/partition_function.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
+  - test/src/sequence/stirling_number1/abc247_h.test.cpp
 documentation_of: library/polynomial/fps_naive.hpp
 layout: document
 title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"

@@ -208,40 +208,40 @@ data:
   isVerificationFile: false
   path: library/transform/kronecker_power.hpp
   requiredBy:
-  - library/linear_algebra/hafnian.hpp
   - library/math/array_set_power_series.hpp
   - library/math/set_power_series.hpp
-  - library/convolution/or_convolution.hpp
-  - library/convolution/xor_convolution.hpp
-  - library/convolution/subset_convolution.hpp
-  - library/convolution/array_subset_convolution.hpp
   - library/convolution/and_convolution.hpp
-  - library/transform/supset.hpp
+  - library/convolution/array_subset_convolution.hpp
+  - library/convolution/xor_convolution.hpp
+  - library/convolution/or_convolution.hpp
+  - library/convolution/subset_convolution.hpp
+  - library/linear_algebra/hafnian.hpp
   - library/transform/walsh_hadamard.hpp
   - library/transform/subset.hpp
+  - library/transform/supset.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - test/src/math/array_set_power_series/arc105_f.test.cpp
-  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
   - test/src/math/array_set_power_series/abc236_h.test.cpp
-  - test/src/math/array_set_power_series/abc253_h.test.cpp
   - test/src/math/array_set_power_series/abc213_g.test.cpp
-  - test/src/math/set_power_series/arc105_f.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
-  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - test/src/math/array_set_power_series/arc105_f.test.cpp
+  - test/src/math/array_set_power_series/abc253_h.test.cpp
   - test/src/math/set_power_series/abc236_h.test.cpp
-  - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - test/src/math/set_power_series/abc253_h.test.cpp
   - test/src/math/set_power_series/abc213_g.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/set_power_series/arc105_f.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
+  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/convolution/and_convolution/and_convolution.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
   - test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - test/src/transform/kronecker_power/arc132_f.test.cpp
+  - test/src/convolution/and_convolution/and_convolution.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - test/src/transform/kronecker_power/agc044_c.test.cpp
+  - test/src/transform/kronecker_power/arc132_f.test.cpp
 documentation_of: library/transform/kronecker_power.hpp
 layout: document
 title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\u5909\

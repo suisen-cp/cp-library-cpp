@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
@@ -26,7 +26,7 @@ data:
     \n\n\n#include <cassert>\n#include <array>\n#include <type_traits>\n#include <limits>\n\
     \n#line 1 \"library/datastructure/bit_vector.hpp\"\n\n\n\n#include <cstdint>\n\
     #include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line\
-    \ 6 \"library/type_traits/type_traits.hpp\"\nnamespace suisen {\n    template\
+    \ 7 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n    template\
     \ <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
     \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
     \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
@@ -234,8 +234,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2023-09-06 20:34:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-09-15 20:02:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
 layout: document

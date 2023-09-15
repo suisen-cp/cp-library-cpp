@@ -310,8 +310,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/cycle_detection/cycle_detection.test.cpp
-  - test/src/graph/cycle_detection/dummy.test.cpp
   - test/src/graph/cycle_detection/cycle_detection_undirected.test.cpp
+  - test/src/graph/cycle_detection/dummy.test.cpp
 documentation_of: library/graph/cycle_detection.hpp
 layout: document
 title: Cycle Detection

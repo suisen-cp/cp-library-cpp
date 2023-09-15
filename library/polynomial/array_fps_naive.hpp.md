@@ -40,28 +40,29 @@ data:
     links: []
   bundledCode: "#line 1 \"library/polynomial/array_fps_naive.hpp\"\n\n\n\n#include\
     \ <cassert>\n#include <cmath>\n#include <limits>\n#include <type_traits>\n#include\
-    \ <array>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 6 \"\
-    library/type_traits/type_traits.hpp\"\nnamespace suisen {\n    template <typename\
-    \ ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
-    \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
-    \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
-    \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
-    \ std::numeric_limits<std::make_unsigned_t<T>>::digits; };\n    template <typename\
-    \ T> static constexpr int bitnum_v = bitnum<T>::value;\n    template <typename\
-    \ T, size_t n> struct is_nbit { static constexpr bool value = bitnum_v<T> == n;\
-    \ };\n    template <typename T, size_t n> static constexpr bool is_nbit_v = is_nbit<T,\
-    \ n>::value;\n\n    template <typename T, typename = std::nullptr_t> struct safely_multipliable\
-    \ { using type = T; };\n    template <typename T> struct safely_multipliable<T,\
-    \ constraints_t<std::is_signed<T>, is_nbit<T, 32>>> { using type = long long;\
-    \ };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
-    \ is_nbit<T, 64>>> { using type = __int128_t; };\n    template <typename T> struct\
-    \ safely_multipliable<T, constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> {\
-    \ using type = unsigned long long; };\n    template <typename T> struct safely_multipliable<T,\
-    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 64>>> { using type = __uint128_t;\
-    \ };\n    template <typename T> using safely_multipliable_t = typename safely_multipliable<T>::type;\n\
-    \n    template <typename T, typename = void> struct rec_value_type { using type\
-    \ = T; };\n    template <typename T> struct rec_value_type<T, std::void_t<typename\
-    \ T::value_type>> {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \ <array>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#line 5 \"\
+    library/type_traits/type_traits.hpp\"\n#include <iostream>\n#line 7 \"library/type_traits/type_traits.hpp\"\
+    \n\nnamespace suisen {\n    template <typename ...Constraints> using constraints_t\
+    \ = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\n\
+    \    template <typename T, typename = std::nullptr_t> struct bitnum { static constexpr\
+    \ int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
+    \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
+    \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
+    \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
+    \ = bitnum_v<T> == n; };\n    template <typename T, size_t n> static constexpr\
+    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n    template <typename T, typename\
+    \ = std::nullptr_t> struct safely_multipliable { using type = T; };\n    template\
+    \ <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 32>>> { using type = long long; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_signed<T>, is_nbit<T, 64>>> { using\
+    \ type = __int128_t; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> { using type = unsigned\
+    \ long long; };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_unsigned<T>,\
+    \ is_nbit<T, 64>>> { using type = __uint128_t; };\n    template <typename T> using\
+    \ safely_multipliable_t = typename safely_multipliable<T>::type;\n\n    template\
+    \ <typename T, typename = void> struct rec_value_type { using type = T; };\n \
+    \   template <typename T> struct rec_value_type<T, std::void_t<typename T::value_type>>\
+    \ {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
     \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
     \n    template <typename T> class is_iterable {\n        template <typename T_>\
     \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
@@ -354,14 +355,14 @@ data:
   requiredBy:
   - library/math/array_set_power_series.hpp
   - library/convolution/array_subset_convolution.hpp
-  timestamp: '2023-09-06 20:34:12+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/math/array_set_power_series/arc105_f.test.cpp
-  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
   - test/src/math/array_set_power_series/abc236_h.test.cpp
-  - test/src/math/array_set_power_series/abc253_h.test.cpp
   - test/src/math/array_set_power_series/abc213_g.test.cpp
+  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - test/src/math/array_set_power_series/arc105_f.test.cpp
+  - test/src/math/array_set_power_series/abc253_h.test.cpp
 documentation_of: library/polynomial/array_fps_naive.hpp
 layout: document
 title: Array Fps Naive

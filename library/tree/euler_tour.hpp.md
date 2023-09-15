@@ -93,8 +93,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/euler_tour/vertex_add_path_sum.test.cpp
-  - test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp
   - test/src/tree/euler_tour/lowest_common_ancestor.test.cpp
+  - test/src/tree/euler_tour/vertex_add_subtree_sum.test.cpp
 documentation_of: library/tree/euler_tour.hpp
 layout: document
 title: Euler Tour

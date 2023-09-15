@@ -22,8 +22,8 @@ data:
     \n#define PROBLEM \"https://atcoder.jp/contests/dp/tasks/dp_z\"\n\n#include <iostream>\n\
     #include <vector>\n\n#line 1 \"library/datastructure/convex_hull_trick.hpp\"\n\
     \n\n\n#include <cassert>\n#include <limits>\n#include <set>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <type_traits>\n\
-    namespace suisen {\n    template <typename ...Constraints> using constraints_t\
+    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\n#include <type_traits>\n\
+    \nnamespace suisen {\n    template <typename ...Constraints> using constraints_t\
     \ = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\n\
     \    template <typename T, typename = std::nullptr_t> struct bitnum { static constexpr\
     \ int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
@@ -127,7 +127,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
   requiredBy: []
-  timestamp: '2023-09-06 20:34:12+09:00'
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp

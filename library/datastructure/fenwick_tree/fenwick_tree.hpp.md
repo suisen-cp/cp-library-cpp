@@ -137,22 +137,22 @@ data:
   isVerificationFile: false
   path: library/datastructure/fenwick_tree/fenwick_tree.hpp
   requiredBy:
+  - library/geom/segment_intersections.hpp
   - library/datastructure/fenwick_tree/rectangle_add_rectangle_sum.hpp
   - library/datastructure/fenwick_tree/fenwick_tree_2d_sparse.hpp
   - library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
-  - library/geom/segment_intersections.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
+  - test/src/datastructure/fenwick_tree/rectangle_add_rectangle_sum/dummy.test.cpp
   - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
-  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
 documentation_of: library/datastructure/fenwick_tree/fenwick_tree.hpp
 layout: document
 title: Fenwick Tree

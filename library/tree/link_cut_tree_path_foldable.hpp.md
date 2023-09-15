@@ -228,8 +228,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/tree/link_cut_tree_path_foldable/lca.test.cpp
-  - test/src/tree/link_cut_tree_path_foldable/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/src/tree/link_cut_tree_path_foldable/dynamic_tree_vertex_set_path_composite.test.cpp
+  - test/src/tree/link_cut_tree_path_foldable/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/src/tree/link_cut_tree_path_foldable/dummy1.test.cpp
 documentation_of: library/tree/link_cut_tree_path_foldable.hpp
 layout: document

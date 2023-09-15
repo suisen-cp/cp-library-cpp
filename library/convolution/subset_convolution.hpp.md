@@ -68,8 +68,9 @@ data:
   bundledCode: "#line 1 \"library/convolution/subset_convolution.hpp\"\n\n\n\n#line\
     \ 1 \"library/polynomial/fps_naive.hpp\"\n\n\n\n#include <cassert>\n#include <cmath>\n\
     #include <limits>\n#include <type_traits>\n#include <vector>\n\n#line 1 \"library/type_traits/type_traits.hpp\"\
-    \n\n\n\n#line 6 \"library/type_traits/type_traits.hpp\"\nnamespace suisen {\n\
-    \    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \n\n\n\n#line 5 \"library/type_traits/type_traits.hpp\"\n#include <iostream>\n\
+    #line 7 \"library/type_traits/type_traits.hpp\"\n\nnamespace suisen {\n    template\
+    \ <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
     \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
     \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
     \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
@@ -420,20 +421,20 @@ data:
   isVerificationFile: false
   path: library/convolution/subset_convolution.hpp
   requiredBy:
-  - library/linear_algebra/hafnian.hpp
   - library/math/set_power_series.hpp
-  timestamp: '2023-09-06 20:34:12+09:00'
+  - library/linear_algebra/hafnian.hpp
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - test/src/math/set_power_series/arc105_f.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
-  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/src/math/set_power_series/abc236_h.test.cpp
-  - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - test/src/math/set_power_series/abc253_h.test.cpp
   - test/src/math/set_power_series/abc213_g.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/set_power_series/arc105_f.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
+  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
 documentation_of: library/convolution/subset_convolution.hpp
 layout: document
 title: Subset Convolution

@@ -213,8 +213,8 @@ data:
   timestamp: '2023-05-18 22:36:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
   - test/src/tree/point_get_range_contour_operate/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/src/tree/point_get_range_contour_operate/yuki1038.test.cpp
 documentation_of: library/tree/point_get_range_contour_operate.hpp
 layout: document
 title: Point Get Range Contour Operate

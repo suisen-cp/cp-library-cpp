@@ -62,28 +62,28 @@ data:
     links: []
   bundledCode: "#line 1 \"library/number/fast_factorize.hpp\"\n\n\n\n#include <cmath>\n\
     #include <iostream>\n#include <random>\n#include <numeric>\n#include <utility>\n\
-    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#include\
-    \ <type_traits>\nnamespace suisen {\n    template <typename ...Constraints> using\
-    \ constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;\n\
-    \n    template <typename T, typename = std::nullptr_t> struct bitnum { static\
-    \ constexpr int value = 0; };\n    template <typename T> struct bitnum<T, constraints_t<std::is_integral<T>>>\
-    \ { static constexpr int value = std::numeric_limits<std::make_unsigned_t<T>>::digits;\
-    \ };\n    template <typename T> static constexpr int bitnum_v = bitnum<T>::value;\n\
-    \    template <typename T, size_t n> struct is_nbit { static constexpr bool value\
-    \ = bitnum_v<T> == n; };\n    template <typename T, size_t n> static constexpr\
-    \ bool is_nbit_v = is_nbit<T, n>::value;\n\n    template <typename T, typename\
-    \ = std::nullptr_t> struct safely_multipliable { using type = T; };\n    template\
-    \ <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
-    \ is_nbit<T, 32>>> { using type = long long; };\n    template <typename T> struct\
-    \ safely_multipliable<T, constraints_t<std::is_signed<T>, is_nbit<T, 64>>> { using\
-    \ type = __int128_t; };\n    template <typename T> struct safely_multipliable<T,\
-    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> { using type = unsigned\
-    \ long long; };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_unsigned<T>,\
-    \ is_nbit<T, 64>>> { using type = __uint128_t; };\n    template <typename T> using\
-    \ safely_multipliable_t = typename safely_multipliable<T>::type;\n\n    template\
-    \ <typename T, typename = void> struct rec_value_type { using type = T; };\n \
-    \   template <typename T> struct rec_value_type<T, std::void_t<typename T::value_type>>\
-    \ {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
+    \n#line 1 \"library/type_traits/type_traits.hpp\"\n\n\n\n#include <limits>\n#line\
+    \ 6 \"library/type_traits/type_traits.hpp\"\n#include <type_traits>\n\nnamespace\
+    \ suisen {\n    template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>,\
+    \ std::nullptr_t>;\n\n    template <typename T, typename = std::nullptr_t> struct\
+    \ bitnum { static constexpr int value = 0; };\n    template <typename T> struct\
+    \ bitnum<T, constraints_t<std::is_integral<T>>> { static constexpr int value =\
+    \ std::numeric_limits<std::make_unsigned_t<T>>::digits; };\n    template <typename\
+    \ T> static constexpr int bitnum_v = bitnum<T>::value;\n    template <typename\
+    \ T, size_t n> struct is_nbit { static constexpr bool value = bitnum_v<T> == n;\
+    \ };\n    template <typename T, size_t n> static constexpr bool is_nbit_v = is_nbit<T,\
+    \ n>::value;\n\n    template <typename T, typename = std::nullptr_t> struct safely_multipliable\
+    \ { using type = T; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_signed<T>, is_nbit<T, 32>>> { using type = long long;\
+    \ };\n    template <typename T> struct safely_multipliable<T, constraints_t<std::is_signed<T>,\
+    \ is_nbit<T, 64>>> { using type = __int128_t; };\n    template <typename T> struct\
+    \ safely_multipliable<T, constraints_t<std::is_unsigned<T>, is_nbit<T, 32>>> {\
+    \ using type = unsigned long long; };\n    template <typename T> struct safely_multipliable<T,\
+    \ constraints_t<std::is_unsigned<T>, is_nbit<T, 64>>> { using type = __uint128_t;\
+    \ };\n    template <typename T> using safely_multipliable_t = typename safely_multipliable<T>::type;\n\
+    \n    template <typename T, typename = void> struct rec_value_type { using type\
+    \ = T; };\n    template <typename T> struct rec_value_type<T, std::void_t<typename\
+    \ T::value_type>> {\n        using type = typename rec_value_type<typename T::value_type>::type;\n\
     \    };\n    template <typename T> using rec_value_type_t = typename rec_value_type<T>::type;\n\
     \n    template <typename T> class is_iterable {\n        template <typename T_>\
     \ static auto test(T_ e) -> decltype(e.begin(), e.end(), std::true_type{});\n\
@@ -414,21 +414,21 @@ data:
   isVerificationFile: false
   path: library/number/fast_factorize.hpp
   requiredBy:
-  - library/convolution/multi_variate_convolution_circular.hpp
-  - library/number/primitive_root.hpp
   - library/number/fast_discrete_logarithm.hpp
   - library/number/tetration_mod.hpp
+  - library/number/primitive_root.hpp
   - library/number/order_Z_mZ.hpp
-  timestamp: '2023-09-06 20:34:12+09:00'
+  - library/convolution/multi_variate_convolution_circular.hpp
+  timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - test/src/number/primitive_root/dummy.test.cpp
-  - test/src/number/primitive_root/primitive_root.test.cpp
-  - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/tetration_mod/tetration_mod.test.cpp
+  - test/src/number/fast_factorize/factorize.test.cpp
+  - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
 documentation_of: library/number/fast_factorize.hpp
 layout: document
 title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
