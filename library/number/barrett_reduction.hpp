@@ -2,40 +2,33 @@
 #define SUISEN_BARRETT_REDUCTION
 
 #include <array>
+#include <cassert>
 #include <cstdint>
 #include <utility>
 
 namespace suisen {
-    struct BarrettReduction {
-        uint32_t m;
-        uint64_t im;
-        BarrettReduction() = default;
-        BarrettReduction(uint32_t m) : m(m), im(uint64_t(0x7fff'ffff'ffff'ffff) / m + 1) {}
-
-        // 0 <= n < 2**63
-        std::pair<uint64_t, uint32_t> quorem(uint64_t n) const {
-            uint64_t q = uint64_t((__uint128_t(n) * im) >> 63);
-            int64_t r = n - q * m;
-            if (r < 0) --q, r += m;
-            return std::make_pair(q, r);
+    struct barrett {
+        constexpr barrett() : M(1), L(0) {}
+        constexpr explicit barrett(uint32_t M) : M(M), L(uint64_t(-1) / M + 1) { assert(M); }
+        constexpr int32_t mod() { return M; }
+        constexpr uint32_t umod() const { return M; }
+        // floor(x/M) (correctly works for all 0<=x<2^64)
+        template <bool care_M1 = true> constexpr uint64_t quo(uint64_t x) const { return quorem<care_M1>(x).first; }
+        // x%M (correctly works for all 0<=x<2^64)
+        template <bool care_M1 = true> constexpr uint32_t rem(uint64_t x) const { return quorem<care_M1>(x).second; }
+        // { floor(x/M), x%M } (correctly works for all 0<=x<2^64)
+        template <bool care_M1 = true> constexpr std::pair<uint64_t, uint32_t> quorem(uint64_t x) const {
+            if constexpr (care_M1) if (M == 1) return { x, 0 };
+            uint64_t q = (__uint128_t(x) * L) >> 64;
+            int32_t r = x - q * M;
+            if (r < 0) --q, r += M;
+            return { q, uint32_t(r) };
         }
-        // 0 <= n < 2**63
-        uint32_t quo(uint64_t n) const {
-            return quorem(n).first;
-        }
-        // 0 <= n < 2**63
-        uint32_t rem(uint64_t n) const {
-            return quorem(n).second;
-        }
-
-        template <typename Head, typename ...Tails>
-        uint32_t mul(Head &&head, Tails &&...tails) const {
-            if constexpr (sizeof...(tails)) {
-                return rem(uint64_t(head) * mul(std::forward<Tails>(tails)...));
-            } else {
-                return head;
-            }
-        }
+        // a*b mod M
+        template <bool care_M1 = true> constexpr uint32_t mul(uint32_t a, uint32_t b) const { return rem<care_M1>(uint64_t(a) * b); }
+    private:
+        uint32_t M; // mod
+        uint64_t L; // ceil(2^K / M), where K = 64 (if M != 1)
     };
 } // namespace suisen
 

@@ -2,7 +2,9 @@
 #define SUISEN_TYPE_TRITS
 
 #include <limits>
+#include <iostream>
 #include <type_traits>
+
 namespace suisen {
     template <typename ...Constraints> using constraints_t = std::enable_if_t<std::conjunction_v<Constraints...>, std::nullptr_t>;
 

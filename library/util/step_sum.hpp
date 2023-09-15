@@ -38,7 +38,7 @@ namespace suisen {
     private:
         std::vector<value_type> _sum;
         int _step, _n;
-        BarrettReduction _br;
+        barrett _br;
     };
     template <typename Sequence>
     StepSum(Sequence, int) -> StepSum<std::decay_t<decltype(*std::declval<Sequence>().begin())>>;

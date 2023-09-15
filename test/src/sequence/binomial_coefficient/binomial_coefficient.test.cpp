@@ -11,9 +11,9 @@ int main() {
     int t, m;
     std::cin >> t >> m;
     
-    using suisen::BinomialCoefficient;
+    using suisen::binom_small_mod;
 
-    BinomialCoefficient binom(m);
+    binom_small_mod binom(m);
     for (int qid = 0; qid < t; ++qid) {
         long long n, k;
         std::cin >> n >> k;
