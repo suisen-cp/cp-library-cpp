@@ -2,6 +2,7 @@
 #define SUISEN_MODINT
 
 #include <cassert>
+#include <cstdint>
 #include <limits>
 #include <optional>
 #include <iostream>
@@ -286,13 +287,13 @@ namespace suisen {
     }
 
     template <typename mint, std::enable_if_t<is_modint_v<mint>, std::nullptr_t> = nullptr>
-    mint sqrt(mint a) { return *safe_sqrt(a); }
+    mint sqrt(mint a) { return *mod_sqrt(a); }
     template <typename mint, std::enable_if_t<is_modint_v<mint>, std::nullptr_t> = nullptr>
     mint log(mint a) { assert(a == 1); return 0; }
     template <typename mint, std::enable_if_t<is_modint_v<mint>, std::nullptr_t> = nullptr>
     mint exp(mint a) { assert(a == 0); return 1; }
     template <typename mint, typename T, std::enable_if_t<is_modint_v<mint>, std::nullptr_t> = nullptr>
-    mint pow(mint a, T b) { return a.pow(b); }
+    mint pow(mint a, T b) { return a.xpow(b); }
     template <typename mint, std::enable_if_t<is_modint_v<mint>, std::nullptr_t> = nullptr>
     mint inv(mint a) { return a.inv(); }
 
