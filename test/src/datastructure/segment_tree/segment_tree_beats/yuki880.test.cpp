@@ -5,16 +5,21 @@
 
 #include "library/datastructure/segment_tree/segment_tree_beats.hpp"
 
-constexpr long long inf = 2000000000;
+constexpr int inf = 2000000000;
+
+int sat_lcm(int x, int y) {
+    if (x == inf or y == inf) return inf;
+    return std::min<long long>(inf, 1LL * (x / std::gcd(x, y)) * y);
+}
 
 struct S {
     long long sum_v;
     int max_v;
-    long long lcm_v;
+    int lcm_v;
     int siz;
     bool fail = false;
 
-    S(long long sum_v, int max_v, long long lcm_v, int siz) : sum_v(sum_v), max_v(max_v), lcm_v(lcm_v), siz(siz) {}
+    S(long long sum_v, int max_v, int lcm_v, int siz) : sum_v(sum_v), max_v(max_v), lcm_v(lcm_v), siz(siz) {}
     S(int v) : sum_v(v), max_v(v), lcm_v(v), siz(1) {}
     S() = default;
 };
@@ -34,18 +39,22 @@ struct F {
 };
 
 S op(S x, S y) {
-    return S { x.sum_v + y.sum_v, std::max(x.max_v, y.max_v), std::min(std::lcm(x.lcm_v, y.lcm_v), inf), x.siz + y.siz };
+    return S { x.sum_v + y.sum_v, std::max(x.max_v, y.max_v), sat_lcm(x.lcm_v, y.lcm_v), x.siz + y.siz };
 }
 S e() {
     return S { 0LL, 0, 1, 0 };
 }
 
 S mapping(F f, S x) {
-    if (f.upd_v) return S { (long long) f.upd_v * x.siz, f.upd_v , f.upd_v, x.siz };
+    if (x.fail) return x;
+    if (x.sum_v == 1LL * x.max_v * x.siz and f.gcd_v) {
+        f = F::upd_query(std::gcd(x.max_v, f.gcd_v));
+    }
+    if (f.upd_v) return S { (long long) f.upd_v * x.siz, f.upd_v, f.upd_v, x.siz };
     if (f.gcd_v) {
         if (x.siz == 1) {
             return S { std::gcd(x.max_v, f.gcd_v) };
-        } else if (f.gcd_v % x.lcm_v) {
+        } else if (x.lcm_v == inf or f.gcd_v % x.lcm_v) {
             x.fail = true;
         }
     }
