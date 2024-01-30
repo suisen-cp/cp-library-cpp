@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/polynomial/rook_polynomial.hpp
+    title: library/polynomial/rook_polynomial.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
     title: test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+    title: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/rook_polynomial/dummy.test.cpp
+    title: test/src/polynomial/rook_polynomial/dummy.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -88,10 +97,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/datastructure/cartesian_tree.hpp
-  requiredBy: []
+  requiredBy:
+  - library/polynomial/rook_polynomial.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - test/src/polynomial/rook_polynomial/dummy.test.cpp
   - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
 documentation_of: library/datastructure/cartesian_tree.hpp
 layout: document

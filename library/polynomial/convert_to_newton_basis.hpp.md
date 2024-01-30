@@ -2,19 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/rook_polynomial.hpp
     title: library/polynomial/rook_polynomial.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
     title: test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
     title: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/rook_polynomial/dummy.test.cpp
+    title: test/src/polynomial/rook_polynomial/dummy.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/convert_to_newton_basis.hpp\"\n\n\n\n\
@@ -55,10 +58,11 @@ data:
   requiredBy:
   - library/polynomial/rook_polynomial.hpp
   timestamp: '2023-05-21 01:49:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
   - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - test/src/polynomial/rook_polynomial/dummy.test.cpp
 documentation_of: library/polynomial/convert_to_newton_basis.hpp
 layout: document
 title: Convert To Newton Basis

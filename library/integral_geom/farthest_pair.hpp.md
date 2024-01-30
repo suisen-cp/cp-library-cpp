@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/integral_geom/convex_hull.hpp
     title: "\u51F8\u5305 (\u6574\u6570\u5EA7\u6A19)"
   - icon: ':heavy_check_mark:'

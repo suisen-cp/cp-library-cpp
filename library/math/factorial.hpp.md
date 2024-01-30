@@ -21,6 +21,9 @@ data:
     path: library/polynomial/polynomial_taylor_shift.hpp
     title: Polynomial Taylor Shift
   - icon: ':heavy_check_mark:'
+    path: library/polynomial/rook_polynomial.hpp
+    title: library/polynomial/rook_polynomial.hpp
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
   - icon: ':warning:'
@@ -105,9 +108,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
     title: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/src/polynomial/rook_polynomial/dummy.test.cpp
+    title: test/src/polynomial/rook_polynomial/dummy.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
@@ -147,9 +153,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
     title: test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/factorial.hpp\"\n\n\n\n#include <cassert>\n\
@@ -222,6 +228,7 @@ data:
   - library/polynomial/compose_exp.hpp
   - library/polynomial/shift_of_sampling_points.hpp
   - library/polynomial/polynomial_taylor_shift.hpp
+  - library/polynomial/rook_polynomial.hpp
   - library/sequence/eulerian_number.hpp
   - library/sequence/stirling_number2.hpp
   - library/sequence/stirling_number2_small_prime_mod.hpp
@@ -232,7 +239,7 @@ data:
   - library/sequence/binomial_coefficient_small_prime_mod.hpp
   - library/sequence/bernoulli_number.hpp
   timestamp: '2024-01-30 20:57:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/factorial_large/dummy.test.cpp
   - test/src/math/factorial_large/many_factorials.test.cpp
@@ -250,6 +257,7 @@ data:
   - test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
   - test/src/polynomial/compose_exp/arc154_f.test.cpp
   - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - test/src/polynomial/rook_polynomial/dummy.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
   - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   - test/src/linear_algebra/circulant_matrix/arc139_e.test.cpp

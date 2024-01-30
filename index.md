@@ -333,7 +333,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/dual_segment_tree.hpp
       title: "\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/lazy_segment_tree.hpp
       title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -361,7 +361,7 @@ data:
       path: library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
       title: "2D \u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u70B9\u7FA4\u304C\u758E\u306A\
         \u5834\u5408)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/segment_tree_beats.hpp
       title: Segment Tree Beats
     - icon: ':heavy_check_mark:'
@@ -540,7 +540,7 @@ data:
     - icon: ':warning:'
       path: library/graph/minimum_vertex_cover.hpp
       title: "Minimum Vertex Cover (\u6700\u5C0F\u9802\u70B9\u88AB\u8986)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/minmax_floyd_warshall.hpp
       title: Minmax Floyd Warshall
     - icon: ':warning:'
@@ -580,13 +580,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/integral_geom/closest_pair.hpp
       title: "\u6700\u8FD1\u70B9\u5BFE (\u6574\u6570\u5EA7\u6A19)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/integral_geom/convex_hull.hpp
       title: "\u51F8\u5305 (\u6574\u6570\u5EA7\u6A19)"
     - icon: ':warning:'
       path: library/integral_geom/convex_hull_inclusion.hpp
       title: Convex Hull Inclusion
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/integral_geom/count_lattice_point.hpp
       title: "\u683C\u5B50\u70B9\u3092\u9802\u70B9\u3068\u3059\u308B\u591A\u89D2\u5F62\
         \u306E\u5185\u90E8\u307E\u305F\u306F\u8FBA\u4E0A\u306B\u5B58\u5728\u3059\u308B\
@@ -663,7 +663,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/binomial_coefficient_sum.hpp
       title: Binomial Coefficient Sum
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
     - icon: ':warning:'
@@ -672,10 +672,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/math/factorial_large.hpp
       title: Factorial Large
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/inv_mods.hpp
       title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
     - icon: ':heavy_check_mark:'
@@ -698,7 +698,7 @@ data:
       title: Util
   - name: library/number
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/number/barrett_reduction.hpp
       title: Barrett Reduction
     - icon: ':warning:'
@@ -798,7 +798,7 @@ data:
       title: Util
   - name: library/optimization
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/optimization/alien_dp.hpp
       title: Alien Dp
     - icon: ':heavy_check_mark:'
@@ -828,10 +828,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/compose_inv.hpp
       title: "\u9006\u95A2\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/convert_to_newton_basis.hpp
       title: Convert To Newton Basis
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/formal_power_series.hpp
       title: Formal Power Series
     - icon: ':heavy_check_mark:'
@@ -840,7 +840,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
     - icon: ':heavy_check_mark:'
@@ -864,7 +864,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/rational_fps.hpp
       title: Rational Fps
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/polynomial/rook_polynomial.hpp
       title: library/polynomial/rook_polynomial.hpp
     - icon: ':heavy_check_mark:'
@@ -1052,7 +1052,7 @@ data:
     - icon: ':warning:'
       path: library/tree/get_path.hpp
       title: Get Path
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/heavy_light_decomposition.hpp
       title: Heavy Light Decomposition (HLD)
     - icon: ':heavy_check_mark:'
@@ -1092,10 +1092,10 @@ data:
     - icon: ':warning:'
       path: library/tree/range_contour_sum_invertible.hpp
       title: Range Contour Sum Invertible
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/rerooting.hpp
       title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/tree/rerooting_invertible.hpp
       title: Rerooting Invertible
     - icon: ':heavy_check_mark:'
@@ -1106,7 +1106,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/type_traits/operator.hpp
       title: Operator
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/type_traits/type_traits.hpp
       title: Type Traits
   - name: library/util
@@ -1117,7 +1117,7 @@ data:
     - icon: ':warning:'
       path: library/util/container_utils.hpp
       title: Container Utils
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/coordinate_compressor.hpp
       title: "\u5EA7\u6A19\u5727\u7E2E"
     - icon: ':warning:'
@@ -1163,13 +1163,13 @@ data:
     - icon: ':warning:'
       path: library/util/search.hpp
       title: ''
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/util/step_sum.hpp
       title: Step Sum
     - icon: ':warning:'
       path: library/util/step_view.hpp
       title: Step View
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/subset_iterator.hpp
       title: Subset Iterator
     - icon: ':warning:'
@@ -1184,7 +1184,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_ops.hpp
       title: Tuple Ops
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/util/update_proxy_object.hpp
       title: Update Proxy Object
     - icon: ':warning:'
@@ -1696,7 +1696,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
       title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - name: test/src/datastructure/segment_tree/sortable_segment_tree
@@ -2007,7 +2007,7 @@ data:
       title: test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   - name: test/src/graph/minmax_floyd_warshall
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
       title: test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
   - name: test/src/graph/segment_tree_graph
@@ -2050,9 +2050,6 @@ data:
       title: test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
   - name: test/src/integral_geom/count_lattice_point
     pages:
-    - icon: ':x:'
-      path: test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
-      title: test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
       title: test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
@@ -2343,10 +2340,10 @@ data:
       title: test/src/number/util/abc222_g.test.cpp
   - name: test/src/optimization/alien_dp
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/optimization/alien_dp/abc218_h_1.test.cpp
       title: test/src/optimization/alien_dp/abc218_h_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/optimization/alien_dp/abc218_h_2.test.cpp
       title: test/src/optimization/alien_dp/abc218_h_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2543,9 +2540,12 @@ data:
       title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - name: test/src/polynomial/rook_polynomial
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
       title: test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/polynomial/rook_polynomial/dummy.test.cpp
+      title: test/src/polynomial/rook_polynomial/dummy.test.cpp
   - name: test/src/polynomial/shift_of_sampling_points
     pages:
     - icon: ':heavy_check_mark:'
@@ -2749,25 +2749,25 @@ data:
       title: test/src/tree/frequency_table_of_tree_distance/frequency_table_of_tree_distance.test.cpp
   - name: test/src/tree/heavy_light_decomposition
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
       title: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
       title: test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
       title: test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - name: test/src/tree/level_ancestor
@@ -2849,13 +2849,13 @@ data:
       title: test/src/tree/point_set_range_contour_sum/vertex_add_range_contour_sum_on_tree.test.cpp
   - name: test/src/tree/rerooting
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/abc160_f.test.cpp
       title: test/src/tree/rerooting/abc160_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/abc222_f.test.cpp
       title: test/src/tree/rerooting/abc222_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting/edpc_v.test.cpp
       title: test/src/tree/rerooting/edpc_v.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2863,7 +2863,7 @@ data:
       title: test/src/tree/rerooting/tree_path_composite_sum.test.cpp
   - name: test/src/tree/rerooting_invertible
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/tree/rerooting_invertible/abc160_f.test.cpp
       title: test/src/tree/rerooting_invertible/abc160_f.test.cpp
   - name: test/src/tree/tree_isomorphism_classification
@@ -2873,12 +2873,12 @@ data:
       title: test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp
   - name: test/src/util/coordinate_compressor
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/coordinate_compressor/dummy.test.cpp
       title: test/src/util/coordinate_compressor/dummy.test.cpp
   - name: test/src/util/step_sum
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/util/step_sum/dummy.test.cpp
       title: test/src/util/step_sum/dummy.test.cpp
   - name: test/src/util/subset_iterator

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/segment_tree_beats.hpp
     title: Segment Tree Beats
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/880
@@ -161,70 +161,78 @@ data:
     \ T), F(*composition)(F, F), F(*id)()>\n    using SegmentTreeBeats = LazySegmentTree<T,\
     \ op, e, F, mapping, composition, id, /* enable_beats = */ true>;\n} // namespace\
     \ suisen\n\n\n#line 7 \"test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp\"\
-    \n\nconstexpr long long inf = 2000000000;\n\nstruct S {\n    long long sum_v;\n\
-    \    int max_v;\n    long long lcm_v;\n    int siz;\n    bool fail = false;\n\n\
-    \    S(long long sum_v, int max_v, long long lcm_v, int siz) : sum_v(sum_v), max_v(max_v),\
-    \ lcm_v(lcm_v), siz(siz) {}\n    S(int v) : sum_v(v), max_v(v), lcm_v(v), siz(1)\
-    \ {}\n    S() = default;\n};\n\nstruct F {\n    int upd_v = 0;\n    int gcd_v\
-    \ = 0;\n\n    F(int upd_v = 0, int gcd_v = 0) : upd_v(upd_v), gcd_v(gcd_v) {}\n\
-    \n    static F upd_query(int upd_v) {\n        return F { upd_v, 0 };\n    }\n\
-    \    static F gcd_query(int gcd_v) {\n        return F { 0, gcd_v };\n    }\n\
-    };\n\nS op(S x, S y) {\n    return S { x.sum_v + y.sum_v, std::max(x.max_v, y.max_v),\
-    \ std::min(std::lcm(x.lcm_v, y.lcm_v), inf), x.siz + y.siz };\n}\nS e() {\n  \
-    \  return S { 0LL, 0, 1, 0 };\n}\n\nS mapping(F f, S x) {\n    if (f.upd_v) return\
-    \ S { (long long) f.upd_v * x.siz, f.upd_v , f.upd_v, x.siz };\n    if (f.gcd_v)\
-    \ {\n        if (x.siz == 1) {\n            return S { std::gcd(x.max_v, f.gcd_v)\
-    \ };\n        } else if (f.gcd_v % x.lcm_v) {\n            x.fail = true;\n  \
-    \      }\n    }\n    return x;\n}\n\nF composition(F f, F g) {\n    if (f.upd_v)\
-    \ return f;\n    if (g.upd_v) return F::upd_query(std::gcd(g.upd_v, f.gcd_v));\n\
-    \    return F::gcd_query(std::gcd(f.gcd_v, g.gcd_v));\n}\nF id() {\n    return\
-    \ F::gcd_query(0);\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<S>\
-    \ init(n);\n    for (int i = 0; i < n; ++i) {\n        int v;\n        std::cin\
-    \ >> v;\n        init[i] = S{v};\n    }\n\n    suisen::SegmentTreeBeats<S, op,\
-    \ e, F, mapping, composition, id> seg(init);\n    while (q --> 0) {\n        int\
-    \ qt;\n        std::cin >> qt;\n        if (qt == 1) {\n            int l, r,\
-    \ x;\n            std::cin >> l >> r >> x;\n            --l;\n            seg.apply(l,\
-    \ r, F::upd_query(x));\n        } else if (qt == 2) {\n            int l, r, x;\n\
-    \            std::cin >> l >> r >> x;\n            --l;\n            seg.apply(l,\
-    \ r, F::gcd_query(x));\n        } else if (qt == 3) {\n            int l, r;\n\
-    \            std::cin >> l >> r;\n            --l;\n            std::cout << seg.prod(l,\
-    \ r).max_v << '\\n';\n        } else {\n            int l, r;\n            std::cin\
-    \ >> l >> r;\n            --l;\n            std::cout << seg.prod(l, r).sum_v\
-    \ << '\\n';\n        }\n    }\n\n    return 0;\n}\n"
+    \n\nconstexpr int inf = 2000000000;\n\nint sat_lcm(int x, int y) {\n    if (x\
+    \ == inf or y == inf) return inf;\n    return std::min<long long>(inf, 1LL * (x\
+    \ / std::gcd(x, y)) * y);\n}\n\nstruct S {\n    long long sum_v;\n    int max_v;\n\
+    \    int lcm_v;\n    int siz;\n    bool fail = false;\n\n    S(long long sum_v,\
+    \ int max_v, int lcm_v, int siz) : sum_v(sum_v), max_v(max_v), lcm_v(lcm_v), siz(siz)\
+    \ {}\n    S(int v) : sum_v(v), max_v(v), lcm_v(v), siz(1) {}\n    S() = default;\n\
+    };\n\nstruct F {\n    int upd_v = 0;\n    int gcd_v = 0;\n\n    F(int upd_v =\
+    \ 0, int gcd_v = 0) : upd_v(upd_v), gcd_v(gcd_v) {}\n\n    static F upd_query(int\
+    \ upd_v) {\n        return F { upd_v, 0 };\n    }\n    static F gcd_query(int\
+    \ gcd_v) {\n        return F { 0, gcd_v };\n    }\n};\n\nS op(S x, S y) {\n  \
+    \  return S { x.sum_v + y.sum_v, std::max(x.max_v, y.max_v), sat_lcm(x.lcm_v,\
+    \ y.lcm_v), x.siz + y.siz };\n}\nS e() {\n    return S { 0LL, 0, 1, 0 };\n}\n\n\
+    S mapping(F f, S x) {\n    if (x.fail) return x;\n    if (x.sum_v == 1LL * x.max_v\
+    \ * x.siz and f.gcd_v) {\n        f = F::upd_query(std::gcd(x.max_v, f.gcd_v));\n\
+    \    }\n    if (f.upd_v) return S { (long long) f.upd_v * x.siz, f.upd_v, f.upd_v,\
+    \ x.siz };\n    if (f.gcd_v) {\n        if (x.siz == 1) {\n            return\
+    \ S { std::gcd(x.max_v, f.gcd_v) };\n        } else if (x.lcm_v == inf or f.gcd_v\
+    \ % x.lcm_v) {\n            x.fail = true;\n        }\n    }\n    return x;\n\
+    }\n\nF composition(F f, F g) {\n    if (f.upd_v) return f;\n    if (g.upd_v) return\
+    \ F::upd_query(std::gcd(g.upd_v, f.gcd_v));\n    return F::gcd_query(std::gcd(f.gcd_v,\
+    \ g.gcd_v));\n}\nF id() {\n    return F::gcd_query(0);\n}\n\nint main() {\n  \
+    \  std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    int n,\
+    \ q;\n    std::cin >> n >> q;\n\n    std::vector<S> init(n);\n    for (int i =\
+    \ 0; i < n; ++i) {\n        int v;\n        std::cin >> v;\n        init[i] =\
+    \ S{v};\n    }\n\n    suisen::SegmentTreeBeats<S, op, e, F, mapping, composition,\
+    \ id> seg(init);\n    while (q --> 0) {\n        int qt;\n        std::cin >>\
+    \ qt;\n        if (qt == 1) {\n            int l, r, x;\n            std::cin\
+    \ >> l >> r >> x;\n            --l;\n            seg.apply(l, r, F::upd_query(x));\n\
+    \        } else if (qt == 2) {\n            int l, r, x;\n            std::cin\
+    \ >> l >> r >> x;\n            --l;\n            seg.apply(l, r, F::gcd_query(x));\n\
+    \        } else if (qt == 3) {\n            int l, r;\n            std::cin >>\
+    \ l >> r;\n            --l;\n            std::cout << seg.prod(l, r).max_v <<\
+    \ '\\n';\n        } else {\n            int l, r;\n            std::cin >> l >>\
+    \ r;\n            --l;\n            std::cout << seg.prod(l, r).sum_v << '\\n';\n\
+    \        }\n    }\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/880\"\n\n#include <iostream>\n\
     #include <numeric>\n\n#include \"library/datastructure/segment_tree/segment_tree_beats.hpp\"\
-    \n\nconstexpr long long inf = 2000000000;\n\nstruct S {\n    long long sum_v;\n\
-    \    int max_v;\n    long long lcm_v;\n    int siz;\n    bool fail = false;\n\n\
-    \    S(long long sum_v, int max_v, long long lcm_v, int siz) : sum_v(sum_v), max_v(max_v),\
-    \ lcm_v(lcm_v), siz(siz) {}\n    S(int v) : sum_v(v), max_v(v), lcm_v(v), siz(1)\
-    \ {}\n    S() = default;\n};\n\nstruct F {\n    int upd_v = 0;\n    int gcd_v\
-    \ = 0;\n\n    F(int upd_v = 0, int gcd_v = 0) : upd_v(upd_v), gcd_v(gcd_v) {}\n\
-    \n    static F upd_query(int upd_v) {\n        return F { upd_v, 0 };\n    }\n\
-    \    static F gcd_query(int gcd_v) {\n        return F { 0, gcd_v };\n    }\n\
-    };\n\nS op(S x, S y) {\n    return S { x.sum_v + y.sum_v, std::max(x.max_v, y.max_v),\
-    \ std::min(std::lcm(x.lcm_v, y.lcm_v), inf), x.siz + y.siz };\n}\nS e() {\n  \
-    \  return S { 0LL, 0, 1, 0 };\n}\n\nS mapping(F f, S x) {\n    if (f.upd_v) return\
-    \ S { (long long) f.upd_v * x.siz, f.upd_v , f.upd_v, x.siz };\n    if (f.gcd_v)\
-    \ {\n        if (x.siz == 1) {\n            return S { std::gcd(x.max_v, f.gcd_v)\
-    \ };\n        } else if (f.gcd_v % x.lcm_v) {\n            x.fail = true;\n  \
-    \      }\n    }\n    return x;\n}\n\nF composition(F f, F g) {\n    if (f.upd_v)\
-    \ return f;\n    if (g.upd_v) return F::upd_query(std::gcd(g.upd_v, f.gcd_v));\n\
-    \    return F::gcd_query(std::gcd(f.gcd_v, g.gcd_v));\n}\nF id() {\n    return\
-    \ F::gcd_query(0);\n}\n\nint main() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n\n    int n, q;\n    std::cin >> n >> q;\n\n    std::vector<S>\
-    \ init(n);\n    for (int i = 0; i < n; ++i) {\n        int v;\n        std::cin\
-    \ >> v;\n        init[i] = S{v};\n    }\n\n    suisen::SegmentTreeBeats<S, op,\
-    \ e, F, mapping, composition, id> seg(init);\n    while (q --> 0) {\n        int\
-    \ qt;\n        std::cin >> qt;\n        if (qt == 1) {\n            int l, r,\
-    \ x;\n            std::cin >> l >> r >> x;\n            --l;\n            seg.apply(l,\
-    \ r, F::upd_query(x));\n        } else if (qt == 2) {\n            int l, r, x;\n\
-    \            std::cin >> l >> r >> x;\n            --l;\n            seg.apply(l,\
-    \ r, F::gcd_query(x));\n        } else if (qt == 3) {\n            int l, r;\n\
-    \            std::cin >> l >> r;\n            --l;\n            std::cout << seg.prod(l,\
-    \ r).max_v << '\\n';\n        } else {\n            int l, r;\n            std::cin\
-    \ >> l >> r;\n            --l;\n            std::cout << seg.prod(l, r).sum_v\
-    \ << '\\n';\n        }\n    }\n\n    return 0;\n}"
+    \n\nconstexpr int inf = 2000000000;\n\nint sat_lcm(int x, int y) {\n    if (x\
+    \ == inf or y == inf) return inf;\n    return std::min<long long>(inf, 1LL * (x\
+    \ / std::gcd(x, y)) * y);\n}\n\nstruct S {\n    long long sum_v;\n    int max_v;\n\
+    \    int lcm_v;\n    int siz;\n    bool fail = false;\n\n    S(long long sum_v,\
+    \ int max_v, int lcm_v, int siz) : sum_v(sum_v), max_v(max_v), lcm_v(lcm_v), siz(siz)\
+    \ {}\n    S(int v) : sum_v(v), max_v(v), lcm_v(v), siz(1) {}\n    S() = default;\n\
+    };\n\nstruct F {\n    int upd_v = 0;\n    int gcd_v = 0;\n\n    F(int upd_v =\
+    \ 0, int gcd_v = 0) : upd_v(upd_v), gcd_v(gcd_v) {}\n\n    static F upd_query(int\
+    \ upd_v) {\n        return F { upd_v, 0 };\n    }\n    static F gcd_query(int\
+    \ gcd_v) {\n        return F { 0, gcd_v };\n    }\n};\n\nS op(S x, S y) {\n  \
+    \  return S { x.sum_v + y.sum_v, std::max(x.max_v, y.max_v), sat_lcm(x.lcm_v,\
+    \ y.lcm_v), x.siz + y.siz };\n}\nS e() {\n    return S { 0LL, 0, 1, 0 };\n}\n\n\
+    S mapping(F f, S x) {\n    if (x.fail) return x;\n    if (x.sum_v == 1LL * x.max_v\
+    \ * x.siz and f.gcd_v) {\n        f = F::upd_query(std::gcd(x.max_v, f.gcd_v));\n\
+    \    }\n    if (f.upd_v) return S { (long long) f.upd_v * x.siz, f.upd_v, f.upd_v,\
+    \ x.siz };\n    if (f.gcd_v) {\n        if (x.siz == 1) {\n            return\
+    \ S { std::gcd(x.max_v, f.gcd_v) };\n        } else if (x.lcm_v == inf or f.gcd_v\
+    \ % x.lcm_v) {\n            x.fail = true;\n        }\n    }\n    return x;\n\
+    }\n\nF composition(F f, F g) {\n    if (f.upd_v) return f;\n    if (g.upd_v) return\
+    \ F::upd_query(std::gcd(g.upd_v, f.gcd_v));\n    return F::gcd_query(std::gcd(f.gcd_v,\
+    \ g.gcd_v));\n}\nF id() {\n    return F::gcd_query(0);\n}\n\nint main() {\n  \
+    \  std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\n    int n,\
+    \ q;\n    std::cin >> n >> q;\n\n    std::vector<S> init(n);\n    for (int i =\
+    \ 0; i < n; ++i) {\n        int v;\n        std::cin >> v;\n        init[i] =\
+    \ S{v};\n    }\n\n    suisen::SegmentTreeBeats<S, op, e, F, mapping, composition,\
+    \ id> seg(init);\n    while (q --> 0) {\n        int qt;\n        std::cin >>\
+    \ qt;\n        if (qt == 1) {\n            int l, r, x;\n            std::cin\
+    \ >> l >> r >> x;\n            --l;\n            seg.apply(l, r, F::upd_query(x));\n\
+    \        } else if (qt == 2) {\n            int l, r, x;\n            std::cin\
+    \ >> l >> r >> x;\n            --l;\n            seg.apply(l, r, F::gcd_query(x));\n\
+    \        } else if (qt == 3) {\n            int l, r;\n            std::cin >>\
+    \ l >> r;\n            --l;\n            std::cout << seg.prod(l, r).max_v <<\
+    \ '\\n';\n        } else {\n            int l, r;\n            std::cin >> l >>\
+    \ r;\n            --l;\n            std::cout << seg.prod(l, r).sum_v << '\\n';\n\
+    \        }\n    }\n\n    return 0;\n}"
   dependsOn:
   - library/datastructure/segment_tree/segment_tree_beats.hpp
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
@@ -233,8 +241,8 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   requiredBy: []
-  timestamp: '2024-01-30 22:04:45+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-31 03:27:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
 layout: document

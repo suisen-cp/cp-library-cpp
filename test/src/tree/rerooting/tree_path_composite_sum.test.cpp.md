@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/rerooting.hpp
     title: "Rerooting (\u5168\u65B9\u4F4D\u6728 DP)"
   _extendedRequiredBy: []

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/subset_iterator.hpp
     title: Subset Iterator
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
     title: test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/minmax_floyd_warshall.hpp\"\n\n\n\n#include\
@@ -152,7 +152,7 @@ data:
   path: library/graph/minmax_floyd_warshall.hpp
   requiredBy: []
   timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
 documentation_of: library/graph/minmax_floyd_warshall.hpp

@@ -9,15 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
     title: test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
-  - icon: ':x:'
-    path: test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
-    title: test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
     title: test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/integral_geom/convex_hull.hpp\"\n\n\n\n#include\
@@ -78,10 +75,9 @@ data:
   requiredBy:
   - library/integral_geom/farthest_pair.hpp
   timestamp: '2022-07-10 18:49:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/integral_geom/convex_hull/CGL_4_A.test.cpp
-  - test/src/integral_geom/count_lattice_point/typical90_041.test.cpp
   - test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
 documentation_of: library/integral_geom/convex_hull.hpp
 layout: document

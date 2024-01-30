@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/tree/heavy_light_decomposition.hpp
     title: Heavy Light Decomposition (HLD)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
@@ -71,7 +71,7 @@ data:
     \ head(n), ord(n), siz(n), par(n, -1), dep(n, 0) {\n            for (int i = 0;\
     \ i < n; ++i) if (par[i] < 0) dfs(g, i, -1);\n            int time = 0;\n    \
     \        for (int i = 0; i < n; ++i) if (par[i] < 0) hld(g, i, -1, time);\n  \
-    \      }\n        HeavyLightDecomposition(Graph &g, const vector<int> &roots)\
+    \      }\n        HeavyLightDecomposition(Graph &g, const std::vector<int> &roots)\
     \ : n(g.size()), visit(n), leave(n), head(n), ord(n), siz(n), par(n, -1), dep(n,\
     \ 0) {\n            for (int i : roots) dfs(g, i, -1);\n            int time =\
     \ 0;\n            for (int i : roots) hld(g, i, -1, time);\n        }\n      \
@@ -175,8 +175,8 @@ data:
   isVerificationFile: true
   path: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-09-15 20:02:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-31 02:46:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
 layout: document

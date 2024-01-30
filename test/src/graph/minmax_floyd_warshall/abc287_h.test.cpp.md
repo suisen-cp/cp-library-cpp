@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/minmax_floyd_warshall.hpp
     title: Minmax Floyd Warshall
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/subset_iterator.hpp
     title: Subset Iterator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc287/tasks/abc287_h
+    PROBLEM: https://atcoder.jp/contests/abc287/tasks/abc287_Ex
     links:
-    - https://atcoder.jp/contests/abc287/tasks/abc287_h
+    - https://atcoder.jp/contests/abc287/tasks/abc287_Ex
   bundledCode: "#line 1 \"test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/abc287/tasks/abc287_h\"\n\n#include\
+    \n#define PROBLEM \"https://atcoder.jp/contests/abc287/tasks/abc287_Ex\"\n\n#include\
     \ <iostream>\n\n#line 1 \"library/graph/minmax_floyd_warshall.hpp\"\n\n\n\n#include\
     \ <algorithm>\n#include <cstdint>\n#include <functional>\n#include <tuple>\n#include\
     \ <vector>\n\n#line 1 \"library/util/subset_iterator.hpp\"\n\n\n\n#ifdef _MSC_VER\n\
@@ -122,7 +122,7 @@ data:
     \ \n    int q;\n    std::cin >> q;\n    for (int i = 0; i < q; ++i) {\n      \
     \  int s, t;\n        std::cin >> s >> t;\n        --s, --t;\n        std::cout\
     \ << (ans[s][t] == inf ? -1 : ans[s][t]) << '\\n';\n    }\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc287/tasks/abc287_h\"\n\n\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc287/tasks/abc287_Ex\"\n\n\
     #include <iostream>\n\n#include \"library/graph/minmax_floyd_warshall.hpp\"\n\n\
     constexpr int inf = std::numeric_limits<int>::max() / 2;\n \nint main() {\n  \
     \  std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n \n    int n,\
@@ -139,8 +139,8 @@ data:
   isVerificationFile: true
   path: test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
   requiredBy: []
-  timestamp: '2023-02-02 02:15:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-31 02:46:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
 layout: document

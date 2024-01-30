@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/util.hpp
     title: Util
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
   _extendedRequiredBy: []

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/mo.hpp
     title: Mo
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':heavy_check_mark:'
