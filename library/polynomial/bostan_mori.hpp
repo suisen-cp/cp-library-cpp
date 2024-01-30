@@ -6,19 +6,19 @@ namespace suisen {
     typename FPSType::value_type bostan_mori(FPSType P, FPSType Q, unsigned long long n) {
         auto alternate = [](FPSType&& a, bool odd) -> FPSType&& {
             int i = 0;
-            for (int j = odd; j < a.size(); j += 2) a[i++] = a[j];
+            for (int j = odd; j < int(a.size()); j += 2) a[i++] = a[j];
             a.erase(a.begin() + i, a.end());
             return std::move(a);
         };
         for (; n; n >>= 1) {
-            if (n < int(P.size())) P.resize(n + 1);
-            if (n < int(Q.size())) Q.resize(n + 1);
+            if (n < (unsigned long long)(P.size())) P.resize(n + 1);
+            if (n < (unsigned long long)(Q.size())) Q.resize(n + 1);
             FPSType mQ = Q;
-            for (int i = 1; i < Q.size(); i += 2) mQ[i] = -mQ[i];
+            for (int i = 1; i < int(Q.size()); i += 2) mQ[i] = -mQ[i];
             P = alternate(P * mQ, n & 1);
             Q = alternate(Q * mQ, 0);
         }
-        return P[0];
+        return P.size() ? P[0] / Q[0] : 0;
     }
 
     template <typename FPSType>
