@@ -119,7 +119,6 @@
 "test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp": "2024-01-30 22:04:45 +0900",
 "test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp": "2024-01-30 22:04:45 +0900",
 "test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp": "2024-01-30 22:04:45 +0900",
-"test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp": "2024-01-31 03:27:08 +0900",
 "test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp": "2023-05-18 22:35:39 +0900",
 "test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp": "2023-05-18 22:35:39 +0900",
 "test/src/datastructure/segment_tree/sparse_lazy_segment_tree/abc255_Ex.test.cpp": "2023-01-01 18:21:45 +0900",
