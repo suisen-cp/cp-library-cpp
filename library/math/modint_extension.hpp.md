@@ -15,9 +15,6 @@ data:
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
     title: Array Set Power Series
-  - icon: ':warning:'
-    path: library/math/factorial_large.hpp
-    title: Factorial Large
   - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
@@ -67,6 +64,9 @@ data:
   - icon: ':x:'
     path: test/src/math/array_set_power_series/arc105_f.test.cpp
     title: test/src/math/array_set_power_series/arc105_f.test.cpp
+  - icon: ':x:'
+    path: test/src/math/factorial_large/dummy.test.cpp
+    title: test/src/math/factorial_large/dummy.test.cpp
   - icon: ':x:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
@@ -317,7 +317,6 @@ data:
   - library/convolution/subset_convolution.hpp
   - library/linear_algebra/hafnian.hpp
   - library/math/set_power_series.hpp
-  - library/math/factorial_large.hpp
   - library/math/array_set_power_series.hpp
   - library/polynomial/fps_naive.hpp
   - library/polynomial/compose_exp.hpp
@@ -339,6 +338,7 @@ data:
   - test/src/math/set_power_series/abc213_g.test.cpp
   - test/src/math/set_power_series/arc105_f.test.cpp
   - test/src/math/set_power_series/abc236_h.test.cpp
+  - test/src/math/factorial_large/dummy.test.cpp
   - test/src/math/array_set_power_series/abc253_h_2.test.cpp
   - test/src/math/array_set_power_series/abc253_h.test.cpp
   - test/src/math/array_set_power_series/abc213_g.test.cpp

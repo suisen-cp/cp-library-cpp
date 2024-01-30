@@ -1,18 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: library/math/factorial_large.hpp
+    title: Factorial Large
+  - icon: ':x:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
+  - icon: ':warning:'
+    path: test/src/math/factorial_large/yuki502.cpp
+    title: test/src/math/factorial_large/yuki502.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/src/math/factorial_large/dummy.test.cpp
+    title: test/src/math/factorial_large/dummy.test.cpp
+  - icon: ':x:'
+    path: test/src/math/factorial_large/factorial.test.cpp
+    title: test/src/math/factorial_large/factorial.test.cpp
+  - icon: ':x:'
+    path: test/src/math/factorial_large/many_factorials.test.cpp
+    title: test/src/math/factorial_large/many_factorials.test.cpp
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - icon: ':x:'
@@ -20,7 +35,7 @@ data:
     title: test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/shift_of_sampling_points.hpp\"\n\n\n\n\
@@ -40,62 +55,85 @@ data:
     \            return _fac_inv[i];\n        }\n        U binom(const int n, const\
     \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
     \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
-    \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
-    \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
-    \ - r];\n        }\n    private:\n        static std::vector<T> _fac;\n      \
-    \  static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
+    \    template <typename ...Ds, std::enable_if_t<std::conjunction_v<std::is_integral<Ds>...>,\
+    \ std::nullptr_t> = nullptr>\n        U polynom(const int n, const Ds& ...ds)\
+    \ {\n            if (n < 0) return 0;\n            ensure(n);\n            int\
+    \ sumd = 0;\n            U res = _fac[n];\n            for (int d : { ds... })\
+    \ {\n                if (d < 0 or d > n) return 0;\n                sumd += d;\n\
+    \                res *= _fac_inv[d];\n            }\n            if (sumd > n)\
+    \ return 0;\n            res *= _fac_inv[n - sumd];\n            return res;\n\
+    \        }\n        U perm(const int n, const int r) {\n            if (n < 0\
+    \ or r < 0 or n < r) return 0;\n            ensure(n);\n            return _fac[n]\
+    \ * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T> _fac;\n\
+    \        static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
     \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
     \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
     \ suisen\n\n\n#line 8 \"library/polynomial/shift_of_sampling_points.hpp\"\n\n\
-    namespace suisen {\n    template <typename mint>\n    std::vector<mint> shift_of_sampling_points(const\
-    \ std::vector<mint>& ys, mint t, int m) {\n        const int n = ys.size();\n\
-    \        factorial<mint> fac(std::max(n, m));\n\n        std::vector<mint> b =\
-    \ [&] {\n            std::vector<mint> f(n), g(n);\n            for (int i = 0;\
-    \ i < n; ++i) {\n                f[i] = ys[i] * fac.fac_inv(i);\n            \
-    \    g[i] = (i & 1 ? -1 : 1) * fac.fac_inv(i);\n            }\n            std::vector<mint>\
-    \ b = atcoder::convolution(f, g);\n            b.resize(n);\n            return\
-    \ b;\n        }();\n        std::vector<mint> e = [&] {\n            std::vector<mint>\
-    \ c(n);\n            mint prd = 1;\n            std::reverse(b.begin(), b.end());\n\
-    \            for (int i = 0; i < n; ++i) {\n                b[i] *= fac.fac(n\
-    \ - i - 1);\n                c[i] = prd * fac.fac_inv(i);\n                prd\
-    \ *= t - i;\n            }\n            std::vector<mint> e = atcoder::convolution(b,\
-    \ c);\n            e.resize(n);\n            return e;\n        }();\n       \
-    \ std::reverse(e.begin(), e.end());\n        for (int i = 0; i < n; ++i) {\n \
-    \           e[i] *= fac.fac_inv(i);\n        }\n\n        std::vector<mint> f(m);\n\
-    \        for (int i = 0; i < m; ++i) f[i] = fac.fac_inv(i);\n        std::vector<mint>\
-    \ res = atcoder::convolution(e, f);\n        res.resize(m);\n        for (int\
-    \ i = 0; i < m; ++i) res[i] *= fac.fac(i);\n        return res;\n    }\n} // namespace\
-    \ suisen\n\n\n\n"
+    namespace suisen {\n    template <typename mint, typename Convolve,\n        std::enable_if_t<std::is_invocable_r_v<std::vector<mint>,\
+    \ Convolve, std::vector<mint>, std::vector<mint>>, std::nullptr_t> = nullptr>\n\
+    \    std::vector<mint> shift_of_sampling_points(const std::vector<mint>& ys, mint\
+    \ t, int m, const Convolve &convolve) {\n        const int n = ys.size();\n  \
+    \      factorial<mint> fac(std::max(n, m));\n\n        std::vector<mint> b = [&]\
+    \ {\n            std::vector<mint> f(n), g(n);\n            for (int i = 0; i\
+    \ < n; ++i) {\n                f[i] = ys[i] * fac.fac_inv(i);\n              \
+    \  g[i] = (i & 1 ? -1 : 1) * fac.fac_inv(i);\n            }\n            std::vector<mint>\
+    \ b = convolve(f, g);\n            b.resize(n);\n            return b;\n     \
+    \   }();\n        std::vector<mint> e = [&] {\n            std::vector<mint> c(n);\n\
+    \            mint prd = 1;\n            std::reverse(b.begin(), b.end());\n  \
+    \          for (int i = 0; i < n; ++i) {\n                b[i] *= fac.fac(n -\
+    \ i - 1);\n                c[i] = prd * fac.fac_inv(i);\n                prd *=\
+    \ t - i;\n            }\n            std::vector<mint> e = convolve(b, c);\n \
+    \           e.resize(n);\n            return e;\n        }();\n        std::reverse(e.begin(),\
+    \ e.end());\n        for (int i = 0; i < n; ++i) {\n            e[i] *= fac.fac_inv(i);\n\
+    \        }\n\n        std::vector<mint> f(m);\n        for (int i = 0; i < m;\
+    \ ++i) f[i] = fac.fac_inv(i);\n        std::vector<mint> res = convolve(e, f);\n\
+    \        res.resize(m);\n        for (int i = 0; i < m; ++i) res[i] *= fac.fac(i);\n\
+    \        return res;\n    }\n\n    template <typename mint>\n    std::vector<mint>\
+    \ shift_of_sampling_points(const std::vector<mint>& ys, mint t, int m) {\n   \
+    \     auto convolve = [&](const std::vector<mint> &f, const std::vector<mint>\
+    \ &g) { return atcoder::convolution(f, g); };\n        return shift_of_sampling_points(ys,\
+    \ t, m, convolve);\n    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_SHIFT_OF_SAMPLING_POINTS\n#define SUISEN_SHIFT_OF_SAMPLING_POINTS\n\
     \n#include <vector>\n#include <atcoder/convolution>\n\n#include \"library/math/factorial.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> shift_of_sampling_points(const\
-    \ std::vector<mint>& ys, mint t, int m) {\n        const int n = ys.size();\n\
-    \        factorial<mint> fac(std::max(n, m));\n\n        std::vector<mint> b =\
-    \ [&] {\n            std::vector<mint> f(n), g(n);\n            for (int i = 0;\
-    \ i < n; ++i) {\n                f[i] = ys[i] * fac.fac_inv(i);\n            \
-    \    g[i] = (i & 1 ? -1 : 1) * fac.fac_inv(i);\n            }\n            std::vector<mint>\
-    \ b = atcoder::convolution(f, g);\n            b.resize(n);\n            return\
-    \ b;\n        }();\n        std::vector<mint> e = [&] {\n            std::vector<mint>\
-    \ c(n);\n            mint prd = 1;\n            std::reverse(b.begin(), b.end());\n\
-    \            for (int i = 0; i < n; ++i) {\n                b[i] *= fac.fac(n\
-    \ - i - 1);\n                c[i] = prd * fac.fac_inv(i);\n                prd\
-    \ *= t - i;\n            }\n            std::vector<mint> e = atcoder::convolution(b,\
+    \n\nnamespace suisen {\n    template <typename mint, typename Convolve,\n    \
+    \    std::enable_if_t<std::is_invocable_r_v<std::vector<mint>, Convolve, std::vector<mint>,\
+    \ std::vector<mint>>, std::nullptr_t> = nullptr>\n    std::vector<mint> shift_of_sampling_points(const\
+    \ std::vector<mint>& ys, mint t, int m, const Convolve &convolve) {\n        const\
+    \ int n = ys.size();\n        factorial<mint> fac(std::max(n, m));\n\n       \
+    \ std::vector<mint> b = [&] {\n            std::vector<mint> f(n), g(n);\n   \
+    \         for (int i = 0; i < n; ++i) {\n                f[i] = ys[i] * fac.fac_inv(i);\n\
+    \                g[i] = (i & 1 ? -1 : 1) * fac.fac_inv(i);\n            }\n  \
+    \          std::vector<mint> b = convolve(f, g);\n            b.resize(n);\n \
+    \           return b;\n        }();\n        std::vector<mint> e = [&] {\n   \
+    \         std::vector<mint> c(n);\n            mint prd = 1;\n            std::reverse(b.begin(),\
+    \ b.end());\n            for (int i = 0; i < n; ++i) {\n                b[i] *=\
+    \ fac.fac(n - i - 1);\n                c[i] = prd * fac.fac_inv(i);\n        \
+    \        prd *= t - i;\n            }\n            std::vector<mint> e = convolve(b,\
     \ c);\n            e.resize(n);\n            return e;\n        }();\n       \
     \ std::reverse(e.begin(), e.end());\n        for (int i = 0; i < n; ++i) {\n \
     \           e[i] *= fac.fac_inv(i);\n        }\n\n        std::vector<mint> f(m);\n\
     \        for (int i = 0; i < m; ++i) f[i] = fac.fac_inv(i);\n        std::vector<mint>\
-    \ res = atcoder::convolution(e, f);\n        res.resize(m);\n        for (int\
-    \ i = 0; i < m; ++i) res[i] *= fac.fac(i);\n        return res;\n    }\n} // namespace\
+    \ res = convolve(e, f);\n        res.resize(m);\n        for (int i = 0; i < m;\
+    \ ++i) res[i] *= fac.fac(i);\n        return res;\n    }\n\n    template <typename\
+    \ mint>\n    std::vector<mint> shift_of_sampling_points(const std::vector<mint>&\
+    \ ys, mint t, int m) {\n        auto convolve = [&](const std::vector<mint> &f,\
+    \ const std::vector<mint> &g) { return atcoder::convolution(f, g); };\n      \
+    \  return shift_of_sampling_points(ys, t, m, convolve);\n    }\n} // namespace\
     \ suisen\n\n\n#endif // SUISEN_SHIFT_OF_SAMPLING_POINTS\n"
   dependsOn:
   - library/math/factorial.hpp
   isVerificationFile: false
   path: library/polynomial/shift_of_sampling_points.hpp
   requiredBy:
+  - test/src/math/factorial_large/yuki502.cpp
+  - library/math/factorial_large.hpp
   - library/math/sum_i^d_r^i.hpp
-  timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-01-30 20:59:02+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/src/math/factorial_large/factorial.test.cpp
+  - test/src/math/factorial_large/dummy.test.cpp
+  - test/src/math/factorial_large/many_factorials.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   - test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp

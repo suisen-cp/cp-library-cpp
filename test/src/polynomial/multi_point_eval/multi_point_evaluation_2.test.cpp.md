@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   - icon: ':question:'
@@ -352,19 +352,19 @@ data:
     \ (int i = m; i < n; ++i) if (f[i] != 0) return false;\n            return true;\n\
     \        }\n        friend bool operator!=(const FormalPowerSeries& f, const FormalPowerSeries&\
     \ g) { return not (f == g); }\n\n        /* Other Operations */\n\n        FormalPowerSeries&\
-    \ diff_inplace() {\n            const int n = size();\n            for (int i\
-    \ = 1; i < n; ++i) (*this)[i - 1] = (*this)[i] * i;\n            return (*this)[n\
-    \ - 1] = 0, *this;\n        }\n        FormalPowerSeries diff() const {\n    \
-    \        FormalPowerSeries res = *this;\n            res.diff_inplace();\n   \
-    \         return res;\n        }\n        FormalPowerSeries& intg_inplace() {\n\
-    \            const int n = size();\n            inv_mods<value_type> invs(n);\n\
-    \            this->resize(n + 1);\n            for (int i = n; i > 0; --i) (*this)[i]\
-    \ = (*this)[i - 1] * invs[i];\n            return (*this)[0] = 0, *this;\n   \
-    \     }\n        FormalPowerSeries intg() const {\n            FormalPowerSeries\
-    \ res = *this;\n            res.intg_inplace();\n            return res;\n   \
-    \     }\n\n        FormalPowerSeries& inv_inplace(int n = -1) { return *this =\
-    \ inv(n); }\n        // reference: https://opt-cp.com/fps-fast-algorithms/\n \
-    \       FormalPowerSeries inv(int n = -1) const {\n            if (n < 0) n =\
+    \ diff_inplace() {\n            if (this->empty()) return *this;\n           \
+    \ const int n = size();\n            for (int i = 1; i < n; ++i) (*this)[i - 1]\
+    \ = (*this)[i] * i;\n            return (*this)[n - 1] = 0, *this;\n        }\n\
+    \        FormalPowerSeries diff() const {\n            FormalPowerSeries res =\
+    \ *this;\n            res.diff_inplace();\n            return res;\n        }\n\
+    \        FormalPowerSeries& intg_inplace() {\n            const int n = size();\n\
+    \            inv_mods<value_type> invs(n);\n            this->resize(n + 1);\n\
+    \            for (int i = n; i > 0; --i) (*this)[i] = (*this)[i - 1] * invs[i];\n\
+    \            return (*this)[0] = 0, *this;\n        }\n        FormalPowerSeries\
+    \ intg() const {\n            FormalPowerSeries res = *this;\n            res.intg_inplace();\n\
+    \            return res;\n        }\n\n        FormalPowerSeries& inv_inplace(int\
+    \ n = -1) { return *this = inv(n); }\n        // reference: https://opt-cp.com/fps-fast-algorithms/\n\
+    \        FormalPowerSeries inv(int n = -1) const {\n            if (n < 0) n =\
     \ size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).inv();\n\
     \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return inv_sparse(std::move(*sp_f),\
     \ n);\n            FormalPowerSeries f_fft, g_fft;\n            FormalPowerSeries\
@@ -571,7 +571,7 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   requiredBy: []
-  timestamp: '2023-09-15 20:02:25+09:00'
+  timestamp: '2024-01-30 21:00:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp

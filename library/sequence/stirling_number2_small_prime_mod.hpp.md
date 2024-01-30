@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
   - icon: ':x:'
     path: library/sequence/binomial_coefficient_small_prime_mod.hpp
     title: Binomial Coefficient Small Prime Mod
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/sequence/powers.hpp
     title: Powers
   - icon: ':x:'
@@ -42,14 +42,21 @@ data:
     \    ensure(i);\n            return _fac_inv[i];\n        }\n        U binom(const\
     \ int n, const int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n\
     \            ensure(n);\n            return _fac[n] * _fac_inv[r] * _fac_inv[n\
-    \ - r];\n        }\n        U perm(const int n, const int r) {\n            if\
-    \ (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n            return\
-    \ _fac[n] * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T>\
-    \ _fac;\n        static std::vector<U> _fac_inv;\n    };\n    template <typename\
-    \ T, typename U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template\
-    \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
-    } // namespace suisen\n\n\n#line 1 \"library/sequence/powers.hpp\"\n\n\n\n#include\
-    \ <cstdint>\n#line 1 \"library/number/linear_sieve.hpp\"\n\n\n\n#line 5 \"library/number/linear_sieve.hpp\"\
+    \ - r];\n        }\n        template <typename ...Ds, std::enable_if_t<std::conjunction_v<std::is_integral<Ds>...>,\
+    \ std::nullptr_t> = nullptr>\n        U polynom(const int n, const Ds& ...ds)\
+    \ {\n            if (n < 0) return 0;\n            ensure(n);\n            int\
+    \ sumd = 0;\n            U res = _fac[n];\n            for (int d : { ds... })\
+    \ {\n                if (d < 0 or d > n) return 0;\n                sumd += d;\n\
+    \                res *= _fac_inv[d];\n            }\n            if (sumd > n)\
+    \ return 0;\n            res *= _fac_inv[n - sumd];\n            return res;\n\
+    \        }\n        U perm(const int n, const int r) {\n            if (n < 0\
+    \ or r < 0 or n < r) return 0;\n            ensure(n);\n            return _fac[n]\
+    \ * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T> _fac;\n\
+    \        static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
+    \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
+    \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
+    \ suisen\n\n\n#line 1 \"library/sequence/powers.hpp\"\n\n\n\n#include <cstdint>\n\
+    #line 1 \"library/number/linear_sieve.hpp\"\n\n\n\n#line 5 \"library/number/linear_sieve.hpp\"\
     \n#include <numeric>\n#line 7 \"library/number/linear_sieve.hpp\"\n\nnamespace\
     \ suisen {\n// referece: https://37zigen.com/linear-sieve/\nclass LinearSieve\
     \ {\n    public:\n        LinearSieve(const int n) : _n(n), min_prime_factor(std::vector<int>(n\
@@ -140,7 +147,7 @@ data:
   isVerificationFile: false
   path: library/sequence/stirling_number2_small_prime_mod.hpp
   requiredBy: []
-  timestamp: '2023-07-09 04:04:16+09:00'
+  timestamp: '2024-01-30 20:57:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp

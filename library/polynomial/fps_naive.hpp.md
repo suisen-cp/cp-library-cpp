@@ -18,9 +18,6 @@ data:
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
-  - icon: ':warning:'
-    path: library/math/factorial_large.hpp
-    title: Factorial Large
   - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
@@ -46,6 +43,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  - icon: ':x:'
+    path: test/src/math/factorial_large/dummy.test.cpp
+    title: test/src/math/factorial_large/dummy.test.cpp
   - icon: ':x:'
     path: test/src/math/product_of_differences/yuki1938.test.cpp
     title: test/src/math/product_of_differences/yuki1938.test.cpp
@@ -608,7 +608,6 @@ data:
   - library/convolution/subset_convolution.hpp
   - library/linear_algebra/hafnian.hpp
   - library/math/set_power_series.hpp
-  - library/math/factorial_large.hpp
   - library/polynomial/compose_exp.hpp
   - library/polynomial/compose_inv.hpp
   - library/polynomial/fps.hpp
@@ -626,6 +625,7 @@ data:
   - test/src/math/set_power_series/abc213_g.test.cpp
   - test/src/math/set_power_series/arc105_f.test.cpp
   - test/src/math/set_power_series/abc236_h.test.cpp
+  - test/src/math/factorial_large/dummy.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
   - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
   - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp

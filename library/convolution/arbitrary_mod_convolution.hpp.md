@@ -12,9 +12,15 @@ data:
   - icon: ':question:'
     path: library/math/bigint.hpp
     title: "\u591A\u500D\u9577\u6574\u6570"
+  - icon: ':x:'
+    path: library/math/factorial_large.hpp
+    title: Factorial Large
   - icon: ':question:'
     path: library/math/unsigned_bigint.hpp
     title: Unsigned Bigint
+  - icon: ':warning:'
+    path: test/src/math/factorial_large/yuki502.cpp
+    title: test/src/math/factorial_large/yuki502.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
@@ -43,15 +49,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/NTL_2_F.test.cpp
     title: test/src/math/bigint/NTL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/addition_of_big_integers.test.cpp
     title: test/src/math/bigint/addition_of_big_integers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/math/bigint/many_aplusb_128bit.test.cpp
     title: test/src/math/bigint/many_aplusb_128bit.test.cpp
   - icon: ':x:'
     path: test/src/math/bigint/multiplication_of_big_integers.test.cpp
     title: test/src/math/bigint/multiplication_of_big_integers.test.cpp
+  - icon: ':x:'
+    path: test/src/math/factorial_large/dummy.test.cpp
+    title: test/src/math/factorial_large/dummy.test.cpp
+  - icon: ':x:'
+    path: test/src/math/factorial_large/factorial.test.cpp
+    title: test/src/math/factorial_large/factorial.test.cpp
+  - icon: ':x:'
+    path: test/src/math/factorial_large/many_factorials.test.cpp
+    title: test/src/math/factorial_large/many_factorials.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -71,16 +86,17 @@ data:
     \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
     \n        if constexpr (atcoder::internal::is_static_modint<mint>::value) {\n\
-    \            int maxz = 1;\n            while (not ((mint::mod() - 1) & maxz))\
-    \ maxz <<= 1;\n            int z = 1;\n            while (z < n + m - 1) z <<=\
-    \ 1;\n            if (z <= maxz) return atcoder::convolution<mint>(a, b);\n  \
-    \      }\n\n        if (n == 0 or m == 0) return {};\n        if (std::min(n,\
-    \ m) <= 120) return internal::convolution_naive(a, b);\n\n        static constexpr\
-    \ long long MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2\
-    \ = 167772161;  // 2^25\n        static constexpr long long MOD3 = 469762049;\
-    \  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n        static\
-    \ constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1, MOD2).second;\n\
-    \        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
+    \            if constexpr (not (mint::mod() & 63)) {\n                int maxz\
+    \ = 1;\n                while (not ((mint::mod() - 1) & maxz)) maxz <<= 1;\n \
+    \               int z = 1;\n                while (z < n + m - 1) z <<= 1;\n \
+    \               if (z <= maxz) return atcoder::convolution<mint>(a, b);\n    \
+    \        }\n        }\n\n        if (n == 0 or m == 0) return {};\n        if\
+    \ (std::min(n, m) <= 120) return internal::convolution_naive(a, b);\n\n      \
+    \  static constexpr long long MOD1 = 754974721;  // 2^24\n        static constexpr\
+    \ long long MOD2 = 167772161;  // 2^25\n        static constexpr long long MOD3\
+    \ = 469762049;  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n\
+    \        static constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1,\
+    \ MOD2).second;\n        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
     \ MOD3).second;\n\n        std::vector<int> a2(n), b2(m);\n        for (int i\
     \ = 0; i < n; ++i) a2[i] = a[i].val();\n        for (int i = 0; i < m; ++i) b2[i]\
     \ = b[i].val();\n\n        auto c1 = atcoder::convolution<MOD1>(a2, b2);\n   \
@@ -121,16 +137,17 @@ data:
     \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
     \n        if constexpr (atcoder::internal::is_static_modint<mint>::value) {\n\
-    \            int maxz = 1;\n            while (not ((mint::mod() - 1) & maxz))\
-    \ maxz <<= 1;\n            int z = 1;\n            while (z < n + m - 1) z <<=\
-    \ 1;\n            if (z <= maxz) return atcoder::convolution<mint>(a, b);\n  \
-    \      }\n\n        if (n == 0 or m == 0) return {};\n        if (std::min(n,\
-    \ m) <= 120) return internal::convolution_naive(a, b);\n\n        static constexpr\
-    \ long long MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2\
-    \ = 167772161;  // 2^25\n        static constexpr long long MOD3 = 469762049;\
-    \  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n        static\
-    \ constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1, MOD2).second;\n\
-    \        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
+    \            if constexpr (not (mint::mod() & 63)) {\n                int maxz\
+    \ = 1;\n                while (not ((mint::mod() - 1) & maxz)) maxz <<= 1;\n \
+    \               int z = 1;\n                while (z < n + m - 1) z <<= 1;\n \
+    \               if (z <= maxz) return atcoder::convolution<mint>(a, b);\n    \
+    \        }\n        }\n\n        if (n == 0 or m == 0) return {};\n        if\
+    \ (std::min(n, m) <= 120) return internal::convolution_naive(a, b);\n\n      \
+    \  static constexpr long long MOD1 = 754974721;  // 2^24\n        static constexpr\
+    \ long long MOD2 = 167772161;  // 2^25\n        static constexpr long long MOD3\
+    \ = 469762049;  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n\
+    \        static constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1,\
+    \ MOD2).second;\n        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
     \ MOD3).second;\n\n        std::vector<int> a2(n), b2(m);\n        for (int i\
     \ = 0; i < n; ++i) a2[i] = a[i].val();\n        for (int i = 0; i < m; ++i) b2[i]\
     \ = b[i].val();\n\n        auto c1 = atcoder::convolution<MOD1>(a2, b2);\n   \
@@ -171,16 +188,21 @@ data:
   isVerificationFile: false
   path: library/convolution/arbitrary_mod_convolution.hpp
   requiredBy:
+  - test/src/math/factorial_large/yuki502.cpp
   - library/convolution/multi_variate_convolution_circular.hpp
   - library/math/unsigned_bigint.hpp
+  - library/math/factorial_large.hpp
   - library/math/bigint.hpp
-  timestamp: '2023-05-11 13:19:06+09:00'
+  timestamp: '2024-01-30 21:01:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
+  - test/src/math/factorial_large/factorial.test.cpp
+  - test/src/math/factorial_large/dummy.test.cpp
+  - test/src/math/factorial_large/many_factorials.test.cpp
   - test/src/math/bigint/multiplication_of_big_integers.test.cpp
   - test/src/math/bigint/NTL_2_D.test.cpp
   - test/src/math/bigint/NTL_2_B.test.cpp

@@ -380,7 +380,7 @@ data:
     \            if (_mod < 1ULL << 32) {\n                return _primitive_root_impl<std::mt19937>();\n\
     \            } else {\n                return _primitive_root_impl<std::mt19937_64>();\n\
     \            }\n        }\n\n        T operator()(U a) const {\n            if\
-    \ (_mod < 1ULL << 32) {\n                using mint = atcoder::dynamic_modint<1000000000>;\n\
+    \ (_mod < 1ULL << 31) {\n                using mint = atcoder::dynamic_modint<1000000000>;\n\
     \                U old_mod = mint::mod();\n                mint::set_mod(_mod);\n\
     \                T res = _order_impl<mint>(a);\n                mint::set_mod(old_mod);\n\
     \                return res;\n            } else {\n                using mint\
@@ -563,7 +563,7 @@ data:
   isVerificationFile: true
   path: test/src/number/primitive_root/dummy.test.cpp
   requiredBy: []
-  timestamp: '2023-09-15 20:02:25+09:00'
+  timestamp: '2024-01-30 21:04:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/number/primitive_root/dummy.test.cpp

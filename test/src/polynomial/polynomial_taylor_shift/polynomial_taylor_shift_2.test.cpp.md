@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   - icon: ':question:'
@@ -356,19 +356,19 @@ data:
     \ (int i = m; i < n; ++i) if (f[i] != 0) return false;\n            return true;\n\
     \        }\n        friend bool operator!=(const FormalPowerSeries& f, const FormalPowerSeries&\
     \ g) { return not (f == g); }\n\n        /* Other Operations */\n\n        FormalPowerSeries&\
-    \ diff_inplace() {\n            const int n = size();\n            for (int i\
-    \ = 1; i < n; ++i) (*this)[i - 1] = (*this)[i] * i;\n            return (*this)[n\
-    \ - 1] = 0, *this;\n        }\n        FormalPowerSeries diff() const {\n    \
-    \        FormalPowerSeries res = *this;\n            res.diff_inplace();\n   \
-    \         return res;\n        }\n        FormalPowerSeries& intg_inplace() {\n\
-    \            const int n = size();\n            inv_mods<value_type> invs(n);\n\
-    \            this->resize(n + 1);\n            for (int i = n; i > 0; --i) (*this)[i]\
-    \ = (*this)[i - 1] * invs[i];\n            return (*this)[0] = 0, *this;\n   \
-    \     }\n        FormalPowerSeries intg() const {\n            FormalPowerSeries\
-    \ res = *this;\n            res.intg_inplace();\n            return res;\n   \
-    \     }\n\n        FormalPowerSeries& inv_inplace(int n = -1) { return *this =\
-    \ inv(n); }\n        // reference: https://opt-cp.com/fps-fast-algorithms/\n \
-    \       FormalPowerSeries inv(int n = -1) const {\n            if (n < 0) n =\
+    \ diff_inplace() {\n            if (this->empty()) return *this;\n           \
+    \ const int n = size();\n            for (int i = 1; i < n; ++i) (*this)[i - 1]\
+    \ = (*this)[i] * i;\n            return (*this)[n - 1] = 0, *this;\n        }\n\
+    \        FormalPowerSeries diff() const {\n            FormalPowerSeries res =\
+    \ *this;\n            res.diff_inplace();\n            return res;\n        }\n\
+    \        FormalPowerSeries& intg_inplace() {\n            const int n = size();\n\
+    \            inv_mods<value_type> invs(n);\n            this->resize(n + 1);\n\
+    \            for (int i = n; i > 0; --i) (*this)[i] = (*this)[i - 1] * invs[i];\n\
+    \            return (*this)[0] = 0, *this;\n        }\n        FormalPowerSeries\
+    \ intg() const {\n            FormalPowerSeries res = *this;\n            res.intg_inplace();\n\
+    \            return res;\n        }\n\n        FormalPowerSeries& inv_inplace(int\
+    \ n = -1) { return *this = inv(n); }\n        // reference: https://opt-cp.com/fps-fast-algorithms/\n\
+    \        FormalPowerSeries inv(int n = -1) const {\n            if (n < 0) n =\
     \ size();\n            if (n < 60) return FPSNaive<mint>(cut_copy(n)).inv();\n\
     \            if (auto sp_f = sparse_fps_format(15); sp_f.has_value()) return inv_sparse(std::move(*sp_f),\
     \ n);\n            FormalPowerSeries f_fft, g_fft;\n            FormalPowerSeries\
@@ -551,23 +551,29 @@ data:
     \    ensure(i);\n            return _fac_inv[i];\n        }\n        U binom(const\
     \ int n, const int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n\
     \            ensure(n);\n            return _fac[n] * _fac_inv[r] * _fac_inv[n\
-    \ - r];\n        }\n        U perm(const int n, const int r) {\n            if\
-    \ (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n            return\
-    \ _fac[n] * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T>\
-    \ _fac;\n        static std::vector<U> _fac_inv;\n    };\n    template <typename\
-    \ T, typename U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template\
-    \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
-    } // namespace suisen\n\n\n#line 7 \"library/polynomial/polynomial_taylor_shift.hpp\"\
-    \n\nnamespace suisen {\n    // return f(x + c) \n    template <typename FPSType,\
-    \ typename T>\n    FPSType translate(const FPSType& f, const T c) {\n        int\
-    \ d = f.deg();\n        if (d < 0) return FPSType{ 0 };\n        using mint =\
-    \ typename FPSType::value_type;\n        factorial<mint> fac(d);\n        FPSType\
-    \ expc(d + 1), g(d + 1);\n        mint p = 1;\n        for (int i = 0; i <= d;\
-    \ ++i, p *= c) {\n            expc[i] = p * fac.fac_inv(i);\n            g[d -\
-    \ i] = f[i] * fac(i);\n        }\n        g *= expc, g.resize(d + 1);\n      \
-    \  for (int i = 0; i <= d; ++i) g[i] *= fac.fac_inv(d - i);\n        std::reverse(g.begin(),\
-    \ g.end());\n        return g;\n    }\n} // namespace suisen\n\n\n#line 11 \"\
-    test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp\"\
+    \ - r];\n        }\n        template <typename ...Ds, std::enable_if_t<std::conjunction_v<std::is_integral<Ds>...>,\
+    \ std::nullptr_t> = nullptr>\n        U polynom(const int n, const Ds& ...ds)\
+    \ {\n            if (n < 0) return 0;\n            ensure(n);\n            int\
+    \ sumd = 0;\n            U res = _fac[n];\n            for (int d : { ds... })\
+    \ {\n                if (d < 0 or d > n) return 0;\n                sumd += d;\n\
+    \                res *= _fac_inv[d];\n            }\n            if (sumd > n)\
+    \ return 0;\n            res *= _fac_inv[n - sumd];\n            return res;\n\
+    \        }\n        U perm(const int n, const int r) {\n            if (n < 0\
+    \ or r < 0 or n < r) return 0;\n            ensure(n);\n            return _fac[n]\
+    \ * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T> _fac;\n\
+    \        static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
+    \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
+    \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
+    \ suisen\n\n\n#line 7 \"library/polynomial/polynomial_taylor_shift.hpp\"\n\nnamespace\
+    \ suisen {\n    // return f(x + c) \n    template <typename FPSType, typename\
+    \ T>\n    FPSType translate(const FPSType& f, const T c) {\n        int d = f.deg();\n\
+    \        if (d < 0) return FPSType{ 0 };\n        using mint = typename FPSType::value_type;\n\
+    \        factorial<mint> fac(d);\n        FPSType expc(d + 1), g(d + 1);\n   \
+    \     mint p = 1;\n        for (int i = 0; i <= d; ++i, p *= c) {\n          \
+    \  expc[i] = p * fac.fac_inv(i);\n            g[d - i] = f[i] * fac(i);\n    \
+    \    }\n        g *= expc, g.resize(d + 1);\n        for (int i = 0; i <= d; ++i)\
+    \ g[i] *= fac.fac_inv(d - i);\n        std::reverse(g.begin(), g.end());\n   \
+    \     return g;\n    }\n} // namespace suisen\n\n\n#line 11 \"test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp\"\
     \n\nusing mint = atcoder::modint998244353;\n\nint main() {\n    int n, c;\n  \
     \  std::cin >> n >> c;\n    suisen::FormalPowerSeries<mint> f(n);\n    for (int\
     \ i = 0; i < n; ++i) {\n        int coef;\n        std::cin >> coef;\n       \
@@ -595,7 +601,7 @@ data:
   isVerificationFile: true
   path: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
   requiredBy: []
-  timestamp: '2023-09-15 20:02:25+09:00'
+  timestamp: '2024-01-30 21:00:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp

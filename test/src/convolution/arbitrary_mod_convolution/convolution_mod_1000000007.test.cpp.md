@@ -34,16 +34,17 @@ data:
     \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
     \n        if constexpr (atcoder::internal::is_static_modint<mint>::value) {\n\
-    \            int maxz = 1;\n            while (not ((mint::mod() - 1) & maxz))\
-    \ maxz <<= 1;\n            int z = 1;\n            while (z < n + m - 1) z <<=\
-    \ 1;\n            if (z <= maxz) return atcoder::convolution<mint>(a, b);\n  \
-    \      }\n\n        if (n == 0 or m == 0) return {};\n        if (std::min(n,\
-    \ m) <= 120) return internal::convolution_naive(a, b);\n\n        static constexpr\
-    \ long long MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2\
-    \ = 167772161;  // 2^25\n        static constexpr long long MOD3 = 469762049;\
-    \  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n        static\
-    \ constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1, MOD2).second;\n\
-    \        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
+    \            if constexpr (not (mint::mod() & 63)) {\n                int maxz\
+    \ = 1;\n                while (not ((mint::mod() - 1) & maxz)) maxz <<= 1;\n \
+    \               int z = 1;\n                while (z < n + m - 1) z <<= 1;\n \
+    \               if (z <= maxz) return atcoder::convolution<mint>(a, b);\n    \
+    \        }\n        }\n\n        if (n == 0 or m == 0) return {};\n        if\
+    \ (std::min(n, m) <= 120) return internal::convolution_naive(a, b);\n\n      \
+    \  static constexpr long long MOD1 = 754974721;  // 2^24\n        static constexpr\
+    \ long long MOD2 = 167772161;  // 2^25\n        static constexpr long long MOD3\
+    \ = 469762049;  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n\
+    \        static constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1,\
+    \ MOD2).second;\n        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
     \ MOD3).second;\n\n        std::vector<int> a2(n), b2(m);\n        for (int i\
     \ = 0; i < n; ++i) a2[i] = a[i].val();\n        for (int i = 0; i < m; ++i) b2[i]\
     \ = b[i].val();\n\n        auto c1 = atcoder::convolution<MOD1>(a2, b2);\n   \
@@ -103,7 +104,7 @@ data:
   isVerificationFile: true
   path: test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2023-05-11 13:19:06+09:00'
+  timestamp: '2024-01-30 21:01:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp

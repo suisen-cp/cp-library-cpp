@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
     title: test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     document_title: Find linear recurrence in O(|s|^2) time
     links: []
@@ -17,51 +17,50 @@ data:
     \ linear recurrence in O(|s|^2) time\n     * @tparam F Arbitrary field (operator\
     \ +, -, *, /, +=, -=, *=, /= must be defined)\n     * @param s Prefix of a linearly\
     \ reccurent sequence\n     * @return The vector of length L+1 c s.t. c_0=1 and\
-    \ s_i=Sum[j=1,L]c_i*s_{i-j}=0 for all i>=L, where L is the minimum integer s.t.\
+    \ s_i=Sum[j=1,L]c_i*s_{i-j} for all i>=L, where L is the minimum integer s.t.\
     \ there exists such c of length L+1.\n     */\n    template <typename F>\n   \
     \ std::vector<F> find_linear_recuurence(const std::vector<F>& s) {\n        std::vector<F>\
     \ B{ 1 }, C{ 1 };\n        B.reserve(s.size()), C.reserve(s.size());\n       \
-    \ F b = 1;\n        for (std::size_t N = 0, L = 0, x = 1; N < s.size(); ++N) {\n\
-    \            F d = s[N];\n            for (std::size_t i = 1; i <= L; ++i) d +=\
-    \ C[i] * s[N - i];\n            if (d == 0) {\n                ++x;\n        \
-    \    } else {\n                F c = d / b;\n                if (C.size() < B.size()\
-    \ + x) C.resize(B.size() + x);\n                if (2 * L > N) {\n           \
-    \         for (std::size_t i = 0; i < B.size(); ++i) C[x + i] -= c * B[i];\n \
-    \                   ++x;\n                } else {\n                    std::vector<F>\
-    \ T = C;\n                    for (std::size_t i = 0; i < B.size(); ++i) C[x +\
-    \ i] -= c * B[i];\n                    L = N + 1 - L, B = std::move(T), b = d,\
-    \ x = 1;\n                }\n            }\n        }\n        while (C.size()\
-    \ and C.back() == 0) C.pop_back();\n        const std::size_t L = C.size() - 1;\n\
-    \        for (std::size_t N = 1; N <= L; ++N) C[N] = -C[N];\n        return C;\n\
-    \    }\n} // namespace suisen\n\n\n\n"
+    \ F b = 1;\n        std::size_t L = 0;\n        for (std::size_t N = 0, x = 1;\
+    \ N < s.size(); ++N) {\n            F d = s[N];\n            for (std::size_t\
+    \ i = 1; i <= L; ++i) d += C[i] * s[N - i];\n            if (d == 0) {\n     \
+    \           ++x;\n            } else {\n                F c = d / b;\n       \
+    \         if (C.size() < B.size() + x) C.resize(B.size() + x);\n             \
+    \   if (2 * L > N) {\n                    for (std::size_t i = 0; i < B.size();\
+    \ ++i) C[x + i] -= c * B[i];\n                    ++x;\n                } else\
+    \ {\n                    std::vector<F> T = C;\n                    for (std::size_t\
+    \ i = 0; i < B.size(); ++i) C[x + i] -= c * B[i];\n                    L = N +\
+    \ 1 - L, B = std::move(T), b = d, x = 1;\n                }\n            }\n \
+    \       }\n        C.resize(L + 1);\n        for (std::size_t N = 1; N <= L; ++N)\
+    \ C[N] = -C[N];\n        return C;\n    }\n} // namespace suisen\n\n\n\n"
   code: "#ifndef SUISEN_BERLEKAMP_MASSEY\n#define SUISEN_BERLEKAMP_MASSEY\n\n#include\
     \ <cassert>\n#include <vector>\n\nnamespace suisen {\n    /**\n     * @brief Find\
     \ linear recurrence in O(|s|^2) time\n     * @tparam F Arbitrary field (operator\
     \ +, -, *, /, +=, -=, *=, /= must be defined)\n     * @param s Prefix of a linearly\
     \ reccurent sequence\n     * @return The vector of length L+1 c s.t. c_0=1 and\
-    \ s_i=Sum[j=1,L]c_i*s_{i-j}=0 for all i>=L, where L is the minimum integer s.t.\
+    \ s_i=Sum[j=1,L]c_i*s_{i-j} for all i>=L, where L is the minimum integer s.t.\
     \ there exists such c of length L+1.\n     */\n    template <typename F>\n   \
     \ std::vector<F> find_linear_recuurence(const std::vector<F>& s) {\n        std::vector<F>\
     \ B{ 1 }, C{ 1 };\n        B.reserve(s.size()), C.reserve(s.size());\n       \
-    \ F b = 1;\n        for (std::size_t N = 0, L = 0, x = 1; N < s.size(); ++N) {\n\
-    \            F d = s[N];\n            for (std::size_t i = 1; i <= L; ++i) d +=\
-    \ C[i] * s[N - i];\n            if (d == 0) {\n                ++x;\n        \
-    \    } else {\n                F c = d / b;\n                if (C.size() < B.size()\
-    \ + x) C.resize(B.size() + x);\n                if (2 * L > N) {\n           \
-    \         for (std::size_t i = 0; i < B.size(); ++i) C[x + i] -= c * B[i];\n \
-    \                   ++x;\n                } else {\n                    std::vector<F>\
-    \ T = C;\n                    for (std::size_t i = 0; i < B.size(); ++i) C[x +\
-    \ i] -= c * B[i];\n                    L = N + 1 - L, B = std::move(T), b = d,\
-    \ x = 1;\n                }\n            }\n        }\n        while (C.size()\
-    \ and C.back() == 0) C.pop_back();\n        const std::size_t L = C.size() - 1;\n\
-    \        for (std::size_t N = 1; N <= L; ++N) C[N] = -C[N];\n        return C;\n\
-    \    }\n} // namespace suisen\n\n\n#endif // SUISEN_BERLEKAMP_MASSEY\n"
+    \ F b = 1;\n        std::size_t L = 0;\n        for (std::size_t N = 0, x = 1;\
+    \ N < s.size(); ++N) {\n            F d = s[N];\n            for (std::size_t\
+    \ i = 1; i <= L; ++i) d += C[i] * s[N - i];\n            if (d == 0) {\n     \
+    \           ++x;\n            } else {\n                F c = d / b;\n       \
+    \         if (C.size() < B.size() + x) C.resize(B.size() + x);\n             \
+    \   if (2 * L > N) {\n                    for (std::size_t i = 0; i < B.size();\
+    \ ++i) C[x + i] -= c * B[i];\n                    ++x;\n                } else\
+    \ {\n                    std::vector<F> T = C;\n                    for (std::size_t\
+    \ i = 0; i < B.size(); ++i) C[x + i] -= c * B[i];\n                    L = N +\
+    \ 1 - L, B = std::move(T), b = d, x = 1;\n                }\n            }\n \
+    \       }\n        C.resize(L + 1);\n        for (std::size_t N = 1; N <= L; ++N)\
+    \ C[N] = -C[N];\n        return C;\n    }\n} // namespace suisen\n\n\n#endif //\
+    \ SUISEN_BERLEKAMP_MASSEY\n"
   dependsOn: []
   isVerificationFile: false
   path: library/polynomial/berlekamp_massey.hpp
   requiredBy: []
-  timestamp: '2022-11-10 03:29:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-30 20:59:32+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
 documentation_of: library/polynomial/berlekamp_massey.hpp

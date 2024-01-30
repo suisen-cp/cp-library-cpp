@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: library/math/binomial_coefficient_sum.hpp
+    title: library/math/binomial_coefficient_sum.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/algorithm/mo/abc174_f.test.cpp
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
     title: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
+  - icon: ':x:'
+    path: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
+    title: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -105,10 +111,12 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/algorithm/mo.hpp
-  requiredBy: []
+  requiredBy:
+  - library/math/binomial_coefficient_sum.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
   - test/src/algorithm/mo/abc174_f.test.cpp
   - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/algorithm/mo/abc242_g.test.cpp

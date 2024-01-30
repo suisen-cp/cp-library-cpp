@@ -15,9 +15,9 @@ data:
     title: Unsigned Bigint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/many_aplusb_128bit
@@ -42,16 +42,17 @@ data:
     \ = nullptr>\n    std::vector<mint> arbitrary_mod_convolution(const std::vector<mint>&\
     \ a, const std::vector<mint>& b) {\n        int n = int(a.size()), m = int(b.size());\n\
     \n        if constexpr (atcoder::internal::is_static_modint<mint>::value) {\n\
-    \            int maxz = 1;\n            while (not ((mint::mod() - 1) & maxz))\
-    \ maxz <<= 1;\n            int z = 1;\n            while (z < n + m - 1) z <<=\
-    \ 1;\n            if (z <= maxz) return atcoder::convolution<mint>(a, b);\n  \
-    \      }\n\n        if (n == 0 or m == 0) return {};\n        if (std::min(n,\
-    \ m) <= 120) return internal::convolution_naive(a, b);\n\n        static constexpr\
-    \ long long MOD1 = 754974721;  // 2^24\n        static constexpr long long MOD2\
-    \ = 167772161;  // 2^25\n        static constexpr long long MOD3 = 469762049;\
-    \  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n        static\
-    \ constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1, MOD2).second;\n\
-    \        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
+    \            if constexpr (not (mint::mod() & 63)) {\n                int maxz\
+    \ = 1;\n                while (not ((mint::mod() - 1) & maxz)) maxz <<= 1;\n \
+    \               int z = 1;\n                while (z < n + m - 1) z <<= 1;\n \
+    \               if (z <= maxz) return atcoder::convolution<mint>(a, b);\n    \
+    \        }\n        }\n\n        if (n == 0 or m == 0) return {};\n        if\
+    \ (std::min(n, m) <= 120) return internal::convolution_naive(a, b);\n\n      \
+    \  static constexpr long long MOD1 = 754974721;  // 2^24\n        static constexpr\
+    \ long long MOD2 = 167772161;  // 2^25\n        static constexpr long long MOD3\
+    \ = 469762049;  // 2^26\n        static constexpr long long M1M2 = MOD1 * MOD2;\n\
+    \        static constexpr long long INV_M1_MOD2 = atcoder::internal::inv_gcd(MOD1,\
+    \ MOD2).second;\n        static constexpr long long INV_M1M2_MOD3 = atcoder::internal::inv_gcd(M1M2,\
     \ MOD3).second;\n\n        std::vector<int> a2(n), b2(m);\n        for (int i\
     \ = 0; i < n; ++i) a2[i] = a[i].val();\n        for (int i = 0; i < m; ++i) b2[i]\
     \ = b[i].val();\n\n        auto c1 = atcoder::convolution<MOD1>(a2, b2);\n   \
@@ -104,36 +105,41 @@ data:
     \ d and d <= 9);\n                    v = v * 10 + d;\n                }\n   \
     \         }\n        }\n        unsigned_bigint(const char* s) : unsigned_bigint(std::string(s))\
     \ {}\n\n        operator bool() const {\n            return not this->empty();\n\
-    \        }\n\n        friend bool operator<(const unsigned_bigint& a, const unsigned_bigint&\
-    \ b) {\n            if (a.size() != b.size()) {\n                return a.size()\
-    \ < b.size();\n            }\n            for (size_t i = a.size(); i-- > 0;)\
-    \ {\n                if (a[i] != b[i]) return a[i] < b[i];\n            }\n  \
-    \          return false;\n        }\n        friend bool operator<=(const unsigned_bigint&\
-    \ a, const unsigned_bigint& b) {\n            return not (b < a);\n        }\n\
-    \        friend bool operator>(const unsigned_bigint& a, const unsigned_bigint&\
-    \ b) {\n            return b < a;\n        }\n        friend bool operator>=(const\
-    \ unsigned_bigint& a, const unsigned_bigint& b) {\n            return not (a <\
-    \ b);\n        }\n\n        friend unsigned_bigint& operator<<=(unsigned_bigint&\
-    \ a, int shamt) {\n            if (a) a.insert(a.begin(), shamt, 0);\n       \
-    \     return a;\n        }\n        friend unsigned_bigint operator<<(unsigned_bigint\
-    \ a, int shamt) {\n            a <<= shamt;\n            return a;\n        }\n\
-    \        friend unsigned_bigint& operator>>=(unsigned_bigint& a, int shamt) {\n\
-    \            a.erase(a.begin(), a.begin() + std::min<int>(shamt, a.size()));\n\
-    \            return a;\n        }\n        friend unsigned_bigint operator>>(unsigned_bigint\
-    \ a, int shamt) {\n            a >>= shamt;\n            return a;\n        }\n\
-    \n        unsigned_bigint& operator++() {\n            return _incr_assign(*this);\n\
-    \        }\n        unsigned_bigint operator++(int) {\n            unsigned_bigint\
-    \ res = *this;\n            _incr_assign(*this);\n            return res;\n  \
-    \      }\n        unsigned_bigint& operator--() {\n            return _decr_assign(*this);\n\
-    \        }\n        unsigned_bigint operator--(int) {\n            unsigned_bigint\
-    \ res = *this;\n            _decr_assign(*this);\n            return res;\n  \
-    \      }\n        friend unsigned_bigint& operator+=(unsigned_bigint& a, const\
-    \ unsigned_bigint& b) {\n            return _add_assign(a, b);\n        }\n  \
-    \      friend unsigned_bigint operator+(const unsigned_bigint& a, const unsigned_bigint&\
-    \ b) {\n            unsigned_bigint c = a;\n            c += b;\n            return\
-    \ c;\n        }\n        friend unsigned_bigint& operator-=(unsigned_bigint& a,\
-    \ const unsigned_bigint& b) {\n            return _sub_assign(a, b);\n       \
-    \ }\n        friend unsigned_bigint operator-(const unsigned_bigint& a, const\
+    \        }\n\n        friend bool operator==(const unsigned_bigint& a, const unsigned_bigint&\
+    \ b) {\n            if (a.size() != b.size()) {\n                return false;\n\
+    \            }\n            for (size_t i = 0; i < a.size(); ++i) {\n        \
+    \        if (a[i] != b[i]) return false;\n            }\n            return true;\n\
+    \        }\n        friend bool operator!=(const unsigned_bigint& a, const unsigned_bigint&\
+    \ b) {\n            return not (a == b);\n        }\n        friend bool operator<(const\
+    \ unsigned_bigint& a, const unsigned_bigint& b) {\n            if (a.size() !=\
+    \ b.size()) {\n                return a.size() < b.size();\n            }\n  \
+    \          for (size_t i = a.size(); i-- > 0;) {\n                if (a[i] !=\
+    \ b[i]) return a[i] < b[i];\n            }\n            return false;\n      \
+    \  }\n        friend bool operator<=(const unsigned_bigint& a, const unsigned_bigint&\
+    \ b) {\n            return not (b < a);\n        }\n        friend bool operator>(const\
+    \ unsigned_bigint& a, const unsigned_bigint& b) {\n            return b < a;\n\
+    \        }\n        friend bool operator>=(const unsigned_bigint& a, const unsigned_bigint&\
+    \ b) {\n            return not (a < b);\n        }\n\n        friend unsigned_bigint&\
+    \ operator<<=(unsigned_bigint& a, int shamt) {\n            if (a) a.insert(a.begin(),\
+    \ shamt, 0);\n            return a;\n        }\n        friend unsigned_bigint\
+    \ operator<<(unsigned_bigint a, int shamt) {\n            a <<= shamt;\n     \
+    \       return a;\n        }\n        friend unsigned_bigint& operator>>=(unsigned_bigint&\
+    \ a, int shamt) {\n            a.erase(a.begin(), a.begin() + std::min<int>(shamt,\
+    \ a.size()));\n            return a;\n        }\n        friend unsigned_bigint\
+    \ operator>>(unsigned_bigint a, int shamt) {\n            a >>= shamt;\n     \
+    \       return a;\n        }\n\n        unsigned_bigint& operator++() {\n    \
+    \        return _incr_assign(*this);\n        }\n        unsigned_bigint operator++(int)\
+    \ {\n            unsigned_bigint res = *this;\n            _incr_assign(*this);\n\
+    \            return res;\n        }\n        unsigned_bigint& operator--() {\n\
+    \            return _decr_assign(*this);\n        }\n        unsigned_bigint operator--(int)\
+    \ {\n            unsigned_bigint res = *this;\n            _decr_assign(*this);\n\
+    \            return res;\n        }\n        friend unsigned_bigint& operator+=(unsigned_bigint&\
+    \ a, const unsigned_bigint& b) {\n            return _add_assign(a, b);\n    \
+    \    }\n        friend unsigned_bigint operator+(const unsigned_bigint& a, const\
+    \ unsigned_bigint& b) {\n            unsigned_bigint c = a;\n            c +=\
+    \ b;\n            return c;\n        }\n        friend unsigned_bigint& operator-=(unsigned_bigint&\
+    \ a, const unsigned_bigint& b) {\n            return _sub_assign(a, b);\n    \
+    \    }\n        friend unsigned_bigint operator-(const unsigned_bigint& a, const\
     \ unsigned_bigint& b) {\n            unsigned_bigint c = a;\n            c -=\
     \ b;\n            return c;\n        }\n        friend unsigned_bigint& operator*=(unsigned_bigint&\
     \ a, const unsigned_bigint& b) {\n            return a = a * b;\n        }\n \
@@ -319,18 +325,22 @@ data:
     \ char* s) : bigint(std::string(s)) {}\n\n        bigint(const unsigned_bigint&\
     \ dat) : _neg(false), _dat(dat) {}\n        bigint(unsigned_bigint&& dat) : _neg(false),\
     \ _dat(std::move(dat)) {}\n\n        operator bool() const {\n            return\
-    \ bool(_dat);\n        }\n\n        friend bool operator<(const bigint& a, const\
-    \ bigint& b) {\n            if (a._neg xor b._neg) {\n                return a._neg;\n\
-    \            } else if (a._neg) {\n                return a._dat > b._dat;\n \
-    \           } else {\n                return a._dat < b._dat;\n            }\n\
-    \        }\n        friend bool operator<=(const bigint& a, const bigint& b) {\n\
-    \            return not (b < a);\n        }\n        friend bool operator>(const\
-    \ bigint& a, const bigint& b) {\n            return b < a;\n        }\n      \
-    \  friend bool operator>=(const bigint& a, const bigint& b) {\n            return\
-    \ not (a < b);\n        }\n\n        friend bigint& operator<<=(bigint& a, int\
-    \ shamt) {\n            a._dat <<= shamt;\n            return a;\n        }\n\
-    \        friend bigint operator<<(bigint a, int shamt) {\n            a <<= shamt;\n\
-    \            return a;\n        }\n        friend bigint& operator>>=(bigint&\
+    \ bool(_dat);\n        }\n\n        friend bool operator==(const bigint& a, const\
+    \ bigint& b) {\n            if (a._neg xor b._neg) {\n                return false;\n\
+    \            } else {\n                return a._dat == b._dat;\n            }\n\
+    \        }\n        friend bool operator!=(const bigint& a, const bigint& b) {\n\
+    \            return not (a == b);\n        }\n\n        friend bool operator<(const\
+    \ bigint& a, const bigint& b) {\n            if (a._neg xor b._neg) {\n      \
+    \          return a._neg;\n            } else if (a._neg) {\n                return\
+    \ a._dat > b._dat;\n            } else {\n                return a._dat < b._dat;\n\
+    \            }\n        }\n        friend bool operator<=(const bigint& a, const\
+    \ bigint& b) {\n            return not (b < a);\n        }\n        friend bool\
+    \ operator>(const bigint& a, const bigint& b) {\n            return b < a;\n \
+    \       }\n        friend bool operator>=(const bigint& a, const bigint& b) {\n\
+    \            return not (a < b);\n        }\n\n        friend bigint& operator<<=(bigint&\
+    \ a, int shamt) {\n            a._dat <<= shamt;\n            return a;\n    \
+    \    }\n        friend bigint operator<<(bigint a, int shamt) {\n            a\
+    \ <<= shamt;\n            return a;\n        }\n        friend bigint& operator>>=(bigint&\
     \ a, int shamt) {\n            a._dat >>= shamt;\n            a.fix_sign();\n\
     \            return a;\n        }\n        friend bigint operator>>(bigint a,\
     \ int shamt) {\n            a >>= shamt;\n            a.fix_sign();\n        \
@@ -417,8 +427,8 @@ data:
   isVerificationFile: true
   path: test/src/math/bigint/many_aplusb_128bit.test.cpp
   requiredBy: []
-  timestamp: '2023-05-11 13:27:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-30 21:01:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/bigint/many_aplusb_128bit.test.cpp
 layout: document

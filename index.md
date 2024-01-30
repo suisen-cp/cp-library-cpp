@@ -299,6 +299,9 @@ data:
       path: library/datastructure/fenwick_tree/fenwick_tree_set.hpp
       title: Fenwick Tree Set
     - icon: ':heavy_check_mark:'
+      path: library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp
+      title: library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
       title: Persistent Fenwick Tree
     - icon: ':heavy_check_mark:'
@@ -499,7 +502,7 @@ data:
     - icon: ':warning:'
       path: library/graph/dijkstra.hpp
       title: Dijkstra
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/directed_eulerian_graph.hpp
       title: Directed Eulerian Graph
     - icon: ':question:'
@@ -520,7 +523,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/kruscal.hpp
       title: Kruscal
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/graph/low_link.hpp
       title: Low Link
     - icon: ':warning:'
@@ -569,7 +572,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/graph/two_edge_connected_components.hpp
       title: "\u4E8C\u91CD\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: library/graph/undirected_eulerian_graph.hpp
       title: Undirected Eulerian Graph
   - name: library/icpc
@@ -662,13 +665,16 @@ data:
     - icon: ':question:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
-    - icon: ':question:'
+    - icon: ':x:'
+      path: library/math/binomial_coefficient_sum.hpp
+      title: library/math/binomial_coefficient_sum.hpp
+    - icon: ':x:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
     - icon: ':warning:'
       path: library/math/factorial_embeded.hpp
       title: Factorial Embeded
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/math/factorial_large.hpp
       title: Factorial Large
     - icon: ':question:'
@@ -677,16 +683,16 @@ data:
     - icon: ':question:'
       path: library/math/modint_extension.hpp
       title: Modint Extension
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/math/pow_mods.hpp
       title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
     - icon: ':question:'
       path: library/math/set_power_series.hpp
       title: Set Power Series
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/math/sum_i^d_r^i.hpp
       title: $\displaystyle \sum _ i i ^ d r ^ i$
     - icon: ':question:'
@@ -743,7 +749,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/kth_root_round.hpp
       title: $\lfloor a ^ {\frac{1}{k}}\rfloor, \lceil a ^ {\frac{1}{k}}\rceil$
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/number/linear_sieve.hpp
       title: "\u7DDA\u5F62\u7BE9"
     - icon: ':heavy_check_mark:'
@@ -780,6 +786,9 @@ data:
       path: library/number/sieve_of_eratosthenes_constexpr.hpp
       title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9 (\u30B3\u30F3\
         \u30D1\u30A4\u30EB\u6642\u8A08\u7B97)"
+    - icon: ':x:'
+      path: library/number/stern_brocot_tree.hpp
+      title: library/number/stern_brocot_tree.hpp
     - icon: ':warning:'
       path: library/number/sum_of_mobius_function.hpp
       title: Sum Of Mobius Function
@@ -792,12 +801,23 @@ data:
     - icon: ':question:'
       path: library/number/util.hpp
       title: Util
+  - name: library/optimization
+    pages:
+    - icon: ':x:'
+      path: library/optimization/alien_dp.hpp
+      title: 'evaluates f(x) (f: convex)'
+    - icon: ':x:'
+      path: library/optimization/k_project_selection_problem.hpp
+      title: library/optimization/k_project_selection_problem.hpp
+    - icon: ':x:'
+      path: library/optimization/project_selection_problem.hpp
+      title: library/optimization/project_selection_problem.hpp
   - name: library/polynomial
     pages:
     - icon: ':x:'
       path: library/polynomial/array_fps_naive.hpp
       title: Array Fps Naive
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/polynomial/berlekamp_massey.hpp
       title: "Berlekamp Massey (\u7DDA\u5F62\u56DE\u5E30\u6570\u5217\u306E\u4FC2\u6570\
         \u8A08\u7B97)"
@@ -828,10 +848,10 @@ data:
     - icon: ':question:'
       path: library/polynomial/fps_naive.hpp
       title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/polynomial/lagrange_interpolation.hpp
       title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/polynomial/multi_point_eval.hpp
       title: Multi Point Evaluation
     - icon: ':x:'
@@ -852,7 +872,7 @@ data:
     - icon: ':x:'
       path: library/polynomial/rook_polynomial.hpp
       title: library/polynomial/rook_polynomial.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/polynomial/shift_of_sampling_points.hpp
       title: Shift of Sampling Points of Polynomial
     - icon: ':x:'
@@ -907,7 +927,7 @@ data:
     - icon: ':x:'
       path: library/sequence/partition_number.hpp
       title: Partition Number
-    - icon: ':question:'
+    - icon: ':x:'
       path: library/sequence/powers.hpp
       title: Powers
     - icon: ':x:'
@@ -957,10 +977,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/string/run_enumerate.hpp
       title: Run Enumerate
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/string/substring_set.hpp
       title: Substring Set
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: library/string/suffix_automaton.hpp
       title: Suffix Automaton
     - icon: ':x:'
@@ -1178,6 +1198,11 @@ data:
     - icon: ':warning:'
       path: library/util/zobrist_hash.hpp
       title: Zobrist Hash
+  - name: test/src/math/factorial_large
+    pages:
+    - icon: ':warning:'
+      path: test/src/math/factorial_large/yuki502.cpp
+      title: test/src/math/factorial_large/yuki502.cpp
   verificationCategories:
   - name: test/src/algebra/field/nimber
     pages:
@@ -1491,6 +1516,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
       title: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse/rectangle_sum.test.cpp
+  - name: test/src/datastructure/fenwick_tree/offline_rectangle_add_point_get
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/datastructure/fenwick_tree/offline_rectangle_add_point_get/rectangle_add_point_get.test.cpp
+      title: test/src/datastructure/fenwick_tree/offline_rectangle_add_point_get/rectangle_add_point_get.test.cpp
   - name: test/src/datastructure/fenwick_tree/persistent_fenwick_tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -1905,6 +1935,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/cycle_detection/dummy.test.cpp
       title: test/src/graph/cycle_detection/dummy.test.cpp
+  - name: test/src/graph/directed_eulerian_graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/directed_eulerian_graph/eulerian_trail_directed.test.cpp
+      title: test/src/graph/directed_eulerian_graph/eulerian_trail_directed.test.cpp
   - name: test/src/graph/dulmage_mendelsohn_decomposition
     pages:
     - icon: ':x:'
@@ -1947,12 +1982,18 @@ data:
       title: test/src/graph/functional_graph/dummy.test.cpp
   - name: test/src/graph/low_link
     pages:
+    - icon: ':x:'
+      path: test/src/graph/low_link/abc334_g.test.cpp
+      title: test/src/graph/low_link/abc334_g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/graph/low_link/articulation_points.test.cpp
       title: test/src/graph/low_link/articulation_points.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/src/graph/low_link/bridges.test.cpp
       title: test/src/graph/low_link/bridges.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/low_link/dummy.test.cpp
+      title: test/src/graph/low_link/dummy.test.cpp
   - name: test/src/graph/manhattan_mst
     pages:
     - icon: ':heavy_check_mark:'
@@ -1999,6 +2040,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
       title: test/src/graph/two_edge_connected_components/two_edge_connected_components.test.cpp
+  - name: test/src/graph/undirected_eulerian_graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/graph/undirected_eulerian_graph/eulerian_trail_undirected.test.cpp
+      title: test/src/graph/undirected_eulerian_graph/eulerian_trail_undirected.test.cpp
   - name: test/src/integral_geom/closest_pair
     pages:
     - icon: ':heavy_check_mark:'
@@ -2135,20 +2181,36 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/bigint/NTL_2_F.test.cpp
       title: test/src/math/bigint/NTL_2_F.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/math/bigint/addition_of_big_integers.test.cpp
       title: test/src/math/bigint/addition_of_big_integers.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/bigint/many_aplusb_128bit.test.cpp
       title: test/src/math/bigint/many_aplusb_128bit.test.cpp
     - icon: ':x:'
       path: test/src/math/bigint/multiplication_of_big_integers.test.cpp
       title: test/src/math/bigint/multiplication_of_big_integers.test.cpp
+  - name: test/src/math/binomial_coefficient_sum
+    pages:
+    - icon: ':x:'
+      path: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
+      title: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
   - name: test/src/math/factorial
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
       title: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
+  - name: test/src/math/factorial_large
+    pages:
+    - icon: ':x:'
+      path: test/src/math/factorial_large/dummy.test.cpp
+      title: test/src/math/factorial_large/dummy.test.cpp
+    - icon: ':x:'
+      path: test/src/math/factorial_large/factorial.test.cpp
+      title: test/src/math/factorial_large/factorial.test.cpp
+    - icon: ':x:'
+      path: test/src/math/factorial_large/many_factorials.test.cpp
+      title: test/src/math/factorial_large/many_factorials.test.cpp
   - name: test/src/math/product_of_differences
     pages:
     - icon: ':x:'
@@ -2179,10 +2241,10 @@ data:
       title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - name: test/src/math/sum_i^d_r^i
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
       title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
       title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - name: test/src/math/util
@@ -2260,6 +2322,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
       title: test/src/number/sieve_of_eratosthenes_constexpr/next_prime.test.cpp
+  - name: test/src/number/stern_brocot_tree
+    pages:
+    - icon: ':x:'
+      path: test/src/number/stern_brocot_tree/abc273_h.test.cpp
+      title: test/src/number/stern_brocot_tree/abc273_h.test.cpp
+    - icon: ':x:'
+      path: test/src/number/stern_brocot_tree/stern_brocot_tree.test.cpp
+      title: test/src/number/stern_brocot_tree/stern_brocot_tree.test.cpp
   - name: test/src/number/sum_of_totient_function
     pages:
     - icon: ':heavy_check_mark:'
@@ -2278,9 +2348,33 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/number/util/abc222_g.test.cpp
       title: test/src/number/util/abc222_g.test.cpp
+  - name: test/src/optimization/alien_dp
+    pages:
+    - icon: ':x:'
+      path: test/src/optimization/alien_dp/abc218_h_1.test.cpp
+      title: test/src/optimization/alien_dp/abc218_h_1.test.cpp
+    - icon: ':x:'
+      path: test/src/optimization/alien_dp/abc218_h_2.test.cpp
+      title: test/src/optimization/alien_dp/abc218_h_2.test.cpp
+    - icon: ':x:'
+      path: test/src/optimization/alien_dp/arc168_e_1.test.cpp
+      title: test/src/optimization/alien_dp/arc168_e_1.test.cpp
+    - icon: ':x:'
+      path: test/src/optimization/alien_dp/arc168_e_2.test.cpp
+      title: test/src/optimization/alien_dp/arc168_e_2.test.cpp
+  - name: test/src/optimization/k_project_selection_problem
+    pages:
+    - icon: ':x:'
+      path: test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
+      title: test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
+  - name: test/src/optimization/project_selection_problem
+    pages:
+    - icon: ':x:'
+      path: test/src/optimization/project_selection_problem/arc085_c.test.cpp
+      title: test/src/optimization/project_selection_problem/arc085_c.test.cpp
   - name: test/src/polynomial/berlekamp_massey
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
       title: test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
   - name: test/src/polynomial/bostan_mori
@@ -2612,15 +2706,18 @@ data:
       title: test/src/string/run_enumerate/runenumerate.test.cpp
   - name: test/src/string/substring_set
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/string/substring_set/arc097_a.test.cpp
       title: test/src/string/substring_set/arc097_a.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/string/substring_set/number_of_substrings.test.cpp
       title: test/src/string/substring_set/number_of_substrings.test.cpp
   - name: test/src/string/suffix_automaton
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: test/src/string/suffix_automaton/longest_common_substring.test.cpp
+      title: test/src/string/suffix_automaton/longest_common_substring.test.cpp
+    - icon: ':x:'
       path: test/src/string/suffix_automaton/yuki430.test.cpp
       title: test/src/string/suffix_automaton/yuki430.test.cpp
   - name: test/src/transform/kronecker_power

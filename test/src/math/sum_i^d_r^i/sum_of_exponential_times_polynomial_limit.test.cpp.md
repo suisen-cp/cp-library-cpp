@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/product_of_differences.hpp
     title: Product Of Differences
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/number/linear_sieve.hpp
     title: "\u7DDA\u5F62\u7BE9"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/sequence/powers.hpp
     title: Powers
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit
@@ -87,33 +87,39 @@ data:
     \    ensure(i);\n            return _fac_inv[i];\n        }\n        U binom(const\
     \ int n, const int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n\
     \            ensure(n);\n            return _fac[n] * _fac_inv[r] * _fac_inv[n\
-    \ - r];\n        }\n        U perm(const int n, const int r) {\n            if\
-    \ (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n            return\
-    \ _fac[n] * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T>\
-    \ _fac;\n        static std::vector<U> _fac_inv;\n    };\n    template <typename\
-    \ T, typename U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template\
-    \ <typename T, typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n\
-    } // namespace suisen\n\n\n#line 1 \"library/math/pow_mods.hpp\"\n\n\n\n#line\
-    \ 5 \"library/math/pow_mods.hpp\"\n\nnamespace suisen {\n    template <int base_as_int,\
-    \ typename mint>\n    struct static_pow_mods {\n        static_pow_mods() = default;\n\
-    \        static_pow_mods(int n) { ensure(n); }\n        const mint& operator[](int\
-    \ i) const {\n            ensure(i);\n            return pows[i];\n        }\n\
-    \        static void ensure(int n) {\n            int sz = pows.size();\n    \
-    \        if (sz > n) return;\n            pows.resize(n + 1);\n            for\
-    \ (int i = sz; i <= n; ++i) pows[i] = base * pows[i - 1];\n        }\n    private:\n\
-    \        static inline std::vector<mint> pows { 1 };\n        static inline mint\
-    \ base = base_as_int;\n        static constexpr int mod = mint::mod();\n    };\n\
-    \n    template <typename mint>\n    struct pow_mods {\n        pow_mods() = default;\n\
-    \        pow_mods(mint base, int n) : base(base) { ensure(n); }\n        const\
-    \ mint& operator[](int i) const {\n            ensure(i);\n            return\
-    \ pows[i];\n        }\n        void ensure(int n) const {\n            int sz\
-    \ = pows.size();\n            if (sz > n) return;\n            pows.resize(n +\
-    \ 1);\n            for (int i = sz; i <= n; ++i) pows[i] = base * pows[i - 1];\n\
-    \        }\n    private:\n        mutable std::vector<mint> pows { 1 };\n    \
-    \    mint base;\n        static constexpr int mod = mint::mod();\n    };\n}\n\n\
-    \n#line 1 \"library/polynomial/lagrange_interpolation.hpp\"\n\n\n\n#line 1 \"\
-    library/math/product_of_differences.hpp\"\n\n\n\n#include <deque>\n#line 1 \"\
-    library/polynomial/multi_point_eval.hpp\"\n\n\n\n#line 5 \"library/polynomial/multi_point_eval.hpp\"\
+    \ - r];\n        }\n        template <typename ...Ds, std::enable_if_t<std::conjunction_v<std::is_integral<Ds>...>,\
+    \ std::nullptr_t> = nullptr>\n        U polynom(const int n, const Ds& ...ds)\
+    \ {\n            if (n < 0) return 0;\n            ensure(n);\n            int\
+    \ sumd = 0;\n            U res = _fac[n];\n            for (int d : { ds... })\
+    \ {\n                if (d < 0 or d > n) return 0;\n                sumd += d;\n\
+    \                res *= _fac_inv[d];\n            }\n            if (sumd > n)\
+    \ return 0;\n            res *= _fac_inv[n - sumd];\n            return res;\n\
+    \        }\n        U perm(const int n, const int r) {\n            if (n < 0\
+    \ or r < 0 or n < r) return 0;\n            ensure(n);\n            return _fac[n]\
+    \ * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T> _fac;\n\
+    \        static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
+    \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
+    \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
+    \ suisen\n\n\n#line 1 \"library/math/pow_mods.hpp\"\n\n\n\n#line 5 \"library/math/pow_mods.hpp\"\
+    \n\nnamespace suisen {\n    template <int base_as_int, typename mint>\n    struct\
+    \ static_pow_mods {\n        static_pow_mods() = default;\n        static_pow_mods(int\
+    \ n) { ensure(n); }\n        const mint& operator[](int i) const {\n         \
+    \   ensure(i);\n            return pows[i];\n        }\n        static void ensure(int\
+    \ n) {\n            int sz = pows.size();\n            if (sz > n) return;\n \
+    \           pows.resize(n + 1);\n            for (int i = sz; i <= n; ++i) pows[i]\
+    \ = base * pows[i - 1];\n        }\n    private:\n        static inline std::vector<mint>\
+    \ pows { 1 };\n        static inline mint base = base_as_int;\n        static\
+    \ constexpr int mod = mint::mod();\n    };\n\n    template <typename mint>\n \
+    \   struct pow_mods {\n        pow_mods() = default;\n        pow_mods(mint base,\
+    \ int n) : base(base) { ensure(n); }\n        const mint& operator[](int i) const\
+    \ {\n            ensure(i);\n            return pows[i];\n        }\n        void\
+    \ ensure(int n) const {\n            int sz = pows.size();\n            if (sz\
+    \ > n) return;\n            pows.resize(n + 1);\n            for (int i = sz;\
+    \ i <= n; ++i) pows[i] = base * pows[i - 1];\n        }\n    private:\n      \
+    \  mutable std::vector<mint> pows { 1 };\n        mint base;\n        static constexpr\
+    \ int mod = mint::mod();\n    };\n}\n\n\n#line 1 \"library/polynomial/lagrange_interpolation.hpp\"\
+    \n\n\n\n#line 1 \"library/math/product_of_differences.hpp\"\n\n\n\n#include <deque>\n\
+    #line 1 \"library/polynomial/multi_point_eval.hpp\"\n\n\n\n#line 5 \"library/polynomial/multi_point_eval.hpp\"\
     \n\nnamespace suisen {\n    template <typename FPSType, typename T>\n    std::vector<typename\
     \ FPSType::value_type> multi_point_eval(const FPSType& f, const std::vector<T>&\
     \ xs) {\n        int n = xs.size();\n        if (n == 0) return {};\n        std::vector<FPSType>\
@@ -172,24 +178,30 @@ data:
     \ T{0}, ys, t);\n    }\n} // namespace suisen\n\n\n\n#line 1 \"library/polynomial/shift_of_sampling_points.hpp\"\
     \n\n\n\n#line 5 \"library/polynomial/shift_of_sampling_points.hpp\"\n#include\
     \ <atcoder/convolution>\n\n#line 8 \"library/polynomial/shift_of_sampling_points.hpp\"\
-    \n\nnamespace suisen {\n    template <typename mint>\n    std::vector<mint> shift_of_sampling_points(const\
-    \ std::vector<mint>& ys, mint t, int m) {\n        const int n = ys.size();\n\
-    \        factorial<mint> fac(std::max(n, m));\n\n        std::vector<mint> b =\
-    \ [&] {\n            std::vector<mint> f(n), g(n);\n            for (int i = 0;\
-    \ i < n; ++i) {\n                f[i] = ys[i] * fac.fac_inv(i);\n            \
-    \    g[i] = (i & 1 ? -1 : 1) * fac.fac_inv(i);\n            }\n            std::vector<mint>\
-    \ b = atcoder::convolution(f, g);\n            b.resize(n);\n            return\
-    \ b;\n        }();\n        std::vector<mint> e = [&] {\n            std::vector<mint>\
-    \ c(n);\n            mint prd = 1;\n            std::reverse(b.begin(), b.end());\n\
-    \            for (int i = 0; i < n; ++i) {\n                b[i] *= fac.fac(n\
-    \ - i - 1);\n                c[i] = prd * fac.fac_inv(i);\n                prd\
-    \ *= t - i;\n            }\n            std::vector<mint> e = atcoder::convolution(b,\
+    \n\nnamespace suisen {\n    template <typename mint, typename Convolve,\n    \
+    \    std::enable_if_t<std::is_invocable_r_v<std::vector<mint>, Convolve, std::vector<mint>,\
+    \ std::vector<mint>>, std::nullptr_t> = nullptr>\n    std::vector<mint> shift_of_sampling_points(const\
+    \ std::vector<mint>& ys, mint t, int m, const Convolve &convolve) {\n        const\
+    \ int n = ys.size();\n        factorial<mint> fac(std::max(n, m));\n\n       \
+    \ std::vector<mint> b = [&] {\n            std::vector<mint> f(n), g(n);\n   \
+    \         for (int i = 0; i < n; ++i) {\n                f[i] = ys[i] * fac.fac_inv(i);\n\
+    \                g[i] = (i & 1 ? -1 : 1) * fac.fac_inv(i);\n            }\n  \
+    \          std::vector<mint> b = convolve(f, g);\n            b.resize(n);\n \
+    \           return b;\n        }();\n        std::vector<mint> e = [&] {\n   \
+    \         std::vector<mint> c(n);\n            mint prd = 1;\n            std::reverse(b.begin(),\
+    \ b.end());\n            for (int i = 0; i < n; ++i) {\n                b[i] *=\
+    \ fac.fac(n - i - 1);\n                c[i] = prd * fac.fac_inv(i);\n        \
+    \        prd *= t - i;\n            }\n            std::vector<mint> e = convolve(b,\
     \ c);\n            e.resize(n);\n            return e;\n        }();\n       \
     \ std::reverse(e.begin(), e.end());\n        for (int i = 0; i < n; ++i) {\n \
     \           e[i] *= fac.fac_inv(i);\n        }\n\n        std::vector<mint> f(m);\n\
     \        for (int i = 0; i < m; ++i) f[i] = fac.fac_inv(i);\n        std::vector<mint>\
-    \ res = atcoder::convolution(e, f);\n        res.resize(m);\n        for (int\
-    \ i = 0; i < m; ++i) res[i] *= fac.fac(i);\n        return res;\n    }\n} // namespace\
+    \ res = convolve(e, f);\n        res.resize(m);\n        for (int i = 0; i < m;\
+    \ ++i) res[i] *= fac.fac(i);\n        return res;\n    }\n\n    template <typename\
+    \ mint>\n    std::vector<mint> shift_of_sampling_points(const std::vector<mint>&\
+    \ ys, mint t, int m) {\n        auto convolve = [&](const std::vector<mint> &f,\
+    \ const std::vector<mint> &g) { return atcoder::convolution(f, g); };\n      \
+    \  return shift_of_sampling_points(ys, t, m, convolve);\n    }\n} // namespace\
     \ suisen\n\n\n\n#line 9 \"library/math/sum_i^d_r^i.hpp\"\n\nnamespace suisen {\n\
     \    template <typename mint>\n    struct sum_i_i_pow_d_r_pow_i {\n        sum_i_i_pow_d_r_pow_i(int\
     \ d, mint r) : d(d), r(r), i_pow_d(powers<mint>(d + 1, d)), r_pow_i(r, d + 1),\
@@ -241,8 +253,8 @@ data:
   isVerificationFile: true
   path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   requiredBy: []
-  timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-30 20:59:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
 layout: document

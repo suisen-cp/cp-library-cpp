@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
@@ -36,10 +36,17 @@ data:
     \            return _fac_inv[i];\n        }\n        U binom(const int n, const\
     \ int r) {\n            if (n < 0 or r < 0 or n < r) return 0;\n            ensure(n);\n\
     \            return _fac[n] * _fac_inv[r] * _fac_inv[n - r];\n        }\n    \
-    \    U perm(const int n, const int r) {\n            if (n < 0 or r < 0 or n <\
-    \ r) return 0;\n            ensure(n);\n            return _fac[n] * _fac_inv[n\
-    \ - r];\n        }\n    private:\n        static std::vector<T> _fac;\n      \
-    \  static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
+    \    template <typename ...Ds, std::enable_if_t<std::conjunction_v<std::is_integral<Ds>...>,\
+    \ std::nullptr_t> = nullptr>\n        U polynom(const int n, const Ds& ...ds)\
+    \ {\n            if (n < 0) return 0;\n            ensure(n);\n            int\
+    \ sumd = 0;\n            U res = _fac[n];\n            for (int d : { ds... })\
+    \ {\n                if (d < 0 or d > n) return 0;\n                sumd += d;\n\
+    \                res *= _fac_inv[d];\n            }\n            if (sumd > n)\
+    \ return 0;\n            res *= _fac_inv[n - sumd];\n            return res;\n\
+    \        }\n        U perm(const int n, const int r) {\n            if (n < 0\
+    \ or r < 0 or n < r) return 0;\n            ensure(n);\n            return _fac[n]\
+    \ * _fac_inv[n - r];\n        }\n    private:\n        static std::vector<T> _fac;\n\
+    \        static std::vector<U> _fac_inv;\n    };\n    template <typename T, typename\
     \ U>\n    std::vector<T> factorial<T, U>::_fac{ 1 };\n    template <typename T,\
     \ typename U>\n    std::vector<U> factorial<T, U>::_fac_inv{ 1 };\n} // namespace\
     \ suisen\n\n\n#line 21 \"test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp\"\
@@ -64,8 +71,8 @@ data:
   isVerificationFile: true
   path: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-30 20:57:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/math/factorial/binomial_coefficient_prime_mod.test.cpp
 layout: document
