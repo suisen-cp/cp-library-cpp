@@ -12,11 +12,13 @@ namespace suisen {
         int n = int(a.size()), m = int(b.size());
 
         if constexpr (atcoder::internal::is_static_modint<mint>::value) {
-            int maxz = 1;
-            while (not ((mint::mod() - 1) & maxz)) maxz <<= 1;
-            int z = 1;
-            while (z < n + m - 1) z <<= 1;
-            if (z <= maxz) return atcoder::convolution<mint>(a, b);
+            if constexpr (not (mint::mod() & 63)) {
+                int maxz = 1;
+                while (not ((mint::mod() - 1) & maxz)) maxz <<= 1;
+                int z = 1;
+                while (z < n + m - 1) z <<= 1;
+                if (z <= maxz) return atcoder::convolution<mint>(a, b);
+            }
         }
 
         if (n == 0 or m == 0) return {};
