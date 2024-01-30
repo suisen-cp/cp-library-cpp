@@ -4,8 +4,10 @@
 #include <algorithm>
 #include <cassert>
 #include <deque>
+#include <limits>
 #include <map>
 #include <string>
+#include <tuple>
 #include <vector>
 
 namespace suisen {
@@ -21,13 +23,14 @@ struct SuffixAutomatonBase {
         std::map<T, int> nxt;
         int link, len;
         bool cloned;
+        int index;
     };
 
     std::vector<Node> nodes;
     int last;
 
     SuffixAutomatonBase() {
-        nodes.push_back({ {}, -1, 0, false });
+        nodes.push_back({ {}, -1, 0, false, -1 });
         last = 0;
     }
     SuffixAutomatonBase(const SequenceType &s) : SuffixAutomatonBase() {
@@ -36,7 +39,8 @@ struct SuffixAutomatonBase {
 
     void append(const T &c) {
         const int new_node = nodes.size();
-        nodes.push_back({ {}, -1, nodes[last].len + 1, false });
+        const int new_node_index = nodes[last].index + 1;
+        nodes.push_back({ {}, -1, nodes[last].len + 1, false, new_node_index });
         int p = last;
         for (; p != -1 and not nodes[p].nxt.count(c); p = nodes[p].link) nodes[p].nxt[c] = new_node;
         const int q = p == -1 ? 0 : nodes[p].nxt[c];
@@ -44,7 +48,7 @@ struct SuffixAutomatonBase {
             nodes[new_node].link = q;
         } else {
             const int clone_node = nodes.size();
-            nodes.push_back({ nodes[q].nxt, nodes[q].link, nodes[p].len + 1, true });
+            nodes.push_back({ nodes[q].nxt, nodes[q].link, nodes[p].len + 1, true, new_node_index });
             for (; p != -1 and nodes[p].nxt[c] == q; p = nodes[p].link) nodes[p].nxt[c] = clone_node;
             nodes[new_node].link = nodes[q].link = clone_node;
         }
@@ -100,7 +104,7 @@ struct SuffixAutomatonBase {
                 const int n = g.size();
                 for (int i = 1; i < n; ++i) g[sa->nodes[i].link].push_back(i);
             }
-            const int size() const {
+            int size() const {
                 return g.size();
             }
             const std::vector<int>& operator[](int i) const {
@@ -174,11 +178,11 @@ struct SuffixAutomatonBase {
     }
     FirstOccurenceSearcher first_occurence_searcher() const && = delete;
 
-    // returns { from, len } s.t. lcs = t[from:from+len]
-    std::pair<int, int> longest_common_substring(const SequenceType &t) const {
-        if (t.size() == 0) return { 0, 0 };
+    // returns { start_s, start_t, len } s.t. lcs = s[start_s: start_s+len] t[start_t: start_t+len]
+    std::tuple<int, int, int> longest_common_substring(const SequenceType &t) const {
+        if (t.size() == 0) return { 0, 0, 0 };
         const Node *v = &nodes[0];
-        int l = 0, best = 0, best_pos = 0;
+        int l = 0, max_len = 0, s_end_pos = 0, t_end_pos = 0;
         for (int i = 0; i < int(t.size()); ++i){
             while (v->link != -1 and not v->nxt.count(t[i])) {
                 v = &nodes[v->link];
@@ -189,12 +193,14 @@ struct SuffixAutomatonBase {
                 v = &nodes[it->second];
                 l++;
             }
-            if (l > best){
-                best = l;
-                best_pos = i;
+            if (l > max_len){
+                max_len = l;
+                t_end_pos = i;
+                s_end_pos = v->index;
             }
         }
-        return { best_pos - best + 1, best };
+        if (max_len == 0) return { 0, 0, 0 };
+        return { s_end_pos - max_len + 1, t_end_pos - max_len + 1, max_len };
     }
 
     std::vector<int> topological_order(bool reversed = false) const {
