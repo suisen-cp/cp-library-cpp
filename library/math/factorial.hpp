@@ -36,6 +36,21 @@ namespace suisen {
             ensure(n);
             return _fac[n] * _fac_inv[r] * _fac_inv[n - r];
         }
+        template <typename ...Ds, std::enable_if_t<std::conjunction_v<std::is_integral<Ds>...>, std::nullptr_t> = nullptr>
+        U polynom(const int n, const Ds& ...ds) {
+            if (n < 0) return 0;
+            ensure(n);
+            int sumd = 0;
+            U res = _fac[n];
+            for (int d : { ds... }) {
+                if (d < 0 or d > n) return 0;
+                sumd += d;
+                res *= _fac_inv[d];
+            }
+            if (sumd > n) return 0;
+            res *= _fac_inv[n - sumd];
+            return res;
+        }
         U perm(const int n, const int r) {
             if (n < 0 or r < 0 or n < r) return 0;
             ensure(n);
