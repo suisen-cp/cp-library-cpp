@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/primarity_test"
+#define PROBLEM "https://judge.yosupo.jp/problem/primality_test"
 
 #include <iostream>
 
