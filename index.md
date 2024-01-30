@@ -109,15 +109,15 @@ data:
     - icon: ':warning:'
       path: library/convolution/or_convolution.hpp
       title: Bitwise Or Convolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/polynomial_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/polynomial_eval_multipoint_eval.hpp
       title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
         \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/convolution/relaxed_convolution.hpp
       title: Relaxed Convolution
     - icon: ':heavy_check_mark:'
@@ -216,10 +216,10 @@ data:
       title: Wavelet Matrix
   - name: library/datastructure/bbst
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/implicit_treap.hpp
       title: Implicit Treap
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/implicit_treap_base.hpp
       title: Implicit Treap Base
     - icon: ':heavy_check_mark:'
@@ -375,11 +375,6 @@ data:
       path: library/datastructure/segment_tree/sparse_segment_tree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728 (\u6DFB\u5B57\u96C6\u5408\u304C\
         \u758E\u306A\u5834\u5408)"
-  - name: library/datastructure/segment_tree/trees
-    pages:
-    - icon: ':x:'
-      path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
-      title: Range Chmin Chmax Add Range Sum
   - name: library/datastructure/union_find
     pages:
     - icon: ':x:'
@@ -842,7 +837,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/polynomial/formal_power_series_relaxed.hpp
       title: Formal Power Series Relaxed
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/fps.hpp
       title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
     - icon: ':question:'
@@ -851,7 +846,7 @@ data:
     - icon: ':x:'
       path: library/polynomial/lagrange_interpolation.hpp
       title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/polynomial/multi_point_eval.hpp
       title: Multi Point Evaluation
     - icon: ':x:'
@@ -883,6 +878,9 @@ data:
       title: Vec Sparse Fps
   - name: library/range_query
     pages:
+    - icon: ':x:'
+      path: library/range_query/range_chmin_chmax_add_range_sum.hpp
+      title: library/range_query/range_chmin_chmax_add_range_sum.hpp
     - icon: ':x:'
       path: library/range_query/range_set_range_composite.hpp
       title: library/range_query/range_set_range_composite.hpp
@@ -1026,7 +1024,7 @@ data:
       path: library/transform/supset.hpp
       title: "\u4E0A\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
         \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/transform/walsh_hadamard.hpp
       title: "Walsh Hadamard \u5909\u63DB"
   - name: library/tree
@@ -1221,13 +1219,13 @@ data:
       title: test/src/algorithm/dynamic_convex_hull_offline/convex_layers.test.cpp
   - name: test/src/algorithm/mo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/algorithm/mo/abc174_f.test.cpp
       title: test/src/algorithm/mo/abc174_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/algorithm/mo/abc238_g.test.cpp
       title: test/src/algorithm/mo/abc238_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/algorithm/mo/abc242_g.test.cpp
       title: test/src/algorithm/mo/abc242_g.test.cpp
   - name: test/src/algorithm/offline_dynamic_connectivity_component_sum
@@ -1302,17 +1300,17 @@ data:
       title: test/src/convolution/multiplicative_convolution_mod_2^n/mul_mod2n_convolution.test.cpp
   - name: test/src/convolution/polynomial_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
       title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - name: test/src/convolution/polynomial_eval_multipoint_eval
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
       title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - name: test/src/convolution/relaxed_convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
       title: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1359,7 +1357,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
       title: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
       title: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1717,11 +1715,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
       title: test/src/datastructure/segment_tree/sparse_lazy_segment_tree/arc115_e.test.cpp
-  - name: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum
-    pages:
-    - icon: ':x:'
-      path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
-      title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - name: test/src/datastructure/sliding_window_minimum
     pages:
     - icon: ':heavy_check_mark:'
@@ -2566,6 +2559,11 @@ data:
     - icon: ':x:'
       path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
       title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - name: test/src/range_query/range_chmin_chmax_add_range_sum
+    pages:
+    - icon: ':x:'
+      path: test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+      title: test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - name: test/src/range_query/range_set_range_composite
     pages:
     - icon: ':x:'

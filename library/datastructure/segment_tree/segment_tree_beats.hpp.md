@@ -12,8 +12,8 @@ data:
     title: Update Proxy Object
   _extendedRequiredBy:
   - icon: ':x:'
-    path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
-    title: Range Chmin Chmax Add Range Sum
+    path: library/range_query/range_chmin_chmax_add_range_sum.hpp
+    title: library/range_query/range_chmin_chmax_add_range_sum.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
@@ -22,8 +22,8 @@ data:
     path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - icon: ':x:'
-    path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
-    title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+    path: test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+    title: test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -84,13 +84,13 @@ data:
     \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
     \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
     \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
-    \        template <typename F, constraints_t<is_same_as_invoke_result<T, F, T>>\
-    \ = nullptr>\n        auto& apply(F f) && { v = f(v), update(); return *this;\
-    \ }\n    private:\n        T &v;\n        UpdateFunc update;\n};\n\n} // namespace\
-    \ suisen\n\n\n#line 7 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename\
-    \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)(), bool enable_beats = false>\n\
-    \    struct LazySegmentTree {\n        using value_type = T;\n        using operator_type\
+    \        template <typename F, constraints_t<std::is_invocable_r<T, F, T>> = nullptr>\n\
+    \        auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
+    #line 7 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F,\
+    \ T), F(*composition)(F, F), F(*id)(), bool enable_beats = false>\n    struct\
+    \ LazySegmentTree {\n        using value_type = T;\n        using operator_type\
     \ = F;\n\n        LazySegmentTree() : LazySegmentTree(0) {}\n        LazySegmentTree(int\
     \ n) : LazySegmentTree(std::vector<value_type>(n, e())) {}\n        LazySegmentTree(const\
     \ std::vector<value_type>& init) : n(init.size()), m(ceil_pow2(n)), lg(__builtin_ctz(m)),\
@@ -178,13 +178,13 @@ data:
   isVerificationFile: false
   path: library/datastructure/segment_tree/segment_tree_beats.hpp
   requiredBy:
-  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
-  timestamp: '2023-09-15 20:02:25+09:00'
+  - library/range_query/range_chmin_chmax_add_range_sum.hpp
+  timestamp: '2024-01-30 22:04:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
-  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+  - test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree_beats.hpp
 layout: document
 title: Segment Tree Beats

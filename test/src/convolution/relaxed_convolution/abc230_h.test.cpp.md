@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/relaxed_convolution.hpp
     title: Relaxed Convolution
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc230/tasks/abc230_h
@@ -96,7 +96,7 @@ data:
   path: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
   requiredBy: []
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
 layout: document

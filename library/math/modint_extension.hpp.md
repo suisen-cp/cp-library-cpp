@@ -33,14 +33,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/polynomial/formal_power_series_relaxed.hpp
     title: Formal Power Series Relaxed
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'

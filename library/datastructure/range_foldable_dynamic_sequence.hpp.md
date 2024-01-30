@@ -78,24 +78,24 @@ data:
     \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
     \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
     \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
-    \        template <typename F, constraints_t<is_same_as_invoke_result<T, F, T>>\
-    \ = nullptr>\n        auto& apply(F f) && { v = f(v), update(); return *this;\
-    \ }\n    private:\n        T &v;\n        UpdateFunc update;\n};\n\n} // namespace\
-    \ suisen\n\n\n#line 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include\
-    \ <cstddef>\n#line 7 \"library/datastructure/dynamic_sequence.hpp\"\n#include\
-    \ <vector>\n\n#line 10 \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace\
-    \ suisen {\n\nnamespace internal::dynamic_sequence {\n\ntemplate <typename T,\
-    \ typename Derived>\nstruct DynamicSequenceNodeBase {\n    using node_ptr_t =\
-    \ Derived *;\n\n    T val;\n    int siz;\n    bool rev;\n    node_ptr_t ch[2]\
-    \ {nullptr, nullptr};\n\n    DynamicSequenceNodeBase() : val(), siz(1), rev(false)\
-    \ {}\n    DynamicSequenceNodeBase(const T &val) : val(val), siz(1), rev(false)\
-    \ {}\n\n    ~DynamicSequenceNodeBase() {\n        delete ch[0];\n        delete\
-    \ ch[1];\n    }\n\n    void update() {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n\
-    \    }\n    void push() {\n        reverse_all(this->ch[0], rev), reverse_all(this->ch[1],\
-    \ rev);\n        rev = false;\n    }\n    static int size(node_ptr_t node) {\n\
-    \        return node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t\
-    \ rotate(node_ptr_t node, bool is_right) {\n        node_ptr_t root = node->ch[is_right\
-    \ ^ true];\n        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
+    \        template <typename F, constraints_t<std::is_invocable_r<T, F, T>> = nullptr>\n\
+    \        auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
+    #line 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include <cstddef>\n\
+    #line 7 \"library/datastructure/dynamic_sequence.hpp\"\n#include <vector>\n\n\
+    #line 10 \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace suisen {\n\
+    \nnamespace internal::dynamic_sequence {\n\ntemplate <typename T, typename Derived>\n\
+    struct DynamicSequenceNodeBase {\n    using node_ptr_t = Derived *;\n\n    T val;\n\
+    \    int siz;\n    bool rev;\n    node_ptr_t ch[2] {nullptr, nullptr};\n\n   \
+    \ DynamicSequenceNodeBase() : val(), siz(1), rev(false) {}\n    DynamicSequenceNodeBase(const\
+    \ T &val) : val(val), siz(1), rev(false) {}\n\n    ~DynamicSequenceNodeBase()\
+    \ {\n        delete ch[0];\n        delete ch[1];\n    }\n\n    void update()\
+    \ {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n    }\n    void push() {\n\
+    \        reverse_all(this->ch[0], rev), reverse_all(this->ch[1], rev);\n     \
+    \   rev = false;\n    }\n    static int size(node_ptr_t node) {\n        return\
+    \ node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t rotate(node_ptr_t\
+    \ node, bool is_right) {\n        node_ptr_t root = node->ch[is_right ^ true];\n\
+    \        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
     \ = node;\n        node->update(), root->update();\n        return root;\n   \
     \ }\n\n    static node_ptr_t splay(node_ptr_t node, int index) {\n        std::vector<node_ptr_t>\
     \ path;\n        node_ptr_t work_root = new Derived();\n        node_ptr_t work_leaf[2]\
@@ -314,7 +314,7 @@ data:
   path: library/datastructure/range_foldable_dynamic_sequence.hpp
   requiredBy:
   - library/datastructure/lazy_eval_dynamic_sequence.hpp
-  timestamp: '2023-09-15 20:02:25+09:00'
+  timestamp: '2024-01-30 22:04:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/implicit_treap_base.hpp
     title: Implicit Treap Base
   _extendedRequiredBy: []
@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
     title: test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
     title: test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,9 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
     title: test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/bbst/implicit_treap.hpp\"\n\n\n\n\
@@ -494,7 +494,7 @@ data:
   path: library/datastructure/bbst/implicit_treap.hpp
   requiredBy: []
   timestamp: '2023-02-04 08:57:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/bbst/implicit_treap/dummy.test.cpp
   - test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp

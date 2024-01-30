@@ -80,13 +80,13 @@ data:
     \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
     \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
     \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
-    \        template <typename F, constraints_t<is_same_as_invoke_result<T, F, T>>\
-    \ = nullptr>\n        auto& apply(F f) && { v = f(v), update(); return *this;\
-    \ }\n    private:\n        T &v;\n        UpdateFunc update;\n};\n\n} // namespace\
-    \ suisen\n\n\n#line 7 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename\
-    \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)(), bool enable_beats = false>\n\
-    \    struct LazySegmentTree {\n        using value_type = T;\n        using operator_type\
+    \        template <typename F, constraints_t<std::is_invocable_r<T, F, T>> = nullptr>\n\
+    \        auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
+    #line 7 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F,\
+    \ T), F(*composition)(F, F), F(*id)(), bool enable_beats = false>\n    struct\
+    \ LazySegmentTree {\n        using value_type = T;\n        using operator_type\
     \ = F;\n\n        LazySegmentTree() : LazySegmentTree(0) {}\n        LazySegmentTree(int\
     \ n) : LazySegmentTree(std::vector<value_type>(n, e())) {}\n        LazySegmentTree(const\
     \ std::vector<value_type>& init) : n(init.size()), m(ceil_pow2(n)), lg(__builtin_ctz(m)),\
@@ -233,7 +233,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   requiredBy: []
-  timestamp: '2023-09-15 20:02:25+09:00'
+  timestamp: '2024-01-30 22:04:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp

@@ -32,7 +32,7 @@ data:
     path: library/string/dynamic_rolling_hash.hpp
     title: Dynamic Rolling Hash
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc238_g.test.cpp
     title: test/src/algorithm/mo/abc238_g.test.cpp
   - icon: ':heavy_check_mark:'

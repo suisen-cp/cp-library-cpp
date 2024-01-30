@@ -12,11 +12,11 @@ data:
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
@@ -62,9 +62,6 @@ data:
   - icon: ':x:'
     path: library/datastructure/segment_tree/segment_tree_beats.hpp
     title: Segment Tree Beats
-  - icon: ':x:'
-    path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
-    title: Range Chmin Chmax Add Range Sum
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
@@ -114,12 +111,15 @@ data:
   - icon: ':x:'
     path: library/polynomial/formal_power_series.hpp
     title: Formal Power Series
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':question:'
     path: library/polynomial/fps_naive.hpp
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
+  - icon: ':x:'
+    path: library/range_query/range_chmin_chmax_add_range_sum.hpp
+    title: library/range_query/range_chmin_chmax_add_range_sum.hpp
   - icon: ':x:'
     path: library/range_query/static_range_xored_mex_query.hpp
     title: Static Range Xored Mex Query
@@ -159,10 +159,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,9 +234,6 @@ data:
   - icon: ':x:'
     path: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
     title: test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
-  - icon: ':x:'
-    path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
-    title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
     title: test/src/datastructure/util/range_set/DSL_4_A.test.cpp
@@ -442,6 +439,9 @@ data:
     path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
     title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
   - icon: ':x:'
+    path: test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+    title: test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+  - icon: ':x:'
     path: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
     title: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
   - icon: ':x:'
@@ -623,7 +623,6 @@ data:
   - library/datastructure/convex_hull_trick.hpp
   - library/datastructure/range_foldable_map.hpp
   - library/datastructure/segment_tree/segment_tree_beats.hpp
-  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
   - library/datastructure/segment_tree/segment_tree.hpp
   - library/datastructure/segment_tree/lazy_segment_tree.hpp
   - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
@@ -633,6 +632,7 @@ data:
   - library/datastructure/compressed_wavelet_matrix.hpp
   - library/datastructure/dynamic_sequence.hpp
   - library/range_query/static_range_xored_mex_query.hpp
+  - library/range_query/range_chmin_chmax_add_range_sum.hpp
   - library/template.hpp
   timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -734,7 +734,6 @@ data:
   - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
-  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
@@ -754,6 +753,7 @@ data:
   - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
+  - test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 title: Type Traits

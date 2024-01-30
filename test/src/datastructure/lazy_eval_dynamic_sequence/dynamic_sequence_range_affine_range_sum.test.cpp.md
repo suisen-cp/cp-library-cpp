@@ -84,12 +84,12 @@ data:
     \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
     \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
     \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
-    \        template <typename F, constraints_t<is_same_as_invoke_result<T, F, T>>\
-    \ = nullptr>\n        auto& apply(F f) && { v = f(v), update(); return *this;\
-    \ }\n    private:\n        T &v;\n        UpdateFunc update;\n};\n\n} // namespace\
-    \ suisen\n\n\n#line 1 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\
-    \n\n\n\n#line 6 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\n\
-    \n#line 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include <cstddef>\n\
+    \        template <typename F, constraints_t<std::is_invocable_r<T, F, T>> = nullptr>\n\
+    \        auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
+    #line 1 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\n\n\n\n\
+    #line 6 \"library/datastructure/range_foldable_dynamic_sequence.hpp\"\n\n#line\
+    \ 1 \"library/datastructure/dynamic_sequence.hpp\"\n\n\n\n#include <cstddef>\n\
     #line 7 \"library/datastructure/dynamic_sequence.hpp\"\n#include <vector>\n\n\
     #line 10 \"library/datastructure/dynamic_sequence.hpp\"\n\nnamespace suisen {\n\
     \nnamespace internal::dynamic_sequence {\n\ntemplate <typename T, typename Derived>\n\
@@ -368,7 +368,7 @@ data:
   isVerificationFile: true
   path: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-09-15 20:02:25+09:00'
+  timestamp: '2024-01-30 22:04:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp

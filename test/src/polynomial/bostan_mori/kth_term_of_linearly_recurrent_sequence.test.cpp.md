@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: library/polynomial/bostan_mori.hpp
     title: Bostan Mori
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/fps.hpp
     title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"
   - icon: ':question:'

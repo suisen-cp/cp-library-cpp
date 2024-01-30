@@ -77,36 +77,56 @@ data:
     \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
     \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
     \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
-    \        template <typename F, constraints_t<is_same_as_invoke_result<T, F, T>>\
-    \ = nullptr>\n        auto& apply(F f) && { v = f(v), update(); return *this;\
-    \ }\n    private:\n        T &v;\n        UpdateFunc update;\n};\n\n} // namespace\
-    \ suisen\n\n\n#line 1 \"library/datastructure/range_foldable_map.hpp\"\n\n\n\n\
-    #line 6 \"library/datastructure/range_foldable_map.hpp\"\n\n#line 1 \"library/datastructure/splay_tree_map.hpp\"\
-    \n\n\n\n#line 5 \"library/datastructure/splay_tree_map.hpp\"\n#include <cstddef>\n\
-    #include <vector>\n#include <utility>\n\nnamespace suisen {\nnamespace internal::splay_tree_map\
-    \ {\n\ntemplate <typename Key, typename Val, typename Derived>\nstruct MapNodeBase\
-    \ {\n    using node_ptr_t = Derived *;\n\n    Key key;\n    Val val;\n    int\
-    \ siz;\n    node_ptr_t ch[2] {nullptr, nullptr};\n\n    MapNodeBase() : key(),\
-    \ val(), siz(1) {}\n    MapNodeBase(const Key &key, const Val &val) : key(key),\
-    \ val(val), siz(1) {}\n\n    ~MapNodeBase() {\n        delete ch[0];\n       \
-    \ delete ch[1];\n    }\n\n    void update() {\n        siz = 1 + size(ch[0]) +\
-    \ size(ch[1]);\n    }\n    void push() {}\n\n    static int size(node_ptr_t node)\
-    \ {\n        return node == nullptr ? 0 : node->siz;\n    }\n\n    static node_ptr_t\
-    \ rotate(node_ptr_t node, bool is_right) {\n        node_ptr_t root = node->ch[is_right\
-    \ ^ true];\n        node->ch[is_right ^ true] = root->ch[is_right];\n        root->ch[is_right]\
-    \ = node;\n        node->update(), root->update();\n        return root;\n   \
-    \ }\n\n    static node_ptr_t splay_by_index(node_ptr_t node, int index) {\n  \
-    \      std::vector<node_ptr_t> path;\n        node_ptr_t work_root = new Derived();\n\
-    \        node_ptr_t work_leaf[2] { work_root, work_root };\n        while (true)\
-    \ {\n            node->push();\n            int size_l = size(node->ch[0]);\n\
-    \            bool is_right = index > size_l;\n            node_ptr_t next_node\
-    \ = node->ch[is_right];\n            if (index == size_l or next_node == nullptr)\
-    \ { // found the target node\n                break;\n            }\n        \
-    \    if (is_right) {\n                index -= size_l + 1;\n            }\n  \
-    \          int size_l_ch = size(next_node->ch[0]);\n            if (index != size_l_ch)\
-    \ {\n                bool is_right_ch = index > size_l_ch;\n                if\
-    \ (is_right_ch == is_right) { // zig-zig\n                    if (is_right_ch)\
-    \ {\n                        index -= size_l_ch + 1;\n                    }\n\
+    \        template <typename F, constraints_t<std::is_invocable_r<T, F, T>> = nullptr>\n\
+    \        auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
+    #line 1 \"library/datastructure/range_foldable_map.hpp\"\n\n\n\n#line 6 \"library/datastructure/range_foldable_map.hpp\"\
+    \n\n#line 1 \"library/datastructure/splay_tree_map.hpp\"\n\n\n\n#line 5 \"library/datastructure/splay_tree_map.hpp\"\
+    \n#include <cstddef>\n#include <vector>\n#include <utility>\n\nnamespace suisen\
+    \ {\nnamespace internal::splay_tree_map {\n\ntemplate <typename Key, typename\
+    \ Val, typename Derived>\nstruct MapNodeBase {\n    using node_ptr_t = Derived\
+    \ *;\n\n    Key key;\n    Val val;\n    int siz;\n    node_ptr_t ch[2] {nullptr,\
+    \ nullptr};\n\n    MapNodeBase() : key(), val(), siz(1) {}\n    MapNodeBase(const\
+    \ Key &key, const Val &val) : key(key), val(val), siz(1) {}\n\n    ~MapNodeBase()\
+    \ {\n        delete ch[0];\n        delete ch[1];\n    }\n\n    void update()\
+    \ {\n        siz = 1 + size(ch[0]) + size(ch[1]);\n    }\n    void push() {}\n\
+    \n    static int size(node_ptr_t node) {\n        return node == nullptr ? 0 :\
+    \ node->siz;\n    }\n\n    static node_ptr_t rotate(node_ptr_t node, bool is_right)\
+    \ {\n        node_ptr_t root = node->ch[is_right ^ true];\n        node->ch[is_right\
+    \ ^ true] = root->ch[is_right];\n        root->ch[is_right] = node;\n        node->update(),\
+    \ root->update();\n        return root;\n    }\n\n    static node_ptr_t splay_by_index(node_ptr_t\
+    \ node, int index) {\n        std::vector<node_ptr_t> path;\n        node_ptr_t\
+    \ work_root = new Derived();\n        node_ptr_t work_leaf[2] { work_root, work_root\
+    \ };\n        while (true) {\n            node->push();\n            int size_l\
+    \ = size(node->ch[0]);\n            bool is_right = index > size_l;\n        \
+    \    node_ptr_t next_node = node->ch[is_right];\n            if (index == size_l\
+    \ or next_node == nullptr) { // found the target node\n                break;\n\
+    \            }\n            if (is_right) {\n                index -= size_l +\
+    \ 1;\n            }\n            int size_l_ch = size(next_node->ch[0]);\n   \
+    \         if (index != size_l_ch) {\n                bool is_right_ch = index\
+    \ > size_l_ch;\n                if (is_right_ch == is_right) { // zig-zig\n  \
+    \                  if (is_right_ch) {\n                        index -= size_l_ch\
+    \ + 1;\n                    }\n                    next_node->push();\n      \
+    \              node = rotate(node, is_right ^ true);\n                    next_node\
+    \ = node->ch[is_right];\n                    if (next_node == nullptr) { // found\
+    \ the target node\n                        break;\n                    }\n   \
+    \             }\n            }\n            path.push_back(node);\n          \
+    \  work_leaf[is_right]->ch[is_right] = node;\n            work_leaf[is_right]\
+    \ = node;\n            node = next_node;\n        }\n        work_leaf[0]->ch[0]\
+    \ = node->ch[1];\n        work_leaf[1]->ch[1] = node->ch[0];\n        node->ch[0]\
+    \ = work_root->ch[1];\n        node->ch[1] = work_root->ch[0];\n    \n       \
+    \ work_root->ch[0] = work_root->ch[1] = nullptr;\n        delete work_root;\n\n\
+    \        while (path.size()) {\n            path.back()->update(), path.pop_back();\n\
+    \        }\n        node->update();\n\n        return node;\n    }\n\n    static\
+    \ node_ptr_t splay_by_key(node_ptr_t node, const Key &x) {\n        if (node ==\
+    \ nullptr) return node;\n        std::vector<node_ptr_t> path;\n        node_ptr_t\
+    \ work_root = new Derived();\n        node_ptr_t work_leaf[2] { work_root, work_root\
+    \ };\n        while (true) {\n            node->push();\n            if (x ==\
+    \ node->key) {\n                break;\n            }\n            bool is_right\
+    \ = x > node->key;\n            node_ptr_t next_node = node->ch[is_right];\n \
+    \           if (next_node == nullptr) {\n                break;\n            }\n\
+    \            if (x != next_node->key) {\n                bool is_right_ch = x\
+    \ > next_node->key;\n                if (is_right_ch == is_right) { // zig-zig\n\
     \                    next_node->push();\n                    node = rotate(node,\
     \ is_right ^ true);\n                    next_node = node->ch[is_right];\n   \
     \                 if (next_node == nullptr) { // found the target node\n     \
@@ -115,39 +135,19 @@ data:
     \ = node;\n            work_leaf[is_right] = node;\n            node = next_node;\n\
     \        }\n        work_leaf[0]->ch[0] = node->ch[1];\n        work_leaf[1]->ch[1]\
     \ = node->ch[0];\n        node->ch[0] = work_root->ch[1];\n        node->ch[1]\
-    \ = work_root->ch[0];\n    \n        work_root->ch[0] = work_root->ch[1] = nullptr;\n\
+    \ = work_root->ch[0];\n\n        work_root->ch[0] = work_root->ch[1] = nullptr;\n\
     \        delete work_root;\n\n        while (path.size()) {\n            path.back()->update(),\
     \ path.pop_back();\n        }\n        node->update();\n\n        return node;\n\
-    \    }\n\n    static node_ptr_t splay_by_key(node_ptr_t node, const Key &x) {\n\
-    \        if (node == nullptr) return node;\n        std::vector<node_ptr_t> path;\n\
-    \        node_ptr_t work_root = new Derived();\n        node_ptr_t work_leaf[2]\
-    \ { work_root, work_root };\n        while (true) {\n            node->push();\n\
-    \            if (x == node->key) {\n                break;\n            }\n  \
-    \          bool is_right = x > node->key;\n            node_ptr_t next_node =\
-    \ node->ch[is_right];\n            if (next_node == nullptr) {\n             \
-    \   break;\n            }\n            if (x != next_node->key) {\n          \
-    \      bool is_right_ch = x > next_node->key;\n                if (is_right_ch\
-    \ == is_right) { // zig-zig\n                    next_node->push();\n        \
-    \            node = rotate(node, is_right ^ true);\n                    next_node\
-    \ = node->ch[is_right];\n                    if (next_node == nullptr) { // found\
-    \ the target node\n                        break;\n                    }\n   \
-    \             }\n            }\n            path.push_back(node);\n          \
-    \  work_leaf[is_right]->ch[is_right] = node;\n            work_leaf[is_right]\
-    \ = node;\n            node = next_node;\n        }\n        work_leaf[0]->ch[0]\
-    \ = node->ch[1];\n        work_leaf[1]->ch[1] = node->ch[0];\n        node->ch[0]\
-    \ = work_root->ch[1];\n        node->ch[1] = work_root->ch[0];\n\n        work_root->ch[0]\
-    \ = work_root->ch[1] = nullptr;\n        delete work_root;\n\n        while (path.size())\
-    \ {\n            path.back()->update(), path.pop_back();\n        }\n        node->update();\n\
-    \n        return node;\n    }\n    static std::pair<node_ptr_t, bool> find_key(node_ptr_t\
-    \ node, const Key &key) {\n        if (node == nullptr) return { node, false };\n\
-    \        node = splay_by_key(node, key);\n        return { node, node->key ==\
-    \ key };\n    }\n    static std::pair<node_ptr_t, node_ptr_t> split_by_index(node_ptr_t\
-    \ node, int k) {\n        if (k == 0) return { nullptr, node };\n        if (k\
-    \ == size(node)) return { node, nullptr };\n        node_ptr_t r = splay_by_index(node,\
-    \ k);\n        node_ptr_t l = r->ch[0];\n        r->ch[0] = nullptr;\n       \
-    \ r->update();\n        return { l, r };\n    }\n    static std::tuple<node_ptr_t,\
-    \ node_ptr_t, node_ptr_t> split_by_index(node_ptr_t node, int l, int r) {\n  \
-    \      auto [tl, tmr] = split_by_index(node, l);\n        auto [tm, tr] = split_by_index(tmr,\
+    \    }\n    static std::pair<node_ptr_t, bool> find_key(node_ptr_t node, const\
+    \ Key &key) {\n        if (node == nullptr) return { node, false };\n        node\
+    \ = splay_by_key(node, key);\n        return { node, node->key == key };\n   \
+    \ }\n    static std::pair<node_ptr_t, node_ptr_t> split_by_index(node_ptr_t node,\
+    \ int k) {\n        if (k == 0) return { nullptr, node };\n        if (k == size(node))\
+    \ return { node, nullptr };\n        node_ptr_t r = splay_by_index(node, k);\n\
+    \        node_ptr_t l = r->ch[0];\n        r->ch[0] = nullptr;\n        r->update();\n\
+    \        return { l, r };\n    }\n    static std::tuple<node_ptr_t, node_ptr_t,\
+    \ node_ptr_t> split_by_index(node_ptr_t node, int l, int r) {\n        auto [tl,\
+    \ tmr] = split_by_index(node, l);\n        auto [tm, tr] = split_by_index(tmr,\
     \ r - l);\n        return { tl, tm, tr };\n    }\n    static std::pair<node_ptr_t,\
     \ node_ptr_t> split_by_key(node_ptr_t node, const Key &key) {\n        if (node\
     \ == nullptr) return { nullptr, nullptr };\n        node_ptr_t r = splay_by_key(node,\
@@ -459,7 +459,7 @@ data:
   isVerificationFile: false
   path: library/datastructure/lazy_eval_map.hpp
   requiredBy: []
-  timestamp: '2023-09-15 20:02:25+09:00'
+  timestamp: '2024-01-30 22:04:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp

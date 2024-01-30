@@ -16,14 +16,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
-    title: test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+    path: test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+    title: test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp\"\
+  bundledCode: "#line 1 \"library/range_query/range_chmin_chmax_add_range_sum.hpp\"\
     \n\n\n\n#include <algorithm>\n#include <limits>\n\n#line 1 \"library/datastructure/segment_tree/segment_tree_beats.hpp\"\
     \n\n\n\n#line 1 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\n\
     \n\n\n#include <cassert>\n#include <vector>\n#line 1 \"library/util/update_proxy_object.hpp\"\
@@ -79,13 +79,13 @@ data:
     \ operator =(const T &val) && { v  = val, update(); return *this; }\n        auto&\
     \ operator<<=(const T &val) && { v <<= val, update(); return *this; }\n      \
     \  auto& operator>>=(const T &val) && { v >>= val, update(); return *this; }\n\
-    \        template <typename F, constraints_t<is_same_as_invoke_result<T, F, T>>\
-    \ = nullptr>\n        auto& apply(F f) && { v = f(v), update(); return *this;\
-    \ }\n    private:\n        T &v;\n        UpdateFunc update;\n};\n\n} // namespace\
-    \ suisen\n\n\n#line 7 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\
-    \n\nnamespace suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename\
-    \ F, T(*mapping)(F, T), F(*composition)(F, F), F(*id)(), bool enable_beats = false>\n\
-    \    struct LazySegmentTree {\n        using value_type = T;\n        using operator_type\
+    \        template <typename F, constraints_t<std::is_invocable_r<T, F, T>> = nullptr>\n\
+    \        auto& apply(F f) && { v = f(v), update(); return *this; }\n    private:\n\
+    \        T &v;\n        UpdateFunc update;\n};\n\n} // namespace suisen\n\n\n\
+    #line 7 \"library/datastructure/segment_tree/lazy_segment_tree.hpp\"\n\nnamespace\
+    \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F,\
+    \ T), F(*composition)(F, F), F(*id)(), bool enable_beats = false>\n    struct\
+    \ LazySegmentTree {\n        using value_type = T;\n        using operator_type\
     \ = F;\n\n        LazySegmentTree() : LazySegmentTree(0) {}\n        LazySegmentTree(int\
     \ n) : LazySegmentTree(std::vector<value_type>(n, e())) {}\n        LazySegmentTree(const\
     \ std::vector<value_type>& init) : n(init.size()), m(ceil_pow2(n)), lg(__builtin_ctz(m)),\
@@ -159,7 +159,7 @@ data:
     \ suisen {\n    template <typename T, T(*op)(T, T), T(*e)(), typename F, T(*mapping)(F,\
     \ T), F(*composition)(F, F), F(*id)()>\n    using SegmentTreeBeats = LazySegmentTree<T,\
     \ op, e, F, mapping, composition, id, /* enable_beats = */ true>;\n} // namespace\
-    \ suisen\n\n\n#line 8 \"library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp\"\
+    \ suisen\n\n\n#line 8 \"library/range_query/range_chmin_chmax_add_range_sum.hpp\"\
     \n\nnamespace suisen {\n    template <typename T>\n    struct RangeChMinMaxAddRangeSum\
     \ {\n        friend struct DataType;\n        struct DataType {\n            friend\
     \ struct RangeChMinMaxAddRangeSum;\n\n            bool fail = false;\n\n     \
@@ -322,16 +322,16 @@ data:
   - library/util/update_proxy_object.hpp
   - library/type_traits/type_traits.hpp
   isVerificationFile: false
-  path: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+  path: library/range_query/range_chmin_chmax_add_range_sum.hpp
   requiredBy: []
-  timestamp: '2023-09-15 20:02:25+09:00'
+  timestamp: '2024-01-30 22:07:01+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
-documentation_of: library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
+  - test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+documentation_of: library/range_query/range_chmin_chmax_add_range_sum.hpp
 layout: document
-title: Range Chmin Chmax Add Range Sum
+redirect_from:
+- /library/library/range_query/range_chmin_chmax_add_range_sum.hpp
+- /library/library/range_query/range_chmin_chmax_add_range_sum.hpp.html
+title: library/range_query/range_chmin_chmax_add_range_sum.hpp
 ---
-## Range Chmin Chmax Add Range Sum
-
-[Range Chmin Chmax Add Range Sum](https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum) を解くデータ構造。

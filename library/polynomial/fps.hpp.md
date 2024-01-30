@@ -15,7 +15,7 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':x:'
@@ -95,7 +95,7 @@ data:
     title: test/src/sequence/stirling_number2/stirling_number2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/fps.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -769,7 +769,7 @@ data:
   path: library/polynomial/fps.hpp
   requiredBy: []
   timestamp: '2023-09-15 20:02:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/math/factorial_large/dummy.test.cpp

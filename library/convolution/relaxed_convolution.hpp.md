@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
     title: test/src/convolution/relaxed_convolution/abc230_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/relaxed_convolution/convolution_mod.test.cpp
     title: test/src/convolution/relaxed_convolution/convolution_mod.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c
@@ -72,7 +72,7 @@ data:
   path: library/convolution/relaxed_convolution.hpp
   requiredBy: []
   timestamp: '2022-06-07 17:31:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/relaxed_convolution/abc230_h.test.cpp
   - test/src/convolution/relaxed_convolution/convolution_mod.test.cpp

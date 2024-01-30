@@ -6,9 +6,9 @@ data:
     title: Mo
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc174/tasks/abc174_f
@@ -83,7 +83,7 @@ data:
   path: test/src/algorithm/mo/abc174_f.test.cpp
   requiredBy: []
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/algorithm/mo/abc174_f.test.cpp
 layout: document

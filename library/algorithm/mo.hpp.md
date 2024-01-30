@@ -6,13 +6,13 @@ data:
     path: library/math/binomial_coefficient_sum.hpp
     title: library/math/binomial_coefficient_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc174_f.test.cpp
     title: test/src/algorithm/mo/abc174_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc238_g.test.cpp
     title: test/src/algorithm/mo/abc238_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc242_g.test.cpp
     title: test/src/algorithm/mo/abc242_g.test.cpp
   - icon: ':heavy_check_mark:'

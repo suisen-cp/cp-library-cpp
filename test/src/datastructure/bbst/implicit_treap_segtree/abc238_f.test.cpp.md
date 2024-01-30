@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/implicit_treap_base.hpp
     title: Implicit Treap Base
   - icon: ':heavy_check_mark:'

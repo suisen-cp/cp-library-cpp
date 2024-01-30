@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/polynomial_eval_multipoint_eval.hpp
     title: "\u5217\u3092\u5909\u6570\u3068\u3057\u3066\u6301\u3064\u591A\u9805\u5F0F\
       \u306E\u8A55\u4FA1 (\u591A\u70B9\u8A55\u4FA1\u7248)"
@@ -16,7 +16,7 @@ data:
     path: library/polynomial/lagrange_interpolation.hpp
     title: "\u30E9\u30B0\u30E9\u30F3\u30B8\u30E5\u88DC\u9593"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
     title: test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - icon: ':x:'
@@ -45,7 +45,7 @@ data:
     title: test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/polynomial/multi_point_eval.hpp\"\n\n\n\n#include\
@@ -79,7 +79,7 @@ data:
   - library/math/sum_i^d_r^i.hpp
   - library/polynomial/lagrange_interpolation.hpp
   timestamp: '2023-05-11 13:37:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp

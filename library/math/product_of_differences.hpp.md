@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/multi_point_eval.hpp
     title: Multi Point Evaluation
   _extendedRequiredBy:
