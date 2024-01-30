@@ -174,8 +174,6 @@ data:
   - test/src/datastructure/fenwick_tree/offline_rectangle_add_point_get/rectangle_add_point_get.test.cpp
 documentation_of: library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp
-- /library/library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp.html
-title: library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp
+title: Offline Rectangle Add Point Get
 ---
+## Offline Rectangle Add Point Get

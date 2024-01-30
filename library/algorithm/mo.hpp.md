@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':x:'
     path: library/math/binomial_coefficient_sum.hpp
-    title: library/math/binomial_coefficient_sum.hpp
+    title: Binomial Coefficient Sum
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/algorithm/mo/abc174_f.test.cpp

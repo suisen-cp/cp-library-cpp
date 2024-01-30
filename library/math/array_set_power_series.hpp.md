@@ -555,6 +555,6 @@ data:
   - test/src/math/array_set_power_series/abc236_h.test.cpp
 documentation_of: library/math/array_set_power_series.hpp
 layout: document
-title: Array Set Power Series
+title: Array Sps
 ---
-## Array Set Power Series
+## Array Sps

@@ -337,8 +337,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/modint.hpp
 layout: document
-redirect_from:
-- /library/library/number/modint.hpp
-- /library/library/number/modint.hpp.html
-title: library/number/modint.hpp
+title: Modint
 ---
+## Modint

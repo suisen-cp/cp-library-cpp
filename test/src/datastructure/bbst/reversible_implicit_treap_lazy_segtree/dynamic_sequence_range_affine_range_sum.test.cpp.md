@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/algebra/monoid/affine.hpp
     title: Affine
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
     title: Reversible Implicit Treap Base
   - icon: ':heavy_check_mark:'

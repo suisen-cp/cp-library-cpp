@@ -41,7 +41,7 @@ data:
       \u3052)"
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
-    title: Array Set Power Series
+    title: Array Sps
   - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: Set Power Series

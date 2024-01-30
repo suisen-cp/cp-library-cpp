@@ -39,7 +39,7 @@ data:
       title: Mo
     - icon: ':heavy_check_mark:'
       path: library/algorithm/monotone_minima.hpp
-      title: library/algorithm/monotone_minima.hpp
+      title: Monotone Minima
     - icon: ':warning:'
       path: library/algorithm/offline_dynamic_connectivity.hpp
       title: Offline Dynamic Connectivity
@@ -93,7 +93,7 @@ data:
       title: LCM Convolution
     - icon: ':heavy_check_mark:'
       path: library/convolution/min_plus_convolution.hpp
-      title: library/convolution/min_plus_convolution.hpp
+      title: Min Plus Convolution
     - icon: ':heavy_check_mark:'
       path: library/convolution/multi_variate_convolution.hpp
       title: "\u591A\u5909\u6570\u7573\u307F\u8FBC\u307F (\u5207\u308A\u6368\u3066\
@@ -155,7 +155,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/compressed_wavelet_matrix.hpp
       title: Compressed Wavelet Matrix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/convex_hull_trick.hpp
       title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\
         \u306A\u3044\u5834\u5408)"
@@ -260,10 +260,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/red_black_tree_base.hpp
       title: Red Black Tree Base
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/reversible_implicit_treap.hpp
       title: Reversible Implicit Treap
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
       title: Reversible Implicit Treap Base
     - icon: ':heavy_check_mark:'
@@ -272,7 +272,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
       title: Reversible Implicit Treap Lazy Segtree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
       title: Reversible Implicit Treap Segtree
   - name: library/datastructure/fenwick_tree
@@ -286,7 +286,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/fenwick_tree.hpp
       title: Fenwick Tree
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/fenwick_tree_2d.hpp
       title: Fenwick Tree 2d
     - icon: ':heavy_check_mark:'
@@ -300,7 +300,7 @@ data:
       title: Fenwick Tree Set
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp
-      title: library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp
+      title: Offline Rectangle Add Point Get
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/persistent_fenwick_tree.hpp
       title: Persistent Fenwick Tree
@@ -351,7 +351,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/segment_tree/persistent_segment_tree.hpp
       title: "\u6C38\u7D9A\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/datastructure/segment_tree/segment_tree.hpp
       title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
     - icon: ':heavy_check_mark:'
@@ -402,7 +402,7 @@ data:
         \u3092\u53D6\u5F97\u3067\u304D\u308B Union Find"
     - icon: ':warning:'
       path: library/datastructure/union_find/union_find_lazy.hpp
-      title: Union Find with lazy propagation
+      title: Union Find Lazy
     - icon: ':heavy_check_mark:'
       path: library/datastructure/union_find/weighted_union_find.hpp
       title: Weighted Union Find
@@ -487,7 +487,7 @@ data:
       title: Block Cut Forest
     - icon: ':warning:'
       path: library/graph/chromatic_number.hpp
-      title: library/graph/chromatic_number.hpp
+      title: Chromatic Number
     - icon: ':heavy_check_mark:'
       path: library/graph/csr_graph.hpp
       title: Graph (CSR Format)
@@ -656,13 +656,13 @@ data:
     pages:
     - icon: ':x:'
       path: library/math/array_set_power_series.hpp
-      title: Array Set Power Series
+      title: Array Sps
     - icon: ':question:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
     - icon: ':x:'
       path: library/math/binomial_coefficient_sum.hpp
-      title: library/math/binomial_coefficient_sum.hpp
+      title: Binomial Coefficient Sum
     - icon: ':x:'
       path: library/math/factorial.hpp
       title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
@@ -703,7 +703,7 @@ data:
       title: Barrett Reduction
     - icon: ':warning:'
       path: library/number/bezout_equation.hpp
-      title: library/number/bezout_equation.hpp
+      title: Bezout Equation
     - icon: ':question:'
       path: library/number/deterministic_miller_rabin.hpp
       title: Deterministic Miller Rabin
@@ -727,7 +727,7 @@ data:
       title: library/number/factorized_form.hpp
     - icon: ':warning:'
       path: library/number/fast_discrete_logarithm.hpp
-      title: library/number/fast_discrete_logarithm.hpp
+      title: Fast Discrete Logarithm
     - icon: ':question:'
       path: library/number/fast_factorize.hpp
       title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
@@ -758,7 +758,7 @@ data:
       title: Mod Sqrt
     - icon: ':warning:'
       path: library/number/modint.hpp
-      title: library/number/modint.hpp
+      title: Modint
     - icon: ':x:'
       path: library/number/modint_2^61m1.hpp
       title: Modint 2^61m1
@@ -783,7 +783,7 @@ data:
         \u30D1\u30A4\u30EB\u6642\u8A08\u7B97)"
     - icon: ':x:'
       path: library/number/stern_brocot_tree.hpp
-      title: library/number/stern_brocot_tree.hpp
+      title: Stern Brocot Tree
     - icon: ':warning:'
       path: library/number/sum_of_mobius_function.hpp
       title: Sum Of Mobius Function
@@ -800,13 +800,13 @@ data:
     pages:
     - icon: ':x:'
       path: library/optimization/alien_dp.hpp
-      title: 'evaluates f(x) (f: convex)'
+      title: Alien Dp
     - icon: ':x:'
       path: library/optimization/k_project_selection_problem.hpp
-      title: library/optimization/k_project_selection_problem.hpp
+      title: K Project Selection Problem
     - icon: ':x:'
       path: library/optimization/project_selection_problem.hpp
-      title: library/optimization/project_selection_problem.hpp
+      title: Project Selection Problem
   - name: library/polynomial
     pages:
     - icon: ':x:'
@@ -880,19 +880,19 @@ data:
     pages:
     - icon: ':x:'
       path: library/range_query/range_chmin_chmax_add_range_sum.hpp
-      title: library/range_query/range_chmin_chmax_add_range_sum.hpp
+      title: Range Chmin Chmax Add Range Sum
     - icon: ':x:'
       path: library/range_query/range_set_range_composite.hpp
-      title: library/range_query/range_set_range_composite.hpp
+      title: Range Set Range Composite
     - icon: ':x:'
       path: library/range_query/static range_count_distinct.hpp
-      title: library/range_query/static range_count_distinct.hpp
+      title: Static range Count Distinct
     - icon: ':heavy_check_mark:'
       path: library/range_query/static_range_inversion_number_query.hpp
       title: Static Range Inversion Number Query
     - icon: ':x:'
       path: library/range_query/static_range_mode_query.hpp
-      title: library/range_query/static_range_mode_query.hpp
+      title: Static Range Mode Query
     - icon: ':x:'
       path: library/range_query/static_range_xored_mex_query.hpp
       title: Static Range Xored Mex Query
@@ -1184,7 +1184,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/util/tuple_ops.hpp
       title: Tuple Ops
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/util/update_proxy_object.hpp
       title: Update Proxy Object
     - icon: ':warning:'
@@ -1396,7 +1396,7 @@ data:
       title: test/src/datastructure/bbst/red_black_tree/abc237_d.test.cpp
   - name: test/src/datastructure/bbst/reversible_implicit_treap
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
       title: test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1420,7 +1420,7 @@ data:
       title: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
   - name: test/src/datastructure/bbst/reversible_implicit_treap_segtree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
       title: test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1463,10 +1463,10 @@ data:
       title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
   - name: test/src/datastructure/convex_hull_trick
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
       title: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
       title: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1503,7 +1503,7 @@ data:
       title: test/src/datastructure/fenwick_tree/fenwick_tree/point_add_range_sum.test.cpp
   - name: test/src/datastructure/fenwick_tree/fenwick_tree_2d
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
       title: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - name: test/src/datastructure/fenwick_tree/fenwick_tree_2d_sparse

@@ -26,7 +26,7 @@ data:
       \u307F\u8FBC\u307F)"
   - icon: ':warning:'
     path: library/number/fast_discrete_logarithm.hpp
-    title: library/number/fast_discrete_logarithm.hpp
+    title: Fast Discrete Logarithm
   - icon: ':question:'
     path: library/number/primitive_root.hpp
     title: Primitive Root

@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: library/optimization/project_selection_problem.hpp
-    title: library/optimization/project_selection_problem.hpp
+    title: Project Selection Problem
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

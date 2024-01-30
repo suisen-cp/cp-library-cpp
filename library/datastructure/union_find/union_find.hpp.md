@@ -11,7 +11,7 @@ data:
       \u3092\u53D6\u5F97\u3067\u304D\u308B Union Find"
   - icon: ':warning:'
     path: library/datastructure/union_find/union_find_lazy.hpp
-    title: Union Find with lazy propagation
+    title: Union Find Lazy
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp

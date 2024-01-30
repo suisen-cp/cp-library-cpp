@@ -8,7 +8,7 @@ data:
       \u307F\u8FBC\u307F)"
   - icon: ':warning:'
     path: library/number/bezout_equation.hpp
-    title: library/number/bezout_equation.hpp
+    title: Bezout Equation
   - icon: ':heavy_check_mark:'
     path: library/number/garner.hpp
     title: Garner's Algorithm

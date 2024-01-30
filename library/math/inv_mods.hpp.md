@@ -14,7 +14,7 @@ data:
       \u3052)"
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
-    title: Array Set Power Series
+    title: Array Sps
   - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
@@ -61,7 +61,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/subset_convolution/subset_convolution.test.cpp
     title: test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - icon: ':heavy_check_mark:'

@@ -275,8 +275,6 @@ data:
   - test/src/number/stern_brocot_tree/stern_brocot_tree.test.cpp
 documentation_of: library/number/stern_brocot_tree.hpp
 layout: document
-redirect_from:
-- /library/library/number/stern_brocot_tree.hpp
-- /library/library/number/stern_brocot_tree.hpp.html
-title: library/number/stern_brocot_tree.hpp
+title: Stern Brocot Tree
 ---
+## Stern Brocot Tree

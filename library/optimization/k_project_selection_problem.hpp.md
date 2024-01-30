@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: library/optimization/project_selection_problem.hpp
-    title: library/optimization/project_selection_problem.hpp
+    title: Project Selection Problem
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -245,8 +245,6 @@ data:
   - test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
 documentation_of: library/optimization/k_project_selection_problem.hpp
 layout: document
-redirect_from:
-- /library/library/optimization/k_project_selection_problem.hpp
-- /library/library/optimization/k_project_selection_problem.hpp.html
-title: library/optimization/k_project_selection_problem.hpp
+title: K Project Selection Problem
 ---
+## K Project Selection Problem

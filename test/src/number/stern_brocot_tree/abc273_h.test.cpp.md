@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: library/number/stern_brocot_tree.hpp
-    title: library/number/stern_brocot_tree.hpp
+    title: Stern Brocot Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

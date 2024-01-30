@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: library/range_query/static_range_mode_query.hpp
-    title: library/range_query/static_range_mode_query.hpp
+    title: Static Range Mode Query
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

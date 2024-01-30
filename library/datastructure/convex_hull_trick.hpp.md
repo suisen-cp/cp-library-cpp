@@ -6,18 +6,18 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
     title: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
     title: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
     title: test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/convex_hull_trick.hpp\"\n\n\n\n#include\
@@ -152,7 +152,7 @@ data:
   path: library/datastructure/convex_hull_trick.hpp
   requiredBy: []
   timestamp: '2023-09-15 20:02:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
   - test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp

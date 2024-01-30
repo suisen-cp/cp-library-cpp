@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/algorithm/monotone_minima.hpp
-    title: library/algorithm/monotone_minima.hpp
+    title: Monotone Minima
   - icon: ':heavy_check_mark:'
     path: library/convolution/min_plus_convolution.hpp
-    title: library/convolution/min_plus_convolution.hpp
+    title: Min Plus Convolution
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

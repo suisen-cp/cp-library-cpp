@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy: []
@@ -330,8 +330,6 @@ data:
   - test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: library/range_query/range_chmin_chmax_add_range_sum.hpp
 layout: document
-redirect_from:
-- /library/library/range_query/range_chmin_chmax_add_range_sum.hpp
-- /library/library/range_query/range_chmin_chmax_add_range_sum.hpp.html
-title: library/range_query/range_chmin_chmax_add_range_sum.hpp
+title: Range Chmin Chmax Add Range Sum
 ---
+## Range Chmin Chmax Add Range Sum

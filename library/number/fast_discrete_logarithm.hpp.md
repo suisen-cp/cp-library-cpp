@@ -841,8 +841,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/fast_discrete_logarithm.hpp
 layout: document
-redirect_from:
-- /library/library/number/fast_discrete_logarithm.hpp
-- /library/library/number/fast_discrete_logarithm.hpp.html
-title: library/number/fast_discrete_logarithm.hpp
+title: Fast Discrete Logarithm
 ---
+## Fast Discrete Logarithm

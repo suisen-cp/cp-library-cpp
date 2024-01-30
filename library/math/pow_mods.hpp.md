@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':x:'
     path: library/math/binomial_coefficient_sum.hpp
-    title: library/math/binomial_coefficient_sum.hpp
+    title: Binomial Coefficient Sum
   - icon: ':x:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$

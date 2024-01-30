@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp
-    title: library/datastructure/fenwick_tree/offline_rectangle_add_point_get.hpp
+    title: Offline Rectangle Add Point Get
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false

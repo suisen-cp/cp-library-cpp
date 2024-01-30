@@ -138,8 +138,6 @@ data:
   - test/src/range_query/static_range_mode_query/static_range_mode_query.test.cpp
 documentation_of: library/range_query/static_range_mode_query.hpp
 layout: document
-redirect_from:
-- /library/library/range_query/static_range_mode_query.hpp
-- /library/library/range_query/static_range_mode_query.hpp.html
-title: library/range_query/static_range_mode_query.hpp
+title: Static Range Mode Query
 ---
+## Static Range Mode Query

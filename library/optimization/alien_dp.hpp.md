@@ -102,8 +102,6 @@ data:
   - test/src/optimization/alien_dp/arc168_e_1.test.cpp
 documentation_of: library/optimization/alien_dp.hpp
 layout: document
-redirect_from:
-- /library/library/optimization/alien_dp.hpp
-- /library/library/optimization/alien_dp.hpp.html
-title: 'evaluates f(x) (f: convex)'
+title: Alien Dp
 ---
+## Alien Dp

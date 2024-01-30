@@ -57,8 +57,6 @@ data:
   verifiedWith: []
 documentation_of: library/graph/chromatic_number.hpp
 layout: document
-redirect_from:
-- /library/library/graph/chromatic_number.hpp
-- /library/library/graph/chromatic_number.hpp.html
-title: library/graph/chromatic_number.hpp
+title: Chromatic Number
 ---
+## Chromatic Number

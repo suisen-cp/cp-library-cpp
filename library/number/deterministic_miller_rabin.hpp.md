@@ -11,7 +11,7 @@ data:
       \u307F\u8FBC\u307F)"
   - icon: ':warning:'
     path: library/number/fast_discrete_logarithm.hpp
-    title: library/number/fast_discrete_logarithm.hpp
+    title: Fast Discrete Logarithm
   - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"

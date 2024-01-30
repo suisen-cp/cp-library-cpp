@@ -238,8 +238,6 @@ data:
   - test/src/range_query/range_set_range_composite/range_set_range_composite.test.cpp
 documentation_of: library/range_query/range_set_range_composite.hpp
 layout: document
-redirect_from:
-- /library/library/range_query/range_set_range_composite.hpp
-- /library/library/range_query/range_set_range_composite.hpp.html
-title: library/range_query/range_set_range_composite.hpp
+title: Range Set Range Composite
 ---
+## Range Set Range Composite

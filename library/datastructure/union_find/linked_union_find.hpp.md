@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/datastructure/union_find/union_find_lazy.hpp
-    title: Union Find with lazy propagation
+    title: Union Find Lazy
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/datastructure/union_find/linked_union_find/past202203_h.test.cpp

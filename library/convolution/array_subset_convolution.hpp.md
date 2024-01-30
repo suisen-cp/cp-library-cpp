@@ -27,7 +27,7 @@ data:
   _extendedRequiredBy:
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
-    title: Array Set Power Series
+    title: Array Sps
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/math/array_set_power_series/abc213_g.test.cpp

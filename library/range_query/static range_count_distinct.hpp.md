@@ -79,8 +79,6 @@ data:
   - test/src/range_query/static range_count_distinct/static_range_count_distinct.test.cpp
 documentation_of: library/range_query/static range_count_distinct.hpp
 layout: document
-redirect_from:
-- /library/library/range_query/static range_count_distinct.hpp
-- /library/library/range_query/static range_count_distinct.hpp.html
-title: library/range_query/static range_count_distinct.hpp
+title: Static range Count Distinct
 ---
+## Static range Count Distinct

@@ -209,8 +209,6 @@ data:
   - test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
 documentation_of: library/math/binomial_coefficient_sum.hpp
 layout: document
-redirect_from:
-- /library/library/math/binomial_coefficient_sum.hpp
-- /library/library/math/binomial_coefficient_sum.hpp.html
-title: library/math/binomial_coefficient_sum.hpp
+title: Binomial Coefficient Sum
 ---
+## Binomial Coefficient Sum

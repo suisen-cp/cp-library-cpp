@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: library/type_traits/type_traits.hpp
     title: Type Traits
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedRequiredBy:
@@ -13,7 +13,7 @@ data:
     title: Segment Tree Beats
   - icon: ':x:'
     path: library/range_query/range_chmin_chmax_add_range_sum.hpp
-    title: library/range_query/range_chmin_chmax_add_range_sum.hpp
+    title: Range Chmin Chmax Add Range Sum
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp

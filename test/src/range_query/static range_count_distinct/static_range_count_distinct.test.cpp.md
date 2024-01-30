@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':x:'
     path: library/range_query/static range_count_distinct.hpp
-    title: library/range_query/static range_count_distinct.hpp
+    title: Static range Count Distinct
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

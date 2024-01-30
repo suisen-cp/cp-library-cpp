@@ -7,7 +7,7 @@ data:
     title: Factorial Number
   - icon: ':x:'
     path: library/range_query/range_set_range_composite.hpp
-    title: library/range_query/range_set_range_composite.hpp
+    title: Range Set Range Composite
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/src/range_query/range_set_range_composite/range_set_range_composite.test.cpp

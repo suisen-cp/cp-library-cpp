@@ -6,7 +6,7 @@ data:
     title: Fenwick Tree Set
   - icon: ':x:'
     path: library/range_query/range_set_range_composite.hpp
-    title: library/range_query/range_set_range_composite.hpp
+    title: Range Set Range Composite
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true

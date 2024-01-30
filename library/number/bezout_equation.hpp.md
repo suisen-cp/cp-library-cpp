@@ -279,8 +279,6 @@ data:
   verifiedWith: []
 documentation_of: library/number/bezout_equation.hpp
 layout: document
-redirect_from:
-- /library/library/number/bezout_equation.hpp
-- /library/library/number/bezout_equation.hpp.html
-title: library/number/bezout_equation.hpp
+title: Bezout Equation
 ---
+## Bezout Equation

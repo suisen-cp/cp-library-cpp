@@ -142,8 +142,6 @@ data:
   verifiedWith: []
 documentation_of: library/datastructure/union_find/union_find_lazy.hpp
 layout: document
-redirect_from:
-- /library/library/datastructure/union_find/union_find_lazy.hpp
-- /library/library/datastructure/union_find/union_find_lazy.hpp.html
-title: Union Find with lazy propagation
+title: Union Find Lazy
 ---
+## Union Find Lazy

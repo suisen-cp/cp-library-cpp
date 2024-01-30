@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap.hpp
     title: Reversible Implicit Treap
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
     title: Reversible Implicit Treap Base
   - icon: ':question:'

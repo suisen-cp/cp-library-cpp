@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap.hpp
     title: Reversible Implicit Treap
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
     title: Reversible Implicit Treap Base
   - icon: ':heavy_check_mark:'
@@ -14,14 +14,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
     title: Reversible Implicit Treap Lazy Segtree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
     title: Reversible Implicit Treap Segtree
   - icon: ':question:'
     path: library/datastructure/segment_tree/sortable_segment_tree.hpp
     title: Sortable Segment Tree
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
     title: test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
     title: test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
   - icon: ':heavy_check_mark:'

@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/min_plus_convolution.hpp
-    title: library/convolution/min_plus_convolution.hpp
+    title: Min Plus Convolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/min_plus_convolution/min_plus_convolution_convex_arbitrary.test.cpp
@@ -73,8 +73,6 @@ data:
   - test/src/convolution/min_plus_convolution/min_plus_convolution_convex_arbitrary.test.cpp
 documentation_of: library/algorithm/monotone_minima.hpp
 layout: document
-redirect_from:
-- /library/library/algorithm/monotone_minima.hpp
-- /library/library/algorithm/monotone_minima.hpp.html
-title: library/algorithm/monotone_minima.hpp
+title: Monotone Minima
 ---
+## Monotone Minima

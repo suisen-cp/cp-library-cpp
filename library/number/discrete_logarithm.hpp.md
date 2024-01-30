@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy:
   - icon: ':warning:'
     path: library/number/fast_discrete_logarithm.hpp
-    title: library/number/fast_discrete_logarithm.hpp
+    title: Fast Discrete Logarithm
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp

@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/compressed_wavelet_matrix.hpp
     title: Compressed Wavelet Matrix
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/convex_hull_trick.hpp
     title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\
       \u306A\u3044\u5834\u5408)"
@@ -52,7 +52,7 @@ data:
   - icon: ':x:'
     path: library/datastructure/segment_tree/lazy_segment_tree.hpp
     title: "\u9045\u5EF6\u4F1D\u64AD\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/datastructure/segment_tree/segment_tree.hpp
     title: "\u30BB\u30B0\u30E1\u30F3\u30C8\u6728"
   - icon: ':x:'
@@ -80,13 +80,13 @@ data:
       \u3052)"
   - icon: ':x:'
     path: library/math/array_set_power_series.hpp
-    title: Array Set Power Series
+    title: Array Sps
   - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
   - icon: ':warning:'
     path: library/number/fast_discrete_logarithm.hpp
-    title: library/number/fast_discrete_logarithm.hpp
+    title: Fast Discrete Logarithm
   - icon: ':question:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
@@ -119,7 +119,7 @@ data:
     title: "FFT-free \u306A\u5F62\u5F0F\u7684\u3079\u304D\u7D1A\u6570"
   - icon: ':x:'
     path: library/range_query/range_chmin_chmax_add_range_sum.hpp
-    title: library/range_query/range_chmin_chmax_add_range_sum.hpp
+    title: Range Chmin Chmax Add Range Sum
   - icon: ':x:'
     path: library/range_query/static_range_xored_mex_query.hpp
     title: Static Range Xored Mex Query
@@ -146,7 +146,7 @@ data:
   - icon: ':question:'
     path: library/util/coordinate_compressor.hpp
     title: "\u5EA7\u6A19\u5727\u7E2E"
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/util/update_proxy_object.hpp
     title: Update Proxy Object
   _extendedVerifiedWith:
@@ -177,16 +177,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
     title: test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
     title: test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
     title: test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
     title: test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
   - icon: ':heavy_check_mark:'

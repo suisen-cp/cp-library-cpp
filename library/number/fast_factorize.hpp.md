@@ -23,7 +23,7 @@ data:
       \u307F\u8FBC\u307F)"
   - icon: ':warning:'
     path: library/number/fast_discrete_logarithm.hpp
-    title: library/number/fast_discrete_logarithm.hpp
+    title: Fast Discrete Logarithm
   - icon: ':question:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
