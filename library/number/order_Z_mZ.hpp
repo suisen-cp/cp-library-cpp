@@ -88,7 +88,7 @@ namespace suisen {
         }
 
         T operator()(U a) const {
-            if (_mod < 1ULL << 32) {
+            if (_mod < 1ULL << 31) {
                 using mint = atcoder::dynamic_modint<1000000000>;
                 U old_mod = mint::mod();
                 mint::set_mod(_mod);
