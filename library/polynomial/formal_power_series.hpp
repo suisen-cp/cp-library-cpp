@@ -190,6 +190,7 @@ namespace suisen {
         /* Other Operations */
 
         FormalPowerSeries& diff_inplace() {
+            if (this->empty()) return *this;
             const int n = size();
             for (int i = 1; i < n; ++i) (*this)[i - 1] = (*this)[i] * i;
             return (*this)[n - 1] = 0, *this;
