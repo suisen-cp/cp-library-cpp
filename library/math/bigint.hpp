@@ -40,6 +40,17 @@ namespace suisen {
             return bool(_dat);
         }
 
+        friend bool operator==(const bigint& a, const bigint& b) {
+            if (a._neg xor b._neg) {
+                return false;
+            } else {
+                return a._dat == b._dat;
+            }
+        }
+        friend bool operator!=(const bigint& a, const bigint& b) {
+            return not (a == b);
+        }
+
         friend bool operator<(const bigint& a, const bigint& b) {
             if (a._neg xor b._neg) {
                 return a._neg;

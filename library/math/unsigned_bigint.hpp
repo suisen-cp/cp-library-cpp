@@ -46,6 +46,18 @@ namespace suisen {
             return not this->empty();
         }
 
+        friend bool operator==(const unsigned_bigint& a, const unsigned_bigint& b) {
+            if (a.size() != b.size()) {
+                return false;
+            }
+            for (size_t i = 0; i < a.size(); ++i) {
+                if (a[i] != b[i]) return false;
+            }
+            return true;
+        }
+        friend bool operator!=(const unsigned_bigint& a, const unsigned_bigint& b) {
+            return not (a == b);
+        }
         friend bool operator<(const unsigned_bigint& a, const unsigned_bigint& b) {
             if (a.size() != b.size()) {
                 return a.size() < b.size();
