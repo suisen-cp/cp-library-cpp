@@ -2,85 +2,85 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/closest_pair.hpp
     title: "\u6700\u8FD1\u70B9\u5BFE"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/convex_hull.hpp
     title: "\u51F8\u5305"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/closest_pair/CGL_5_A.test.cpp
     title: test/src/geom/closest_pair/CGL_5_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/convex_hull/CGL_4_A.test.cpp
     title: test/src/geom/convex_hull/CGL_4_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_1_A.test.cpp
     title: test/src/geom/geometry/CGL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_1_B.test.cpp
     title: test/src/geom/geometry/CGL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_1_C.test.cpp
     title: test/src/geom/geometry/CGL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_2_A.test.cpp
     title: test/src/geom/geometry/CGL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_2_B.test.cpp
     title: test/src/geom/geometry/CGL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_2_C.test.cpp
     title: test/src/geom/geometry/CGL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_2_D.test.cpp
     title: test/src/geom/geometry/CGL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_3_A.test.cpp
     title: test/src/geom/geometry/CGL_3_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_3_B.test.cpp
     title: test/src/geom/geometry/CGL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_3_C.test.cpp
     title: test/src/geom/geometry/CGL_3_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_4_B.test.cpp
     title: test/src/geom/geometry/CGL_4_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_4_C.test.cpp
     title: test/src/geom/geometry/CGL_4_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_A.test.cpp
     title: test/src/geom/geometry/CGL_7_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_B.test.cpp
     title: test/src/geom/geometry/CGL_7_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_C.test.cpp
     title: test/src/geom/geometry/CGL_7_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_D.test.cpp
     title: test/src/geom/geometry/CGL_7_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_E.test.cpp
     title: test/src/geom/geometry/CGL_7_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_F.test.cpp
     title: test/src/geom/geometry/CGL_7_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_G.test.cpp
     title: test/src/geom/geometry/CGL_7_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_H.test.cpp
     title: test/src/geom/geometry/CGL_7_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/geometry/CGL_7_I.test.cpp
     title: test/src/geom/geometry/CGL_7_I.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_A
@@ -767,34 +767,34 @@ data:
   isVerificationFile: false
   path: library/geom/geometry.hpp
   requiredBy:
-  - library/geom/convex_hull.hpp
   - library/geom/closest_pair.hpp
+  - library/geom/convex_hull.hpp
   timestamp: '2023-09-06 20:35:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/geom/closest_pair/CGL_5_A.test.cpp
   - test/src/geom/convex_hull/CGL_4_A.test.cpp
-  - test/src/geom/geometry/CGL_2_D.test.cpp
-  - test/src/geom/geometry/CGL_7_F.test.cpp
-  - test/src/geom/geometry/CGL_7_A.test.cpp
+  - test/src/geom/closest_pair/CGL_5_A.test.cpp
+  - test/src/geom/geometry/CGL_7_B.test.cpp
   - test/src/geom/geometry/CGL_4_B.test.cpp
-  - test/src/geom/geometry/CGL_1_B.test.cpp
   - test/src/geom/geometry/CGL_3_B.test.cpp
+  - test/src/geom/geometry/CGL_4_C.test.cpp
+  - test/src/geom/geometry/CGL_7_F.test.cpp
+  - test/src/geom/geometry/CGL_2_D.test.cpp
+  - test/src/geom/geometry/CGL_7_H.test.cpp
+  - test/src/geom/geometry/CGL_1_A.test.cpp
+  - test/src/geom/geometry/CGL_7_E.test.cpp
+  - test/src/geom/geometry/CGL_7_D.test.cpp
+  - test/src/geom/geometry/CGL_7_C.test.cpp
+  - test/src/geom/geometry/CGL_2_A.test.cpp
+  - test/src/geom/geometry/CGL_2_B.test.cpp
   - test/src/geom/geometry/CGL_2_C.test.cpp
   - test/src/geom/geometry/CGL_1_C.test.cpp
-  - test/src/geom/geometry/CGL_7_D.test.cpp
-  - test/src/geom/geometry/CGL_3_A.test.cpp
-  - test/src/geom/geometry/CGL_7_H.test.cpp
-  - test/src/geom/geometry/CGL_7_G.test.cpp
-  - test/src/geom/geometry/CGL_1_A.test.cpp
-  - test/src/geom/geometry/CGL_7_C.test.cpp
-  - test/src/geom/geometry/CGL_7_I.test.cpp
-  - test/src/geom/geometry/CGL_4_C.test.cpp
-  - test/src/geom/geometry/CGL_7_B.test.cpp
-  - test/src/geom/geometry/CGL_2_A.test.cpp
   - test/src/geom/geometry/CGL_3_C.test.cpp
-  - test/src/geom/geometry/CGL_2_B.test.cpp
-  - test/src/geom/geometry/CGL_7_E.test.cpp
+  - test/src/geom/geometry/CGL_7_I.test.cpp
+  - test/src/geom/geometry/CGL_7_A.test.cpp
+  - test/src/geom/geometry/CGL_7_G.test.cpp
+  - test/src/geom/geometry/CGL_3_A.test.cpp
+  - test/src/geom/geometry/CGL_1_B.test.cpp
 documentation_of: library/geom/geometry.hpp
 layout: document
 title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"

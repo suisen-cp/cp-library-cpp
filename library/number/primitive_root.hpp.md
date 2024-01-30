@@ -476,11 +476,11 @@ data:
   timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/number/primitive_root/primitive_root.test.cpp
-  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
 documentation_of: library/number/primitive_root.hpp
 layout: document
 title: Primitive Root

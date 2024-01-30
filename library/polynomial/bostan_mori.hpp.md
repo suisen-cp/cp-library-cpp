@@ -55,8 +55,8 @@ data:
   timestamp: '2023-01-08 00:05:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
 documentation_of: library/polynomial/bostan_mori.hpp
 layout: document
 title: Bostan Mori

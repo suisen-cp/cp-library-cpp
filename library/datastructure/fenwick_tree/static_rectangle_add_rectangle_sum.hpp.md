@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree/fenwick_tree.hpp
     title: Fenwick Tree
   - icon: ':heavy_check_mark:'
@@ -182,8 +182,8 @@ data:
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/dummy.test.cpp
+  - test/src/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: library/datastructure/fenwick_tree/static_rectangle_add_rectangle_sum.hpp
 layout: document
 title: Static Rectangle Add Rectangle Sum

@@ -68,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/wavelet_matrix.hpp
     title: Wavelet Matrix
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/segment_intersections.hpp
     title: Segment Intersections
   - icon: ':warning:'
@@ -77,7 +77,7 @@ data:
   - icon: ':warning:'
     path: library/io/output_stream.hpp
     title: library/io/output_stream.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
@@ -87,7 +87,7 @@ data:
   - icon: ':warning:'
     path: library/math/factorial_large.hpp
     title: Factorial Large
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
   - icon: ':warning:'
@@ -255,13 +255,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
     title: test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
     title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - icon: ':x:'
     path: test/src/graph/functional_graph/abc254_g.test.cpp
     title: test/src/graph/functional_graph/abc254_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - icon: ':x:'
@@ -588,172 +588,172 @@ data:
   isVerificationFile: false
   path: library/type_traits/type_traits.hpp
   requiredBy:
-  - library/template.cpp
-  - library/polynomial/compose_exp.hpp
-  - library/polynomial/fps.hpp
-  - library/polynomial/formal_power_series.hpp
-  - library/polynomial/array_fps_naive.hpp
-  - library/polynomial/compose_inv.hpp
-  - library/polynomial/fps_naive.hpp
-  - library/math/array_set_power_series.hpp
-  - library/math/set_power_series.hpp
-  - library/math/factorial_large.hpp
-  - library/number/fast_discrete_logarithm.hpp
-  - library/number/tetration_mod.hpp
-  - library/number/primitive_root.hpp
-  - library/number/order_Z_mZ.hpp
-  - library/number/fast_factorize.hpp
-  - library/util/update_proxy_object.hpp
-  - library/util/bit_utils.hpp
-  - library/util/container_utils.hpp
-  - library/util/coordinate_compressor.hpp
-  - library/template.hpp
   - library/convolution/polynomial_eval.hpp
-  - library/convolution/array_subset_convolution.hpp
-  - library/convolution/polynomial_eval_multipoint_eval.hpp
   - library/convolution/multi_variate_convolution_circular.hpp
+  - library/convolution/array_subset_convolution.hpp
   - library/convolution/subset_convolution.hpp
+  - library/convolution/polynomial_eval_multipoint_eval.hpp
+  - library/number/primitive_root.hpp
+  - library/number/fast_factorize.hpp
+  - library/number/fast_discrete_logarithm.hpp
+  - library/number/order_Z_mZ.hpp
+  - library/number/tetration_mod.hpp
   - library/linear_algebra/hafnian.hpp
   - library/geom/segment_intersections.hpp
-  - library/range_query/static_range_xored_mex_query.hpp
-  - library/algorithm/inversion_number.hpp
-  - library/io/input_stream.hpp
-  - library/io/output_stream.hpp
+  - library/math/set_power_series.hpp
+  - library/math/factorial_large.hpp
+  - library/math/array_set_power_series.hpp
   - library/tree/heavy_light_decomposition.hpp
   - library/tree/auxiliary_tree.hpp
-  - library/datastructure/lazy_eval_map.hpp
-  - library/datastructure/dynamic_sequence.hpp
-  - library/datastructure/compressed_wavelet_matrix.hpp
-  - library/datastructure/convex_hull_trick.hpp
-  - library/datastructure/range_foldable_map.hpp
-  - library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - library/polynomial/fps_naive.hpp
+  - library/polynomial/compose_exp.hpp
+  - library/polynomial/compose_inv.hpp
+  - library/polynomial/fps.hpp
+  - library/polynomial/array_fps_naive.hpp
+  - library/polynomial/formal_power_series.hpp
+  - library/template.cpp
+  - library/io/input_stream.hpp
+  - library/io/output_stream.hpp
+  - library/util/container_utils.hpp
+  - library/util/coordinate_compressor.hpp
+  - library/util/update_proxy_object.hpp
+  - library/util/bit_utils.hpp
+  - library/algorithm/inversion_number.hpp
   - library/datastructure/range_foldable_dynamic_sequence.hpp
   - library/datastructure/bit_vector.hpp
-  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
-  - library/datastructure/segment_tree/lazy_segment_tree.hpp
+  - library/datastructure/convex_hull_trick.hpp
+  - library/datastructure/range_foldable_map.hpp
   - library/datastructure/segment_tree/segment_tree_beats.hpp
-  - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
+  - library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp
   - library/datastructure/segment_tree/segment_tree.hpp
+  - library/datastructure/segment_tree/lazy_segment_tree.hpp
+  - library/datastructure/segment_tree/segment_tree_2d_sparse.hpp
+  - library/datastructure/lazy_eval_map.hpp
   - library/datastructure/wavelet_matrix.hpp
+  - library/datastructure/lazy_eval_dynamic_sequence.hpp
+  - library/datastructure/compressed_wavelet_matrix.hpp
+  - library/datastructure/dynamic_sequence.hpp
+  - library/range_query/static_range_xored_mex_query.hpp
+  - library/template.hpp
   timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/polynomial/fps_naive/abc245_d.test.cpp
-  - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
-  - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
-  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
-  - test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/pow_of_fps.test.cpp
-  - test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/exp_of_fps.test.cpp
-  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/log_of_fps.test.cpp
-  - test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/fps/inv_of_fps.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
-  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
-  - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
-  - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - test/src/math/array_set_power_series/abc236_h.test.cpp
-  - test/src/math/array_set_power_series/abc213_g.test.cpp
-  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
-  - test/src/math/array_set_power_series/arc105_f.test.cpp
-  - test/src/math/array_set_power_series/abc253_h.test.cpp
-  - test/src/math/set_power_series/abc236_h.test.cpp
-  - test/src/math/set_power_series/abc213_g.test.cpp
+  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
+  - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/number/fast_factorize/factorize.test.cpp
+  - test/src/number/tetration_mod/tetration_mod.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - test/src/math/set_power_series/abc253_h_2.test.cpp
-  - test/src/math/set_power_series/arc105_f.test.cpp
   - test/src/math/set_power_series/abc253_h.test.cpp
   - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
+  - test/src/math/set_power_series/abc213_g.test.cpp
+  - test/src/math/set_power_series/arc105_f.test.cpp
+  - test/src/math/set_power_series/abc236_h.test.cpp
+  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - test/src/math/array_set_power_series/abc253_h.test.cpp
+  - test/src/math/array_set_power_series/abc213_g.test.cpp
+  - test/src/math/array_set_power_series/arc105_f.test.cpp
+  - test/src/math/array_set_power_series/abc236_h.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
-  - test/src/number/tetration_mod/tetration_mod.test.cpp
-  - test/src/number/fast_factorize/factorize.test.cpp
-  - test/src/number/primitive_root/primitive_root.test.cpp
-  - test/src/number/primitive_root/dummy.test.cpp
-  - test/src/util/coordinate_compressor/dummy.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/convolution/polynomial_eval/nim_counting.test.cpp
-  - test/src/graph/functional_graph/abc254_g.test.cpp
-  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - test/src/sequence/partition_number/partition_function_2.test.cpp
-  - test/src/sequence/partition_number/partition_function.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - test/src/geom/segment_intersections/CGL_6_A.test.cpp
-  - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
-  - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
-  - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
-  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
-  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_subtree_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/vertex_add_path_composite.test.cpp
+  - test/src/tree/heavy_light_decomposition/vertex_add_path_sum.test.cpp
   - test/src/tree/heavy_light_decomposition/jump_on_tree.test.cpp
+  - test/src/tree/heavy_light_decomposition/lowest_common_ancestor.test.cpp
+  - test/src/tree/heavy_light_decomposition/do_use_segment_tree.test.cpp
+  - test/src/tree/heavy_light_decomposition/la_based_lowest_common_ancestor.test.cpp
+  - test/src/graph/functional_graph/abc254_g.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number_2.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - test/src/sequence/stirling_number1/abc247_h.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1_2.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
+  - test/src/sequence/partition_number/partition_function_2.test.cpp
+  - test/src/sequence/partition_number/partition_function.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
+  - test/src/polynomial/formal_power_series/pow_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/inv_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/inv_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/division_of_polynomials.test.cpp
+  - test/src/polynomial/formal_power_series/exp_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/exp_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/pow_of_fps.test.cpp
+  - test/src/polynomial/formal_power_series/product_of_polynomial_sequence.test.cpp
+  - test/src/polynomial/formal_power_series/log_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/formal_power_series/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/formal_power_series/log_of_fps.test.cpp
+  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/inv_of_fps.test.cpp
+  - test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/division_of_polynomials.test.cpp
+  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/exp_of_fps.test.cpp
+  - test/src/polynomial/fps/pow_of_fps.test.cpp
+  - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/fps/log_of_fps.test.cpp
+  - test/src/polynomial/compose_inv/compositional_inverse_of_formal_power_series.test.cpp
+  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence_2.test.cpp
+  - test/src/polynomial/fps_naive/abc245_d.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation_2.test.cpp
+  - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy_2.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift_2.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - test/src/polynomial/compose_exp/arc154_f.test.cpp
+  - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
+  - test/src/polynomial/polynomial_gcd/inv_of_polynomials.test.cpp
+  - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
+  - test/src/util/coordinate_compressor/dummy.test.cpp
   - test/src/datastructure/lazy_eval_map/leq_and_neq.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
+  - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
+  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
+  - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/wavelet_matrix/dummy.test.cpp
+  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
+  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
+  - test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
+  - test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
+  - test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
   - test/src/datastructure/lazy_eval_dynamic_sequence/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/src/datastructure/fenwick_tree/persistent_fenwick_tree/rectangle_sum.test.cpp
   - test/src/datastructure/fenwick_tree/fenwick_tree_2d/random_is.test.cpp
-  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - test/src/datastructure/wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/wavelet_matrix/dummy.test.cpp
-  - test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
-  - test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
-  - test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_rmq.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/static_range_frequency.test.cpp
-  - test/src/datastructure/compressed_wavelet_matrix/range_kth_smallest.test.cpp
-  - test/src/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
-  - test/src/datastructure/segment_tree/persistent_segment_tree/rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree_2d_sparse/point_add_rectangle_sum.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/DSL_2_A.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/DSL_2_B.test.cpp
-  - test/src/datastructure/segment_tree/segment_tree/point_add_range_sum.test.cpp
+  - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
 documentation_of: library/type_traits/type_traits.hpp
 layout: document
 title: Type Traits

@@ -73,8 +73,8 @@ data:
   timestamp: '2022-07-26 15:08:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence.test.cpp
   - test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence_2.test.cpp
+  - test/src/dp/longest_increasing_subsequence/longest_increasing_subsequence.test.cpp
 documentation_of: library/dp/longest_increasing_subsequence.hpp
 layout: document
 title: Longest Increasing Subsequence

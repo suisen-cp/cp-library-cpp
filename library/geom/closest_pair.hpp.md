@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/geom/geometry.hpp
     title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/geom/closest_pair/CGL_5_A.test.cpp
     title: test/src/geom/closest_pair/CGL_5_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/geom/closest_pair.hpp\"\n\n\n\n#include <cassert>\n\
@@ -403,7 +403,7 @@ data:
   path: library/geom/closest_pair.hpp
   requiredBy: []
   timestamp: '2023-09-06 20:35:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/geom/closest_pair/CGL_5_A.test.cpp
 documentation_of: library/geom/closest_pair.hpp

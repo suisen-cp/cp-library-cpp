@@ -426,8 +426,8 @@ data:
   timestamp: '2022-07-16 18:47:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
   - test/src/datastructure/binary_trie_patricia/predecessor_problem.test.cpp
+  - test/src/datastructure/binary_trie_patricia/set_xor_min.test.cpp
 documentation_of: library/datastructure/binary_trie_patricia.hpp
 layout: document
 title: Binary Trie Patricia

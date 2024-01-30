@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
@@ -14,7 +14,7 @@ data:
   - icon: ':question:'
     path: library/math/modint_extension.hpp
     title: Modint Extension
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: Default Operator
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -520,7 +520,7 @@ data:
   path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   requiredBy: []
   timestamp: '2023-09-15 20:02:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
 layout: document

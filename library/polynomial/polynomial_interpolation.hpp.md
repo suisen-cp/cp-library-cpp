@@ -49,8 +49,8 @@ data:
   timestamp: '2022-07-21 04:00:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
   - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation_2.test.cpp
 documentation_of: library/polynomial/polynomial_interpolation.hpp
 layout: document
 title: "\u88DC\u9593\u591A\u9805\u5F0F"

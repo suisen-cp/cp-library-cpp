@@ -283,7 +283,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/compressed_fenwick_tree_prefix.hpp
       title: Compressed Fenwick Tree Prefix
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/fenwick_tree.hpp
       title: Fenwick Tree
     - icon: ':x:'
@@ -295,7 +295,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/datastructure/fenwick_tree/fenwick_tree_prefix.hpp
       title: Fenwick Tree Prefix
-    - icon: ':warning:'
+    - icon: ':x:'
       path: library/datastructure/fenwick_tree/fenwick_tree_set.hpp
       title: Fenwick Tree Set
     - icon: ':heavy_check_mark:'
@@ -446,19 +446,19 @@ data:
       title: Number Of Subsequences
   - name: library/geom
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/closest_pair.hpp
       title: "\u6700\u8FD1\u70B9\u5BFE"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/convex_hull.hpp
       title: "\u51F8\u5305"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/geometry.hpp
       title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
     - icon: ':warning:'
       path: library/geom/geometry3d.hpp
       title: "3\u6B21\u5143\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/geom/segment_intersections.hpp
       title: Segment Intersections
   - name: library/graph
@@ -638,7 +638,7 @@ data:
     - icon: ':warning:'
       path: library/linear_algebra/gaussian_elimination_f2.hpp
       title: Gaussian Elimination $\mathbb{F} _ 2$
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: library/linear_algebra/hafnian.hpp
       title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\
         \u4E0A\u3052)"
@@ -683,7 +683,7 @@ data:
     - icon: ':question:'
       path: library/math/product_of_differences.hpp
       title: Product Of Differences
-    - icon: ':x:'
+    - icon: ':question:'
       path: library/math/set_power_series.hpp
       title: Set Power Series
     - icon: ':heavy_check_mark:'
@@ -863,9 +863,18 @@ data:
       title: Vec Sparse Fps
   - name: library/range_query
     pages:
+    - icon: ':x:'
+      path: library/range_query/range_set_range_composite.hpp
+      title: library/range_query/range_set_range_composite.hpp
+    - icon: ':x:'
+      path: library/range_query/static range_count_distinct.hpp
+      title: library/range_query/static range_count_distinct.hpp
     - icon: ':heavy_check_mark:'
       path: library/range_query/static_range_inversion_number_query.hpp
       title: Static Range Inversion Number Query
+    - icon: ':x:'
+      path: library/range_query/static_range_mode_query.hpp
+      title: library/range_query/static_range_mode_query.hpp
     - icon: ':x:'
       path: library/range_query/static_range_xored_mex_query.hpp
       title: Static Range Xored Mex Query
@@ -1782,82 +1791,82 @@ data:
       title: test/src/dp/number_of_subsequences/number_of_subsequences.test.cpp
   - name: test/src/geom/closest_pair
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/closest_pair/CGL_5_A.test.cpp
       title: test/src/geom/closest_pair/CGL_5_A.test.cpp
   - name: test/src/geom/convex_hull
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/convex_hull/CGL_4_A.test.cpp
       title: test/src/geom/convex_hull/CGL_4_A.test.cpp
   - name: test/src/geom/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_A.test.cpp
       title: test/src/geom/geometry/CGL_1_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_B.test.cpp
       title: test/src/geom/geometry/CGL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_1_C.test.cpp
       title: test/src/geom/geometry/CGL_1_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_A.test.cpp
       title: test/src/geom/geometry/CGL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_B.test.cpp
       title: test/src/geom/geometry/CGL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_C.test.cpp
       title: test/src/geom/geometry/CGL_2_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_2_D.test.cpp
       title: test/src/geom/geometry/CGL_2_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_3_A.test.cpp
       title: test/src/geom/geometry/CGL_3_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_3_B.test.cpp
       title: test/src/geom/geometry/CGL_3_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_3_C.test.cpp
       title: test/src/geom/geometry/CGL_3_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_4_B.test.cpp
       title: test/src/geom/geometry/CGL_4_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_4_C.test.cpp
       title: test/src/geom/geometry/CGL_4_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_A.test.cpp
       title: test/src/geom/geometry/CGL_7_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_B.test.cpp
       title: test/src/geom/geometry/CGL_7_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_C.test.cpp
       title: test/src/geom/geometry/CGL_7_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_D.test.cpp
       title: test/src/geom/geometry/CGL_7_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_E.test.cpp
       title: test/src/geom/geometry/CGL_7_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_F.test.cpp
       title: test/src/geom/geometry/CGL_7_F.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_G.test.cpp
       title: test/src/geom/geometry/CGL_7_G.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_H.test.cpp
       title: test/src/geom/geometry/CGL_7_H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/geometry/CGL_7_I.test.cpp
       title: test/src/geom/geometry/CGL_7_I.test.cpp
   - name: test/src/geom/segment_intersections
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/geom/segment_intersections/CGL_6_A.test.cpp
       title: test/src/geom/segment_intersections/CGL_6_A.test.cpp
   - name: test/src/graph/assignment_problem
@@ -2070,7 +2079,7 @@ data:
       title: test/src/linear_algebra/gaussian_elimination/system_of_linear_equations.test.cpp
   - name: test/src/linear_algebra/hafnian
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
       title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
   - name: test/src/linear_algebra/matrix
@@ -2463,11 +2472,26 @@ data:
     - icon: ':x:'
       path: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
       title: test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - name: test/src/range_query/range_set_range_composite
+    pages:
+    - icon: ':x:'
+      path: test/src/range_query/range_set_range_composite/range_set_range_composite.test.cpp
+      title: test/src/range_query/range_set_range_composite/range_set_range_composite.test.cpp
+  - name: test/src/range_query/static range_count_distinct
+    pages:
+    - icon: ':x:'
+      path: test/src/range_query/static range_count_distinct/static_range_count_distinct.test.cpp
+      title: test/src/range_query/static range_count_distinct/static_range_count_distinct.test.cpp
   - name: test/src/range_query/static_range_inversion_number_query
     pages:
     - icon: ':heavy_check_mark:'
       path: test/src/range_query/static_range_inversion_number_query/static_range_inversions_query.test.cpp
       title: test/src/range_query/static_range_inversion_number_query/static_range_inversions_query.test.cpp
+  - name: test/src/range_query/static_range_mode_query
+    pages:
+    - icon: ':x:'
+      path: test/src/range_query/static_range_mode_query/static_range_mode_query.test.cpp
+      title: test/src/range_query/static_range_mode_query/static_range_mode_query.test.cpp
   - name: test/src/range_query/static_range_xored_mex_query
     pages:
     - icon: ':x:'

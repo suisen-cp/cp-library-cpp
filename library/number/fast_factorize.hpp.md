@@ -414,21 +414,21 @@ data:
   isVerificationFile: false
   path: library/number/fast_factorize.hpp
   requiredBy:
-  - library/number/fast_discrete_logarithm.hpp
-  - library/number/tetration_mod.hpp
-  - library/number/primitive_root.hpp
-  - library/number/order_Z_mZ.hpp
   - library/convolution/multi_variate_convolution_circular.hpp
+  - library/number/primitive_root.hpp
+  - library/number/fast_discrete_logarithm.hpp
+  - library/number/order_Z_mZ.hpp
+  - library/number/tetration_mod.hpp
   timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/number/tetration_mod/tetration_mod.test.cpp
-  - test/src/number/fast_factorize/factorize.test.cpp
-  - test/src/number/primitive_root/primitive_root.test.cpp
-  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/number/fast_factorize/factorize.test.cpp
+  - test/src/number/tetration_mod/tetration_mod.test.cpp
 documentation_of: library/number/fast_factorize.hpp
 layout: document
 title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"

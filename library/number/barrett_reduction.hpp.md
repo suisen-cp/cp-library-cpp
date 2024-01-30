@@ -63,13 +63,13 @@ data:
   isVerificationFile: false
   path: library/number/barrett_reduction.hpp
   requiredBy:
-  - library/util/step_sum.hpp
   - library/sequence/binomial_coefficient.hpp
+  - library/util/step_sum.hpp
   timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/src/util/step_sum/dummy.test.cpp
   - test/src/sequence/binomial_coefficient/binomial_coefficient.test.cpp
+  - test/src/util/step_sum/dummy.test.cpp
 documentation_of: library/number/barrett_reduction.hpp
 layout: document
 title: Barrett Reduction
