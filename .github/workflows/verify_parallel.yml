@@ -1,6 +1,6 @@
 name: verify
 
-on: push
+on: workflow_dispatch
 
 jobs:
   verify:
@@ -28,4 +28,4 @@ jobs:
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
         DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all
+      run: python scripts/verify.py
