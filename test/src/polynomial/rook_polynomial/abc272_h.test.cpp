@@ -38,7 +38,7 @@ int main() {
 
     using fps = suisen::FormalPowerSeries<mint>;
 
-    fps g = suisen::rook_polynomial_young_tableau<fps>(h);
+    fps g = suisen::rook_polynomial_ferrers_board<fps>(h);
     for (int i = 0; i <= n; ++i) {
         g[i] *= fac.fac(n - i);
     }
