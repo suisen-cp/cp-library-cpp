@@ -20,7 +20,7 @@ namespace suisen {
             inv[v].push_back(su);
         }
 
-        std::optional<std::vector<int>> eulerian_circuit(int start = 0) {
+        std::optional<std::vector<int>> eulerian_circuit(int start = -1) {
             std::size_t edge_num = 0;
             std::vector<std::vector<bool>> used(n);
             for (int i = 0; i < n; ++i) {
@@ -28,6 +28,10 @@ namespace suisen {
                 edge_num += sz;
                 used[i].resize(sz, false);
                 if (sz & 1) return std::nullopt;
+            }
+            if (start < 0) {
+                start = 0;
+                for (int i = 0; i < n; ++i) if (g[i].size()) start = i;
             }
             edge_num /= 2;
             std::vector<int> res;
@@ -47,14 +51,17 @@ namespace suisen {
             if (res.size() != edge_num + 1) return std::nullopt;
             return res;
         }
-        std::optional<std::vector<int>> eulerian_trail() {
+        std::optional<std::vector<int>> eulerian_trail(bool different_endpoints = false) {
             int s = -1, t = -1, invalid = -1;
             for (int i = 0; i < n; ++i) if (g[i].size() & 1) (s < 0 ? s : t < 0 ? t : invalid) = i;
+            if (not different_endpoints and s < 0 and t < 0 and invalid < 0) {
+                return eulerian_circuit();
+            }
             if (s < 0 or t < 0 or invalid >= 0) return std::nullopt;
             add_edge(s, t);
             auto opt_res = eulerian_circuit(s);
-            if (not opt_res.has_value()) return std::nullopt;
-            auto res = *opt_res;
+            if (not opt_res) return std::nullopt;
+            auto &res = *opt_res;
             res.pop_back();
             // remove edge (s, t)
             g[s].pop_back(), inv[s].pop_back();
@@ -64,7 +71,7 @@ namespace suisen {
                 return (u == s and v == t) or (u == t and v == s);
             };
             std::rotate(res.begin(), std::adjacent_find(res.begin(), res.end(), is_st_edge) + 1, res.end());
-            return res;
+            return std::move(res);
         }
         
         const std::vector<int>& operator[](int u) const {
@@ -77,7 +84,6 @@ namespace suisen {
         int n;
         std::vector<std::vector<int>> g;
         std::vector<std::vector<int>> inv;
-
     };
 }
 
