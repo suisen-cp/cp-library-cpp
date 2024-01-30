@@ -1,4 +1,4 @@
-name: verify
+name: verify-parallel
 
 on: workflow_dispatch
 
