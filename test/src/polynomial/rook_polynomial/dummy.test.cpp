@@ -51,9 +51,7 @@ void test() {
     const int n = h.size();
     fps f = suisen::rook_polynomial_skyline_board<fps>(h);
     fps g = naive(h);
-    std::cout << (f == g ? "AC" : "WA") << std::endl;
-    for (int i = 0; i <= n; ++i) std::cout << f[i] << " \n"[i == n];
-    for (int i = 0; i <= n; ++i) std::cout << g[i] << " \n"[i == n];
+    assert(f == g);
 }
 
 int main() {

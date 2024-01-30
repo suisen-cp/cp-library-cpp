@@ -24,7 +24,7 @@ class HeavyLightDecomposition {
             int time = 0;
             for (int i = 0; i < n; ++i) if (par[i] < 0) hld(g, i, -1, time);
         }
-        HeavyLightDecomposition(Graph &g, const vector<int> &roots) : n(g.size()), visit(n), leave(n), head(n), ord(n), siz(n), par(n, -1), dep(n, 0) {
+        HeavyLightDecomposition(Graph &g, const std::vector<int> &roots) : n(g.size()), visit(n), leave(n), head(n), ord(n), siz(n), par(n, -1), dep(n, 0) {
             for (int i : roots) dfs(g, i, -1);
             int time = 0;
             for (int i : roots) hld(g, i, -1, time);
