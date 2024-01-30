@@ -1,8 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: library/number/count_square_free.hpp
+    title: library/number/count_square_free.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/src/number/count_square_free/counting_squarefrees.test.cpp
+    title: test/src/number/count_square_free/counting_squarefrees.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/number/kth_root_round/kth_root_integer.test.cpp
     title: test/src/number/kth_root_round/kth_root_integer.test.cpp
@@ -35,11 +41,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: library/number/kth_root_round.hpp
-  requiredBy: []
+  requiredBy:
+  - library/number/count_square_free.hpp
   timestamp: '2022-10-20 19:29:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/kth_root_round/kth_root_integer.test.cpp
+  - test/src/number/count_square_free/counting_squarefrees.test.cpp
 documentation_of: library/number/kth_root_round.hpp
 layout: document
 title: $\lfloor a ^ {\frac{1}{k}}\rfloor, \lceil a ^ {\frac{1}{k}}\rceil$

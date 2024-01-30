@@ -143,9 +143,9 @@ data:
   isVerificationFile: false
   path: library/io/output_stream.hpp
   requiredBy:
-  - library/template.hpp
-  - library/util/container_utils.hpp
   - library/template.cpp
+  - library/util/container_utils.hpp
+  - library/template.hpp
   timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

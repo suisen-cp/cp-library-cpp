@@ -225,8 +225,8 @@ data:
   timestamp: '2021-11-09 16:03:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/graph/min_cost_flow/min_cost_flow.test.cpp
   - test/src/graph/min_cost_flow/abc214_h.test.cpp
+  - test/src/graph/min_cost_flow/min_cost_flow.test.cpp
 documentation_of: library/graph/min_cost_flow.hpp
 layout: document
 title: Min Cost Flow

@@ -705,6 +705,9 @@ data:
       path: library/number/bezout_equation.hpp
       title: Bezout Equation
     - icon: ':heavy_check_mark:'
+      path: library/number/count_square_free.hpp
+      title: library/number/count_square_free.hpp
+    - icon: ':heavy_check_mark:'
       path: library/number/deterministic_miller_rabin.hpp
       title: Deterministic Miller Rabin
     - icon: ':warning:'
@@ -2242,6 +2245,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/src/math/util/abc240_g.test.cpp
       title: test/src/math/util/abc240_g.test.cpp
+  - name: test/src/number/count_square_free
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/src/number/count_square_free/counting_squarefrees.test.cpp
+      title: test/src/number/count_square_free/counting_squarefrees.test.cpp
   - name: test/src/number/deterministic_miller_rabin
     pages:
     - icon: ':heavy_check_mark:'

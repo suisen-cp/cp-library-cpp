@@ -171,23 +171,23 @@ data:
   path: library/number/montogomery.hpp
   requiredBy:
   - library/convolution/multi_variate_convolution_circular.hpp
+  - library/number/primitive_root.hpp
+  - library/number/deterministic_miller_rabin.hpp
   - library/number/fast_factorize.hpp
   - library/number/fast_discrete_logarithm.hpp
-  - library/number/deterministic_miller_rabin.hpp
-  - library/number/tetration_mod.hpp
-  - library/number/primitive_root.hpp
   - library/number/order_Z_mZ.hpp
+  - library/number/tetration_mod.hpp
   timestamp: '2023-05-18 22:35:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/number/deterministic_miller_rabin/primality_test.test.cpp
+  - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/tetration_mod/tetration_mod.test.cpp
-  - test/src/number/deterministic_miller_rabin/primality_test.test.cpp
-  - test/src/number/primitive_root/dummy.test.cpp
-  - test/src/number/primitive_root/primitive_root.test.cpp
 documentation_of: library/number/montogomery.hpp
 layout: document
 title: Montogomery

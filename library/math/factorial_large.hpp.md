@@ -272,9 +272,9 @@ data:
   timestamp: '2024-01-30 21:01:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/math/factorial_large/factorial.test.cpp
   - test/src/math/factorial_large/dummy.test.cpp
   - test/src/math/factorial_large/many_factorials.test.cpp
-  - test/src/math/factorial_large/factorial.test.cpp
 documentation_of: library/math/factorial_large.hpp
 layout: document
 title: Factorial Large

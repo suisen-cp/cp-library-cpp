@@ -325,8 +325,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/fenwick_tree/fenwick_tree_set.hpp
   requiredBy:
-  - library/range_query/range_set_range_composite.hpp
   - library/number/factorial_number.hpp
+  - library/range_query/range_set_range_composite.hpp
   timestamp: '2024-01-30 19:29:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

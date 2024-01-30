@@ -98,8 +98,8 @@ data:
   timestamp: '2023-02-16 15:44:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
 documentation_of: library/algebra/monoid/affine.hpp
 layout: document
 title: Affine

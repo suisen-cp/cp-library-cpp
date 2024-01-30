@@ -61,8 +61,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/convert_to_newton_basis/conversion_from_monomial_basis_to_newton_basis.test.cpp
-  - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
   - test/src/polynomial/rook_polynomial/dummy.test.cpp
+  - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
 documentation_of: library/polynomial/convert_to_newton_basis.hpp
 layout: document
 title: Convert To Newton Basis

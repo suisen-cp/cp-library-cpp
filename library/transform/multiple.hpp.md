@@ -93,8 +93,8 @@ data:
   timestamp: '2022-01-31 13:34:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/gcd_convolution/lcms.test.cpp
   - test/src/convolution/gcd_convolution/gcd_convolution.test.cpp
+  - test/src/convolution/gcd_convolution/lcms.test.cpp
   - test/src/transform/multiple/divide_both.test.cpp
 documentation_of: library/transform/multiple.hpp
 layout: document

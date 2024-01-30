@@ -81,20 +81,20 @@ data:
   isVerificationFile: false
   path: library/math/pow_mods.hpp
   requiredBy:
-  - library/string/rolling_hash.hpp
-  - library/math/sum_i^d_r^i.hpp
   - library/math/binomial_coefficient_sum.hpp
-  - library/polynomial/prod_f(r^k_x).hpp
+  - library/math/sum_i^d_r^i.hpp
   - library/sequence/sum_of_powers.hpp
+  - library/polynomial/prod_f(r^k_x).hpp
+  - library/string/rolling_hash.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/string/rolling_hash/abc141_e.test.cpp
-  - test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/compose_exp/arc154_f.test.cpp
+  - test/src/string/rolling_hash/abc141_e.test.cpp
 documentation_of: library/math/pow_mods.hpp
 layout: document
 title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"

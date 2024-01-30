@@ -173,26 +173,26 @@ data:
   - library/convolution/array_subset_convolution.hpp
   - library/convolution/subset_convolution.hpp
   - library/convolution/or_convolution.hpp
+  - library/linear_algebra/hafnian.hpp
   - library/math/set_power_series.hpp
   - library/math/array_set_power_series.hpp
-  - library/linear_algebra/hafnian.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
+  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - test/src/math/set_power_series/abc236_h.test.cpp
   - test/src/math/set_power_series/abc213_g.test.cpp
   - test/src/math/set_power_series/arc105_f.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
-  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
-  - test/src/math/set_power_series/abc253_h.test.cpp
-  - test/src/math/array_set_power_series/abc236_h.test.cpp
-  - test/src/math/array_set_power_series/abc213_g.test.cpp
-  - test/src/math/array_set_power_series/arc105_f.test.cpp
+  - test/src/math/set_power_series/abc236_h.test.cpp
   - test/src/math/array_set_power_series/abc253_h_2.test.cpp
   - test/src/math/array_set_power_series/abc253_h.test.cpp
-  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  - test/src/math/array_set_power_series/abc213_g.test.cpp
+  - test/src/math/array_set_power_series/arc105_f.test.cpp
+  - test/src/math/array_set_power_series/abc236_h.test.cpp
 documentation_of: library/transform/subset.hpp
 layout: document
 title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\u30BF\

@@ -537,13 +537,13 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/bigint/multiplication_of_big_integers.test.cpp
-  - test/src/math/bigint/addition_of_big_integers.test.cpp
-  - test/src/math/bigint/NTL_2_A.test.cpp
-  - test/src/math/bigint/many_aplusb_128bit.test.cpp
   - test/src/math/bigint/NTL_2_D.test.cpp
   - test/src/math/bigint/NTL_2_B.test.cpp
-  - test/src/math/bigint/NTL_2_E.test.cpp
+  - test/src/math/bigint/addition_of_big_integers.test.cpp
   - test/src/math/bigint/NTL_2_F.test.cpp
+  - test/src/math/bigint/NTL_2_A.test.cpp
+  - test/src/math/bigint/many_aplusb_128bit.test.cpp
+  - test/src/math/bigint/NTL_2_E.test.cpp
 documentation_of: library/math/bigint.hpp
 layout: document
 title: "\u591A\u500D\u9577\u6574\u6570"
