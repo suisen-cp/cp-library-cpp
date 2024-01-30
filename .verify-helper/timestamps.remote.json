@@ -410,6 +410,7 @@
 "test/src/tree/rerooting/tree_path_composite_sum.test.cpp": "2023-05-11 13:28:20 +0900",
 "test/src/tree/rerooting_invertible/abc160_f.test.cpp": "2023-05-11 13:28:20 +0900",
 "test/src/tree/tree_isomorphism_classification/rooted_tree_isomorphism_classification.test.cpp": "2022-10-23 23:59:03 +0900",
+"test/src/util/step_sum/dummy.test.cpp": "2023-09-15 20:02:25 +0900",
 "test/src/util/subset_iterator/dummy_all_setbit.test.cpp": "2022-08-21 18:23:10 +0900",
 "test/src/util/subset_iterator/dummy_all_subset.test.cpp": "2022-08-21 18:23:10 +0900",
 "test/src/util/subset_iterator/dummy_all_subset_k.test.cpp": "2022-08-21 18:23:10 +0900"
