@@ -259,6 +259,7 @@
 "test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp": "2024-01-30 20:59:02 +0900",
 "test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp": "2024-01-30 20:59:02 +0900",
 "test/src/math/util/abc240_g.test.cpp": "2024-01-30 20:57:42 +0900",
+"test/src/number/count_square_free/counting_squarefrees.test.cpp": "2024-01-31 04:55:16 +0900",
 "test/src/number/deterministic_miller_rabin/primality_test.test.cpp": "2024-01-31 00:18:18 +0900",
 "test/src/number/discrete_logarithm/discrete_logarithm_mod.test.cpp": "2022-09-28 21:35:14 +0900",
 "test/src/number/enumerate_quotient/divide_both.test.cpp": "2023-05-11 13:32:09 +0900",
