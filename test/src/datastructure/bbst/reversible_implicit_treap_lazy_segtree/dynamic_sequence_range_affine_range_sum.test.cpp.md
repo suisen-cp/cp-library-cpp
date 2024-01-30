@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/type_traits/operator.hpp
     title: Operator
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/pointer_32bit.hpp
     title: Pointer 32bit
   _extendedRequiredBy: []

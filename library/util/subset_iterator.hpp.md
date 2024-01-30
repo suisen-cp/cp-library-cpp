@@ -9,7 +9,7 @@ data:
   - icon: ':x:'
     path: test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
     title: test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/abc253_h.test.cpp
     title: test/src/math/set_power_series/abc253_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -148,11 +148,11 @@ data:
   timestamp: '2022-08-21 18:23:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/math/set_power_series/abc253_h.test.cpp
-  - test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
   - test/src/util/subset_iterator/dummy_all_subset.test.cpp
-  - test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
   - test/src/util/subset_iterator/dummy_all_setbit.test.cpp
+  - test/src/util/subset_iterator/dummy_all_subset_k.test.cpp
+  - test/src/graph/minmax_floyd_warshall/abc287_h.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
 documentation_of: library/util/subset_iterator.hpp
 layout: document
 title: Subset Iterator

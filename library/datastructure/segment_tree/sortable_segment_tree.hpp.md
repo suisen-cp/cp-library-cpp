@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/pointer_32bit.hpp
     title: Pointer 32bit
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
     title: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
     title: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/datastructure/segment_tree/sortable_segment_tree.hpp\"\
@@ -927,10 +927,10 @@ data:
   path: library/datastructure/segment_tree/sortable_segment_tree.hpp
   requiredBy: []
   timestamp: '2023-05-18 22:35:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
   - test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
+  - test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
 documentation_of: library/datastructure/segment_tree/sortable_segment_tree.hpp
 layout: document
 title: Sortable Segment Tree

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/internal_eratosthenes.hpp
     title: Internal Eratosthenes
   _extendedRequiredBy:
@@ -12,16 +12,16 @@ data:
   - icon: ':warning:'
     path: library/number/fast_discrete_logarithm.hpp
     title: Fast Discrete Logarithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/fast_factorize.hpp
     title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/order_Z_mZ.hpp
     title: Order of $x \in (\mathbb{Z}/m\mathbb{Z}) ^ \ast$
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/primitive_root.hpp
     title: Primitive Root
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/number/tetration_mod.hpp
     title: $a\uparrow\uparrow b \bmod m$
   - icon: ':warning:'
@@ -40,13 +40,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
     title: test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/fast_factorize/factorize.test.cpp
     title: test/src/number/fast_factorize/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/dummy.test.cpp
     title: test/src/number/primitive_root/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/primitive_root/primitive_root.test.cpp
     title: test/src/number/primitive_root/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
@@ -58,15 +58,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
     title: test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/tetration_mod/tetration_mod.test.cpp
     title: test/src/number/tetration_mod/tetration_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/transform/multiple/divide_both.test.cpp
     title: test/src/transform/multiple/divide_both.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/sieve_of_eratosthenes.hpp\"\n\n\n\n#include\
@@ -291,27 +291,27 @@ data:
   path: library/number/sieve_of_eratosthenes.hpp
   requiredBy:
   - library/convolution/multi_variate_convolution_circular.hpp
-  - library/number/primitive_root.hpp
+  - library/string/dynamic_rolling_hash.hpp
   - library/number/fast_factorize.hpp
   - library/number/fast_discrete_logarithm.hpp
-  - library/number/order_Z_mZ.hpp
   - library/number/tetration_mod.hpp
-  - library/string/dynamic_rolling_hash.hpp
+  - library/number/primitive_root.hpp
+  - library/number/order_Z_mZ.hpp
   timestamp: '2022-02-25 23:20:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/algorithm/mo/abc238_g.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - test/src/transform/multiple/divide_both.test.cpp
-  - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
-  - test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
-  - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
-  - test/src/number/primitive_root/primitive_root.test.cpp
-  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
   - test/src/number/tetration_mod/tetration_mod.test.cpp
-  - test/src/algorithm/mo/abc238_g.test.cpp
+  - test/src/number/primitive_root/dummy.test.cpp
+  - test/src/number/primitive_root/primitive_root.test.cpp
+  - test/src/number/sieve_of_eratosthenes/flatten.test.cpp
+  - test/src/number/sieve_of_eratosthenes/enumerate_primes.test.cpp
+  - test/src/number/sieve_of_eratosthenes/next_prime.test.cpp
+  - test/src/transform/multiple/divide_both.test.cpp
 documentation_of: library/number/sieve_of_eratosthenes.hpp
 layout: document
 title: "\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9"

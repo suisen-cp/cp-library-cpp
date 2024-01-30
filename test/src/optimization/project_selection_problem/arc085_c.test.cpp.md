@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/optimization/project_selection_problem.hpp
     title: Project Selection Problem
   _extendedRequiredBy: []

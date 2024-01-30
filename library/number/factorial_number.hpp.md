@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree/fenwick_tree_set.hpp
     title: Fenwick Tree Set
   _extendedRequiredBy: []

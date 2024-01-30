@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/algorithm/mo.hpp
     title: Mo
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/pow_mods.hpp
     title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
     title: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/binomial_coefficient_sum.hpp\"\n\n\n\n#line\
@@ -204,7 +204,7 @@ data:
   path: library/math/binomial_coefficient_sum.hpp
   requiredBy: []
   timestamp: '2024-01-30 20:57:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
 documentation_of: library/math/binomial_coefficient_sum.hpp

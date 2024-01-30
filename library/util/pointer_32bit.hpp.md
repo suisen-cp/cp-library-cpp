@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
     title: Reversible Implicit Treap Segtree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/sortable_segment_tree.hpp
     title: Sortable Segment Tree
   _extendedVerifiedWith:
@@ -48,15 +48,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
     title: test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
     title: test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
     title: test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/util/pointer_32bit.hpp\"\n\n\n\n#include <vector>\n\
@@ -123,26 +123,26 @@ data:
   isVerificationFile: false
   path: library/util/pointer_32bit.hpp
   requiredBy:
-  - library/datastructure/bbst/reversible_implicit_treap.hpp
+  - library/datastructure/segment_tree/sortable_segment_tree.hpp
   - library/datastructure/bbst/reversible_implicit_treap_lazy_segtree.hpp
-  - library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
   - library/datastructure/bbst/reversible_implicit_treap_dual_segtree.hpp
   - library/datastructure/bbst/reversible_implicit_treap_base.hpp
-  - library/datastructure/segment_tree/sortable_segment_tree.hpp
+  - library/datastructure/bbst/reversible_implicit_treap.hpp
+  - library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
   timestamp: '2023-05-13 02:46:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dummy.test.cpp
-  - test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/src/datastructure/bbst/reversible_implicit_treap/dummy.test.cpp
-  - test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
-  - test/src/datastructure/bbst/reversible_implicit_treap/yuki649.test.cpp
-  - test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
+  - test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
+  - test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree/dummy.test.cpp
-  - test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
-  - test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap/yuki649.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap/dummy.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap/abc237_d.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dummy.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: library/util/pointer_32bit.hpp
 layout: document
 title: Pointer 32bit

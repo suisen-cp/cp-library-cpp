@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/optimization/project_selection_problem.hpp
     title: Project Selection Problem
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
     title: test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/optimization/k_project_selection_problem.hpp\"\n\
@@ -240,7 +240,7 @@ data:
   path: library/optimization/k_project_selection_problem.hpp
   requiredBy: []
   timestamp: '2024-01-30 21:53:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
 documentation_of: library/optimization/k_project_selection_problem.hpp

@@ -9,15 +9,15 @@ data:
   - icon: ':x:'
     path: test/src/optimization/alien_dp/abc218_h_2.test.cpp
     title: test/src/optimization/alien_dp/abc218_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/optimization/alien_dp/arc168_e_1.test.cpp
     title: test/src/optimization/alien_dp/arc168_e_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/optimization/alien_dp/arc168_e_2.test.cpp
     title: test/src/optimization/alien_dp/arc168_e_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: 'evaluates f(x) (f: convex)'
     links: []
@@ -94,12 +94,12 @@ data:
   path: library/optimization/alien_dp.hpp
   requiredBy: []
   timestamp: '2024-01-30 21:41:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/optimization/alien_dp/abc218_h_2.test.cpp
   - test/src/optimization/alien_dp/arc168_e_2.test.cpp
-  - test/src/optimization/alien_dp/abc218_h_1.test.cpp
   - test/src/optimization/alien_dp/arc168_e_1.test.cpp
+  - test/src/optimization/alien_dp/abc218_h_1.test.cpp
+  - test/src/optimization/alien_dp/abc218_h_2.test.cpp
 documentation_of: library/optimization/alien_dp.hpp
 layout: document
 title: Alien Dp

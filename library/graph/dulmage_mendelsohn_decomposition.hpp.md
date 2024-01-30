@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/graph/bipartite_matching.hpp
     title: "\u4E8C\u90E8\u30DE\u30C3\u30C1\u30F3\u30B0"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,9 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
     title: test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/graph/dulmage_mendelsohn_decomposition.hpp\"\n\n\
@@ -184,11 +184,11 @@ data:
   path: library/graph/dulmage_mendelsohn_decomposition.hpp
   requiredBy: []
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
+  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
 documentation_of: library/graph/dulmage_mendelsohn_decomposition.hpp
 layout: document
 title: "Dulmage Mendelsohn Decomposition (DM \u5206\u89E3)"

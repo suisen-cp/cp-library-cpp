@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/deterministic_miller_rabin.hpp
     title: Deterministic Miller Rabin
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/number/montogomery.hpp
     title: Montogomery
   _extendedRequiredBy: []
@@ -14,11 +14,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/primarity_test
+    PROBLEM: https://judge.yosupo.jp/problem/primality_test
     links:
-    - https://judge.yosupo.jp/problem/primarity_test
-  bundledCode: "#line 1 \"test/src/number/deterministic_miller_rabin/primarity_test.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/primarity_test\"\n\n#include\
+    - https://judge.yosupo.jp/problem/primality_test
+  bundledCode: "#line 1 \"test/src/number/deterministic_miller_rabin/primality_test.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\
     \ <iostream>\n\n#line 1 \"library/number/deterministic_miller_rabin.hpp\"\n\n\n\
     \n#include <array>\n#include <cassert>\n#include <cstdint>\n#include <iterator>\n\
     #include <tuple>\n#include <type_traits>\n\n#line 1 \"library/number/montogomery.hpp\"\
@@ -118,7 +118,7 @@ data:
     \ return miller_rabin<BASE_5, 5>(n_unsigned);\n        if (n_unsigned < THRESHOLD_6)\
     \ return miller_rabin<BASE_6, 6>(n_unsigned);\n        return miller_rabin<BASE_7,\
     \ 7>(n_unsigned);\n    }\n} // namespace suisen::miller_rabin\n\n\n#line 6 \"\
-    test/src/number/deterministic_miller_rabin/primarity_test.test.cpp\"\n\n// Compile-time\
+    test/src/number/deterministic_miller_rabin/primality_test.test.cpp\"\n\n// Compile-time\
     \ calculation\nstatic_assert(not suisen::miller_rabin::is_prime(0));\nstatic_assert(not\
     \ suisen::miller_rabin::is_prime(1));\nstatic_assert(suisen::miller_rabin::is_prime(2));\n\
     static_assert(suisen::miller_rabin::is_prime(3));\nstatic_assert(not suisen::miller_rabin::is_prime(4));\n\
@@ -129,7 +129,7 @@ data:
     \n    int q;\n    std::cin >> q;\n\n    while (q --> 0) {\n        long long n;\n\
     \        std::cin >> n;\n        \n        std::cout << (suisen::miller_rabin::is_prime(n)\
     \ ? \"Yes\" : \"No\") << '\\n';\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primarity_test\"\n\n#include\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n\n#include\
     \ <iostream>\n\n#include \"library/number/deterministic_miller_rabin.hpp\"\n\n\
     // Compile-time calculation\nstatic_assert(not suisen::miller_rabin::is_prime(0));\n\
     static_assert(not suisen::miller_rabin::is_prime(1));\nstatic_assert(suisen::miller_rabin::is_prime(2));\n\
@@ -145,15 +145,15 @@ data:
   - library/number/deterministic_miller_rabin.hpp
   - library/number/montogomery.hpp
   isVerificationFile: true
-  path: test/src/number/deterministic_miller_rabin/primarity_test.test.cpp
+  path: test/src/number/deterministic_miller_rabin/primality_test.test.cpp
   requiredBy: []
-  timestamp: '2023-05-19 09:20:50+09:00'
+  timestamp: '2024-01-31 00:18:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/src/number/deterministic_miller_rabin/primarity_test.test.cpp
+documentation_of: test/src/number/deterministic_miller_rabin/primality_test.test.cpp
 layout: document
 redirect_from:
-- /verify/test/src/number/deterministic_miller_rabin/primarity_test.test.cpp
-- /verify/test/src/number/deterministic_miller_rabin/primarity_test.test.cpp.html
-title: test/src/number/deterministic_miller_rabin/primarity_test.test.cpp
+- /verify/test/src/number/deterministic_miller_rabin/primality_test.test.cpp
+- /verify/test/src/number/deterministic_miller_rabin/primality_test.test.cpp.html
+title: test/src/number/deterministic_miller_rabin/primality_test.test.cpp
 ---

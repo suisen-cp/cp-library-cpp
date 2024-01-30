@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/optimization/k_project_selection_problem.hpp
     title: K Project Selection Problem
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/optimization/project_selection_problem.hpp
     title: Project Selection Problem
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc129/tasks/arc129_e
@@ -214,7 +214,7 @@ data:
   path: test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
   requiredBy: []
   timestamp: '2024-01-30 21:53:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
 layout: document

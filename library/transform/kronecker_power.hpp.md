@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/default_operator.hpp
     title: Default Operator
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: library/convolution/and_convolution.hpp
     title: Bitwise And Convolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/array_subset_convolution.hpp
     title: Array Subset Convolution
   - icon: ':warning:'
     path: library/convolution/or_convolution.hpp
     title: Bitwise Or Convolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/subset_convolution.hpp
     title: Subset Convolution
   - icon: ':heavy_check_mark:'
@@ -24,13 +24,13 @@ data:
     path: library/linear_algebra/hafnian.hpp
     title: "Hafnian (\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\u30B0\u306E\u6570\u3048\u4E0A\
       \u3052)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/array_set_power_series.hpp
     title: Array Sps
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/set_power_series.hpp
     title: Set Power Series
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/transform/subset.hpp
     title: "\u4E0B\u4F4D\u96C6\u5408\u306B\u5BFE\u3059\u308B\u9AD8\u901F\u30BC\u30FC\
       \u30BF\u5909\u63DB\u30FB\u9AD8\u901F\u30E1\u30D3\u30A6\u30B9\u5909\u63DB"
@@ -60,40 +60,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
     title: test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_set_power_series/abc213_g.test.cpp
     title: test/src/math/array_set_power_series/abc213_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_set_power_series/abc236_h.test.cpp
     title: test/src/math/array_set_power_series/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_set_power_series/abc253_h.test.cpp
     title: test/src/math/array_set_power_series/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_set_power_series/abc253_h_2.test.cpp
     title: test/src/math/array_set_power_series/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/array_set_power_series/arc105_f.test.cpp
     title: test/src/math/array_set_power_series/arc105_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/abc213_g.test.cpp
     title: test/src/math/set_power_series/abc213_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/abc236_h.test.cpp
     title: test/src/math/set_power_series/abc236_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/abc253_h.test.cpp
     title: test/src/math/set_power_series/abc253_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/abc253_h_2.test.cpp
     title: test/src/math/set_power_series/abc253_h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/arc105_f.test.cpp
     title: test/src/math/set_power_series/arc105_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
     title: test/src/math/set_power_series/exp_of_set_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
     title: test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,9 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/transform/kronecker_power/arc132_f.test.cpp
     title: test/src/transform/kronecker_power/arc132_f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/transform/kronecker_power.hpp\"\n\n\n\n#include\
@@ -208,40 +208,40 @@ data:
   isVerificationFile: false
   path: library/transform/kronecker_power.hpp
   requiredBy:
-  - library/convolution/xor_convolution.hpp
   - library/convolution/array_subset_convolution.hpp
   - library/convolution/and_convolution.hpp
+  - library/convolution/xor_convolution.hpp
   - library/convolution/subset_convolution.hpp
   - library/convolution/or_convolution.hpp
-  - library/transform/subset.hpp
-  - library/transform/walsh_hadamard.hpp
-  - library/transform/supset.hpp
-  - library/linear_algebra/hafnian.hpp
   - library/math/set_power_series.hpp
   - library/math/array_set_power_series.hpp
+  - library/linear_algebra/hafnian.hpp
+  - library/transform/supset.hpp
+  - library/transform/walsh_hadamard.hpp
+  - library/transform/subset.hpp
   timestamp: '2022-03-21 02:24:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/subset_convolution/subset_convolution.test.cpp
-  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
   - test/src/convolution/polynomial_eval/nim_counting.test.cpp
   - test/src/convolution/and_convolution/and_convolution.test.cpp
-  - test/src/transform/kronecker_power/agc044_c.test.cpp
-  - test/src/transform/kronecker_power/arc132_f.test.cpp
-  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
-  - test/src/math/set_power_series/abc253_h.test.cpp
-  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/convolution/xor_convolution/xor_convolution.test.cpp
   - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
+  - test/src/math/set_power_series/abc236_h.test.cpp
   - test/src/math/set_power_series/abc213_g.test.cpp
   - test/src/math/set_power_series/arc105_f.test.cpp
-  - test/src/math/set_power_series/abc236_h.test.cpp
-  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
-  - test/src/math/array_set_power_series/abc253_h.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
+  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/src/math/set_power_series/abc253_h.test.cpp
+  - test/src/math/array_set_power_series/abc236_h.test.cpp
   - test/src/math/array_set_power_series/abc213_g.test.cpp
   - test/src/math/array_set_power_series/arc105_f.test.cpp
-  - test/src/math/array_set_power_series/abc236_h.test.cpp
+  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
+  - test/src/math/array_set_power_series/abc253_h.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
+  - test/src/transform/kronecker_power/agc044_c.test.cpp
+  - test/src/transform/kronecker_power/arc132_f.test.cpp
 documentation_of: library/transform/kronecker_power.hpp
 layout: document
 title: "\u30AF\u30ED\u30CD\u30C3\u30AB\u30FC\u51AA\u306B\u3088\u308B\u7DDA\u5F62\u5909\

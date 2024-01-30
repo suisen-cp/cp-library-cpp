@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree/fenwick_tree_set.hpp
     title: Fenwick Tree Set
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/range_query/range_set_range_composite.hpp
     title: Range Set Range Composite
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_set_range_composite
@@ -236,7 +236,7 @@ data:
   path: test/src/range_query/range_set_range_composite/range_set_range_composite.test.cpp
   requiredBy: []
   timestamp: '2024-01-30 19:29:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/range_query/range_set_range_composite/range_set_range_composite.test.cpp
 layout: document

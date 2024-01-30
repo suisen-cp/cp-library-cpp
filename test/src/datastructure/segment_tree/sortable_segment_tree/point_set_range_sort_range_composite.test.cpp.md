@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/segment_tree/sortable_segment_tree.hpp
     title: Sortable Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/pointer_32bit.hpp
     title: Pointer 32bit
   _extendedRequiredBy: []

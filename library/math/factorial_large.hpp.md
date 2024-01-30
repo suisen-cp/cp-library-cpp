@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/convolution_naive.hpp
     title: Naive Convolution
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/math/factorial.hpp
     title: "\u968E\u4E57\u30C6\u30FC\u30D6\u30EB"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/shift_of_sampling_points.hpp
     title: Shift of Sampling Points of Polynomial
   _extendedRequiredBy:
@@ -18,18 +18,18 @@ data:
     path: test/src/math/factorial_large/yuki502.cpp
     title: test/src/math/factorial_large/yuki502.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/factorial_large/dummy.test.cpp
     title: test/src/math/factorial_large/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/factorial_large/factorial.test.cpp
     title: test/src/math/factorial_large/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/factorial_large/many_factorials.test.cpp
     title: test/src/math/factorial_large/many_factorials.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/factorial_large.hpp\"\n\n\n\n#include <utility>\n\
@@ -270,11 +270,11 @@ data:
   requiredBy:
   - test/src/math/factorial_large/yuki502.cpp
   timestamp: '2024-01-30 21:01:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/factorial_large/factorial.test.cpp
   - test/src/math/factorial_large/dummy.test.cpp
   - test/src/math/factorial_large/many_factorials.test.cpp
+  - test/src/math/factorial_large/factorial.test.cpp
 documentation_of: library/math/factorial_large.hpp
 layout: document
 title: Factorial Large

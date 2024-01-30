@@ -5,25 +5,25 @@ data:
   - icon: ':warning:'
     path: library/debug/suffix_automaton.hpp
     title: Suffix Automaton
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/string/substring_set.hpp
     title: Substring Set
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/substring_set/arc097_a.test.cpp
     title: test/src/string/substring_set/arc097_a.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/substring_set/number_of_substrings.test.cpp
     title: test/src/string/substring_set/number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/suffix_automaton/longest_common_substring.test.cpp
     title: test/src/string/suffix_automaton/longest_common_substring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/suffix_automaton/yuki430.test.cpp
     title: test/src/string/suffix_automaton/yuki430.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://cp-algorithms.com/string/suffix-automaton.html
@@ -251,10 +251,10 @@ data:
   isVerificationFile: false
   path: library/string/suffix_automaton.hpp
   requiredBy:
-  - library/debug/suffix_automaton.hpp
   - library/string/substring_set.hpp
+  - library/debug/suffix_automaton.hpp
   timestamp: '2024-01-30 21:46:01+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/string/suffix_automaton/longest_common_substring.test.cpp
   - test/src/string/suffix_automaton/yuki430.test.cpp

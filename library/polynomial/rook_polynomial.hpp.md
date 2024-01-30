@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: library/polynomial/convert_to_newton_basis.hpp
     title: Convert To Newton Basis
   _extendedRequiredBy: []

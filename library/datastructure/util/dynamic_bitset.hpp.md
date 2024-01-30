@@ -408,8 +408,8 @@ data:
   isVerificationFile: false
   path: library/datastructure/util/dynamic_bitset.hpp
   requiredBy:
-  - library/linear_algebra/gaussian_elimination_f2.hpp
   - library/linear_algebra/matrix_f2.hpp
+  - library/linear_algebra/gaussian_elimination_f2.hpp
   timestamp: '2022-11-10 03:30:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

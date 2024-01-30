@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: library/integral_geom/farthest_pair.hpp
     title: Farthest Pair
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/integral_geom/geometry.hpp
     title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19\
       )"
@@ -43,15 +43,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/geometry/CGL_7_A.test.cpp
     title: test/src/integral_geom/geometry/CGL_7_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/geometry/abc259_d.test.cpp
     title: test/src/integral_geom/geometry/abc259_d.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
     title: test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/integral_geom/point.hpp\"\n\n\n\n#include <cassert>\n\
@@ -172,24 +172,24 @@ data:
   isVerificationFile: false
   path: library/integral_geom/point.hpp
   requiredBy:
+  - library/integral_geom/farthest_pair.hpp
   - library/integral_geom/closest_pair.hpp
   - library/integral_geom/sort_points_by_argument.hpp
-  - library/integral_geom/farthest_pair.hpp
   - library/integral_geom/geometry.hpp
   timestamp: '2022-07-10 19:58:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/integral_geom/count_lattice_point/yuki1999.test.cpp
-  - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
   - test/src/integral_geom/sort_points_by_argument/sort_points_by_argument.test.cpp
-  - test/src/integral_geom/geometry/CGL_3_B.test.cpp
-  - test/src/integral_geom/geometry/abc259_d.test.cpp
-  - test/src/integral_geom/geometry/CGL_2_A.test.cpp
   - test/src/integral_geom/geometry/CGL_2_B.test.cpp
-  - test/src/integral_geom/geometry/CGL_1_C.test.cpp
+  - test/src/integral_geom/geometry/CGL_2_A.test.cpp
   - test/src/integral_geom/geometry/CGL_3_C.test.cpp
-  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
+  - test/src/integral_geom/geometry/abc259_d.test.cpp
+  - test/src/integral_geom/geometry/CGL_3_B.test.cpp
   - test/src/integral_geom/geometry/CGL_3_A.test.cpp
+  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
+  - test/src/integral_geom/geometry/CGL_1_C.test.cpp
+  - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
 documentation_of: library/integral_geom/point.hpp
 layout: document
 title: Point

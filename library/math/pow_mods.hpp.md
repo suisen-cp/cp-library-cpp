@@ -2,43 +2,43 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/binomial_coefficient_sum.hpp
     title: Binomial Coefficient Sum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/sum_i^d_r^i.hpp
     title: $\displaystyle \sum _ i i ^ d r ^ i$
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/polynomial/prod_f(r^k_x).hpp
     title: $\left(\prod_{k=0}^{m-1} f(r^k x)\right) \bmod x^N$
   - icon: ':warning:'
     path: library/sequence/sum_of_powers.hpp
     title: library/sequence/sum_of_powers.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/string/rolling_hash.hpp
     title: Rolling Hash
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
     title: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
     title: test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/compose_exp/arc154_f.test.cpp
     title: test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
     title: test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/rolling_hash/abc141_e.test.cpp
     title: test/src/string/rolling_hash/abc141_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/math/pow_mods.hpp\"\n\n\n\n#include <vector>\n\n\
@@ -81,20 +81,20 @@ data:
   isVerificationFile: false
   path: library/math/pow_mods.hpp
   requiredBy:
-  - library/math/binomial_coefficient_sum.hpp
-  - library/math/sum_i^d_r^i.hpp
-  - library/sequence/sum_of_powers.hpp
-  - library/polynomial/prod_f(r^k_x).hpp
   - library/string/rolling_hash.hpp
+  - library/math/sum_i^d_r^i.hpp
+  - library/math/binomial_coefficient_sum.hpp
+  - library/polynomial/prod_f(r^k_x).hpp
+  - library/sequence/sum_of_powers.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/string/rolling_hash/abc141_e.test.cpp
+  - test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
   - test/src/polynomial/prod_f(r^k_x)/yuki2097.test.cpp
   - test/src/polynomial/compose_exp/arc154_f.test.cpp
-  - test/src/string/rolling_hash/abc141_e.test.cpp
 documentation_of: library/math/pow_mods.hpp
 layout: document
 title: "\u51AA\u4E57\u30C6\u30FC\u30D6\u30EB"

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/fenwick_tree/fenwick_tree_set.hpp
     title: Fenwick Tree Set
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/range_query/range_set_range_composite/range_set_range_composite.test.cpp
     title: test/src/range_query/range_set_range_composite/range_set_range_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/range_query/range_set_range_composite.hpp\"\n\n\n\
@@ -233,7 +233,7 @@ data:
   path: library/range_query/range_set_range_composite.hpp
   requiredBy: []
   timestamp: '2024-01-30 19:29:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/range_query/range_set_range_composite/range_set_range_composite.test.cpp
 documentation_of: library/range_query/range_set_range_composite.hpp

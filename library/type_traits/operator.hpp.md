@@ -96,9 +96,9 @@ data:
   timestamp: '2023-02-16 15:43:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree/dummy.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dummy.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_lazy_segtree/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/src/datastructure/bbst/reversible_implicit_treap_dual_segtree/dummy.test.cpp
 documentation_of: library/type_traits/operator.hpp
 layout: document
 title: Operator

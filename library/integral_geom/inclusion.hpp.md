@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: library/integral_geom/farthest_pair.hpp
     title: Farthest Pair
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/integral_geom/geometry.hpp
     title: "\u5E7E\u4F55\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8 (\u6574\u6570\u5EA7\u6A19\
       )"
@@ -40,12 +40,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/geometry/CGL_7_A.test.cpp
     title: test/src/integral_geom/geometry/CGL_7_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/integral_geom/geometry/abc259_d.test.cpp
     title: test/src/integral_geom/geometry/abc259_d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/integral_geom/inclusion.hpp\"\n\n\n\nnamespace suisen::integral_geometry\
@@ -57,22 +57,22 @@ data:
   isVerificationFile: false
   path: library/integral_geom/inclusion.hpp
   requiredBy:
-  - library/integral_geom/closest_pair.hpp
-  - library/integral_geom/farthest_pair.hpp
-  - library/integral_geom/geometry.hpp
   - library/integral_geom/convex_hull_inclusion.hpp
+  - library/integral_geom/farthest_pair.hpp
+  - library/integral_geom/closest_pair.hpp
+  - library/integral_geom/geometry.hpp
   timestamp: '2023-05-11 13:21:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
-  - test/src/integral_geom/geometry/CGL_3_B.test.cpp
-  - test/src/integral_geom/geometry/abc259_d.test.cpp
-  - test/src/integral_geom/geometry/CGL_2_A.test.cpp
   - test/src/integral_geom/geometry/CGL_2_B.test.cpp
-  - test/src/integral_geom/geometry/CGL_1_C.test.cpp
+  - test/src/integral_geom/geometry/CGL_2_A.test.cpp
   - test/src/integral_geom/geometry/CGL_3_C.test.cpp
-  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
+  - test/src/integral_geom/geometry/abc259_d.test.cpp
+  - test/src/integral_geom/geometry/CGL_3_B.test.cpp
   - test/src/integral_geom/geometry/CGL_3_A.test.cpp
+  - test/src/integral_geom/geometry/CGL_7_A.test.cpp
+  - test/src/integral_geom/geometry/CGL_1_C.test.cpp
+  - test/src/integral_geom/closest_pair/AOJ_0585.test.cpp
 documentation_of: library/integral_geom/inclusion.hpp
 layout: document
 title: Inclusion

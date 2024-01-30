@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/convolution/arbitrary_mod_convolution.hpp
     title: "\u4EFB\u610F $\\mathrm{mod}$ \u7573\u307F\u8FBC\u307F"
   - icon: ':heavy_check_mark:'
@@ -15,13 +15,13 @@ data:
     path: library/convolution/multi_variate_convolution_circular.hpp
     title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\
       \u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/bigint.hpp
     title: "\u591A\u500D\u9577\u6574\u6570"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/factorial_large.hpp
     title: Factorial Large
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/math/unsigned_bigint.hpp
     title: Unsigned Bigint
   - icon: ':warning:'
@@ -67,24 +67,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/addition_of_big_integers.test.cpp
     title: test/src/math/bigint/addition_of_big_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/many_aplusb_128bit.test.cpp
     title: test/src/math/bigint/many_aplusb_128bit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/bigint/multiplication_of_big_integers.test.cpp
     title: test/src/math/bigint/multiplication_of_big_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/factorial_large/dummy.test.cpp
     title: test/src/math/factorial_large/dummy.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/factorial_large/factorial.test.cpp
     title: test/src/math/factorial_large/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/factorial_large/many_factorials.test.cpp
     title: test/src/math/factorial_large/many_factorials.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/convolution/convolution_naive.hpp\"\n\n\n\n#include\
@@ -110,34 +110,34 @@ data:
   path: library/convolution/convolution_naive.hpp
   requiredBy:
   - test/src/math/factorial_large/yuki502.cpp
-  - library/convolution/convolution_2_64.hpp
   - library/convolution/multi_variate_convolution_circular.hpp
-  - library/convolution/arbitrary_mod_convolution.hpp
   - library/convolution/convolution_large.hpp
-  - library/math/unsigned_bigint.hpp
+  - library/convolution/arbitrary_mod_convolution.hpp
+  - library/convolution/convolution_2_64.hpp
   - library/math/factorial_large.hpp
+  - library/math/unsigned_bigint.hpp
   - library/math/bigint.hpp
   timestamp: '2023-05-11 13:19:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/convolution/convolution_large/convolution_large.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/convolution_2_64/convolution_mod_2_64.test.cpp
   - test/src/convolution/convolution_2_64/convolution_mod_2_64_6mod.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - test/src/convolution/convolution_large/convolution_large.test.cpp
   - test/src/convolution/arbitrary_mod_convolution/convolution_mod_1000000007.test.cpp
-  - test/src/math/factorial_large/factorial.test.cpp
   - test/src/math/factorial_large/dummy.test.cpp
   - test/src/math/factorial_large/many_factorials.test.cpp
+  - test/src/math/factorial_large/factorial.test.cpp
   - test/src/math/bigint/multiplication_of_big_integers.test.cpp
-  - test/src/math/bigint/NTL_2_D.test.cpp
-  - test/src/math/bigint/NTL_2_B.test.cpp
   - test/src/math/bigint/addition_of_big_integers.test.cpp
-  - test/src/math/bigint/NTL_2_F.test.cpp
   - test/src/math/bigint/NTL_2_A.test.cpp
   - test/src/math/bigint/many_aplusb_128bit.test.cpp
+  - test/src/math/bigint/NTL_2_D.test.cpp
+  - test/src/math/bigint/NTL_2_B.test.cpp
   - test/src/math/bigint/NTL_2_E.test.cpp
+  - test/src/math/bigint/NTL_2_F.test.cpp
 documentation_of: library/convolution/convolution_naive.hpp
 layout: document
 title: Naive Convolution

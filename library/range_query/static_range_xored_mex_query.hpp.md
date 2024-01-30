@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/datastructure/bit_vector.hpp
     title: Bit Vector
   - icon: ':question:'
@@ -9,12 +9,12 @@ data:
     title: Type Traits
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
     title: test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/range_query/static_range_xored_mex_query.hpp\"\n\
@@ -193,7 +193,7 @@ data:
   path: library/range_query/static_range_xored_mex_query.hpp
   requiredBy: []
   timestamp: '2023-09-15 20:02:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/range_query/static_range_xored_mex_query/dummy.test.cpp
 documentation_of: library/range_query/static_range_xored_mex_query.hpp

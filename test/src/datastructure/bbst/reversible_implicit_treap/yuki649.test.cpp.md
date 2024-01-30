@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
     title: Reversible Implicit Treap Base
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/pointer_32bit.hpp
     title: Pointer 32bit
   _extendedRequiredBy: []

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/datastructure/bbst/reversible_implicit_treap_base.hpp
     title: Reversible Implicit Treap Base
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/util/pointer_32bit.hpp
     title: Pointer 32bit
   _extendedRequiredBy: []
@@ -807,8 +807,8 @@ data:
   timestamp: '2023-05-13 02:46:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
 documentation_of: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
 layout: document

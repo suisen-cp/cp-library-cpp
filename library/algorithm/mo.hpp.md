@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/math/binomial_coefficient_sum.hpp
     title: Binomial Coefficient Sum
   _extendedVerifiedWith:
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
     title: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
     title: test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/algorithm/mo.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -114,12 +114,12 @@ data:
   requiredBy:
   - library/math/binomial_coefficient_sum.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
-  - test/src/algorithm/mo/abc174_f.test.cpp
   - test/src/algorithm/mo/abc238_g.test.cpp
+  - test/src/algorithm/mo/abc174_f.test.cpp
   - test/src/algorithm/mo/abc242_g.test.cpp
+  - test/src/math/binomial_coefficient_sum/yuki2512.test.cpp
   - test/src/datastructure/deque_aggregation/staticrmq.test.cpp
 documentation_of: library/algorithm/mo.hpp
 layout: document

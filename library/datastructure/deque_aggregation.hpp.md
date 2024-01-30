@@ -12,18 +12,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
     title: test/src/datastructure/deque_aggregation/staticrmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/sequence/eulerian_number/yuki2005.test.cpp
     title: test/src/sequence/eulerian_number/yuki2005.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://motsu-xe.hatenablog.com/entry/2021/05/13/224016
@@ -237,14 +237,14 @@ data:
   path: library/datastructure/deque_aggregation.hpp
   requiredBy: []
   timestamp: '2022-07-12 14:26:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005.test.cpp
   - test/src/datastructure/deque_aggregation/staticrmq.test.cpp
-  - test/src/datastructure/deque_aggregation/queue_operate_all_composite.test.cpp
   - test/src/datastructure/deque_aggregation/deque_operate_all_composite.test.cpp
+  - test/src/datastructure/deque_aggregation/queue_operate_all_composite.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
 documentation_of: library/datastructure/deque_aggregation.hpp
 layout: document
 title: "SWAG \u3092 Deque \u306B\u62E1\u5F35\u3057\u305F\u3084\u3064"

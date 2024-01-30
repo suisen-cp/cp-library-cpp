@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/stern_brocot_tree/abc273_h.test.cpp
     title: test/src/number/stern_brocot_tree/abc273_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/number/stern_brocot_tree/stern_brocot_tree.test.cpp
     title: test/src/number/stern_brocot_tree/stern_brocot_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/number/stern_brocot_tree.hpp\"\n\n\n\n#include <algorithm>\n\
@@ -269,7 +269,7 @@ data:
   path: library/number/stern_brocot_tree.hpp
   requiredBy: []
   timestamp: '2024-01-30 21:22:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/number/stern_brocot_tree/abc273_h.test.cpp
   - test/src/number/stern_brocot_tree/stern_brocot_tree.test.cpp

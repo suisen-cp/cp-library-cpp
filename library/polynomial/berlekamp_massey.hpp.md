@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
     title: test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Find linear recurrence in O(|s|^2) time
     links: []
@@ -60,7 +60,7 @@ data:
   path: library/polynomial/berlekamp_massey.hpp
   requiredBy: []
   timestamp: '2024-01-30 20:59:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/polynomial/berlekamp_massey/find_linear_recurrence.test.cpp
 documentation_of: library/polynomial/berlekamp_massey.hpp

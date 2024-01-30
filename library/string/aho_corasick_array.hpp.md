@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/string/trie_array.hpp
     title: Trie Array
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/src/string/aho_corasick_array/abc268_h.test.cpp
     title: test/src/string/aho_corasick_array/abc268_h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"library/string/aho_corasick_array.hpp\"\n\n\n\n#include\
@@ -113,7 +113,7 @@ data:
   path: library/string/aho_corasick_array.hpp
   requiredBy: []
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/string/aho_corasick_array/abc268_h.test.cpp
 documentation_of: library/string/aho_corasick_array.hpp

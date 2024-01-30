@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/linear_algebra/hessenberg_reduction.hpp
     title: Hessenberg Reduction
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: library/linear_algebra/matrix.hpp
     title: Matrix
   _extendedRequiredBy: []

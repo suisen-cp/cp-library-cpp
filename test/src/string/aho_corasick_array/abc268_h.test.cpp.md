@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/string/aho_corasick_array.hpp
     title: Aho Corasick Array
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: library/string/trie_array.hpp
     title: Trie Array
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc268/tasks/abc268_Ex
@@ -109,7 +109,7 @@ data:
   path: test/src/string/aho_corasick_array/abc268_h.test.cpp
   requiredBy: []
   timestamp: '2023-07-09 04:04:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/string/aho_corasick_array/abc268_h.test.cpp
 layout: document
