@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "library/datastructure/segment_tree/trees/range_chmin_chmax_add_range_sum.hpp"
+#include "library/range_query/range_chmin_chmax_add_range_sum.hpp"
 
 int main() {
     std::ios::sync_with_stdio(false);
