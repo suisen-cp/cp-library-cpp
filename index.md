@@ -656,7 +656,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/math/array_set_power_series.hpp
-      title: Array Sps
+      title: Array Set Power Series
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
@@ -1101,6 +1101,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/tree/rerooting_invertible.hpp
       title: Rerooting Invertible
+    - icon: ':warning:'
+      path: library/tree/static_top_tree.hpp
+      title: library/tree/static_top_tree.hpp
     - icon: ':heavy_check_mark:'
       path: library/tree/tree_isomorphism_classification.hpp
       title: Tree Isomorphism Classification

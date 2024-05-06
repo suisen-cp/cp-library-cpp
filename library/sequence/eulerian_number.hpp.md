@@ -133,9 +133,9 @@ data:
   timestamp: '2024-01-30 20:57:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/sequence/eulerian_number/yuki2005.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
   - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005.test.cpp
 documentation_of: library/sequence/eulerian_number.hpp
 layout: document
 title: Eulerian Number

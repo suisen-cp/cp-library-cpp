@@ -85,8 +85,8 @@ data:
   timestamp: '2024-01-30 20:57:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
   - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
+  - test/src/sequence/stirling_number1_small_prime_mod/stirling_number_of_the_first_kind_small_p_large_n.test.cpp
 documentation_of: library/sequence/binomial_coefficient_small_prime_mod.hpp
 layout: document
 title: Binomial Coefficient Small Prime Mod

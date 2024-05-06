@@ -260,9 +260,9 @@ data:
   - test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_I.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
-  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
   - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_G.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_F.test.cpp
+  - test/src/datastructure/segment_tree/lazy_segment_tree/DSL_2_H.test.cpp
   - test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/lazy_segment_tree.hpp
 layout: document

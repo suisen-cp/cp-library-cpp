@@ -808,8 +808,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/range_reverse_range_sum.test.cpp
-  - test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
   - test/src/datastructure/bbst/reversible_implicit_treap_segtree/abc238_f.test.cpp
+  - test/src/datastructure/bbst/reversible_implicit_treap_segtree/dummy.test.cpp
 documentation_of: library/datastructure/bbst/reversible_implicit_treap_segtree.hpp
 layout: document
 title: Reversible Implicit Treap Segtree

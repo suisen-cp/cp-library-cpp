@@ -95,8 +95,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
 documentation_of: library/transform/chirp_z_transform.hpp
 layout: document
 title: "chirp z-transform (\u8A55\u4FA1\u70B9\u304C\u7B49\u5DEE\u6570\u5217\u3092\u6210\

@@ -218,14 +218,14 @@ data:
   isVerificationFile: false
   path: library/graph/bipartite_matching.hpp
   requiredBy:
-  - library/graph/edge_coloring_of_bipartite_graph.hpp
   - library/graph/dulmage_mendelsohn_decomposition.hpp
+  - library/graph/edge_coloring_of_bipartite_graph.hpp
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/graph/bipartite_matching/bipartite_matching.test.cpp
-  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/abc223_g.test.cpp
+  - test/src/graph/dulmage_mendelsohn_decomposition/yuki1745.test.cpp
   - test/src/graph/dulmage_mendelsohn_decomposition/yuki1744.test.cpp
   - test/src/graph/edge_coloring_of_bipartite_graph/bipartite_edge_coloring.test.cpp
   - test/src/string/palindromic_tree/abc237_h.test.cpp

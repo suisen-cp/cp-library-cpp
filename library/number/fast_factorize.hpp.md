@@ -423,12 +423,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
+  - test/src/number/tetration_mod/tetration_mod.test.cpp
   - test/src/number/primitive_root/primitive_root.test.cpp
   - test/src/number/primitive_root/dummy.test.cpp
   - test/src/number/fast_factorize/factorize.test.cpp
-  - test/src/number/tetration_mod/tetration_mod.test.cpp
 documentation_of: library/number/fast_factorize.hpp
 layout: document
 title: "\u9AD8\u901F\u7D20\u56E0\u6570\u5206\u89E3"

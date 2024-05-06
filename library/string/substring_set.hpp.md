@@ -331,8 +331,8 @@ data:
   timestamp: '2024-01-30 21:46:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/string/substring_set/arc097_a.test.cpp
   - test/src/string/substring_set/number_of_substrings.test.cpp
+  - test/src/string/substring_set/arc097_a.test.cpp
 documentation_of: library/string/substring_set.hpp
 layout: document
 title: Substring Set

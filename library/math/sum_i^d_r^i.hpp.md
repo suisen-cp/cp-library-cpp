@@ -277,8 +277,8 @@ data:
   timestamp: '2024-01-30 20:59:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
 documentation_of: library/math/sum_i^d_r^i.hpp
 layout: document
 title: $\displaystyle \sum _ i i ^ d r ^ i$

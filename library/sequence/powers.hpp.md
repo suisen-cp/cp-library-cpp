@@ -95,21 +95,21 @@ data:
   isVerificationFile: false
   path: library/sequence/powers.hpp
   requiredBy:
-  - library/math/sum_i^d_r^i.hpp
   - library/sequence/stirling_number2_small_prime_mod.hpp
   - library/sequence/eulerian_number.hpp
   - library/sequence/stirling_number2.hpp
+  - library/math/sum_i^d_r^i.hpp
   timestamp: '2022-07-10 22:02:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - test/src/sequence/stirling_number2/stirling_number2_2.test.cpp
   - test/src/sequence/stirling_number2_small_prime_mod/stirling_number_of_the_second_kind_small_p_large_n.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2-2.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
   - test/src/polynomial/lagrange_interpolation/cumulative_sum.test.cpp
 documentation_of: library/sequence/powers.hpp
 layout: document

@@ -6,7 +6,7 @@ data:
     title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/array_set_power_series.hpp
-    title: Array Sps
+    title: Array Set Power Series
   - icon: ':heavy_check_mark:'
     path: library/math/inv_mods.hpp
     title: "\u9006\u5143\u30C6\u30FC\u30D6\u30EB"
