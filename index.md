@@ -656,7 +656,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: library/math/array_set_power_series.hpp
-      title: Array Set Power Series
+      title: Array Sps
     - icon: ':heavy_check_mark:'
       path: library/math/bigint.hpp
       title: "\u591A\u500D\u9577\u6574\u6570"
@@ -796,7 +796,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: library/number/tetration_mod.hpp
       title: $a\uparrow\uparrow b \bmod m$
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: library/number/util.hpp
       title: Util
   - name: library/optimization
@@ -2346,7 +2346,7 @@ data:
       title: test/src/number/tetration_mod/tetration_mod.test.cpp
   - name: test/src/number/util
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/src/number/util/abc222_g.test.cpp
       title: test/src/number/util/abc222_g.test.cpp
   - name: test/src/optimization/alien_dp

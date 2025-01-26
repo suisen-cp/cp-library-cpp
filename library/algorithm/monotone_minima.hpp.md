@@ -69,8 +69,8 @@ data:
   timestamp: '2023-09-06 20:32:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/min_plus_convolution/min_plus_convolution_convex_convex.test.cpp
   - test/src/convolution/min_plus_convolution/min_plus_convolution_convex_arbitrary.test.cpp
+  - test/src/convolution/min_plus_convolution/min_plus_convolution_convex_convex.test.cpp
 documentation_of: library/algorithm/monotone_minima.hpp
 layout: document
 title: Monotone Minima

@@ -620,14 +620,14 @@ data:
   timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
-  - test/src/math/set_power_series/abc253_h_2.test.cpp
-  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
-  - test/src/math/set_power_series/abc213_g.test.cpp
   - test/src/math/set_power_series/abc253_h.test.cpp
-  - test/src/math/set_power_series/arc105_f.test.cpp
-  - test/src/math/set_power_series/abc236_h.test.cpp
+  - test/src/math/set_power_series/polynomial_composite_set_power_series.test.cpp
+  - test/src/math/set_power_series/abc253_h_2.test.cpp
   - test/src/math/set_power_series/exp_of_set_power_series.test.cpp
+  - test/src/math/set_power_series/arc105_f.test.cpp
+  - test/src/math/set_power_series/abc213_g.test.cpp
+  - test/src/math/set_power_series/abc236_h.test.cpp
+  - test/src/linear_algebra/hafnian/hafnian_of_matrix.test.cpp
 documentation_of: library/math/set_power_series.hpp
 layout: document
 title: Set Power Series

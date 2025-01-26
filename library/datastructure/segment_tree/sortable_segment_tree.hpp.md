@@ -929,8 +929,8 @@ data:
   timestamp: '2023-05-18 22:35:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
   - test/src/datastructure/segment_tree/sortable_segment_tree/abc237_g.test.cpp
+  - test/src/datastructure/segment_tree/sortable_segment_tree/point_set_range_sort_range_composite.test.cpp
 documentation_of: library/datastructure/segment_tree/sortable_segment_tree.hpp
 layout: document
 title: Sortable Segment Tree

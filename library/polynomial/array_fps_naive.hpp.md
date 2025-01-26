@@ -16,7 +16,7 @@ data:
     title: Array Subset Convolution
   - icon: ':heavy_check_mark:'
     path: library/math/array_set_power_series.hpp
-    title: Array Set Power Series
+    title: Array Sps
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/src/math/array_set_power_series/abc213_g.test.cpp
@@ -353,15 +353,15 @@ data:
   isVerificationFile: false
   path: library/polynomial/array_fps_naive.hpp
   requiredBy:
-  - library/convolution/array_subset_convolution.hpp
   - library/math/array_set_power_series.hpp
+  - library/convolution/array_subset_convolution.hpp
   timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
-  - test/src/math/array_set_power_series/abc213_g.test.cpp
   - test/src/math/array_set_power_series/abc253_h.test.cpp
+  - test/src/math/array_set_power_series/abc253_h_2.test.cpp
   - test/src/math/array_set_power_series/arc105_f.test.cpp
+  - test/src/math/array_set_power_series/abc213_g.test.cpp
   - test/src/math/array_set_power_series/abc236_h.test.cpp
 documentation_of: library/polynomial/array_fps_naive.hpp
 layout: document

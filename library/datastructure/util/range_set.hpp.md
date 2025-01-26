@@ -143,10 +143,10 @@ data:
   timestamp: '2022-04-10 03:29:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/graph/functional_graph/abc254_g.test.cpp
-  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
-  - test/src/datastructure/util/range_set/yuki674.test.cpp
   - test/src/datastructure/util/range_set/DSL_2_D.test.cpp
+  - test/src/datastructure/util/range_set/yuki674.test.cpp
+  - test/src/datastructure/util/range_set/DSL_4_A.test.cpp
+  - test/src/graph/functional_graph/abc254_g.test.cpp
 documentation_of: library/datastructure/util/range_set.hpp
 layout: document
 title: Range Set

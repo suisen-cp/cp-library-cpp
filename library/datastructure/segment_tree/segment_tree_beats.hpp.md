@@ -182,9 +182,9 @@ data:
   timestamp: '2024-01-30 22:04:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_beats/abc256_Ex.test.cpp
   - test/src/datastructure/segment_tree/segment_tree_beats/yuki880.test.cpp
-  - test/src/range_query/range_chmin_chmax_add_range_sum/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: library/datastructure/segment_tree/segment_tree_beats.hpp
 layout: document
 title: Segment Tree Beats

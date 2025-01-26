@@ -787,9 +787,9 @@ data:
   timestamp: '2024-01-30 21:04:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/dummy.test.cpp
   - test/src/convolution/multi_variate_convolution_circular/bitwise_xor_convolution.test.cpp
-  - test/src/convolution/multi_variate_convolution_circular/multivariate_convolution_cyclic.test.cpp
 documentation_of: library/convolution/multi_variate_convolution_circular.hpp
 layout: document
 title: "Multi Variate Convolution Circular (\u591A\u5909\u6570\u5DE1\u56DE\u7573\u307F\

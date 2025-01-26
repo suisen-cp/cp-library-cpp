@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: library/number/mod_sqrt.hpp
     title: Mod Sqrt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: library/number/util.hpp
     title: Util
   _extendedRequiredBy: []
@@ -35,15 +35,15 @@ data:
     \ constexpr int siz = std::array{ 1, 2, 8, 48, 480, 5760, 92160 } [primes.size()\
     \ - 1] ;\n        static constexpr int period = [] {\n            int res = 1;\n\
     \            for (auto e : primes) res *= e;\n            return res;\n      \
-    \  }();\n        static constexpr struct S : public std::array<int, siz> {\n \
-    \           constexpr S() {\n                for (int i = next_prime, j = 0; i\
-    \ < period + next_prime; i += 2) {\n                    bool ok = true;\n    \
-    \                for (int p : primes) ok &= i % p > 0;\n                    if\
-    \ (ok) (*this)[j++] = i - next_prime;\n                }\n            }\n    \
-    \    } s{};\n\n        assert(n > 0);\n        std::vector<std::pair<T, int>>\
+    \      }();\n        static constexpr struct S : public std::array<int, siz> {\n\
+    \            constexpr S() {\n                for (int i = next_prime, j = 0;\
+    \ i < period + next_prime; i += 2) {\n                    bool ok = true;\n  \
+    \                  for (int p : primes) ok &= i % p > 0;\n                   \
+    \ if (ok) (*this)[j++] = i - next_prime;\n                }\n            }\n \
+    \       } s{};\n\n        assert(n > 0);\n        std::vector<std::pair<T, int>>\
     \ res;\n        auto f = [&res, &n](int p) {\n            if (n % p) return;\n\
     \            int cnt = 0;\n            do n /= p, ++cnt; while (n % p == 0);\n\
-    \            res.emplace_back(p, cnt);\n        };\n        for (int p : primes)\
+    \            res.emplace_back(p, cnt);\n            };\n        for (int p : primes)\
     \ f(p);\n        for (T b = next_prime; b * b <= n; b += period) {\n         \
     \   for (int offset : s) f(b + offset);\n        }\n        if (n != 1) res.emplace_back(n,\
     \ 1);\n        return res;\n    }\n\n    /**\n     * @brief Enumerates divisors\
@@ -64,9 +64,9 @@ data:
     \ n) time.\n     * @param n upper bound (closed)\n     * @return 2-dim vector\
     \ a of length n+1, where a[i] is the vector of divisors of i.\n     */\n    std::vector<std::vector<int>>\
     \ divisors_table(int n) {\n        std::vector<std::vector<int>> divs(n + 1);\n\
-    \        for (int i = 1; i <= n; ++i) {\n            for (int j = i; j <= n; ++j)\
-    \ divs[j].push_back(i);\n        }\n        return divs;\n    }\n\n    /**\n \
-    \    * @brief Calculates \u03C6(n) from its prime-factorized form in O(log n).\n\
+    \        for (int i = 1; i <= n; ++i) {\n            for (int j = i; j <= n; j\
+    \ += i) divs[j].push_back(i);\n        }\n        return divs;\n    }\n\n    /**\n\
+    \     * @brief Calculates \u03C6(n) from its prime-factorized form in O(log n).\n\
     \     * @tparam T integer type\n     * @param factorized a prime-factorized form\
     \ of n (a vector of { prime, exponent })\n     * @return \u03C6(n)\n     */\n\
     \    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
@@ -80,15 +80,15 @@ data:
     \ n upper bound (closed)\n     * @return vector a of length n+1, where a[i]=\u03C6\
     (i) for i=1,...,n\n     */\n    std::vector<int> totient_table(int n) {\n    \
     \    std::vector<int> res(n + 1);\n        for (int i = 0; i <= n; ++i) res[i]\
-    \ = (i & 1) == 0 ? i >> 1 : i;\n        for (int p = 3; p * p <= n; p += 2) {\n\
-    \            if (res[p] != p) continue;\n            for (int q = p; q <= n; q\
-    \ += p) res[q] /= p, res[q] *= p - 1;\n        }\n        return res;\n    }\n\
-    \n    /**\n     * @brief Calculates \u03BB(n) from its prime-factorized form in\
+    \ = (i & 1) == 0 ? i >> 1 : i;\n        for (int p = 3; p <= n; p += 2) {\n  \
+    \          if (res[p] != p) continue;\n            for (int q = p; q <= n; q +=\
+    \ p) res[q] /= p, res[q] *= p - 1;\n        }\n        return res;\n    }\n\n\
+    \    /**\n     * @brief Calculates \u03BB(n) from its prime-factorized form in\
     \ O(log n).\n     * @tparam T integer type\n     * @param factorized a prime-factorized\
     \ form of n (a vector of { prime, exponent })\n     * @return \u03BB(n)\n    \
     \ */\n    template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t>\
     \ = nullptr>\n    T carmichael(const std::vector<std::pair<T, int>>& factorized)\
-    \ {\n        T res = 1;\n        for (const auto &[p, c] : factorized) {\n   \
+    \ {\n        T res = 1;\n        for (const auto& [p, c] : factorized) {\n   \
     \         res = std::lcm(res, ((p - 1) * powi(p, c - 1)) >> (p == 2 and c >= 3));\n\
     \        }\n        return res;\n    }\n    /**\n     * @brief Calculates \u03BB\
     (n) in O(\u221An).\n     * @tparam T integer type\n     * @param n\n     * @return\
@@ -199,7 +199,7 @@ data:
   isVerificationFile: true
   path: test/src/number/mod_sqrt/dummy.test.cpp
   requiredBy: []
-  timestamp: '2023-01-14 03:03:33+09:00'
+  timestamp: '2025-01-26 15:55:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/src/number/mod_sqrt/dummy.test.cpp

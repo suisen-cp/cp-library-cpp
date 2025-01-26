@@ -69,8 +69,8 @@ data:
   timestamp: '2023-07-09 04:04:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
   - test/src/polynomial/subset_sum/p_subset_sum_2.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
 documentation_of: library/polynomial/subset_sum.hpp
 layout: document
 title: Subset Sum

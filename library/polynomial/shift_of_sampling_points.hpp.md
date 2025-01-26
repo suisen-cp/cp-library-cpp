@@ -125,17 +125,17 @@ data:
   isVerificationFile: false
   path: library/polynomial/shift_of_sampling_points.hpp
   requiredBy:
-  - library/math/sum_i^d_r^i.hpp
   - library/math/factorial_large.hpp
+  - library/math/sum_i^d_r^i.hpp
   - test/src/math/factorial_large/yuki502.cpp
   timestamp: '2024-01-30 20:59:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
-  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
-  - test/src/math/factorial_large/factorial.test.cpp
-  - test/src/math/factorial_large/dummy.test.cpp
   - test/src/math/factorial_large/many_factorials.test.cpp
+  - test/src/math/factorial_large/dummy.test.cpp
+  - test/src/math/factorial_large/factorial.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial_limit.test.cpp
+  - test/src/math/sum_i^d_r^i/sum_of_exponential_times_polynomial.test.cpp
   - test/src/polynomial/shift_of_sampling_points/shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: library/polynomial/shift_of_sampling_points.hpp
 layout: document

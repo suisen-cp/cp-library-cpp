@@ -497,9 +497,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/bbst/implicit_treap/abc237_d.test.cpp
+  - test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
   - test/src/datastructure/bbst/implicit_treap/dummy.test.cpp
   - test/src/datastructure/bbst/implicit_treap/yuki649.test.cpp
-  - test/src/datastructure/bbst/implicit_treap/arc155_b.test.cpp
 documentation_of: library/datastructure/bbst/implicit_treap.hpp
 layout: document
 title: Implicit Treap

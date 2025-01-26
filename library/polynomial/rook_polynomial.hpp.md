@@ -175,8 +175,8 @@ data:
   timestamp: '2024-01-31 02:33:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/polynomial/rook_polynomial/dummy.test.cpp
   - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - test/src/polynomial/rook_polynomial/dummy.test.cpp
 documentation_of: library/polynomial/rook_polynomial.hpp
 layout: document
 redirect_from:

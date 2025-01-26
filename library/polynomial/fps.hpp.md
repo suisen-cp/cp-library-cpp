@@ -771,32 +771,32 @@ data:
   timestamp: '2023-09-15 20:02:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
-  - test/src/sequence/partition_number/partition_function.test.cpp
-  - test/src/sequence/stirling_number1/abc247_h.test.cpp
-  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
-  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
-  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
-  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
   - test/src/math/product_of_differences/yuki1938.test.cpp
   - test/src/math/factorial_large/dummy.test.cpp
-  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
-  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
-  - test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
+  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/fps/division_of_polynomials.test.cpp
+  - test/src/polynomial/fps/pow_of_fps.test.cpp
+  - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/fps/inv_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
+  - test/src/polynomial/fps/log_of_fps.test.cpp
   - test/src/polynomial/fps/exp_of_fps.test.cpp
   - test/src/polynomial/fps/inv_of_fps.test.cpp
-  - test/src/polynomial/fps/division_of_polynomials.test.cpp
-  - test/src/polynomial/fps/log_of_fps.test.cpp
-  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/exp_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/log_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/fps/pow_of_fps.test.cpp
   - test/src/polynomial/fps/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
-  - test/src/polynomial/subset_sum/p_subset_sum.test.cpp
+  - test/src/polynomial/fps/sqrt_of_formal_power_series.test.cpp
+  - test/src/polynomial/fps/pow_of_formal_power_series_sparse.test.cpp
   - test/src/polynomial/bostan_mori/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/src/polynomial/lagrange_interpolation/dummy.test.cpp
+  - test/src/polynomial/polynomial_taylor_shift/polynomial_taylor_shift.test.cpp
+  - test/src/polynomial/multi_point_eval/multi_point_evaluation.test.cpp
+  - test/src/polynomial/polynomial_interpolation/polynomial_interpolation.test.cpp
+  - test/src/convolution/polynomial_eval_multipoint_eval/nim_counting.test.cpp
+  - test/src/sequence/stirling_number2/stirling_number2.test.cpp
+  - test/src/sequence/eulerian_number/yuki2005-2.test.cpp
+  - test/src/sequence/bernoulli_number/bernoulli_number.test.cpp
+  - test/src/sequence/partition_number/partition_function.test.cpp
+  - test/src/sequence/stirling_number1/stirling_number1.test.cpp
+  - test/src/sequence/stirling_number1/abc247_h.test.cpp
 documentation_of: library/polynomial/fps.hpp
 layout: document
 title: "\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570"

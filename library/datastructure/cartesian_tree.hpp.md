@@ -103,8 +103,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/cartesian_tree/cartesian_tree.test.cpp
-  - test/src/polynomial/rook_polynomial/dummy.test.cpp
   - test/src/polynomial/rook_polynomial/abc272_h.test.cpp
+  - test/src/polynomial/rook_polynomial/dummy.test.cpp
 documentation_of: library/datastructure/cartesian_tree.hpp
 layout: document
 title: Cartesian Tree

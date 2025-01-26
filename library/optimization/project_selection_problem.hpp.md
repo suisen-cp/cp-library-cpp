@@ -233,8 +233,8 @@ data:
   timestamp: '2024-01-30 21:53:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
   - test/src/optimization/project_selection_problem/arc085_c.test.cpp
+  - test/src/optimization/k_project_selection_problem/arc129_e.test.cpp
 documentation_of: library/optimization/project_selection_problem.hpp
 layout: document
 title: Project Selection Problem

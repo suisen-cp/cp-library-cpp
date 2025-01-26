@@ -155,8 +155,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/src/datastructure/convex_hull_trick/abc228_h.test.cpp
-  - test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
   - test/src/datastructure/convex_hull_trick/EDPC_Z.test.cpp
+  - test/src/datastructure/convex_hull_trick/line_add_get_min.test.cpp
 documentation_of: library/datastructure/convex_hull_trick.hpp
 layout: document
 title: "Convex Hull Trick (\u50BE\u304D\u304C\u5358\u8ABF\u3068\u306F\u9650\u3089\u306A\
