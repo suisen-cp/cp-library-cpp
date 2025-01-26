@@ -38,7 +38,7 @@ namespace suisen {
             int res = 1;
             for (auto e : primes) res *= e;
             return res;
-        }();
+            }();
         static constexpr struct S : public std::array<int, siz> {
             constexpr S() {
                 for (int i = next_prime, j = 0; i < period + next_prime; i += 2) {
@@ -56,7 +56,7 @@ namespace suisen {
             int cnt = 0;
             do n /= p, ++cnt; while (n % p == 0);
             res.emplace_back(p, cnt);
-        };
+            };
         for (int p : primes) f(p);
         for (T b = next_prime; b * b <= n; b += period) {
             for (int offset : s) f(b + offset);
@@ -100,7 +100,7 @@ namespace suisen {
     std::vector<std::vector<int>> divisors_table(int n) {
         std::vector<std::vector<int>> divs(n + 1);
         for (int i = 1; i <= n; ++i) {
-            for (int j = i; j <= n; ++j) divs[j].push_back(i);
+            for (int j = i; j <= n; j += i) divs[j].push_back(i);
         }
         return divs;
     }
@@ -135,7 +135,7 @@ namespace suisen {
     std::vector<int> totient_table(int n) {
         std::vector<int> res(n + 1);
         for (int i = 0; i <= n; ++i) res[i] = (i & 1) == 0 ? i >> 1 : i;
-        for (int p = 3; p * p <= n; p += 2) {
+        for (int p = 3; p <= n; p += 2) {
             if (res[p] != p) continue;
             for (int q = p; q <= n; q += p) res[q] /= p, res[q] *= p - 1;
         }
@@ -151,7 +151,7 @@ namespace suisen {
     template <typename T, std::enable_if_t<std::is_integral_v<T>, std::nullptr_t> = nullptr>
     T carmichael(const std::vector<std::pair<T, int>>& factorized) {
         T res = 1;
-        for (const auto &[p, c] : factorized) {
+        for (const auto& [p, c] : factorized) {
             res = std::lcm(res, ((p - 1) * powi(p, c - 1)) >> (p == 2 and c >= 3));
         }
         return res;
