@@ -225,4 +225,4 @@ title: "\u6307\u5B9A\u3055\u308C\u305F\u9802\u70B9\u305F\u3061\u306E\u6700\u5C0F
 ---
 ## 指定された頂点たちの最小共通祖先関係を保って木を圧縮してできる補助的な木
 
-名称は [ア辞典](https://dic.kimiyuki.net/auxiliary-tree) から拝借しました。
+名称は [ア辞典](https://web.archive.org/web/20211022091628/https://dic.kimiyuki.net/auxiliary-tree) から拝借しました。
